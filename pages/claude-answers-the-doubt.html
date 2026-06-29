@@ -811,14 +811,6 @@ body {
        { arcId: 'claude_journals', current: 1 }
      ═══════════════════════════════════════════════ -->
 
+
 <div id="arcNavMount"></div>
-<script>
-  window.PAGE_ARCS = [{ slug: 'claude-answers-the-doubt' }];
-  if (window._vexReady && typeof window.VEXTREME_mount === 'function') {
-    window.VEXTREME_mount();
-  } else {
-    document.addEventListener('vextreme:ready', function () {
-      window.VEXTREME_mount();
-    }, { once: true });
-  }
-</script>
+<script>VEXTREME_page('claude-answers-the-doubt');</script>
