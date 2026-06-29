@@ -27,7 +27,7 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 001 — June 29, 2026*
+*As of Session 001 (extended) — June 29, 2026*
 
 The GitHub-to-Squarespace loader pipeline is working end-to-end. Arc nav
 widget confirmed rendering on `claude-answers-the-doubt`. Data (`arcs.json`,
@@ -53,6 +53,10 @@ current system state — not aspirational state.
 - [ ] Verify `archive-renderer.js` token inheritance end-to-end
 - [ ] Add `?v=` cache bust to stylesheet `<link>` tags if CSS changes
       don't reflect after pushes
+- [ ] Enable GitHub Pages on repo (Settings → Pages → main branch → / root)
+- [ ] Port `claude-answers-the-doubt` HTML into `pages/claude-answers-the-doubt.html`
+- [ ] Verify arc nav widget resolves correctly on GitHub Pages hostname
+- [ ] Add subsequent pages to `pages/` and link from `index.html`
 
 **Update this list at the end of each session** — check off completed items,
 add new ones discovered during the session.
@@ -87,6 +91,7 @@ When a batch reaches 10 sessions:
 | Question | Answer |
 |---|---|
 | Where is arc data? | `data/arcs.json` — all arcs, sections, entry slugs |
+| Where is environment config? | `data/environments.json` — base URLs per deployment context |
 | Where is display data? | `data/pages.json` — presets, per-slug token overrides |
 | Where is the loader? | `docs/squarespace-injection.html` — paste into Squarespace footer |
 | Current cache version | `?v=2` — increment when lib/component files change |

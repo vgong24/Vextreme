@@ -1,0 +1,39 @@
+{
+  "_meta": {
+    "purpose": "Maps base URLs across deployment environments. The arc nav engine and any future renderer reads from this to construct hrefs. Switching environments means changing one value — not touching HTML or arc data.",
+    "note": "Add a new environment block when the site is hosted somewhere new. The 'active' field is informational only — the loader sets window.VEXTREME_BASE_URL at runtime based on hostname detection."
+  },
+
+  "environments": {
+
+    "squarespace": {
+      "name": "Squarespace (primary)",
+      "baseUrl": "https://www.vextreme24.com",
+      "hostnames": ["www.vextreme24.com", "vextreme24.com"],
+      "active": true,
+      "notes": "Primary public-facing site. Formal sharing links. Squarespace controls layout shell, header, footer nav, SEO meta. Content HTML lives in Squarespace code blocks. Logic and styles load from GitHub via jsDelivr."
+    },
+
+    "github_pages": {
+      "name": "GitHub Pages (preservation copy)",
+      "baseUrl": "https://vgong24.github.io/vextreme",
+      "hostnames": ["vgong24.github.io"],
+      "active": false,
+      "notes": "Full static HTML preservation. Independent of Squarespace. Forkable by anyone. Pages live in /pages/ folder. Same arc logic, same styles — only baseUrl differs. Enable via GitHub repo Settings → Pages → main branch."
+    },
+
+    "local": {
+      "name": "Local development",
+      "baseUrl": "http://localhost:8080",
+      "hostnames": ["localhost", "127.0.0.1"],
+      "active": false,
+      "notes": "Run: python3 -m http.server 8080 from repo root. Arc nav links will point to localhost. Useful for testing HTML pages and renderer output before pushing."
+    }
+
+  },
+
+  "migrationMap": {
+    "_note": "Slug-to-slug mapping between environments. Only needed if a slug changes between environments. If slug is the same everywhere (which is the goal), this stays empty. Add entries here before any forced migration so the redirect logic has a source of truth.",
+    "entries": []
+  }
+}

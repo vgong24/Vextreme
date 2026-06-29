@@ -97,21 +97,33 @@
   // Step 5: resolve PAGE_ARCS then mount
   .then(function () {
     // Auto-detect slug from URL if page hasn't set window.PAGE_ARCS.
-    // Covers old pages not yet updated and pages with no per-page block.
-    // e.g. /claude-answers-the-doubt → slug: 'claude-answers-the-doubt'
     if (!window.PAGE_ARCS) {
       var slug = window.location.pathname.replace(/\/$/, '').split('/').pop();
       if (slug) window.PAGE_ARCS = [{ slug: slug }];
     }
 
-    // Mount — arc-nav.js defines VEXTREME_mount, data is loaded,
-    // PAGE_ARCS is set. All three conditions met. Mount once.
+    // Expose the single per-page interface.
+    // Every page calls: VEXTREME_page('your-slug')
+    // That's it. Timing, mount, deduplication — all handled here.
+    //
+    // If called before the stack is ready (shouldn't happen since this
+    // runs after all scripts load) it queues the slug and mounts when ready.
+    // If called after ready (the normal case) it sets PAGE_ARCS and mounts.
+    window.VEXTREME_page = function (slug) {
+      window.PAGE_ARCS = slug ? [{ slug: slug }] : window.PAGE_ARCS;
+      if (typeof window.VEXTREME_mount === 'function') {
+        window.VEXTREME_mount();
+      }
+    };
+
+    // Mount for the current page using whatever PAGE_ARCS is set to
+    // (either auto-detected above, or set by a per-page call that ran
+    // before the loader resolved — const PAGE_ARCS won't work but
+    // window.PAGE_ARCS set before this point will).
     if (typeof window.VEXTREME_mount === 'function') {
       window.VEXTREME_mount();
     }
 
-    // Signal ready. Per-page scripts that need to do additional work
-    // (e.g. force a specific arc) can listen for this event.
     window._vexReady = true;
     document.dispatchEvent(new CustomEvent('vextreme:ready'));
   })
@@ -161,11 +173,30 @@
   ============================================================ -->
 
 <!--
+  PER-PAGE BLOCK — only needed when auto-detection gets the wrong slug.
+  For most pages: don't add this at all. The loader reads the URL.
+
+  When you do need it, one line:
+-->
+
+<!--
 <div id="arcNavMount"></div>
-<script>
-  // Set before the loader resolves so mount() reads the right slug.
-  // Must be window.PAGE_ARCS — not const (block-scoped, invisible
-  // to scripts loaded in separate tags).
-  window.PAGE_ARCS = [{ slug: 'YOUR-PAGE-SLUG-HERE' }];
-</script>
+<script>VEXTREME_page('your-page-slug-here');</script>
+-->
+
+<!--
+  COMPATIBILITY NOTE — old pages still in Squarespace with either of
+  these patterns will still work via URL auto-detection. No urgent need
+  to update them, but when you touch a page, simplify to the one-liner.
+
+  OLD (broken timing, kept working by auto-detect fallback):
+    const PAGE_ARCS = [{ slug: 'x' }];
+    window.VEXTREME_mount && window.VEXTREME_mount();
+
+  OLD (verbose but correct):
+    window.PAGE_ARCS = [{ slug: 'x' }];
+    if (window._vexReady ...) { ... } else { addEventListener(...) }
+
+  NEW (current — one line, loader handles everything):
+    VEXTREME_page('x');
 -->

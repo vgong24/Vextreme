@@ -98,13 +98,25 @@ injection in Squarespace.
 ```
 vextreme/
 │
+├── index.html                     ← GitHub Pages landing page. Lists all
+│                                preserved pages. Served at repo root when
+│                                GitHub Pages is enabled.
+│
+├── pages/
+│   └── [slug].html               ← One file per preserved page. Self-contained.
+│                                Loads styles + arc nav from GitHub. Same slug
+│                                as the Squarespace counterpart.
+│
 ├── data/
 │   ├── arcs.json                  ← THE CONTENT SCHEMA. All arcs, sections,
 │   │                                entries, and slugs live here. Edit this
 │   │                                first when adding pages.
-│   └── pages.json                 ← THE DISPLAY MAP. Three-layer token system:
-│                                    presets → per-slug overrides. Controls how
-│                                    each entry row looks in the archives page.
+│   ├── pages.json                 ← THE DISPLAY MAP. Three-layer token system:
+│   │                                presets → per-slug overrides. Controls how
+│   │                                each entry row looks in the archives page.
+│   └── environments.json          ← BASE URL MAP. One entry per deployment
+│                                    environment. arc-nav.js auto-detects from
+│                                    hostname — no config needed per environment.
 │
 ├── lib/
 │   ├── arc-nav.js                 ← Arc nav engine. Reads VEXTREME_ARCS,
@@ -378,6 +390,47 @@ edit it here first, then copy to Squarespace.
    with the correct slug string
 
 The slug is the last segment of the URL: `vextreme24.com/your-slug` → `your-slug`.
+
+---
+
+## Multi-environment deployment
+
+The same codebase runs in three environments without modification:
+
+| Environment | Base URL | Purpose |
+|---|---|---|
+| Squarespace | `https://www.vextreme24.com` | Primary public site. Formal sharing links. |
+| GitHub Pages | `https://vgong24.github.io/vextreme` | Preservation copy. Forkable. Independent. |
+| Local | `http://localhost:8080` | Development and testing. |
+
+`arc-nav.js` detects the environment from `window.location.hostname` at
+runtime and sets the correct base URL automatically. No per-environment
+config needed. To override: set `window.VEXTREME_BASE_URL` before the
+loader runs.
+
+**Enabling GitHub Pages:**
+Repo Settings → Pages → Source: main branch → folder: / (root).
+The `index.html` at repo root becomes the landing page. Pages live in
+`/pages/[slug].html`.
+
+**Adding a page to the preservation archive:**
+1. Copy the Squarespace page HTML into `/pages/[slug].html`
+2. Remove the Squarespace wrapper (nav, footer chrome) — keep content only
+3. Add the standard page shell (see any existing page in `/pages/`)
+4. Add a link to `index.html`
+
+**What "same logic, different base URL" means in practice:**
+The arc nav widget on `pages/claude-answers-the-doubt.html` renders the
+same dot rows as the Squarespace page. Clicking a dot on GitHub Pages links
+to `vgong24.github.io/vextreme/pages/[slug].html`. Clicking the same dot
+on Squarespace links to `vextreme24.com/[slug]`. Same data, same engine,
+different hrefs — resolved at render time from the detected base URL.
+
+**The migration map (`data/environments.json`):**
+If a slug ever needs to differ between environments, add it to
+`environments.migrationMap.entries`. This is the source of truth for any
+future redirect or URL-rewriting logic. If slugs stay consistent across
+environments (which is the goal), this stays empty.
 
 ---
 
