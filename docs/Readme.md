@@ -15,14 +15,19 @@ scripts.
 vextreme/
 │
 ├── data/
-│   └── arcs.json                  ← THE CONTENT SCHEMA. All arcs, sections,
-│                                    entries, and slugs live here. Edit this
-│                                    first when adding pages.
+│   ├── arcs.json                  ← THE CONTENT SCHEMA. All arcs, sections,
+│   │                                entries, and slugs live here. Edit this
+│   │                                first when adding pages.
+│   └── pages.json                 ← THE DISPLAY MAP. Three-layer token system:
+│                                    presets → per-slug overrides. Controls how
+│                                    each entry row looks in the archives page.
 │
 ├── lib/
-│   └── arc-nav.js                 ← Arc nav engine. Reads VEXTREME_ARCS,
-│                                    renders the dot-nav widget. No data.
-│                                    No CSS. Pure logic.
+│   ├── arc-nav.js                 ← Arc nav engine. Reads VEXTREME_ARCS,
+│   │                                renders the dot-nav widget. No data.
+│   │                                No CSS. Pure logic.
+│   └── archive-renderer.js        ← Archives page renderer. Merges pages.json
+│                                    token layers, generates entry row HTML.
 │
 ├── components/
 │   ├── bc-nav.js                  ← Simple shape-coded nav. Reads bcNavConfig.
@@ -57,20 +62,16 @@ vextreme/
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 
 <!-- Design system -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/YOUR_GITHUB/vextreme@main/styles/design-system.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/YOUR_GITHUB/vextreme@main/styles/arc-nav.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/styles/design-system.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/styles/arc-nav.css">
 ```
 
 ### 2. Global footer (Squarespace → Settings → Advanced → Code Injection → Footer)
 
 ```html
-<!-- Arc data -->
-<script src="https://cdn.jsdelivr.net/gh/YOUR_GITHUB/vextreme@main/data/arcs.json"
-        type="application/json" id="vextreme-arcs-data"></script>
-
-<!-- Or inline load the JSON and assign to window.VEXTREME_ARCS -->
+<!-- Load arc data, then mount -->
 <script>
-  fetch('https://cdn.jsdelivr.net/gh/YOUR_GITHUB/vextreme@main/data/arcs.json')
+  fetch('https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/data/arcs.json')
     .then(r => r.json())
     .then(data => {
       window.VEXTREME_ARCS = data.arcs;
@@ -79,7 +80,7 @@ vextreme/
 </script>
 
 <!-- Arc nav engine -->
-<script src="https://cdn.jsdelivr.net/gh/YOUR_GITHUB/vextreme@main/lib/arc-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/lib/arc-nav.js"></script>
 ```
 
 ### 3. Per-page (in the page's Code Block or Custom HTML section)
@@ -147,11 +148,77 @@ Dot arcs render before position arcs.
 | File | Reads | Writes | Knows about |
 |---|---|---|---|
 | `data/arcs.json` | — | — | All arcs, all entries, all slugs |
-| `lib/arc-nav.js` | `window.VEXTREME_ARCS`, `PAGE_ARCS` | `#arcNavMount` innerHTML | Rendering, slug resolution |
+| `data/pages.json` | — | — | Display tokens: presets, per-slug overrides, pills, fonts |
+| `lib/arc-nav.js` | `VEXTREME_ARCS`, `PAGE_ARCS` | `#arcNavMount` innerHTML | Arc rendering, slug resolution |
+| `lib/archive-renderer.js` | `VEXTREME_ARCS`, `VEXTREME_PAGES` | `.entry-list` innerHTML | Token merging, entry row HTML |
 | `styles/arc-nav.css` | — | — | Widget layout only |
 | `styles/design-system.css` | — | — | Tokens, entry rows, pills |
 | `components/section-toggle.js` | localStorage, `VEXTREME_SECTIONS` | localStorage, DOM classes | Collapse state |
 | `components/bc-nav.js` | `window.bcNavConfig` | `#bcNavContainer` innerHTML | Shape-coded links |
+
+---
+
+## The display token system (pages.json)
+
+Three-layer inheritance — later layers win:
+
+```
+_base  →  preset  →  per-slug overrides
+```
+
+**Presets** are named style bundles for recurring patterns:
+
+| Preset | Used for | What it sets |
+|---|---|---|
+| `_base` | Default fallback | White bg, Source Serif title, IBM Plex Mono date |
+| `tint` | record, journal, architecture | Background tint only, inherits _base |
+| `accent-border` | walk-entry, god-pattern | Ember left border, ember title color |
+| `immersive` | memoir, island | Large padding, italic serif title |
+| `embodiment` | ascension-and-embodiment | Cormorant font, lg title, cream bg |
+| `i-was-here` | i-was-here | Newsreader title, Martian Mono date, near-black bg |
+| `dark` | firmament, cheatsheet, inside-the-experiment | Dark bg, gold text, full border |
+
+**sectionDefaults** — if a slug has no entry in `pages`, the renderer checks which archive section it lives in and applies that section's default preset. This means plain `record`, `journal`, `architecture` rows don't need individual entries.
+
+**Per-slug overrides** — any token field in `pages[slug]` wins over the preset.
+
+### To add a new entry with custom styling:
+
+```json
+"your-slug": {
+  "preset": "dark",
+  "bgColor": "#0a0806",
+  "titleColor": "#d4c080",
+  "pills": ["dome"],
+  "desc": "Optional subtitle shown under the meta row."
+}
+```
+
+### Token reference
+
+| Token | Type | Controls |
+|---|---|---|
+| `bgColor` | hex | Row background |
+| `hoverBg` | hex | Background on hover |
+| `borderStyle` | `none` / `left` / `full` | Border presence and type |
+| `borderColor` | hex | Border color |
+| `padding` | `sm` / `md` / `lg` | Cell padding |
+| `titleFont` | font key | Title typeface (`serif`, `cormorant`, `newsreader`, `mono-ibm`) |
+| `titleSize` | `sm` / `md` / `lg` | Title font size |
+| `titleStyle` | `normal` / `italic` | Title style |
+| `titleColor` | hex | Title color at rest |
+| `hoverTitleColor` | hex | Title color on hover |
+| `descFont` | font key | Desc typeface |
+| `descColor` | hex | Desc text color |
+| `dateFont` | font key | Date typeface (`mono-ibm`, `mono-dm`, `mono-martian`) |
+| `dateColor` | hex | Date text color |
+| `tagColor` | hex | Tag text color |
+| `arrowColor` | hex | Arrow → at rest |
+| `hoverArrowColor` | hex | Arrow → on hover |
+| `pills` | string[] | Pill keys from `pages.pills` |
+| `tags` | string | Tag text (e.g. `"Arc · Testimony"`) |
+| `desc` | string | Subtitle shown under meta row |
+| `dateDisplay` | string | Overrides arc date (for time-specific entries) |
 
 ---
 
