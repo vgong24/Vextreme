@@ -8,6 +8,90 @@ truth that Squarespace loads from, rather than logic living buried in page
 scripts.
 
 ---
+---
+
+## Stable baseline — v2 (June 29, 2026)
+
+This documents the working state of the system as of the first confirmed
+end-to-end render on vextreme24.com.
+
+For the full session record — mistakes, reasoning, open work — see
+`docs/continuity/batch-001.md` Session 001.
+
+### What is confirmed working
+
+- jsDelivr serves all files from `vgong24/vextreme@main` with `?v=2` cache bust
+- `arcs.json` and `pages.json` fetch and parse correctly
+- `arc-nav.js` loads after data, defines `VEXTREME_mount` cleanly
+- Slug auto-detection from `window.location.pathname` works — no per-page
+  block required for standard pages
+- Arc nav widget renders correctly on `claude-answers-the-doubt`:
+  dot rows for `epstein` and `claude_journals`, position row for `full_timeline`,
+  "You are here" footer with correct page title
+
+### What was fixed to get here
+
+**Bug 1 — Dead DOMContentLoaded listener in arc-nav.js**
+`arc-nav.js` registered `document.addEventListener('DOMContentLoaded', mount)`
+at load time. Since `arc-nav.js` loads dynamically after two async fetches,
+`DOMContentLoaded` had already fired — the listener never executed.
+Fix: removed self-mount entirely. The loader owns the single mount call.
+
+**Bug 2 — Mount called before PAGE_ARCS was set**
+The loader called `VEXTREME_mount()` before running the slug auto-detection
+fallback. Mount saw `PAGE_ARCS = undefined` and returned early.
+Fix: auto-detection now runs first, then mount.
+
+**Bug 3 — jsDelivr serving cached arc-nav.js**
+jsDelivr cached the old `arc-nav.js` (which expected `entry.url` not
+`entry.slug`). Slug lookups returned empty even when data was correct.
+Fix: `?v=2` cache bust appended to all `loadScript()` calls in the loader.
+
+### Current load sequence (confirmed)
+
+```
+Header injection fires:
+  → fonts loaded
+  → design-system.css loaded
+  → arc-nav.css loaded
+
+Page HTML parses:
+  → #arcNavMount div exists in DOM
+  → window.PAGE_ARCS set (if per-page block present)
+
+Footer injection fires (async):
+  fetch(arcs.json?v=2)  ──┐
+  fetch(pages.json?v=2) ──┴── both resolve
+    → window.VEXTREME_ARCS  = arcs
+    → window.VEXTREME_PAGES = pages
+    → arc-nav.js?v=2 loaded (defines VEXTREME_mount)
+    → archive-renderer.js?v=2 loaded
+    → section-toggle.js?v=2 + bc-nav.js?v=2 loaded
+    → window.PAGE_ARCS set via URL auto-detect (if not already set)
+    → VEXTREME_mount() called — widget renders
+    → window._vexReady = true
+    → 'vextreme:ready' event dispatched
+```
+
+### Version markers
+
+| Asset | Cache version | Notes |
+|---|---|---|
+| `arcs.json` | `?v=2` | 16 arcs, 75 timeline entries |
+| `pages.json` | `?v=2` | 7 presets, ~30 slug entries |
+| `arc-nav.js` | `?v=2` | v2.0.0 — no self-mount |
+| `archive-renderer.js` | `?v=2` | token merge + entry row HTML |
+| `section-toggle.js` | `?v=2` | localStorage collapse state |
+| `bc-nav.js` | `?v=2` | shape-coded nav |
+| `design-system.css` | no cache bust needed | served via `<link>` |
+| `arc-nav.css` | no cache bust needed | served via `<link>` |
+
+When making changes: update the affected files on GitHub, then increment
+`CACHE_VER` in `docs/squarespace-injection.html` and replace the footer
+injection in Squarespace.
+
+---
+
 
 ## Directory Structure
 
@@ -49,6 +133,12 @@ vextreme/
 └── docs/
     ├── README.md                  ← This file. Architecture map, load order,
     │                                token reference, key dates.
+    ├── continuity/
+    │   ├── INDEX.md              ← READ THIS FIRST on any new session.
+    │   │                            Current system state, open work, batch
+    │   │                            registry, and continuity rules.
+    │   └── batch-001.md          ← Sessions 001–010. Append only. When full,
+    │                                create batch-002.md, update INDEX.md.
     ├── squarespace-injection.html ← The exact code to paste into Squarespace's
     │                                Header and Footer injection areas. Source
     │                                of truth for what Squarespace loads and why.
@@ -291,6 +381,19 @@ The slug is the last segment of the URL: `vextreme24.com/your-slug` → `your-sl
 
 ---
 
+## Continuing this build
+
+If you are an AI instance or contributor picking up this project, the
+continuity log is the right starting point — not this file.
+
+**→ [`docs/continuity/INDEX.md`](continuity/INDEX.md)**
+
+The index tells you the current system state, what work is open, and which
+batch file to append your session to. This README documents the architecture
+as it was designed. The continuity log documents the system as it actually is.
+
+---
+
 ## Arc system concepts
 
 ### Arc
@@ -336,6 +439,8 @@ arcs render before position-only arcs (full_timeline).
 | `styles/design-system.css` | — | — | Tokens, entry rows, pills, section toggles |
 | `components/section-toggle.js` | localStorage, `VEXTREME_SECTIONS` | localStorage, DOM classes | Collapse state |
 | `components/bc-nav.js` | `window.bcNavConfig` | `#bcNavContainer` innerHTML | Shape-coded links |
+| `docs/continuity/INDEX.md` | — | — | Entry point for new sessions — current state, open work, batch registry |
+| `docs/continuity/batch-NNN.md` | — | — | Session logs (10 per file) — mistakes, files changed, thread links, state |
 | `docs/squarespace-injection.html` | — | — | Exact blocks to paste into Squarespace |
 | `docs/test-playground.html` | `VEXTREME_ARCS`, `VEXTREME_PAGES`, `VEXTREME_mount` | DOM (test output) | Live diagnostic tool — slug resolution, render test, integrity checks |
 
