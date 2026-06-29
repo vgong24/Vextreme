@@ -1,30 +1,18 @@
 <!-- ============================================================
   VEXTREME — Squarespace Code Injection
   docs/squarespace-injection.html — source of truth
+  v2 — fixed mount timing, cache busting on all assets
 
   THREE blocks:
     1. HEADER  → Settings → Advanced → Code Injection → Header
     2. FOOTER  → Settings → Advanced → Code Injection → Footer
-    3. PER-PAGE → each page's Custom Code (only for pages that
-                  need the arc nav widget)
+    3. PER-PAGE → each page's Custom Code (only for pages needing
+                  arc nav that can't use auto slug detection)
 
-  TROUBLESHOOTING:
-    "No arcs found for this page"
-      → jsDelivr is likely serving a cached/stale arcs.json.
-        Force a cache bust by appending ?v=2 to the fetch URL,
-        or use a specific commit hash instead of @main.
-        Also check: window.VEXTREME_ARCS in browser console —
-        if undefined, the fetch failed. If populated but empty
-        arcs object, the JSON structure is wrong.
-
-    Widget doesn't appear at all
-      → Check that window.PAGE_ARCS is set (not const PAGE_ARCS).
-        const is block-scoped and invisible to arc-nav.js.
-        Check browser console for [VEXTREME] Loader error messages.
-
-    Widget appears but shows wrong arcs
-      → The slug in window.PAGE_ARCS doesn't match the slug in
-        arcs.json. Slugs are case-sensitive and must match exactly.
+  CACHE BUSTING:
+    Increment CACHE_VER when any file in /lib or /components changes.
+    This forces jsDelivr to serve fresh files instead of cached ones.
+    Current: v=2
   ============================================================ -->
 
 
@@ -32,11 +20,8 @@
 
 <!-- ============================================================
   1. HEADER INJECTION
-  Settings → Advanced → Code Injection → Header
-
-  WHY HEADER: Stylesheets must load before HTML renders to prevent
-  a flash of unstyled content. No scripts here — scripts in <head>
-  block rendering.
+  WHY HEADER: Stylesheets load before HTML renders — no flash of
+  unstyled content. No scripts here (scripts block rendering).
   ============================================================ -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,85 +35,93 @@
 
 <!-- ============================================================
   2. FOOTER INJECTION
-  Settings → Advanced → Code Injection → Footer
+  WHY FOOTER: Runs after page HTML is parsed, so #arcNavMount
+  exists in the DOM when mount() is called.
 
-  WHY FOOTER: Runs after page HTML has parsed. fetch() is async
-  so the load chain resolves without blocking page render.
-
-  LOAD ORDER (must not be reordered — each step depends on prior):
-    fetch arcs.json + pages.json (parallel)
-      → arc-nav.js
+  LOAD ORDER:
+    fetch arcs.json + pages.json (parallel, async)
+      → arc-nav.js       (defines VEXTREME_mount)
       → archive-renderer.js
       → section-toggle.js + bc-nav.js (parallel)
-      → VEXTREME_mount()
-      → dispatch vextreme:ready
+      → resolve PAGE_ARCS (auto-detect from URL if not set)
+      → VEXTREME_mount() ← called here, after everything is ready
+      → dispatch 'vextreme:ready'
 
-  SLUG AUTO-DETECTION:
-    If a page has no window.PAGE_ARCS set (old pages not yet
-    updated), the loader falls back to detecting the slug from
-    window.location.pathname automatically. This means most pages
-    don't need their HTML touched at all during migration.
-
-  CACHE BUSTING:
-    jsDelivr caches @main aggressively. If arcs.json changes are
-    not reflecting, increment the ?v= parameter on the fetch URLs.
-    Current version: v=1
+  WHY MOUNT IS CALLED HERE NOT IN arc-nav.js:
+    arc-nav.js used to register its own DOMContentLoaded listener.
+    By the time arc-nav.js loads (after two async fetches + dynamic
+    script injection), DOMContentLoaded has already fired — so that
+    listener never ran. The loader now owns the single mount call,
+    after the full chain resolves and PAGE_ARCS is guaranteed set.
   ============================================================ -->
 
 <script>
 (function () {
   'use strict';
 
-  var BASE  = 'https://cdn.jsdelivr.net/gh/vgong24/vextreme@main';
-  var DATA  = BASE + '/data';
-  var LIB   = BASE + '/lib';
-  var COMP  = BASE + '/components';
-  var CACHE = '?v=1';
+  var BASE      = 'https://cdn.jsdelivr.net/gh/vgong24/vextreme@main';
+  var DATA      = BASE + '/data';
+  var LIB       = BASE + '/lib';
+  var COMP      = BASE + '/components';
+  var CACHE_VER = '?v=2'; // ← increment when any lib/component file changes
 
   if (window._vexLoaderInit) return;
   window._vexLoaderInit = true;
 
+  // Step 1: fetch data files in parallel
   Promise.all([
-    fetch(DATA + '/arcs.json' + CACHE).then(function (r) { return r.json(); }),
-    fetch(DATA + '/pages.json' + CACHE).then(function (r) { return r.json(); })
+    fetch(DATA + '/arcs.json'  + CACHE_VER).then(function (r) { return r.json(); }),
+    fetch(DATA + '/pages.json' + CACHE_VER).then(function (r) { return r.json(); })
   ])
+
+  // Step 2: assign globals, load arc-nav engine
   .then(function (results) {
     if (!window.VEXTREME_ARCS)  window.VEXTREME_ARCS  = results[0].arcs;
     if (!window.VEXTREME_PAGES) window.VEXTREME_PAGES = results[1];
-
-    // BRIDGE: if the page has no window.PAGE_ARCS set (old HTML not
-    // yet updated), auto-detect slug from the URL pathname.
-    // e.g. /claude-answers-the-doubt → 'claude-answers-the-doubt'
-    // This lets old pages work without touching their HTML at all.
-    if (!window.PAGE_ARCS) {
-      var slug = window.location.pathname.replace(/\/$/, '').split('/').pop();
-      if (slug && slug.length > 0) {
-        window.PAGE_ARCS = [{ slug: slug }];
-      }
-    }
-
-    return loadScript(LIB + '/arc-nav.js');
+    return loadScript(LIB + '/arc-nav.js' + CACHE_VER);
   })
+
+  // Step 3: load archive renderer
   .then(function () {
-    return loadScript(LIB + '/archive-renderer.js');
+    return loadScript(LIB + '/archive-renderer.js' + CACHE_VER);
   })
+
+  // Step 4: load components in parallel
   .then(function () {
     return Promise.all([
-      loadScript(COMP + '/section-toggle.js'),
-      loadScript(COMP + '/bc-nav.js')
+      loadScript(COMP + '/section-toggle.js' + CACHE_VER),
+      loadScript(COMP + '/bc-nav.js'         + CACHE_VER)
     ]);
   })
+
+  // Step 5: resolve PAGE_ARCS then mount
   .then(function () {
+    // Auto-detect slug from URL if page hasn't set window.PAGE_ARCS.
+    // Covers old pages not yet updated and pages with no per-page block.
+    // e.g. /claude-answers-the-doubt → slug: 'claude-answers-the-doubt'
+    if (!window.PAGE_ARCS) {
+      var slug = window.location.pathname.replace(/\/$/, '').split('/').pop();
+      if (slug) window.PAGE_ARCS = [{ slug: slug }];
+    }
+
+    // Mount — arc-nav.js defines VEXTREME_mount, data is loaded,
+    // PAGE_ARCS is set. All three conditions met. Mount once.
     if (typeof window.VEXTREME_mount === 'function') {
       window.VEXTREME_mount();
     }
+
+    // Signal ready. Per-page scripts that need to do additional work
+    // (e.g. force a specific arc) can listen for this event.
     window._vexReady = true;
     document.dispatchEvent(new CustomEvent('vextreme:ready'));
   })
+
   .catch(function (err) {
     console.warn('[VEXTREME] Loader error:', err);
   });
 
+  // Inject a <script> tag and return a Promise.
+  // Skips if the same src is already in the DOM (idempotent).
   function loadScript(src) {
     return new Promise(function (resolve, reject) {
       if (document.querySelector('script[src="' + src + '"]')) {
@@ -137,7 +130,10 @@
       var el     = document.createElement('script');
       el.src     = src;
       el.onload  = resolve;
-      el.onerror = function () { reject(new Error('[VEXTREME] Failed to load: ' + src)); };
+      el.onerror = function () {
+        console.warn('[VEXTREME] Failed to load: ' + src);
+        resolve(); // resolve not reject — let the chain continue
+      };
       document.head.appendChild(el);
     });
   }
@@ -149,32 +145,27 @@
 
 
 <!-- ============================================================
-  3. PER-PAGE BLOCK
-  Only needed on pages where you want to explicitly control which
-  arc is shown, or override the auto-detected slug.
+  3. PER-PAGE BLOCK (optional — most pages don't need this)
 
-  For most pages during migration: you DON'T need this at all.
-  The footer loader auto-detects the slug from the URL.
+  The footer auto-detects the slug from window.location.pathname.
+  You only need this block when:
+    - The page URL slug differs from the arc entry slug
+    - You need to force a specific arc (not all matching arcs)
+    - You need to re-mount after a dynamic content change
 
-  You DO need this if:
-    - The page slug doesn't match the arc entry slug exactly
-    - You want to force a specific arc instead of all matching arcs
-    - The page is at a URL like /home or / with no slug segment
+  If used: window.PAGE_ARCS must be set BEFORE vextreme:ready fires.
+  The simplest place is in a Code Block above the arcNavMount div,
+  so it runs during HTML parse before the loader resolves.
 
-  IMPORTANT: Use window.PAGE_ARCS, not const PAGE_ARCS.
-  const is block-scoped — arc-nav.js loads in a separate script
-  tag and cannot read block-scoped variables.
+  Template (change only the slug string):
   ============================================================ -->
 
+<!--
 <div id="arcNavMount"></div>
 <script>
+  // Set before the loader resolves so mount() reads the right slug.
+  // Must be window.PAGE_ARCS — not const (block-scoped, invisible
+  // to scripts loaded in separate tags).
   window.PAGE_ARCS = [{ slug: 'YOUR-PAGE-SLUG-HERE' }];
-
-  if (window._vexReady && typeof window.VEXTREME_mount === 'function') {
-    window.VEXTREME_mount();
-  } else {
-    document.addEventListener('vextreme:ready', function () {
-      window.VEXTREME_mount();
-    }, { once: true });
-  }
 </script>
+-->
