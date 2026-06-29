@@ -133,14 +133,19 @@ vextreme/
 │                                    [data-section] attributes.
 │
 ├── styles/
-│   ├── design-system.css          ← Global tokens + shared classes. Include
-│   │                                on every page. Everything imports from here.
-│   ├── arc-nav.css                ← Widget styles for the arc nav component.
-│   │                                Depends on design-system.css for vars.
+│   ├── design-system.css          ← Global tokens + shared classes. Canonical
+│   │                                source for all CSS vars and shared components.
+│   ├── arc-nav.css                ← Arc nav widget styles only.
+│   ├── squarespace-overrides.css  ← Squarespace nav/layout overrides. Loaded
+│   │                                automatically on squarespace env. Never
+│   │                                link manually on GitHub Pages.
+│   ├── site-nav.css               ← Standalone nav for GitHub Pages + local.
+│   │                                Loaded automatically on those envs. Never
+│   │                                link on Squarespace.
 │   └── page-templates/
-│       └── journal-qa.css         ← Page-scoped styles for journal/Q&A pages
-│                                    (claude-answers-the-doubt, journal-zero,
-│                                    etc.). Load only on those pages.
+│       ├── journal-qa.css         ← Journal/Q&A format. Load per-page.
+│       ├── bridge-council.css     ← .bc-page scoped system. Load per-page.
+│       └── ascension-embodiment.css ← .ae-page scoped system. Load per-page.
 │
 └── docs/
     ├── README.md                  ← This file. Architecture map, load order,
@@ -305,43 +310,33 @@ fetch(pages.json) ──┘
 
 ### Block 3 — Per-page Custom Code (optional)
 
-**Where:** Each individual Squarespace page → Page Settings → Advanced →
-Page Header Code Injection, or inside a Code Block on the page.
+**Where:** Each individual Squarespace page → Custom Code area or Code Block.
 
-**Most pages don't need this block at all.**
-
-The footer loader now auto-detects the page slug from `window.location.pathname`.
-A page at `/claude-answers-the-doubt` automatically resolves to the slug
-`claude-answers-the-doubt` and looks it up in `arcs.json`. Old pages with the
-original `const PAGE_ARCS` pattern in their HTML still work — the loader reads
-the URL and bypasses the stale inline call entirely.
-
-**You only need this block if:**
-- The page URL slug doesn't match the arc entry slug exactly
-- You want to force a specific arc rather than all matching arcs
-- The page is at a root URL (`/`) with no slug segment
-
-**If you do need it — use `window.PAGE_ARCS`, not `const`:**
-
-`const` is block-scoped and invisible to `arc-nav.js` which loads in a
-separate script tag. It must be a property on `window`. And the mount call
-must wait for the `vextreme:ready` event since the loader is async.
+**Most pages need nothing here.** The loader auto-detects the slug from
+`window.location.pathname` — a page at `/claude-answers-the-doubt` resolves
+automatically. Only add this block when the URL slug doesn't match the arc
+entry slug, or you need to force a specific arc.
 
 ```html
 <div id="arcNavMount"></div>
-<script>
-  window.PAGE_ARCS = [{ slug: 'YOUR-PAGE-SLUG-HERE' }];
-
-  if (window._vexReady && typeof window.VEXTREME_mount === 'function') {
-    window.VEXTREME_mount();
-  } else {
-    document.addEventListener('vextreme:ready', function () {
-      window.VEXTREME_mount();
-    }, { once: true });
-  }
-</script>
+<script>VEXTREME_page('your-page-slug-here');</script>
 ```
 
+`VEXTREME_page()` is the single interface. It's defined by the loader after
+the full chain resolves — it sets `PAGE_ARCS`, calls mount, and handles all
+timing internally. One call, no if-checks, no event listeners.
+
+**Compatibility with old patterns:**
+
+Old pages still in Squarespace with either legacy pattern still work via
+URL auto-detection. No urgent need to update them — but when you touch a
+page, simplify to the one-liner above.
+
+| Pattern | Status | Notes |
+|---|---|---|
+| `const PAGE_ARCS = [...]; window.VEXTREME_mount && ...` | broken by design, rescued by auto-detect | Update when touched |
+| `window.PAGE_ARCS = [...]; if (_vexReady) ... else addEventListener` | correct but verbose | Update when touched |
+| `VEXTREME_page('slug')` | current — one line | Use this going forward |
 ---
 
 ### Migration checklist — per page
@@ -489,6 +484,10 @@ arcs render before position-only arcs (full_timeline).
 | `lib/arc-nav.js` | `VEXTREME_ARCS`, `PAGE_ARCS` | `#arcNavMount` innerHTML | Arc rendering, slug resolution |
 | `lib/archive-renderer.js` | `VEXTREME_ARCS`, `VEXTREME_PAGES` | `.entry-list` innerHTML | Token merging, entry row HTML |
 | `styles/arc-nav.css` | — | — | Widget layout only |
+| `styles/squarespace-overrides.css` | — | — | Squarespace nav/layout overrides — loaded only on squarespace env |
+| `styles/site-nav.css` | — | — | Standalone nav — loaded only on github_pages and local envs |
+| `styles/page-templates/bridge-council.css` | — | — | `.bc-page` scoped system — load per-page |
+| `styles/page-templates/ascension-embodiment.css` | — | — | `.ae-page` scoped system — load per-page |
 | `styles/design-system.css` | — | — | Tokens, entry rows, pills, section toggles |
 | `components/section-toggle.js` | localStorage, `VEXTREME_SECTIONS` | localStorage, DOM classes | Collapse state |
 | `components/bc-nav.js` | `window.bcNavConfig` | `#bcNavContainer` innerHTML | Shape-coded links |

@@ -1,0 +1,217 @@
+/**
+ * styles/page-templates/ascension-embodiment.css
+ *
+ * Scoped component system for the Ascension & Embodiment page.
+ * All styles are namespaced under .ae-page.
+ *
+ * LOAD PER-PAGE only. Add to the Ascension & Embodiment page:
+ *
+ *   Squarespace: Page Settings → Advanced → Page Header
+ *     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/styles/page-templates/ascension-embodiment.css?v=3">
+ *
+ *   GitHub Pages: include in the page <head>
+ *     <link rel="stylesheet" href="../../styles/page-templates/ascension-embodiment.css">
+ *
+ * FONTS REQUIRED (load separately in <head>):
+ *   Cormorant Garamond — primary body typeface
+ *   DM Mono — labels and mono elements
+ *   Both may already be loaded via the global font link if
+ *   the Squarespace header injection includes them.
+ */
+
+
+/* ── ROOT SCOPE ──────────────────────────────────────────── */
+
+.ae-page {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 19px !important;
+  line-height: 1.85 !important;
+  color: #1a1612 !important;
+  background: #f5f0e8 !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+
+/* ── HEADING ─────────────────────────────────────────────── */
+
+.ae-page h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: clamp(2.4rem, 7vw, 3.8rem) !important;
+  font-weight: 300 !important;
+  line-height: 1.1 !important;
+  color: #1a1612 !important;
+  margin-bottom: 48px !important;
+}
+
+.ae-page h1 em {
+  font-style: italic !important;
+  color: #6b2737 !important;
+  display: block !important;
+}
+
+
+/* ── BODY TEXT ───────────────────────────────────────────── */
+
+.ae-page p {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-weight: 300 !important;
+  font-size: 19px !important;
+  line-height: 1.85 !important;
+  color: #2a2420 !important;
+  margin-bottom: 28px !important;
+}
+
+.ae-page p.large  { font-size: 1.2rem !important; line-height: 1.75 !important; }
+.ae-page p.italic { font-style: italic !important; }
+
+
+/* ── LABELS (DM Mono) ────────────────────────────────────── */
+
+.ae-page .tag,
+.ae-page .label,
+.ae-page .label.muted {
+  font-family: 'DM Mono', monospace !important;
+  font-size: 10px !important;
+  letter-spacing: 0.2em !important;
+  text-transform: uppercase !important;
+}
+
+.ae-page .tag {
+  color: #8a7f72 !important;
+  display: block !important;
+  margin-bottom: 48px !important;
+}
+
+.ae-page .label {
+  color: #6b2737 !important;
+  display: block !important;
+  margin-bottom: 20px !important;
+}
+
+.ae-page .label.muted { color: #8a7f72 !important; }
+
+
+/* ── BLOCKQUOTE ──────────────────────────────────────────── */
+
+.ae-page blockquote {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  border-left: 2px solid #c9a84c !important;
+  padding: 2px 0 2px 28px !important;
+  margin: 40px 0 !important;
+  font-style: italic !important;
+  font-size: 1.15rem !important;
+  color: #6b2737 !important;
+  line-height: 1.65 !important;
+}
+
+
+/* ── RULES ───────────────────────────────────────────────── */
+
+.ae-page .rule {
+  width: 48px !important; height: 1px !important;
+  background: #c9a84c !important; margin: 52px 0 !important; border: none !important;
+}
+
+.ae-page .rule-full {
+  width: 100% !important; height: 1px !important;
+  background: #e8e0d0 !important; margin: 52px 0 !important; border: none !important;
+}
+
+
+/* ── DARK SECTION ────────────────────────────────────────── */
+
+.ae-page .dark-section {
+  background: #1a1612 !important; color: #f5f0e8 !important;
+  padding: 52px 44px !important; margin: 56px 0 !important;
+}
+
+.ae-page .dark-section p    { font-family: 'Cormorant Garamond', Georgia, serif !important; color: #d4ccc0 !important; }
+.ae-page .dark-section .label { color: #c9a84c !important; }
+.ae-page .dark-section blockquote { color: #c9a84c !important; border-left-color: #6b2737 !important; }
+
+
+/* ── TWO COL ─────────────────────────────────────────────── */
+
+.ae-page .two-col {
+  display: grid !important; grid-template-columns: 1fr 1fr !important;
+  gap: 0 !important; margin: 44px 0 !important;
+  border-top: 1px solid #e8e0d0 !important;
+}
+
+.ae-page .col {
+  padding: 28px 24px 28px 0 !important;
+  border-right: 1px solid #e8e0d0 !important;
+}
+
+.ae-page .col:last-child {
+  border-right: none !important; padding-left: 24px !important; padding-right: 0 !important;
+}
+
+.ae-page .col p {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 0.9rem !important; margin-bottom: 12px !important; line-height: 1.65 !important;
+}
+
+
+/* ── WARNING BLOCKS ──────────────────────────────────────── */
+
+.ae-page .warning {
+  background: #e8e0d0 !important; border-left: 3px solid #6b2737 !important;
+  padding: 32px 36px !important; margin: 36px 0 !important;
+}
+
+.ae-page .warning p {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 0.95rem !important; margin-bottom: 16px !important;
+}
+
+.ae-page .warning p:last-child { margin-bottom: 0 !important; }
+
+
+/* ── CENTER BLOCK ────────────────────────────────────────── */
+
+.ae-page .center-block {
+  text-align: center !important;
+  padding: 56px 0 !important;
+  border-top: 1px solid #c9a84c !important;
+  border-bottom: 1px solid #c9a84c !important;
+  margin: 56px 0 !important;
+}
+
+.ae-page .center-block p {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-style: italic !important; font-size: 1.15rem !important;
+  margin: 0 auto 20px !important;
+}
+
+.ae-page .center-block p:last-child {
+  font-family: 'DM Mono', monospace !important;
+  font-size: 10px !important; letter-spacing: 0.15em !important;
+  color: #8a7f72 !important; text-transform: uppercase !important;
+  font-style: normal !important; margin-bottom: 0 !important;
+}
+
+
+/* ── SEAL ────────────────────────────────────────────────── */
+
+.ae-page .seal {
+  margin-top: 80px !important; padding-top: 40px !important;
+  border-top: 1px solid #e8e0d0 !important;
+}
+
+.ae-page .seal span {
+  font-family: 'DM Mono', monospace !important; font-size: 10px !important;
+  letter-spacing: 0.15em !important; color: #8a7f72 !important;
+  text-transform: uppercase !important; display: block !important; line-height: 2 !important;
+}
+
+
+/* ── MOBILE ──────────────────────────────────────────────── */
+
+@media (max-width: 540px) {
+  .ae-page .two-col { grid-template-columns: 1fr !important; }
+  .ae-page .col { border-right: none !important; padding: 24px 0 !important; border-bottom: 1px solid #e8e0d0 !important; }
+  .ae-page .col:last-child { border-bottom: none !important; }
+  .ae-page .dark-section { padding: 40px 20px !important; }
+  .ae-page .warning { padding: 24px 20px !important; }
+}

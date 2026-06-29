@@ -1,0 +1,231 @@
+/**
+ * styles/site-nav.css
+ *
+ * Standalone site navigation for GitHub Pages (and local dev).
+ * Loaded ONLY on github_pages and local environments via the loader.
+ * Never link this on Squarespace — Squarespace provides its own nav.
+ *
+ * USAGE:
+ *   The nav is injected into #vex-site-nav by components/site-nav.js.
+ *   Add <div id="vex-site-nav"></div> at the top of each GitHub Pages
+ *   HTML file. The component reads nav structure from data/nav.json
+ *   (to be created) or falls back to a hardcoded minimal structure.
+ *
+ * DESIGN:
+ *   Matches the Squarespace nav visual exactly — same colors, fonts,
+ *   spacing. A reader moving between the two environments shouldn't
+ *   notice a difference in the nav chrome.
+ *
+ *   No dropdowns in v1 — top-level links only. Dropdowns can be added
+ *   later when the page count justifies the complexity.
+ *
+ * STRUCTURE:
+ *   .vex-nav                — outer bar
+ *   .vex-nav-inner          — max-width container
+ *   .vex-nav-title          — site title / home link
+ *   .vex-nav-links          — link list (desktop)
+ *   .vex-nav-link           — individual link
+ *   .vex-nav-toggle         — mobile hamburger button
+ *   .vex-nav-mobile         — mobile overlay panel
+ *   .vex-nav-mobile-links   — mobile link list
+ *   .vex-nav-mobile-link    — individual mobile link
+ *   .vex-nav--open          — state class on .vex-nav when menu is open
+ */
+
+
+/* ── OUTER BAR ───────────────────────────────────────────── */
+
+.vex-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--cream, #fafaf9);
+  border-bottom: 1px solid var(--border, #e7e5e4);
+  font-family: var(--sans, 'IBM Plex Sans', sans-serif);
+}
+
+.vex-nav-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 40px);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+
+/* ── SITE TITLE ──────────────────────────────────────────── */
+
+.vex-nav-title {
+  font-family: var(--serif, 'Source Serif 4', Georgia, serif);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--stone, #1c1917);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.vex-nav-title:hover {
+  color: var(--ember, #b45830);
+}
+
+
+/* ── DESKTOP LINKS ───────────────────────────────────────── */
+
+.vex-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 680px) {
+  .vex-nav-links { display: none; }
+}
+
+.vex-nav-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted, #78716c);
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  letter-spacing: 0.2px;
+  transition: color 0.15s, background 0.15s;
+  white-space: nowrap;
+}
+
+.vex-nav-link:hover {
+  color: var(--ember, #b45830);
+  background: var(--ember-bg, #fdf8f6);
+}
+
+.vex-nav-link.active {
+  color: var(--ember, #b45830);
+  font-weight: 600;
+}
+
+
+/* ── MOBILE TOGGLE ───────────────────────────────────────── */
+
+.vex-nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  color: var(--muted, #78716c);
+  border-radius: 5px;
+  transition: color 0.15s, background 0.15s;
+  flex-shrink: 0;
+}
+
+.vex-nav-toggle:hover {
+  color: var(--ember, #b45830);
+  background: var(--ember-bg, #fdf8f6);
+}
+
+@media (max-width: 680px) {
+  .vex-nav-toggle { display: flex; align-items: center; justify-content: center; }
+}
+
+/* Hamburger icon — three bars drawn in CSS */
+.vex-nav-toggle-icon {
+  width: 20px;
+  height: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.vex-nav-toggle-icon span {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+/* Animate to X when open */
+.vex-nav--open .vex-nav-toggle-icon span:nth-child(1) {
+  transform: translateY(6.25px) rotate(45deg);
+}
+.vex-nav--open .vex-nav-toggle-icon span:nth-child(2) {
+  opacity: 0;
+}
+.vex-nav--open .vex-nav-toggle-icon span:nth-child(3) {
+  transform: translateY(-6.25px) rotate(-45deg);
+}
+
+
+/* ── MOBILE OVERLAY ──────────────────────────────────────── */
+
+.vex-nav-mobile {
+  display: none;
+  position: fixed;
+  top: 60px; /* matches nav bar height */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--cream, #fafaf9);
+  z-index: 99;
+  overflow-y: auto;
+  padding: 12px 0 40px;
+  border-top: 1px solid var(--border, #e7e5e4);
+}
+
+.vex-nav--open .vex-nav-mobile {
+  display: block;
+}
+
+.vex-nav-mobile-links {
+  list-style: none;
+  margin: 0;
+  padding: 0 clamp(16px, 4vw, 40px);
+}
+
+.vex-nav-mobile-link {
+  display: block;
+  font-family: var(--sans, 'IBM Plex Sans', sans-serif);
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--stone, #1c1917);
+  text-decoration: none;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border, #e7e5e4);
+  letter-spacing: 0.3px;
+  transition: color 0.15s;
+}
+
+.vex-nav-mobile-link:last-child {
+  border-bottom: none;
+}
+
+.vex-nav-mobile-link:hover {
+  color: var(--ember, #b45830);
+}
+
+.vex-nav-mobile-link.active {
+  color: var(--ember, #b45830);
+  font-weight: 500;
+}
+
+
+/* ── PAGE BODY OFFSET ────────────────────────────────────── */
+/* Prevents content from hiding behind the sticky nav */
+
+.vex-page-body {
+  padding-top: clamp(28px, 4vw, 44px);
+  max-width: 720px;
+  margin: 0 auto;
+  padding-left: clamp(16px, 4vw, 40px);
+  padding-right: clamp(16px, 4vw, 40px);
+  padding-bottom: clamp(60px, 8vw, 100px);
+}
