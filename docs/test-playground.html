@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VEXTREME — Test Playground</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:wght@300;400;500&family=Source+Serif+4:ital,wght@1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ember: #b45830; --stone: #1c1917; --muted: #78716c;
+    --border: #e7e5e4; --cream: #fafaf9;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+    --serif: 'Source Serif 4', Georgia, serif;
+    --green: #16a34a; --red: #dc2626; --amber: #d97706;
+  }
+  body { font-family: var(--sans); color: var(--stone); background: var(--cream); padding: 2rem; font-size: 14px; line-height: 1.6; }
+  h1 { font-family: var(--serif); font-size: 28px; font-weight: 300; font-style: italic; color: var(--stone); margin-bottom: 4px; }
+  .subtitle { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 2rem; }
+  .section { margin-bottom: 2rem; }
+  .section-label { font-family: var(--mono); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ember); margin-bottom: 0.75rem; }
+  .card { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; margin-bottom: 1rem; }
+  .status-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .status-row:last-child { border-bottom: none; }
+  .status-key { font-family: var(--mono); font-size: 11px; color: var(--muted); min-width: 200px; }
+  .status-val { font-family: var(--mono); font-size: 11px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot-green  { background: var(--green); }
+  .dot-red    { background: var(--red); }
+  .dot-amber  { background: var(--amber); }
+  .dot-gray   { background: var(--border); }
+  .val-green  { color: var(--green); }
+  .val-red    { color: var(--red); }
+  .val-amber  { color: var(--amber); }
+  .input-row  { display: flex; gap: 8px; margin-bottom: 0.75rem; }
+  input[type="text"] { flex: 1; font-family: var(--mono); font-size: 12px; padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; background: var(--cream); color: var(--stone); outline: none; }
+  input[type="text"]:focus { border-color: var(--ember); }
+  button { font-family: var(--mono); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; padding: 6px 14px; border: 1px solid var(--border); border-radius: 6px; background: white; color: var(--stone); cursor: pointer; transition: border-color 0.15s, color 0.15s; white-space: nowrap; }
+  button:hover { border-color: var(--ember); color: var(--ember); }
+  button.primary { background: var(--ember); color: white; border-color: var(--ember); }
+  button.primary:hover { background: #8a3820; border-color: #8a3820; color: white; }
+  pre { font-family: var(--mono); font-size: 11px; background: var(--stone); color: #d6d3d1; padding: 1rem; border-radius: 8px; overflow-x: auto; white-space: pre-wrap; word-break: break-word; max-height: 260px; overflow-y: auto; line-height: 1.6; }
+  .log-entry { padding: 3px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .log-ok   { color: #86efac; }
+  .log-err  { color: #fca5a5; }
+  .log-info { color: #93c5fd; }
+  .log-warn { color: #fcd34d; }
+  .arc-result { background: var(--cream); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem 1rem; margin-bottom: 6px; font-size: 12px; }
+  .arc-result-id { font-family: var(--mono); font-size: 11px; color: var(--ember); margin-bottom: 2px; }
+  .arc-result-detail { color: var(--muted); }
+  #arcNavMount { margin-top: 1rem; }
+  hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 700px) { .grid2 { grid-template-columns: 1fr; } }
+  .note { font-size: 12px; color: var(--muted); font-style: italic; margin-top: 6px; }
+  .tag { display: inline-block; font-family: var(--mono); font-size: 9px; letter-spacing: 1px; text-transform: uppercase; padding: 2px 6px; border-radius: 4px; margin-left: 6px; }
+  .tag-pass { background: #dcfce7; color: #15803d; }
+  .tag-fail { background: #fee2e2; color: #b91c1c; }
+  .tag-skip { background: #f3f4f6; color: #6b7280; }
+</style>
+</head>
+<body>
+
+<h1>Test Playground</h1>
+<p class="subtitle">vextreme · slug: test-playground · diagnostic tool</p>
+
+<!-- ═══ SYSTEM STATUS ═══ -->
+<div class="section">
+  <div class="section-label">System status</div>
+  <div class="card" id="status-card">
+    <div class="status-row">
+      <div class="dot dot-gray" id="dot-loader"></div>
+      <span class="status-key">_vexLoaderInit</span>
+      <span class="status-val" id="val-loader">checking...</span>
+    </div>
+    <div class="status-row">
+      <div class="dot dot-gray" id="dot-ready"></div>
+      <span class="status-key">_vexReady</span>
+      <span class="status-val" id="val-ready">checking...</span>
+    </div>
+    <div class="status-row">
+      <div class="dot dot-gray" id="dot-arcs"></div>
+      <span class="status-key">VEXTREME_ARCS</span>
+      <span class="status-val" id="val-arcs">checking...</span>
+    </div>
+    <div class="status-row">
+      <div class="dot dot-gray" id="dot-pages"></div>
+      <span class="status-key">VEXTREME_PAGES</span>
+      <span class="status-val" id="val-pages">checking...</span>
+    </div>
+    <div class="status-row">
+      <div class="dot dot-gray" id="dot-mount"></div>
+      <span class="status-key">VEXTREME_mount</span>
+      <span class="status-val" id="val-mount">checking...</span>
+    </div>
+    <div class="status-row">
+      <div class="dot dot-gray" id="dot-page-arcs"></div>
+      <span class="status-key">PAGE_ARCS</span>
+      <span class="status-val" id="val-page-arcs">checking...</span>
+    </div>
+  </div>
+  <button onclick="refreshStatus()">↻ Refresh status</button>
+</div>
+
+<hr>
+
+<!-- ═══ SLUG RESOLUTION TEST ═══ -->
+<div class="section">
+  <div class="section-label">Slug resolution test</div>
+  <p class="note" style="margin-bottom: 0.75rem;">Enter any slug to check which arcs it resolves to, and whether the entry is found in each arc.</p>
+  <div class="input-row">
+    <input type="text" id="slug-input" value="claude-answers-the-doubt" placeholder="enter-a-slug-here">
+    <button class="primary" onclick="testSlug()">Resolve slug</button>
+  </div>
+  <div id="slug-results"></div>
+</div>
+
+<hr>
+
+<!-- ═══ ARC ROW RENDER TEST ═══ -->
+<div class="section">
+  <div class="section-label">Arc row render test</div>
+  <p class="note" style="margin-bottom: 0.75rem;">Renders the full arc nav widget for a given slug — same output as the live pages.</p>
+  <div class="input-row">
+    <input type="text" id="render-slug-input" value="claude-answers-the-doubt" placeholder="enter-a-slug-here">
+    <button class="primary" onclick="testRender()">Render widget</button>
+  </div>
+  <div id="arcNavMount"></div>
+</div>
+
+<hr>
+
+<!-- ═══ ENTRY LOOKUP TEST ═══ -->
+<div class="section">
+  <div class="section-label">Entry lookup — arc + slug</div>
+  <p class="note" style="margin-bottom: 0.75rem;">Look up a specific entry in a specific arc by slug.</p>
+  <div class="input-row">
+    <input type="text" id="arc-id-input" value="claude_journals" placeholder="arc-id (e.g. claude_journals)">
+    <input type="text" id="entry-slug-input" value="claude-answers-the-doubt" placeholder="slug">
+    <button class="primary" onclick="testEntryLookup()">Look up</button>
+  </div>
+  <div id="entry-results"></div>
+</div>
+
+<hr>
+
+<!-- ═══ DATA INTEGRITY CHECKS ═══ -->
+<div class="section">
+  <div class="section-label">Data integrity checks</div>
+  <p class="note" style="margin-bottom: 0.75rem;">Runs automated checks across all arc data.</p>
+  <button class="primary" onclick="runIntegrityChecks()">Run all checks</button>
+  <div id="integrity-results" style="margin-top: 1rem;"></div>
+</div>
+
+<hr>
+
+<!-- ═══ RAW DATA INSPECTOR ═══ -->
+<div class="section">
+  <div class="section-label">Raw data inspector</div>
+  <div class="input-row">
+    <input type="text" id="arc-inspect-input" placeholder="arc id (leave blank for all arc keys)" value="">
+    <button onclick="inspectData()">Inspect</button>
+  </div>
+  <pre id="raw-output">// click Inspect to see arc data</pre>
+</div>
+
+<hr>
+
+<!-- ═══ CONSOLE LOG ═══ -->
+<div class="section">
+  <div class="section-label">Console log</div>
+  <pre id="console-log">// waiting for events...</pre>
+  <button onclick="clearLog()" style="margin-top: 8px;">Clear</button>
+</div>
+
+<!-- ═══ SCRIPTS ═══ -->
+<script>
+  // ── Logging ──────────────────────────────────────────────
+  var logs = [];
+  function log(msg, type) {
+    type = type || 'info';
+    var ts = new Date().toLocaleTimeString();
+    logs.push({ msg: msg, type: type, ts: ts });
+    renderLog();
+  }
+  function renderLog() {
+    var el = document.getElementById('console-log');
+    el.innerHTML = logs.slice(-40).map(function(l) {
+      return '<div class="log-entry log-' + l.type + '">[' + l.ts + '] ' + escHtml(String(l.msg)) + '</div>';
+    }).reverse().join('');
+  }
+  function clearLog() { logs = []; renderLog(); }
+  function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  // Intercept console.warn for VEXTREME messages
+  var origWarn = console.warn;
+  console.warn = function() {
+    var msg = Array.prototype.join.call(arguments, ' ');
+    if (msg.indexOf('VEXTREME') !== -1) log(msg, 'warn');
+    origWarn.apply(console, arguments);
+  };
+
+  // ── Status checker ───────────────────────────────────────
+  function setStatus(id, ok, text) {
+    var dot = document.getElementById('dot-' + id);
+    var val = document.getElementById('val-' + id);
+    if (!dot || !val) return;
+    dot.className = 'dot ' + (ok === true ? 'dot-green' : ok === false ? 'dot-red' : 'dot-amber');
+    val.className = 'status-val ' + (ok === true ? 'val-green' : ok === false ? 'val-red' : 'val-amber');
+    val.textContent = text;
+  }
+
+  function refreshStatus() {
+    setStatus('loader',    !!window._vexLoaderInit, window._vexLoaderInit ? 'true' : 'false');
+    setStatus('ready',     !!window._vexReady,      window._vexReady      ? 'true — stack loaded' : 'false — still loading');
+    setStatus('mount',     typeof window.VEXTREME_mount === 'function', typeof window.VEXTREME_mount === 'function' ? 'function defined' : 'undefined');
+
+    var arcs = window.VEXTREME_ARCS;
+    if (!arcs) {
+      setStatus('arcs', false, 'undefined — fetch failed or pending');
+    } else {
+      var keys = Object.keys(arcs);
+      setStatus('arcs', true, keys.length + ' arcs loaded: ' + keys.slice(0,4).join(', ') + (keys.length > 4 ? '...' : ''));
+    }
+
+    var pages = window.VEXTREME_PAGES;
+    if (!pages) {
+      setStatus('pages', false, 'undefined');
+    } else {
+      var pkeys = Object.keys(pages.pages || {});
+      setStatus('pages', true, pkeys.length + ' page entries + ' + Object.keys(pages.presets || {}).length + ' presets');
+    }
+
+    var pa = window.PAGE_ARCS;
+    if (!pa) {
+      setStatus('page-arcs', null, 'not set — auto-detection will run');
+    } else {
+      setStatus('page-arcs', true, JSON.stringify(pa));
+    }
+  }
+
+  // ── Slug resolution test ─────────────────────────────────
+  function testSlug() {
+    var slug = document.getElementById('slug-input').value.trim();
+    var el   = document.getElementById('slug-results');
+    if (!slug) { el.innerHTML = '<p class="note">Enter a slug first.</p>'; return; }
+
+    var ARCS = window.VEXTREME_ARCS;
+    if (!ARCS) { el.innerHTML = '<p class="note val-red">VEXTREME_ARCS not loaded yet.</p>'; return; }
+
+    log('Testing slug: ' + slug, 'info');
+
+    var found = [];
+    Object.keys(ARCS).forEach(function(arcId) {
+      var arc = ARCS[arcId];
+      var entries = flatEntries(arc);
+      var match = entries.find(function(e) {
+        return (e.slug || slugFromUrl(e.url || '')) === slug;
+      });
+      if (match) {
+        found.push({ arcId: arcId, entry: match, arc: arc });
+      }
+    });
+
+    if (!found.length) {
+      el.innerHTML = '<div class="arc-result"><div class="arc-result-id val-red">No arcs found for slug: "' + escHtml(slug) + '"</div>'
+        + '<div class="arc-result-detail">Check spelling, case sensitivity, and that the slug exists in arcs.json.</div></div>';
+      log('No arcs found for: ' + slug, 'err');
+      return;
+    }
+
+    log('Found in ' + found.length + ' arc(s): ' + found.map(function(f){ return f.arcId; }).join(', '), 'ok');
+
+    el.innerHTML = found.map(function(f) {
+      var allEntries = flatEntries(f.arc);
+      var idx = allEntries.findIndex(function(e) {
+        return (e.slug || slugFromUrl(e.url || '')) === slug;
+      });
+      return '<div class="arc-result">'
+        + '<div class="arc-result-id">' + f.arcId
+        + (f.arc.renderMode === 'position' ? ' <span style="color:var(--muted)">(position mode)</span>' : '') + '</div>'
+        + '<div class="arc-result-detail">Entry ' + (idx+1) + ' of ' + allEntries.length + ' — "' + escHtml(f.entry.title) + '"</div>'
+        + '</div>';
+    }).join('');
+  }
+
+  // ── Arc row render test ───────────────────────────────────
+  function testRender() {
+    var slug = document.getElementById('render-slug-input').value.trim();
+    if (!slug) return;
+    log('Rendering widget for: ' + slug, 'info');
+    window.PAGE_ARCS = [{ slug: slug }];
+    if (typeof window.VEXTREME_mount === 'function') {
+      window.VEXTREME_mount();
+      log('VEXTREME_mount() called', 'ok');
+    } else {
+      log('VEXTREME_mount not defined yet', 'err');
+      document.getElementById('arcNavMount').innerHTML =
+        '<p class="note val-red">VEXTREME_mount not loaded. Wait for vextreme:ready or check loader.</p>';
+    }
+  }
+
+  // ── Entry lookup ─────────────────────────────────────────
+  function testEntryLookup() {
+    var arcId = document.getElementById('arc-id-input').value.trim();
+    var slug  = document.getElementById('entry-slug-input').value.trim();
+    var el    = document.getElementById('entry-results');
+    var ARCS  = window.VEXTREME_ARCS;
+    if (!ARCS) { el.innerHTML = '<p class="note val-red">VEXTREME_ARCS not loaded.</p>'; return; }
+
+    var arc = ARCS[arcId];
+    if (!arc) {
+      el.innerHTML = '<div class="arc-result"><div class="arc-result-id val-red">Arc "' + escHtml(arcId) + '" not found.</div>'
+        + '<div class="arc-result-detail">Available: ' + Object.keys(ARCS).join(', ') + '</div></div>';
+      return;
+    }
+
+    var entries = flatEntries(arc);
+    var match   = entries.find(function(e) {
+      return (e.slug || slugFromUrl(e.url || '')) === slug;
+    });
+
+    if (!match) {
+      el.innerHTML = '<div class="arc-result"><div class="arc-result-id val-red">Slug "' + escHtml(slug) + '" not found in arc "' + escHtml(arcId) + '"</div>'
+        + '<div class="arc-result-detail">Arc has ' + entries.length + ' entries. First 5 slugs: '
+        + entries.slice(0,5).map(function(e){ return e.slug || slugFromUrl(e.url||''); }).join(', ') + '</div></div>';
+      log('Entry not found: ' + arcId + ' / ' + slug, 'err');
+      return;
+    }
+
+    var idx = entries.indexOf(match);
+    el.innerHTML = '<div class="arc-result">'
+      + '<div class="arc-result-id val-green">Found: entry ' + (idx+1) + ' of ' + entries.length + '</div>'
+      + '<div class="arc-result-detail">' + JSON.stringify(match, null, 2).replace(/\n/g,'<br>').replace(/ /g,'&nbsp;') + '</div>'
+      + '</div>';
+    log('Found: ' + arcId + ' / ' + slug + ' at position ' + (idx+1), 'ok');
+  }
+
+  // ── Integrity checks ─────────────────────────────────────
+  function runIntegrityChecks() {
+    var el   = document.getElementById('integrity-results');
+    var ARCS = window.VEXTREME_ARCS;
+    if (!ARCS) { el.innerHTML = '<p class="note val-red">VEXTREME_ARCS not loaded.</p>'; return; }
+
+    var checks = [];
+    var allSlugs = [];
+
+    Object.keys(ARCS).forEach(function(arcId) {
+      var arc     = ARCS[arcId];
+      var entries = flatEntries(arc);
+
+      // Check: arc has entries
+      checks.push({
+        label: arcId + ' — has entries',
+        pass:  entries.length > 0,
+        detail: entries.length + ' entries'
+      });
+
+      // Check: all entries have slug or url
+      var missing = entries.filter(function(e) { return !e.slug && !e.url; });
+      checks.push({
+        label:  arcId + ' — all entries have slug/url',
+        pass:   missing.length === 0,
+        detail: missing.length > 0 ? missing.length + ' missing: ' + JSON.stringify(missing[0]) : 'ok'
+      });
+
+      // Collect all slugs for duplicate check
+      entries.forEach(function(e) {
+        var s = e.slug || slugFromUrl(e.url || '');
+        if (s) allSlugs.push({ arcId: arcId, slug: s, n: e.n });
+      });
+    });
+
+    // Check: no slug appears twice in the same arc with different n values
+    // (cross-arc duplicates are intentional — same page in multiple arcs)
+    var perArc = {};
+    allSlugs.forEach(function(item) {
+      var key = item.arcId + ':' + item.slug;
+      perArc[key] = (perArc[key] || 0) + 1;
+    });
+    var dupes = Object.keys(perArc).filter(function(k) { return perArc[k] > 1; });
+    checks.push({
+      label:  'No duplicate slugs within same arc',
+      pass:   dupes.length === 0,
+      detail: dupes.length > 0 ? 'Dupes: ' + dupes.join(', ') : 'ok'
+    });
+
+    // Check: VEXTREME_PAGES loaded
+    checks.push({
+      label:  'pages.json loaded',
+      pass:   !!window.VEXTREME_PAGES,
+      detail: window.VEXTREME_PAGES ? Object.keys(window.VEXTREME_PAGES.pages || {}).length + ' entries' : 'not loaded'
+    });
+
+    var passed = checks.filter(function(c){ return c.pass; }).length;
+    var total  = checks.length;
+
+    el.innerHTML = '<div class="note" style="margin-bottom:0.75rem;">'
+      + passed + ' / ' + total + ' checks passed</div>'
+      + checks.map(function(c) {
+          return '<div class="status-row">'
+            + '<div class="dot ' + (c.pass ? 'dot-green' : 'dot-red') + '"></div>'
+            + '<span class="status-key">' + escHtml(c.label) + '</span>'
+            + '<span class="status-val ' + (c.pass ? 'val-green' : 'val-red') + '">' + escHtml(c.detail) + '</span>'
+            + '</div>';
+        }).join('');
+
+    log('Integrity: ' + passed + '/' + total + ' passed', passed === total ? 'ok' : 'warn');
+  }
+
+  // ── Data inspector ────────────────────────────────────────
+  function inspectData() {
+    var arcId = document.getElementById('arc-inspect-input').value.trim();
+    var ARCS  = window.VEXTREME_ARCS;
+    var el    = document.getElementById('raw-output');
+    if (!ARCS) { el.textContent = '// VEXTREME_ARCS not loaded'; return; }
+
+    if (!arcId) {
+      el.textContent = '// Arc keys:\n' + Object.keys(ARCS).join('\n');
+    } else {
+      var arc = ARCS[arcId];
+      if (!arc) {
+        el.textContent = '// Arc "' + arcId + '" not found.\n// Available: ' + Object.keys(ARCS).join(', ');
+      } else {
+        el.textContent = JSON.stringify(arc, null, 2);
+      }
+    }
+  }
+
+  // ── Shared helpers (mirror arc-nav.js logic for local testing) ──
+  function flatEntries(arc) {
+    return (arc.sections || []).reduce(function(acc, s) {
+      return acc.concat(s.entries || []);
+    }, []);
+  }
+  function slugFromUrl(url) {
+    return url.replace(/\/$/, '').split('/').pop();
+  }
+
+  // ── Init ─────────────────────────────────────────────────
+  refreshStatus();
+
+  document.addEventListener('vextreme:ready', function() {
+    log('vextreme:ready fired — full stack loaded', 'ok');
+    refreshStatus();
+  });
+
+  // Poll status every 500ms until ready (covers async load)
+  var pollCount = 0;
+  var poll = setInterval(function() {
+    refreshStatus();
+    pollCount++;
+    if (window._vexReady || pollCount > 20) clearInterval(poll);
+  }, 500);
+
+  log('Playground initialized — waiting for vextreme:ready...', 'info');
+</script>
+
+<!-- ══════════════════════════════════════════════════════
+  HOW TO USE THIS PAGE IN SQUARESPACE
+  ══════════════════════════════════════════════════════
+
+  1. Create a new page with slug: test-playground
+  2. Add a Code Block and paste the full HTML above (minus this comment)
+  3. The global header/footer injection loads the VEXTREME stack as normal
+  4. This page reads window.VEXTREME_ARCS etc. and tests them live
+
+  WHAT EACH SECTION TESTS:
+    System status     → confirms every global is defined and loaded
+    Slug resolution   → runs resolveArcsForSlug() and shows results
+    Arc row render    → calls VEXTREME_mount() and renders the real widget
+    Entry lookup      → finds a specific entry in a specific arc by slug
+    Integrity checks  → automated sweep of all arc data
+    Data inspector    → prints raw arc JSON for any arc key
+    Console log       → captures all [VEXTREME] messages in one place
+
+  DEBUGGING WORKFLOW:
+    1. Check System status — all dots should be green
+    2. Run Slug resolution with a known slug (e.g. claude-answers-the-doubt)
+    3. If no arcs found, check Data inspector to confirm slug exists in data
+    4. If arcs found but widget doesn't render, check Arc row render section
+    5. Run Integrity checks to catch any data structure issues
+
+  ══════════════════════════════════════════════════════ -->
+</body>
+</html>

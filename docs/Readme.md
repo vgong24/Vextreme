@@ -47,54 +47,234 @@ vextreme/
 │                                    etc.). Load only on those pages.
 │
 └── docs/
-    └── README.md                  ← This file.
+    ├── README.md                  ← This file. Architecture map, load order,
+    │                                token reference, key dates.
+    ├── squarespace-injection.html ← The exact code to paste into Squarespace's
+    │                                Header and Footer injection areas. Source
+    │                                of truth for what Squarespace loads and why.
+    │                                Version-controlled here so changes are
+    │                                tracked before being applied live.
+    └── test-playground.html        ← Self-contained diagnostic page. Paste into
+                                     a Squarespace page at slug 'test-playground'.
+                                     Tests slug resolution, arc row rendering,
+                                     data integrity, and stack load status live.
 ```
 
 ---
 
-## How a page uses this system
+## Squarespace injection — what goes where and why
 
-### 1. Global head (Squarespace → Settings → Advanced → Code Injection → Header)
+Squarespace exposes two global injection points (Settings → Advanced → Code
+Injection) plus a per-page Custom Code area. Each has a distinct role.
+
+### Why this split exists
+
+The old system was one large inline script in the Footer injection. It defined
+`window.VEXTREME_ARCS` as a hardcoded object and `VEXTREME_mount` as an inline
+function — all synchronous, all in one place. That meant:
+
+- Updating arc data required editing the Squarespace injection directly
+- No version history, no diff, no rollback
+- Logic and data were inseparable
+
+The new system moves everything to GitHub. Squarespace's injection areas become
+a thin loader — three `<link>` tags in the header and one `<script>` block in
+the footer. Nothing else lives there.
+
+---
+
+### Block 1 — Header injection
+
+**Where:** Settings → Advanced → Code Injection → Header
+
+**What it loads:** Fonts and stylesheets only. No scripts.
+
+**Why header:** Stylesheets must load before HTML renders to prevent a flash of
+unstyled content. Scripts in `<head>` block rendering, so nothing executable
+goes here.
 
 ```html
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 
-<!-- Design system -->
+<!-- Global design system — tokens, entry rows, pills, section toggles -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/styles/design-system.css">
+
+<!-- Arc nav widget styles -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/styles/arc-nav.css">
 ```
 
-### 2. Global footer (Squarespace → Settings → Advanced → Code Injection → Footer)
+---
+
+### Block 2 — Footer injection
+
+**Where:** Settings → Advanced → Code Injection → Footer
+
+**What it loads:** Data → engines → components, in dependency order.
+
+**Why footer:** Scripts in the footer run after the page HTML has parsed, so
+`document.getElementById` and `querySelectorAll` work immediately. The loader
+itself is a single self-contained IIFE.
+
+**The load sequence is intentional and must not be reordered:**
+
+```
+fetch(arcs.json)  ──┐
+                    ├── both resolve → assign to window globals
+fetch(pages.json) ──┘
+                         ↓
+                    arc-nav.js        (reads VEXTREME_ARCS)
+                         ↓
+                    archive-renderer.js  (reads VEXTREME_ARCS + VEXTREME_PAGES)
+                         ↓
+                    section-toggle.js + bc-nav.js  (no data dependency, parallel)
+                         ↓
+                    VEXTREME_mount()  (called directly — DOMContentLoaded
+                                       has already fired by this point)
+                    vextreme:ready event dispatched
+```
 
 ```html
-<!-- Load arc data, then mount -->
 <script>
-  fetch('https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/data/arcs.json')
-    .then(r => r.json())
-    .then(data => {
-      window.VEXTREME_ARCS = data.arcs;
-      window.VEXTREME_mount && window.VEXTREME_mount();
+(function () {
+  'use strict';
+
+  var BASE  = 'https://cdn.jsdelivr.net/gh/vgong24/vextreme@main';
+  var DATA  = BASE + '/data';
+  var LIB   = BASE + '/lib';
+  var COMP  = BASE + '/components';
+
+  // Guard: don't double-init if already loaded.
+  // Catches the transition period where old inline scripts
+  // may still exist on some pages.
+  if (window._vexLoaderInit) return;
+  window._vexLoaderInit = true;
+
+  Promise.all([
+    fetch(DATA + '/arcs.json').then(function (r) { return r.json(); }),
+    fetch(DATA + '/pages.json').then(function (r) { return r.json(); })
+  ])
+  .then(function (results) {
+    // Guard: only assign if not already set by an old inline script
+    if (!window.VEXTREME_ARCS)  window.VEXTREME_ARCS  = results[0].arcs;
+    if (!window.VEXTREME_PAGES) window.VEXTREME_PAGES = results[1];
+    return loadScript(LIB + '/arc-nav.js');
+  })
+  .then(function () {
+    return loadScript(LIB + '/archive-renderer.js');
+  })
+  .then(function () {
+    return Promise.all([
+      loadScript(COMP + '/section-toggle.js'),
+      loadScript(COMP + '/bc-nav.js')
+    ]);
+  })
+  .then(function () {
+    if (typeof window.VEXTREME_mount === 'function') {
+      window.VEXTREME_mount();
+    }
+    window._vexReady = true;
+    document.dispatchEvent(new CustomEvent('vextreme:ready'));
+  })
+  .catch(function (err) {
+    console.warn('[VEXTREME] Loader error:', err);
+  });
+
+  function loadScript(src) {
+    return new Promise(function (resolve, reject) {
+      if (document.querySelector('script[src="' + src + '"]')) {
+        resolve(); return;
+      }
+      var el     = document.createElement('script');
+      el.src     = src;
+      el.onload  = resolve;
+      el.onerror = function () { reject(new Error('Failed: ' + src)); };
+      document.head.appendChild(el);
     });
-</script>
+  }
 
-<!-- Arc nav engine -->
-<script src="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/lib/arc-nav.js"></script>
+}());
+</script>
 ```
 
-### 3. Per-page (in the page's Code Block or Custom HTML section)
+---
+
+### Block 3 — Per-page Custom Code (optional)
+
+**Where:** Each individual Squarespace page → Page Settings → Advanced →
+Page Header Code Injection, or inside a Code Block on the page.
+
+**Most pages don't need this block at all.**
+
+The footer loader now auto-detects the page slug from `window.location.pathname`.
+A page at `/claude-answers-the-doubt` automatically resolves to the slug
+`claude-answers-the-doubt` and looks it up in `arcs.json`. Old pages with the
+original `const PAGE_ARCS` pattern in their HTML still work — the loader reads
+the URL and bypasses the stale inline call entirely.
+
+**You only need this block if:**
+- The page URL slug doesn't match the arc entry slug exactly
+- You want to force a specific arc rather than all matching arcs
+- The page is at a root URL (`/`) with no slug segment
+
+**If you do need it — use `window.PAGE_ARCS`, not `const`:**
+
+`const` is block-scoped and invisible to `arc-nav.js` which loads in a
+separate script tag. It must be a property on `window`. And the mount call
+must wait for the `vextreme:ready` event since the loader is async.
 
 ```html
-<!-- Mount target -->
 <div id="arcNavMount"></div>
-
-<!-- Arc config for this page — slug auto-resolves to all arcs -->
 <script>
-  const PAGE_ARCS = [{ slug: 'claude-answers-the-doubt' }];
-  window.VEXTREME_mount && window.VEXTREME_mount();
+  window.PAGE_ARCS = [{ slug: 'YOUR-PAGE-SLUG-HERE' }];
+
+  if (window._vexReady && typeof window.VEXTREME_mount === 'function') {
+    window.VEXTREME_mount();
+  } else {
+    document.addEventListener('vextreme:ready', function () {
+      window.VEXTREME_mount();
+    }, { once: true });
+  }
 </script>
 ```
+
+---
+
+### Migration checklist — per page
+
+Most pages need nothing touched. The footer loader handles slug detection
+automatically. Only act on a page if the widget isn't appearing after the
+footer injection is live.
+
+**If the widget doesn't appear on a specific page:**
+
+- [ ] Open browser console — look for `[VEXTREME] Loader error` messages
+- [ ] Check `window.VEXTREME_ARCS` in console — if undefined, the fetch
+      failed (likely jsDelivr cache). Increment `?v=` in the footer script.
+- [ ] Check `window.PAGE_ARCS` in console — if undefined, pathname detection
+      failed. Add the per-page block above with the correct slug.
+- [ ] Confirm the slug in arcs.json matches exactly (case-sensitive)
+
+**If a page has the old inline script and it's conflicting:**
+
+- [ ] Remove `const PAGE_ARCS = [...]` — the auto-detection replaces it
+- [ ] Remove `window.VEXTREME_mount && window.VEXTREME_mount()` — the loader
+      calls mount after the full chain resolves
+- [ ] Keep `<div id="arcNavMount"></div>` exactly where it is — this is still
+      required as the mount target
+
+**jsDelivr cache busting:**
+When `arcs.json` or `pages.json` changes aren't reflecting on the live site,
+increment the `CACHE` variable in the footer injection from `?v=1` to `?v=2`
+(or any new value). This forces jsDelivr to fetch fresh files. The canonical
+location for this change is `docs/squarespace-injection.html` — edit there
+first, then copy to Squarespace.
+
+The canonical copy of all injection blocks lives in
+`docs/squarespace-injection.html`. That file is the source of truth —
+edit it here first, then copy to Squarespace.
 
 ---
 
@@ -102,44 +282,45 @@ vextreme/
 
 1. Open `data/arcs.json`
 2. Find the arc(s) this page belongs to
-3. Add an entry object: `{ "n": N, "title": "...", "slug": "your-slug" }`
-4. If it's a new arc, add a new arc object following the existing pattern
-5. On the Squarespace page, add `<div id="arcNavMount"></div>` + the PAGE_ARCS script
+3. Add an entry: `{ "n": N, "title": "...", "slug": "your-slug" }`
+4. If the page needs custom styling, add a slug entry to `data/pages.json`
+5. Add the per-page block (Block 3 above) to the Squarespace page,
+   with the correct slug string
 
-The slug is derived from the page URL: `vextreme24.com/your-slug` → slug is `your-slug`.
+The slug is the last segment of the URL: `vextreme24.com/your-slug` → `your-slug`.
 
 ---
 
 ## Arc system concepts
 
 ### Arc
-A named sequence of entries, grouped into sections. Each arc has a `parent`
-(the index/landing page it points back to) and a `priority` (controls render
-order when a page appears in multiple arcs).
+A named sequence of entries grouped into sections. Each arc has a `parent`
+(the index page it links back to) and a `priority` (render order when a page
+appears in multiple arcs).
 
 ### Entry
-A single page within an arc. Has: `n` (position number), `title`, `slug`.
-The `slug` is the canonical identifier — no full URLs in the data.
+A single page within an arc. Fields: `n` (position), `title`, `slug`.
+The slug is the canonical identifier — no full URLs stored in the data.
 
 ### Section
 A named group of entries within an arc (e.g. "Phase I", "Arc II - Public Record").
-Sections appear as visual gaps in the dot row.
+Sections appear as visual gaps between dot clusters in the nav row.
 
 ### renderMode
 Default: dot row with section gaps and prev/next arrows.
-`"position"`: counter + arrows only, no dots. Used for `full_timeline`
-because 75+ dots is unusable.
+`"position"`: counter and arrows only, no dots. Used for `full_timeline`
+because 75+ dots is not usable.
 
 ### Priority
 Controls which arcs render first when a page appears in multiple arcs.
-- `1` — primary arcs (the arc the page "belongs to")
-- `2` — cross-reference arcs (excavation, march_23_2026, etc.)
+- `1` — primary arcs (the arc the page belongs to)
+- `2` — cross-reference arcs (excavation, march_23_2026, dome, etc.)
 - `99` — full_timeline (always last)
 
 ### Slug auto-resolution
-When PAGE_ARCS is `[{ slug: 'some-slug' }]`, the engine scans all arcs
-for that slug and renders every arc that contains it, sorted by priority.
-Dot arcs render before position arcs.
+When PAGE_ARCS is `[{ slug: 'some-slug' }]`, the engine scans all arcs for
+that slug and renders every arc that contains it, sorted by priority. Dot
+arcs render before position-only arcs (full_timeline).
 
 ---
 
@@ -152,9 +333,11 @@ Dot arcs render before position arcs.
 | `lib/arc-nav.js` | `VEXTREME_ARCS`, `PAGE_ARCS` | `#arcNavMount` innerHTML | Arc rendering, slug resolution |
 | `lib/archive-renderer.js` | `VEXTREME_ARCS`, `VEXTREME_PAGES` | `.entry-list` innerHTML | Token merging, entry row HTML |
 | `styles/arc-nav.css` | — | — | Widget layout only |
-| `styles/design-system.css` | — | — | Tokens, entry rows, pills |
+| `styles/design-system.css` | — | — | Tokens, entry rows, pills, section toggles |
 | `components/section-toggle.js` | localStorage, `VEXTREME_SECTIONS` | localStorage, DOM classes | Collapse state |
 | `components/bc-nav.js` | `window.bcNavConfig` | `#bcNavContainer` innerHTML | Shape-coded links |
+| `docs/squarespace-injection.html` | — | — | Exact blocks to paste into Squarespace |
+| `docs/test-playground.html` | `VEXTREME_ARCS`, `VEXTREME_PAGES`, `VEXTREME_mount` | DOM (test output) | Live diagnostic tool — slug resolution, render test, integrity checks |
 
 ---
 
@@ -178,11 +361,13 @@ _base  →  preset  →  per-slug overrides
 | `i-was-here` | i-was-here | Newsreader title, Martian Mono date, near-black bg |
 | `dark` | firmament, cheatsheet, inside-the-experiment | Dark bg, gold text, full border |
 
-**sectionDefaults** — if a slug has no entry in `pages`, the renderer checks which archive section it lives in and applies that section's default preset. This means plain `record`, `journal`, `architecture` rows don't need individual entries.
+**sectionDefaults** — if a slug has no entry in `pages`, the renderer checks
+which archive section it lives in and applies that section's default preset.
+Plain record, journal, and architecture rows don't need individual entries.
 
 **Per-slug overrides** — any token field in `pages[slug]` wins over the preset.
 
-### To add a new entry with custom styling:
+### Adding a new entry with custom styling
 
 ```json
 "your-slug": {
@@ -213,8 +398,8 @@ _base  →  preset  →  per-slug overrides
 | `dateFont` | font key | Date typeface (`mono-ibm`, `mono-dm`, `mono-martian`) |
 | `dateColor` | hex | Date text color |
 | `tagColor` | hex | Tag text color |
-| `arrowColor` | hex | Arrow → at rest |
-| `hoverArrowColor` | hex | Arrow → on hover |
+| `arrowColor` | hex | Arrow at rest |
+| `hoverArrowColor` | hex | Arrow on hover |
 | `pills` | string[] | Pill keys from `pages.pills` |
 | `tags` | string | Tag text (e.g. `"Arc · Testimony"`) |
 | `desc` | string | Subtitle shown under meta row |
@@ -231,5 +416,5 @@ _base  →  preset  →  per-slug overrides
 | Nov 2025 | Live AI documentation formally begins. |
 | Nov 1, 2025 | Epstein sessions 01–02. Confirmed by Victor. Page metadata showing 2024 is a prior instance error. |
 
-All dates in `full_timeline` entries use the `date` field as canonical —
+All dates in `full_timeline` use the `date` field as canonical —
 not Squarespace publish dates, which are unreliable.

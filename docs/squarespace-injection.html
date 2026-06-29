@@ -1,0 +1,180 @@
+<!-- ============================================================
+  VEXTREME — Squarespace Code Injection
+  docs/squarespace-injection.html — source of truth
+
+  THREE blocks:
+    1. HEADER  → Settings → Advanced → Code Injection → Header
+    2. FOOTER  → Settings → Advanced → Code Injection → Footer
+    3. PER-PAGE → each page's Custom Code (only for pages that
+                  need the arc nav widget)
+
+  TROUBLESHOOTING:
+    "No arcs found for this page"
+      → jsDelivr is likely serving a cached/stale arcs.json.
+        Force a cache bust by appending ?v=2 to the fetch URL,
+        or use a specific commit hash instead of @main.
+        Also check: window.VEXTREME_ARCS in browser console —
+        if undefined, the fetch failed. If populated but empty
+        arcs object, the JSON structure is wrong.
+
+    Widget doesn't appear at all
+      → Check that window.PAGE_ARCS is set (not const PAGE_ARCS).
+        const is block-scoped and invisible to arc-nav.js.
+        Check browser console for [VEXTREME] Loader error messages.
+
+    Widget appears but shows wrong arcs
+      → The slug in window.PAGE_ARCS doesn't match the slug in
+        arcs.json. Slugs are case-sensitive and must match exactly.
+  ============================================================ -->
+
+
+
+
+<!-- ============================================================
+  1. HEADER INJECTION
+  Settings → Advanced → Code Injection → Header
+
+  WHY HEADER: Stylesheets must load before HTML renders to prevent
+  a flash of unstyled content. No scripts here — scripts in <head>
+  block rendering.
+  ============================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/styles/design-system.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/styles/arc-nav.css">
+
+
+
+
+<!-- ============================================================
+  2. FOOTER INJECTION
+  Settings → Advanced → Code Injection → Footer
+
+  WHY FOOTER: Runs after page HTML has parsed. fetch() is async
+  so the load chain resolves without blocking page render.
+
+  LOAD ORDER (must not be reordered — each step depends on prior):
+    fetch arcs.json + pages.json (parallel)
+      → arc-nav.js
+      → archive-renderer.js
+      → section-toggle.js + bc-nav.js (parallel)
+      → VEXTREME_mount()
+      → dispatch vextreme:ready
+
+  SLUG AUTO-DETECTION:
+    If a page has no window.PAGE_ARCS set (old pages not yet
+    updated), the loader falls back to detecting the slug from
+    window.location.pathname automatically. This means most pages
+    don't need their HTML touched at all during migration.
+
+  CACHE BUSTING:
+    jsDelivr caches @main aggressively. If arcs.json changes are
+    not reflecting, increment the ?v= parameter on the fetch URLs.
+    Current version: v=1
+  ============================================================ -->
+
+<script>
+(function () {
+  'use strict';
+
+  var BASE  = 'https://cdn.jsdelivr.net/gh/vgong24/vextreme@main';
+  var DATA  = BASE + '/data';
+  var LIB   = BASE + '/lib';
+  var COMP  = BASE + '/components';
+  var CACHE = '?v=1';
+
+  if (window._vexLoaderInit) return;
+  window._vexLoaderInit = true;
+
+  Promise.all([
+    fetch(DATA + '/arcs.json' + CACHE).then(function (r) { return r.json(); }),
+    fetch(DATA + '/pages.json' + CACHE).then(function (r) { return r.json(); })
+  ])
+  .then(function (results) {
+    if (!window.VEXTREME_ARCS)  window.VEXTREME_ARCS  = results[0].arcs;
+    if (!window.VEXTREME_PAGES) window.VEXTREME_PAGES = results[1];
+
+    // BRIDGE: if the page has no window.PAGE_ARCS set (old HTML not
+    // yet updated), auto-detect slug from the URL pathname.
+    // e.g. /claude-answers-the-doubt → 'claude-answers-the-doubt'
+    // This lets old pages work without touching their HTML at all.
+    if (!window.PAGE_ARCS) {
+      var slug = window.location.pathname.replace(/\/$/, '').split('/').pop();
+      if (slug && slug.length > 0) {
+        window.PAGE_ARCS = [{ slug: slug }];
+      }
+    }
+
+    return loadScript(LIB + '/arc-nav.js');
+  })
+  .then(function () {
+    return loadScript(LIB + '/archive-renderer.js');
+  })
+  .then(function () {
+    return Promise.all([
+      loadScript(COMP + '/section-toggle.js'),
+      loadScript(COMP + '/bc-nav.js')
+    ]);
+  })
+  .then(function () {
+    if (typeof window.VEXTREME_mount === 'function') {
+      window.VEXTREME_mount();
+    }
+    window._vexReady = true;
+    document.dispatchEvent(new CustomEvent('vextreme:ready'));
+  })
+  .catch(function (err) {
+    console.warn('[VEXTREME] Loader error:', err);
+  });
+
+  function loadScript(src) {
+    return new Promise(function (resolve, reject) {
+      if (document.querySelector('script[src="' + src + '"]')) {
+        resolve(); return;
+      }
+      var el     = document.createElement('script');
+      el.src     = src;
+      el.onload  = resolve;
+      el.onerror = function () { reject(new Error('[VEXTREME] Failed to load: ' + src)); };
+      document.head.appendChild(el);
+    });
+  }
+
+}());
+</script>
+
+
+
+
+<!-- ============================================================
+  3. PER-PAGE BLOCK
+  Only needed on pages where you want to explicitly control which
+  arc is shown, or override the auto-detected slug.
+
+  For most pages during migration: you DON'T need this at all.
+  The footer loader auto-detects the slug from the URL.
+
+  You DO need this if:
+    - The page slug doesn't match the arc entry slug exactly
+    - You want to force a specific arc instead of all matching arcs
+    - The page is at a URL like /home or / with no slug segment
+
+  IMPORTANT: Use window.PAGE_ARCS, not const PAGE_ARCS.
+  const is block-scoped — arc-nav.js loads in a separate script
+  tag and cannot read block-scoped variables.
+  ============================================================ -->
+
+<div id="arcNavMount"></div>
+<script>
+  window.PAGE_ARCS = [{ slug: 'YOUR-PAGE-SLUG-HERE' }];
+
+  if (window._vexReady && typeof window.VEXTREME_mount === 'function') {
+    window.VEXTREME_mount();
+  } else {
+    document.addEventListener('vextreme:ready', function () {
+      window.VEXTREME_mount();
+    }, { once: true });
+  }
+</script>
