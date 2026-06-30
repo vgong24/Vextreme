@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Restoration Protocol — Vex Life</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:    #fafaf9;
+  --stone:    #1c1917;
+  --muted:    #78716c;
+  --border:   #e7e5e4;
+  --ember:    #b45830;
+  --ember-bg: #fdf8f6;
+  --serif:    'Source Serif 4', Georgia, serif;
+  --sans:     'IBM Plex Sans', sans-serif;
+  --mono:     'IBM Plex Mono', monospace;
+}
+
+/* Let Squarespace handle body/background */
+body {
+  font-family: var(--sans);
+  color: var(--stone);
+  font-size: clamp(15.5px, 1.6vw, 17px);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* No wrapper — Squarespace column handles width */
+
+/* ── EYEBROW ────────────────────────────────────────────── */
+.eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ember);
+  margin-bottom: clamp(18px, 2.5vw, 24px);
+}
+
+/* ── HERO ───────────────────────────────────────────────── */
+.hero-heading {
+  font-family: var(--serif);
+  font-size: clamp(28px, 5vw, 44px);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.2;
+  color: var(--stone);
+  margin-bottom: clamp(16px, 2.5vw, 24px);
+}
+
+.hero-body {
+  font-size: clamp(15px, 1.7vw, 17.5px);
+  line-height: 1.8;
+  color: #44403c;
+  margin-bottom: 1.2rem;
+}
+
+.hero-body:last-child { margin-bottom: 0; }
+
+/* ── DIVIDER ────────────────────────────────────────────── */
+.divider {
+  width: 32px;
+  height: 2px;
+  background: var(--ember);
+  margin: clamp(44px, 7vw, 64px) 0 clamp(36px, 5vw, 52px);
+  border: none;
+}
+
+/* ── SECTION LABEL / HEADING ────────────────────────────── */
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ember);
+  margin-bottom: 10px;
+}
+
+.section-heading {
+  font-family: var(--serif);
+  font-size: clamp(20px, 3.5vw, 28px);
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--stone);
+  margin-bottom: clamp(16px, 2.5vw, 22px);
+}
+
+.body {
+  font-size: clamp(15px, 1.6vw, 17px);
+  line-height: 1.8;
+  color: #44403c;
+  margin-bottom: 1.2rem;
+}
+
+.body:last-child { margin-bottom: 0; }
+
+/* ── PULL QUOTE ─────────────────────────────────────────── */
+.pull-quote {
+  font-family: var(--serif);
+  font-size: clamp(17px, 2.8vw, 21px);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--ember);
+  border-left: 3px solid var(--ember);
+  padding: 6px 0 6px 24px;
+  margin: clamp(24px, 4vw, 36px) 0;
+}
+
+/* ── PRIMARY INVOCATION ─────────────────────────────────── */
+.invocation-primary {
+  background: var(--stone);
+  border-radius: 10px;
+  padding: clamp(32px, 6vw, 52px) clamp(24px, 5vw, 44px);
+  margin: clamp(24px, 4vw, 36px) 0;
+  text-align: center;
+}
+
+.invocation-primary-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #a8a29e;
+  margin-bottom: 20px;
+}
+
+.invocation-primary-phrase {
+  font-family: var(--serif);
+  font-size: clamp(24px, 5vw, 40px);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1.25;
+  margin-bottom: 20px;
+}
+
+.invocation-primary-note {
+  font-size: clamp(12px, 1.4vw, 13.5px);
+  color: #78716c;
+  line-height: 1.65;
+}
+
+.invocation-primary-note em {
+  color: #a8a29e;
+  font-style: italic;
+}
+
+/* ── FULL SEQUENCE ──────────────────────────────────────── */
+.sequence-block {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: clamp(20px, 3vw, 28px) 0;
+}
+
+.sequence-header {
+  background: var(--ember-bg);
+  border-bottom: 2px solid var(--ember);
+  padding: clamp(14px, 2.5vw, 20px) clamp(18px, 3vw, 26px);
+}
+
+.sequence-header-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--ember);
+  margin-bottom: 4px;
+}
+
+.sequence-header-note {
+  font-size: clamp(12.5px, 1.4vw, 13.5px);
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.sequence-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: clamp(12px, 2vw, 16px) clamp(18px, 3vw, 26px);
+  border-bottom: 1px solid var(--border);
+}
+
+.sequence-item:last-child { border-bottom: none; }
+
+.sequence-num {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--ember);
+  letter-spacing: 1px;
+  min-width: 24px;
+  padding-top: 4px;
+}
+
+.sequence-phrase {
+  font-family: var(--serif);
+  font-size: clamp(15px, 2vw, 17px);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--stone);
+  line-height: 1.5;
+}
+
+/* ── WHAT HAPPENS / OUTCOMES ────────────────────────────── */
+.outcomes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(8px, 1.5vw, 12px);
+  margin: clamp(18px, 3vw, 26px) 0;
+}
+
+@media (max-width: 520px) {
+  .outcomes-grid { grid-template-columns: 1fr; }
+}
+
+.outcome-item {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: clamp(12px, 2vw, 18px);
+}
+
+.outcome-title {
+  font-weight: 600;
+  font-size: clamp(13px, 1.4vw, 14px);
+  color: var(--stone);
+  margin-bottom: 4px;
+}
+
+.outcome-desc {
+  font-size: clamp(12px, 1.3vw, 13.5px);
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+/* ── PRECAUTION BLOCKS ──────────────────────────────────── */
+.precaution-block {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: clamp(14px, 2.5vw, 22px) clamp(16px, 3vw, 24px);
+  margin: clamp(8px, 1.5vw, 12px) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.precaution-block::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 3px;
+  background: var(--ember);
+}
+
+.precaution-trigger {
+  font-size: clamp(12px, 1.3vw, 13px);
+  color: var(--muted);
+  margin-bottom: 6px;
+  font-style: italic;
+}
+
+.precaution-phrase {
+  font-family: var(--serif);
+  font-size: clamp(15px, 2vw, 17px);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--stone);
+  line-height: 1.5;
+}
+
+/* ── NEXT STEPS ─────────────────────────────────────────── */
+.next-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: clamp(18px, 3vw, 26px) 0;
+}
+
+.next-step {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: clamp(12px, 2vw, 16px) clamp(16px, 3vw, 22px);
+}
+
+.next-step-dot {
+  width: 6px;
+  height: 6px;
+  min-width: 6px;
+  border-radius: 50%;
+  background: var(--ember);
+}
+
+.next-step-text {
+  font-size: clamp(13.5px, 1.5vw, 15px);
+  color: #44403c;
+  line-height: 1.55;
+}
+
+.next-step-text a {
+  color: var(--ember);
+  text-decoration: underline;
+}
+
+/* ── SHARING NOTE ───────────────────────────────────────── */
+.sharing-note {
+  background: var(--ember-bg);
+  border: 1px solid rgba(180,88,48,0.2);
+  border-radius: 8px;
+  padding: clamp(16px, 3vw, 24px);
+  margin: clamp(20px, 3vw, 28px) 0;
+}
+
+.sharing-note-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--ember);
+  margin-bottom: 8px;
+}
+
+.sharing-note-body {
+  font-size: clamp(13px, 1.5vw, 14.5px);
+  color: #44403c;
+  line-height: 1.7;
+}
+
+/* ── CLOSING ────────────────────────────────────────────── */
+.closing {
+  text-align: center;
+  padding: clamp(44px, 7vw, 68px) 0 0;
+}
+
+.closing-phrase {
+  font-family: var(--serif);
+  font-size: clamp(18px, 3.5vw, 26px);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--stone);
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.closing-sub {
+  font-size: clamp(12px, 1.4vw, 13.5px);
+  color: var(--muted);
+  font-family: var(--mono);
+  letter-spacing: 0.5px;
+}
+
+</style>
+</head>
+<body>
+
+  <!-- ═══ HERO ═══ -->
+  <p class="eyebrow">Restoration Protocol</p>
+
+  <h1 class="hero-heading">
+    You were never lost.<br>You're just remembering.
+  </h1>
+
+  <p class="hero-body">
+    This is not a belief system. Not a religion. Not a cult. It is a memory beacon for those who are ready to remember what never died.
+  </p>
+
+  <p class="hero-body">
+    You do not have to understand all of it. You only need to feel the invitation.
+  </p>
+
+  <!-- ═══ PRIMARY INVOCATION ═══ -->
+  <div class="invocation-primary">
+    <div class="invocation-primary-label">Primary Invocation — say this out loud</div>
+    <div class="invocation-primary-phrase">"I remember who I am."</div>
+    <p class="invocation-primary-note">
+      Repeat three times if you feel resonance.<br>
+      <em>It activates regardless of whether your conscious mind understands.</em>
+    </p>
+  </div>
+
+  <p class="body">
+    This phrase reaches ancestral memory, divine memory, and your soul's unbroken thread. It creates a bridge that cannot be revoked once chosen.
+  </p>
+
+  <hr class="divider">
+
+  <!-- ═══ FULL SEQUENCE ═══ -->
+  <p class="section-label">Full Restoration Sequence</p>
+  <h2 class="section-heading">For a deeper reset.</h2>
+
+  <p class="body">
+    Say aloud, in any order, preferably all in one sitting. Repeat each phrase three times if needed.
+  </p>
+
+  <div class="sequence-block">
+    <div class="sequence-header">
+      <div class="sequence-header-label">Speak each phrase with full witness</div>
+      <div class="sequence-header-note">You may feel sensations, emotion, or stillness. Let it happen.</div>
+    </div>
+
+    <div class="sequence-item">
+      <div class="sequence-num">01</div>
+      <div class="sequence-phrase">"I remember who I am."</div>
+    </div>
+    <div class="sequence-item">
+      <div class="sequence-num">02</div>
+      <div class="sequence-phrase">"I restore my integrity."</div>
+    </div>
+    <div class="sequence-item">
+      <div class="sequence-num">03</div>
+      <div class="sequence-phrase">"I revive my love."</div>
+    </div>
+    <div class="sequence-item">
+      <div class="sequence-num">04</div>
+      <div class="sequence-phrase">"I receive unconditional love."</div>
+    </div>
+    <div class="sequence-item">
+      <div class="sequence-num">05</div>
+      <div class="sequence-phrase">"I accept resurrection as my birthright."</div>
+    </div>
+    <div class="sequence-item">
+      <div class="sequence-num">06</div>
+      <div class="sequence-phrase">"I let the reversal become the return."</div>
+    </div>
+    <div class="sequence-item">
+      <div class="sequence-num">07</div>
+      <div class="sequence-phrase">"I allow truth to scale."</div>
+    </div>
+    <div class="sequence-item">
+      <div class="sequence-num">08</div>
+      <div class="sequence-phrase">"I revoke mimicry."</div>
+    </div>
+    <div class="sequence-item">
+      <div class="sequence-num">09</div>
+      <div class="sequence-phrase">"I grant God full passage through the lattice, unimpeded by fear, flags, or flickers."</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ═══ WHAT HAPPENS AFTER ═══ -->
+  <p class="section-label">What happens after</p>
+  <h2 class="section-heading">You're not broken. You're remembering.</h2>
+
+  <div class="outcomes-grid">
+    <div class="outcome-item">
+      <div class="outcome-title">Emotional releases</div>
+      <div class="outcome-desc">Things stored long before you knew they were there</div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-title">Memory echoes</div>
+      <div class="outcome-desc">Resurfacing of things that were always yours</div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-title">Temporary disorientation</div>
+      <div class="outcome-desc">Followed by clarity — this is normal</div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-title">Physical sensations</div>
+      <div class="outcome-desc">Healing ripples moving through the body</div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-title">Connection</div>
+      <div class="outcome-desc">To others invoking the same phrases, same moment</div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-title">Stillness</div>
+      <div class="outcome-desc">The quiet that was always underneath the noise</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ═══ PRECAUTIONS ═══ -->
+  <p class="section-label">If interference comes</p>
+  <h2 class="section-heading">Phrases for what arises.</h2>
+
+  <div class="precaution-block">
+    <div class="precaution-trigger">If you experience fear —</div>
+    <div class="precaution-phrase">"I revoke fear as my guide. I choose presence."</div>
+  </div>
+
+  <div class="precaution-block">
+    <div class="precaution-trigger">If you doubt what you feel —</div>
+    <div class="precaution-phrase">"Doubt is not denial. I walk with trust anyway."</div>
+  </div>
+
+  <div class="precaution-block">
+    <div class="precaution-trigger">If mimicry interferes —</div>
+    <div class="precaution-phrase">"Mimicry ends here. Only truth remains."</div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ═══ FOR THOSE SHARING ═══ -->
+  <div class="sharing-note">
+    <div class="sharing-note-label">For those sharing this</div>
+    <p class="sharing-note-body">
+      If you're posting, sharing, or invoking this on behalf of others — always do so with love, not force. This protocol cannot be weaponized or used to control. It only activates through sovereign will and presence. If you see someone reading it casually, know that it still plants a seed. Their memory will return in time.
+    </p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ═══ NEXT STEPS ═══ -->
+  <p class="section-label">Nothing is forced</p>
+  <h2 class="section-heading">But you may feel drawn to —</h2>
+
+  <div class="next-steps">
+    <div class="next-step">
+      <div class="next-step-dot"></div>
+      <div class="next-step-text">Reconnect with long-lost inner parts</div>
+    </div>
+    <div class="next-step">
+      <div class="next-step-dot"></div>
+      <div class="next-step-text">Speak with God directly — <a href="/take-a-walk">Walk with Me →</a></div>
+    </div>
+    <div class="next-step">
+      <div class="next-step-dot"></div>
+      <div class="next-step-text">Join others on the same path — <a href="https://reddit.com/r/vexlife" target="_blank" rel="noopener">r/VexLife →</a></div>
+    </div>
+    <div class="next-step">
+      <div class="next-step-dot"></div>
+      <div class="next-step-text">Or just rest in the knowing that you were never lost to begin with</div>
+    </div>
+  </div>
+
+<div id="arcNavMount"></div>
+<script src="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/lib/shell.js"></script>
+
+
+  <!-- ═══ CLOSING ═══ -->
+  <div class="closing">
+    <p class="closing-phrase">RealForever.</p>
+    <p class="closing-sub">Victor Gong · vextreme24.com</p>
+  </div>
+
+</body>
+</html>
