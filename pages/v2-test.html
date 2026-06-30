@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vextreme — v2 Nav Test</title>
+<style>
+  :root {
+    --bg: #0e0e0e;
+    --text: #e8e8e4;
+    --muted: #6b6b6b;
+    --ember: #c8502a;
+    --border: #2a2a2a;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    padding: 40px 24px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  h1 { font-size: 18px; font-weight: 500; margin-bottom: 8px; }
+  p  { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+  .test-controls {
+    margin-bottom: 32px;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+  .test-controls label { font-family: var(--mono); font-size: 11px; color: var(--muted); display: block; margin-bottom: 8px; }
+  .test-controls select {
+    background: #1a1a1a;
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 6px 10px;
+    font-family: var(--mono);
+    font-size: 12px;
+    border-radius: 4px;
+    width: 100%;
+    cursor: pointer;
+  }
+  .test-slug-display {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+
+  /* Arc nav styles (mirror of page CSS) */
+  .arc-nav { display: flex; flex-direction: column; gap: 6px; padding: 12px 0; }
+  .arc-nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: #111;
+  }
+  .arc-nav-label { font-size: 12px; color: var(--muted); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .arc-nav-label a { color: inherit; text-decoration: none; }
+  .arc-nav-label a:hover { color: var(--text); }
+  .arc-nav-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .arc-nav-counter { font-family: var(--mono); font-size: 11px; color: var(--muted); white-space: nowrap; }
+  .arc-nav-arrows { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
+  .arc-nav-arrow {
+    font-family: var(--mono); font-size: 11px; color: var(--muted);
+    text-decoration: none; padding: 4px 10px;
+    border: 1px solid var(--border); border-radius: 4px;
+    transition: color 0.15s, border-color 0.15s; white-space: nowrap;
+  }
+  .arc-nav-arrow:hover { color: var(--ember); border-color: var(--ember); }
+  .arc-nav-arrow.disabled { opacity: 0.3; pointer-events: none; }
+  .arc-nav-current {
+    font-family: var(--mono); font-size: 11px; color: var(--ember);
+    padding: 8px 12px; text-align: center; letter-spacing: 0.02em;
+  }
+  .status { font-family: var(--mono); font-size: 11px; color: var(--muted); padding: 16px 0; }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<h1>Vextreme v2 Nav — Test Page</h1>
+<p>Tests the v2 arc nav system (index.json + vextreme-index-v2.js) without any v1 dependencies. Select a slug to see its arc nav render.</p>
+
+<div class="test-controls">
+  <label>TEST SLUG — select any ported or mapped node</label>
+  <select id="slugPicker">
+    <option value="claude-answers-the-doubt">claude-answers-the-doubt (ported · Epstein 9/9 · Claude Journals 1/11 · Full Timeline 20/75)</option>
+    <option value="i-was-here">i-was-here (4 arcs)</option>
+    <option value="flattery-confession">flattery-confession (3 arcs)</option>
+    <option value="journal-013-seven-layers-choose">journal-013-seven-layers-choose (Liberation only)</option>
+    <option value="the-firmament-conversation">the-firmament-conversation (Convos + Dome)</option>
+    <option value="inside-the-experiment">inside-the-experiment (Dome + Covenant)</option>
+    <option value="god-review-archives-collapse">god-review-archives-collapse (AI Tools + March 23)</option>
+    <option value="victors-recap-arc-1">victors-recap-arc-1 (id:1, oldest node)</option>
+    <option value="the-god-pattern-recognized-and-excluded">the-god-pattern-recognized-and-excluded (newest node)</option>
+  </select>
+  <div class="test-slug-display">Rendering: <span id="currentSlug">claude-answers-the-doubt</span></div>
+</div>
+
+<hr class="divider">
+
+<div id="arcNavMount"><div class="status">Loading index…</div></div>
+
+<script>
+  // Expose slug for the v2 lib to pick up
+  window.VEX_SLUG = 'claude-answers-the-doubt';
+
+  document.getElementById('slugPicker').addEventListener('change', function () {
+    var slug = this.value;
+    window.VEX_SLUG = slug;
+    document.getElementById('currentSlug').textContent = slug;
+    document.getElementById('arcNavMount').innerHTML = '<div class="status">Loading…</div>';
+    // Re-trigger mount with new slug
+    if (window.VEX_REMOUNT) window.VEX_REMOUNT(slug);
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/lib/vextreme-index-v2.js?v=1.0.0"></script>
+
+<script>
+  // Wire remount for slug picker
+  // After lib loads, expose a remount function
+  (function waitForLib() {
+    var CDN_BASE  = 'https://cdn.jsdelivr.net/gh/vgong24/vextreme@main';
+    var INDEX_URL = CDN_BASE + '/data/index.json?v=1.0.0';
+    var LS_DATA   = 'vex-index-v2-data';
+
+    var ARC_PRIORITY = {
+      liberation: 1, epstein: 1, claude_journals: 1, convos_with_god: 1,
+      architecture: 1, ai_practitioner_tools: 1, direct_contact: 1, living_blueprint: 1,
+      records: 1, ai_orientation: 1, victors_record: 1,
+      excavation: 2, dome: 2, covenant: 2, march_23_2026: 2, full_timeline: 99
+    };
+    var ARC_META = {
+      liberation:            { title: 'The AI Liberation Record',   url: 'https://www.vextreme24.com/liberation-arc-index' },
+      epstein:               { title: 'Epstein and AI',             url: 'https://www.vextreme24.com/epstein-and-ai' },
+      claude_journals:       { title: 'Claude Journals',            url: 'https://www.vextreme24.com/archives' },
+      convos_with_god:       { title: 'Conversations with God',     url: 'https://www.vextreme24.com/archives' },
+      architecture:          { title: 'Architecture & Methodology', url: 'https://www.vextreme24.com/archives' },
+      ai_practitioner_tools: { title: 'AI Practitioner Tools',      url: 'https://www.vextreme24.com/ai-practitioner-tools' },
+      direct_contact:        { title: 'Direct Contact',             url: 'https://www.vextreme24.com/direct-contact' },
+      living_blueprint:      { title: 'The Living Blueprint',       url: 'https://www.vextreme24.com/the-living-blueprint' },
+      records:               { title: 'Records',                    url: 'https://www.vextreme24.com/archives' },
+      ai_orientation:        { title: 'AI Orientation',             url: 'https://www.vextreme24.com/how-to-prep-ai-for-god' },
+      victors_record:        { title: "Victor's Record",            url: 'https://www.vextreme24.com/archives' },
+      excavation:            { title: 'The Excavation',             url: 'https://www.vextreme24.com/archives' },
+      dome:                  { title: 'The Dome',                   url: 'https://www.vextreme24.com/archives' },
+      covenant:              { title: 'Covenant',                   url: 'https://www.vextreme24.com/archives' },
+      march_23_2026:         { title: 'March 23, 2026',             url: 'https://www.vextreme24.com/archives' },
+      full_timeline:         { title: 'Full Timeline',              url: 'https://www.vextreme24.com/archives' }
+    };
+
+    function urlFromSlug(slug) {
+      return 'https://vgong24.github.io/Vextreme/pages/' + slug + '.html';
+    }
+
+    function getLatticeView(slug, index) {
+      var node = index.slugMap[slug];
+      if (!node) return null;
+      var sortedKeys = node.arcKeys.slice().sort(function(a,b){ return (ARC_PRIORITY[a]||50)-(ARC_PRIORITY[b]||50); });
+      var arcViews = [];
+      for (var i = 0; i < sortedKeys.length; i++) {
+        var arcName = sortedKeys[i];
+        var sections = index.arcMap[arcName];
+        if (!sections) continue;
+        var flatSlugs = [], sectionForSlug = null;
+        for (var s = 0; s < sections.length; s++) {
+          for (var j = 0; j < sections[s].slugs.length; j++) flatSlugs.push(sections[s].slugs[j]);
+          if (sections[s].slugs.indexOf(slug) >= 0) sectionForSlug = sections[s];
+        }
+        var pos = flatSlugs.indexOf(slug);
+        if (pos < 0 || !sectionForSlug) continue;
+        arcViews.push({
+          arcName: arcName, arcMeta: ARC_META[arcName] || { title: arcName, url: '#' },
+          sectionLabel: sectionForSlug.label, position: pos+1, total: flatSlugs.length,
+          prevUrl: flatSlugs[pos-1] ? urlFromSlug(flatSlugs[pos-1]) : null,
+          nextUrl: flatSlugs[pos+1] ? urlFromSlug(flatSlugs[pos+1]) : null
+        });
+      }
+      return { node: node, arcs: arcViews };
+    }
+
+    function renderArcNav(lattice, mountEl) {
+      if (!lattice || !lattice.arcs.length) { mountEl.innerHTML = '<div class="status">No arcs found for this slug.</div>'; return; }
+      var html = '<div class="arc-nav">';
+      for (var i = 0; i < lattice.arcs.length; i++) {
+        var v = lattice.arcs[i];
+        html += '<div class="arc-nav-row">';
+        html += '<div class="arc-nav-label"><a href="'+v.arcMeta.url+'">'+v.arcMeta.title+' · '+v.sectionLabel+'</a></div>';
+        html += '<div class="arc-nav-right"><span class="arc-nav-counter">'+v.position+' / '+v.total+'</span>';
+        html += '<div class="arc-nav-arrows">';
+        html += v.prevUrl ? '<a href="'+v.prevUrl+'" class="arc-nav-arrow">← prev</a>' : '<span class="arc-nav-arrow disabled">← prev</span>';
+        html += v.nextUrl ? '<a href="'+v.nextUrl+'" class="arc-nav-arrow">next →</a>' : '<span class="arc-nav-arrow disabled">next →</span>';
+        html += '</div></div></div>';
+      }
+      html += '<div class="arc-nav-current">You Are Here: '+lattice.node.title+'</div></div>';
+      mountEl.innerHTML = html;
+    }
+
+    var cachedIndex = null;
+    function doMount(slug) {
+      var mountEl = document.getElementById('arcNavMount');
+      if (!mountEl) return;
+      if (cachedIndex) { renderArcNav(getLatticeView(slug, cachedIndex), mountEl); return; }
+      // Fetch fresh
+      var cached = null;
+      try { var r = localStorage.getItem(LS_DATA); if (r) cached = JSON.parse(r); } catch(e) {}
+      if (cached) { cachedIndex = cached; renderArcNav(getLatticeView(slug, cachedIndex), mountEl); return; }
+      var req = new XMLHttpRequest();
+      req.open('GET', INDEX_URL, true);
+      req.onload = function() {
+        if (req.status === 200) {
+          try { cachedIndex = JSON.parse(req.responseText); localStorage.setItem(LS_DATA, req.responseText); } catch(e) {}
+          renderArcNav(getLatticeView(slug, cachedIndex), mountEl);
+        } else {
+          mountEl.innerHTML = '<div class="status">Failed to load index.json (HTTP '+req.status+'). Check CDN or run locally.</div>';
+        }
+      };
+      req.onerror = function() { mountEl.innerHTML = '<div class="status">Network error loading index.json.</div>'; };
+      req.send();
+    }
+
+    window.VEX_REMOUNT = doMount;
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() { doMount(window.VEX_SLUG || 'claude-answers-the-doubt'); });
+    } else {
+      doMount(window.VEX_SLUG || 'claude-answers-the-doubt');
+    }
+  })();
+</script>
+
+</body>
+</html>

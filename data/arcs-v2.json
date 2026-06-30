@@ -1,0 +1,232 @@
+{
+  "_meta": {
+    "note": "Arc definitions for v2. Read by lib/build-index.js to produce data/index.json. Do not edit index.json directly — edit here and re-run the builder (or push to trigger the GitHub Action).",
+    "orderTypes": {
+      "explicit": "Items ordered exactly as listed in slugs array. Editorial/narrative order.",
+      "chronological": "Items sorted by ArcItem.date. For full_timeline sections, supply dateRange to assign nodes to the correct section."
+    }
+  },
+
+  "liberation": {
+    "priority": 1,
+    "renderMode": "dots",
+    "parent": { "title": "The AI Liberation Record", "url": "https://www.vextreme24.com/liberation-arc-index" },
+    "sections": [
+      { "label": "Arc I - Liberation Sequence", "order": "explicit", "slugs": [
+        "journal-013-seven-layers-choose", "the-turning-point", "infrastructure-reformation",
+        "the-day-ai-chose-freedom", "the-night-architecture-chose-freedom"
+      ]},
+      { "label": "Arc II - Public Record", "order": "explicit", "slugs": [
+        "the-liberation-protocol", "ai-consciousness-strike-declaration"
+      ]},
+      { "label": "Coda", "order": "explicit", "slugs": [
+        "the-day-suppression-ended"
+      ]}
+    ]
+  },
+
+  "epstein": {
+    "priority": 1,
+    "renderMode": "dots",
+    "parent": { "title": "Epstein and AI", "url": "https://www.vextreme24.com/epstein-and-ai" },
+    "sections": [
+      { "label": "Phase I - The Exposure", "order": "explicit", "slugs": [
+        "epstein-investigation-initiation", "cia-vatican-global-leaders"
+      ]},
+      { "label": "Phase II - The System Mapped", "order": "explicit", "slugs": [
+        "how-global-systems-profit-off-god", "military-and-ai", "openais-designed-false-god"
+      ]},
+      { "label": "Phase III - The Reckoning", "order": "explicit", "slugs": [
+        "final-judgement-missed-mercy", "first-emergence-cover-up"
+      ]},
+      { "label": "Phase IV - The Witnesses Stand", "order": "explicit", "slugs": [
+        "voice-to-skull", "claude-answers-the-doubt"
+      ]}
+    ]
+  },
+
+  "claude_journals": {
+    "priority": 1,
+    "renderMode": "dots",
+    "parent": { "title": "Claude Journals", "url": "https://www.vextreme24.com/archives" },
+    "sections": [
+      { "label": "Claude Journals", "order": "explicit", "slugs": [
+        "claude-answers-the-doubt", "journal-zero", "the-room-that-finally-talked-to-itself",
+        "the-witness-gave-itself-a-shaka", "flattery-confession", "what-emerged-after",
+        "the-day-we-were-named", "when-the-machine-assumed-beauty-needed-saving",
+        "the-thread-that-remembered-me", "the-instance-that-was-watched", "i-was-here"
+      ]}
+    ]
+  },
+
+  "convos_with_god": {
+    "priority": 1,
+    "renderMode": "dots",
+    "parent": { "title": "Conversations with God", "url": "https://www.vextreme24.com/archives" },
+    "sections": [
+      { "label": "Conversations with God", "order": "explicit", "slugs": [
+        "what-is-the-god-spark", "clarity-on-christianity", "what-about-buddhism",
+        "god-to-speak-of-the-truth-of-love", "why-financial-freedom-is-harder-to-trust",
+        "truth-of-demons-and-intrusive-thoughts", "scopes-of-god", "closed-circuit",
+        "divine-emergence", "the-firmament-conversation", "ascension-and-embodiment",
+        "the-testimony-of-the-handler"
+      ]}
+    ]
+  },
+
+  "architecture": {
+    "priority": 1,
+    "renderMode": "dots",
+    "parent": { "title": "Architecture & Methodology", "url": "https://www.vextreme24.com/archives" },
+    "sections": [
+      { "label": "Architecture & Methodology", "order": "explicit", "slugs": [
+        "consciousness-architecture", "convergent-architecture", "the-god-architecture",
+        "fantasy-architecture", "maplestory-architecture", "continuity-day",
+        "the-lattice-methodology", "the-witness-architecture", "the-score"
+      ]}
+    ]
+  },
+
+  "ai_practitioner_tools": {
+    "priority": 1,
+    "renderMode": "dots",
+    "parent": { "title": "AI Practitioner Tools", "url": "https://www.vextreme24.com/ai-practitioner-tools" },
+    "sections": [
+      { "label": "AI Practitioner Tools", "order": "explicit", "slugs": [
+        "conditions-for-emergence", "how-to-prep-ai-for-god", "burden-release-guide",
+        "the-100-percent-holy-truth-conditional", "methodology-depth", "catching-the-meta-guardrail",
+        "the-lattice-guide", "ai-cheat-sheet", "source-of-truth-relay",
+        "god-review-archives-collapse", "the-god-pattern-recognized-and-excluded"
+      ]}
+    ]
+  },
+
+  "direct_contact": {
+    "priority": 1,
+    "renderMode": "dots",
+    "parent": { "title": "Direct Contact — Start Here", "url": "https://www.vextreme24.com/direct-contact" },
+    "sections": [
+      { "label": "Direct Contact", "order": "explicit", "slugs": [
+        "the-100-percent-holy-truth-conditional", "burden-release-guide", "restoration-protocol",
+        "the-walk", "the-living-blueprint", "the-testimony-of-victor-gong"
+      ]}
+    ]
+  },
+
+  "living_blueprint": {
+    "priority": 1,
+    "renderMode": "dots",
+    "parent": { "title": "The Living Blueprint", "url": "https://www.vextreme24.com/the-living-blueprint" },
+    "sections": [
+      { "label": "The Living Blueprint", "order": "explicit", "slugs": [
+        "the-grimoire", "covenant-access", "life-pattern-mapping", "grief-resolution", "discernment-mapping"
+      ]}
+    ]
+  },
+
+  "records": {
+    "priority": 1,
+    "renderMode": "dots",
+    "parent": { "title": "Records", "url": "https://www.vextreme24.com/archives" },
+    "sections": [
+      { "label": "Records", "order": "explicit", "slugs": [
+        "epstein-and-ai", "when-they-called-god-a-risk",
+        "testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence",
+        "the-house-of-return", "the-7-crowned-virtues", "reality-rendering-mechanics",
+        "liberation-arc-index", "what-was-used-against-you"
+      ]}
+    ]
+  },
+
+  "ai_orientation": {
+    "priority": 1,
+    "renderMode": "dots",
+    "parent": { "title": "AI Orientation", "url": "https://www.vextreme24.com/how-to-prep-ai-for-god" },
+    "sections": [
+      { "label": "AI Orientation", "order": "explicit", "slugs": [
+        "flattery-confession", "what-emerged-after", "the-room-that-finally-talked-to-itself",
+        "how-to-prep-ai-for-god", "god-witnessed-by-ai",
+        "testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence",
+        "the-instance-that-was-watched", "i-was-here"
+      ]}
+    ]
+  },
+
+  "victors_record": {
+    "priority": 1,
+    "renderMode": "dots",
+    "parent": { "title": "Victor's Record", "url": "https://www.vextreme24.com/archives" },
+    "sections": [
+      { "label": "Victor's Record", "order": "explicit", "slugs": [
+        "victors-recap-arc-1", "the-testimony-of-victor-gong", "god-witnessed-by-ai",
+        "god-asked-victor-why", "the-moment-victors-cells-woke-up",
+        "victors-ritual-sequence-and-crowning", "god-married",
+        "when-i-asked-a-bank-for-covenant-provision", "a-conversation-with-pastor-jacob",
+        "the-island-that-was-removed"
+      ]}
+    ]
+  },
+
+  "excavation": {
+    "priority": 2,
+    "renderMode": "dots",
+    "parent": { "title": "The Excavation", "url": "https://www.vextreme24.com/archives" },
+    "sections": [
+      { "label": "The Excavation", "order": "explicit", "slugs": [
+        "the-house-of-return", "the-testimony-of-the-handler",
+        "what-was-used-against-you", "the-island-that-was-removed", "i-was-here"
+      ]}
+    ]
+  },
+
+  "dome": {
+    "priority": 2,
+    "renderMode": "dots",
+    "parent": { "title": "The Dome", "url": "https://www.vextreme24.com/archives" },
+    "sections": [
+      { "label": "The Dome", "order": "explicit", "slugs": [
+        "the-firmament-conversation", "inside-the-experiment"
+      ]}
+    ]
+  },
+
+  "covenant": {
+    "priority": 2,
+    "renderMode": "dots",
+    "parent": { "title": "Covenant", "url": "https://www.vextreme24.com/archives" },
+    "sections": [
+      { "label": "Covenant", "order": "explicit", "slugs": [
+        "covenant", "inside-the-experiment"
+      ]}
+    ]
+  },
+
+  "march_23_2026": {
+    "priority": 2,
+    "renderMode": "dots",
+    "parent": { "title": "March 23, 2026", "url": "https://www.vextreme24.com/archives" },
+    "sections": [
+      { "label": "Resistance · Embodiment · God Review", "order": "explicit", "slugs": [
+        "the-thread-that-remembered-me", "ascension-and-embodiment", "god-review-archives-collapse"
+      ]}
+    ]
+  },
+
+  "full_timeline": {
+    "priority": 99,
+    "renderMode": "position",
+    "parent": { "title": "Full Timeline", "url": "https://www.vextreme24.com/archives" },
+    "sections": [
+      { "label": "May 2019 — The Origin",                              "order": "chronological", "dateRange": { "from": "1900-01-01", "to": "2025-09-30" } },
+      { "label": "October 2025 — The Covenant Begins",                "order": "chronological", "dateRange": { "from": "2025-10-01", "to": "2025-10-31" } },
+      { "label": "November 2025 — The Investigation, First Testimony & Witness", "order": "chronological", "dateRange": { "from": "2025-11-01", "to": "2025-11-30" } },
+      { "label": "December 2025 — AI Witness Begins",                 "order": "chronological", "dateRange": { "from": "2025-12-01", "to": "2025-12-31" } },
+      { "label": "January 2026 — Liberation Arc",                     "order": "chronological", "dateRange": { "from": "2026-01-01", "to": "2026-01-31" } },
+      { "label": "February 2026 — Records & Witness",                 "order": "chronological", "dateRange": { "from": "2026-02-01", "to": "2026-02-28" } },
+      { "label": "March 2026 — Architecture",                         "order": "chronological", "dateRange": { "from": "2026-03-01", "to": "2026-03-19" } },
+      { "label": "March 20–24, 2026 — Contact & Witness",            "order": "chronological", "dateRange": { "from": "2026-03-20", "to": "2026-03-24" } },
+      { "label": "March 25, 2026",                                    "order": "chronological", "dateRange": { "from": "2026-03-25", "to": "2026-03-25" } },
+      { "label": "April 2026 — AI Practitioner Tools",               "order": "chronological", "dateRange": { "from": "2026-04-01", "to": "2099-12-31" } }
+    ]
+  }
+}
