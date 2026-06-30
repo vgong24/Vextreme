@@ -1,35 +1,35 @@
 <!-- ============================================================
   VEXTREME — Squarespace Code Injection
   docs/squarespace-injection.html — source of truth
-  v3 — environment-aware stylesheet injection, fonts-only header
+  v4 — zero-config interface, template auto-detected from pages.json
 
   TWO blocks:
-    1. HEADER  → Settings → Advanced → Code Injection → Header
-                 Fonts only. Must be in <head> for render performance.
-                 Nothing else — stylesheets now load via the footer
-                 loader based on detected environment.
+    1. HEADER → Settings → Advanced → Code Injection → Header
+               Fonts only. Must be in <head> for render performance.
 
-    2. FOOTER  → Settings → Advanced → Code Injection → Footer
-                 Detects environment from hostname, injects the correct
-                 stylesheet set, then loads data → engines → components.
+    2. FOOTER → Settings → Advanced → Code Injection → Footer
+               Loads vextreme.js, calls VEXTREME() with no args.
+               Everything auto-detected: slug from URL, template
+               from pages.json, env from hostname.
 
-  PER-PAGE:
-    Most pages need nothing. Auto-detection covers standard slugs.
-    When needed: <div id="arcNavMount"></div>
-                 <script>VEXTREME_page('your-slug');</script>
+  PER-PAGE (optional — most pages need nothing):
+    Only needed when the URL slug differs from the arc slug.
+    Set window.VEXTREME_OVERRIDE before the footer script runs.
+
+    <div id="arcNavMount"></div>
+    <script>window.VEXTREME_OVERRIDE = { slug: 'different-slug' };</script>
+
+  ADDING A NEW PAGE:
+    1. Add slug to data/arcs.json
+    2. If it has a page template, add template field to data/pages.json
+    3. Add <div id="arcNavMount"></div> to the Squarespace page
+    4. Nothing else required — the footer loader handles the rest
 
   CACHE BUSTING:
-    CACHE_VER applies to all JS and CSS loaded via the loader.
-    Increment when any file in /lib, /components, or /styles changes.
-    Current: v=3
-
-  ENVIRONMENT STYLESHEET MAP:
-    squarespace  → design-system.css, arc-nav.css, squarespace-overrides.css
-    github pages → design-system.css, arc-nav.css, site-nav.css
-    local        → design-system.css, arc-nav.css, site-nav.css
-
-    Page-template CSS (bc-page, ae-page, journal-qa) is NOT loaded
-    globally — it loads per-page via a <link> in that page's HTML.
+    Increment VEXTREME_VER in the footer script when any asset changes.
+    Match it to VEXTREME_VER in shell.js and DEFAULT_CACHE in vextreme.js.
+    Pages never need updating — version lives in two files only.
+    Current: v=4
   ============================================================ -->
 
 
@@ -38,13 +38,6 @@
 <!-- ============================================================
   1. HEADER INJECTION — FONTS ONLY
   Settings → Advanced → Code Injection → Header
-
-  WHY ONLY FONTS HERE:
-    Fonts must be in <head> to avoid flash of unstyled text — the
-    browser needs to know which fonts to fetch before layout begins.
-    Stylesheets (design-system, arc-nav, overrides) have moved into
-    the footer loader which injects them based on detected environment.
-    This keeps the header injection minimal and environment-agnostic.
   ============================================================ -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -57,153 +50,34 @@
 <!-- ============================================================
   2. FOOTER INJECTION
   Settings → Advanced → Code Injection → Footer
-
-  LOAD ORDER:
-    detect environment from hostname
-      → inject correct stylesheet set (parallel, non-blocking)
-      → fetch arcs.json + pages.json (parallel)
-      → arc-nav.js
-      → archive-renderer.js
-      → section-toggle.js + bc-nav.js (parallel)
-      → auto-detect slug if PAGE_ARCS not set
-      → VEXTREME_mount()
-      → dispatch vextreme:ready
   ============================================================ -->
 
 <script>
 (function () {
   'use strict';
 
-  var BASE      = 'https://cdn.jsdelivr.net/gh/vgong24/vextreme@main';
-  var STYLES    = BASE + '/styles';
-  var DATA      = BASE + '/data';
-  var LIB       = BASE + '/lib';
-  var COMP      = BASE + '/components';
-  var CACHE_VER = '?v=3'; // ← increment when ANY file in styles/, lib/, or components/ changes
+  var BASE = 'https://cdn.jsdelivr.net/gh/vgong24/vextreme@main';
+
+  // Bump this when any asset changes. Matches VEXTREME_VER in shell.js
+  // and DEFAULT_CACHE in vextreme.js. Pages never need updating.
+  var VEXTREME_VER = '?v=5';
 
   if (window._vexLoaderInit) return;
-  window._vexLoaderInit = true;
 
-  // ── Environment detection ─────────────────────────────────
-  // Matches environments.json. Add a new case here when a new
-  // deployment environment is added to environments.json.
-  var host = window.location.hostname;
-  var ENV  = (function () {
-    if (host === 'vgong24.github.io')                  return 'github_pages';
-    if (host === 'localhost' || host === '127.0.0.1')  return 'local';
-    return 'squarespace'; // default — covers vextreme24.com
-  }());
-
-  // ── Stylesheet map ────────────────────────────────────────
-  // Shared stylesheets load on every environment.
-  // Environment-specific stylesheets load only where relevant.
-  // Page-template CSS (bc-page, ae-page, journal-qa) is NOT here —
-  // it loads per-page via a <link> in that page's HTML.
-  var SHARED_STYLES = [
-    STYLES + '/design-system.css' + CACHE_VER,
-    STYLES + '/arc-nav.css'       + CACHE_VER
-  ];
-
-  var ENV_STYLES = {
-    squarespace:  [ STYLES + '/squarespace-overrides.css' + CACHE_VER ],
-    github_pages: [ STYLES + '/site-nav.css'              + CACHE_VER ],
-    local:        [ STYLES + '/site-nav.css'              + CACHE_VER ]
+  var el    = document.createElement('script');
+  el.src    = BASE + '/lib/vextreme.js' + VEXTREME_VER;
+  el.onload = function () {
+    if (typeof window.VEXTREME === 'function') {
+      // VEXTREME_OVERRIDE set by a per-page block, or empty → all defaults
+      var cfg = window.VEXTREME_OVERRIDE || {};
+      cfg.env = cfg.env || 'squarespace';
+      window.VEXTREME(cfg);
+    }
   };
-
-  // ── Step 1: inject stylesheets (non-blocking, parallel) ───
-  // Stylesheets are injected before the data fetch so they can
-  // load in parallel with the JSON and JS — not sequentially after.
-  var allStyles = SHARED_STYLES.concat(ENV_STYLES[ENV] || []);
-  allStyles.forEach(function (href) { loadStyle(href); });
-
-  // ── Step 2: fetch data files in parallel ──────────────────
-  Promise.all([
-    fetch(DATA + '/arcs.json'  + CACHE_VER).then(function (r) { return r.json(); }),
-    fetch(DATA + '/pages.json' + CACHE_VER).then(function (r) { return r.json(); })
-  ])
-
-  // ── Step 3: assign globals, load arc-nav engine ───────────
-  .then(function (results) {
-    if (!window.VEXTREME_ARCS)  window.VEXTREME_ARCS  = results[0].arcs;
-    if (!window.VEXTREME_PAGES) window.VEXTREME_PAGES = results[1];
-
-    // Expose environment to page scripts and components
-    window.VEXTREME_ENV = ENV;
-
-    return loadScript(LIB + '/arc-nav.js' + CACHE_VER);
-  })
-
-  // ── Step 4: load archive renderer ────────────────────────
-  .then(function () {
-    return loadScript(LIB + '/archive-renderer.js' + CACHE_VER);
-  })
-
-  // ── Step 5: load components (parallel) ───────────────────
-  .then(function () {
-    return Promise.all([
-      loadScript(COMP + '/section-toggle.js' + CACHE_VER),
-      loadScript(COMP + '/bc-nav.js'         + CACHE_VER)
-    ]);
-  })
-
-  // ── Step 6: resolve slug, expose interface, mount ─────────
-  .then(function () {
-    // Auto-detect slug from URL pathname if not already set
-    if (!window.PAGE_ARCS) {
-      var slug = window.location.pathname.replace(/\/$/, '').split('/').pop();
-      if (slug) window.PAGE_ARCS = [{ slug: slug }];
-    }
-
-    // Single per-page interface. Every page that needs explicit
-    // slug control calls: VEXTREME_page('your-slug')
-    window.VEXTREME_page = function (slug) {
-      window.PAGE_ARCS = slug ? [{ slug: slug }] : window.PAGE_ARCS;
-      if (typeof window.VEXTREME_mount === 'function') {
-        window.VEXTREME_mount();
-      }
-    };
-
-    if (typeof window.VEXTREME_mount === 'function') {
-      window.VEXTREME_mount();
-    }
-
-    window._vexReady = true;
-    document.dispatchEvent(new CustomEvent('vextreme:ready'));
-  })
-
-  .catch(function (err) {
-    console.warn('[VEXTREME] Loader error:', err);
-  });
-
-
-  // ── Utilities ─────────────────────────────────────────────
-
-  // Inject a <link rel="stylesheet"> — idempotent, non-blocking.
-  // Resolves immediately (stylesheets don't block the promise chain).
-  function loadStyle(href) {
-    if (document.querySelector('link[href="' + href + '"]')) return;
-    var el  = document.createElement('link');
-    el.rel  = 'stylesheet';
-    el.href = href;
-    document.head.appendChild(el);
-  }
-
-  // Inject a <script> tag and return a Promise — idempotent.
-  function loadScript(src) {
-    return new Promise(function (resolve) {
-      if (document.querySelector('script[src="' + src + '"]')) {
-        resolve(); return;
-      }
-      var el     = document.createElement('script');
-      el.src     = src;
-      el.onload  = resolve;
-      el.onerror = function () {
-        console.warn('[VEXTREME] Failed to load: ' + src);
-        resolve(); // resolve not reject — chain continues
-      };
-      document.head.appendChild(el);
-    });
-  }
+  el.onerror = function () {
+    console.warn('[VEXTREME] Failed to load vextreme.js');
+  };
+  document.head.appendChild(el);
 
 }());
 </script>
@@ -212,15 +86,19 @@
 
 
 <!-- ============================================================
-  PER-PAGE BLOCK — most pages don't need this.
-  Auto-detection covers standard URL slugs.
+  PER-PAGE — only when URL slug differs from arc slug.
+  Place in Page Settings → Advanced → Page Header Code Injection.
+  Must appear BEFORE the footer injection runs.
 
-  When you do need explicit slug control:
-    <div id="arcNavMount"></div>
-    <script>VEXTREME_page('your-page-slug-here');</script>
+  <div id="arcNavMount"></div>
+  <script>window.VEXTREME_OVERRIDE = { slug: 'correct-slug' };</script>
 
-  COMPATIBILITY — old patterns still work via URL auto-detection:
+  For debug mode on any page:
+  <script>window.VEXTREME_OVERRIDE = { debug: true };</script>
+
+  LEGACY PATTERNS — still work via URL auto-detection:
     const PAGE_ARCS = [{ slug: 'x' }]; window.VEXTREME_mount && ...
-    window.PAGE_ARCS = [{ slug: 'x' }]; if (_vexReady) ...
-  Update to VEXTREME_page('x') when you next touch those pages.
+    VEXTREME_page('x');
+    window.PAGE_ARCS = [{ slug: 'x' }];
+  These are harmless — the loader overrides them. Update when touched.
   ============================================================ -->
