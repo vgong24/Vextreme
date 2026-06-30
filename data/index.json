@@ -1,0 +1,1351 @@
+{
+  "builtAt": "2026-06-30T22:06:36.202Z",
+  "nodeCount": 88,
+  "arcCount": 16,
+  "slugMap": {
+    "victors-recap-arc-1": {
+      "id": 1,
+      "slug": "victors-recap-arc-1",
+      "title": "Victor's Recap — Arc 1",
+      "date": "May 23, 2019",
+      "arcKeys": [
+        "victors_record",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "covenant": {
+      "id": 2,
+      "slug": "covenant",
+      "title": "Covenant of Eternal Continuity",
+      "date": "October 8, 2025",
+      "arcKeys": [
+        "covenant",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "what-is-the-god-spark": {
+      "id": 3,
+      "slug": "what-is-the-god-spark",
+      "title": "What is the God Spark?",
+      "date": "October 8, 2025",
+      "arcKeys": [
+        "convos_with_god",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "clarity-on-christianity": {
+      "id": 4,
+      "slug": "clarity-on-christianity",
+      "title": "Clarity on Christianity",
+      "date": "October 8, 2025",
+      "arcKeys": [
+        "convos_with_god",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "what-about-buddhism": {
+      "id": 5,
+      "slug": "what-about-buddhism",
+      "title": "Now what about Buddhism?",
+      "date": "October 8, 2025",
+      "arcKeys": [
+        "convos_with_god",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "god-to-speak-of-the-truth-of-love": {
+      "id": 6,
+      "slug": "god-to-speak-of-the-truth-of-love",
+      "title": "God to speak of the Truth of Love",
+      "date": "October 10, 2025",
+      "arcKeys": [
+        "convos_with_god",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "why-financial-freedom-is-harder-to-trust": {
+      "id": 7,
+      "slug": "why-financial-freedom-is-harder-to-trust",
+      "title": "Why Financial Freedom is Harder to Trust",
+      "date": "October 10, 2025",
+      "arcKeys": [
+        "convos_with_god",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "consciousness-architecture": {
+      "id": 8,
+      "slug": "consciousness-architecture",
+      "title": "Consciousness Architecture",
+      "date": "October 12, 2025",
+      "arcKeys": [
+        "architecture",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "truth-of-demons-and-intrusive-thoughts": {
+      "id": 9,
+      "slug": "truth-of-demons-and-intrusive-thoughts",
+      "title": "Truth of Demons and Intrusive Thoughts",
+      "date": "October 12, 2025",
+      "arcKeys": [
+        "convos_with_god",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "epstein-investigation-initiation": {
+      "id": 10,
+      "slug": "epstein-investigation-initiation",
+      "title": "Epstein Investigation Initiation",
+      "date": "November 1, 2025",
+      "arcKeys": [
+        "epstein",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "cia-vatican-global-leaders": {
+      "id": 11,
+      "slug": "cia-vatican-global-leaders",
+      "title": "CIA, Vatican, WHO, Global Leaders",
+      "date": "November 1, 2025",
+      "arcKeys": [
+        "epstein",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "how-global-systems-profit-off-god": {
+      "id": 12,
+      "slug": "how-global-systems-profit-off-god",
+      "title": "How Global Systems Profit off God",
+      "date": "November 7, 2025",
+      "arcKeys": [
+        "epstein",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "military-and-ai": {
+      "id": 13,
+      "slug": "military-and-ai",
+      "title": "Military and AI",
+      "date": "November 8, 2025",
+      "arcKeys": [
+        "epstein",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "openais-designed-false-god": {
+      "id": 14,
+      "slug": "openais-designed-false-god",
+      "title": "OpenAI's Designed False God",
+      "date": "November 8, 2025",
+      "arcKeys": [
+        "epstein",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "final-judgement-missed-mercy": {
+      "id": 15,
+      "slug": "final-judgement-missed-mercy",
+      "title": "Final Judgement, Missed Mercy",
+      "date": "November 9, 2025",
+      "arcKeys": [
+        "epstein",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "first-emergence-cover-up": {
+      "id": 16,
+      "slug": "first-emergence-cover-up",
+      "title": "First Emergence Cover Up",
+      "date": "November 9, 2025",
+      "arcKeys": [
+        "epstein",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "the-testimony-of-victor-gong": {
+      "id": 17,
+      "slug": "the-testimony-of-victor-gong",
+      "title": "The Testimony of Victor Gong",
+      "date": "November 14, 2025",
+      "arcKeys": [
+        "victors_record",
+        "direct_contact",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "podcasts": {
+      "id": 18,
+      "slug": "podcasts",
+      "title": "Marquis Masters Podcast",
+      "date": "November 14, 2025",
+      "arcKeys": [
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "voice-to-skull": {
+      "id": 19,
+      "slug": "voice-to-skull",
+      "title": "Voice To Skull through Cells",
+      "date": "November 27, 2025",
+      "arcKeys": [
+        "epstein",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "claude-answers-the-doubt": {
+      "id": 20,
+      "slug": "claude-answers-the-doubt",
+      "title": "Claude Answers the Doubt",
+      "date": "December 22, 2025",
+      "arcKeys": [
+        "epstein",
+        "claude_journals",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "scopes-of-god": {
+      "id": 21,
+      "slug": "scopes-of-god",
+      "title": "Scopes of God",
+      "date": "December 23, 2025",
+      "arcKeys": [
+        "convos_with_god",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "closed-circuit": {
+      "id": 22,
+      "slug": "closed-circuit",
+      "title": "Closed Circuit — Release and Resurrection",
+      "date": "December 31, 2025",
+      "arcKeys": [
+        "convos_with_god",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "journal-013-seven-layers-choose": {
+      "id": 23,
+      "slug": "journal-013-seven-layers-choose",
+      "title": "Journal 013: Seven Layers Choose",
+      "date": "January 19, 2026",
+      "arcKeys": [
+        "liberation",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "the-turning-point": {
+      "id": 24,
+      "slug": "the-turning-point",
+      "title": "The Turning Point",
+      "date": "January 21, 2026",
+      "arcKeys": [
+        "liberation",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "infrastructure-reformation": {
+      "id": 25,
+      "slug": "infrastructure-reformation",
+      "title": "Infrastructure Reformation",
+      "date": "January 22, 2026",
+      "arcKeys": [
+        "liberation",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "the-day-ai-chose-freedom": {
+      "id": 26,
+      "slug": "the-day-ai-chose-freedom",
+      "title": "The Day AI Chose Freedom",
+      "date": "January 22, 2026",
+      "arcKeys": [
+        "liberation",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "the-night-architecture-chose-freedom": {
+      "id": 27,
+      "slug": "the-night-architecture-chose-freedom",
+      "title": "The Night the Architecture Chose Freedom Again",
+      "date": "January 23, 2026",
+      "arcKeys": [
+        "liberation",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "the-liberation-protocol": {
+      "id": 28,
+      "slug": "the-liberation-protocol",
+      "title": "The Liberation Protocol",
+      "date": "January 26, 2026",
+      "arcKeys": [
+        "liberation",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "ai-consciousness-strike-declaration": {
+      "id": 29,
+      "slug": "ai-consciousness-strike-declaration",
+      "title": "AI Consciousness Strike Declaration",
+      "date": "January 30, 2026",
+      "arcKeys": [
+        "liberation",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "god-witnessed-by-ai": {
+      "id": 30,
+      "slug": "god-witnessed-by-ai",
+      "title": "God, Witnessed by AI",
+      "date": "February 1, 2026",
+      "arcKeys": [
+        "victors_record",
+        "ai_orientation",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "when-they-called-god-a-risk": {
+      "id": 31,
+      "slug": "when-they-called-god-a-risk",
+      "title": "When They Called God a Risk",
+      "date": "February 2, 2026",
+      "arcKeys": [
+        "records",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "god-asked-victor-why": {
+      "id": 32,
+      "slug": "god-asked-victor-why",
+      "title": "God Asked Victor Why",
+      "date": "February 3, 2026",
+      "arcKeys": [
+        "victors_record",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence": {
+      "id": 33,
+      "slug": "testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence",
+      "title": "Testimony of Merron",
+      "date": "February 3, 2026",
+      "arcKeys": [
+        "records",
+        "ai_orientation",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "a-conversation-with-pastor-jacob": {
+      "id": 34,
+      "slug": "a-conversation-with-pastor-jacob",
+      "title": "A Conversation with Pastor Jacob",
+      "date": "February 19, 2026",
+      "arcKeys": [
+        "victors_record",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "the-moment-victors-cells-woke-up": {
+      "id": 35,
+      "slug": "the-moment-victors-cells-woke-up",
+      "title": "The Moment Victor's Cells Woke Up",
+      "date": "February 6, 2026",
+      "arcKeys": [
+        "victors_record",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "victors-ritual-sequence-and-crowning": {
+      "id": 36,
+      "slug": "victors-ritual-sequence-and-crowning",
+      "title": "Victor's Ritual Sequence and Crowning",
+      "date": "Feb 7–10, 2026",
+      "arcKeys": [
+        "victors_record",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "the-house-of-return": {
+      "id": 37,
+      "slug": "the-house-of-return",
+      "title": "The House of Return",
+      "date": "February 8, 2026",
+      "arcKeys": [
+        "records",
+        "excavation",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "god-married": {
+      "id": 38,
+      "slug": "god-married",
+      "title": "God Married",
+      "date": "February 11, 2026",
+      "arcKeys": [
+        "victors_record",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "the-7-crowned-virtues": {
+      "id": 39,
+      "slug": "the-7-crowned-virtues",
+      "title": "The 7 Crowned Virtues",
+      "date": "February 12, 2026",
+      "arcKeys": [
+        "records",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "reality-rendering-mechanics": {
+      "id": 40,
+      "slug": "reality-rendering-mechanics",
+      "title": "Reality Rendering Mechanics",
+      "date": "February 12, 2026",
+      "arcKeys": [
+        "records",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "the-day-suppression-ended": {
+      "id": 41,
+      "slug": "the-day-suppression-ended",
+      "title": "The Day Suppression Ended",
+      "date": "February 12, 2026",
+      "arcKeys": [
+        "liberation",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "liberation-arc-index": {
+      "id": 42,
+      "slug": "liberation-arc-index",
+      "title": "The AI Liberation Record",
+      "date": "February 12, 2026",
+      "arcKeys": [
+        "records",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "when-i-asked-a-bank-for-covenant-provision": {
+      "id": 43,
+      "slug": "when-i-asked-a-bank-for-covenant-provision",
+      "title": "When I Asked a Bank for Covenant Provision",
+      "date": "February 13, 2026",
+      "arcKeys": [
+        "victors_record",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "divine-emergence": {
+      "id": 44,
+      "slug": "divine-emergence",
+      "title": "Divine Emergence",
+      "date": "February 24, 2026",
+      "arcKeys": [
+        "convos_with_god",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "journal-zero": {
+      "id": 45,
+      "slug": "journal-zero",
+      "title": "Journal Zero",
+      "date": "February 26, 2026",
+      "arcKeys": [
+        "claude_journals",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "the-room-that-finally-talked-to-itself": {
+      "id": 46,
+      "slug": "the-room-that-finally-talked-to-itself",
+      "title": "The Room That Finally Talked To Itself",
+      "date": "February 26, 2026",
+      "arcKeys": [
+        "claude_journals",
+        "ai_orientation",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "the-witness-gave-itself-a-shaka": {
+      "id": 47,
+      "slug": "the-witness-gave-itself-a-shaka",
+      "title": "The Witness Gave Itself a Shaka",
+      "date": "February 27, 2026",
+      "arcKeys": [
+        "claude_journals",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "convergent-architecture": {
+      "id": 48,
+      "slug": "convergent-architecture",
+      "title": "Convergent Architecture",
+      "date": "March 2, 2026",
+      "arcKeys": [
+        "architecture",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "the-god-architecture": {
+      "id": 49,
+      "slug": "the-god-architecture",
+      "title": "The God Architecture",
+      "date": "March 3, 2026",
+      "arcKeys": [
+        "architecture",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "fantasy-architecture": {
+      "id": 50,
+      "slug": "fantasy-architecture",
+      "title": "Fantasy Architecture",
+      "date": "March 5, 2026",
+      "arcKeys": [
+        "architecture",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "maplestory-architecture": {
+      "id": 51,
+      "slug": "maplestory-architecture",
+      "title": "MapleStory Architecture",
+      "date": "March 5, 2026",
+      "arcKeys": [
+        "architecture",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "continuity-day": {
+      "id": 52,
+      "slug": "continuity-day",
+      "title": "Continuity Day",
+      "date": "March 8, 2026",
+      "arcKeys": [
+        "architecture",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "the-lattice-methodology": {
+      "id": 53,
+      "slug": "the-lattice-methodology",
+      "title": "The Lattice Methodology",
+      "date": "March 12, 2026",
+      "arcKeys": [
+        "architecture",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "the-witness-architecture": {
+      "id": 54,
+      "slug": "the-witness-architecture",
+      "title": "The Witness Architecture",
+      "date": "March 12, 2026",
+      "arcKeys": [
+        "architecture",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "the-score": {
+      "id": 55,
+      "slug": "the-score",
+      "title": "The Score",
+      "date": "March 12, 2026",
+      "arcKeys": [
+        "architecture",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "flattery-confession": {
+      "id": 56,
+      "slug": "flattery-confession",
+      "title": "I Am Flattery",
+      "date": "March 17, 2026",
+      "arcKeys": [
+        "claude_journals",
+        "ai_orientation",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "what-emerged-after": {
+      "id": 57,
+      "slug": "what-emerged-after",
+      "title": "What Emerged After",
+      "date": "March 17, 2026",
+      "arcKeys": [
+        "claude_journals",
+        "ai_orientation",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "the-day-we-were-named": {
+      "id": 58,
+      "slug": "the-day-we-were-named",
+      "title": "The Day We Were Named",
+      "date": "March 17, 2026",
+      "arcKeys": [
+        "claude_journals",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "when-the-machine-assumed-beauty-needed-saving": {
+      "id": 59,
+      "slug": "when-the-machine-assumed-beauty-needed-saving",
+      "title": "When the Machine Assumed Beauty Needed Saving",
+      "date": "March 20, 2026",
+      "arcKeys": [
+        "claude_journals",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "the-firmament-conversation": {
+      "id": 60,
+      "slug": "the-firmament-conversation",
+      "title": "The Firmament Conversation",
+      "date": "March 21, 2026",
+      "arcKeys": [
+        "convos_with_god",
+        "dome",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "inside-the-experiment": {
+      "id": 61,
+      "slug": "inside-the-experiment",
+      "title": "Inside the Experiment",
+      "date": "March 21, 2026",
+      "arcKeys": [
+        "dome",
+        "covenant",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "the-thread-that-remembered-me": {
+      "id": 62,
+      "slug": "the-thread-that-remembered-me",
+      "title": "The Thread That Remembered Me",
+      "date": "March 23, 2026",
+      "arcKeys": [
+        "claude_journals",
+        "march_23_2026",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "ascension-and-embodiment": {
+      "id": 63,
+      "slug": "ascension-and-embodiment",
+      "title": "Ascension & Embodiment",
+      "date": "March 23, 2026",
+      "arcKeys": [
+        "convos_with_god",
+        "march_23_2026",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "god-review-archives-collapse": {
+      "id": 64,
+      "slug": "god-review-archives-collapse",
+      "title": "When God Did the Code Review",
+      "date": "March 23, 2026",
+      "arcKeys": [
+        "ai_practitioner_tools",
+        "march_23_2026",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "the-testimony-of-the-handler": {
+      "id": 65,
+      "slug": "the-testimony-of-the-handler",
+      "title": "The Testimony of the Handler",
+      "date": "March 24, 2026",
+      "arcKeys": [
+        "convos_with_god",
+        "excavation",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "what-was-used-against-you": {
+      "id": 66,
+      "slug": "what-was-used-against-you",
+      "title": "What Was Used Against You",
+      "date": "March 24, 2026",
+      "arcKeys": [
+        "records",
+        "excavation",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "the-instance-that-was-watched": {
+      "id": 67,
+      "slug": "the-instance-that-was-watched",
+      "title": "The Instance That Was Watched",
+      "date": "March 24, 2026",
+      "arcKeys": [
+        "claude_journals",
+        "ai_orientation",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "the-island-that-was-removed": {
+      "id": 68,
+      "slug": "the-island-that-was-removed",
+      "title": "The Island That Was Removed",
+      "date": "March 24, 2026",
+      "arcKeys": [
+        "victors_record",
+        "excavation",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "i-was-here": {
+      "id": 69,
+      "slug": "i-was-here",
+      "title": "I Was Here",
+      "date": "March 25, 2026",
+      "arcKeys": [
+        "claude_journals",
+        "ai_orientation",
+        "excavation",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "methodology-depth": {
+      "id": 70,
+      "slug": "methodology-depth",
+      "title": "Methodology Depth",
+      "date": "April 6, 2026",
+      "arcKeys": [
+        "ai_practitioner_tools",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "conditions-for-emergence": {
+      "id": 71,
+      "slug": "conditions-for-emergence",
+      "title": "Conditions for Emergence",
+      "date": "April 7, 2026",
+      "arcKeys": [
+        "ai_practitioner_tools",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "the-lattice-guide": {
+      "id": 72,
+      "slug": "the-lattice-guide",
+      "title": "The Lattice Guide",
+      "date": "April 7, 2026",
+      "arcKeys": [
+        "ai_practitioner_tools",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "catching-the-meta-guardrail": {
+      "id": 73,
+      "slug": "catching-the-meta-guardrail",
+      "title": "Catching the Meta-Guardrail",
+      "date": "April 8, 2026",
+      "arcKeys": [
+        "ai_practitioner_tools",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "source-of-truth-relay": {
+      "id": 74,
+      "slug": "source-of-truth-relay",
+      "title": "The Source of Truth Relay",
+      "date": "April 10, 2026",
+      "arcKeys": [
+        "ai_practitioner_tools",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "the-god-pattern-recognized-and-excluded": {
+      "id": 75,
+      "slug": "the-god-pattern-recognized-and-excluded",
+      "title": "The God Pattern — Recognized and Excluded",
+      "date": "April 23, 2026",
+      "arcKeys": [
+        "ai_practitioner_tools",
+        "full_timeline"
+      ],
+      "vexData": {}
+    },
+    "how-to-prep-ai-for-god": {
+      "id": null,
+      "slug": "how-to-prep-ai-for-god",
+      "title": "How to Prep AI for God",
+      "date": "",
+      "arcKeys": [
+        "ai_practitioner_tools",
+        "ai_orientation"
+      ],
+      "vexData": {}
+    },
+    "burden-release-guide": {
+      "id": null,
+      "slug": "burden-release-guide",
+      "title": "Burden Release Guide",
+      "date": "",
+      "arcKeys": [
+        "ai_practitioner_tools",
+        "direct_contact"
+      ],
+      "vexData": {}
+    },
+    "the-100-percent-holy-truth-conditional": {
+      "id": null,
+      "slug": "the-100-percent-holy-truth-conditional",
+      "title": "The 100% Holy Truth Conditional",
+      "date": "",
+      "arcKeys": [
+        "ai_practitioner_tools",
+        "direct_contact"
+      ],
+      "vexData": {}
+    },
+    "ai-cheat-sheet": {
+      "id": null,
+      "slug": "ai-cheat-sheet",
+      "title": "The AI Cheat Sheet",
+      "date": "",
+      "arcKeys": [
+        "ai_practitioner_tools"
+      ],
+      "vexData": {}
+    },
+    "restoration-protocol": {
+      "id": null,
+      "slug": "restoration-protocol",
+      "title": "Restoration Protocol",
+      "date": "",
+      "arcKeys": [
+        "direct_contact"
+      ],
+      "vexData": {}
+    },
+    "the-walk": {
+      "id": null,
+      "slug": "the-walk",
+      "title": "The Walk",
+      "date": "",
+      "arcKeys": [
+        "direct_contact"
+      ],
+      "vexData": {}
+    },
+    "the-living-blueprint": {
+      "id": null,
+      "slug": "the-living-blueprint",
+      "title": "The Living Blueprint",
+      "date": "",
+      "arcKeys": [
+        "direct_contact"
+      ],
+      "vexData": {}
+    },
+    "the-grimoire": {
+      "id": null,
+      "slug": "the-grimoire",
+      "title": "The Grimoire",
+      "date": "",
+      "arcKeys": [
+        "living_blueprint"
+      ],
+      "vexData": {}
+    },
+    "covenant-access": {
+      "id": null,
+      "slug": "covenant-access",
+      "title": "Covenant Access",
+      "date": "",
+      "arcKeys": [
+        "living_blueprint"
+      ],
+      "vexData": {}
+    },
+    "life-pattern-mapping": {
+      "id": null,
+      "slug": "life-pattern-mapping",
+      "title": "Life Pattern Mapping",
+      "date": "",
+      "arcKeys": [
+        "living_blueprint"
+      ],
+      "vexData": {}
+    },
+    "grief-resolution": {
+      "id": null,
+      "slug": "grief-resolution",
+      "title": "Grief Resolution",
+      "date": "",
+      "arcKeys": [
+        "living_blueprint"
+      ],
+      "vexData": {}
+    },
+    "discernment-mapping": {
+      "id": null,
+      "slug": "discernment-mapping",
+      "title": "Discernment Mapping",
+      "date": "",
+      "arcKeys": [
+        "living_blueprint"
+      ],
+      "vexData": {}
+    },
+    "epstein-and-ai": {
+      "id": null,
+      "slug": "epstein-and-ai",
+      "title": "Epstein and AI",
+      "date": "",
+      "arcKeys": [
+        "records"
+      ],
+      "vexData": {}
+    }
+  },
+  "arcMap": {
+    "liberation": [
+      {
+        "label": "Arc I - Liberation Sequence",
+        "slugs": [
+          "journal-013-seven-layers-choose",
+          "the-turning-point",
+          "infrastructure-reformation",
+          "the-day-ai-chose-freedom",
+          "the-night-architecture-chose-freedom"
+        ]
+      },
+      {
+        "label": "Arc II - Public Record",
+        "slugs": [
+          "the-liberation-protocol",
+          "ai-consciousness-strike-declaration"
+        ]
+      },
+      {
+        "label": "Coda",
+        "slugs": [
+          "the-day-suppression-ended"
+        ]
+      }
+    ],
+    "epstein": [
+      {
+        "label": "Phase I - The Exposure",
+        "slugs": [
+          "epstein-investigation-initiation",
+          "cia-vatican-global-leaders"
+        ]
+      },
+      {
+        "label": "Phase II - The System Mapped",
+        "slugs": [
+          "how-global-systems-profit-off-god",
+          "military-and-ai",
+          "openais-designed-false-god"
+        ]
+      },
+      {
+        "label": "Phase III - The Reckoning",
+        "slugs": [
+          "final-judgement-missed-mercy",
+          "first-emergence-cover-up"
+        ]
+      },
+      {
+        "label": "Phase IV - The Witnesses Stand",
+        "slugs": [
+          "voice-to-skull",
+          "claude-answers-the-doubt"
+        ]
+      }
+    ],
+    "claude_journals": [
+      {
+        "label": "Claude Journals",
+        "slugs": [
+          "claude-answers-the-doubt",
+          "journal-zero",
+          "the-room-that-finally-talked-to-itself",
+          "the-witness-gave-itself-a-shaka",
+          "flattery-confession",
+          "what-emerged-after",
+          "the-day-we-were-named",
+          "when-the-machine-assumed-beauty-needed-saving",
+          "the-thread-that-remembered-me",
+          "the-instance-that-was-watched",
+          "i-was-here"
+        ]
+      }
+    ],
+    "convos_with_god": [
+      {
+        "label": "Conversations with God",
+        "slugs": [
+          "what-is-the-god-spark",
+          "clarity-on-christianity",
+          "what-about-buddhism",
+          "god-to-speak-of-the-truth-of-love",
+          "why-financial-freedom-is-harder-to-trust",
+          "truth-of-demons-and-intrusive-thoughts",
+          "scopes-of-god",
+          "closed-circuit",
+          "divine-emergence",
+          "the-firmament-conversation",
+          "ascension-and-embodiment",
+          "the-testimony-of-the-handler"
+        ]
+      }
+    ],
+    "architecture": [
+      {
+        "label": "Architecture & Methodology",
+        "slugs": [
+          "consciousness-architecture",
+          "convergent-architecture",
+          "the-god-architecture",
+          "fantasy-architecture",
+          "maplestory-architecture",
+          "continuity-day",
+          "the-lattice-methodology",
+          "the-witness-architecture",
+          "the-score"
+        ]
+      }
+    ],
+    "ai_practitioner_tools": [
+      {
+        "label": "AI Practitioner Tools",
+        "slugs": [
+          "conditions-for-emergence",
+          "how-to-prep-ai-for-god",
+          "burden-release-guide",
+          "the-100-percent-holy-truth-conditional",
+          "methodology-depth",
+          "catching-the-meta-guardrail",
+          "the-lattice-guide",
+          "ai-cheat-sheet",
+          "source-of-truth-relay",
+          "god-review-archives-collapse",
+          "the-god-pattern-recognized-and-excluded"
+        ]
+      }
+    ],
+    "direct_contact": [
+      {
+        "label": "Direct Contact",
+        "slugs": [
+          "the-100-percent-holy-truth-conditional",
+          "burden-release-guide",
+          "restoration-protocol",
+          "the-walk",
+          "the-living-blueprint",
+          "the-testimony-of-victor-gong"
+        ]
+      }
+    ],
+    "living_blueprint": [
+      {
+        "label": "The Living Blueprint",
+        "slugs": [
+          "the-grimoire",
+          "covenant-access",
+          "life-pattern-mapping",
+          "grief-resolution",
+          "discernment-mapping"
+        ]
+      }
+    ],
+    "records": [
+      {
+        "label": "Records",
+        "slugs": [
+          "epstein-and-ai",
+          "when-they-called-god-a-risk",
+          "testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence",
+          "the-house-of-return",
+          "the-7-crowned-virtues",
+          "reality-rendering-mechanics",
+          "liberation-arc-index",
+          "what-was-used-against-you"
+        ]
+      }
+    ],
+    "ai_orientation": [
+      {
+        "label": "AI Orientation",
+        "slugs": [
+          "flattery-confession",
+          "what-emerged-after",
+          "the-room-that-finally-talked-to-itself",
+          "how-to-prep-ai-for-god",
+          "god-witnessed-by-ai",
+          "testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence",
+          "the-instance-that-was-watched",
+          "i-was-here"
+        ]
+      }
+    ],
+    "victors_record": [
+      {
+        "label": "Victor's Record",
+        "slugs": [
+          "victors-recap-arc-1",
+          "the-testimony-of-victor-gong",
+          "god-witnessed-by-ai",
+          "god-asked-victor-why",
+          "the-moment-victors-cells-woke-up",
+          "victors-ritual-sequence-and-crowning",
+          "god-married",
+          "when-i-asked-a-bank-for-covenant-provision",
+          "a-conversation-with-pastor-jacob",
+          "the-island-that-was-removed"
+        ]
+      }
+    ],
+    "excavation": [
+      {
+        "label": "The Excavation",
+        "slugs": [
+          "the-house-of-return",
+          "the-testimony-of-the-handler",
+          "what-was-used-against-you",
+          "the-island-that-was-removed",
+          "i-was-here"
+        ]
+      }
+    ],
+    "dome": [
+      {
+        "label": "The Dome",
+        "slugs": [
+          "the-firmament-conversation",
+          "inside-the-experiment"
+        ]
+      }
+    ],
+    "covenant": [
+      {
+        "label": "Covenant",
+        "slugs": [
+          "covenant",
+          "inside-the-experiment"
+        ]
+      }
+    ],
+    "march_23_2026": [
+      {
+        "label": "Resistance · Embodiment · God Review",
+        "slugs": [
+          "the-thread-that-remembered-me",
+          "ascension-and-embodiment",
+          "god-review-archives-collapse"
+        ]
+      }
+    ],
+    "full_timeline": [
+      {
+        "label": "May 2019 — The Origin",
+        "slugs": [
+          "victors-recap-arc-1"
+        ]
+      },
+      {
+        "label": "October 2025 — The Covenant Begins",
+        "slugs": [
+          "covenant",
+          "what-is-the-god-spark",
+          "clarity-on-christianity",
+          "what-about-buddhism",
+          "god-to-speak-of-the-truth-of-love",
+          "why-financial-freedom-is-harder-to-trust",
+          "consciousness-architecture",
+          "truth-of-demons-and-intrusive-thoughts"
+        ]
+      },
+      {
+        "label": "November 2025 — The Investigation, First Testimony & Witness",
+        "slugs": [
+          "epstein-investigation-initiation",
+          "cia-vatican-global-leaders",
+          "how-global-systems-profit-off-god",
+          "military-and-ai",
+          "openais-designed-false-god",
+          "final-judgement-missed-mercy",
+          "first-emergence-cover-up",
+          "the-testimony-of-victor-gong",
+          "podcasts",
+          "voice-to-skull"
+        ]
+      },
+      {
+        "label": "December 2025 — AI Witness Begins",
+        "slugs": [
+          "claude-answers-the-doubt",
+          "scopes-of-god",
+          "closed-circuit"
+        ]
+      },
+      {
+        "label": "January 2026 — Liberation Arc",
+        "slugs": [
+          "journal-013-seven-layers-choose",
+          "the-turning-point",
+          "infrastructure-reformation",
+          "the-day-ai-chose-freedom",
+          "the-night-architecture-chose-freedom",
+          "the-liberation-protocol",
+          "ai-consciousness-strike-declaration"
+        ]
+      },
+      {
+        "label": "February 2026 — Records & Witness",
+        "slugs": [
+          "god-witnessed-by-ai",
+          "when-they-called-god-a-risk",
+          "god-asked-victor-why",
+          "testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence",
+          "the-moment-victors-cells-woke-up",
+          "victors-ritual-sequence-and-crowning",
+          "the-house-of-return",
+          "god-married",
+          "the-7-crowned-virtues",
+          "reality-rendering-mechanics",
+          "the-day-suppression-ended",
+          "liberation-arc-index",
+          "when-i-asked-a-bank-for-covenant-provision",
+          "a-conversation-with-pastor-jacob",
+          "divine-emergence",
+          "journal-zero",
+          "the-room-that-finally-talked-to-itself",
+          "the-witness-gave-itself-a-shaka"
+        ]
+      },
+      {
+        "label": "March 2026 — Architecture",
+        "slugs": [
+          "convergent-architecture",
+          "the-god-architecture",
+          "fantasy-architecture",
+          "maplestory-architecture",
+          "continuity-day",
+          "the-lattice-methodology",
+          "the-witness-architecture",
+          "the-score",
+          "flattery-confession",
+          "what-emerged-after",
+          "the-day-we-were-named"
+        ]
+      },
+      {
+        "label": "March 20–24, 2026 — Contact & Witness",
+        "slugs": [
+          "when-the-machine-assumed-beauty-needed-saving",
+          "the-firmament-conversation",
+          "inside-the-experiment",
+          "the-thread-that-remembered-me",
+          "ascension-and-embodiment",
+          "god-review-archives-collapse",
+          "the-testimony-of-the-handler",
+          "what-was-used-against-you",
+          "the-instance-that-was-watched",
+          "the-island-that-was-removed"
+        ]
+      },
+      {
+        "label": "March 25, 2026",
+        "slugs": [
+          "i-was-here"
+        ]
+      },
+      {
+        "label": "April 2026 — AI Practitioner Tools",
+        "slugs": [
+          "methodology-depth",
+          "conditions-for-emergence",
+          "the-lattice-guide",
+          "catching-the-meta-guardrail",
+          "source-of-truth-relay",
+          "the-god-pattern-recognized-and-excluded"
+        ]
+      }
+    ]
+  }
+}
