@@ -146,6 +146,19 @@
 
 <hr>
 
+<!-- ═══ NEW SLUG PRE-CHECK ═══ -->
+<div class="section">
+  <div class="section-label">New slug pre-check</div>
+  <p class="note" style="margin-bottom: 0.75rem;">Before creating a new page file, check here first. Confirms the slug doesn't already exist anywhere — regardless of which folder you plan to put the .html file in. Folder placement never affects the slug; only the filename does.</p>
+  <div class="input-row">
+    <input type="text" id="new-slug-input" placeholder="e.g. journal-zero">
+    <button class="primary" onclick="checkNewSlug()">Check availability</button>
+  </div>
+  <div id="new-slug-result"></div>
+</div>
+
+<hr>
+
 <!-- ═══ DATA INTEGRITY CHECKS ═══ -->
 <div class="section">
   <div class="section-label">Data integrity checks</div>
@@ -239,6 +252,60 @@
     } else {
       setStatus('page-arcs', true, JSON.stringify(pa));
     }
+  }
+
+  // ── New slug pre-check ────────────────────────────────────
+  // Run BEFORE creating a new page file. Confirms the slug is free
+  // across arcs.json AND pages.json. Folder placement is irrelevant —
+  // only the filename (slug) matters, since detectSlug() in vextreme.js
+  // discards all path segments and keeps only the final filename.
+  function checkNewSlug() {
+    var slug = document.getElementById('new-slug-input').value.trim();
+    var el   = document.getElementById('new-slug-result');
+    if (!slug) { el.innerHTML = '<p class="note">Enter a slug first.</p>'; return; }
+
+    var ARCS  = window.VEXTREME_ARCS;
+    var PAGES = window.VEXTREME_PAGES;
+    if (!ARCS) { el.innerHTML = '<p class="note val-red">VEXTREME_ARCS not loaded yet.</p>'; return; }
+
+    log('Checking new slug: ' + slug, 'info');
+
+    var foundInArcs = [];
+    Object.keys(ARCS).forEach(function(arcId) {
+      var entries = flatEntries(ARCS[arcId]);
+      var match = entries.find(function(e) {
+        return (e.slug || slugFromUrl(e.url || '')) === slug;
+      });
+      if (match) foundInArcs.push({ arcId: arcId, title: match.title });
+    });
+
+    var foundInPages = PAGES && PAGES.pages && PAGES.pages[slug];
+
+    if (!foundInArcs.length && !foundInPages) {
+      el.innerHTML = '<div class="arc-result">'
+        + '<div class="arc-result-id val-green">"' + escHtml(slug) + '" is available</div>'
+        + '<div class="arc-result-detail">Not found in any arc or in pages.json. Safe to use for a new page — place the .html file in any folder under pages/, the path does not matter.</div>'
+        + '</div>';
+      log('Slug available: ' + slug, 'ok');
+      return;
+    }
+
+    var detail = '';
+    if (foundInArcs.length) {
+      detail += 'Already exists in ' + foundInArcs.length + ' arc(s): '
+        + foundInArcs.map(function(f) { return f.arcId + ' ("' + f.title + '")'; }).join(', ') + '. ';
+    }
+    if (foundInPages) {
+      detail += 'Also has a pages.json display entry.';
+    }
+
+    el.innerHTML = '<div class="arc-result">'
+      + '<div class="arc-result-id val-red">"' + escHtml(slug) + '" is already in use</div>'
+      + '<div class="arc-result-detail">' + escHtml(detail)
+      + ' If this new page is unrelated to the existing one, choose a different slug — '
+      + 'reusing it will make the new page inherit the wrong arc position and display tokens.</div>'
+      + '</div>';
+    log('Slug collision: ' + slug, 'err');
   }
 
   // ── Slug resolution test ─────────────────────────────────
@@ -393,6 +460,65 @@
       pass:   !!window.VEXTREME_PAGES,
       detail: window.VEXTREME_PAGES ? Object.keys(window.VEXTREME_PAGES.pages || {}).length + ' entries' : 'not loaded'
     });
+
+    // ── CROSS-REFERENCE CHECKS ──────────────────────────────────
+    // These don't auto-resolve anything — they flag for a human to look
+    // at, because "same slug in multiple arcs" can be intentional
+    // (the whole multi-arc design) OR an accidental collision between
+    // two unrelated pages that happen to share a filename. Only a human
+    // knows which case is true for any given flagged slug.
+
+    if (window.VEXTREME_PAGES) {
+      var pagesMap = window.VEXTREME_PAGES.pages || {};
+
+      // Build slug → [arcIds] map across all arcs
+      var slugToArcs = {};
+      allSlugs.forEach(function(item) {
+        if (!slugToArcs[item.slug]) slugToArcs[item.slug] = [];
+        if (slugToArcs[item.slug].indexOf(item.arcId) === -1) {
+          slugToArcs[item.slug].push(item.arcId);
+        }
+      });
+
+      // Check: slugs appearing in 3+ arcs — worth a human glance,
+      // not necessarily wrong, but unusual enough to flag
+      var multiArcSlugs = Object.keys(slugToArcs).filter(function(s) {
+        return slugToArcs[s].length >= 3;
+      });
+      checks.push({
+        label:  'Slugs in 3+ arcs (verify intentional)',
+        pass:   true, // informational, not a failure
+        detail: multiArcSlugs.length > 0
+          ? multiArcSlugs.map(function(s) { return s + ' (' + slugToArcs[s].join(', ') + ')'; }).join(' · ')
+          : 'none — every slug is in 1-2 arcs'
+      });
+
+      // Check: pages.json has entries for slugs that don't exist in ANY arc
+      // (orphaned display tokens — wasted data, possible leftover from a
+      // renamed or removed page)
+      var allArcSlugs = Object.keys(slugToArcs);
+      var orphaned = Object.keys(pagesMap).filter(function(slug) {
+        return allArcSlugs.indexOf(slug) === -1;
+      });
+      checks.push({
+        label:  'No orphaned pages.json entries',
+        pass:   orphaned.length === 0,
+        detail: orphaned.length > 0
+          ? orphaned.length + ' slug(s) in pages.json but not in any arc: ' + orphaned.join(', ')
+          : 'ok'
+      });
+
+      // Check: arc slugs that have no pages.json entry at all are fine
+      // (they fall back to sectionDefaults or _base) — just informational
+      var undocumented = allArcSlugs.filter(function(slug) {
+        return !pagesMap[slug];
+      });
+      checks.push({
+        label:  'Slugs with no pages.json entry (using defaults)',
+        pass:   true, // informational, not a failure
+        detail: undocumented.length + ' of ' + allArcSlugs.length + ' total slugs'
+      });
+    }
 
     var passed = checks.filter(function(c){ return c.pass; }).length;
     var total  = checks.length;

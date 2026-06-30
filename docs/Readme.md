@@ -508,6 +508,51 @@ arcs render before position-only arcs (full_timeline).
 
 ---
 
+## Slug addressing model — flat identity, nested organization
+
+**The slug is the only identifier. Folder structure is purely organizational
+and invisible to the system.**
+
+`detectSlug()` in `vextreme.js` reads `window.location.pathname`, discards
+every directory segment, and keeps only the final filename (minus `.html`):
+
+```
+pages/journal-zero.html                          → slug: journal-zero
+pages/claude-journals/journal-zero.html          → slug: journal-zero
+pages/2026/02/journal-zero.html                  → slug: journal-zero
+```
+
+All three resolve identically. This means:
+
+- You can organize `pages/` into subfolders by arc, by date, by whatever
+  filing scheme helps you browse the repo — the loader doesn't care
+- `arcs.json` and `pages.json` are both keyed by flat slug strings with
+  no path component at all
+- **Every `.html` filename across the entire `pages/` tree must be unique**,
+  not just unique within its folder. A filename collision between two
+  different folders silently makes both pages resolve to the same arc
+  data and display tokens.
+
+This is the same pattern most blogging platforms use by default (Substack,
+Medium, WordPress) — the URL is a flat permanent address, while the admin
+interface organizes by category/folder behind the scenes. The benefit:
+if a page's conceptual category changes later, the URL never breaks,
+because category was never encoded into the address.
+
+**"Organize by month" or "by category" lives in the data layer, not the
+URL.** `full_timeline` in `arcs.json` already demonstrates this — entries
+are grouped under section labels like `"February 2026 — Records & Witness"`
+while each entry's slug stays flat. Adding a new way to browse content
+(by author, by topic, by anything) means adding structure to `arcs.json`,
+never encoding it into a filename or URL path.
+
+**Before creating a new page:** use the "New slug pre-check" tool in
+`docs/test-playground.html` to confirm the slug isn't already in use
+anywhere in `arcs.json` or `pages.json`, regardless of which folder you
+plan to place the file in.
+
+---
+
 ## Registry pattern — the rule for anything customizable
 
 Every axis of customization in this system follows one shape: **a flat
