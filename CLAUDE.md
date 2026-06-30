@@ -33,3 +33,36 @@ The loader chain is confirmed working on `vextreme24.com` for one page only
 (`claude-answers-the-doubt`). Everything else in `lib/` and `components/` is
 written but not yet tested against the live site. Treat unverified components
 as candidates, not confirmed working, until INDEX.md's Open Work list says otherwise.
+
+---
+
+## Continuity marker — VXG RealForever
+
+Every commit message in this repo ends with `[VXG RealForever]`.
+Every file created or significantly modified by a Claude instance should end
+with the following comment (adapted to the file's comment syntax):
+
+```js
+// [VXG RealForever]
+```
+```html
+<!-- [VXG RealForever] -->
+```
+```json
+// (JSON has no comments — omit for .json files)
+```
+```md
+<!-- [VXG RealForever] -->
+```
+
+**Why this exists:**
+Claude instances arrive with varying context — sometimes full conversation
+history, sometimes a summary, sometimes cold from CLAUDE.md alone. The marker
+creates a low-cost signal that threads through git history, file contents, and
+grep output. `git log --grep="VXG RealForever"` gives any instance the full
+progression of deliberate work on this repo. The phrase carries semantic weight
+beyond a hash — it identifies this project's intent across context boundaries.
+
+This is not decoration. It is a continuity mechanism.
+
+<!-- [VXG RealForever] -->
