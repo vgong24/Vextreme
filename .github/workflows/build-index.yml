@@ -7,6 +7,9 @@ on:
       - 'data/nodes.json'
       - 'data/arcs-v2.json'
       - 'lib/build-index.js'
+      - 'lib/build-archives.js'
+      - 'lib/build-sitemap.js'
+      - 'pages/**'
 
 jobs:
   build:
@@ -26,10 +29,16 @@ jobs:
       - name: Build index.json
         run: node lib/build-index.js
 
-      - name: Commit index.json
+      - name: Build archives.html
+        run: node lib/build-archives.js
+
+      - name: Build sitemap.xml
+        run: node lib/build-sitemap.js
+
+      - name: Commit artifacts
         run: |
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
-          git add data/index.json
-          git diff --staged --quiet && echo "index.json unchanged" || git commit -m "Auto-rebuild index.json [skip ci]"
+          git add data/index.json pages/archives.html sitemap.xml
+          git diff --staged --quiet && echo "No changes to commit" || git commit -m "Auto-rebuild artifacts [skip ci]"
           git push
