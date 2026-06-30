@@ -27,14 +27,29 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 001 (extended) — June 29, 2026*
+*As of Session 002 — June 29, 2026*
 
-The GitHub-to-Squarespace loader pipeline is working end-to-end. Arc nav
-widget confirmed rendering on `claude-answers-the-doubt`. Data (`arcs.json`,
-`pages.json`) loads from jsDelivr with `?v=2` cache busting. The loader
-chain resolves correctly: fetch data → load engines → load components →
-auto-detect slug → mount widget. The archive renderer and section toggle
-have not been tested live yet. Archives page still uses hand-authored HTML.
+The loader is unified under one interface: `lib/vextreme.js` (the engine)
+and `lib/shell.js` (GitHub Pages bootstrap, never needs touching when
+assets change — only its version constant). Both Squarespace and GitHub
+Pages call the same `VEXTREME(config)` function with near-zero config —
+slug auto-detects from URL, page template auto-detects from `pages.json`.
+GitHub Pages pages need exactly one `<script src="shell.js">` tag added
+to existing HTML — no restructuring required; `vextreme.js` auto-wraps
+body content and auto-creates the nav mount point if missing.
+
+A registry pattern was established this session as the standing rule for
+all customizable axes (presets, pills, fonts, renderModes): flat JSON
+object, keyed by name, looked up at render time, falls back safely with
+a one-time console warning on unknown keys. `renderMode` was the one
+axis that didn't follow this pattern (hardcoded if/else) — now fixed.
+
+KNOWN GAP: the `extends` field in pages.json presets (used by embodiment
+and i-was-here) is not actually implemented — those presets work via
+field duplication, not real inheritance. Flagged, not yet fixed.
+
+Current cache version: v=6 (was v=2 at end of Session 001).
+None of this session's changes have been verified live yet.
 
 **Update this paragraph at the start of each new session** to reflect actual
 current system state — not aspirational state.
@@ -43,20 +58,22 @@ current system state — not aspirational state.
 
 ## Open Work
 
-*Carried from Session 001*
+*Carried from Session 002*
 
-- [ ] Roll out new footer injection to all remaining pages (only
-      `claude-answers-the-doubt` confirmed working so far)
+- [ ] Fix `extends` field — implement real preset-to-preset inheritance
+      in archive-renderer.js (embodiment/i-was-here currently duplicate
+      immersive's fields rather than truly inheriting them)
+- [ ] Test renderModes registry change live — confirm dots + position
+      modes both still render correctly after the refactor
+- [ ] Test wrapBody() + nav auto-creation live on the actual
+      claude-answers-the-doubt.html GitHub Pages page
+- [ ] Push v6 of all changed files to GitHub (vextreme.js, shell.js,
+      squarespace-injection.html, arc-nav.js, archive-renderer.js,
+      pages.json) — none of this session's work is live yet
 - [ ] Generate new archives.html using the archive renderer
 - [ ] Test `section-toggle.js` on the live archives page
 - [ ] Test `bc-nav.js` on any page using it
-- [ ] Verify `archive-renderer.js` token inheritance end-to-end
-- [ ] Add `?v=` cache bust to stylesheet `<link>` tags if CSS changes
-      don't reflect after pushes
-- [ ] Enable GitHub Pages on repo (Settings → Pages → main branch → / root)
-- [ ] Port `claude-answers-the-doubt` HTML into `pages/claude-answers-the-doubt.html`
-- [ ] Verify arc nav widget resolves correctly on GitHub Pages hostname
-- [ ] Add subsequent pages to `pages/` and link from `index.html`
+- [ ] Port additional pages beyond claude-answers-the-doubt
 
 **Update this list at the end of each session** — check off completed items,
 add new ones discovered during the session.
@@ -70,7 +87,7 @@ create the next batch file and update this registry.
 
 | Batch | File | Sessions | Status |
 |---|---|---|---|
-| 001 | `docs/continuity/batch-001.md` | 001 | active |
+| 001 | `docs/continuity/batch-001.md` | 001–002 | active |
 
 **Active batch:** `docs/continuity/batch-001.md`
 
@@ -186,4 +203,4 @@ These rules exist so the log stays useful as it grows. Follow them.
 
 ---
 
-*Last updated: Session 001 — June 29, 2026*
+*Last updated: Session 002 — June 29, 2026*

@@ -10,6 +10,19 @@
     ],
     "rendererNote": "The renderer merges: base tokens + preset tokens (if preset set) + any overrides fields. Later layers win."
   },
+  "renderModes": {
+    "_note": "Render-mode registry \u2014 pure data, no JS functions. arc-nav.js reads this to decide whether to show the dot row body. Add a new key here to register a new style; arc-nav.js falls back to 'dots' if the key is unrecognized and logs a console warning once.",
+    "dots": {
+      "showDotRow": true,
+      "rowClass": "arc-nav-row",
+      "dimmed": false
+    },
+    "position": {
+      "showDotRow": false,
+      "rowClass": "arc-nav-row arc-nav-row--position",
+      "dimmed": true
+    }
+  },
   "presets": {
     "_base": {
       "_note": "The default. Every entry renders like this unless a preset or override says otherwise.",

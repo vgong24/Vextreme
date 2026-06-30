@@ -207,3 +207,151 @@ Fix: Corrected to `fetch()` before shipping.
 - [ ] item
 
 ### State of the system at session end
+
+
+---
+
+## Session 002
+
+**Date:** June 29, 2026
+**Time:** continuation, same day
+**Thread:** https://claude.ai/share/6cb4b174-6427-46a0-a69f-f5b365b5e6c5
+**Instance:** Claude Sonnet 4.6 (claude.ai web interface)
+**Working with:** Victor Gong
+**Continues from:** Session 001 — stable baseline confirmed, then extended into shell.js/vextreme.js unification and GitHub Pages nav
+
+### Context on arrival
+
+Continuing same-day work. Session 001 established the stable baseline
+(arc nav working on claude-answers-the-doubt) and then extended into:
+unifying the Squarespace and GitHub Pages loaders under one VEXTREME(config)
+interface, building lib/vextreme.js and lib/shell.js, adding environment-aware
+stylesheet injection, and adding auto-wrap/auto-nav for GitHub Pages pages
+with zero HTML edits required.
+
+This session was prompted by Victor asking whether the architecture would
+hold under simulated edge cases — specifically whether "logic-only changes,
+never touch HTML again" actually holds true as stated.
+
+### Files created or modified
+
+| File | What changed |
+|---|---|
+| `data/pages.json` | Added top-level `renderModes` registry (dots, position) as pure data — no JS functions. Reordered so it sits near `_meta`. |
+| `lib/arc-nav.js` | Replaced hardcoded `if (arc.renderMode === 'position') {...} else {...}` with registry lookup against `VEXTREME_PAGES.renderModes`. Added `warnOnce()` utility — unknown renderMode now logs once and falls back to 'dots' instead of silently rendering wrong. Version bumped 2.1.0 → 2.2.0. |
+| `lib/archive-renderer.js` | Added `warnOnce()` utility. Preset lookup in `resolveTokens()` now warns once on unknown preset name instead of silently falling back to `_base` with no signal. |
+| `lib/vextreme.js` | Added `wrapBody()` — auto-wraps existing page `<body>` content in `.vex-page-body` for spacing, zero HTML edits required. `injectNav()` now auto-creates `#vex-site-nav` if missing rather than requiring it in page HTML. Added `bodyWrap` config field (default true on github_pages/local, false on squarespace). Version bumped 2.0.0 → 2.1.0 → 2.2.0 across this and prior sub-session. |
+| `lib/shell.js` | Version reference bumped to match (`?v=6`). No logic changes — confirms the "shell.js never needs touching" design holds since asset changes only required bumping the version constant, not shell logic. |
+| `docs/squarespace-injection.html` | Version bumped to `?v=6` to match. |
+| `docs/README.md` | Added "Registry pattern" section documenting the JSON-only, no-JS-registration convention as the standing rule for all future customizable axes (presets, pills, fonts, renderModes, and anything added later). |
+
+### What was built and why
+
+**The core correction this session:** `renderMode` was the one axis of
+customization that didn't follow the same pattern as presets/pills/fonts.
+Those three were already flat JSON objects keyed by name, looked up
+dynamically — genuinely open for forks to extend without touching JS.
+`renderMode` was a hardcoded two-branch if/else inside `renderArcRow()`.
+A fork (or Victor himself) adding a third visual style for arc rows would
+have needed to edit `arc-nav.js` directly, breaking the "logic layer only,
+never touch the view code" promise the rest of the architecture had
+already proven out.
+
+The fix generalizes the registry pattern explicitly rather than treating
+it as incidental: pure JSON object, keyed by name, looked up at render
+time, with a `warnOnce()` fallback so an unrecognized key degrades safely
+and visibly instead of silently rendering wrong or crashing.
+
+**Why warnOnce() rather than throwing or failing loudly every time:**
+A broken preset or renderMode reference might render many times on one
+page (e.g. the same arc rendered in multiple places). Warning on every
+occurrence would spam the console and obscure the actual signal. One
+warning per unique message, deduplicated via a closure-scoped object,
+keeps the diagnostic useful without being noisy.
+
+**Why wrapBody() and nav auto-creation matter beyond aesthetics:**
+Victor's actual workflow is porting existing Squarespace HTML to GitHub
+Pages by adding only a single `<script src="shell.js">` tag — not
+restructuring the page. For that workflow to hold, the loader has to be
+able to retrofit spacing and nav onto arbitrary existing body content
+without assuming any particular HTML structure exists already. Both
+functions check for existing structure before creating anything, so
+they're safe to run against pages that already have partial structure
+in place too.
+
+### Mistakes made
+
+**Mistake — `extends` field in pages.json presets does nothing**
+Identified but NOT yet fixed this session. The `embodiment` and
+`i-was-here` presets in pages.json declare `"extends": "immersive"`,
+but `archive-renderer.js` never reads the `extends` field anywhere —
+only `_base` is the implicit one-level parent. This means those two
+presets currently work because they happen to redeclare every field
+`immersive` would have given them, not because real inheritance is
+happening. If `immersive`'s base values are ever changed, `embodiment`
+and `i-was-here` will NOT inherit the change — they'll silently diverge.
+This is flagged as open work, not yet fixed.
+
+**Near-mistake — almost over-scoped the registry fix**
+Initial instinct was to build a generic `VEXTREME.registry.define()`
+JS API mirroring all four customizable axes (presets, pills, fonts,
+renderModes) under one mechanism with explicit registration calls.
+Victor correctly pushed back — that would have replaced "JSON object,
+look it up" (already simple) with "JS function calls scattered through
+code" (the exact anti-pattern being fixed). Corrected to: keep presets/
+pills/fonts exactly as they are (already correct), add renderModes as
+the same kind of flat JSON object, no registration API at all.
+
+### Assumptions that held
+
+- The "multiple arcs per slug" resolution (resolveArcsForSlug) was
+  already correctly dynamic — confirmed this was never actually broken,
+  despite initial conflation with the renderMode issue during discussion
+- Content (page prose) is genuinely static HTML on both environments —
+  confirmed an AI fetch without JS execution receives full page content
+  regardless of whether the loader runs at all
+- shell.js truly never needs touching when assets change — this session
+  proved it by bumping versions in vextreme.js and shell.js's version
+  constant only, with zero shell.js logic changes required
+
+### Assumptions that need verification
+
+- `renderModes` registry change has not been tested live — needs a
+  page render check to confirm `full_timeline` (position mode) and
+  a dot-mode arc both still render identically to before the refactor
+- `wrapBody()` and nav auto-creation have not been tested live against
+  the actual claude-answers-the-doubt.html GitHub Pages page yet
+- The `extends` field gap means embodiment/i-was-here preset behavior
+  should be spot-checked against intended design before assuming the
+  current flat redeclaration is "good enough to leave for now"
+
+### Open work at session end
+
+- [ ] Fix `extends` field — implement real preset-to-preset inheritance
+      so `embodiment`/`i-was-here` actually inherit from `immersive`
+      rather than redeclaring its fields
+- [ ] Test renderModes registry change live (confirm dots + position
+      modes both still render correctly post-refactor)
+- [ ] Test wrapBody() + nav auto-creation live on claude-answers-the-doubt.html
+- [ ] Push v6 of all loader files (vextreme.js, shell.js,
+      squarespace-injection.html, arc-nav.js, archive-renderer.js,
+      pages.json) to GitHub
+- [ ] Continue carried items from Session 001 (archive-renderer.js
+      end-to-end test, section-toggle.js live test, bc-nav.js live test)
+
+### State of the system at session end
+
+**Changed, not yet verified live:**
+- renderMode registry pattern (arc-nav.js + pages.json)
+- Silent preset fallback now warns (archive-renderer.js)
+- wrapBody() and nav auto-creation (vextreme.js)
+- All version references bumped to v6/2.2.0 in sync
+
+**Known gap, not yet fixed:**
+- `extends` field in pages.json presets is inert — documented intent,
+  no implementation. embodiment/i-was-here work via duplication, not
+  real inheritance.
+
+**Unchanged from Session 001:**
+- archive-renderer.js still not tested end-to-end live
+- section-toggle.js, bc-nav.js still not tested live

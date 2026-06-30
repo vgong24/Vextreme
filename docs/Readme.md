@@ -508,6 +508,59 @@ arcs render before position-only arcs (full_timeline).
 
 ---
 
+## Registry pattern — the rule for anything customizable
+
+Every axis of customization in this system follows one shape: **a flat
+object in JSON, keyed by name, with no JS function calls to register
+anything.** Forks extend the system by editing JSON, never by writing code.
+
+```
+pages.json:
+  presets:     { "accent-border": {...}, "dark": {...}, ... }
+  pills:       { "dome": {...}, "god": {...}, ... }
+  fonts:       { "cormorant": "...", "dm-mono": "...", ... }
+  renderModes: { "dots": {...}, "position": {...}, ... }
+```
+
+The lookup pattern is always the same shape, with a fallback that warns
+once rather than failing silently:
+
+```js
+var thing = registry[name] || fallback;
+if (!registry[name]) warnOnce('Unknown ' + kind + ' "' + name + '" — using fallback.');
+```
+
+**Why this matters for forks:** a fork adding a new visual variant —
+a new pill color, a new preset, a new arc-row render style — edits one
+JSON file. They never touch `arc-nav.js`, `archive-renderer.js`, or
+`vextreme.js`. The logic layer only ever asks "does this key exist in
+the registry?" — it never hardcodes which keys are valid.
+
+**Adding a new renderMode (example):**
+
+```json
+"renderModes": {
+  "timeline-thumb": {
+    "showDotRow": true,
+    "rowClass":   "arc-nav-row arc-nav-row--thumb",
+    "dimmed":     false
+  }
+}
+```
+
+Then add matching CSS for `.arc-nav-row--thumb` in `arc-nav.css`. No JS changes.
+If `arc-nav.js` doesn't recognize a field the new mode needs (e.g. a
+thumbnail image URL), that's the one case where the renderer itself
+needs a small addition — but the *registration* of the new mode name
+never requires it.
+
+**Silent-failure protection:** every registry lookup uses `warnOnce()` —
+a missing preset, pill, font, or renderMode logs exactly once to console
+and falls back to a safe default, rather than failing without any signal.
+Check the browser console if an entry renders unexpectedly plain.
+
+---
+
 ## The display token system (pages.json)
 
 Three-layer inheritance — later layers win:
