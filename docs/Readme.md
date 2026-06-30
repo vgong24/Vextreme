@@ -119,6 +119,13 @@ vextreme/
 │                                    hostname — no config needed per environment.
 │
 ├── lib/
+│   ├── vextreme.js                ← THE UNIFIED LOADER. One function: VEXTREME(config).
+│   │                                Environment detection, stylesheet injection,
+│   │                                data fetch, engine load, mount. Works on all
+│   │                                environments. Never change the interface —
+│   │                                add fields to the config schema instead.
+│   ├── shell.js                   ← GitHub Pages bootstrap. One <script> tag per
+│   │                                page. Loads vextreme.js, passes config.
 │   ├── arc-nav.js                 ← Arc nav engine. Reads VEXTREME_ARCS,
 │   │                                renders the dot-nav widget. No data.
 │   │                                No CSS. Pure logic.
@@ -322,9 +329,10 @@ entry slug, or you need to force a specific arc.
 <script>VEXTREME_page('your-page-slug-here');</script>
 ```
 
-`VEXTREME_page()` is the single interface. It's defined by the loader after
-the full chain resolves — it sets `PAGE_ARCS`, calls mount, and handles all
-timing internally. One call, no if-checks, no event listeners.
+`VEXTREME(config)` is the single interface. Call it once per page with a
+config object — all fields optional. The loader detects environment, injects
+the right stylesheets, loads data and engines, and mounts the widget.
+`VEXTREME_page('slug')` still works as a legacy alias.
 
 **Compatibility with old patterns:**
 
@@ -481,6 +489,8 @@ arcs render before position-only arcs (full_timeline).
 |---|---|---|---|
 | `data/arcs.json` | — | — | All arcs, all entries, all slugs |
 | `data/pages.json` | — | — | Display tokens: presets, per-slug overrides, pills, fonts |
+| `lib/vextreme.js` | config object, `window.location` | `window.VEXTREME`, all globals | Unified loader — env detection, styles, data, engines, mount |
+| `lib/shell.js` | `VEXTREME_CONFIG_PENDING` | loads `vextreme.js` | GitHub Pages bootstrap — one script tag per page |
 | `lib/arc-nav.js` | `VEXTREME_ARCS`, `PAGE_ARCS` | `#arcNavMount` innerHTML | Arc rendering, slug resolution |
 | `lib/archive-renderer.js` | `VEXTREME_ARCS`, `VEXTREME_PAGES` | `.entry-list` innerHTML | Token merging, entry row HTML |
 | `styles/arc-nav.css` | — | — | Widget layout only |
