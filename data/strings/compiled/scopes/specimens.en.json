@@ -1,0 +1,42 @@
+{
+  "specimens.heading.title": {
+    "text": "Specimens"
+  },
+  "specimens.heading.subtitle": {
+    "text": "Three small, fixed pages — not real content — each isolating one localization state and the pipeline stage that produces or catches it. This sits between the architecture pitch and the real progress tracker: smaller than either, meant to be read in a minute."
+  },
+  "specimens.card.full.label": {
+    "text": "Full translation"
+  },
+  "specimens.card.partial.label": {
+    "text": "Partial translation"
+  },
+  "specimens.card.stale.label": {
+    "text": "The smallest miss"
+  },
+  "specimens.card.full.description": {
+    "text": "Every string translated. Shows what the test suite verifies at each pipeline stage — not just that it passed."
+  },
+  "specimens.card.partial.description": {
+    "text": "One string deliberately left untranslated — the same gap claude-answers-the-doubt has for real. Shows the screenshot-verification process that would catch it."
+  },
+  "specimens.card.stale.description": {
+    "text": "One line of English, changed after its Japanese translation was written — flagged stale automatically. Shows the integrity check that caught it."
+  },
+  "specimens.link.view": {
+    "text": "View specimen →",
+    "aria-label": "View this specimen page"
+  },
+  "specimens.link.back": {
+    "text": "← Back to specimens",
+    "aria-label": "Back to the specimens dashboard"
+  },
+  "specimens.link.demo": {
+    "text": "← Back to the architecture demo",
+    "aria-label": "Back to the architecture demo page"
+  },
+  "specimens.link.archives": {
+    "text": "See real, in-progress translation coverage on the archive dashboard →",
+    "aria-label": "View the archive dashboard for real translation progress"
+  }
+}

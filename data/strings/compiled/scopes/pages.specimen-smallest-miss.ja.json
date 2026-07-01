@@ -1,0 +1,42 @@
+{
+  "pages.specimen-smallest-miss.heading.title": {
+    "text": "最小の見落とし"
+  },
+  "pages.specimen-smallest-miss.intro": {
+    "text": "このページには翻訳対象の行がちょうど1つしかありません。それが重要な点です — これほど小さな見落としはレビュアーの目をすり抜けやすい一方で、機械が確実に検出できることも証明しやすいのです。"
+  },
+  "pages.specimen-smallest-miss.body": {
+    "text": "この一文は、見落としが検出可能であることを証明するためだけに存在します。",
+    "_stale": true
+  },
+  "pages.specimen-smallest-miss.stale-badge": {
+    "text": "stale（古い）と判定されました — この翻訳が書かれた後に英語が変更されました"
+  },
+  "pages.specimen-smallest-miss.process.heading": {
+    "text": "1行の変更はどう検出されるか"
+  },
+  "pages.specimen-smallest-miss.process.step1.label": {
+    "text": "コンパイル時にenHashを記録"
+  },
+  "pages.specimen-smallest-miss.process.step1.detail": {
+    "text": "正常にコンパイルされる際、すべてのキーの英語テキストがmanifest.jsonにハッシュ化されて記録されます — 翻訳者が実際に翻訳した対象の12文字の指紋です。"
+  },
+  "pages.specimen-smallest-miss.process.step2.label": {
+    "text": "英語のテキストが変更される"
+  },
+  "pages.specimen-smallest-miss.process.step2.detail": {
+    "text": "将来の編集 — たった1語であっても — によって、英語のソースがハッシュ化する結果が変わります。この仕組みは編集が大きい必要も、明らかに危険である必要もありません。"
+  },
+  "pages.specimen-smallest-miss.process.step3.label": {
+    "text": "コンパイル前に毎回strings-check.jsが実行される"
+  },
+  "pages.specimen-smallest-miss.process.step3.detail": {
+    "text": "ハッシュを再計算し、manifest.jsonと比較します。不一致は、このキーの翻訳が書かれて以降に英語が変更されたことを意味します — これはWARNであり、5段階の重大度レベル（BLOCK、REMAP、WARN、INFO、quarantine）の1つで、致命的な失敗ではありません。"
+  },
+  "pages.specimen-smallest-miss.process.step4.label": {
+    "text": "_stale: true が自動的に書き戻される"
+  },
+  "pages.specimen-smallest-miss.process.step4.detail": {
+    "text": "翻訳の公開がブロックされるわけではなく、タグが付けられます。このページの日本語版でこの文章の上に表示されるバッジは、まさにこのキーに対して実際に実行されたこのチェックによって生成されたものであり、手動で書き込まれたものではありません。"
+  }
+}

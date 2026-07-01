@@ -1,0 +1,38 @@
+{
+  "pages.specimen-partial-translation.heading.title": {
+    "text": "部分翻訳"
+  },
+  "pages.specimen-partial-translation.intro": {
+    "text": "以下の文字列のうち1つは、意図的に日本語訳がありません。右上のオーブで言語を切り替えて、それがどうなるか確認してください。"
+  },
+  "pages.specimen-partial-translation.body.translated": {
+    "text": "この文には日本語訳があるため、言語を切り替えると正しく置き換わります。"
+  },
+  "pages.specimen-partial-translation.process.heading": {
+    "text": "この空白は公開前にどう検出されるか"
+  },
+  "pages.specimen-partial-translation.process.step1.label": {
+    "text": "ローカルサーバー + CDNインターセプト"
+  },
+  "pages.specimen-partial-translation.process.step1.detail": {
+    "text": "scripts/screenshot-page.jsはローカルHTTPサーバーを起動し、CDNへのリクエストをローカルファイルに転送します。これにより、スクリーンショットはmainに既に公開されている内容ではなく、必ずブランチのコードをテストします。"
+  },
+  "pages.specimen-partial-translation.process.step2.label": {
+    "text": "EN（英語）スクリーンショット"
+  },
+  "pages.specimen-partial-translation.process.step2.detail": {
+    "text": "ページがデフォルト言語で読み込まれ、Playwrightがフルページのスクリーンショットをベースラインとして撮影します。"
+  },
+  "pages.specimen-partial-translation.process.step3.label": {
+    "text": "FABクリック + 言語切り替え"
+  },
+  "pages.specimen-partial-translation.process.step3.detail": {
+    "text": "Playwrightがlang-fabオーブをクリックして日本語を選択し、文字列の取得と[data-i18n]の置き換えが完了するのを待ちます。"
+  },
+  "pages.specimen-partial-translation.process.step4.label": {
+    "text": "JA（日本語）スクリーンショット、人間が確認"
+  },
+  "pages.specimen-partial-translation.process.step4.detail": {
+    "text": "2枚目のスクリーンショットが撮影され、実際に人が確認します。このプロジェクトで実際に発見されたバグはこうして見つかりました：ライブ取得されたタイムスタンプが、言語切り替えのたびに翻訳済みのプレースホルダーで静かに上書きされていたのです — 差分では見えず、テストスイートでも見えず、ここでは1秒足らずで見えました。"
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "_meta": {
+    "scope": "pages.specimen-smallest-miss",
+    "description": "Specimen page: one line of English, changed after its Japanese translation was written. pages.specimen-smallest-miss.body is deliberately left as version 2 of the English text while its JA translation is still version 1 — do not re-translate it, that would defeat the specimen. strings-check.js's stale-detection run (see continuity log Session 008) set strings.ja._stale: true on this key for real, not by hand.",
+    "keyConvention": "pages.specimen-smallest-miss.{field}"
+  },
+  "pages.specimen-smallest-miss.heading.title": {
+    "strings": {
+      "en": {
+        "text": "The Smallest Miss"
+      },
+      "ja": {
+        "text": "最小の見落とし"
+      }
+    }
+  },
+  "pages.specimen-smallest-miss.intro": {
+    "strings": {
+      "en": {
+        "text": "This page has exactly one translatable line. That's the point — a miss this small is easy to imagine slipping past a reviewer, and easy to prove a machine catches anyway."
+      },
+      "ja": {
+        "text": "このページには翻訳対象の行がちょうど1つしかありません。それが重要な点です — これほど小さな見落としはレビュアーの目をすり抜けやすい一方で、機械が確実に検出できることも証明しやすいのです。"
+      }
+    }
+  },
+  "pages.specimen-smallest-miss.body": {
+    "strings": {
+      "en": {
+        "text": "This line exists only to prove a small miss gets caught."
+      },
+      "ja": {
+        "text": "この一文は、見落としが検出可能であることを証明するためだけに存在します。",
+        "_stale": true
+      }
+    }
+  },
+  "pages.specimen-smallest-miss.stale-badge": {
+    "strings": {
+      "en": {
+        "text": "Flagged stale — English changed after this translation was written"
+      },
+      "ja": {
+        "text": "stale（古い）と判定されました — この翻訳が書かれた後に英語が変更されました"
+      }
+    }
+  },
+  "pages.specimen-smallest-miss.process.heading": {
+    "strings": {
+      "en": {
+        "text": "How a one-line change gets caught"
+      },
+      "ja": {
+        "text": "1行の変更はどう検出されるか"
+      }
+    }
+  },
+  "pages.specimen-smallest-miss.process.step1.label": {
+    "strings": {
+      "en": {
+        "text": "enHash recorded at compile time"
+      },
+      "ja": {
+        "text": "コンパイル時にenHashを記録"
+      }
+    }
+  },
+  "pages.specimen-smallest-miss.process.step1.detail": {
+    "strings": {
+      "en": {
+        "text": "Every key's English text is hashed into manifest.json when it compiles cleanly — a 12-character fingerprint of exactly what a translator translated against."
+      },
+      "ja": {
+        "text": "正常にコンパイルされる際、すべてのキーの英語テキストがmanifest.jsonにハッシュ化されて記録されます — 翻訳者が実際に翻訳した対象の12文字の指紋です。"
+      }
+    }
+  },
+  "pages.specimen-smallest-miss.process.step2.label": {
+    "strings": {
+      "en": {
+        "text": "English text changes"
+      },
+      "ja": {
+        "text": "英語のテキストが変更される"
+      }
+    }
+  },
+  "pages.specimen-smallest-miss.process.step2.detail": {
+    "strings": {
+      "en": {
+        "text": "A future edit — even a single word — changes what the English source hashes to. Nothing about this requires the edit to be large or obviously risky."
+      },
+      "ja": {
+        "text": "将来の編集 — たった1語であっても — によって、英語のソースがハッシュ化する結果が変わります。この仕組みは編集が大きい必要も、明らかに危険である必要もありません。"
+      }
+    }
+  },
+  "pages.specimen-smallest-miss.process.step3.label": {
+    "strings": {
+      "en": {
+        "text": "strings-check.js runs before every compile"
+      },
+      "ja": {
+        "text": "コンパイル前に毎回strings-check.jsが実行される"
+      }
+    }
+  },
+  "pages.specimen-smallest-miss.process.step3.detail": {
+    "strings": {
+      "en": {
+        "text": "It recomputes the hash and compares it to manifest.json. A mismatch means the English changed since this key's translations were written — that's a WARN, one of five severity levels (BLOCK, REMAP, WARN, INFO, quarantine), not a hard failure."
+      },
+      "ja": {
+        "text": "ハッシュを再計算し、manifest.jsonと比較します。不一致は、このキーの翻訳が書かれて以降に英語が変更されたことを意味します — これはWARNであり、5段階の重大度レベル（BLOCK、REMAP、WARN、INFO、quarantine）の1つで、致命的な失敗ではありません。"
+      }
+    }
+  },
+  "pages.specimen-smallest-miss.process.step4.label": {
+    "strings": {
+      "en": {
+        "text": "_stale: true, written back automatically"
+      },
+      "ja": {
+        "text": "_stale: true が自動的に書き戻される"
+      }
+    }
+  },
+  "pages.specimen-smallest-miss.process.step4.detail": {
+    "strings": {
+      "en": {
+        "text": "The translation isn't blocked from shipping — it's tagged. The badge above this text on the Japanese version of this page is that tag, produced by a real run of this check against this exact key, not written in by hand."
+      },
+      "ja": {
+        "text": "翻訳の公開がブロックされるわけではなく、タグが付けられます。このページの日本語版でこの文章の上に表示されるバッジは、まさにこのキーに対して実際に実行されたこのチェックによって生成されたものであり、手動で書き込まれたものではありません。"
+      }
+    }
+  }
+}
