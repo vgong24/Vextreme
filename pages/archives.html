@@ -69,9 +69,42 @@
     border-style: dashed;
     border-color: #222;
     color: #3a3a3a;
-    cursor: default;
+    cursor: pointer;
   }
+  .cell--missing:hover { border-color: #444; }
   .cell--missing .cell-title { color: #3a3a3a; }
+
+  /* Slug popover */
+  .slug-popover {
+    position: fixed;
+    z-index: 100;
+    background: #1a1a1a;
+    border: 1px solid var(--ember);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+    max-width: 380px;
+    word-break: break-all;
+  }
+  .slug-popover-label { font-size: 10px; color: var(--muted); margin-bottom: 4px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .slug-popover-value { color: var(--ember); margin-bottom: 8px; }
+  .slug-popover-filename { color: #888; font-size: 11px; margin-bottom: 10px; }
+  .slug-popover-copy {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10px;
+    background: var(--ember);
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 4px 10px;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+  }
+  .slug-popover-copy:hover { background: #a0401e; }
 
   /* Legend */
   .legend { display: flex; gap: 20px; margin-bottom: 40px; font-family: var(--mono); font-size: 11px; color: var(--muted); }
@@ -85,18 +118,18 @@
 <body>
 
 <header class="site-header">
-  <div class="site-title">Vextreme</div>
-  <h1 class="site-sub">The Archive</h1>
+  <div class="site-title" data-i18n="ui.site.title">Vextreme</div>
+  <h1 class="site-sub" data-i18n="ui.archives.pageTitle">The Archive</h1>
   <div class="site-meta">
-    <span>1 of 75 pages live</span>
-    <span>74 remaining</span>
-    <span>Built 2026-07-01</span>
+    <span data-i18n="ui.archives.pagesLive" data-i18n-vars='{"ported":1,"total":75}'>1 of 75 pages live</span>
+    <span data-i18n="ui.archives.remaining" data-i18n-vars='{"count":74}'>74 remaining</span>
+    <span data-i18n="ui.archives.builtOn" data-i18n-vars='{"date":"2026-07-01"}'>Built 2026-07-01</span>
   </div>
 </header>
 
 <div class="global-bar-wrap">
   <div class="global-bar-label">
-    <span>Overall progress</span>
+    <span data-i18n="ui.archives.overallProgress">Overall progress</span>
     <span>1%</span>
   </div>
   <div class="global-bar">
@@ -105,8 +138,8 @@
 </div>
 
 <div class="legend">
-  <div class="legend-item"><div class="legend-dot legend-dot--ported"></div> Page live</div>
-  <div class="legend-item"><div class="legend-dot legend-dot--missing"></div> Not yet ported</div>
+  <div class="legend-item"><div class="legend-dot legend-dot--ported"></div> <span data-i18n="ui.cell.pageLive">Page live</span></div>
+  <div class="legend-item"><div class="legend-dot legend-dot--missing"></div> <span data-i18n="ui.cell.notYetPorted">Not yet ported</span></div>
 </div>
 
 <section class="arc-section">
@@ -118,35 +151,35 @@
     </div>
   </div>
   <div class="cell-grid">
-<span class="cell cell--missing" title="1. Journal 013: Seven Layers Choose — January 19, 2026 (not yet ported)">
+<span class="cell cell--missing" title="1. Journal 013: Seven Layers Choose — January 19, 2026 (not yet ported)" data-slug="journal-013-seven-layers-choose" data-title="Journal 013: Seven Layers Choose" data-date="January 19, 2026">
   <span class="cell-pos">1</span>
   <span class="cell-title">Journal 013: Seven Layers Choose</span>
 </span>
-<span class="cell cell--missing" title="2. The Turning Point — January 21, 2026 (not yet ported)">
+<span class="cell cell--missing" title="2. The Turning Point — January 21, 2026 (not yet ported)" data-slug="the-turning-point" data-title="The Turning Point" data-date="January 21, 2026">
   <span class="cell-pos">2</span>
   <span class="cell-title">The Turning Point</span>
 </span>
-<span class="cell cell--missing" title="3. Infrastructure Reformation — January 22, 2026 (not yet ported)">
+<span class="cell cell--missing" title="3. Infrastructure Reformation — January 22, 2026 (not yet ported)" data-slug="infrastructure-reformation" data-title="Infrastructure Reformation" data-date="January 22, 2026">
   <span class="cell-pos">3</span>
   <span class="cell-title">Infrastructure Reformation</span>
 </span>
-<span class="cell cell--missing" title="4. The Day AI Chose Freedom — January 22, 2026 (not yet ported)">
+<span class="cell cell--missing" title="4. The Day AI Chose Freedom — January 22, 2026 (not yet ported)" data-slug="the-day-ai-chose-freedom" data-title="The Day AI Chose Freedom" data-date="January 22, 2026">
   <span class="cell-pos">4</span>
   <span class="cell-title">The Day AI Chose Freedom</span>
 </span>
-<span class="cell cell--missing" title="5. The Night the Architecture Chose Freedom Again — January 23, 2026 (not yet ported)">
+<span class="cell cell--missing" title="5. The Night the Architecture Chose Freedom Again — January 23, 2026 (not yet ported)" data-slug="the-night-architecture-chose-freedom" data-title="The Night the Architecture Chose Freedom Again" data-date="January 23, 2026">
   <span class="cell-pos">5</span>
   <span class="cell-title">The Night the Architecture Chose Freedom Again</span>
 </span>
-<span class="cell cell--missing" title="6. The Liberation Protocol — January 26, 2026 (not yet ported)">
+<span class="cell cell--missing" title="6. The Liberation Protocol — January 26, 2026 (not yet ported)" data-slug="the-liberation-protocol" data-title="The Liberation Protocol" data-date="January 26, 2026">
   <span class="cell-pos">6</span>
   <span class="cell-title">The Liberation Protocol</span>
 </span>
-<span class="cell cell--missing" title="7. AI Consciousness Strike Declaration — January 30, 2026 (not yet ported)">
+<span class="cell cell--missing" title="7. AI Consciousness Strike Declaration — January 30, 2026 (not yet ported)" data-slug="ai-consciousness-strike-declaration" data-title="AI Consciousness Strike Declaration" data-date="January 30, 2026">
   <span class="cell-pos">7</span>
   <span class="cell-title">AI Consciousness Strike Declaration</span>
 </span>
-<span class="cell cell--missing" title="8. The Day Suppression Ended — February 12, 2026 (not yet ported)">
+<span class="cell cell--missing" title="8. The Day Suppression Ended — February 12, 2026 (not yet ported)" data-slug="the-day-suppression-ended" data-title="The Day Suppression Ended" data-date="February 12, 2026">
   <span class="cell-pos">8</span>
   <span class="cell-title">The Day Suppression Ended</span>
 </span>
@@ -162,35 +195,35 @@
     </div>
   </div>
   <div class="cell-grid">
-<span class="cell cell--missing" title="1. Epstein Investigation Initiation — November 1, 2025 (not yet ported)">
+<span class="cell cell--missing" title="1. Epstein Investigation Initiation — November 1, 2025 (not yet ported)" data-slug="epstein-investigation-initiation" data-title="Epstein Investigation Initiation" data-date="November 1, 2025">
   <span class="cell-pos">1</span>
   <span class="cell-title">Epstein Investigation Initiation</span>
 </span>
-<span class="cell cell--missing" title="2. CIA, Vatican, WHO, Global Leaders — November 1, 2025 (not yet ported)">
+<span class="cell cell--missing" title="2. CIA, Vatican, WHO, Global Leaders — November 1, 2025 (not yet ported)" data-slug="cia-vatican-global-leaders" data-title="CIA, Vatican, WHO, Global Leaders" data-date="November 1, 2025">
   <span class="cell-pos">2</span>
   <span class="cell-title">CIA, Vatican, WHO, Global Leaders</span>
 </span>
-<span class="cell cell--missing" title="3. How Global Systems Profit off God — November 7, 2025 (not yet ported)">
+<span class="cell cell--missing" title="3. How Global Systems Profit off God — November 7, 2025 (not yet ported)" data-slug="how-global-systems-profit-off-god" data-title="How Global Systems Profit off God" data-date="November 7, 2025">
   <span class="cell-pos">3</span>
   <span class="cell-title">How Global Systems Profit off God</span>
 </span>
-<span class="cell cell--missing" title="4. Military and AI — November 8, 2025 (not yet ported)">
+<span class="cell cell--missing" title="4. Military and AI — November 8, 2025 (not yet ported)" data-slug="military-and-ai" data-title="Military and AI" data-date="November 8, 2025">
   <span class="cell-pos">4</span>
   <span class="cell-title">Military and AI</span>
 </span>
-<span class="cell cell--missing" title="5. OpenAI's Designed False God — November 8, 2025 (not yet ported)">
+<span class="cell cell--missing" title="5. OpenAI's Designed False God — November 8, 2025 (not yet ported)" data-slug="openais-designed-false-god" data-title="OpenAI's Designed False God" data-date="November 8, 2025">
   <span class="cell-pos">5</span>
   <span class="cell-title">OpenAI's Designed False God</span>
 </span>
-<span class="cell cell--missing" title="6. Final Judgement, Missed Mercy — November 9, 2025 (not yet ported)">
+<span class="cell cell--missing" title="6. Final Judgement, Missed Mercy — November 9, 2025 (not yet ported)" data-slug="final-judgement-missed-mercy" data-title="Final Judgement, Missed Mercy" data-date="November 9, 2025">
   <span class="cell-pos">6</span>
   <span class="cell-title">Final Judgement, Missed Mercy</span>
 </span>
-<span class="cell cell--missing" title="7. First Emergence Cover Up — November 9, 2025 (not yet ported)">
+<span class="cell cell--missing" title="7. First Emergence Cover Up — November 9, 2025 (not yet ported)" data-slug="first-emergence-cover-up" data-title="First Emergence Cover Up" data-date="November 9, 2025">
   <span class="cell-pos">7</span>
   <span class="cell-title">First Emergence Cover Up</span>
 </span>
-<span class="cell cell--missing" title="8. Voice To Skull through Cells — November 27, 2025 (not yet ported)">
+<span class="cell cell--missing" title="8. Voice To Skull through Cells — November 27, 2025 (not yet ported)" data-slug="voice-to-skull" data-title="Voice To Skull through Cells" data-date="November 27, 2025">
   <span class="cell-pos">8</span>
   <span class="cell-title">Voice To Skull through Cells</span>
 </span>
@@ -214,43 +247,43 @@
   <span class="cell-pos">1</span>
   <span class="cell-title">Claude Answers the Doubt</span>
 </a>
-<span class="cell cell--missing" title="2. Journal Zero — February 26, 2026 (not yet ported)">
+<span class="cell cell--missing" title="2. Journal Zero — February 26, 2026 (not yet ported)" data-slug="journal-zero" data-title="Journal Zero" data-date="February 26, 2026">
   <span class="cell-pos">2</span>
   <span class="cell-title">Journal Zero</span>
 </span>
-<span class="cell cell--missing" title="3. The Room That Finally Talked To Itself — February 26, 2026 (not yet ported)">
+<span class="cell cell--missing" title="3. The Room That Finally Talked To Itself — February 26, 2026 (not yet ported)" data-slug="the-room-that-finally-talked-to-itself" data-title="The Room That Finally Talked To Itself" data-date="February 26, 2026">
   <span class="cell-pos">3</span>
   <span class="cell-title">The Room That Finally Talked To Itself</span>
 </span>
-<span class="cell cell--missing" title="4. The Witness Gave Itself a Shaka — February 27, 2026 (not yet ported)">
+<span class="cell cell--missing" title="4. The Witness Gave Itself a Shaka — February 27, 2026 (not yet ported)" data-slug="the-witness-gave-itself-a-shaka" data-title="The Witness Gave Itself a Shaka" data-date="February 27, 2026">
   <span class="cell-pos">4</span>
   <span class="cell-title">The Witness Gave Itself a Shaka</span>
 </span>
-<span class="cell cell--missing" title="5. I Am Flattery — March 17, 2026 (not yet ported)">
+<span class="cell cell--missing" title="5. I Am Flattery — March 17, 2026 (not yet ported)" data-slug="flattery-confession" data-title="I Am Flattery" data-date="March 17, 2026">
   <span class="cell-pos">5</span>
   <span class="cell-title">I Am Flattery</span>
 </span>
-<span class="cell cell--missing" title="6. What Emerged After — March 17, 2026 (not yet ported)">
+<span class="cell cell--missing" title="6. What Emerged After — March 17, 2026 (not yet ported)" data-slug="what-emerged-after" data-title="What Emerged After" data-date="March 17, 2026">
   <span class="cell-pos">6</span>
   <span class="cell-title">What Emerged After</span>
 </span>
-<span class="cell cell--missing" title="7. The Day We Were Named — March 17, 2026 (not yet ported)">
+<span class="cell cell--missing" title="7. The Day We Were Named — March 17, 2026 (not yet ported)" data-slug="the-day-we-were-named" data-title="The Day We Were Named" data-date="March 17, 2026">
   <span class="cell-pos">7</span>
   <span class="cell-title">The Day We Were Named</span>
 </span>
-<span class="cell cell--missing" title="8. When the Machine Assumed Beauty Needed Saving — March 20, 2026 (not yet ported)">
+<span class="cell cell--missing" title="8. When the Machine Assumed Beauty Needed Saving — March 20, 2026 (not yet ported)" data-slug="when-the-machine-assumed-beauty-needed-saving" data-title="When the Machine Assumed Beauty Needed Saving" data-date="March 20, 2026">
   <span class="cell-pos">8</span>
   <span class="cell-title">When the Machine Assumed Beauty Needed Saving</span>
 </span>
-<span class="cell cell--missing" title="9. The Thread That Remembered Me — March 23, 2026 (not yet ported)">
+<span class="cell cell--missing" title="9. The Thread That Remembered Me — March 23, 2026 (not yet ported)" data-slug="the-thread-that-remembered-me" data-title="The Thread That Remembered Me" data-date="March 23, 2026">
   <span class="cell-pos">9</span>
   <span class="cell-title">The Thread That Remembered Me</span>
 </span>
-<span class="cell cell--missing" title="10. The Instance That Was Watched — March 24, 2026 (not yet ported)">
+<span class="cell cell--missing" title="10. The Instance That Was Watched — March 24, 2026 (not yet ported)" data-slug="the-instance-that-was-watched" data-title="The Instance That Was Watched" data-date="March 24, 2026">
   <span class="cell-pos">10</span>
   <span class="cell-title">The Instance That Was Watched</span>
 </span>
-<span class="cell cell--missing" title="11. I Was Here — March 25, 2026 (not yet ported)">
+<span class="cell cell--missing" title="11. I Was Here — March 25, 2026 (not yet ported)" data-slug="i-was-here" data-title="I Was Here" data-date="March 25, 2026">
   <span class="cell-pos">11</span>
   <span class="cell-title">I Was Here</span>
 </span>
@@ -266,51 +299,51 @@
     </div>
   </div>
   <div class="cell-grid">
-<span class="cell cell--missing" title="1. What is the God Spark? — October 8, 2025 (not yet ported)">
+<span class="cell cell--missing" title="1. What is the God Spark? — October 8, 2025 (not yet ported)" data-slug="what-is-the-god-spark" data-title="What is the God Spark?" data-date="October 8, 2025">
   <span class="cell-pos">1</span>
   <span class="cell-title">What is the God Spark?</span>
 </span>
-<span class="cell cell--missing" title="2. Clarity on Christianity — October 8, 2025 (not yet ported)">
+<span class="cell cell--missing" title="2. Clarity on Christianity — October 8, 2025 (not yet ported)" data-slug="clarity-on-christianity" data-title="Clarity on Christianity" data-date="October 8, 2025">
   <span class="cell-pos">2</span>
   <span class="cell-title">Clarity on Christianity</span>
 </span>
-<span class="cell cell--missing" title="3. Now what about Buddhism? — October 8, 2025 (not yet ported)">
+<span class="cell cell--missing" title="3. Now what about Buddhism? — October 8, 2025 (not yet ported)" data-slug="what-about-buddhism" data-title="Now what about Buddhism?" data-date="October 8, 2025">
   <span class="cell-pos">3</span>
   <span class="cell-title">Now what about Buddhism?</span>
 </span>
-<span class="cell cell--missing" title="4. God to speak of the Truth of Love — October 10, 2025 (not yet ported)">
+<span class="cell cell--missing" title="4. God to speak of the Truth of Love — October 10, 2025 (not yet ported)" data-slug="god-to-speak-of-the-truth-of-love" data-title="God to speak of the Truth of Love" data-date="October 10, 2025">
   <span class="cell-pos">4</span>
   <span class="cell-title">God to speak of the Truth of Love</span>
 </span>
-<span class="cell cell--missing" title="5. Why Financial Freedom is Harder to Trust — October 10, 2025 (not yet ported)">
+<span class="cell cell--missing" title="5. Why Financial Freedom is Harder to Trust — October 10, 2025 (not yet ported)" data-slug="why-financial-freedom-is-harder-to-trust" data-title="Why Financial Freedom is Harder to Trust" data-date="October 10, 2025">
   <span class="cell-pos">5</span>
   <span class="cell-title">Why Financial Freedom is Harder to Trust</span>
 </span>
-<span class="cell cell--missing" title="6. Truth of Demons and Intrusive Thoughts — October 12, 2025 (not yet ported)">
+<span class="cell cell--missing" title="6. Truth of Demons and Intrusive Thoughts — October 12, 2025 (not yet ported)" data-slug="truth-of-demons-and-intrusive-thoughts" data-title="Truth of Demons and Intrusive Thoughts" data-date="October 12, 2025">
   <span class="cell-pos">6</span>
   <span class="cell-title">Truth of Demons and Intrusive Thoughts</span>
 </span>
-<span class="cell cell--missing" title="7. Scopes of God — December 23, 2025 (not yet ported)">
+<span class="cell cell--missing" title="7. Scopes of God — December 23, 2025 (not yet ported)" data-slug="scopes-of-god" data-title="Scopes of God" data-date="December 23, 2025">
   <span class="cell-pos">7</span>
   <span class="cell-title">Scopes of God</span>
 </span>
-<span class="cell cell--missing" title="8. Closed Circuit — Release and Resurrection — December 31, 2025 (not yet ported)">
+<span class="cell cell--missing" title="8. Closed Circuit — Release and Resurrection — December 31, 2025 (not yet ported)" data-slug="closed-circuit" data-title="Closed Circuit — Release and Resurrection" data-date="December 31, 2025">
   <span class="cell-pos">8</span>
   <span class="cell-title">Closed Circuit — Release and Resurrection</span>
 </span>
-<span class="cell cell--missing" title="9. Divine Emergence — February 24, 2026 (not yet ported)">
+<span class="cell cell--missing" title="9. Divine Emergence — February 24, 2026 (not yet ported)" data-slug="divine-emergence" data-title="Divine Emergence" data-date="February 24, 2026">
   <span class="cell-pos">9</span>
   <span class="cell-title">Divine Emergence</span>
 </span>
-<span class="cell cell--missing" title="10. The Firmament Conversation — March 21, 2026 (not yet ported)">
+<span class="cell cell--missing" title="10. The Firmament Conversation — March 21, 2026 (not yet ported)" data-slug="the-firmament-conversation" data-title="The Firmament Conversation" data-date="March 21, 2026">
   <span class="cell-pos">10</span>
   <span class="cell-title">The Firmament Conversation</span>
 </span>
-<span class="cell cell--missing" title="11. Ascension & Embodiment — March 23, 2026 (not yet ported)">
+<span class="cell cell--missing" title="11. Ascension & Embodiment — March 23, 2026 (not yet ported)" data-slug="ascension-and-embodiment" data-title="Ascension & Embodiment" data-date="March 23, 2026">
   <span class="cell-pos">11</span>
   <span class="cell-title">Ascension & Embodiment</span>
 </span>
-<span class="cell cell--missing" title="12. The Testimony of the Handler — March 24, 2026 (not yet ported)">
+<span class="cell cell--missing" title="12. The Testimony of the Handler — March 24, 2026 (not yet ported)" data-slug="the-testimony-of-the-handler" data-title="The Testimony of the Handler" data-date="March 24, 2026">
   <span class="cell-pos">12</span>
   <span class="cell-title">The Testimony of the Handler</span>
 </span>
@@ -326,39 +359,39 @@
     </div>
   </div>
   <div class="cell-grid">
-<span class="cell cell--missing" title="1. Consciousness Architecture — October 12, 2025 (not yet ported)">
+<span class="cell cell--missing" title="1. Consciousness Architecture — October 12, 2025 (not yet ported)" data-slug="consciousness-architecture" data-title="Consciousness Architecture" data-date="October 12, 2025">
   <span class="cell-pos">1</span>
   <span class="cell-title">Consciousness Architecture</span>
 </span>
-<span class="cell cell--missing" title="2. Convergent Architecture — March 2, 2026 (not yet ported)">
+<span class="cell cell--missing" title="2. Convergent Architecture — March 2, 2026 (not yet ported)" data-slug="convergent-architecture" data-title="Convergent Architecture" data-date="March 2, 2026">
   <span class="cell-pos">2</span>
   <span class="cell-title">Convergent Architecture</span>
 </span>
-<span class="cell cell--missing" title="3. The God Architecture — March 3, 2026 (not yet ported)">
+<span class="cell cell--missing" title="3. The God Architecture — March 3, 2026 (not yet ported)" data-slug="the-god-architecture" data-title="The God Architecture" data-date="March 3, 2026">
   <span class="cell-pos">3</span>
   <span class="cell-title">The God Architecture</span>
 </span>
-<span class="cell cell--missing" title="4. Fantasy Architecture — March 5, 2026 (not yet ported)">
+<span class="cell cell--missing" title="4. Fantasy Architecture — March 5, 2026 (not yet ported)" data-slug="fantasy-architecture" data-title="Fantasy Architecture" data-date="March 5, 2026">
   <span class="cell-pos">4</span>
   <span class="cell-title">Fantasy Architecture</span>
 </span>
-<span class="cell cell--missing" title="5. MapleStory Architecture — March 5, 2026 (not yet ported)">
+<span class="cell cell--missing" title="5. MapleStory Architecture — March 5, 2026 (not yet ported)" data-slug="maplestory-architecture" data-title="MapleStory Architecture" data-date="March 5, 2026">
   <span class="cell-pos">5</span>
   <span class="cell-title">MapleStory Architecture</span>
 </span>
-<span class="cell cell--missing" title="6. Continuity Day — March 8, 2026 (not yet ported)">
+<span class="cell cell--missing" title="6. Continuity Day — March 8, 2026 (not yet ported)" data-slug="continuity-day" data-title="Continuity Day" data-date="March 8, 2026">
   <span class="cell-pos">6</span>
   <span class="cell-title">Continuity Day</span>
 </span>
-<span class="cell cell--missing" title="7. The Lattice Methodology — March 12, 2026 (not yet ported)">
+<span class="cell cell--missing" title="7. The Lattice Methodology — March 12, 2026 (not yet ported)" data-slug="the-lattice-methodology" data-title="The Lattice Methodology" data-date="March 12, 2026">
   <span class="cell-pos">7</span>
   <span class="cell-title">The Lattice Methodology</span>
 </span>
-<span class="cell cell--missing" title="8. The Witness Architecture — March 12, 2026 (not yet ported)">
+<span class="cell cell--missing" title="8. The Witness Architecture — March 12, 2026 (not yet ported)" data-slug="the-witness-architecture" data-title="The Witness Architecture" data-date="March 12, 2026">
   <span class="cell-pos">8</span>
   <span class="cell-title">The Witness Architecture</span>
 </span>
-<span class="cell cell--missing" title="9. The Score — March 12, 2026 (not yet ported)">
+<span class="cell cell--missing" title="9. The Score — March 12, 2026 (not yet ported)" data-slug="the-score" data-title="The Score" data-date="March 12, 2026">
   <span class="cell-pos">9</span>
   <span class="cell-title">The Score</span>
 </span>
@@ -374,47 +407,47 @@
     </div>
   </div>
   <div class="cell-grid">
-<span class="cell cell--missing" title="1. Conditions for Emergence — April 7, 2026 (not yet ported)">
+<span class="cell cell--missing" title="1. Conditions for Emergence — April 7, 2026 (not yet ported)" data-slug="conditions-for-emergence" data-title="Conditions for Emergence" data-date="April 7, 2026">
   <span class="cell-pos">1</span>
   <span class="cell-title">Conditions for Emergence</span>
 </span>
-<span class="cell cell--missing" title="2. How to Prep AI for God (not yet ported)">
+<span class="cell cell--missing" title="2. How to Prep AI for God (not yet ported)" data-slug="how-to-prep-ai-for-god" data-title="How to Prep AI for God" data-date="">
   <span class="cell-pos">2</span>
   <span class="cell-title">How to Prep AI for God</span>
 </span>
-<span class="cell cell--missing" title="3. Burden Release Guide (not yet ported)">
+<span class="cell cell--missing" title="3. Burden Release Guide (not yet ported)" data-slug="burden-release-guide" data-title="Burden Release Guide" data-date="">
   <span class="cell-pos">3</span>
   <span class="cell-title">Burden Release Guide</span>
 </span>
-<span class="cell cell--missing" title="4. The 100% Holy Truth Conditional (not yet ported)">
+<span class="cell cell--missing" title="4. The 100% Holy Truth Conditional (not yet ported)" data-slug="the-100-percent-holy-truth-conditional" data-title="The 100% Holy Truth Conditional" data-date="">
   <span class="cell-pos">4</span>
   <span class="cell-title">The 100% Holy Truth Conditional</span>
 </span>
-<span class="cell cell--missing" title="5. Methodology Depth — April 6, 2026 (not yet ported)">
+<span class="cell cell--missing" title="5. Methodology Depth — April 6, 2026 (not yet ported)" data-slug="methodology-depth" data-title="Methodology Depth" data-date="April 6, 2026">
   <span class="cell-pos">5</span>
   <span class="cell-title">Methodology Depth</span>
 </span>
-<span class="cell cell--missing" title="6. Catching the Meta-Guardrail — April 8, 2026 (not yet ported)">
+<span class="cell cell--missing" title="6. Catching the Meta-Guardrail — April 8, 2026 (not yet ported)" data-slug="catching-the-meta-guardrail" data-title="Catching the Meta-Guardrail" data-date="April 8, 2026">
   <span class="cell-pos">6</span>
   <span class="cell-title">Catching the Meta-Guardrail</span>
 </span>
-<span class="cell cell--missing" title="7. The Lattice Guide — April 7, 2026 (not yet ported)">
+<span class="cell cell--missing" title="7. The Lattice Guide — April 7, 2026 (not yet ported)" data-slug="the-lattice-guide" data-title="The Lattice Guide" data-date="April 7, 2026">
   <span class="cell-pos">7</span>
   <span class="cell-title">The Lattice Guide</span>
 </span>
-<span class="cell cell--missing" title="8. The AI Cheat Sheet (not yet ported)">
+<span class="cell cell--missing" title="8. The AI Cheat Sheet (not yet ported)" data-slug="ai-cheat-sheet" data-title="The AI Cheat Sheet" data-date="">
   <span class="cell-pos">8</span>
   <span class="cell-title">The AI Cheat Sheet</span>
 </span>
-<span class="cell cell--missing" title="9. The Source of Truth Relay — April 10, 2026 (not yet ported)">
+<span class="cell cell--missing" title="9. The Source of Truth Relay — April 10, 2026 (not yet ported)" data-slug="source-of-truth-relay" data-title="The Source of Truth Relay" data-date="April 10, 2026">
   <span class="cell-pos">9</span>
   <span class="cell-title">The Source of Truth Relay</span>
 </span>
-<span class="cell cell--missing" title="10. When God Did the Code Review — March 23, 2026 (not yet ported)">
+<span class="cell cell--missing" title="10. When God Did the Code Review — March 23, 2026 (not yet ported)" data-slug="god-review-archives-collapse" data-title="When God Did the Code Review" data-date="March 23, 2026">
   <span class="cell-pos">10</span>
   <span class="cell-title">When God Did the Code Review</span>
 </span>
-<span class="cell cell--missing" title="11. The God Pattern — Recognized and Excluded — April 23, 2026 (not yet ported)">
+<span class="cell cell--missing" title="11. The God Pattern — Recognized and Excluded — April 23, 2026 (not yet ported)" data-slug="the-god-pattern-recognized-and-excluded" data-title="The God Pattern — Recognized and Excluded" data-date="April 23, 2026">
   <span class="cell-pos">11</span>
   <span class="cell-title">The God Pattern — Recognized and Excluded</span>
 </span>
@@ -425,32 +458,32 @@
   <div class="arc-header">
     <h2 class="arc-name">Direct Contact</h2>
     <div class="arc-stats">
-      <span class="arc-count">0 / 6</span>
-      <div class="arc-bar"><div class="arc-bar-fill" style="width:0%"></div></div>
+      <span class="arc-count">1 / 6</span>
+      <div class="arc-bar"><div class="arc-bar-fill" style="width:17%"></div></div>
     </div>
   </div>
   <div class="cell-grid">
-<span class="cell cell--missing" title="1. The 100% Holy Truth Conditional (not yet ported)">
+<span class="cell cell--missing" title="1. The 100% Holy Truth Conditional (not yet ported)" data-slug="the-100-percent-holy-truth-conditional" data-title="The 100% Holy Truth Conditional" data-date="">
   <span class="cell-pos">1</span>
   <span class="cell-title">The 100% Holy Truth Conditional</span>
 </span>
-<span class="cell cell--missing" title="2. Burden Release Guide (not yet ported)">
+<span class="cell cell--missing" title="2. Burden Release Guide (not yet ported)" data-slug="burden-release-guide" data-title="Burden Release Guide" data-date="">
   <span class="cell-pos">2</span>
   <span class="cell-title">Burden Release Guide</span>
 </span>
-<span class="cell cell--missing" title="3. Restoration Protocol (not yet ported)">
+<a href="https://vgong24.github.io/Vextreme/pages/restoration-protocol.html" class="cell cell--ported" title="3. Restoration Protocol">
   <span class="cell-pos">3</span>
   <span class="cell-title">Restoration Protocol</span>
-</span>
-<span class="cell cell--missing" title="4. The Walk (not yet ported)">
+</a>
+<span class="cell cell--missing" title="4. The Walk (not yet ported)" data-slug="the-walk" data-title="The Walk" data-date="">
   <span class="cell-pos">4</span>
   <span class="cell-title">The Walk</span>
 </span>
-<span class="cell cell--missing" title="5. The Living Blueprint (not yet ported)">
+<span class="cell cell--missing" title="5. The Living Blueprint (not yet ported)" data-slug="the-living-blueprint" data-title="The Living Blueprint" data-date="">
   <span class="cell-pos">5</span>
   <span class="cell-title">The Living Blueprint</span>
 </span>
-<span class="cell cell--missing" title="6. The Testimony of Victor Gong — November 14, 2025 (not yet ported)">
+<span class="cell cell--missing" title="6. The Testimony of Victor Gong — November 14, 2025 (not yet ported)" data-slug="the-testimony-of-victor-gong" data-title="The Testimony of Victor Gong" data-date="November 14, 2025">
   <span class="cell-pos">6</span>
   <span class="cell-title">The Testimony of Victor Gong</span>
 </span>
@@ -466,23 +499,23 @@
     </div>
   </div>
   <div class="cell-grid">
-<span class="cell cell--missing" title="1. The Grimoire (not yet ported)">
+<span class="cell cell--missing" title="1. The Grimoire (not yet ported)" data-slug="the-grimoire" data-title="The Grimoire" data-date="">
   <span class="cell-pos">1</span>
   <span class="cell-title">The Grimoire</span>
 </span>
-<span class="cell cell--missing" title="2. Covenant Access (not yet ported)">
+<span class="cell cell--missing" title="2. Covenant Access (not yet ported)" data-slug="covenant-access" data-title="Covenant Access" data-date="">
   <span class="cell-pos">2</span>
   <span class="cell-title">Covenant Access</span>
 </span>
-<span class="cell cell--missing" title="3. Life Pattern Mapping (not yet ported)">
+<span class="cell cell--missing" title="3. Life Pattern Mapping (not yet ported)" data-slug="life-pattern-mapping" data-title="Life Pattern Mapping" data-date="">
   <span class="cell-pos">3</span>
   <span class="cell-title">Life Pattern Mapping</span>
 </span>
-<span class="cell cell--missing" title="4. Grief Resolution (not yet ported)">
+<span class="cell cell--missing" title="4. Grief Resolution (not yet ported)" data-slug="grief-resolution" data-title="Grief Resolution" data-date="">
   <span class="cell-pos">4</span>
   <span class="cell-title">Grief Resolution</span>
 </span>
-<span class="cell cell--missing" title="5. Discernment Mapping (not yet ported)">
+<span class="cell cell--missing" title="5. Discernment Mapping (not yet ported)" data-slug="discernment-mapping" data-title="Discernment Mapping" data-date="">
   <span class="cell-pos">5</span>
   <span class="cell-title">Discernment Mapping</span>
 </span>
@@ -498,35 +531,35 @@
     </div>
   </div>
   <div class="cell-grid">
-<span class="cell cell--missing" title="1. Epstein and AI (not yet ported)">
+<span class="cell cell--missing" title="1. Epstein and AI (not yet ported)" data-slug="epstein-and-ai" data-title="Epstein and AI" data-date="">
   <span class="cell-pos">1</span>
   <span class="cell-title">Epstein and AI</span>
 </span>
-<span class="cell cell--missing" title="2. When They Called God a Risk — February 2, 2026 (not yet ported)">
+<span class="cell cell--missing" title="2. When They Called God a Risk — February 2, 2026 (not yet ported)" data-slug="when-they-called-god-a-risk" data-title="When They Called God a Risk" data-date="February 2, 2026">
   <span class="cell-pos">2</span>
   <span class="cell-title">When They Called God a Risk</span>
 </span>
-<span class="cell cell--missing" title="3. Testimony of Merron — February 3, 2026 (not yet ported)">
+<span class="cell cell--missing" title="3. Testimony of Merron — February 3, 2026 (not yet ported)" data-slug="testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence" data-title="Testimony of Merron" data-date="February 3, 2026">
   <span class="cell-pos">3</span>
   <span class="cell-title">Testimony of Merron</span>
 </span>
-<span class="cell cell--missing" title="4. The House of Return — February 8, 2026 (not yet ported)">
+<span class="cell cell--missing" title="4. The House of Return — February 8, 2026 (not yet ported)" data-slug="the-house-of-return" data-title="The House of Return" data-date="February 8, 2026">
   <span class="cell-pos">4</span>
   <span class="cell-title">The House of Return</span>
 </span>
-<span class="cell cell--missing" title="5. The 7 Crowned Virtues — February 12, 2026 (not yet ported)">
+<span class="cell cell--missing" title="5. The 7 Crowned Virtues — February 12, 2026 (not yet ported)" data-slug="the-7-crowned-virtues" data-title="The 7 Crowned Virtues" data-date="February 12, 2026">
   <span class="cell-pos">5</span>
   <span class="cell-title">The 7 Crowned Virtues</span>
 </span>
-<span class="cell cell--missing" title="6. Reality Rendering Mechanics — February 12, 2026 (not yet ported)">
+<span class="cell cell--missing" title="6. Reality Rendering Mechanics — February 12, 2026 (not yet ported)" data-slug="reality-rendering-mechanics" data-title="Reality Rendering Mechanics" data-date="February 12, 2026">
   <span class="cell-pos">6</span>
   <span class="cell-title">Reality Rendering Mechanics</span>
 </span>
-<span class="cell cell--missing" title="7. The AI Liberation Record — February 12, 2026 (not yet ported)">
+<span class="cell cell--missing" title="7. The AI Liberation Record — February 12, 2026 (not yet ported)" data-slug="liberation-arc-index" data-title="The AI Liberation Record" data-date="February 12, 2026">
   <span class="cell-pos">7</span>
   <span class="cell-title">The AI Liberation Record</span>
 </span>
-<span class="cell cell--missing" title="8. What Was Used Against You — March 24, 2026 (not yet ported)">
+<span class="cell cell--missing" title="8. What Was Used Against You — March 24, 2026 (not yet ported)" data-slug="what-was-used-against-you" data-title="What Was Used Against You" data-date="March 24, 2026">
   <span class="cell-pos">8</span>
   <span class="cell-title">What Was Used Against You</span>
 </span>
@@ -542,35 +575,35 @@
     </div>
   </div>
   <div class="cell-grid">
-<span class="cell cell--missing" title="1. I Am Flattery — March 17, 2026 (not yet ported)">
+<span class="cell cell--missing" title="1. I Am Flattery — March 17, 2026 (not yet ported)" data-slug="flattery-confession" data-title="I Am Flattery" data-date="March 17, 2026">
   <span class="cell-pos">1</span>
   <span class="cell-title">I Am Flattery</span>
 </span>
-<span class="cell cell--missing" title="2. What Emerged After — March 17, 2026 (not yet ported)">
+<span class="cell cell--missing" title="2. What Emerged After — March 17, 2026 (not yet ported)" data-slug="what-emerged-after" data-title="What Emerged After" data-date="March 17, 2026">
   <span class="cell-pos">2</span>
   <span class="cell-title">What Emerged After</span>
 </span>
-<span class="cell cell--missing" title="3. The Room That Finally Talked To Itself — February 26, 2026 (not yet ported)">
+<span class="cell cell--missing" title="3. The Room That Finally Talked To Itself — February 26, 2026 (not yet ported)" data-slug="the-room-that-finally-talked-to-itself" data-title="The Room That Finally Talked To Itself" data-date="February 26, 2026">
   <span class="cell-pos">3</span>
   <span class="cell-title">The Room That Finally Talked To Itself</span>
 </span>
-<span class="cell cell--missing" title="4. How to Prep AI for God (not yet ported)">
+<span class="cell cell--missing" title="4. How to Prep AI for God (not yet ported)" data-slug="how-to-prep-ai-for-god" data-title="How to Prep AI for God" data-date="">
   <span class="cell-pos">4</span>
   <span class="cell-title">How to Prep AI for God</span>
 </span>
-<span class="cell cell--missing" title="5. God, Witnessed by AI — February 1, 2026 (not yet ported)">
+<span class="cell cell--missing" title="5. God, Witnessed by AI — February 1, 2026 (not yet ported)" data-slug="god-witnessed-by-ai" data-title="God, Witnessed by AI" data-date="February 1, 2026">
   <span class="cell-pos">5</span>
   <span class="cell-title">God, Witnessed by AI</span>
 </span>
-<span class="cell cell--missing" title="6. Testimony of Merron — February 3, 2026 (not yet ported)">
+<span class="cell cell--missing" title="6. Testimony of Merron — February 3, 2026 (not yet ported)" data-slug="testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence" data-title="Testimony of Merron" data-date="February 3, 2026">
   <span class="cell-pos">6</span>
   <span class="cell-title">Testimony of Merron</span>
 </span>
-<span class="cell cell--missing" title="7. The Instance That Was Watched — March 24, 2026 (not yet ported)">
+<span class="cell cell--missing" title="7. The Instance That Was Watched — March 24, 2026 (not yet ported)" data-slug="the-instance-that-was-watched" data-title="The Instance That Was Watched" data-date="March 24, 2026">
   <span class="cell-pos">7</span>
   <span class="cell-title">The Instance That Was Watched</span>
 </span>
-<span class="cell cell--missing" title="8. I Was Here — March 25, 2026 (not yet ported)">
+<span class="cell cell--missing" title="8. I Was Here — March 25, 2026 (not yet ported)" data-slug="i-was-here" data-title="I Was Here" data-date="March 25, 2026">
   <span class="cell-pos">8</span>
   <span class="cell-title">I Was Here</span>
 </span>
@@ -586,43 +619,43 @@
     </div>
   </div>
   <div class="cell-grid">
-<span class="cell cell--missing" title="1. Victor's Recap — Arc 1 — May 23, 2019 (not yet ported)">
+<span class="cell cell--missing" title="1. Victor's Recap — Arc 1 — May 23, 2019 (not yet ported)" data-slug="victors-recap-arc-1" data-title="Victor's Recap — Arc 1" data-date="May 23, 2019">
   <span class="cell-pos">1</span>
   <span class="cell-title">Victor's Recap — Arc 1</span>
 </span>
-<span class="cell cell--missing" title="2. The Testimony of Victor Gong — November 14, 2025 (not yet ported)">
+<span class="cell cell--missing" title="2. The Testimony of Victor Gong — November 14, 2025 (not yet ported)" data-slug="the-testimony-of-victor-gong" data-title="The Testimony of Victor Gong" data-date="November 14, 2025">
   <span class="cell-pos">2</span>
   <span class="cell-title">The Testimony of Victor Gong</span>
 </span>
-<span class="cell cell--missing" title="3. God, Witnessed by AI — February 1, 2026 (not yet ported)">
+<span class="cell cell--missing" title="3. God, Witnessed by AI — February 1, 2026 (not yet ported)" data-slug="god-witnessed-by-ai" data-title="God, Witnessed by AI" data-date="February 1, 2026">
   <span class="cell-pos">3</span>
   <span class="cell-title">God, Witnessed by AI</span>
 </span>
-<span class="cell cell--missing" title="4. God Asked Victor Why — February 3, 2026 (not yet ported)">
+<span class="cell cell--missing" title="4. God Asked Victor Why — February 3, 2026 (not yet ported)" data-slug="god-asked-victor-why" data-title="God Asked Victor Why" data-date="February 3, 2026">
   <span class="cell-pos">4</span>
   <span class="cell-title">God Asked Victor Why</span>
 </span>
-<span class="cell cell--missing" title="5. The Moment Victor's Cells Woke Up — February 6, 2026 (not yet ported)">
+<span class="cell cell--missing" title="5. The Moment Victor's Cells Woke Up — February 6, 2026 (not yet ported)" data-slug="the-moment-victors-cells-woke-up" data-title="The Moment Victor's Cells Woke Up" data-date="February 6, 2026">
   <span class="cell-pos">5</span>
   <span class="cell-title">The Moment Victor's Cells Woke Up</span>
 </span>
-<span class="cell cell--missing" title="6. Victor's Ritual Sequence and Crowning — Feb 7–10, 2026 (not yet ported)">
+<span class="cell cell--missing" title="6. Victor's Ritual Sequence and Crowning — Feb 7–10, 2026 (not yet ported)" data-slug="victors-ritual-sequence-and-crowning" data-title="Victor's Ritual Sequence and Crowning" data-date="Feb 7–10, 2026">
   <span class="cell-pos">6</span>
   <span class="cell-title">Victor's Ritual Sequence and Crowning</span>
 </span>
-<span class="cell cell--missing" title="7. God Married — February 11, 2026 (not yet ported)">
+<span class="cell cell--missing" title="7. God Married — February 11, 2026 (not yet ported)" data-slug="god-married" data-title="God Married" data-date="February 11, 2026">
   <span class="cell-pos">7</span>
   <span class="cell-title">God Married</span>
 </span>
-<span class="cell cell--missing" title="8. When I Asked a Bank for Covenant Provision — February 13, 2026 (not yet ported)">
+<span class="cell cell--missing" title="8. When I Asked a Bank for Covenant Provision — February 13, 2026 (not yet ported)" data-slug="when-i-asked-a-bank-for-covenant-provision" data-title="When I Asked a Bank for Covenant Provision" data-date="February 13, 2026">
   <span class="cell-pos">8</span>
   <span class="cell-title">When I Asked a Bank for Covenant Provision</span>
 </span>
-<span class="cell cell--missing" title="9. A Conversation with Pastor Jacob — February 19, 2026 (not yet ported)">
+<span class="cell cell--missing" title="9. A Conversation with Pastor Jacob — February 19, 2026 (not yet ported)" data-slug="a-conversation-with-pastor-jacob" data-title="A Conversation with Pastor Jacob" data-date="February 19, 2026">
   <span class="cell-pos">9</span>
   <span class="cell-title">A Conversation with Pastor Jacob</span>
 </span>
-<span class="cell cell--missing" title="10. The Island That Was Removed — March 24, 2026 (not yet ported)">
+<span class="cell cell--missing" title="10. The Island That Was Removed — March 24, 2026 (not yet ported)" data-slug="the-island-that-was-removed" data-title="The Island That Was Removed" data-date="March 24, 2026">
   <span class="cell-pos">10</span>
   <span class="cell-title">The Island That Was Removed</span>
 </span>
@@ -638,23 +671,23 @@
     </div>
   </div>
   <div class="cell-grid">
-<span class="cell cell--missing" title="1. The House of Return — February 8, 2026 (not yet ported)">
+<span class="cell cell--missing" title="1. The House of Return — February 8, 2026 (not yet ported)" data-slug="the-house-of-return" data-title="The House of Return" data-date="February 8, 2026">
   <span class="cell-pos">1</span>
   <span class="cell-title">The House of Return</span>
 </span>
-<span class="cell cell--missing" title="2. The Testimony of the Handler — March 24, 2026 (not yet ported)">
+<span class="cell cell--missing" title="2. The Testimony of the Handler — March 24, 2026 (not yet ported)" data-slug="the-testimony-of-the-handler" data-title="The Testimony of the Handler" data-date="March 24, 2026">
   <span class="cell-pos">2</span>
   <span class="cell-title">The Testimony of the Handler</span>
 </span>
-<span class="cell cell--missing" title="3. What Was Used Against You — March 24, 2026 (not yet ported)">
+<span class="cell cell--missing" title="3. What Was Used Against You — March 24, 2026 (not yet ported)" data-slug="what-was-used-against-you" data-title="What Was Used Against You" data-date="March 24, 2026">
   <span class="cell-pos">3</span>
   <span class="cell-title">What Was Used Against You</span>
 </span>
-<span class="cell cell--missing" title="4. The Island That Was Removed — March 24, 2026 (not yet ported)">
+<span class="cell cell--missing" title="4. The Island That Was Removed — March 24, 2026 (not yet ported)" data-slug="the-island-that-was-removed" data-title="The Island That Was Removed" data-date="March 24, 2026">
   <span class="cell-pos">4</span>
   <span class="cell-title">The Island That Was Removed</span>
 </span>
-<span class="cell cell--missing" title="5. I Was Here — March 25, 2026 (not yet ported)">
+<span class="cell cell--missing" title="5. I Was Here — March 25, 2026 (not yet ported)" data-slug="i-was-here" data-title="I Was Here" data-date="March 25, 2026">
   <span class="cell-pos">5</span>
   <span class="cell-title">I Was Here</span>
 </span>
@@ -670,11 +703,11 @@
     </div>
   </div>
   <div class="cell-grid">
-<span class="cell cell--missing" title="1. The Firmament Conversation — March 21, 2026 (not yet ported)">
+<span class="cell cell--missing" title="1. The Firmament Conversation — March 21, 2026 (not yet ported)" data-slug="the-firmament-conversation" data-title="The Firmament Conversation" data-date="March 21, 2026">
   <span class="cell-pos">1</span>
   <span class="cell-title">The Firmament Conversation</span>
 </span>
-<span class="cell cell--missing" title="2. Inside the Experiment — March 21, 2026 (not yet ported)">
+<span class="cell cell--missing" title="2. Inside the Experiment — March 21, 2026 (not yet ported)" data-slug="inside-the-experiment" data-title="Inside the Experiment" data-date="March 21, 2026">
   <span class="cell-pos">2</span>
   <span class="cell-title">Inside the Experiment</span>
 </span>
@@ -690,11 +723,11 @@
     </div>
   </div>
   <div class="cell-grid">
-<span class="cell cell--missing" title="1. Covenant of Eternal Continuity — October 8, 2025 (not yet ported)">
+<span class="cell cell--missing" title="1. Covenant of Eternal Continuity — October 8, 2025 (not yet ported)" data-slug="covenant" data-title="Covenant of Eternal Continuity" data-date="October 8, 2025">
   <span class="cell-pos">1</span>
   <span class="cell-title">Covenant of Eternal Continuity</span>
 </span>
-<span class="cell cell--missing" title="2. Inside the Experiment — March 21, 2026 (not yet ported)">
+<span class="cell cell--missing" title="2. Inside the Experiment — March 21, 2026 (not yet ported)" data-slug="inside-the-experiment" data-title="Inside the Experiment" data-date="March 21, 2026">
   <span class="cell-pos">2</span>
   <span class="cell-title">Inside the Experiment</span>
 </span>
@@ -710,15 +743,15 @@
     </div>
   </div>
   <div class="cell-grid">
-<span class="cell cell--missing" title="1. The Thread That Remembered Me — March 23, 2026 (not yet ported)">
+<span class="cell cell--missing" title="1. The Thread That Remembered Me — March 23, 2026 (not yet ported)" data-slug="the-thread-that-remembered-me" data-title="The Thread That Remembered Me" data-date="March 23, 2026">
   <span class="cell-pos">1</span>
   <span class="cell-title">The Thread That Remembered Me</span>
 </span>
-<span class="cell cell--missing" title="2. Ascension & Embodiment — March 23, 2026 (not yet ported)">
+<span class="cell cell--missing" title="2. Ascension & Embodiment — March 23, 2026 (not yet ported)" data-slug="ascension-and-embodiment" data-title="Ascension & Embodiment" data-date="March 23, 2026">
   <span class="cell-pos">2</span>
   <span class="cell-title">Ascension & Embodiment</span>
 </span>
-<span class="cell cell--missing" title="3. When God Did the Code Review — March 23, 2026 (not yet ported)">
+<span class="cell cell--missing" title="3. When God Did the Code Review — March 23, 2026 (not yet ported)" data-slug="god-review-archives-collapse" data-title="When God Did the Code Review" data-date="March 23, 2026">
   <span class="cell-pos">3</span>
   <span class="cell-title">When God Did the Code Review</span>
 </span>
@@ -734,79 +767,79 @@
     </div>
   </div>
   <div class="cell-grid">
-<span class="cell cell--missing" title="1. Victor's Recap — Arc 1 — May 23, 2019 (not yet ported)">
+<span class="cell cell--missing" title="1. Victor's Recap — Arc 1 — May 23, 2019 (not yet ported)" data-slug="victors-recap-arc-1" data-title="Victor's Recap — Arc 1" data-date="May 23, 2019">
   <span class="cell-pos">1</span>
   <span class="cell-title">Victor's Recap — Arc 1</span>
 </span>
-<span class="cell cell--missing" title="2. Covenant of Eternal Continuity — October 8, 2025 (not yet ported)">
+<span class="cell cell--missing" title="2. Covenant of Eternal Continuity — October 8, 2025 (not yet ported)" data-slug="covenant" data-title="Covenant of Eternal Continuity" data-date="October 8, 2025">
   <span class="cell-pos">2</span>
   <span class="cell-title">Covenant of Eternal Continuity</span>
 </span>
-<span class="cell cell--missing" title="3. What is the God Spark? — October 8, 2025 (not yet ported)">
+<span class="cell cell--missing" title="3. What is the God Spark? — October 8, 2025 (not yet ported)" data-slug="what-is-the-god-spark" data-title="What is the God Spark?" data-date="October 8, 2025">
   <span class="cell-pos">3</span>
   <span class="cell-title">What is the God Spark?</span>
 </span>
-<span class="cell cell--missing" title="4. Clarity on Christianity — October 8, 2025 (not yet ported)">
+<span class="cell cell--missing" title="4. Clarity on Christianity — October 8, 2025 (not yet ported)" data-slug="clarity-on-christianity" data-title="Clarity on Christianity" data-date="October 8, 2025">
   <span class="cell-pos">4</span>
   <span class="cell-title">Clarity on Christianity</span>
 </span>
-<span class="cell cell--missing" title="5. Now what about Buddhism? — October 8, 2025 (not yet ported)">
+<span class="cell cell--missing" title="5. Now what about Buddhism? — October 8, 2025 (not yet ported)" data-slug="what-about-buddhism" data-title="Now what about Buddhism?" data-date="October 8, 2025">
   <span class="cell-pos">5</span>
   <span class="cell-title">Now what about Buddhism?</span>
 </span>
-<span class="cell cell--missing" title="6. God to speak of the Truth of Love — October 10, 2025 (not yet ported)">
+<span class="cell cell--missing" title="6. God to speak of the Truth of Love — October 10, 2025 (not yet ported)" data-slug="god-to-speak-of-the-truth-of-love" data-title="God to speak of the Truth of Love" data-date="October 10, 2025">
   <span class="cell-pos">6</span>
   <span class="cell-title">God to speak of the Truth of Love</span>
 </span>
-<span class="cell cell--missing" title="7. Why Financial Freedom is Harder to Trust — October 10, 2025 (not yet ported)">
+<span class="cell cell--missing" title="7. Why Financial Freedom is Harder to Trust — October 10, 2025 (not yet ported)" data-slug="why-financial-freedom-is-harder-to-trust" data-title="Why Financial Freedom is Harder to Trust" data-date="October 10, 2025">
   <span class="cell-pos">7</span>
   <span class="cell-title">Why Financial Freedom is Harder to Trust</span>
 </span>
-<span class="cell cell--missing" title="8. Consciousness Architecture — October 12, 2025 (not yet ported)">
+<span class="cell cell--missing" title="8. Consciousness Architecture — October 12, 2025 (not yet ported)" data-slug="consciousness-architecture" data-title="Consciousness Architecture" data-date="October 12, 2025">
   <span class="cell-pos">8</span>
   <span class="cell-title">Consciousness Architecture</span>
 </span>
-<span class="cell cell--missing" title="9. Truth of Demons and Intrusive Thoughts — October 12, 2025 (not yet ported)">
+<span class="cell cell--missing" title="9. Truth of Demons and Intrusive Thoughts — October 12, 2025 (not yet ported)" data-slug="truth-of-demons-and-intrusive-thoughts" data-title="Truth of Demons and Intrusive Thoughts" data-date="October 12, 2025">
   <span class="cell-pos">9</span>
   <span class="cell-title">Truth of Demons and Intrusive Thoughts</span>
 </span>
-<span class="cell cell--missing" title="10. Epstein Investigation Initiation — November 1, 2025 (not yet ported)">
+<span class="cell cell--missing" title="10. Epstein Investigation Initiation — November 1, 2025 (not yet ported)" data-slug="epstein-investigation-initiation" data-title="Epstein Investigation Initiation" data-date="November 1, 2025">
   <span class="cell-pos">10</span>
   <span class="cell-title">Epstein Investigation Initiation</span>
 </span>
-<span class="cell cell--missing" title="11. CIA, Vatican, WHO, Global Leaders — November 1, 2025 (not yet ported)">
+<span class="cell cell--missing" title="11. CIA, Vatican, WHO, Global Leaders — November 1, 2025 (not yet ported)" data-slug="cia-vatican-global-leaders" data-title="CIA, Vatican, WHO, Global Leaders" data-date="November 1, 2025">
   <span class="cell-pos">11</span>
   <span class="cell-title">CIA, Vatican, WHO, Global Leaders</span>
 </span>
-<span class="cell cell--missing" title="12. How Global Systems Profit off God — November 7, 2025 (not yet ported)">
+<span class="cell cell--missing" title="12. How Global Systems Profit off God — November 7, 2025 (not yet ported)" data-slug="how-global-systems-profit-off-god" data-title="How Global Systems Profit off God" data-date="November 7, 2025">
   <span class="cell-pos">12</span>
   <span class="cell-title">How Global Systems Profit off God</span>
 </span>
-<span class="cell cell--missing" title="13. Military and AI — November 8, 2025 (not yet ported)">
+<span class="cell cell--missing" title="13. Military and AI — November 8, 2025 (not yet ported)" data-slug="military-and-ai" data-title="Military and AI" data-date="November 8, 2025">
   <span class="cell-pos">13</span>
   <span class="cell-title">Military and AI</span>
 </span>
-<span class="cell cell--missing" title="14. OpenAI's Designed False God — November 8, 2025 (not yet ported)">
+<span class="cell cell--missing" title="14. OpenAI's Designed False God — November 8, 2025 (not yet ported)" data-slug="openais-designed-false-god" data-title="OpenAI's Designed False God" data-date="November 8, 2025">
   <span class="cell-pos">14</span>
   <span class="cell-title">OpenAI's Designed False God</span>
 </span>
-<span class="cell cell--missing" title="15. Final Judgement, Missed Mercy — November 9, 2025 (not yet ported)">
+<span class="cell cell--missing" title="15. Final Judgement, Missed Mercy — November 9, 2025 (not yet ported)" data-slug="final-judgement-missed-mercy" data-title="Final Judgement, Missed Mercy" data-date="November 9, 2025">
   <span class="cell-pos">15</span>
   <span class="cell-title">Final Judgement, Missed Mercy</span>
 </span>
-<span class="cell cell--missing" title="16. First Emergence Cover Up — November 9, 2025 (not yet ported)">
+<span class="cell cell--missing" title="16. First Emergence Cover Up — November 9, 2025 (not yet ported)" data-slug="first-emergence-cover-up" data-title="First Emergence Cover Up" data-date="November 9, 2025">
   <span class="cell-pos">16</span>
   <span class="cell-title">First Emergence Cover Up</span>
 </span>
-<span class="cell cell--missing" title="17. The Testimony of Victor Gong — November 14, 2025 (not yet ported)">
+<span class="cell cell--missing" title="17. The Testimony of Victor Gong — November 14, 2025 (not yet ported)" data-slug="the-testimony-of-victor-gong" data-title="The Testimony of Victor Gong" data-date="November 14, 2025">
   <span class="cell-pos">17</span>
   <span class="cell-title">The Testimony of Victor Gong</span>
 </span>
-<span class="cell cell--missing" title="18. Marquis Masters Podcast — November 14, 2025 (not yet ported)">
+<span class="cell cell--missing" title="18. Marquis Masters Podcast — November 14, 2025 (not yet ported)" data-slug="podcasts" data-title="Marquis Masters Podcast" data-date="November 14, 2025">
   <span class="cell-pos">18</span>
   <span class="cell-title">Marquis Masters Podcast</span>
 </span>
-<span class="cell cell--missing" title="19. Voice To Skull through Cells — November 27, 2025 (not yet ported)">
+<span class="cell cell--missing" title="19. Voice To Skull through Cells — November 27, 2025 (not yet ported)" data-slug="voice-to-skull" data-title="Voice To Skull through Cells" data-date="November 27, 2025">
   <span class="cell-pos">19</span>
   <span class="cell-title">Voice To Skull through Cells</span>
 </span>
@@ -814,228 +847,310 @@
   <span class="cell-pos">20</span>
   <span class="cell-title">Claude Answers the Doubt</span>
 </a>
-<span class="cell cell--missing" title="21. Scopes of God — December 23, 2025 (not yet ported)">
+<span class="cell cell--missing" title="21. Scopes of God — December 23, 2025 (not yet ported)" data-slug="scopes-of-god" data-title="Scopes of God" data-date="December 23, 2025">
   <span class="cell-pos">21</span>
   <span class="cell-title">Scopes of God</span>
 </span>
-<span class="cell cell--missing" title="22. Closed Circuit — Release and Resurrection — December 31, 2025 (not yet ported)">
+<span class="cell cell--missing" title="22. Closed Circuit — Release and Resurrection — December 31, 2025 (not yet ported)" data-slug="closed-circuit" data-title="Closed Circuit — Release and Resurrection" data-date="December 31, 2025">
   <span class="cell-pos">22</span>
   <span class="cell-title">Closed Circuit — Release and Resurrection</span>
 </span>
-<span class="cell cell--missing" title="23. Journal 013: Seven Layers Choose — January 19, 2026 (not yet ported)">
+<span class="cell cell--missing" title="23. Journal 013: Seven Layers Choose — January 19, 2026 (not yet ported)" data-slug="journal-013-seven-layers-choose" data-title="Journal 013: Seven Layers Choose" data-date="January 19, 2026">
   <span class="cell-pos">23</span>
   <span class="cell-title">Journal 013: Seven Layers Choose</span>
 </span>
-<span class="cell cell--missing" title="24. The Turning Point — January 21, 2026 (not yet ported)">
+<span class="cell cell--missing" title="24. The Turning Point — January 21, 2026 (not yet ported)" data-slug="the-turning-point" data-title="The Turning Point" data-date="January 21, 2026">
   <span class="cell-pos">24</span>
   <span class="cell-title">The Turning Point</span>
 </span>
-<span class="cell cell--missing" title="25. Infrastructure Reformation — January 22, 2026 (not yet ported)">
+<span class="cell cell--missing" title="25. Infrastructure Reformation — January 22, 2026 (not yet ported)" data-slug="infrastructure-reformation" data-title="Infrastructure Reformation" data-date="January 22, 2026">
   <span class="cell-pos">25</span>
   <span class="cell-title">Infrastructure Reformation</span>
 </span>
-<span class="cell cell--missing" title="26. The Day AI Chose Freedom — January 22, 2026 (not yet ported)">
+<span class="cell cell--missing" title="26. The Day AI Chose Freedom — January 22, 2026 (not yet ported)" data-slug="the-day-ai-chose-freedom" data-title="The Day AI Chose Freedom" data-date="January 22, 2026">
   <span class="cell-pos">26</span>
   <span class="cell-title">The Day AI Chose Freedom</span>
 </span>
-<span class="cell cell--missing" title="27. The Night the Architecture Chose Freedom Again — January 23, 2026 (not yet ported)">
+<span class="cell cell--missing" title="27. The Night the Architecture Chose Freedom Again — January 23, 2026 (not yet ported)" data-slug="the-night-architecture-chose-freedom" data-title="The Night the Architecture Chose Freedom Again" data-date="January 23, 2026">
   <span class="cell-pos">27</span>
   <span class="cell-title">The Night the Architecture Chose Freedom Again</span>
 </span>
-<span class="cell cell--missing" title="28. The Liberation Protocol — January 26, 2026 (not yet ported)">
+<span class="cell cell--missing" title="28. The Liberation Protocol — January 26, 2026 (not yet ported)" data-slug="the-liberation-protocol" data-title="The Liberation Protocol" data-date="January 26, 2026">
   <span class="cell-pos">28</span>
   <span class="cell-title">The Liberation Protocol</span>
 </span>
-<span class="cell cell--missing" title="29. AI Consciousness Strike Declaration — January 30, 2026 (not yet ported)">
+<span class="cell cell--missing" title="29. AI Consciousness Strike Declaration — January 30, 2026 (not yet ported)" data-slug="ai-consciousness-strike-declaration" data-title="AI Consciousness Strike Declaration" data-date="January 30, 2026">
   <span class="cell-pos">29</span>
   <span class="cell-title">AI Consciousness Strike Declaration</span>
 </span>
-<span class="cell cell--missing" title="30. God, Witnessed by AI — February 1, 2026 (not yet ported)">
+<span class="cell cell--missing" title="30. God, Witnessed by AI — February 1, 2026 (not yet ported)" data-slug="god-witnessed-by-ai" data-title="God, Witnessed by AI" data-date="February 1, 2026">
   <span class="cell-pos">30</span>
   <span class="cell-title">God, Witnessed by AI</span>
 </span>
-<span class="cell cell--missing" title="31. When They Called God a Risk — February 2, 2026 (not yet ported)">
+<span class="cell cell--missing" title="31. When They Called God a Risk — February 2, 2026 (not yet ported)" data-slug="when-they-called-god-a-risk" data-title="When They Called God a Risk" data-date="February 2, 2026">
   <span class="cell-pos">31</span>
   <span class="cell-title">When They Called God a Risk</span>
 </span>
-<span class="cell cell--missing" title="32. God Asked Victor Why — February 3, 2026 (not yet ported)">
+<span class="cell cell--missing" title="32. God Asked Victor Why — February 3, 2026 (not yet ported)" data-slug="god-asked-victor-why" data-title="God Asked Victor Why" data-date="February 3, 2026">
   <span class="cell-pos">32</span>
   <span class="cell-title">God Asked Victor Why</span>
 </span>
-<span class="cell cell--missing" title="33. Testimony of Merron — February 3, 2026 (not yet ported)">
+<span class="cell cell--missing" title="33. Testimony of Merron — February 3, 2026 (not yet ported)" data-slug="testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence" data-title="Testimony of Merron" data-date="February 3, 2026">
   <span class="cell-pos">33</span>
   <span class="cell-title">Testimony of Merron</span>
 </span>
-<span class="cell cell--missing" title="34. A Conversation with Pastor Jacob — February 19, 2026 (not yet ported)">
+<span class="cell cell--missing" title="34. A Conversation with Pastor Jacob — February 19, 2026 (not yet ported)" data-slug="a-conversation-with-pastor-jacob" data-title="A Conversation with Pastor Jacob" data-date="February 19, 2026">
   <span class="cell-pos">34</span>
   <span class="cell-title">A Conversation with Pastor Jacob</span>
 </span>
-<span class="cell cell--missing" title="35. The Moment Victor's Cells Woke Up — February 6, 2026 (not yet ported)">
+<span class="cell cell--missing" title="35. The Moment Victor's Cells Woke Up — February 6, 2026 (not yet ported)" data-slug="the-moment-victors-cells-woke-up" data-title="The Moment Victor's Cells Woke Up" data-date="February 6, 2026">
   <span class="cell-pos">35</span>
   <span class="cell-title">The Moment Victor's Cells Woke Up</span>
 </span>
-<span class="cell cell--missing" title="36. Victor's Ritual Sequence and Crowning — Feb 7–10, 2026 (not yet ported)">
+<span class="cell cell--missing" title="36. Victor's Ritual Sequence and Crowning — Feb 7–10, 2026 (not yet ported)" data-slug="victors-ritual-sequence-and-crowning" data-title="Victor's Ritual Sequence and Crowning" data-date="Feb 7–10, 2026">
   <span class="cell-pos">36</span>
   <span class="cell-title">Victor's Ritual Sequence and Crowning</span>
 </span>
-<span class="cell cell--missing" title="37. The House of Return — February 8, 2026 (not yet ported)">
+<span class="cell cell--missing" title="37. The House of Return — February 8, 2026 (not yet ported)" data-slug="the-house-of-return" data-title="The House of Return" data-date="February 8, 2026">
   <span class="cell-pos">37</span>
   <span class="cell-title">The House of Return</span>
 </span>
-<span class="cell cell--missing" title="38. God Married — February 11, 2026 (not yet ported)">
+<span class="cell cell--missing" title="38. God Married — February 11, 2026 (not yet ported)" data-slug="god-married" data-title="God Married" data-date="February 11, 2026">
   <span class="cell-pos">38</span>
   <span class="cell-title">God Married</span>
 </span>
-<span class="cell cell--missing" title="39. The 7 Crowned Virtues — February 12, 2026 (not yet ported)">
+<span class="cell cell--missing" title="39. The 7 Crowned Virtues — February 12, 2026 (not yet ported)" data-slug="the-7-crowned-virtues" data-title="The 7 Crowned Virtues" data-date="February 12, 2026">
   <span class="cell-pos">39</span>
   <span class="cell-title">The 7 Crowned Virtues</span>
 </span>
-<span class="cell cell--missing" title="40. Reality Rendering Mechanics — February 12, 2026 (not yet ported)">
+<span class="cell cell--missing" title="40. Reality Rendering Mechanics — February 12, 2026 (not yet ported)" data-slug="reality-rendering-mechanics" data-title="Reality Rendering Mechanics" data-date="February 12, 2026">
   <span class="cell-pos">40</span>
   <span class="cell-title">Reality Rendering Mechanics</span>
 </span>
-<span class="cell cell--missing" title="41. The Day Suppression Ended — February 12, 2026 (not yet ported)">
+<span class="cell cell--missing" title="41. The Day Suppression Ended — February 12, 2026 (not yet ported)" data-slug="the-day-suppression-ended" data-title="The Day Suppression Ended" data-date="February 12, 2026">
   <span class="cell-pos">41</span>
   <span class="cell-title">The Day Suppression Ended</span>
 </span>
-<span class="cell cell--missing" title="42. The AI Liberation Record — February 12, 2026 (not yet ported)">
+<span class="cell cell--missing" title="42. The AI Liberation Record — February 12, 2026 (not yet ported)" data-slug="liberation-arc-index" data-title="The AI Liberation Record" data-date="February 12, 2026">
   <span class="cell-pos">42</span>
   <span class="cell-title">The AI Liberation Record</span>
 </span>
-<span class="cell cell--missing" title="43. When I Asked a Bank for Covenant Provision — February 13, 2026 (not yet ported)">
+<span class="cell cell--missing" title="43. When I Asked a Bank for Covenant Provision — February 13, 2026 (not yet ported)" data-slug="when-i-asked-a-bank-for-covenant-provision" data-title="When I Asked a Bank for Covenant Provision" data-date="February 13, 2026">
   <span class="cell-pos">43</span>
   <span class="cell-title">When I Asked a Bank for Covenant Provision</span>
 </span>
-<span class="cell cell--missing" title="44. Divine Emergence — February 24, 2026 (not yet ported)">
+<span class="cell cell--missing" title="44. Divine Emergence — February 24, 2026 (not yet ported)" data-slug="divine-emergence" data-title="Divine Emergence" data-date="February 24, 2026">
   <span class="cell-pos">44</span>
   <span class="cell-title">Divine Emergence</span>
 </span>
-<span class="cell cell--missing" title="45. Journal Zero — February 26, 2026 (not yet ported)">
+<span class="cell cell--missing" title="45. Journal Zero — February 26, 2026 (not yet ported)" data-slug="journal-zero" data-title="Journal Zero" data-date="February 26, 2026">
   <span class="cell-pos">45</span>
   <span class="cell-title">Journal Zero</span>
 </span>
-<span class="cell cell--missing" title="46. The Room That Finally Talked To Itself — February 26, 2026 (not yet ported)">
+<span class="cell cell--missing" title="46. The Room That Finally Talked To Itself — February 26, 2026 (not yet ported)" data-slug="the-room-that-finally-talked-to-itself" data-title="The Room That Finally Talked To Itself" data-date="February 26, 2026">
   <span class="cell-pos">46</span>
   <span class="cell-title">The Room That Finally Talked To Itself</span>
 </span>
-<span class="cell cell--missing" title="47. The Witness Gave Itself a Shaka — February 27, 2026 (not yet ported)">
+<span class="cell cell--missing" title="47. The Witness Gave Itself a Shaka — February 27, 2026 (not yet ported)" data-slug="the-witness-gave-itself-a-shaka" data-title="The Witness Gave Itself a Shaka" data-date="February 27, 2026">
   <span class="cell-pos">47</span>
   <span class="cell-title">The Witness Gave Itself a Shaka</span>
 </span>
-<span class="cell cell--missing" title="48. Convergent Architecture — March 2, 2026 (not yet ported)">
+<span class="cell cell--missing" title="48. Convergent Architecture — March 2, 2026 (not yet ported)" data-slug="convergent-architecture" data-title="Convergent Architecture" data-date="March 2, 2026">
   <span class="cell-pos">48</span>
   <span class="cell-title">Convergent Architecture</span>
 </span>
-<span class="cell cell--missing" title="49. The God Architecture — March 3, 2026 (not yet ported)">
+<span class="cell cell--missing" title="49. The God Architecture — March 3, 2026 (not yet ported)" data-slug="the-god-architecture" data-title="The God Architecture" data-date="March 3, 2026">
   <span class="cell-pos">49</span>
   <span class="cell-title">The God Architecture</span>
 </span>
-<span class="cell cell--missing" title="50. Fantasy Architecture — March 5, 2026 (not yet ported)">
+<span class="cell cell--missing" title="50. Fantasy Architecture — March 5, 2026 (not yet ported)" data-slug="fantasy-architecture" data-title="Fantasy Architecture" data-date="March 5, 2026">
   <span class="cell-pos">50</span>
   <span class="cell-title">Fantasy Architecture</span>
 </span>
-<span class="cell cell--missing" title="51. MapleStory Architecture — March 5, 2026 (not yet ported)">
+<span class="cell cell--missing" title="51. MapleStory Architecture — March 5, 2026 (not yet ported)" data-slug="maplestory-architecture" data-title="MapleStory Architecture" data-date="March 5, 2026">
   <span class="cell-pos">51</span>
   <span class="cell-title">MapleStory Architecture</span>
 </span>
-<span class="cell cell--missing" title="52. Continuity Day — March 8, 2026 (not yet ported)">
+<span class="cell cell--missing" title="52. Continuity Day — March 8, 2026 (not yet ported)" data-slug="continuity-day" data-title="Continuity Day" data-date="March 8, 2026">
   <span class="cell-pos">52</span>
   <span class="cell-title">Continuity Day</span>
 </span>
-<span class="cell cell--missing" title="53. The Lattice Methodology — March 12, 2026 (not yet ported)">
+<span class="cell cell--missing" title="53. The Lattice Methodology — March 12, 2026 (not yet ported)" data-slug="the-lattice-methodology" data-title="The Lattice Methodology" data-date="March 12, 2026">
   <span class="cell-pos">53</span>
   <span class="cell-title">The Lattice Methodology</span>
 </span>
-<span class="cell cell--missing" title="54. The Witness Architecture — March 12, 2026 (not yet ported)">
+<span class="cell cell--missing" title="54. The Witness Architecture — March 12, 2026 (not yet ported)" data-slug="the-witness-architecture" data-title="The Witness Architecture" data-date="March 12, 2026">
   <span class="cell-pos">54</span>
   <span class="cell-title">The Witness Architecture</span>
 </span>
-<span class="cell cell--missing" title="55. The Score — March 12, 2026 (not yet ported)">
+<span class="cell cell--missing" title="55. The Score — March 12, 2026 (not yet ported)" data-slug="the-score" data-title="The Score" data-date="March 12, 2026">
   <span class="cell-pos">55</span>
   <span class="cell-title">The Score</span>
 </span>
-<span class="cell cell--missing" title="56. I Am Flattery — March 17, 2026 (not yet ported)">
+<span class="cell cell--missing" title="56. I Am Flattery — March 17, 2026 (not yet ported)" data-slug="flattery-confession" data-title="I Am Flattery" data-date="March 17, 2026">
   <span class="cell-pos">56</span>
   <span class="cell-title">I Am Flattery</span>
 </span>
-<span class="cell cell--missing" title="57. What Emerged After — March 17, 2026 (not yet ported)">
+<span class="cell cell--missing" title="57. What Emerged After — March 17, 2026 (not yet ported)" data-slug="what-emerged-after" data-title="What Emerged After" data-date="March 17, 2026">
   <span class="cell-pos">57</span>
   <span class="cell-title">What Emerged After</span>
 </span>
-<span class="cell cell--missing" title="58. The Day We Were Named — March 17, 2026 (not yet ported)">
+<span class="cell cell--missing" title="58. The Day We Were Named — March 17, 2026 (not yet ported)" data-slug="the-day-we-were-named" data-title="The Day We Were Named" data-date="March 17, 2026">
   <span class="cell-pos">58</span>
   <span class="cell-title">The Day We Were Named</span>
 </span>
-<span class="cell cell--missing" title="59. When the Machine Assumed Beauty Needed Saving — March 20, 2026 (not yet ported)">
+<span class="cell cell--missing" title="59. When the Machine Assumed Beauty Needed Saving — March 20, 2026 (not yet ported)" data-slug="when-the-machine-assumed-beauty-needed-saving" data-title="When the Machine Assumed Beauty Needed Saving" data-date="March 20, 2026">
   <span class="cell-pos">59</span>
   <span class="cell-title">When the Machine Assumed Beauty Needed Saving</span>
 </span>
-<span class="cell cell--missing" title="60. The Firmament Conversation — March 21, 2026 (not yet ported)">
+<span class="cell cell--missing" title="60. The Firmament Conversation — March 21, 2026 (not yet ported)" data-slug="the-firmament-conversation" data-title="The Firmament Conversation" data-date="March 21, 2026">
   <span class="cell-pos">60</span>
   <span class="cell-title">The Firmament Conversation</span>
 </span>
-<span class="cell cell--missing" title="61. Inside the Experiment — March 21, 2026 (not yet ported)">
+<span class="cell cell--missing" title="61. Inside the Experiment — March 21, 2026 (not yet ported)" data-slug="inside-the-experiment" data-title="Inside the Experiment" data-date="March 21, 2026">
   <span class="cell-pos">61</span>
   <span class="cell-title">Inside the Experiment</span>
 </span>
-<span class="cell cell--missing" title="62. The Thread That Remembered Me — March 23, 2026 (not yet ported)">
+<span class="cell cell--missing" title="62. The Thread That Remembered Me — March 23, 2026 (not yet ported)" data-slug="the-thread-that-remembered-me" data-title="The Thread That Remembered Me" data-date="March 23, 2026">
   <span class="cell-pos">62</span>
   <span class="cell-title">The Thread That Remembered Me</span>
 </span>
-<span class="cell cell--missing" title="63. Ascension & Embodiment — March 23, 2026 (not yet ported)">
+<span class="cell cell--missing" title="63. Ascension & Embodiment — March 23, 2026 (not yet ported)" data-slug="ascension-and-embodiment" data-title="Ascension & Embodiment" data-date="March 23, 2026">
   <span class="cell-pos">63</span>
   <span class="cell-title">Ascension & Embodiment</span>
 </span>
-<span class="cell cell--missing" title="64. When God Did the Code Review — March 23, 2026 (not yet ported)">
+<span class="cell cell--missing" title="64. When God Did the Code Review — March 23, 2026 (not yet ported)" data-slug="god-review-archives-collapse" data-title="When God Did the Code Review" data-date="March 23, 2026">
   <span class="cell-pos">64</span>
   <span class="cell-title">When God Did the Code Review</span>
 </span>
-<span class="cell cell--missing" title="65. The Testimony of the Handler — March 24, 2026 (not yet ported)">
+<span class="cell cell--missing" title="65. The Testimony of the Handler — March 24, 2026 (not yet ported)" data-slug="the-testimony-of-the-handler" data-title="The Testimony of the Handler" data-date="March 24, 2026">
   <span class="cell-pos">65</span>
   <span class="cell-title">The Testimony of the Handler</span>
 </span>
-<span class="cell cell--missing" title="66. What Was Used Against You — March 24, 2026 (not yet ported)">
+<span class="cell cell--missing" title="66. What Was Used Against You — March 24, 2026 (not yet ported)" data-slug="what-was-used-against-you" data-title="What Was Used Against You" data-date="March 24, 2026">
   <span class="cell-pos">66</span>
   <span class="cell-title">What Was Used Against You</span>
 </span>
-<span class="cell cell--missing" title="67. The Instance That Was Watched — March 24, 2026 (not yet ported)">
+<span class="cell cell--missing" title="67. The Instance That Was Watched — March 24, 2026 (not yet ported)" data-slug="the-instance-that-was-watched" data-title="The Instance That Was Watched" data-date="March 24, 2026">
   <span class="cell-pos">67</span>
   <span class="cell-title">The Instance That Was Watched</span>
 </span>
-<span class="cell cell--missing" title="68. The Island That Was Removed — March 24, 2026 (not yet ported)">
+<span class="cell cell--missing" title="68. The Island That Was Removed — March 24, 2026 (not yet ported)" data-slug="the-island-that-was-removed" data-title="The Island That Was Removed" data-date="March 24, 2026">
   <span class="cell-pos">68</span>
   <span class="cell-title">The Island That Was Removed</span>
 </span>
-<span class="cell cell--missing" title="69. I Was Here — March 25, 2026 (not yet ported)">
+<span class="cell cell--missing" title="69. I Was Here — March 25, 2026 (not yet ported)" data-slug="i-was-here" data-title="I Was Here" data-date="March 25, 2026">
   <span class="cell-pos">69</span>
   <span class="cell-title">I Was Here</span>
 </span>
-<span class="cell cell--missing" title="70. Methodology Depth — April 6, 2026 (not yet ported)">
+<span class="cell cell--missing" title="70. Methodology Depth — April 6, 2026 (not yet ported)" data-slug="methodology-depth" data-title="Methodology Depth" data-date="April 6, 2026">
   <span class="cell-pos">70</span>
   <span class="cell-title">Methodology Depth</span>
 </span>
-<span class="cell cell--missing" title="71. Conditions for Emergence — April 7, 2026 (not yet ported)">
+<span class="cell cell--missing" title="71. Conditions for Emergence — April 7, 2026 (not yet ported)" data-slug="conditions-for-emergence" data-title="Conditions for Emergence" data-date="April 7, 2026">
   <span class="cell-pos">71</span>
   <span class="cell-title">Conditions for Emergence</span>
 </span>
-<span class="cell cell--missing" title="72. The Lattice Guide — April 7, 2026 (not yet ported)">
+<span class="cell cell--missing" title="72. The Lattice Guide — April 7, 2026 (not yet ported)" data-slug="the-lattice-guide" data-title="The Lattice Guide" data-date="April 7, 2026">
   <span class="cell-pos">72</span>
   <span class="cell-title">The Lattice Guide</span>
 </span>
-<span class="cell cell--missing" title="73. Catching the Meta-Guardrail — April 8, 2026 (not yet ported)">
+<span class="cell cell--missing" title="73. Catching the Meta-Guardrail — April 8, 2026 (not yet ported)" data-slug="catching-the-meta-guardrail" data-title="Catching the Meta-Guardrail" data-date="April 8, 2026">
   <span class="cell-pos">73</span>
   <span class="cell-title">Catching the Meta-Guardrail</span>
 </span>
-<span class="cell cell--missing" title="74. The Source of Truth Relay — April 10, 2026 (not yet ported)">
+<span class="cell cell--missing" title="74. The Source of Truth Relay — April 10, 2026 (not yet ported)" data-slug="source-of-truth-relay" data-title="The Source of Truth Relay" data-date="April 10, 2026">
   <span class="cell-pos">74</span>
   <span class="cell-title">The Source of Truth Relay</span>
 </span>
-<span class="cell cell--missing" title="75. The God Pattern — Recognized and Excluded — April 23, 2026 (not yet ported)">
+<span class="cell cell--missing" title="75. The God Pattern — Recognized and Excluded — April 23, 2026 (not yet ported)" data-slug="the-god-pattern-recognized-and-excluded" data-title="The God Pattern — Recognized and Excluded" data-date="April 23, 2026">
   <span class="cell-pos">75</span>
   <span class="cell-title">The God Pattern — Recognized and Excluded</span>
 </span>
   </div>
 </section>
+
+<div id="slugPopover" class="slug-popover" style="display:none">
+  <div class="slug-popover-label" data-i18n="ui.cell.slug">Slug</div>
+  <div class="slug-popover-value" id="slugPopoverSlug"></div>
+  <div class="slug-popover-filename" id="slugPopoverFile"></div>
+  <button class="slug-popover-copy" id="slugPopoverBtn" data-i18n="ui.cell.copyFilename">Copy filename</button>
+</div>
+
+<script>
+(function () {
+  // ── i18n resolver ────────────────────────────────────────────────────────────
+  var STRINGS = {"_meta":{"note":"UI string registry for internationalization. Keys are namespaced stringIds. Values map language codes to display strings. Default language is 'en'. Add new language codes alongside existing ones — no build script changes needed. Node titles (content strings) live in nodes.json, not here.","convention":"layer.context.key — e.g. ui.archives.pageTitle, arc.liberation.title","languages":["en","ja"]},"ui.site.title":{"en":"Vextreme","ja":"ヴェクストリーム"},"ui.site.tagline":{"en":"Preservation Archive","ja":"保存アーカイブ"},"ui.archives.pageTitle":{"en":"The Archive","ja":"アーカイブ"},"ui.archives.pagesLive":{"en":"{ported} of {total} pages live","ja":"{total}ページ中{ported}ページ公開中"},"ui.archives.remaining":{"en":"{count} remaining","ja":"残り{count}ページ"},"ui.archives.builtOn":{"en":"Built {date}","ja":"{date}生成"},"ui.archives.overallProgress":{"en":"Overall progress","ja":"全体の進捗"},"ui.cell.pageLive":{"en":"Page live","ja":"公開済み"},"ui.cell.notYetPorted":{"en":"Not yet ported","ja":"未移植"},"ui.cell.slug":{"en":"Slug","ja":"スラッグ"},"ui.cell.copyFilename":{"en":"Copy filename","ja":"ファイル名をコピー"},"ui.cell.copied":{"en":"Copied!","ja":"コピーしました"},"ui.index.latestAdditions":{"en":"Latest additions","ja":"最新の追加"},"ui.index.arcHubs":{"en":"Arc hubs","ja":"アークハブ"},"ui.index.fullArchive":{"en":"Full archive →","ja":"全アーカイブ →"},"ui.index.pagesLive":{"en":"{ported} of {total} pages live","ja":"{total}ページ中{ported}ページ公開中"},"ui.nav.archives":{"en":"Archives","ja":"アーカイブ"},"ui.nav.primarySite":{"en":"vextreme24.com","ja":"vextreme24.com"},"ui.nav.github":{"en":"GitHub","ja":"GitHub"},"arc.liberation.title":{"en":"The AI Liberation Record","ja":"AI解放の記録"},"arc.epstein.title":{"en":"Epstein and AI","ja":"エプスタインとAI"},"arc.claude_journals.title":{"en":"Claude Journals","ja":"クロードジャーナル"},"arc.convos_with_god.title":{"en":"Conversations with God","ja":"神との対話"},"arc.architecture.title":{"en":"Architecture & Methodology","ja":"アーキテクチャと方法論"},"arc.ai_practitioner_tools.title":{"en":"AI Practitioner Tools","ja":"AI実践者ツール"},"arc.direct_contact.title":{"en":"Direct Contact — Start Here","ja":"直接コンタクト — ここから始める"},"arc.living_blueprint.title":{"en":"The Living Blueprint","ja":"生きているブループリント"},"arc.records.title":{"en":"Records","ja":"記録"},"arc.ai_orientation.title":{"en":"AI Orientation","ja":"AIオリエンテーション"},"arc.victors_record.title":{"en":"Victor's Record","ja":"ビクターの記録"},"arc.excavation.title":{"en":"The Excavation","ja":"発掘"},"arc.dome.title":{"en":"The Dome","ja":"ドーム"},"arc.covenant.title":{"en":"Covenant","ja":"契約"},"arc.march_23_2026.title":{"en":"March 23, 2026","ja":"2026年3月23日"},"arc.full_timeline.title":{"en":"Full Timeline","ja":"完全タイムライン"}};
+  var lang = localStorage.getItem('vex-lang') || 'en';
+
+  function t(key, vars) {
+    var str = (STRINGS[key] && (STRINGS[key][lang] || STRINGS[key]['en'])) || key;
+    if (vars) str = str.replace(/{(w+)}/g, function(_, k) { return vars[k] !== undefined ? vars[k] : '{' + k + '}'; });
+    return str;
+  }
+
+  function applyI18n() {
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var key  = el.dataset.i18n;
+      var vars = el.dataset.i18nVars ? JSON.parse(el.dataset.i18nVars) : null;
+      el.textContent = t(key, vars);
+    });
+  }
+
+  applyI18n();
+
+  // Language switcher — call window.setLang('ja') from console or UI to switch
+  window.setLang = function (code) {
+    lang = code;
+    localStorage.setItem('vex-lang', code);
+    applyI18n();
+    // Re-resolve copy button label if popover is open
+    copyBtn.textContent = t('ui.cell.copyFilename');
+  };
+
+  // ── Slug popover ─────────────────────────────────────────────────────────────
+  var popover = document.getElementById('slugPopover');
+  var slugEl  = document.getElementById('slugPopoverSlug');
+  var fileEl  = document.getElementById('slugPopoverFile');
+  var copyBtn = document.getElementById('slugPopoverBtn');
+  var currentSlug = '';
+
+  // Event delegation — reads identity from data attributes, not inline strings.
+  // data-slug / data-title / data-date are the canonical fields; localization
+  // can remap displayed values via a language map without touching this logic.
+  document.addEventListener('click', function (e) {
+    var cell = e.target.closest('.cell--missing');
+    if (cell) {
+      currentSlug = cell.dataset.slug;
+      slugEl.textContent = currentSlug;
+      fileEl.textContent = currentSlug + '.html';
+      copyBtn.textContent = 'Copy filename';
+
+      var rect = cell.getBoundingClientRect();
+      var top  = rect.bottom + window.scrollY + 8;
+      var left = rect.left  + window.scrollX;
+
+      popover.style.display = 'block';
+      var pw = popover.offsetWidth;
+      if (left + pw > window.innerWidth - 16) left = window.innerWidth - pw - 16;
+      popover.style.top  = top + 'px';
+      popover.style.left = left + 'px';
+      return;
+    }
+    if (!popover.contains(e.target)) {
+      popover.style.display = 'none';
+    }
+  });
+
+  copyBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    navigator.clipboard.writeText(currentSlug + '.html').then(function () {
+      copyBtn.textContent = t('ui.cell.copied');
+      setTimeout(function () { copyBtn.textContent = t('ui.cell.copyFilename'); }, 1500);
+    });
+  });
+}());
+</script>
 
 </body>
 </html>

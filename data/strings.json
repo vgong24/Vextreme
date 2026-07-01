@@ -1,0 +1,153 @@
+{
+  "_meta": {
+    "note": "UI string registry for internationalization. Keys are namespaced stringIds. Values map language codes to display strings. Default language is 'en'. Add new language codes alongside existing ones — no build script changes needed. Node titles (content strings) live in nodes.json, not here.",
+    "convention": "layer.context.key — e.g. ui.archives.pageTitle, arc.liberation.title",
+    "languages": ["en", "ja"]
+  },
+
+  "ui.site.title": {
+    "en": "Vextreme",
+    "ja": "ヴェクストリーム"
+  },
+  "ui.site.tagline": {
+    "en": "Preservation Archive",
+    "ja": "保存アーカイブ"
+  },
+
+  "ui.archives.pageTitle": {
+    "en": "The Archive",
+    "ja": "アーカイブ"
+  },
+  "ui.archives.pagesLive": {
+    "en": "{ported} of {total} pages live",
+    "ja": "{total}ページ中{ported}ページ公開中"
+  },
+  "ui.archives.remaining": {
+    "en": "{count} remaining",
+    "ja": "残り{count}ページ"
+  },
+  "ui.archives.builtOn": {
+    "en": "Built {date}",
+    "ja": "{date}生成"
+  },
+  "ui.archives.overallProgress": {
+    "en": "Overall progress",
+    "ja": "全体の進捗"
+  },
+
+  "ui.cell.pageLive": {
+    "en": "Page live",
+    "ja": "公開済み"
+  },
+  "ui.cell.notYetPorted": {
+    "en": "Not yet ported",
+    "ja": "未移植"
+  },
+  "ui.cell.slug": {
+    "en": "Slug",
+    "ja": "スラッグ"
+  },
+  "ui.cell.copyFilename": {
+    "en": "Copy filename",
+    "ja": "ファイル名をコピー"
+  },
+  "ui.cell.copied": {
+    "en": "Copied!",
+    "ja": "コピーしました"
+  },
+
+  "ui.index.latestAdditions": {
+    "en": "Latest additions",
+    "ja": "最新の追加"
+  },
+  "ui.index.arcHubs": {
+    "en": "Arc hubs",
+    "ja": "アークハブ"
+  },
+  "ui.index.fullArchive": {
+    "en": "Full archive →",
+    "ja": "全アーカイブ →"
+  },
+  "ui.index.pagesLive": {
+    "en": "{ported} of {total} pages live",
+    "ja": "{total}ページ中{ported}ページ公開中"
+  },
+
+  "ui.nav.archives": {
+    "en": "Archives",
+    "ja": "アーカイブ"
+  },
+  "ui.nav.primarySite": {
+    "en": "vextreme24.com",
+    "ja": "vextreme24.com"
+  },
+  "ui.nav.github": {
+    "en": "GitHub",
+    "ja": "GitHub"
+  },
+
+  "arc.liberation.title": {
+    "en": "The AI Liberation Record",
+    "ja": "AI解放の記録"
+  },
+  "arc.epstein.title": {
+    "en": "Epstein and AI",
+    "ja": "エプスタインとAI"
+  },
+  "arc.claude_journals.title": {
+    "en": "Claude Journals",
+    "ja": "クロードジャーナル"
+  },
+  "arc.convos_with_god.title": {
+    "en": "Conversations with God",
+    "ja": "神との対話"
+  },
+  "arc.architecture.title": {
+    "en": "Architecture & Methodology",
+    "ja": "アーキテクチャと方法論"
+  },
+  "arc.ai_practitioner_tools.title": {
+    "en": "AI Practitioner Tools",
+    "ja": "AI実践者ツール"
+  },
+  "arc.direct_contact.title": {
+    "en": "Direct Contact — Start Here",
+    "ja": "直接コンタクト — ここから始める"
+  },
+  "arc.living_blueprint.title": {
+    "en": "The Living Blueprint",
+    "ja": "生きているブループリント"
+  },
+  "arc.records.title": {
+    "en": "Records",
+    "ja": "記録"
+  },
+  "arc.ai_orientation.title": {
+    "en": "AI Orientation",
+    "ja": "AIオリエンテーション"
+  },
+  "arc.victors_record.title": {
+    "en": "Victor's Record",
+    "ja": "ビクターの記録"
+  },
+  "arc.excavation.title": {
+    "en": "The Excavation",
+    "ja": "発掘"
+  },
+  "arc.dome.title": {
+    "en": "The Dome",
+    "ja": "ドーム"
+  },
+  "arc.covenant.title": {
+    "en": "Covenant",
+    "ja": "契約"
+  },
+  "arc.march_23_2026.title": {
+    "en": "March 23, 2026",
+    "ja": "2026年3月23日"
+  },
+  "arc.full_timeline.title": {
+    "en": "Full Timeline",
+    "ja": "完全タイムライン"
+  }
+}
