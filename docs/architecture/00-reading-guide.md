@@ -48,6 +48,9 @@ Read in this order. Each section's decisions constrain the next.
       ↓
 09-constraints    — the hard rules. These are not preferences. Violating any
                     one breaks the system in ways that are painful to reverse.
+      ↓
+10-directory-structure — what lib/, components/, and widgets/ mean and how
+                    to decide which directory a new file belongs in.
 ```
 
 <!-- [VXG RealForever] -->
