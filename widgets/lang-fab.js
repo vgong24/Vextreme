@@ -82,30 +82,92 @@
   }
 
   // ── Strings loading ──────────────────────────────────────────────────────────
+  //
+  // Default: fetch the flat strings.{lang}.json bundle — every string in the
+  // project, same as before this scope split existed. This is still the
+  // correct default for a small page count and stays fully supported.
+  //
+  // Opt-in: a page that sets window.VEX_STRING_SCOPES = ['pages.my-slug'] (or
+  // any list of scope names — see data/strings/compiled/scopes/index.json for
+  // what exists) before this script loads gets only those scopes plus
+  // 'common', fetched in parallel and merged client-side. This is the path a
+  // large page count should move onto over time — see
+  // docs/architecture/06-i18n.md, "Scaling past one bundle." Both paths ship
+  // the same bundle shape ({ key: { text, aria-label } }), so applyLang()
+  // below doesn't need to know which one was used.
+  //
+  // A page can also opt into a variant/staging bundle for one of its scopes
+  // via window.VEX_STRING_VARIANT = 'b' (matches a source file's _meta.variant,
+  // e.g. for an A/B copy test) — only scopes that actually have that variant
+  // compiled fall back to the base scope bundle silently.
 
   var _langStrings = {};
 
-  function loadStringsForLang(lang, onReady) {
-    var url = CDN_BASE + '/data/strings/compiled/strings.' + lang + '.json?v=' + VERSION;
+  function fetchJSON(url, onDone) {
     var req = new XMLHttpRequest();
     req.open('GET', url, true);
     req.onload = function () {
       if (req.status === 200) {
-        try {
-          _langStrings = JSON.parse(req.responseText);
-        } catch (e) {
-          _logger.warn({ code: 'LANG_FAB_STRINGS_PARSE_FAILED', message: 'Failed to parse strings for ' + lang, lang: lang });
-        }
+        try { onDone(null, JSON.parse(req.responseText)); }
+        catch (e) { onDone(e); }
       } else {
-        _logger.warn({ code: 'LANG_FAB_STRINGS_HTTP_ERROR', message: 'strings.' + lang + '.json returned HTTP ' + req.status, lang: lang, status: req.status });
+        onDone(new Error('HTTP ' + req.status));
       }
-      onReady();
     };
-    req.onerror = function () {
-      _logger.warn({ code: 'LANG_FAB_STRINGS_FETCH_FAILED', message: 'Failed to fetch strings for ' + lang, lang: lang });
-      onReady();
-    };
+    req.onerror = function () { onDone(new Error('network error')); };
     req.send();
+  }
+
+  function loadStringsForLang(lang, onReady) {
+    var scopes = window.VEX_STRING_SCOPES;
+
+    if (!scopes || !scopes.length) {
+      // Legacy / default path — unchanged behavior.
+      var url = CDN_BASE + '/data/strings/compiled/strings.' + lang + '.json?v=' + VERSION;
+      fetchJSON(url, function (err, data) {
+        if (err) {
+          _logger.warn({ code: 'LANG_FAB_STRINGS_FETCH_FAILED', message: 'Failed to fetch strings for ' + lang, lang: lang, error: String(err) });
+        } else {
+          _langStrings = data;
+        }
+        onReady();
+      });
+      return;
+    }
+
+    // Scoped path — always include 'common', dedupe, fetch each scope bundle
+    // (falling back to the base scope if a requested variant isn't compiled),
+    // merge into one flat object so applyLang() sees no difference.
+    var variant = window.VEX_STRING_VARIANT;
+    var wanted = scopes.indexOf('common') === -1 ? ['common'].concat(scopes) : scopes.slice();
+    var merged = {};
+    var remaining = wanted.length;
+
+    if (!remaining) { onReady(); return; }
+
+    wanted.forEach(function (scope) {
+      var name = variant ? scope + '.variant-' + variant : scope;
+      var url  = CDN_BASE + '/data/strings/compiled/scopes/' + name + '.' + lang + '.json?v=' + VERSION;
+
+      fetchJSON(url, function (err, data) {
+        if (err && variant) {
+          // Requested variant not compiled for this scope — fall back to base.
+          var baseUrl = CDN_BASE + '/data/strings/compiled/scopes/' + scope + '.' + lang + '.json?v=' + VERSION;
+          fetchJSON(baseUrl, function (baseErr, baseData) {
+            if (!baseErr) Object.keys(baseData).forEach(function (k) { merged[k] = baseData[k]; });
+            else _logger.warn({ code: 'LANG_FAB_STRINGS_HTTP_ERROR', message: 'scope bundle missing for ' + scope, lang: lang, scope: scope });
+            if (--remaining === 0) { _langStrings = merged; onReady(); }
+          });
+          return;
+        }
+        if (err) {
+          _logger.warn({ code: 'LANG_FAB_STRINGS_HTTP_ERROR', message: 'scope bundle missing for ' + scope, lang: lang, scope: scope });
+        } else {
+          Object.keys(data).forEach(function (k) { merged[k] = data[k]; });
+        }
+        if (--remaining === 0) { _langStrings = merged; onReady(); }
+      });
+    });
   }
 
   // ── i18n swap ────────────────────────────────────────────────────────────────
