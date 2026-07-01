@@ -59,6 +59,9 @@ data/
   strings/compiled/   — compiled language bundles (generated artifact)
   index.json          — pre-built read index (generated artifact)
 
+widgets/
+  lang-fab.js           — floating language selector (self-contained, page-agnostic)
+
 lib/
   build-index.js        — builds data/index.json
   build-archives.js     — builds pages/archives.html
