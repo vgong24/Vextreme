@@ -504,6 +504,28 @@ refactor toward the pattern rather than extend the fork.*
 
 # Continuity system
 
+## What is a session
+
+A **session** is the scope of one working thread — everything from when a Claude
+instance picks up the work to when it reaches a completion state worth documenting.
+"Worth documenting" is a threshold, not a fixed unit: a session can be one focused
+change or several related ones, but it ends at a point where the state of the system
+has moved and a future instance would need to know what happened to pick up cleanly.
+
+At that threshold, the instance re-reads its own thread — not just the final diff,
+but the reasoning that produced it — and writes the summary itself, while that
+reasoning is still live in context. This is why session entries in the batch files
+read as reasoning chains (what was tried, what was rejected, what's still assumed)
+rather than commit-log summaries: the commit log already has the diff. The batch
+entry is the thing the diff can't tell you.
+
+A session is not bounded by wall-clock time or by a single PR. Two sessions on the
+same day, continuing the same thread, are recorded as one entry with a "continues
+from" note (see Session 004 → 005 in the active batch file for an example) — the
+split that matters is the reasoning arc, not the calendar.
+
+---
+
 Three layers, three time horizons:
 
 | Layer | File | Purpose | Written by |

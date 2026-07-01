@@ -1,0 +1,187 @@
+{
+  "_meta": {
+    "scope": "demo",
+    "description": "Strings for pages/vextreme-demo.html — the architecture demo page. Client-facing: explains why the system is built this way and shows it live, not just described.",
+    "keyConvention": "demo.{element-type}.{semantic-name}"
+  },
+
+  "demo.heading.title": {
+    "strings": {
+      "en": { "text": "How Vextreme Is Built" },
+      "ja": { "text": "Vextremeの構築方法" }
+    }
+  },
+  "demo.heading.subtitle": {
+    "strings": {
+      "en": { "text": "A live demonstration of the architecture, tests, and process behind this system — not a description of it." },
+      "ja": { "text": "このシステムを支えるアーキテクチャ、テスト、プロセスのライブデモです — 説明ではなく、実物です。" }
+    }
+  },
+
+  "demo.section.why.heading": {
+    "strings": {
+      "en": { "text": "Why this exists" },
+      "ja": { "text": "存在意義" }
+    }
+  },
+  "demo.section.why.body": {
+    "strings": {
+      "en": { "text": "This page exists for organizations evaluating whether their content, data, or process infrastructure can scale past its current size without a rebuild. Vextreme started as a single-page loader and grew into 88 content nodes across 16 arcs, two languages, and two deployment surfaces — without ever changing its core data model. That is the property worth demonstrating: a baseline standard that holds as scope grows, not a finished product." },
+      "ja": { "text": "このページは、コンテンツ、データ、またはプロセスのインフラが再構築なしに現在の規模を超えて拡張できるかを検討している組織のために存在します。Vextremeは単一ページのローダーとして始まり、コアのデータモデルを一度も変更することなく、16のアークにまたがる88のコンテンツノード、2つの言語、2つのデプロイ面へと成長しました。これこそが実証する価値のある特性です — 完成品ではなく、規模が拡大しても保たれる基準です。" }
+    }
+  },
+
+  "demo.section.comparison.heading": {
+    "strings": {
+      "en": { "text": "Why this approach" },
+      "ja": { "text": "このアプローチを選ぶ理由" }
+    }
+  },
+  "demo.comparison.label.this-approach": {
+    "strings": {
+      "en": { "text": "Vextreme" },
+      "ja": { "text": "Vextreme" }
+    }
+  },
+  "demo.comparison.label.conventional": {
+    "strings": {
+      "en": { "text": "Conventional" },
+      "ja": { "text": "従来型" }
+    }
+  },
+  "demo.comparison.cqrs.approach": {
+    "strings": {
+      "en": { "text": "Write side (source files) and read side (generated artifacts) are separate. Never edit a generated file." },
+      "ja": { "text": "書き込み側（ソースファイル）と読み取り側（生成された成果物）は分離されています。生成ファイルは直接編集しません。" }
+    }
+  },
+  "demo.comparison.cqrs.alternative": {
+    "strings": {
+      "en": { "text": "Conventional alternative: hand-edit the deployed HTML/JSON directly. Works until two people edit the same generated file and the source of truth becomes ambiguous." },
+      "ja": { "text": "従来の代替案：デプロイされたHTML/JSONを直接手動編集する方法。2人が同じ生成ファイルを編集すると、信頼できる情報源が曖昧になるまでは機能します。" }
+    }
+  },
+  "demo.comparison.slug.approach": {
+    "strings": {
+      "en": { "text": "Every piece of content is identified by a slug, not a file path or URL. Arc membership, ordering, and translation all reference the slug." },
+      "ja": { "text": "すべてのコンテンツは、ファイルパスやURLではなくスラッグによって識別されます。アークの所属、順序、翻訳はすべてスラッグを参照します。" }
+    }
+  },
+  "demo.comparison.slug.alternative": {
+    "strings": {
+      "en": { "text": "Conventional alternative: reference content by URL or folder location. Works until a reorganization breaks every link that pointed at the old path." },
+      "ja": { "text": "従来の代替案：URLやフォルダの場所でコンテンツを参照する方法。再編成が行われるまでは機能しますが、その際に古いパスを指していたすべてのリンクが壊れます。" }
+    }
+  },
+  "demo.comparison.i18n.approach": {
+    "strings": {
+      "en": { "text": "No display string is hardcoded anywhere in the codebase. Every string is a keyed entry in a source file, compiled into per-language bundles." },
+      "ja": { "text": "コードベースのどこにもハードコードされた表示文字列はありません。すべての文字列はソースファイル内のキー付きエントリであり、言語ごとのバンドルにコンパイルされます。" }
+    }
+  },
+  "demo.comparison.i18n.alternative": {
+    "strings": {
+      "en": { "text": "Conventional alternative: strings written inline in templates or JS. Works until a second language is needed and every file has to be hunted through by hand." },
+      "ja": { "text": "従来の代替案：テンプレートやJS内に文字列を直接記述する方法。2つ目の言語が必要になるまでは機能しますが、その際にすべてのファイルを手作業で探さなければなりません。" }
+    }
+  },
+  "demo.comparison.continuity.approach": {
+    "strings": {
+      "en": { "text": "Every working session is logged — what changed, what was assumed, what's still open — so the next contributor (human or AI) starts informed instead of re-deriving decisions." },
+      "ja": { "text": "すべての作業セッションが記録されます — 何が変更され、何が前提とされ、何が未解決かが残るため、次の担当者（人間かAIかを問わず）は判断をやり直すことなく、情報を得た状態で始められます。" }
+    }
+  },
+  "demo.comparison.continuity.alternative": {
+    "strings": {
+      "en": { "text": "Conventional alternative: tribal knowledge held by whoever built it. Works until that person is unavailable and the reasoning behind a decision is gone." },
+      "ja": { "text": "従来の代替案：構築した人だけが知る暗黙知に頼る方法。その人が不在になった途端、判断の背景にあった理由は失われます。" }
+    }
+  },
+
+  "demo.section.live.heading": {
+    "strings": {
+      "en": { "text": "Live architecture snapshot" },
+      "ja": { "text": "ライブ・アーキテクチャ・スナップショット" }
+    }
+  },
+  "demo.section.live.body": {
+    "strings": {
+      "en": { "text": "The numbers below are not written into this page. They are fetched from data/index.json at page load, the same generated artifact every page on this site reads from." },
+      "ja": { "text": "以下の数値はこのページに直接書き込まれたものではありません。このサイトのすべてのページが参照するのと同じ生成済み成果物、data/index.jsonからページ読み込み時に取得されています。" }
+    }
+  },
+  "demo.live.label.nodes": {
+    "strings": {
+      "en": { "text": "content nodes" },
+      "ja": { "text": "コンテンツノード" }
+    }
+  },
+  "demo.live.label.arcs": {
+    "strings": {
+      "en": { "text": "arcs" },
+      "ja": { "text": "アーク" }
+    }
+  },
+  "demo.live.label.langs": {
+    "strings": {
+      "en": { "text": "supported languages" },
+      "ja": { "text": "対応言語" }
+    }
+  },
+  "demo.live.label.built-at": {
+    "strings": {
+      "en": { "text": "index.json last built" },
+      "ja": { "text": "index.json 最終ビルド日時" }
+    }
+  },
+  "demo.live.status.loading": {
+    "strings": {
+      "en": { "text": "Fetching live data…" },
+      "ja": { "text": "ライブデータを取得中…" }
+    }
+  },
+  "demo.live.status.failed": {
+    "strings": {
+      "en": { "text": "Live fetch failed — showing build-time values instead." },
+      "ja": { "text": "ライブ取得に失敗しました — ビルド時の値を表示しています。" }
+    }
+  },
+
+  "demo.section.tests.heading": {
+    "strings": {
+      "en": { "text": "Test coverage" },
+      "ja": { "text": "テストカバレッジ" }
+    }
+  },
+  "demo.section.tests.body": {
+    "strings": {
+      "en": { "text": "39 tests across 4 files, one per pipeline stage, run in CI on every pull request: content pipeline (index build correctness), strings pipeline (compile + manifest integrity), browser navigation (arc position and adjacency logic), and build output (generated HTML structure). A change that breaks any stage fails before it reaches main." },
+      "ja": { "text": "39のテストが、パイプラインの各段階に対応する4つのファイルにわたって存在し、すべてのプルリクエストでCI実行されます：コンテンツパイプライン（インデックス構築の正確性）、文字列パイプライン（コンパイルとマニフェストの整合性）、ブラウザナビゲーション（アークの位置と隣接ロジック）、ビルド出力（生成されたHTML構造）。いずれかの段階を壊す変更は、mainに到達する前に失敗します。" }
+    }
+  },
+
+  "demo.section.gaps.heading": {
+    "strings": {
+      "en": { "text": "Why the gaps are visible" },
+      "ja": { "text": "空白が見える理由" }
+    }
+  },
+  "demo.section.gaps.body": {
+    "strings": {
+      "en": { "text": "The archive dashboard linked below intentionally shows unported and untranslated pages as visible gaps rather than hiding them. That is not an oversight — it is the comparison point. What you see there is the system mid-build, next to the completed state already live in production. The distance between the two is the actual, unedited progress of a scaling content system." },
+      "ja": { "text": "以下にリンクされているアーカイブダッシュボードは、未移植・未翻訳のページを隠すのではなく、意図的に見える空白として表示しています。これは見落としではなく、比較のための基準点です。そこに見えるのは構築途中のシステムであり、すでに本番環境で稼働している完成状態と並んでいます。その2つの間の距離こそが、拡大するコンテンツシステムの、編集されていない実際の進捗です。" }
+    }
+  },
+  "demo.link.archives": {
+    "strings": {
+      "en": { "text": "View the archive dashboard →", "aria-label": "View the archive dashboard, including in-progress pages" },
+      "ja": { "text": "アーカイブダッシュボードを見る →", "aria-label": "進行中のページを含むアーカイブダッシュボードを見る" }
+    }
+  },
+  "demo.link.production": {
+    "strings": {
+      "en": { "text": "View the completed state in production →", "aria-label": "View the completed state on vextreme24.com" },
+      "ja": { "text": "本番環境の完成状態を見る →", "aria-label": "vextreme24.comで完成状態を見る" }
+    }
+  }
+}

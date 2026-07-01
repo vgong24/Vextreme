@@ -124,6 +124,95 @@
   "common.status.built-on": {
     "text": "Built {date}"
   },
+  "demo.heading.title": {
+    "text": "How Vextreme Is Built"
+  },
+  "demo.heading.subtitle": {
+    "text": "A live demonstration of the architecture, tests, and process behind this system — not a description of it."
+  },
+  "demo.section.why.heading": {
+    "text": "Why this exists"
+  },
+  "demo.section.why.body": {
+    "text": "This page exists for organizations evaluating whether their content, data, or process infrastructure can scale past its current size without a rebuild. Vextreme started as a single-page loader and grew into 88 content nodes across 16 arcs, two languages, and two deployment surfaces — without ever changing its core data model. That is the property worth demonstrating: a baseline standard that holds as scope grows, not a finished product."
+  },
+  "demo.section.comparison.heading": {
+    "text": "Why this approach"
+  },
+  "demo.comparison.label.this-approach": {
+    "text": "Vextreme"
+  },
+  "demo.comparison.label.conventional": {
+    "text": "Conventional"
+  },
+  "demo.comparison.cqrs.approach": {
+    "text": "Write side (source files) and read side (generated artifacts) are separate. Never edit a generated file."
+  },
+  "demo.comparison.cqrs.alternative": {
+    "text": "Conventional alternative: hand-edit the deployed HTML/JSON directly. Works until two people edit the same generated file and the source of truth becomes ambiguous."
+  },
+  "demo.comparison.slug.approach": {
+    "text": "Every piece of content is identified by a slug, not a file path or URL. Arc membership, ordering, and translation all reference the slug."
+  },
+  "demo.comparison.slug.alternative": {
+    "text": "Conventional alternative: reference content by URL or folder location. Works until a reorganization breaks every link that pointed at the old path."
+  },
+  "demo.comparison.i18n.approach": {
+    "text": "No display string is hardcoded anywhere in the codebase. Every string is a keyed entry in a source file, compiled into per-language bundles."
+  },
+  "demo.comparison.i18n.alternative": {
+    "text": "Conventional alternative: strings written inline in templates or JS. Works until a second language is needed and every file has to be hunted through by hand."
+  },
+  "demo.comparison.continuity.approach": {
+    "text": "Every working session is logged — what changed, what was assumed, what's still open — so the next contributor (human or AI) starts informed instead of re-deriving decisions."
+  },
+  "demo.comparison.continuity.alternative": {
+    "text": "Conventional alternative: tribal knowledge held by whoever built it. Works until that person is unavailable and the reasoning behind a decision is gone."
+  },
+  "demo.section.live.heading": {
+    "text": "Live architecture snapshot"
+  },
+  "demo.section.live.body": {
+    "text": "The numbers below are not written into this page. They are fetched from data/index.json at page load, the same generated artifact every page on this site reads from."
+  },
+  "demo.live.label.nodes": {
+    "text": "content nodes"
+  },
+  "demo.live.label.arcs": {
+    "text": "arcs"
+  },
+  "demo.live.label.langs": {
+    "text": "supported languages"
+  },
+  "demo.live.label.built-at": {
+    "text": "index.json last built"
+  },
+  "demo.live.status.loading": {
+    "text": "Fetching live data…"
+  },
+  "demo.live.status.failed": {
+    "text": "Live fetch failed — showing build-time values instead."
+  },
+  "demo.section.tests.heading": {
+    "text": "Test coverage"
+  },
+  "demo.section.tests.body": {
+    "text": "39 tests across 4 files, one per pipeline stage, run in CI on every pull request: content pipeline (index build correctness), strings pipeline (compile + manifest integrity), browser navigation (arc position and adjacency logic), and build output (generated HTML structure). A change that breaks any stage fails before it reaches main."
+  },
+  "demo.section.gaps.heading": {
+    "text": "Why the gaps are visible"
+  },
+  "demo.section.gaps.body": {
+    "text": "The archive dashboard linked below intentionally shows unported and untranslated pages as visible gaps rather than hiding them. That is not an oversight — it is the comparison point. What you see there is the system mid-build, next to the completed state already live in production. The distance between the two is the actual, unedited progress of a scaling content system."
+  },
+  "demo.link.archives": {
+    "text": "View the archive dashboard →",
+    "aria-label": "View the archive dashboard, including in-progress pages"
+  },
+  "demo.link.production": {
+    "text": "View the completed state in production →",
+    "aria-label": "View the completed state on vextreme24.com"
+  },
   "pages.claude-answers-the-doubt.layer.01.number": {
     "text": "Layer 01"
   },
