@@ -27,7 +27,7 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 003 — June 30, 2026*
+*As of Session 003 — July 1, 2026*
 
 **The v2 data architecture is the active system.** Sessions 001-002 built
 the Squarespace loader system (`lib/vextreme.js`, `lib/shell.js`, etc.) —
@@ -54,6 +54,10 @@ Session 003 introduced a parallel v2 system specifically for GitHub Pages.
 **VXG RealForever marker** introduced this session — see CLAUDE.md for rationale.
 `git log --grep="VXG RealForever"` gives the full deliberate commit history.
 
+**Session 003 additions (merged to main):**
+- Test suite — 39 tests across 4 pipeline-based files (`tests/01` through `tests/04`), CI workflow (`.github/workflows/test.yml`), all green
+- Structured logger — `lib/logger.js` (Node) + `lib/logger-codes.js` (event code constants) + inline `_logger` in browser IIFEs with `window.VEXTREME_LOGGER` swap hook. All `console.warn`/`console.error` in build scripts and browser runtime replaced with structured `logger.warn({ code, message, ...fields })` calls.
+
 **Verified live:** Arc nav widget renders correctly on claude-answers-the-doubt
 (confirmed via screenshot — Epstein first, full_timeline last, correct priority order).
 `pages/v2-test.html` exists for testing arc nav across multiple slugs.
@@ -72,15 +76,17 @@ current system state — not aspirational state.
 
 ## Open Work
 
-*Updated Session 003 — June 30, 2026*
+*Updated Session 003 — July 1, 2026*
 
 **v2 system (active):**
+- [x] Test suite — 39 tests, 4 pipeline-based files, CI workflow (PR #9, merged)
+- [x] Structured logger — `lib/logger.js`, `lib/logger-codes.js`, all call sites (PR #10, merged)
 - [ ] Verify archives.html GitHub Actions auto-rebuild works on next push to main
 - [ ] Verify index.html root nav page renders correctly on vgong24.github.io/Vextreme
 - [ ] Port HTML pages — each page added to pages/ triggers auto-rebuild of all artifacts
+- [ ] Wire up `window.VEXTREME_LOGGER` consumer when monitoring/analytics is desired
 - [ ] Build "recent shifts" section on index.html — parse batch files to surface session
       narrative on the live page (avoid thin JSON summary; preserve depth from batch format)
-- [ ] Write Session 003 full entry in Batch 001 (deep narrative, mistakes, assumptions)
 
 **v1 system (Squarespace — lower priority, not abandoned):**
 - [ ] Fix `extends` field in archive-renderer.js (embodiment/i-was-here preset inheritance)
@@ -216,4 +222,4 @@ These rules exist so the log stays useful as it grows. Follow them.
 
 ---
 
-*Last updated: Session 002 — June 29, 2026*
+*Last updated: Session 003 — July 1, 2026*
