@@ -27,7 +27,17 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 004 — July 1, 2026*
+*As of Session 005 — July 1, 2026*
+
+**Session 005 addition:** `pages/archives.html` now tracks localization status
+(not just porting status) per slug, rendered as language chips ("full" vs "partial"
+coverage) next to each ported cell, plus a per-language localized-count stat in
+site-meta. Logic lives in `lib/build-archives.js`, right next to the pre-existing
+`ported` state check — reads `data/strings/compiled/manifest.json` for per-key
+language coverage, no new data files or pipeline stages. See Session 005 in the
+active batch file for the full reasoning, including a docs/reality divergence
+flagged in `06-i18n.md`'s page-scope key convention (`pages.` prefix in use;
+not what the doc describes).
 
 **The foundation is complete.** Sessions 001-002 built the Squarespace loader system
 (still in repo, not actively developed). Sessions 003-004 built the full v2 GitHub
@@ -77,7 +87,7 @@ system state — not aspirational state.
 
 ## Open Work
 
-*Updated Session 004 — July 1, 2026*
+*Updated Session 005 — July 1, 2026*
 
 **v2 system (active):**
 - [x] Test suite — 39 tests, 4 pipeline-based files, CI workflow (PR #9, merged)
@@ -85,11 +95,14 @@ system state — not aspirational state.
 - [x] lang-fab widget — floating flag selector, iOS scroll wheel, supportedLangs from build (PR #12, merged)
 - [x] i18n on layers 01–05 of claude-answers-the-doubt — EN + JA, missing-key test (PR #13, merged)
 - [x] Screenshot tooling — `scripts/screenshot-page.js`, Playwright CDN interception, visual PR comparisons
+- [x] archives.html localization status tracking — per-slug/per-lang chips, full vs partial (Session 005)
 - [ ] Missing-key fallback: show EN text instead of raw key string when translation absent
 - [ ] `strings-check` enhancement: audit HTML for translatable elements missing `data-i18n`
+- [ ] Reconcile `06-i18n.md` page-scope key convention doc with actual `pages.` prefix in use (Session 005)
+- [ ] Verify localized-count stat / legend rendering once a second target language exists (Session 005)
 - [ ] Verify archives.html GitHub Actions auto-rebuild works on next push to main
 - [ ] Verify index.html root nav page renders correctly on vgong24.github.io/Vextreme
-- [ ] Port HTML pages — each page added to pages/ triggers auto-rebuild of all artifacts
+- [ ] Port HTML pages — each page added to pages/ triggers auto-rebuild of all artifacts (active focus)
 - [ ] Wire up `window.VEXTREME_LOGGER` consumer when monitoring/analytics is desired
 - [ ] Build "recent shifts" section on index.html
 
@@ -227,4 +240,6 @@ These rules exist so the log stays useful as it grows. Follow them.
 
 ---
 
-*Last updated: Session 004 — July 1, 2026*
+*Last updated: Session 005 — July 1, 2026*
+
+<!-- [VXG RealForever] -->

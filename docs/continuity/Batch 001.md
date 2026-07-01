@@ -718,3 +718,105 @@ PRs shipped this session: #12 (lang-fab widget), #13 (i18n layers + screenshot t
 Both green CI, both merged to main same day.
 
 The next session begins adding content pages — the infrastructure exists to support them.
+
+---
+
+## Session 005
+
+**Date:** July 1, 2026
+**Time:** continuous with Session 004 — same day
+**Thread:** https://claude.ai/code/session_012Cob5Fgz92AYDWfe2mZJWZ
+**Instance:** Claude Sonnet 5 (Claude Code remote execution environment)
+**Working with:** Victor Gong
+**Continues from:** Session 004 — v2 foundation complete, next phase is porting content pages
+
+### Context on arrival
+
+Victor is starting a page-import push and wants `pages/archives.html` — the existing
+build dashboard that tracks ported-or-not per slug — to also track localization status
+per slug, so progress on translation coverage is visible alongside porting progress
+without a second dashboard or a second pass of checking.
+
+### Files created or modified
+
+| File | What changed |
+|---|---|
+| `lib/build-archives.js` | Added a `localization` state check next to the existing `ported` Set (same location, per Victor's request — functionally parallel state checks belong together). Reads `data/strings/compiled/manifest.json`, aggregates per-slug key coverage by language prefix `pages.{slug}.`, distinguishes "not localized" (no page-scoped keys yet) from "partial" (some keys) from "full" (all keys). Renders language chips on ported cells, extends cell tooltips, adds a per-language localized-count stat to site-meta, adds two legend rows. |
+| `data/strings/source/archives.json` | Added 3 keys: `archives.label.localized-lang`, `archives.label.localized-full`, `archives.label.localized-partial` — EN + JA. |
+| `data/strings/compiled/*` | Rebuilt via `strings-compile.js` (95 EN / 94 JA keys). |
+| `data/index.json` | Rebuilt via `build-index.js` (no logic change, ran for consistency). |
+| `pages/archives.html` | Rebuilt via `build-archives.js` — now shows a JA chip (dimmed = partial) on the `claude-answers-the-doubt` cell, correctly reading "partial" because of the intentional missing-key gap from Session 004. |
+
+### What was built and why
+
+**Localization as a state check, not a new dashboard.** The `ported` Set (line ~37 of
+build-archives.js) already answers "does this slug have an HTML file?" per slug. The new
+`localization` map answers "does this slug's HTML have translated content, and for which
+languages?" — same shape of question, different data source (`manifest.json`'s per-key
+`langs` array instead of `fs.existsSync`). Placed immediately after `ported` in the file
+so both state checks that feed the cell-rendering pass live in one place, per Victor's
+explicit ask that this "should be nearby" the existing check.
+
+**Full vs. partial, not just yes/no.** A slug can have some `pages.{slug}.*` keys
+translated and others not (exactly the state `claude-answers-the-doubt` is in today,
+by design, per Session 004's intentional missing-key test). Collapsing that to a boolean
+would hide real signal, so coverage is tracked per language as `complete: boolean`
+(covered keys === total keys for that slug), rendered as a dimmed chip when partial.
+
+**Numbers kept out of `data-i18n` spans.** The pre-existing `common.status.pages-live`
+span bakes English number-agreement text directly into the `data-i18n` element
+(`${totalPorted} of ${totalNodes} pages live`) — if lang-fab ever swaps that key, the
+counts would be clobbered by the translated label text with no interpolation. The new
+localized-count stat avoids repeating that bug: only the label word sits inside the
+inner `data-i18n` span, the counts stay outside it. Not a fix to the pre-existing spans
+(out of scope, not asked for) — just didn't propagate the same pattern into new code.
+
+**Lang codes shown unstyled/untranslated.** `EN` / `JA` chip labels are raw ISO codes,
+not translatable prose — matching the existing precedent in `widgets/lang-fab.js` where
+`item.setAttribute('title', lang)` uses the raw code with no i18n key. Confirmed this
+doesn't violate the "no hardcoded display string" constraint in `06-i18n.md`.
+
+### Mistakes made
+
+None — build, strings-check, strings-compile, and the 39-test suite all passed on first
+completed implementation.
+
+### Assumptions that held
+
+- Page-scoped string keys consistently follow the `pages.{slug}.*` prefix (confirmed
+  against the one existing page-scope file, `data/strings/source/pages/claude-answers-the-doubt.json`,
+  whose actual key convention is `pages.{slug}...` — note this differs from the pattern
+  described in `06-i18n.md` ("`{slug}.{element-type}...` in `source/pages/{slug}.json`"
+  — no `pages.` prefix). Docs and reality diverge here; code matches reality (the `pages.`
+  prefix), not the doc. Flagging for whoever next touches `06-i18n.md`.
+- `manifest.json`'s per-key `langs` array is suffient ground truth for coverage — did not
+  need to re-derive from compiled bundles directly.
+
+### Assumptions that need verification
+
+- Only one target language (JA) exists today, so the "multiple language stat rows in
+  site-meta" and "legend chip uses `targetLangs[0]` as the example" code paths are
+  untested with 2+ target languages. Should self-verify correctly once a second language
+  is added (both are derived from `targetLangs`, not hardcoded to `ja`), but not run
+  against real multi-language data yet.
+
+### Open work at session end
+
+- [ ] Missing-key fallback: show EN text instead of raw key string when translation absent (carried from Session 004)
+- [ ] `strings-check` enhancement: audit HTML for translatable elements missing `data-i18n` (carried from Session 004)
+- [ ] Verify archives.html GitHub Actions auto-rebuild works on next push to main (carried)
+- [ ] Verify index.html root nav page renders correctly on vgong24.github.io/Vextreme (carried)
+- [ ] Port HTML pages — each page added to pages/ triggers auto-rebuild of all artifacts (carried, now the active focus per Victor)
+- [ ] Reconcile `06-i18n.md`'s documented page-scope key convention with the actual `pages.` prefix in use
+- [ ] Verify localized-count stat rendering once a second target language exists
+
+### State of the system at session end
+
+Archives dashboard now tracks two independent per-slug states side by side: porting
+(HTML exists) and localization (translated, and how completely, per language). No new
+data files, no new build script, no new pipeline stage — extends the existing
+`build-archives.js` pass using data the strings pipeline already produces
+(`manifest.json`). Ready for the page-import push to begin; each newly ported + localized
+page will show up correctly without further changes to this logic.
+
+<!-- [VXG RealForever] -->

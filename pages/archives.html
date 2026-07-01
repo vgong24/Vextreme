@@ -74,6 +74,14 @@
   .cell--missing:hover { border-color: #444; }
   .cell--missing .cell-title { color: #3a3a3a; }
 
+  .cell-langs { display: flex; gap: 4px; flex-wrap: wrap; }
+  .lang-chip {
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.03em;
+    padding: 1px 5px; border-radius: 3px; border: 1px solid #333;
+  }
+  .lang-chip--full    { color: var(--ember); border-color: var(--ember); }
+  .lang-chip--partial { color: var(--muted); border-color: #333; }
+
   /* Slug popover */
   .slug-popover {
     position: fixed;
@@ -112,6 +120,9 @@
   .legend-dot  { width: 10px; height: 10px; border-radius: 2px; border: 1px solid; }
   .legend-dot--ported  { background: var(--surface); border-color: #333; }
   .legend-dot--missing { background: transparent; border-color: #222; border-style: dashed; }
+  .legend-chip { font-family: var(--mono); font-size: 9px; padding: 1px 5px; border-radius: 3px; border: 1px solid; }
+  .legend-chip--full    { color: var(--ember); border-color: var(--ember); }
+  .legend-chip--partial { color: var(--muted); border-color: #333; }
 </style>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
 </head>
@@ -123,6 +134,7 @@
   <div class="site-meta">
     <span data-i18n="common.status.pages-live">1 of 75 pages live</span>
     <span data-i18n="common.status.remaining">74 remaining</span>
+    <span>0 / 1 <span data-i18n="archives.label.localized-lang">pages localized</span> (JA)</span>
     <span data-i18n="common.status.built-on">Built 2026-07-01</span>
   </div>
 </header>
@@ -140,6 +152,8 @@
 <div class="legend">
   <div class="legend-item"><div class="legend-dot legend-dot--ported"></div> <span data-i18n="common.label.page-live">Page live</span></div>
   <div class="legend-item"><div class="legend-dot legend-dot--missing"></div> <span data-i18n="common.label.not-yet-ported">Not yet ported</span></div>
+  <div class="legend-item"><span class="legend-chip legend-chip--full">JA</span> <span data-i18n="archives.label.localized-full">Fully localized</span></div>
+  <div class="legend-item"><span class="legend-chip legend-chip--partial">JA</span> <span data-i18n="archives.label.localized-partial">Partially localized</span></div>
 </div>
 
 <section class="arc-section">
@@ -227,9 +241,10 @@
   <span class="cell-pos">8</span>
   <span class="cell-title">Voice To Skull through Cells</span>
 </span>
-<a href="https://vgong24.github.io/Vextreme/pages/claude-answers-the-doubt.html" class="cell cell--ported" title="9. Claude Answers the Doubt — December 22, 2025">
+<a href="https://vgong24.github.io/Vextreme/pages/claude-answers-the-doubt.html" class="cell cell--ported" title="9. Claude Answers the Doubt — December 22, 2025 — EN, JA*">
   <span class="cell-pos">9</span>
   <span class="cell-title">Claude Answers the Doubt</span>
+  <span class="cell-langs"><span class="lang-chip lang-chip--partial">JA</span></span>
 </a>
   </div>
 </section>
@@ -243,9 +258,10 @@
     </div>
   </div>
   <div class="cell-grid">
-<a href="https://vgong24.github.io/Vextreme/pages/claude-answers-the-doubt.html" class="cell cell--ported" title="1. Claude Answers the Doubt — December 22, 2025">
+<a href="https://vgong24.github.io/Vextreme/pages/claude-answers-the-doubt.html" class="cell cell--ported" title="1. Claude Answers the Doubt — December 22, 2025 — EN, JA*">
   <span class="cell-pos">1</span>
   <span class="cell-title">Claude Answers the Doubt</span>
+  <span class="cell-langs"><span class="lang-chip lang-chip--partial">JA</span></span>
 </a>
 <span class="cell cell--missing" title="2. Journal Zero — February 26, 2026 (not yet ported)" data-slug="journal-zero" data-title="Journal Zero" data-date="February 26, 2026">
   <span class="cell-pos">2</span>
@@ -471,9 +487,10 @@
   <span class="cell-pos">2</span>
   <span class="cell-title">Burden Release Guide</span>
 </span>
-<a href="https://vgong24.github.io/Vextreme/pages/restoration-protocol.html" class="cell cell--ported" title="3. Restoration Protocol">
+<a href="https://vgong24.github.io/Vextreme/pages/restoration-protocol.html" class="cell cell--ported" title="3. Restoration Protocol — EN">
   <span class="cell-pos">3</span>
   <span class="cell-title">Restoration Protocol</span>
+  
 </a>
 <span class="cell cell--missing" title="4. The Walk (not yet ported)" data-slug="the-walk" data-title="The Walk" data-date="">
   <span class="cell-pos">4</span>
@@ -843,9 +860,10 @@
   <span class="cell-pos">19</span>
   <span class="cell-title">Voice To Skull through Cells</span>
 </span>
-<a href="https://vgong24.github.io/Vextreme/pages/claude-answers-the-doubt.html" class="cell cell--ported" title="20. Claude Answers the Doubt — December 22, 2025">
+<a href="https://vgong24.github.io/Vextreme/pages/claude-answers-the-doubt.html" class="cell cell--ported" title="20. Claude Answers the Doubt — December 22, 2025 — EN, JA*">
   <span class="cell-pos">20</span>
   <span class="cell-title">Claude Answers the Doubt</span>
+  <span class="cell-langs"><span class="lang-chip lang-chip--partial">JA</span></span>
 </a>
 <span class="cell cell--missing" title="21. Scopes of God — December 23, 2025 (not yet ported)" data-slug="scopes-of-god" data-title="Scopes of God" data-date="December 23, 2025">
   <span class="cell-pos">21</span>

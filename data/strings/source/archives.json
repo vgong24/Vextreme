@@ -29,5 +29,23 @@
       "en": { "text": "Arc hubs" },
       "ja": { "text": "アークハブ" }
     }
+  },
+  "archives.label.localized-lang": {
+    "strings": {
+      "en": { "text": "pages localized" },
+      "ja": { "text": "ページがローカライズ済み" }
+    }
+  },
+  "archives.label.localized-full": {
+    "strings": {
+      "en": { "text": "Fully localized" },
+      "ja": { "text": "完全にローカライズ済み" }
+    }
+  },
+  "archives.label.localized-partial": {
+    "strings": {
+      "en": { "text": "Partially localized" },
+      "ja": { "text": "一部ローカライズ済み" }
+    }
   }
 }
