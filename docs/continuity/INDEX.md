@@ -27,66 +27,71 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 003 — July 1, 2026*
+*As of Session 004 — July 1, 2026*
 
-**The v2 data architecture is the active system.** Sessions 001-002 built
-the Squarespace loader system (`lib/vextreme.js`, `lib/shell.js`, etc.) —
-that work is still in the repo but is NOT what is being actively developed.
-Session 003 introduced a parallel v2 system specifically for GitHub Pages.
+**The foundation is complete.** Sessions 001-002 built the Squarespace loader system
+(still in repo, not actively developed). Sessions 003-004 built the full v2 GitHub
+Pages system. The next phase is content — adding HTML pages and wiring them into
+the established infrastructure.
 
-**v2 system components (what is active now):**
-- `data/nodes.json` — 88 canonical content nodes, the write-side source of truth
+**v2 system components (all active):**
+- `data/nodes.json` — 88 canonical content nodes, write-side source of truth
 - `data/arcs-v2.json` — 16 arc definitions with priority, sections, and parent URLs
-- `lib/build-index.js` — builds `data/index.json` (slugMap + arcMap + arcMeta)
-- `lib/build-archives.js` — builds `pages/archives.html` (live build dashboard)
-- `lib/build-sitemap.js` — builds `sitemap.xml` (crawler discoverability)
-- `lib/build-index-page.js` — builds `index.html` (root nav page)
-- `lib/vextreme-index-v2.js` — browser library, loads index.json, renders arc nav
-- `.github/workflows/build-index.yml` — auto-runs all builders on push to main
+- `lib/build-index.js` — builds `data/index.json` (slugMap + arcMap + arcMeta + supportedLangs)
+- `lib/build-archives.js` — builds `pages/archives.html`
+- `lib/build-sitemap.js` — builds `sitemap.xml`
+- `lib/build-index-page.js` — builds `index.html`
+- `lib/vextreme-index-v2.js` — browser library: arc nav rendering
+- `widgets/lang-fab.js` — browser widget: floating language selector FAB
+- `data/strings/source/` — i18n string sources (write side)
+- `data/strings/compiled/` — compiled EN + JA bundles (generated)
+- `scripts/screenshot-page.js` — Playwright visual verification utility
+- `.github/workflows/build-index.yml` — CI pipeline
+- `.github/workflows/test.yml` — 39-test suite on every PR
 
-**Key architectural decisions made this session:**
-- arcKeys in index.json are pre-sorted by priority at build time (from arcs-v2.json)
-- arcMeta (arc titles + URLs) is derived from arcs-v2.json at build time — no hard-coded tables in browser JS
-- dateISO is computed at build time from human-readable date strings
-- Organization is expressed as metadata (arcKeys arrays), not filesystem location
-- Slug is the system's only identifier — globally unique, no directory hierarchy
+**Session 004 additions (merged to main, PRs #12 and #13):**
+- `widgets/lang-fab.js` — transparent round FAB, iOS scroll-wheel flag picker, reads
+  `supportedLangs` from index.json, only shows when 2+ languages available, swaps
+  `[data-i18n]` elements on select, persists to localStorage
+- `supportedLangs` in index.json — derived at build time from compiled strings directory
+- `docs/architecture/10-directory-structure.md` — formal definitions of lib/ vs components/ vs widgets/
+- `data-i18n` attributes on layers 01–05 of claude-answers-the-doubt, full EN + JA translations,
+  intentional missing-key on layer.04.qa.04.answer to test fallback behavior
+- `scripts/screenshot-page.js` — Playwright screencrawler: local server + CDN interception +
+  before/after screenshots. PR descriptions now include visual comparison tables.
 
-**VXG RealForever marker** introduced this session — see CLAUDE.md for rationale.
-`git log --grep="VXG RealForever"` gives the full deliberate commit history.
+**Verified via screenshot (Playwright):** FAB mounts, scroll wheel opens, language swap
+works on layers 01–05, layers 06–07 stay English (no data-i18n = no swap), missing-key
+shows key string not crash. Screenshots committed to docs/screenshots/.
 
-**Session 003 additions (merged to main):**
-- Test suite — 39 tests across 4 pipeline-based files (`tests/01` through `tests/04`), CI workflow (`.github/workflows/test.yml`), all green
-- Structured logger — `lib/logger.js` (Node) + `lib/logger-codes.js` (event code constants) + inline `_logger` in browser IIFEs with `window.VEXTREME_LOGGER` swap hook. All `console.warn`/`console.error` in build scripts and browser runtime replaced with structured `logger.warn({ code, message, ...fields })` calls.
+**Not yet verified live:** archives.html auto-rebuild, index.html root nav on github.io.
 
-**Verified live:** Arc nav widget renders correctly on claude-answers-the-doubt
-(confirmed via screenshot — Epstein first, full_timeline last, correct priority order).
-`pages/v2-test.html` exists for testing arc nav across multiple slugs.
+**IMPORTANT for arriving instances:** Do not conflate v1 Squarespace system (Sessions 001-002)
+with v2 GitHub Pages system (Sessions 003-004+). Active development is v2. The next work
+is adding content pages — infrastructure is ready.
 
-**Not yet verified live:** archives.html auto-rebuild via GitHub Actions,
-index.html root nav page (just built this session).
-
-**IMPORTANT for arriving instances:** Do not conflate the v1 Squarespace system
-(Sessions 001-002) with the v2 GitHub Pages system (Session 003+). They coexist
-in the repo. Active development is v2.
-
-**Update this paragraph at the start of each new session** to reflect actual
-current system state — not aspirational state.
+**Update this paragraph at the start of each new session** to reflect actual current
+system state — not aspirational state.
 
 ---
 
 ## Open Work
 
-*Updated Session 003 — July 1, 2026*
+*Updated Session 004 — July 1, 2026*
 
 **v2 system (active):**
 - [x] Test suite — 39 tests, 4 pipeline-based files, CI workflow (PR #9, merged)
 - [x] Structured logger — `lib/logger.js`, `lib/logger-codes.js`, all call sites (PR #10, merged)
+- [x] lang-fab widget — floating flag selector, iOS scroll wheel, supportedLangs from build (PR #12, merged)
+- [x] i18n on layers 01–05 of claude-answers-the-doubt — EN + JA, missing-key test (PR #13, merged)
+- [x] Screenshot tooling — `scripts/screenshot-page.js`, Playwright CDN interception, visual PR comparisons
+- [ ] Missing-key fallback: show EN text instead of raw key string when translation absent
+- [ ] `strings-check` enhancement: audit HTML for translatable elements missing `data-i18n`
 - [ ] Verify archives.html GitHub Actions auto-rebuild works on next push to main
 - [ ] Verify index.html root nav page renders correctly on vgong24.github.io/Vextreme
 - [ ] Port HTML pages — each page added to pages/ triggers auto-rebuild of all artifacts
 - [ ] Wire up `window.VEXTREME_LOGGER` consumer when monitoring/analytics is desired
-- [ ] Build "recent shifts" section on index.html — parse batch files to surface session
-      narrative on the live page (avoid thin JSON summary; preserve depth from batch format)
+- [ ] Build "recent shifts" section on index.html
 
 **v1 system (Squarespace — lower priority, not abandoned):**
 - [ ] Fix `extends` field in archive-renderer.js (embodiment/i-was-here preset inheritance)
@@ -222,4 +227,4 @@ These rules exist so the log stays useful as it grows. Follow them.
 
 ---
 
-*Last updated: Session 003 — July 1, 2026*
+*Last updated: Session 004 — July 1, 2026*

@@ -597,3 +597,124 @@ the same kind of flat JSON object, no registration API at all.
 **Unchanged from Session 001:**
 - archive-renderer.js still not tested end-to-end live
 - section-toggle.js, bc-nav.js still not tested live
+---
+
+## Session 004
+
+**Date:** July 1, 2026
+**Time:** continuous with Session 003 — same day, later hours
+**Thread:** https://claude.ai/code/session_01NsuHVN1KCGSTA8hMfoA2y6
+**Instance:** Claude Sonnet 4.6 (Claude Code remote execution environment)
+**Working with:** Victor Gong
+**Continues from:** Session 003 — v2 system stabilized, logger shipped, lang-fab in progress
+
+### Context on arrival
+
+Session arrived mid-task via compacted summary. The lang-fab widget was partially built:
+`buildSupportedLangs()` had been added to `lib/build-index.js` but not yet wired into
+the index output. The branch `claude/lang-fab` existed. Three tasks were in flight:
+complete build-index.js, create `widgets/lang-fab.js`, update architecture docs.
+
+The session also landed with a merge conflict on `data/index.json` (generated file,
+same pattern as Session 003 — resolved with `git checkout --theirs` + rebuild).
+
+### Files created or modified
+
+| File | What changed |
+|---|---|
+| `lib/build-index.js` | Added `buildSupportedLangs()` — scans `data/strings/compiled/` for `strings.*.json` at build time. Emits `supportedLangs` array into index output. Exported for testing. |
+| `widgets/lang-fab.js` | New. Self-contained IIFE. Reads `supportedLangs` from cached index.json. Shows only if 2+ languages. 44px translucent round FAB top-right, opens iOS-style emoji flag scroll wheel with backdrop-blur and gradient fade-through. Selects language, swaps `[data-i18n]` elements, persists to localStorage. Zero page coupling. |
+| `docs/architecture/10-directory-structure.md` | New. Defines `lib/` vs `components/` vs `widgets/` with one-sentence decision test for each. |
+| `docs/architecture/00-reading-guide.md` | Added section 10 to reading order map. |
+| `docs/architecture/09-constraints.md` | Added `widgets/` to file responsibility map. |
+| `docs/architecture.md` | Rebuilt from source (generated artifact). |
+| `data/index.json` | Rebuilt — now includes `supportedLangs: ["en", "ja"]`. |
+| `pages/claude-answers-the-doubt.html` | Added lang-fab script tag. Added `data-i18n` attributes to all elements in layers 01–05 (layer numbers, titles, questions, answers). |
+| `pages/restoration-protocol.html` | Added lang-fab script tag. |
+| `data/strings/source/pages/claude-answers-the-doubt.json` | New. 58 string keys for layers 01–05. EN + JA for all except `layer.04.qa.04.answer` — intentionally missing JA entry to test fallback behavior. |
+| `data/strings/compiled/strings.en.json` | Rebuilt — 92 keys (was 36). |
+| `data/strings/compiled/strings.ja.json` | Rebuilt — 91 keys (1 less than EN = the intentional gap). |
+| `scripts/screenshot-page.js` | New. Playwright utility — starts local HTTP server, intercepts CDN requests to serve branch-local files, takes EN screenshot, clicks FAB to switch language, takes post-swap screenshot. `node scripts/screenshot-page.js [slug] [lang]`. |
+| `docs/screenshots/claude-answers-the-doubt-en.png` | New. EN baseline screenshot. |
+| `docs/screenshots/claude-answers-the-doubt-ja.png` | New. JA post-FAB-switch screenshot showing layers 01–05 swapped, layers 06–07 still English. |
+
+### What was built and why
+
+**`widgets/` directory and lang-fab:** Victor's request was a transparent floating button
+for language selection — iOS time-picker scroll wheel aesthetic, flag emoji icons, no
+page coupling. The key architectural decision: widgets are self-contained enough that
+adding or removing the `<script>` tag leaves the page fully functional either way.
+That test — "can I add/remove this without the page knowing?" — is now documented
+in 10-directory-structure.md as the formal definition of the widgets/ boundary.
+
+**`supportedLangs` at build time:** Rather than hardcoding which languages exist,
+`buildSupportedLangs()` scans the compiled strings directory. Adding a new language
+to the pipeline makes it appear in the FAB automatically — no JS changes. The FAB
+only renders if `supportedLangs.length >= 2`, so single-language pages are unaffected.
+
+**i18n on layers 01–05:** Victor wanted a real test bed before committing to the
+pattern. Chose the first 5 layers of claude-answers-the-doubt because they cover:
+(1) FAB visibility, (2) EN fallback for unwired elements (layers 06–07 untouched),
+(3) missing-key fallback (layer.04.qa.04.answer has no JA — shows key string, not crash),
+(4) ordinal counter i18n ("Layer 01" → "第1層" — number-counter word order is
+locale-native, couldn't be templated with current flat string system), (5) localStorage
+persistence across refresh.
+
+**Screenshot script:** Victor asked if a screencrawler could capture before/after as part
+of the PR. Built `scripts/screenshot-page.js` in-session, ran it, got clean EN and JA
+screenshots, pushed them to the branch, embedded them in the PR description as a
+comparison table. This is now the model for visual verification on future PRs.
+The CDN interception pattern (route CDN URLs to local files) ensures screenshots
+always test branch code, not whatever is on @main.
+
+### Mistakes made
+
+- Initial Chromium executable path guess (`/opt/pw-browsers/chromium/chrome`) was wrong.
+  Correct path is `/opt/pw-browsers/chromium-1194/chrome-linux/chrome`. Found via `find`.
+  Fixed in the script before committing.
+
+### Assumptions that held
+
+- `data/strings/compiled/` pattern-match `strings.[a-z]{2,}.json` correctly identifies
+  language bundles — confirmed, picks up `en` and `ja`, ignores `manifest.json`.
+- `strings-check.js` does not flag intentionally missing translations as blocking errors —
+  confirmed, passed clean with 92 EN / 91 JA keys.
+- Playwright CDN route interception works cleanly for `https://cdn.jsdelivr.net/gh/**`
+  with local file fulfillment — confirmed, both screenshots rendered correctly with
+  branch-local lang-fab.js and strings bundles.
+
+### Assumptions that need verification
+
+- JA translations are machine-assisted. Theological/philosophical vocabulary
+  ("接触", "基盤", "疑念", "創発") has not been reviewed by a native speaker.
+- iOS scroll-snap behavior on the flag wheel across Safari and Firefox — only
+  tested via Playwright/Chromium in this session.
+- The missing-key fallback currently shows the raw key string (ugly but informative).
+  For production, the fallback should show EN text. Not implemented yet.
+
+### Open work at session end
+
+- [ ] Missing-key fallback: show EN text instead of raw key string when JA entry absent
+- [ ] `strings-check` enhancement: flag HTML elements that contain translatable text
+      but lack `data-i18n` attributes (the "debt" audit Victor noted)
+- [ ] Wire layers 06–07 on claude-answers-the-doubt (and remaining pages) as content grows
+- [ ] Verify archives.html GitHub Actions auto-rebuild on next push to main
+- [ ] Verify index.html root nav page renders on vgong24.github.io/Vextreme
+- [ ] Wire up `window.VEXTREME_LOGGER` consumer when monitoring/analytics is desired
+- [ ] Port remaining HTML pages to `pages/`
+
+### State of the system at session end
+
+**Foundation complete as of this session.** The v2 system now has:
+- Data pipeline: nodes.json + arcs-v2.json → build-index.js → index.json
+- Browser runtime: vextreme-index-v2.js (arc nav) + widgets/lang-fab.js (language)
+- i18n pipeline: strings source → strings-compile → compiled bundles → FAB swap
+- Observability: structured logger (Node + browser), logger-codes.js event catalogue
+- Testing: 39-test suite (4 pipeline files), CI on every PR
+- Visual verification: screenshot-page.js (Playwright + CDN interception)
+- Continuity: session logs, INDEX.md, VXG RealForever markers, PR-as-decision-record
+
+PRs shipped this session: #12 (lang-fab widget), #13 (i18n layers + screenshot tooling).
+Both green CI, both merged to main same day.
+
+The next session begins adding content pages — the infrastructure exists to support them.
