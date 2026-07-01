@@ -1,15 +1,66 @@
 # VEXTREME — Architecture Blueprint
 
-**This is the authoritative system design document.**
-Read this before reading code. The code implements these decisions;
-this document explains why they were made.
-
-For current system state (what is live vs. not yet verified), read
-`docs/continuity/INDEX.md`. This document covers the design — not the status.
+> **This file is generated.** Edit source files in `docs/architecture/`
+> and run `node lib/build-architecture.js` to rebuild.
+> See `docs/architecture/00-reading-guide.md` for reading order.
 
 ---
 
-## System identity
+# Reading guide
+
+**`docs/architecture.md` is a generated file.** Do not edit it directly.
+Edit the source files in `docs/architecture/` and run `node lib/build-architecture.js`
+to rebuild. The same CQRS principle that governs data governs documentation here.
+
+---
+
+## What this document covers
+
+Design decisions and their reasoning. Not current system status — for that,
+read `docs/continuity/INDEX.md` first.
+
+---
+
+## How the sections connect
+
+Read in this order. Each section's decisions constrain the next.
+
+```
+01-identity       — two surfaces, one codebase. Sets the deployment context.
+      ↓
+02-slug           — the primitive everything else references. Understand this
+                    before touching any data file or build script.
+      ↓
+03-data           — CQRS write/read split. Explains why you edit source files,
+                    not generated artifacts. The strings pipeline (06) and
+                    build-time computations (04) are both expressions of this.
+      ↓
+04-build-time     — what the build step computes so the browser doesn't have to.
+                    Directly constrains what is allowed in browser JS.
+      ↓
+05-browser        — browser layer, renderer registry, arcView contract.
+                    Only makes sense after 04 — the browser is data-only
+                    because 04 made it that way.
+      ↓
+06-i18n           — localization pipeline and the localization constraint.
+                    **Read this before writing any display string anywhere.**
+                    Hardcoded English text in JS or build scripts is a violation
+                    of this section's rules regardless of how small it looks.
+      ↓
+07-registry       — the pattern that unifies arcs, strings, render modes, and
+                    future axes. Recognizing it lets you extend without forking.
+      ↓
+08-continuity     — how Claude instances hand off context across sessions.
+                    Read this to understand the VXG RealForever marker and
+                    why PR descriptions are decision records, not changelogs.
+      ↓
+09-constraints    — the hard rules. These are not preferences. Violating any
+                    one breaks the system in ways that are painful to reverse.
+```
+
+---
+
+# System identity
 
 Vextreme is a content archive with two deployment surfaces:
 
@@ -25,9 +76,11 @@ The Squarespace surface loads JS/CSS from GitHub via jsDelivr CDN.
 **Active development is the v2 system.** The v1 Squarespace loader (Sessions
 001-002) is stable but not the focus. Do not conflate them.
 
+→ *Connects to 02-slug: both surfaces reference content by slug, not URL or path.*
+
 ---
 
-## The core identity primitive: slug
+# The core identity primitive: slug
 
 Every piece of content has a **slug** — a globally unique string identifier
 that is also the filename without `.html`.
@@ -47,9 +100,13 @@ url:  vgong24.github.io/Vextreme/pages/claude-answers-the-doubt.html
 This constraint is what makes the arc system work. A page can belong to
 multiple arcs simultaneously because arcs reference slugs, not files.
 
+→ *Connects to 03-data: nodes.json and arcs-v2.json both use slugs as their
+cross-reference key. The build pipeline resolves slugs into ordered lists;
+the browser resolves slugs into URLs.*
+
 ---
 
-## Data architecture (CQRS pattern)
+# Data architecture (CQRS pattern)
 
 The system uses a Command Query Responsibility Segregation pattern:
 
@@ -85,11 +142,11 @@ data/strings/source/** ──┘                       sitemap.xml            (c
 - `renderMode` — how the arc nav widget visualizes this arc (dots, position)
 
 `data/strings/source/` — scoped UI string source files. Each key is an element
-identifier object; `strings` is the current namespace. Compiled to per-language
-bundles by `lib/strings-compile.js`. See **Internationalization** section below.
+identifier whose value is an extensible object. See 06-i18n for the full pipeline.
 
 **Build pipeline** (runs automatically via GitHub Actions on push to main):
 ```
+lib/strings-compile.js   → data/strings/compiled/strings.{lang}.json
 lib/build-index.js       → data/index.json
 lib/build-archives.js    → pages/archives.html
 lib/build-sitemap.js     → sitemap.xml
@@ -103,9 +160,22 @@ Trigger paths: `data/nodes.json`, `data/arcs-v2.json`, `data/strings/**`,
 Pages can serve them without a build step at request time. Never edit them
 directly. Change the write-side sources and push; the pipeline rebuilds.
 
+**Section ordering** — arcs have two modes:
+
+*Explicit* — narrative/editorial order. Slugs listed exactly in `arcs-v2.json`.
+This encodes authorial intent — the system cannot auto-derive story sequence.
+
+*Chronological* — auto-sorted by `dateISO`. Used by `full_timeline` sections
+with `dateRange` boundaries. Adding a new dated node automatically places it
+in the correct position on next build.
+
+→ *Connects to 04-build-time: the build pipeline is where write-side data
+becomes the read-side structures the browser consumes. Understanding what
+gets computed there is what keeps the browser layer clean.*
+
 ---
 
-## Build-time computations
+# Build-time computations
 
 The build step does work so the browser doesn't have to:
 
@@ -113,42 +183,39 @@ The build step does work so the browser doesn't have to:
 |---|---|---|
 | `arcKeys` (priority-sorted) | `arcs-v2.json` priority field | `index.json` slugMap |
 | `dateISO` ("YYYY-MM-DD") | `nodes.json` date string | `index.json` slugMap |
-| `arcMeta` (title + URL per arc) | `arcs-v2.json` parent field | `index.json` arcMeta |
+| `arcMeta` (title + URL + renderMode per arc) | `arcs-v2.json` parent + renderMode | `index.json` arcMeta |
 | `arcMap` (sections → ordered slugs) | `arcs-v2.json` sections | `index.json` arcMap |
+| compiled string bundles | `data/strings/source/**` | `strings/compiled/strings.{lang}.json` |
+| baked display text | `strings/compiled/strings.en.json` | generated HTML (archives.html, index.html) |
 
-The browser library (`lib/vextreme-index-v2.js`) has **no hard-coded arc data**.
-It reads everything from `index.json`. Adding a new arc to `arcs-v2.json` and
-pushing is all that is needed — no JS edits required.
+The browser library (`lib/vextreme-index-v2.js`) has **no hard-coded arc data
+and no hard-coded display strings**. It reads structure from `index.json` and
+receives display text either baked into the HTML at build time or from a
+string constant injected at template time.
 
----
+Adding a new arc to `arcs-v2.json` and pushing is all that is needed — no JS
+edits required. The same principle applies to strings: adding a key to source
+and recompiling is all that is needed — no template edits required.
 
-## Section ordering
-
-Arcs have two section ordering modes:
-
-**Explicit** — narrative/editorial order. Slugs listed exactly in `arcs-v2.json`.
-This encodes authorial intent — the system cannot auto-derive story sequence.
-Changing the order means editing `arcs-v2.json`.
-
-**Chronological** — auto-sorted by `dateISO`. Used by `full_timeline` sections
-with `dateRange` boundaries. Adding a new dated node automatically places it
-in the correct position on next build. No manual ordering needed.
+→ *Connects to 05-browser: the browser layer is lightweight precisely because
+this layer did the work. Any computation that could happen at build time must
+happen at build time — not in browser JS.*
 
 ---
 
-## Browser layer
+# Browser layer
 
 `lib/vextreme-index-v2.js` — loaded on GitHub Pages pages only.
 
-Load sequence:
+**Load sequence:**
 1. Checks `localStorage` for cached `index.json` (key: `vex-index-v2-data`)
 2. If cached: serves immediately, then revalidates in background via ETag
 3. If cold: fetches from jsDelivr CDN, caches result
 4. Calls `getLatticeView(slug, index)` → builds arc nav data for current page
-5. Calls `renderArcNav(lattice, mountEl)` → writes HTML into `#arcNavMount`
+5. Calls `renderArcNav(lattice, mountEl)` → dispatches to renderer registry
 
-`getLatticeView` uses `node.arcKeys` (pre-sorted by priority) to determine
-display order. No sorting happens in the browser.
+`getLatticeView` uses `node.arcKeys` (pre-sorted by priority at build time)
+to determine display order. No sorting in the browser.
 
 Slug detection: reads `window.VEX_SLUG` if set (test override), otherwise
 parses `window.location.pathname` last segment minus `.html`.
@@ -157,19 +224,94 @@ URL construction: `/pages/<slug>.html` on GitHub Pages, `/<slug>` on vextreme24.
 
 ---
 
-## Internationalization (i18n)
+## Arc row renderer registry
 
-The system is designed for multi-language support from the ground up, and the
-string key design is intentionally future-proof: each key is a **stable element
-identifier**, not just a string lookup. The value is an extensible object — new
-systems attach to the same key without breaking existing readers.
+`renderArcNav` is the orchestrator — it calls `renderArcRow(arcView)` per arc,
+which dispatches to a registered renderer function by `arcView.renderMode`.
+
+**arcView contract** (what every renderer receives):
+```js
+{
+  arcName:      string,         // arc key, e.g. "liberation"
+  arcMeta:      { title, url, renderMode },  // from index.json arcMeta
+  renderMode:   string,         // "dots" | "position" | future modes
+  sectionLabel: string,         // section the current page belongs to
+  position:     number,         // 1-based position within the full arc
+  total:        number,         // total pages in the arc
+  prevUrl:      string | null,
+  nextUrl:      string | null
+}
+```
+
+**Renderer registry** (in `vextreme-index-v2.js`):
+```js
+var RENDERERS = {
+  dots:     function(arcView) { /* → HTML string */ },
+  position: function(arcView) { /* → HTML string */ }
+};
+```
+
+**To add a render mode:**
+1. Register a function under the new key in `RENDERERS`
+2. Set `renderMode` on the arc in `arcs-v2.json`
+3. Rebuild — `build-index.js` carries `renderMode` into `arcMeta`;
+   `getLatticeView` puts it on each `arcView`
+
+Unknown modes fall back to `dots` with a one-time console warning.
+
+**Current modes:**
+| Mode | Used by | Behavior |
+|---|---|---|
+| `dots` (default) | 15 arcs | Title · section label + position counter + prev/next |
+| `position` | `full_timeline` | Title only + position counter + prev/next |
+
+**The arcView contract is the interface.** If a renderer needs new data,
+add it to `getLatticeView`'s push — not to the renderer itself. Renderers
+are pure functions: `arcView → HTML string`. They do not reach outside.
+
+→ *Connects to 06-i18n: renderer output strings (← prev, next →, You Are Here)
+are display text and must follow the localization rules in 06-i18n. They are
+not exempt because they live in JS.*
 
 ---
 
-### Element key as canonical anchor
+# Internationalization (i18n)
+
+## The localization constraint
+
+**No display string is hardcoded anywhere in this codebase.**
+
+This applies to:
+- Build scripts (`.js` files in `lib/`)
+- Browser JS (`vextreme-index-v2.js`, `arc-nav.js`)
+- HTML templates inside build scripts
+- Arc labels, navigation chrome, button text, status messages — everything
+
+If you are writing a string a human will read, it belongs in
+`data/strings/source/`. Not inline. Not as a JS variable. Not as a
+template literal. In the source file, keyed, compiled, and referenced
+by key.
+
+**Violations to recognize:**
+```js
+// WRONG — hardcoded display string
+html += 'You Are Here: ' + title;
+html += '← prev';
+const label = ARC_LABELS[arcName];  // ARC_LABELS table in JS
+
+// RIGHT — key referenced, text comes from compiled bundle
+html += t('common.nav.you-are-here') + ': ' + title;
+html += t('common.nav.prev');
+const label = strings['arcs.' + arcName + '.heading.title'].text;
+```
+
+---
+
+## Element key as canonical anchor
 
 The key name (`common.label.page-live`) is the system's identifier for that UI
-element. Its value is an object whose namespaces grow as systems are added:
+element. Its value is an extensible object — new systems attach their own
+namespace without breaking existing readers:
 
 ```json
 "common.label.page-live": {
@@ -180,8 +322,7 @@ element. Its value is an object whose namespaces grow as systems are added:
 }
 ```
 
-Future namespaces extend the same object — no migration needed:
-
+Future namespaces extend the same object:
 ```json
 "common.label.page-live": {
   "strings":     { "en": { "text": "Page live" }, "ja": { "text": "公開済み" } },
@@ -191,17 +332,13 @@ Future namespaces extend the same object — no migration needed:
 }
 ```
 
-Each consuming system reads only its own namespace. A bulk-data logger reads
-`dataKey`. A test runner reads `testId`. The i18n compiler reads `strings`.
-None of them know about or break each other.
-
-This means the key registry in `data/strings/source/` is not just a string
-file — it is the **element identity layer** for the entire UI. Build it here
-first, then other systems reference it rather than defining their own IDs.
+Each consuming system reads only its own namespace. The key registry in
+`data/strings/source/` is not just a string file — it is the **element
+identity layer** for the entire UI.
 
 ---
 
-### Key convention
+## Key convention
 
 `{scope}.{element-type}.{semantic-name}`
 
@@ -211,26 +348,60 @@ first, then other systems reference it rather than defining their own IDs.
 | `element-type` | What kind of element it is | `label`, `button`, `heading`, `nav`, `status` |
 | `semantic-name` | What it means, in kebab-case | `page-live`, `copy-filename`, `overall-progress` |
 
-The `common` scope means "shared across 3+ pages or surfaces." Within a single
-arc or page, use the arc/page key as scope: `epstein.common.phase-label` means
-"reusable within the epstein arc." This makes `common` a semantic layer, not a
-file — it signals reuse intent, not just file location.
+---
+
+## Scope placement — where does a string belong?
+
+Ask these questions in order:
+
+**1. Does it appear on 3 or more pages/surfaces?**
+→ `common.{element-type}.{semantic-name}` in `source/common.json`
+
+**2. Is it specific to one arc, shared across that arc's pages?**
+→ `{arc-key}.common.{element-type}.{semantic-name}` in `source/arcs.json`
+   or a dedicated `source/{arc-key}.json`
+
+**3. Is it specific to one page only?**
+→ `{slug}.{element-type}.{semantic-name}` in `source/pages/{slug}.json`
+
+**4. Is it a generated page's chrome (archives.html, index.html)?**
+→ Scope is the page name: `archives.{element-type}.{semantic-name}` in
+   `source/archives.json`
+
+**The `common` scope is semantic, not just organizational.** It signals
+"this element is intentionally shared." Using `common` for a string that
+only appears in one place is a false signal — scope it to where it lives.
 
 ---
 
-### Pipeline
+## Delivery mechanism by context
+
+**Build scripts generating static HTML** (archives.html, index.html):
+- Read `data/strings/compiled/strings.en.json` at build time
+- Call `t(key)` in the template — text is baked into the output HTML
+- No runtime resolver; no string JSON embedded in the page
+
+**Browser JS** (vextreme-index-v2.js, arc-nav.js):
+- String constants needed at runtime are injected as build-time constants
+  where possible (e.g. `var COPY_LABEL = "Copy filename"` baked by build script)
+- For browser-only libraries not run through a build script, load the
+  compiled EN bundle and expose a `t(key)` helper — do not embed all languages
+
+---
+
+## Pipeline
 
 ```
 data/strings/source/          — scoped source files (write side; edit these)
   common.json                 — globally reusable UI strings
-  arcs.json                   — arc title strings (16 arcs; future arcMeta authority)
+  arcs.json                   — arc title strings (16 arcs; display authority)
   archives.json               — archives.html-specific strings
   pages/{slug}.json           — per-page strings (created as pages are ported)
 
 lib/strings-check.js          — integrity pass (run before compile)
 lib/strings-compile.js        — merges source → compiled bundles + manifest
 lib/strings-export.js         — exports per-scope CSVs for translators
-lib/strings-import.js         — merges translator CSVs back into source
+lib/strings-import.js         — merges completed CSVs back into source
 
 data/strings/compiled/        — generated bundles (committed as artifacts)
   strings.en.json             — EN bundle: { key → { text, aria-label } }
@@ -240,109 +411,95 @@ data/strings/compiled/        — generated bundles (committed as artifacts)
 data/strings/migrations.json  — append-only key rename log (never delete entries)
 data/strings/batches/export/  — CSV batches sent to translators
 data/strings/batches/import/  — completed CSV batches waiting to be imported
-data/strings/orphans.json     — keys in manifest but not in source, no migration
+data/strings/orphans.json     — quarantined keys with no migration
 ```
-
-Build scripts read from `compiled/strings.{lang}.json` — never from source
-directly. Text is baked into generated HTML at build time; no runtime resolver
-or language blob is embedded in the output.
 
 ---
 
-### Integrity check severity levels
-
-`strings-check.js` runs before compile and handles four cases:
+## Integrity check severity levels
 
 | Level | Condition | Action |
 |---|---|---|
-| `BLOCK` | Key has no EN text | Halts compile — EN is the source of truth, nothing can proceed without it |
-| `REMAP` | Key appears as `from` in migrations.json | Auto-rewrites the source file with the new key name; translations carry over |
-| `WARN` | EN text hash changed vs manifest | Tags other-language values `_stale: true`; compile proceeds but export notes it |
-| `INFO` | Orphaned manifest key whose EN hash matches a current key | Logs suggestion to add a migration entry; no auto-action |
-| Quarantine | Orphaned key with no migration and no EN match | Moved to `orphans.json`; removed from active source |
+| `BLOCK` | Key has no EN text | Halts compile |
+| `REMAP` | Key is listed as `from` in migrations.json | Auto-rewrites source with new key |
+| `WARN` | EN hash changed vs manifest | Tags translations `_stale: true` |
+| `INFO` | Orphaned key whose EN hash matches a current key | Logs migration suggestion |
+| Quarantine | Orphaned key, no migration, no EN match | Moved to `orphans.json` |
 
 ---
 
-### enHash and stale detection
+## enHash and stale detection
 
-`manifest.json` stores a short SHA-256 hash of each key's EN value at the time
-of last compile. On the next check run, the current EN value is hashed again. A
-mismatch means the English changed — but the other-language translations haven't
-been updated yet. The `_stale` flag in source signals this to the translator
-export without blocking the compile.
+`manifest.json` stores a SHA-256 hash of each key's EN value at last compile.
+On the next check run, the hash is recomputed. A mismatch means EN changed but
+translations haven't been updated. The `_stale` flag signals this to the
+translator CSV export without blocking compile.
 
 ---
 
-### Translator workflow
+## Translator workflow
 
 1. `node lib/strings-export.js --scope archives --lang ja`
-   → writes `data/strings/batches/export/archives/archives.ja.csv`
-2. Translator fills in `ja_text` and `ja_aria_label` columns; returns CSV
-3. Place completed CSV in `data/strings/batches/import/`
-4. `node lib/strings-import.js`
-   → merges translations into source files, archives processed CSV
-5. `node lib/strings-compile.js`
-   → regenerates bundles with new translations
+2. Translator fills `ja_text` / `ja_aria_label` columns, returns CSV
+3. Place CSV in `data/strings/batches/import/`
+4. `node lib/strings-import.js` — merges into source, archives CSV
+5. `node lib/strings-compile.js` — regenerates bundles
 
 ---
 
-### Language fallback chain
+## Adding a new language
 
-1. Requested language (`ja`)
-2. Default language (`en`)
-3. Key name itself (visible signal that a key is missing from compiled bundle)
-
----
-
-### Adding a new language
-
-1. Add `{lang}` entries in `data/strings/source/` files under each key's `strings` object
-2. Run `strings-compile.js` — a new `strings.{lang}.json` bundle is written automatically
+1. Add `{lang}` entries under `strings` in the relevant source files
+2. Run `strings-compile.js` — new `strings.{lang}.json` written automatically
 3. No build script changes needed
 
----
-
-### Node titles
-
-Content strings (node titles) live in `nodes.json` and are not part of this
-pipeline. If node-level translation is added, extend the node schema with
-`titleI18n: { "ja": "..." }`. The build step merges these into `index.json`
-alongside the English title.
+→ *Connects to 07-registry: the string key system is one instance of the
+registry pattern. The same "flat object, keyed by name, falls back safely"
+rule governs arc definitions, render modes, and string keys alike.*
 
 ---
 
-## Environments
-
-| Environment | Base URL | Detection | Arc nav URLs |
-|---|---|---|---|
-| GitHub Pages | `https://vgong24.github.io/Vextreme` | `hostname === 'vgong24.github.io'` | `/pages/<slug>.html` |
-| Local dev | `http://localhost:8080` | `hostname === 'localhost'` | `/pages/<slug>.html` |
-| vextreme24.com | `https://www.vextreme24.com` | fallthrough | `/<slug>` |
-
-The browser library auto-detects environment from `window.location.hostname`.
-No configuration required per page.
-
----
-
-## Registry pattern
+# Registry pattern
 
 All customizable axes in this system follow one rule:
-**flat JSON object, keyed by name, looked up at render time, falls back safely.**
+**flat JSON object, keyed by name, looked up at render/build time, falls back safely.**
 
-| Axis | Location | Lookup |
+| Axis | Location | Lookup key |
 |---|---|---|
-| Arc definitions | `arcs-v2.json` | by arc key |
-| Arc display metadata | `index.json` → `arcMeta` | by arc key |
-| Node metadata | `index.json` → `slugMap` | by slug |
-| UI strings | `strings/compiled/strings.{lang}.json` | by element key |
-| Render modes | `arcs-v2.json` → `renderMode` | by arc key |
+| Arc definitions | `arcs-v2.json` | arc key |
+| Arc display metadata | `index.json` → `arcMeta` | arc key |
+| Node metadata | `index.json` → `slugMap` | slug |
+| UI strings | `strings/compiled/strings.{lang}.json` | element key |
+| Render modes | `arcs-v2.json` → `renderMode` + `RENDERERS` registry | mode name |
 
-No registration functions. No JS-side tables. If it's a named thing that can
-vary, it's a JSON key. Unknown keys fall back with a console warning, not a crash.
+No registration functions. No JS-side tables. If it's a named thing that
+can vary, it is a JSON key. Unknown keys fall back with a console warning,
+not a crash.
+
+**Recognizing a registry opportunity:**
+If you find yourself writing an `if/else` or `switch` that branches on a
+string name — arc key, render mode, scope name, language code — that branch
+logic is a registry in disguise. Extract the variants into a keyed object
+and look up by name. The core dispatch becomes a single line.
+
+**Environments** follow the same pattern:
+
+| Environment | Base URL | Detection |
+|---|---|---|
+| GitHub Pages | `https://vgong24.github.io/Vextreme` | `hostname === 'vgong24.github.io'` |
+| Local dev | `http://localhost:8080` | `hostname === 'localhost'` |
+| vextreme24.com | `https://www.vextreme24.com` | fallthrough |
+
+The browser library auto-detects from `window.location.hostname`.
+No per-page configuration required.
+
+→ *Connects to 08-continuity: the registry pattern is a design constraint,
+not just a preference. Future instances should recognize violations and
+refactor toward the pattern rather than extend the fork.*
 
 ---
 
-## Continuity system
+# Continuity system
 
 Three layers, three time horizons:
 
@@ -350,63 +507,141 @@ Three layers, three time horizons:
 |---|---|---|---|
 | Current snapshot | `docs/continuity/INDEX.md` | Where is the system right now | Claude at session end |
 | Session narrative | `docs/continuity/Batch 00N.md` | Mistakes, reasoning, assumptions | Claude on Victor's signal |
-| Decision record | PR description (template) | Why the system moved at each PR | Claude when opening PR |
-
-`git log --grep="VXG RealForever"` — full trace of deliberate commits.
-Every commit in this repo ends with `[VXG RealForever]`.
-Every file created or significantly modified by a Claude instance ends with `// [VXG RealForever]`.
+| Decision record | PR description (`.github/pull_request_template.md`) | Why the system moved at each PR | Claude when opening PR |
 
 ---
 
-## File responsibility map
+## VXG RealForever
+
+Every commit message ends with `[VXG RealForever]`.
+Every file created or significantly modified by a Claude instance ends with:
+
+```js
+// [VXG RealForever]       ← JS files
+<!-- [VXG RealForever] --> ← HTML and Markdown files
+```
+
+`git log --grep="VXG RealForever"` gives the full trace of deliberate work
+on this repo across all instances. The phrase is a continuity mechanism, not
+decoration — it threads through git history, file contents, and grep output
+so any instance can reorient quickly from a cold start.
+
+---
+
+## Documentation is CQRS too
+
+`docs/architecture.md` is a **generated file** assembled from source files
+in `docs/architecture/` by `lib/build-architecture.js`. The same write/read
+split that governs data governs documentation:
 
 ```
+WRITE SIDE                    READ SIDE
+docs/architecture/*.md  ──▶  docs/architecture.md
+```
+
+Edit the source files. Run `node lib/build-architecture.js`. Never edit
+`docs/architecture.md` directly — changes will be overwritten on next build.
+
+→ *Connects to 09-constraints: the rules in 09 exist because their violation
+creates systemic damage that outlasts the session that caused it. Read them
+as hard stops, not guidelines.*
+
+---
+
+# Key constraints
+
+These are not preferences. Violating any one breaks the system in ways
+that are difficult to reverse.
+
+---
+
+**1. Slugs are globally unique.**
+No two `.html` files in `pages/` can share a slug. Check `docs/test-playground.html`
+before creating any new page file.
+
+**2. `pages/` is flat.**
+No subdirectories. The slug system breaks if pages are nested. A file at
+`pages/AI Practitioner Tools/restoration-protocol.html` is invisible to every
+build script and browser lookup.
+
+**3. Never edit generated files.**
+`data/index.json`, `pages/archives.html`, `sitemap.xml`, `index.html`,
+`data/strings/compiled/*`, and `docs/architecture.md` are all generated.
+Edit the write-side sources and push.
+
+**4. Single source of truth.**
+- Arc metadata → `arcs-v2.json`
+- Arc display strings → `data/strings/source/arcs.json`
+- UI element strings → `data/strings/source/`
+- Compiled bundles are artifacts, not editable copies
+- `docs/architecture.md` is generated from `docs/architecture/*.md`
+
+**5. Build step owns computation.**
+Sort order, `dateISO`, `arcMeta`, compiled string bundles — all derived at
+build time. Never replicate this logic in browser JS.
+
+**6. Registry pattern — no hardcoded tables.**
+New customizable axes are JSON objects, never hardcoded JS tables or
+if/else branches keyed on names.
+
+**7. No hardcoded display strings.**
+No English text appears inline in JS, build scripts, or HTML templates.
+Every string a human reads is keyed in `data/strings/source/` and referenced
+by key. This applies to navigation chrome, button labels, arc titles, status
+messages, and error text. There are no exceptions based on string length
+or perceived insignificance.
+
+**8. Generated files are not mergeable — `.gitattributes` owns conflict resolution.**
+All generated artifacts (`data/index.json`, compiled strings, `pages/archives.html`,
+`sitemap.xml`, `index.html`, `docs/architecture.md`) are declared with `merge=ours`
+in `.gitattributes`. When a feature branch rebases onto main, git automatically
+keeps main's built version of those files rather than producing a conflict.
+After rebasing, always re-run the build scripts to bake your branch's changes
+into fresh artifacts before committing. Never resolve a generated-file conflict by
+hand — the build script is the only valid author of those files.
+
+**File responsibility map:**
+```
 data/
-  nodes.json          — content nodes (write side, never auto-generated)
-  arcs-v2.json        — arc definitions (write side, never auto-generated)
-  strings/source/     — i18n string source files (write side, never auto-generated)
-  strings/compiled/   — compiled language bundles (generated by strings-compile.js)
-  index.json          — pre-built read index (generated, never edit directly)
+  nodes.json          — content nodes (write side)
+  arcs-v2.json        — arc definitions (write side)
+  strings/source/     — i18n string source files (write side)
+  strings/compiled/   — compiled language bundles (generated artifact)
+  index.json          — pre-built read index (generated artifact)
 
 lib/
-  build-index.js      — builds data/index.json
-  build-archives.js   — builds pages/archives.html
-  build-sitemap.js    — builds sitemap.xml
-  build-index-page.js — builds index.html
-  vextreme-index-v2.js — browser library (GitHub Pages arc nav)
+  build-index.js        — builds data/index.json
+  build-archives.js     — builds pages/archives.html
+  build-sitemap.js      — builds sitemap.xml
+  build-index-page.js   — builds index.html
+  build-architecture.js — builds docs/architecture.md
+  strings-check.js      — integrity check (run before compile)
+  strings-compile.js    — compiles string source → bundles
+  strings-export.js     — exports translator CSVs
+  strings-import.js     — imports completed translator CSVs
+  vextreme-index-v2.js  — browser library (GitHub Pages arc nav)
+
+docs/
+  architecture/       — architecture source files (write side)
+  architecture.md     — assembled architecture doc (generated artifact)
+  continuity/         — session logs and current state
+  Readme.md           — v1 Squarespace system (historical, not active)
 
 pages/
   archives.html       — build dashboard (generated)
-  <slug>.html         — content pages (hand-authored, flat directory, no subdirs)
-
-docs/
-  architecture.md     — this file (design authority)
-  Readme.md           — v1 Squarespace system docs (historical, not active)
-  continuity/         — session logs and current state
-  vextreme-v2-architecture.kt — Kotlin design spec (design reference)
+  <slug>.html         — content pages (hand-authored, flat, no subdirs)
 
 .github/
-  workflows/build-index.yml       — CI pipeline
-  pull_request_template.md        — PR as decision record
+  workflows/build-index.yml    — CI pipeline
+  pull_request_template.md     — PR as decision record
 
-index.html            — root nav page (generated)
-sitemap.xml           — crawler index (generated)
-CLAUDE.md             — cold-start instructions for Claude instances
+index.html    — root nav page (generated)
+sitemap.xml   — crawler index (generated)
+CLAUDE.md     — cold-start instructions for Claude instances
 ```
 
 ---
 
-## Key constraints (do not violate)
-
-1. **Slugs are globally unique** — no two `.html` files in `pages/` can share a slug
-2. **`pages/` is flat** — no subdirectories; the slug system breaks otherwise
-3. **Never edit generated files** — `index.json`, `archives.html`, `sitemap.xml`, `index.html`
-4. **Single source of truth** — arc metadata lives in `arcs-v2.json`; UI element keys in `strings/source/`; compiled bundles are artifacts, not editable copies
-5. **Build step owns computation** — sort order, dateISO, arcMeta are derived at build time, never in the browser
-6. **Registry pattern** — new customizable axes are JSON objects, never hardcoded JS tables
-
----
-
-*Last updated: Session 003 — June 30, 2026*
+*Last updated: 2026-07-01*
 
 <!-- [VXG RealForever] -->

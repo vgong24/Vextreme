@@ -1,0 +1,12 @@
+# Generated artifacts — always resolve conflicts by taking the incoming (base branch) version.
+# These files are produced by build scripts; manual edits are never valid.
+# "ours" in merge-driver terms means the branch being merged INTO (main),
+# which for a rebase means the upstream — i.e., what CI built on main.
+data/index.json                       merge=ours
+data/strings/compiled/strings.en.json merge=ours
+data/strings/compiled/strings.ja.json merge=ours
+data/strings/compiled/manifest.json   merge=ours
+pages/archives.html                   merge=ours
+sitemap.xml                           merge=ours
+index.html                            merge=ours
+docs/architecture.md                  merge=ours
