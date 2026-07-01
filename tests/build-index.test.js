@@ -162,6 +162,58 @@ test('buildArcMap: unknown slug in an explicit section is dropped with a warning
   assert.deepEqual(arcMap['arc_broken'][0].slugs, ['alpha']);
 });
 
+test('buildArcMap: dateRange filter narrows chronological sections to only nodes whose date falls within the window', () => {
+  // full_timeline arcs cover all time but split into dated sections (e.g. "Jan 2026", "Feb 2026").
+  // A missing dateRange filter means every node in the arc appears in every section — duplicate
+  // entries and wrong position counts across all pages in those sections.
+  const slugMap = buildSlugMap(nodes, arcsDef);
+  const localArcs = {
+    arc_ranged: {
+      priority: 5,
+      renderMode: 'dots',
+      parent: { title: 'Ranged', url: '/ranged' },
+      sections: [
+        { label: 'January', order: 'chronological', dateRange: { from: '2026-01-01', to: '2026-01-31' } },
+        { label: 'February', order: 'chronological', dateRange: { from: '2026-02-01', to: '2026-02-28' } }
+      ]
+    }
+  };
+  // alpha (Jan 1) and beta (Jan 15) are in January; gamma (Feb 1) is in February
+  const localNodes = nodes.filter(n => ['alpha', 'beta', 'gamma'].includes(n.slug))
+    .map(n => ({ ...n, arcKeys: ['arc_ranged'] }));
+  const localSlugMap = buildSlugMap(localNodes, localArcs);
+  const arcMap = buildArcMap(localNodes, localArcs, localSlugMap);
+
+  assert.deepEqual(arcMap['arc_ranged'][0].slugs, ['alpha', 'beta'], 'January section should contain only Jan nodes');
+  assert.deepEqual(arcMap['arc_ranged'][1].slugs, ['gamma'], 'February section should contain only Feb nodes');
+});
+
+test('buildArcMap: nodes with null dates are excluded from dateRange sections — a null date cannot be compared to a range boundary', () => {
+  // 'explicit-first' and 'explicit-second' have null dates.
+  // Including them in a dated section would mean they either always match (wrong) or always fail (correct).
+  // The filter should drop them, not crash or silently include them.
+  const slugMap = buildSlugMap(nodes, arcsDef);
+  const localArcs = {
+    arc_dated: {
+      priority: 5,
+      renderMode: 'dots',
+      parent: { title: 'Dated', url: '/dated' },
+      sections: [{ label: 'All 2026', order: 'chronological', dateRange: { from: '2026-01-01', to: '2026-12-31' } }]
+    }
+  };
+  const localNodes = nodes.map(n => ({ ...n, arcKeys: ['arc_dated'] }));
+  const localSlugMap = buildSlugMap(localNodes, localArcs);
+  const arcMap = buildArcMap(localNodes, localArcs, localSlugMap);
+  const slugs = arcMap['arc_dated'][0].slugs;
+
+  // Nodes with real dates should be included
+  assert.ok(slugs.includes('alpha'));
+  assert.ok(slugs.includes('beta'));
+  // Nodes with null dates should be excluded
+  assert.ok(!slugs.includes('explicit-first'), 'null-date node should not appear in a dateRange section');
+  assert.ok(!slugs.includes('explicit-second'), 'null-date node should not appear in a dateRange section');
+});
+
 // ── buildArcMeta ──────────────────────────────────────────────────────────────
 
 test('buildArcMeta: title, url, and renderMode must all be present — missing any one causes the browser to render a broken nav row', () => {

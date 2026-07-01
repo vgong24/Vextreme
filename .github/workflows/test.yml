@@ -18,5 +18,8 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Build test prerequisites
+        run: node lib/strings-compile.js && node lib/build-archives.js
+
       - name: Run tests
         run: node --test tests/*.test.js
