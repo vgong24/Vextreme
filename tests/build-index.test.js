@@ -2,7 +2,6 @@
 
 const { test } = require('node:test');
 const assert   = require('node:assert/strict');
-const path     = require('path');
 
 const { buildSlugMap, buildArcMap, buildArcMeta, parseDate, toDateISO } = require('../lib/build-index');
 
@@ -11,69 +10,87 @@ const arcsDef = require('./fixtures/arcs.fixture.json');
 
 // ── parseDate ─────────────────────────────────────────────────────────────────
 
-test('parseDate: returns null for null/empty', () => {
+test('parseDate: nodes with no date must not block the build — null/empty inputs return null cleanly', () => {
+  // Some nodes (undated content, meta pages) have null dates.
+  // If parseDate threw instead, the entire index build would fail for all 88 nodes.
   assert.equal(parseDate(null), null);
   assert.equal(parseDate(''), null);
   assert.equal(parseDate(undefined), null);
 });
 
-test('parseDate: parses standard date string', () => {
+test('parseDate: standard date strings produce a real Date so chronological sort works', () => {
+  // Chronological arc ordering depends on Date comparison.
+  // A failed parse silently returns null, which sorts the node to the END of its section —
+  // wrong position, wrong prev/next links for every subsequent page.
   const d = parseDate('Jan 1, 2026');
   assert.ok(d instanceof Date);
   assert.equal(d.getFullYear(), 2026);
-  assert.equal(d.getMonth(), 0); // January
+  assert.equal(d.getMonth(), 0);
 });
 
-test('parseDate: handles range dates like "Feb 7–10, 2026" using start date', () => {
+test('parseDate: range dates like "Feb 7–10, 2026" use the START date, not the end — position is based on when content begins', () => {
+  // Content spanning multiple days appears in chronological order at its start date.
+  // Using the end date would shift the node forward in the arc, misrepresenting release order.
   const d = parseDate('Feb 7–10, 2026');
   assert.ok(d instanceof Date);
   assert.equal(d.getDate(), 7);
-  assert.equal(d.getMonth(), 1); // February
+  assert.equal(d.getMonth(), 1);
 });
 
-test('parseDate: returns null for unparseable string', () => {
+test('parseDate: garbage date strings return null rather than an invalid Date — prevents silent wrong-order sort', () => {
+  // new Date("garbage") returns an Invalid Date object (not null) — isNaN catches it.
+  // If we passed an Invalid Date to sort(), comparison returns NaN and sort order is undefined.
   assert.equal(parseDate('not a date'), null);
 });
 
 // ── toDateISO ─────────────────────────────────────────────────────────────────
 
-test('toDateISO: returns null for null input', () => {
+test('toDateISO: undated nodes get null dateISO so the browser can skip range filtering for them', () => {
+  // The browser may filter by dateISO for range queries. A null signals "no date" cleanly.
+  // An empty string or "Invalid Date" would cause false range mismatches.
   assert.equal(toDateISO(null), null);
 });
 
-test('toDateISO: formats valid date as YYYY-MM-DD', () => {
+test('toDateISO: YYYY-MM-DD format is required for reliable string comparison in the browser', () => {
+  // index.json stores dateISO as a string. The browser does string comparison for range filtering —
+  // this only works correctly if the format is zero-padded ISO (lexicographic = chronological).
   assert.equal(toDateISO('Jan 1, 2026'), '2026-01-01');
   assert.equal(toDateISO('Mar 15, 2026'), '2026-03-15');
 });
 
-test('toDateISO: returns null for unparseable input', () => {
+test('toDateISO: unparseable date string yields null, not a bad string that corrupts range comparisons', () => {
   assert.equal(toDateISO('garbage'), null);
 });
 
 // ── buildSlugMap ──────────────────────────────────────────────────────────────
 
-test('buildSlugMap: every node slug is present as a key', () => {
+test('buildSlugMap: every node must be reachable by slug — a missing entry means the browser returns null and renders no arc nav', () => {
+  // The browser calls index.slugMap[slug] first. If any node is missing, that page
+  // shows no arc nav widget at all — silent failure with no error message.
   const slugMap = buildSlugMap(nodes, arcsDef);
   for (const node of nodes) {
-    assert.ok(slugMap[node.slug], `missing slug: ${node.slug}`);
+    assert.ok(slugMap[node.slug], `slug "${node.slug}" missing from slugMap — that page will have no arc nav`);
   }
 });
 
-test('buildSlugMap: dateISO is derived correctly', () => {
+test('buildSlugMap: dateISO must be derived at build time — the browser never re-parses human date strings', () => {
+  // Constraint: build step owns computation. If dateISO were missing, the browser would need
+  // its own date parser — violating the single-source principle and adding JS payload.
   const slugMap = buildSlugMap(nodes, arcsDef);
   assert.equal(slugMap['alpha'].dateISO, '2026-01-01');
   assert.equal(slugMap['beta'].dateISO, '2026-01-15');
-  assert.equal(slugMap['explicit-first'].dateISO, null);
+  assert.equal(slugMap['explicit-first'].dateISO, null); // no date on this node — expected null
 });
 
-test('buildSlugMap: arcKeys sorted by arc priority (lower priority value = first)', () => {
+test('buildSlugMap: arcKeys must be sorted by priority at build time so the browser renders arcs in correct order without its own priority table', () => {
+  // arc_a has priority 10, arc_b has priority 20.
+  // The RENDERER registry assumes arc[0] is the primary arc (displayed first/most prominently).
+  // Wrong sort order = wrong arc shown at top of every page that belongs to multiple arcs.
   const slugMap = buildSlugMap(nodes, arcsDef);
-  // alpha belongs to arc_a (priority 10) and arc_b (priority 20)
-  // arc_a should come first
   assert.deepEqual(slugMap['alpha'].arcKeys, ['arc_a', 'arc_b']);
 });
 
-test('buildSlugMap: node properties are preserved', () => {
+test('buildSlugMap: node properties (title, id) are preserved — the browser reads these for the "You Are Here" label', () => {
   const slugMap = buildSlugMap(nodes, arcsDef);
   assert.equal(slugMap['alpha'].title, 'Alpha Entry');
   assert.equal(slugMap['alpha'].id, 1);
@@ -81,50 +98,56 @@ test('buildSlugMap: node properties are preserved', () => {
 
 // ── buildArcMap ───────────────────────────────────────────────────────────────
 
-test('buildArcMap: all non-meta arcs are present', () => {
+test('buildArcMap: every declared arc produces an entry — a missing arc means the browser silently skips that nav row', () => {
   const slugMap = buildSlugMap(nodes, arcsDef);
   const arcMap  = buildArcMap(nodes, arcsDef, slugMap);
-  assert.ok(arcMap['arc_a']);
-  assert.ok(arcMap['arc_b']);
-  assert.ok(arcMap['arc_explicit']);
-  assert.equal(arcMap['_meta'], undefined);
+  assert.ok(arcMap['arc_a'], 'arc_a missing — pages in this arc will show no nav row for it');
+  assert.ok(arcMap['arc_b'], 'arc_b missing');
+  assert.ok(arcMap['arc_explicit'], 'arc_explicit missing');
+  assert.equal(arcMap['_meta'], undefined); // _meta is schema, not a real arc
 });
 
-test('buildArcMap: chronological section orders slugs by date ascending', () => {
+test('buildArcMap: chronological sections must be date-ascending — wrong order inverts prev/next links on every page in the arc', () => {
+  // If alpha (Jan 1) sorts AFTER beta (Jan 15), visiting "alpha" shows "prev → beta",
+  // which is wrong both semantically and narratively.
   const slugMap = buildSlugMap(nodes, arcsDef);
   const arcMap  = buildArcMap(nodes, arcsDef, slugMap);
-  // arc_a has alpha (Jan 1), beta (Jan 15), gamma (Feb 1) — all chronological
-  const slugs = arcMap['arc_a'][0].slugs;
-  assert.deepEqual(slugs, ['alpha', 'beta', 'gamma']);
+  assert.deepEqual(arcMap['arc_a'][0].slugs, ['alpha', 'beta', 'gamma']);
 });
 
-test('buildArcMap: explicit section preserves declared slug order', () => {
+test('buildArcMap: explicit section order is the author\'s intent — chronological re-sorting would override editorial curation', () => {
+  // arc_explicit declares [explicit-second, explicit-first].
+  // The author put "second" first on purpose (e.g., prologue/epilogue order).
+  // If the build re-sorted by date, the arc would show a different entry as position 1.
   const slugMap = buildSlugMap(nodes, arcsDef);
   const arcMap  = buildArcMap(nodes, arcsDef, slugMap);
-  // arc_explicit declares explicit-second before explicit-first
-  const slugs = arcMap['arc_explicit'][0].slugs;
-  assert.deepEqual(slugs, ['explicit-second', 'explicit-first']);
+  assert.deepEqual(arcMap['arc_explicit'][0].slugs, ['explicit-second', 'explicit-first']);
 });
 
-test('buildArcMap: section label is preserved from arc definition', () => {
+test('buildArcMap: section label is stored in the index so the browser has no hardcoded arc schema', () => {
+  // The browser reads section.label directly from arcMap. If it were missing, the arc nav row
+  // would display an empty label or crash trying to read undefined.label.
   const slugMap = buildSlugMap(nodes, arcsDef);
   const arcMap  = buildArcMap(nodes, arcsDef, slugMap);
   assert.equal(arcMap['arc_a'][0].label, 'Season One');
   assert.equal(arcMap['arc_b'][0].label, 'Volume One');
 });
 
-test('buildArcMap: only nodes with matching arcKeys appear in an arc', () => {
+test('buildArcMap: arc membership is exclusive — a node only appears in arcs declared in its own arcKeys', () => {
+  // beta only declares arc_a. If it leaked into arc_b, arc_b\'s position count and
+  // prev/next links would be wrong for every node in that arc.
   const slugMap = buildSlugMap(nodes, arcsDef);
   const arcMap  = buildArcMap(nodes, arcsDef, slugMap);
-  // arc_b has alpha, gamma, delta — not beta (beta only has arc_a)
-  const slugs = arcMap['arc_b'][0].slugs;
+  const slugs   = arcMap['arc_b'][0].slugs;
   assert.ok(slugs.includes('alpha'));
   assert.ok(slugs.includes('gamma'));
   assert.ok(slugs.includes('delta'));
-  assert.ok(!slugs.includes('beta'));
+  assert.ok(!slugs.includes('beta'), 'beta should not appear in arc_b — it only declared arc_a');
 });
 
-test('buildArcMap: unknown slug in explicit section is skipped with warning', () => {
+test('buildArcMap: unknown slug in an explicit section is dropped with a warning, not a crash — bad data degrades gracefully', () => {
+  // A typo in arcs-v2.json should not break the entire build.
+  // Valid slugs in the same section should still resolve correctly.
   const slugMap = buildSlugMap(nodes, arcsDef);
   const localArcs = {
     ...arcsDef,
@@ -136,26 +159,30 @@ test('buildArcMap: unknown slug in explicit section is skipped with warning', ()
     }
   };
   const arcMap = buildArcMap(nodes, localArcs, slugMap);
-  // 'does-not-exist' dropped, 'alpha' kept
   assert.deepEqual(arcMap['arc_broken'][0].slugs, ['alpha']);
 });
 
 // ── buildArcMeta ──────────────────────────────────────────────────────────────
 
-test('buildArcMeta: returns title, url, renderMode for each arc', () => {
+test('buildArcMeta: title, url, and renderMode must all be present — missing any one causes the browser to render a broken nav row', () => {
+  // title → the link text in the arc nav header
+  // url → the href on that link (missing = broken link)
+  // renderMode → selects which RENDERER function to call (missing = falls back to dots with a console warning)
   const arcMeta = buildArcMeta(arcsDef);
   assert.equal(arcMeta['arc_a'].title, 'Arc A');
   assert.equal(arcMeta['arc_a'].url, '/arc-a');
   assert.equal(arcMeta['arc_a'].renderMode, 'dots');
-  assert.equal(arcMeta['arc_b'].renderMode, 'position');
+  assert.equal(arcMeta['arc_b'].renderMode, 'position'); // arc_b uses the position renderer
 });
 
-test('buildArcMeta: _meta key is excluded', () => {
+test('buildArcMeta: _meta key must be excluded — if included, the browser would try to render a nav row for the schema object', () => {
   const arcMeta = buildArcMeta(arcsDef);
   assert.equal(arcMeta['_meta'], undefined);
 });
 
-test('buildArcMeta: missing parent falls back to arc name and #', () => {
+test('buildArcMeta: arc with no parent object falls back to arc name as title and "#" as url — broken link is better than a crash', () => {
+  // An arc in development may not yet have a parent page. The fallback keeps the row
+  // visible with a dead link rather than throwing on arcMeta[arcName].title.
   const localArcs = {
     arc_no_parent: { priority: 5, renderMode: 'dots', sections: [] }
   };
@@ -164,7 +191,10 @@ test('buildArcMeta: missing parent falls back to arc name and #', () => {
   assert.equal(arcMeta['arc_no_parent'].url, '#');
 });
 
-test('buildArcMeta: missing renderMode falls back to dots', () => {
+test('buildArcMeta: arc with no renderMode defaults to "dots" — the registry always has a dots renderer, so the row never crashes', () => {
+  // renderMode drives RENDERER dispatch. "dots" is the safe default registered in the browser lib.
+  // An undefined renderMode would cause renderArcRow to warn and fall back anyway, but
+  // catching it here means the index.json is already correct before it reaches the browser.
   const localArcs = {
     arc_no_mode: { priority: 5, parent: { title: 'X', url: '/x' }, sections: [] }
   };
