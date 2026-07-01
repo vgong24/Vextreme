@@ -447,6 +447,27 @@
       "ja"
     ]
   },
+  "demo.section.specimens.heading": {
+    "enHash": "77fbc25f8899",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "demo.section.specimens.body": {
+    "enHash": "a1c25c36485c",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "demo.link.specimens": {
+    "enHash": "e00f5f70dd78",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
   "demo.section.gaps.heading": {
     "enHash": "33966267c942",
     "langs": [
@@ -861,6 +882,355 @@
   },
   "pages.claude-answers-the-doubt.layer.05.qa.04.answer": {
     "enHash": "13320c176335",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-full-translation.heading.title": {
+    "enHash": "561df55e069b",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-full-translation.intro": {
+    "enHash": "db9138e68401",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-full-translation.body": {
+    "enHash": "2b69dc6b6061",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-full-translation.process.heading": {
+    "enHash": "cbf3a8701ac6",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-full-translation.process.step1.label": {
+    "enHash": "3c10e7556e8b",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-full-translation.process.step1.detail": {
+    "enHash": "0c70ca97ed39",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-full-translation.process.step2.label": {
+    "enHash": "de8208aef94d",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-full-translation.process.step2.detail": {
+    "enHash": "32ef2e22cec9",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-full-translation.process.step3.label": {
+    "enHash": "b2e4846419c3",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-full-translation.process.step3.detail": {
+    "enHash": "4e9461ea3837",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-full-translation.process.step4.label": {
+    "enHash": "b61c4c2e22bc",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-full-translation.process.step4.detail": {
+    "enHash": "6db7419fc45f",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-partial-translation.heading.title": {
+    "enHash": "de47b43e8e04",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-partial-translation.intro": {
+    "enHash": "9290a7575d50",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-partial-translation.body.translated": {
+    "enHash": "13e056161bcb",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-partial-translation.body.untranslated": {
+    "enHash": "32419bf49009",
+    "langs": [
+      "en"
+    ]
+  },
+  "pages.specimen-partial-translation.process.heading": {
+    "enHash": "bf77e6623a26",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-partial-translation.process.step1.label": {
+    "enHash": "74fb06734667",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-partial-translation.process.step1.detail": {
+    "enHash": "2c3b5d29e90a",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-partial-translation.process.step2.label": {
+    "enHash": "be2c5c0a12d3",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-partial-translation.process.step2.detail": {
+    "enHash": "ca84954b457e",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-partial-translation.process.step3.label": {
+    "enHash": "c216fb16f980",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-partial-translation.process.step3.detail": {
+    "enHash": "980420c7acc6",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-partial-translation.process.step4.label": {
+    "enHash": "cdc60cc42799",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-partial-translation.process.step4.detail": {
+    "enHash": "b29e6ba02fc2",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-smallest-miss.heading.title": {
+    "enHash": "b3c77d7323fc",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-smallest-miss.intro": {
+    "enHash": "7aba49132694",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-smallest-miss.body": {
+    "enHash": "5f8f02178200",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-smallest-miss.stale-badge": {
+    "enHash": "f50ef032f66f",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-smallest-miss.process.heading": {
+    "enHash": "64e537c48673",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-smallest-miss.process.step1.label": {
+    "enHash": "c1707ff6e540",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-smallest-miss.process.step1.detail": {
+    "enHash": "69d1206ddf1c",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-smallest-miss.process.step2.label": {
+    "enHash": "2bd31a886ff5",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-smallest-miss.process.step2.detail": {
+    "enHash": "242de8891236",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-smallest-miss.process.step3.label": {
+    "enHash": "98a73112f3b9",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-smallest-miss.process.step3.detail": {
+    "enHash": "6e3870eb7cae",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-smallest-miss.process.step4.label": {
+    "enHash": "60f3f4443dc6",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "pages.specimen-smallest-miss.process.step4.detail": {
+    "enHash": "4a17f9419a22",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "specimens.heading.title": {
+    "enHash": "ad900bdd657e",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "specimens.heading.subtitle": {
+    "enHash": "a8eca257aa79",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "specimens.card.full.label": {
+    "enHash": "93099a488bef",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "specimens.card.partial.label": {
+    "enHash": "453cccae33ec",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "specimens.card.stale.label": {
+    "enHash": "b3d431ad7974",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "specimens.card.full.description": {
+    "enHash": "222f04a9fa88",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "specimens.card.partial.description": {
+    "enHash": "0e10d9ff0c74",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "specimens.card.stale.description": {
+    "enHash": "8131eab20ae9",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "specimens.link.view": {
+    "enHash": "2296415830d3",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "specimens.link.back": {
+    "enHash": "8ca2d391a1b2",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "specimens.link.demo": {
+    "enHash": "ab4e044a124b",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "specimens.link.archives": {
+    "enHash": "ebf907478421",
     "langs": [
       "en",
       "ja"

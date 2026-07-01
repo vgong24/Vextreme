@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vextreme — Specimen: The Smallest Miss</title>
+<style>
+  :root {
+    --bg:     #0e0e0e;
+    --surface:#111111;
+    --text:   #e8e8e4;
+    --muted:  #6b6b6b;
+    --ember:  #c8502a;
+    --border: #2a2a2a;
+    --mono:   'IBM Plex Mono', monospace;
+    --sans:   'IBM Plex Sans', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); padding: 48px 24px 96px; max-width: 860px; margin: 0 auto; line-height: 1.6; }
+  .site-header { margin-bottom: 16px; }
+  .site-title  { font-size: 13px; font-family: var(--mono); color: var(--ember); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  h1 { font-size: 26px; font-weight: 500; margin-bottom: 8px; }
+  .subtitle { color: var(--muted); font-size: 15px; margin-bottom: 40px; max-width: 640px; }
+  section { margin-bottom: 44px; border-top: 1px solid var(--border); padding-top: 28px; }
+  h2 { font-size: 16px; font-weight: 500; color: var(--ember); margin-bottom: 12px; }
+  p  { font-size: 14px; color: var(--text); max-width: 680px; margin-bottom: 10px; }
+  .links { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+  .links a { color: var(--ember); text-decoration: none; font-size: 14px; }
+  .links a:hover { text-decoration: underline; }
+
+  /* Specimen cards (dashboard) */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  .card { border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-decoration: none; color: var(--text); display: block; }
+  .card:hover { border-color: var(--ember); }
+  .card-badge { font-family: var(--mono); font-size: 9px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ember); border: 1px solid var(--ember); border-radius: 3px; padding: 2px 6px; display: inline-block; margin-bottom: 10px; }
+  .card-label { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+  .card-desc  { font-size: 12.5px; color: var(--muted); }
+
+  /* Process map — boxes and arrows, plain HTML/CSS */
+  .process-map { display: flex; flex-direction: column; gap: 0; }
+  .process-step { border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px; position: relative; }
+  .process-step-num { font-family: var(--mono); font-size: 10px; color: var(--ember); letter-spacing: 0.05em; margin-bottom: 4px; }
+  .process-step-label { font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+  .process-step-detail { font-size: 12.5px; color: var(--muted); }
+  .process-arrow { text-align: center; font-family: var(--mono); color: var(--ember); font-size: 14px; padding: 4px 0; }
+
+  .body-text { border-left: 2px solid var(--border); padding-left: 16px; margin-bottom: 8px; }
+  .live-note { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 10px; }
+  .stale-badge { display: none; font-family: var(--mono); font-size: 11px; color: var(--ember); border: 1px solid var(--ember); border-radius: 4px; padding: 6px 10px; margin: 10px 0; }
+  .stale-badge.is-visible { display: inline-block; }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<header class="site-header">
+  <div class="site-title" data-i18n="common.label.site-title">Vextreme</div>
+  <h1 data-i18n="pages.specimen-smallest-miss.heading.title">The Smallest Miss</h1>
+  <div class="subtitle" data-i18n="pages.specimen-smallest-miss.intro">This page has exactly one translatable line. That's the point — a miss this small is easy to imagine slipping past a reviewer, and easy to prove a machine catches anyway.</div>
+</header>
+
+<section>
+  <div class="body-text" data-i18n="pages.specimen-smallest-miss.body">This line exists only to prove a small miss gets caught.</div>
+  <div class="stale-badge" id="staleBadge" data-i18n="pages.specimen-smallest-miss.stale-badge">Flagged stale — English changed after this translation was written</div>
+  <div class="live-note" id="staleLiveNote">Checking live translation status…</div>
+</section>
+
+<section>
+  <h2 data-i18n="pages.specimen-smallest-miss.process.heading">How a one-line change gets caught</h2>
+  <div class="process-map">
+<div class="process-step">
+  <div class="process-step-num">01</div>
+  <div class="process-step-label" data-i18n="pages.specimen-smallest-miss.process.step1.label">enHash recorded at compile time</div>
+  <div class="process-step-detail" data-i18n="pages.specimen-smallest-miss.process.step1.detail">Every key's English text is hashed into manifest.json when it compiles cleanly — a 12-character fingerprint of exactly what a translator translated against.</div>
+</div>
+<div class="process-arrow">↓</div>
+<div class="process-step">
+  <div class="process-step-num">02</div>
+  <div class="process-step-label" data-i18n="pages.specimen-smallest-miss.process.step2.label">English text changes</div>
+  <div class="process-step-detail" data-i18n="pages.specimen-smallest-miss.process.step2.detail">A future edit — even a single word — changes what the English source hashes to. Nothing about this requires the edit to be large or obviously risky.</div>
+</div>
+<div class="process-arrow">↓</div>
+<div class="process-step">
+  <div class="process-step-num">03</div>
+  <div class="process-step-label" data-i18n="pages.specimen-smallest-miss.process.step3.label">strings-check.js runs before every compile</div>
+  <div class="process-step-detail" data-i18n="pages.specimen-smallest-miss.process.step3.detail">It recomputes the hash and compares it to manifest.json. A mismatch means the English changed since this key's translations were written — that's a WARN, one of five severity levels (BLOCK, REMAP, WARN, INFO, quarantine), not a hard failure.</div>
+</div>
+<div class="process-arrow">↓</div>
+<div class="process-step">
+  <div class="process-step-num">04</div>
+  <div class="process-step-label" data-i18n="pages.specimen-smallest-miss.process.step4.label">_stale: true, written back automatically</div>
+  <div class="process-step-detail" data-i18n="pages.specimen-smallest-miss.process.step4.detail">The translation isn't blocked from shipping — it's tagged. The badge above this text on the Japanese version of this page is that tag, produced by a real run of this check against this exact key, not written in by hand.</div>
+</div>
+  </div>
+</section>
+
+<section>
+  <div class="links">
+    <a href="https://vgong24.github.io/Vextreme/pages/specimens.html" data-i18n="specimens.link.back">← Back to specimens</a>
+  </div>
+</section>
+
+<script>
+(function () {
+  var url = 'https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/data/strings/compiled/scopes/pages.specimen-smallest-miss.ja.json?v=' + Date.now();
+  var req = new XMLHttpRequest();
+  req.open('GET', url, true);
+  req.onload = function () {
+    var note = document.getElementById('staleLiveNote');
+    var badge = document.getElementById('staleBadge');
+    if (req.status !== 200) { note.textContent = 'Live check failed — could not fetch JA scope bundle.'; return; }
+    try {
+      var data = JSON.parse(req.responseText);
+      var entry = data['pages.specimen-smallest-miss.body'];
+      var isStale = !!(entry && entry._stale);
+      badge.classList.toggle('is-visible', isStale);
+      note.textContent = isStale
+        ? 'Live check: fetched pages.specimen-smallest-miss.ja.json — _stale is true on this key, confirmed just now.'
+        : 'Live check: fetched pages.specimen-smallest-miss.ja.json — not flagged stale.';
+    } catch (e) {
+      document.getElementById('staleLiveNote').textContent = 'Live check failed — could not parse JA scope bundle.';
+    }
+  };
+  req.onerror = function () {
+    document.getElementById('staleLiveNote').textContent = 'Live check failed — network error.';
+  };
+  req.send();
+}());
+</script>
+<script>
+  window.VEX_STRING_SCOPES = ["pages.specimen-smallest-miss","specimens"];
+</script>
+<script src="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/widgets/lang-fab.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/widgets/demo-fab.js"></script>
+</body>
+</html>

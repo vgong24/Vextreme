@@ -1,0 +1,42 @@
+{
+  "specimens.heading.title": {
+    "text": "標本"
+  },
+  "specimens.heading.subtitle": {
+    "text": "3つの小さな固定ページです — 実際のコンテンツではなく — それぞれが1つのローカライズ状態と、それを生み出す、あるいは検出するパイプライン段階を切り出しています。アーキテクチャの説明と実際の進捗トラッカーの中間に位置し、どちらよりも小さく、1分で読めることを意図しています。"
+  },
+  "specimens.card.full.label": {
+    "text": "完全翻訳"
+  },
+  "specimens.card.partial.label": {
+    "text": "部分翻訳"
+  },
+  "specimens.card.stale.label": {
+    "text": "最小の見落とし"
+  },
+  "specimens.card.full.description": {
+    "text": "すべての文字列が翻訳済みです。テストスイートが各パイプライン段階で何を検証しているかを示します — 単に合格したという事実だけではありません。"
+  },
+  "specimens.card.partial.description": {
+    "text": "1つの文字列を意図的に未翻訳のまま残しています — claude-answers-the-doubtに実際にある空白と同じものです。それを検出するスクリーンショット検証プロセスを示します。"
+  },
+  "specimens.card.stale.description": {
+    "text": "1行の英語が、日本語訳が書かれた後に変更され、自動的にstale（古い）と判定されました。それを検出した整合性チェックを示します。"
+  },
+  "specimens.link.view": {
+    "text": "標本を見る →",
+    "aria-label": "この標本ページを見る"
+  },
+  "specimens.link.back": {
+    "text": "← 標本一覧に戻る",
+    "aria-label": "標本ダッシュボードに戻る"
+  },
+  "specimens.link.demo": {
+    "text": "← アーキテクチャデモに戻る",
+    "aria-label": "アーキテクチャデモページに戻る"
+  },
+  "specimens.link.archives": {
+    "text": "実際の進行中の翻訳カバレッジをアーカイブダッシュボードで見る →",
+    "aria-label": "実際の翻訳進捗を見るためにアーカイブダッシュボードを表示"
+  }
+}

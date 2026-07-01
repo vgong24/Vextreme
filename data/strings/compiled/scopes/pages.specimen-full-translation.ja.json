@@ -1,0 +1,38 @@
+{
+  "pages.specimen-full-translation.heading.title": {
+    "text": "完全翻訳"
+  },
+  "pages.specimen-full-translation.intro": {
+    "text": "このページのすべての文字列に日本語訳があります。右上のオーブで言語を切り替えてください — 何も英語にフォールバックしません。"
+  },
+  "pages.specimen-full-translation.body": {
+    "text": "これは実際のコンテンツではなく、意図的に翻訳の空白がゼロになるよう作られた検証用フィクスチャです。隣にある部分翻訳の標本と直接比較できます。"
+  },
+  "pages.specimen-full-translation.process.heading": {
+    "text": "完全なカバレッジはどう検証されるか"
+  },
+  "pages.specimen-full-translation.process.step1.label": {
+    "text": "コンテンツパイプライン"
+  },
+  "pages.specimen-full-translation.process.step1.detail": {
+    "text": "nodes.json + arcs-v2.json → build-index.js。すべてのスラッグが解決すること、アークの順序が優先度と一致すること、アークの両端で隣接関係（前へ/次へ）が正しいことを検証します。"
+  },
+  "pages.specimen-full-translation.process.step2.label": {
+    "text": "文字列パイプライン"
+  },
+  "pages.specimen-full-translation.process.step2.detail": {
+    "text": "source/*.json → strings-compile.js → コンパイル済みバンドル＋マニフェスト。すべてのキーのハッシュが安定していること、重複キーが黙って上書きされないこと、キーごとの言語カバレッジが各バンドルの内容と一致することを検証します。"
+  },
+  "pages.specimen-full-translation.process.step3.label": {
+    "text": "ブラウザナビゲーション"
+  },
+  "pages.specimen-full-translation.process.step3.detail": {
+    "text": "アーク内でのスラッグの位置が与えられたとき、最初のエントリにprevリンクがないこと、最後のエントリにnextリンクがないこと、アークが優先順位通りに表示されることを検証します — これらは壊れたナビゲーションが静かに破ってしまう性質です。"
+  },
+  "pages.specimen-full-translation.process.step4.label": {
+    "text": "ビルド出力"
+  },
+  "pages.specimen-full-translation.process.step4.detail": {
+    "text": "生成されたHTMLを直接読み取り、特定の構造が存在することを検証します — コピー ボタンのクリックハンドラ、スラッグのポップオーバー、セルグリッドなど — テンプレートのリファクタリングが静かに削除しうるものです。"
+  }
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vextreme — Specimen: Partial Translation</title>
+<style>
+  :root {
+    --bg:     #0e0e0e;
+    --surface:#111111;
+    --text:   #e8e8e4;
+    --muted:  #6b6b6b;
+    --ember:  #c8502a;
+    --border: #2a2a2a;
+    --mono:   'IBM Plex Mono', monospace;
+    --sans:   'IBM Plex Sans', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); padding: 48px 24px 96px; max-width: 860px; margin: 0 auto; line-height: 1.6; }
+  .site-header { margin-bottom: 16px; }
+  .site-title  { font-size: 13px; font-family: var(--mono); color: var(--ember); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  h1 { font-size: 26px; font-weight: 500; margin-bottom: 8px; }
+  .subtitle { color: var(--muted); font-size: 15px; margin-bottom: 40px; max-width: 640px; }
+  section { margin-bottom: 44px; border-top: 1px solid var(--border); padding-top: 28px; }
+  h2 { font-size: 16px; font-weight: 500; color: var(--ember); margin-bottom: 12px; }
+  p  { font-size: 14px; color: var(--text); max-width: 680px; margin-bottom: 10px; }
+  .links { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+  .links a { color: var(--ember); text-decoration: none; font-size: 14px; }
+  .links a:hover { text-decoration: underline; }
+
+  /* Specimen cards (dashboard) */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  .card { border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-decoration: none; color: var(--text); display: block; }
+  .card:hover { border-color: var(--ember); }
+  .card-badge { font-family: var(--mono); font-size: 9px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ember); border: 1px solid var(--ember); border-radius: 3px; padding: 2px 6px; display: inline-block; margin-bottom: 10px; }
+  .card-label { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+  .card-desc  { font-size: 12.5px; color: var(--muted); }
+
+  /* Process map — boxes and arrows, plain HTML/CSS */
+  .process-map { display: flex; flex-direction: column; gap: 0; }
+  .process-step { border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px; position: relative; }
+  .process-step-num { font-family: var(--mono); font-size: 10px; color: var(--ember); letter-spacing: 0.05em; margin-bottom: 4px; }
+  .process-step-label { font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+  .process-step-detail { font-size: 12.5px; color: var(--muted); }
+  .process-arrow { text-align: center; font-family: var(--mono); color: var(--ember); font-size: 14px; padding: 4px 0; }
+
+  .body-text { border-left: 2px solid var(--border); padding-left: 16px; margin-bottom: 8px; }
+  .live-note { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 10px; }
+  .stale-badge { display: none; font-family: var(--mono); font-size: 11px; color: var(--ember); border: 1px solid var(--ember); border-radius: 4px; padding: 6px 10px; margin: 10px 0; }
+  .stale-badge.is-visible { display: inline-block; }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<header class="site-header">
+  <div class="site-title" data-i18n="common.label.site-title">Vextreme</div>
+  <h1 data-i18n="pages.specimen-partial-translation.heading.title">Partial Translation</h1>
+  <div class="subtitle" data-i18n="pages.specimen-partial-translation.intro">One string below has no Japanese translation, on purpose. Switch languages with the orb, top right, and watch what happens to it.</div>
+</header>
+
+<section>
+  <div class="body-text" data-i18n="pages.specimen-partial-translation.body.translated">This sentence has a Japanese translation, so it swaps cleanly when you switch languages.</div>
+  <div class="body-text" data-i18n="pages.specimen-partial-translation.body.untranslated">This sentence does not have a Japanese translation — switching languages will show this exact English text, or the raw key, depending on whether the missing-key fallback has shipped yet.</div>
+</section>
+
+<section>
+  <h2 data-i18n="pages.specimen-partial-translation.process.heading">How this gap gets caught before it ships</h2>
+  <div class="process-map">
+<div class="process-step">
+  <div class="process-step-num">01</div>
+  <div class="process-step-label" data-i18n="pages.specimen-partial-translation.process.step1.label">Local server + CDN interception</div>
+  <div class="process-step-detail" data-i18n="pages.specimen-partial-translation.process.step1.detail">scripts/screenshot-page.js starts a local HTTP server and routes CDN requests to local files, so the screenshot tests the branch's code, never whatever is already live on main.</div>
+</div>
+<div class="process-arrow">↓</div>
+<div class="process-step">
+  <div class="process-step-num">02</div>
+  <div class="process-step-label" data-i18n="pages.specimen-partial-translation.process.step2.label">EN screenshot</div>
+  <div class="process-step-detail" data-i18n="pages.specimen-partial-translation.process.step2.detail">The page loads in its default language and Playwright captures a full-page screenshot as the baseline.</div>
+</div>
+<div class="process-arrow">↓</div>
+<div class="process-step">
+  <div class="process-step-num">03</div>
+  <div class="process-step-label" data-i18n="pages.specimen-partial-translation.process.step3.label">FAB click + language switch</div>
+  <div class="process-step-detail" data-i18n="pages.specimen-partial-translation.process.step3.detail">Playwright clicks the lang-fab orb, selects Japanese, and waits for the strings fetch and the [data-i18n] swap to complete.</div>
+</div>
+<div class="process-arrow">↓</div>
+<div class="process-step">
+  <div class="process-step-num">04</div>
+  <div class="process-step-label" data-i18n="pages.specimen-partial-translation.process.step4.label">JA screenshot, read by a human</div>
+  <div class="process-step-detail" data-i18n="pages.specimen-partial-translation.process.step4.detail">A second screenshot is taken and someone actually looks at it. This is how a real bug got caught in this project: a live-fetched timestamp was getting silently overwritten by a translated placeholder on every language switch — invisible in the diff, invisible to the test suite, visible in under a second here.</div>
+</div>
+  </div>
+</section>
+
+<section>
+  <div class="links">
+    <a href="https://vgong24.github.io/Vextreme/pages/specimens.html" data-i18n="specimens.link.back">← Back to specimens</a>
+  </div>
+</section>
+<script>
+  window.VEX_STRING_SCOPES = ["pages.specimen-partial-translation","specimens"];
+</script>
+<script src="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/widgets/lang-fab.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/widgets/demo-fab.js"></script>
+</body>
+</html>

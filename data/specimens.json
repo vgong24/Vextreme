@@ -1,0 +1,20 @@
+[
+  {
+    "slug": "specimen-full-translation",
+    "state": "full",
+    "process": "tests",
+    "title": "Full Translation"
+  },
+  {
+    "slug": "specimen-partial-translation",
+    "state": "partial",
+    "process": "screenshots",
+    "title": "Partial Translation"
+  },
+  {
+    "slug": "specimen-smallest-miss",
+    "state": "stale",
+    "process": "strings-check",
+    "title": "The Smallest Miss"
+  }
+]
