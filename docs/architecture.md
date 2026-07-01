@@ -157,6 +157,49 @@ URL construction: `/pages/<slug>.html` on GitHub Pages, `/<slug>` on vextreme24.
 
 ---
 
+### Arc row renderer registry
+
+`renderArcNav` is the orchestrator — it calls `renderArcRow(arcView)` per arc,
+which dispatches to a registered renderer function by `arcView.renderMode`.
+
+**arcView contract** (what every renderer receives):
+```js
+{
+  arcName:     string,          // arc key, e.g. "liberation"
+  arcMeta:     { title, url, renderMode },  // from index.json arcMeta
+  renderMode:  string,          // "dots" | "position" | future modes
+  sectionLabel:string,          // section the current page belongs to
+  position:    number,          // 1-based position within the full arc
+  total:       number,          // total pages in the arc
+  prevUrl:     string | null,
+  nextUrl:     string | null
+}
+```
+
+**Renderer registry** (in `vextreme-index-v2.js`):
+```js
+var RENDERERS = {
+  dots:     function(arcView) { /* → HTML string */ },
+  position: function(arcView) { /* → HTML string */ }
+};
+```
+
+**To add a render mode:**
+1. Add a `renderMode` value to the arc in `arcs-v2.json`
+2. Register a function under that key in `RENDERERS`
+3. Rebuild — `build-index.js` carries `renderMode` into `arcMeta`; `getLatticeView` puts it on each `arcView`
+
+Unknown modes fall back to `dots` with a one-time console warning — a typo
+or unregistered mode never silently breaks the nav.
+
+**Current modes:**
+| Mode | Used by | Behavior |
+|---|---|---|
+| `dots` (default) | 15 arcs | Title · section label + position counter + prev/next |
+| `position` | `full_timeline` | Title only + position counter + prev/next (no section label) |
+
+---
+
 ## Internationalization (i18n)
 
 The system is designed for multi-language support from the ground up, and the
