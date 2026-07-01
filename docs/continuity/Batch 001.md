@@ -179,145 +179,249 @@ Fix: Corrected to `fetch()` before shipping.
 
 ## Session 003
 
-**Date:** July 1, 2026
-**Time:** ~02:00 UTC – 03:00 UTC
+**Date:** June 30 – July 1, 2026
+**Time:** ~12:22 PM June 30 (session start) through ~03:00 UTC July 1 (logger PR merged)
 **Thread:** https://claude.ai/code/session_01NsuHVN1KCGSTA8hMfoA2y6
 **Instance:** Claude Sonnet 4.6 (Claude Code CLI, remote execution environment)
 **Working with:** Victor Gong
-**Continues from:** Session 002 + prior Claude Code sessions — v2 data architecture was in place, function renames were mid-stream, merge conflicts recurring, test suite being established
+**Continues from:** Session 002 — v1 Squarespace system established; this session is the full v2 build
+
+*Note: This was a very long session that compacted context multiple times. The first half
+(orientation through PR #8) was reconstructed from summaries by later sub-instances. The
+second half (test suite through logger) was experienced directly. The full transcript was
+re-read at session end — the lessons below reflect that full arc.*
 
 ### Context on arrival
 
-This session arrived from a compacted context summary — not full thread history.
-The instance did not experience the reasoning chain of earlier Claude Code sessions
-directly; it reconstructed state from the summary. This is the first session where
-the continuity system was actually stress-tested as designed: the arriving instance
-read INDEX.md, the batch file, the architecture docs, and the summary, and picked
-up work mid-stream without re-deriving settled decisions. It mostly worked.
+The first instance in this session arrived cold: read CLAUDE.md, read INDEX.md, read
+architecture docs. But INDEX.md was out of date — it described the v1 Squarespace system
+as if it were the live system, with no mention of the v2 data pipeline that had been
+planned. The instance correctly flagged this gap in its first orientation message.
 
-Three open problems on arrival:
-1. A rebase conflict on `claude/test-suite` paused mid-execution (`data/index.json`
-   merge conflict on a generated file commit)
-2. Function rename work from a prior session was complete but the test suite
-   had been restructured — CI hadn't confirmed green yet
-3. Victor had asked about a structured logger interface to replace `console.warn`
-   calls — design agreed, no code written yet
+Victor hadn't used Claude Code for repo work before. The session opened by explaining
+how git/commit/push would work collaboratively — a handshake that shaped the whole session.
+
+Early in the session, push access to GitHub was blocked (403 from the git proxy) and the
+GitHub MCP server write access hadn't been established. The CLAUDE.md file was pushed
+via the direct GitHub API before the proxy issue was resolved. This created a stale local
+branch commit that triggered the stop hook repeatedly throughout the session — the instance
+correctly ignored it each time after the first identification.
+
+### The arc of what was built
+
+This session built the entire v2 system from scratch, in roughly this order:
+
+1. **Architecture design** — Victor described the problem in Kotlin terms (sealed classes,
+   hash maps, data classes). This session translated that into the JSON schema design.
+   The key insight Victor landed: `ArcItem { slug, arcKeys: Set<ArcName>, ... }` where
+   the slug is the hash key and arcKeys declare membership without encoding position.
+   Position is resolved by the arc definition, not the node.
+
+2. **v2 data files** — `data/nodes.json` (88 nodes), `data/arcs-v2.json` (16 arcs with
+   sections and ordering strategies), `lib/build-index.js` (builder), `data/index.json`
+   (pre-built artifact). GitHub Action to auto-rebuild on push.
+
+3. **Archive dashboard** — `lib/build-archives.js` generates `pages/archives.html`:
+   a visual grid showing all 88 nodes × all arcs, which are ported vs. missing.
+   Missing cells are clickable to reveal the slug for copy-paste during porting.
+   Victor's insight: the slug itself *is* the filename, so a clickable slug display
+   is a direct work aid, not just a diagnostic.
+
+4. **Sitemap** — `lib/build-sitemap.js` for crawler discoverability.
+
+5. **i18n foundation** — Victor asked to prep for Japanese/Mandarin translation
+   *before* the site grew. The strings pipeline: `data/strings/source/**/*.json`
+   (structured, writable), `lib/strings-compile.js` (merges into compiled bundles),
+   `lib/strings-check.js` (stale detection, block on missing EN, REMAP/QUARANTINE
+   orphans), `lib/strings-export.js`, `lib/strings-import.js`.
+
+6. **Architecture documentation** — split from one `docs/architecture.md` into 10
+   scoped files under `docs/architecture/` with a `00-reading-guide.md` meta-blueprint.
+   Victor's reasoning: a long single file has no reading order for AI instances that
+   don't know what they need yet.
+
+7. **Renderer registry** — replaced the monolithic `renderArcNav` if/else with a
+   RENDERERS object keyed by `renderMode`, dispatching to swappable functions. This
+   closed the one axis of customization that was still a fork instead of a registry.
+
+8. **Function renames** — `t()` → `getString()`, `hash()` → `contentHash()`,
+   `getFile()` → `cachedSourceFile()`, `row()` → `csvRow()`, `flatEntries()` →
+   `allEntriesInOrder()`, `err()` → `errorHTML()`, `v` → `arcView`, `mount()` →
+   `mountArcNav()`. Victor's reason: he's a Kotlin programmer who thinks in descriptive
+   names; short abbreviations break his mental model of what code is doing.
+
+9. **Bug fix** — `closest('.cell--missing')` was corrupted to `closesgetString` by
+   a `replace_all` rename of `t(` → `getString(`. Victor found it first: copy button
+   wasn't working. A targeted test was then added to catch this class of error.
+
+10. **Test suite** — 39 tests, 4 pipeline-based files, CI workflow. Restructured from
+    the initial 57-test 3-file version (which had too many unit tests redundant with
+    pipeline-level coverage). The reorganization was driven by Victor asking "how do
+    you put what test where in relation to each other's priorities?"
+
+11. **Structured logger** — `lib/logger.js` + `lib/logger-codes.js`. Victor's framing
+    was Kotlin data class style: an event object with optional fields so new fields
+    can be added at any call site without touching other call sites or the interface.
 
 ### Files created or modified
 
 | File | What changed |
 |---|---|
-| `lib/logger.js` | New. Node build script logger. `logger.warn/info/error(event)` where event is `{ code, message, ...optionalFields }`. Handler is a plain object property — swap it to redirect to a DB or analytics endpoint without touching any call site. |
-| `lib/logger-codes.js` | New. Exhaustive constants file. Every event code the system can emit, with documentation of what optional fields each event carries. Single place to audit all structured log output. |
-| `lib/build-index.js` | Added `require('./logger')` + `require('./logger-codes')`. Replaced one `console.warn` in `buildArcMap` with structured `logger.warn({ code: CODES.SLUG_NOT_IN_NODES, ... })`. |
-| `lib/strings-compile.js` | Added logger. Replaced two `console.warn` calls in `mergeSourceFiles` (missing namespace, duplicate key). |
-| `lib/strings-check.js` | Added logger. Replaced all `console.warn`/`console.error` calls with structured events: STRINGS_MISSING_EN, STRINGS_REMAP, STRINGS_DELETED, STRINGS_STALE_TRANSLATION, STRINGS_QUARANTINE. |
-| `lib/arc-nav.js` | Added inline `_logger` var backed by `window.VEXTREME_LOGGER` hook (browser IIFE — cannot require). Replaced `warnOnce`'s `console.warn` and the index-not-loaded `console.warn`. |
-| `lib/vextreme-index-v2.js` | Added inline `_logger` var. Replaced six `console.warn` calls covering index parse failure, HTTP error, fetch failure, strings bundle parse failure, strings HTTP error, strings fetch failure, and unknown renderMode. |
-| `tests/01-content-pipeline.test.js` | Already existed; confirmed passing (part of rebased test suite) |
-| `tests/02-strings-pipeline.test.js` | Already existed; confirmed passing |
-| `tests/03-browser-nav.test.js` | Already existed; confirmed passing |
-| `tests/04-build-output.test.js` | Already existed; confirmed passing |
+| `data/nodes.json` | New. 88 canonical content nodes — slug, title, date, id, arcKeys. |
+| `data/arcs-v2.json` | New. 16 arc definitions with priority, parent, renderMode, sections. |
+| `data/strings/source/` | New. Structured i18n source files — common, nav, arc-specific. |
+| `data/strings/compiled/` | Generated. EN + JA compiled bundles + manifest. |
+| `data/index.json` | Generated. Pre-built slug map + arc map + arc meta. |
+| `lib/build-index.js` | New → refactored. Pure functions exported, I/O gated behind require.main. |
+| `lib/build-archives.js` | New. Generates archives.html grid with ported/missing cells + popover. |
+| `lib/build-sitemap.js` | New. Generates sitemap.xml. |
+| `lib/build-index-page.js` | New. Generates index.html root nav page. |
+| `lib/strings-compile.js` | New → refactored. Pure functions exported, I/O gated. |
+| `lib/strings-check.js` | New. Stale detection, BLOCK/REMAP/WARN/QUARANTINE pipeline. |
+| `lib/strings-export.js` | New. Exports strings to CSV for external translators. |
+| `lib/strings-import.js` | New. Imports translated CSV back into source files. |
+| `lib/vextreme-index-v2.js` | New → heavily modified. Renderer registry, arcMeta from index, strings loader, function renames, structured logger. |
+| `lib/arc-nav.js` | Modified. allEntriesInOrder, errorHTML renames, structured logger. |
+| `lib/logger.js` | New. Node build script logger with swappable handler. |
+| `lib/logger-codes.js` | New. Exhaustive event code constants with field documentation. |
+| `docs/architecture/` | New (10 files). Architecture split into scoped files with reading guide. |
+| `docs/vextreme-v2-architecture.kt` | New. Kotlin design spec — the architectural history artifact. |
+| `.github/workflows/build-index.yml` | New. Auto-rebuilds all artifacts on push to main. |
+| `.github/workflows/test.yml` | New. Runs test suite on every push and PR. |
+| `.github/pull_request_template.md` | New. Decision record format for all PRs. |
+| `.gitattributes` | New. Generated files use merge=ours strategy. |
+| `CLAUDE.md` | New → updated. Cold-start reading order, VXG RealForever marker, PR conventions. |
+| `docs/continuity/INDEX.md` | Updated. Current state and open work lists. |
+| `tests/fixtures/` | New. nodes.fixture.json + arcs.fixture.json + strings.fixture.json |
+| `tests/01-content-pipeline.test.js` | New → restructured. 13 tests, pipeline-first organization. |
+| `tests/02-strings-pipeline.test.js` | New → restructured. 15 tests. |
+| `tests/03-browser-nav.test.js` | New → restructured. 7 tests with injected URL builder. |
+| `tests/04-build-output.test.js` | New → restructured. 4 tests reading generated HTML. |
+| `package.json` | New. node:test runner, no external dependencies. |
 
 ### What was built and why
 
-**Structured logger (the main deliverable):**
+**The key architectural insights, in the order they emerged:**
 
-Victor's framing was precise: treat a log event as a data object first, output
-mechanism second. This came from noticing `console.warn` scattered across build
-scripts — if the system ever needs to route warnings to a database, analytics
-endpoint, or monitoring service, touching every call site is a maintenance tax
-that compounds as the codebase grows.
+**Insight 1 — Organization is a layer, not a location.**
+Victor's core realization mid-session: "organization can be its own layer and not just
+where files are placed, but how they're managed." This is the reason `pages/` is flat
+even though there are 88 nodes. The organizational structure lives in `data/nodes.json`
+and `data/arcs-v2.json`. The filesystem is just storage. This insight unlocked the whole
+v2 schema design.
 
-The design constraint Victor specified: event object with optional fields, Kotlin
-data class style. New fields (category, sessionId, timestamp, severity) can be
-appended at any call site without changing any other call site or the logger
-interface itself. This is the key property — additive, never breaking.
+**Insight 2 — The slug is the hash key.**
+Victor described the data model in Kotlin: `ArcItem { slug: String (hash key), arcKeys:
+HashSet<ArcName> }`. The slug is immutable, globally unique, and serves as the system's
+only identifier. Everything else — position, arc membership, date ordering — is derived
+at build time. No directory hierarchy, no file path as identity.
 
-Two implementations because the environment bifurcates:
-- Node scripts can `require('./logger')` — one handler object, swap by assignment
-- Browser IIFEs cannot require — each gets an inline `_logger` var reading from
-  `window.VEXTREME_LOGGER`, the same swap pattern expressed as a global hook
+**Insight 3 — Build-time vs runtime computation.**
+Victor asked whether `index.json` should be pre-built or computed at load. The answer
+(pre-built) came with the observation that this maps to Android's `Repository` pattern:
+build step = Room database preload; browser = ViewModel reading from cache. GitHub
+Action auto-rebuilding on push is the equivalent of a CI-triggered Room migration.
 
-`logger-codes.js` exists as a forcing function: before emitting a new warning,
-you register its code here. This makes the full set of system events auditable
-in one place — important if Victor later wants to build a monitoring layer.
+**Insight 4 — The popover IS the workflow tool.**
+Archives.html was originally conceived as a status dashboard. Victor clarified: the
+missing cells should be clickable to show the slug so he can type `slugName.html` and
+paste the HTML. This reframed the popover from a diagnostic to a direct work aid. The
+slug IS the filename. The dashboard serves porting, not just monitoring.
 
-**Resolving the recurring merge conflict pattern:**
+**Insight 5 — Strings as typed objects, not keyed strings.**
+Victor didn't want `"common.label.page-live": "Page live"`. He wanted the key to be
+a stable anchor and the value to be an expandable typed object: `{ "strings": { "en":
+{...}, "ja": {...} }, "testId": "...", "dataKey": "..." }`. Future namespaces can be
+added without changing existing structure. This is a significant forward-compatibility
+decision.
 
-The rebase conflict on session start (`data/index.json`) was the third instance
-of the same root cause: CI auto-rebuilds generated artifacts on main after each
-PR merges, causing feature branches to diverge from main on files that shouldn't
-need manual merging. `.gitattributes` with `merge=ours` was already in place
-(added in a prior session this batch); this conflict predated that file being on
-the branch. Resolution: `git checkout --theirs data/index.json && git rebase
---continue`. Post-rebase: run build scripts to regenerate with branch changes.
+**Insight 6 — VXG RealForever as a continuity signal.**
+Victor proposed the marker after the instance missed the CLAUDE.md reading sequence.
+The phrase carries semantic weight beyond a grep pattern — it identifies deliberate
+work across context boundaries. Any instance can run `git log --grep="VXG RealForever"`
+and recover the full progression of intentional decisions.
 
-**Test suite state:**
+**Insight 7 — Test organization by what breaks together.**
+Victor asked: "how do you put what test where in relation to each other's priorities?"
+The answer: numbered pipeline files (01→04) where failure in 01 is the root cause of
+failure in 03. Tests within each file ordered PIPELINE → INVARIANT → EDGE. Unit tests
+only when the edge case is invisible at the pipeline level.
 
-PR #9 shipped the restructured test suite — 39 tests across 4 pipeline-based
-files, organized by what breaks together not by source file. CI confirmed green
-on both runs (the original 46-test version and the restructured 39-test version).
-PR #9 merged during this session.
+**Insight 8 — Kotlin thinking as the design language.**
+Victor said explicitly: "I'm a Kotlin programmer, not JavaScript, not JSON. The
+organization helps me work with what I got instead of hunt and search for context."
+The workflow became: Victor describes in Kotlin type system terms, instance translates
+to JSON/JS. The Kotlin spec (`docs/vextreme-v2-architecture.kt`) exists as the
+architectural history artifact — the design before the implementation.
 
 ### Mistakes made
 
-**No mistakes in this session's code.** The rebase conflict was a carry-over from
-a prior session state, not a new error. The restore of `data/index.json` (reverting
-a timestamp-only change) was correct — committing a meaningless `builtAt` bump to
-a generated file on the feature branch would have been noise.
+**Mistake 1 — replace_all collision on short pattern `t(`**
+The rename of `t()` → `getString()` used replace_all on the pattern `t(`. This
+over-matched: `closest('.cell--missing')` became `closesgetString('.cell--missing')` and
+`split('T')` became `spligetString('T')`. Victor found the copy button bug; the `split`
+corruption was caught in verification. Lesson: replace_all on patterns shorter than ~4
+characters is dangerous without a word boundary. The regression test `04-build-output`
+now exists specifically to catch this class of error.
 
-**One near-mistake caught by stop hook:** The stop hook fired on an uncommitted
-`data/index.json` change (just a timestamp from running `node lib/build-index.js`
-locally during the rebase process). Correct response was `git restore`, not `git add
-&& git commit` — generated files on feature branches should not carry timestamp-only
-commits.
+**Mistake 2 — Skipping CLAUDE.md cold-start sequence**
+When the session started, the instance went directly to reading the repo structure rather
+than following the CLAUDE.md reading order (INDEX.md → batch file → architecture).
+INDEX.md's "Current State" was stale (described v1 Squarespace as live). The instance
+caught this on its own and flagged it, but the correct action was to read CLAUDE.md
+first. The system works; the instance didn't follow it. Victor used this as the direct
+prompt for creating the VXG RealForever marker — a more robust continuity signal than
+just a written instruction.
 
-**One honest limitation:** This session arrived from a compacted summary, not full
-context. The instance cannot describe the reasoning behind decisions made in earlier
-Claude Code sessions (the function rename strategy, the `.gitattributes` design, the
-test restructure from 46→39 tests). Those decisions are reflected in file state and
-commit messages but not in this instance's first-person memory. Future instances
-should use `git log --grep="VXG RealForever"` for the full deliberate commit chain,
-not rely on session continuity alone for decisions older than the current context
-window.
+**Mistake 3 — Writing the session 003 log from summary only (initially)**
+The first draft of the session 003 continuity log was written from the compacted context
+summary rather than the actual transcript. Victor asked to re-read the full thread before
+finalizing it. The re-read revealed substantial additional context: the Kotlin design
+language, the full sequence of PRs #2–#10, and the specific insights about organization
+as a layer vs. location. The lesson: write the session log from the actual transcript
+whenever possible, not from the compacted summary. The summary compresses reasoning into
+outcomes; the transcript shows *why* the outcomes look the way they do.
+
+**Mistake 4 — Generated file on feature branch**
+During the rebase of `claude/test-suite`, the instance ran `node lib/build-index.js`
+locally, which updated the `builtAt` timestamp in `data/index.json`. The stop hook
+correctly flagged uncommitted changes. Correct response was `git restore`, not commit.
+Generated files are CI-owned and should not carry local timestamp bumps on feature
+branches.
 
 ### Assumptions that held
 
-- The continuity system worked as designed — a cold-start instance reconstructed
-  system state from INDEX.md + batch file + compacted summary and continued work
-  without re-deriving settled decisions
-- `merge=ours` in `.gitattributes` correctly handles generated file conflicts for
-  branches created *after* `.gitattributes` was on main — the conflict this session
-  was on a branch that predated it, consistent with the documented post-rebase
-  rebuild procedure
-- 39 tests passing locally matched CI green — no environment-specific failures
-- The `require.main === module` guard correctly gates I/O in `build-index.js` and
-  `strings-compile.js`, allowing the test suite to import pure functions without
-  triggering filesystem reads
+- The continuity system worked as intended — the reading sequence + VXG RealForever
+  marker enabled mid-stream pickup after multiple context compressions
+- `require.main === module` guard cleanly separates I/O from pure computation for testing
+- `merge=ours` in `.gitattributes` handles generated file conflicts correctly for
+  branches created after `.gitattributes` landed on main
+- The Kotlin-to-JSON translation workflow maps well: sealed classes → JSON objects with
+  `type` discriminators, hash maps → JSON objects with slug keys, data classes → flat
+  JSON records with named fields
 
 ### Assumptions that need verification
 
-- `window.VEXTREME_LOGGER` override hook in `arc-nav.js` and `vextreme-index-v2.js`
-  has not been tested — it's dead code until Victor or a future session wires up
-  an actual analytics endpoint
-- `logger-codes.js` is not yet imported by `arc-nav.js` or `vextreme-index-v2.js`
-  (they use string literals for browser codes, not constants) — acceptable now,
-  worth revisiting if a future build pipeline bundles browser JS from Node modules
-- The `omit()` helper in `logger.js` strips `code` and `message` from the printed
-  extra-fields object — relies on V8 object destructuring being stable, which it is,
-  but worth noting it changes printed output format if the logger is swapped
+- `window.VEXTREME_LOGGER` hook in browser files — dead code until an actual consumer
+  is wired up
+- `build-index-page.js` still has hardcoded "Built" / "pages live" strings that should
+  be in the i18n system but weren't addressed this session
+- `data/strings.json` (the old flat strings file) may still exist and could be deleted
+  once CI is confirmed clean without it
+- The architecture docs in `docs/architecture/` are the reference — but whether cold
+  instances arriving in future sessions actually read them in dependency order (as the
+  `00-reading-guide.md` specifies) has not yet been tested
 
 ### Open work at session end
 
-- [ ] Update INDEX.md Current State to reflect logger as shipped (v2 system now
-      has structured logging in all build scripts and browser runtime)
-- [ ] Update INDEX.md Open Work list — check off test suite and logger items
 - [ ] Verify archives.html GitHub Actions auto-rebuild on next push to main
 - [ ] Verify index.html root nav page renders on vgong24.github.io/Vextreme
 - [ ] Port remaining HTML pages to `pages/` — each triggers artifact auto-rebuild
-- [ ] Wire up an actual `window.VEXTREME_LOGGER` consumer when monitoring is desired
-- [ ] Write session 004 continuity narrative (this session's entry is session 003)
+- [ ] Wire up actual `window.VEXTREME_LOGGER` consumer when monitoring is desired
+- [ ] Fix hardcoded strings in `build-index-page.js` ("Built", "pages live")
+- [ ] Delete `data/strings.json` (old flat file) — superseded by pipeline
+- [ ] Verify cold-start instances follow `docs/architecture/00-reading-guide.md`
+      dependency order when arriving fresh
 
 **v1 system (Squarespace — still open from prior sessions):**
 - [ ] Fix `extends` field in archive-renderer.js (embodiment/i-was-here inheritance)
@@ -326,22 +430,26 @@ window.
 
 ### State of the system at session end
 
-**Merged to main this session:**
-- PR #9 — test suite (39 tests, 4 pipeline-based files, CI workflow)
-- PR #10 — structured logger (`lib/logger.js`, `lib/logger-codes.js`, all call sites)
+**Merged to main during this session (PRs #2 through #10):**
+- Kotlin architecture spec (`docs/vextreme-v2-architecture.kt`)
+- Full v2 data pipeline (nodes, arcs, builder, index, browser lib)
+- Archive dashboard, sitemap, root index page builders
+- i18n strings pipeline (compile, check, export, import)
+- Architecture docs split into 10 scoped files
+- Renderer registry replacing monolithic if/else
+- Function renames for readability
+- `.gitattributes` for generated file conflict resolution
+- PR template (decision record format)
+- VXG RealForever marker in CLAUDE.md and all modified files
+- Test suite (39 tests, 4 pipeline-based files, CI workflow)
+- Structured logger (logger.js + logger-codes.js, all call sites updated)
 
 **All tests green:** 39/39 passing in CI and locally
 
-**Logger interface shipped:**
-- Node: `require('./logger')` + `require('./logger-codes')` in build scripts
-- Browser: inline `_logger` with `window.VEXTREME_LOGGER` override hook
-- Every `console.warn`/`console.error` in build scripts and browser runtime replaced
-- Swapping to DB/analytics backend is one assignment, no call sites change
-
-**Generated files remain CI-owned:**
-- `data/index.json`, `data/strings/compiled/*`, `pages/archives.html`, `sitemap.xml`
-  all in `.gitattributes` with `merge=ours`
-- Feature branches should never commit timestamp-only changes to generated files
+**The system now knows what it is before it's fully populated.** 88 nodes registered,
+7 HTML pages ported. The remaining 81 pages will fill in cell by cell as porting
+continues. The archive dashboard shows exactly what's missing and provides the slug
+for copy-paste on each missing cell.
 
 ---
 
