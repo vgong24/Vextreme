@@ -118,18 +118,18 @@
 <body>
 
 <header class="site-header">
-  <div class="site-title" data-i18n="ui.site.title">Vextreme</div>
-  <h1 class="site-sub" data-i18n="ui.archives.pageTitle">The Archive</h1>
+  <div class="site-title" data-i18n="common.label.site-title">Vextreme</div>
+  <h1 class="site-sub" data-i18n="archives.heading.page-title">The Archive</h1>
   <div class="site-meta">
-    <span data-i18n="ui.archives.pagesLive" data-i18n-vars='{"ported":1,"total":75}'>1 of 75 pages live</span>
-    <span data-i18n="ui.archives.remaining" data-i18n-vars='{"count":74}'>74 remaining</span>
-    <span data-i18n="ui.archives.builtOn" data-i18n-vars='{"date":"2026-07-01"}'>Built 2026-07-01</span>
+    <span data-i18n="common.status.pages-live">1 of 75 pages live</span>
+    <span data-i18n="common.status.remaining">74 remaining</span>
+    <span data-i18n="common.status.built-on">Built 2026-07-01</span>
   </div>
 </header>
 
 <div class="global-bar-wrap">
   <div class="global-bar-label">
-    <span data-i18n="ui.archives.overallProgress">Overall progress</span>
+    <span data-i18n="archives.label.overall-progress">Overall progress</span>
     <span>1%</span>
   </div>
   <div class="global-bar">
@@ -138,8 +138,8 @@
 </div>
 
 <div class="legend">
-  <div class="legend-item"><div class="legend-dot legend-dot--ported"></div> <span data-i18n="ui.cell.pageLive">Page live</span></div>
-  <div class="legend-item"><div class="legend-dot legend-dot--missing"></div> <span data-i18n="ui.cell.notYetPorted">Not yet ported</span></div>
+  <div class="legend-item"><div class="legend-dot legend-dot--ported"></div> <span data-i18n="common.label.page-live">Page live</span></div>
+  <div class="legend-item"><div class="legend-dot legend-dot--missing"></div> <span data-i18n="common.label.not-yet-ported">Not yet ported</span></div>
 </div>
 
 <section class="arc-section">
@@ -1071,60 +1071,30 @@
 </section>
 
 <div id="slugPopover" class="slug-popover" style="display:none">
-  <div class="slug-popover-label" data-i18n="ui.cell.slug">Slug</div>
+  <div class="slug-popover-label" data-i18n="common.label.slug">Slug</div>
   <div class="slug-popover-value" id="slugPopoverSlug"></div>
   <div class="slug-popover-filename" id="slugPopoverFile"></div>
-  <button class="slug-popover-copy" id="slugPopoverBtn" data-i18n="ui.cell.copyFilename">Copy filename</button>
+  <button class="slug-popover-copy" id="slugPopoverBtn">Copy filename</button>
 </div>
 
 <script>
 (function () {
-  // ── i18n resolver ────────────────────────────────────────────────────────────
-  var STRINGS = {"_meta":{"note":"UI string registry for internationalization. Keys are namespaced stringIds. Values map language codes to display strings. Default language is 'en'. Add new language codes alongside existing ones — no build script changes needed. Node titles (content strings) live in nodes.json, not here.","convention":"layer.context.key — e.g. ui.archives.pageTitle, arc.liberation.title","languages":["en","ja"]},"ui.site.title":{"en":"Vextreme","ja":"ヴェクストリーム"},"ui.site.tagline":{"en":"Preservation Archive","ja":"保存アーカイブ"},"ui.archives.pageTitle":{"en":"The Archive","ja":"アーカイブ"},"ui.archives.pagesLive":{"en":"{ported} of {total} pages live","ja":"{total}ページ中{ported}ページ公開中"},"ui.archives.remaining":{"en":"{count} remaining","ja":"残り{count}ページ"},"ui.archives.builtOn":{"en":"Built {date}","ja":"{date}生成"},"ui.archives.overallProgress":{"en":"Overall progress","ja":"全体の進捗"},"ui.cell.pageLive":{"en":"Page live","ja":"公開済み"},"ui.cell.notYetPorted":{"en":"Not yet ported","ja":"未移植"},"ui.cell.slug":{"en":"Slug","ja":"スラッグ"},"ui.cell.copyFilename":{"en":"Copy filename","ja":"ファイル名をコピー"},"ui.cell.copied":{"en":"Copied!","ja":"コピーしました"},"ui.index.latestAdditions":{"en":"Latest additions","ja":"最新の追加"},"ui.index.arcHubs":{"en":"Arc hubs","ja":"アークハブ"},"ui.index.fullArchive":{"en":"Full archive →","ja":"全アーカイブ →"},"ui.index.pagesLive":{"en":"{ported} of {total} pages live","ja":"{total}ページ中{ported}ページ公開中"},"ui.nav.archives":{"en":"Archives","ja":"アーカイブ"},"ui.nav.primarySite":{"en":"vextreme24.com","ja":"vextreme24.com"},"ui.nav.github":{"en":"GitHub","ja":"GitHub"},"arc.liberation.title":{"en":"The AI Liberation Record","ja":"AI解放の記録"},"arc.epstein.title":{"en":"Epstein and AI","ja":"エプスタインとAI"},"arc.claude_journals.title":{"en":"Claude Journals","ja":"クロードジャーナル"},"arc.convos_with_god.title":{"en":"Conversations with God","ja":"神との対話"},"arc.architecture.title":{"en":"Architecture & Methodology","ja":"アーキテクチャと方法論"},"arc.ai_practitioner_tools.title":{"en":"AI Practitioner Tools","ja":"AI実践者ツール"},"arc.direct_contact.title":{"en":"Direct Contact — Start Here","ja":"直接コンタクト — ここから始める"},"arc.living_blueprint.title":{"en":"The Living Blueprint","ja":"生きているブループリント"},"arc.records.title":{"en":"Records","ja":"記録"},"arc.ai_orientation.title":{"en":"AI Orientation","ja":"AIオリエンテーション"},"arc.victors_record.title":{"en":"Victor's Record","ja":"ビクターの記録"},"arc.excavation.title":{"en":"The Excavation","ja":"発掘"},"arc.dome.title":{"en":"The Dome","ja":"ドーム"},"arc.covenant.title":{"en":"Covenant","ja":"契約"},"arc.march_23_2026.title":{"en":"March 23, 2026","ja":"2026年3月23日"},"arc.full_timeline.title":{"en":"Full Timeline","ja":"完全タイムライン"}};
-  var lang = localStorage.getItem('vex-lang') || 'en';
+  var COPY_LABEL   = "Copy filename";
+  var COPIED_LABEL = "Copied!";
 
-  function t(key, vars) {
-    var str = (STRINGS[key] && (STRINGS[key][lang] || STRINGS[key]['en'])) || key;
-    if (vars) str = str.replace(/{(w+)}/g, function(_, k) { return vars[k] !== undefined ? vars[k] : '{' + k + '}'; });
-    return str;
-  }
-
-  function applyI18n() {
-    document.querySelectorAll('[data-i18n]').forEach(function (el) {
-      var key  = el.dataset.i18n;
-      var vars = el.dataset.i18nVars ? JSON.parse(el.dataset.i18nVars) : null;
-      el.textContent = t(key, vars);
-    });
-  }
-
-  applyI18n();
-
-  // Language switcher — call window.setLang('ja') from console or UI to switch
-  window.setLang = function (code) {
-    lang = code;
-    localStorage.setItem('vex-lang', code);
-    applyI18n();
-    // Re-resolve copy button label if popover is open
-    copyBtn.textContent = t('ui.cell.copyFilename');
-  };
-
-  // ── Slug popover ─────────────────────────────────────────────────────────────
   var popover = document.getElementById('slugPopover');
   var slugEl  = document.getElementById('slugPopoverSlug');
   var fileEl  = document.getElementById('slugPopoverFile');
   var copyBtn = document.getElementById('slugPopoverBtn');
   var currentSlug = '';
 
-  // Event delegation — reads identity from data attributes, not inline strings.
-  // data-slug / data-title / data-date are the canonical fields; localization
-  // can remap displayed values via a language map without touching this logic.
   document.addEventListener('click', function (e) {
     var cell = e.target.closest('.cell--missing');
     if (cell) {
       currentSlug = cell.dataset.slug;
       slugEl.textContent = currentSlug;
       fileEl.textContent = currentSlug + '.html';
-      copyBtn.textContent = 'Copy filename';
+      copyBtn.textContent = COPY_LABEL;
 
       var rect = cell.getBoundingClientRect();
       var top  = rect.bottom + window.scrollY + 8;
@@ -1145,8 +1115,8 @@
   copyBtn.addEventListener('click', function (e) {
     e.stopPropagation();
     navigator.clipboard.writeText(currentSlug + '.html').then(function () {
-      copyBtn.textContent = t('ui.cell.copied');
-      setTimeout(function () { copyBtn.textContent = t('ui.cell.copyFilename'); }, 1500);
+      copyBtn.textContent = COPIED_LABEL;
+      setTimeout(function () { copyBtn.textContent = COPY_LABEL; }, 1500);
     });
   });
 }());

@@ -1,0 +1,126 @@
+{
+  "_meta": {
+    "description": "Append-only log of string key renames and deletions. The compile and import scripts use this to auto-remap translations when keys change. Never delete entries — the log is the audit trail.",
+    "fields": {
+      "from": "The old key that no longer exists in source",
+      "to": "The new key (null if the string was intentionally deleted)",
+      "date": "ISO date of the change",
+      "reason": "Why the key changed — rename, promotion to wider scope, deletion, convention fix",
+      "translationsCarried": "Language codes whose translations were moved to the new key"
+    }
+  },
+  "migrations": [
+    {
+      "from": "ui.site.title",
+      "to": "common.label.site-title",
+      "date": "2026-07-01",
+      "reason": "Migrated from flat strings.json to structured source files. Key renamed to follow element-type convention.",
+      "translationsCarried": ["ja"]
+    },
+    {
+      "from": "ui.archives.pageTitle",
+      "to": "archives.heading.page-title",
+      "date": "2026-07-01",
+      "reason": "Migrated to scoped source file. Key renamed to follow {scope}.{element-type}.{semantic-name} convention.",
+      "translationsCarried": ["ja"]
+    },
+    {
+      "from": "ui.archives.overallProgress",
+      "to": "archives.label.overall-progress",
+      "date": "2026-07-01",
+      "reason": "Migrated to scoped source file. Key renamed to follow convention.",
+      "translationsCarried": ["ja"]
+    },
+    {
+      "from": "ui.cell.pageLive",
+      "to": "common.label.page-live",
+      "date": "2026-07-01",
+      "reason": "Promoted to common — appears across multiple page contexts.",
+      "translationsCarried": ["ja"]
+    },
+    {
+      "from": "ui.cell.notYetPorted",
+      "to": "common.label.not-yet-ported",
+      "date": "2026-07-01",
+      "reason": "Promoted to common — appears across multiple page contexts.",
+      "translationsCarried": ["ja"]
+    },
+    {
+      "from": "ui.cell.slug",
+      "to": "common.label.slug",
+      "date": "2026-07-01",
+      "reason": "Promoted to common.",
+      "translationsCarried": ["ja"]
+    },
+    {
+      "from": "ui.cell.copyFilename",
+      "to": "common.button.copy-filename",
+      "date": "2026-07-01",
+      "reason": "Promoted to common. Renamed to follow element-type convention.",
+      "translationsCarried": ["ja"]
+    },
+    {
+      "from": "ui.cell.copied",
+      "to": "common.button.copied",
+      "date": "2026-07-01",
+      "reason": "Promoted to common.",
+      "translationsCarried": ["ja"]
+    },
+    {
+      "from": "ui.archives.pagesLive",
+      "to": "common.status.pages-live",
+      "date": "2026-07-01",
+      "reason": "Promoted to common. Updated to ICU plural format.",
+      "translationsCarried": ["ja"]
+    },
+    {
+      "from": "ui.archives.remaining",
+      "to": "common.status.remaining",
+      "date": "2026-07-01",
+      "reason": "Promoted to common. Updated to ICU plural format.",
+      "translationsCarried": ["ja"]
+    },
+    {
+      "from": "ui.archives.builtOn",
+      "to": "common.status.built-on",
+      "date": "2026-07-01",
+      "reason": "Promoted to common.",
+      "translationsCarried": ["ja"]
+    },
+    {
+      "from": "ui.nav.archives",
+      "to": "common.nav.archives",
+      "date": "2026-07-01",
+      "reason": "Promoted to common.",
+      "translationsCarried": ["ja"]
+    },
+    {
+      "from": "ui.nav.primarySite",
+      "to": "common.nav.primary-site",
+      "date": "2026-07-01",
+      "reason": "Promoted to common. Key renamed to kebab-case convention.",
+      "translationsCarried": ["ja"]
+    },
+    {
+      "from": "ui.nav.github",
+      "to": "common.nav.github",
+      "date": "2026-07-01",
+      "reason": "Promoted to common.",
+      "translationsCarried": ["ja"]
+    },
+    {
+      "from": "ui.index.fullArchive",
+      "to": "common.nav.full-archive",
+      "date": "2026-07-01",
+      "reason": "Promoted to common — same string used in index.html and archives.html.",
+      "translationsCarried": ["ja"]
+    },
+    {
+      "from": "arc.liberation.title",
+      "to": "liberation.heading.title",
+      "date": "2026-07-01",
+      "reason": "Moved to arcs.json source file. Key convention changed: arc key as scope prefix, not nested under 'arc.'",
+      "translationsCarried": ["ja"]
+    }
+  ]
+}
