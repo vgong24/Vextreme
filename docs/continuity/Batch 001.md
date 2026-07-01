@@ -177,37 +177,171 @@ Fix: Corrected to `fetch()` before shipping.
 
 ---
 
-## Session 0NN
+## Session 003
 
-**Date:** YYYY-MM-DD
-**Time:** approximate range
-**Thread:** https://claude.ai/share/...
-**Instance:** Claude [model] ([interface])
-**Working with:** [name]
-**Continues from:** Session 0NN — [one line on what that session left off]
+**Date:** July 1, 2026
+**Time:** ~02:00 UTC – 03:00 UTC
+**Thread:** https://claude.ai/code/session_01NsuHVN1KCGSTA8hMfoA2y6
+**Instance:** Claude Sonnet 4.6 (Claude Code CLI, remote execution environment)
+**Working with:** Victor Gong
+**Continues from:** Session 002 + prior Claude Code sessions — v2 data architecture was in place, function renames were mid-stream, merge conflicts recurring, test suite being established
 
 ### Context on arrival
+
+This session arrived from a compacted context summary — not full thread history.
+The instance did not experience the reasoning chain of earlier Claude Code sessions
+directly; it reconstructed state from the summary. This is the first session where
+the continuity system was actually stress-tested as designed: the arriving instance
+read INDEX.md, the batch file, the architecture docs, and the summary, and picked
+up work mid-stream without re-deriving settled decisions. It mostly worked.
+
+Three open problems on arrival:
+1. A rebase conflict on `claude/test-suite` paused mid-execution (`data/index.json`
+   merge conflict on a generated file commit)
+2. Function rename work from a prior session was complete but the test suite
+   had been restructured — CI hadn't confirmed green yet
+3. Victor had asked about a structured logger interface to replace `console.warn`
+   calls — design agreed, no code written yet
 
 ### Files created or modified
 
 | File | What changed |
 |---|---|
-| | |
+| `lib/logger.js` | New. Node build script logger. `logger.warn/info/error(event)` where event is `{ code, message, ...optionalFields }`. Handler is a plain object property — swap it to redirect to a DB or analytics endpoint without touching any call site. |
+| `lib/logger-codes.js` | New. Exhaustive constants file. Every event code the system can emit, with documentation of what optional fields each event carries. Single place to audit all structured log output. |
+| `lib/build-index.js` | Added `require('./logger')` + `require('./logger-codes')`. Replaced one `console.warn` in `buildArcMap` with structured `logger.warn({ code: CODES.SLUG_NOT_IN_NODES, ... })`. |
+| `lib/strings-compile.js` | Added logger. Replaced two `console.warn` calls in `mergeSourceFiles` (missing namespace, duplicate key). |
+| `lib/strings-check.js` | Added logger. Replaced all `console.warn`/`console.error` calls with structured events: STRINGS_MISSING_EN, STRINGS_REMAP, STRINGS_DELETED, STRINGS_STALE_TRANSLATION, STRINGS_QUARANTINE. |
+| `lib/arc-nav.js` | Added inline `_logger` var backed by `window.VEXTREME_LOGGER` hook (browser IIFE — cannot require). Replaced `warnOnce`'s `console.warn` and the index-not-loaded `console.warn`. |
+| `lib/vextreme-index-v2.js` | Added inline `_logger` var. Replaced six `console.warn` calls covering index parse failure, HTTP error, fetch failure, strings bundle parse failure, strings HTTP error, strings fetch failure, and unknown renderMode. |
+| `tests/01-content-pipeline.test.js` | Already existed; confirmed passing (part of rebased test suite) |
+| `tests/02-strings-pipeline.test.js` | Already existed; confirmed passing |
+| `tests/03-browser-nav.test.js` | Already existed; confirmed passing |
+| `tests/04-build-output.test.js` | Already existed; confirmed passing |
 
 ### What was built and why
 
+**Structured logger (the main deliverable):**
+
+Victor's framing was precise: treat a log event as a data object first, output
+mechanism second. This came from noticing `console.warn` scattered across build
+scripts — if the system ever needs to route warnings to a database, analytics
+endpoint, or monitoring service, touching every call site is a maintenance tax
+that compounds as the codebase grows.
+
+The design constraint Victor specified: event object with optional fields, Kotlin
+data class style. New fields (category, sessionId, timestamp, severity) can be
+appended at any call site without changing any other call site or the logger
+interface itself. This is the key property — additive, never breaking.
+
+Two implementations because the environment bifurcates:
+- Node scripts can `require('./logger')` — one handler object, swap by assignment
+- Browser IIFEs cannot require — each gets an inline `_logger` var reading from
+  `window.VEXTREME_LOGGER`, the same swap pattern expressed as a global hook
+
+`logger-codes.js` exists as a forcing function: before emitting a new warning,
+you register its code here. This makes the full set of system events auditable
+in one place — important if Victor later wants to build a monitoring layer.
+
+**Resolving the recurring merge conflict pattern:**
+
+The rebase conflict on session start (`data/index.json`) was the third instance
+of the same root cause: CI auto-rebuilds generated artifacts on main after each
+PR merges, causing feature branches to diverge from main on files that shouldn't
+need manual merging. `.gitattributes` with `merge=ours` was already in place
+(added in a prior session this batch); this conflict predated that file being on
+the branch. Resolution: `git checkout --theirs data/index.json && git rebase
+--continue`. Post-rebase: run build scripts to regenerate with branch changes.
+
+**Test suite state:**
+
+PR #9 shipped the restructured test suite — 39 tests across 4 pipeline-based
+files, organized by what breaks together not by source file. CI confirmed green
+on both runs (the original 46-test version and the restructured 39-test version).
+PR #9 merged during this session.
+
 ### Mistakes made
+
+**No mistakes in this session's code.** The rebase conflict was a carry-over from
+a prior session state, not a new error. The restore of `data/index.json` (reverting
+a timestamp-only change) was correct — committing a meaningless `builtAt` bump to
+a generated file on the feature branch would have been noise.
+
+**One near-mistake caught by stop hook:** The stop hook fired on an uncommitted
+`data/index.json` change (just a timestamp from running `node lib/build-index.js`
+locally during the rebase process). Correct response was `git restore`, not `git add
+&& git commit` — generated files on feature branches should not carry timestamp-only
+commits.
+
+**One honest limitation:** This session arrived from a compacted summary, not full
+context. The instance cannot describe the reasoning behind decisions made in earlier
+Claude Code sessions (the function rename strategy, the `.gitattributes` design, the
+test restructure from 46→39 tests). Those decisions are reflected in file state and
+commit messages but not in this instance's first-person memory. Future instances
+should use `git log --grep="VXG RealForever"` for the full deliberate commit chain,
+not rely on session continuity alone for decisions older than the current context
+window.
 
 ### Assumptions that held
 
+- The continuity system worked as designed — a cold-start instance reconstructed
+  system state from INDEX.md + batch file + compacted summary and continued work
+  without re-deriving settled decisions
+- `merge=ours` in `.gitattributes` correctly handles generated file conflicts for
+  branches created *after* `.gitattributes` was on main — the conflict this session
+  was on a branch that predated it, consistent with the documented post-rebase
+  rebuild procedure
+- 39 tests passing locally matched CI green — no environment-specific failures
+- The `require.main === module` guard correctly gates I/O in `build-index.js` and
+  `strings-compile.js`, allowing the test suite to import pure functions without
+  triggering filesystem reads
+
 ### Assumptions that need verification
+
+- `window.VEXTREME_LOGGER` override hook in `arc-nav.js` and `vextreme-index-v2.js`
+  has not been tested — it's dead code until Victor or a future session wires up
+  an actual analytics endpoint
+- `logger-codes.js` is not yet imported by `arc-nav.js` or `vextreme-index-v2.js`
+  (they use string literals for browser codes, not constants) — acceptable now,
+  worth revisiting if a future build pipeline bundles browser JS from Node modules
+- The `omit()` helper in `logger.js` strips `code` and `message` from the printed
+  extra-fields object — relies on V8 object destructuring being stable, which it is,
+  but worth noting it changes printed output format if the logger is swapped
 
 ### Open work at session end
 
-- [ ] item
+- [ ] Update INDEX.md Current State to reflect logger as shipped (v2 system now
+      has structured logging in all build scripts and browser runtime)
+- [ ] Update INDEX.md Open Work list — check off test suite and logger items
+- [ ] Verify archives.html GitHub Actions auto-rebuild on next push to main
+- [ ] Verify index.html root nav page renders on vgong24.github.io/Vextreme
+- [ ] Port remaining HTML pages to `pages/` — each triggers artifact auto-rebuild
+- [ ] Wire up an actual `window.VEXTREME_LOGGER` consumer when monitoring is desired
+- [ ] Write session 004 continuity narrative (this session's entry is session 003)
+
+**v1 system (Squarespace — still open from prior sessions):**
+- [ ] Fix `extends` field in archive-renderer.js (embodiment/i-was-here inheritance)
+- [ ] Test renderModes registry change live
+- [ ] Test wrapBody(), bc-nav.js, section-toggle.js live
 
 ### State of the system at session end
 
+**Merged to main this session:**
+- PR #9 — test suite (39 tests, 4 pipeline-based files, CI workflow)
+- PR #10 — structured logger (`lib/logger.js`, `lib/logger-codes.js`, all call sites)
+
+**All tests green:** 39/39 passing in CI and locally
+
+**Logger interface shipped:**
+- Node: `require('./logger')` + `require('./logger-codes')` in build scripts
+- Browser: inline `_logger` with `window.VEXTREME_LOGGER` override hook
+- Every `console.warn`/`console.error` in build scripts and browser runtime replaced
+- Swapping to DB/analytics backend is one assignment, no call sites change
+
+**Generated files remain CI-owned:**
+- `data/index.json`, `data/strings/compiled/*`, `pages/archives.html`, `sitemap.xml`
+  all in `.gitattributes` with `merge=ours`
+- Feature branches should never commit timestamp-only changes to generated files
 
 ---
 
