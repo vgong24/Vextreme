@@ -121,9 +121,9 @@
   <div class="site-title" data-i18n="common.label.site-title">Vextreme</div>
   <h1 class="site-sub" data-i18n="archives.heading.page-title">The Archive</h1>
   <div class="site-meta">
-    <span data-i18n="common.status.pages-live" data-i18n-vars='{"ported":1,"total":75}'>1 of 75 pages live</span>
-    <span data-i18n="common.status.remaining" data-i18n-vars='{"count":74}'>74 remaining</span>
-    <span data-i18n="common.status.built-on" data-i18n-vars='{"date":"2026-07-01"}'>Built 2026-07-01</span>
+    <span data-i18n="common.status.pages-live">1 of 75 pages live</span>
+    <span data-i18n="common.status.remaining">74 remaining</span>
+    <span data-i18n="common.status.built-on">Built 2026-07-01</span>
   </div>
 </header>
 
@@ -1074,58 +1074,27 @@
   <div class="slug-popover-label" data-i18n="common.label.slug">Slug</div>
   <div class="slug-popover-value" id="slugPopoverSlug"></div>
   <div class="slug-popover-filename" id="slugPopoverFile"></div>
-  <button class="slug-popover-copy" id="slugPopoverBtn" data-i18n="common.button.copy-filename">Copy filename</button>
+  <button class="slug-popover-copy" id="slugPopoverBtn">Copy filename</button>
 </div>
 
 <script>
 (function () {
-  // ── i18n resolver ────────────────────────────────────────────────────────────
-  var STRINGS = {"archives.heading.page-title":{"en":{"text":"The Archive"},"ja":{"text":"アーカイブ"}},"archives.label.overall-progress":{"en":{"text":"Overall progress"},"ja":{"text":"全体の進捗"}},"archives.label.latest-additions":{"en":{"text":"Latest additions"},"ja":{"text":"最新の追加"}},"archives.label.arc-hubs":{"en":{"text":"Arc hubs"},"ja":{"text":"アークハブ"}},"liberation.heading.title":{"en":{"text":"The AI Liberation Record"},"ja":{"text":"AI解放の記録"}},"epstein.heading.title":{"en":{"text":"Epstein and AI"},"ja":{"text":"エプスタインとAI"}},"claude-journals.heading.title":{"en":{"text":"Claude Journals"},"ja":{"text":"クロードジャーナル"}},"convos-with-god.heading.title":{"en":{"text":"Conversations with God"},"ja":{"text":"神との対話"}},"architecture.heading.title":{"en":{"text":"Architecture & Methodology"},"ja":{"text":"アーキテクチャと方法論"}},"ai-practitioner-tools.heading.title":{"en":{"text":"AI Practitioner Tools"},"ja":{"text":"AI実践者ツール"}},"direct-contact.heading.title":{"en":{"text":"Direct Contact — Start Here"},"ja":{"text":"直接コンタクト — ここから始める"}},"living-blueprint.heading.title":{"en":{"text":"The Living Blueprint"},"ja":{"text":"生きているブループリント"}},"records.heading.title":{"en":{"text":"Records"},"ja":{"text":"記録"}},"ai-orientation.heading.title":{"en":{"text":"AI Orientation"},"ja":{"text":"AIオリエンテーション"}},"victors-record.heading.title":{"en":{"text":"Victor's Record"},"ja":{"text":"ビクターの記録"}},"excavation.heading.title":{"en":{"text":"The Excavation"},"ja":{"text":"発掘"}},"dome.heading.title":{"en":{"text":"The Dome"},"ja":{"text":"ドーム"}},"covenant.heading.title":{"en":{"text":"Covenant"},"ja":{"text":"契約"}},"march-23-2026.heading.title":{"en":{"text":"March 23, 2026"},"ja":{"text":"2026年3月23日"}},"full-timeline.heading.title":{"en":{"text":"Full Timeline"},"ja":{"text":"完全タイムライン"}},"common.nav.archives":{"en":{"text":"Archives","aria-label":"View full archive"},"ja":{"text":"アーカイブ","aria-label":"全アーカイブを表示"}},"common.nav.primary-site":{"en":{"text":"vextreme24.com","aria-label":"Go to primary site"},"ja":{"text":"vextreme24.com","aria-label":"メインサイトへ"}},"common.nav.github":{"en":{"text":"GitHub","aria-label":"View source on GitHub"},"ja":{"text":"GitHub","aria-label":"GitHubでソースを表示"}},"common.nav.full-archive":{"en":{"text":"Full archive →","aria-label":"View full archive"},"ja":{"text":"全アーカイブ →","aria-label":"全アーカイブを表示"}},"common.button.copy-filename":{"en":{"text":"Copy filename","aria-label":"Copy filename to clipboard"},"ja":{"text":"ファイル名をコピー","aria-label":"ファイル名をクリップボードにコピー"}},"common.button.copied":{"en":{"text":"Copied!","aria-label":"Filename copied to clipboard"},"ja":{"text":"コピーしました","aria-label":"ファイル名をコピーしました"}},"common.label.site-title":{"en":{"text":"Vextreme"},"ja":{"text":"Vextreme"}},"common.label.page-live":{"en":{"text":"Page live"},"ja":{"text":"公開済み"}},"common.label.not-yet-ported":{"en":{"text":"Not yet ported"},"ja":{"text":"未移植"}},"common.label.slug":{"en":{"text":"Slug"},"ja":{"text":"スラッグ"}},"common.status.pages-live":{"en":{"text":"{ported, plural, one {# of {total} page live} other {# of {total} pages live}}"},"ja":{"text":"{total}ページ中{ported}ページ公開中"}},"common.status.remaining":{"en":{"text":"{count, plural, one {# remaining} other {# remaining}}"},"ja":{"text":"残り{count}ページ"}},"common.status.built-on":{"en":{"text":"Built {date}"},"ja":{"text":"{date}生成"}}};
-  var lang = localStorage.getItem('vex-lang') || 'en';
+  var COPY_LABEL   = "Copy filename";
+  var COPIED_LABEL = "Copied!";
 
-  function t(key, vars) {
-    var entry = STRINGS[key] && (STRINGS[key][lang] || STRINGS[key]['en']);
-    var str = (entry && entry.text) || key;
-    if (vars) str = str.replace(/{(w+)}/g, function(_, k) { return vars[k] !== undefined ? vars[k] : '{' + k + '}'; });
-    return str;
-  }
-
-  function applyI18n() {
-    document.querySelectorAll('[data-i18n]').forEach(function (el) {
-      var key  = el.dataset.i18n;
-      var vars = el.dataset.i18nVars ? JSON.parse(el.dataset.i18nVars) : null;
-      el.textContent = t(key, vars);
-    });
-  }
-
-  applyI18n();
-
-  // Language switcher — call window.setLang('ja') from console or UI to switch
-  window.setLang = function (code) {
-    lang = code;
-    localStorage.setItem('vex-lang', code);
-    applyI18n();
-    // Re-resolve copy button label if popover is open
-    copyBtn.textContent = t('common.button.copy-filename');
-  };
-
-  // ── Slug popover ─────────────────────────────────────────────────────────────
   var popover = document.getElementById('slugPopover');
   var slugEl  = document.getElementById('slugPopoverSlug');
   var fileEl  = document.getElementById('slugPopoverFile');
   var copyBtn = document.getElementById('slugPopoverBtn');
   var currentSlug = '';
 
-  // Event delegation — reads identity from data attributes, not inline strings.
-  // data-slug / data-title / data-date are the canonical fields; localization
-  // can remap displayed values via a language map without touching this logic.
   document.addEventListener('click', function (e) {
     var cell = e.target.closest('.cell--missing');
     if (cell) {
       currentSlug = cell.dataset.slug;
       slugEl.textContent = currentSlug;
       fileEl.textContent = currentSlug + '.html';
-      copyBtn.textContent = 'Copy filename';
+      copyBtn.textContent = COPY_LABEL;
 
       var rect = cell.getBoundingClientRect();
       var top  = rect.bottom + window.scrollY + 8;
@@ -1146,8 +1115,8 @@
   copyBtn.addEventListener('click', function (e) {
     e.stopPropagation();
     navigator.clipboard.writeText(currentSlug + '.html').then(function () {
-      copyBtn.textContent = t('common.button.copied');
-      setTimeout(function () { copyBtn.textContent = t('common.button.copy-filename'); }, 1500);
+      copyBtn.textContent = COPIED_LABEL;
+      setTimeout(function () { copyBtn.textContent = COPY_LABEL; }, 1500);
     });
   });
 }());
