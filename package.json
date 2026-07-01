@@ -1,0 +1,12 @@
+{
+  "name": "vextreme",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "test:coverage": "node --experimental-test-coverage --test tests/*.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
