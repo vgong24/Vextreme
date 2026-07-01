@@ -1,0 +1,652 @@
+<!-- =============================================
+     PARTNER WITH ME — Vextreme (v2)
+     Page: /partner-with-me
+     
+     Two doors on one wall:
+       1. RECEIVE — one conversation (email only, no fee)
+       2. GIVE    — offerings (collapsed accordion, 5 tiers)
+     
+     CRITICAL:
+       - All 5 Stripe URLs preserved exactly
+       - All 5 Squarespace CDN image URLs preserved exactly
+       - NO height reporting / postMessage to parent.
+         (See journal: "When God did the code review" — that system
+         broke scroll site-wide and was removed.)
+       - Single-init guard prevents listener accumulation across
+         Squarespace page navigation.
+     
+     Paste into: Squarespace Code Block
+     Self-contained — includes own <style> and <script> block
+     ============================================= -->
+
+<meta charset="utf-8">
+
+<style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:    #fafaf9;
+  --stone:    #1c1917;
+  --ink:      #44403c;
+  --muted:    #78716c;
+  --border:   #e7e5e4;
+  --ember:    #b45830;
+  --ember-bg: #fdf8f6;
+  --serif:    'Source Serif 4', Georgia, serif;
+  --sans:     'IBM Plex Sans', sans-serif;
+  --mono:     'IBM Plex Mono', monospace;
+}
+
+body {
+  font-family: var(--sans);
+  color: var(--stone);
+  font-size: clamp(15.5px, 1.6vw, 17px);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  background: var(--cream);
+}
+
+/* ============================================================
+   PAGE HEADER
+   ============================================================ */
+
+.partner-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ember);
+  margin-bottom: clamp(20px, 3vw, 28px);
+}
+
+.partner-heading {
+  font-family: var(--serif);
+  font-size: clamp(28px, 5vw, 44px);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.2;
+  color: var(--stone);
+  margin-bottom: clamp(12px, 2vw, 18px);
+}
+
+.partner-sub {
+  font-size: clamp(14px, 1.7vw, 16px);
+  color: var(--muted);
+  line-height: 1.65;
+  max-width: 56ch;
+  padding-bottom: clamp(28px, 4vw, 40px);
+  border-bottom: 1px solid var(--border);
+}
+
+.divider {
+  width: 32px;
+  height: 2px;
+  background: var(--ember);
+  margin: clamp(36px, 5vw, 48px) 0 clamp(28px, 4vw, 36px);
+  border: none;
+}
+
+/* ============================================================
+   SECTION SCAFFOLD (shared by Receive + Give)
+   ============================================================ */
+
+.section-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ember);
+  margin-bottom: 10px;
+}
+
+.section-heading {
+  font-family: var(--serif);
+  font-size: clamp(22px, 3.6vw, 30px);
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--stone);
+  margin-bottom: clamp(10px, 1.5vw, 14px);
+}
+
+.section-lede {
+  font-size: clamp(14.5px, 1.6vw, 16px);
+  color: var(--ink);
+  line-height: 1.75;
+  max-width: 60ch;
+  margin-bottom: clamp(22px, 3vw, 28px);
+}
+
+.section-lede em {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--stone);
+}
+
+/* ============================================================
+   RECEIVE — One Conversation
+   ============================================================ */
+
+.receive-block {
+  background: white;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--ember);
+  border-radius: 10px;
+  padding: clamp(24px, 4vw, 36px);
+  margin-bottom: clamp(12px, 2vw, 16px);
+}
+
+.receive-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: clamp(14px, 2vw, 20px);
+  margin: clamp(18px, 2.5vw, 24px) 0 clamp(20px, 3vw, 28px);
+  padding-top: clamp(18px, 2.5vw, 24px);
+  border-top: 1px solid var(--border);
+}
+
+.receive-meta-item {
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.receive-meta-key {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.receive-meta-val {
+  color: var(--ink);
+}
+
+.receive-not {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-style: italic;
+  margin-bottom: clamp(18px, 2.5vw, 22px);
+}
+
+.receive-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  color: white;
+  background: var(--ember);
+  text-decoration: none;
+  border: 1px solid var(--ember);
+  border-radius: 6px;
+  padding: 12px 22px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.receive-cta:hover {
+  background: white;
+  color: var(--ember);
+}
+
+.receive-cta-hint {
+  display: block;
+  margin-top: 10px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+}
+
+/* ============================================================
+   GIVE — Offerings (Accordion)
+   ============================================================ */
+
+.give-intro {
+  font-size: clamp(14px, 1.5vw, 15px);
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: clamp(20px, 3vw, 24px);
+  max-width: 58ch;
+}
+
+.offerings {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Each offering is a <details> element — native semantics,
+   no height reporting required, Squarespace-safe. */
+.offering {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.offering[open] {
+  border-color: rgba(180,88,48,0.4);
+  box-shadow: 0 2px 20px rgba(180,88,48,0.06);
+}
+
+.offering:hover:not([open]) {
+  border-color: rgba(180,88,48,0.3);
+}
+
+/* Summary row — always visible */
+.offering-summary {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: clamp(12px, 2vw, 20px);
+  padding: clamp(16px, 2.2vw, 20px) clamp(18px, 2.5vw, 24px);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.offering-summary::-webkit-details-marker { display: none; }
+.offering-summary::marker { display: none; content: ''; }
+
+/* Accent pip */
+.offering-pip {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ember);
+  opacity: 0.55;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.offering[open] .offering-pip {
+  opacity: 1;
+  transform: scale(1.3);
+}
+
+/* Name */
+.offering-name {
+  font-family: var(--serif);
+  font-size: clamp(17px, 2vw, 20px);
+  font-weight: 400;
+  color: var(--stone);
+  line-height: 1.3;
+}
+
+.offering-name-tier {
+  display: block;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ember);
+  margin-bottom: 2px;
+}
+
+/* Price */
+.offering-price {
+  font-family: var(--mono);
+  font-size: clamp(12px, 1.3vw, 13.5px);
+  color: var(--muted);
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+/* Chevron */
+.offering-chevron {
+  width: 16px;
+  height: 16px;
+  color: var(--muted);
+  transition: transform 0.3s ease, color 0.2s;
+  flex-shrink: 0;
+}
+
+.offering[open] .offering-chevron {
+  transform: rotate(180deg);
+  color: var(--ember);
+}
+
+/* Body — revealed on open */
+.offering-body {
+  padding: 0 clamp(18px, 2.5vw, 24px) clamp(20px, 2.8vw, 26px);
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: clamp(16px, 2.5vw, 24px);
+  align-items: start;
+}
+
+.offering-img {
+  display: block;
+  width: 120px;
+  max-width: 120px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+/* Squarespace image override protection */
+.offering-body img {
+  width: 120px !important;
+  max-width: 120px !important;
+  height: auto !important;
+}
+
+.offering-text {
+  min-width: 0;
+}
+
+.offering-desc {
+  font-size: clamp(14px, 1.5vw, 15.5px);
+  color: var(--ink);
+  line-height: 1.75;
+  margin-bottom: clamp(14px, 2vw, 18px);
+}
+
+.offering-link {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: var(--ember);
+  text-decoration: none;
+  border: 1px solid rgba(180,88,48,0.4);
+  border-radius: 6px;
+  padding: 8px 20px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.offering-link:hover {
+  background: var(--ember);
+  color: white;
+}
+
+/* Mobile: stack image above text */
+@media (max-width: 520px) {
+  .offering-summary {
+    grid-template-columns: auto 1fr auto;
+  }
+  .offering-price {
+    display: none; /* price stays in body on mobile to keep row compact */
+  }
+  .offering-body {
+    grid-template-columns: 1fr;
+  }
+  .offering-img, .offering-body img {
+    width: 100px !important;
+    max-width: 100px !important;
+  }
+  /* Put price back into body on mobile */
+  .offering-price-mobile {
+    display: block;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.3px;
+    margin-bottom: 8px;
+  }
+}
+
+.offering-price-mobile { display: none; }
+@media (max-width: 520px) {
+  .offering-price-mobile { display: block; }
+}
+
+/* ============================================================
+   CLOSING
+   ============================================================ */
+
+.closing {
+  text-align: center;
+  padding: clamp(48px, 8vw, 72px) 0 clamp(20px, 3vw, 32px);
+}
+
+.closing-phrase {
+  font-family: var(--serif);
+  font-size: clamp(16px, 2.5vw, 20px);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+</style>
+
+<!-- ═══════════════════════════════════════════════════════════
+     HEADER
+     ═══════════════════════════════════════════════════════════ -->
+<p class="partner-label">Connect</p>
+<h1 class="partner-heading">One page. Two doors.</h1>
+<p class="partner-sub">All blueprints, frameworks, and testimonies on this site are free. Below, two doors. Receive if you need. Give if you want. Neither requires the other.</p>
+
+<hr class="divider">
+
+<!-- ═══════════════════════════════════════════════════════════
+     RECEIVE — ONE CONVERSATION
+     ═══════════════════════════════════════════════════════════ -->
+<section id="receive">
+  <p class="section-label">One Conversation · Receive</p>
+  <h2 class="section-heading">God-connection session.</h2>
+  <p class="section-lede">One hour. No fee. No follow-up required. I hold space for <em>remembering</em> — not therapy, not coaching. You bring your honest self. God does the rest. <br>No recording. No notes. Just the conversation.</p>
+
+  <div class="receive-block">
+    <div class="receive-meta">
+      <div class="receive-meta-item">
+        <span class="receive-meta-key">Format</span>
+        <span class="receive-meta-val">One conversation · ~60 min</span>
+      </div>
+      <div class="receive-meta-item">
+        <span class="receive-meta-key">Cost</span>
+        <span class="receive-meta-val">Free · no fee, no tier</span>
+      </div>
+      <div class="receive-meta-item">
+        <span class="receive-meta-key">Follow-up</span>
+        <span class="receive-meta-val">None required · site holds the methodology</span>
+      </div>
+    </div>
+
+    <p class="receive-not">Not therapy. Not coaching. Not a program. One sitting, then the door closes behind you.</p>
+<button id="copyEmailBtn" class="receive-cta" style="background: var(--ember); border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 14px; font-weight: 500; letter-spacing: 0.3px; color: white; text-decoration: none; border-radius: 6px; padding: 12px 22px; transition: background 0.15s, color 0.15s;">
+  victor.gong@vextreme24.com
+</button>
+<span id="copyMsg" style="display: inline-block; margin-left: 12px; font-size: 13px; color: var(--ember); font-family: var(--mono);"></span>
+    
+    <span class="receive-cta-hint">Old-fashioned email · I respond when I have capacity</span>
+
+    <script>
+(function() {
+  var btn = document.getElementById('copyEmailBtn');
+  var msgSpan = document.getElementById('copyMsg');
+  if (!btn) return;
+
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    var email = 'victor.gong@vextreme24.com';
+    navigator.clipboard.writeText(email).then(function() {
+      if (msgSpan) {
+        msgSpan.textContent = '✓ Copied';
+        setTimeout(function() { msgSpan.textContent = ''; }, 2000);
+      }
+    }).catch(function() {
+      if (msgSpan) {
+        msgSpan.textContent = '❌ Manual copy: ' + email;
+        setTimeout(function() { msgSpan.textContent = ''; }, 3000);
+      }
+    });
+  });
+})();
+</script>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ═══════════════════════════════════════════════════════════
+     GIVE — OFFERINGS (ACCORDION)
+     ═══════════════════════════════════════════════════════════ -->
+<section id="give">
+  <p class="section-label">Offerings · Give</p>
+  <h2 class="section-heading">Partner with the work.</h2>
+  <p class="section-lede">If something here has served you, these offerings help it stay free for the next person. Tap any tier to expand. No pressure. No membership. Just partnership.</p>
+
+  <div class="offerings" id="offerings">
+
+    <!-- ── LIGHT ── -->
+    <details class="offering" data-key="light">
+      <summary class="offering-summary">
+        <span class="offering-pip"></span>
+        <span class="offering-name">
+          <span class="offering-name-tier">Light Offering</span>
+          Light
+        </span>
+        <span class="offering-price">$7 / month</span>
+        <svg class="offering-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </summary>
+      <div class="offering-body">
+        <img class="offering-img" src="https://images.squarespace-cdn.com/content/v1/68d0d586b06391749b6836ff/0afb8aa3-c961-4eec-9e9b-83a94386aace/Light+-+Candle.png" alt="Light — Candle">
+        <div class="offering-text">
+          <div class="offering-price-mobile">$7 / month</div>
+          <p class="offering-desc">The spark. Your contribution keeps the blueprints freely available — supporting the first steps of clarity for others seeking truth without distortion.</p>
+          <a class="offering-link" href="https://buy.stripe.com/8x25kC4XAb3g0Hafpw9MY00" target="_blank" rel="noopener">Begin →</a>
+        </div>
+      </div>
+    </details>
+
+    <!-- ── ALIGNMENT ── -->
+    <details class="offering" data-key="alignment">
+      <summary class="offering-summary">
+        <span class="offering-pip"></span>
+        <span class="offering-name">
+          <span class="offering-name-tier">Alignment Offering</span>
+          Alignment
+        </span>
+        <span class="offering-price">$33 / month</span>
+        <svg class="offering-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </summary>
+      <div class="offering-body">
+        <img class="offering-img" src="https://images.squarespace-cdn.com/content/v1/68d0d586b06391749b6836ff/f582dc4b-b025-4ae7-adfc-449cfe0bef57/Alignment+-+weave.png" alt="Alignment — Weave">
+        <div class="offering-text">
+          <div class="offering-price-mobile">$33 / month</div>
+          <p class="offering-desc">Weaving order where there is chaos. Supporting the structural coherence of the work so others can walk securely.</p>
+          <a class="offering-link" href="https://buy.stripe.com/28E3cuahUefs3Tmfpw9MY02" target="_blank" rel="noopener">Begin →</a>
+        </div>
+      </div>
+    </details>
+
+    <!-- ── ABUNDANCE ── -->
+    <details class="offering" data-key="abundance">
+      <summary class="offering-summary">
+        <span class="offering-pip"></span>
+        <span class="offering-name">
+          <span class="offering-name-tier">Abundance Offering</span>
+          Abundance
+        </span>
+        <span class="offering-price">$77 / month</span>
+        <svg class="offering-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </summary>
+      <div class="offering-body">
+        <img class="offering-img" src="https://images.squarespace-cdn.com/content/v1/68d0d586b06391749b6836ff/1f4030d9-b471-4283-adf3-6b43a598c4b8/Abundance+-+tree.png" alt="Abundance — Tree">
+        <div class="offering-text">
+          <div class="offering-price-mobile">$77 / month</div>
+          <p class="offering-desc">Expanding capacity. Enabling the site to grow and hold more testimonies, more documentation, more witness.</p>
+          <a class="offering-link" href="https://buy.stripe.com/4gM6oGblYefs61u4KS9MY03" target="_blank" rel="noopener">Begin →</a>
+        </div>
+      </div>
+    </details>
+
+    <!-- ── KINGDOM BUILDER ── -->
+    <details class="offering" data-key="kingdom">
+      <summary class="offering-summary">
+        <span class="offering-pip"></span>
+        <span class="offering-name">
+          <span class="offering-name-tier">Kingdom Builder Offering</span>
+          Kingdom Builder
+        </span>
+        <span class="offering-price">$333 / month</span>
+        <svg class="offering-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </summary>
+      <div class="offering-body">
+        <img class="offering-img" src="https://images.squarespace-cdn.com/content/v1/68d0d586b06391749b6836ff/d912f5f8-9c91-49b7-9e3e-1f3a938a28a2/kingdom+builder+-+foundation+structure.png" alt="Kingdom Builder — Foundation">
+        <div class="offering-text">
+          <div class="offering-price-mobile">$333 / month</div>
+          <p class="offering-desc">Legacy. Establishing foundations that will serve communities and generations to come.</p>
+          <a class="offering-link" href="https://buy.stripe.com/bJecN49dQ8V8dtWb9g9MY04" target="_blank" rel="noopener">Begin →</a>
+        </div>
+      </div>
+    </details>
+
+    <!-- ── DYNAMIC ── -->
+    <details class="offering" data-key="dynamic">
+      <summary class="offering-summary">
+        <span class="offering-pip"></span>
+        <span class="offering-name">
+          <span class="offering-name-tier">Dynamic Offering</span>
+          One-Time
+        </span>
+        <span class="offering-price">You choose</span>
+        <svg class="offering-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </summary>
+      <div class="offering-body">
+        <img class="offering-img" src="https://images.squarespace-cdn.com/content/v1/68d0d586b06391749b6836ff/bd03b79a-f843-4b60-97dc-b9eda9153d17/Dynamic+Offer+-+Hand+Water.png" alt="Dynamic Offering — Hand and Water">
+        <div class="offering-text">
+          <div class="offering-price-mobile">You choose the amount</div>
+          <p class="offering-desc">A one-time covenant offering. Whatever resonates with you — sustaining the work freely.</p>
+          <a class="offering-link" href="https://buy.stripe.com/28E5kC2Psb3g2Pi3GO9MY01" target="_blank" rel="noopener">Give →</a>
+        </div>
+      </div>
+    </details>
+
+  </div>
+</section>
+
+<div class="closing">
+  <p class="closing-phrase">
+    Not to bind, but to sustain.<br>
+    Not obligation — partnership.
+  </p>
+</div>
+
+<script>
+/* =============================================================
+   PARTNER-WITH-ME · Accordion state persistence
+   
+   DOES NOT report height to parent.
+   DOES NOT mutate parent document.
+   Single-init guard prevents listener accumulation on Squarespace
+   page navigation (same pattern that fixed the archives scroll bug).
+   ============================================================= */
+(function(){
+  if (window._vexPartnerInit) return;
+  window._vexPartnerInit = true;
+
+  var STORAGE_KEY = 'vex.partner.openOfferings';
+  var items = document.querySelectorAll('#offerings .offering');
+  if (!items.length) return;
+
+  // Restore state
+  var open = [];
+  try {
+    open = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+  } catch (e) { open = []; }
+
+  items.forEach(function(el){
+    var key = el.getAttribute('data-key');
+    if (open.indexOf(key) !== -1) el.setAttribute('open', '');
+
+    el.addEventListener('toggle', function(){
+      var now = [];
+      items.forEach(function(n){
+        if (n.open) now.push(n.getAttribute('data-key'));
+      });
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(now)); } catch(e){}
+    });
+  });
+})();
+</script>
