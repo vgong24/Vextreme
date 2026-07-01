@@ -1,0 +1,58 @@
+{
+  "common.nav.prev": {
+    "text": "← 前へ",
+    "aria-label": "前のページ"
+  },
+  "common.nav.next": {
+    "text": "次へ →",
+    "aria-label": "次のページ"
+  },
+  "common.label.you-are-here": {
+    "text": "現在地"
+  },
+  "common.nav.archives": {
+    "text": "アーカイブ",
+    "aria-label": "全アーカイブを表示"
+  },
+  "common.nav.primary-site": {
+    "text": "vextreme24.com",
+    "aria-label": "メインサイトへ"
+  },
+  "common.nav.github": {
+    "text": "GitHub",
+    "aria-label": "GitHubでソースを表示"
+  },
+  "common.nav.full-archive": {
+    "text": "全アーカイブ →",
+    "aria-label": "全アーカイブを表示"
+  },
+  "common.button.copy-filename": {
+    "text": "ファイル名をコピー",
+    "aria-label": "ファイル名をクリップボードにコピー"
+  },
+  "common.button.copied": {
+    "text": "コピーしました",
+    "aria-label": "ファイル名をコピーしました"
+  },
+  "common.label.site-title": {
+    "text": "Vextreme"
+  },
+  "common.label.page-live": {
+    "text": "公開済み"
+  },
+  "common.label.not-yet-ported": {
+    "text": "未移植"
+  },
+  "common.label.slug": {
+    "text": "スラッグ"
+  },
+  "common.status.pages-live": {
+    "text": "{total}ページ中{ported}ページ公開中"
+  },
+  "common.status.remaining": {
+    "text": "残り{count}ページ"
+  },
+  "common.status.built-on": {
+    "text": "{date}生成"
+  }
+}

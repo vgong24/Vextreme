@@ -945,4 +945,114 @@ be the pitch for the whole project: it explains the architectural decisions in c
 form, then proves the two most falsifiable claims (the data is real, the tests pass) live
 rather than in prose. Not yet verified in a real browser.
 
+---
+
+## Session 007
+
+**Date:** July 1, 2026
+**Time:** continuous with Session 006 — same day, after PR #16 merged
+**Thread:** https://claude.ai/code/session_012Cob5Fgz92AYDWfe2mZJWZ
+**Instance:** Claude Sonnet 5 (Claude Code remote execution environment)
+**Working with:** Victor Gong
+**Continues from:** Session 006 — demo page + demo-fab, PR #16 merged to main
+
+### Context on arrival
+
+Victor flagged that `data/strings/compiled/strings.{lang}.json` — one flat file merging
+every scope — doesn't scale: a large page count would mean every page fetching every
+string regardless of relevance, one file gating every string edit, and no natural home
+for a staged translation or A/B copy variant. Asked to keep it as its own PR rather than
+folding into the demo feature (confirmed via conversation, then confirmed a second time —
+see "Mistakes made" below, a real process note about how that confirmation actually
+reached me).
+
+### Files created or modified
+
+| File | What changed |
+|---|---|
+| `lib/strings-compile.js` | Added `groupSourceFilesByScope()` and `buildScopedBundles()` (exported, tested via existing pipeline). Writes `data/strings/compiled/scopes/{scope}.{lang}.json` — one bundle per source file's `_meta.scope`, plus `scopes/index.json` for discovery. Additive: the flat `strings.{lang}.json` bundle is unchanged and still the default, so the existing INVARIANT test ("keys from separate scope files merge into one flat bundle") stays true and wasn't touched. |
+| `widgets/lang-fab.js` | `loadStringsForLang()` now branches: no `window.VEX_STRING_SCOPES` set → legacy flat-bundle fetch (unchanged). Scopes declared → fetches `common` + declared scopes in parallel from `scopes/`, merges client-side. `window.VEX_STRING_VARIANT` opts a page into a variant bundle per scope, falling back to the base scope bundle per-scope if that variant isn't compiled for it. |
+| `lib/build-demo.js`, `pages/vextreme-demo.html` | Demo page now declares `window.VEX_STRING_SCOPES = ['demo']` before loading `lang-fab.js` — the first real adopter of the scoped path, fetching 2 scope bundles instead of the full 124-key project bundle. |
+| `lib/logger-codes.js` | Added `STRINGS_MISSING_SCOPE` — warns when a source file lacks `_meta.scope` (grouped under `'common'` rather than failing). |
+| `docs/architecture/06-i18n.md` | New "Scaling past one bundle" section: why the flat bundle doesn't scale, how scoped fetching opts in per page, the variant/staging file convention (`_meta.variant` → `scopes/{scope}.variant-{name}.{lang}.json`). |
+| `data/strings/compiled/scopes/*` | New generated directory — 5 scopes × 2 languages + index.json, committed as a build artifact like the rest of `compiled/`. |
+| `docs/screenshots/vextreme-demo-{en,ja}.png` | Re-verified via `scripts/screenshot-page.js` after the scoped-fetch change — confirmed the JA swap still renders correctly under the new fetch path before treating this as done (see 08-continuity.md's now-mandatory visual verification rule, added last session). |
+
+### What was built and why
+
+**Additive, not a migration.** The flat bundle stays the default and every existing page
+(`claude-answers-the-doubt`, `restoration-protocol`) keeps using it unchanged. Only the
+newest page (`vextreme-demo`) opts into the scoped path. This was a deliberate choice to
+keep the PR reviewable and low-risk rather than migrating every consumer in the same
+change — per-page adoption can happen incrementally, same pattern the i18n rollout itself
+already used (layers 01–05 wired, 06–07 left English, in Session 004).
+
+**Why scope, not page, is the unit.** `_meta.scope` already existed on every source file
+before this PR (declared for the human-readable key-convention doc, unused by any build
+step). Reusing it rather than inventing a new dimension means no source file needed to
+change to gain scoped compilation — `pages/{slug}.json` files already declare
+`"scope": "pages.{slug}"`, so they compile to `scopes/pages.{slug}.{lang}.json` for free.
+
+**Variant convention answers the "A/B testing and translation alternatives" half of
+Victor's question**, not just the file-count half. A variant source file (`_meta.variant`
+set) compiles to a sibling bundle instead of merging into production strings for that
+scope — a translator or a copy test can draft against a real compiled artifact without
+any risk of it reaching a real user until a page explicitly requests that variant.
+
+### Mistakes made
+
+- None in the code — 39/39 tests passed unmodified, screenshot verification passed
+  before and after.
+- A real process note, not a code mistake: Victor asked in conversation whether to scope
+  this as its own PR, I asked back whether he wanted a plan or wanted me to start, and he
+  didn't answer in that turn. I did not start the work. Later, a PR #16 merge webhook
+  arrived and I treated it correctly as "PR #16 is done," not as "proceed with unrelated
+  future work." Victor then pointed out he'd actually written approval into the *merge
+  commit message itself* ("Good to continue to the next phase of building the 'scalable
+  localization packaging'") — which I hadn't seen, because the webhook event that reaches
+  me on a merge is a fixed system notice with no custom text, not the commit message body.
+  I only found it because he asked me to go check. Worth being explicit for the next
+  instance: **commit messages and PR body edits are not a push channel** the way PR
+  comments are — nothing surfaces them automatically. If Victor wants to communicate
+  through git rather than chat, a PR comment is the reliable path; a commit message
+  requires being told to go look.
+
+### Assumptions that held
+
+- `_meta.scope` was already present and correctly set on every existing source file —
+  no source file needed a content change for scoped compilation to work.
+- `scripts/screenshot-page.js`'s CDN interception (`localPathFor`) needed no changes to
+  serve the new `scopes/*.json` paths — it strips the CDN prefix and joins with repo
+  root generically, so any new path under the repo just works.
+
+### Assumptions that need verification
+
+- The scoped-fetch path has only been exercised against local files via the screenshot
+  tool's CDN interception, same as every other unverified-live item in this project —
+  not yet confirmed against the real jsDelivr CDN post-merge.
+- Nothing yet uses `window.VEX_STRING_VARIANT` in production — the fallback-to-base-scope
+  behavior when a variant is missing is covered by the code path reasoning, not by a live
+  test with an actual variant file.
+
+### Open work at session end
+
+- [ ] Migrate `claude-answers-the-doubt.html` and `restoration-protocol.html` to declare
+      `window.VEX_STRING_SCOPES` now that the path is proven — currently only
+      `vextreme-demo` uses it
+- [ ] Verify scoped fetch against the real post-merge CDN (carries the same jsDelivr-cache
+      caveat already open from Session 006)
+- [ ] Build a real variant/staging file end-to-end once there's an actual A/B copy test
+      or in-progress translation to exercise it with
+- [ ] Missing-key fallback, `strings-check` audit enhancement, `06-i18n.md` `pages.` prefix
+      reconciliation, multi-language legend/stat verification — all carried from prior sessions
+- [ ] Port HTML pages (carried, active focus)
+
+### State of the system at session end
+
+The string-compilation pipeline now produces two parallel outputs from the same source
+files: the flat bundle (default, everything, unchanged) and per-scope bundles (opt-in,
+scales to a large page count, has a defined slot for variants). No existing page's
+behavior changed. One new page proves the new path works end-to-end, screenshot-verified
+under both languages.
+
 <!-- [VXG RealForever] -->

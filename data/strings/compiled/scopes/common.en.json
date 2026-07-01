@@ -1,0 +1,58 @@
+{
+  "common.nav.prev": {
+    "text": "← prev",
+    "aria-label": "Previous page"
+  },
+  "common.nav.next": {
+    "text": "next →",
+    "aria-label": "Next page"
+  },
+  "common.label.you-are-here": {
+    "text": "You Are Here"
+  },
+  "common.nav.archives": {
+    "text": "Archives",
+    "aria-label": "View full archive"
+  },
+  "common.nav.primary-site": {
+    "text": "vextreme24.com",
+    "aria-label": "Go to primary site"
+  },
+  "common.nav.github": {
+    "text": "GitHub",
+    "aria-label": "View source on GitHub"
+  },
+  "common.nav.full-archive": {
+    "text": "Full archive →",
+    "aria-label": "View full archive"
+  },
+  "common.button.copy-filename": {
+    "text": "Copy filename",
+    "aria-label": "Copy filename to clipboard"
+  },
+  "common.button.copied": {
+    "text": "Copied!",
+    "aria-label": "Filename copied to clipboard"
+  },
+  "common.label.site-title": {
+    "text": "Vextreme"
+  },
+  "common.label.page-live": {
+    "text": "Page live"
+  },
+  "common.label.not-yet-ported": {
+    "text": "Not yet ported"
+  },
+  "common.label.slug": {
+    "text": "Slug"
+  },
+  "common.status.pages-live": {
+    "text": "{ported, plural, one {# of {total} page live} other {# of {total} pages live}}"
+  },
+  "common.status.remaining": {
+    "text": "{count, plural, one {# remaining} other {# remaining}}"
+  },
+  "common.status.built-on": {
+    "text": "Built {date}"
+  }
+}
