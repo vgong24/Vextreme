@@ -6,6 +6,7 @@ on:
     paths:
       - 'data/nodes.json'
       - 'data/arcs-v2.json'
+      - 'data/strings.json'
       - 'lib/build-index.js'
       - 'lib/build-archives.js'
       - 'lib/build-sitemap.js'

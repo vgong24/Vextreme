@@ -1,10 +1,11 @@
 # CLAUDE.md — Vextreme cold-start instructions
 
-**Read these three files in order before doing anything else:**
+**Read these files in order before doing anything else:**
 
 1. `docs/continuity/INDEX.md` — current system state, open work, and batch registry
 2. The most recent session in the active batch file (listed in INDEX.md's Batch Registry)
-3. `docs/README.md` — architecture, load order, file responsibilities, and token reference
+3. `docs/architecture.md` — full system design, data flow, file responsibilities, key constraints
+4. `docs/Readme.md` — v1 Squarespace system (historical context, lower priority)
 
 Do not start new work without completing this reading sequence. The README documents
 intended design; the continuity log documents actual system state — they diverge.
