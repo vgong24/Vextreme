@@ -58,7 +58,7 @@ WRITE SIDE (source of truth — edit these)        READ SIDE (artifacts — neve
 ─────────────────────────────────────────        ─────────────────────────────────────────
 data/nodes.json        ──┐                       data/index.json        (slugMap + arcMap + arcMeta)
 data/arcs-v2.json      ──┼── build pipeline ──▶  pages/archives.html   (build dashboard)
-data/strings.json      ──┘                       sitemap.xml            (crawler index)
+data/strings/source/** ──┘                       sitemap.xml            (crawler index)
                                                  index.html             (root nav page)
 ```
 
@@ -84,9 +84,9 @@ data/strings.json      ──┘                       sitemap.xml            (c
 - `sections` — ordered list of sections, each with `order` and `slugs` or `dateRange`
 - `renderMode` — how the arc nav widget visualizes this arc (dots, position)
 
-`data/strings.json` — UI string registry for internationalization.
-Keys are namespaced string IDs; values map language codes to display strings.
-See **Internationalization** section below.
+`data/strings/source/` — scoped UI string source files. Each key is an element
+identifier object; `strings` is the current namespace. Compiled to per-language
+bundles by `lib/strings-compile.js`. See **Internationalization** section below.
 
 **Build pipeline** (runs automatically via GitHub Actions on push to main):
 ```
@@ -96,8 +96,8 @@ lib/build-sitemap.js     → sitemap.xml
 lib/build-index-page.js  → index.html
 ```
 
-Trigger paths: `data/nodes.json`, `data/arcs-v2.json`, `data/strings.json`,
-`lib/build-*.js`, `pages/**`
+Trigger paths: `data/nodes.json`, `data/arcs-v2.json`, `data/strings/**`,
+`lib/strings-compile.js`, `lib/build-*.js`, `pages/**`
 
 **Read side files** are committed artifacts — they exist in the repo so GitHub
 Pages can serve them without a build step at request time. Never edit them
@@ -159,40 +159,155 @@ URL construction: `/pages/<slug>.html` on GitHub Pages, `/<slug>` on vextreme24.
 
 ## Internationalization (i18n)
 
-The system is designed for multi-language support from the ground up.
+The system is designed for multi-language support from the ground up, and the
+string key design is intentionally future-proof: each key is a **stable element
+identifier**, not just a string lookup. The value is an extensible object — new
+systems attach to the same key without breaking existing readers.
 
-**Architecture:**
+---
+
+### Element key as canonical anchor
+
+The key name (`common.label.page-live`) is the system's identifier for that UI
+element. Its value is an object whose namespaces grow as systems are added:
+
+```json
+"common.label.page-live": {
+  "strings": {
+    "en": { "text": "Page live" },
+    "ja": { "text": "公開済み" }
+  }
+}
+```
+
+Future namespaces extend the same object — no migration needed:
+
+```json
+"common.label.page-live": {
+  "strings":     { "en": { "text": "Page live" }, "ja": { "text": "公開済み" } },
+  "testId":      "label-page-live",
+  "dataKey":     "PAGE_LIVE",
+  "designToken": "label.page-live"
+}
+```
+
+Each consuming system reads only its own namespace. A bulk-data logger reads
+`dataKey`. A test runner reads `testId`. The i18n compiler reads `strings`.
+None of them know about or break each other.
+
+This means the key registry in `data/strings/source/` is not just a string
+file — it is the **element identity layer** for the entire UI. Build it here
+first, then other systems reference it rather than defining their own IDs.
+
+---
+
+### Key convention
+
+`{scope}.{element-type}.{semantic-name}`
+
+| Segment | Purpose | Examples |
+|---|---|---|
+| `scope` | Where this element lives | `common`, `archives`, `liberation`, `claude-answers-the-doubt` |
+| `element-type` | What kind of element it is | `label`, `button`, `heading`, `nav`, `status` |
+| `semantic-name` | What it means, in kebab-case | `page-live`, `copy-filename`, `overall-progress` |
+
+The `common` scope means "shared across 3+ pages or surfaces." Within a single
+arc or page, use the arc/page key as scope: `epstein.common.phase-label` means
+"reusable within the epstein arc." This makes `common` a semantic layer, not a
+file — it signals reuse intent, not just file location.
+
+---
+
+### Pipeline
 
 ```
-data/strings.json          — string registry (stringId → { langCode → displayString })
-build scripts              — embed data-i18n="stringId" on UI elements (no hardcoded text)
-generated HTML             — carries data-i18n keys as identity; no display strings in markup
-i18n resolver (inline JS)  — reads data-i18n, resolves against strings.json + user lang
-language switcher          — sets lang preference in localStorage, re-resolves all elements
+data/strings/source/          — scoped source files (write side; edit these)
+  common.json                 — globally reusable UI strings
+  arcs.json                   — arc title strings (16 arcs; future arcMeta authority)
+  archives.json               — archives.html-specific strings
+  pages/{slug}.json           — per-page strings (created as pages are ported)
+
+lib/strings-check.js          — integrity pass (run before compile)
+lib/strings-compile.js        — merges source → compiled bundles + manifest
+lib/strings-export.js         — exports per-scope CSVs for translators
+lib/strings-import.js         — merges translator CSVs back into source
+
+data/strings/compiled/        — generated bundles (committed as artifacts)
+  strings.en.json             — EN bundle: { key → { text, aria-label } }
+  strings.ja.json             — JA bundle: same shape
+  manifest.json               — { key → { enHash, langs } } for stale detection
+
+data/strings/migrations.json  — append-only key rename log (never delete entries)
+data/strings/batches/export/  — CSV batches sent to translators
+data/strings/batches/import/  — completed CSV batches waiting to be imported
+data/strings/orphans.json     — keys in manifest but not in source, no migration
 ```
 
-**String ID convention:** `layer.context.key`
-```
-ui.archives.pageTitle         → "The Archive"
-ui.archives.overallProgress   → "Overall progress"
-ui.cell.notYetPorted          → "Not yet ported"
-arc.liberation.title          → "The AI Liberation Record"
-```
+Build scripts read from `compiled/strings.{lang}.json` — never from source
+directly. Text is baked into generated HTML at build time; no runtime resolver
+or language blob is embedded in the output.
 
-**Node titles** (content strings, not UI strings) live in `nodes.json`.
-If node-level translation is added, extend the node schema with a `titleI18n`
-map: `{ "ja": "疑念に答えるクロード" }`. The build step can merge these into
-`index.json` alongside the English title.
+---
 
-**Language fallback chain:**
+### Integrity check severity levels
+
+`strings-check.js` runs before compile and handles four cases:
+
+| Level | Condition | Action |
+|---|---|---|
+| `BLOCK` | Key has no EN text | Halts compile — EN is the source of truth, nothing can proceed without it |
+| `REMAP` | Key appears as `from` in migrations.json | Auto-rewrites the source file with the new key name; translations carry over |
+| `WARN` | EN text hash changed vs manifest | Tags other-language values `_stale: true`; compile proceeds but export notes it |
+| `INFO` | Orphaned manifest key whose EN hash matches a current key | Logs suggestion to add a migration entry; no auto-action |
+| Quarantine | Orphaned key with no migration and no EN match | Moved to `orphans.json`; removed from active source |
+
+---
+
+### enHash and stale detection
+
+`manifest.json` stores a short SHA-256 hash of each key's EN value at the time
+of last compile. On the next check run, the current EN value is hashed again. A
+mismatch means the English changed — but the other-language translations haven't
+been updated yet. The `_stale` flag in source signals this to the translator
+export without blocking the compile.
+
+---
+
+### Translator workflow
+
+1. `node lib/strings-export.js --scope archives --lang ja`
+   → writes `data/strings/batches/export/archives/archives.ja.csv`
+2. Translator fills in `ja_text` and `ja_aria_label` columns; returns CSV
+3. Place completed CSV in `data/strings/batches/import/`
+4. `node lib/strings-import.js`
+   → merges translations into source files, archives processed CSV
+5. `node lib/strings-compile.js`
+   → regenerates bundles with new translations
+
+---
+
+### Language fallback chain
+
 1. Requested language (`ja`)
 2. Default language (`en`)
-3. String ID itself (visible signal that a key is missing)
+3. Key name itself (visible signal that a key is missing from compiled bundle)
 
-**Adding a new language:**
-1. Add entries to `data/strings.json` for the new language code
-2. Add the language option to the switcher UI
-3. No build script changes needed — the resolver reads whatever codes exist
+---
+
+### Adding a new language
+
+1. Add `{lang}` entries in `data/strings/source/` files under each key's `strings` object
+2. Run `strings-compile.js` — a new `strings.{lang}.json` bundle is written automatically
+3. No build script changes needed
+
+---
+
+### Node titles
+
+Content strings (node titles) live in `nodes.json` and are not part of this
+pipeline. If node-level translation is added, extend the node schema with
+`titleI18n: { "ja": "..." }`. The build step merges these into `index.json`
+alongside the English title.
 
 ---
 
@@ -219,7 +334,7 @@ All customizable axes in this system follow one rule:
 | Arc definitions | `arcs-v2.json` | by arc key |
 | Arc display metadata | `index.json` → `arcMeta` | by arc key |
 | Node metadata | `index.json` → `slugMap` | by slug |
-| UI strings | `strings.json` | by stringId + langCode |
+| UI strings | `strings/compiled/strings.{lang}.json` | by element key |
 | Render modes | `arcs-v2.json` → `renderMode` | by arc key |
 
 No registration functions. No JS-side tables. If it's a named thing that can
@@ -249,7 +364,8 @@ Every file created or significantly modified by a Claude instance ends with `// 
 data/
   nodes.json          — content nodes (write side, never auto-generated)
   arcs-v2.json        — arc definitions (write side, never auto-generated)
-  strings.json        — i18n string registry (write side, never auto-generated)
+  strings/source/     — i18n string source files (write side, never auto-generated)
+  strings/compiled/   — compiled language bundles (generated by strings-compile.js)
   index.json          — pre-built read index (generated, never edit directly)
 
 lib/
@@ -285,7 +401,7 @@ CLAUDE.md             — cold-start instructions for Claude instances
 1. **Slugs are globally unique** — no two `.html` files in `pages/` can share a slug
 2. **`pages/` is flat** — no subdirectories; the slug system breaks otherwise
 3. **Never edit generated files** — `index.json`, `archives.html`, `sitemap.xml`, `index.html`
-4. **Single source of truth** — arc metadata lives in `arcs-v2.json`; UI strings in `strings.json`; no copies in JS
+4. **Single source of truth** — arc metadata lives in `arcs-v2.json`; UI element keys in `strings/source/`; compiled bundles are artifacts, not editable copies
 5. **Build step owns computation** — sort order, dateISO, arcMeta are derived at build time, never in the browser
 6. **Registry pattern** — new customizable axes are JSON objects, never hardcoded JS tables
 
