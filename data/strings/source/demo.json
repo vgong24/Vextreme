@@ -160,6 +160,25 @@
     }
   },
 
+  "demo.section.specimens.heading": {
+    "strings": {
+      "en": { "text": "Or see it in a minute, not a pitch" },
+      "ja": { "text": "あるいは、説明ではなく1分で見る" }
+    }
+  },
+  "demo.section.specimens.body": {
+    "strings": {
+      "en": { "text": "Everything above is a description of the system with live numbers attached. If you'd rather see it directly, three small fixed pages each isolate one localization state — fully translated, partially translated, and one line staled on purpose — paired with the exact pipeline stage that produces or catches that state." },
+      "ja": { "text": "ここまでの内容は、ライブの数値を伴ったシステムの説明です。直接見たい場合は、3つの小さな固定ページがそれぞれ1つのローカライズ状態 — 完全翻訳、部分翻訳、そして意図的にstaleにされた1行 — を切り出し、それを生み出す、あるいは検出する正確なパイプライン段階と対応させています。" }
+    }
+  },
+  "demo.link.specimens": {
+    "strings": {
+      "en": { "text": "View the specimens →", "aria-label": "View the three specimen pages" },
+      "ja": { "text": "標本を見る →", "aria-label": "3つの標本ページを見る" }
+    }
+  },
+
   "demo.section.gaps.heading": {
     "strings": {
       "en": { "text": "Why the gaps are visible" },
