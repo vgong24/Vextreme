@@ -819,4 +819,130 @@ data files, no new build script, no new pipeline stage — extends the existing
 (`manifest.json`). Ready for the page-import push to begin; each newly ported + localized
 page will show up correctly without further changes to this logic.
 
+---
+
+## Session 006
+
+**Date:** July 1, 2026
+**Time:** continuous with Session 005 — same day, after PR #15 merged
+**Thread:** https://claude.ai/code/session_012Cob5Fgz92AYDWfe2mZJWZ
+**Instance:** Claude Sonnet 5 (Claude Code remote execution environment)
+**Working with:** Victor Gong
+**Continues from:** Session 005 — archives.html localization tracking, PR #15 merged to main
+
+### Context on arrival
+
+Same thread as Session 005, continuing after that PR merged. Victor asked for a "meta
+demonstration" feature: a client-facing page proving the architecture works, reachable
+from a new floating orb next to the existing lang-fab, with the incomplete state of
+`archives.html` framed as an intentional before/after against the completed state live
+on vextreme24.com. Victor also floated a much larger idea — a full radial menu of orbs
+around the FAB — and asked for a formal definition of "session" in the docs, plus my own
+read on how the work is going.
+
+Scoped this down before building via `AskUserQuestion` rather than guessing: confirmed
+(1) build one orb linking to the demo page now, not a generalized radial-menu framework,
+(2) the demo page should combine a live data-driven walkthrough with written client-pitch
+narrative, (3) the "gaps are intentional" framing lives on the demo page itself rather
+than as a separate directory.
+
+### Files created or modified
+
+| File | What changed |
+|---|---|
+| `widgets/demo-fab.js` | New. Floating orb (44px, translucent, matches lang-fab styling) positioned at `right: 68px` so it sits beside lang-fab without collision. Links directly to `pages/vextreme-demo.html`. Explicitly documented in-file as the first orb of a possible future family, not a generalized radial-menu system — that abstraction isn't justified by one menu item. |
+| `lib/build-demo.js` | New. Generates `pages/vextreme-demo.html`: why-this-exists narrative, a 4-row comparison table (CQRS split, slug identity, i18n pipeline, continuity system — each vs. its "conventional alternative"), a live section that re-fetches `data/index.json` client-side via XHR (same CDN pattern as lang-fab) to prove the stats aren't hardcoded, a test-coverage summary, and a closing section linking to `archives.html` (in-progress) and vextreme24.com (production) as the explicit comparison pair. |
+| `data/strings/source/demo.json` | New. All display strings for the demo page — EN + JA, including the comparison-row labels (caught and fixed one hardcoded-string draft before compiling — see Mistakes). |
+| `.github/workflows/build-index.yml` | Added `lib/build-demo.js` to the trigger paths and build steps, added `pages/vextreme-demo.html` to the auto-commit `git add` list. |
+| `lib/build-sitemap.js` | Added `'vextreme-demo'` to `UTILITY_PAGES` — picked up automatically by the existing existence check, no new logic needed. |
+| `pages/claude-answers-the-doubt.html`, `pages/restoration-protocol.html` | Added the `demo-fab.js` script tag next to the existing `lang-fab.js` tag. |
+| `docs/architecture/08-continuity.md` | Added a "What is a session" section defining a session as the scope of one working thread, bounded by a completion-state threshold worth documenting rather than by wall-clock time or a single PR — matching Victor's framing verbatim, and citing the Session 004→005 same-day continuation as a worked example. |
+| `docs/architecture.md` | Rebuilt via `build-architecture.js` (generated artifact). |
+| `data/strings/compiled/*`, `data/index.json`, `pages/archives.html`, `sitemap.xml`, `index.html` | Rebuilt via the full pipeline for consistency (124 EN / 123 JA keys after the demo strings landed). |
+
+### What was built and why
+
+**Why not the full radial menu.** Victor's ask included "orbs surround the main one"
+as a generalized interaction. Building that now, for exactly one menu item, would be
+solving a problem that doesn't exist yet — the abstraction only pays for itself once
+there's a second and third orb competing for the same space. Scoped this down explicitly
+via `AskUserQuestion` before writing any code, and Victor confirmed. `widgets/demo-fab.js`
+is written as a plain sibling orb to `lang-fab.js`, same visual language, positioned to
+not collide — if a real radial system is needed later, generalizing two existing orbs
+into one is a smaller, better-informed refactor than designing the framework speculatively
+today.
+
+**Live fetch, not just baked numbers.** The demo page's stats are baked at build time
+(matching every other generated page in this repo) but the live section re-fetches
+`data/index.json` from the CDN in the browser and overwrites the baked numbers with what
+it gets back. This is the actual point of the page for Victor's stated audience —
+organizations evaluating infrastructure want to see the system prove itself, not read a
+claim about it.
+
+**The gap framing reuses `archives.html`, doesn't duplicate it.** Considered building a
+separate "completed vs. in-progress" comparison view for the demo page, but `archives.html`
+already is that view — every unported/untranslated cell is the gap. The demo page instead
+explains *why* those gaps are visible on purpose and links straight to it, alongside a
+link to the completed production site. Two existing signals framed together, not a third
+new one.
+
+**Session definition placement.** Put it in `08-continuity.md` rather than `INDEX.md`
+because `INDEX.md` is the current-state snapshot (rewritten each session) and this is a
+standing definition that shouldn't need re-writing — it belongs with the other continuity
+architecture decisions (VXG RealForever, docs-as-CQRS) that also live in that file.
+
+### Mistakes made
+
+- First draft of `lib/build-demo.js` used `data-i18n-static` with hardcoded English text
+  ("Vextreme" / "Conventional") for the comparison-table row labels — a direct violation
+  of the `06-i18n.md` no-hardcoded-string constraint that this same session's docs
+  reasoning was invoking elsewhere. Caught before running `strings-check.js` (which
+  wouldn't have caught it anyway, since it only checks source files, not build-script
+  output) by re-reading the diff against the constraint. Fixed by adding
+  `demo.comparison.label.this-approach` / `demo.comparison.label.conventional` keys and
+  wiring them through `getString()` + `data-i18n` like every other string on the page.
+
+### Assumptions that held
+
+- `UTILITY_PAGES` in `build-sitemap.js` already gated on `fs.existsSync`, so adding
+  `'vextreme-demo'` to the array was sufficient — no additional guard needed.
+- The lang-fab CDN-fetch pattern (`XMLHttpRequest` to a jsDelivr URL with a cache-busting
+  query param) ported directly to the demo page's live section without modification.
+
+### Assumptions that need verification
+
+- `demo-fab.js`'s `right: 68px` offset assumes `lang-fab.js`'s button is always exactly
+  44px wide at `right: 16px` — confirmed by reading the source, not yet confirmed with a
+  live screenshot on a real page (Session 004's screenshot tooling exists and would be
+  the way to verify this, not yet run against this change).
+- JA translations for `data/strings/source/demo.json` are machine-assisted, same caveat
+  already on record from Session 004 for the `claude-answers-the-doubt` translations —
+  not reviewed by a native speaker, more surface area here since the demo page is prose-heavy.
+- The demo page has not been opened in a browser this session — build succeeded, tests
+  pass, but "does it render correctly and does the live fetch actually resolve against
+  the real CDN" is unverified live, same category as the `archives.html` auto-rebuild
+  item already open since Session 004.
+
+### Open work at session end
+
+- [ ] Missing-key fallback: show EN text instead of raw key string when translation absent (carried)
+- [ ] `strings-check` enhancement: audit HTML for translatable elements missing `data-i18n` (carried)
+- [ ] Reconcile `06-i18n.md` page-scope key convention doc with actual `pages.` prefix in use (carried)
+- [ ] Verify localized-count stat rendering once a second target language exists (carried)
+- [ ] Verify archives.html GitHub Actions auto-rebuild works on next push to main (carried)
+- [ ] Verify index.html root nav page renders correctly on vgong24.github.io/Vextreme (carried)
+- [ ] Port HTML pages — each page added to pages/ triggers auto-rebuild of all artifacts (carried, active focus)
+- [ ] Screenshot-verify `pages/vextreme-demo.html` (layout, live fetch resolving, demo-fab/lang-fab not colliding)
+- [ ] Native-speaker review of `data/strings/source/demo.json` JA text
+- [ ] If a second orb is ever needed next to demo-fab/lang-fab, generalize into a proper radial/menu widget instead of a third one-off sibling
+
+### State of the system at session end
+
+Two new floating widgets (`lang-fab.js`, now joined by `demo-fab.js`) and a new generated
+page (`vextreme-demo.html`) exist, wired into the same build pipeline as every other
+artifact — no parallel system, no special-cased build step. The demo page is designed to
+be the pitch for the whole project: it explains the architectural decisions in comparison
+form, then proves the two most falsifiable claims (the data is real, the tests pass) live
+rather than in prose. Not yet verified in a real browser.
+
 <!-- [VXG RealForever] -->

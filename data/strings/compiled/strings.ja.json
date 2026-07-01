@@ -124,6 +124,95 @@
   "common.status.built-on": {
     "text": "{date}生成"
   },
+  "demo.heading.title": {
+    "text": "Vextremeの構築方法"
+  },
+  "demo.heading.subtitle": {
+    "text": "このシステムを支えるアーキテクチャ、テスト、プロセスのライブデモです — 説明ではなく、実物です。"
+  },
+  "demo.section.why.heading": {
+    "text": "存在意義"
+  },
+  "demo.section.why.body": {
+    "text": "このページは、コンテンツ、データ、またはプロセスのインフラが再構築なしに現在の規模を超えて拡張できるかを検討している組織のために存在します。Vextremeは単一ページのローダーとして始まり、コアのデータモデルを一度も変更することなく、16のアークにまたがる88のコンテンツノード、2つの言語、2つのデプロイ面へと成長しました。これこそが実証する価値のある特性です — 完成品ではなく、規模が拡大しても保たれる基準です。"
+  },
+  "demo.section.comparison.heading": {
+    "text": "このアプローチを選ぶ理由"
+  },
+  "demo.comparison.label.this-approach": {
+    "text": "Vextreme"
+  },
+  "demo.comparison.label.conventional": {
+    "text": "従来型"
+  },
+  "demo.comparison.cqrs.approach": {
+    "text": "書き込み側（ソースファイル）と読み取り側（生成された成果物）は分離されています。生成ファイルは直接編集しません。"
+  },
+  "demo.comparison.cqrs.alternative": {
+    "text": "従来の代替案：デプロイされたHTML/JSONを直接手動編集する方法。2人が同じ生成ファイルを編集すると、信頼できる情報源が曖昧になるまでは機能します。"
+  },
+  "demo.comparison.slug.approach": {
+    "text": "すべてのコンテンツは、ファイルパスやURLではなくスラッグによって識別されます。アークの所属、順序、翻訳はすべてスラッグを参照します。"
+  },
+  "demo.comparison.slug.alternative": {
+    "text": "従来の代替案：URLやフォルダの場所でコンテンツを参照する方法。再編成が行われるまでは機能しますが、その際に古いパスを指していたすべてのリンクが壊れます。"
+  },
+  "demo.comparison.i18n.approach": {
+    "text": "コードベースのどこにもハードコードされた表示文字列はありません。すべての文字列はソースファイル内のキー付きエントリであり、言語ごとのバンドルにコンパイルされます。"
+  },
+  "demo.comparison.i18n.alternative": {
+    "text": "従来の代替案：テンプレートやJS内に文字列を直接記述する方法。2つ目の言語が必要になるまでは機能しますが、その際にすべてのファイルを手作業で探さなければなりません。"
+  },
+  "demo.comparison.continuity.approach": {
+    "text": "すべての作業セッションが記録されます — 何が変更され、何が前提とされ、何が未解決かが残るため、次の担当者（人間かAIかを問わず）は判断をやり直すことなく、情報を得た状態で始められます。"
+  },
+  "demo.comparison.continuity.alternative": {
+    "text": "従来の代替案：構築した人だけが知る暗黙知に頼る方法。その人が不在になった途端、判断の背景にあった理由は失われます。"
+  },
+  "demo.section.live.heading": {
+    "text": "ライブ・アーキテクチャ・スナップショット"
+  },
+  "demo.section.live.body": {
+    "text": "以下の数値はこのページに直接書き込まれたものではありません。このサイトのすべてのページが参照するのと同じ生成済み成果物、data/index.jsonからページ読み込み時に取得されています。"
+  },
+  "demo.live.label.nodes": {
+    "text": "コンテンツノード"
+  },
+  "demo.live.label.arcs": {
+    "text": "アーク"
+  },
+  "demo.live.label.langs": {
+    "text": "対応言語"
+  },
+  "demo.live.label.built-at": {
+    "text": "index.json 最終ビルド日時"
+  },
+  "demo.live.status.loading": {
+    "text": "ライブデータを取得中…"
+  },
+  "demo.live.status.failed": {
+    "text": "ライブ取得に失敗しました — ビルド時の値を表示しています。"
+  },
+  "demo.section.tests.heading": {
+    "text": "テストカバレッジ"
+  },
+  "demo.section.tests.body": {
+    "text": "39のテストが、パイプラインの各段階に対応する4つのファイルにわたって存在し、すべてのプルリクエストでCI実行されます：コンテンツパイプライン（インデックス構築の正確性）、文字列パイプライン（コンパイルとマニフェストの整合性）、ブラウザナビゲーション（アークの位置と隣接ロジック）、ビルド出力（生成されたHTML構造）。いずれかの段階を壊す変更は、mainに到達する前に失敗します。"
+  },
+  "demo.section.gaps.heading": {
+    "text": "空白が見える理由"
+  },
+  "demo.section.gaps.body": {
+    "text": "以下にリンクされているアーカイブダッシュボードは、未移植・未翻訳のページを隠すのではなく、意図的に見える空白として表示しています。これは見落としではなく、比較のための基準点です。そこに見えるのは構築途中のシステムであり、すでに本番環境で稼働している完成状態と並んでいます。その2つの間の距離こそが、拡大するコンテンツシステムの、編集されていない実際の進捗です。"
+  },
+  "demo.link.archives": {
+    "text": "アーカイブダッシュボードを見る →",
+    "aria-label": "進行中のページを含むアーカイブダッシュボードを見る"
+  },
+  "demo.link.production": {
+    "text": "本番環境の完成状態を見る →",
+    "aria-label": "vextreme24.comで完成状態を見る"
+  },
   "pages.claude-answers-the-doubt.layer.01.number": {
     "text": "第1層"
   },

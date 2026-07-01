@@ -71,6 +71,24 @@
 
 ---
 
+## Visual verification
+
+<!--
+  If this PR touches anything a browser renders — a page, a widget, CSS, an i18n
+  swap, anything with a data-i18n attribute or a new <script> tag — run
+  `node scripts/screenshot-page.js [slug] [lang]` before marking this PR ready and
+  embed the before/after screenshots here. This is not optional: it is the only
+  check in this repo that looks at rendered output rather than pipeline correctness,
+  and it has caught real bugs the test suite and a manual diff read both missed.
+
+  If nothing in this PR is browser-rendered, say so and why —
+  "Not applicable — build-script/data-only change, nothing rendered differs."
+  Leaving this section silently empty reads as "didn't check," same as an
+  empty Cross-platform check cell.
+-->
+
+---
+
 ## Assumptions this PR makes
 
 <!--

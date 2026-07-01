@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vextreme — How This Is Built</title>
+<meta name="description" content="A live demonstration of the architecture, tests, and process behind Vextreme.">
+<style>
+  :root {
+    --bg:     #0e0e0e;
+    --surface:#111111;
+    --text:   #e8e8e4;
+    --muted:  #6b6b6b;
+    --ember:  #c8502a;
+    --border: #2a2a2a;
+    --mono:   'IBM Plex Mono', monospace;
+    --sans:   'IBM Plex Sans', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); padding: 48px 24px 96px; max-width: 860px; margin: 0 auto; line-height: 1.6; }
+
+  .site-header { margin-bottom: 16px; }
+  .site-title  { font-size: 13px; font-family: var(--mono); color: var(--ember); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  h1 { font-size: 26px; font-weight: 500; margin-bottom: 8px; }
+  .subtitle { color: var(--muted); font-size: 15px; margin-bottom: 40px; max-width: 640px; }
+
+  section { margin-bottom: 44px; border-top: 1px solid var(--border); padding-top: 28px; }
+  h2 { font-size: 16px; font-weight: 500; color: var(--ember); margin-bottom: 12px; }
+  p  { font-size: 14px; color: var(--text); max-width: 680px; }
+
+  .compare-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+  .compare-cell { border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; font-size: 13px; }
+  .compare-cell--approach { border-color: var(--ember); background: rgba(200,80,42,0.06); }
+  .compare-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .compare-cell--approach .compare-label { color: var(--ember); }
+
+  .live-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 12px; }
+  .live-stat { border: 1px solid var(--border); border-radius: 6px; padding: 14px; text-align: center; }
+  .live-stat-value { font-family: var(--mono); font-size: 22px; color: var(--ember); }
+  .live-stat-label { font-size: 11px; color: var(--muted); margin-top: 4px; }
+  .live-note { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 10px; }
+
+  .links { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+  .links a { color: var(--ember); text-decoration: none; font-size: 14px; }
+  .links a:hover { text-decoration: underline; }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-title" data-i18n="common.label.site-title">Vextreme</div>
+  <h1 data-i18n="demo.heading.title">How Vextreme Is Built</h1>
+  <div class="subtitle" data-i18n="demo.heading.subtitle">A live demonstration of the architecture, tests, and process behind this system — not a description of it.</div>
+</header>
+
+<section id="why">
+  <h2 data-i18n="demo.section.why.heading">Why this exists</h2>
+  <p data-i18n="demo.section.why.body">This page exists for organizations evaluating whether their content, data, or process infrastructure can scale past its current size without a rebuild. Vextreme started as a single-page loader and grew into 88 content nodes across 16 arcs, two languages, and two deployment surfaces — without ever changing its core data model. That is the property worth demonstrating: a baseline standard that holds as scope grows, not a finished product.</p>
+</section>
+
+<section id="comparison">
+  <h2 data-i18n="demo.section.comparison.heading">Why this approach</h2>
+  <div class="compare-row">
+  <div class="compare-cell compare-cell--approach">
+    <div class="compare-label" data-i18n="demo.comparison.label.this-approach">Vextreme</div>
+    <div data-i18n="demo.comparison.cqrs.approach">Write side (source files) and read side (generated artifacts) are separate. Never edit a generated file.</div>
+  </div>
+  <div class="compare-cell compare-cell--alternative">
+    <div class="compare-label" data-i18n="demo.comparison.label.conventional">Conventional</div>
+    <div data-i18n="demo.comparison.cqrs.alternative">Conventional alternative: hand-edit the deployed HTML/JSON directly. Works until two people edit the same generated file and the source of truth becomes ambiguous.</div>
+  </div>
+</div>
+<div class="compare-row">
+  <div class="compare-cell compare-cell--approach">
+    <div class="compare-label" data-i18n="demo.comparison.label.this-approach">Vextreme</div>
+    <div data-i18n="demo.comparison.slug.approach">Every piece of content is identified by a slug, not a file path or URL. Arc membership, ordering, and translation all reference the slug.</div>
+  </div>
+  <div class="compare-cell compare-cell--alternative">
+    <div class="compare-label" data-i18n="demo.comparison.label.conventional">Conventional</div>
+    <div data-i18n="demo.comparison.slug.alternative">Conventional alternative: reference content by URL or folder location. Works until a reorganization breaks every link that pointed at the old path.</div>
+  </div>
+</div>
+<div class="compare-row">
+  <div class="compare-cell compare-cell--approach">
+    <div class="compare-label" data-i18n="demo.comparison.label.this-approach">Vextreme</div>
+    <div data-i18n="demo.comparison.i18n.approach">No display string is hardcoded anywhere in the codebase. Every string is a keyed entry in a source file, compiled into per-language bundles.</div>
+  </div>
+  <div class="compare-cell compare-cell--alternative">
+    <div class="compare-label" data-i18n="demo.comparison.label.conventional">Conventional</div>
+    <div data-i18n="demo.comparison.i18n.alternative">Conventional alternative: strings written inline in templates or JS. Works until a second language is needed and every file has to be hunted through by hand.</div>
+  </div>
+</div>
+<div class="compare-row">
+  <div class="compare-cell compare-cell--approach">
+    <div class="compare-label" data-i18n="demo.comparison.label.this-approach">Vextreme</div>
+    <div data-i18n="demo.comparison.continuity.approach">Every working session is logged — what changed, what was assumed, what's still open — so the next contributor (human or AI) starts informed instead of re-deriving decisions.</div>
+  </div>
+  <div class="compare-cell compare-cell--alternative">
+    <div class="compare-label" data-i18n="demo.comparison.label.conventional">Conventional</div>
+    <div data-i18n="demo.comparison.continuity.alternative">Conventional alternative: tribal knowledge held by whoever built it. Works until that person is unavailable and the reasoning behind a decision is gone.</div>
+  </div>
+</div>
+</section>
+
+<section id="live">
+  <h2 data-i18n="demo.section.live.heading">Live architecture snapshot</h2>
+  <p data-i18n="demo.section.live.body">The numbers below are not written into this page. They are fetched from data/index.json at page load, the same generated artifact every page on this site reads from.</p>
+  <div class="live-grid" id="liveGrid">
+    <div class="live-stat"><div class="live-stat-value" id="liveNodes">75</div><div class="live-stat-label" data-i18n="demo.live.label.nodes">content nodes</div></div>
+    <div class="live-stat"><div class="live-stat-value" id="liveArcs">16</div><div class="live-stat-label" data-i18n="demo.live.label.arcs">arcs</div></div>
+    <div class="live-stat"><div class="live-stat-value" id="liveLangs">—</div><div class="live-stat-label" data-i18n="demo.live.label.langs">supported languages</div></div>
+  </div>
+  <div class="live-note" id="liveNote" data-i18n="demo.live.status.loading">Fetching live data…</div>
+</section>
+
+<section id="tests">
+  <h2 data-i18n="demo.section.tests.heading">Test coverage</h2>
+  <p data-i18n="demo.section.tests.body">39 tests across 4 files, one per pipeline stage, run in CI on every pull request: content pipeline (index build correctness), strings pipeline (compile + manifest integrity), browser navigation (arc position and adjacency logic), and build output (generated HTML structure). A change that breaks any stage fails before it reaches main.</p>
+</section>
+
+<section id="gaps">
+  <h2 data-i18n="demo.section.gaps.heading">Why the gaps are visible</h2>
+  <p data-i18n="demo.section.gaps.body">The archive dashboard linked below intentionally shows unported and untranslated pages as visible gaps rather than hiding them. That is not an oversight — it is the comparison point. What you see there is the system mid-build, next to the completed state already live in production. The distance between the two is the actual, unedited progress of a scaling content system.</p>
+  <div class="links">
+    <a href="https://vgong24.github.io/Vextreme/pages/archives.html" data-i18n="demo.link.archives">View the archive dashboard →</a>
+    <a href="https://vextreme24.com" data-i18n="demo.link.production">View the completed state in production →</a>
+  </div>
+</section>
+
+<script>
+(function () {
+  var INDEX_URL = 'https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/data/index.json?v=' + Date.now();
+  var FAILED_TEXT = "Live fetch failed — showing build-time values instead.";
+
+  // note.removeAttribute('data-i18n') below is load-bearing: once this div shows
+  // live-fetched content, widgets/lang-fab.js's [data-i18n] sweep on language
+  // switch would otherwise overwrite it back to the static "loading" translation,
+  // silently reverting the page's "this is live, not baked" claim.
+  var req = new XMLHttpRequest();
+  req.open('GET', INDEX_URL, true);
+  req.onload = function () {
+    var note = document.getElementById('liveNote');
+    note.removeAttribute('data-i18n');
+    if (req.status !== 200) { note.textContent = FAILED_TEXT; return; }
+    try {
+      var data = JSON.parse(req.responseText);
+      document.getElementById('liveNodes').textContent = data.nodeCount;
+      document.getElementById('liveArcs').textContent = data.arcCount;
+      document.getElementById('liveLangs').textContent = (data.supportedLangs || []).join(', ').toUpperCase();
+      note.textContent = "index.json last built" + ': ' + data.builtAt;
+    } catch (e) {
+      note.textContent = FAILED_TEXT;
+    }
+  };
+  req.onerror = function () {
+    var note = document.getElementById('liveNote');
+    note.removeAttribute('data-i18n');
+    note.textContent = FAILED_TEXT;
+  };
+  req.send();
+}());
+</script>
+
+<script src="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/widgets/lang-fab.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/widgets/demo-fab.js"></script>
+
+</body>
+</html>

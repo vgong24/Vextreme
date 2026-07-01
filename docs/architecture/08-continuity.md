@@ -1,5 +1,27 @@
 # Continuity system
 
+## What is a session
+
+A **session** is the scope of one working thread — everything from when a Claude
+instance picks up the work to when it reaches a completion state worth documenting.
+"Worth documenting" is a threshold, not a fixed unit: a session can be one focused
+change or several related ones, but it ends at a point where the state of the system
+has moved and a future instance would need to know what happened to pick up cleanly.
+
+At that threshold, the instance re-reads its own thread — not just the final diff,
+but the reasoning that produced it — and writes the summary itself, while that
+reasoning is still live in context. This is why session entries in the batch files
+read as reasoning chains (what was tried, what was rejected, what's still assumed)
+rather than commit-log summaries: the commit log already has the diff. The batch
+entry is the thing the diff can't tell you.
+
+A session is not bounded by wall-clock time or by a single PR. Two sessions on the
+same day, continuing the same thread, are recorded as one entry with a "continues
+from" note (see Session 004 → 005 in the active batch file for an example) — the
+split that matters is the reasoning arc, not the calendar.
+
+---
+
 Three layers, three time horizons:
 
 | Layer | File | Purpose | Written by |
@@ -7,6 +29,28 @@ Three layers, three time horizons:
 | Current snapshot | `docs/continuity/INDEX.md` | Where is the system right now | Claude at session end |
 | Session narrative | `docs/continuity/Batch 00N.md` | Mistakes, reasoning, assumptions | Claude on Victor's signal |
 | Decision record | PR description (`.github/pull_request_template.md`) | Why the system moved at each PR | Claude when opening PR |
+
+---
+
+## Visual verification is mandatory before marking a PR ready
+
+`scripts/screenshot-page.js` (built in Session 004) takes before/after Playwright
+screenshots of a page against branch-local code — real render, not a description of one.
+
+**If a PR touches anything a browser renders** (a page, a widget, CSS, an i18n swap,
+anything with a `data-i18n` attribute or a `<script>` tag) — run it before marking the
+PR ready, embed the output in the PR description, and read the screenshots yourself
+before claiming the change works. This is not optional polish. A Session 006 PR shipped
+once without running it despite the tool being documented right here, then caught a real
+bug (a `data-i18n` attribute silently clobbering live-fetched content on every language
+switch) the moment it was actually run. The bug was invisible in the diff and invisible
+in the test suite — the 39-test suite verifies pipeline correctness, not rendered output.
+Screenshots are the only check in this repo that looks at what a user actually sees.
+
+Usage: `node scripts/screenshot-page.js [slug] [lang]` → writes
+`docs/screenshots/{slug}-en.png` and `docs/screenshots/{slug}-{lang}.png`. See the file
+header for what it does and doesn't cover (it exercises the lang-fab swap path
+specifically; a page or interaction outside that path may need a different check).
 
 ---
 
