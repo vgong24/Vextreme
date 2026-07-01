@@ -591,6 +591,15 @@ by key. This applies to navigation chrome, button labels, arc titles, status
 messages, and error text. There are no exceptions based on string length
 or perceived insignificance.
 
+**8. Generated files are not mergeable — `.gitattributes` owns conflict resolution.**
+All generated artifacts (`data/index.json`, compiled strings, `pages/archives.html`,
+`sitemap.xml`, `index.html`, `docs/architecture.md`) are declared with `merge=ours`
+in `.gitattributes`. When a feature branch rebases onto main, git automatically
+keeps main's built version of those files rather than producing a conflict.
+After rebasing, always re-run the build scripts to bake your branch's changes
+into fresh artifacts before committing. Never resolve a generated-file conflict by
+hand — the build script is the only valid author of those files.
+
 **File responsibility map:**
 ```
 data/
