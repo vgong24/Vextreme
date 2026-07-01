@@ -32,6 +32,28 @@ Three layers, three time horizons:
 
 ---
 
+## Visual verification is mandatory before marking a PR ready
+
+`scripts/screenshot-page.js` (built in Session 004) takes before/after Playwright
+screenshots of a page against branch-local code — real render, not a description of one.
+
+**If a PR touches anything a browser renders** (a page, a widget, CSS, an i18n swap,
+anything with a `data-i18n` attribute or a `<script>` tag) — run it before marking the
+PR ready, embed the output in the PR description, and read the screenshots yourself
+before claiming the change works. This is not optional polish. A Session 006 PR shipped
+once without running it despite the tool being documented right here, then caught a real
+bug (a `data-i18n` attribute silently clobbering live-fetched content on every language
+switch) the moment it was actually run. The bug was invisible in the diff and invisible
+in the test suite — the 39-test suite verifies pipeline correctness, not rendered output.
+Screenshots are the only check in this repo that looks at what a user actually sees.
+
+Usage: `node scripts/screenshot-page.js [slug] [lang]` → writes
+`docs/screenshots/{slug}-en.png` and `docs/screenshots/{slug}-{lang}.png`. See the file
+header for what it does and doesn't cover (it exercises the lang-fab swap path
+specifically; a page or interaction outside that path may need a different check).
+
+---
+
 ## VXG RealForever
 
 Every commit message ends with `[VXG RealForever]`.
