@@ -1,0 +1,64 @@
+{
+  "_meta": {
+    "scope": "common",
+    "description": "Globally reusable UI strings. Keys promoted here appear on 3+ pages or are structural chrome with no page-specific meaning. For strings shared within a single arc or page scope, use {scope}.common.{element}.{name} keys in the scope's own file.",
+    "keyConvention": "common.{element-type}.{semantic-name}",
+    "elementTypes": ["button", "label", "heading", "description", "nav", "legend", "status", "placeholder"]
+  },
+
+  "common.nav.archives": {
+    "en": { "text": "Archives", "aria-label": "View full archive" },
+    "ja": { "text": "アーカイブ", "aria-label": "全アーカイブを表示" }
+  },
+  "common.nav.primary-site": {
+    "en": { "text": "vextreme24.com", "aria-label": "Go to primary site" },
+    "ja": { "text": "vextreme24.com", "aria-label": "メインサイトへ" }
+  },
+  "common.nav.github": {
+    "en": { "text": "GitHub", "aria-label": "View source on GitHub" },
+    "ja": { "text": "GitHub", "aria-label": "GitHubでソースを表示" }
+  },
+  "common.nav.full-archive": {
+    "en": { "text": "Full archive →", "aria-label": "View full archive" },
+    "ja": { "text": "全アーカイブ →", "aria-label": "全アーカイブを表示" }
+  },
+
+  "common.button.copy-filename": {
+    "en": { "text": "Copy filename", "aria-label": "Copy filename to clipboard" },
+    "ja": { "text": "ファイル名をコピー", "aria-label": "ファイル名をクリップボードにコピー" }
+  },
+  "common.button.copied": {
+    "en": { "text": "Copied!", "aria-label": "Filename copied to clipboard" },
+    "ja": { "text": "コピーしました", "aria-label": "ファイル名をコピーしました" }
+  },
+
+  "common.label.site-title": {
+    "en": { "text": "Vextreme" },
+    "ja": { "text": "Vextreme" }
+  },
+  "common.label.page-live": {
+    "en": { "text": "Page live" },
+    "ja": { "text": "公開済み" }
+  },
+  "common.label.not-yet-ported": {
+    "en": { "text": "Not yet ported" },
+    "ja": { "text": "未移植" }
+  },
+  "common.label.slug": {
+    "en": { "text": "Slug" },
+    "ja": { "text": "スラッグ" }
+  },
+
+  "common.status.pages-live": {
+    "en": { "text": "{ported, plural, one {# of {total} page live} other {# of {total} pages live}}" },
+    "ja": { "text": "{total}ページ中{ported}ページ公開中" }
+  },
+  "common.status.remaining": {
+    "en": { "text": "{count, plural, one {# remaining} other {# remaining}}" },
+    "ja": { "text": "残り{count}ページ" }
+  },
+  "common.status.built-on": {
+    "en": { "text": "Built {date}" },
+    "ja": { "text": "{date}生成" }
+  }
+}

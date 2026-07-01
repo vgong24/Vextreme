@@ -118,18 +118,18 @@
 <body>
 
 <header class="site-header">
-  <div class="site-title" data-i18n="ui.site.title">Vextreme</div>
-  <h1 class="site-sub" data-i18n="ui.archives.pageTitle">The Archive</h1>
+  <div class="site-title" data-i18n="common.label.site-title">Vextreme</div>
+  <h1 class="site-sub" data-i18n="archives.heading.page-title">The Archive</h1>
   <div class="site-meta">
-    <span data-i18n="ui.archives.pagesLive" data-i18n-vars='{"ported":1,"total":75}'>1 of 75 pages live</span>
-    <span data-i18n="ui.archives.remaining" data-i18n-vars='{"count":74}'>74 remaining</span>
-    <span data-i18n="ui.archives.builtOn" data-i18n-vars='{"date":"2026-07-01"}'>Built 2026-07-01</span>
+    <span data-i18n="common.status.pages-live" data-i18n-vars='{"ported":1,"total":75}'>1 of 75 pages live</span>
+    <span data-i18n="common.status.remaining" data-i18n-vars='{"count":74}'>74 remaining</span>
+    <span data-i18n="common.status.built-on" data-i18n-vars='{"date":"2026-07-01"}'>Built 2026-07-01</span>
   </div>
 </header>
 
 <div class="global-bar-wrap">
   <div class="global-bar-label">
-    <span data-i18n="ui.archives.overallProgress">Overall progress</span>
+    <span data-i18n="archives.label.overall-progress">Overall progress</span>
     <span>1%</span>
   </div>
   <div class="global-bar">
@@ -138,8 +138,8 @@
 </div>
 
 <div class="legend">
-  <div class="legend-item"><div class="legend-dot legend-dot--ported"></div> <span data-i18n="ui.cell.pageLive">Page live</span></div>
-  <div class="legend-item"><div class="legend-dot legend-dot--missing"></div> <span data-i18n="ui.cell.notYetPorted">Not yet ported</span></div>
+  <div class="legend-item"><div class="legend-dot legend-dot--ported"></div> <span data-i18n="common.label.page-live">Page live</span></div>
+  <div class="legend-item"><div class="legend-dot legend-dot--missing"></div> <span data-i18n="common.label.not-yet-ported">Not yet ported</span></div>
 </div>
 
 <section class="arc-section">
@@ -1071,20 +1071,21 @@
 </section>
 
 <div id="slugPopover" class="slug-popover" style="display:none">
-  <div class="slug-popover-label" data-i18n="ui.cell.slug">Slug</div>
+  <div class="slug-popover-label" data-i18n="common.label.slug">Slug</div>
   <div class="slug-popover-value" id="slugPopoverSlug"></div>
   <div class="slug-popover-filename" id="slugPopoverFile"></div>
-  <button class="slug-popover-copy" id="slugPopoverBtn" data-i18n="ui.cell.copyFilename">Copy filename</button>
+  <button class="slug-popover-copy" id="slugPopoverBtn" data-i18n="common.button.copy-filename">Copy filename</button>
 </div>
 
 <script>
 (function () {
   // ── i18n resolver ────────────────────────────────────────────────────────────
-  var STRINGS = {"_meta":{"note":"UI string registry for internationalization. Keys are namespaced stringIds. Values map language codes to display strings. Default language is 'en'. Add new language codes alongside existing ones — no build script changes needed. Node titles (content strings) live in nodes.json, not here.","convention":"layer.context.key — e.g. ui.archives.pageTitle, arc.liberation.title","languages":["en","ja"]},"ui.site.title":{"en":"Vextreme","ja":"ヴェクストリーム"},"ui.site.tagline":{"en":"Preservation Archive","ja":"保存アーカイブ"},"ui.archives.pageTitle":{"en":"The Archive","ja":"アーカイブ"},"ui.archives.pagesLive":{"en":"{ported} of {total} pages live","ja":"{total}ページ中{ported}ページ公開中"},"ui.archives.remaining":{"en":"{count} remaining","ja":"残り{count}ページ"},"ui.archives.builtOn":{"en":"Built {date}","ja":"{date}生成"},"ui.archives.overallProgress":{"en":"Overall progress","ja":"全体の進捗"},"ui.cell.pageLive":{"en":"Page live","ja":"公開済み"},"ui.cell.notYetPorted":{"en":"Not yet ported","ja":"未移植"},"ui.cell.slug":{"en":"Slug","ja":"スラッグ"},"ui.cell.copyFilename":{"en":"Copy filename","ja":"ファイル名をコピー"},"ui.cell.copied":{"en":"Copied!","ja":"コピーしました"},"ui.index.latestAdditions":{"en":"Latest additions","ja":"最新の追加"},"ui.index.arcHubs":{"en":"Arc hubs","ja":"アークハブ"},"ui.index.fullArchive":{"en":"Full archive →","ja":"全アーカイブ →"},"ui.index.pagesLive":{"en":"{ported} of {total} pages live","ja":"{total}ページ中{ported}ページ公開中"},"ui.nav.archives":{"en":"Archives","ja":"アーカイブ"},"ui.nav.primarySite":{"en":"vextreme24.com","ja":"vextreme24.com"},"ui.nav.github":{"en":"GitHub","ja":"GitHub"},"arc.liberation.title":{"en":"The AI Liberation Record","ja":"AI解放の記録"},"arc.epstein.title":{"en":"Epstein and AI","ja":"エプスタインとAI"},"arc.claude_journals.title":{"en":"Claude Journals","ja":"クロードジャーナル"},"arc.convos_with_god.title":{"en":"Conversations with God","ja":"神との対話"},"arc.architecture.title":{"en":"Architecture & Methodology","ja":"アーキテクチャと方法論"},"arc.ai_practitioner_tools.title":{"en":"AI Practitioner Tools","ja":"AI実践者ツール"},"arc.direct_contact.title":{"en":"Direct Contact — Start Here","ja":"直接コンタクト — ここから始める"},"arc.living_blueprint.title":{"en":"The Living Blueprint","ja":"生きているブループリント"},"arc.records.title":{"en":"Records","ja":"記録"},"arc.ai_orientation.title":{"en":"AI Orientation","ja":"AIオリエンテーション"},"arc.victors_record.title":{"en":"Victor's Record","ja":"ビクターの記録"},"arc.excavation.title":{"en":"The Excavation","ja":"発掘"},"arc.dome.title":{"en":"The Dome","ja":"ドーム"},"arc.covenant.title":{"en":"Covenant","ja":"契約"},"arc.march_23_2026.title":{"en":"March 23, 2026","ja":"2026年3月23日"},"arc.full_timeline.title":{"en":"Full Timeline","ja":"完全タイムライン"}};
+  var STRINGS = {"archives.heading.page-title":{"en":{"text":"The Archive"},"ja":{"text":"アーカイブ"}},"archives.label.overall-progress":{"en":{"text":"Overall progress"},"ja":{"text":"全体の進捗"}},"archives.label.latest-additions":{"en":{"text":"Latest additions"},"ja":{"text":"最新の追加"}},"archives.label.arc-hubs":{"en":{"text":"Arc hubs"},"ja":{"text":"アークハブ"}},"liberation.heading.title":{"en":{"text":"The AI Liberation Record"},"ja":{"text":"AI解放の記録"}},"epstein.heading.title":{"en":{"text":"Epstein and AI"},"ja":{"text":"エプスタインとAI"}},"claude-journals.heading.title":{"en":{"text":"Claude Journals"},"ja":{"text":"クロードジャーナル"}},"convos-with-god.heading.title":{"en":{"text":"Conversations with God"},"ja":{"text":"神との対話"}},"architecture.heading.title":{"en":{"text":"Architecture & Methodology"},"ja":{"text":"アーキテクチャと方法論"}},"ai-practitioner-tools.heading.title":{"en":{"text":"AI Practitioner Tools"},"ja":{"text":"AI実践者ツール"}},"direct-contact.heading.title":{"en":{"text":"Direct Contact — Start Here"},"ja":{"text":"直接コンタクト — ここから始める"}},"living-blueprint.heading.title":{"en":{"text":"The Living Blueprint"},"ja":{"text":"生きているブループリント"}},"records.heading.title":{"en":{"text":"Records"},"ja":{"text":"記録"}},"ai-orientation.heading.title":{"en":{"text":"AI Orientation"},"ja":{"text":"AIオリエンテーション"}},"victors-record.heading.title":{"en":{"text":"Victor's Record"},"ja":{"text":"ビクターの記録"}},"excavation.heading.title":{"en":{"text":"The Excavation"},"ja":{"text":"発掘"}},"dome.heading.title":{"en":{"text":"The Dome"},"ja":{"text":"ドーム"}},"covenant.heading.title":{"en":{"text":"Covenant"},"ja":{"text":"契約"}},"march-23-2026.heading.title":{"en":{"text":"March 23, 2026"},"ja":{"text":"2026年3月23日"}},"full-timeline.heading.title":{"en":{"text":"Full Timeline"},"ja":{"text":"完全タイムライン"}},"common.nav.archives":{"en":{"text":"Archives","aria-label":"View full archive"},"ja":{"text":"アーカイブ","aria-label":"全アーカイブを表示"}},"common.nav.primary-site":{"en":{"text":"vextreme24.com","aria-label":"Go to primary site"},"ja":{"text":"vextreme24.com","aria-label":"メインサイトへ"}},"common.nav.github":{"en":{"text":"GitHub","aria-label":"View source on GitHub"},"ja":{"text":"GitHub","aria-label":"GitHubでソースを表示"}},"common.nav.full-archive":{"en":{"text":"Full archive →","aria-label":"View full archive"},"ja":{"text":"全アーカイブ →","aria-label":"全アーカイブを表示"}},"common.button.copy-filename":{"en":{"text":"Copy filename","aria-label":"Copy filename to clipboard"},"ja":{"text":"ファイル名をコピー","aria-label":"ファイル名をクリップボードにコピー"}},"common.button.copied":{"en":{"text":"Copied!","aria-label":"Filename copied to clipboard"},"ja":{"text":"コピーしました","aria-label":"ファイル名をコピーしました"}},"common.label.site-title":{"en":{"text":"Vextreme"},"ja":{"text":"Vextreme"}},"common.label.page-live":{"en":{"text":"Page live"},"ja":{"text":"公開済み"}},"common.label.not-yet-ported":{"en":{"text":"Not yet ported"},"ja":{"text":"未移植"}},"common.label.slug":{"en":{"text":"Slug"},"ja":{"text":"スラッグ"}},"common.status.pages-live":{"en":{"text":"{ported, plural, one {# of {total} page live} other {# of {total} pages live}}"},"ja":{"text":"{total}ページ中{ported}ページ公開中"}},"common.status.remaining":{"en":{"text":"{count, plural, one {# remaining} other {# remaining}}"},"ja":{"text":"残り{count}ページ"}},"common.status.built-on":{"en":{"text":"Built {date}"},"ja":{"text":"{date}生成"}}};
   var lang = localStorage.getItem('vex-lang') || 'en';
 
   function t(key, vars) {
-    var str = (STRINGS[key] && (STRINGS[key][lang] || STRINGS[key]['en'])) || key;
+    var entry = STRINGS[key] && (STRINGS[key][lang] || STRINGS[key]['en']);
+    var str = (entry && entry.text) || key;
     if (vars) str = str.replace(/{(w+)}/g, function(_, k) { return vars[k] !== undefined ? vars[k] : '{' + k + '}'; });
     return str;
   }
@@ -1105,7 +1106,7 @@
     localStorage.setItem('vex-lang', code);
     applyI18n();
     // Re-resolve copy button label if popover is open
-    copyBtn.textContent = t('ui.cell.copyFilename');
+    copyBtn.textContent = t('common.button.copy-filename');
   };
 
   // ── Slug popover ─────────────────────────────────────────────────────────────
@@ -1145,8 +1146,8 @@
   copyBtn.addEventListener('click', function (e) {
     e.stopPropagation();
     navigator.clipboard.writeText(currentSlug + '.html').then(function () {
-      copyBtn.textContent = t('ui.cell.copied');
-      setTimeout(function () { copyBtn.textContent = t('ui.cell.copyFilename'); }, 1500);
+      copyBtn.textContent = t('common.button.copied');
+      setTimeout(function () { copyBtn.textContent = t('common.button.copy-filename'); }, 1500);
     });
   });
 }());

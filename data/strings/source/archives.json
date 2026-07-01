@@ -1,0 +1,24 @@
+{
+  "_meta": {
+    "scope": "archives",
+    "description": "Strings specific to the archives.html build dashboard. Chrome, labels, and UI elements that appear only on this page.",
+    "keyConvention": "archives.{element-type}.{semantic-name} for unique strings. archives.common.{element}.{name} for strings reused across multiple sections of this page."
+  },
+
+  "archives.heading.page-title": {
+    "en": { "text": "The Archive" },
+    "ja": { "text": "アーカイブ" }
+  },
+  "archives.label.overall-progress": {
+    "en": { "text": "Overall progress" },
+    "ja": { "text": "全体の進捗" }
+  },
+  "archives.label.latest-additions": {
+    "en": { "text": "Latest additions" },
+    "ja": { "text": "最新の追加" }
+  },
+  "archives.label.arc-hubs": {
+    "en": { "text": "Arc hubs" },
+    "ja": { "text": "アークハブ" }
+  }
+}

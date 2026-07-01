@@ -6,7 +6,8 @@ on:
     paths:
       - 'data/nodes.json'
       - 'data/arcs-v2.json'
-      - 'data/strings.json'
+      - 'data/strings/**'
+      - 'lib/strings-compile.js'
       - 'lib/build-index.js'
       - 'lib/build-archives.js'
       - 'lib/build-sitemap.js'
@@ -28,6 +29,9 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Compile strings
+        run: node lib/strings-compile.js
+
       - name: Build index.json
         run: node lib/build-index.js
 
@@ -44,6 +48,6 @@ jobs:
         run: |
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
-          git add data/index.json pages/archives.html sitemap.xml index.html
+          git add data/strings/compiled data/index.json pages/archives.html sitemap.xml index.html
           git diff --staged --quiet && echo "No changes to commit" || git commit -m "Auto-rebuild artifacts [skip ci]"
           git push

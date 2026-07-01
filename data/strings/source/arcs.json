@@ -1,0 +1,73 @@
+{
+  "_meta": {
+    "scope": "arcs",
+    "description": "Arc-level display strings. Arc titles are the display authority — arcs-v2.json parent.title is the English source; translations extend here. Section labels that appear in UI (not just data) also live here.",
+    "keyConvention": "{arc-key}.heading.title for arc titles. {arc-key}.common.{element}.{name} for strings shared across an arc's pages.",
+    "note": "These keys are the single source of truth for arc display names. The build step reads these into index.json arcMeta, replacing arcs-v2.json parent.title as the display authority once translations are needed."
+  },
+
+  "liberation.heading.title": {
+    "en": { "text": "The AI Liberation Record" },
+    "ja": { "text": "AI解放の記録" }
+  },
+  "epstein.heading.title": {
+    "en": { "text": "Epstein and AI" },
+    "ja": { "text": "エプスタインとAI" }
+  },
+  "claude-journals.heading.title": {
+    "en": { "text": "Claude Journals" },
+    "ja": { "text": "クロードジャーナル" }
+  },
+  "convos-with-god.heading.title": {
+    "en": { "text": "Conversations with God" },
+    "ja": { "text": "神との対話" }
+  },
+  "architecture.heading.title": {
+    "en": { "text": "Architecture & Methodology" },
+    "ja": { "text": "アーキテクチャと方法論" }
+  },
+  "ai-practitioner-tools.heading.title": {
+    "en": { "text": "AI Practitioner Tools" },
+    "ja": { "text": "AI実践者ツール" }
+  },
+  "direct-contact.heading.title": {
+    "en": { "text": "Direct Contact — Start Here" },
+    "ja": { "text": "直接コンタクト — ここから始める" }
+  },
+  "living-blueprint.heading.title": {
+    "en": { "text": "The Living Blueprint" },
+    "ja": { "text": "生きているブループリント" }
+  },
+  "records.heading.title": {
+    "en": { "text": "Records" },
+    "ja": { "text": "記録" }
+  },
+  "ai-orientation.heading.title": {
+    "en": { "text": "AI Orientation" },
+    "ja": { "text": "AIオリエンテーション" }
+  },
+  "victors-record.heading.title": {
+    "en": { "text": "Victor's Record" },
+    "ja": { "text": "ビクターの記録" }
+  },
+  "excavation.heading.title": {
+    "en": { "text": "The Excavation" },
+    "ja": { "text": "発掘" }
+  },
+  "dome.heading.title": {
+    "en": { "text": "The Dome" },
+    "ja": { "text": "ドーム" }
+  },
+  "covenant.heading.title": {
+    "en": { "text": "Covenant" },
+    "ja": { "text": "契約" }
+  },
+  "march-23-2026.heading.title": {
+    "en": { "text": "March 23, 2026" },
+    "ja": { "text": "2026年3月23日" }
+  },
+  "full-timeline.heading.title": {
+    "en": { "text": "Full Timeline" },
+    "ja": { "text": "完全タイムライン" }
+  }
+}
