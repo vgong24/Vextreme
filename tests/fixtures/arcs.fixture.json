@@ -1,0 +1,31 @@
+{
+  "_meta": { "description": "Test fixture arcs" },
+  "arc_a": {
+    "priority": 10,
+    "renderMode": "dots",
+    "parent": { "title": "Arc A", "url": "/arc-a" },
+    "sections": [
+      { "label": "Season One", "order": "chronological" }
+    ]
+  },
+  "arc_b": {
+    "priority": 20,
+    "renderMode": "position",
+    "parent": { "title": "Arc B", "url": "/arc-b" },
+    "sections": [
+      { "label": "Volume One", "order": "chronological" }
+    ]
+  },
+  "arc_explicit": {
+    "priority": 30,
+    "renderMode": "dots",
+    "parent": { "title": "Arc Explicit", "url": "/arc-explicit" },
+    "sections": [
+      {
+        "label": "Curated",
+        "order": "explicit",
+        "slugs": ["explicit-second", "explicit-first"]
+      }
+    ]
+  }
+}
