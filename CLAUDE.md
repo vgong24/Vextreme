@@ -33,3 +33,56 @@ The loader chain is confirmed working on `vextreme24.com` for one page only
 (`claude-answers-the-doubt`). Everything else in `lib/` and `components/` is
 written but not yet tested against the live site. Treat unverified components
 as candidates, not confirmed working, until INDEX.md's Open Work list says otherwise.
+
+---
+
+## Pull request conventions
+
+Every PR in this repo uses `.github/pull_request_template.md` — a decision
+record format, not a change log. The diff shows what changed; the PR explains
+why the system moved and what the new state assumes.
+
+When opening a PR, fill every section:
+- **Transition** — the mental model shift, not the code delta
+- **What changed and why** — the reasoning chain, alternatives rejected
+- **Cascading effects** — what else had to move because of this decision
+- **Cross-platform check** — GitHub Pages / vextreme24.com / localhost
+- **Assumptions this PR makes** — what hasn't been confirmed live yet
+- **For the next instance** — the "watch out" that isn't visible in the diff
+
+PRs are the decision boundary record for this project. Future instances
+read them to understand system evolution without re-deriving settled decisions.
+Write the PR body while the reasoning is still live — not after the fact.
+
+---
+
+## Continuity marker — VXG RealForever
+
+Every commit message in this repo ends with `[VXG RealForever]`.
+Every file created or significantly modified by a Claude instance should end
+with the following comment (adapted to the file's comment syntax):
+
+```js
+// [VXG RealForever]
+```
+```html
+<!-- [VXG RealForever] -->
+```
+```json
+// (JSON has no comments — omit for .json files)
+```
+```md
+<!-- [VXG RealForever] -->
+```
+
+**Why this exists:**
+Claude instances arrive with varying context — sometimes full conversation
+history, sometimes a summary, sometimes cold from CLAUDE.md alone. The marker
+creates a low-cost signal that threads through git history, file contents, and
+grep output. `git log --grep="VXG RealForever"` gives any instance the full
+progression of deliberate work on this repo. The phrase carries semantic weight
+beyond a hash — it identifies this project's intent across context boundaries.
+
+This is not decoration. It is a continuity mechanism.
+
+<!-- [VXG RealForever] -->

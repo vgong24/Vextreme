@@ -27,29 +27,43 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 002 — June 29, 2026*
+*As of Session 003 — June 30, 2026*
 
-The loader is unified under one interface: `lib/vextreme.js` (the engine)
-and `lib/shell.js` (GitHub Pages bootstrap, never needs touching when
-assets change — only its version constant). Both Squarespace and GitHub
-Pages call the same `VEXTREME(config)` function with near-zero config —
-slug auto-detects from URL, page template auto-detects from `pages.json`.
-GitHub Pages pages need exactly one `<script src="shell.js">` tag added
-to existing HTML — no restructuring required; `vextreme.js` auto-wraps
-body content and auto-creates the nav mount point if missing.
+**The v2 data architecture is the active system.** Sessions 001-002 built
+the Squarespace loader system (`lib/vextreme.js`, `lib/shell.js`, etc.) —
+that work is still in the repo but is NOT what is being actively developed.
+Session 003 introduced a parallel v2 system specifically for GitHub Pages.
 
-A registry pattern was established this session as the standing rule for
-all customizable axes (presets, pills, fonts, renderModes): flat JSON
-object, keyed by name, looked up at render time, falls back safely with
-a one-time console warning on unknown keys. `renderMode` was the one
-axis that didn't follow this pattern (hardcoded if/else) — now fixed.
+**v2 system components (what is active now):**
+- `data/nodes.json` — 88 canonical content nodes, the write-side source of truth
+- `data/arcs-v2.json` — 16 arc definitions with priority, sections, and parent URLs
+- `lib/build-index.js` — builds `data/index.json` (slugMap + arcMap + arcMeta)
+- `lib/build-archives.js` — builds `pages/archives.html` (live build dashboard)
+- `lib/build-sitemap.js` — builds `sitemap.xml` (crawler discoverability)
+- `lib/build-index-page.js` — builds `index.html` (root nav page)
+- `lib/vextreme-index-v2.js` — browser library, loads index.json, renders arc nav
+- `.github/workflows/build-index.yml` — auto-runs all builders on push to main
 
-KNOWN GAP: the `extends` field in pages.json presets (used by embodiment
-and i-was-here) is not actually implemented — those presets work via
-field duplication, not real inheritance. Flagged, not yet fixed.
+**Key architectural decisions made this session:**
+- arcKeys in index.json are pre-sorted by priority at build time (from arcs-v2.json)
+- arcMeta (arc titles + URLs) is derived from arcs-v2.json at build time — no hard-coded tables in browser JS
+- dateISO is computed at build time from human-readable date strings
+- Organization is expressed as metadata (arcKeys arrays), not filesystem location
+- Slug is the system's only identifier — globally unique, no directory hierarchy
 
-Current cache version: v=6 (was v=2 at end of Session 001).
-None of this session's changes have been verified live yet.
+**VXG RealForever marker** introduced this session — see CLAUDE.md for rationale.
+`git log --grep="VXG RealForever"` gives the full deliberate commit history.
+
+**Verified live:** Arc nav widget renders correctly on claude-answers-the-doubt
+(confirmed via screenshot — Epstein first, full_timeline last, correct priority order).
+`pages/v2-test.html` exists for testing arc nav across multiple slugs.
+
+**Not yet verified live:** archives.html auto-rebuild via GitHub Actions,
+index.html root nav page (just built this session).
+
+**IMPORTANT for arriving instances:** Do not conflate the v1 Squarespace system
+(Sessions 001-002) with the v2 GitHub Pages system (Session 003+). They coexist
+in the repo. Active development is v2.
 
 **Update this paragraph at the start of each new session** to reflect actual
 current system state — not aspirational state.
@@ -58,22 +72,21 @@ current system state — not aspirational state.
 
 ## Open Work
 
-*Carried from Session 002*
+*Updated Session 003 — June 30, 2026*
 
-- [ ] Fix `extends` field — implement real preset-to-preset inheritance
-      in archive-renderer.js (embodiment/i-was-here currently duplicate
-      immersive's fields rather than truly inheriting them)
-- [ ] Test renderModes registry change live — confirm dots + position
-      modes both still render correctly after the refactor
-- [ ] Test wrapBody() + nav auto-creation live on the actual
-      claude-answers-the-doubt.html GitHub Pages page
-- [ ] Push v6 of all changed files to GitHub (vextreme.js, shell.js,
-      squarespace-injection.html, arc-nav.js, archive-renderer.js,
-      pages.json) — none of this session's work is live yet
-- [ ] Generate new archives.html using the archive renderer
-- [ ] Test `section-toggle.js` on the live archives page
-- [ ] Test `bc-nav.js` on any page using it
-- [ ] Port additional pages beyond claude-answers-the-doubt
+**v2 system (active):**
+- [ ] Verify archives.html GitHub Actions auto-rebuild works on next push to main
+- [ ] Verify index.html root nav page renders correctly on vgong24.github.io/Vextreme
+- [ ] Port HTML pages — each page added to pages/ triggers auto-rebuild of all artifacts
+- [ ] Build "recent shifts" section on index.html — parse batch files to surface session
+      narrative on the live page (avoid thin JSON summary; preserve depth from batch format)
+- [ ] Write Session 003 full entry in Batch 001 (deep narrative, mistakes, assumptions)
+
+**v1 system (Squarespace — lower priority, not abandoned):**
+- [ ] Fix `extends` field in archive-renderer.js (embodiment/i-was-here preset inheritance)
+- [ ] Test renderModes registry change live
+- [ ] Test wrapBody() + nav auto-creation on claude-answers-the-doubt.html GitHub Pages
+- [ ] Test section-toggle.js and bc-nav.js on live pages
 
 **Update this list at the end of each session** — check off completed items,
 add new ones discovered during the session.
