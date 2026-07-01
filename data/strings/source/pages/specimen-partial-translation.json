@@ -1,0 +1,85 @@
+{
+  "_meta": {
+    "scope": "pages.specimen-partial-translation",
+    "description": "Specimen page: one string has EN only, no JA — an intentional gap, mirroring the real gap in claude-answers-the-doubt (layer.04.qa.04.answer). Pairs with the screenshot-verification process map. pages.specimen-partial-translation.body.untranslated has NO ja entry on purpose — do not add one, that would defeat the specimen.",
+    "keyConvention": "pages.specimen-partial-translation.{field}"
+  },
+
+  "pages.specimen-partial-translation.heading.title": {
+    "strings": {
+      "en": { "text": "Partial Translation" },
+      "ja": { "text": "部分翻訳" }
+    }
+  },
+  "pages.specimen-partial-translation.intro": {
+    "strings": {
+      "en": { "text": "One string below has no Japanese translation, on purpose. Switch languages with the orb, top right, and watch what happens to it." },
+      "ja": { "text": "以下の文字列のうち1つは、意図的に日本語訳がありません。右上のオーブで言語を切り替えて、それがどうなるか確認してください。" }
+    }
+  },
+  "pages.specimen-partial-translation.body.translated": {
+    "strings": {
+      "en": { "text": "This sentence has a Japanese translation, so it swaps cleanly when you switch languages." },
+      "ja": { "text": "この文には日本語訳があるため、言語を切り替えると正しく置き換わります。" }
+    }
+  },
+  "pages.specimen-partial-translation.body.untranslated": {
+    "strings": {
+      "en": { "text": "This sentence does not have a Japanese translation — switching languages will show this exact English text, or the raw key, depending on whether the missing-key fallback has shipped yet." }
+    }
+  },
+  "pages.specimen-partial-translation.process.heading": {
+    "strings": {
+      "en": { "text": "How this gap gets caught before it ships" },
+      "ja": { "text": "この空白は公開前にどう検出されるか" }
+    }
+  },
+  "pages.specimen-partial-translation.process.step1.label": {
+    "strings": {
+      "en": { "text": "Local server + CDN interception" },
+      "ja": { "text": "ローカルサーバー + CDNインターセプト" }
+    }
+  },
+  "pages.specimen-partial-translation.process.step1.detail": {
+    "strings": {
+      "en": { "text": "scripts/screenshot-page.js starts a local HTTP server and routes CDN requests to local files, so the screenshot tests the branch's code, never whatever is already live on main." },
+      "ja": { "text": "scripts/screenshot-page.jsはローカルHTTPサーバーを起動し、CDNへのリクエストをローカルファイルに転送します。これにより、スクリーンショットはmainに既に公開されている内容ではなく、必ずブランチのコードをテストします。" }
+    }
+  },
+  "pages.specimen-partial-translation.process.step2.label": {
+    "strings": {
+      "en": { "text": "EN screenshot" },
+      "ja": { "text": "EN（英語）スクリーンショット" }
+    }
+  },
+  "pages.specimen-partial-translation.process.step2.detail": {
+    "strings": {
+      "en": { "text": "The page loads in its default language and Playwright captures a full-page screenshot as the baseline." },
+      "ja": { "text": "ページがデフォルト言語で読み込まれ、Playwrightがフルページのスクリーンショットをベースラインとして撮影します。" }
+    }
+  },
+  "pages.specimen-partial-translation.process.step3.label": {
+    "strings": {
+      "en": { "text": "FAB click + language switch" },
+      "ja": { "text": "FABクリック + 言語切り替え" }
+    }
+  },
+  "pages.specimen-partial-translation.process.step3.detail": {
+    "strings": {
+      "en": { "text": "Playwright clicks the lang-fab orb, selects Japanese, and waits for the strings fetch and the [data-i18n] swap to complete." },
+      "ja": { "text": "Playwrightがlang-fabオーブをクリックして日本語を選択し、文字列の取得と[data-i18n]の置き換えが完了するのを待ちます。" }
+    }
+  },
+  "pages.specimen-partial-translation.process.step4.label": {
+    "strings": {
+      "en": { "text": "JA screenshot, read by a human" },
+      "ja": { "text": "JA（日本語）スクリーンショット、人間が確認" }
+    }
+  },
+  "pages.specimen-partial-translation.process.step4.detail": {
+    "strings": {
+      "en": { "text": "A second screenshot is taken and someone actually looks at it. This is how a real bug got caught in this project: a live-fetched timestamp was getting silently overwritten by a translated placeholder on every language switch — invisible in the diff, invisible to the test suite, visible in under a second here." },
+      "ja": { "text": "2枚目のスクリーンショットが撮影され、実際に人が確認します。このプロジェクトで実際に発見されたバグはこうして見つかりました：ライブ取得されたタイムスタンプが、言語切り替えのたびに翻訳済みのプレースホルダーで静かに上書きされていたのです — 差分では見えず、テストスイートでも見えず、ここでは1秒足らずで見えました。" }
+    }
+  }
+}

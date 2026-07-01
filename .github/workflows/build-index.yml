@@ -11,8 +11,10 @@ on:
       - 'lib/build-index.js'
       - 'lib/build-archives.js'
       - 'lib/build-demo.js'
+      - 'lib/build-specimens.js'
       - 'lib/build-sitemap.js'
       - 'lib/build-index-page.js'
+      - 'data/specimens.json'
       - 'pages/**'
 
 jobs:
@@ -42,6 +44,9 @@ jobs:
       - name: Build vextreme-demo.html
         run: node lib/build-demo.js
 
+      - name: Build specimens
+        run: node lib/build-specimens.js
+
       - name: Build sitemap.xml
         run: node lib/build-sitemap.js
 
@@ -52,6 +57,6 @@ jobs:
         run: |
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
-          git add data/strings/compiled data/index.json pages/archives.html pages/vextreme-demo.html sitemap.xml index.html
+          git add data/strings/compiled data/index.json pages/archives.html pages/vextreme-demo.html pages/specimens.html pages/specimen-*.html sitemap.xml index.html
           git diff --staged --quiet && echo "No changes to commit" || git commit -m "Auto-rebuild artifacts [skip ci]"
           git push

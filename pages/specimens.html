@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vextreme — Specimens</title>
+<style>
+  :root {
+    --bg:     #0e0e0e;
+    --surface:#111111;
+    --text:   #e8e8e4;
+    --muted:  #6b6b6b;
+    --ember:  #c8502a;
+    --border: #2a2a2a;
+    --mono:   'IBM Plex Mono', monospace;
+    --sans:   'IBM Plex Sans', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); padding: 48px 24px 96px; max-width: 860px; margin: 0 auto; line-height: 1.6; }
+  .site-header { margin-bottom: 16px; }
+  .site-title  { font-size: 13px; font-family: var(--mono); color: var(--ember); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  h1 { font-size: 26px; font-weight: 500; margin-bottom: 8px; }
+  .subtitle { color: var(--muted); font-size: 15px; margin-bottom: 40px; max-width: 640px; }
+  section { margin-bottom: 44px; border-top: 1px solid var(--border); padding-top: 28px; }
+  h2 { font-size: 16px; font-weight: 500; color: var(--ember); margin-bottom: 12px; }
+  p  { font-size: 14px; color: var(--text); max-width: 680px; margin-bottom: 10px; }
+  .links { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+  .links a { color: var(--ember); text-decoration: none; font-size: 14px; }
+  .links a:hover { text-decoration: underline; }
+
+  /* Specimen cards (dashboard) */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  .card { border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-decoration: none; color: var(--text); display: block; }
+  .card:hover { border-color: var(--ember); }
+  .card-badge { font-family: var(--mono); font-size: 9px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ember); border: 1px solid var(--ember); border-radius: 3px; padding: 2px 6px; display: inline-block; margin-bottom: 10px; }
+  .card-label { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+  .card-desc  { font-size: 12.5px; color: var(--muted); }
+
+  /* Process map — boxes and arrows, plain HTML/CSS */
+  .process-map { display: flex; flex-direction: column; gap: 0; }
+  .process-step { border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px; position: relative; }
+  .process-step-num { font-family: var(--mono); font-size: 10px; color: var(--ember); letter-spacing: 0.05em; margin-bottom: 4px; }
+  .process-step-label { font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+  .process-step-detail { font-size: 12.5px; color: var(--muted); }
+  .process-arrow { text-align: center; font-family: var(--mono); color: var(--ember); font-size: 14px; padding: 4px 0; }
+
+  .body-text { border-left: 2px solid var(--border); padding-left: 16px; margin-bottom: 8px; }
+  .live-note { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 10px; }
+  .stale-badge { display: none; font-family: var(--mono); font-size: 11px; color: var(--ember); border: 1px solid var(--ember); border-radius: 4px; padding: 6px 10px; margin: 10px 0; }
+  .stale-badge.is-visible { display: inline-block; }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<header class="site-header">
+  <div class="site-title" data-i18n="common.label.site-title">Vextreme</div>
+  <h1 data-i18n="specimens.heading.title">Specimens</h1>
+  <div class="subtitle" data-i18n="specimens.heading.subtitle">Three small, fixed pages — not real content — each isolating one localization state and the pipeline stage that produces or catches it. This sits between the architecture pitch and the real progress tracker: smaller than either, meant to be read in a minute.</div>
+</header>
+
+<div class="card-grid">
+<a class="card" href="https://vgong24.github.io/Vextreme/pages/specimen-full-translation.html">
+  <div class="card-badge" data-i18n="specimens.card.full.label">Full translation</div>
+  <div class="card-label">Full Translation</div>
+  <div class="card-desc" data-i18n="specimens.card.full.description">Every string translated. Shows what the test suite verifies at each pipeline stage — not just that it passed.</div>
+  <div class="card-desc" style="color:var(--ember);margin-top:8px;" data-i18n="specimens.link.view">View specimen →</div>
+</a>
+<a class="card" href="https://vgong24.github.io/Vextreme/pages/specimen-partial-translation.html">
+  <div class="card-badge" data-i18n="specimens.card.partial.label">Partial translation</div>
+  <div class="card-label">Partial Translation</div>
+  <div class="card-desc" data-i18n="specimens.card.partial.description">One string deliberately left untranslated — the same gap claude-answers-the-doubt has for real. Shows the screenshot-verification process that would catch it.</div>
+  <div class="card-desc" style="color:var(--ember);margin-top:8px;" data-i18n="specimens.link.view">View specimen →</div>
+</a>
+<a class="card" href="https://vgong24.github.io/Vextreme/pages/specimen-smallest-miss.html">
+  <div class="card-badge" data-i18n="specimens.card.stale.label">The smallest miss</div>
+  <div class="card-label">The Smallest Miss</div>
+  <div class="card-desc" data-i18n="specimens.card.stale.description">One line of English, changed after its Japanese translation was written — flagged stale automatically. Shows the integrity check that caught it.</div>
+  <div class="card-desc" style="color:var(--ember);margin-top:8px;" data-i18n="specimens.link.view">View specimen →</div>
+</a>
+</div>
+
+<section>
+  <div class="links">
+    <a href="https://vgong24.github.io/Vextreme/pages/vextreme-demo.html" data-i18n="specimens.link.demo">← Back to the architecture demo</a>
+    <a href="https://vgong24.github.io/Vextreme/pages/archives.html" data-i18n="specimens.link.archives">See real, in-progress translation coverage on the archive dashboard →</a>
+  </div>
+</section>
+<script>
+  window.VEX_STRING_SCOPES = ["specimens"];
+</script>
+<script src="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/widgets/lang-fab.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/widgets/demo-fab.js"></script>
+</body>
+</html>

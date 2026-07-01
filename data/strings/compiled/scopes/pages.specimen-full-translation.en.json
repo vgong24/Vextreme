@@ -1,0 +1,38 @@
+{
+  "pages.specimen-full-translation.heading.title": {
+    "text": "Full Translation"
+  },
+  "pages.specimen-full-translation.intro": {
+    "text": "Every string on this page has a Japanese translation. Switch languages with the orb, top right — nothing falls back to English."
+  },
+  "pages.specimen-full-translation.body": {
+    "text": "This is a fixture, not real content — built specifically to have zero translation gaps, so you can compare it directly against the partial specimen next to it."
+  },
+  "pages.specimen-full-translation.process.heading": {
+    "text": "How full coverage gets verified"
+  },
+  "pages.specimen-full-translation.process.step1.label": {
+    "text": "Content pipeline"
+  },
+  "pages.specimen-full-translation.process.step1.detail": {
+    "text": "nodes.json + arcs-v2.json → build-index.js. Asserts every slug resolves, arc order matches priority, and adjacency (prev/next) is correct at both ends of an arc."
+  },
+  "pages.specimen-full-translation.process.step2.label": {
+    "text": "Strings pipeline"
+  },
+  "pages.specimen-full-translation.process.step2.detail": {
+    "text": "source/*.json → strings-compile.js → compiled bundles + manifest. Asserts every key's hash is stable, duplicate keys don't silently overwrite, and language coverage per key matches what's in each bundle."
+  },
+  "pages.specimen-full-translation.process.step3.label": {
+    "text": "Browser navigation"
+  },
+  "pages.specimen-full-translation.process.step3.detail": {
+    "text": "Given a slug's position in an arc, asserts the first entry has no prev link, the last has no next link, and arcs render in priority order — the properties a broken nav would violate silently."
+  },
+  "pages.specimen-full-translation.process.step4.label": {
+    "text": "Build output"
+  },
+  "pages.specimen-full-translation.process.step4.detail": {
+    "text": "Reads the generated HTML directly and asserts specific structure exists — the copy button's click handler, the slug popover, the cell grid — the things a template refactor could silently delete."
+  }
+}

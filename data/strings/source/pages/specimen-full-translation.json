@@ -1,0 +1,80 @@
+{
+  "_meta": {
+    "scope": "pages.specimen-full-translation",
+    "description": "Specimen page: every string translated EN + JA. Pairs with the test-suite process map — shows what each pipeline stage actually checks.",
+    "keyConvention": "pages.specimen-full-translation.{field}"
+  },
+
+  "pages.specimen-full-translation.heading.title": {
+    "strings": {
+      "en": { "text": "Full Translation" },
+      "ja": { "text": "完全翻訳" }
+    }
+  },
+  "pages.specimen-full-translation.intro": {
+    "strings": {
+      "en": { "text": "Every string on this page has a Japanese translation. Switch languages with the orb, top right — nothing falls back to English." },
+      "ja": { "text": "このページのすべての文字列に日本語訳があります。右上のオーブで言語を切り替えてください — 何も英語にフォールバックしません。" }
+    }
+  },
+  "pages.specimen-full-translation.body": {
+    "strings": {
+      "en": { "text": "This is a fixture, not real content — built specifically to have zero translation gaps, so you can compare it directly against the partial specimen next to it." },
+      "ja": { "text": "これは実際のコンテンツではなく、意図的に翻訳の空白がゼロになるよう作られた検証用フィクスチャです。隣にある部分翻訳の標本と直接比較できます。" }
+    }
+  },
+  "pages.specimen-full-translation.process.heading": {
+    "strings": {
+      "en": { "text": "How full coverage gets verified" },
+      "ja": { "text": "完全なカバレッジはどう検証されるか" }
+    }
+  },
+  "pages.specimen-full-translation.process.step1.label": {
+    "strings": {
+      "en": { "text": "Content pipeline" },
+      "ja": { "text": "コンテンツパイプライン" }
+    }
+  },
+  "pages.specimen-full-translation.process.step1.detail": {
+    "strings": {
+      "en": { "text": "nodes.json + arcs-v2.json → build-index.js. Asserts every slug resolves, arc order matches priority, and adjacency (prev/next) is correct at both ends of an arc." },
+      "ja": { "text": "nodes.json + arcs-v2.json → build-index.js。すべてのスラッグが解決すること、アークの順序が優先度と一致すること、アークの両端で隣接関係（前へ/次へ）が正しいことを検証します。" }
+    }
+  },
+  "pages.specimen-full-translation.process.step2.label": {
+    "strings": {
+      "en": { "text": "Strings pipeline" },
+      "ja": { "text": "文字列パイプライン" }
+    }
+  },
+  "pages.specimen-full-translation.process.step2.detail": {
+    "strings": {
+      "en": { "text": "source/*.json → strings-compile.js → compiled bundles + manifest. Asserts every key's hash is stable, duplicate keys don't silently overwrite, and language coverage per key matches what's in each bundle." },
+      "ja": { "text": "source/*.json → strings-compile.js → コンパイル済みバンドル＋マニフェスト。すべてのキーのハッシュが安定していること、重複キーが黙って上書きされないこと、キーごとの言語カバレッジが各バンドルの内容と一致することを検証します。" }
+    }
+  },
+  "pages.specimen-full-translation.process.step3.label": {
+    "strings": {
+      "en": { "text": "Browser navigation" },
+      "ja": { "text": "ブラウザナビゲーション" }
+    }
+  },
+  "pages.specimen-full-translation.process.step3.detail": {
+    "strings": {
+      "en": { "text": "Given a slug's position in an arc, asserts the first entry has no prev link, the last has no next link, and arcs render in priority order — the properties a broken nav would violate silently." },
+      "ja": { "text": "アーク内でのスラッグの位置が与えられたとき、最初のエントリにprevリンクがないこと、最後のエントリにnextリンクがないこと、アークが優先順位通りに表示されることを検証します — これらは壊れたナビゲーションが静かに破ってしまう性質です。" }
+    }
+  },
+  "pages.specimen-full-translation.process.step4.label": {
+    "strings": {
+      "en": { "text": "Build output" },
+      "ja": { "text": "ビルド出力" }
+    }
+  },
+  "pages.specimen-full-translation.process.step4.detail": {
+    "strings": {
+      "en": { "text": "Reads the generated HTML directly and asserts specific structure exists — the copy button's click handler, the slug popover, the cell grid — the things a template refactor could silently delete." },
+      "ja": { "text": "生成されたHTMLを直接読み取り、特定の構造が存在することを検証します — コピー ボタンのクリックハンドラ、スラッグのポップオーバー、セルグリッドなど — テンプレートのリファクタリングが静かに削除しうるものです。" }
+    }
+  }
+}

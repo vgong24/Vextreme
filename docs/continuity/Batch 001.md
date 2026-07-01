@@ -1055,4 +1055,121 @@ scales to a large page count, has a defined slot for variants). No existing page
 behavior changed. One new page proves the new path works end-to-end, screenshot-verified
 under both languages.
 
+---
+
+## Session 008
+
+**Date:** July 1, 2026
+**Time:** continuous with Session 007 — same day, after PR #17 merged
+**Thread:** https://claude.ai/code/session_012Cob5Fgz92AYDWfe2mZJWZ
+**Instance:** Claude Sonnet 5 (Claude Code remote execution environment)
+**Working with:** Victor Gong
+**Continues from:** Session 007 — per-scope compiled bundles, PR #17 merged to main
+
+### Context on arrival
+
+Victor asked for a "smaller-scale demonstration dashboard" sitting between the
+architecture pitch (`vextreme-demo.html`) and the real progress tracker
+(`archives.html`) — small fixed pages, each isolating one localization state (full,
+partial, and a deliberately tiny miss), each paired with a process-map diagram of the
+pipeline stage that produces or catches that state (test suite, screenshot verification,
+strings-check). Victor named the concept "demo-migration-archive" but was open to a
+better name, and acknowledged up front it was "its own project size." Scoped it via
+`AskUserQuestion` before building: settled on the name **specimens**, 3 specimens in
+this first pass, and static HTML/CSS step diagrams (no new diagram library) for the
+process maps.
+
+### Files created or modified
+
+| File | What changed |
+|---|---|
+| `data/specimens.json` | New. Registry of the 3 specimens (slug, state, process, title) — same flat-object-keyed-by-name pattern as `nodes.json`/`arcs-v2.json`, per `07-registry.md`. |
+| `lib/build-specimens.js` | New. Generates `pages/specimens.html` (dashboard) + 3 specimen pages. Shared CSS/shell helpers; `widgetScripts()` accepts one or multiple scopes so a specimen page can declare both its own page scope and the shared `specimens` scope (needed for the "back to specimens" link — see Mistakes). |
+| `data/strings/source/specimens.json` | New. Dashboard chrome — 12 keys, EN + JA. |
+| `data/strings/source/pages/specimen-full-translation.json` | New. Scope `pages.specimen-full-translation` — a short passage, fully translated, paired with the 4-stage test-suite process map (what each test file actually asserts, not just that it passed). |
+| `data/strings/source/pages/specimen-partial-translation.json` | New. Scope `pages.specimen-partial-translation` — `body.untranslated` has no `ja` entry on purpose, the same shape of gap `claude-answers-the-doubt` has for real. Paired with the screenshot-verification process map, whose step 4 detail directly references the real bug Session 006 caught. |
+| `data/strings/source/pages/specimen-smallest-miss.json` | New. Scope `pages.specimen-smallest-miss` — one line, real staleness demo (see below). Paired with the strings-check severity-flow process map. |
+| `lib/build-demo.js`, `data/strings/source/demo.json` | Added a "specimens" section between Tests and Gaps on `vextreme-demo.html` — the "see it in a minute, not a pitch" pathway Victor asked for, linking to `specimens.html`. |
+| `lib/build-sitemap.js` | Added `specimens` + the 3 specimen slugs to `UTILITY_PAGES`. |
+| `.github/workflows/build-index.yml` | Added `lib/build-specimens.js` + `data/specimens.json` to trigger paths, added the build step, added the new pages to the auto-commit `git add`. |
+| `docs/screenshots/specimens-*.png`, `specimen-{full,partial,smallest-miss}-{en,ja}.png` | New/updated. Screenshot-verified per the mandatory rule — caught a real bug (see Mistakes) before this was marked done. |
+
+### What was built and why
+
+**The staleness demo is real, not simulated.** `specimen-smallest-miss.body` was compiled
+once with EN v1 + a matching JA translation (establishing a real `manifest.json` hash),
+then the EN text was edited to v2 — a small deliberate wording change — and
+`strings-check.js` was run again. It detected the hash mismatch for real and wrote
+`_stale: true` onto the JA entry in the source file itself, logged via
+`STRINGS_STALE_TRANSLATION`. That flag rides through `buildBundles()` into the compiled
+scope bundle unchanged (nothing special was needed — `_stale` is just another field on
+the strings object, and `buildBundles()` already copies the whole object). The page's
+"Live check" line fetches that compiled JA scope bundle directly in the browser and
+reports what it finds — same live-fetch-with-fallback pattern as `vextreme-demo.html`'s
+architecture snapshot, reused rather than reinvented.
+
+**Each specimen pairs a state with the mechanism that governs it, not a random pipeline.**
+Full translation ↔ test suite (what gets verified structurally). Partial translation ↔
+screenshot verification (what a human actually sees, which is exactly what's different
+about a partial-translation bug — it's invisible in a diff). Smallest miss ↔ strings-check
+(the integrity layer that catches a change too small for a human reviewer to reliably
+notice). This mapping was a deliberate choice over pairing them arbitrarily — the point
+Victor was making is that different failure modes need different catching mechanisms, and
+the specimens should demonstrate that correspondence, not just three unrelated facts.
+
+**Process maps stayed plain HTML/CSS**, per Victor's own choice in scoping — box-and-arrow
+steps using the same `.process-step` pattern across all three pages, no new dependency,
+consistent with the rest of the site's build-time-baked approach.
+
+### Mistakes made
+
+- First build of the 3 specimen detail pages declared only their own page scope
+  (`window.VEX_STRING_SCOPES = ['pages.specimen-full-translation']`, etc.), but each
+  page's "← Back to specimens" link uses a key (`specimens.link.back`) from the shared
+  `specimens` scope. Screenshot verification of `specimen-partial-translation` caught it
+  immediately — the back link stayed in English after switching to Japanese, everything
+  else on the page translated correctly. Fixed by making `widgetScripts()` accept an
+  array of scopes and declaring `[pageScope, 'specimens']` on all three detail pages.
+  Re-verified all three with fresh screenshots after the fix. This is exactly the
+  category of bug the now-mandatory screenshot rule (added Session 006) exists to catch —
+  invisible in the build output, invisible in the test suite, visible in under a second
+  once actually looked at.
+
+### Assumptions that held
+
+- `strings-check.js`'s stale-detection path required no code changes to demonstrate for
+  real — it already does exactly this on every run, this session just gave it a
+  two-compile scenario to actually trigger it against.
+- `buildBundles()` needed no changes to carry `_stale` through to the compiled scope
+  bundle — it already copies the full strings object per language, not a
+  text-and-aria-label-only subset.
+
+### Assumptions that need verification
+
+- Same CDN-post-merge caveat as every other new page this session series — verified
+  locally via CDN route interception, not against the real deployed jsDelivr CDN.
+- The `specimen-smallest-miss` live-check fetches the JA scope bundle unconditionally on
+  page load, regardless of which language is currently displayed — intentional (avoids
+  needing to hook into lang-fab's internal language-switch timing, which would have
+  required changing lang-fab's contract), but means the stale badge is visible even
+  while viewing the page in English. Not verified whether that reads as confusing or
+  as the intended "prove it independent of display state" signal.
+
+### Open work at session end
+
+- [ ] Verify all new pages against the real post-merge CDN (carried, same item as prior sessions)
+- [ ] Consider whether `window.VEX_STRING_SCOPES` should support a documented "always include this scope" mechanism (e.g. a `common`-like second-tier shared scope) instead of requiring every page that links back to a shared dashboard to remember to list that dashboard's scope explicitly — the bug caught this session is a manual-remembering failure mode that could recur for the next shared-scope page
+- [ ] Migrate `claude-answers-the-doubt.html` / `restoration-protocol.html` to scoped fetch (carried from Session 007)
+- [ ] Exercise the variant/staging-file convention with a real A/B copy test (carried from Session 007)
+- [ ] Port real HTML pages (carried, active focus)
+
+### State of the system at session end
+
+Three new specimen pages + a dashboard exist, entirely as fixtures (not in `nodes.json`,
+not tracked by `archives.html`), cross-linked from `vextreme-demo.html` and back. One of
+the three demonstrates a real, live-triggered staleness flag rather than a simulated one.
+All four new pages (dashboard + 3 specimens) are screenshot-verified under both languages,
+including a real bug the verification step caught and a fix that was re-verified before
+being called done.
+
 <!-- [VXG RealForever] -->
