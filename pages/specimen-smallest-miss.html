@@ -102,7 +102,7 @@
 
 <script>
 (function () {
-  var url = 'https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/data/strings/compiled/scopes/pages.specimen-smallest-miss.ja.json?v=' + Date.now();
+  var url = 'https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/data/strings/compiled/scopes/demo/pages/specimen-smallest-miss.ja.json?v=' + Date.now();
   var req = new XMLHttpRequest();
   req.open('GET', url, true);
   req.onload = function () {
@@ -128,6 +128,7 @@
 }());
 </script>
 <script>
+  window.VEX_STRING_CATEGORY = 'demo';
   window.VEX_STRING_SCOPES = ["pages.specimen-smallest-miss","specimens"];
 </script>
 <script src="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/widgets/lang-fab.js"></script>

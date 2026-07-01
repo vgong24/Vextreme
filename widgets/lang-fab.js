@@ -88,20 +88,38 @@
   // correct default for a small page count and stays fully supported.
   //
   // Opt-in: a page that sets window.VEX_STRING_SCOPES = ['pages.my-slug'] (or
-  // any list of scope names — see data/strings/compiled/scopes/index.json for
-  // what exists) before this script loads gets only those scopes plus
-  // 'common', fetched in parallel and merged client-side. This is the path a
-  // large page count should move onto over time — see
-  // docs/architecture/06-i18n.md, "Scaling past one bundle." Both paths ship
-  // the same bundle shape ({ key: { text, aria-label } }), so applyLang()
-  // below doesn't need to know which one was used.
+  // any list of scope names) before this script loads gets only those scopes
+  // plus 'common', fetched in parallel and merged client-side. Pages also
+  // declare window.VEX_STRING_CATEGORY = 'demo' (or 'staging') if their
+  // scopes live outside the default 'production' category. 'common' always
+  // comes from the 'system' category regardless of what the page declares.
   //
-  // A page can also opt into a variant/staging bundle for one of its scopes
-  // via window.VEX_STRING_VARIANT = 'b' (matches a source file's _meta.variant,
-  // e.g. for an A/B copy test) — only scopes that actually have that variant
-  // compiled fall back to the base scope bundle silently.
+  // URL derivation rule (mirrors lib/strings-compile.js — no lookup table):
+  //   scope "pages.foo", category "production"
+  //   → scopes/production/pages/foo.{lang}.json
+  //
+  //   scope "specimens", category "demo"
+  //   → scopes/demo/specimens.{lang}.json
+  //
+  //   scope "common" (always)
+  //   → scopes/system/common.{lang}.json
+  //
+  // A page can also opt into a variant bundle via window.VEX_STRING_VARIANT.
+  // Scopes without that variant compiled fall back to their base bundle silently.
 
   var _langStrings = {};
+
+  // scopeUrl — derives the CDN URL for a compiled scope bundle.
+  // Mirrors the path rule in lib/strings-compile.js: dots in scope names
+  // become directory segments within the category directory. 'common' always
+  // comes from 'system' regardless of the page's declared category.
+  function scopeUrl(scope, lang, category, variant) {
+    var cat      = (scope === 'common') ? 'system' : (category || 'production');
+    var segments = scope.split('.');
+    var dirParts = [cat].concat(segments.slice(0, -1));
+    var baseName = segments[segments.length - 1] + (variant ? '.variant-' + variant : '');
+    return CDN_BASE + '/data/strings/compiled/scopes/' + dirParts.join('/') + '/' + baseName + '.' + lang + '.json?v=' + VERSION;
+  }
 
   function fetchJSON(url, onDone) {
     var req = new XMLHttpRequest();
@@ -136,23 +154,23 @@
     }
 
     // Scoped path — always include 'common', dedupe, fetch each scope bundle
-    // (falling back to the base scope if a requested variant isn't compiled),
+    // in parallel (falling back to base if a requested variant isn't compiled),
     // merge into one flat object so applyLang() sees no difference.
-    var variant = window.VEX_STRING_VARIANT;
-    var wanted = scopes.indexOf('common') === -1 ? ['common'].concat(scopes) : scopes.slice();
-    var merged = {};
+    var variant  = window.VEX_STRING_VARIANT;
+    var category = window.VEX_STRING_CATEGORY || 'production';
+    var wanted   = scopes.indexOf('common') === -1 ? ['common'].concat(scopes) : scopes.slice();
+    var merged   = {};
     var remaining = wanted.length;
 
     if (!remaining) { onReady(); return; }
 
     wanted.forEach(function (scope) {
-      var name = variant ? scope + '.variant-' + variant : scope;
-      var url  = CDN_BASE + '/data/strings/compiled/scopes/' + name + '.' + lang + '.json?v=' + VERSION;
+      var url = scopeUrl(scope, lang, category, variant);
 
       fetchJSON(url, function (err, data) {
         if (err && variant) {
           // Requested variant not compiled for this scope — fall back to base.
-          var baseUrl = CDN_BASE + '/data/strings/compiled/scopes/' + scope + '.' + lang + '.json?v=' + VERSION;
+          var baseUrl = scopeUrl(scope, lang, category);
           fetchJSON(baseUrl, function (baseErr, baseData) {
             if (!baseErr) Object.keys(baseData).forEach(function (k) { merged[k] = baseData[k]; });
             else _logger.warn({ code: 'LANG_FAB_STRINGS_HTTP_ERROR', message: 'scope bundle missing for ' + scope, lang: lang, scope: scope });

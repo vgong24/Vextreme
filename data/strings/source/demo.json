@@ -1,6 +1,7 @@
 {
   "_meta": {
     "scope": "demo",
+    "category": "demo",
     "description": "Strings for pages/vextreme-demo.html — the architecture demo page. Client-facing: explains why the system is built this way and shows it live, not just described.",
     "keyConvention": "demo.{element-type}.{semantic-name}"
   },

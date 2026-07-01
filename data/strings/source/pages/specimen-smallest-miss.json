@@ -1,6 +1,7 @@
 {
   "_meta": {
     "scope": "pages.specimen-smallest-miss",
+    "category": "demo",
     "description": "Specimen page: one line of English, changed after its Japanese translation was written. pages.specimen-smallest-miss.body is deliberately left as version 2 of the English text while its JA translation is still version 1 — do not re-translate it, that would defeat the specimen. strings-check.js's stale-detection run (see continuity log Session 008) set strings.ja._stale: true on this key for real, not by hand.",
     "keyConvention": "pages.specimen-smallest-miss.{field}"
   },

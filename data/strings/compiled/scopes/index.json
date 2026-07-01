@@ -1,37 +1,55 @@
 {
   "archives": {
+    "category": "production",
+    "path": "production/archives",
     "en": 7,
     "ja": 7
   },
   "arcs": {
+    "category": "production",
+    "path": "production/arcs",
     "en": 16,
     "ja": 16
   },
   "common": {
+    "category": "system",
+    "path": "system/common",
     "en": 16,
     "ja": 16
   },
   "demo": {
+    "category": "demo",
+    "path": "demo/demo",
     "en": 32,
     "ja": 32
   },
   "pages.claude-answers-the-doubt": {
+    "category": "production",
+    "path": "production/pages/claude-answers-the-doubt",
     "en": 56,
     "ja": 55
   },
   "pages.specimen-full-translation": {
+    "category": "demo",
+    "path": "demo/pages/specimen-full-translation",
     "en": 12,
     "ja": 12
   },
   "pages.specimen-partial-translation": {
+    "category": "demo",
+    "path": "demo/pages/specimen-partial-translation",
     "en": 13,
     "ja": 12
   },
   "pages.specimen-smallest-miss": {
+    "category": "demo",
+    "path": "demo/pages/specimen-smallest-miss",
     "en": 13,
     "ja": 13
   },
   "specimens": {
+    "category": "demo",
+    "path": "demo/specimens",
     "en": 12,
     "ja": 12
   }
