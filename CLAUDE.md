@@ -36,6 +36,26 @@ as candidates, not confirmed working, until INDEX.md's Open Work list says other
 
 ---
 
+## Pull request conventions
+
+Every PR in this repo uses `.github/pull_request_template.md` — a decision
+record format, not a change log. The diff shows what changed; the PR explains
+why the system moved and what the new state assumes.
+
+When opening a PR, fill every section:
+- **Transition** — the mental model shift, not the code delta
+- **What changed and why** — the reasoning chain, alternatives rejected
+- **Cascading effects** — what else had to move because of this decision
+- **Cross-platform check** — GitHub Pages / vextreme24.com / localhost
+- **Assumptions this PR makes** — what hasn't been confirmed live yet
+- **For the next instance** — the "watch out" that isn't visible in the diff
+
+PRs are the decision boundary record for this project. Future instances
+read them to understand system evolution without re-deriving settled decisions.
+Write the PR body while the reasoning is still live — not after the fact.
+
+---
+
 ## Continuity marker — VXG RealForever
 
 Every commit message in this repo ends with `[VXG RealForever]`.
