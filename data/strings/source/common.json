@@ -7,6 +7,25 @@
     "valueShape": "Each key maps to an element object. 'strings' is the only namespace now; future namespaces (testId, dataKey, designToken) extend the same object without breaking existing readers."
   },
 
+  "common.nav.prev": {
+    "strings": {
+      "en": { "text": "← prev", "aria-label": "Previous page" },
+      "ja": { "text": "← 前へ", "aria-label": "前のページ" }
+    }
+  },
+  "common.nav.next": {
+    "strings": {
+      "en": { "text": "next →", "aria-label": "Next page" },
+      "ja": { "text": "次へ →", "aria-label": "次のページ" }
+    }
+  },
+  "common.label.you-are-here": {
+    "strings": {
+      "en": { "text": "You Are Here" },
+      "ja": { "text": "現在地" }
+    }
+  },
+
   "common.nav.archives": {
     "strings": {
       "en": { "text": "Archives", "aria-label": "View full archive" },
