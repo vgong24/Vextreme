@@ -27,7 +27,18 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 019 — July 2, 2026*
+*As of Session 020 — July 2, 2026*
+
+**Session 020 addition:** No code changed. Two new architectural ideas from Victor recorded in
+`data/status/open-discussions.json`: **od-006** — an "init baseline" scaffold separating this repo's
+reusable engine (God Script pipeline, LATTICE, CQRS status/continuity tracking) from its specific content
+(88 nodes, arcs, string source), so a future project could fork the architecture without the content;
+recommended first step is documenting the engine/content boundary in prose before committing to any literal
+template directory. **od-007** — a longer-horizon cross-org AI discovery/relationship protocol between
+independent forked instances, explicitly scoped as downstream of and blocked on od-006 (there's exactly one
+instance of this architecture right now, nothing to bridge yet). **Batch 002 (this file) is now at its
+10-session capacity (Sessions 011–020) — the next session must open Batch 003, not append here.** See
+Session 011's mistake note in this same batch for what happens if that's missed.
 
 **Session 019 addition:** pe-009 (LATTICE coverage) advanced significantly: 6 more nodes mapped
 (`lib/logger.js`, `lib/logger-codes.js`, `lib/validate-blueprint.js`, `lib/build-sitemap.js`,
@@ -247,9 +258,11 @@ system state — not aspirational state.
 
 ## Open Work
 
-*Updated Session 019 — July 2, 2026*
+*Updated Session 020 — July 2, 2026*
 
 **v2 system (active):**
+- [ ] od-006: init baseline scaffold — awaiting direction on whether to proceed with the documented fork-procedure first step (Session 020)
+- [ ] od-007: cross-org discovery protocol — blocked on od-006 by design (Session 020)
 - [x] pe-009: LATTICE coverage 45% → 64% (6 nodes added); fixed a real self-corruption bug in build-lattice-headers.js's fallback anchor logic, regression-tested (Session 019)
 - [x] od-005: resolved (not building a dark-mode toggle without a stated need) — decision + reasoning recorded in docs/architecture/12-design-system.md (Session 019)
 - [ ] pe-009 (remaining): strings-export.js, strings-import.js, legacy widget copies, shell.js, vextreme.js, archive-renderer.js still unmapped
@@ -333,9 +346,12 @@ create the next batch file and update this registry.
 | Batch | File | Sessions | Status |
 |---|---|---|---|
 | 001 | `docs/continuity/Batch 001.md` | 001–010 | closed |
-| 002 | `docs/continuity/Batch 002.md` | 011–020 | active |
+| 002 | `docs/continuity/Batch 002.md` | 011–020 | full — 10/10, create Batch 003 next |
 
-**Active batch:** `docs/continuity/Batch 002.md`
+**Next session must create `docs/continuity/Batch 003.md`** (Sessions 021–030) and update this
+registry — Batch 002 is now at its 10-session cap with Session 020. Do not append Session 021 to
+Batch 002; that's the exact mistake Session 011 made against Batch 001 (see that session's own
+"Mistakes made" note for what appending past capacity looks like and how it was fixed).
 
 When starting a new session: open the active batch file, scroll to the bottom,
 append your session block using the template at the bottom of the batch file.
@@ -449,6 +465,6 @@ These rules exist so the log stays useful as it grows. Follow them.
 
 ---
 
-*Last updated: Session 019 — July 2, 2026*
+*Last updated: Session 020 — July 2, 2026*
 
 <!-- [VXG RealForever] -->

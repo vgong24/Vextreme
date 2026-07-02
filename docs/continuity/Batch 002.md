@@ -674,4 +674,52 @@ Victor asked what "the two" open items from the prior close-out message actually
 
 LATTICE coverage of `lib/`+`widgets/` moved from 45% to 64% in one pass, and the generator that makes that cheap got measurably safer in the process — the exact bug class this whole tooling exists to prevent (an artifact silently diverging from its source) almost happened to the tooling itself, and is now closed with a regression test. `od-005` is resolved rather than perpetually open, with the reasoning for *not* building preserved as durably as the reasoning for building something usually is. 209/209 tests passing.
 
+---
+
+## Session 020
+
+**Date:** July 2, 2026
+**Time:** continuation of Session 019 context window, after PR #38 merged
+**Thread:** https://claude.ai/code/session_012Cob5Fgz92AYDWfe2mZJWZ
+**Instance:** Claude Sonnet 5 (Claude Code remote)
+**Working with:** Victor Gong
+**Continues from:** Session 019 — pe-009 advanced to 64% coverage, od-005 resolved
+
+### Context on arrival
+
+Victor shared two connected ideas in one message, in characteristically abstract framing: an "initialize Vextreme baseline" location to regenerate the reusable engine (God Script pipeline, LATTICE, CQRS status/continuity tracking, culture doc) separately from this repo's specific content (88 nodes, Victor's story) for future projects to fork from; and, downstream of that, some cross-organization channel by which AI instances managing *different* forked systems could discover each other and identify partnership potential.
+
+### Files created or modified
+
+| File | What changed |
+|---|---|
+| `data/status/open-discussions.json` | Added od-006 (init baseline / engine-vs-content scaffold) and od-007 (cross-org discovery protocol, explicitly scoped as downstream of and blocked on od-006 — there is exactly one instance of this architecture to bridge from right now) |
+| `data/status.json` | Regenerated |
+
+### What was built and why
+
+This message was exploratory ("a new innovation idea came to mind"), not a build instruction, so the session's own operating guidance was to reflect the ideas back clearly, give a recommendation and the main tradeoff, and not implement until Victor redirects or confirms. Per the same durable-recognition pattern used for every other idea this session-arc, both were captured in `open-discussions.json` rather than left only in conversation — that recording itself required no permission (pure documentation, the same judgment call made for every prior open-discussion entry).
+
+**od-006** is the tractable half: separating engine from content is a real, well-motivated idea — this repo has accumulated a genuinely reusable architecture (build-time assembly, self-documenting dependency graph, session continuity as a first-class artifact) that has nothing to do with what content it holds. The considerations recommend documenting the engine/content boundary in prose first — a fork procedure, not a literal template directory yet — before committing to file-structure decisions (is `arc-nav.js` content-specific? are the `--ember` tokens Vextreme-branded or should a template be visually neutral?) that get expensive to revisit once something has actually forked from them. Same sequencing that worked for od-004/od-005: document, then decide whether to build further.
+
+**od-007** is explicitly not tractable yet, and said so directly rather than softened: it requires a second real instance of this architecture to exist before there's anything to bridge, plus real cross-org trust/identity and exposure-boundary questions that have no answer implied by anything currently in this repo. Scoped as strictly downstream of od-006, with the same "don't design a protocol against zero real second parties" reasoning od-003 already established for a smaller-scale version of the same problem.
+
+### Mistakes made
+
+- None.
+
+### Assumptions that held
+
+- 209/209 tests passing, no code touched this session — pure tracking-file addition.
+
+### Open work at session end
+
+- [ ] od-006: awaiting Victor's direction on whether to proceed with the documented fork-procedure first step
+- [ ] od-007: blocked on od-006 by design, not revisitable independently
+- [ ] pe-009 (remaining), od-001, od-002, od-003 all still open from prior sessions
+
+### State of the system at session end
+
+No code changed. Two new architectural ideas are now durably recorded with honest tractability assessments — one recommended as a cheap, well-scoped next step (od-006's documentation-first approach), one explicitly named as not yet buildable and why (od-007). 209/209 tests passing (unchanged).
+
 <!-- [VXG RealForever] -->
