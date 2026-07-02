@@ -102,6 +102,13 @@ reconstructing it from a dated coordination file.
 Never commit a Kimi doc or session coordination file as `docs/kimi-*.md` or
 similar. The distilled content is the artifact; the original doc is the meeting.
 
+**`config/lessons/` is archive reference, not cold-start reading.** As the lesson
+count grows, lessons do not need to be read on every session start — they exist for
+lookup, not pre-loading. A cold-start instance reads INDEX.md → most recent batch
+session → architecture.md. Lessons are consulted when a pattern recurs or when
+building something adjacent to a known lesson domain. Keeping them out of the
+mandatory reading sequence is intentional.
+
 ---
 
 ## Documentation is CQRS too

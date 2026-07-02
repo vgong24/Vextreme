@@ -215,9 +215,10 @@ create the next batch file and update this registry.
 
 | Batch | File | Sessions | Status |
 |---|---|---|---|
-| 001 | `docs/continuity/batch-001.md` | 001–002 | active |
+| 001 | `docs/continuity/Batch 001.md` | 001–010 | closed |
+| 002 | `docs/continuity/Batch 002.md` | 011–020 | active |
 
-**Active batch:** `docs/continuity/batch-001.md`
+**Active batch:** `docs/continuity/Batch 002.md`
 
 When starting a new session: open the active batch file, scroll to the bottom,
 append your session block using the template at the bottom of the batch file.
