@@ -13,6 +13,14 @@
 Do not start new work without completing this reading sequence. The README documents
 intended design; the continuity log documents actual system state — they diverge.
 
+**Before touching any lib/ file, read:**
+
+`docs/lattice-map.json` — file dependency lattice. Each node names what it reads,
+writes, loads, and which adjacent files to check when it changes. Load this for
+lateral navigation (what else breaks?) before reading file depth (how does it work?).
+Following a file's `changeMap` links visits every affected node — close the circuit
+before committing.
+
 ---
 
 ## Current shape of the repo (as of Session 013)
