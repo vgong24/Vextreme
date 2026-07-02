@@ -1388,4 +1388,8 @@ None in this session. All 54 tests passed on first run after implementation. Ses
 
 All semantic constants in the build pipeline and strings pipeline are now defined in `lib/vex-config.js` — IDE-navigable, refactor-safe, grep-audited by CI. No magic strings remain in build scripts. The browser widget (lang-fab.js) inlines the values as named local vars with a pointer to the canonical source. `scopeRelPath` is now a single canonical implementation shared across all callers. 54/54 tests passing. PR #20 merged.
 
+---
+
+*Batch 001 closed — 10 sessions complete. Continue in [Batch 002](Batch%20002.md).*
+
 <!-- [VXG RealForever] -->
