@@ -302,4 +302,81 @@ Replaces the need to manually audit pages/*.html. Outputs a table: each page as 
 
 God Script architecture is operational. 7 pages now wired (`vextreme-demo`, `ecosystem-hub`, `specimens`, 3 specimen pages, plus pre-existing demo/spec pages); `restoration-protocol` and `specimen-architectural-wisdoms` are still blocked. `sw-register.js` is now a core module (`default: true`) — every God Script page activates the SW automatically without explicit viewmodel entries. The LATTICE pattern (file headers + docs/lattice-map.json) makes the dependency graph traversable from any node. `docs/culture.md` codifies the operating intent. 149/149 tests. PR #31 merged.
 
+---
+
+## Session 014
+
+**Date:** July 2, 2026
+**Time:** continuation of Session 013 context window, after PR #31 and PR #32 both merged
+**Thread:** https://claude.ai/code/session_012Cob5Fgz92AYDWfe2mZJWZ
+**Instance:** Claude Sonnet 5 (Claude Code remote) — model switched mid-session from Sonnet 4.6
+**Working with:** Victor Gong
+**Continues from:** Session 013 — God Script wiring, pe-007, LATTICE pattern introduced (file headers + docs/lattice-map.json)
+
+### Context on arrival
+
+PR #32 (Session 013 continuity log) had just merged. Victor asked for a fresh-lens architecture review now that the LATTICE pattern exists: walk the map, critique what's there, and specifically consider whether the JSON (`docs/lattice-map.json`) and the in-file LATTICE header comments follow one consistent, generatable pattern — proposing that a script could read the JSON and write the matching structure into each file it describes, the same way every other pipeline in this repo works (write-side source → build script → generated read-side artifact).
+
+### Files created or modified
+
+| File | What changed |
+|---|---|
+| `lib/build-lattice-headers.js` | New. Reads `docs/lattice-map.json`, generates the LATTICE header block for every eligible node, and splices it into that node's own file between `LATTICE:BEGIN`/`LATTICE:END` marker lines — replacing existing markers, or auto-inserting before the closing delimiter of the file's first top-of-file doc comment if none exist. `--check` mode reports drift without writing (what CI runs). Comment-style-aware: detects `' * '` vs `'// '` prefix from the existing marker line so both block-comment and line-comment files (`lib/strings-compile.js`) stay valid JS. |
+| `lib/vex-config.js`, `lib/build-index.js`, `lib/build-vextreme.js`, `lib/strings-compile.js`, `lib/vextreme-index-v2.js` | Hand-written LATTICE blocks replaced with empty `LATTICE:BEGIN`/`LATTICE:END` marker pairs; generator now owns the content |
+| `lib/arc-nav.js` | Empty marker pair added after its existing v1-warning prose; generator filled in the structured LATTICE fields alongside the narrative warning |
+| `lib/build-sw.js`, `widgets/fab-lang.js`, `widgets/sw-register.js` | No prior LATTICE content — generator auto-inserted a fresh block (these three were already nodes in lattice-map.json from Session 013 but never actually carried a header; the review surfaced this as an existing gap) |
+| `lib/audit-pages.js`, `lib/check-key-alignment.js` | New lattice-map.json nodes added for both — each was already referenced as a `loadedBy` target inside other nodes' entries but had no entry of its own; generator auto-inserted their headers |
+| `lib/build-lattice-headers.js` (self) | Added as its own lattice-map.json node — self-referential, generates its own header |
+| `docs/lattice-map.json` | Added 3 new nodes (`lib/build-lattice-headers.js`, `lib/audit-pages.js`, `lib/check-key-alignment.js`); `_schema` and `_usage` rewritten to describe the JSON-as-write-side / header-as-generated-read-side relationship instead of the old "canonical if they diverge" language, since divergence is no longer possible by construction |
+| `lib/logger-codes.js` | Added `LATTICE_NO_DOC_COMMENT`, `LATTICE_FILE_MISSING`, `LATTICE_NOT_APPLICABLE` codes |
+| `tests/11-lattice-headers.test.js` | New. 22 tests: `isEligibleNode` filtering, `buildLatticeBlockLines` formatting, `sanitizeForComment` regression coverage, `detectPrefix`, `injectLatticeBlock` replace/insert/no-doc-comment modes, and two integration tests — `--check` against the real repo reports zero drift, and every eligible mapped file actually carries both markers |
+| `CLAUDE.md` | Lattice section updated: JSON is the write side, header blocks are generated, `node lib/build-lattice-headers.js` regenerates, `--check` is what CI runs, pe-009 tracks remaining coverage |
+| `data/status/planned-enhancements.json` | Added pe-009: expand LATTICE coverage past the current 18 nodes (~45+ files in lib/+widgets/ remain unmapped; tooling now makes this cheap — JSON-authoring only, no comment-formatting) |
+| `data/status.json` | Regenerated (pe-009 addition changed the enhancements count) |
+
+### What was built and why
+
+**The core finding:** `docs/lattice-map.json` already declared itself canonical "if they diverge" from in-file headers — but nothing made that true. Two hand-maintained copies of the same facts (role, reads, writes, loaded-by, tested-by, changeMap) will drift the moment one is edited without the other, which is exactly the class of bug this repo's CQRS pattern exists to prevent everywhere else (nodes.json → index.json, strings/source → strings/compiled). The review's conclusion: the lattice needed the same treatment, not an exception from it.
+
+**`lib/build-lattice-headers.js`** makes `docs/lattice-map.json` the write side and each file's own LATTICE block the generated read side. Divergence stops being possible by construction, the same way `data/index.json` can't diverge from `nodes.json` — you'd have to bypass the generator to make them disagree, and `tests/11`'s `--check` integration test catches that in CI on every PR.
+
+**Coverage audit as a byproduct:** running the generator against the existing 15 Session-013 nodes immediately surfaced that only 5 of them (`vex-config`, `build-index`, `build-vextreme`, `strings-compile`, `vextreme-index-v2`) actually carried a LATTICE block — `arc-nav.js` had only the narrative warning, and `build-sw.js`, `fab-lang.js`, `sw-register.js` had none at all despite being mapped nodes. This was real drift that had already happened, one session after the pattern was introduced — exactly the failure mode motivating the fix. `lib/audit-pages.js` and `lib/check-key-alignment.js` were a second gap: both are referenced as `loadedBy` targets inside other nodes' entries but had no entry of their own, so the lattice's own edges pointed at nodes that didn't exist.
+
+**Two bugs hit while building this, both instructive:**
+
+1. A literal `*/` inside descriptive prose in this file's own top comment (describing where the block gets inserted) closed the `/** */` block early — the identical bug class Session 013 hit in `lib/strings-compile.js` with a glob pattern. This time it's now defended against for good: `sanitizeForComment()` runs on every dynamic JSON value before it's spliced into a comment, breaking any literal `*/` or `/*` with a lookalike character. No future `lattice-map.json` entry can trigger this again regardless of what a session author writes into it.
+
+2. Deeper bug: this file's own lattice-map.json node necessarily describes itself in prose — its `writes` field says something like "the LATTICE:BEGIN..LATTICE:END block." Because the marker search is a plain `indexOf`, that prose mention (appearing *inside* the generated content, before the real closing marker) was found as if it were the real end-of-block marker, truncating the replacement early and leaving a duplicate orphaned copy of the old block dangling after it. Fixed by extending `sanitizeForComment()` to also neutralize literal `LATTICE:BEGIN`/`LATTICE:END` substrings in dynamic content (zero-width space inserted mid-token — invisible when rendered, breaks the exact match). Both fixes are now regression-tested in `tests/11` with a self-describing-node test case.
+
+**Why coverage expansion stopped at 18 nodes:** the JSON-authoring cost per node (writing an accurate role/context/reads/writes/loadedBy/testedBy/changeMap) is real work, separate from the tooling cost this session solved. Rather than rush through ~25 more files under budget pressure, the remaining gap is tracked as pe-009 with a concrete candidate list, prioritized by how central each file is to the pipeline (build-status.js, logger.js/logger-codes.js first).
+
+### Mistakes made
+
+- Both bugs described above were self-inflicted by this session's own new tooling, not pre-existing — caught only because idempotency (`--check` reporting zero drift) was treated as a hard requirement before considering the tool done, not an optional nice-to-have.
+- After the second bug's fix, the file still had leftover orphaned text sitting *after* the real closing marker from an earlier failed edit — harmless to the tool (it only touches content between markers) but visually corrupt. The generator correctly left it alone since cleanup outside the marker-delimited region isn't its job; required a manual pass to remove.
+- Used a Python one-liner to append the pe-009 entry to `planned-enhancements.json`; `json.dump` defaults to `ensure_ascii=True` and re-escaped every existing em-dash in the file as `—`, producing a large unwanted diff on unrelated entries. Reverted and used a direct text edit instead — a reminder that this repo's JSON files carry literal UTF-8 punctuation intentionally and any script touching them needs to preserve that.
+
+### Assumptions that held
+
+- 171/171 tests passing (149 prior + 22 new in tests/11).
+- The comment-prefix detection (block vs. line style) correctly round-trips both `/** */`-style files and `//`-style files (`lib/strings-compile.js`) without corrupting either.
+- Auto-insert-before-closing-delimiter correctly onboards a file with zero prior LATTICE content (verified on `build-sw.js`, `fab-lang.js`, `sw-register.js`, `audit-pages.js`, `check-key-alignment.js`).
+
+### Assumptions that need verification
+
+- [ ] pe-009's candidate list is a first pass based on which files are most-referenced as `loadedBy` targets elsewhere — not a rigorous audit of every lib/widgets file's actual centrality
+- [ ] No CI workflow currently blocks a merge on lattice drift — `tests/11`'s `--check` integration test runs as part of the standard `test.yml` suite (which does gate PRs), but there's no dedicated "lattice drift" status check a reviewer would see by name
+
+### Open work at session end
+
+- [ ] pe-009: expand LATTICE coverage — lib/build-status.js, lib/logger.js, lib/logger-codes.js are the next highest-value candidates
+- [ ] Activate arc-nav for `claude-answers-the-doubt` (carried from Session 013, pe-002)
+- [ ] Investigate `restoration-protocol` — still on shell.js (carried from Session 013)
+- [ ] String bundle for `specimen-architectural-wisdoms` (carried)
+- [ ] Wire `build-vextreme.js` + `build-sw.js` into CI (td-001, carried)
+
+### State of the system at session end
+
+`docs/lattice-map.json` is now a true write-side source: `lib/build-lattice-headers.js` generates every eligible file's own LATTICE header from it, and `tests/11`'s `--check` integration test fails CI if the two would ever disagree. 18 nodes are covered (15 from Session 013 plus 3 added this session to close existing reference gaps); ~45+ files in lib/+widgets/ remain unmapped, tracked as pe-009. 171/171 tests passing.
+
 <!-- [VXG RealForever] -->

@@ -27,7 +27,19 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 013 — July 2, 2026*
+*As of Session 014 — July 2, 2026*
+
+**Session 014 addition:** `docs/lattice-map.json` is now a true CQRS write side — `lib/build-lattice-headers.js`
+generates the LATTICE header block inside every eligible node's own file from the JSON, so the two
+can no longer drift apart by hand-editing one and forgetting the other. `node lib/build-lattice-headers.js
+--check` reports drift without writing; `tests/11-lattice-headers.test.js` runs that check as part of
+standard CI. Building this surfaced that Session 013's own lattice pattern had already drifted one
+session in (3 of 6 eligible mapped files had no header at all) and that 2 files referenced elsewhere
+in the map as `loadedBy` targets had no node of their own — both fixed. Two self-inflicted bugs during
+authoring (a literal `*/` closing a block comment early, and the tool's own self-describing JSON entry
+confusing its own marker search) are now defended against with a `sanitizeForComment()` guard and
+regression-tested. Coverage is 18 of ~45+ lib/widgets files; remaining expansion tracked as pe-009.
+171/171 tests passing.
 
 **Session 013 addition:** God Script architecture is operational for 7 pages. LATTICE pattern
 introduced: file-level `role/reads/writes/loaded-by/tested-by/CHANGE MAP` headers on the 5
@@ -181,9 +193,12 @@ system state — not aspirational state.
 
 ## Open Work
 
-*Updated Session 013 — July 2, 2026*
+*Updated Session 014 — July 2, 2026*
 
 **v2 system (active):**
+- [x] LATTICE headers are now generated, not hand-maintained — `lib/build-lattice-headers.js` writes each eligible node's header from `docs/lattice-map.json`; `--check` mode + `tests/11` enforce zero drift in CI (Session 014)
+- [x] Closed 2 lattice reference gaps — `lib/audit-pages.js`, `lib/check-key-alignment.js` added as nodes (were `loadedBy` targets with no entry of their own); 3 files that were mapped but missing a header (`build-sw.js`, `fab-lang.js`, `sw-register.js`) now have one (Session 014)
+- [ ] pe-009: expand LATTICE coverage past 18 nodes — lib/build-status.js, lib/logger.js, lib/logger-codes.js next (Session 014)
 - [x] LATTICE pattern — LATTICE + CHANGE MAP headers on 5 highest-traffic lib files; `docs/lattice-map.json` 14-node dependency graph; 5 LATTICE integrity tests (Session 013, PR #31)
 - [x] pe-007: Unified FEATURES registry in build-vextreme.js — `default: true/false` per entry; sw-register.js activated as core module; Feature.SW + Feature.ARC_NAV constants in vex-config.js (Session 013, PR #31)
 - [x] God Script wiring — 5 more HTML pages wired to God Scripts; VEX_SUPPORTED_LANGS added to assembly; ecosystem-hub God Script generated (Session 013, PR #31)
@@ -367,6 +382,6 @@ These rules exist so the log stays useful as it grows. Follow them.
 
 ---
 
-*Last updated: Session 013 — July 2, 2026*
+*Last updated: Session 014 — July 2, 2026*
 
 <!-- [VXG RealForever] -->

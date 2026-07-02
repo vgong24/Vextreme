@@ -21,6 +21,13 @@ lateral navigation (what else breaks?) before reading file depth (how does it wo
 Following a file's `changeMap` links visits every affected node — close the circuit
 before committing.
 
+The JSON is the write side; the LATTICE block inside each covered file's own header
+is a generated read side — never hand-edit text between a file's `LATTICE:BEGIN` /
+`LATTICE:END` lines. Edit the JSON, then run `node lib/build-lattice-headers.js` to
+regenerate the affected file's header (`--check` reports drift without writing —
+this is what CI runs). Coverage is partial (18 nodes as of Session 014); see pe-009
+in `data/status/planned-enhancements.json` for the expansion queue.
+
 ---
 
 ## Current shape of the repo (as of Session 013)
