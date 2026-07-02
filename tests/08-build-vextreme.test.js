@@ -130,6 +130,12 @@ test('ASSEMBLER: handles empty features array without throwing', () => {
   assert.doesNotThrow(() => assembleGodScript('test', vm, { includeSourceComment: false }));
 });
 
+test('ASSEMBLER: output includes sw-register.js core module', () => {
+  const script = assembleGodScript('test-slug', DEMO_VIEWMODEL, { includeSourceComment: false });
+  assert.ok(script.includes('sw-register.js') || script.includes('serviceWorker'),
+    'God Script must include Service Worker registration (sw-register.js core module)');
+});
+
 // ── 4. resolveAllSlugs ───────────────────────────────────────────────────────
 
 test('ASSEMBLER: resolveAllSlugs returns array with at least slugMap entries', () => {
