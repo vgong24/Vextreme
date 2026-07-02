@@ -101,8 +101,19 @@ same as no fallback: the token must actually resolve.
 
 No dark-mode *toggle* exists — `[data-theme="dashboard"]` opts a page in
 permanently at build time, it isn't switched at runtime, and no light-themed
-page can become dark on demand (or vice versa). Whether to build that is
-od-005's remaining open question, unrelated to the token consolidation this
-document now describes as done.
+page can become dark on demand (or vice versa).
+
+**Decided (Session 019, od-005 closed):** not building one now. No page has
+a stated need for a runtime toggle — every current page's theme (content
+pages light, dashboard/dev pages dark) is a reasonable fixed choice, and a
+toggle adds real complexity (a persistence mechanism, a UI control, doubling
+the visual states every page must be verified in) against a need that
+hasn't been named. If a concrete need for one arises, building it is cheap:
+switch the `data-theme` attribute at runtime and let the two token families
+already declared in `styles/design-system.css` handle the rest — the
+consolidation done in Session 018 is what makes that cheap later. This
+document is the durable record of the decision; there is no corresponding
+tech-debt or planned-enhancement entry, since "revisit if a need appears" is
+not a queued task.
 
 <!-- [VXG RealForever] -->

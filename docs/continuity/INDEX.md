@@ -27,7 +27,19 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 018 — July 2, 2026*
+*As of Session 019 — July 2, 2026*
+
+**Session 019 addition:** pe-009 (LATTICE coverage) advanced significantly: 6 more nodes mapped
+(`lib/logger.js`, `lib/logger-codes.js`, `lib/validate-blueprint.js`, `lib/build-sitemap.js`,
+`lib/strings-check.js`, `lib/build-index-page.js`), coverage of `lib/`+`widgets/` up from 45% to 64%.
+Doing this surfaced and fixed a real bug in `lib/build-lattice-headers.js` itself: its fallback anchor
+logic used a bare `indexOf('/**')` that mistook a literal `/** */` substring inside an unrelated `//`
+comment (in `lib/logger-codes.js`) for a real doc comment, corrupting the file. Fixed with
+`findLineStartDocComment()` — a `/**` only counts if it starts its own line and spans multiple lines to
+its `*/`. Regression-tested. **od-005 resolved** (not built): its own reasoning already argued against a
+dark-mode toggle without a stated need, none was named, so the decision — and why — is now recorded in
+`docs/architecture/12-design-system.md` rather than left open indefinitely. 3 open discussions remain
+(od-001/002/003). 209/209 tests passing.
 
 **Session 018 addition:** Closed two integrity gaps, both verified rather than assumed fixed. **td-001**
 (oldest open debt, Session 011): `.github/workflows/build-index.yml` now runs `lib/build-vextreme.js` and
@@ -235,12 +247,14 @@ system state — not aspirational state.
 
 ## Open Work
 
-*Updated Session 018 — July 2, 2026*
+*Updated Session 019 — July 2, 2026*
 
 **v2 system (active):**
+- [x] pe-009: LATTICE coverage 45% → 64% (6 nodes added); fixed a real self-corruption bug in build-lattice-headers.js's fallback anchor logic, regression-tested (Session 019)
+- [x] od-005: resolved (not building a dark-mode toggle without a stated need) — decision + reasoning recorded in docs/architecture/12-design-system.md (Session 019)
+- [ ] pe-009 (remaining): strings-export.js, strings-import.js, legacy widget copies, shell.js, vextreme.js, archive-renderer.js still unmapped
 - [x] td-001: build-vextreme.js + build-sw.js wired into CI, dist/+sw.js committed automatically (Session 018)
 - [x] td-007: dark-panel token duplication consolidated into styles/design-system.css, verified via screenshots + check-design-tokens.js (Session 018)
-- [ ] od-005 (narrowed): decide whether to build an actual dark-mode toggle (Session 018)
 - [x] od-004: debugging/pre-development rigor practice — docs/architecture/11-debugging-practices.md + lib/check-design-tokens.js, shipped and removed from open-discussions.json (Session 017)
 - [x] od-005 (partial): design-system.css token contract documented (docs/architecture/12-design-system.md); duplication found and tracked as td-007; consolidation + dark-mode toggle still open (Session 017)
 - [ ] td-007: consolidate the duplicated dark-panel :root block across 4-5 generator files (Session 017)
@@ -435,6 +449,6 @@ These rules exist so the log stays useful as it grows. Follow them.
 
 ---
 
-*Last updated: Session 018 — July 2, 2026*
+*Last updated: Session 019 — July 2, 2026*
 
 <!-- [VXG RealForever] -->
