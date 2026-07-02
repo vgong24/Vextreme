@@ -16,7 +16,7 @@
       "description": "5 pages ported (Session 013). 3 remain blocked: claude-answers-the-doubt (needs arc-nav as a God Script feature — see pe-007), restoration-protocol (uses shell.js, needs investigation), specimen-architectural-wisdoms (needs compiled string bundle). Run node lib/audit-pages.js for current status.",
       "addedSession": "011",
       "updatedSession": "013",
-      "blockedBy": "pe-007 (arc-nav feature) for claude-answers-the-doubt",
+      "blockedBy": "arc-nav.js widget not yet implemented (pe-007 registry slot is ready) for claude-answers-the-doubt",
       "priority": "medium"
     },
     {
@@ -50,10 +50,12 @@
     {
       "id": "pe-007",
       "title": "Unified feature registry — collapse CORE_MODULES and FEATURE_WIDGET into one table",
-      "description": "CORE_MODULES (always-on) and FEATURE_WIDGET (opt-in) are the same mechanism with different defaults. Replace both with a single FEATURES registry: { 'sw': { widget, default: true }, 'lang': { widget, default: false }, 'arc-nav': { widget: 'vextreme-index-v2.js', default: false }, 'offline': { widget: 'fab-offline.js', default: false }, ... }. Viewmodels declare features explicitly; the registry resolves defaults. This unblocks arc-nav as a God Script feature (pe-002 unblocked), makes feature intent visible in one place, and enables feature-flagging as a first-class pattern across all future capabilities. Change is in lib/build-vextreme.js and lib/vex-config.js only — no content, no HTML changes.",
+      "description": "Shipped in Session 013. CORE_MODULES + FEATURE_WIDGET replaced by a single FEATURES registry in lib/build-vextreme.js: { sw: { default: true }, lang: { default: false }, demo: { default: false }, arc-nav: { default: false }, spiral-fab: { default: false }, theme: { default: false } }. Feature.SW and Feature.ARC_NAV added to lib/vex-config.js. God Script output is byte-identical — purely an internal code structure change. arc-nav slot registered for future implementation.",
       "addedSession": "013",
+      "shippedSession": "013",
       "unblocks": ["pe-002 (arc-nav for claude-answers-the-doubt)", "pe-008 (offline FAB)"],
-      "priority": "high"
+      "priority": "high",
+      "status": "shipped"
     },
     {
       "id": "pe-008",
