@@ -124,11 +124,12 @@ When the current approach has a known ceiling, note it explicitly:
 
 Current known ceilings (as of the session that wrote this doc):
 
-| Decision | Ceiling | Migration path |
-|---|---|---|
-| Per-page God Scripts duplicate `common` scope strings | Becomes bandwidth-significant at ~1000+ pages | HTTP/2 chunked bundles — build-script change, not HTML change |
-| `dist/` God Scripts are hand-referenced in HTML `<script>` tags | Error-prone as page count grows | Build step generates HTML from template, owns the `<script>` tag — not yet implemented |
-| One flat `pages/` directory | Manageable at current scale | If subdirectories are ever needed, the slug system must be re-anchored — significant change |
+| Decision | Ceiling | Migration path | Tracked |
+|---|---|---|---|
+| Per-page God Scripts duplicate `common` scope strings | Becomes bandwidth-significant at ~1000+ pages | HTTP/2 chunked bundles — build-script change, not HTML change | — |
+| `dist/` God Scripts are hand-referenced in HTML `<script>` tags | Error-prone as page count grows | Build step generates HTML from template, owns the `<script>` tag — not yet implemented | — |
+| One flat `pages/` directory | Manageable at current scale | If subdirectories are ever needed, the slug system must be re-anchored — significant change | — |
+| i18n strings fetched and cached per page scope-combination | Adding each new language multiplies fetch surface and localStorage pressure linearly. At global scale (many languages × many nodes) this compounds into exponential CDN cost. Adding a 3rd language on the current model is the wrong move. | Arc-chunked language bundles — one file per arc per language, SW-preloaded on arc entry. Build-script change only. | **td-006** — resolve before adding any language beyond EN/JA |
 
 Document the ceiling when you find it. The next instance that hits it will thank you.
 
