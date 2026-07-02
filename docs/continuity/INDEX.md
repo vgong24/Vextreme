@@ -27,7 +27,19 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 012 — July 2, 2026*
+*As of Session 013 — July 2, 2026*
+
+**Session 013 addition:** God Script architecture is operational for 7 pages. LATTICE pattern
+introduced: file-level `role/reads/writes/loaded-by/tested-by/CHANGE MAP` headers on the 5
+highest-traffic lib files, plus `docs/lattice-map.json` — a centralized 14-node dependency
+graph for lateral navigation ("what else breaks?") before depth navigation ("how does this
+work?"). `sw-register.js` is now a unified feature registry `default: true` core module
+(pe-007) — every God Script page activates the SW without explicit viewmodel entries.
+`docs/culture.md` codifies the mission and operating principles (read before CLAUDE.md).
+`lib/audit-pages.js` is the canonical wiring-status tool (`node lib/audit-pages.js`).
+`lib/vextreme-index-v2.js` (v2 arc nav widget) now has VEX_STRINGS_EN fast path and clear
+cross-references to `lib/arc-nav.js` (v1 Squarespace-era, not for God Script pages). 5 LATTICE
+integrity tests added. 149/149 tests passing. PR #31 merged.
 
 **Session 012 addition:** `data/status.json` is a new generated CQRS artifact at the same
 layer as `index.json` — machine-readable operational state across four notice categories:
@@ -169,18 +181,25 @@ system state — not aspirational state.
 
 ## Open Work
 
-*Updated Session 012 — July 2, 2026*
+*Updated Session 013 — July 2, 2026*
 
 **v2 system (active):**
+- [x] LATTICE pattern — LATTICE + CHANGE MAP headers on 5 highest-traffic lib files; `docs/lattice-map.json` 14-node dependency graph; 5 LATTICE integrity tests (Session 013, PR #31)
+- [x] pe-007: Unified FEATURES registry in build-vextreme.js — `default: true/false` per entry; sw-register.js activated as core module; Feature.SW + Feature.ARC_NAV constants in vex-config.js (Session 013, PR #31)
+- [x] God Script wiring — 5 more HTML pages wired to God Scripts; VEX_SUPPORTED_LANGS added to assembly; ecosystem-hub God Script generated (Session 013, PR #31)
+- [x] docs/culture.md — mission, operating principles, culture of development (Session 013, PR #31)
+- [x] lib/audit-pages.js — canonical page wiring status tool (Session 013, PR #31)
+- [ ] Activate arc-nav for `claude-answers-the-doubt` — add 'arc-nav' to viewmodel, confirm arcNavMount div, rebuild (Session 013, pe-002)
+- [ ] Investigate `restoration-protocol` — on shell.js (v1 path); needs content audit before porting (Session 013)
 - [x] System health manifest — `data/status.json` CQRS artifact, `data/status/*.json` write-side sources, `lib/build-status.js` assembler, `pages/ecosystem-hub.html` dashboard (Session 012, PR #27)
 - [ ] Wire `lib/build-status.js` into CI — `data/status.json` must rebuild automatically when `data/status/*.json` or `data/strings/compiled/manifest.json` changes (Session 012)
 - [ ] `lib/check-link-integrity.js` — HTML internal dead link scanner for CI (td-003, Session 012)
 - [ ] Verify `pages/ecosystem-hub.html` on GitHub Pages — live fetches of index.json + status.json not yet confirmed (Session 012)
 - [ ] Create PWA icons (`icons/icon-192.png`, `icons/icon-512.png`) — requires image generation; PWA installability blocked until done (Session 011)
-- [ ] Wire `sw-register.js` + `<link rel="manifest">` into all HTML pages (Session 011)
+- [x] Wire `sw-register.js` into all God Script pages — activated as `default: true` core module (Session 013, PR #31)
 - [ ] Wire `node lib/build-vextreme.js` + `node lib/build-sw.js` into CI — both still require manual runs (Session 011)
-- [ ] Add string bundle for `specimen-architectural-wisdoms` — no localization yet (Session 011)
-- [ ] Port existing HTML pages to God Script — `claude-answers-the-doubt`, `restoration-protocol`, etc. still use shell.js + old lang-fab.js (Session 011)
+- [ ] Add string bundle for `specimen-architectural-wisdoms` — no localization yet; blocks God Script assembly (Session 011)
+- [ ] Port `restoration-protocol` to God Script — currently skipped in audit-pages (Session 011)
 - [x] PR #25 — Service Worker + PWA manifest, `lib/build-sw.js`, `sw.js`, `manifest.json`, `widgets/sw-register.js` (Session 011)
 - [x] PR #24 — God Script assembler (`lib/build-vextreme.js`), key alignment check, `config/lessons/`, `specimen-architectural-wisdoms.html` (Session 011)
 - [x] PR #23 — `buildViewmodel` in `lib/build-index.js`, `data/viewmodels.json`, `tests/07-viewmodel.test.js` (Session 011)
@@ -348,6 +367,6 @@ These rules exist so the log stays useful as it grows. Follow them.
 
 ---
 
-*Last updated: Session 012 — July 2, 2026*
+*Last updated: Session 013 — July 2, 2026*
 
 <!-- [VXG RealForever] -->
