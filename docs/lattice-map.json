@@ -587,6 +587,124 @@
       }
     },
 
+    "lib/logger.js": {
+      "role": "structured logger — every build script's warn/info/error call goes through here",
+      "context": "The widest fan-in of any file in lib/: nearly every build script imports { logger } and calls logger.warn({ code, message, ...fields }) rather than console.warn directly. Optional fields attach without changing the call signature — a call site can add { arc, slug } without touching any other call site. Swapping the backing store (e.g. write to a DB instead of console) means changing the three methods here, not every call site.",
+      "reads": [],
+      "writes": ["stdout/stderr via console.warn/log/error"],
+      "loadedBy": [
+        "lib/build-index.js", "lib/build-vextreme.js", "lib/build-lattice-headers.js",
+        "lib/strings-compile.js", "lib/strings-check.js",
+        "every other lib/build-*.js and lib/check-*.js script that logs a warning"
+      ],
+      "testedBy": [],
+      "changeMap": {
+        "logger method signature changed (warn/info/error)": [
+          "every call site across lib/ — all follow the same { code, message, ...fields } shape; a signature change ripples everywhere at once"
+        ],
+        "backing store swapped (e.g. console → DB)": [
+          "no call site needs to change — that's the point of the single indirection point here"
+        ]
+      }
+    },
+
+    "lib/logger-codes.js": {
+      "role": "event code registry — the CODES constant every logger.warn/error call references",
+      "context": "Adding a new logger call site means adding its code here first — grouped by the file that emits it, with a comment documenting the optional fields that call carries. Prevents the same failure mode magic-strings-to-constants.json (config/lessons/) already names for other string literals: a typo'd code string silently creates a new, uncorrelated event instead of erroring.",
+      "reads": [],
+      "writes": [],
+      "loadedBy": ["every file that imports { CODES } alongside { logger } from ./logger — same set as lib/logger.js's loadedBy"],
+      "testedBy": [],
+      "changeMap": {
+        "a new logger.warn/error call site added": [
+          "add its CODES.* entry here first, grouped under a comment naming the emitting file"
+        ],
+        "a CODES.* entry renamed or removed": [
+          "grep the whole repo for the old name — nothing enforces this file and its call sites stay in sync automatically"
+        ]
+      }
+    },
+
+    "lib/validate-blueprint.js": {
+      "role": "blueprint consistency validator — confirms every id in blueprint.json has a matching config file and vex-config constant",
+      "context": "blueprint.json declares which feature/category/assetType/template ids exist; config/{type}/{id}.json is expected to exist for each with required fields; vex-config.js's Feature/Category/AssetType constants are expected to cover every id too. This script is the only thing that actually checks all three agree — exits 1 and lists every mismatch if they don't.",
+      "reads": [
+        "blueprint.json",
+        "config/_meta.json (required-field definitions per type)",
+        "config/{categories,features,asset-types,templates}/{id}.json",
+        "lib/vex-config.js (Category, Feature, AssetType constants)"
+      ],
+      "writes": ["stdout only — read-only, changes nothing"],
+      "loadedBy": ["manual run: node lib/validate-blueprint.js", "tests/06-blueprint.test.js"],
+      "testedBy": ["tests/06-blueprint.test.js"],
+      "changeMap": {
+        "a new id added to blueprint.json": [
+          "config/{type}/{id}.json must exist with the required fields config/_meta.json declares for that type",
+          "lib/vex-config.js must have a matching constant (except templates, which are open-ended)"
+        ],
+        "config/_meta.json required-field list changed": [
+          "every existing config/{type}/{id}.json file must actually have those fields, or this script starts failing for files that were previously fine"
+        ]
+      }
+    },
+
+    "lib/build-sitemap.js": {
+      "role": "generates sitemap.xml — lists only pages that actually exist, so crawlers never hit a 404",
+      "context": "Filters nodes.json down to nodes with both a non-null id and an actual pages/{slug}.html file on disk before including them — unported nodes are silently excluded rather than producing a dead sitemap entry. UTILITY_PAGES is a small hardcoded list of non-node pages (archives, vextreme-demo, specimens) to include if they exist.",
+      "reads": ["data/nodes.json", "pages/*.html (existence check only, per slug)"],
+      "writes": ["sitemap.xml"],
+      "loadedBy": [".github/workflows/build-index.yml"],
+      "testedBy": [],
+      "changeMap": {
+        "a new utility page added (non-node, not from nodes.json)": [
+          "UTILITY_PAGES array in this file — otherwise it's silently excluded from the sitemap"
+        ]
+      }
+    },
+
+    "lib/strings-check.js": {
+      "role": "strings pipeline integrity check — runs before compile, catches missing EN text, stale translations, and orphaned keys",
+      "context": "Four severity levels: BLOCK (missing EN text — compile cannot proceed, exits 1), REMAP (key found in migrations.json — auto-remaps in source), WARN (EN text changed since last compile — tags existing translations _stale), INFO (orphaned key whose EN text hash matches another key — suggests a missing migration entry). Unmatched orphans get quarantined to data/strings/orphans.json rather than silently dropped. Mutates source files in place for REMAP and WARN cases — this is the one script in the strings pipeline that writes back into data/strings/source/, not just reads it.",
+      "reads": [
+        "data/strings/source/**/*.json",
+        "data/strings/migrations.json",
+        "data/strings/compiled/manifest.json (previous compile's content hashes)",
+        "lib/vex-config.js (Language.EN)"
+      ],
+      "writes": [
+        "data/strings/source/**/*.json (in-place mutation: remap/delete keys, tag stale translations)",
+        "data/strings/orphans.json (quarantined unknown keys)"
+      ],
+      "loadedBy": ["manual run: node lib/strings-check.js (intended to run before lib/strings-compile.js)"],
+      "testedBy": [],
+      "changeMap": {
+        "manifest schema changed (enHash field)": [
+          "lib/strings-compile.js (writes the schema this reads)",
+          "the WARN staleness check here reads manifest[key].enHash directly"
+        ],
+        "migrations.json schema changed": [
+          "loadMigrations() here — byFrom/byTo lookup shape must match"
+        ]
+      }
+    },
+
+    "lib/build-index-page.js": {
+      "role": "generates index.html — the root landing page, arc hub links plus the 5 most recently added nodes",
+      "context": "The first page a visitor or crawler hits. Reads nodes.json directly for recency (by id, not date) rather than going through data/index.json's arcMap, since 'most recently added' is a raw-nodes-order question, not an arc-position question. Has its own local :root light-theme token block (see docs/architecture/12-design-system.md) — a renamed restatement of styles/design-system.css's tokens, not a copy of the dashboard dark theme; noted there as a minor non-urgent migration opportunity, not tracked as debt.",
+      "reads": ["data/nodes.json", "data/arcs-v2.json", "pages/*.html (existence check, per slug)"],
+      "writes": ["index.html"],
+      "loadedBy": [".github/workflows/build-index.yml"],
+      "testedBy": [],
+      "changeMap": {
+        "local :root token values changed": [
+          "consider migrating to styles/design-system.css's shared tokens instead, per docs/architecture/12-design-system.md — this file's local block is the last one of its kind"
+        ],
+        "'most recent 5 nodes' selection logic changed": [
+          "confirm it still reads by nodes.json id order, not data/index.json's arc-derived order — they answer different questions"
+        ]
+      }
+    },
+
     "blueprint.json": {
       "role": "system blueprint — canonical registry of all feature IDs, category IDs, template IDs",
       "context": "The configuration contract. Every Feature constant in vex-config.js must have a matching entry here, and every entry here must have a config file in config/features/. Tests/06 enforces this. Adding a new feature to FEATURES registry in build-vextreme.js without adding it here will fail the blueprint tests.",

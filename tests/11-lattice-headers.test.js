@@ -25,6 +25,7 @@ const {
   injectLatticeBlock,
   detectPrefix,
   sanitizeForComment,
+  findLineStartDocComment,
 } = require('../lib/build-lattice-headers');
 
 const ROOT = path.join(__dirname, '..');
@@ -193,6 +194,46 @@ test('LATTICE-HEADERS: no-doc-comment mode leaves file untouched', () => {
   const { content, mode } = injectLatticeBlock(source, SAMPLE_NODE);
   assert.equal(mode, 'no-doc-comment');
   assert.equal(content, source);
+});
+
+test('LATTICE-HEADERS: a literal /** substring inside a // comment is not mistaken for a real doc comment (regression)', () => {
+  // This happened for real: lib/logger-codes.js had a // comment describing
+  // "no top /** */ block to anchor a header in" — a plain indexOf('/**')
+  // found that mid-line substring, then found the '*/' a few characters
+  // later in the same short comment, and inserted the generated block
+  // between them, corrupting a JS object literal.
+  const source = [
+    "'use strict';",
+    '',
+    '// A comment that happens to mention /** */ syntax without meaning it.',
+    '',
+    'const CODES = { FOO: 1 };',
+  ].join('\n');
+  const { content, mode } = injectLatticeBlock(source, SAMPLE_NODE);
+  assert.equal(mode, 'no-doc-comment', 'must not treat the mid-line /** */ substring as a real doc comment');
+  assert.equal(content, source);
+});
+
+test('LATTICE-HEADERS: a real multi-line doc comment further down the file (not at position 0) is still found', () => {
+  const source = [
+    '// leading line comment, not a doc comment',
+    '/**',
+    ' * A real doc comment.',
+    ' */',
+    'code();',
+  ].join('\n');
+  const { mode } = injectLatticeBlock(source, SAMPLE_NODE);
+  assert.equal(mode, 'inserted');
+});
+
+test('LATTICE-HEADERS: findLineStartDocComment ignores a /** substring that does not start its line', () => {
+  const source = "// see /** */ for details\ncode();";
+  assert.equal(findLineStartDocComment(source), -1);
+});
+
+test('LATTICE-HEADERS: findLineStartDocComment finds a /** that does start its line', () => {
+  const source = "text\n/**\n * doc\n */\ncode();";
+  assert.equal(findLineStartDocComment(source), source.indexOf('/**'));
 });
 
 test('LATTICE-HEADERS: re-injecting into already-generated output is idempotent', () => {

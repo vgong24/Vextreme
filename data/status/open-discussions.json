@@ -40,19 +40,6 @@
       "raisedSession": "015",
       "priority": "low",
       "status": "open"
-    },
-    {
-      "id": "od-005",
-      "title": "Decide whether to build a real dark-mode toggle",
-      "description": "od-004 and the rest of this item's original scope are now shipped. Session 016: docs/architecture/11-debugging-practices.md, docs/architecture/12-design-system.md, lib/check-design-tokens.js. Session 017: td-007's duplication (lib/build-archives.js, lib/build-demo.js, lib/build-specimens.js, pages/specimen-architectural-wisdoms.html each had an identical inline dark :root block) was consolidated into styles/design-system.css as a shared [data-theme=\"dashboard\"] block — verified lossless with before/after Playwright screenshots of pages/archives.html and pages/vextreme-demo.html (pixel-identical) plus node lib/check-design-tokens.js (zero violations before and after). td-007 is closed. What remains genuinely undecided, narrower than the original scope: whether to build an actual dark-mode *toggle* — switching a page between the light and dashboard themes at runtime — rather than the current state, where each page is permanently one or the other at build time.",
-      "considerations": [
-        "Don't build a toggle until a concrete need names which pages should support it and why — right now every page's theme is a reasonable fixed choice (content pages light, dev/dashboard pages dark), and a toggle adds real complexity (persistence, a UI control, doubling the states every page must be verified in) for a need that hasn't been stated yet",
-        "If a toggle is eventually built, do it by switching the data-theme attribute at runtime and letting the existing two token families handle the rest — no new CSS architecture needed, the consolidation already done is what makes this cheap later",
-        "lib/build-index-page.js's small separate local :root (a renamed restatement of the light theme, not a copy of the dashboard theme) is a minor, low-priority migration opportunity noted in docs/architecture/12-design-system.md — not blocking, not urgent, not part of this discussion's resolution"
-      ],
-      "raisedSession": "016",
-      "priority": "medium",
-      "status": "open"
     }
   ]
 }

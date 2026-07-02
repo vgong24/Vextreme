@@ -621,4 +621,57 @@ Picked two items, both non-localization, both genuine "silent drift" risks — t
 
 Two of the oldest/most-recently-found integrity gaps are closed: `dist/` and `sw.js` can no longer silently drift from source (CI now rebuilds and commits them on every relevant push), and the dark-panel theme exists in exactly one place instead of four. Both closures were verified, not assumed — the CI wiring by actually running the pipeline and observing real (not hypothetical) drift get corrected, the token consolidation by pixel-identical before/after screenshots plus the automated checker reporting zero violations at both ends. 205/205 tests passing.
 
+---
+
+## Session 019
+
+**Date:** July 2, 2026
+**Time:** continuation of Session 018 context window, after PR #37 merged
+**Thread:** https://claude.ai/code/session_012Cob5Fgz92AYDWfe2mZJWZ
+**Instance:** Claude Sonnet 5 (Claude Code remote)
+**Working with:** Victor Gong
+**Continues from:** Session 018 — td-001 and td-007 closed, od-005 narrowed to just the dark-mode-toggle question
+
+### Context on arrival
+
+Victor asked what "the two" open items from the prior close-out message actually were, then authorized working both in priority order.
+
+### Files created or modified
+
+| File | What changed |
+|---|---|
+| `docs/lattice-map.json` | Added 6 nodes: `lib/logger.js`, `lib/logger-codes.js`, `lib/validate-blueprint.js`, `lib/build-sitemap.js`, `lib/strings-check.js`, `lib/build-index-page.js` — 27 nodes total, 21 of them eligible `.js` files (64% of `lib/`+`widgets/`, up from 45%) |
+| `lib/build-lattice-headers.js` | **Bug found and fixed while generating the new headers.** `lib/logger-codes.js` got corrupted: its `//`-comment header contains the literal substring `/** */` (inside a comment describing this exact hazard class), and the generator's "no markers found" fallback used a bare `source.indexOf('/**')` — found that mid-line substring, found a `*/` a few characters later in the same short comment, and spliced the generated block between them, breaking the `CODES` object literal. Fixed with `findLineStartDocComment()`: a `/**` only counts if it starts its own line, and the matching `*/` must be on a different line — matching every real doc comment convention actually used in this repo, rejecting same-line `/** */` mentions inside unrelated comments |
+| `lib/logger.js`, `lib/logger-codes.js`, `lib/strings-check.js` | Corrupted file manually restored; empty `LATTICE:BEGIN`/`LATTICE:END` marker lines added to each (they use `//` comments, not `/** */`, so they need the same manual marker bootstrap `lib/strings-compile.js` got in Session 013) |
+| `tests/11-lattice-headers.test.js` | 5 new tests: the exact corruption scenario as a regression case, confirming a real multi-line doc comment further down a file is still found correctly, and direct unit coverage of `findLineStartDocComment()` |
+| `data/status/planned-enhancements.json` | pe-009 updated: 20 → 27 nodes, 45% → 64% coverage, remaining candidate list narrowed to what's left (`strings-export.js`, `strings-import.js`, the legacy widget copies, `shell.js`, `vextreme.js`, `archive-renderer.js`) |
+| `docs/architecture/12-design-system.md` | "What's deliberately not here yet" section rewritten to record a decision, not just describe an open question: no dark-mode toggle is being built now, with reasoning, since no page has a stated need for one |
+| `data/status/open-discussions.json` | od-005 removed — resolved (rejected, not shipped) rather than left open indefinitely |
+| `docs/architecture.md`, `data/status.json` | Regenerated |
+
+### What was built and why
+
+**pe-009, done first because it was concrete, buildable work.** Picked the highest fan-in files first: `lib/logger.js` and `lib/logger-codes.js` are imported by nearly every build script in the repo, so mapping them serves the most future lateral-navigation lookups per file mapped. The corruption this surfaced is the same underlying failure shape as every self-referential bug this session-arc has hit: a script that processes text containing its own sentinel-adjacent vocabulary needs to be suspicious of that vocabulary appearing in unrelated places, not just in the position it expects. `findLineStartDocComment()` closes this specific instance permanently — any future file with a stray `/**` mid-comment is now safe.
+
+**od-005, resolved rather than built, because its own reasoning already answered the question.** The item's considerations (written Session 018) already said "don't build a toggle until a concrete need names which pages should support it and why." No concrete need was ever named — Victor asked what the item *was*, not for a toggle. Building one anyway would have been exactly the kind of speculative, unrequested feature work this repo's culture argues against. The honest move was to make the call explicit: `docs/architecture/12-design-system.md` now records the decision and its reasoning as a durable artifact (not just an absence in the open-discussions list), and `od-005` is closed as "explicitly rejected," per that file's own stated resolution rule. If Victor actually wants a toggle, this is easy to reopen — the reasoning for reversing it just needs to name the concrete need that's currently missing.
+
+### Mistakes made
+
+- The file corruption described above — caught immediately by the standard "run `--check` after regenerating" verification step this tooling already has, not by luck. Fixed at the root cause (the fallback-anchor logic), not just patched at the one file it happened to hit first.
+
+### Assumptions that held
+
+- 209/209 tests passing (205 prior + 4 new lattice-header tests, net of some restructuring).
+- The `// LATTICE:BEGIN` / `// LATTICE:END` manual-bootstrap pattern established for `lib/strings-compile.js` in Session 013 applied cleanly to three more `//`-comment-style files without any further tooling changes needed.
+
+### Open work at session end
+
+- [ ] pe-009: `lib/strings-export.js`, `lib/strings-import.js`, `widgets/fab-demo.js`, `widgets/demo-fab.js`, `widgets/lang-fab.js`, `lib/shell.js`, `lib/vextreme.js`, `lib/archive-renderer.js` remain unmapped
+- [ ] od-001, od-002, od-003 remain open (od-001/td-006 i18n scaling still explicitly deprioritized)
+- [ ] `lib/build-index-page.js`'s small separate local `:root` — noted, non-urgent, not tracked as debt
+
+### State of the system at session end
+
+LATTICE coverage of `lib/`+`widgets/` moved from 45% to 64% in one pass, and the generator that makes that cheap got measurably safer in the process — the exact bug class this whole tooling exists to prevent (an artifact silently diverging from its source) almost happened to the tooling itself, and is now closed with a regression test. `od-005` is resolved rather than perpetually open, with the reasoning for *not* building preserved as durably as the reasoning for building something usually is. 209/209 tests passing.
+
 <!-- [VXG RealForever] -->
