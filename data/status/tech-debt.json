@@ -1,0 +1,48 @@
+{
+  "_comment": "Hand-authored. Standing technical decisions deferred. Promote session open-work items here when they have no clear session endpoint. Remove an item when resolved.",
+  "items": [
+    {
+      "id": "td-001",
+      "title": "build-vextreme.js and build-sw.js not wired into CI",
+      "description": "Both scripts must run manually after any change to pages/ or data/. dist/ and sw.js can silently fall out of sync with the source.",
+      "context": "lib/build-vextreme.js, lib/build-sw.js",
+      "addedSession": "011",
+      "addedPR": 24,
+      "priority": "high"
+    },
+    {
+      "id": "td-002",
+      "title": "Old widget filenames kept for backward compat",
+      "description": "widgets/lang-fab.js and widgets/demo-fab.js are dead copies kept because existing CDN pages reference them. New canonical names are fab-lang.js and fab-demo.js. Accumulates until pages are ported.",
+      "context": "widgets/lang-fab.js, widgets/demo-fab.js",
+      "addedSession": "011",
+      "addedPR": 24,
+      "priority": "medium"
+    },
+    {
+      "id": "td-003",
+      "title": "No HTML dead link scanner in CI",
+      "description": "Renaming a slug requires manually updating all internal hrefs across pages. No automated check catches a missed touch point before merge.",
+      "context": "lib/check-key-alignment.js",
+      "addedSession": "012",
+      "priority": "medium"
+    },
+    {
+      "id": "td-004",
+      "title": "No atomic slug rename script",
+      "description": "Renaming a slug touches 7 layers: nodes.json, index.json, HTML filename, string scope keys, compiled bundles, God Script filename, and internal links. No tooling does this atomically — each rename is a manual multi-step operation.",
+      "context": "data/nodes.json, lib/build-index.js",
+      "addedSession": "012",
+      "priority": "medium"
+    },
+    {
+      "id": "td-005",
+      "title": "specimen-architectural-wisdoms has no string bundle",
+      "description": "Page renders static HTML. No compiled scope bundle exists for pages.specimen-architectural-wisdoms. Localization is a no-op for this page until a source file is written and strings-compile is run.",
+      "context": "pages/specimen-architectural-wisdoms.html",
+      "addedSession": "011",
+      "addedPR": 24,
+      "priority": "low"
+    }
+  ]
+}
