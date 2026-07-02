@@ -558,6 +558,35 @@
       }
     },
 
+    "lib/check-design-tokens.js": {
+      "role": "non-blocking-in-spirit, blocking-in-practice check — every var(--token) reference in generated pages and stylesheets must resolve against a real token",
+      "context": "Built od-004's concrete deliverable: an automated replacement for remembering to check CSS token usage by hand. Two legitimate token families exist — the global light theme in styles/design-system.css, and a self-contained local dark :root block repeated across lib/build-archives.js, build-demo.js, build-specimens.js, and pages/specimen-architectural-wisdoms.html (see docs/architecture/12-design-system.md). A file's valid tokens are its own local :root tokens, plus the global set only if it actually links design-system.css — a fallback value inside var(--x, #hex) does not count as the token being defined, since that's exactly the pattern that partially masked the Session 015 bug.",
+      "reads": [
+        "styles/design-system.css (the global token source)",
+        "lib/build-*.js (every generator, scanned for inline <style> content)",
+        "pages/*.html (every static page, scanned for inline <style> content)",
+        "styles/*.css (every companion stylesheet, credited with global tokens unconditionally — see alwaysGlobal)"
+      ],
+      "writes": ["stdout only — read-only, changes nothing"],
+      "loadedBy": [
+        "manual run: node lib/check-design-tokens.js",
+        "tests/13-check-design-tokens.test.js (also runs it as a CI-gating integration test)"
+      ],
+      "testedBy": ["tests/13-check-design-tokens.test.js"],
+      "changeMap": {
+        "a new local dark-theme file added": [
+          "no action needed — checkFile() reads each file's own :root block dynamically, nothing to register"
+        ],
+        "styles/design-system.css tokens added/removed": [
+          "every file linking it may now have new violations or newly-valid usages — re-run this script",
+          "docs/architecture/12-design-system.md (token list documented there)"
+        ],
+        "a new companion stylesheet added under styles/": [
+          "confirm it's actually always paired with design-system.css by its loader before relying on alwaysGlobal crediting it — if not, it needs its own local :root instead"
+        ]
+      }
+    },
+
     "blueprint.json": {
       "role": "system blueprint — canonical registry of all feature IDs, category IDs, template IDs",
       "context": "The configuration contract. Every Feature constant in vex-config.js must have a matching entry here, and every entry here must have a config file in config/features/. Tests/06 enforces this. Adding a new feature to FEATURES registry in build-vextreme.js without adding it here will fail the blueprint tests.",

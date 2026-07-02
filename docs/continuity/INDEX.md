@@ -27,7 +27,17 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 016 — July 2, 2026*
+*As of Session 017 — July 2, 2026*
+
+**Session 017 addition:** Built out both open discussions queued in Session 016. `docs/architecture/11-debugging-practices.md`
+documents the pre-development rigor practice (sound logic ≠ correct runtime behavior), built around Session 015's
+CSS bug as a worked example. `lib/check-design-tokens.js` is the one mechanical instance of that practice with an
+automated check — verifies every `var(--token)` in the repo resolves against a real token, zero violations
+currently. `docs/architecture/12-design-system.md` documents the token contract as it actually exists: the global
+9-token light theme, plus a local dark `:root` block genuinely duplicated across 4-5 files (now tracked as td-007).
+od-004 shipped and was removed from open-discussions.json; od-005 was rewritten to reflect what shipped
+(documentation, verification) vs. what's still open (whether to consolidate the duplication, whether to build a
+real dark-mode toggle) — 4 open discussions remain. 205/205 tests passing.
 
 **Session 016 addition:** No code changed — a queued-for-later directive from Victor was written down as two
 new entries in `data/status/open-discussions.json` rather than left only in conversation history. od-004:
@@ -214,11 +224,12 @@ system state — not aspirational state.
 
 ## Open Work
 
-*Updated Session 016 — July 2, 2026*
+*Updated Session 017 — July 2, 2026*
 
 **v2 system (active):**
-- [ ] od-004: debugging/pre-development rigor practice — write the doc, consider a var()-usage verification script (Session 016)
-- [ ] od-005: formalize design-system.css's token contract — document existing 9 tokens first, depends on od-004 (Session 016)
+- [x] od-004: debugging/pre-development rigor practice — docs/architecture/11-debugging-practices.md + lib/check-design-tokens.js, shipped and removed from open-discussions.json (Session 017)
+- [x] od-005 (partial): design-system.css token contract documented (docs/architecture/12-design-system.md); duplication found and tracked as td-007; consolidation + dark-mode toggle still open (Session 017)
+- [ ] td-007: consolidate the duplicated dark-panel :root block across 4-5 generator files (Session 017)
 - [x] Fixed illegible ecosystem-hub.html panels — CSS referenced undefined `--stone-950`/`--font-mono` tokens; rewritten to use styles/design-system.css's real tokens, regression-tested (Session 015)
 - [x] Added `openDiscussions` status category — architectural questions recognized but not yet decided; data/status/open-discussions.json, 3 entries (Session 015)
 - [x] Added data/status/narrative.json — session-authored "state of the ecosystem" synthesis, the deliberate alternative to a live LLM call in the build pipeline (see od-002) (Session 015)
@@ -410,6 +421,6 @@ These rules exist so the log stays useful as it grows. Follow them.
 
 ---
 
-*Last updated: Session 016 — July 2, 2026*
+*Last updated: Session 017 — July 2, 2026*
 
 <!-- [VXG RealForever] -->

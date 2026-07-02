@@ -504,4 +504,59 @@ Both are priority `high`/`medium` respectively and left genuinely open — no di
 
 No code changed. `data/status/open-discussions.json` now holds 5 entries spanning i18n scaling, build-time synthesis philosophy, a future chat interface, debugging/development rigor, and design system formalization — a durable, discoverable record of what's recognized-but-undecided, available to any instance or admin without needing this conversation's history. 189/189 tests passing.
 
+---
+
+## Session 017
+
+**Date:** July 2, 2026
+**Time:** continuation of Session 016 context window, after PR #35 merged
+**Thread:** https://claude.ai/code/session_012Cob5Fgz92AYDWfe2mZJWZ
+**Instance:** Claude Sonnet 5 (Claude Code remote)
+**Working with:** Victor Gong
+**Continues from:** Session 016 — od-004 (debugging rigor) and od-005 (design system formalization) queued as open discussions, no code built yet
+
+### Context on arrival
+
+Victor: "start both, apply the practice to the design system formalization" — build both od-004 and od-005, and use od-004's own rigor (verify, don't assume) while doing od-005's work rather than treating them as two separate tasks.
+
+### Files created or modified
+
+| File | What changed |
+|---|---|
+| `docs/architecture/11-debugging-practices.md` | New. The debugging/pre-development rigor practice, built around Session 015's `--stone-950` bug as a worked example: sound logic and correct runtime behavior are different claims; only rendering/simulating verifies the second. Covers CSS token resolution, race conditions, and a UX checklist (static/dynamic, scroll/overflow at realistic sizes, spacing, both color schemes). Names `lib/check-design-tokens.js` as the one mechanical instance that got an automated check, and is explicit that race conditions and UX coverage don't have an automated equivalent |
+| `lib/check-design-tokens.js` | New. Verifies every `var(--token)` reference in `lib/build-*.js`, `pages/*.html`, and `styles/*.css` resolves against a real token — either the file's own local `:root` block, or `styles/design-system.css`'s global set if the file actually links it (or is a companion stylesheet always paired with it by `lib/vextreme.js`). A fallback value (`var(--x, #hex)`) does not count as the token being defined — deliberately, since that's the exact pattern that partially masked the Session 015 bug |
+| `docs/architecture/12-design-system.md` | New. Documents the token contract as it actually exists — not aspirational. Two families: the 9-token global light theme, and a local dark `:root` block duplicated verbatim across 4 files (archives, demo, specimens, specimen-architectural-wisdoms) plus a 5th renamed-but-equivalent variant in build-index-page.js. States plainly what's NOT decided yet (dark-mode toggle, deduplication) |
+| `data/status/tech-debt.json` | Added td-007 — the verified duplication found while writing 12-design-system.md (4-5 files with an identical or equivalent local `:root` block) |
+| `data/status/open-discussions.json` | od-004 removed (shipped — doc + script exist, tracked via lattice-map.json and tests instead). od-005 rewritten to reflect what shipped (documentation, verification) vs. what's still genuinely open (consolidating td-007's duplication; whether to build an actual dark-mode toggle) |
+| `docs/lattice-map.json` | Added `lib/check-design-tokens.js` as a node (21 total) |
+| `docs/architecture.md`, `data/status.json` | Regenerated |
+| `tests/13-check-design-tokens.test.js` | New. 16 tests: token extraction, stylesheet-link detection, the combined resolution logic (including the fallback-doesn't-count case), and an integration test confirming the real repo currently has zero violations |
+
+### What was built and why
+
+**Applying od-004 to od-005, concretely:** rather than writing the design-system doc from what the code *should* say, every claim in it was verified by grepping the actual repo. That surfaced something not previously known: two legitimate token families exist (the global light theme, and a dark theme that's genuinely duplicated 4-5 times, not once) — and the file believed to be the sole culprit of the Session 015 bug (`lib/build-ecosystem-hub.js`) was actually the *only* file inventing tokens that existed in neither family. Writing the doc from assumption instead of verification would have missed the duplication entirely and might have mischaracterized the dark files as also buggy when they weren't — each is internally self-consistent and passes the new verification script cleanly.
+
+**`lib/check-design-tokens.js`'s design decision:** a fallback value in `var(--x, #hex)` does not count as the token being "defined." This is the one place the tool encodes a real judgment call rather than a mechanical fact — argued for directly in the doc, because a working-looking fallback is exactly what let half of Session 015's bug hide. Confirmed correct by testing it against the pre-fix `build-ecosystem-hub.js` mentally: `var(--stone-950, #0a0a0a)` would otherwise have been silently accepted as fine.
+
+**Resolving od-004 fully, od-005 partially:** od-004's own ask (document the practice, add the mechanical check where one is possible) is complete — removed from open-discussions.json, its lasting form is the doc + script + tests, not a pending decision. od-005 is only half-decided: documenting-what-exists and adding verification were both explicitly recommended as "do this first" in od-005's own original considerations, and both are done; whether to actually consolidate the duplication or build a dark-mode toggle remains genuinely undecided and was deliberately not attempted here — bundling a 5-generator refactor into this pass would have violated the same "don't rush a bigger decision" principle od-005 already argued for regarding dark mode specifically.
+
+### Mistakes made
+
+- None this session that shipped incorrectly — the near-misses were caught by the same verification-first approach being applied: an initial run of `check-design-tokens.js` flagged `lib/build-ecosystem-hub.js`'s own prose comment (which mentions `var(--stone-950)` as a historical note, not live CSS) and three companion stylesheets (`arc-nav.css`, `site-nav.css`, `squarespace-overrides.css`) that don't contain `<link>` tags themselves (a category error in the first version of the script's logic — a `.css` file can't link another stylesheet; their pairing with `design-system.css` is guaranteed by `lib/vextreme.js`, the loader that includes them). Both fixed before the script was considered done, and the fixes are exactly what a naive first pass at automating this kind of check tends to miss.
+
+### Assumptions that held
+
+- 205/205 tests passing (189 prior + 16 new in tests/13).
+- `node lib/check-design-tokens.js` found zero violations across the entire repo once the two false-positive causes above were fixed — the repo really is clean right now, not just "clean because the checker is too lenient."
+
+### Open work at session end
+
+- [ ] od-005 / td-007: decide whether to consolidate the duplicated dark-panel token block into `styles/design-system.css`, and separately whether to build a real dark-mode toggle — both explicitly left open
+- [ ] od-001, od-002, od-003 remain open from Sessions 013/015
+- [ ] pe-009: expand LATTICE coverage past 21 nodes
+
+### State of the system at session end
+
+Two new durable artifacts exist for any future instance: `docs/architecture/11-debugging-practices.md` (the practice, with a worked example) and `docs/architecture/12-design-system.md` (the actual token contract, including a documented duplication that was previously invisible). `lib/check-design-tokens.js` makes "did I use a real CSS token" a build-time fact instead of a manual-review question, gated in CI via `tests/13`. 205/205 tests passing.
+
 <!-- [VXG RealForever] -->

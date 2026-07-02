@@ -874,6 +874,225 @@ either way?* If yes, it is a widget.
 
 ---
 
+# Debugging and pre-development rigor
+
+Sound logic and correct runtime behavior are different claims. Code review —
+by a human or an AI — verifies the first. Only running the thing verifies the
+second. This document exists because that gap produced a real, shipped bug,
+and the fix generalizes past the one file it happened in.
+
+---
+
+## The worked example
+
+Session 015's `lib/build-ecosystem-hub.js` had CSS like this:
+
+```css
+summary.panel-head { background: var(--stone-950, #0a0a0a); }
+.panel-title { color: var(--stone-300); }
+```
+
+Read as a diff, this is unremarkable — a dark background, a light-gray title,
+a sensible fallback on the background declaration. Nothing about the *logic*
+is wrong. But `--stone-950` and `--stone-300` are never defined anywhere in
+this repository. `styles/design-system.css` defines nine tokens, none of them
+part of a numbered `--stone-NNN` scale. At runtime:
+
+- `background: var(--stone-950, #0a0a0a)` — the fallback kicks in, so the
+  background renders as intended. The bug is invisible here.
+- `color: var(--stone-300)` — no fallback, so per the CSS spec the whole
+  declaration is invalid and dropped. The property is simply absent. Text
+  inherited whatever color it would have had anyway — in this case, dark text
+  on the now-correctly-dark background. Illegible.
+
+The two declarations look structurally identical. One partially worked by
+accident; the other didn't, for a reason invisible to anyone reading the code
+rather than rendering it. Nobody caught this until an admin looked at the
+actual page and saw barely-visible text.
+
+## The principle
+
+**Reading code confirms the logic is sound. It does not confirm the runtime
+behavior is correct.** The class of bug that ships is disproportionately the
+class that requires *simulating* something to see — not reasoning about it:
+
+- **CSS custom properties** — does `var(--x)` resolve against a token that
+  actually exists in whatever stylesheet this file loads (or defines itself)?
+  Automated now: `node lib/check-design-tokens.js` (see below).
+- **Race conditions** — two operations whose individual logic is correct, but
+  whose *interleaving* isn't considered. `loadIndex()` in
+  `lib/vextreme-index-v2.js` serves a cached value immediately and
+  revalidates in the background *by design* — that's a deliberately-chosen
+  race, documented as such. An *undeliberate* one looks identical in a diff.
+- **UX states that are easy to skip when only reasoning about markup** — is
+  the UI static or does it need to handle dynamic content lengths? Does it
+  scroll, paginate, or overflow, and what does that look like at a realistic
+  content size, not a placeholder one? Is spacing deliberate (breathing room)
+  or accidental (whatever the default happened to produce)? Does the page
+  work in both color schemes it's supposed to support, or only the one that
+  happened to get eyeballed once?
+
+None of these are caught by "is the logic sound." All of them are caught by
+actually producing the runtime condition — a real render, a real concurrent
+call, a real toggle — and looking at what happens.
+
+## The practice
+
+Before considering a UI or async change done, actually do the thing you'd
+otherwise only reason about:
+
+1. **Render it.** Not "the structure looks right" — an actual screenshot or
+   local render, at realistic content sizes, in whatever color schemes the
+   page is supposed to support.
+2. **For concurrent/async logic, write out the interleaving.** If two things
+   can happen in either order or overlap, what does each order actually
+   produce? If the answer is "it shouldn't matter," say why in a comment —
+   don't leave it implicit.
+3. **Check scroll and overflow at realistic sizes**, not the shortest
+   plausible content. A panel that looks fine with three items may not with
+   thirty.
+4. **When a failure mode is mechanical and repeatable, automate the check
+   instead of relying on remembering to look.** A human or AI re-deriving
+   "did I use a real CSS token" by eye, every time, will eventually miss one
+   — that's exactly what happened here. `lib/check-design-tokens.js` (added
+   alongside this document) turns that specific question into a build-time
+   fact instead of a manual-review question. It is not a general solution to
+   this document's principle — it closes one mechanical instance of it. Race
+   conditions and UX-state coverage don't have an equivalent automated check
+   yet, and might not ever; the practice above is what covers them until or
+   unless one exists.
+
+## Relationship to the design system
+
+`docs/architecture/12-design-system.md` documents the token contract this
+practice's worked example was violating. Formalizing that contract was
+explicitly sequenced *after* this document (see `data/status/open-discussions.json`
+od-004/od-005 for the reasoning) — a system built without first naming the
+rigor that verifies it tends to accumulate the same class of unverified
+assumption it was meant to prevent.
+
+---
+
+# Design system
+
+This documents the token contract as it actually exists — not an aspiration,
+not a rebrand. `data/status/open-discussions.json` od-005 tracks what's still
+undecided (dark mode as a real feature, deduplicating the repeated dark-panel
+block below); this file is the ground truth of what's already there, written
+down so nobody has to reverse-engineer it from five separate files again.
+
+`node lib/check-design-tokens.js` verifies every `var(--token)` reference in
+the repo resolves against one of the two families below. It found zero
+violations as of the session that wrote this document — see
+`docs/architecture/11-debugging-practices.md` for the bug that motivated it.
+
+---
+
+## Two token families, not one
+
+**1. The global light theme — `styles/design-system.css`**
+
+The only file that declares a `:root` block meant to be shared. Nine tokens:
+
+| Token | Value | Purpose |
+|---|---|---|
+| `--cream` | `#fafaf9` | Page/card background |
+| `--stone` | `#1c1917` | Primary text |
+| `--muted` | `#78716c` | Secondary text, meta lines |
+| `--border` | `#e7e5e4` | Hairline borders |
+| `--ember` | `#b45830` | Accent — links, active states, stat values |
+| `--ember-bg` | `#fdf8f6` | Accent-tinted background (callouts, hovers) |
+| `--serif` | `'Source Serif 4', Georgia, serif` | Headings on content pages |
+| `--sans` | `'IBM Plex Sans', sans-serif` | Body text |
+| `--mono` | `'IBM Plex Mono', monospace` | Code, stats, meta, badges |
+
+Used by any file that `<link>`s `styles/design-system.css` — the God Script
+content pages (via the loader chain) and `pages/ecosystem-hub.html`. Also
+implicitly relied on by `styles/arc-nav.css`, `styles/site-nav.css`, and
+`styles/squarespace-overrides.css`, none of which declare their own tokens —
+they're loaded *by* `lib/vextreme.js` alongside `design-system.css`, never
+standalone, so their `var(--x)` references resolve against this same set.
+
+**2. The local dark theme — repeated inline, not shared**
+
+Four generators define an identical `:root` block inline and never link
+`design-system.css` at all: `lib/build-archives.js`, `lib/build-demo.js`,
+`lib/build-specimens.js`, and `pages/specimen-architectural-wisdoms.html`
+(which adds one extra token, `--blue`, for a secondary accent):
+
+```css
+:root {
+  --bg:     #0e0e0e;
+  --surface:#111111;
+  --text:   #e8e8e4;
+  --muted:  #6b6b6b;
+  --ember:  #c8502a;
+  --border: #2a2a2a;
+  --mono:   'IBM Plex Mono', monospace;
+  --sans:   'IBM Plex Sans', sans-serif;
+}
+```
+
+`lib/build-index-page.js` defines a fifth local `:root` block — same shape,
+light values instead of dark, and functionally a restatement of family 1's
+tokens under different names (`--bg` ≈ `--cream`, `--text` ≈ `--stone`):
+
+```css
+:root {
+  --bg:     #fafaf9;
+  --text:   #1c1917;
+  --muted:  #78716c;
+  --border: #e7e5e4;
+  --ember:  #b45830;
+  --surface:#ffffff;
+  --mono:   'IBM Plex Mono', monospace;
+  --serif:  'Source Serif 4', Georgia, serif;
+  --sans:   'IBM Plex Sans', sans-serif;
+}
+```
+
+This is real, verified duplication — five files, four of them byte-identical
+in their `:root` block — not a hypothetical. It's tracked as td-007, not
+fixed here: consolidating it means changing five generators' output, which
+deserves its own reviewed pass rather than riding along with a documentation
+PR. See od-005 for the sequencing reasoning.
+
+## The rule a file must satisfy
+
+A `var(--x)` reference is valid if `--x` is either:
+
+- declared in that file's own `:root` block, or
+- declared in `styles/design-system.css`'s `:root` block, **and** the file
+  actually `<link>`s that stylesheet (or is a `styles/*.css` companion file
+  that's always loaded alongside it by its loader).
+
+A fallback value — `var(--x, #hex)` — does **not** satisfy this rule on its
+own. That's precisely the pattern that made half of Session 015's bug
+invisible: the fallback rendered a plausible-looking color, masking that the
+token itself didn't exist. `lib/check-design-tokens.js` treats a fallback the
+same as no fallback: the token must actually resolve.
+
+## Adding a token
+
+- **To the global set** (`styles/design-system.css`): confirm it's meant to
+  be shared across content pages before adding it — this file's `:root` is
+  the widest-blast-radius single edit point for typography/color in the
+  repo. Run `node lib/check-design-tokens.js` afterward; a removed or renamed
+  token will surface every file that broke.
+- **To a local dark-panel file**: prefer matching the existing four files'
+  values exactly unless there's a specific reason not to — the duplication is
+  tracked debt, not a template to diverge from further.
+
+## What's deliberately not here yet
+
+No dark-mode *toggle* exists — the "dark theme" above is a set of files
+permanently rendered dark, not a switchable mode applied to the light theme.
+Whether to build one, and whether to do it by finally consolidating family 2
+into `design-system.css` as a real second theme, is od-005's open question,
+not a decision made by writing this document.
+
+---
+
 *Last updated: 2026-07-02*
 
 <!-- [VXG RealForever] -->
