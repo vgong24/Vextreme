@@ -20,6 +20,15 @@
   var LS_LANG    = 'vex-lang';
   var LS_DATA    = 'vex-index-v2-data';
 
+  // ── Config constants (mirrors lib/vex-config.js) ─────────────────────────────
+  // These string values are the ground truth in lib/vex-config.js. When that
+  // file changes, update these in sync. In the future slug-driven architecture,
+  // vextreme.js will inline these from the build; until then they live here.
+  var CATEGORY_SYSTEM     = 'system';
+  var CATEGORY_PRODUCTION = 'production';
+  var SCOPE_COMMON        = 'common';
+  var LANG_DEFAULT        = 'en';
+
   var _logger = (window.VEXTREME_LOGGER) || {
     warn:  function(e) { console.warn('[' + e.code + ']', e.message, e); },
     error: function(e) { console.error('[' + e.code + ']', e.message, e); },
@@ -64,19 +73,19 @@
       if (req.status === 200) {
         try {
           var data = JSON.parse(req.responseText);
-          onReady(data.supportedLangs || ['en']);
+          onReady(data.supportedLangs || [LANG_DEFAULT]);
         } catch (e) {
           _logger.warn({ code: 'LANG_FAB_INDEX_PARSE_FAILED', message: 'Failed to parse index.json for lang list' });
-          onReady(['en']);
+          onReady([LANG_DEFAULT]);
         }
       } else {
         _logger.warn({ code: 'LANG_FAB_INDEX_HTTP_ERROR', message: 'index.json returned HTTP ' + req.status, status: req.status });
-        onReady(['en']);
+        onReady([LANG_DEFAULT]);
       }
     };
     req.onerror = function () {
       _logger.warn({ code: 'LANG_FAB_INDEX_FETCH_FAILED', message: 'Failed to fetch index.json for lang list' });
-      onReady(['en']);
+      onReady([LANG_DEFAULT]);
     };
     req.send();
   }
@@ -114,7 +123,7 @@
   // become directory segments within the category directory. 'common' always
   // comes from 'system' regardless of the page's declared category.
   function scopeUrl(scope, lang, category, variant) {
-    var cat      = (scope === 'common') ? 'system' : (category || 'production');
+    var cat      = (scope === SCOPE_COMMON) ? CATEGORY_SYSTEM : (category || CATEGORY_PRODUCTION);
     var segments = scope.split('.');
     var dirParts = [cat].concat(segments.slice(0, -1));
     var baseName = segments[segments.length - 1] + (variant ? '.variant-' + variant : '');
@@ -157,8 +166,8 @@
     // in parallel (falling back to base if a requested variant isn't compiled),
     // merge into one flat object so applyLang() sees no difference.
     var variant  = window.VEX_STRING_VARIANT;
-    var category = window.VEX_STRING_CATEGORY || 'production';
-    var wanted   = scopes.indexOf('common') === -1 ? ['common'].concat(scopes) : scopes.slice();
+    var category = window.VEX_STRING_CATEGORY || CATEGORY_PRODUCTION;
+    var wanted   = scopes.indexOf(SCOPE_COMMON) === -1 ? [SCOPE_COMMON].concat(scopes) : scopes.slice();
     var merged   = {};
     var remaining = wanted.length;
 
@@ -352,8 +361,8 @@
     loadSupportedLangs(function (langs) {
       if (!langs || langs.length < 2) return;
 
-      var savedLang = 'en';
-      try { savedLang = localStorage.getItem(LS_LANG) || 'en'; } catch (e) {}
+      var savedLang = LANG_DEFAULT;
+      try { savedLang = localStorage.getItem(LS_LANG) || LANG_DEFAULT; } catch (e) {}
       if (langs.indexOf(savedLang) < 0) savedLang = langs[0];
 
       injectStyles();
@@ -362,7 +371,7 @@
 
       // Apply persisted lang on load (skip if already English — avoids a
       // pointless fetch when no preference has been set)
-      if (savedLang !== 'en') applyLang(savedLang);
+      if (savedLang !== LANG_DEFAULT) applyLang(savedLang);
     });
   }
 
