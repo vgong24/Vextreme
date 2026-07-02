@@ -27,7 +27,21 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 010 — July 2, 2026*
+*As of Session 011 — July 2, 2026*
+
+**Session 011 addition:** The God Script architecture is complete and generating output.
+`lib/build-vextreme.js` assembles one IIFE per page into `dist/vextreme-{slug}.js`,
+setting `window.VEX_VIEWMODEL`, `window.VEX_STRINGS_EN`, `window.VEX_STRING_SCOPES`,
+`window.VEX_STRING_CATEGORY`, and inlining feature widget source — one HTTP request per
+page, EN strings already inlined, JA fetched lazily. `widgets/fab-lang.js` (renamed from
+lang-fab.js) skips the EN fetch when `window.VEX_STRINGS_EN` is already set by a God
+Script. `lib/build-sw.js` generates `sw.js` at repo root: cache-first SW, git-hash-keyed
+cache name (`vextreme-v1-{hash}`), HTML never cached, old caches auto-deleted on activate.
+`manifest.json` enables PWA installability (icons not yet committed). `lib/check-key-alignment.js`
++ CI workflow post a non-blocking alignment table on every PR (88 nodes, 16 arcs, zero drift
+on first run). `config/lessons/` now holds 4 distilled lessons from recent architectural
+sessions. `pages/specimen-architectural-wisdoms.html` added as a 4-card architectural
+decisions specimen. 119/119 tests passing. PRs #23, #24, #25 all merged.
 
 **Session 010 addition:** All semantic constants in the build pipeline, strings pipeline,
 and browser widget are now defined in `lib/vex-config.js` — the single source of truth.
@@ -143,12 +157,17 @@ system state — not aspirational state.
 
 ## Open Work
 
-*Updated Session 010 — July 2, 2026*
+*Updated Session 011 — July 2, 2026*
 
 **v2 system (active):**
-- [ ] PR #21 — `config/categories/*.json`, `config/features/*.json`, `blueprint.json`, `lib/validate-blueprint.js` (Session 010)
-- [ ] PR #22 (high risk) — `data/index.json` slugMap with viewmodel, rewrite `lib/vextreme.js` slug-driven, remove per-page `window.VEX_STRING_*` from generated HTML (Session 010)
-- [ ] PR #23 — `widgets/vex-fab.js` spiral portal FAB replacing lang-fab + demo-fab (Session 010)
+- [ ] Create PWA icons (`icons/icon-192.png`, `icons/icon-512.png`) — requires image generation; PWA installability blocked until done (Session 011)
+- [ ] Wire `sw-register.js` + `<link rel="manifest">` into all HTML pages (Session 011)
+- [ ] Wire `node lib/build-vextreme.js` + `node lib/build-sw.js` into CI — both still require manual runs (Session 011)
+- [ ] Add string bundle for `specimen-architectural-wisdoms` — no localization yet (Session 011)
+- [ ] Port existing HTML pages to God Script — `claude-answers-the-doubt`, `restoration-protocol`, etc. still use shell.js + old lang-fab.js (Session 011)
+- [x] PR #25 — Service Worker + PWA manifest, `lib/build-sw.js`, `sw.js`, `manifest.json`, `widgets/sw-register.js` (Session 011)
+- [x] PR #24 — God Script assembler (`lib/build-vextreme.js`), key alignment check, `config/lessons/`, `specimen-architectural-wisdoms.html` (Session 011)
+- [x] PR #23 — `buildViewmodel` in `lib/build-index.js`, `data/viewmodels.json`, `tests/07-viewmodel.test.js` (Session 011)
 - [x] Named constants in `lib/vex-config.js` — `Category`, `Language`, `Scope`, `CDN_BASE`, `scopeRelPath`, zero magic strings in build pipeline (Session 010, PR #20)
 - [x] `_meta.category` system — scope bundles under `scopes/{category}/`, deterministic path derivation, `window.VEX_STRING_CATEGORY` on pages (Session 009, PR #19)
 - [x] specimens.html dashboard + 3 specimen pages, each pairing a localization state with the pipeline mechanism that catches it (Session 008)
@@ -312,6 +331,6 @@ These rules exist so the log stays useful as it grows. Follow them.
 
 ---
 
-*Last updated: Session 010 — July 2, 2026*
+*Last updated: Session 011 — July 2, 2026*
 
 <!-- [VXG RealForever] -->
