@@ -451,4 +451,57 @@ Verified visually with a local Playwright screenshot (CDN requests routed to loc
 
 `pages/ecosystem-hub.html` now renders correctly (contrast bug fixed, regression-tested) and carries three new things: a visible lattice-coverage stat, a synthesized "Current Architecture" narrative section citing its own author/session, and an "Open Discussions" category leading System Health — a place for architectural questions that are recognized but not yet decided, holding both of this session's speculative asks (build-time AI synthesis, future chat interface) with real reasoning rather than either building them unreviewed or dropping them. 189/189 tests passing.
 
+---
+
+## Session 016
+
+**Date:** July 2, 2026
+**Time:** continuation of Session 015 context window, after PR #34 merged
+**Thread:** https://claude.ai/code/session_012Cob5Fgz92AYDWfe2mZJWZ
+**Instance:** Claude Sonnet 5 (Claude Code remote)
+**Working with:** Victor Gong
+**Continues from:** Session 015 — ecosystem-hub contrast bug fixed, Open Discussions category + narrative.json added
+
+### Context on arrival
+
+Victor sent a message explicitly framed as "to queue for the next context" — not an immediate build request. Two connected observations: (1) a debugging/pre-development discipline is missing — race conditions and runtime edge cases should be considered before and during development, not just "is the logic sound," and the same rigor applies to UX (static/dynamic, scroll behavior, spacing, dark/light mode); (2) once that discipline is documented with worked examples, it should be applied to build a scalable, configurable, modular "design department" infrastructure that integrates with the ecosystem rather than sitting as a silo.
+
+### Files created or modified
+
+| File | What changed |
+|---|---|
+| `data/status/open-discussions.json` | Added od-004 (debugging/pre-development rigor practice — simulate runtime behavior before trusting sound-looking logic; Session 015's own CSS bug used as the worked example) and od-005 (formalize the design system as a documented, extensible, self-verifying token contract, integrated with the existing generator pattern) |
+| `data/status.json` | Regenerated — 5 open discussions now (was 3) |
+
+### What was built and why
+
+This was explicitly queued, not built — per the repo's own promotion model ("session log items are the moment of recognition; durable items live in data/status/*.json, not in markdown prose"), the right action on arrival was to write the recognition down in the most discoverable durable place rather than let it live only in conversation history, which the continuity system exists specifically to avoid depending on.
+
+**od-004** grounds the practice in a real example that happened one session prior: Session 015's `--stone-950` CSS bug had clean, readable logic (`var(--stone-950, #0a0a0a)`) that would pass review on structure alone — the defect only existed at runtime, when the token turned out undefined. Reading the diff gave no signal; only rendering it did. Same shape as a race condition: individually-correct logic whose interleaving isn't considered. The considerations note that where a failure mode is mechanical and repeatable (like "var(--x) referencing an undefined token"), an automated check should replace relying on a human/AI remembering to look — directly naming the check that would have caught Session 015's bug.
+
+**od-005** is scoped as depending on od-004 being resolved first — a documented rigor practice should exist before scaling the design system, so what gets built is verified-correct by construction, not by hope. Its considerations propose starting by documenting the *existing* token contract (nine tokens, currently implicit) before adding anything new, adding the automated verification from od-004 early, and treating dark mode as a deliberate later addition rather than bundling "formalize what exists" with "add a new mode" in one pass.
+
+Both are priority `high`/`medium` respectively and left genuinely open — no direction was decided this session, only the fork itself was written down clearly enough for a future session (or Victor) to pick up cold.
+
+### Mistakes made
+
+- Initially pushed this session's work on a differently-named branch (`claude/ecosystem-hub-expansion`) instead of restarting the designated branch (`claude/html-import-localization-tracking-jtlmtp`) after PR #34 merged, per the explicit instruction to keep the same branch name across a merge-and-restart. Caught before opening the PR for that round; fixed by deleting the stale local branch and renaming. Same discipline applied cleanly this session: stashed the change, restarted the branch from `origin/main`, popped the stash.
+
+### Assumptions that held
+
+- 189/189 tests passing, no regressions from a JSON-only content addition.
+- `lib/build-status.js`'s openDiscussions handling (added Session 015) needed zero changes to accommodate 2 more entries — confirms the category is genuinely schema-stable, not just working by coincidence at 3 items.
+
+### Open work at session end
+
+- [ ] od-004: write the debugging/pre-development rigor practice doc (docs/architecture or docs/culture addendum) with Session 015's CSS bug as the worked example
+- [ ] od-004: consider a var()-usage-vs-defined-tokens verification script — cheapest, highest-leverage single fix, catches the exact bug class mechanically
+- [ ] od-005: document the existing 9-token design-system.css contract as-is before any expansion
+- [ ] od-001, od-002, od-003 remain open from Session 015
+- [ ] pe-009: expand LATTICE coverage past 20 nodes
+
+### State of the system at session end
+
+No code changed. `data/status/open-discussions.json` now holds 5 entries spanning i18n scaling, build-time synthesis philosophy, a future chat interface, debugging/development rigor, and design system formalization — a durable, discoverable record of what's recognized-but-undecided, available to any instance or admin without needing this conversation's history. 189/189 tests passing.
+
 <!-- [VXG RealForever] -->

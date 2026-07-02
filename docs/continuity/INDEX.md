@@ -27,7 +27,16 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 015 — July 2, 2026*
+*As of Session 016 — July 2, 2026*
+
+**Session 016 addition:** No code changed — a queued-for-later directive from Victor was written down as two
+new entries in `data/status/open-discussions.json` rather than left only in conversation history. od-004:
+adopt a debugging/pre-development rigor practice — simulate runtime behavior and edge cases (race conditions,
+UX states, dark/light mode) before trusting that sound-looking logic means correct output; grounded in
+Session 015's own `--stone-950` CSS bug as the worked example (clean logic, but the defect only existed at
+runtime). od-005: formalize `styles/design-system.css`'s implicit 9-token contract into a documented,
+extensible, self-verifying design system — explicitly scoped as depending on od-004 first. Both left open;
+5 open discussions total now. 189/189 tests passing (unchanged).
 
 **Session 015 addition:** Fixed a real, user-visible bug in `pages/ecosystem-hub.html` — the System
 Health panels rendered with near-invisible text because the CSS referenced `--stone-950`/`--font-mono`
@@ -205,9 +214,11 @@ system state — not aspirational state.
 
 ## Open Work
 
-*Updated Session 015 — July 2, 2026*
+*Updated Session 016 — July 2, 2026*
 
 **v2 system (active):**
+- [ ] od-004: debugging/pre-development rigor practice — write the doc, consider a var()-usage verification script (Session 016)
+- [ ] od-005: formalize design-system.css's token contract — document existing 9 tokens first, depends on od-004 (Session 016)
 - [x] Fixed illegible ecosystem-hub.html panels — CSS referenced undefined `--stone-950`/`--font-mono` tokens; rewritten to use styles/design-system.css's real tokens, regression-tested (Session 015)
 - [x] Added `openDiscussions` status category — architectural questions recognized but not yet decided; data/status/open-discussions.json, 3 entries (Session 015)
 - [x] Added data/status/narrative.json — session-authored "state of the ecosystem" synthesis, the deliberate alternative to a live LLM call in the build pipeline (see od-002) (Session 015)
@@ -399,6 +410,6 @@ These rules exist so the log stays useful as it grows. Follow them.
 
 ---
 
-*Last updated: Session 015 — July 2, 2026*
+*Last updated: Session 016 — July 2, 2026*
 
 <!-- [VXG RealForever] -->
