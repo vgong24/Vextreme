@@ -379,4 +379,76 @@ PR #32 (Session 013 continuity log) had just merged. Victor asked for a fresh-le
 
 `docs/lattice-map.json` is now a true write-side source: `lib/build-lattice-headers.js` generates every eligible file's own LATTICE header from it, and `tests/11`'s `--check` integration test fails CI if the two would ever disagree. 18 nodes are covered (15 from Session 013 plus 3 added this session to close existing reference gaps); ~45+ files in lib/+widgets/ remain unmapped, tracked as pe-009. 171/171 tests passing.
 
+---
+
+## Session 015
+
+**Date:** July 2, 2026
+**Time:** continuation of Session 014 context window, after PR #33 merged
+**Thread:** https://claude.ai/code/session_012Cob5Fgz92AYDWfe2mZJWZ
+**Instance:** Claude Sonnet 5 (Claude Code remote)
+**Working with:** Victor Gong
+**Continues from:** Session 014 — LATTICE headers made generated (not hand-maintained), 18 nodes mapped
+
+### Context on arrival
+
+Victor sent screenshots of the live `pages/ecosystem-hub.html`: the "System Health" panels rendered as near-illegible dark boxes with barely-visible text. He asked for a broader rethink of what the ecosystem hub should be — not just a data dump, but a place that serves the admin, future AI instances, and the reasoning behind infrastructure decisions; a home for "open discussions" distinct from resolved tickets; and raised two longer-horizon ideas: (1) synthesizing cross-file context via a cheap/free LLM in the build script, and (2) a future local-model chat interface that could escalate work to Claude instances with attribution. He asked me to lead the redesign and apply my own judgment on scope rather than asking clarifying questions first.
+
+### Files created or modified
+
+| File | What changed |
+|---|---|
+| `lib/build-ecosystem-hub.js` | Rewritten. Root cause of the illegible panels: the CSS referenced `--stone-950`, `--stone-300`, `--font-mono` etc — tokens that don't exist anywhere in `styles/design-system.css` (which only defines `--stone`, `--muted`, `--border`, `--cream`, `--ember`, `--ember-bg`, `--mono`). Background properties had fallback values so they rendered dark as intended; text-color properties had none, so `var()` was invalid and text inherited the page's dark-on-dark default. Rewrote to use only real tokens, matching `lib/build-demo.js`'s established pattern. Added: a 5th "Lattice Coverage" stat tile, a "Current Architecture" section (live-fetches `data/status/narrative.json`, renders a numbered pipeline list + current-focus callout + synthesis byline), and reordered health panels with Open Discussions first |
+| `data/status/open-discussions.json` | New. Third hand-authored category, distinct from techDebt (decided fix, not built) and enhancements (decided direction, not built) — "a fork in the road where the fork itself hasn't been chosen." 3 entries: od-001 (i18n scaling decision, cross-referencing td-006), od-002 (should build-time synthesis use a live LLM call, or stay session-authored — Victor's own proposal, reasoned through rather than either built blind or ignored), od-003 (future local-model chat interface with Claude escalation — scoped as a separate infrastructure project, not a page addition) |
+| `data/status/narrative.json` | New. Hand-authored "state of the ecosystem" synthesis — pipeline summary, ordered build-stage list, current focus, and a `lastSynthesizedBy`/`Session`/`At` byline. This is the concrete answer to od-002: cross-context synthesis happens by whichever Claude instance runs an architecture-review session (as this one just did), committed as ordinary reviewable content, not by an unreviewed API call in CI |
+| `lib/build-status.js` | Added `openDiscussions` as a 5th notice category; added `buildLatticeCoverage(latticeMap, libWidgetsJsFiles)` — mapped vs. total eligible `.js` files in lib/+widgets/, written to `_meta.lattice`. Added as a new lattice-map.json node (was pe-009's top candidate) |
+| `docs/lattice-map.json` | Added 2 nodes: `lib/build-status.js`, `lib/build-ecosystem-hub.js`. 20 nodes total |
+| `data/status/planned-enhancements.json` | pe-009 updated: 18 → 20 nodes, removed the two newly-covered files from its candidate list |
+| `tests/10-build-status.test.js` | Extended for openDiscussions (rollup, countOpen, required-fields integration test) and buildLatticeCoverage (unit tests + integration test asserting `_meta.lattice` shape); added narrative.json required-fields test |
+| `tests/12-ecosystem-hub.test.js` | New. 10 tests, including explicit regressions against the exact bug just fixed (asserts the generated HTML never contains `--stone-\d`, `--font-mono`, or `--stone-950`) |
+| `pages/ecosystem-hub.html`, `data/status.json` | Regenerated |
+
+### What was built and why
+
+**The contrast bug** was a real, user-visible defect, not a hypothetical — Victor's screenshot showed it directly. Root-caused by comparing `lib/build-ecosystem-hub.js`'s CSS against `styles/design-system.css`'s actual `:root` block and against `lib/build-demo.js` (which uses the real tokens correctly) — confirmed the numbered `--stone-NNN` dark-theme scale was never defined anywhere in this repo; it looks like it was carried over from a different design system during initial authoring and never verified against a real render. Fixed by using only tokens that exist, and locked in with two regression tests that fail if the wrong tokens are reintroduced.
+
+**Open Discussions as its own category** gives "we've recognized this but haven't decided" a home distinct from either techDebt (decided fix, not yet built) or enhancements (decided direction, not yet built) — both of Victor's speculative asks this round (build-time LLM synthesis, chat interface) are genuine open questions with real tradeoffs, not yet-scoped features, so they belong here rather than as premature enhancement tickets or unbuilt code.
+
+**On the LLM-synthesis idea specifically:** rather than wiring an API call into `lib/build-ecosystem-hub.js` (which would introduce a secret into CI, non-deterministic build output, and per-build cost — three things every other build script in this repo deliberately avoids; they're all pure functions of their input files with exactly-asserted test output), the reasoning is written out in od-002 and the practical alternative is implemented: `data/status/narrative.json`, updated by whichever Claude instance runs an architecture-review session — which is exactly what generated this session's `narrative.json` content. This is "cross-context synthesis across siloed JSON files" happening today, just session-triggered rather than build-triggered, keeping the pipeline's determinism intact.
+
+**On the chat/local-model interface:** captured as od-003 with the real scoping question (separate project vs. folded into this repo) and a suggested first step (design the escalation-to-Claude handoff protocol before any hosting decision) — deliberately not built, since it's infrastructure with no existing foundation in this repo, not a page addition.
+
+**Lattice coverage as a visible stat**, not just a JSON field: `buildLatticeCoverage()` computes mapped-vs-total eligible files and `pages/ecosystem-hub.html` shows it as a stat tile ("14/32") — a direct, low-effort way to make the LATTICE system's own completeness visible to whoever's looking, tying back into Session 013–014's work rather than treating it as separate.
+
+Verified visually with a local Playwright screenshot (CDN requests routed to local files via `page.route()`, since the sandbox has no live network access to jsdelivr) — confirmed both the un-rendered structural layout and, after pointing a second local server at `/Vextreme/data/...`, the fully data-populated page, including the Open Discussions panel expanded to check the new `considerations` bullet-list rendering.
+
+### Mistakes made
+
+- None new this session — the contrast bug was pre-existing (introduced whenever `build-ecosystem-hub.js` was first written, undetected until Victor actually looked at the rendered page).
+- Used a temporary `playwright-core` install for the visual check; cleaned up (`node_modules`, `package-lock.json` removed) since this repo has no runtime npm dependencies and none should be introduced by a manual verification step.
+
+### Assumptions that held
+
+- 189/189 tests passing (179 prior + 10 new in tests/12, plus additions to tests/10).
+- `lib/build-demo.js`'s CSS token usage was confirmed correct by inspection — used as the reference pattern for the rewrite.
+- Live-fetch architecture (index.json + status.json + now narrative.json, all fetched client-side) continues to keep `pages/ecosystem-hub.html` fresh without needing every session to re-run its generator — confirmed by the Playwright check rendering current data despite the HTML page itself not having been touched in this exact test run.
+
+### Assumptions that need verification
+
+- [ ] `pages/ecosystem-hub.html` is not wired into `.github/workflows/build-index.yml` — regenerating it after future `lib/build-ecosystem-hub.js` structural changes is still a manual step (data changes don't need this, since they're fetched live)
+- [ ] The visual check used a mocked CDN (local files served in place of jsdilvr); the actual jsdelivr-served CSS/JS should be spot-checked once this merges and propagates
+- [ ] `narrative.json`'s `lastSynthesizedAt`/`Session` fields will go stale the moment this session ends until a future instance updates them — there's no automated staleness warning yet
+
+### Open work at session end
+
+- [ ] pe-009: expand LATTICE coverage past 20 nodes — lib/logger.js, lib/logger-codes.js next
+- [ ] od-001, od-002, od-003 remain genuinely open — no action expected until Victor or a future session picks one to decide
+- [ ] Consider a staleness indicator on `narrative.json` (e.g. flag if `lastSynthesizedSession` is more than N sessions behind INDEX.md's current session)
+- [ ] Activate arc-nav for `claude-answers-the-doubt` (carried, pe-002)
+- [ ] Investigate `restoration-protocol` — still on shell.js (carried)
+
+### State of the system at session end
+
+`pages/ecosystem-hub.html` now renders correctly (contrast bug fixed, regression-tested) and carries three new things: a visible lattice-coverage stat, a synthesized "Current Architecture" narrative section citing its own author/session, and an "Open Discussions" category leading System Health — a place for architectural questions that are recognized but not yet decided, holding both of this session's speculative asks (build-time AI synthesis, future chat interface) with real reasoning rather than either building them unreviewed or dropping them. 189/189 tests passing.
+
 <!-- [VXG RealForever] -->

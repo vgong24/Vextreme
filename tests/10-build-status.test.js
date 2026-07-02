@@ -17,7 +17,7 @@ const assert   = require('node:assert/strict');
 const fs       = require('fs');
 const path     = require('path');
 
-const { buildTranslationNotices, buildStatusRollup, countOpen } = require('../lib/build-status');
+const { buildTranslationNotices, buildStatusRollup, countOpen, buildLatticeCoverage } = require('../lib/build-status');
 
 const ROOT = path.join(__dirname, '..');
 
@@ -95,10 +95,11 @@ test('BUILD-STATUS: production gaps sort before fixture gaps', () => {
 // ── 2. buildStatusRollup ─────────────────────────────────────────────────────
 
 const SAMPLE_NOTICES = {
-  translation:  buildTranslationNotices(SAMPLE_MANIFEST, SAMPLE_EN, ['en', 'ja'], DEMO_SCOPES),
-  techDebt:     [{ id: 'td-001', title: 'Test debt', priority: 'high' }],
-  enhancements: [{ id: 'pe-001', title: 'Test enhancement', priority: 'low' }],
-  assumptions:  [{ id: 'as-001', claim: 'Test assumption', priority: 'medium' }],
+  translation:     buildTranslationNotices(SAMPLE_MANIFEST, SAMPLE_EN, ['en', 'ja'], DEMO_SCOPES),
+  techDebt:        [{ id: 'td-001', title: 'Test debt', priority: 'high' }],
+  enhancements:    [{ id: 'pe-001', title: 'Test enhancement', priority: 'low' }],
+  assumptions:     [{ id: 'as-001', claim: 'Test assumption', priority: 'medium' }],
+  openDiscussions: [{ id: 'od-001', title: 'Test discussion', priority: 'medium' }],
 };
 
 test('BUILD-STATUS: buildStatusRollup returns object with _meta and notices', () => {
@@ -132,8 +133,40 @@ test('BUILD-STATUS: rollup preserves techDebt items', () => {
 
 test('BUILD-STATUS: rollup totalOpen counts genuine translation + other categories', () => {
   const result = buildStatusRollup(SAMPLE_NOTICES, { commit: 'test' });
-  // 1 genuine translation + 1 techDebt + 1 enhancement + 1 assumption = 4
-  assert.equal(result._meta.totalOpen, 4);
+  // 1 genuine translation + 1 techDebt + 1 enhancement + 1 assumption + 1 openDiscussion = 5
+  assert.equal(result._meta.totalOpen, 5);
+});
+
+test('BUILD-STATUS: rollup preserves openDiscussions items', () => {
+  const result = buildStatusRollup(SAMPLE_NOTICES, { commit: 'test' });
+  assert.equal(result.notices.openDiscussions.items.length, 1);
+  assert.equal(result.notices.openDiscussions.items[0].id, 'od-001');
+  assert.equal(result.notices.openDiscussions.label, 'Open Discussions');
+});
+
+test('BUILD-STATUS: rollup._meta.lattice passes through meta.lattice, defaults to null', () => {
+  const withLattice = buildStatusRollup(SAMPLE_NOTICES, { commit: 'test', lattice: { mappedNodes: 3, totalFiles: 10, coveragePct: 30 } });
+  assert.deepEqual(withLattice._meta.lattice, { mappedNodes: 3, totalFiles: 10, coveragePct: 30 });
+
+  const withoutLattice = buildStatusRollup(SAMPLE_NOTICES, { commit: 'test' });
+  assert.equal(withoutLattice._meta.lattice, null);
+});
+
+// ── 2b. buildLatticeCoverage ────────────────────────────────────────────────────
+
+test('BUILD-STATUS: buildLatticeCoverage counts eligible .js nodes vs total eligible .js files', () => {
+  const latticeMap = { nodes: { 'lib/a.js': {}, 'lib/b.js': {}, 'data/nodes.json': {}, 'sw.js': {}, 'dist/x.js': {} } };
+  const files = ['lib/a.js', 'lib/b.js', 'lib/c.js', 'widgets/d.js'];
+  const result = buildLatticeCoverage(latticeMap, files);
+  // eligible nodes: lib/a.js, lib/b.js (data/nodes.json is .json, sw.js and dist/x.js excluded) = 2
+  assert.equal(result.mappedNodes, 2);
+  assert.equal(result.totalFiles, 4);
+  assert.equal(result.coveragePct, 50);
+});
+
+test('BUILD-STATUS: buildLatticeCoverage handles zero total files without dividing by zero', () => {
+  const result = buildLatticeCoverage({ nodes: {} }, []);
+  assert.equal(result.coveragePct, 0);
 });
 
 // ── 3. countOpen ─────────────────────────────────────────────────────────────
@@ -144,12 +177,17 @@ test('BUILD-STATUS: countOpen returns 0 for empty notices', () => {
 
 test('BUILD-STATUS: countOpen excludes intentional fixtures', () => {
   const notices = {
-    translation:  [{ intentional: false }, { intentional: true }],
-    techDebt:     [],
-    enhancements: [],
-    assumptions:  [],
+    translation:     [{ intentional: false }, { intentional: true }],
+    techDebt:        [],
+    enhancements:    [],
+    assumptions:     [],
+    openDiscussions: [],
   };
   assert.equal(countOpen(notices), 1);
+});
+
+test('BUILD-STATUS: countOpen includes openDiscussions', () => {
+  assert.equal(countOpen({ openDiscussions: [{ id: 'od-001' }, { id: 'od-002' }] }), 2);
 });
 
 test('BUILD-STATUS: countOpen handles missing categories', () => {
@@ -173,20 +211,50 @@ test('BUILD-STATUS: data/status.json is valid JSON with expected shape', () => {
   assert.ok(typeof status._meta.totalOpen === 'number', 'totalOpen must be number');
 });
 
-test('BUILD-STATUS: data/status.json has all four notice categories', () => {
+test('BUILD-STATUS: data/status.json has all five notice categories', () => {
   const status = JSON.parse(fs.readFileSync(STATUS_PATH, 'utf8'));
   const n = status.notices;
-  assert.ok(n.translation,  'must have translation notices');
-  assert.ok(n.techDebt,     'must have techDebt notices');
-  assert.ok(n.enhancements, 'must have enhancements notices');
-  assert.ok(n.assumptions,  'must have assumptions notices');
+  assert.ok(n.translation,     'must have translation notices');
+  assert.ok(n.techDebt,        'must have techDebt notices');
+  assert.ok(n.enhancements,    'must have enhancements notices');
+  assert.ok(n.assumptions,     'must have assumptions notices');
+  assert.ok(n.openDiscussions, 'must have openDiscussions notices');
 });
 
 test('BUILD-STATUS: data/status.json translation fixtures do not count toward totalOpen', () => {
   const status   = JSON.parse(fs.readFileSync(STATUS_PATH, 'utf8'));
   const n        = status.notices;
-  const computed = n.translation.count + n.techDebt.count + n.enhancements.count + n.assumptions.count;
+  const computed = n.translation.count + n.techDebt.count + n.enhancements.count + n.assumptions.count + n.openDiscussions.count;
   assert.equal(computed, status._meta.totalOpen, 'totalOpen must equal sum of category counts');
+});
+
+test('BUILD-STATUS: data/status.json._meta.lattice has mappedNodes/totalFiles/coveragePct', () => {
+  const status = JSON.parse(fs.readFileSync(STATUS_PATH, 'utf8'));
+  const lattice = status._meta.lattice;
+  assert.ok(lattice, 'must have _meta.lattice');
+  assert.equal(typeof lattice.mappedNodes, 'number');
+  assert.equal(typeof lattice.totalFiles, 'number');
+  assert.equal(typeof lattice.coveragePct, 'number');
+  assert.ok(lattice.mappedNodes <= lattice.totalFiles, 'mapped cannot exceed total');
+});
+
+test('BUILD-STATUS: data/status/open-discussions.json items all have required fields', () => {
+  const items = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'status', 'open-discussions.json'), 'utf8')).items;
+  for (const item of items) {
+    assert.ok(item.id,             `item must have id: ${JSON.stringify(item)}`);
+    assert.ok(item.title,          `item must have title: ${item.id}`);
+    assert.ok(item.description,    `item must have description: ${item.id}`);
+    assert.ok(Array.isArray(item.considerations) && item.considerations.length >= 2, `item must have >=2 considerations: ${item.id}`);
+    assert.ok(item.priority,       `item must have priority: ${item.id}`);
+  }
+});
+
+test('BUILD-STATUS: data/status/narrative.json has required fields', () => {
+  const narrative = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'status', 'narrative.json'), 'utf8'));
+  assert.ok(narrative.summary, 'must have summary');
+  assert.ok(Array.isArray(narrative.pipeline) && narrative.pipeline.length > 0, 'must have non-empty pipeline array');
+  assert.ok(narrative.lastSynthesizedBy, 'must have lastSynthesizedBy');
+  assert.ok(narrative.lastSynthesizedSession, 'must have lastSynthesizedSession');
 });
 
 test('BUILD-STATUS: data/status/tech-debt.json items all have required fields', () => {
