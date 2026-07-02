@@ -15,6 +15,7 @@
   /* Scope + category globals for fab-lang compatibility */
   window.VEX_STRING_SCOPES    = ["pages.claude-answers-the-doubt"];
   window.VEX_STRING_CATEGORY  = "production";
+  window.VEX_SUPPORTED_LANGS  = ["en","ja"];
 
 
 /* === feature: lang (fab-lang.js) === */

@@ -98,6 +98,15 @@ test('ASSEMBLER: output contains VEX_STRING_SCOPES and VEX_STRING_CATEGORY', () 
   assert.ok(script.includes('window.VEX_STRING_CATEGORY'), 'must set VEX_STRING_CATEGORY');
 });
 
+test('ASSEMBLER: output contains VEX_SUPPORTED_LANGS when provided', () => {
+  const script = assembleGodScript('test-slug', DEMO_VIEWMODEL, {
+    includeSourceComment: false,
+    supportedLangs: ['en', 'ja'],
+  });
+  assert.ok(script.includes('window.VEX_SUPPORTED_LANGS'), 'must set VEX_SUPPORTED_LANGS');
+  assert.ok(script.includes('"en"') && script.includes('"ja"'), 'supported langs must appear in output');
+});
+
 test('ASSEMBLER: output is wrapped in an IIFE', () => {
   const script = assembleGodScript('test-slug', DEMO_VIEWMODEL, { includeSourceComment: false });
   assert.ok(script.includes('(function ()'), 'must be wrapped in an IIFE');
