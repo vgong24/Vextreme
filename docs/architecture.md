@@ -977,9 +977,8 @@ assumption it was meant to prevent.
 
 This documents the token contract as it actually exists — not an aspiration,
 not a rebrand. `data/status/open-discussions.json` od-005 tracks what's still
-undecided (dark mode as a real feature, deduplicating the repeated dark-panel
-block below); this file is the ground truth of what's already there, written
-down so nobody has to reverse-engineer it from five separate files again.
+undecided (a real dark-mode *toggle*, applied to pages that are currently
+light-only); this file is the ground truth of what's already there.
 
 `node lib/check-design-tokens.js` verifies every `var(--token)` reference in
 the repo resolves against one of the two families below. It found zero
@@ -988,11 +987,9 @@ violations as of the session that wrote this document — see
 
 ---
 
-## Two token families, not one
+## Two token families, both declared in one file
 
-**1. The global light theme — `styles/design-system.css`**
-
-The only file that declares a `:root` block meant to be shared. Nine tokens:
+**1. The global light theme — `:root` in `styles/design-system.css`**
 
 | Token | Value | Purpose |
 |---|---|---|
@@ -1007,64 +1004,55 @@ The only file that declares a `:root` block meant to be shared. Nine tokens:
 | `--mono` | `'IBM Plex Mono', monospace` | Code, stats, meta, badges |
 
 Used by any file that `<link>`s `styles/design-system.css` — the God Script
-content pages (via the loader chain) and `pages/ecosystem-hub.html`. Also
-implicitly relied on by `styles/arc-nav.css`, `styles/site-nav.css`, and
-`styles/squarespace-overrides.css`, none of which declare their own tokens —
-they're loaded *by* `lib/vextreme.js` alongside `design-system.css`, never
-standalone, so their `var(--x)` references resolve against this same set.
+content pages (via the loader chain), `pages/ecosystem-hub.html`, and the
+dashboard pages below. Also implicitly relied on by `styles/arc-nav.css`,
+`styles/site-nav.css`, and `styles/squarespace-overrides.css`, none of which
+declare their own tokens — they're loaded *by* `lib/vextreme.js` alongside
+`design-system.css`, never standalone, so their `var(--x)` references
+resolve against this same set.
 
-**2. The local dark theme — repeated inline, not shared**
+**2. The dashboard dark theme — `[data-theme="dashboard"]` in the same file**
 
-Four generators define an identical `:root` block inline and never link
-`design-system.css` at all: `lib/build-archives.js`, `lib/build-demo.js`,
-`lib/build-specimens.js`, and `pages/specimen-architectural-wisdoms.html`
-(which adds one extra token, `--blue`, for a secondary accent):
+| Token | Value | Purpose |
+|---|---|---|
+| `--bg` | `#0e0e0e` | Page background |
+| `--surface` | `#111111` | Card/box background, one step lighter than `--bg` — a distinction the light theme's single `--cream` doesn't make |
+| `--text` | `#e8e8e4` | Primary text |
+| `--muted` | `#6b6b6b` | Secondary text |
+| `--ember` | `#c8502a` | Accent — a different value from the light theme's `--ember`, tuned for a dark background |
+| `--border` | `#2a2a2a` | Hairline borders |
+| `--blue` | `#4a9eff` | Secondary accent, used only by `pages/specimen-architectural-wisdoms.html` |
+| `--mono` / `--sans` | same as family 1 | Typefaces |
 
-```css
-:root {
-  --bg:     #0e0e0e;
-  --surface:#111111;
-  --text:   #e8e8e4;
-  --muted:  #6b6b6b;
-  --ember:  #c8502a;
-  --border: #2a2a2a;
-  --mono:   'IBM Plex Mono', monospace;
-  --sans:   'IBM Plex Sans', sans-serif;
-}
-```
+Used by `lib/build-archives.js`, `lib/build-demo.js`, `lib/build-specimens.js`
+(and the specimen pages it generates), and `pages/specimen-architectural-wisdoms.html`
+— each opts in with `<html data-theme="dashboard">` plus a `<link>` to
+`design-system.css`, same as any light-theme page. Until Session 017 this was
+four identical `:root` blocks copy-pasted inline, one per file, verified as
+real duplication (not hypothetical) and tracked as td-007. Consolidating it
+into this one shared declaration was verified lossless — before/after
+Playwright screenshots of `pages/archives.html` and `pages/vextreme-demo.html`
+rendered pixel-identical — and confirmed by `lib/check-design-tokens.js`
+reporting zero violations both before and after. td-007 is closed.
 
-`lib/build-index-page.js` defines a fifth local `:root` block — same shape,
-light values instead of dark, and functionally a restatement of family 1's
-tokens under different names (`--bg` ≈ `--cream`, `--text` ≈ `--stone`):
-
-```css
-:root {
-  --bg:     #fafaf9;
-  --text:   #1c1917;
-  --muted:  #78716c;
-  --border: #e7e5e4;
-  --ember:  #b45830;
-  --surface:#ffffff;
-  --mono:   'IBM Plex Mono', monospace;
-  --serif:  'Source Serif 4', Georgia, serif;
-  --sans:   'IBM Plex Sans', sans-serif;
-}
-```
-
-This is real, verified duplication — five files, four of them byte-identical
-in their `:root` block — not a hypothetical. It's tracked as td-007, not
-fixed here: consolidating it means changing five generators' output, which
-deserves its own reviewed pass rather than riding along with a documentation
-PR. See od-005 for the sequencing reasoning.
+**`lib/build-index-page.js` remains a smaller, separate case.** It defines
+its own local `:root` with light values that are a renamed restatement of
+family 1 (`--bg` ≈ `--cream`, `--text` ≈ `--stone`), not a copy of family 2.
+Nothing else duplicates it, so it carries no drift risk the way the four
+dark-panel files did — it's a minor consistency opportunity (migrate it to
+link `design-system.css` directly and drop the renamed local copy), not
+tracked debt.
 
 ## The rule a file must satisfy
 
 A `var(--x)` reference is valid if `--x` is either:
 
-- declared in that file's own `:root` block, or
-- declared in `styles/design-system.css`'s `:root` block, **and** the file
-  actually `<link>`s that stylesheet (or is a `styles/*.css` companion file
-  that's always loaded alongside it by its loader).
+- declared in that file's own local `:root` block (rare now — only
+  `lib/build-index-page.js` still has one), or
+- declared in `styles/design-system.css`'s `:root` **or**
+  `[data-theme="dashboard"]` block, **and** the file actually `<link>`s that
+  stylesheet (or is a `styles/*.css` companion file that's always loaded
+  alongside it by its loader).
 
 A fallback value — `var(--x, #hex)` — does **not** satisfy this rule on its
 own. That's precisely the pattern that made half of Session 015's bug
@@ -1074,22 +1062,23 @@ same as no fallback: the token must actually resolve.
 
 ## Adding a token
 
-- **To the global set** (`styles/design-system.css`): confirm it's meant to
-  be shared across content pages before adding it — this file's `:root` is
-  the widest-blast-radius single edit point for typography/color in the
-  repo. Run `node lib/check-design-tokens.js` afterward; a removed or renamed
-  token will surface every file that broke.
-- **To a local dark-panel file**: prefer matching the existing four files'
-  values exactly unless there's a specific reason not to — the duplication is
-  tracked debt, not a template to diverge from further.
+- **To either shared family** (`styles/design-system.css`): confirm which
+  family it belongs to — this file's `:root` and `[data-theme="dashboard"]`
+  blocks are the widest-blast-radius single edit points for typography/color
+  in the repo. Run `node lib/check-design-tokens.js` afterward; a removed or
+  renamed token will surface every file that broke.
+- **A new dashboard-family page**: link `design-system.css`, set
+  `<html data-theme="dashboard">`, and use the family 2 tokens directly —
+  don't define a new local `:root` copy. That's the exact pattern td-007
+  existed to close.
 
 ## What's deliberately not here yet
 
-No dark-mode *toggle* exists — the "dark theme" above is a set of files
-permanently rendered dark, not a switchable mode applied to the light theme.
-Whether to build one, and whether to do it by finally consolidating family 2
-into `design-system.css` as a real second theme, is od-005's open question,
-not a decision made by writing this document.
+No dark-mode *toggle* exists — `[data-theme="dashboard"]` opts a page in
+permanently at build time, it isn't switched at runtime, and no light-themed
+page can become dark on demand (or vice versa). Whether to build that is
+od-005's remaining open question, unrelated to the token consolidation this
+document now describes as done.
 
 ---
 
