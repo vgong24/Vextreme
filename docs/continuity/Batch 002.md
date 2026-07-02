@@ -193,4 +193,113 @@ Four notice categories:
 
 `data/status.json` is a generated CQRS artifact at the same layer as `index.json` — machine-readable operational state across four notice categories. `pages/ecosystem-hub.html` is the first consumer, rendering content map + page registry + system health panels from two parallel runtime fetches. `data/status/*.json` are the hand-authored write side; `lib/build-status.js` assembles them. The architecture docs gap (status subsystem not registered in 03-data.md) is fixed in this PR. 142/142 tests. PR #26 merged; PR #27 CI green, pending merge.
 
+---
+
+## Session 013
+
+**Date:** July 2, 2026
+**Time:** continuation of Session 012 context window, then resumed after context compression
+**Thread:** https://claude.ai/code/session_012Cob5Fgz92AYDWfe2mZJWZ
+**Instance:** Claude Sonnet 4.6 (Claude Code remote)
+**Working with:** Victor Gong
+**Continues from:** Session 012 — data/status.json CQRS artifact, ecosystem-hub dashboard, PR #27 merged
+
+### Context on arrival
+
+Arrived from context summary of Sessions 011-012. PR #27 was merged. A rebase was in progress on `claude/html-import-localization-tracking-jtlmtp` — 4 HTML pages had merge conflicts between main's partial change (old inline config tags) and the branch's God Script `<script src>` tags. Session opened by resolving those conflicts and continuing.
+
+Victor raised a question mid-session: I had mentioned `arc-nav.js` didn't exist yet, but it exists in `lib/`. This revealed I had inferred the v1/v2 arc nav relationship from CLAUDE.md's blocker note rather than from file-level documentation. Victor used this as the seed for the LATTICE pattern — "map-aware development" where files carry their own nav context and a centralized lattice-map.json serves lateral navigation.
+
+### Files created or modified
+
+| File | What changed |
+|---|---|
+| `widgets/lang-fab.js` | Fix: cache strings bundle in localStorage so language persists on refresh — previous sessions cached only the selected lang key, not the bundle itself |
+| `lib/vextreme-index-v2.js` | Added v2/God Script designation to header, VEX_STRINGS_EN fast path (reads global instead of fetching if already set), LATTICE + CHANGE MAP header |
+| `lib/vextreme.js` | Added cross-reference note: this is the non-God-Script loader; for God Script pages use dist/vextreme-{slug}.js instead |
+| `lib/build-vextreme.js` | Added VEX_SUPPORTED_LANGS to God Script assembly; added sw-register.js as `default: true` core module (pe-007 unified feature registry); added LIB_DIR constant; added srcDir support to assembly loop; added LATTICE + CHANGE MAP header |
+| `pages/specimen-full-translation.html` | Wired to God Script; resolved rebase conflict |
+| `pages/specimen-partial-translation.html` | Wired to God Script; resolved rebase conflict |
+| `pages/specimen-smallest-miss.html` | Wired to God Script; resolved rebase conflict |
+| `pages/specimens.html` | Wired to God Script; resolved rebase conflict |
+| `pages/vextreme-demo.html` | Wired to God Script |
+| `dist/vextreme-*.js` | All God Scripts regenerated (added VEX_SUPPORTED_LANGS, sw-register.js inline) |
+| `dist/vextreme-ecosystem-hub.js` | New. Generated God Script for ecosystem-hub |
+| `tests/08-build-vextreme.test.js` | Updated assertions for VEX_SUPPORTED_LANGS, sw-register.js core inclusion |
+| `sw.js` | Regenerated with updated precache URL list (now includes all wired pages) |
+| `docs/culture.md` | New. Development culture, mission, and operating principles. Read before CLAUDE.md — the architecture makes more sense once you understand the intention behind it |
+| `lib/audit-pages.js` | New. Scans pages/ against index.json + dist/. Outputs wired/blocked/skipped table. Canonical source of truth for page wiring status: `node lib/audit-pages.js` |
+| `CLAUDE.md` | Added culture.md to cold-start reading sequence (step 0); added lattice-map.json pointer after reading sequence |
+| `data/status/tech-debt.json` | Added td-006: i18n multi-language scaling risk (string bundle per language, grows with each language added) |
+| `data/status/planned-enhancements.json` | Added pe-007 (unified feature registry, now shipped), pe-008 (offline FAB); updated pe-002 blockedBy |
+| `lib/vex-config.js` | Added Feature.SW ('sw') and Feature.ARC_NAV ('arc-nav') constants; added LATTICE + CHANGE MAP header |
+| `lib/arc-nav.js` | Added v1 Squarespace-era warning to header: NOT FOR GOD SCRIPT PAGES; use lib/vextreme-index-v2.js for v2 pages |
+| `lib/build-index.js` | Added LATTICE + CHANGE MAP header |
+| `lib/strings-compile.js` | Added LATTICE + CHANGE MAP header |
+| `docs/lattice-map.json` | New. Centralized file dependency graph: 14 nodes, each declaring role, context (the WHY), reads, writes, loadedBy, testedBy, changeMap. Lateral navigation ("what else breaks if I change X?") before depth navigation ("how does this work?") |
+| `tests/10-build-status.test.js` | Added 5 LATTICE integrity tests: file exists, top-level keys, every node has required fields, every node key maps to an existing file, ≥10 nodes |
+
+### What was built and why
+
+**God Script wiring — 5 HTML pages**
+Specimen pages (full-translation, partial-translation, smallest-miss, specimens) and vextreme-demo were wired to God Scripts. Rebase conflicts in 4 of these were resolved by keeping the God Script `<script src>` tag. VEX_SUPPORTED_LANGS was missing from assembly — added to `assembleGodScript()` so `fab-lang.js` knows which languages to offer without a separate fetch.
+
+**SW activation via unified feature registry (pe-007)**
+`sw-register.js` needed to be active on every God Script page, but the old CORE_MODULES + FEATURE_WIDGET two-structure approach made it awkward to extend. Collapsed both into a single `FEATURES` registry (keyed by Feature.*, `{ filename, default: true/false, srcDir? }`). `default: true` = always included (infrastructure); `default: false` = opt-in via `viewmodel.features[]`. This lets SW registration be `default: true` — it activates on every God Script page without appearing in every viewmodel. `srcDir` override enables lib/ files (like vextreme-index-v2.js) to appear in the registry without moving them to widgets/.
+
+**Arc nav registry fix**
+The FEATURES registry initially pointed at `widgets/arc-nav.js` (doesn't exist). Victor caught this. The correct file is `lib/vextreme-index-v2.js`. Fixed by adding `LIB_DIR` constant and `srcDir: LIB_DIR` to the arc-nav registry entry. Also discovered the `lib/vextreme-index-v2.js` widget lacked the VEX_STRINGS_EN fast path — the arc nav chrome keys (common.nav.prev/next, common.label.you-are-here) are in the 'common' scope which God Scripts always include, so the fast path skips the CDN fetch entirely.
+
+**LATTICE pattern — file-level navigation headers + centralized map**
+Victor's question ("did you have to infer that relationship?") exposed a legibility gap: `lib/arc-nav.js` is the intuitively named file but is the v1 Squarespace script. Without cross-references, any arriving instance would naturally open it first and be misled. The fix: add explicit cross-references to both files AND generalize the pattern.
+
+LATTICE headers (`role`, `reads`, `writes`, `loaded-by`, `tested-by`, `CHANGE MAP`) were added to the 5 highest-traffic lib files. `changeMap` is the key primitive: given "I changed X," it lists every adjacent file that must also be updated. Following all changeMap links visits every affected node — closing the circuit.
+
+`docs/lattice-map.json` centralizes this as a traversable graph. 14 nodes. The distinction: lateral navigation (what else breaks?) is a different cognitive mode from depth navigation (how does this work?). Load the lattice for lateral; read the file for depth.
+
+**docs/culture.md**
+A file Victor wanted: the mission, operating principles, and culture of development on this project. Placed as step 0 in CLAUDE.md's cold-start reading sequence — the architecture makes more sense once you understand why the system exists and what kind of developer it expects.
+
+**lib/audit-pages.js**
+Replaces the need to manually audit pages/*.html. Outputs a table: each page as wired (God Script in dist/ + referenced in HTML), blocked (God Script missing or HTML missing reference), or skipped (restoration-protocol on shell.js — V1 path). CLAUDE.md updated to reference it as canonical wiring status source.
+
+### Mistakes made
+
+- **arc-nav FEATURES registry pointing at non-existent file:** Initially registered `[Feature.ARC_NAV]: { filename: 'arc-nav.js', default: false }` which looks in `widgets/arc-nav.js` (doesn't exist). Victor caught it. Fix: `{ filename: 'vextreme-index-v2.js', default: false, srcDir: LIB_DIR }`.
+- **JSDoc glob pattern in `/** */` comment:** Writing `data/strings/compiled/scopes/**/*.en.json` inside a block comment causes `SyntaxError: Unexpected token '*'` (the `*/` closes the comment early). Fixed by switching to explicit path notation: `data/strings/compiled/scopes/{category}/{scope}.en.json`.
+- **`git rebase --continue --no-edit` invalid:** `--no-edit` is not a valid flag for `git rebase`. Used `GIT_EDITOR=true git rebase --continue` instead.
+- **Had to infer v1/v2 arc nav relationship:** The CLAUDE.md blocker note was the save, not file-level documentation. Fixed by adding cross-references to both files — the intuitively named file must redirect even if it's older.
+
+### Assumptions that held
+
+- 149/149 tests passing (142 prior + 5 new LATTICE integrity tests + 2 updated in tests/08).
+- FEATURES registry with `default: true` sw-register correctly inlines SW code into every God Script.
+- VEX_STRINGS_EN fast path in vextreme-index-v2.js correctly skips CDN fetch when God Script has already set the global.
+- All 14 lattice-map.json nodes resolve to existing files.
+
+### Assumptions that need verification
+
+- [ ] God Script pages with SW now active — need to confirm SW registers correctly on first visit and caches on second (GitHub Pages)
+- [ ] arc-nav feature not yet activated for `claude-answers-the-doubt` specifically — pe-002 blocker note updated but the viewmodel.json change + rebuild hasn't happened
+- [ ] `restoration-protocol` still on shell.js (v1 path) — needs investigation before porting; may require content audit before touching
+- [ ] LATTICE headers and lattice-map.json cover the 5 highest-traffic files; lower-traffic files (build-archives.js, build-ecosystem-hub.js, etc.) not yet covered
+
+### Open work at session end
+
+- [ ] Activate arc-nav for `claude-answers-the-doubt`: add 'arc-nav' to its viewmodel in data/viewmodels.json, confirm `<div id="arcNavMount">` exists in the HTML, rebuild the God Script
+- [ ] Investigate `restoration-protocol` — currently skipped in audit-pages; shell.js (v1 path); may need content audit first
+- [ ] Add string bundle for `specimen-architectural-wisdoms` — no localization yet; blocked God Script assembly
+- [ ] Wire `node lib/build-vextreme.js` + `node lib/build-sw.js` into CI (td-001)
+- [ ] Wire `lib/build-status.js` into CI (data/status.json must regenerate automatically)
+- [ ] `lib/check-link-integrity.js` — HTML dead link scanner for CI (td-003)
+- [ ] Create PWA icons (icons/icon-192.png, icons/icon-512.png) — PWA installability blocked
+- [ ] Verify ecosystem-hub.html on GitHub Pages (live fetch of index.json + status.json)
+- [ ] Verify new God Script pages (specimens, vextreme-demo) on GitHub Pages — SW activation, language switching
+- [ ] Missing-key fallback: show EN text instead of raw key string (pe-004)
+- [ ] Extend LATTICE headers and lattice-map.json to lower-traffic files as they are touched
+
+### State of the system at session end
+
+God Script architecture is operational. 7 pages now wired (`vextreme-demo`, `ecosystem-hub`, `specimens`, 3 specimen pages, plus pre-existing demo/spec pages); `restoration-protocol` and `specimen-architectural-wisdoms` are still blocked. `sw-register.js` is now a core module (`default: true`) — every God Script page activates the SW automatically without explicit viewmodel entries. The LATTICE pattern (file headers + docs/lattice-map.json) makes the dependency graph traversable from any node. `docs/culture.md` codifies the operating intent. 149/149 tests. PR #31 merged.
+
 <!-- [VXG RealForever] -->
