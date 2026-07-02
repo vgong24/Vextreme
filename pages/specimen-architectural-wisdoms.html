@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vextreme — Specimen: Architectural Wisdoms</title>
+<style>
+  :root {
+    --bg:     #0e0e0e;
+    --surface:#111111;
+    --text:   #e8e8e4;
+    --muted:  #6b6b6b;
+    --ember:  #c8502a;
+    --blue:   #4a9eff;
+    --border: #2a2a2a;
+    --mono:   'IBM Plex Mono', monospace;
+    --sans:   'IBM Plex Sans', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); padding: 48px 24px 96px; max-width: 920px; margin: 0 auto; line-height: 1.6; }
+  .site-header { margin-bottom: 16px; }
+  .site-title  { font-size: 13px; font-family: var(--mono); color: var(--ember); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  h1 { font-size: 26px; font-weight: 500; margin-bottom: 8px; }
+  .subtitle { color: var(--muted); font-size: 15px; margin-bottom: 40px; max-width: 700px; }
+  section { margin-bottom: 56px; border-top: 1px solid var(--border); padding-top: 32px; }
+  h2 { font-size: 16px; font-weight: 500; color: var(--ember); margin-bottom: 4px; letter-spacing: 0.03em; }
+  .decision-id { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 20px; }
+  p  { font-size: 14px; color: var(--text); max-width: 720px; margin-bottom: 10px; }
+
+  /* Decision cards — before / after split */
+  .decision-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0;
+  }
+  @media (max-width: 640px) {
+    .decision-card { grid-template-columns: 1fr; }
+  }
+  .decision-before,
+  .decision-after {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.7;
+    white-space: pre;
+    overflow-x: auto;
+  }
+  .decision-before { border-left: 4px solid var(--ember); }
+  .decision-after  { border-left: 4px solid var(--blue); }
+  .decision-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    color: var(--muted);
+  }
+  .decision-label.before { color: var(--ember); }
+  .decision-label.after  { color: var(--blue);  }
+  .decision-code { color: var(--muted); }
+  .decision-highlight { color: var(--text); }
+  .decision-good  { color: var(--blue); }
+  .decision-warn  { color: var(--ember); }
+
+  /* Why + lesson strip */
+  .decision-why {
+    grid-column: 1 / -1;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-top: 4px;
+    font-size: 13px;
+    color: var(--text);
+  }
+  .decision-why strong { color: var(--ember); }
+  .decision-lesson {
+    grid-column: 1 / -1;
+    font-style: italic;
+    color: var(--muted);
+    font-size: 13px;
+    text-align: center;
+    padding: 12px;
+    border-top: 1px solid var(--border);
+    margin-top: 4px;
+  }
+  .decision-lesson em { color: var(--text); }
+
+  .links { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+  .links a { color: var(--ember); text-decoration: none; font-size: 14px; }
+  .links a:hover { text-decoration: underline; }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="site-header">
+  <div class="site-title" data-i18n="common.label.site-title">Vextreme</div>
+  <h1>Architectural Wisdoms</h1>
+  <div class="subtitle">Four decisions that shaped the build system. Each one is a before/after of what changed and why. These are not guidelines — they are the system's skeleton.</div>
+</header>
+
+<!-- Decision 1: Multiple Files → God Script -->
+<section id="decision-1">
+  <h2>From Multiple Files to God Script</h2>
+  <div class="decision-id">decision-1 · PR #24 · session 011 · lesson: multiple-files-to-god-script</div>
+  <div class="decision-card">
+    <div class="decision-before">
+      <div class="decision-label before">Before · PR #19</div>
+<span class="decision-warn">page.html</span>
+├── shell.js        ← fetch #2
+├── vextreme.js     ← fetch #3
+├── lang-fab.js     ← fetch #4
+├── demo-fab.js     ← fetch #5
+└── scope bundles   ← fetch #6–7
+
+Total: 5–7 requests
+Latency: ~200ms
+Each fetch = a failure point</div>
+    <div class="decision-after">
+      <div class="decision-label after">After · PR #24</div>
+<span class="decision-good">page.html</span>
+└── vextreme-{slug}.js  ← fetch #2
+    ├── viewmodel (baked in)
+    ├── EN strings (baked in)
+    ├── fab-lang.js
+    └── fab-demo.js
+
+Total: 1 request
+Latency: ~100ms
+EN strings: zero fetch</div>
+    <div class="decision-why">
+      <strong>Why:</strong> Multiple files = multiple requests = multiple failure points. Each fetch is a round-trip that can time out, return stale data, or silently fail. Build-time assembly eliminates all of that for EN.
+    </div>
+    <div class="decision-lesson">
+      <em>"The build script is the assembler. The browser receives the output."</em>
+    </div>
+  </div>
+</section>
+
+<!-- Decision 2: Magic Strings → Named Constants -->
+<section id="decision-2">
+  <h2>From Magic Strings to Named Constants</h2>
+  <div class="decision-id">decision-2 · PR #20 · session 010 · lesson: magic-strings-to-constants</div>
+  <div class="decision-card">
+    <div class="decision-before">
+      <div class="decision-label before">Before · PR #19</div>
+<span class="decision-warn">window.VEX_STRING_CATEGORY = 'demo';</span>
+
+<span class="decision-code">// 'demo' is a magic string
+// IDE can't navigate to its meaning
+// Typos fail silently
+// Change 'demo' everywhere = grep hunt</span></div>
+    <div class="decision-after">
+      <div class="decision-label after">After · PR #20</div>
+<span class="decision-good">window.VEX_STRING_CATEGORY =
+  Category.DEMO;</span>
+
+<span class="decision-code">// Ctrl+click DEMO → definition
+// Definition explains what it means
+// Build validates against constants
+// Change 'demo' → change one file</span></div>
+    <div class="decision-why">
+      <strong>Why:</strong> String values are irrelevant. Variable names are intentions. <code>Category.DEMO</code> is IDE-navigable: Ctrl+click reaches the definition, which explains the category's meaning, valid values, and constraints. A typo in a string fails silently. A typo in a constant name is a syntax error.
+    </div>
+    <div class="decision-lesson">
+      <em>"The variable name is the intention. The string value is irrelevant."</em>
+    </div>
+  </div>
+</section>
+
+<!-- Decision 3: Hunting → Blueprint -->
+<section id="decision-3">
+  <h2>From Hunting to Blueprint</h2>
+  <div class="decision-id">decision-3 · PR #22 · session 011 · lesson: hunting-to-blueprint</div>
+  <div class="decision-card">
+    <div class="decision-before">
+      <div class="decision-label before">Before · PR #21</div>
+To add a feature:
+<span class="decision-warn">1. Read strings-compile.js
+2. Read build-specimens.js
+3. Read lang-fab.js
+4. Read demo-fab.js
+5. Infer the pattern
+6. Hope you didn't miss anything</span>
+
+Time: 30 minutes
+Errors: likely</div>
+    <div class="decision-after">
+      <div class="decision-label after">After · PR #22</div>
+To add a feature:
+<span class="decision-good">1. Read blueprint.json
+2. Add entry to config/features/
+3. Done</span>
+
+Time: 5 minutes
+Errors: caught by validate-blueprint.js</div>
+    <div class="decision-why">
+      <strong>Why:</strong> Adjacent code inference is error-prone. Each file shows only part of the contract. The blueprint makes the full contract explicit in one place — what exists, what's required, how to extend. Validation catches mistakes before they reach CI.
+    </div>
+    <div class="decision-lesson">
+      <em>"The blueprint is the map. The code is the territory. Read the map first."</em>
+    </div>
+  </div>
+</section>
+
+<!-- Decision 4: JSON Keys Are Strings -->
+<section id="decision-4">
+  <h2>JSON Keys Are Strings — The Mitigation Is Validation</h2>
+  <div class="decision-id">decision-4 · PR #24 · session 011 · lesson: json-keys-are-strings</div>
+  <div class="decision-card">
+    <div class="decision-before">
+      <div class="decision-label before">The problem</div>
+<span class="decision-code">// Named constants work in JavaScript:
+const cat = Category.DEMO; // ✅</span>
+
+<span class="decision-warn">// JSON has no symbols, no enums:
+{ "category": "demo" }  // ← raw string</span>
+
+<span class="decision-code">// If slug renames → index.json stale
+// If build fails → silent mismatch
+// No type error. No warning.</span></div>
+    <div class="decision-after">
+      <div class="decision-label after">The mitigation</div>
+<span class="decision-good">// check-key-alignment.js on every PR:</span>
+
+<span class="decision-code">nodes: 88 total, 88 in index ✅
+arcs:  16 total, 16 in index ✅</span>
+
+<span class="decision-good">// If stale:
+missingFromIndex: ["new-slug"]
+extraInIndex:     ["old-slug"]</span>
+
+<span class="decision-code">// Non-blocking — informational.
+// Run build-index.js to fix.</span></div>
+    <div class="decision-why">
+      <strong>Why:</strong> JSON is string-based. Keys are strings. This is unavoidable — it's a format constraint, not an architecture flaw. The response is validation, not elimination. A non-blocking CI check posts a key alignment report on every PR, catching drift before it causes confusion.
+    </div>
+    <div class="decision-lesson">
+      <em>"JSON is string-based. Keys are strings. This is unavoidable. The mitigation is validation, not elimination."</em>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="links">
+    <a href="https://vgong24.github.io/Vextreme/pages/specimens.html" data-i18n="specimens.link.back">← Back to specimens</a>
+  </div>
+</section>
+<script>
+  window.VEX_STRING_CATEGORY = 'demo';
+  window.VEX_STRING_SCOPES = ["pages.specimen-architectural-wisdoms","specimens"];
+</script>
+<script src="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/widgets/fab-lang.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/widgets/fab-demo.js"></script>
+</body>
+</html>
+<!-- [VXG RealForever] -->

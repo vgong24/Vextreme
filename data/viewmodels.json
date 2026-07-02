@@ -30,5 +30,11 @@
     "template": "specimen-page",
     "scopes": ["pages.specimen-smallest-miss", "specimens"],
     "features": ["lang", "demo", "spiral-fab"]
+  },
+  "specimen-architectural-wisdoms": {
+    "category": "demo",
+    "template": "specimen-page",
+    "scopes": ["pages.specimen-architectural-wisdoms", "specimens"],
+    "features": ["lang", "demo", "spiral-fab"]
   }
 }
