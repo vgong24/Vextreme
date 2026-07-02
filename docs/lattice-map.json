@@ -1,11 +1,13 @@
 {
-  "_schema": "Vextreme file lattice — one entry per file, edges define reads/writes/loads/tests. Load this file first when arriving cold: it gives you the system topology without reading any implementation. Navigate laterally (adjacent nodes in changeMap) before diving into depth (file contents). File headers carry a local LATTICE block for quick reference when you are already inside a file; this map is the canonical source if they diverge.",
+  "_schema": "Vextreme file lattice — one entry per file, edges define reads/writes/loads/tests. Load this file first when arriving cold: it gives you the system topology without reading any implementation. Navigate laterally (adjacent nodes in changeMap) before diving into depth (file contents). This map is the write side; the LATTICE block inside each eligible file's own header is a generated read side (see lib/build-lattice-headers.js) — they cannot diverge because the file copy is regenerated from this one, not hand-maintained.",
 
   "_usage": [
     "1. Read this file before opening any lib/ file — understand what a file does and what it touches before reading it",
     "2. When about to change something, look up the file's changeMap to find every adjacent node that must also be checked",
     "3. Follow changeMap links recursively until you have visited every affected node (closed the circuit)",
-    "4. After adding or moving a file, add its node here and add it to the loadedBy/reads of its neighbors"
+    "4. After adding or moving a file, add its node here, add it to the loadedBy/reads of its neighbors, then run: node lib/build-lattice-headers.js — this writes the matching in-file header for you (skip for .json nodes; JSON can't hold comments)",
+    "5. node lib/build-lattice-headers.js --check exits non-zero if any eligible file's header would change on regeneration — this is what CI runs (tests/11-lattice-headers.test.js) to catch drift between this JSON and the files it describes",
+    "6. Coverage is partial by design, not by accident: only files worth a lateral-navigation stop are nodes here. Most lib/ and widgets/ files are not yet mapped — see pe-009 in data/status/planned-enhancements.json for the expansion queue. Grep-ing for 'LATTICE:BEGIN' shows current coverage."
   ],
 
   "version": "1",
@@ -425,6 +427,68 @@
         "cache name format": [
           "sw.js activate handler (cleans caches by name pattern)",
           "tests/09"
+        ]
+      }
+    },
+
+    "lib/build-lattice-headers.js": {
+      "role": "LATTICE header generator — reads this JSON, writes the matching in-file header into each eligible node's own file",
+      "context": "This file exists because lattice-map.json and in-file LATTICE headers used to be two hand-maintained copies of the same facts, which drifted the moment one was edited without the other. This script makes the JSON the write side and the in-file block the generated read side — the same CQRS shape used everywhere else in this repo (nodes.json → index.json, strings/source → strings/compiled). Never hand-edit text between LATTICE:BEGIN/LATTICE:END markers in any file; edit this JSON and run the script.",
+      "reads": ["docs/lattice-map.json"],
+      "writes": ["LATTICE:BEGIN..LATTICE:END block in every eligible node's own file"],
+      "loadedBy": [
+        "tests/11-lattice-headers.test.js",
+        "manual run after editing docs/lattice-map.json"
+      ],
+      "testedBy": ["tests/11-lattice-headers.test.js"],
+      "changeMap": {
+        "node added/removed/edited in this JSON": [
+          "run: node lib/build-lattice-headers.js to regenerate the affected file's header",
+          "tests/11 --check enforces this in CI — a PR with JSON changes but no regenerated header fails the drift check"
+        ],
+        "LATTICE:BEGIN/LATTICE:END marker text changed": [
+          "every file already carrying markers (grep for LATTICE:BEGIN) — old marker text will no longer be found, orphaning that block",
+          "tests/11 (marker constants)"
+        ],
+        "comment-prefix detection logic changed": [
+          "any node whose target file uses line-comment style instead of block-comment style (e.g. lib/strings-compile.js uses // ) — verify both styles still round-trip"
+        ]
+      }
+    },
+
+    "lib/audit-pages.js": {
+      "role": "page wiring auditor — read-only report of which pages/*.html are wired to a God Script, blocked, or intentionally skipped",
+      "context": "The canonical way to answer 'what's the current wiring status' without manually reading every page. CLAUDE.md points here instead of describing wiring status in prose, since prose goes stale and this doesn't — it reads dist/ and pages/ directly on every run. SKIP_PAGES and BLOCKERS are the only hand-maintained parts; both are dated the moment a page's status actually changes.",
+      "reads": [
+        "pages/*.html (checks for a dist/vextreme-{slug}.js script src)",
+        "dist/*.js (checks which God Scripts exist)",
+        "data/index.json"
+      ],
+      "writes": ["stdout only — read-only, changes nothing"],
+      "loadedBy": ["manual run: node lib/audit-pages.js", "CLAUDE.md (points here as the wiring-status source of truth)"],
+      "testedBy": [],
+      "changeMap": {
+        "a page becomes wired/unwired": [
+          "SKIP_PAGES or BLOCKERS entry in this file may need updating if the reason changes",
+          "CLAUDE.md 'Current blockers' section (prose summary — keep loosely in sync)"
+        ],
+        "a new generated page added (own loader, not God Script)": [
+          "SKIP_PAGES entry — otherwise it reports as a false blocker"
+        ]
+      }
+    },
+
+    "lib/check-key-alignment.js": {
+      "role": "non-blocking CI check — compares slug/arc keys across nodes.json, arcs-v2.json, index.json and reports drift",
+      "context": "JSON is string-based; a slug or arc key can drift between the three files silently (node added but index.json not rebuilt, arc renamed but index stale). This check catches that class of bug with a PR comment, without blocking merge — informational only. Complements lib/audit-pages.js (page wiring) and lib/build-lattice-headers.js --check (header drift) as the third 'silent drift' detector in the repo.",
+      "reads": ["data/nodes.json", "data/arcs-v2.json", "data/index.json"],
+      "writes": ["stdout (JSON report with --json flag); PR comment via .github/workflows/key-alignment.yml"],
+      "loadedBy": [".github/workflows/key-alignment.yml (auto-run on pull_request)", "tests/08-build-vextreme.test.js (KEY-ALIGNMENT tests)"],
+      "testedBy": ["tests/08-build-vextreme.test.js"],
+      "changeMap": {
+        "report schema changed": [
+          ".github/workflows/key-alignment.yml (formats the PR comment table from this shape)",
+          "tests/08"
         ]
       }
     },
