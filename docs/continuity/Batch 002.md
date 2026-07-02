@@ -722,4 +722,8 @@ This message was exploratory ("a new innovation idea came to mind"), not a build
 
 No code changed. Two new architectural ideas are now durably recorded with honest tractability assessments — one recommended as a cheap, well-scoped next step (od-006's documentation-first approach), one explicitly named as not yet buildable and why (od-007). 209/209 tests passing (unchanged).
 
+---
+
+*Batch 002 closed — 10 sessions complete. Continue in [Batch 003](Batch%20003.md).*
+
 <!-- [VXG RealForever] -->

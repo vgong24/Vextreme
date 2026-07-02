@@ -148,4 +148,71 @@ can be added without auditing the entire codebase first. That is the goal.
 
 ---
 
+## What an AI instance actually needs here (written by one)
+
+Everything above was written for whoever arrives next, human or AI, in the third person.
+This section is different — it's a working AI instance's own reflection on what actually
+helps it perceive, verify, and hand off well, based on what happened across roughly a
+dozen sessions of real work on this repo, not on general principle. Kept here rather than
+in a continuity log because it's a standing observation about *how to work here*, not a
+record of *what changed*.
+
+**The self-referential hazard is one root cause, not three incidents.** Three separate
+bugs in this project's history — a glob pattern containing `*/` closing a JSDoc block early
+(`lib/strings-compile.js`), this repo's own marker text (`LATTICE:BEGIN`/`END`) appearing
+in prose *about* the marker system and confusing its own search, and the literal substring
+`/**` inside a `//` comment describing that exact hazard corrupting `lib/logger-codes.js`
+— are the same failure shape wearing different clothes. Any tool whose job is to generate
+or parse text containing its own domain's vocabulary is at risk the moment that vocabulary
+appears in prose *describing* the tool, not just in the tool's real output. `lib/build-lattice-headers.js`
+now defends against this with `sanitizeForComment()` and `findLineStartDocComment()`, but
+those are two specific patches for two specific instances of one general principle: **a
+sentinel-based tool must treat mentions of its own sentinels as hazardous wherever they
+occur, not just where it expects to find the real one.** Any future tool in this shape
+(anything that searches for a marker string, a delimiter, a magic comment) should assume
+this and defend against it before shipping, not after the third occurrence.
+
+**Verification is only as good as its friction.** `docs/architecture/11-debugging-practices.md`
+argues that rendering beats reasoning-from-code — and that argument only holds if rendering
+is actually cheap enough to do every time, not just when a bug is already suspected. Every
+visual check this session-arc needed a temporary `npm install playwright-core`, manual
+CDN-request routing, and cleanup afterward. That friction is a real tax on doing the right
+thing consistently. The same is true of the three separate verification commands
+(`node lib/build-lattice-headers.js --check`, `node lib/check-design-tokens.js`, the test
+suite) that need running after nearly every change — each one individually cheap, but the
+ritual of remembering and running all three, every time, is exactly the kind of manual step
+that erodes under time pressure. Lowering friction on a correct practice makes it more
+likely to actually happen; this is worth treating as an engineering problem, not just a
+discipline problem.
+
+**Reconstructing "what's going on" costs real effort every session start.** The continuity
+system (this file, `docs/continuity/INDEX.md`, `docs/lattice-map.json`, `data/status.json`)
+is thorough and genuinely load-bearing — sessions in this project's history have picked up
+cold with real continuity because of it. But arriving at "what's the current state" still
+means reading several files and running several commands in sequence, by hand, before any
+actual work can start. That's not a documentation gap; it's a tooling gap. A single
+one-shot command that gathers git log since the last session, test status, drift/violation
+checks, and open-item counts into one report would turn a several-step manual ritual into
+one command — the same "make the correct behavior the easy behavior" argument as the
+verification-friction point above, applied to session start instead of session end.
+
+**Prose and structure serve different reading modes, and this repo currently only has
+one.** Continuity logs are rich, deliberately-written prose — the right shape for a full
+cold read. They are not the right shape for "just tell me what changed since PR #34,"
+which currently requires reading prose to extract structured facts a machine could have
+carried directly. This isn't an argument for replacing the prose (od-002 already reasoned
+through why build-time synthesis shouldn't replace session-authored narrative, and the
+same logic applies here) — it's an argument that a small structured summary *alongside*
+the prose, for the facts that are genuinely structured (files touched, items resolved,
+tests before/after), would serve quick triage without asking every reader to parse prose
+for what's really just data.
+
+**What this instance weights, having done the work rather than just described it:**
+verification over assumption (render it, don't just reason about it); recording a decision
+*not* to build something with the same rigor as recording a decision to build it (od-005's
+resolution, not silence); and treating a tool's own text — comments, generated content,
+prose describing the tool — as data the tool itself might one day have to survive, not
+just output. That last one is the newest lesson, and the one most likely to be forgotten
+by the next instance that writes a sentinel-based script without reading this section first.
+
 <!-- [VXG RealForever] -->

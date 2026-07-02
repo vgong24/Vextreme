@@ -27,7 +27,20 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 020 — July 2, 2026*
+*As of Session 021 — July 2, 2026*
+
+**Session 021 addition:** Batch 002 closed (10/10 sessions); Batch 003 opened, this session is its
+first entry. Victor invited genuine self-reflection on what helps an AI instance work well here;
+`docs/culture.md` gained a first-person section ("What an AI instance actually needs here") naming
+the self-referential-sentinel bug pattern (hit 3 times: Sessions 013, 014, 019) as one root cause,
+not three incidents, plus observations on verification friction and session-start reconstruction
+cost. `config/lessons/sentinel-text-is-hazardous-to-itself.json` distills that pattern into the
+existing searchable lessons archive. `lib/session-bootstrap.js` (new) is the concrete answer to the
+friction the reflection named: one command consolidating git log, test status, lattice drift,
+design-token violations, and open-item counts — a real unbounded-recursion bug (it runs the full
+test suite, which includes its own test file, whose integration test runs it again) was caught by
+tracing the call graph before running it, fixed with a `VEX_BOOTSTRAP_NESTED` guard. 218/218 tests
+passing.
 
 **Session 020 addition:** No code changed. Two new architectural ideas from Victor recorded in
 `data/status/open-discussions.json`: **od-006** — an "init baseline" scaffold separating this repo's
@@ -258,9 +271,12 @@ system state — not aspirational state.
 
 ## Open Work
 
-*Updated Session 020 — July 2, 2026*
+*Updated Session 021 — July 2, 2026*
 
 **v2 system (active):**
+- [x] lib/session-bootstrap.js — one-shot session-start state report, consolidates git/test/drift/token/open-item checks into one command (Session 021)
+- [x] docs/culture.md — added first-person "What an AI instance actually needs here" reflection section (Session 021)
+- [x] config/lessons/sentinel-text-is-hazardous-to-itself.json — distilled the 3-time-repeated self-referential-sentinel bug pattern into one lesson (Session 021)
 - [ ] od-006: init baseline scaffold — awaiting direction on whether to proceed with the documented fork-procedure first step (Session 020)
 - [ ] od-007: cross-org discovery protocol — blocked on od-006 by design (Session 020)
 - [x] pe-009: LATTICE coverage 45% → 64% (6 nodes added); fixed a real self-corruption bug in build-lattice-headers.js's fallback anchor logic, regression-tested (Session 019)
@@ -346,12 +362,10 @@ create the next batch file and update this registry.
 | Batch | File | Sessions | Status |
 |---|---|---|---|
 | 001 | `docs/continuity/Batch 001.md` | 001–010 | closed |
-| 002 | `docs/continuity/Batch 002.md` | 011–020 | full — 10/10, create Batch 003 next |
+| 002 | `docs/continuity/Batch 002.md` | 011–020 | closed |
+| 003 | `docs/continuity/Batch 003.md` | 021–030 | active |
 
-**Next session must create `docs/continuity/Batch 003.md`** (Sessions 021–030) and update this
-registry — Batch 002 is now at its 10-session cap with Session 020. Do not append Session 021 to
-Batch 002; that's the exact mistake Session 011 made against Batch 001 (see that session's own
-"Mistakes made" note for what appending past capacity looks like and how it was fixed).
+**Active batch:** `docs/continuity/Batch 003.md`
 
 When starting a new session: open the active batch file, scroll to the bottom,
 append your session block using the template at the bottom of the batch file.
@@ -465,6 +479,6 @@ These rules exist so the log stays useful as it grows. Follow them.
 
 ---
 
-*Last updated: Session 020 — July 2, 2026*
+*Last updated: Session 021 — July 2, 2026*
 
 <!-- [VXG RealForever] -->
