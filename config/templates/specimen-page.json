@@ -1,0 +1,6 @@
+{
+  "_meta": { "type": "template" },
+  "id": "specimen-page",
+  "description": "Individual specimen fixture page. Pairs a localization state with the pipeline mechanism that catches it.",
+  "features": ["lang", "demo", "spiral-fab"]
+}
