@@ -46,6 +46,31 @@
   --mono:  'IBM Plex Mono', monospace;
 }
 
+/* ── Dashboard / dev-tool dark theme ────────────────────────────────────────
+   Consolidates the identical local :root block previously duplicated inline
+   in lib/build-archives.js, lib/build-demo.js, lib/build-specimens.js, and
+   pages/specimen-architectural-wisdoms.html (td-007; see
+   docs/architecture/12-design-system.md for the full history). Scoped under
+   [data-theme="dashboard"] so it coexists with the light :root above without
+   collision — a page opts in with <html data-theme="dashboard"> and links
+   this stylesheet, same as any light-theme page. Token names are kept as the
+   original dark-theme vocabulary (--bg/--surface/--text), not renamed to
+   --cream/--stone, because it distinguishes a page background from a card
+   background (--surface) — a distinction the light theme's single --cream
+   does not currently make. --blue is used only by
+   pages/specimen-architectural-wisdoms.html; harmless no-op for the others. */
+[data-theme="dashboard"] {
+  --bg:      #0e0e0e;
+  --surface: #111111;
+  --text:    #e8e8e4;
+  --muted:   #6b6b6b;
+  --ember:   #c8502a;
+  --border:  #2a2a2a;
+  --blue:    #4a9eff;
+  --mono:    'IBM Plex Mono', monospace;
+  --sans:    'IBM Plex Sans', sans-serif;
+}
+
 body {
   font-family: var(--sans);
   color: var(--stone);

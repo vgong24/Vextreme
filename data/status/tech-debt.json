@@ -2,15 +2,6 @@
   "_comment": "Hand-authored. Standing technical decisions deferred. Promote session open-work items here when they have no clear session endpoint. Remove an item when resolved.",
   "items": [
     {
-      "id": "td-001",
-      "title": "build-vextreme.js and build-sw.js not wired into CI",
-      "description": "Both scripts must run manually after any change to pages/ or data/. dist/ and sw.js can silently fall out of sync with the source.",
-      "context": "lib/build-vextreme.js, lib/build-sw.js",
-      "addedSession": "011",
-      "addedPR": 24,
-      "priority": "high"
-    },
-    {
       "id": "td-002",
       "title": "Old widget filenames kept for backward compat",
       "description": "widgets/lang-fab.js and widgets/demo-fab.js are dead copies kept because existing CDN pages reference them. New canonical names are fab-lang.js and fab-demo.js. Accumulates until pages are ported.",
@@ -53,14 +44,6 @@
       "triggerCondition": "Before adding any language beyond English and Japanese",
       "migrationPath": "Arc-chunked bundles: one strings.{arc}.{lang}.json per arc, pre-fetched by SW on arc entry. Build script assembles chunks; browser receives without assembling.",
       "priority": "high"
-    },
-    {
-      "id": "td-007",
-      "title": "Local dark-panel :root token block duplicated verbatim across 4-5 generators",
-      "description": "lib/build-archives.js, lib/build-demo.js, lib/build-specimens.js, and pages/specimen-architectural-wisdoms.html each define an identical inline :root block (--bg, --surface, --text, --muted, --ember, --border, --mono, --sans — the last file adds --blue). lib/build-index-page.js defines a fifth local :root that's functionally a restatement of styles/design-system.css's global tokens under different names (--bg vs --cream, --text vs --stone). Verified via node lib/check-design-tokens.js — see docs/architecture/12-design-system.md. Not a correctness bug (each file is internally consistent and currently passes verification); it's duplication that will drift the next time one of the five is edited without the others.",
-      "context": "lib/build-archives.js, lib/build-demo.js, lib/build-specimens.js, lib/build-index-page.js, pages/specimen-architectural-wisdoms.html",
-      "addedSession": "016",
-      "priority": "low"
     }
   ]
 }

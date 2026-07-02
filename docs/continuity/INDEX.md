@@ -27,7 +27,18 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 017 — July 2, 2026*
+*As of Session 018 — July 2, 2026*
+
+**Session 018 addition:** Closed two integrity gaps, both verified rather than assumed fixed. **td-001**
+(oldest open debt, Session 011): `.github/workflows/build-index.yml` now runs `lib/build-vextreme.js` and
+`lib/build-sw.js` and commits `dist/` + `sw.js` — running the previously-unwired pipeline locally proved the
+drift was already real, not hypothetical (every God Script was missing LATTICE headers added two sessions
+ago; `sw.js`'s cache hash was pinned many commits stale). **td-007** (Session 017's finding): the dark-panel
+`:root` token block duplicated identically across 4 files is now one shared `[data-theme="dashboard"]` block
+in `styles/design-system.css`, verified lossless with pixel-identical before/after Playwright screenshots of
+two structurally different pages plus zero `lib/check-design-tokens.js` violations at both ends. od-005
+narrowed to just the dark-mode-toggle question. 205/205 tests passing, i18n scaling work (od-001/td-006)
+explicitly deprioritized this round per Victor's direction.
 
 **Session 017 addition:** Built out both open discussions queued in Session 016. `docs/architecture/11-debugging-practices.md`
 documents the pre-development rigor practice (sound logic ≠ correct runtime behavior), built around Session 015's
@@ -224,9 +235,12 @@ system state — not aspirational state.
 
 ## Open Work
 
-*Updated Session 017 — July 2, 2026*
+*Updated Session 018 — July 2, 2026*
 
 **v2 system (active):**
+- [x] td-001: build-vextreme.js + build-sw.js wired into CI, dist/+sw.js committed automatically (Session 018)
+- [x] td-007: dark-panel token duplication consolidated into styles/design-system.css, verified via screenshots + check-design-tokens.js (Session 018)
+- [ ] od-005 (narrowed): decide whether to build an actual dark-mode toggle (Session 018)
 - [x] od-004: debugging/pre-development rigor practice — docs/architecture/11-debugging-practices.md + lib/check-design-tokens.js, shipped and removed from open-discussions.json (Session 017)
 - [x] od-005 (partial): design-system.css token contract documented (docs/architecture/12-design-system.md); duplication found and tracked as td-007; consolidation + dark-mode toggle still open (Session 017)
 - [ ] td-007: consolidate the duplicated dark-panel :root block across 4-5 generator files (Session 017)
@@ -421,6 +435,6 @@ These rules exist so the log stays useful as it grows. Follow them.
 
 ---
 
-*Last updated: Session 017 — July 2, 2026*
+*Last updated: Session 018 — July 2, 2026*
 
 <!-- [VXG RealForever] -->
