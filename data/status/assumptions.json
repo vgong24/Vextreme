@@ -1,0 +1,37 @@
+{
+  "_comment": "Hand-authored. Claims made in PRs or sessions that have not been verified against a live environment. Remove an item when confirmed.",
+  "items": [
+    {
+      "id": "as-001",
+      "claim": "sw.js is served correctly from /Vextreme/sw.js on GitHub Pages and the service worker registers successfully",
+      "addedSession": "011",
+      "addedPR": 25,
+      "priority": "high"
+    },
+    {
+      "id": "as-002",
+      "claim": "Scoped fetch + category CDN paths (scopes/{category}/pages.{slug}.{lang}.json) resolve correctly against the live CDN post-merge",
+      "addedSession": "009",
+      "addedPR": 19,
+      "priority": "medium"
+    },
+    {
+      "id": "as-003",
+      "claim": "archives.html GitHub Actions auto-rebuild fires correctly on push to main",
+      "addedSession": "005",
+      "priority": "low"
+    },
+    {
+      "id": "as-004",
+      "claim": "index.html root nav renders correctly on vgong24.github.io/Vextreme (arc nav mounts, all arc dots appear)",
+      "addedSession": "004",
+      "priority": "medium"
+    },
+    {
+      "id": "as-005",
+      "claim": "vextreme-demo.html live index.json fetch resolves on GitHub Pages and renders the 88-node / 16-arc stats",
+      "addedSession": "006",
+      "priority": "medium"
+    }
+  ]
+}
