@@ -493,6 +493,71 @@
       }
     },
 
+    "lib/build-status.js": {
+      "role": "system health manifest assembler — reads hand-authored status/*.json plus the strings manifest, writes data/status.json",
+      "context": "The write side of the 'what's still open' picture: five notice categories (translation debt auto-derived from the strings manifest, techDebt/enhancements/assumptions/openDiscussions hand-authored) roll up into one artifact pages/ecosystem-hub.html fetches live. Also computes lattice coverage (mapped nodes vs. total eligible .js files in lib/+widgets/) into _meta.lattice, so the hub can show it without re-deriving the eligibility rule. openDiscussions (added Session 015) is deliberately separate from techDebt/enhancements — see data/status/open-discussions.json's _comment for why.",
+      "reads": [
+        "data/strings/compiled/manifest.json",
+        "data/strings/compiled/strings.en.json",
+        "data/index.json",
+        "data/strings/compiled/scopes/demo/ (recursive walk for fixture detection)",
+        "data/status/tech-debt.json",
+        "data/status/planned-enhancements.json",
+        "data/status/assumptions.json",
+        "data/status/open-discussions.json",
+        "docs/lattice-map.json",
+        "lib/ and widgets/ directory listings (.js files, for coverage denominator)"
+      ],
+      "writes": ["data/status.json"],
+      "loadedBy": [
+        "pages/ecosystem-hub.html (live fetch)",
+        "tests/10-build-status.test.js"
+      ],
+      "testedBy": ["tests/10-build-status.test.js"],
+      "changeMap": {
+        "notice category added/removed": [
+          "lib/build-ecosystem-hub.js (render order array + icon map)",
+          "tests/10 (SAMPLE_NOTICES + assertions)"
+        ],
+        "status/*.json item schema changed": [
+          "lib/build-ecosystem-hub.js renderHealthPanel() (reads title/description/priority/considerations/etc.)",
+          "tests/10 (required-fields integration tests)"
+        ],
+        "lattice coverage eligibility rule changed": [
+          "lib/build-lattice-headers.js isEligibleNode() (must stay identical or the two coverage numbers disagree)"
+        ]
+      }
+    },
+
+    "lib/build-ecosystem-hub.js": {
+      "role": "generates pages/ecosystem-hub.html — the admin+AI-facing system state dashboard",
+      "context": "Static chrome generated at build time; all data (index.json, status.json, status/narrative.json) is fetched live in the browser at render time, so the page stays current between rebuilds without needing this generator re-run. Session 015 rewrote the CSS after finding it referenced --stone-950/--font-mono tokens that styles/design-system.css never defines — text rendered near-invisible. Now uses only the site's real tokens (--stone, --muted, --border, --cream, --ember, --mono), same as lib/build-demo.js. Not wired into .github/workflows/build-index.yml — regenerate manually after changing this file's HTML/CSS structure (data changes don't require regeneration, since those are fetched live).",
+      "reads": [
+        "data/index.json (live fetch, browser)",
+        "data/status.json (live fetch, browser)",
+        "data/status/narrative.json (live fetch, browser)"
+      ],
+      "writes": ["pages/ecosystem-hub.html"],
+      "loadedBy": [
+        "manual run: node lib/build-ecosystem-hub.js",
+        "tests/12-ecosystem-hub.test.js"
+      ],
+      "testedBy": ["tests/12-ecosystem-hub.test.js"],
+      "changeMap": {
+        "CSS custom property used in the inline <style> block": [
+          "styles/design-system.css — the property must actually be defined there (--stone, --muted, --border, --cream, --ember, --ember-bg, --mono, --serif, --sans); anything else silently renders with no fallback"
+        ],
+        "notice category added/removed in status.json": [
+          "CATEGORY_ORDER / CATEGORY_ICONS arrays in this file's generated JS",
+          "lib/build-status.js (the category must exist in the rollup first)"
+        ],
+        "data/status/narrative.json schema changed": [
+          "renderNarrative() in this file's generated JS",
+          "tests/10 (narrative.json required-fields test)"
+        ]
+      }
+    },
+
     "blueprint.json": {
       "role": "system blueprint — canonical registry of all feature IDs, category IDs, template IDs",
       "context": "The configuration contract. Every Feature constant in vex-config.js must have a matching entry here, and every entry here must have a config file in config/features/. Tests/06 enforces this. Adding a new feature to FEATURES registry in build-vextreme.js without adding it here will fail the blueprint tests.",

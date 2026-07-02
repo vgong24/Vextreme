@@ -27,7 +27,19 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 014 — July 2, 2026*
+*As of Session 015 — July 2, 2026*
+
+**Session 015 addition:** Fixed a real, user-visible bug in `pages/ecosystem-hub.html` — the System
+Health panels rendered with near-invisible text because the CSS referenced `--stone-950`/`--font-mono`
+tokens that `styles/design-system.css` never defines. Rewritten to use the site's real tokens (`--stone`,
+`--muted`, `--border`, `--cream`, `--ember`, `--mono`), with regression tests locking in the fix. Added a
+5th status category, `openDiscussions` (`data/status/open-discussions.json`) — architectural questions
+recognized but not yet decided, distinct from techDebt/enhancements. `data/status/narrative.json` is a new
+hand-authored "state of the ecosystem" synthesis, updated by whichever Claude instance runs an architecture
+review — the deliberate alternative to wiring a live LLM call into the build pipeline (reasoned through in
+od-002; would introduce a CI secret, cost, and non-determinism this repo has avoided everywhere else). Lattice
+coverage (`docs/lattice-map.json` nodes vs. total eligible files) is now a computed, visible stat: 14/32.
+`lib/build-status.js` and `lib/build-ecosystem-hub.js` added as lattice nodes (20 total). 189/189 tests passing.
 
 **Session 014 addition:** `docs/lattice-map.json` is now a true CQRS write side — `lib/build-lattice-headers.js`
 generates the LATTICE header block inside every eligible node's own file from the JSON, so the two
@@ -193,9 +205,14 @@ system state — not aspirational state.
 
 ## Open Work
 
-*Updated Session 014 — July 2, 2026*
+*Updated Session 015 — July 2, 2026*
 
 **v2 system (active):**
+- [x] Fixed illegible ecosystem-hub.html panels — CSS referenced undefined `--stone-950`/`--font-mono` tokens; rewritten to use styles/design-system.css's real tokens, regression-tested (Session 015)
+- [x] Added `openDiscussions` status category — architectural questions recognized but not yet decided; data/status/open-discussions.json, 3 entries (Session 015)
+- [x] Added data/status/narrative.json — session-authored "state of the ecosystem" synthesis, the deliberate alternative to a live LLM call in the build pipeline (see od-002) (Session 015)
+- [x] Lattice coverage now computed and shown as a stat on ecosystem-hub.html (14/32); lib/build-status.js + lib/build-ecosystem-hub.js added as lattice nodes, 20 total (Session 015)
+- [ ] od-001/od-002/od-003 are open — no action expected until explicitly picked up (Session 015)
 - [x] LATTICE headers are now generated, not hand-maintained — `lib/build-lattice-headers.js` writes each eligible node's header from `docs/lattice-map.json`; `--check` mode + `tests/11` enforce zero drift in CI (Session 014)
 - [x] Closed 2 lattice reference gaps — `lib/audit-pages.js`, `lib/check-key-alignment.js` added as nodes (were `loadedBy` targets with no entry of their own); 3 files that were mapped but missing a header (`build-sw.js`, `fab-lang.js`, `sw-register.js`) now have one (Session 014)
 - [ ] pe-009: expand LATTICE coverage past 18 nodes — lib/build-status.js, lib/logger.js, lib/logger-codes.js next (Session 014)
@@ -382,6 +399,6 @@ These rules exist so the log stays useful as it grows. Follow them.
 
 ---
 
-*Last updated: Session 014 — July 2, 2026*
+*Last updated: Session 015 — July 2, 2026*
 
 <!-- [VXG RealForever] -->

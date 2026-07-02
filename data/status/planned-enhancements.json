@@ -68,8 +68,8 @@
     },
     {
       "id": "pe-009",
-      "title": "Expand LATTICE coverage beyond the current 18 nodes",
-      "description": "docs/lattice-map.json covers 18 of ~45+ hand-authored files under lib/ and widgets/. lib/build-lattice-headers.js (Session 014) makes adding a node cheap — it generates the in-file header automatically, so expansion is JSON-authoring work only, not comment-formatting work. Highest-value remaining candidates: lib/build-status.js, lib/logger.js, lib/logger-codes.js (foundational, used everywhere), lib/build-archives.js, lib/build-demo.js, lib/build-specimens.js, lib/build-sitemap.js, lib/build-index-page.js, lib/build-ecosystem-hub.js (the rest of the build pipeline), lib/strings-check.js, lib/strings-export.js, lib/strings-import.js, lib/validate-blueprint.js, widgets/fab-demo.js, widgets/demo-fab.js, widgets/lang-fab.js (legacy pre-rename copies), lib/shell.js, lib/vextreme.js, lib/archive-renderer.js (v1 system). Grep for LATTICE:BEGIN vs total file count in lib/+widgets/ shows current coverage at any time.",
+      "title": "Expand LATTICE coverage beyond the current 20 nodes",
+      "description": "docs/lattice-map.json covers 20 of ~45+ hand-authored files under lib/ and widgets/ (lib/build-status.js and lib/build-ecosystem-hub.js added Session 015). lib/build-lattice-headers.js (Session 014) makes adding a node cheap — it generates the in-file header automatically, so expansion is JSON-authoring work only, not comment-formatting work. Highest-value remaining candidates: lib/logger.js, lib/logger-codes.js (foundational, used everywhere), lib/build-archives.js, lib/build-demo.js, lib/build-specimens.js, lib/build-sitemap.js, lib/build-index-page.js, lib/strings-check.js, lib/strings-export.js, lib/strings-import.js, lib/validate-blueprint.js, widgets/fab-demo.js, widgets/demo-fab.js, widgets/lang-fab.js (legacy pre-rename copies), lib/shell.js, lib/vextreme.js, lib/archive-renderer.js (v1 system). Grep for LATTICE:BEGIN vs total file count in lib/+widgets/ shows current coverage at any time.",
       "addedSession": "014",
       "requires": "none — tooling already exists",
       "priority": "low"
