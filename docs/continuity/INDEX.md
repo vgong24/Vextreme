@@ -27,7 +27,19 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 009 — July 1, 2026*
+*As of Session 010 — July 2, 2026*
+
+**Session 010 addition:** All semantic constants in the build pipeline, strings pipeline,
+and browser widget are now defined in `lib/vex-config.js` — the single source of truth.
+`Category`, `Language`, `Scope`, `CDN_BASE`, path-derivation functions (`scopeRelPath`,
+`scopeUrl`, `flatBundleUrl`), `Path`, and `WindowGlobal` are all exported from one file.
+All 8 build scripts and the strings pipeline import from it. `widgets/lang-fab.js`
+(a browser IIFE, cannot `require()`) inlines the values as named local vars. The duplicate
+`scopeRelPath` function that existed in three places is now canonical in vex-config.js.
+15 new tests in `tests/05-vex-config.test.js` include grep audits that will fail CI if
+a future commit reintroduces standalone `'demo'` or `'ja'` magic strings in build scripts.
+54/54 tests passing. PR #20 merged. Zero behavior change. See Session 010 in the active
+batch file for full reasoning including the PR sequencing toward the slug-driven end state.
 
 **Session 009 addition:** Compiled scope bundles are now organized by content lifecycle
 category under `scopes/{category}/` subdirectories, derived deterministically from
@@ -36,7 +48,7 @@ Four categories: `system` (common strings, always loaded), `production` (real co
 pages, default), `demo` (architecture reference pages), `staging` (reserved). Path
 derivation is symmetric — `lib/strings-compile.js` and `widgets/lang-fab.js`'s
 `scopeUrl()` apply the same rule, so paths are inspectable in the filesystem without
-any runtime lookup. PR #19 open, CI green. See Session 009 in the active batch file
+any runtime lookup. PR #19 merged. See Session 009 in the active batch file
 for the full reasoning including the three options evaluated and Kimi's co-architect
 input on scalability preparation.
 
@@ -100,7 +112,8 @@ the established infrastructure.
 - `data/strings/compiled/` — compiled EN + JA bundles (generated)
 - `scripts/screenshot-page.js` — Playwright visual verification utility
 - `.github/workflows/build-index.yml` — CI pipeline
-- `.github/workflows/test.yml` — 39-test suite on every PR
+- `lib/vex-config.js` — named constants + path-derivation functions, single source of truth for all semantic strings
+- `.github/workflows/test.yml` — 54-test suite on every PR (39 pipeline + 15 vex-config)
 
 **Session 004 additions (merged to main, PRs #12 and #13):**
 - `widgets/lang-fab.js` — transparent round FAB, iOS scroll-wheel flag picker, reads
@@ -130,10 +143,13 @@ system state — not aspirational state.
 
 ## Open Work
 
-*Updated Session 009 — July 1, 2026*
+*Updated Session 010 — July 2, 2026*
 
 **v2 system (active):**
-- [ ] Merge PR #19 — CI green, no review comments (Session 009)
+- [ ] PR #21 — `config/categories/*.json`, `config/features/*.json`, `blueprint.json`, `lib/validate-blueprint.js` (Session 010)
+- [ ] PR #22 (high risk) — `data/index.json` slugMap with viewmodel, rewrite `lib/vextreme.js` slug-driven, remove per-page `window.VEX_STRING_*` from generated HTML (Session 010)
+- [ ] PR #23 — `widgets/vex-fab.js` spiral portal FAB replacing lang-fab + demo-fab (Session 010)
+- [x] Named constants in `lib/vex-config.js` — `Category`, `Language`, `Scope`, `CDN_BASE`, `scopeRelPath`, zero magic strings in build pipeline (Session 010, PR #20)
 - [x] `_meta.category` system — scope bundles under `scopes/{category}/`, deterministic path derivation, `window.VEX_STRING_CATEGORY` on pages (Session 009, PR #19)
 - [x] specimens.html dashboard + 3 specimen pages, each pairing a localization state with the pipeline mechanism that catches it (Session 008)
 - [ ] Consider a documented "always include this scope" mechanism for shared-scope pages instead of relying on every page to remember to list it manually (Session 008, caught a real bug this way)
@@ -296,6 +312,6 @@ These rules exist so the log stays useful as it grows. Follow them.
 
 ---
 
-*Last updated: Session 009 — July 1, 2026*
+*Last updated: Session 010 — July 2, 2026*
 
 <!-- [VXG RealForever] -->

@@ -1314,4 +1314,78 @@ and `window.VEX_STRING_CATEGORY` on pages. Four categories defined: `system` (co
 strings), `production` (content pages, default), `demo` (architecture reference), `staging`
 (reserved). The flat `strings.{lang}.json` bundle is unchanged. PR #19 open, CI green.
 
+---
+
+## Session 010
+
+**Date:** July 2, 2026
+**Time:** ~12:14 AM – ~12:20 AM
+**Thread:** https://claude.ai/code/session_012Cob5Fgz92AYDWfe2mZJWZ
+**Instance:** Claude Sonnet 4.6 (Claude Code remote)
+**Working with:** Victor Gong
+**Continues from:** Session 009 — `_meta.category` system (PR #19 merged)
+
+### Context on arrival
+
+Session arrived via context summary after the prior conversation window ran out of context. PR #19 had already merged. PR #20's full implementation was complete in the prior session (54/54 tests passing locally) but not yet committed. Victor had shared Kimi's full 10-lesson architecture document describing the end state (one `vextreme.js` script tag, slug-driven loader, named constants, spiral FAB) and given the green light to proceed at Claude's pace while holding the full map in view.
+
+### Files created or modified
+
+| File | What changed |
+|---|---|
+| `lib/vex-config.js` | **New.** Single source of truth for all semantic constants: `Category`, `Language`, `Scope`, `CDN_BASE`, `Path`, `WindowGlobal`. Canonical path-derivation functions: `scopeRelPath`, `scopeUrl`, `flatBundleUrl`. |
+| `tests/05-vex-config.test.js` | **New.** 15 tests in 3 sections: named constant values, path derivation correctness, grep audit (no raw `'demo'` or `'ja'` in build scripts). |
+| `lib/strings-compile.js` | Imports `Scope.COMMON`, `DEFAULT_CATEGORY`, `scopeRelPath` from vex-config. Local inline path derivation removed. |
+| `lib/strings-check.js` | Imports `Language.EN`; replaces `l !== 'en'` literal. |
+| `lib/strings-export.js` | Imports `Language.EN`; replaces `lang !== 'en'` literal. |
+| `lib/strings-import.js` | Imports `Language.EN`; replaces `lang === 'en'` literal. |
+| `lib/build-archives.js` | Imports `Language.EN`; replaces `.filter(lang => lang !== 'en')`. |
+| `lib/build-index.js` | Imports `Language.EN`; replaces `return ['en']` fallback. |
+| `lib/build-demo.js` | Imports `Category`, `Scope`, `CDN_BASE`; replaces hardcoded CDN URL, `'demo'` category string, `'demo'` scope string. |
+| `lib/build-specimens.js` | Imports `Category`, `Language`, `CDN_BASE`, `scopeRelPath`; removes local `CDN_BASE` constant and local `scopeRelPath` function (both were duplicates). |
+| `widgets/lang-fab.js` | Cannot `require()`. Replaced magic strings (`'common'`, `'system'`, `'production'`, `'en'`) with named local vars at top of IIFE: `SCOPE_COMMON`, `CATEGORY_SYSTEM`, `CATEGORY_PRODUCTION`, `LANG_DEFAULT`. Comment points to vex-config.js as canonical source. |
+
+### What was built and why
+
+Named constants eliminate three problems at once: IDE-opacity (no Find-References for a string literal), mutation cost (renaming `'demo'` requires a coordinated grep with typo risk), and silent runtime failures (the compiler can't catch `'domo'`). The constants resolve to the same string values at runtime — this is a zero-behavior-change PR.
+
+`scopeRelPath` was the critical deduplication target: the same path-derivation rule existed in three places (inline in `strings-compile.js`, as a local function in `build-specimens.js`, inside lang-fab.js's `scopeUrl()`). All three now point to or reference the canonical implementation in `vex-config.js`. One implementation means one place to fix when the path rule changes.
+
+The grep-audit tests enforce the discipline mechanically: future commits that add a standalone `'demo'` or `'ja'` literal to any build script will fail CI. The test strips comment lines before checking, and the regex requires word-boundary conditions so `'vextreme-demo'` and `'demo.section.why'` pass correctly.
+
+`Path` and `WindowGlobal` constants were added to vex-config.js as forward anchors for PR #21 (config/ directory, blueprint.json) and PR #22 (slug-driven vextreme.js loader). They're unused by anything today — their value is as the committed interface that future PRs reference.
+
+### Mistakes made
+
+None in this session. All 54 tests passed on first run after implementation. Session was primarily a commit-and-push continuation of implementation done in the prior context window.
+
+### Assumptions that held
+
+- All 54 tests passed (39 existing + 15 new) with zero test modifications needed.
+- The grep-audit regex correctly passes string keys containing `'demo'` as a substring (e.g. `'demo.section.why'`) and standalone path segments like `'vextreme-demo'` — tested in the PR.
+- The local var approach in lang-fab.js (`var LANG_DEFAULT = 'en'`) is the correct pattern for browser IIFEs until PR #22 injects config from a build step — Kimi's architecture doc confirms this.
+
+### Assumptions that need verification
+
+- `lib/vex-config.js` path constant values (`Path.SCOPES_DIR`, etc.) match the actual compiled output paths — confirmed by tests, not yet verified by fetching a live CDN URL post-merge.
+- The inlined local vars in lang-fab.js stay in sync with vex-config.js across future edits — enforced by convention and comment, not by tooling. PR #22 is the proper fix.
+- `Category.EXPERIMENTAL` is defined but unused — left in as a forward anchor for a planned lifecycle stage. Should not break anything.
+
+### Open work at session end
+
+- [ ] Verify PR #20 CDN paths post-merge (same caveat as all prior sessions)
+- [ ] PR #21 — `config/categories/*.json`, `config/features/*.json`, `blueprint.json`, `lib/validate-blueprint.js`
+- [ ] PR #22 (high risk) — `data/index.json` slugMap with viewmodel, rewrite `lib/vextreme.js` slug-driven loader, remove per-page `window.VEX_STRING_*` declarations from generated HTML
+- [ ] PR #23 — `widgets/vex-fab.js` spiral portal FAB replacing lang-fab + demo-fab
+- [ ] Migrate `claude-answers-the-doubt.html` / `restoration-protocol.html` to scoped fetch (carried from Session 007)
+- [ ] Verify scoped fetch + new `scopes/{category}/` CDN paths against real CDN post-merge (carried)
+- [ ] Exercise variant/staging-file convention with a real A/B copy test (carried from Session 007)
+- [ ] Consider "always include this scope" mechanism (carried from Session 008)
+- [ ] Port real HTML pages (active focus, carried)
+- [ ] Missing-key fallback, `strings-check` audit, `06-i18n.md` `pages.` prefix reconciliation (carried)
+
+### State of the system at session end
+
+All semantic constants in the build pipeline and strings pipeline are now defined in `lib/vex-config.js` — IDE-navigable, refactor-safe, grep-audited by CI. No magic strings remain in build scripts. The browser widget (lang-fab.js) inlines the values as named local vars with a pointer to the canonical source. `scopeRelPath` is now a single canonical implementation shared across all callers. 54/54 tests passing. PR #20 merged.
+
 <!-- [VXG RealForever] -->
