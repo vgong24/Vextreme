@@ -12,9 +12,11 @@
     },
     {
       "id": "pe-002",
-      "title": "Port existing pages to God Scripts",
-      "description": "claude-answers-the-doubt.html, restoration-protocol.html and other production pages still use shell.js + old lang-fab.js. God Script architecture is complete; the port is content-layer work.",
+      "title": "Port remaining blocked pages to God Scripts",
+      "description": "5 pages ported (Session 013). 3 remain blocked: claude-answers-the-doubt (needs arc-nav as a God Script feature — see pe-007), restoration-protocol (uses shell.js, needs investigation), specimen-architectural-wisdoms (needs compiled string bundle). Run node lib/audit-pages.js for current status.",
       "addedSession": "011",
+      "updatedSession": "013",
+      "blockedBy": "pe-007 (arc-nav feature) for claude-answers-the-doubt",
       "priority": "medium"
     },
     {
@@ -43,6 +45,23 @@
       "title": "Slug rename tooling",
       "description": "A lib/rename-slug.js that atomically updates all 7 touch points of a slug rename: nodes.json, index.json, HTML filename, string scope keys, compiled bundles, God Script filename, and internal links across pages.",
       "addedSession": "012",
+      "priority": "medium"
+    },
+    {
+      "id": "pe-007",
+      "title": "Unified feature registry — collapse CORE_MODULES and FEATURE_WIDGET into one table",
+      "description": "CORE_MODULES (always-on) and FEATURE_WIDGET (opt-in) are the same mechanism with different defaults. Replace both with a single FEATURES registry: { 'sw': { widget, default: true }, 'lang': { widget, default: false }, 'arc-nav': { widget: 'vextreme-index-v2.js', default: false }, 'offline': { widget: 'fab-offline.js', default: false }, ... }. Viewmodels declare features explicitly; the registry resolves defaults. This unblocks arc-nav as a God Script feature (pe-002 unblocked), makes feature intent visible in one place, and enables feature-flagging as a first-class pattern across all future capabilities. Change is in lib/build-vextreme.js and lib/vex-config.js only — no content, no HTML changes.",
+      "addedSession": "013",
+      "unblocks": ["pe-002 (arc-nav for claude-answers-the-doubt)", "pe-008 (offline FAB)"],
+      "priority": "high"
+    },
+    {
+      "id": "pe-008",
+      "title": "Offline mode configuration FAB (fab-offline.js)",
+      "description": "A new feature widget that surfaces SW cache state to users and gives them explicit control over what is pre-loaded for offline use. Shows: whether SW is active, which pages/arcs are available offline, a 'download this arc in Japanese' control that pre-fetches JA string bundles for the current arc on demand. Addresses td-006 (multi-language scaling) by replacing speculative pre-fetching with user-intentional caching — the user decides what to download, not the build script. Feature-flagged ('offline' feature) so it only appears on pages that declare it. Requires pe-007 (unified feature registry) to be included as a God Script module.",
+      "addedSession": "013",
+      "requires": "pe-007",
+      "addresses": "td-006 (i18n multi-language scaling)",
       "priority": "medium"
     }
   ]
