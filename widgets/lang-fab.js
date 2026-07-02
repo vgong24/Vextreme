@@ -54,8 +54,25 @@
   }
 
   // ── Index loading (reads cache first, same key as vextreme-index-v2.js) ──────
+  //
+  // Priority order for supportedLangs resolution:
+  //   1. window.VEX_SUPPORTED_LANGS — inlined at build time by the page builder.
+  //      Fastest path: no network fetch, no localStorage check, always current.
+  //   2. localStorage 'vex-index-v2-data' — cached by vextreme-index-v2.js.
+  //   3. CDN fetch of data/index.json — fallback, may lag after new lang added.
+  //
+  // Pages should set window.VEX_SUPPORTED_LANGS before loading this script so the
+  // FAB never depends on CDN for the mount decision. Without it, the CDN's cached
+  // index.json may not include newly added languages, causing the FAB to silently
+  // skip mounting (langs.length < 2).
 
   function loadSupportedLangs(onReady) {
+    // Build-time inlined list — bypass all network / storage checks.
+    if (window.VEX_SUPPORTED_LANGS && window.VEX_SUPPORTED_LANGS.length >= 2) {
+      onReady(window.VEX_SUPPORTED_LANGS);
+      return;
+    }
+
     try {
       var raw = localStorage.getItem(LS_DATA);
       if (raw) {
