@@ -2,6 +2,9 @@
 
 **Read these files in order before doing anything else:**
 
+0. `docs/culture.md` — the mission, the operating principles, the culture of development
+   on this project. Read this before anything else. The architecture makes more sense
+   once you understand why this system exists and what kind of developer it expects.
 1. `docs/continuity/INDEX.md` — current system state, open work, and batch registry
 2. The most recent session in the active batch file (listed in INDEX.md's Batch Registry)
 3. `docs/architecture.md` — full system design, data flow, file responsibilities, key constraints
@@ -12,15 +15,26 @@ intended design; the continuity log documents actual system state — they diver
 
 ---
 
-## Current shape of the repo (as of Session 002)
+## Current shape of the repo (as of Session 013)
 
 - `data/arcs.json` — 16 arcs fully mapped, all slugs defined
 - `data/pages.json` — display token system in place, 7 presets
-- `lib/` and `components/` — all JS engines written, not all verified live
-- `pages/` — **intentionally sparse**: only `claude-answers-the-doubt.html` exists so far.
-  The arc map is complete; the HTML pages are being added progressively.
-  A small `pages/` count is not a sign of breakage — it is the expected starting condition.
-- `styles/` — design system and arc nav CSS complete; page-template CSS partial
+- `lib/` and `components/` — all JS engines written; loader chain confirmed working on GitHub Pages
+- `pages/` — 11 pages exist. 5 are fully wired to God Scripts. 3 are blocked (see below).
+- `dist/` — God Scripts exist for 7 slugs (assembled by `lib/build-vextreme.js`)
+- `styles/` — design system and arc nav CSS complete
+
+**To see current wiring status in one command:**
+```
+node lib/audit-pages.js
+```
+This is the canonical source of truth for which pages are wired, blocked, or skipped.
+Run it instead of manually auditing `pages/*.html`.
+
+**Current blockers (as of Session 013):**
+- `claude-answers-the-doubt` — needs `vextreme-index-v2.js` inlined into its God Script (arc nav)
+- `specimen-architectural-wisdoms` — needs a compiled string bundle before God Script can be assembled
+- `restoration-protocol` — uses `shell.js` (v1 path); needs investigation before porting
 
 ## Key constraint
 
