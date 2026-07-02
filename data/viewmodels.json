@@ -1,0 +1,34 @@
+{
+  "_comment": "Per-slug viewmodel overrides. Omitted slugs get the default viewmodel (production, page template, pages.{slug} scope, lang+spiral-fab features). Only non-default pages need entries here.",
+
+  "vextreme-demo": {
+    "category": "demo",
+    "template": "page",
+    "scopes": ["demo"],
+    "features": ["lang", "demo", "spiral-fab"]
+  },
+  "specimens": {
+    "category": "demo",
+    "template": "specimens-dashboard",
+    "scopes": ["specimens"],
+    "features": ["lang", "demo", "spiral-fab"]
+  },
+  "specimen-full-translation": {
+    "category": "demo",
+    "template": "specimen-page",
+    "scopes": ["pages.specimen-full-translation", "specimens"],
+    "features": ["lang", "demo", "spiral-fab"]
+  },
+  "specimen-partial-translation": {
+    "category": "demo",
+    "template": "specimen-page",
+    "scopes": ["pages.specimen-partial-translation", "specimens"],
+    "features": ["lang", "demo", "spiral-fab"]
+  },
+  "specimen-smallest-miss": {
+    "category": "demo",
+    "template": "specimen-page",
+    "scopes": ["pages.specimen-smallest-miss", "specimens"],
+    "features": ["lang", "demo", "spiral-fab"]
+  }
+}
