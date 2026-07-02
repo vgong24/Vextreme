@@ -27,7 +27,19 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 011 — July 2, 2026*
+*As of Session 012 — July 2, 2026*
+
+**Session 012 addition:** `data/status.json` is a new generated CQRS artifact at the same
+layer as `index.json` — machine-readable operational state across four notice categories:
+translation debt (auto-generated from strings manifest, demo fixture gaps marked intentional),
+tech debt, planned enhancements, and unverified assumptions (all hand-authored in
+`data/status/*.json`). `lib/build-status.js` assembles them. `pages/ecosystem-hub.html`
+is the first consumer: a developer dashboard that live-fetches `index.json` + `status.json`
+and renders content map stats, page registry with GitHub source links + copy-slug buttons,
+and four expandable health panels. 23 new tests in `tests/10-build-status.test.js`.
+142/142 tests passing. PR #26 merged (Session 011 continuity log + batch fix + lessons
+scalability policy). PR #27 CI green. See Session 012 in Batch 002 for slug rename blast
+radius analysis (7 layers touched, missing HTML dead link scanner tracked as td-003).
 
 **Session 011 addition:** The God Script architecture is complete and generating output.
 `lib/build-vextreme.js` assembles one IIFE per page into `dist/vextreme-{slug}.js`,
@@ -157,9 +169,13 @@ system state — not aspirational state.
 
 ## Open Work
 
-*Updated Session 011 — July 2, 2026*
+*Updated Session 012 — July 2, 2026*
 
 **v2 system (active):**
+- [x] System health manifest — `data/status.json` CQRS artifact, `data/status/*.json` write-side sources, `lib/build-status.js` assembler, `pages/ecosystem-hub.html` dashboard (Session 012, PR #27)
+- [ ] Wire `lib/build-status.js` into CI — `data/status.json` must rebuild automatically when `data/status/*.json` or `data/strings/compiled/manifest.json` changes (Session 012)
+- [ ] `lib/check-link-integrity.js` — HTML internal dead link scanner for CI (td-003, Session 012)
+- [ ] Verify `pages/ecosystem-hub.html` on GitHub Pages — live fetches of index.json + status.json not yet confirmed (Session 012)
 - [ ] Create PWA icons (`icons/icon-192.png`, `icons/icon-512.png`) — requires image generation; PWA installability blocked until done (Session 011)
 - [ ] Wire `sw-register.js` + `<link rel="manifest">` into all HTML pages (Session 011)
 - [ ] Wire `node lib/build-vextreme.js` + `node lib/build-sw.js` into CI — both still require manual runs (Session 011)
@@ -332,6 +348,6 @@ These rules exist so the log stays useful as it grows. Follow them.
 
 ---
 
-*Last updated: Session 011 — July 2, 2026*
+*Last updated: Session 012 — July 2, 2026*
 
 <!-- [VXG RealForever] -->
