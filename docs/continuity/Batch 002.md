@@ -101,4 +101,96 @@ Cache-first SW with git-hash-keyed cache names. Every commit produces a new `CAC
 
 The God Script architecture is complete and generating output. `dist/` holds 6 God Scripts (one per demo/specimen slug). `sw.js` is at repo root, pre-caching those 6 scripts plus 3 core assets under a commit-hash-keyed cache name. The build pipeline now has three layers: `build-index.js` (index.json), `build-vextreme.js` (God Scripts), `build-sw.js` (service worker). All three still require manual runs — CI automation is the next infrastructure PR. 119/119 tests passing. PRs #23, #24, #25 all merged.
 
+---
+
+## Session 012
+
+**Date:** July 2, 2026
+**Time:** continuation of Session 011 context window
+**Thread:** https://claude.ai/code/session_012Cob5Fgz92AYDWfe2mZJWZ
+**Instance:** Claude Sonnet 4.6 (Claude Code remote)
+**Working with:** Victor Gong
+**Continues from:** Session 011 — God Script architecture, SW, manifest; context exhausted mid-PR-#25
+
+### Context on arrival
+
+Arrived from a context summary covering PRs #23–#25. PR #25 (Service Worker + PWA manifest) was complete in the prior window; this session opened by confirming CI was green and writing the Session 011 continuity log as PR #26. Then Victor raised three threads: (1) batch overflow fix needed (Session 011 was initially in Batch 001), (2) `config/lessons/` scalability policy, (3) `archives.html` framing rethought — proposed "Ecosystem Hub" concept for developer-facing state dashboard.
+
+That conversation expanded into a slug rename blast radius analysis (7 layers touched on a slug rename, missing mitigation for HTML link drift) and then into the system health manifest pattern (`data/status.json` as a CQRS read-side artifact covering four notice categories). Victor authorized implementation.
+
+### Files created or modified
+
+| File | What changed |
+|---|---|
+| `docs/continuity/Batch 001.md` | Closing note added; Session 011 removed (moved to Batch 002) |
+| `docs/continuity/Batch 002.md` | Created. Session 011 entry as first block |
+| `docs/continuity/INDEX.md` | Current State updated to Session 011; Open Work reconciled; Batch Registry updated to two rows |
+| `docs/architecture/08-continuity.md` | Lessons scalability policy added: `config/lessons/` is archive reference, not cold-start reading |
+| `docs/architecture.md` | Regenerated from source files |
+| `data/status/tech-debt.json` | New. 5 hand-authored items (CI automation gap, widget backward-compat copies, no HTML dead link scanner, no slug rename script, specimen-architectural-wisdoms no string bundle) |
+| `data/status/planned-enhancements.json` | New. 6 hand-authored items (PWA icons, port pages to God Scripts, spiral portal FAB, missing-key fallback, strings-check audit, slug rename tooling) |
+| `data/status/assumptions.json` | New. 5 hand-authored items (SW serving on GitHub Pages, scoped CDN paths post-merge, archives rebuild, index root nav, demo stats fetch) |
+| `lib/build-status.js` | New. Assembler: `buildTranslationNotices`, `buildStatusRollup`, `countOpen`. I/O section walks `scopes/demo/` recursively for fixture detection |
+| `data/status.json` | New (generated artifact). 1 pending translation, 5 tech debt, 6 enhancements, 5 assumptions; totalOpen=17 |
+| `lib/build-ecosystem-hub.js` | New. Generates `pages/ecosystem-hub.html` via `generateEcosystemHub()` |
+| `pages/ecosystem-hub.html` | New (generated). Developer dashboard: content map stat tiles + page registry with GitHub source links + copy-slug buttons + 4 expandable health panels |
+| `tests/10-build-status.test.js` | New. 23 tests covering buildTranslationNotices, buildStatusRollup, countOpen, integration against data/status.json and data/status/*.json |
+
+### What was built and why
+
+**PR #26 — Session 011 continuity log + batch fix + lessons scalability policy**
+The Session 011 log was written in this session (first thing). After the initial push, the batch overflow was caught — Session 011 had been appended to Batch 001 which was already at 10 sessions. Fixed by truncating Batch 001 at Session 010 (adding a closure note) and creating Batch 002 with Session 011 as the first entry. The lessons scalability policy was added to `docs/architecture/08-continuity.md`: `config/lessons/` is lookup/archive reference, not mandatory cold-start reading. `docs/architecture.md` regenerated. PR #26 merged.
+
+**Slug rename blast radius analysis (architectural discussion, no separate PR)**
+The conversation about renaming `archives.html` expanded into a full analysis: a slug rename touches 7 layers — nodes.json, index.json, HTML filename, string scope keys, compiled bundles, God Script filename, internal HTML links. `check-key-alignment.js` covers the data layer (nodes/arcs/index drift) but not HTML internal link drift. This gap is now tracked as td-003 in tech-debt.json. A `lib/check-link-integrity.js` HTML dead link scanner was noted as the next CI mitigation.
+
+Also discussed: a `_meta.renamed_from` convention for string source files so localization teams can trace key provenance through renames. Not implemented yet; noted as part of future slug rename tooling (pe-006 + td-004).
+
+**PR #27 — System health manifest + Ecosystem Hub dashboard (23 tests)**
+The promotion model: session log `- [ ]` items are the moment of recognition; durable items live in `data/status/*.json`, not in markdown prose. This separates the continuity log (reasoning) from the work queue (operational state).
+
+Four notice categories:
+- `translation` — auto-generated by `build-status.js` from strings/compiled/manifest.json; demo fixture gaps marked `intentional: true` and excluded from `totalOpen`
+- `techDebt` — hand-authored JSON, structural decisions deferred
+- `enhancements` — hand-authored JSON, long-horizon items with no session endpoint
+- `assumptions` — hand-authored JSON, claims from PR records not yet confirmed live
+
+`buildTranslationNotices` uses prefix matching (`key.startsWith(scope + '.')`) not string splitting — scope names have multiple dot-separated components and the last segment isn't reliably the "leaf". Demo fixture detection walks `scopes/demo/` recursively (initial non-recursive implementation missed `pages/` subdirectory).
+
+`pages/ecosystem-hub.html` live-fetches both `index.json` and `status.json` in parallel at runtime, matching the pattern from `vextreme-demo.html`. Page Registry table includes copy-slug buttons (requires HTTPS or localhost — silently fails on `file://`) and GitHub source links to `blob/main/pages/{slug}.html`.
+
+142/142 tests passing. PR #27 CI green.
+
+### Mistakes made
+
+- **Demo scope detection non-recursive on first attempt:** `fs.readdirSync(demoScopesDir).filter(f => f.endsWith('.en.json'))` only looked at top-level files; `pages/specimen-*.en.json` files are in a `pages/` subdirectory. Fixed with a recursive walk function.
+- **Scope prefix derived via string splitting:** `key.split('.').slice(0,-1).join('.')` for a key like `pages.specimen-partial-translation.body.untranslated` gave `pages.specimen-partial-translation.body` instead of the correct scope prefix. Fixed with `[...demo].some(s => key === s || key.startsWith(s + '.'))`.
+- **`data/status/*.json` not registered in architecture docs:** Victor caught this after the session was underway. `docs/architecture/03-data.md` had no mention of the status subsystem — the files were floating. Fixed in PR #28 (this session log).
+
+### Assumptions that held
+
+- 142/142 tests passed (119 prior + 23 new) with no regressions.
+- Key Alignment check: 88 nodes, 16 arcs, zero drift — clean through PR #27.
+- `buildStatusRollup` `totalOpen` count correctly excludes intentional translation fixtures.
+- Prefix matching for scope detection correctly identifies all demo fixture keys.
+
+### Assumptions that need verification
+
+- [ ] `data/status.json` regeneration is not yet wired into CI — it must be manually re-run after any change to `data/status/*.json` or `data/strings/compiled/manifest.json`
+- [ ] Copy-slug buttons in `ecosystem-hub.html` require HTTPS or localhost; behavior on `file://` is silent failure
+- [ ] `pages/ecosystem-hub.html` live fetch of index.json + status.json not yet verified on GitHub Pages
+- [ ] PR #27 not yet merged at session log write time — dependent on Victor's review
+
+### Open work at session end
+
+- [ ] Wire `lib/build-status.js` into CI (data/status.json must stay current automatically)
+- [ ] `lib/check-link-integrity.js` — HTML dead link scanner for CI (td-003)
+- [ ] `_meta.renamed_from` convention on string source files for slug rename traceability
+- [ ] Update `docs/architecture/03-data.md` to register `data/status/` write side + `data/status.json` read side (addressed in this PR)
+- [ ] Light/dark mode theming — premature until CSS/styling architecture is established; Victor confirmed not queued
+
+### State of the system at session end
+
+`data/status.json` is a generated CQRS artifact at the same layer as `index.json` — machine-readable operational state across four notice categories. `pages/ecosystem-hub.html` is the first consumer, rendering content map + page registry + system health panels from two parallel runtime fetches. `data/status/*.json` are the hand-authored write side; `lib/build-status.js` assembles them. The architecture docs gap (status subsystem not registered in 03-data.md) is fixed in this PR. 142/142 tests. PR #26 merged; PR #27 CI green, pending merge.
+
 <!-- [VXG RealForever] -->
