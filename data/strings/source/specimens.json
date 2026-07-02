@@ -1,6 +1,7 @@
 {
   "_meta": {
     "scope": "specimens",
+    "category": "demo",
     "description": "Strings for pages/specimens.html — the dashboard listing the three specimen pages (fixtures built to demonstrate one localization state each, plus the pipeline that produces or catches that state).",
     "keyConvention": "specimens.{element-type}.{semantic-name}"
   },

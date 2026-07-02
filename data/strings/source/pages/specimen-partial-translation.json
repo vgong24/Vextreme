@@ -1,6 +1,7 @@
 {
   "_meta": {
     "scope": "pages.specimen-partial-translation",
+    "category": "demo",
     "description": "Specimen page: one string has EN only, no JA — an intentional gap, mirroring the real gap in claude-answers-the-doubt (layer.04.qa.04.answer). Pairs with the screenshot-verification process map. pages.specimen-partial-translation.body.untranslated has NO ja entry on purpose — do not add one, that would defeat the specimen.",
     "keyConvention": "pages.specimen-partial-translation.{field}"
   },

@@ -1,6 +1,7 @@
 {
   "_meta": {
     "scope": "common",
+    "category": "system",
     "description": "Globally reusable UI strings. Keys promoted here appear on 3+ pages or are structural chrome with no page-specific meaning. For strings shared within a single arc or page scope, use {scope}.common.{element}.{name} keys in the scope's own file.",
     "keyConvention": "common.{element-type}.{semantic-name}",
     "elementTypes": ["button", "label", "heading", "description", "nav", "legend", "status", "placeholder"],

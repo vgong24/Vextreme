@@ -27,7 +27,18 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 008 — July 1, 2026*
+*As of Session 009 — July 1, 2026*
+
+**Session 009 addition:** Compiled scope bundles are now organized by content lifecycle
+category under `scopes/{category}/` subdirectories, derived deterministically from
+`_meta.category` on string source files and `window.VEX_STRING_CATEGORY` on pages.
+Four categories: `system` (common strings, always loaded), `production` (real content
+pages, default), `demo` (architecture reference pages), `staging` (reserved). Path
+derivation is symmetric — `lib/strings-compile.js` and `widgets/lang-fab.js`'s
+`scopeUrl()` apply the same rule, so paths are inspectable in the filesystem without
+any runtime lookup. PR #19 open, CI green. See Session 009 in the active batch file
+for the full reasoning including the three options evaluated and Kimi's co-architect
+input on scalability preparation.
 
 **Session 008 addition:** New `pages/specimens.html` dashboard + 3 specimen fixture
 pages (`specimen-full-translation`, `specimen-partial-translation`,
@@ -119,9 +130,11 @@ system state — not aspirational state.
 
 ## Open Work
 
-*Updated Session 008 — July 1, 2026*
+*Updated Session 009 — July 1, 2026*
 
 **v2 system (active):**
+- [ ] Merge PR #19 — CI green, no review comments (Session 009)
+- [x] `_meta.category` system — scope bundles under `scopes/{category}/`, deterministic path derivation, `window.VEX_STRING_CATEGORY` on pages (Session 009, PR #19)
 - [x] specimens.html dashboard + 3 specimen pages, each pairing a localization state with the pipeline mechanism that catches it (Session 008)
 - [ ] Consider a documented "always include this scope" mechanism for shared-scope pages instead of relying on every page to remember to list it manually (Session 008, caught a real bug this way)
 - [x] Per-scope compiled string bundles + opt-in scoped fetch in lang-fab.js — additive, `vextreme-demo` is the first adopter (Session 007)
@@ -283,6 +296,6 @@ These rules exist so the log stays useful as it grows. Follow them.
 
 ---
 
-*Last updated: Session 008 — July 1, 2026*
+*Last updated: Session 009 — July 1, 2026*
 
 <!-- [VXG RealForever] -->
