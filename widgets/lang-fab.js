@@ -19,6 +19,7 @@
   var INDEX_URL  = CDN_BASE + '/data/index.json?v=' + VERSION;
   var LS_LANG    = 'vex-lang';
   var LS_DATA    = 'vex-index-v2-data';
+  var LS_STRINGS = 'vex-lang-strings';
 
   // ── Config constants (mirrors lib/vex-config.js) ─────────────────────────────
   // These string values are the ground truth in lib/vex-config.js. When that
@@ -135,6 +136,14 @@
 
   var _langStrings = {};
 
+  // stringsKey — localStorage key for the merged strings object for a lang+scopes pair.
+  // Versioned so a VERSION bump naturally invalidates all cached bundles.
+  function stringsKey(lang, scopes) {
+    var base = LS_STRINGS + '-' + VERSION + '-' + lang;
+    if (!scopes || !scopes.length) return base;
+    return base + '-' + scopes.slice().sort().join(',');
+  }
+
   // scopeUrl — derives the CDN URL for a compiled scope bundle.
   // Mirrors the path rule in lib/strings-compile.js: dots in scope names
   // become directory segments within the category directory. 'common' always
@@ -164,6 +173,18 @@
 
   function loadStringsForLang(lang, onReady) {
     var scopes = window.VEX_STRING_SCOPES;
+    var cacheKey = stringsKey(lang, scopes);
+
+    // Read from localStorage cache first — survives page refresh without a CDN round-trip.
+    // This is what makes lang persist on refresh for pages that don't load vextreme.js.
+    try {
+      var cached = localStorage.getItem(cacheKey);
+      if (cached) {
+        _langStrings = JSON.parse(cached);
+        onReady();
+        return;
+      }
+    } catch (e) { /* storage unavailable or corrupt — fall through to fetch */ }
 
     if (!scopes || !scopes.length) {
       // Legacy / default path — unchanged behavior.
@@ -173,6 +194,7 @@
           _logger.warn({ code: 'LANG_FAB_STRINGS_FETCH_FAILED', message: 'Failed to fetch strings for ' + lang, lang: lang, error: String(err) });
         } else {
           _langStrings = data;
+          try { localStorage.setItem(cacheKey, JSON.stringify(data)); } catch (e) {}
         }
         onReady();
       });
@@ -200,7 +222,11 @@
           fetchJSON(baseUrl, function (baseErr, baseData) {
             if (!baseErr) Object.keys(baseData).forEach(function (k) { merged[k] = baseData[k]; });
             else _logger.warn({ code: 'LANG_FAB_STRINGS_HTTP_ERROR', message: 'scope bundle missing for ' + scope, lang: lang, scope: scope });
-            if (--remaining === 0) { _langStrings = merged; onReady(); }
+            if (--remaining === 0) {
+              _langStrings = merged;
+              try { localStorage.setItem(cacheKey, JSON.stringify(merged)); } catch (e) {}
+              onReady();
+            }
           });
           return;
         }
@@ -209,7 +235,11 @@
         } else {
           Object.keys(data).forEach(function (k) { merged[k] = data[k]; });
         }
-        if (--remaining === 0) { _langStrings = merged; onReady(); }
+        if (--remaining === 0) {
+          _langStrings = merged;
+          try { localStorage.setItem(cacheKey, JSON.stringify(merged)); } catch (e) {}
+          onReady();
+        }
       });
     });
   }

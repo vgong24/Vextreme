@@ -98,6 +98,15 @@ test('ASSEMBLER: output contains VEX_STRING_SCOPES and VEX_STRING_CATEGORY', () 
   assert.ok(script.includes('window.VEX_STRING_CATEGORY'), 'must set VEX_STRING_CATEGORY');
 });
 
+test('ASSEMBLER: output contains VEX_SUPPORTED_LANGS when provided', () => {
+  const script = assembleGodScript('test-slug', DEMO_VIEWMODEL, {
+    includeSourceComment: false,
+    supportedLangs: ['en', 'ja'],
+  });
+  assert.ok(script.includes('window.VEX_SUPPORTED_LANGS'), 'must set VEX_SUPPORTED_LANGS');
+  assert.ok(script.includes('"en"') && script.includes('"ja"'), 'supported langs must appear in output');
+});
+
 test('ASSEMBLER: output is wrapped in an IIFE', () => {
   const script = assembleGodScript('test-slug', DEMO_VIEWMODEL, { includeSourceComment: false });
   assert.ok(script.includes('(function ()'), 'must be wrapped in an IIFE');
@@ -119,6 +128,12 @@ test('ASSEMBLER: source comment header includes slug', () => {
 test('ASSEMBLER: handles empty features array without throwing', () => {
   const vm = { category: 'demo', template: 'page', scopes: ['specimens'], features: [] };
   assert.doesNotThrow(() => assembleGodScript('test', vm, { includeSourceComment: false }));
+});
+
+test('ASSEMBLER: output includes sw-register.js core module', () => {
+  const script = assembleGodScript('test-slug', DEMO_VIEWMODEL, { includeSourceComment: false });
+  assert.ok(script.includes('sw-register.js') || script.includes('serviceWorker'),
+    'God Script must include Service Worker registration (sw-register.js core module)');
 });
 
 // ── 4. resolveAllSlugs ───────────────────────────────────────────────────────

@@ -1,0 +1,455 @@
+{
+  "_schema": "Vextreme file lattice — one entry per file, edges define reads/writes/loads/tests. Load this file first when arriving cold: it gives you the system topology without reading any implementation. Navigate laterally (adjacent nodes in changeMap) before diving into depth (file contents). File headers carry a local LATTICE block for quick reference when you are already inside a file; this map is the canonical source if they diverge.",
+
+  "_usage": [
+    "1. Read this file before opening any lib/ file — understand what a file does and what it touches before reading it",
+    "2. When about to change something, look up the file's changeMap to find every adjacent node that must also be checked",
+    "3. Follow changeMap links recursively until you have visited every affected node (closed the circuit)",
+    "4. After adding or moving a file, add its node here and add it to the loadedBy/reads of its neighbors"
+  ],
+
+  "version": "1",
+
+  "nodes": {
+
+    "lib/vex-config.js": {
+      "role": "constants hub — pure declarations, no I/O",
+      "context": "Every semantic string in the system (category names, language codes, feature IDs, scope names, CDN paths) lives here as a named constant. No build script or widget should hardcode 'demo', 'ja', 'common', etc. Changes here propagate to 9+ files — the widest fan-out of any single file.",
+      "reads": [],
+      "writes": [],
+      "loadedBy": [
+        "lib/build-index.js",
+        "lib/build-vextreme.js",
+        "lib/strings-compile.js",
+        "lib/strings-check.js",
+        "lib/strings-export.js",
+        "lib/strings-import.js",
+        "lib/build-archives.js",
+        "lib/build-specimens.js",
+        "lib/validate-blueprint.js",
+        "tests/05-vex-config.test.js",
+        "tests/06-blueprint.test.js",
+        "tests/07-viewmodel.test.js",
+        "tests/08-build-vextreme.test.js"
+      ],
+      "testedBy": ["tests/05-vex-config.test.js", "tests/06-blueprint.test.js"],
+      "changeMap": {
+        "Feature.* added/renamed": [
+          "blueprint.json (features array)",
+          "config/features/{id}.json (create if new)",
+          "lib/build-vextreme.js (FEATURES registry)",
+          "tests/06-blueprint.test.js (coverage check)"
+        ],
+        "Category.* added/renamed": [
+          "blueprint.json (categories array)",
+          "config/categories/{id}.json (create if new)",
+          "data/strings/source/ (_meta.category values in source files)",
+          "lib/strings-compile.js (path derivation logic)"
+        ],
+        "Language.* added": [
+          "lib/strings-compile.js",
+          "lib/strings-check.js",
+          "data/status/tech-debt.json (td-006 trigger condition)"
+        ],
+        "scopeRelPath() logic changed": [
+          "widgets/fab-lang.js (applies the same rule at runtime — must stay identical or fetches 404)",
+          "lib/strings-compile.js (applies rule at write time)"
+        ]
+      }
+    },
+
+    "lib/build-index.js": {
+      "role": "content pipeline assembler — reads source data, writes the single pre-built index everything reads from",
+      "context": "The pipeline hub. Every page, every arc nav render, every God Script assembly starts from data/index.json which this file produces. If the index schema changes, 4+ consumers break. Run manually or via CI after editing nodes.json or arcs-v2.json.",
+      "reads": [
+        "data/nodes.json",
+        "data/arcs-v2.json",
+        "data/viewmodels.json",
+        "lib/vex-config.js"
+      ],
+      "writes": ["data/index.json"],
+      "loadedBy": [
+        "lib/vextreme-index-v2.js (browser reads index.json via CDN)",
+        "lib/build-vextreme.js (reads index.json for slugMap + supportedLangs)",
+        "lib/check-key-alignment.js",
+        "lib/audit-pages.js",
+        "tests/01-content-pipeline.test.js",
+        "tests/03-browser-nav.test.js",
+        "tests/07-viewmodel.test.js",
+        "tests/08-build-vextreme.test.js (via KEY-ALIGNMENT tests)"
+      ],
+      "testedBy": [
+        "tests/01-content-pipeline.test.js",
+        "tests/03-browser-nav.test.js",
+        "tests/07-viewmodel.test.js"
+      ],
+      "changeMap": {
+        "slugMap schema": [
+          "lib/vextreme-index-v2.js (buildArcNavData reads slugMap)",
+          "lib/build-vextreme.js (resolveAllSlugs reads slugMap)",
+          "tests/01, tests/03, tests/07, tests/08"
+        ],
+        "arcMap schema": [
+          "lib/vextreme-index-v2.js (buildArcNavData reads arcMap)",
+          "tests/01, tests/03"
+        ],
+        "arcMeta schema": [
+          "lib/vextreme-index-v2.js (renderArcRow reads arcMeta)",
+          "tests/01"
+        ],
+        "supportedLangs field": [
+          "lib/build-vextreme.js (passes into every God Script as window.VEX_SUPPORTED_LANGS)",
+          "tests/08"
+        ],
+        "viewmodel shape": [
+          "data/viewmodels.json",
+          "lib/build-vextreme.js (assembleGodScript uses viewmodel fields)",
+          "tests/07-viewmodel.test.js"
+        ]
+      }
+    },
+
+    "lib/build-vextreme.js": {
+      "role": "God Script assembler — reads index + string bundles, writes one self-contained dist/ file per page",
+      "context": "The write side of the page delivery pipeline. Inlines EN strings, bakes in viewmodel, includes feature widgets. Once a God Script is loaded by a page, it needs zero additional fetches for EN. Run after build-index.js and strings-compile.js.",
+      "reads": [
+        "data/index.json",
+        "data/viewmodels.json",
+        "data/strings/compiled/scopes/{category}/{scope}.en.json",
+        "widgets/sw-register.js",
+        "widgets/fab-lang.js",
+        "widgets/fab-demo.js",
+        "lib/vextreme-index-v2.js (arc-nav feature, via srcDir: LIB_DIR in FEATURES registry)",
+        "lib/vex-config.js"
+      ],
+      "writes": ["dist/vextreme-{slug}.js (one per assembled slug)"],
+      "loadedBy": [
+        "tests/08-build-vextreme.test.js",
+        ".github/workflows/build-index.yml (auto-run after build-index.js)"
+      ],
+      "testedBy": ["tests/08-build-vextreme.test.js"],
+      "changeMap": {
+        "FEATURES registry entry added": [
+          "lib/vex-config.js (Feature.* constant)",
+          "blueprint.json (features array)",
+          "config/features/{id}.json (create if new)",
+          "tests/08 (add coverage for new feature output)"
+        ],
+        "assembleGodScript() output globals": [
+          "widgets/fab-lang.js (reads VEX_STRING_SCOPES, VEX_STRING_CATEGORY, VEX_STRINGS_EN)",
+          "lib/vextreme-index-v2.js (reads VEX_STRINGS_EN fast path)",
+          "tests/08 (all ASSEMBLER: assertions)"
+        ],
+        "scope bundle path convention": [
+          "lib/strings-compile.js (must write to same path this reads from)",
+          "widgets/fab-lang.js (must fetch from same path at runtime)"
+        ],
+        "dist/ output filenames": [
+          "lib/build-sw.js (PRECACHE_URLS — sw.js must include new filenames)",
+          "pages/*.html (each page references its dist/ file by name)"
+        ]
+      }
+    },
+
+    "lib/strings-compile.js": {
+      "role": "strings pipeline compiler — reads source JSON, writes compiled bundles and manifest",
+      "context": "The write side of the i18n pipeline. Every string key, every language bundle, every stale-detection hash is produced here. Run after editing any file in data/strings/source/. The scope bundle path rule here MUST match the runtime fetch rule in widgets/fab-lang.js.",
+      "reads": [
+        "data/strings/source/**/*.json",
+        "lib/vex-config.js"
+      ],
+      "writes": [
+        "data/strings/compiled/strings.{lang}.json (flat bundle, legacy fallback)",
+        "data/strings/compiled/scopes/{category}/{scope}.{lang}.json (per-scope bundles)",
+        "data/strings/compiled/manifest.json (content hashes per key)"
+      ],
+      "loadedBy": [
+        "lib/build-vextreme.js (reads scope bundles for God Script assembly)",
+        "widgets/fab-lang.js (fetches scope bundles at runtime for JA)",
+        "lib/strings-check.js (reads manifest for stale detection)",
+        "tests/02-strings-pipeline.test.js"
+      ],
+      "testedBy": ["tests/02-strings-pipeline.test.js"],
+      "changeMap": {
+        "scopeRelPath() path rule": [
+          "lib/vex-config.js (canonical implementation lives here)",
+          "widgets/fab-lang.js (applies the same rule at runtime — must stay identical)"
+        ],
+        "manifest schema (enHash, _stale)": [
+          "lib/strings-check.js (reads these fields)",
+          "tests/02"
+        ],
+        "scope bundle schema": [
+          "lib/build-vextreme.js (readScopeBundle + mergeScopes)",
+          "tests/08"
+        ],
+        "category routing logic": [
+          "lib/vex-config.js (Category.* constants)",
+          "data/strings/source/ (_meta.category values)"
+        ]
+      }
+    },
+
+    "lib/vextreme-index-v2.js": {
+      "role": "browser arc nav runtime — reads index.json at load time, renders prev/next/position into #arcNavMount",
+      "context": "THE arc nav widget for the v2 architecture. Supersedes lib/arc-nav.js (v1, Squarespace-era, reads VEXTREME_ARCS). Inlined into God Scripts via the arc-nav feature in the FEATURES registry. Also loads standalone on non-God-Script pages via shell.js.",
+      "reads": [
+        "data/index.json via CDN (slugMap, arcMap, arcMeta)",
+        "window.VEX_STRINGS_EN (God Script fast path — already inlined by build-vextreme.js)",
+        "data/strings/compiled/strings.en.json via CDN (non-God-Script fallback)",
+        "localStorage (ETag cache for index + strings)"
+      ],
+      "writes": [
+        "innerHTML of #arcNavMount",
+        "localStorage (index cache, strings cache)"
+      ],
+      "loadedBy": [
+        "lib/build-vextreme.js FEATURES registry (Feature.ARC_NAV, srcDir: LIB_DIR)",
+        "non-God-Script pages via shell.js + vextreme.js"
+      ],
+      "testedBy": ["tests/03-browser-nav.test.js (data logic; no browser render tests yet)"],
+      "changeMap": {
+        "buildArcNavData() reads slugMap/arcMap/arcMeta": [
+          "lib/build-index.js (must produce matching schema)",
+          "tests/03"
+        ],
+        "getString() / string bundle shape": [
+          "lib/strings-compile.js (must produce matching bundle format)",
+          "window.VEX_STRINGS_EN format in lib/build-vextreme.js"
+        ],
+        "urlFromSlug() URL construction": [
+          "pages/*.html filenames (must match the URLs this generates)",
+          "lib/build-index.js (same logic applies there)"
+        ],
+        "#arcNavMount selector": [
+          "every page HTML that uses arc-nav must have <div id=\"arcNavMount\">"
+        ]
+      }
+    },
+
+    "lib/arc-nav.js": {
+      "role": "v1 Squarespace-era arc nav — DO NOT USE for God Script pages",
+      "context": "The original arc nav widget, designed for squarespace-injection.html. Reads from window.VEXTREME_ARCS (old arcs.json format), not index.json. Kept for reference and the Squarespace deployment path. For all GitHub Pages / God Script pages, use lib/vextreme-index-v2.js instead.",
+      "reads": [
+        "window.VEXTREME_ARCS (old arcs.json format)",
+        "window.PAGE_ARCS (set per-page by the embedding loader)",
+        "window.VEXTREME_PAGES (renderModes registry)"
+      ],
+      "writes": ["innerHTML of #arcNavMount"],
+      "loadedBy": ["docs/squarespace-injection.html (v1 Squarespace flow only)"],
+      "testedBy": [],
+      "changeMap": {
+        "any change": [
+          "consider using lib/vextreme-index-v2.js instead (v2 architecture)",
+          "docs/squarespace-injection.html (only consumer)"
+        ]
+      }
+    },
+
+    "data/nodes.json": {
+      "role": "content node source — the authoritative list of all content slugs",
+      "context": "Every piece of content is a node here. The slug is the system's only identifier — arc membership, string scope keys, HTML filenames, and God Script names all derive from it. This is the write side; data/index.json is the read side.",
+      "reads": [],
+      "writes": [],
+      "loadedBy": ["lib/build-index.js (primary consumer — reads on every build)"],
+      "testedBy": ["tests/01-content-pipeline.test.js", "tests/08-build-vextreme.test.js (KEY-ALIGNMENT)"],
+      "changeMap": {
+        "slug added": [
+          "data/arcs-v2.json (add to arc membership if it belongs to an arc)",
+          "data/strings/source/ (create scope file for the page's strings)",
+          "pages/{slug}.html (create the page HTML)",
+          "data/viewmodels.json (add override if not production/page defaults)",
+          "run: node lib/build-index.js && node lib/build-vextreme.js"
+        ],
+        "slug renamed": [
+          "data/arcs-v2.json (update arc membership entries)",
+          "data/strings/source/ (rename scope key prefix)",
+          "pages/{old-slug}.html → pages/{new-slug}.html (rename file)",
+          "data/viewmodels.json (update key if override exists)",
+          "dist/vextreme-{old-slug}.js (delete; rebuild generates new name)",
+          "see pe-006: lib/rename-slug.js tooling planned but not yet built"
+        ],
+        "slug removed": [
+          "data/arcs-v2.json (remove from all arc memberships)",
+          "pages/{slug}.html (delete or archive)",
+          "dist/vextreme-{slug}.js (delete)",
+          "data/viewmodels.json (remove override if exists)"
+        ]
+      }
+    },
+
+    "data/arcs-v2.json": {
+      "role": "arc structure source — defines arc membership, ordering, and metadata",
+      "context": "Arcs are the navigation layer: ordered groups of content nodes with display metadata. The v2 format uses slug-keyed entries (not URL-keyed). build-index.js reads this alongside nodes.json to produce arcMap and arcMeta in index.json.",
+      "reads": [],
+      "writes": [],
+      "loadedBy": ["lib/build-index.js"],
+      "testedBy": ["tests/01-content-pipeline.test.js", "tests/08-build-vextreme.test.js (KEY-ALIGNMENT)"],
+      "changeMap": {
+        "arc entry added": [
+          "data/nodes.json (all slugs in the arc must exist there)",
+          "run: node lib/build-index.js"
+        ],
+        "arc schema fields changed": [
+          "lib/build-index.js (buildArcMap, buildArcMeta read these fields)",
+          "lib/vextreme-index-v2.js (buildArcNavData reads arcMeta)",
+          "tests/01"
+        ]
+      }
+    },
+
+    "data/viewmodels.json": {
+      "role": "per-slug viewmodel overrides — demo/specimen pages that aren't content nodes",
+      "context": "Content nodes in nodes.json get default viewmodels (production/page template). This file holds overrides for demo and specimen pages that have different categories, templates, or feature sets. Also used to add non-node slugs (demo pages, specimens) to the God Script assembly pipeline.",
+      "reads": [],
+      "writes": [],
+      "loadedBy": [
+        "lib/build-index.js (buildViewmodel reads overrides)",
+        "lib/build-vextreme.js (resolveAllSlugs merges these with slugMap)"
+      ],
+      "testedBy": ["tests/07-viewmodel.test.js", "tests/08-build-vextreme.test.js"],
+      "changeMap": {
+        "slug entry added/changed": [
+          "lib/build-vextreme.js (rebuild God Script for that slug)",
+          "data/strings/source/ (must have compiled scope bundle for assembly to succeed)"
+        ],
+        "viewmodel shape (category/template/scopes/features)": [
+          "lib/build-index.js (buildViewmodel produces this shape)",
+          "lib/build-vextreme.js (assembleGodScript consumes it)",
+          "tests/07-viewmodel.test.js"
+        ]
+      }
+    },
+
+    "data/index.json": {
+      "role": "pre-built read index — the single artifact every page and build script reads from",
+      "context": "Generated by lib/build-index.js. Never edit directly. Contains slugMap (slug → viewmodel + arcKeys + nav data), arcMap (arc → sections → slug lists), arcMeta (arc → display metadata), supportedLangs, nodeCount, arcCount, builtAt. Everything downstream reads this; nothing downstream reads nodes.json or arcs-v2.json directly.",
+      "reads": [],
+      "writes": [],
+      "loadedBy": [
+        "lib/vextreme-index-v2.js (browser fetches via CDN, caches in localStorage)",
+        "lib/build-vextreme.js (reads slugMap for assembly)",
+        "lib/check-key-alignment.js",
+        "lib/audit-pages.js",
+        "pages/vextreme-demo.html (live fetch to show nodeCount/arcCount/supportedLangs)"
+      ],
+      "testedBy": ["tests/08-build-vextreme.test.js (KEY-ALIGNMENT)"],
+      "changeMap": {
+        "schema changes": [
+          "lib/build-index.js (producer — update to emit new schema)",
+          "lib/vextreme-index-v2.js (consumer — update reader)",
+          "lib/build-vextreme.js (consumer — update resolveAllSlugs)",
+          "tests/01, tests/03, tests/07, tests/08"
+        ]
+      }
+    },
+
+    "widgets/fab-lang.js": {
+      "role": "browser language switcher FAB — fetches JA scope bundles, applies [data-i18n] swaps",
+      "context": "The runtime i18n engine. On language switch, constructs scope bundle URLs using the same scopeRelPath rule as strings-compile.js (build time) — these MUST stay in sync. Caches fetched JA strings in localStorage keyed by version + sorted scope list. Reads VEX_STRING_SCOPES, VEX_STRING_CATEGORY from window (set by God Script).",
+      "reads": [
+        "window.VEX_STRING_SCOPES",
+        "window.VEX_STRING_CATEGORY",
+        "window.VEX_SUPPORTED_LANGS",
+        "data/strings/compiled/scopes/{category}/{scope}.{lang}.json via CDN",
+        "localStorage (string cache)"
+      ],
+      "writes": [
+        "innerHTML / textContent of [data-i18n] elements",
+        "localStorage (string cache per scope+lang combination)"
+      ],
+      "loadedBy": [
+        "lib/build-vextreme.js (inlined as lang feature in God Scripts)",
+        "legacy pages via direct CDN script tag (pre-God-Script pattern)"
+      ],
+      "testedBy": [],
+      "changeMap": {
+        "scope bundle URL construction": [
+          "lib/strings-compile.js (must write to same path)",
+          "lib/vex-config.js scopeRelPath() (canonical rule)"
+        ],
+        "localStorage key format": [
+          "widgets/sw-register.js (Service Worker pre-caches these URLs)",
+          "any future offline FAB that reads cache state (pe-008)"
+        ],
+        "VEX_* global names read": [
+          "lib/build-vextreme.js assembleGodScript() (must emit matching global names)"
+        ]
+      }
+    },
+
+    "widgets/sw-register.js": {
+      "role": "Service Worker registration — activates offline caching on first page load",
+      "context": "Core module: default: true in the FEATURES registry, inlined into every God Script. Registers sw.js. Once active, the SW pre-caches all God Scripts + core assets at install time — subsequent page loads make zero network requests for HTML or JS. Without this, the offline/caching pyramid is inactivated.",
+      "reads": ["navigator.serviceWorker API"],
+      "writes": ["Service Worker registration in browser"],
+      "loadedBy": [
+        "lib/build-vextreme.js (inlined as core module in every God Script, default: true)"
+      ],
+      "testedBy": ["tests/09-build-sw.test.js (tests sw.js generation, not this file directly)"],
+      "changeMap": {
+        "SW registration scope or path": [
+          "sw.js (must exist at the registered path)",
+          "lib/build-sw.js (generates sw.js)"
+        ]
+      }
+    },
+
+    "sw.js": {
+      "role": "Service Worker — pre-caches all God Scripts and core assets at install",
+      "context": "Generated by lib/build-sw.js. Pre-caches every dist/vextreme-{slug}.js file plus core CSS/JSON assets. After install, page visits cost zero network requests for cached assets. Stale SW caches are cleaned up on activate. Never edit directly — regenerate with node lib/build-sw.js.",
+      "reads": [],
+      "writes": [],
+      "loadedBy": ["widgets/sw-register.js (registers this file in every God Script page)"],
+      "testedBy": ["tests/09-build-sw.test.js"],
+      "changeMap": {
+        "PRECACHE_URLS list": [
+          "lib/build-sw.js (generates this list from dist/ filenames)",
+          "run: node lib/build-sw.js after adding any new dist/ file"
+        ]
+      }
+    },
+
+    "lib/build-sw.js": {
+      "role": "Service Worker generator — reads dist/ filenames, writes sw.js",
+      "context": "Scans dist/ for God Script filenames and bakes them into the SW PRECACHE_URLS list. Run after build-vextreme.js adds new dist/ files. The generated sw.js is committed — the SW cache version is pinned to the git commit hash at generation time.",
+      "reads": ["dist/*.js (all God Script filenames)", "git commit hash"],
+      "writes": ["sw.js"],
+      "loadedBy": [".github/workflows/build-index.yml"],
+      "testedBy": ["tests/09-build-sw.test.js"],
+      "changeMap": {
+        "CORE_ASSETS list": [
+          "styles/design-system.css, styles/arc-nav.css, data/index.json (must exist at these paths)",
+          "tests/09 (asserts each core asset)"
+        ],
+        "cache name format": [
+          "sw.js activate handler (cleans caches by name pattern)",
+          "tests/09"
+        ]
+      }
+    },
+
+    "blueprint.json": {
+      "role": "system blueprint — canonical registry of all feature IDs, category IDs, template IDs",
+      "context": "The configuration contract. Every Feature constant in vex-config.js must have a matching entry here, and every entry here must have a config file in config/features/. Tests/06 enforces this. Adding a new feature to FEATURES registry in build-vextreme.js without adding it here will fail the blueprint tests.",
+      "reads": [],
+      "writes": [],
+      "loadedBy": [
+        "lib/validate-blueprint.js",
+        "tests/06-blueprint.test.js"
+      ],
+      "testedBy": ["tests/06-blueprint.test.js"],
+      "changeMap": {
+        "features[] entry added": [
+          "lib/vex-config.js (Feature.* constant must exist)",
+          "config/features/{id}.json (must create matching config file)"
+        ],
+        "categories[] entry added": [
+          "lib/vex-config.js (Category.* constant must exist)",
+          "config/categories/{id}.json (must create matching config file)"
+        ]
+      }
+    }
+
+  }
+}

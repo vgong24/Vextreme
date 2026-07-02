@@ -7,7 +7,7 @@
   'use strict';
 
   /* Per-page viewmodel — baked in at build time */
-  window.VEX_VIEWMODEL          = {"category":"demo","template":"specimen-page","scopes":["pages.specimen-full-translation","specimens"],"features":["lang","demo","spiral-fab"]};
+  window.VEX_VIEWMODEL          = {"title":"Specimen: Full Translation","category":"demo","template":"specimen-page","scopes":["pages.specimen-full-translation","specimens"],"features":["lang","demo","spiral-fab"]};
 
   /* EN strings — inlined at build time, no fetch on default language */
   window.VEX_STRINGS_EN         = {"common.nav.prev":{"text":"← prev","aria-label":"Previous page"},"common.nav.next":{"text":"next →","aria-label":"Next page"},"common.label.you-are-here":{"text":"You Are Here"},"common.nav.archives":{"text":"Archives","aria-label":"View full archive"},"common.nav.primary-site":{"text":"vextreme24.com","aria-label":"Go to primary site"},"common.nav.github":{"text":"GitHub","aria-label":"View source on GitHub"},"common.nav.full-archive":{"text":"Full archive →","aria-label":"View full archive"},"common.button.copy-filename":{"text":"Copy filename","aria-label":"Copy filename to clipboard"},"common.button.copied":{"text":"Copied!","aria-label":"Filename copied to clipboard"},"common.label.site-title":{"text":"Vextreme"},"common.label.page-live":{"text":"Page live"},"common.label.not-yet-ported":{"text":"Not yet ported"},"common.label.slug":{"text":"Slug"},"common.status.pages-live":{"text":"{ported, plural, one {# of {total} page live} other {# of {total} pages live}}"},"common.status.remaining":{"text":"{count, plural, one {# remaining} other {# remaining}}"},"common.status.built-on":{"text":"Built {date}"},"pages.specimen-full-translation.heading.title":{"text":"Full Translation"},"pages.specimen-full-translation.intro":{"text":"Every string on this page has a Japanese translation. Switch languages with the orb, top right — nothing falls back to English."},"pages.specimen-full-translation.body":{"text":"This is a fixture, not real content — built specifically to have zero translation gaps, so you can compare it directly against the partial specimen next to it."},"pages.specimen-full-translation.process.heading":{"text":"How full coverage gets verified"},"pages.specimen-full-translation.process.step1.label":{"text":"Content pipeline"},"pages.specimen-full-translation.process.step1.detail":{"text":"nodes.json + arcs-v2.json → build-index.js. Asserts every slug resolves, arc order matches priority, and adjacency (prev/next) is correct at both ends of an arc."},"pages.specimen-full-translation.process.step2.label":{"text":"Strings pipeline"},"pages.specimen-full-translation.process.step2.detail":{"text":"source/*.json → strings-compile.js → compiled bundles + manifest. Asserts every key's hash is stable, duplicate keys don't silently overwrite, and language coverage per key matches what's in each bundle."},"pages.specimen-full-translation.process.step3.label":{"text":"Browser navigation"},"pages.specimen-full-translation.process.step3.detail":{"text":"Given a slug's position in an arc, asserts the first entry has no prev link, the last has no next link, and arcs render in priority order — the properties a broken nav would violate silently."},"pages.specimen-full-translation.process.step4.label":{"text":"Build output"},"pages.specimen-full-translation.process.step4.detail":{"text":"Reads the generated HTML directly and asserts specific structure exists — the copy button's click handler, the slug popover, the cell grid — the things a template refactor could silently delete."},"specimens.heading.title":{"text":"Specimens"},"specimens.heading.subtitle":{"text":"Three small, fixed pages — not real content — each isolating one localization state and the pipeline stage that produces or catches it. This sits between the architecture pitch and the real progress tracker: smaller than either, meant to be read in a minute."},"specimens.card.full.label":{"text":"Full translation"},"specimens.card.partial.label":{"text":"Partial translation"},"specimens.card.stale.label":{"text":"The smallest miss"},"specimens.card.full.description":{"text":"Every string translated. Shows what the test suite verifies at each pipeline stage — not just that it passed."},"specimens.card.partial.description":{"text":"One string deliberately left untranslated — the same gap claude-answers-the-doubt has for real. Shows the screenshot-verification process that would catch it."},"specimens.card.stale.description":{"text":"One line of English, changed after its Japanese translation was written — flagged stale automatically. Shows the integrity check that caught it."},"specimens.link.view":{"text":"View specimen →","aria-label":"View this specimen page"},"specimens.link.back":{"text":"← Back to specimens","aria-label":"Back to the specimens dashboard"},"specimens.link.demo":{"text":"← Back to the architecture demo","aria-label":"Back to the architecture demo page"},"specimens.link.archives":{"text":"See real, in-progress translation coverage on the archive dashboard →","aria-label":"View the archive dashboard for real translation progress"}};
@@ -15,6 +15,50 @@
   /* Scope + category globals for fab-lang compatibility */
   window.VEX_STRING_SCOPES    = ["pages.specimen-full-translation","specimens"];
   window.VEX_STRING_CATEGORY  = "demo";
+  window.VEX_SUPPORTED_LANGS  = ["en","ja"];
+
+
+/* === core: sw-register.js === */
+/**
+ * VEXTREME — widgets/sw-register.js
+ *
+ * Service Worker registration. Add ONE script tag to each page that should
+ * participate in SW caching (typically all pages on GitHub Pages):
+ *
+ *   <script src="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/widgets/sw-register.js"></script>
+ *
+ * This script is intentionally tiny — registration only, no logic.
+ * The SW itself (sw.js at repo root) handles all caching behaviour.
+ *
+ * The SW must be served from the same origin as the pages it controls.
+ * On GitHub Pages: https://vgong24.github.io/Vextreme/sw.js
+ */
+
+(function () {
+  'use strict';
+
+  if (!('serviceWorker' in navigator)) return;
+
+  var SW_URL = '/Vextreme/sw.js';
+
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register(SW_URL, { scope: '/Vextreme/' })
+      .then(function (reg) {
+        // Registration succeeded — SW is installed or updating
+        if (reg.waiting) {
+          // A new SW is waiting to activate; skip waiting to update immediately.
+          reg.waiting.postMessage({ type: 'SKIP_WAITING' });
+        }
+      })
+      .catch(function (err) {
+        // Registration failed — site still works, just without SW caching
+        console.warn('[vextreme SW] Registration failed:', err);
+      });
+  });
+
+}());
+
+// [VXG RealForever]
 
 
 /* === feature: lang (fab-lang.js) === */

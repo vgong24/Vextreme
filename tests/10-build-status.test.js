@@ -214,4 +214,50 @@ test('BUILD-STATUS: data/status/assumptions.json items all have required fields'
   }
 });
 
+// ── 5. Lattice map integrity ──────────────────────────────────────────────────
+
+const LATTICE_PATH = path.join(ROOT, 'docs', 'lattice-map.json');
+
+test('LATTICE: docs/lattice-map.json exists and is valid JSON', () => {
+  assert.ok(fs.existsSync(LATTICE_PATH), 'docs/lattice-map.json must exist');
+  const raw = fs.readFileSync(LATTICE_PATH, 'utf8');
+  assert.doesNotThrow(() => JSON.parse(raw), 'lattice-map.json must be valid JSON');
+});
+
+test('LATTICE: has required top-level keys', () => {
+  const map = JSON.parse(fs.readFileSync(LATTICE_PATH, 'utf8'));
+  assert.ok(map._schema,  'must have _schema description');
+  assert.ok(map._usage,   'must have _usage instructions');
+  assert.ok(map.nodes,    'must have nodes map');
+  assert.ok(map.version,  'must have version');
+});
+
+test('LATTICE: every node has required fields', () => {
+  const map = JSON.parse(fs.readFileSync(LATTICE_PATH, 'utf8'));
+  for (const [file, node] of Object.entries(map.nodes)) {
+    assert.ok(node.role,      `node "${file}" must have role`);
+    assert.ok(node.context,   `node "${file}" must have context`);
+    assert.ok(Array.isArray(node.reads),     `node "${file}" reads must be array`);
+    assert.ok(Array.isArray(node.writes),    `node "${file}" writes must be array`);
+    assert.ok(Array.isArray(node.loadedBy),  `node "${file}" loadedBy must be array`);
+    assert.ok(Array.isArray(node.testedBy),  `node "${file}" testedBy must be array`);
+    assert.ok(node.changeMap, `node "${file}" must have changeMap`);
+  }
+});
+
+test('LATTICE: every node key references an existing file', () => {
+  const map = JSON.parse(fs.readFileSync(LATTICE_PATH, 'utf8'));
+  // Only check keys that look like file paths (contain a dot — exclude data patterns like {slug})
+  for (const file of Object.keys(map.nodes)) {
+    if (!file.includes('{')) {
+      assert.ok(fs.existsSync(path.join(ROOT, file)), `lattice node "${file}" does not exist on disk`);
+    }
+  }
+});
+
+test('LATTICE: has at least 10 nodes', () => {
+  const map = JSON.parse(fs.readFileSync(LATTICE_PATH, 'utf8'));
+  assert.ok(Object.keys(map.nodes).length >= 10, 'lattice should cover at least 10 key files');
+});
+
 // [VXG RealForever]
