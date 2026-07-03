@@ -44,6 +44,16 @@
       "triggerCondition": "Before adding any language beyond English and Japanese",
       "migrationPath": "Arc-chunked bundles: one strings.{arc}.{lang}.json per arc, pre-fetched by SW on arc entry. Build script assembles chunks; browser receives without assembling.",
       "priority": "high"
+    },
+    {
+      "id": "td-008",
+      "title": "Current architecture has no structured-concurrency model — a known ceiling once server logic or multi-threaded application scope enters the ecosystem",
+      "description": "This repo is plain Node.js build scripts plus simple fetch/cache logic in the browser — single-threaded, no shared-memory parallelism, no genuine concurrent-thread danger anywhere in it today. That's fine for the current scope and is not a bug. It becomes one the moment the ecosystem grows to include actual server-side logic or applications with real concurrency needs (multiple simultaneous requests mutating shared state, background workers, task queues) — plain JS/Node gives no structural protection there beyond discipline (manually wiring AbortController at every async boundary, remembering to cancel stale work), the same 'good practice, not auto practice' gap named in docs/culture.md's AI-instance-reflection section. Reasoned through at length in a Session 021 conversation: JS is structurally safer than Kotlin/JVM against classic thread-level race conditions (no OS-thread-shared-memory parallelism exists in this codebase's execution model, so that bug class is currently impossible here, not just avoided) — but Kotlin's structured concurrency (coroutine scopes, automatic cancellation propagation) and its stricter null-safety type system are real, specific advantages once genuine concurrent/server-side logic is in scope, advantages TypeScript's strict mode only partially matches (TypeScript has real escape hatches — any, runtime type erasure — that Kotlin's type system doesn't).",
+      "context": "No specific file yet — this is a language/runtime-architecture decision, not a code location. Relevant once lib/ grows server-side logic or this ecosystem gains an application layer with real concurrency.",
+      "addedSession": "021",
+      "triggerCondition": "Before adding server-side logic or any application with genuine concurrent/multi-threaded requirements — do not discover this ceiling mid-build.",
+      "migrationPath": "Two-tier decision, not proposed as one migration: (1) near-term, adopt TypeScript with strictNullChecks for the existing JS layer — same toolchain, no JVM dependency, closes most of the null-safety gap and forces compiler-enforced reference consistency in build-script-to-build-script calls (see the JSON-vs-typed-references reasoning in the same Session 021 conversation). (2) If and when server/application/mobile scope becomes real, seriously re-evaluate Kotlin (or Kotlin Multiplatform specifically if Android/iOS is also real) for that new scope — it would deliver both the concurrency-safety and platform-reach cases at once, whereas adopting it now for the current JS-only, single-threaded scope would add JVM toolchain cost without a concurrency problem yet to solve.",
+      "priority": "medium"
     }
   ]
 }

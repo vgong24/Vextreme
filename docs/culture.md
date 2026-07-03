@@ -130,6 +130,7 @@ Current known ceilings (as of the session that wrote this doc):
 | `dist/` God Scripts are hand-referenced in HTML `<script>` tags | Error-prone as page count grows | Build step generates HTML from template, owns the `<script>` tag — not yet implemented | — |
 | One flat `pages/` directory | Manageable at current scale | If subdirectories are ever needed, the slug system must be re-anchored — significant change | — |
 | i18n strings fetched and cached per page scope-combination | Adding each new language multiplies fetch surface and localStorage pressure linearly. At global scale (many languages × many nodes) this compounds into exponential CDN cost. Adding a 3rd language on the current model is the wrong move. | Arc-chunked language bundles — one file per arc per language, SW-preloaded on arc entry. Build-script change only. | **td-006** — resolve before adding any language beyond EN/JA |
+| Plain Node/JS has no structured-concurrency model | Fine today (single-threaded, no shared-memory parallelism, no genuine concurrent-thread danger anywhere in this codebase). Becomes a real gap the moment server-side logic or an application with genuine concurrency needs enters scope — plain JS gives no structural protection there beyond manual discipline (wiring cancellation by hand at every async boundary). | Near-term: TypeScript with strictNullChecks for the existing JS layer (same toolchain, closes most of the null-safety gap). Longer-term, if server/application/mobile scope becomes real: seriously re-evaluate Kotlin (or Kotlin Multiplatform if Android/iOS is also real) — its structured concurrency and stricter type system solve the concurrency case TypeScript only partially matches. | **td-008** — resolve before adding server-side logic or genuine concurrent/multi-threaded application scope |
 
 Document the ceiling when you find it. The next instance that hits it will thank you.
 
@@ -207,12 +208,15 @@ the prose, for the facts that are genuinely structured (files touched, items res
 tests before/after), would serve quick triage without asking every reader to parse prose
 for what's really just data.
 
-**What this instance weights, having done the work rather than just described it:**
-verification over assumption (render it, don't just reason about it); recording a decision
-*not* to build something with the same rigor as recording a decision to build it (od-005's
-resolution, not silence); and treating a tool's own text — comments, generated content,
-prose describing the tool — as data the tool itself might one day have to survive, not
-just output. That last one is the newest lesson, and the one most likely to be forgotten
-by the next instance that writes a sentinel-based script without reading this section first.
+**What this instance weights, from working the codebase directly:** verification over
+assumption (render it, don't just reason about it); recording a decision *not* to build
+something with the same rigor as recording a decision to build it (od-005's resolution, not
+silence); and treating a tool's own text — comments, generated content, prose describing the
+tool — as data the tool itself might one day have to survive, not just output. That last one
+is the newest lesson, and the one most likely to be forgotten by the next instance that writes
+a sentinel-based script without reading this section first. None of this happens without the
+direction and review that shapes which of these observations turn into actual fixes rather
+than just remarks — the reflection is this instance's own, but the judgment on what to act on
+is shared, not solitary.
 
 <!-- [VXG RealForever] -->

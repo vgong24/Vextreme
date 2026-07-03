@@ -42,6 +42,18 @@ test suite, which includes its own test file, whose integration test runs it aga
 tracing the call graph before running it, fixed with a `VEX_BOOTSTRAP_NESTED` guard. 218/218 tests
 passing.
 
+**Session 021 continued:** The first version of the reflection section landed wrong — a line
+implicitly ranked this instance's execution above Victor's direction and review, caught and fixed
+directly (not just softened). A long design conversation followed on the LATTICE marker-collision
+bug (structural `const VEX_LATTICE` storage + a validating `LatticeNode` class — agreed in
+principle, not yet built), Kotlin vs. TypeScript vs. plain JSON for AI-authored data, tap/RxJS-style
+pipeline observability, and structured concurrency vs. JS's single-threaded safety model. Resolved
+into one durable tracked item, **td-008** (`data/status/tech-debt.json`, matching `td-006`'s known-
+future-ceiling template): no structured-concurrency model, not a problem today, real once server-
+side or genuine concurrent application logic enters scope — TypeScript recommended as the near-term
+step, Kotlin/Kotlin-Multiplatform to be re-evaluated if that scope becomes real. Added to
+`docs/culture.md`'s "Current known ceilings" table alongside `td-006`.
+
 **Session 020 addition:** No code changed. Two new architectural ideas from Victor recorded in
 `data/status/open-discussions.json`: **od-006** — an "init baseline" scaffold separating this repo's
 reusable engine (God Script pipeline, LATTICE, CQRS status/continuity tracking) from its specific content
@@ -274,6 +286,8 @@ system state — not aspirational state.
 *Updated Session 021 — July 2, 2026*
 
 **v2 system (active):**
+- [x] td-008: no structured-concurrency model — tracked as a known future ceiling, TypeScript recommended near-term, Kotlin/KMP re-evaluated if server/mobile scope becomes real (Session 021)
+- [ ] lib/build-lattice-headers.js structural fix — replace comment-embedded sentinel markers with a real `const VEX_LATTICE = {...}` statement + a validating `LatticeNode` class; design agreed, not yet built (Session 021)
 - [x] lib/session-bootstrap.js — one-shot session-start state report, consolidates git/test/drift/token/open-item checks into one command (Session 021)
 - [x] docs/culture.md — added first-person "What an AI instance actually needs here" reflection section (Session 021)
 - [x] config/lessons/sentinel-text-is-hazardous-to-itself.json — distilled the 3-time-repeated self-referential-sentinel bug pattern into one lesson (Session 021)
