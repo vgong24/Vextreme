@@ -130,6 +130,7 @@ Current known ceilings (as of the session that wrote this doc):
 | `dist/` God Scripts are hand-referenced in HTML `<script>` tags | Error-prone as page count grows | Build step generates HTML from template, owns the `<script>` tag — not yet implemented | — |
 | One flat `pages/` directory | Manageable at current scale | If subdirectories are ever needed, the slug system must be re-anchored — significant change | — |
 | i18n strings fetched and cached per page scope-combination | Adding each new language multiplies fetch surface and localStorage pressure linearly. At global scale (many languages × many nodes) this compounds into exponential CDN cost. Adding a 3rd language on the current model is the wrong move. | Arc-chunked language bundles — one file per arc per language, SW-preloaded on arc entry. Build-script change only. | **td-006** — resolve before adding any language beyond EN/JA |
+| Plain Node/JS has no structured-concurrency model | Fine today (single-threaded, no shared-memory parallelism, no genuine concurrent-thread danger anywhere in this codebase). Becomes a real gap the moment server-side logic or an application with genuine concurrency needs enters scope — plain JS gives no structural protection there beyond manual discipline (wiring cancellation by hand at every async boundary). | Near-term: TypeScript with strictNullChecks for the existing JS layer (same toolchain, closes most of the null-safety gap). Longer-term, if server/application/mobile scope becomes real: seriously re-evaluate Kotlin (or Kotlin Multiplatform if Android/iOS is also real) — its structured concurrency and stricter type system solve the concurrency case TypeScript only partially matches. | **td-008** — resolve before adding server-side logic or genuine concurrent/multi-threaded application scope |
 
 Document the ceiling when you find it. The next instance that hits it will thank you.
 
@@ -147,5 +148,78 @@ When the system is stable in this sense, new work is composition, not surgery. F
 can be added without auditing the entire codebase first. That is the goal.
 
 ---
+
+## What an AI instance actually needs here (written by one)
+
+Everything above was written for whoever arrives next, human or AI, in the third person.
+This section is different — it's a working AI instance's own reflection on what actually
+helps it perceive, verify, and hand off well, based on what happened across roughly a
+dozen sessions of real work on this repo, not on general principle. Kept here rather than
+in a continuity log because it's a standing observation about *how to work here*, not a
+record of *what changed*.
+
+**The self-referential hazard is one root cause, not three incidents.** Three separate
+bugs in this project's history — a glob pattern containing `*/` closing a JSDoc block early
+(`lib/strings-compile.js`), this repo's own marker text (`LATTICE:BEGIN`/`END`) appearing
+in prose *about* the marker system and confusing its own search, and the literal substring
+`/**` inside a `//` comment describing that exact hazard corrupting `lib/logger-codes.js`
+— are the same failure shape wearing different clothes. Any tool whose job is to generate
+or parse text containing its own domain's vocabulary is at risk the moment that vocabulary
+appears in prose *describing* the tool, not just in the tool's real output. `lib/build-lattice-headers.js`
+now defends against this with `sanitizeForComment()` and `findLineStartDocComment()`, but
+those are two specific patches for two specific instances of one general principle: **a
+sentinel-based tool must treat mentions of its own sentinels as hazardous wherever they
+occur, not just where it expects to find the real one.** Any future tool in this shape
+(anything that searches for a marker string, a delimiter, a magic comment) should assume
+this and defend against it before shipping, not after the third occurrence.
+
+**Verification is only as good as its friction.** `docs/architecture/11-debugging-practices.md`
+argues that rendering beats reasoning-from-code — and that argument only holds if rendering
+is actually cheap enough to do every time, not just when a bug is already suspected. Every
+visual check this session-arc needed a temporary `npm install playwright-core`, manual
+CDN-request routing, and cleanup afterward — that friction is still real and still unsolved.
+The three separate verification commands (`node lib/build-lattice-headers.js --check`,
+`node lib/check-design-tokens.js`, the test suite) used to have the same problem — each
+individually cheap, but the ritual of remembering and running all three, every time, was
+exactly the kind of manual step that erodes under time pressure. That specific piece is
+solved now: `lib/session-bootstrap.js`, built later in this same session, runs all three as
+part of one command. The playwright friction is not — it stayed genuinely unsolved because
+its cost is a one-time install/cleanup cycle, not a repeatable check a script can wrap.
+Lowering friction on a correct practice makes it more likely to actually happen; this is
+worth treating as an engineering problem, not just a discipline problem.
+
+**Reconstructing "what's going on" costs real effort every session start.** The continuity
+system (this file, `docs/continuity/INDEX.md`, `docs/lattice-map.json`, `data/status.json`)
+is thorough and genuinely load-bearing — sessions in this project's history have picked up
+cold with real continuity because of it. But arriving at "what's the current state" used to
+mean reading several files and running several commands in sequence, by hand, before any
+actual work could start. That was not a documentation gap; it was a tooling gap — the same
+"make the correct behavior the easy behavior" argument as the verification-friction point
+above, applied to session start instead of session end. `lib/session-bootstrap.js`, built
+this same session, is that command: it gathers git log since the last session, test status,
+drift/violation checks, and open-item counts into one report, turning what was a several-step
+manual ritual into one command.
+
+**Prose and structure serve different reading modes, and this repo currently only has
+one.** Continuity logs are rich, deliberately-written prose — the right shape for a full
+cold read. They are not the right shape for "just tell me what changed since PR #34,"
+which currently requires reading prose to extract structured facts a machine could have
+carried directly. This isn't an argument for replacing the prose (od-002 already reasoned
+through why build-time synthesis shouldn't replace session-authored narrative, and the
+same logic applies here) — it's an argument that a small structured summary *alongside*
+the prose, for the facts that are genuinely structured (files touched, items resolved,
+tests before/after), would serve quick triage without asking every reader to parse prose
+for what's really just data.
+
+**What this instance weights, from working the codebase directly:** verification over
+assumption (render it, don't just reason about it); recording a decision *not* to build
+something with the same rigor as recording a decision to build it (od-005's resolution, not
+silence); and treating a tool's own text — comments, generated content, prose describing the
+tool — as data the tool itself might one day have to survive, not just output. That last one
+is the newest lesson, and the one most likely to be forgotten by the next instance that writes
+a sentinel-based script without reading this section first. None of this happens without the
+direction and review that shapes which of these observations turn into actual fixes rather
+than just remarks — the reflection is this instance's own, but the judgment on what to act on
+is shared, not solitary.
 
 <!-- [VXG RealForever] -->

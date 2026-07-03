@@ -27,7 +27,43 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 019 — July 2, 2026*
+*As of Session 021 — July 2, 2026*
+
+**Session 021 addition:** Batch 002 closed (10/10 sessions); Batch 003 opened, this session is its
+first entry. Victor invited genuine self-reflection on what helps an AI instance work well here;
+`docs/culture.md` gained a first-person section ("What an AI instance actually needs here") naming
+the self-referential-sentinel bug pattern (hit 3 times: Sessions 013, 014, 019) as one root cause,
+not three incidents, plus observations on verification friction and session-start reconstruction
+cost. `config/lessons/sentinel-text-is-hazardous-to-itself.json` distills that pattern into the
+existing searchable lessons archive. `lib/session-bootstrap.js` (new) is the concrete answer to the
+friction the reflection named: one command consolidating git log, test status, lattice drift,
+design-token violations, and open-item counts — a real unbounded-recursion bug (it runs the full
+test suite, which includes its own test file, whose integration test runs it again) was caught by
+tracing the call graph before running it, fixed with a `VEX_BOOTSTRAP_NESTED` guard. 218/218 tests
+passing.
+
+**Session 021 continued:** The first version of the reflection section landed wrong — a line
+implicitly ranked this instance's execution above Victor's direction and review, caught and fixed
+directly (not just softened). A long design conversation followed on the LATTICE marker-collision
+bug (structural `const VEX_LATTICE` storage + a validating `LatticeNode` class — agreed in
+principle, not yet built), Kotlin vs. TypeScript vs. plain JSON for AI-authored data, tap/RxJS-style
+pipeline observability, and structured concurrency vs. JS's single-threaded safety model. Resolved
+into one durable tracked item, **td-008** (`data/status/tech-debt.json`, matching `td-006`'s known-
+future-ceiling template): no structured-concurrency model, not a problem today, real once server-
+side or genuine concurrent application logic enters scope — TypeScript recommended as the near-term
+step, Kotlin/Kotlin-Multiplatform to be re-evaluated if that scope becomes real. Added to
+`docs/culture.md`'s "Current known ceilings" table alongside `td-006`.
+
+**Session 020 addition:** No code changed. Two new architectural ideas from Victor recorded in
+`data/status/open-discussions.json`: **od-006** — an "init baseline" scaffold separating this repo's
+reusable engine (God Script pipeline, LATTICE, CQRS status/continuity tracking) from its specific content
+(88 nodes, arcs, string source), so a future project could fork the architecture without the content;
+recommended first step is documenting the engine/content boundary in prose before committing to any literal
+template directory. **od-007** — a longer-horizon cross-org AI discovery/relationship protocol between
+independent forked instances, explicitly scoped as downstream of and blocked on od-006 (there's exactly one
+instance of this architecture right now, nothing to bridge yet). **Batch 002 (this file) is now at its
+10-session capacity (Sessions 011–020) — the next session must open Batch 003, not append here.** See
+Session 011's mistake note in this same batch for what happens if that's missed.
 
 **Session 019 addition:** pe-009 (LATTICE coverage) advanced significantly: 6 more nodes mapped
 (`lib/logger.js`, `lib/logger-codes.js`, `lib/validate-blueprint.js`, `lib/build-sitemap.js`,
@@ -247,9 +283,16 @@ system state — not aspirational state.
 
 ## Open Work
 
-*Updated Session 019 — July 2, 2026*
+*Updated Session 021 — July 2, 2026*
 
 **v2 system (active):**
+- [x] td-008: no structured-concurrency model — tracked as a known future ceiling, TypeScript recommended near-term, Kotlin/KMP re-evaluated if server/mobile scope becomes real (Session 021)
+- [ ] lib/build-lattice-headers.js structural fix — replace comment-embedded sentinel markers with a real `const VEX_LATTICE = {...}` statement + a validating `LatticeNode` class; design agreed, not yet built (Session 021)
+- [x] lib/session-bootstrap.js — one-shot session-start state report, consolidates git/test/drift/token/open-item checks into one command (Session 021)
+- [x] docs/culture.md — added first-person "What an AI instance actually needs here" reflection section (Session 021)
+- [x] config/lessons/sentinel-text-is-hazardous-to-itself.json — distilled the 3-time-repeated self-referential-sentinel bug pattern into one lesson (Session 021)
+- [ ] od-006: init baseline scaffold — awaiting direction on whether to proceed with the documented fork-procedure first step (Session 020)
+- [ ] od-007: cross-org discovery protocol — blocked on od-006 by design (Session 020)
 - [x] pe-009: LATTICE coverage 45% → 64% (6 nodes added); fixed a real self-corruption bug in build-lattice-headers.js's fallback anchor logic, regression-tested (Session 019)
 - [x] od-005: resolved (not building a dark-mode toggle without a stated need) — decision + reasoning recorded in docs/architecture/12-design-system.md (Session 019)
 - [ ] pe-009 (remaining): strings-export.js, strings-import.js, legacy widget copies, shell.js, vextreme.js, archive-renderer.js still unmapped
@@ -333,9 +376,10 @@ create the next batch file and update this registry.
 | Batch | File | Sessions | Status |
 |---|---|---|---|
 | 001 | `docs/continuity/Batch 001.md` | 001–010 | closed |
-| 002 | `docs/continuity/Batch 002.md` | 011–020 | active |
+| 002 | `docs/continuity/Batch 002.md` | 011–020 | closed |
+| 003 | `docs/continuity/Batch 003.md` | 021–030 | active |
 
-**Active batch:** `docs/continuity/Batch 002.md`
+**Active batch:** `docs/continuity/Batch 003.md`
 
 When starting a new session: open the active batch file, scroll to the bottom,
 append your session block using the template at the bottom of the batch file.
@@ -449,6 +493,6 @@ These rules exist so the log stays useful as it grows. Follow them.
 
 ---
 
-*Last updated: Session 019 — July 2, 2026*
+*Last updated: Session 021 — July 2, 2026*
 
 <!-- [VXG RealForever] -->

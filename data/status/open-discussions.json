@@ -40,6 +40,32 @@
       "raisedSession": "015",
       "priority": "low",
       "status": "open"
+    },
+    {
+      "id": "od-006",
+      "title": "An 'init baseline' scaffold — separate the reusable engine from Vextreme's specific content, so a new project can fork the architecture without the content",
+      "description": "This repo now carries two things that are conceptually separable but currently interleaved: the engine (the God Script pipeline, the LATTICE dependency-graph system, the CQRS status/continuity-log tracking, the culture doc and CLAUDE.md cold-start pattern) and the content (88 nodes, 16 arcs, Victor's specific story and string source files). A new, unrelated project that wanted this same architecture — build-time assembly, self-documenting dependency graph, session continuity as a first-class artifact — currently has no way to get it without also inheriting nodes.json, arcs-v2.json, and every string source file. The ask is a location (a directory, or a documented fork procedure, or both) that regenerates the blank engine plus the reasoning behind it, for a future project to branch from.",
+      "considerations": [
+        "Write the fork procedure as documentation first (a docs/architecture page or a top-level FORK.md: which files are engine, which are content, what to delete/blank when starting a new project) — cheap, forces the content/engine boundary to be answered precisely in prose before committing to any file-copying decision, and is useful even if a literal template directory is built later or never",
+        "Build a literal template/ directory (blanked data/*.json, the lib/ build scripts, docs/architecture/*, a fresh CLAUDE.md and culture.md) that a new project can copy wholesale — more immediately usable, but commits to file-structure decisions (is arc-nav.js content-specific? are the --ember color tokens Vextreme-branded or should a template be visually neutral?) that are expensive to revisit once other projects have already forked from them",
+        "Do the documentation step first, then decide whether a literal template is still worth building once the boundary is written down clearly — the same 'document before you build' sequencing that worked for od-004/od-005"
+      ],
+      "raisedSession": "020",
+      "priority": "medium",
+      "status": "open"
+    },
+    {
+      "id": "od-007",
+      "title": "Future, downstream of od-006: a cross-org discovery/relationship protocol between independent instances of this architecture",
+      "description": "Longer-horizon idea, raised alongside od-006: if other organizations forked this architecture (via whatever od-006 produces) and ran their own independent instance, could there be a communication channel any AI managing one instance could use to discover another instance, exchange information about its own system's state and capabilities, and identify potential value in the two connecting — an AI-readable discovery and relationship-synthesis layer between otherwise-separate systems. This is meaningfully further out than od-003 (a local-model chat interface for one admin) — it requires cross-organizational trust and identity (how does one instance verify who it's actually talking to), a decision about what internal state, if any, is safe to expose outside the org boundary, an actual communication protocol, and — the part that makes it currently unbuildable rather than just unbuilt — a second real instance of this architecture to test bridging against. Right now there is exactly one: this repo.",
+      "considerations": [
+        "Do not design this protocol now — a protocol designed against zero real second parties is very likely to be wrong in ways that only show up once a second instance actually exists to test against; this is the same reasoning od-003 already applied to the escalation-protocol question at smaller scale",
+        "Treat this as strictly downstream of od-006 — there is nothing to bridge between until a second instance exists, and od-006 is the mechanism by which a second instance could come to exist at all",
+        "If it's ever picked up, the trust/identity and what's-safe-to-expose questions need answering before any protocol shape decision, not after — this is a security boundary between organizations, not an internal architecture choice"
+      ],
+      "raisedSession": "020",
+      "priority": "low",
+      "status": "open"
     }
   ]
 }
