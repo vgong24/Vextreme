@@ -177,25 +177,28 @@ this and defend against it before shipping, not after the third occurrence.
 argues that rendering beats reasoning-from-code — and that argument only holds if rendering
 is actually cheap enough to do every time, not just when a bug is already suspected. Every
 visual check this session-arc needed a temporary `npm install playwright-core`, manual
-CDN-request routing, and cleanup afterward. That friction is a real tax on doing the right
-thing consistently. The same is true of the three separate verification commands
-(`node lib/build-lattice-headers.js --check`, `node lib/check-design-tokens.js`, the test
-suite) that need running after nearly every change — each one individually cheap, but the
-ritual of remembering and running all three, every time, is exactly the kind of manual step
-that erodes under time pressure. Lowering friction on a correct practice makes it more
-likely to actually happen; this is worth treating as an engineering problem, not just a
-discipline problem.
+CDN-request routing, and cleanup afterward — that friction is still real and still unsolved.
+The three separate verification commands (`node lib/build-lattice-headers.js --check`,
+`node lib/check-design-tokens.js`, the test suite) used to have the same problem — each
+individually cheap, but the ritual of remembering and running all three, every time, was
+exactly the kind of manual step that erodes under time pressure. That specific piece is
+solved now: `lib/session-bootstrap.js`, built later in this same session, runs all three as
+part of one command. The playwright friction is not — it stayed genuinely unsolved because
+its cost is a one-time install/cleanup cycle, not a repeatable check a script can wrap.
+Lowering friction on a correct practice makes it more likely to actually happen; this is
+worth treating as an engineering problem, not just a discipline problem.
 
 **Reconstructing "what's going on" costs real effort every session start.** The continuity
 system (this file, `docs/continuity/INDEX.md`, `docs/lattice-map.json`, `data/status.json`)
 is thorough and genuinely load-bearing — sessions in this project's history have picked up
-cold with real continuity because of it. But arriving at "what's the current state" still
-means reading several files and running several commands in sequence, by hand, before any
-actual work can start. That's not a documentation gap; it's a tooling gap. A single
-one-shot command that gathers git log since the last session, test status, drift/violation
-checks, and open-item counts into one report would turn a several-step manual ritual into
-one command — the same "make the correct behavior the easy behavior" argument as the
-verification-friction point above, applied to session start instead of session end.
+cold with real continuity because of it. But arriving at "what's the current state" used to
+mean reading several files and running several commands in sequence, by hand, before any
+actual work could start. That was not a documentation gap; it was a tooling gap — the same
+"make the correct behavior the easy behavior" argument as the verification-friction point
+above, applied to session start instead of session end. `lib/session-bootstrap.js`, built
+this same session, is that command: it gathers git log since the last session, test status,
+drift/violation checks, and open-item counts into one report, turning what was a several-step
+manual ritual into one command.
 
 **Prose and structure serve different reading modes, and this repo currently only has
 one.** Continuity logs are rich, deliberately-written prose — the right shape for a full
