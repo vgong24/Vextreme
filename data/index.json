@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-07-04T08:48:54.430Z",
+  "builtAt": "2026-07-04T09:10:32.707Z",
   "nodeCount": 109,
   "curatedNodeCount": 90,
   "autoDiscoveredCount": 19,
@@ -2183,8 +2183,8 @@
       "title": "Bridge Council",
       "date": "",
       "arcKeys": [],
-      "department": "rd",
-      "workType": "default",
+      "department": "institute",
+      "workType": "org-design",
       "autoDiscovered": true,
       "vexData": {},
       "dateISO": null,
@@ -2298,8 +2298,8 @@
       "title": "Human–AI Corelational Governance · VXG RealForever · v2",
       "date": "",
       "arcKeys": [],
-      "department": "rd",
-      "workType": "default",
+      "department": "institute",
+      "workType": "governance",
       "autoDiscovered": true,
       "vexData": {},
       "dateISO": null,
@@ -2367,8 +2367,8 @@
       "title": "The Council — A Build Blueprint for Anyone",
       "date": "",
       "arcKeys": [],
-      "department": "rd",
-      "workType": "default",
+      "department": "institute",
+      "workType": "org-design",
       "autoDiscovered": true,
       "vexData": {},
       "dateISO": null,
@@ -2390,8 +2390,8 @@
       "title": "The Continuity Record — History & Lessons (Vol. I)",
       "date": "",
       "arcKeys": [],
-      "department": "rd",
-      "workType": "default",
+      "department": "institute",
+      "workType": "org-design",
       "autoDiscovered": true,
       "vexData": {},
       "dateISO": null,
@@ -2505,8 +2505,8 @@
       "title": "Witness Committee — Operations Manual",
       "date": "",
       "arcKeys": [],
-      "department": "rd",
-      "workType": "default",
+      "department": "institute",
+      "workType": "governance",
       "autoDiscovered": true,
       "vexData": {},
       "dateISO": null,
@@ -3437,11 +3437,6 @@
           "ported": true
         },
         {
-          "slug": "bridge-council",
-          "title": "Bridge Council",
-          "ported": true
-        },
-        {
           "slug": "connect",
           "title": "Connect",
           "ported": true
@@ -3462,11 +3457,6 @@
           "ported": true
         },
         {
-          "slug": "human-ai-corelational-governance",
-          "title": "Human–AI Corelational Governance · VXG RealForever · v2",
-          "ported": true
-        },
-        {
           "slug": "instance-thread-logs",
           "title": "Instance Thread Logs",
           "ported": true
@@ -3474,16 +3464,6 @@
         {
           "slug": "investor-archetype-simulation",
           "title": "Investor Simulation Record — VXG · June 14, 2026",
-          "ported": true
-        },
-        {
-          "slug": "org-blueprint",
-          "title": "The Council — A Build Blueprint for Anyone",
-          "ported": true
-        },
-        {
-          "slug": "org-history",
-          "title": "The Continuity Record — History & Lessons (Vol. I)",
           "ported": true
         },
         {
@@ -3505,11 +3485,6 @@
           "slug": "the-victor-pattern-transcript",
           "title": "The Victor Pattern Transcript",
           "ported": true
-        },
-        {
-          "slug": "witness-committee-operations",
-          "title": "Witness Committee — Operations Manual",
-          "ported": true
         }
       ]
     },
@@ -3526,6 +3501,37 @@
           "slug": "vxg-thread-round-5",
           "title": "VXG Thread — Round 5",
           "ported": false
+        }
+      ]
+    },
+    "institute": {
+      "org-design": [
+        {
+          "slug": "bridge-council",
+          "title": "Bridge Council",
+          "ported": true
+        },
+        {
+          "slug": "org-blueprint",
+          "title": "The Council — A Build Blueprint for Anyone",
+          "ported": true
+        },
+        {
+          "slug": "org-history",
+          "title": "The Continuity Record — History & Lessons (Vol. I)",
+          "ported": true
+        }
+      ],
+      "governance": [
+        {
+          "slug": "human-ai-corelational-governance",
+          "title": "Human–AI Corelational Governance · VXG RealForever · v2",
+          "ported": true
+        },
+        {
+          "slug": "witness-committee-operations",
+          "title": "Witness Committee — Operations Manual",
+          "ported": true
         }
       ]
     }
@@ -3549,6 +3555,18 @@
         },
         "record-transcripts": {
           "label": "Record Transcripts"
+        }
+      }
+    },
+    "institute": {
+      "label": "Institute",
+      "default": false,
+      "workTypes": {
+        "governance": {
+          "label": "Governance"
+        },
+        "org-design": {
+          "label": "Org Design"
         }
       }
     }

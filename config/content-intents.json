@@ -1,4 +1,45 @@
 {
   "_comment": "Declared content-placement intents — the write side of 'declare where a page goes, let a build script place it', extending the existing vex:department/vex:workType meta-tag pattern to arc membership. lib/apply-content-intents.js reads this file, applies each intent with status:\"pending\" (upserts vex:department/vex:workType meta tags on the target pages/{slug}.html, and — if arcKey is set — adds the slug to that arc's auto-managed 'Auto-Placed' section in data/arcs-v2.json, first removing it from any other arc's auto-managed section so a re-placed slug never ends up double-listed), then marks it status:\"applied\" with an appliedAt timestamp. An intent never writes into a hand-curated explicit section — arc-insertion here only ever creates or edits the one auto-managed section per arc; moving a slug into permanent hand-curated position stays a human curatorial act, same as the department/workType default already works. Each intent's department must already be registered in data/departments.json and its arcKey (if set) must be a real arc — lib/apply-content-intents.js's validateIntent() rejects and reports anything else rather than silently producing content that exists in data/index.json but renders nowhere. See docs/architecture/03-data.md's 'Content-placement intents' section.",
-  "intents": []
+  "intents": [
+    {
+      "id": "session022-org-blueprint",
+      "slug": "org-blueprint",
+      "department": "institute",
+      "workType": "org-design",
+      "status": "applied",
+      "appliedAt": "2026-07-04T09:05:50.765Z"
+    },
+    {
+      "id": "session022-org-history",
+      "slug": "org-history",
+      "department": "institute",
+      "workType": "org-design",
+      "status": "applied",
+      "appliedAt": "2026-07-04T09:05:50.767Z"
+    },
+    {
+      "id": "session022-bridge-council",
+      "slug": "bridge-council",
+      "department": "institute",
+      "workType": "org-design",
+      "status": "applied",
+      "appliedAt": "2026-07-04T09:05:50.767Z"
+    },
+    {
+      "id": "session022-witness-committee-operations",
+      "slug": "witness-committee-operations",
+      "department": "institute",
+      "workType": "governance",
+      "status": "applied",
+      "appliedAt": "2026-07-04T09:05:50.767Z"
+    },
+    {
+      "id": "session022-human-ai-corelational-governance",
+      "slug": "human-ai-corelational-governance",
+      "department": "institute",
+      "workType": "governance",
+      "status": "applied",
+      "appliedAt": "2026-07-04T09:05:50.769Z"
+    }
+  ]
 }

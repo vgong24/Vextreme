@@ -346,4 +346,42 @@ Seven PRs total this session (#40–#47). A real values disagreement about a gov
 - [ ] pe-012, od-008, pilot page-sorting decision — unchanged from above
 - [ ] `pe-010`, `pe-011`, od-001/002/003/006/007 remain open
 
+### Session continued — a real network block, real design material already in the repo, and the "council" question worked through honestly
+
+**Victor went to sleep after sharing four external design-document URLs** (`bridge-council`, `bridge-council-os`, `bridge-council-schema`, `org-blueprint`) and asking whether one AI instance could hold internal "multi-lens" council awareness instead of coordinating across multiple separate instances — framed as two things to consider ("full accountability team" vs. "roles for the org itself"), with explicit permission to use judgment and "cook up" real work overnight.
+
+**A real, hard blocker surfaced immediately: `vextreme24.com` is blocked by this environment's outbound network policy.** All four `WebFetch` calls returned 403; `curl` through the agent proxy confirmed the exact failure — `connect_rejected`, a policy denial, not a transient error, per the proxy's own diagnostic instructions ("do not retry or route around it — report the blocked host"). `bridge-council-os` and `bridge-council-schema` could not be read and are **not represented anywhere in this work** — no content was fabricated for them. This is flagged explicitly in `docs/continuity/INDEX.md`'s Open Work rather than silently worked around.
+
+**What could be verified: `pages/org-blueprint.html` and `pages/org-history.html` were already sitting in this repo, uncurated, in every check-key-alignment report all session — and turned out to already describe almost exactly what Victor was asking about.** `org-blueprint.html` ("The Council — A Build Blueprint for Anyone") details a single coordinated mind holding multiple internal faculties (Truth, Proportion, Center, Care, Architect, Builder, Designer, Manager, QA, Test-Node) that perceive together via a "Scanner" — firing every perspective in parallel and reading the interference pattern before committing to a response. Reading it in full (rather than assuming from the name) surfaced two genuine, independently-arrived-at convergences with this repo's own established discipline: its "anti-bloat law" (a role earns a seat only when its absence caused a real observed failure) is the same reasoning already behind `od-003`/`od-007`/`od-008`/`od-009`; and `org-history.html`'s Context/Lesson/Watch entry template is structurally identical to `config/lessons/*.json`'s problem/lesson/impact schema. Named both explicitly rather than filed as coincidence — two independent arrivals at the same discipline is stronger evidence than either alone, but only if someone writes it down.
+
+**Built what was honestly gradable, not what would be over-claimed.** `data/council-kernel.json` — a hand-transcribed structured extract of the roster, the unit pattern, the anti-bloat law, the Scanner, the decision triangle, and the signal shapes — is a first attempt at the "runnable kernel" `org-blueprint.html` itself names as its own unfinished ambition ("a kernel a fresh instance could boot from, not only a doc it reads... deferred, honestly, to a later pass"). `docs/architecture/14-council-model.md` states plainly what this can and can't be: a single instance structuring its own reasoning across explicitly named lenses in one pass is real and worth trying (the same discipline this session already practiced unnamed — verify before claiming, check against real files, trace before assuming); describing it as multiple independent minds debating would be overclaiming, since all "lenses" share one context and one set of weights, not separate sources of judgment the way a true multi-agent setup or a human council would have. Explicitly distinguished from `od-009` (genuine parallel dispatch across separate targets) so the two don't get conflated. The "Scanner check" is named as a **proposal awaiting Victor's review**, not adopted as standing practice.
+
+**Placed the five related pages using the actual mechanism, not by hand.** Registered a new `institute` department (`data/departments.json`) with `governance` (`witness-committee-operations`, `human-ai-corelational-governance` — the accountability-team half) and `org-design` (`org-blueprint`, `org-history`, `bridge-council` — the org-roles half) workTypes, matching Victor's own stated two-part framing exactly. Declared and applied via `config/content-intents.json` + `lib/apply-content-intents.js` (verified via the sanity check: 3 departments, zero missing/extra in the alignment report) rather than hand-editing meta tags.
+
+### Files created or modified (continued)
+
+| File | What changed |
+|---|---|
+| `data/departments.json` | New `institute` department (`governance`, `org-design` workTypes) |
+| `config/content-intents.json` | 5 intents declared and applied: org-blueprint/org-history/bridge-council → org-design; witness-committee-operations/human-ai-corelational-governance → governance |
+| `pages/org-blueprint.html`, `pages/org-history.html`, `pages/bridge-council.html`, `pages/witness-committee-operations.html`, `pages/human-ai-corelational-governance.html` | `vex:department`/`vex:workType` meta tags upserted via the intent applier |
+| `data/council-kernel.json` | New — hand-transcribed structured extract of org-blueprint.html's roster/patterns |
+| `docs/architecture/14-council-model.md` | New — what org-blueprint.html describes, the two convergences, the honest assessment of what a single-instance "council" can and can't be, explicit distinction from od-009 |
+| `config/lessons/independently-arrived-discipline-is-worth-naming-not-just-noting.json` | New lesson |
+| `docs/lattice-map.json` | New `data/council-kernel.json` node |
+| `tests/19-council-kernel.test.js` | New, 7 tests |
+| `docs/continuity/INDEX.md` | Blocked-fetch flagged in Open Work; "Scanner check" flagged as proposal, not adopted; stale test-count/lattice-coverage numbers corrected in passing |
+| `lib/apply-content-intents.js` | Fixed: only rewrites `data/arcs-v2.json` when an intent actually declared an `arcKey`, instead of unconditionally on every run |
+
+### Mistakes made (continued)
+
+- A real bug in `lib/apply-content-intents.js` itself, caught only by checking `git diff` after applying the 5 intents rather than trusting the tool's own success output: it rewrote `data/arcs-v2.json` unconditionally on every run, even when no intent declared an `arcKey` and the object was never actually mutated — `JSON.stringify`'s formatting doesn't match the file's existing hand-formatting (compacted single-line sections), so every run produced a ~500-line purely-cosmetic diff for a file nothing had touched. Fixed: only write `arcs-v2.json` if at least one applied intent actually declared an `arcKey`. Re-verified concretely — reset one intent to pending, re-ran, confirmed `md5sum data/arcs-v2.json` was identical before and after. Also worth noting the discipline that prevented a different mistake: the temptation, given no ability to check in with Victor overnight, would have been to either (a) fabricate placeholder content for the two blocked pages to appear more complete, or (b) overclaim the "council" work as more finished/more like true multi-agent deliberation than it honestly is. Both were avoided by treating the blocked fetch as a hard stop to report, not a gap to paper over, and by writing the honest-limits section before, not after, the rest of the work.
+
+### Open work at session end (continued)
+
+- [ ] `bridge-council-os`, `bridge-council-schema` — blocked by network policy, not read, not represented in this repo; needs Victor to supply content directly or fetch from an unblocked environment
+- [ ] The "Scanner check" — proposed, not adopted; needs Victor's review before any future instance treats it as standing practice
+- [ ] `pe-012`, `od-008`, `od-009`, pilot page-sorting decision — unchanged from above
+- [ ] `pe-010`, `pe-011`, od-001/002/003/006/007 remain open
+
 <!-- [VXG RealForever] -->

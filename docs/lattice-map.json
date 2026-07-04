@@ -344,6 +344,24 @@
       }
     },
 
+    "data/council-kernel.json": {
+      "role": "hand-transcribed structured extract of pages/org-blueprint.html's roster and patterns — the 'runnable kernel' that document names as its own unfinished ambition",
+      "context": "Session 022: Victor shared external design-document URLs and asked whether one AI instance could hold internal multi-lens 'council' awareness instead of coordinating across multiple instances. pages/org-blueprint.html (already in this repo, previously uncurated) already describes exactly this — a Scanner that fires multiple internal 'faculty' perspectives in parallel before committing to a response. This file transcribes that roster/pattern into queryable form, same as data/departments.json is hand-authored rather than derived. See docs/architecture/14-council-model.md for the honest assessment of what this can and can't be — a single instance's structured self-check, not multiple independent agents.",
+      "reads": [],
+      "writes": [],
+      "loadedBy": ["tests/19-council-kernel.test.js", "docs/architecture/14-council-model.md (referenced, not fetched)"],
+      "testedBy": ["tests/19-council-kernel.test.js"],
+      "changeMap": {
+        "a role added or removed": [
+          "tests/19-council-kernel.test.js's caughtBy-reference-integrity check must still pass",
+          "docs/architecture/14-council-model.md if the change affects the honest-limits framing"
+        ],
+        "pages/org-blueprint.html's source content changes": [
+          "this file was hand-transcribed at a point in time (Draft v0.5) — re-check it still matches if the source page is ever revised"
+        ]
+      }
+    },
+
     "data/viewmodels.json": {
       "role": "per-slug viewmodel overrides — demo/specimen pages that aren't content nodes",
       "context": "Content nodes in nodes.json get default viewmodels (production/page template). This file holds overrides for demo and specimen pages that have different categories, templates, or feature sets. Also used to add non-node slugs (demo pages, specimens) to the God Script assembly pipeline.",
