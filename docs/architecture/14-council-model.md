@@ -1,4 +1,4 @@
-# The council model — one instance, multiple named lenses
+# The council model — two different patterns, not one
 
 This section exists because Victor shared four external design documents
 (`bridge-council`, `bridge-council-os`, `bridge-council-schema`, `org-blueprint`,
@@ -7,20 +7,24 @@ all on vextreme24.com) and asked whether a single AI instance could hold a
 across multiple separate instances for the same lens-to-lens engagement, to
 save token overhead and improve self-processing.
 
-**A real limitation up front:** this environment's outbound network policy
-blocks `vextreme24.com` (confirmed via the agent-proxy diagnostic — a
-`connect_rejected` policy denial, not a transient failure). `bridge-council-os`
-and `bridge-council-schema` could not be read and are not represented here.
-What follows is grounded in `pages/org-blueprint.html` and `pages/org-history.html`
-— both already in this repo, already read in full — plus `pages/witness-committee-operations.html`
-and `pages/human-ai-corelational-governance.html`, read earlier the same session.
-`bridge-council.html` (the shorter organizational-coherence page, distinct from
-the blocked `bridge-council-os`/`-schema`) was also already read. Nothing here
-should be taken as covering the two blocked pages' content.
+**Network note, resolved:** this environment's outbound network policy blocks
+`vextreme24.com` (a `connect_rejected` policy denial, confirmed via the
+agent-proxy diagnostic). `bridge-council-os.html` and `bridge-council-schema.html`
+couldn't be fetched from here — Victor added both files to the repo directly
+(commit `356f7da`, "VXG-070426"), which is how they became readable. Both are
+now read in full and represented accurately below.
+
+**The two documents describe genuinely different things, not one model at two
+zoom levels.** `org-blueprint.html` ("The Council") is about how **one mind**
+holds multiple internal faculties. `bridge-council.html`/`-os`/`-schema`
+("The Bridge Council") is about **multiple separate AI-driven councils**, one
+per team/department/org, synthesizing locally and propagating upward. Treating
+these as the same idea would blur a real distinction — the rest of this
+section keeps them separate.
 
 ---
 
-## What org-blueprint.html actually describes
+## What org-blueprint.html actually describes — "The Council": one mind
 
 `pages/org-blueprint.html` ("The Council — A Build Blueprint for Anyone," Draft
 v0.5) is not abstract org-chart theory — it's a detailed model for how **one
@@ -69,6 +73,46 @@ points, not evidence that one was copying the other.
 
 ---
 
+## What bridge-council.html/-os/-schema actually describe — "The Bridge Council": many councils
+
+This is a materially different pattern from "The Council" above, not the same
+idea rescaled. **`bridge-council.html`** is the founding blueprint (the
+"universal blind spot" — nobody in an organization holds the full picture of
+how everything connects). **`bridge-council-os.html`** is how it actually
+runs: a **fractal pattern of separate councils at team, department, and org
+level**, each staffed by AI filling four roles (Architect, Translator,
+Synthesizer, Sentinel), each running its own periodic synthesis (weekly at
+team level, bi-weekly at department, monthly at org), propagating synthesized
+patterns *upward* and historical decision context *downward*.
+**`bridge-council-schema.html`** is the open technical protocol underneath it:
+four data types (Context Objects, Synthesis Outputs, Query Records, Pattern
+Flags), five architecture layers (Connectors, Storage, Synthesis Engine,
+Access Interface, Sentinel Layer), and three implementation paths from a
+manual folder-and-spreadsheet practice to full enterprise infrastructure —
+explicitly model-agnostic and vendor-agnostic by design, so no single AI
+provider or tool can capture the protocol.
+
+**The key structural difference from "The Council":** this is not one
+instance holding multiple lenses. It's **multiple separate synthesis
+operations, at different organizational scopes, each potentially a different
+AI invocation**, connected by an explicit upward/downward data flow (a team's
+Synthesizer output literally becomes an input to its department's synthesis
+run). That is a distributed-systems pattern, not a single-context reasoning
+discipline — much closer to `od-009`'s territory (see below) than to the
+Scanner-check idea, even though Victor's original question named both
+documents together.
+
+No kernel file was built for this one, unlike `org-blueprint.html`. The
+reason: `data/council-kernel.json` is explicitly "a kernel a fresh *instance*
+could boot from" — a reasoning aid for one AI session. The Bridge Council is
+an organizational system for humans and AI tools operating at company scale,
+not something a single Claude instance runs internally. Transcribing it into
+the same kernel file would conflate two different kinds of artifact. If this
+repo ever needs a structured reference for it, that's a separate, deliberate
+decision — not an oversight here.
+
+---
+
 ## What this repo now has
 
 - **`data/council-kernel.json`** — a hand-transcribed, structured extract of
@@ -80,11 +124,11 @@ points, not evidence that one was copying the other.
   "The honest edge") — attempted for the first time here, not claimed as done.
   It is transcribed by hand, the same way `data/departments.json` and
   `config/lessons/*.json` are hand-authored rather than scraped from HTML.
-- **Department placement** — `org-blueprint.html`, `org-history.html`, and
-  `bridge-council.html` are placed under the new `institute` department's
-  `org-design` workType (the "roles for the org itself" half of Victor's
-  framing); `witness-committee-operations.html` and
-  `human-ai-corelational-governance.html` are placed under `institute`'s
+- **Department placement** — `org-blueprint.html`, `org-history.html`,
+  `bridge-council.html`, `bridge-council-os.html`, and `bridge-council-schema.html`
+  are placed under the new `institute` department's `org-design` workType (the
+  "roles for the org itself" half of Victor's framing); `witness-committee-operations.html`
+  and `human-ai-corelational-governance.html` are placed under `institute`'s
   `governance` workType (the "full accountability team" half) — via
   `config/content-intents.json`, not hand-edited meta tags.
 
@@ -123,14 +167,29 @@ org-blueprint.html is itself explicit about this kind of limit ("a working
 model, not a proven mechanism... made to be honed, not banked") — this
 assessment is trying to hold the same honesty, not soften it.
 
-**What this is not:** this is not `od-009` (parallel/simultaneous dispatch
-across multiple genuinely separate departments or orgs). `od-009` is a
-distributed-systems question — splitting one instruction across independent
-targets and reconciling partial results. The council model here is a
-single-instance reasoning discipline. Conflating the two would misdirect
-effort — a fan-out mechanism doesn't give an instance better judgment, and a
-better internal-review habit doesn't help route work across genuinely
-separate targets. Keep them on separate tracks.
+**What this ("The Council," org-blueprint.html) is not:** this is not `od-009`
+(parallel/simultaneous dispatch across multiple genuinely separate
+departments or orgs). `od-009` is a distributed-systems question — splitting
+one instruction across independent targets and reconciling partial results.
+The Council here is a single-instance reasoning discipline. Conflating the
+two would misdirect effort — a fan-out mechanism doesn't give an instance
+better judgment, and a better internal-review habit doesn't help route work
+across genuinely separate targets. Keep them on separate tracks.
+
+**The Bridge Council, by contrast, genuinely is adjacent to `od-009`** — not
+identical, but close enough to be worth naming precisely rather than lumping
+in with the Council's single-instance discipline. Its team/department/org
+councils are separate synthesis operations at different scopes, connected by
+an explicit upward/downward data flow — real multi-target coordination, the
+shape `od-009` is about. The difference from `od-009`'s literal framing:
+Bridge Council's propagation is periodic and hierarchical (team → department
+→ org, on a weekly/bi-weekly/monthly cadence), not simultaneous fan-out of
+one instruction with partial-result reconciliation. `od-009` remains
+correctly undesigned per its own reasoning (no real multi-department/org case
+exists in this repo yet) — but if that case ever arrives, Bridge Council's
+schema (Context Objects, Synthesis Outputs, Query Records, Pattern Flags;
+Connectors/Storage/Synthesis-Engine/Access/Sentinel layers) is a real,
+already-designed precedent worth reading first, not a from-scratch problem.
 
 **Proposed, not adopted:** naming a lightweight "Scanner check" — before
 finalizing a response to a significant or ambiguous judgment call, explicitly

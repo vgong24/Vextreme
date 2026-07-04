@@ -41,7 +41,8 @@ everything downstream reads. Content now has two independent groupings: **arcs**
 narrative order) and **departments** (production-domain ownership — `rd` default, `media` with
 `reviews`/`record-transcripts` workTypes, and a new `institute` department with `governance`
 (accountability/testing docs — `witness-committee-operations`, `human-ai-corelational-governance`)
-and `org-design` (`org-blueprint`, `org-history`, `bridge-council`) workTypes). Any `pages/*.html` file with no `nodes.json` entry is
+and `org-design` (`org-blueprint`, `org-history`, `bridge-council`, `bridge-council-os`,
+`bridge-council-schema`) workTypes). Any `pages/*.html` file with no `nodes.json` entry is
 auto-discovered (title scraped from its own `<title>` tag) rather than left invisible —
 `lib/auto-discover-nodes.js`. Declared placement is applied, not hand-edited: `config/content-intents.json`
 + `lib/apply-content-intents.js` upsert a page's `vex:department`/`vex:workType` meta tags and
@@ -102,7 +103,6 @@ off forever; its record already lives in the batch file and (for od-/td-/pe- ite
 not this list.
 
 **Genuinely open:**
-- [ ] `bridge-council-os` and `bridge-council-schema` (vextreme24.com) could not be read this session — `vextreme24.com` is blocked by this environment's outbound network policy (confirmed `connect_rejected` policy denial, not transient). Not represented anywhere in this repo; Victor needs to either paste their content directly or fetch them from an environment where the domain isn't blocked.
 - [ ] The "Scanner check" named in `docs/architecture/14-council-model.md` (a single-instance structured self-check across named lenses before a significant judgment call) is a **proposal, not adopted practice** — Victor should review the honest-limits framing there before any future instance treats it as standing doctrine.
 - [ ] pe-012 — `lib/check-lattice-edges.js`: verify `docs/lattice-map.json`'s claimed reads/writes/loadedBy edges against actual code (Session 022; see `docs/architecture/13-intent-driven-operations.md` for why this is the decided next step)
 - [ ] od-008 — staged/proposal execution for higher-blast-radius content gestures (consolidation, deletion, connector rewiring) — intentionally not designed yet, blocked on pe-012 and on a real case existing to design against (Session 022)

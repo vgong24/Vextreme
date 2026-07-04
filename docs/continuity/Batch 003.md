@@ -379,9 +379,34 @@ Seven PRs total this session (#40–#47). A real values disagreement about a gov
 
 ### Open work at session end (continued)
 
-- [ ] `bridge-council-os`, `bridge-council-schema` — blocked by network policy, not read, not represented in this repo; needs Victor to supply content directly or fetch from an unblocked environment
 - [ ] The "Scanner check" — proposed, not adopted; needs Victor's review before any future instance treats it as standing practice
 - [ ] `pe-012`, `od-008`, `od-009`, pilot page-sorting decision — unchanged from above
+- [ ] `pe-010`, `pe-011`, od-001/002/003/006/007 remain open
+
+### Session continued — the network block resolved itself, and it turned out to be two different patterns
+
+**Victor added `pages/bridge-council-os.html` and `pages/bridge-council-schema.html` directly to the branch** (commit `356f7da`, "VXG-070426") — working around the network block from the outside, the way he confirmed was available when asked ("who's blocking that layer") and answered directly: an environment-level egress policy, not a general internet restriction, and not something fixable from inside the session. The push failed CI (`data/index.json` stale, since the two new auto-discovered pages weren't picked up by a rebuild) — fixed with `node lib/build-index.js`, a normal build-index freshness issue, not a real bug.
+
+**Reading both in full changed the actual picture, not just filled a gap.** `bridge-council-os.html` and `-schema.html` describe something genuinely different from `org-blueprint.html`'s "Council" — not the same idea at a different zoom level. Where "The Council" is one mind holding multiple internal faculties, "The Bridge Council" is a fractal pattern of *separate* AI-driven councils at team/department/org scope, each running its own periodic synthesis (weekly/bi-weekly/monthly) with four roles (Architect, Translator, Synthesizer, Sentinel), propagating synthesized patterns upward and historical context downward — plus a full open technical schema (four data types, five architecture layers, three implementation paths, explicitly model- and vendor-agnostic). `docs/architecture/14-council-model.md` was substantially rewritten to keep these two patterns distinct rather than blur them into one "multi-lens" idea, since conflating them would have been the actual mistake Victor's original question invited (he named both documents together when asking about "multi-lens... instead of operating multiple instances").
+
+**The Bridge Council turned out to be a real precedent for `od-009`, not the Scanner-check territory.** Its team/department/org structure is genuine multi-target coordination — much closer to `od-009`'s "parallel dispatch across departments" than to the single-instance reasoning discipline the Scanner check is about. Noted this explicitly in both the architecture doc and `od-009`'s own tracked entry: `od-009` stays correctly undesigned (no real multi-department case exists in this repo yet), but if that case ever arrives, Bridge Council's schema is a real, already-designed reference to read first rather than a from-scratch problem.
+
+**No new kernel file was built for Bridge Council**, unlike `org-blueprint.html` — a deliberate choice, not an oversight: `data/council-kernel.json` is explicitly a reasoning aid for one AI instance, and Bridge Council is an organizational system for humans and AI tools at company scale, a different kind of artifact. Placed both new pages under `institute`/`org-design` via `config/content-intents.json`, same as the other three Bridge Council documents.
+
+### Files created or modified (continued)
+
+| File | What changed |
+|---|---|
+| `pages/bridge-council-os.html`, `pages/bridge-council-schema.html` | Added by Victor directly (commit `356f7da`); `vex:department`/`vex:workType` meta tags applied via the intent applier this session |
+| `config/content-intents.json` | 2 more intents declared and applied: bridge-council-os/bridge-council-schema → institute/org-design |
+| `docs/architecture/14-council-model.md` | Substantially rewritten — distinguishes "The Council" (one mind) from "The Bridge Council" (many councils), corrects the od-009 relationship |
+| `data/status/open-discussions.json` | `od-009` — added a pointer to Bridge Council as a real precedent, if that case ever arrives |
+| `data/index.json` | Rebuilt to pick up the 2 new auto-discovered pages (fixes the CI failure on PR #52) |
+
+### Open work at session end (continued)
+
+- [ ] The "Scanner check" — proposed, not adopted; needs Victor's review
+- [ ] `pe-012`, `od-008`, `od-009` (now with a real precedent named), pilot page-sorting decision — unchanged otherwise
 - [ ] `pe-010`, `pe-011`, od-001/002/003/006/007 remain open
 
 <!-- [VXG RealForever] -->

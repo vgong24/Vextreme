@@ -1,8 +1,8 @@
 {
-  "builtAt": "2026-07-04T09:10:32.707Z",
-  "nodeCount": 109,
+  "builtAt": "2026-07-04T19:21:57.167Z",
+  "nodeCount": 111,
   "curatedNodeCount": 90,
-  "autoDiscoveredCount": 19,
+  "autoDiscoveredCount": 21,
   "arcCount": 16,
   "supportedLangs": [
     "en",
@@ -2200,6 +2200,52 @@
         ]
       }
     },
+    "bridge-council-os": {
+      "id": null,
+      "slug": "bridge-council-os",
+      "title": "Bridge Council Os",
+      "date": "",
+      "arcKeys": [],
+      "department": "institute",
+      "workType": "org-design",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.bridge-council-os"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
+    },
+    "bridge-council-schema": {
+      "id": null,
+      "slug": "bridge-council-schema",
+      "title": "Bridge Council Schema",
+      "date": "",
+      "arcKeys": [],
+      "department": "institute",
+      "workType": "org-design",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.bridge-council-schema"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
+    },
     "connect": {
       "id": null,
       "slug": "connect",
@@ -3509,6 +3555,16 @@
         {
           "slug": "bridge-council",
           "title": "Bridge Council",
+          "ported": true
+        },
+        {
+          "slug": "bridge-council-os",
+          "title": "Bridge Council Os",
+          "ported": true
+        },
+        {
+          "slug": "bridge-council-schema",
+          "title": "Bridge Council Schema",
           "ported": true
         },
         {
