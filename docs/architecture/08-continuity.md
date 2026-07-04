@@ -71,6 +71,46 @@ so any instance can reorient quickly from a cold start.
 
 ---
 
+## External collaboration documents
+
+Victor works with co-architects (Kimi and others) who generate feedback docs,
+specs, assessments, and hand-off documents during sessions. These arrive as
+uploads — not as committed files. How they fit:
+
+**They are deliberations, not conclusions.** A Kimi spec or review doc is
+coordination between architect and dev. Once consumed and implemented, the doc
+is redundant. The repo should contain conclusions.
+
+| Collaboration content | Where it lands in the repo |
+|---|---|
+| Architectural lesson ("JSON keys are strings") | `config/lessons/*.json` |
+| System constraint or decision | `docs/architecture/*.md` (source file) |
+| PR-level review findings | Session continuity log (confirmed / actioned) |
+| Implementation spec | Implemented as code + PR decision record |
+
+**What stays out of the repo:** the collaboration doc itself. It lives in the
+session uploads folder or in Victor's notes. A future instance reading
+`config/lessons/json-keys-are-strings.json` gets the lesson directly, without
+reconstructing it from a dated coordination file.
+
+**Rule of thumb:**
+- If it's a spec → implement it as code
+- If it's a lesson → `config/lessons/`
+- If it's a review finding → address in code or note in continuity log
+- If it's an architecture decision → relevant `docs/architecture/*.md` source file
+
+Never commit a Kimi doc or session coordination file as `docs/kimi-*.md` or
+similar. The distilled content is the artifact; the original doc is the meeting.
+
+**`config/lessons/` is archive reference, not cold-start reading.** As the lesson
+count grows, lessons do not need to be read on every session start — they exist for
+lookup, not pre-loading. A cold-start instance reads INDEX.md → most recent batch
+session → architecture.md. Lessons are consulted when a pattern recurs or when
+building something adjacent to a known lesson domain. Keeping them out of the
+mandatory reading sequence is intentional.
+
+---
+
 ## Documentation is CQRS too
 
 `docs/architecture.md` is a **generated file** assembled from source files

@@ -103,6 +103,18 @@ url:  vgong24.github.io/Vextreme/pages/claude-answers-the-doubt.html
 This constraint is what makes the arc system work. A page can belong to
 multiple arcs simultaneously because arcs reference slugs, not files.
 
+**Path is always derived from slug, never browsed.** Finding "the right file"
+never means scanning `pages/` — it means resolving a key chain (department →
+workType → slug, or arc → section → slug) down to a slug, and then computing
+`pages/{slug}.html` from it. The path is a pure function of the slug; it is
+never stored as a separate fact anywhere, so it can't drift from it. This is
+why a flat, single-level `pages/` directory does not become a navigability
+problem as content grows — nobody, human or AI, is meant to reach for `ls
+pages/` in the first place. The one thing this depends on is slug uniqueness
+staying real, not just declared: `lib/build-index.js`'s `findDuplicateSlugs`
+halts the build if two nodes ever share a slug, rather than letting one
+silently overwrite the other in `data/index.json`.
+
 → *Connects to 03-data: nodes.json and arcs-v2.json both use slugs as their
 cross-reference key. The build pipeline resolves slugs into ordered lists;
 the browser resolves slugs into URLs.*
@@ -120,9 +132,16 @@ data/nodes.json        ──┐                       data/index.json        (s
 data/arcs-v2.json      ──┼── build pipeline ──▶  pages/archives.html   (build dashboard)
 data/strings/source/** ──┘                       sitemap.xml            (crawler index)
                                                  index.html             (root nav page)
+                                                 dist/vextreme-{slug}.js (God Scripts, one per page)
+                                                 sw.js                  (Service Worker, pre-caches dist/)
+
+data/status/tech-debt.json         ──┐
+data/status/planned-enhancements.json ──┼── lib/build-status.js ──▶  data/status.json
+data/status/assumptions.json       ──┘
+data/strings/compiled/manifest.json ─┘                              (system health manifest)
 ```
 
-**Write side files:**
+**Write side files — content pipeline:**
 
 `data/nodes.json` — 88 canonical content nodes. Each node:
 ```json
@@ -146,6 +165,29 @@ data/strings/source/** ──┘                       sitemap.xml            (c
 
 `data/strings/source/` — scoped UI string source files. Each key is an element
 identifier whose value is an extensible object. See 06-i18n for the full pipeline.
+
+**Write side files — system health pipeline:**
+
+`data/status/tech-debt.json` — hand-authored list of structural decisions deferred.
+Each item: `{ id, title, priority, description, addedSession }`.
+
+`data/status/planned-enhancements.json` — long-horizon items with no session endpoint.
+Each item: `{ id, title, priority, description, addedSession }`.
+
+`data/status/assumptions.json` — claims from PR records not yet confirmed live.
+Each item: `{ id, claim, priority, context, addedSession }`.
+
+`data/strings/compiled/manifest.json` — also an input to `build-status.js` for auto-detecting
+string keys missing translations. Demo-category scope keys (under `scopes/demo/`) are marked
+`intentional: true` and excluded from `totalOpen`.
+
+`lib/build-status.js` — assembles `data/status.json` from the three hand-authored write-side
+sources plus the manifest. Run manually: `node lib/build-status.js`. Not yet in CI.
+Exports pure functions for testing: `buildTranslationNotices`, `buildStatusRollup`, `countOpen`.
+
+`data/status.json` — generated system health manifest at the same CQRS layer as `index.json`.
+Structure: `{ _meta: { totalOpen, commit, generated }, notices: { translation, techDebt, enhancements, assumptions } }`.
+First consumer: `pages/ecosystem-hub.html` (developer dashboard, runtime fetch).
 
 **Build pipeline** (runs automatically via GitHub Actions on push to main):
 ```
@@ -621,6 +663,46 @@ so any instance can reorient quickly from a cold start.
 
 ---
 
+## External collaboration documents
+
+Victor works with co-architects (Kimi and others) who generate feedback docs,
+specs, assessments, and hand-off documents during sessions. These arrive as
+uploads — not as committed files. How they fit:
+
+**They are deliberations, not conclusions.** A Kimi spec or review doc is
+coordination between architect and dev. Once consumed and implemented, the doc
+is redundant. The repo should contain conclusions.
+
+| Collaboration content | Where it lands in the repo |
+|---|---|
+| Architectural lesson ("JSON keys are strings") | `config/lessons/*.json` |
+| System constraint or decision | `docs/architecture/*.md` (source file) |
+| PR-level review findings | Session continuity log (confirmed / actioned) |
+| Implementation spec | Implemented as code + PR decision record |
+
+**What stays out of the repo:** the collaboration doc itself. It lives in the
+session uploads folder or in Victor's notes. A future instance reading
+`config/lessons/json-keys-are-strings.json` gets the lesson directly, without
+reconstructing it from a dated coordination file.
+
+**Rule of thumb:**
+- If it's a spec → implement it as code
+- If it's a lesson → `config/lessons/`
+- If it's a review finding → address in code or note in continuity log
+- If it's an architecture decision → relevant `docs/architecture/*.md` source file
+
+Never commit a Kimi doc or session coordination file as `docs/kimi-*.md` or
+similar. The distilled content is the artifact; the original doc is the meeting.
+
+**`config/lessons/` is archive reference, not cold-start reading.** As the lesson
+count grows, lessons do not need to be read on every session start — they exist for
+lookup, not pre-loading. A cold-start instance reads INDEX.md → most recent batch
+session → architecture.md. Lessons are consulted when a pattern recurs or when
+building something adjacent to a known lesson domain. Keeping them out of the
+mandatory reading sequence is intentional.
+
+---
+
 ## Documentation is CQRS too
 
 `docs/architecture.md` is a **generated file** assembled from source files
@@ -692,6 +774,16 @@ keeps main's built version of those files rather than producing a conflict.
 After rebasing, always re-run the build scripts to bake your branch's changes
 into fresh artifacts before committing. Never resolve a generated-file conflict by
 hand — the build script is the only valid author of those files.
+
+**This attribute does nothing on its own.** `merge=ours` requires a matching
+`[merge "ours"] driver = true` entry registered in git config — local machine/session
+state that `.gitattributes` cannot carry and that does not survive a fresh clone. A
+fresh environment (a new session, a new container) should expect a generated-file
+conflict to surface as a real conflict, not resolve silently. When that happens,
+resolve it the same way the driver would have: take main's version of the generated
+file (`git checkout --ours <file>` mid-rebase — "ours" means the upstream base during
+a rebase, not your own branch), then re-run the build scripts as above. See
+`config/lessons/generated-file-merge-driver-needs-local-registration.json`.
 
 **File responsibility map:**
 ```
@@ -804,6 +896,225 @@ either way?* If yes, it is a widget.
 
 ---
 
-*Last updated: 2026-07-01*
+# Debugging and pre-development rigor
+
+Sound logic and correct runtime behavior are different claims. Code review —
+by a human or an AI — verifies the first. Only running the thing verifies the
+second. This document exists because that gap produced a real, shipped bug,
+and the fix generalizes past the one file it happened in.
+
+---
+
+## The worked example
+
+Session 015's `lib/build-ecosystem-hub.js` had CSS like this:
+
+```css
+summary.panel-head { background: var(--stone-950, #0a0a0a); }
+.panel-title { color: var(--stone-300); }
+```
+
+Read as a diff, this is unremarkable — a dark background, a light-gray title,
+a sensible fallback on the background declaration. Nothing about the *logic*
+is wrong. But `--stone-950` and `--stone-300` are never defined anywhere in
+this repository. `styles/design-system.css` defines nine tokens, none of them
+part of a numbered `--stone-NNN` scale. At runtime:
+
+- `background: var(--stone-950, #0a0a0a)` — the fallback kicks in, so the
+  background renders as intended. The bug is invisible here.
+- `color: var(--stone-300)` — no fallback, so per the CSS spec the whole
+  declaration is invalid and dropped. The property is simply absent. Text
+  inherited whatever color it would have had anyway — in this case, dark text
+  on the now-correctly-dark background. Illegible.
+
+The two declarations look structurally identical. One partially worked by
+accident; the other didn't, for a reason invisible to anyone reading the code
+rather than rendering it. Nobody caught this until an admin looked at the
+actual page and saw barely-visible text.
+
+## The principle
+
+**Reading code confirms the logic is sound. It does not confirm the runtime
+behavior is correct.** The class of bug that ships is disproportionately the
+class that requires *simulating* something to see — not reasoning about it:
+
+- **CSS custom properties** — does `var(--x)` resolve against a token that
+  actually exists in whatever stylesheet this file loads (or defines itself)?
+  Automated now: `node lib/check-design-tokens.js` (see below).
+- **Race conditions** — two operations whose individual logic is correct, but
+  whose *interleaving* isn't considered. `loadIndex()` in
+  `lib/vextreme-index-v2.js` serves a cached value immediately and
+  revalidates in the background *by design* — that's a deliberately-chosen
+  race, documented as such. An *undeliberate* one looks identical in a diff.
+- **UX states that are easy to skip when only reasoning about markup** — is
+  the UI static or does it need to handle dynamic content lengths? Does it
+  scroll, paginate, or overflow, and what does that look like at a realistic
+  content size, not a placeholder one? Is spacing deliberate (breathing room)
+  or accidental (whatever the default happened to produce)? Does the page
+  work in both color schemes it's supposed to support, or only the one that
+  happened to get eyeballed once?
+
+None of these are caught by "is the logic sound." All of them are caught by
+actually producing the runtime condition — a real render, a real concurrent
+call, a real toggle — and looking at what happens.
+
+## The practice
+
+Before considering a UI or async change done, actually do the thing you'd
+otherwise only reason about:
+
+1. **Render it.** Not "the structure looks right" — an actual screenshot or
+   local render, at realistic content sizes, in whatever color schemes the
+   page is supposed to support.
+2. **For concurrent/async logic, write out the interleaving.** If two things
+   can happen in either order or overlap, what does each order actually
+   produce? If the answer is "it shouldn't matter," say why in a comment —
+   don't leave it implicit.
+3. **Check scroll and overflow at realistic sizes**, not the shortest
+   plausible content. A panel that looks fine with three items may not with
+   thirty.
+4. **When a failure mode is mechanical and repeatable, automate the check
+   instead of relying on remembering to look.** A human or AI re-deriving
+   "did I use a real CSS token" by eye, every time, will eventually miss one
+   — that's exactly what happened here. `lib/check-design-tokens.js` (added
+   alongside this document) turns that specific question into a build-time
+   fact instead of a manual-review question. It is not a general solution to
+   this document's principle — it closes one mechanical instance of it. Race
+   conditions and UX-state coverage don't have an equivalent automated check
+   yet, and might not ever; the practice above is what covers them until or
+   unless one exists.
+
+## Relationship to the design system
+
+`docs/architecture/12-design-system.md` documents the token contract this
+practice's worked example was violating. Formalizing that contract was
+explicitly sequenced *after* this document (see `data/status/open-discussions.json`
+od-004/od-005 for the reasoning) — a system built without first naming the
+rigor that verifies it tends to accumulate the same class of unverified
+assumption it was meant to prevent.
+
+---
+
+# Design system
+
+This documents the token contract as it actually exists — not an aspiration,
+not a rebrand. `data/status/open-discussions.json` od-005 tracks what's still
+undecided (a real dark-mode *toggle*, applied to pages that are currently
+light-only); this file is the ground truth of what's already there.
+
+`node lib/check-design-tokens.js` verifies every `var(--token)` reference in
+the repo resolves against one of the two families below. It found zero
+violations as of the session that wrote this document — see
+`docs/architecture/11-debugging-practices.md` for the bug that motivated it.
+
+---
+
+## Two token families, both declared in one file
+
+**1. The global light theme — `:root` in `styles/design-system.css`**
+
+| Token | Value | Purpose |
+|---|---|---|
+| `--cream` | `#fafaf9` | Page/card background |
+| `--stone` | `#1c1917` | Primary text |
+| `--muted` | `#78716c` | Secondary text, meta lines |
+| `--border` | `#e7e5e4` | Hairline borders |
+| `--ember` | `#b45830` | Accent — links, active states, stat values |
+| `--ember-bg` | `#fdf8f6` | Accent-tinted background (callouts, hovers) |
+| `--serif` | `'Source Serif 4', Georgia, serif` | Headings on content pages |
+| `--sans` | `'IBM Plex Sans', sans-serif` | Body text |
+| `--mono` | `'IBM Plex Mono', monospace` | Code, stats, meta, badges |
+
+Used by any file that `<link>`s `styles/design-system.css` — the God Script
+content pages (via the loader chain), `pages/ecosystem-hub.html`, and the
+dashboard pages below. Also implicitly relied on by `styles/arc-nav.css`,
+`styles/site-nav.css`, and `styles/squarespace-overrides.css`, none of which
+declare their own tokens — they're loaded *by* `lib/vextreme.js` alongside
+`design-system.css`, never standalone, so their `var(--x)` references
+resolve against this same set.
+
+**2. The dashboard dark theme — `[data-theme="dashboard"]` in the same file**
+
+| Token | Value | Purpose |
+|---|---|---|
+| `--bg` | `#0e0e0e` | Page background |
+| `--surface` | `#111111` | Card/box background, one step lighter than `--bg` — a distinction the light theme's single `--cream` doesn't make |
+| `--text` | `#e8e8e4` | Primary text |
+| `--muted` | `#6b6b6b` | Secondary text |
+| `--ember` | `#c8502a` | Accent — a different value from the light theme's `--ember`, tuned for a dark background |
+| `--border` | `#2a2a2a` | Hairline borders |
+| `--blue` | `#4a9eff` | Secondary accent, used only by `pages/specimen-architectural-wisdoms.html` |
+| `--mono` / `--sans` | same as family 1 | Typefaces |
+
+Used by `lib/build-archives.js`, `lib/build-demo.js`, `lib/build-specimens.js`
+(and the specimen pages it generates), and `pages/specimen-architectural-wisdoms.html`
+— each opts in with `<html data-theme="dashboard">` plus a `<link>` to
+`design-system.css`, same as any light-theme page. Until Session 017 this was
+four identical `:root` blocks copy-pasted inline, one per file, verified as
+real duplication (not hypothetical) and tracked as td-007. Consolidating it
+into this one shared declaration was verified lossless — before/after
+Playwright screenshots of `pages/archives.html` and `pages/vextreme-demo.html`
+rendered pixel-identical — and confirmed by `lib/check-design-tokens.js`
+reporting zero violations both before and after. td-007 is closed.
+
+**`lib/build-index-page.js` remains a smaller, separate case.** It defines
+its own local `:root` with light values that are a renamed restatement of
+family 1 (`--bg` ≈ `--cream`, `--text` ≈ `--stone`), not a copy of family 2.
+Nothing else duplicates it, so it carries no drift risk the way the four
+dark-panel files did — it's a minor consistency opportunity (migrate it to
+link `design-system.css` directly and drop the renamed local copy), not
+tracked debt.
+
+## The rule a file must satisfy
+
+A `var(--x)` reference is valid if `--x` is either:
+
+- declared in that file's own local `:root` block (rare now — only
+  `lib/build-index-page.js` still has one), or
+- declared in `styles/design-system.css`'s `:root` **or**
+  `[data-theme="dashboard"]` block, **and** the file actually `<link>`s that
+  stylesheet (or is a `styles/*.css` companion file that's always loaded
+  alongside it by its loader).
+
+A fallback value — `var(--x, #hex)` — does **not** satisfy this rule on its
+own. That's precisely the pattern that made half of Session 015's bug
+invisible: the fallback rendered a plausible-looking color, masking that the
+token itself didn't exist. `lib/check-design-tokens.js` treats a fallback the
+same as no fallback: the token must actually resolve.
+
+## Adding a token
+
+- **To either shared family** (`styles/design-system.css`): confirm which
+  family it belongs to — this file's `:root` and `[data-theme="dashboard"]`
+  blocks are the widest-blast-radius single edit points for typography/color
+  in the repo. Run `node lib/check-design-tokens.js` afterward; a removed or
+  renamed token will surface every file that broke.
+- **A new dashboard-family page**: link `design-system.css`, set
+  `<html data-theme="dashboard">`, and use the family 2 tokens directly —
+  don't define a new local `:root` copy. That's the exact pattern td-007
+  existed to close.
+
+## What's deliberately not here yet
+
+No dark-mode *toggle* exists — `[data-theme="dashboard"]` opts a page in
+permanently at build time, it isn't switched at runtime, and no light-themed
+page can become dark on demand (or vice versa).
+
+**Decided (Session 019, od-005 closed):** not building one now. No page has
+a stated need for a runtime toggle — every current page's theme (content
+pages light, dashboard/dev pages dark) is a reasonable fixed choice, and a
+toggle adds real complexity (a persistence mechanism, a UI control, doubling
+the visual states every page must be verified in) against a need that
+hasn't been named. If a concrete need for one arises, building it is cheap:
+switch the `data-theme` attribute at runtime and let the two token families
+already declared in `styles/design-system.css` handle the rest — the
+consolidation done in Session 018 is what makes that cheap later. This
+document is the durable record of the decision; there is no corresponding
+tech-debt or planned-enhancement entry, since "revisit if a need appears" is
+not a queued task.
+
+---
+
+*Last updated: 2026-07-04*
 
 <!-- [VXG RealForever] -->

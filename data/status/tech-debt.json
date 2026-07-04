@@ -1,0 +1,59 @@
+{
+  "_comment": "Hand-authored. Standing technical decisions deferred. Promote session open-work items here when they have no clear session endpoint. Remove an item when resolved.",
+  "items": [
+    {
+      "id": "td-002",
+      "title": "Old widget filenames kept for backward compat",
+      "description": "widgets/lang-fab.js and widgets/demo-fab.js are dead copies kept because existing CDN pages reference them. New canonical names are fab-lang.js and fab-demo.js. Accumulates until pages are ported.",
+      "context": "widgets/lang-fab.js, widgets/demo-fab.js",
+      "addedSession": "011",
+      "addedPR": 24,
+      "priority": "medium"
+    },
+    {
+      "id": "td-003",
+      "title": "No HTML dead link scanner in CI",
+      "description": "Renaming a slug requires manually updating all internal hrefs across pages. No automated check catches a missed touch point before merge.",
+      "context": "lib/check-key-alignment.js",
+      "addedSession": "012",
+      "priority": "medium"
+    },
+    {
+      "id": "td-004",
+      "title": "No atomic slug rename script",
+      "description": "Renaming a slug touches 7 layers: nodes.json, index.json, HTML filename, string scope keys, compiled bundles, God Script filename, and internal links. No tooling does this atomically — each rename is a manual multi-step operation.",
+      "context": "data/nodes.json, lib/build-index.js",
+      "addedSession": "012",
+      "priority": "medium"
+    },
+    {
+      "id": "td-005",
+      "title": "specimen-architectural-wisdoms has no string bundle",
+      "description": "Page renders static HTML. No compiled scope bundle exists for pages.specimen-architectural-wisdoms. Localization is a no-op for this page until a source file is written and strings-compile is run.",
+      "context": "pages/specimen-architectural-wisdoms.html",
+      "addedSession": "011",
+      "addedPR": 24,
+      "priority": "low"
+    },
+    {
+      "id": "td-006",
+      "title": "i18n string bundling strategy does not scale to multiple languages",
+      "description": "JA strings are currently fetched and cached per page scope-combination (e.g. vex-lang-strings-1.0.0-ja-pages.specimen-full-translation,specimens). This is fine at 2 languages and 88 nodes. Adding a third language (Korean, Mandarin, etc.) multiplies the fetch surface and localStorage footprint linearly per language. At global scale — many languages × many nodes × many users switching language on their first visit to each new page — the scope-keyed approach compounds into exponential CDN cost and localStorage pressure. The natural migration is arc-chunked language bundles: one file per arc per language, SW-preloaded on arc entry. This is a build-script change (build-vextreme.js + fab-lang.js + build-sw.js), not a content change — slugs, arcs, and string source files do not move. Decision must be made before adding a third language. Do not design the third language's pipeline on the current per-scope-combo model.",
+      "context": "widgets/fab-lang.js (loadStringsForLang), lib/build-vextreme.js, lib/build-sw.js",
+      "addedSession": "013",
+      "triggerCondition": "Before adding any language beyond English and Japanese",
+      "migrationPath": "Arc-chunked bundles: one strings.{arc}.{lang}.json per arc, pre-fetched by SW on arc entry. Build script assembles chunks; browser receives without assembling.",
+      "priority": "high"
+    },
+    {
+      "id": "td-008",
+      "title": "Current architecture has no structured-concurrency model — a known ceiling once server logic or multi-threaded application scope enters the ecosystem",
+      "description": "This repo is plain Node.js build scripts plus simple fetch/cache logic in the browser — single-threaded, no shared-memory parallelism, no genuine concurrent-thread danger anywhere in it today. That's fine for the current scope and is not a bug. It becomes one the moment the ecosystem grows to include actual server-side logic or applications with real concurrency needs (multiple simultaneous requests mutating shared state, background workers, task queues) — plain JS/Node gives no structural protection there beyond discipline (manually wiring AbortController at every async boundary, remembering to cancel stale work), the same 'good practice, not auto practice' gap named in docs/culture.md's AI-instance-reflection section. Reasoned through at length in a Session 021 conversation: JS is structurally safer than Kotlin/JVM against classic thread-level race conditions (no OS-thread-shared-memory parallelism exists in this codebase's execution model, so that bug class is currently impossible here, not just avoided) — but Kotlin's structured concurrency (coroutine scopes, automatic cancellation propagation) and its stricter null-safety type system are real, specific advantages once genuine concurrent/server-side logic is in scope, advantages TypeScript's strict mode only partially matches (TypeScript has real escape hatches — any, runtime type erasure — that Kotlin's type system doesn't).",
+      "context": "No specific file yet — this is a language/runtime-architecture decision, not a code location. Relevant once lib/ grows server-side logic or this ecosystem gains an application layer with real concurrency.",
+      "addedSession": "021",
+      "triggerCondition": "Before adding server-side logic or any application with genuine concurrent/multi-threaded requirements — do not discover this ceiling mid-build.",
+      "migrationPath": "Two-tier decision, not proposed as one migration: (1) near-term, adopt TypeScript with strictNullChecks for the existing JS layer — same toolchain, no JVM dependency, closes most of the null-safety gap and forces compiler-enforced reference consistency in build-script-to-build-script calls (see the JSON-vs-typed-references reasoning in the same Session 021 conversation). (2) If and when server/application/mobile scope becomes real, seriously re-evaluate Kotlin (or Kotlin Multiplatform specifically if Android/iOS is also real) for that new scope — it would deliver both the concurrency-safety and platform-reach cases at once, whereas adopting it now for the current JS-only, single-threaded scope would add JVM toolchain cost without a concurrency problem yet to solve.",
+      "priority": "medium"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "_meta": { "type": "lesson" },
+  "id": "generated-file-merge-driver-needs-local-registration",
+  "title": "A .gitattributes merge=ours Declaration Does Nothing Without a Locally-Registered Driver",
+  "sessions": ["022"],
+  "problem": "docs/architecture.md's constraint #8 documents that generated files (data/index.json, pages/archives.html, docs/architecture.md, etc.) use merge=ours in .gitattributes so a feature-branch rebase automatically keeps main's built version instead of producing a conflict. Rebasing this branch onto main after a bot auto-rebuild commit produced a real CONFLICT in data/index.json anyway — the attribute was present, but nothing resolved automatically.",
+  "exploration": [
+    "assume the conflict meant .gitattributes was misconfigured or the file list was stale",
+    "check whether the file was actually listed under merge=ours (it was)",
+    "recall that git's merge=ours attribute is only a label — it requires a matching `[merge \"ours\"] driver = true` entry registered in git config (typically local .git/config, via `git config merge.ours.driver true`), which is local machine/session state, not something a .gitattributes file or the repo itself can carry"
+  ],
+  "decision": "Resolved the conflict manually the same way the driver would have (`git checkout --ours <file>` during the rebase, matching .gitattributes' documented intent), then re-ran the full build pipeline to regenerate every artifact fresh with the branch's actual source changes baked in — exactly the documented post-rebase practice, just performed by hand instead of automatically.",
+  "lesson": "merge=ours in .gitattributes is not self-executing. It only takes effect in an environment where the merge driver has been separately registered in git config — a step that lives outside the repository and does not survive a fresh clone or a new session/container. Any environment that clones this repo fresh (including this one) should expect generated-file conflicts to surface as real conflicts, not to be silently resolved, and must fall back to the manual take-theirs(main)-then-rebuild procedure every time, not just when something seems to have gone wrong.",
+  "impact": "No code change — this is a documented expectation for future sessions rather than a fix, since the actual gap (driver registration) lives in git config the repo can't carry. Worth adding a line to docs/architecture.md's constraint #8 if a future session wants to make this explicit rather than rediscover it."
+}

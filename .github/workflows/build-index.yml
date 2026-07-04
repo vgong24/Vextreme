@@ -6,6 +6,7 @@ on:
     paths:
       - 'data/nodes.json'
       - 'data/arcs-v2.json'
+      - 'data/viewmodels.json'
       - 'data/strings/**'
       - 'lib/strings-compile.js'
       - 'lib/build-index.js'
@@ -14,6 +15,9 @@ on:
       - 'lib/build-specimens.js'
       - 'lib/build-sitemap.js'
       - 'lib/build-index-page.js'
+      - 'lib/build-vextreme.js'
+      - 'lib/build-sw.js'
+      - 'widgets/**'
       - 'data/specimens.json'
       - 'pages/**'
 
@@ -38,6 +42,12 @@ jobs:
       - name: Build index.json
         run: node lib/build-index.js
 
+      - name: Build God Scripts
+        run: node lib/build-vextreme.js
+
+      - name: Build Service Worker
+        run: node lib/build-sw.js
+
       - name: Build archives.html
         run: node lib/build-archives.js
 
@@ -57,6 +67,6 @@ jobs:
         run: |
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
-          git add data/strings/compiled data/index.json pages/archives.html pages/vextreme-demo.html pages/specimens.html pages/specimen-*.html sitemap.xml index.html
+          git add data/strings/compiled data/index.json dist sw.js pages/archives.html pages/vextreme-demo.html pages/specimens.html pages/specimen-*.html sitemap.xml index.html
           git diff --staged --quiet && echo "No changes to commit" || git commit -m "Auto-rebuild artifacts [skip ci]"
           git push

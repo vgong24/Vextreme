@@ -1,0 +1,25 @@
+{
+  "_meta": { "type": "paths" },
+  "strings": {
+    "source":   "data/strings/source",
+    "compiled": "data/strings/compiled",
+    "scopes":   "data/strings/compiled/scopes",
+    "manifest": "data/strings/compiled/manifest.json"
+  },
+  "data": {
+    "nodes":     "data/nodes.json",
+    "arcs":      "data/arcs-v2.json",
+    "index":     "data/index.json",
+    "specimens": "data/specimens.json"
+  },
+  "output": {
+    "pages": "pages",
+    "dist":  "dist"
+  },
+  "source": {
+    "widgets": "widgets",
+    "styles":  "styles",
+    "config":  "config",
+    "lib":     "lib"
+  }
+}

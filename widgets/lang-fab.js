@@ -19,6 +19,16 @@
   var INDEX_URL  = CDN_BASE + '/data/index.json?v=' + VERSION;
   var LS_LANG    = 'vex-lang';
   var LS_DATA    = 'vex-index-v2-data';
+  var LS_STRINGS = 'vex-lang-strings';
+
+  // ── Config constants (mirrors lib/vex-config.js) ─────────────────────────────
+  // These string values are the ground truth in lib/vex-config.js. When that
+  // file changes, update these in sync. In the future slug-driven architecture,
+  // vextreme.js will inline these from the build; until then they live here.
+  var CATEGORY_SYSTEM     = 'system';
+  var CATEGORY_PRODUCTION = 'production';
+  var SCOPE_COMMON        = 'common';
+  var LANG_DEFAULT        = 'en';
 
   var _logger = (window.VEXTREME_LOGGER) || {
     warn:  function(e) { console.warn('[' + e.code + ']', e.message, e); },
@@ -45,8 +55,25 @@
   }
 
   // ── Index loading (reads cache first, same key as vextreme-index-v2.js) ──────
+  //
+  // Priority order for supportedLangs resolution:
+  //   1. window.VEX_SUPPORTED_LANGS — inlined at build time by the page builder.
+  //      Fastest path: no network fetch, no localStorage check, always current.
+  //   2. localStorage 'vex-index-v2-data' — cached by vextreme-index-v2.js.
+  //   3. CDN fetch of data/index.json — fallback, may lag after new lang added.
+  //
+  // Pages should set window.VEX_SUPPORTED_LANGS before loading this script so the
+  // FAB never depends on CDN for the mount decision. Without it, the CDN's cached
+  // index.json may not include newly added languages, causing the FAB to silently
+  // skip mounting (langs.length < 2).
 
   function loadSupportedLangs(onReady) {
+    // Build-time inlined list — bypass all network / storage checks.
+    if (window.VEX_SUPPORTED_LANGS && window.VEX_SUPPORTED_LANGS.length >= 2) {
+      onReady(window.VEX_SUPPORTED_LANGS);
+      return;
+    }
+
     try {
       var raw = localStorage.getItem(LS_DATA);
       if (raw) {
@@ -64,19 +91,19 @@
       if (req.status === 200) {
         try {
           var data = JSON.parse(req.responseText);
-          onReady(data.supportedLangs || ['en']);
+          onReady(data.supportedLangs || [LANG_DEFAULT]);
         } catch (e) {
           _logger.warn({ code: 'LANG_FAB_INDEX_PARSE_FAILED', message: 'Failed to parse index.json for lang list' });
-          onReady(['en']);
+          onReady([LANG_DEFAULT]);
         }
       } else {
         _logger.warn({ code: 'LANG_FAB_INDEX_HTTP_ERROR', message: 'index.json returned HTTP ' + req.status, status: req.status });
-        onReady(['en']);
+        onReady([LANG_DEFAULT]);
       }
     };
     req.onerror = function () {
       _logger.warn({ code: 'LANG_FAB_INDEX_FETCH_FAILED', message: 'Failed to fetch index.json for lang list' });
-      onReady(['en']);
+      onReady([LANG_DEFAULT]);
     };
     req.send();
   }
@@ -88,20 +115,46 @@
   // correct default for a small page count and stays fully supported.
   //
   // Opt-in: a page that sets window.VEX_STRING_SCOPES = ['pages.my-slug'] (or
-  // any list of scope names — see data/strings/compiled/scopes/index.json for
-  // what exists) before this script loads gets only those scopes plus
-  // 'common', fetched in parallel and merged client-side. This is the path a
-  // large page count should move onto over time — see
-  // docs/architecture/06-i18n.md, "Scaling past one bundle." Both paths ship
-  // the same bundle shape ({ key: { text, aria-label } }), so applyLang()
-  // below doesn't need to know which one was used.
+  // any list of scope names) before this script loads gets only those scopes
+  // plus 'common', fetched in parallel and merged client-side. Pages also
+  // declare window.VEX_STRING_CATEGORY = 'demo' (or 'staging') if their
+  // scopes live outside the default 'production' category. 'common' always
+  // comes from the 'system' category regardless of what the page declares.
   //
-  // A page can also opt into a variant/staging bundle for one of its scopes
-  // via window.VEX_STRING_VARIANT = 'b' (matches a source file's _meta.variant,
-  // e.g. for an A/B copy test) — only scopes that actually have that variant
-  // compiled fall back to the base scope bundle silently.
+  // URL derivation rule (mirrors lib/strings-compile.js — no lookup table):
+  //   scope "pages.foo", category "production"
+  //   → scopes/production/pages/foo.{lang}.json
+  //
+  //   scope "specimens", category "demo"
+  //   → scopes/demo/specimens.{lang}.json
+  //
+  //   scope "common" (always)
+  //   → scopes/system/common.{lang}.json
+  //
+  // A page can also opt into a variant bundle via window.VEX_STRING_VARIANT.
+  // Scopes without that variant compiled fall back to their base bundle silently.
 
   var _langStrings = {};
+
+  // stringsKey — localStorage key for the merged strings object for a lang+scopes pair.
+  // Versioned so a VERSION bump naturally invalidates all cached bundles.
+  function stringsKey(lang, scopes) {
+    var base = LS_STRINGS + '-' + VERSION + '-' + lang;
+    if (!scopes || !scopes.length) return base;
+    return base + '-' + scopes.slice().sort().join(',');
+  }
+
+  // scopeUrl — derives the CDN URL for a compiled scope bundle.
+  // Mirrors the path rule in lib/strings-compile.js: dots in scope names
+  // become directory segments within the category directory. 'common' always
+  // comes from 'system' regardless of the page's declared category.
+  function scopeUrl(scope, lang, category, variant) {
+    var cat      = (scope === SCOPE_COMMON) ? CATEGORY_SYSTEM : (category || CATEGORY_PRODUCTION);
+    var segments = scope.split('.');
+    var dirParts = [cat].concat(segments.slice(0, -1));
+    var baseName = segments[segments.length - 1] + (variant ? '.variant-' + variant : '');
+    return CDN_BASE + '/data/strings/compiled/scopes/' + dirParts.join('/') + '/' + baseName + '.' + lang + '.json?v=' + VERSION;
+  }
 
   function fetchJSON(url, onDone) {
     var req = new XMLHttpRequest();
@@ -120,6 +173,18 @@
 
   function loadStringsForLang(lang, onReady) {
     var scopes = window.VEX_STRING_SCOPES;
+    var cacheKey = stringsKey(lang, scopes);
+
+    // Read from localStorage cache first — survives page refresh without a CDN round-trip.
+    // This is what makes lang persist on refresh for pages that don't load vextreme.js.
+    try {
+      var cached = localStorage.getItem(cacheKey);
+      if (cached) {
+        _langStrings = JSON.parse(cached);
+        onReady();
+        return;
+      }
+    } catch (e) { /* storage unavailable or corrupt — fall through to fetch */ }
 
     if (!scopes || !scopes.length) {
       // Legacy / default path — unchanged behavior.
@@ -129,6 +194,7 @@
           _logger.warn({ code: 'LANG_FAB_STRINGS_FETCH_FAILED', message: 'Failed to fetch strings for ' + lang, lang: lang, error: String(err) });
         } else {
           _langStrings = data;
+          try { localStorage.setItem(cacheKey, JSON.stringify(data)); } catch (e) {}
         }
         onReady();
       });
@@ -136,27 +202,31 @@
     }
 
     // Scoped path — always include 'common', dedupe, fetch each scope bundle
-    // (falling back to the base scope if a requested variant isn't compiled),
+    // in parallel (falling back to base if a requested variant isn't compiled),
     // merge into one flat object so applyLang() sees no difference.
-    var variant = window.VEX_STRING_VARIANT;
-    var wanted = scopes.indexOf('common') === -1 ? ['common'].concat(scopes) : scopes.slice();
-    var merged = {};
+    var variant  = window.VEX_STRING_VARIANT;
+    var category = window.VEX_STRING_CATEGORY || CATEGORY_PRODUCTION;
+    var wanted   = scopes.indexOf(SCOPE_COMMON) === -1 ? [SCOPE_COMMON].concat(scopes) : scopes.slice();
+    var merged   = {};
     var remaining = wanted.length;
 
     if (!remaining) { onReady(); return; }
 
     wanted.forEach(function (scope) {
-      var name = variant ? scope + '.variant-' + variant : scope;
-      var url  = CDN_BASE + '/data/strings/compiled/scopes/' + name + '.' + lang + '.json?v=' + VERSION;
+      var url = scopeUrl(scope, lang, category, variant);
 
       fetchJSON(url, function (err, data) {
         if (err && variant) {
           // Requested variant not compiled for this scope — fall back to base.
-          var baseUrl = CDN_BASE + '/data/strings/compiled/scopes/' + scope + '.' + lang + '.json?v=' + VERSION;
+          var baseUrl = scopeUrl(scope, lang, category);
           fetchJSON(baseUrl, function (baseErr, baseData) {
             if (!baseErr) Object.keys(baseData).forEach(function (k) { merged[k] = baseData[k]; });
             else _logger.warn({ code: 'LANG_FAB_STRINGS_HTTP_ERROR', message: 'scope bundle missing for ' + scope, lang: lang, scope: scope });
-            if (--remaining === 0) { _langStrings = merged; onReady(); }
+            if (--remaining === 0) {
+              _langStrings = merged;
+              try { localStorage.setItem(cacheKey, JSON.stringify(merged)); } catch (e) {}
+              onReady();
+            }
           });
           return;
         }
@@ -165,7 +235,11 @@
         } else {
           Object.keys(data).forEach(function (k) { merged[k] = data[k]; });
         }
-        if (--remaining === 0) { _langStrings = merged; onReady(); }
+        if (--remaining === 0) {
+          _langStrings = merged;
+          try { localStorage.setItem(cacheKey, JSON.stringify(merged)); } catch (e) {}
+          onReady();
+        }
       });
     });
   }
@@ -334,8 +408,8 @@
     loadSupportedLangs(function (langs) {
       if (!langs || langs.length < 2) return;
 
-      var savedLang = 'en';
-      try { savedLang = localStorage.getItem(LS_LANG) || 'en'; } catch (e) {}
+      var savedLang = LANG_DEFAULT;
+      try { savedLang = localStorage.getItem(LS_LANG) || LANG_DEFAULT; } catch (e) {}
       if (langs.indexOf(savedLang) < 0) savedLang = langs[0];
 
       injectStyles();
@@ -344,7 +418,7 @@
 
       // Apply persisted lang on load (skip if already English — avoids a
       // pointless fetch when no preference has been set)
-      if (savedLang !== 'en') applyLang(savedLang);
+      if (savedLang !== LANG_DEFAULT) applyLang(savedLang);
     });
   }
 

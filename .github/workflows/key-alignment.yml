@@ -1,0 +1,92 @@
+name: Key Alignment Check
+
+on: [pull_request]
+
+permissions:
+  pull-requests: write
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run key alignment check
+        run: node lib/check-key-alignment.js --json > /tmp/key-alignment-report.json
+
+      - name: Post alignment report as PR comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = JSON.parse(fs.readFileSync('/tmp/key-alignment-report.json', 'utf8'));
+            const nd  = report.nodes;
+            const ar  = report.arcs;
+            const pg  = report.pages;
+            const wip = report.wip;
+
+            const nodeStatus  = (nd.missingFromIndex.length || nd.extraInIndex.length) ? '⚠️' : '✅';
+            const arcStatus   = (ar.missingFromIndex.length || ar.extraInIndex.length)  ? '⚠️' : '✅';
+            const pageStatus  = pg.orphans.length ? '⚠️' : '✅';
+            const wipStatus   = (wip.collisions.length || wip.duplicateIntents.length) ? '⚠️' : '✅';
+            const overallOK   = nodeStatus === '✅' && arcStatus === '✅' && pageStatus === '✅' && wipStatus === '✅';
+
+            const missingNodes = nd.missingFromIndex.length
+              ? `\n> **Missing from index:** \`${nd.missingFromIndex.join('`, `')}\``
+              : '';
+            const extraNodes = nd.extraInIndex.length
+              ? `\n> **Extra in index:** \`${nd.extraInIndex.join('`, `')}\``
+              : '';
+            const missingArcs = ar.missingFromIndex.length
+              ? `\n> **Missing from index:** \`${ar.missingFromIndex.join('`, `')}\``
+              : '';
+            const extraArcs = ar.extraInIndex.length
+              ? `\n> **Extra in index:** \`${ar.extraInIndex.join('`, `')}\``
+              : '';
+            const orphanPages = pg.orphans.length
+              ? `\n> **Orphan pages (no nodes.json entry):** \`${pg.orphans.join('`, `')}\``
+              : '';
+            const wipCollisions = wip.collisions.length
+              ? '\n> **wip/ collisions (slug already a real page):** ' +
+                wip.collisions.map(c => `\`${c.file}\` → \`${c.slug}\``).join(', ')
+              : '';
+            const wipDupes = wip.duplicateIntents.length
+              ? '\n> **Duplicate wip/ intents:** ' +
+                wip.duplicateIntents.map(d => `\`${d.slug}\` in ${d.files.map(f => `\`${f}\``).join(', ')}`).join('; ')
+              : '';
+
+            const body = [
+              '## Key Alignment Report',
+              '',
+              '| Type | Total | In index | Missing | Extra |',
+              '|------|-------|----------|---------|-------|',
+              `| ${nodeStatus} Nodes | ${nd.total} | ${nd.inIndex} | ${nd.missingFromIndex.length} | ${nd.extraInIndex.length} |`,
+              `| ${arcStatus} Arcs  | ${ar.total} | ${ar.inIndex} | ${ar.missingFromIndex.length} | ${ar.extraInIndex.length} |`,
+              missingNodes,
+              extraNodes,
+              missingArcs,
+              extraArcs,
+              '',
+              `| ${pageStatus} Pages | ${pg.total} total | ${pg.orphans.length} orphan(s) |`,
+              `| ${wipStatus} wip/  | ${wip.totalDeclared} declared | ${wip.collisions.length} collision(s), ${wip.duplicateIntents.length} duplicate intent(s) |`,
+              orphanPages,
+              wipCollisions,
+              wipDupes,
+              '',
+              overallOK
+                ? '_All keys aligned, no orphan pages, no wip/ collisions._'
+                : '_Issues found above — see data/status.json\'s contentIntegrity notices for the same report on the Ecosystem Hub._',
+              '',
+              '> This is a non-blocking informational check.',
+            ].join('\n');
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner:        context.repo.owner,
+              repo:         context.repo.repo,
+              body,
+            });

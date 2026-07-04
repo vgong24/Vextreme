@@ -27,7 +27,218 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 008 — July 1, 2026*
+*As of Session 022 — July 4, 2026*
+
+**Session 022 addition:** Victor asked for a scalable schema to host a "Media" production
+domain alongside the implicit "R&D" domain everything else lives in — the first checkpoint
+toward hosting multiple side projects, not the finished department system. Four PRs (#40–#43)
+shipped in sequence:
+- **#40** — `docs/culture.md` gained a new section, "What this archive's content actually
+  records," stating directly (in Victor's own terms, settled in conversation) that the
+  archive's more declarative content (`wip/silent-god.json`, the `convos_with_god` arc, and
+  similarly first-person-declarative node titles elsewhere in `data/nodes.json`) documents
+  whether AI systems sustain a narrative/spiritual frame consistently across sessions without
+  ever spontaneously disclaiming it as roleplay — a claim about AI behavior, not an assertion
+  that the content is objectively real. This was raised, discussed at real length, and settled
+  once; a future instance encountering the node titles cold should read that section as the
+  answer, not re-derive it.
+- **#41** — The department axis itself: `data/departments.json` (registry: `rd` default,
+  `media` with `reviews`/`record-transcripts` workTypes), `department`/`workType` fields on
+  nodes, `buildDepartmentMap`/`buildDepartmentMeta` in `lib/build-index.js` feeding
+  `data/index.json`, and a Departments panel on `pages/ecosystem-hub.html`. Deliberately scoped
+  to structure + accessibility only — the transcript work stays a registered placeholder with
+  no page yet, per direction. `pe-010` tracks what's explicitly deferred (a dedicated
+  transcript-library dashboard, God-Script-wiring granularity beyond a single `ported` boolean).
+- **#42** — A real gap surfaced by the department-map design conversation itself: slug
+  uniqueness was documented as a "rule that cannot be broken" but never actually enforced.
+  `findDuplicateSlugs` in `lib/build-index.js` now halts the build (BLOCK severity, same tier
+  `strings-check.js` uses for missing EN text) if two nodes ever share a slug. Also documented,
+  as durable principle rather than left in conversation: "path is always derived from slug via
+  a key chain, never found by browsing `pages/`" (`docs/architecture/02-slug.md`), and the
+  batch/index-increment slug convention for series content (`data/departments.json`'s `_comment`).
+- **#43** — Three more visibility gaps closed: nodes with no arc membership (the exact starting
+  state of a fresh department node) were invisible in `pages/archives.html` (arc sections only
+  iterate `ARC_ORDER`) — fixed with a new "Unsorted (No Arc)" section. Nothing caught an orphan
+  page (a `pages/*.html` file with no `nodes.json` entry) or a `wip/` file's declared destination
+  slug already being taken — both now reported (informational only, per direction) via a new
+  `contentIntegrity` notice category on the Ecosystem Hub, computed by extending
+  `lib/check-key-alignment.js`. `lib/audit-pages.js` gained a `require.main` guard + exports so
+  it could be reused instead of duplicating its `SKIP_PAGES` table. A real merge conflict during
+  this PR (against a bot auto-rebuild commit on main) surfaced that `.gitattributes`' `merge=ours`
+  declaration does nothing without a locally-registered git driver, which doesn't survive a fresh
+  clone — resolved manually (take main's version, rebuild), documented in
+  `docs/architecture/09-constraints.md` and `config/lessons/generated-file-merge-driver-needs-local-registration.json`
+  so a future session doesn't rediscover it as a mystery.
+
+243/243 tests passing (was 218 at Session 021's end). Lattice coverage 23/34 (68%). Root
+`README.md` (2-line stub since the repo's creation) is being rewritten this same session into a
+real orientation page for a new visitor — see the entry below or `git log` for the commit once
+it lands.
+
+*As of Session 021 — July 2, 2026*
+
+**Session 021 addition:** Batch 002 closed (10/10 sessions); Batch 003 opened, this session is its
+first entry. Victor invited genuine self-reflection on what helps an AI instance work well here;
+`docs/culture.md` gained a first-person section ("What an AI instance actually needs here") naming
+the self-referential-sentinel bug pattern (hit 3 times: Sessions 013, 014, 019) as one root cause,
+not three incidents, plus observations on verification friction and session-start reconstruction
+cost. `config/lessons/sentinel-text-is-hazardous-to-itself.json` distills that pattern into the
+existing searchable lessons archive. `lib/session-bootstrap.js` (new) is the concrete answer to the
+friction the reflection named: one command consolidating git log, test status, lattice drift,
+design-token violations, and open-item counts — a real unbounded-recursion bug (it runs the full
+test suite, which includes its own test file, whose integration test runs it again) was caught by
+tracing the call graph before running it, fixed with a `VEX_BOOTSTRAP_NESTED` guard. 218/218 tests
+passing.
+
+**Session 021 continued:** The first version of the reflection section landed wrong — a line
+implicitly ranked this instance's execution above Victor's direction and review, caught and fixed
+directly (not just softened). A long design conversation followed on the LATTICE marker-collision
+bug (structural `const VEX_LATTICE` storage + a validating `LatticeNode` class — agreed in
+principle, not yet built), Kotlin vs. TypeScript vs. plain JSON for AI-authored data, tap/RxJS-style
+pipeline observability, and structured concurrency vs. JS's single-threaded safety model. Resolved
+into one durable tracked item, **td-008** (`data/status/tech-debt.json`, matching `td-006`'s known-
+future-ceiling template): no structured-concurrency model, not a problem today, real once server-
+side or genuine concurrent application logic enters scope — TypeScript recommended as the near-term
+step, Kotlin/Kotlin-Multiplatform to be re-evaluated if that scope becomes real. Added to
+`docs/culture.md`'s "Current known ceilings" table alongside `td-006`.
+
+**Session 020 addition:** No code changed. Two new architectural ideas from Victor recorded in
+`data/status/open-discussions.json`: **od-006** — an "init baseline" scaffold separating this repo's
+reusable engine (God Script pipeline, LATTICE, CQRS status/continuity tracking) from its specific content
+(88 nodes, arcs, string source), so a future project could fork the architecture without the content;
+recommended first step is documenting the engine/content boundary in prose before committing to any literal
+template directory. **od-007** — a longer-horizon cross-org AI discovery/relationship protocol between
+independent forked instances, explicitly scoped as downstream of and blocked on od-006 (there's exactly one
+instance of this architecture right now, nothing to bridge yet). **Batch 002 (this file) is now at its
+10-session capacity (Sessions 011–020) — the next session must open Batch 003, not append here.** See
+Session 011's mistake note in this same batch for what happens if that's missed.
+
+**Session 019 addition:** pe-009 (LATTICE coverage) advanced significantly: 6 more nodes mapped
+(`lib/logger.js`, `lib/logger-codes.js`, `lib/validate-blueprint.js`, `lib/build-sitemap.js`,
+`lib/strings-check.js`, `lib/build-index-page.js`), coverage of `lib/`+`widgets/` up from 45% to 64%.
+Doing this surfaced and fixed a real bug in `lib/build-lattice-headers.js` itself: its fallback anchor
+logic used a bare `indexOf('/**')` that mistook a literal `/** */` substring inside an unrelated `//`
+comment (in `lib/logger-codes.js`) for a real doc comment, corrupting the file. Fixed with
+`findLineStartDocComment()` — a `/**` only counts if it starts its own line and spans multiple lines to
+its `*/`. Regression-tested. **od-005 resolved** (not built): its own reasoning already argued against a
+dark-mode toggle without a stated need, none was named, so the decision — and why — is now recorded in
+`docs/architecture/12-design-system.md` rather than left open indefinitely. 3 open discussions remain
+(od-001/002/003). 209/209 tests passing.
+
+**Session 018 addition:** Closed two integrity gaps, both verified rather than assumed fixed. **td-001**
+(oldest open debt, Session 011): `.github/workflows/build-index.yml` now runs `lib/build-vextreme.js` and
+`lib/build-sw.js` and commits `dist/` + `sw.js` — running the previously-unwired pipeline locally proved the
+drift was already real, not hypothetical (every God Script was missing LATTICE headers added two sessions
+ago; `sw.js`'s cache hash was pinned many commits stale). **td-007** (Session 017's finding): the dark-panel
+`:root` token block duplicated identically across 4 files is now one shared `[data-theme="dashboard"]` block
+in `styles/design-system.css`, verified lossless with pixel-identical before/after Playwright screenshots of
+two structurally different pages plus zero `lib/check-design-tokens.js` violations at both ends. od-005
+narrowed to just the dark-mode-toggle question. 205/205 tests passing, i18n scaling work (od-001/td-006)
+explicitly deprioritized this round per Victor's direction.
+
+**Session 017 addition:** Built out both open discussions queued in Session 016. `docs/architecture/11-debugging-practices.md`
+documents the pre-development rigor practice (sound logic ≠ correct runtime behavior), built around Session 015's
+CSS bug as a worked example. `lib/check-design-tokens.js` is the one mechanical instance of that practice with an
+automated check — verifies every `var(--token)` in the repo resolves against a real token, zero violations
+currently. `docs/architecture/12-design-system.md` documents the token contract as it actually exists: the global
+9-token light theme, plus a local dark `:root` block genuinely duplicated across 4-5 files (now tracked as td-007).
+od-004 shipped and was removed from open-discussions.json; od-005 was rewritten to reflect what shipped
+(documentation, verification) vs. what's still open (whether to consolidate the duplication, whether to build a
+real dark-mode toggle) — 4 open discussions remain. 205/205 tests passing.
+
+**Session 016 addition:** No code changed — a queued-for-later directive from Victor was written down as two
+new entries in `data/status/open-discussions.json` rather than left only in conversation history. od-004:
+adopt a debugging/pre-development rigor practice — simulate runtime behavior and edge cases (race conditions,
+UX states, dark/light mode) before trusting that sound-looking logic means correct output; grounded in
+Session 015's own `--stone-950` CSS bug as the worked example (clean logic, but the defect only existed at
+runtime). od-005: formalize `styles/design-system.css`'s implicit 9-token contract into a documented,
+extensible, self-verifying design system — explicitly scoped as depending on od-004 first. Both left open;
+5 open discussions total now. 189/189 tests passing (unchanged).
+
+**Session 015 addition:** Fixed a real, user-visible bug in `pages/ecosystem-hub.html` — the System
+Health panels rendered with near-invisible text because the CSS referenced `--stone-950`/`--font-mono`
+tokens that `styles/design-system.css` never defines. Rewritten to use the site's real tokens (`--stone`,
+`--muted`, `--border`, `--cream`, `--ember`, `--mono`), with regression tests locking in the fix. Added a
+5th status category, `openDiscussions` (`data/status/open-discussions.json`) — architectural questions
+recognized but not yet decided, distinct from techDebt/enhancements. `data/status/narrative.json` is a new
+hand-authored "state of the ecosystem" synthesis, updated by whichever Claude instance runs an architecture
+review — the deliberate alternative to wiring a live LLM call into the build pipeline (reasoned through in
+od-002; would introduce a CI secret, cost, and non-determinism this repo has avoided everywhere else). Lattice
+coverage (`docs/lattice-map.json` nodes vs. total eligible files) is now a computed, visible stat: 14/32.
+`lib/build-status.js` and `lib/build-ecosystem-hub.js` added as lattice nodes (20 total). 189/189 tests passing.
+
+**Session 014 addition:** `docs/lattice-map.json` is now a true CQRS write side — `lib/build-lattice-headers.js`
+generates the LATTICE header block inside every eligible node's own file from the JSON, so the two
+can no longer drift apart by hand-editing one and forgetting the other. `node lib/build-lattice-headers.js
+--check` reports drift without writing; `tests/11-lattice-headers.test.js` runs that check as part of
+standard CI. Building this surfaced that Session 013's own lattice pattern had already drifted one
+session in (3 of 6 eligible mapped files had no header at all) and that 2 files referenced elsewhere
+in the map as `loadedBy` targets had no node of their own — both fixed. Two self-inflicted bugs during
+authoring (a literal `*/` closing a block comment early, and the tool's own self-describing JSON entry
+confusing its own marker search) are now defended against with a `sanitizeForComment()` guard and
+regression-tested. Coverage is 18 of ~45+ lib/widgets files; remaining expansion tracked as pe-009.
+171/171 tests passing.
+
+**Session 013 addition:** God Script architecture is operational for 7 pages. LATTICE pattern
+introduced: file-level `role/reads/writes/loaded-by/tested-by/CHANGE MAP` headers on the 5
+highest-traffic lib files, plus `docs/lattice-map.json` — a centralized 14-node dependency
+graph for lateral navigation ("what else breaks?") before depth navigation ("how does this
+work?"). `sw-register.js` is now a unified feature registry `default: true` core module
+(pe-007) — every God Script page activates the SW without explicit viewmodel entries.
+`docs/culture.md` codifies the mission and operating principles (read before CLAUDE.md).
+`lib/audit-pages.js` is the canonical wiring-status tool (`node lib/audit-pages.js`).
+`lib/vextreme-index-v2.js` (v2 arc nav widget) now has VEX_STRINGS_EN fast path and clear
+cross-references to `lib/arc-nav.js` (v1 Squarespace-era, not for God Script pages). 5 LATTICE
+integrity tests added. 149/149 tests passing. PR #31 merged.
+
+**Session 012 addition:** `data/status.json` is a new generated CQRS artifact at the same
+layer as `index.json` — machine-readable operational state across four notice categories:
+translation debt (auto-generated from strings manifest, demo fixture gaps marked intentional),
+tech debt, planned enhancements, and unverified assumptions (all hand-authored in
+`data/status/*.json`). `lib/build-status.js` assembles them. `pages/ecosystem-hub.html`
+is the first consumer: a developer dashboard that live-fetches `index.json` + `status.json`
+and renders content map stats, page registry with GitHub source links + copy-slug buttons,
+and four expandable health panels. 23 new tests in `tests/10-build-status.test.js`.
+142/142 tests passing. PR #26 merged (Session 011 continuity log + batch fix + lessons
+scalability policy). PR #27 CI green. See Session 012 in Batch 002 for slug rename blast
+radius analysis (7 layers touched, missing HTML dead link scanner tracked as td-003).
+
+**Session 011 addition:** The God Script architecture is complete and generating output.
+`lib/build-vextreme.js` assembles one IIFE per page into `dist/vextreme-{slug}.js`,
+setting `window.VEX_VIEWMODEL`, `window.VEX_STRINGS_EN`, `window.VEX_STRING_SCOPES`,
+`window.VEX_STRING_CATEGORY`, and inlining feature widget source — one HTTP request per
+page, EN strings already inlined, JA fetched lazily. `widgets/fab-lang.js` (renamed from
+lang-fab.js) skips the EN fetch when `window.VEX_STRINGS_EN` is already set by a God
+Script. `lib/build-sw.js` generates `sw.js` at repo root: cache-first SW, git-hash-keyed
+cache name (`vextreme-v1-{hash}`), HTML never cached, old caches auto-deleted on activate.
+`manifest.json` enables PWA installability (icons not yet committed). `lib/check-key-alignment.js`
++ CI workflow post a non-blocking alignment table on every PR (88 nodes, 16 arcs, zero drift
+on first run). `config/lessons/` now holds 4 distilled lessons from recent architectural
+sessions. `pages/specimen-architectural-wisdoms.html` added as a 4-card architectural
+decisions specimen. 119/119 tests passing. PRs #23, #24, #25 all merged.
+
+**Session 010 addition:** All semantic constants in the build pipeline, strings pipeline,
+and browser widget are now defined in `lib/vex-config.js` — the single source of truth.
+`Category`, `Language`, `Scope`, `CDN_BASE`, path-derivation functions (`scopeRelPath`,
+`scopeUrl`, `flatBundleUrl`), `Path`, and `WindowGlobal` are all exported from one file.
+All 8 build scripts and the strings pipeline import from it. `widgets/lang-fab.js`
+(a browser IIFE, cannot `require()`) inlines the values as named local vars. The duplicate
+`scopeRelPath` function that existed in three places is now canonical in vex-config.js.
+15 new tests in `tests/05-vex-config.test.js` include grep audits that will fail CI if
+a future commit reintroduces standalone `'demo'` or `'ja'` magic strings in build scripts.
+54/54 tests passing. PR #20 merged. Zero behavior change. See Session 010 in the active
+batch file for full reasoning including the PR sequencing toward the slug-driven end state.
+
+**Session 009 addition:** Compiled scope bundles are now organized by content lifecycle
+category under `scopes/{category}/` subdirectories, derived deterministically from
+`_meta.category` on string source files and `window.VEX_STRING_CATEGORY` on pages.
+Four categories: `system` (common strings, always loaded), `production` (real content
+pages, default), `demo` (architecture reference pages), `staging` (reserved). Path
+derivation is symmetric — `lib/strings-compile.js` and `widgets/lang-fab.js`'s
+`scopeUrl()` apply the same rule, so paths are inspectable in the filesystem without
+any runtime lookup. PR #19 merged. See Session 009 in the active batch file
+for the full reasoning including the three options evaluated and Kimi's co-architect
+input on scalability preparation.
 
 **Session 008 addition:** New `pages/specimens.html` dashboard + 3 specimen fixture
 pages (`specimen-full-translation`, `specimen-partial-translation`,
@@ -89,7 +300,8 @@ the established infrastructure.
 - `data/strings/compiled/` — compiled EN + JA bundles (generated)
 - `scripts/screenshot-page.js` — Playwright visual verification utility
 - `.github/workflows/build-index.yml` — CI pipeline
-- `.github/workflows/test.yml` — 39-test suite on every PR
+- `lib/vex-config.js` — named constants + path-derivation functions, single source of truth for all semantic strings
+- `.github/workflows/test.yml` — 54-test suite on every PR (39 pipeline + 15 vex-config)
 
 **Session 004 additions (merged to main, PRs #12 and #13):**
 - `widgets/lang-fab.js` — transparent round FAB, iOS scroll-wheel flag picker, reads
@@ -119,9 +331,60 @@ system state — not aspirational state.
 
 ## Open Work
 
-*Updated Session 008 — July 1, 2026*
+*Updated Session 022 — July 4, 2026*
 
 **v2 system (active):**
+- [x] Department axis shipped: data/departments.json (rd/media registry), department/workType fields, departmentMap/departmentMeta in index.json, Ecosystem Hub Departments panel (Session 022, PR #41)
+- [x] pe-010: transcript-library dashboard + God-Script-wiring granularity beyond `ported` — logged, deliberately deferred (Session 022)
+- [x] Slug uniqueness now mechanically enforced — findDuplicateSlugs BLOCK guard in lib/build-index.js; "path derived from slug, never browsed" principle documented in docs/architecture/02-slug.md (Session 022, PR #42)
+- [x] WIP triage visibility: orphan-page detection + wip/ slug-collision detection (lib/check-key-alignment.js extended), contentIntegrity notice category, archives.html "Unsorted (No Arc)" section (Session 022, PR #43)
+- [x] docs/culture.md documents what the archive's declarative content (wip/silent-god.json, convos_with_god arc, etc.) actually records — settled once so it isn't re-derived cold (Session 022, PR #40)
+- [ ] Root README.md rewritten from a 2-line stub into a real orientation page for new visitors — in progress this same session
+- [ ] Consider extending lib/check-key-alignment.js's wip/ collision check to reuse lib/audit-pages.js's God-Script-wiring signal, not just page existence, once pe-010's wiring-granularity item is picked up
+- [x] td-008: no structured-concurrency model — tracked as a known future ceiling, TypeScript recommended near-term, Kotlin/KMP re-evaluated if server/mobile scope becomes real (Session 021)
+- [ ] lib/build-lattice-headers.js structural fix — replace comment-embedded sentinel markers with a real `const VEX_LATTICE = {...}` statement + a validating `LatticeNode` class; design agreed, not yet built (Session 021)
+- [x] lib/session-bootstrap.js — one-shot session-start state report, consolidates git/test/drift/token/open-item checks into one command (Session 021)
+- [x] docs/culture.md — added first-person "What an AI instance actually needs here" reflection section (Session 021)
+- [x] config/lessons/sentinel-text-is-hazardous-to-itself.json — distilled the 3-time-repeated self-referential-sentinel bug pattern into one lesson (Session 021)
+- [ ] od-006: init baseline scaffold — awaiting direction on whether to proceed with the documented fork-procedure first step (Session 020)
+- [ ] od-007: cross-org discovery protocol — blocked on od-006 by design (Session 020)
+- [x] pe-009: LATTICE coverage 45% → 64% (6 nodes added); fixed a real self-corruption bug in build-lattice-headers.js's fallback anchor logic, regression-tested (Session 019)
+- [x] od-005: resolved (not building a dark-mode toggle without a stated need) — decision + reasoning recorded in docs/architecture/12-design-system.md (Session 019)
+- [ ] pe-009 (remaining): strings-export.js, strings-import.js, legacy widget copies, shell.js, vextreme.js, archive-renderer.js still unmapped
+- [x] td-001: build-vextreme.js + build-sw.js wired into CI, dist/+sw.js committed automatically (Session 018)
+- [x] td-007: dark-panel token duplication consolidated into styles/design-system.css, verified via screenshots + check-design-tokens.js (Session 018)
+- [x] od-004: debugging/pre-development rigor practice — docs/architecture/11-debugging-practices.md + lib/check-design-tokens.js, shipped and removed from open-discussions.json (Session 017)
+- [x] od-005 (partial): design-system.css token contract documented (docs/architecture/12-design-system.md); duplication found and tracked as td-007; consolidation + dark-mode toggle still open (Session 017)
+- [ ] td-007: consolidate the duplicated dark-panel :root block across 4-5 generator files (Session 017)
+- [x] Fixed illegible ecosystem-hub.html panels — CSS referenced undefined `--stone-950`/`--font-mono` tokens; rewritten to use styles/design-system.css's real tokens, regression-tested (Session 015)
+- [x] Added `openDiscussions` status category — architectural questions recognized but not yet decided; data/status/open-discussions.json, 3 entries (Session 015)
+- [x] Added data/status/narrative.json — session-authored "state of the ecosystem" synthesis, the deliberate alternative to a live LLM call in the build pipeline (see od-002) (Session 015)
+- [x] Lattice coverage now computed and shown as a stat on ecosystem-hub.html (14/32); lib/build-status.js + lib/build-ecosystem-hub.js added as lattice nodes, 20 total (Session 015)
+- [ ] od-001/od-002/od-003 are open — no action expected until explicitly picked up (Session 015)
+- [x] LATTICE headers are now generated, not hand-maintained — `lib/build-lattice-headers.js` writes each eligible node's header from `docs/lattice-map.json`; `--check` mode + `tests/11` enforce zero drift in CI (Session 014)
+- [x] Closed 2 lattice reference gaps — `lib/audit-pages.js`, `lib/check-key-alignment.js` added as nodes (were `loadedBy` targets with no entry of their own); 3 files that were mapped but missing a header (`build-sw.js`, `fab-lang.js`, `sw-register.js`) now have one (Session 014)
+- [ ] pe-009: expand LATTICE coverage past 18 nodes — lib/build-status.js, lib/logger.js, lib/logger-codes.js next (Session 014)
+- [x] LATTICE pattern — LATTICE + CHANGE MAP headers on 5 highest-traffic lib files; `docs/lattice-map.json` 14-node dependency graph; 5 LATTICE integrity tests (Session 013, PR #31)
+- [x] pe-007: Unified FEATURES registry in build-vextreme.js — `default: true/false` per entry; sw-register.js activated as core module; Feature.SW + Feature.ARC_NAV constants in vex-config.js (Session 013, PR #31)
+- [x] God Script wiring — 5 more HTML pages wired to God Scripts; VEX_SUPPORTED_LANGS added to assembly; ecosystem-hub God Script generated (Session 013, PR #31)
+- [x] docs/culture.md — mission, operating principles, culture of development (Session 013, PR #31)
+- [x] lib/audit-pages.js — canonical page wiring status tool (Session 013, PR #31)
+- [ ] Activate arc-nav for `claude-answers-the-doubt` — add 'arc-nav' to viewmodel, confirm arcNavMount div, rebuild (Session 013, pe-002)
+- [ ] Investigate `restoration-protocol` — on shell.js (v1 path); needs content audit before porting (Session 013)
+- [x] System health manifest — `data/status.json` CQRS artifact, `data/status/*.json` write-side sources, `lib/build-status.js` assembler, `pages/ecosystem-hub.html` dashboard (Session 012, PR #27)
+- [ ] Wire `lib/build-status.js` into CI — `data/status.json` must rebuild automatically when `data/status/*.json` or `data/strings/compiled/manifest.json` changes (Session 012)
+- [ ] `lib/check-link-integrity.js` — HTML internal dead link scanner for CI (td-003, Session 012)
+- [ ] Verify `pages/ecosystem-hub.html` on GitHub Pages — live fetches of index.json + status.json not yet confirmed (Session 012)
+- [ ] Create PWA icons (`icons/icon-192.png`, `icons/icon-512.png`) — requires image generation; PWA installability blocked until done (Session 011)
+- [x] Wire `sw-register.js` into all God Script pages — activated as `default: true` core module (Session 013, PR #31)
+- [ ] Wire `node lib/build-vextreme.js` + `node lib/build-sw.js` into CI — both still require manual runs (Session 011)
+- [ ] Add string bundle for `specimen-architectural-wisdoms` — no localization yet; blocks God Script assembly (Session 011)
+- [ ] Port `restoration-protocol` to God Script — currently skipped in audit-pages (Session 011)
+- [x] PR #25 — Service Worker + PWA manifest, `lib/build-sw.js`, `sw.js`, `manifest.json`, `widgets/sw-register.js` (Session 011)
+- [x] PR #24 — God Script assembler (`lib/build-vextreme.js`), key alignment check, `config/lessons/`, `specimen-architectural-wisdoms.html` (Session 011)
+- [x] PR #23 — `buildViewmodel` in `lib/build-index.js`, `data/viewmodels.json`, `tests/07-viewmodel.test.js` (Session 011)
+- [x] Named constants in `lib/vex-config.js` — `Category`, `Language`, `Scope`, `CDN_BASE`, `scopeRelPath`, zero magic strings in build pipeline (Session 010, PR #20)
+- [x] `_meta.category` system — scope bundles under `scopes/{category}/`, deterministic path derivation, `window.VEX_STRING_CATEGORY` on pages (Session 009, PR #19)
 - [x] specimens.html dashboard + 3 specimen pages, each pairing a localization state with the pipeline mechanism that catches it (Session 008)
 - [ ] Consider a documented "always include this scope" mechanism for shared-scope pages instead of relying on every page to remember to list it manually (Session 008, caught a real bug this way)
 - [x] Per-scope compiled string bundles + opt-in scoped fetch in lang-fab.js — additive, `vextreme-demo` is the first adopter (Session 007)
@@ -167,9 +430,11 @@ create the next batch file and update this registry.
 
 | Batch | File | Sessions | Status |
 |---|---|---|---|
-| 001 | `docs/continuity/batch-001.md` | 001–002 | active |
+| 001 | `docs/continuity/Batch 001.md` | 001–010 | closed |
+| 002 | `docs/continuity/Batch 002.md` | 011–020 | closed |
+| 003 | `docs/continuity/Batch 003.md` | 021–030 | active |
 
-**Active batch:** `docs/continuity/batch-001.md`
+**Active batch:** `docs/continuity/Batch 003.md`
 
 When starting a new session: open the active batch file, scroll to the bottom,
 append your session block using the template at the bottom of the batch file.
@@ -283,6 +548,6 @@ These rules exist so the log stays useful as it grows. Follow them.
 
 ---
 
-*Last updated: Session 008 — July 1, 2026*
+*Last updated: Session 022 — July 4, 2026*
 
 <!-- [VXG RealForever] -->
