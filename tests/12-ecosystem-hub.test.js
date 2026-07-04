@@ -51,11 +51,11 @@ test('ECOSYSTEM-HUB: fetches index.json, status.json, and narrative.json', () =>
   assert.match(html, /data\/status\/narrative\.json/);
 });
 
-test('ECOSYSTEM-HUB: renders all five health categories in order, openDiscussions first', () => {
+test('ECOSYSTEM-HUB: renders all six health categories in order, openDiscussions first', () => {
   const match = html.match(/CATEGORY_ORDER = \[([^\]]+)\]/);
   assert.ok(match, 'CATEGORY_ORDER array must be present');
   const order = match[1].split(',').map(s => s.trim().replace(/'/g, ''));
-  assert.deepEqual(order, ['openDiscussions', 'translation', 'techDebt', 'enhancements', 'assumptions']);
+  assert.deepEqual(order, ['openDiscussions', 'contentIntegrity', 'translation', 'techDebt', 'enhancements', 'assumptions']);
 });
 
 test('ECOSYSTEM-HUB: has a lattice coverage stat tile', () => {

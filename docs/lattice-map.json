@@ -503,7 +503,11 @@
         "data/index.json"
       ],
       "writes": ["stdout only — read-only, changes nothing"],
-      "loadedBy": ["manual run: node lib/audit-pages.js", "CLAUDE.md (points here as the wiring-status source of truth)"],
+      "loadedBy": [
+        "manual run: node lib/audit-pages.js",
+        "CLAUDE.md (points here as the wiring-status source of truth)",
+        "lib/check-key-alignment.js (imports SKIP_PAGES + getPageSlugs — reuses the skip list instead of duplicating it)"
+      ],
       "testedBy": [],
       "changeMap": {
         "a page becomes wired/unwired": [
@@ -511,29 +515,42 @@
           "CLAUDE.md 'Current blockers' section (prose summary — keep loosely in sync)"
         ],
         "a new generated page added (own loader, not God Script)": [
-          "SKIP_PAGES entry — otherwise it reports as a false blocker"
+          "SKIP_PAGES entry — otherwise it reports as a false blocker",
+          "lib/check-key-alignment.js's orphan-page check also reads SKIP_PAGES — a page that's a false positive there is fixed the same way"
+        ],
+        "SKIP_PAGES / getPageSlugs export shape changed": [
+          "lib/check-key-alignment.js (destructures both by name — a rename here breaks that require)"
         ]
       }
     },
 
     "lib/check-key-alignment.js": {
-      "role": "non-blocking CI check — compares slug/arc keys across nodes.json, arcs-v2.json, index.json and reports drift",
-      "context": "JSON is string-based; a slug or arc key can drift between the three files silently (node added but index.json not rebuilt, arc renamed but index stale). This check catches that class of bug with a PR comment, without blocking merge — informational only. Complements lib/audit-pages.js (page wiring) and lib/build-lattice-headers.js --check (header drift) as the third 'silent drift' detector in the repo.",
-      "reads": ["data/nodes.json", "data/arcs-v2.json", "data/index.json"],
+      "role": "non-blocking CI check — compares slug/arc keys across nodes.json, arcs-v2.json, index.json, cross-checks pages/ and wip/, and reports drift",
+      "context": "JSON is string-based; a slug or arc key can drift between the three files silently (node added but index.json not rebuilt, arc renamed but index stale). This check catches that class of bug with a PR comment, without blocking merge — informational only. Complements lib/audit-pages.js (page wiring) and lib/build-lattice-headers.js --check (header drift) as the third 'silent drift' detector in the repo. Session 022 added two more checks in the same spirit: orphan pages (a pages/*.html file with no nodes.json entry — excludes SKIP_PAGES and data/viewmodels.json-registered dev/demo pages, both legitimate non-node pages) and wip/ slug collisions (a wip/*.json file's optional _meta.slug already exists as a real pages/*.html file). A wip/ slug matching only a nodes.json placeholder with no page yet is deliberately NOT flagged — that's the expected linkage (the placeholder exists precisely to reserve that wip file's destination), not a conflict.",
+      "reads": ["data/nodes.json", "data/arcs-v2.json", "data/index.json", "data/viewmodels.json", "wip/*.json (_meta.slug field only)", "lib/audit-pages.js (SKIP_PAGES, getPageSlugs)"],
       "writes": ["stdout (JSON report with --json flag); PR comment via .github/workflows/key-alignment.yml"],
-      "loadedBy": [".github/workflows/key-alignment.yml (auto-run on pull_request)", "tests/08-build-vextreme.test.js (KEY-ALIGNMENT tests)"],
+      "loadedBy": [
+        ".github/workflows/key-alignment.yml (auto-run on pull_request)",
+        "tests/08-build-vextreme.test.js (KEY-ALIGNMENT tests)",
+        "lib/build-status.js (feeds the contentIntegrity notice category)"
+      ],
       "testedBy": ["tests/08-build-vextreme.test.js"],
       "changeMap": {
         "report schema changed": [
           ".github/workflows/key-alignment.yml (formats the PR comment table from this shape)",
+          "lib/build-status.js (buildContentIntegrityNotices reads report.pages.orphans, report.wip.collisions, report.wip.duplicateIntents)",
           "tests/08"
+        ],
+        "wip/ collision rule changed (what counts as a real collision)": [
+          "tests/08 (WIP-COLLISION tests — especially the placeholder-is-not-a-collision case)",
+          "data/departments.json's _comment (documents the convention this check enforces)"
         ]
       }
     },
 
     "lib/build-status.js": {
-      "role": "system health manifest assembler — reads hand-authored status/*.json plus the strings manifest, writes data/status.json",
-      "context": "The write side of the 'what's still open' picture: five notice categories (translation debt auto-derived from the strings manifest, techDebt/enhancements/assumptions/openDiscussions hand-authored) roll up into one artifact pages/ecosystem-hub.html fetches live. Also computes lattice coverage (mapped nodes vs. total eligible .js files in lib/+widgets/) into _meta.lattice, so the hub can show it without re-deriving the eligibility rule. openDiscussions (added Session 015) is deliberately separate from techDebt/enhancements — see data/status/open-discussions.json's _comment for why.",
+      "role": "system health manifest assembler — reads hand-authored status/*.json plus the strings manifest and key-alignment report, writes data/status.json",
+      "context": "The write side of the 'what's still open' picture: six notice categories (translation debt and contentIntegrity auto-derived, techDebt/enhancements/assumptions/openDiscussions hand-authored) roll up into one artifact pages/ecosystem-hub.html fetches live. Also computes lattice coverage (mapped nodes vs. total eligible .js files in lib/+widgets/) into _meta.lattice, so the hub can show it without re-deriving the eligibility rule. openDiscussions (added Session 015) is deliberately separate from techDebt/enhancements — see data/status/open-discussions.json's _comment for why. contentIntegrity (Session 022) is auto-generated like translation, not hand-authored like the other three.",
       "reads": [
         "data/strings/compiled/manifest.json",
         "data/strings/compiled/strings.en.json",
@@ -544,7 +561,8 @@
         "data/status/assumptions.json",
         "data/status/open-discussions.json",
         "docs/lattice-map.json",
-        "lib/ and widgets/ directory listings (.js files, for coverage denominator)"
+        "lib/ and widgets/ directory listings (.js files, for coverage denominator)",
+        "lib/check-key-alignment.js (checkKeyAlignment() — orphan pages, wip collisions/duplicate intents)"
       ],
       "writes": ["data/status.json"],
       "loadedBy": [
@@ -563,6 +581,9 @@
         ],
         "lattice coverage eligibility rule changed": [
           "lib/build-lattice-headers.js isEligibleNode() (must stay identical or the two coverage numbers disagree)"
+        ],
+        "check-key-alignment.js report shape changed": [
+          "buildContentIntegrityNotices() here reads report.pages.orphans / report.wip.collisions / report.wip.duplicateIntents directly — a shape change there breaks this silently unless tests/10 or tests/08 catch it"
         ]
       }
     },
@@ -597,6 +618,33 @@
           "renderDepartments() in this file's generated JS",
           "lib/build-index.js (producer)",
           "tests/15-departments.test.js"
+        ]
+      }
+    },
+
+    "lib/build-archives.js": {
+      "role": "generates pages/archives.html — the complete page registry: every arc's slugs as ported/missing cells, plus unsorted and dev/demo pages",
+      "context": "Session 022 added an 'Unsorted (No Arc)' section: nodes.json entries with empty arcKeys are invisible in every arc section (those only ever iterate ARC_ORDER), which was a real gap for department-only content (phantom-opera-meta-review, vxg-thread-round-5) that has no arc membership yet. Sits alongside the pre-existing 'Dev & Demo Pages' section (viewmodels.json category:demo pages, which aren't nodes.json entries at all) as a second, distinct population of non-arc content — the two are kept separate rather than merged, since 'a real node with no arc yet' and 'a non-node dev fixture' are different states worth telling apart at a glance.",
+      "reads": [
+        "data/nodes.json",
+        "data/arcs-v2.json",
+        "data/viewmodels.json",
+        "data/strings/compiled/strings.en.json",
+        "data/strings/compiled/manifest.json",
+        "pages/*.html (existence check, per slug, for the ported/missing cell state)"
+      ],
+      "writes": ["pages/archives.html"],
+      "loadedBy": [
+        "manual run: node lib/build-archives.js",
+        ".github/workflows/build-index.yml"
+      ],
+      "testedBy": [],
+      "changeMap": {
+        "a node gets department/workType fields but no arcKeys": [
+          "shows up automatically in the Unsorted section here — no build-archives.js change needed, renderUnsortedSection() reads arcKeys directly"
+        ],
+        "ARC_ORDER or ARC_KEY_MAP changed": [
+          "must stay in sync with data/arcs-v2.json's keys — a typo here silently drops that arc's whole section"
         ]
       }
     },

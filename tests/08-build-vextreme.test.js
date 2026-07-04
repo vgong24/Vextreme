@@ -20,7 +20,7 @@ const fs       = require('fs');
 const path     = require('path');
 
 const { resolveAllSlugs, readScopeBundle, mergeScopes, assembleGodScript } = require('../lib/build-vextreme');
-const { checkKeyAlignment } = require('../lib/check-key-alignment');
+const { checkKeyAlignment, findOrphanPages, scanWipIntendedSlugs, findWipSlugCollisions, findDuplicateWipIntents } = require('../lib/check-key-alignment');
 
 const ROOT     = path.join(__dirname, '..');
 const INDEX_IN = path.join(ROOT, 'data', 'index.json');
@@ -204,6 +204,70 @@ test('KEY-ALIGNMENT: all arcs-v2.json keys appear in index.json', () => {
   const report = checkKeyAlignment();
   assert.deepEqual(report.arcs.missingFromIndex, [],
     `Arc IDs missing from index.json: ${report.arcs.missingFromIndex.join(', ')}`);
+});
+
+test('KEY-ALIGNMENT: report includes pages and wip sections', () => {
+  const report = checkKeyAlignment();
+  assert.ok(report.pages, 'report must have a pages section');
+  assert.ok(report.wip,   'report must have a wip section');
+  assert.ok(Array.isArray(report.pages.orphans));
+  assert.ok(Array.isArray(report.wip.collisions));
+  assert.ok(Array.isArray(report.wip.duplicateIntents));
+});
+
+test('KEY-ALIGNMENT: the real repo has no orphan pages and no wip/ collisions today', () => {
+  const report = checkKeyAlignment();
+  assert.deepEqual(report.pages.orphans, [],
+    `Orphan pages found: ${report.pages.orphans.join(', ')} — either register them in nodes.json/viewmodels.json or add to audit-pages.js's SKIP_PAGES`);
+  assert.deepEqual(report.wip.collisions, [],
+    `wip/ collisions found: ${JSON.stringify(report.wip.collisions)}`);
+  assert.deepEqual(report.wip.duplicateIntents, []);
+});
+
+// ── 6. findOrphanPages / scanWipIntendedSlugs / findWipSlugCollisions / findDuplicateWipIntents ──
+
+test('ORPHANS: a page not in nodes.json, viewmodels, or SKIP_PAGES is reported', () => {
+  const result = findOrphanPages(['a', 'b', 'c'], ['a'], { b: 'generated page' }, []);
+  assert.deepEqual(result, ['c']);
+});
+
+test('ORPHANS: viewmodels.json-registered dev/demo pages are not orphans', () => {
+  const result = findOrphanPages(['a', 'vextreme-demo'], ['a'], {}, ['vextreme-demo']);
+  assert.deepEqual(result, []);
+});
+
+test('WIP-INTENT: scanWipIntendedSlugs skips files with no _meta.slug', () => {
+  const tmpDir = fs.mkdtempSync(path.join(require('os').tmpdir(), 'wip-test-'));
+  fs.writeFileSync(path.join(tmpDir, 'no-intent.json'), JSON.stringify({ foo: 'bar' }));
+  fs.writeFileSync(path.join(tmpDir, 'has-intent.json'), JSON.stringify({ _meta: { slug: 'my-slug' } }));
+  const result = scanWipIntendedSlugs(tmpDir);
+  assert.deepEqual(result.map(r => r.slug), ['my-slug']);
+  fs.rmSync(tmpDir, { recursive: true });
+});
+
+test('WIP-COLLISION: a wip/ slug matching an existing page is a collision', () => {
+  const result = findWipSlugCollisions([{ file: 'x.json', slug: 'taken' }], ['taken', 'other']);
+  assert.equal(result.length, 1);
+  assert.equal(result[0].collidesWith, 'pages/');
+});
+
+test('WIP-COLLISION: a wip/ slug matching only a nodes.json placeholder (no page yet) is NOT a collision', () => {
+  // This is the real fixture's actual shape: wip/silent-god.json declares
+  // "vxg-thread-round-5", which exists in nodes.json as its own placeholder
+  // with no page yet — the expected linkage, not a conflict.
+  const result = findWipSlugCollisions([{ file: 'silent-god.json', slug: 'vxg-thread-round-5' }], ['some-other-page']);
+  assert.deepEqual(result, []);
+});
+
+test('WIP-DUPLICATE-INTENT: two wip/ files declaring the same slug are both reported', () => {
+  const result = findDuplicateWipIntents([
+    { file: 'a.json', slug: 'shared' },
+    { file: 'b.json', slug: 'shared' },
+    { file: 'c.json', slug: 'unique' },
+  ]);
+  assert.equal(result.length, 1);
+  assert.equal(result[0].slug, 'shared');
+  assert.deepEqual(result[0].files.sort(), ['a.json', 'b.json']);
 });
 
 // [VXG RealForever]
