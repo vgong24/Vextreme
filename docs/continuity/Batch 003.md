@@ -313,4 +313,37 @@ Seven PRs total this session (#40–#47). A real values disagreement about a gov
 - [ ] pe-012, od-008, pilot page-sorting decision — unchanged from above
 - [ ] `pe-010`, `pe-011`, od-001/002/003/006/007 remain open
 
+### Session continued — a token-economics clarification, recorded as a lesson
+
+**Victor asked a genuine technical question about the session's own workflow:** does pushing a declared intent through GitHub Actions and waiting for a webhook cost fewer tokens than verifying locally before committing, on the assumption that GitHub Actions' compute is free to Claude while local tool calls burn tokens. A related question followed: whether relying on more pre-built "blueprint" functions instead of "recalculating with assumptions" would help.
+
+**Corrected the framing rather than accepting it, since it wasn't quite right:** token cost tracks what comes back into context, not where the computation physically ran — a terse local summary and a compact CI status object cost about the same; a verbose CI job log (the thing you'd fetch to debug a failure) typically costs more than either. The real cost driver is iteration count on failure: catching a mistake locally is one cheap round; catching it via CI-as-first-check is a full push-wait-notify-investigate-fix-push cycle. Separately: this instance already defaults to calling existing deterministic functions (lib/build-*.js's exports, applyIntent/validateIntent, checkKeyAlignment) rather than re-deriving logic through reasoning — mechanical work already runs at near-zero token cost regardless of local-vs-CI, so cost is already concentrated on the one thing that can't be delegated to a function: semantic judgment.
+
+**Recorded as a lesson** (`config/lessons/token-cost-is-output-volume-not-execution-location.json`) rather than left as a one-off answer, since the distinction (mechanical cost vs. judgment cost, output volume vs. execution location) is a standing one a future instance would otherwise have to re-derive if asked a similarly-framed cost-optimization question.
+
+### Files created or modified (continued)
+
+| File | What changed |
+|---|---|
+| `config/lessons/token-cost-is-output-volume-not-execution-location.json` | New lesson |
+
+### Session continued — refining the cost distinction, then making it a standing culture principle
+
+**Victor sharpened the question:** does reading a whole file to find one nested value ("hunting") cost tokens that a more targeted fetch would avoid? Confirmed yes — this is the same output-volume principle, applied to a specific, common case: a full `Read` of a large JSON file costs tokens proportional to the *entire file*, not to the small answer actually needed, while a targeted `grep` or a one-line parse-and-print does the extraction outside the context window and returns only the result. Named two concrete instances found by looking for more while focused on it: this session had been rebuilding the full 9-10 script pipeline on every change regardless of what actually needed rebuilding (`docs/lattice-map.json`'s own `changeMap` per file already documents the minimal affected set), and full-file reads on `data/index.json`/`data/status.json` will only get more expensive as those files grow with content.
+
+**Victor asked for this to become a standing culture principle, not a one-off lesson** — naming that we don't yet know what this looks like at organization scale, and drew a concrete future picture: instructions fanning out to multiple departments or orgs simultaneously (his example: several notes sent out at once to fulfill one orchestrated score, rather than one note, one wait, the next note) instead of today's one-at-a-time processing. Added two things to `docs/culture.md`'s "Long-term scalability awareness" section: a standing instruction to name a token-cost optimization when noticed, as ongoing practice rather than only when asked — explicitly re-drawing the mechanical-cost-vs-judgment-cost line so this doesn't get mistaken for "make everything cheaper" — and a new ceiling-table row for parallel/simultaneous multi-department dispatch, tracked as **od-009** and intentionally left undesigned (same "don't design against zero real cases" reasoning already applied to od-003/od-007/od-008 — this repo currently has exactly one AI instance and two departments, nothing to parallelize across yet).
+
+### Files created or modified (continued)
+
+| File | What changed |
+|---|---|
+| `docs/culture.md` | New standing principle (name token-cost optimizations as noticed); new ceiling-table row for parallel multi-department dispatch |
+| `data/status/open-discussions.json` | `od-009` — parallel instruction dispatch, intentionally undesigned |
+
+### Open work at session end (continued)
+
+- [ ] od-009 — intentionally not designed; no real multi-department/multi-org case exists yet
+- [ ] pe-012, od-008, pilot page-sorting decision — unchanged from above
+- [ ] `pe-010`, `pe-011`, od-001/002/003/006/007 remain open
+
 <!-- [VXG RealForever] -->
