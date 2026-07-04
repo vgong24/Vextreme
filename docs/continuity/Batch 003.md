@@ -409,4 +409,37 @@ Seven PRs total this session (#40–#47). A real values disagreement about a gov
 - [ ] `pe-012`, `od-008`, `od-009` (now with a real precedent named), pilot page-sorting decision — unchanged otherwise
 - [ ] `pe-010`, `pe-011`, od-001/002/003/006/007 remain open
 
+### Session continued — re-perceiving the role/lens ask as an instruction to actually try it, not just describe it
+
+**Victor's follow-up asked something categorically different from a design question: to actually attempt the multi-lens pass on a real decision and report the honest lessons** ("if you need practice you can simulate what im saying... test the effects and share the lessons from your attempt"). Treated this literally rather than as another round of documentation — the decision picked to run the Scanner pass on was the smallest real one available: "what should this response build."
+
+**What the pass actually surfaced, lens by lens:** Truth — the kanban/non-scheduled/"addressed anytime" discussion mechanism Victor described already exists (`od-`/`td-`/`pe-` items on the Ecosystem Hub); building a second one would duplicate, not fulfill, the ask. Proportion — role "positioning," "communication channels," and "instruction routing through department→role lenses back to a surface" are each a real subsystem, none has a real case yet to design against (same test `od-008`/`od-009` already apply). Center — the honest scope for one response is a small, gradable slice, not the whole architecture. Architect/Builder/Designer/Manager/Test-Node converged on: tag a few real backlog items with an optional `lens` field (which faculty's judgment call an item represents), surface it on the Ecosystem Hub, and write down what a "Council Lenses" panel can honestly claim to be — a proposal marker, not a working communication channel.
+
+**Built:** `lens` field added to 4 real items (`od-009`→architect, `od-008`→architect, `pe-012`→manager, `pe-010`→proportion) in `data/status/open-discussions.json`/`planned-enhancements.json`; `renderHealthPanel()` in `lib/build-ecosystem-hub.js` reads it into each item's meta line; a new "Council Lenses" section (`id="lenses-grid"`, `renderLenses()`) renders `data/council-kernel.json`'s roster, explicitly labeled "proposal, not adopted" in the section header itself, not just in prose elsewhere. Hit and fixed a real bug in the process: a doc comment used literal backticks around the word `lens` inside `build-ecosystem-hub.js`'s single giant template-literal return statement, prematurely closing the string (`SyntaxError: Unexpected identifier 'lens'`) — fixed by writing the word without backtick delimiters. `docs/architecture/14-council-model.md` got a new closing section, "First attempt: actually running it, on a real decision," naming exactly what was built vs. what was deliberately not built (communication channels, meeting scheduling, an instruction-routing pipeline — all still lack a real case).
+
+**The honest lesson, stated plainly rather than softened:** running an explicit multi-lens pass took real, noticeable deliberate effort — worth it for a decision this size (shapes what ships and what gets deferred), not something to run on every small edit, and a judgment call about *when* to invoke it rather than a rule. Also explicit that this must stay a single instance structuring its own reasoning in one pass, not something to hand off to separate subagents per lens — that would reintroduce exactly the token/coordination cost the whole idea was meant to avoid, collapsing the distinction this repo has maintained all session between "The Council" (one mind, many faculties) and "The Bridge Council" (many minds, many councils).
+
+### Files created or modified (continued)
+
+| File | What changed |
+|---|---|
+| `data/status/open-discussions.json` | `od-009`, `od-008` — added `lens` field |
+| `data/status/planned-enhancements.json` | `pe-012`, `pe-010` — added `lens` field |
+| `lib/build-ecosystem-hub.js` | `renderHealthPanel()` reads `item.lens`; new "Council Lenses" section + `renderLenses()` + `KERNEL_URL` fetch of `data/council-kernel.json`; fixed a backtick-in-template-literal SyntaxError in a doc comment |
+| `docs/architecture/14-council-model.md` | New closing section, "First attempt: actually running it, on a real decision" — what was built, what was deliberately not built, the honest lesson |
+| `docs/lattice-map.json` | `lib/build-ecosystem-hub.js` changeMap updated for the `lens` field convention and `renderLenses()` |
+| `tests/12-ecosystem-hub.test.js` | 2 new tests: Council Lenses section is marked as a proposal; `renderHealthPanel` reads `item.lens` |
+| `docs/architecture.md` | Rebuilt from source |
+| `docs/continuity/INDEX.md` | Current State/Open Work replaced to describe this round; Recent Sessions compacted to 3 entries |
+
+### Mistakes made (continued)
+
+- Literal backticks inside a doc comment (`` `lens` ``) closed `lib/build-ecosystem-hub.js`'s outer template literal early, producing `SyntaxError: Unexpected identifier 'lens'` the first time the script was run after the edit. Fixed by removing the backtick delimiters from the comment text. A reminder that this file's entire output being one JS template literal makes even comments part of the string's syntax surface — not just a formatting nuance.
+
+### Open work at session end (continued)
+
+- [ ] The "Scanner check" / lens-pass practice — still a proposal, not adopted; Victor should decide whether and when future instances should run it, per the honest-limits framing in `docs/architecture/14-council-model.md`
+- [ ] Communication channels between roles/departments, meeting scheduling, and an instruction→department→role routing pipeline remain explicitly undesigned — no real case yet, same discipline as `od-008`/`od-009`
+- [ ] `pe-012`, `pe-010`, `pe-011`, od-001/002/003/006/007/008/009 remain open, unchanged otherwise
+
 <!-- [VXG RealForever] -->

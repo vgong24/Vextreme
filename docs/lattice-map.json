@@ -349,12 +349,17 @@
       "context": "Session 022: Victor shared external design-document URLs and asked whether one AI instance could hold internal multi-lens 'council' awareness instead of coordinating across multiple instances. pages/org-blueprint.html (already in this repo, previously uncurated) already describes exactly this — a Scanner that fires multiple internal 'faculty' perspectives in parallel before committing to a response. This file transcribes that roster/pattern into queryable form, same as data/departments.json is hand-authored rather than derived. See docs/architecture/14-council-model.md for the honest assessment of what this can and can't be — a single instance's structured self-check, not multiple independent agents.",
       "reads": [],
       "writes": [],
-      "loadedBy": ["tests/19-council-kernel.test.js", "docs/architecture/14-council-model.md (referenced, not fetched)"],
+      "loadedBy": [
+        "tests/19-council-kernel.test.js",
+        "docs/architecture/14-council-model.md (referenced, not fetched)",
+        "pages/ecosystem-hub.html (live fetch, browser — the Council Lenses panel, added Session 022 same day as this note)"
+      ],
       "testedBy": ["tests/19-council-kernel.test.js"],
       "changeMap": {
         "a role added or removed": [
           "tests/19-council-kernel.test.js's caughtBy-reference-integrity check must still pass",
-          "docs/architecture/14-council-model.md if the change affects the honest-limits framing"
+          "docs/architecture/14-council-model.md if the change affects the honest-limits framing",
+          "lib/build-ecosystem-hub.js renderLenses() reads role.id/holds/failsAs/caughtBy directly — a shape change breaks it silently unless tests/19 or tests/12 catch it"
         ],
         "pages/org-blueprint.html's source content changes": [
           "this file was hand-transcribed at a point in time (Draft v0.5) — re-check it still matches if the source page is ever revised"
@@ -711,7 +716,8 @@
         "data/index.json (live fetch, browser — including departmentMap/departmentMeta)",
         "data/status.json (live fetch, browser)",
         "data/status/narrative.json (live fetch, browser)",
-        "data/lessons.json (live fetch, browser)"
+        "data/lessons.json (live fetch, browser)",
+        "data/council-kernel.json (live fetch, browser)"
       ],
       "writes": ["pages/ecosystem-hub.html"],
       "loadedBy": [
@@ -741,6 +747,11 @@
           "renderLessons() in this file's generated JS",
           "lib/build-lessons.js (producer)",
           "tests/17-build-lessons.test.js"
+        ],
+        "data/council-kernel.json schema changed": [
+          "renderLenses() in this file's generated JS",
+          "data/council-kernel.json (producer, hand-authored)",
+          "tests/19-council-kernel.test.js"
         ]
       }
     },

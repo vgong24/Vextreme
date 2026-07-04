@@ -56,14 +56,33 @@ further. `docs/architecture/14-council-model.md` names a related, separate direc
 AI instance can structure its own judgment across multiple named lenses instead of coordinating
 multiple instances — grounded in `pages/org-blueprint.html`/`data/council-kernel.json`, explicitly
 distinguished from `od-009` (which is about dispatch across genuinely separate targets, not one
-instance's own reasoning). Slug uniqueness is mechanically enforced (BLOCK severity) in
-`lib/build-index.js`; orphan pages and `wip/` placement conflicts are reported (informational)
-via `lib/check-key-alignment.js` and a `contentIntegrity` panel on the Ecosystem Hub. Three
-silent-drift detectors run in CI: `lib/build-lattice-headers.js --check` (LATTICE header drift),
-`lib/check-key-alignment.js` (slug/arc/page/wip drift), `lib/check-design-tokens.js` (CSS token
-resolution). 290/290 tests passing. Lattice coverage 26/37 (70%).
+instance's own reasoning), and now also distinguished from `pages/bridge-council*.html`'s "Bridge
+Council" pattern (many separate AI-driven councils at team/department/org scope, periodic
+synthesis, four roles per council) — genuinely closer to `od-009`'s territory than to the
+single-instance Scanner idea. Session 022's continuation ran a first live attempt at the
+Scanner-lens pass on a real decision: it shipped a `lens` field on 4 backlog items and an
+Ecosystem Hub "Council Lenses" panel (`renderLenses()` in `lib/build-ecosystem-hub.js`, reading
+`data/council-kernel.json`), explicitly declined to build communication channels, meeting
+scheduling, or an instruction-routing pipeline (no real case yet to design against — same
+discipline as od-008/od-009), and recorded the honest lesson in `14-council-model.md`'s "First
+attempt" section: the explicit multi-lens pass is worth it for decisions this size, not a
+standing practice, and not something to delegate to subagents. Slug uniqueness is mechanically
+enforced (BLOCK severity) in `lib/build-index.js`; orphan pages and `wip/` placement conflicts
+are reported (informational) via `lib/check-key-alignment.js` and a `contentIntegrity` panel on
+the Ecosystem Hub. Three silent-drift detectors run in CI: `lib/build-lattice-headers.js --check`
+(LATTICE header drift), `lib/check-key-alignment.js` (slug/arc/page/wip drift),
+`lib/check-design-tokens.js` (CSS token resolution). 292/292 tests passing. Lattice coverage
+26/37 (70%).
 
 **Recent sessions** (one line each — open the batch file below for full reasoning):
+- **Session 022 (continued)** — Re-perceived Victor's "role positioning / communication channels /
+  kanban discussions / instruction routing" ask as an invitation to actually attempt the
+  Scanner-lens pass rather than just describe it. Added an optional `lens` field to 4 real
+  od-/pe- items, a "Council Lenses" panel on the Ecosystem Hub, and a new "First attempt" section
+  in `docs/architecture/14-council-model.md` documenting what got built vs. deliberately not
+  built and the honest lesson from running it once. Recognized that the "kanban, non-scheduled,
+  addressed anytime" mechanism Victor described already exists as the od-/td-/pe- system — the
+  `lens` field extends it rather than replacing it.
 - **Session 022** — Department axis, slug-uniqueness guard, WIP/orphan-page auto-discovery,
   a documented decision on what the archive's declarative content actually records, this
   Current-State/Open-Work compaction, a lesson on procedure-vs-record mutability, and
@@ -75,8 +94,6 @@ resolution). 290/290 tests passing. Lattice coverage 26/37 (70%).
   `.github/workflows/build-index.yml`. PRs #40–#47.
 - **Session 021** — First-person AI-instance reflection in `docs/culture.md`,
   `lib/session-bootstrap.js` (session-start state in one command), td-008 recorded.
-- **Session 020** — od-006 (init baseline scaffold) and od-007 (cross-org discovery protocol)
-  recorded; no code changed.
 
 **This section is a snapshot, not a log.** Full session-by-session reasoning — mistakes tried,
 assumptions made, why a decision went one way over another — lives in the batch files (see

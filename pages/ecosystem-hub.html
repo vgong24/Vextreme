@@ -147,6 +147,16 @@
     <span class="loading">Loading…</span>
   </div>
 
+  <!-- Council Lenses — data/council-kernel.json's roster, a proposal not yet
+       adopted as standing practice; see docs/architecture/14-council-model.md -->
+  <div class="section">
+    <h2>Council Lenses</h2>
+    <span class="section-link" style="cursor:default">proposal, not adopted</span>
+  </div>
+  <div class="health-grid" id="lenses-grid">
+    <span class="loading">Loading…</span>
+  </div>
+
   <!-- Current Architecture -->
   <div class="section"><h2>Current Architecture</h2></div>
   <div id="narrative-body" class="narrative-body">
@@ -174,6 +184,7 @@
     var STATUS_URL    = BASE + '/data/status.json';
     var NARRATIVE_URL = BASE + '/data/status/narrative.json';
     var LESSONS_URL   = BASE + '/data/lessons.json';
+    var KERNEL_URL    = BASE + '/data/council-kernel.json';
 
     function el(id) { return document.getElementById(id); }
     function esc(s) { return String(s == null ? '' : s).replace(/[&<>]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]; }); }
@@ -202,6 +213,7 @@
           var meta = [];
           if (item.addedSession || item.raisedSession) meta.push('session ' + (item.addedSession || item.raisedSession));
           if (item.addedPR)      meta.push('PR #' + item.addedPR);
+          if (item.lens)         meta.push('lens: ' + item.lens);
           if (item.context)      meta.push(item.context);
           if (item.blockedBy)    meta.push('blocked: ' + item.blockedBy);
           if (item.relatesTo)    meta.push('relates to ' + item.relatesTo);
@@ -312,6 +324,40 @@
       el('dept-grid').innerHTML = html;
     }
 
+    // Council Lenses — data/council-kernel.json's roster (Session 022), a
+    // proposal named in docs/architecture/14-council-model.md, not adopted
+    // standing practice. Gives each role a visible position on the hub, and
+    // lets a health/lessons item's optional lens field (see renderHealthPanel)
+    // reference something a reader can actually look up here.
+    function renderLenses(kernel) {
+      var roles = kernel.roles || [];
+      if (!roles.length) {
+        el('lenses-grid').innerHTML = '<span class="empty-state">No roles defined.</span>';
+        return;
+      }
+
+      var html = roles.map(function (role) {
+        var caughtBy = (role.caughtBy || []).length
+          ? '<div class="ni-meta">caught by: ' + role.caughtBy.map(esc).join(', ') + '</div>'
+          : '';
+        return '<details class="health-panel">' +
+          '<summary class="panel-head">' +
+            '<span class="panel-title">' + esc(role.id) + '</span>' +
+            '<span class="panel-caret"></span>' +
+          '</summary>' +
+          '<div class="panel-body">' +
+            '<div class="notice-item">' +
+              '<div class="ni-desc"><strong>Holds:</strong> ' + esc(role.holds) + '</div>' +
+              '<div class="ni-desc" style="margin-top:0.5rem"><strong>Fails as:</strong> ' + esc(role.failsAs) + '</div>' +
+              caughtBy +
+            '</div>' +
+          '</div>' +
+        '</details>';
+      }).join('');
+
+      el('lenses-grid').innerHTML = html;
+    }
+
     // Lessons Learned — config/lessons/*.json compiled by lib/build-lessons.js.
     // Unlike the health panels above, a lesson is closed knowledge, not an open
     // item — the badge here is a plain count, never styled as a problem.
@@ -400,6 +446,13 @@
       .then(renderLessons)
       .catch(function (e) {
         el('lessons-grid').innerHTML = '<span class="error-msg">Failed to load lessons.json: ' + e.message + '</span>';
+      });
+
+    fetch(KERNEL_URL)
+      .then(function (r) { return r.json(); })
+      .then(renderLenses)
+      .catch(function (e) {
+        el('lenses-grid').innerHTML = '<span class="error-msg">Failed to load council-kernel.json: ' + e.message + '</span>';
       });
 
   }());
