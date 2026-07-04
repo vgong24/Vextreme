@@ -46,8 +46,14 @@ resolution). 255/255 tests passing. Lattice coverage 24/35 (69%).
 
 **Recent sessions** (one line each — open the batch file below for full reasoning):
 - **Session 022** — Department axis, slug-uniqueness guard, WIP/orphan-page auto-discovery,
-  a documented decision on what the archive's declarative content actually records, and this
-  Current-State/Open-Work compaction. PRs #40–#46.
+  a documented decision on what the archive's declarative content actually records, this
+  Current-State/Open-Work compaction, a lesson on procedure-vs-record mutability, and
+  `lib/build-lessons.js` (config/lessons/*.json → data/lessons.json → Ecosystem Hub's new
+  "Lessons Learned" section) — closing a gap where the lesson archive had no path into the
+  one dashboard meant to surface current system knowledge. Also found and fixed
+  `lib/build-status.js`/`lib/build-ecosystem-hub.js` being generated and committed by hand
+  every session with no CI step ever calling them — both now wired into
+  `.github/workflows/build-index.yml`. PRs #40–#47.
 - **Session 021** — First-person AI-instance reflection in `docs/culture.md`,
   `lib/session-bootstrap.js` (session-start state in one command), td-008 recorded.
 - **Session 020** — od-006 (init baseline scaffold) and od-007 (cross-org discovery protocol)
@@ -89,7 +95,12 @@ not this list.
 - [ ] od-007 — cross-org discovery protocol between independent forks; blocked on od-006 by design
 - [ ] `claude-answers-the-doubt` still blocked from God Script wiring — needs `vextreme-index-v2.js` inlined as a feature first (pe-002)
 - [ ] `restoration-protocol` — v1 `shell.js` path, needs a content audit before porting
-- [ ] `specimen-architectural-wisdoms` — no compiled string bundle yet, blocks God Script assembly
+- [ ] `specimen-architectural-wisdoms` — no compiled string bundle yet, blocks God Script assembly;
+  also its hand-authored decision cards stopped tracking new lessons after Session 011 (3 lessons
+  since — sentinel-text-is-hazardous-to-itself, generated-file-merge-driver-needs-local-registration,
+  procedure-and-record-need-separate-mutability-rules — have no decision-N card). Now that
+  `data/lessons.json`/Ecosystem Hub covers discoverability, adding cards here is optional polish,
+  not a gap — but still worth closing if this page ever gets unblocked.
 - [ ] PWA icons (`icons/icon-192.png`, `icons/icon-512.png`) not committed — installability blocked (pe-001)
 - [ ] `lib/check-link-integrity.js` — no HTML internal dead-link scanner in CI yet (td-003)
 - [ ] Missing-key fallback: show EN text instead of the raw key string when a translation is absent

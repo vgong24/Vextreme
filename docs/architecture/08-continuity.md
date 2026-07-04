@@ -109,6 +109,15 @@ session → architecture.md. Lessons are consulted when a pattern recurs or when
 building something adjacent to a known lesson domain. Keeping them out of the
 mandatory reading sequence is intentional.
 
+Not cold-start reading is different from undiscoverable, though — until Session 022
+the only ways to find a lesson were `git log --grep`, grepping the directory, or the
+partially-updated hand-authored specimen cards in `pages/specimen-architectural-wisdoms.html`
+(it stopped tracking new lessons after Session 011). `lib/build-lessons.js` now compiles
+every `config/lessons/*.json` file into `data/lessons.json`, which `pages/ecosystem-hub.html`
+fetches and renders as a "Lessons Learned" section — so the one dashboard meant to answer
+"what does this system currently know" actually surfaces the lesson archive, without making
+it mandatory pre-reading.
+
 ---
 
 ## Documentation is CQRS too

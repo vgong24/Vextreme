@@ -1,0 +1,84 @@
+{
+  "count": 7,
+  "items": [
+    {
+      "id": "generated-file-merge-driver-needs-local-registration",
+      "title": "A .gitattributes merge=ours Declaration Does Nothing Without a Locally-Registered Driver",
+      "problem": "docs/architecture.md's constraint #8 documents that generated files (data/index.json, pages/archives.html, docs/architecture.md, etc.) use merge=ours in .gitattributes so a feature-branch rebase automatically keeps main's built version instead of producing a conflict. Rebasing this branch onto main after a bot auto-rebuild commit produced a real CONFLICT in data/index.json anyway — the attribute was present, but nothing resolved automatically.",
+      "lesson": "merge=ours in .gitattributes is not self-executing. It only takes effect in an environment where the merge driver has been separately registered in git config — a step that lives outside the repository and does not survive a fresh clone or a new session/container. Any environment that clones this repo fresh (including this one) should expect generated-file conflicts to surface as real conflicts, not to be silently resolved, and must fall back to the manual take-theirs(main)-then-rebuild procedure every time, not just when something seems to have gone wrong.",
+      "impact": "No code change — this is a documented expectation for future sessions rather than a fix, since the actual gap (driver registration) lives in git config the repo can't carry. Worth adding a line to docs/architecture.md's constraint #8 if a future session wants to make this explicit rather than rediscover it.",
+      "sessions": [
+        "022"
+      ],
+      "visual": null
+    },
+    {
+      "id": "hunting-to-blueprint",
+      "title": "From Hunting to Blueprint",
+      "problem": "Adding a feature required reading 5+ files to infer the pattern. Each file only showed part of the contract. Errors were likely.",
+      "lesson": "The blueprint is the map. The code is the territory. Read the map first.",
+      "impact": "5-minute feature addition instead of 30 minutes of inference. Self-documenting system.",
+      "sessions": [
+        "011"
+      ],
+      "visual": "pages/specimen-architectural-wisdoms.html#decision-3"
+    },
+    {
+      "id": "json-keys-are-strings",
+      "title": "JSON Keys Are Strings — The Mitigation Is Validation",
+      "problem": "Named constants (Category.DEMO, Feature.LANG) work in JavaScript but not in JSON. Slug keys in index.json are raw strings — they can drift from nodes.json without a type error.",
+      "lesson": "JSON is string-based. Keys are strings. This is unavoidable. The mitigation is validation, not elimination.",
+      "impact": "Key drift caught on every PR via GitHub Actions comment. No false-blocking CI gate.",
+      "sessions": [
+        "011"
+      ],
+      "visual": "pages/specimen-architectural-wisdoms.html#decision-4"
+    },
+    {
+      "id": "magic-strings-to-constants",
+      "title": "From Magic Strings to Named Constants",
+      "problem": "Hardcoded strings scattered in build scripts — 'demo', 'ja', 'production'. IDE can't navigate to their meaning. Typos fail silently.",
+      "lesson": "The variable name is the intention. The string value is irrelevant.",
+      "impact": "IDE-navigable, self-documenting, auditable via grep for constant usage.",
+      "sessions": [
+        "010"
+      ],
+      "visual": "pages/specimen-architectural-wisdoms.html#decision-2"
+    },
+    {
+      "id": "multiple-files-to-god-script",
+      "title": "From Multiple Files to God Script",
+      "problem": "5-7 requests per page — shell.js, vextreme.js, lang-fab.js, demo-fab.js, scope bundles. Each is a fetch and a potential failure point.",
+      "lesson": "The build script is the assembler. The browser receives the output.",
+      "impact": "Reduced requests by 80%, eliminated runtime failure points for EN strings.",
+      "sessions": [
+        "011"
+      ],
+      "visual": "pages/specimen-architectural-wisdoms.html#decision-1"
+    },
+    {
+      "id": "procedure-and-record-need-separate-mutability-rules",
+      "title": "A Test Protocol and Its Test Log Are Not the Same Document, Even When They're the Same File",
+      "problem": "pages/witness-committee-operations.html mixes two different kinds of content in one hand-authored HTML file: sections 00–04 and 06 are a forward-facing test protocol (opening question, per-document verification questions, the test sequence, a blank checklist template) that describes how to run a future Witness Committee test, while section 05 (Test Record Index) is a historical log of tests already run (TEST 01, TEST 01-B, TEST 02 pending). The file was built once, in one pass, with no structural line between 'the procedure for next time' and 'what happened last time' — because at the time it was written there was only ever going to be one test, then two. Claude raised a concern about the document's framing without first being clear about which part it meant, and Victor pushed back hard, correctly reading the initial framing as risking the same evidence-free pattern-matching mistake made earlier this session on wip/silent-god.json (see the convos_with_god / declarative-content lesson already in culture.md).",
+      "lesson": "When a single artifact contains both 'the rule for doing X' and 'a record of X having been done,' those two halves have different mutability rules even if they live in the same file: the record is closed the moment the event it describes is over (editing it after the fact is falsifying evidence, not correcting a draft), while the rule stays open to revision for as long as it hasn't yet produced the next recorded event. Before raising any concern about a document like this, identify which half is actually being questioned — 'this test's logged result seems off' and 'the next test's procedure could be run differently' are different claims requiring different justification, and confusing them (as happened here on the first pass) reads as exactly the same evidence-free judgment Victor already corrected once this session.",
+      "impact": "No code or content change. Establishes the standing distinction for any future test/record document in this repo, and flags pages/witness-committee-operations.html as a candidate (not yet approved) for splitting into a revisable protocol/template part and a separate append-only test-log part, since it was authored before this repo had that convention.",
+      "sessions": [
+        "022"
+      ],
+      "visual": null
+    },
+    {
+      "id": "sentinel-text-is-hazardous-to-itself",
+      "title": "A Sentinel-Based Tool Must Treat Mentions Of Its Own Sentinel As Hazardous",
+      "problem": "Three separate bugs, same root cause: a tool that searches text for a marker or delimiter (JSDoc's */, this repo's LATTICE:BEGIN/END, a literal /** substring) corrupted a file the moment that exact text appeared in prose describing the tool itself, not in the tool's real output. lib/strings-compile.js's glob pattern closed a JSDoc block early. lib/build-lattice-headers.js's own lattice-map.json entry, describing what it writes, confused its own marker search. lib/logger-codes.js had a comment naming this exact hazard class, containing the literal substring '/**', which a bare indexOf('/**') mistook for a real doc comment opener.",
+      "lesson": "A sentinel-based tool's search has no concept of 'inside vs. outside a comment describing the tool' — it is a plain substring match. Any prose the tool itself writes, or any file it processes, that happens to mention the sentinel is a hazard exactly as real as a genuine one. Defend against this before shipping a sentinel-based tool, not after the third occurrence.",
+      "impact": "Two general-purpose defenses (sanitizeForComment, findLineStartDocComment) now cover every instance of this hazard class found so far, rather than three independent patches for three independent symptoms. Regression-tested in tests/11-lattice-headers.test.js.",
+      "sessions": [
+        "013",
+        "014",
+        "019"
+      ],
+      "visual": null
+    }
+  ]
+}
