@@ -48,7 +48,7 @@ jobs:
               ? `\n> **Extra in index:** \`${ar.extraInIndex.join('`, `')}\``
               : '';
             const orphanPages = pg.orphans.length
-              ? `\n> **Orphan pages (no nodes.json entry):** \`${pg.orphans.join('`, `')}\``
+              ? `\n> **Uncurated pages (auto-discovered, no nodes.json entry yet):** \`${pg.orphans.join('`, `')}\``
               : '';
             const wipCollisions = wip.collisions.length
               ? '\n> **wip/ collisions (slug already a real page):** ' +
@@ -71,14 +71,14 @@ jobs:
               missingArcs,
               extraArcs,
               '',
-              `| ${pageStatus} Pages | ${pg.total} total | ${pg.orphans.length} orphan(s) |`,
+              `| ${pageStatus} Pages | ${pg.total} total | ${pg.orphans.length} uncurated |`,
               `| ${wipStatus} wip/  | ${wip.totalDeclared} declared | ${wip.collisions.length} collision(s), ${wip.duplicateIntents.length} duplicate intent(s) |`,
               orphanPages,
               wipCollisions,
               wipDupes,
               '',
               overallOK
-                ? '_All keys aligned, no orphan pages, no wip/ collisions._'
+                ? '_All keys aligned, no uncurated pages, no wip/ collisions._'
                 : '_Issues found above — see data/status.json\'s contentIntegrity notices for the same report on the Ecosystem Hub._',
               '',
               '> This is a non-blocking informational check.',

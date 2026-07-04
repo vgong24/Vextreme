@@ -215,10 +215,13 @@ test('KEY-ALIGNMENT: report includes pages and wip sections', () => {
   assert.ok(Array.isArray(report.wip.duplicateIntents));
 });
 
-test('KEY-ALIGNMENT: the real repo has no orphan pages and no wip/ collisions today', () => {
+test('KEY-ALIGNMENT: the real repo has no wip/ collisions or duplicate intents today', () => {
+  // Uncurated pages (report.pages.orphans) are NOT asserted empty here — since
+  // lib/auto-discover-nodes.js, having some is a normal, ongoing steady state
+  // (a worklist of pages awaiting a proper nodes.json entry), not a bug. Real
+  // collisions and duplicate wip/ intents are a different, still-zero-expected
+  // invariant: those represent an actual placement conflict, not just "not yet curated."
   const report = checkKeyAlignment();
-  assert.deepEqual(report.pages.orphans, [],
-    `Orphan pages found: ${report.pages.orphans.join(', ')} — either register them in nodes.json/viewmodels.json or add to audit-pages.js's SKIP_PAGES`);
   assert.deepEqual(report.wip.collisions, [],
     `wip/ collisions found: ${JSON.stringify(report.wip.collisions)}`);
   assert.deepEqual(report.wip.duplicateIntents, []);

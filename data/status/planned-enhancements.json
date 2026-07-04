@@ -67,6 +67,13 @@
       "priority": "medium"
     },
     {
+      "id": "pe-011",
+      "title": "Collapse lib/build-archives.js onto data/index.json instead of re-deriving from nodes.json/arcs-v2.json independently",
+      "description": "Session 022's auto-discovery feature (lib/auto-discover-nodes.js) had to be wired into both lib/build-index.js and lib/build-archives.js separately, because build-archives.js reads data/nodes.json and data/arcs-v2.json directly and re-derives its own slugMap-equivalent, rather than consuming data/index.json's already-computed slugMap/arcMap/departmentMap the way every other downstream consumer does (see docs/architecture.md: 'everything downstream reads index.json; nothing downstream reads nodes.json or arcs-v2.json directly' — build-archives.js is the one file that violates this today). The duplication was avoidable only because both call sites share the same discoverOrphanNodes() function; a future automation point would need the same two-place wiring again. Collapsing build-archives.js to read index.json directly would mean any future index.json-level enhancement (auto-discovery or otherwise) only ever needs to land in one place.",
+      "addedSession": "022",
+      "priority": "medium"
+    },
+    {
       "id": "pe-010",
       "title": "Department dashboard depth — dedicated transcript library, God-Script wiring granularity",
       "description": "Session 022 shipped the first checkpoint of the department axis (data/departments.json, department/workType fields on nodes, index.json departmentMap/departmentMeta, an ecosystem-hub.html Departments panel) deliberately scoped to structure + accessibility only, per Victor's direction to 'hone the placeholders' later. Two concrete follow-ups named explicitly at that time, not yet built: (1) wip/silent-god.json and its record-transcripts workType siblings are expected to eventually become their own 'library' with a dedicated dashboard, not just entries in the shared Departments panel; (2) departmentMap's per-node status is currently a single `ported` boolean (does pages/{slug}.html exist) — it does not yet distinguish 'ported' from 'wired to a God Script' the way lib/audit-pages.js does for the whole site. Extending departmentMap to reuse audit-pages.js's wiring logic (would require exporting its pure functions instead of running immediately) is the natural next step once there's more than one Media page to make the distinction meaningful.",
