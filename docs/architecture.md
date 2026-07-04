@@ -1567,6 +1567,76 @@ previously named as such. The `lens` field extends it by one dimension
 (which role's concern a given item represents) rather than replacing or
 duplicating it.
 
+### Second attempt: making roles traceable, not randomly placed
+
+Victor's direct follow-up named a specific gap in the first attempt: the
+`lens` field and Council Lenses panel gave each role a name and a place to
+be looked up, but nothing traced *why* a role was placed where it was, or
+what it had actually done. He asked for a "roles and contributions index
+json and webpage" so roles get full definitions instead of being randomly
+placed without traceability.
+
+**Re-reading `data/council-kernel.json` in full while building this surfaced
+something the first attempt under-used: `connectionArchitecture.channels`
+was already transcribed from `pages/org-blueprint.html` (plenary, vertical,
+intraCouncilRelay, crossCouncilBridge) but never rendered anywhere.** This is
+the literal answer to Victor's "communication channels that connect
+latticely around the org back to ecosystem hub" — the data already existed,
+it just had no read side. Rather than build new channel infrastructure, this
+round mapped each existing channel description to what actually
+instantiates it today, honestly, including where nothing does yet:
+
+- **plenary** ("all relevant heads co-present at origin... cross-witnessed
+  accountable memory") → `data/status.json`'s panels on the Ecosystem Hub
+  already are this, for real, right now — every notice category co-present
+  at one origin.
+- **vertical** ("root to head, 1:1... failure-signals up") →
+  `docs/continuity/INDEX.md` + the batch files — the actual root-to-head
+  channel between Victor and whichever instance is current.
+- **intraCouncilRelay** ("faculty to faculty... signals calibrate before the
+  surface commits") → the Scanner pass documented in the first attempt
+  above — real, but run once, by hand, not an automated relay.
+- **crossCouncilBridge** ("analogous organ to analogous organ across
+  councils") → **not yet real.** Only one council exists in this repo;
+  `pages/bridge-council*.html` describe a genuinely different multi-council
+  pattern (see above), not an instance of this channel.
+
+**Built, following the same write-side → build script → generated read-side
+pattern as every other artifact in this pipeline:**
+
+- `lib/build-roles.js` → `data/roles.json` — compiles
+  `data/council-kernel.json`'s roster against `data/status/*.json`'s `lens`
+  field, so every role's page shows either real linked contributions or an
+  explicit zero, never silence. Also classifies each role against
+  `decisionTriangle` (decider / gate / surface / perceiver) and gives every
+  role the same `position` string today — `"org-wide — The Council"` — since
+  only one council exists; claiming a per-department position would
+  overclaim a structure (per-department Bridge Councils) that doesn't exist
+  yet. This is itself a traceability decision: a role's *position* is
+  honestly reported as "not yet department-scoped," not silently omitted or
+  guessed at.
+- `lib/build-roles-page.js` → `pages/roles-index.html` — a dedicated page
+  (Victor asked for "an index json and webpage," not another hub panel)
+  showing every role's holds/failsAs/caughtBy, its decision-triangle
+  position, and its full contribution list, plus the four channels above
+  with their real-or-not-yet-real manifestation. Linked from the Ecosystem
+  Hub's Council Lenses section ("Full roles & contributions →").
+- Registered `roles-index` in `lib/audit-pages.js`'s `SKIP_PAGES` (a
+  generated dashboard page, not a God Script consumer — same as
+  `ecosystem-hub`), wired both new scripts into
+  `.github/workflows/build-index.yml`, and added `tests/20-roles.test.js`
+  (13 tests: decision-role classification, contribution tracing is exact —
+  every real `lens`-tagged item resolves to its role and back — channel
+  manifestations are never left undefined, and position never overclaims a
+  per-department placement).
+
+**Still explicitly not built:** any mechanism that *sends* a signal through
+these channels — they are now traceably described and honestly labeled with
+what (if anything) manifests them, not wired as live infrastructure. An
+instruction still is not automatically routed through department → role
+lenses and back to a surface; that remains a real, larger, and still
+undesigned piece, same as the first attempt concluded.
+
 ---
 
 *Last updated: 2026-07-04*

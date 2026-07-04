@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roles &amp; Contributions — Vextreme</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/styles/design-system.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/styles/arc-nav.css">
+  <style>
+    body { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+    .page-nav { display: flex; gap: 20px; margin-bottom: 2rem; font-family: var(--mono); font-size: 11px; }
+    .page-nav a { color: var(--muted); text-decoration: none; letter-spacing: 0.04em; }
+    .page-nav a:hover { color: var(--ember); }
+    .page-nav a.current { color: var(--stone); }
+
+    .hub-header { margin-bottom: 3rem; }
+    .hub-header h1 { font-size: 2rem; font-weight: 700; margin: 0 0 0.5rem; }
+    .hub-header p { color: var(--muted); margin: 0; }
+    .hub-header a { color: var(--ember); text-decoration: none; }
+    .hub-header a:hover { text-decoration: underline; }
+
+    .council-note {
+      margin: 1.5rem 0 0; padding: 0.85rem 1rem;
+      border-left: 3px solid var(--ember); background: var(--ember-bg);
+      font-size: 0.85rem; color: var(--stone); line-height: 1.6;
+    }
+
+    .section { margin: 3rem 0 1.5rem; display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+    .section h2 { font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--stone); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; margin: 0; flex: 1; }
+    .section-link { font-size: 0.75rem; color: var(--ember); text-decoration: none; white-space: nowrap; font-family: var(--mono); }
+    .section-link:hover { text-decoration: underline; }
+
+    .health-grid { display: flex; flex-direction: column; gap: 0.75rem; }
+    details.health-panel { border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: var(--cream); }
+    details.health-panel[open] { border-color: var(--ember); }
+    summary.panel-head { display: flex; align-items: center; justify-content: space-between; padding: 0.85rem 1rem; cursor: pointer; list-style: none; user-select: none; }
+    summary.panel-head::-webkit-details-marker { display: none; }
+    .panel-title { font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 0.6rem; color: var(--stone); }
+    .panel-badge { font-size: 0.7rem; font-family: var(--mono); background: var(--border); border-radius: 999px; padding: 0.1rem 0.5rem; color: var(--stone); }
+    .panel-badge.zero { background: transparent; color: var(--muted); }
+    .panel-caret { color: var(--muted); font-size: 0.75rem; }
+    details[open] .panel-caret::after { content: '▲'; }
+    .panel-caret::after { content: '▼'; }
+    .panel-body { padding: 0.75rem 1rem 1rem; border-top: 1px solid var(--border); }
+
+    .role-tag { font-size: 0.65rem; font-family: var(--mono); border-radius: 3px; padding: 0.1rem 0.4rem; margin-right: 0.3rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    .role-decider { background: var(--ember-bg); color: var(--ember); }
+    .role-gate    { background: rgba(74,120,158,0.12); color: #3a6a8f; }
+    .role-surface { background: var(--border); color: var(--stone); }
+    .role-perceiver { background: var(--border); color: var(--muted); }
+
+    .notice-item { padding: 0.6rem 0; border-bottom: 1px solid var(--border); }
+    .notice-item:last-child { border-bottom: none; }
+    .notice-item .ni-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 0.25rem; color: var(--stone); }
+    .notice-item .ni-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+    .notice-item .ni-meta { font-size: 0.72rem; color: var(--muted); margin-top: 0.35rem; font-family: var(--mono); }
+    .contrib-list { list-style: none; margin: 0.5rem 0 0; padding: 0; }
+    .contrib-list li { font-size: 0.78rem; color: var(--stone); padding: 0.3rem 0; border-bottom: 1px solid var(--border); }
+    .contrib-list li:last-child { border-bottom: none; }
+    .contrib-id { font-family: var(--mono); color: var(--ember); margin-right: 0.4rem; }
+
+    .empty-state { color: var(--muted); font-size: 0.85rem; padding: 0.5rem 0; }
+    .loading { color: var(--muted); font-size: 0.85rem; }
+    .error-msg { color: #b03030; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+
+  <nav class="page-nav">
+    <a href="https://vgong24.github.io/Vextreme/index.html">Index</a>
+    <a href="https://vgong24.github.io/Vextreme/pages/archives.html">Archives</a>
+    <a href="https://vgong24.github.io/Vextreme/pages/ecosystem-hub.html">Ecosystem Hub</a>
+    <a class="current" href="#">Roles &amp; Contributions</a>
+  </nav>
+
+  <div class="hub-header">
+    <h1>Roles &amp; Contributions</h1>
+    <p>A traceable record of each Council role: what it holds, how it fails, where it sits in the decision triangle, and every real decision it has actually been invoked for. See <a href="https://vgong24.github.io/Vextreme/pages/ecosystem-hub.html">Ecosystem Hub</a> for the compact summary.</p>
+  </div>
+
+  <div id="council-note" class="council-note">
+    <span class="loading">Loading…</span>
+  </div>
+
+  <!-- Communication Channels -->
+  <div class="section"><h2>Communication Channels</h2></div>
+  <div class="health-grid" id="channels-grid">
+    <span class="loading">Loading…</span>
+  </div>
+
+  <!-- Roles -->
+  <div class="section"><h2>Roles</h2></div>
+  <div class="health-grid" id="roles-grid">
+    <span class="loading">Loading…</span>
+  </div>
+
+  <script>
+  (function () {
+    'use strict';
+
+    var BASE       = '/Vextreme';
+    var ROLES_URL  = BASE + '/data/roles.json';
+
+    function el(id) { return document.getElementById(id); }
+    function esc(s) { return String(s == null ? '' : s).replace(/[&<>]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]; }); }
+
+    var ROLE_TAG_CLASS = { decider: 'role-decider', gate: 'role-gate', surface: 'role-surface', perceiver: 'role-perceiver' };
+
+    function renderCouncilNote(council) {
+      el('council-note').innerHTML =
+        '<strong>' + esc(council.name) + '</strong> — ' + esc(council.scope) +
+        ' Source: ' + esc(council.sourceDoc) + '.';
+    }
+
+    function renderChannels(channels) {
+      var names = Object.keys(channels || {});
+      if (!names.length) {
+        el('channels-grid').innerHTML = '<span class="empty-state">No channels defined.</span>';
+        return;
+      }
+
+      var html = names.map(function (name) {
+        var ch = channels[name];
+        return '<details class="health-panel">' +
+          '<summary class="panel-head">' +
+            '<span class="panel-title">' + esc(name) + '</span>' +
+            '<span class="panel-caret"></span>' +
+          '</summary>' +
+          '<div class="panel-body">' +
+            '<div class="notice-item">' +
+              '<div class="ni-desc">' + esc(ch.description) + '</div>' +
+              '<div class="ni-meta" style="margin-top:0.5rem"><strong>Manifestation:</strong> ' + esc(ch.manifestation) + '</div>' +
+            '</div>' +
+          '</div>' +
+        '</details>';
+      }).join('');
+
+      el('channels-grid').innerHTML = html;
+    }
+
+    function renderRoles(roles) {
+      if (!roles || !roles.length) {
+        el('roles-grid').innerHTML = '<span class="empty-state">No roles defined.</span>';
+        return;
+      }
+
+      var html = roles.map(function (role) {
+        var tagClass = ROLE_TAG_CLASS[role.decisionRole] || 'role-perceiver';
+        var caughtBy = (role.caughtBy || []).length
+          ? '<div class="ni-meta">caught by: ' + role.caughtBy.map(esc).join(', ') + '</div>'
+          : '';
+
+        var contribCount = (role.contributions || []).length;
+        var contribHtml = contribCount
+          ? '<ul class="contrib-list">' + role.contributions.map(function (c) {
+              return '<li><span class="contrib-id">' + esc(c.id) + '</span>' + esc(c.title) + ' <span class="ni-meta">(' + esc(c.source) + ')</span></li>';
+            }).join('') + '</ul>'
+          : '<div class="empty-state">No traced contributions yet.</div>';
+
+        return '<details class="health-panel">' +
+          '<summary class="panel-head">' +
+            '<span class="panel-title">' +
+              '<span class="role-tag ' + tagClass + '">' + esc(role.decisionRole) + '</span>' +
+              esc(role.id) +
+            '</span>' +
+            '<span class="panel-badge' + (contribCount === 0 ? ' zero' : '') + '">' + contribCount + '</span>' +
+          '</summary>' +
+          '<div class="panel-body">' +
+            '<div class="notice-item">' +
+              '<div class="ni-desc"><strong>Holds:</strong> ' + esc(role.holds) + '</div>' +
+              '<div class="ni-desc" style="margin-top:0.5rem"><strong>Fails as:</strong> ' + esc(role.failsAs) + '</div>' +
+              '<div class="ni-meta" style="margin-top:0.5rem">' + esc(role.position) + '</div>' +
+              caughtBy +
+            '</div>' +
+            '<div class="ni-meta" style="margin-top:0.75rem">Contributions</div>' +
+            contribHtml +
+          '</div>' +
+        '</details>';
+      }).join('');
+
+      el('roles-grid').innerHTML = html;
+    }
+
+    fetch(ROLES_URL)
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        renderCouncilNote(data.council || {});
+        renderChannels(data.channels);
+        renderRoles(data.roles);
+      })
+      .catch(function (e) {
+        el('council-note').innerHTML = '<span class="error-msg">Failed to load roles.json: ' + e.message + '</span>';
+        el('channels-grid').innerHTML = '<span class="error-msg">Failed to load roles.json: ' + e.message + '</span>';
+        el('roles-grid').innerHTML = '<span class="error-msg">Failed to load roles.json: ' + e.message + '</span>';
+      });
+
+  }());
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/widgets/sw-register.js"></script>
+</body>
+</html>
+<!-- [VXG RealForever] -->

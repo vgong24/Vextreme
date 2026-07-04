@@ -23,6 +23,9 @@ on:
       - 'lib/build-status.js'
       - 'lib/build-ecosystem-hub.js'
       - 'lib/build-lessons.js'
+      - 'lib/build-roles.js'
+      - 'lib/build-roles-page.js'
+      - 'data/council-kernel.json'
       - 'widgets/**'
       - 'data/specimens.json'
       - 'pages/**'
@@ -75,13 +78,19 @@ jobs:
       - name: Build status.json
         run: node lib/build-status.js
 
+      - name: Build roles.json
+        run: node lib/build-roles.js
+
       - name: Build ecosystem-hub.html
         run: node lib/build-ecosystem-hub.js
+
+      - name: Build roles-index.html
+        run: node lib/build-roles-page.js
 
       - name: Commit artifacts
         run: |
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
-          git add data/strings/compiled data/index.json data/lessons.json data/status.json dist sw.js pages/archives.html pages/vextreme-demo.html pages/specimens.html pages/specimen-*.html pages/ecosystem-hub.html sitemap.xml index.html
+          git add data/strings/compiled data/index.json data/lessons.json data/roles.json data/status.json dist sw.js pages/archives.html pages/vextreme-demo.html pages/specimens.html pages/specimen-*.html pages/ecosystem-hub.html pages/roles-index.html sitemap.xml index.html
           git diff --staged --quiet && echo "No changes to commit" || git commit -m "Auto-rebuild artifacts [skip ci]"
           git push

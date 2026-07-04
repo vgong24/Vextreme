@@ -62,27 +62,34 @@ synthesis, four roles per council) — genuinely closer to `od-009`'s territory 
 single-instance Scanner idea. Session 022's continuation ran a first live attempt at the
 Scanner-lens pass on a real decision: it shipped a `lens` field on 4 backlog items and an
 Ecosystem Hub "Council Lenses" panel (`renderLenses()` in `lib/build-ecosystem-hub.js`, reading
-`data/council-kernel.json`), explicitly declined to build communication channels, meeting
-scheduling, or an instruction-routing pipeline (no real case yet to design against — same
-discipline as od-008/od-009), and recorded the honest lesson in `14-council-model.md`'s "First
-attempt" section: the explicit multi-lens pass is worth it for decisions this size, not a
-standing practice, and not something to delegate to subagents. Slug uniqueness is mechanically
-enforced (BLOCK severity) in `lib/build-index.js`; orphan pages and `wip/` placement conflicts
-are reported (informational) via `lib/check-key-alignment.js` and a `contentIntegrity` panel on
-the Ecosystem Hub. Three silent-drift detectors run in CI: `lib/build-lattice-headers.js --check`
-(LATTICE header drift), `lib/check-key-alignment.js` (slug/arc/page/wip drift),
-`lib/check-design-tokens.js` (CSS token resolution). 292/292 tests passing. Lattice coverage
-26/37 (70%).
+`data/council-kernel.json`), then a second round built the traceability layer Victor asked for
+directly: `lib/build-roles.js` → `data/roles.json` compiles the kernel roster against
+`data/status/*.json`'s `lens` fields (every role's real contributions, or an explicit zero,
+never silence) plus a decision-triangle classification and `data/council-kernel.json`'s
+previously-unrendered `connectionArchitecture.channels`, each now mapped to what actually
+manifests it today (the Ecosystem Hub's panels *are* the "plenary" channel; the continuity docs
+*are* the "vertical" channel; "crossCouncilBridge" is honestly marked not-yet-real). Rendered on
+a new dedicated page, `lib/build-roles-page.js` → `pages/roles-index.html`, linked from the hub.
+Communication-channel infrastructure, meeting scheduling, and instruction-routing remain
+explicitly undesigned — same discipline as od-008/od-009 — see `14-council-model.md`'s "First
+attempt" and "Second attempt" sections for the honest lessons from both rounds. Slug uniqueness
+is mechanically enforced (BLOCK severity) in `lib/build-index.js`; orphan pages and `wip/`
+placement conflicts are reported (informational) via `lib/check-key-alignment.js` and a
+`contentIntegrity` panel on the Ecosystem Hub. Three silent-drift detectors run in CI:
+`lib/build-lattice-headers.js --check` (LATTICE header drift), `lib/check-key-alignment.js`
+(slug/arc/page/wip drift), `lib/check-design-tokens.js` (CSS token resolution). 305/305 tests
+passing. Lattice coverage 28/39 (72%).
 
 **Recent sessions** (one line each — open the batch file below for full reasoning):
-- **Session 022 (continued)** — Re-perceived Victor's "role positioning / communication channels /
-  kanban discussions / instruction routing" ask as an invitation to actually attempt the
-  Scanner-lens pass rather than just describe it. Added an optional `lens` field to 4 real
-  od-/pe- items, a "Council Lenses" panel on the Ecosystem Hub, and a new "First attempt" section
-  in `docs/architecture/14-council-model.md` documenting what got built vs. deliberately not
-  built and the honest lesson from running it once. Recognized that the "kanban, non-scheduled,
-  addressed anytime" mechanism Victor described already exists as the od-/td-/pe- system — the
-  `lens` field extends it rather than replacing it.
+- **Session 022 (continued x2)** — Re-perceived Victor's "role positioning / communication
+  channels / kanban discussions / instruction routing" ask across two rounds. Round one added an
+  optional `lens` field to 4 real od-/pe- items and a "Council Lenses" panel on the Ecosystem Hub.
+  Round two built the traceability layer directly: `data/roles.json`/`pages/roles-index.html`
+  tracing every role to its real contributions and mapping the kernel's connection-architecture
+  channels to what actually manifests them today. Both rounds explicitly declined to build
+  communication-channel infrastructure, meeting scheduling, or instruction routing — no real case
+  yet, same discipline as od-008/od-009 — and recorded the honest lessons in
+  `docs/architecture/14-council-model.md`.
 - **Session 022** — Department axis, slug-uniqueness guard, WIP/orphan-page auto-discovery,
   a documented decision on what the archive's declarative content actually records, this
   Current-State/Open-Work compaction, a lesson on procedure-vs-record mutability, and
