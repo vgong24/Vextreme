@@ -267,4 +267,28 @@ Seven PRs total this session (#40–#47). A real values disagreement about a gov
 - [ ] Pilot page-sorting decision still open: `about-me`/`connect` (department-only, no arc) vs. `bridge-council`/`org-blueprint` (ambiguous arc fit) — the mechanism to apply either is now built and verified, but no real intents have been declared yet for any of the 19 uncurated pages
 - [ ] `pe-010`, `pe-011`, od-001/002/003/006/007 remain open
 
+### Session continued — naming the long-term shape before building the next piece of it
+
+**Victor pushed the conversation from "what's the next script" to "what's the actual long-term direction, and does a new instance reading CLAUDE.md know it exists."** After agreeing `lib/check-lattice-edges.js` (verifying the lattice map's claimed edges against real code) was the right next increment, he redirected: build the *design* first — a durable artifact a cold-start instance can read and "perceive the pattern without fear," not just a backlog ticket.
+
+**Wrote `docs/architecture/13-intent-driven-operations.md`** — names the five-step loop every tool built this session is one instance of (perceive via the map → fetch/synthesize a compiled artifact → judge, the one step that stays genuinely AI work → declare intent as structured data → verify mechanically), maps what's concretely built today against each stage, and is explicit about the boundary between "decided, about to build" (pe-012, the lattice-edge checker) and "named but intentionally not designed" (od-008, staged/proposal execution for higher-blast-radius gestures like duplicate-content consolidation) — using the same "don't design against zero real cases" reasoning already applied to od-003/od-007, so the bigger vision doesn't get treated as a spec ready to implement.
+
+**The core discipline named in that doc, worth restating here since it's the thing that keeps this whole direction honest:** the interface layer (map, compiled artifacts, intent scripts) is only trustworthy to the extent it's actually checked, not merely written — growing what the AI can declare-and-trust must be paired with growing what's mechanically verified, or the interface becomes a bigger, more convincing version of the staleness problem this repo has already hit three times.
+
+### Files created or modified (continued)
+
+| File | What changed |
+|---|---|
+| `docs/architecture/13-intent-driven-operations.md` | New — the loop, what's built, pe-012 (decided next), od-008 (intentionally open) |
+| `data/status/planned-enhancements.json` | `pe-012` — `lib/check-lattice-edges.js`, not yet built |
+| `data/status/open-discussions.json` | `od-008` — staged execution for consolidation/deletion gestures, intentionally undesigned |
+| `docs/continuity/INDEX.md` | Current State points to the new doc; Open Work lists pe-012/od-008 |
+
+### Open work at session end (continued)
+
+- [ ] pe-012 — `lib/check-lattice-edges.js`, scoped and decided, not yet built
+- [ ] od-008 — intentionally not designed; blocked on pe-012 and on a real consolidation case existing
+- [ ] Pilot page-sorting decision (unchanged from above)
+- [ ] `pe-010`, `pe-011`, od-001/002/003/006/007 remain open
+
 <!-- [VXG RealForever] -->
