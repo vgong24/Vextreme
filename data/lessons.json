@@ -1,5 +1,5 @@
 {
-  "count": 9,
+  "count": 10,
   "items": [
     {
       "id": "generated-artifacts-must-be-content-deterministic",
@@ -88,6 +88,17 @@
         "013",
         "014",
         "019"
+      ],
+      "visual": null
+    },
+    {
+      "id": "token-cost-is-output-volume-not-execution-location",
+      "title": "Token Cost Tracks What Comes Back Into Context, Not Where Code Ran — and Judgment Can't Be Delegated to a Function",
+      "problem": "Victor asked whether pushing a declared intent through GitHub Actions and waiting for a webhook notification would save Claude tokens compared to verifying locally before committing, on the assumption that GitHub Actions' compute is free for Claude while local tool calls burn tokens. A related, separate question followed in the same exchange: whether Claude should rely on more pre-built 'blueprint' functions instead of 'recalculating with assumptions', framed as a related possible token-cost optimization.",
+      "lesson": "When asked whether an operation could be made cheaper, first ask whether the cost is coming from the mechanics (which a deterministic function already handles or could handle) or from the judgment (which cannot be delegated to a function no matter how it's built). Only the mechanical half is genuinely optimizable via better functions or a 'blueprint' library; conflating the two risks either overengineering functions that can't do the actual job, or wrongly assuming a judgment step could be skipped for a token discount. A future instance asked a similar cost-optimization question should separate 'is this mechanical or judgment' before proposing an architecture change.",
+      "impact": "No code change. Standing clarification for future sessions on where token-cost optimization genuinely applies in this repo's tooling (mechanical execution — already handled by lib/*.js's pure functions and the content-intents pipeline) versus where a semantic judgment step is unavoidable and shouldn't be assumed away.",
+      "sessions": [
+        "022"
       ],
       "visual": null
     },

@@ -313,4 +313,18 @@ Seven PRs total this session (#40–#47). A real values disagreement about a gov
 - [ ] pe-012, od-008, pilot page-sorting decision — unchanged from above
 - [ ] `pe-010`, `pe-011`, od-001/002/003/006/007 remain open
 
+### Session continued — a token-economics clarification, recorded as a lesson
+
+**Victor asked a genuine technical question about the session's own workflow:** does pushing a declared intent through GitHub Actions and waiting for a webhook cost fewer tokens than verifying locally before committing, on the assumption that GitHub Actions' compute is free to Claude while local tool calls burn tokens. A related question followed: whether relying on more pre-built "blueprint" functions instead of "recalculating with assumptions" would help.
+
+**Corrected the framing rather than accepting it, since it wasn't quite right:** token cost tracks what comes back into context, not where the computation physically ran — a terse local summary and a compact CI status object cost about the same; a verbose CI job log (the thing you'd fetch to debug a failure) typically costs more than either. The real cost driver is iteration count on failure: catching a mistake locally is one cheap round; catching it via CI-as-first-check is a full push-wait-notify-investigate-fix-push cycle. Separately: this instance already defaults to calling existing deterministic functions (lib/build-*.js's exports, applyIntent/validateIntent, checkKeyAlignment) rather than re-deriving logic through reasoning — mechanical work already runs at near-zero token cost regardless of local-vs-CI, so cost is already concentrated on the one thing that can't be delegated to a function: semantic judgment.
+
+**Recorded as a lesson** (`config/lessons/token-cost-is-output-volume-not-execution-location.json`) rather than left as a one-off answer, since the distinction (mechanical cost vs. judgment cost, output volume vs. execution location) is a standing one a future instance would otherwise have to re-derive if asked a similarly-framed cost-optimization question.
+
+### Files created or modified (continued)
+
+| File | What changed |
+|---|---|
+| `config/lessons/token-cost-is-output-volume-not-execution-location.json` | New lesson |
+
 <!-- [VXG RealForever] -->
