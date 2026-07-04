@@ -2,6 +2,21 @@
   "_comment": "Hand-authored. Architectural questions under active reasoning — not yet resolved to a decided direction. Distinct from techDebt (known gap, decided fix) and enhancements (decided direction, not yet built): an open discussion is a fork in the road where the fork itself hasn't been chosen. Promote to techDebt/enhancements once decided; remove from here once shipped or explicitly rejected.",
   "items": [
     {
+      "id": "od-010",
+      "title": "Fractal expansion of the continuity/lessons memory pattern into per-department standing memory, plus an audit for other single-scope foundational structures never checked for the same expansion",
+      "description": "docs/continuity/ (INDEX.md + batch files) and config/lessons/*.json already are exactly the 'standing memory' connectionArchitecture.channels describes needing — an accumulating, periodically-synthesized record of decisions, mistakes, and practices, carried forward session to session. What they are not yet is divided per department the way connectionArchitecture.cellsNotBranches names ('when a council grows a new specialty, it divides like a cell... carrying awareness of its parent, its adjacent cells, and the head'). Today there is exactly one continuity/lessons cell, implicitly scoped to the whole repo (effectively the rd default department); media and institute inherit it rather than having their own. Victor named the more general version of this directly: continuity/lessons is probably not the only foundational function structure built once at origin scope that has never been checked for fractal-expansion candidacy — other single-scope structures (candidates to actually audit, not yet confirmed: data/status/*.json's three tracked-item files, lib/build-status.js's health rollup, docs/architecture/*.md itself) may have the same shape of gap.",
+      "considerations": [
+        "Do not build a per-department continuity/lessons cell now — media and institute do not yet generate enough independent decision volume to need their own synthesized record; splitting now would create two thin, mostly-empty logs rather than one useful one, the same anti-bloat reasoning already applied to od-008/od-009",
+        "The audit itself (which foundational structures are single-scope by historical accident vs. by genuine design) is cheap and doesn't require a real per-department case to be worth doing — unlike building the expansion, naming candidates now costs nothing and gives a future instance a starting list instead of a blank search",
+        "If/when a department generates enough real independent history to need its own memory, the shape to copy is already established: docs/continuity/'s INDEX.md (replace, don't append) + batch files (append-only) pattern, and config/lessons/*.json's schema — not a new format invented for the occasion",
+        "Promote to a planned enhancement once a specific department (most likely institute or media, if either becomes independently active enough) actually needs its own continuity cell, not before"
+      ],
+      "raisedSession": "022",
+      "priority": "low",
+      "status": "open",
+      "lens": "architect"
+    },
+    {
       "id": "od-009",
       "title": "Parallel/simultaneous instruction dispatch across multiple departments or orgs, instead of today's one-at-a-time processing",
       "description": "config/content-intents.json + lib/apply-content-intents.js (Session 022) process pending intents one at a time in a single sequential loop — fine today (one repo, two departments, one AI instance issuing intents). Victor described a longer-term picture: as this scales toward genuinely multiple departments or independent orgs, a single orchestrated instruction might need to fan out to several targets simultaneously and have their results collected back together — the analogy given was sending several notes out at once to fulfill one score, rather than one note, one wait, the next note. This is a different shape of problem than sequential queue processing: it requires knowing how to split one intent into independent sub-instructions, dispatch them without one blocking the others, and reconcile partial completion/failure across multiple simultaneous targets (what if 3 of 5 succeed and 2 fail?).",
