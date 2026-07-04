@@ -9,7 +9,8 @@
         "Do not design this now — same reasoning already applied at different scales to od-003, od-007, and od-008: a fan-out/parallel-dispatch mechanism designed against zero real multi-department or multi-org cases is very likely wrong in ways that only show up once real simultaneous targets exist to design against",
         "This repo currently has exactly one AI instance and two departments (rd, media) — there is nothing to parallelize across yet; the sequential loop in lib/apply-content-intents.js is correctly scoped to the problem that actually exists today",
         "The reconciliation question (partial success/failure across simultaneous targets) is the hard part, not the dispatch itself — any future design needs to answer that before the fan-out mechanism, not after",
-        "Promote to a planned enhancement once a real multi-department or multi-org case exists to design against, not before"
+        "Promote to a planned enhancement once a real multi-department or multi-org case exists to design against, not before",
+        "If/when that case arrives: pages/bridge-council-os.html and pages/bridge-council-schema.html (read in full, Session 022; see docs/architecture/14-council-model.md) are a real, already-designed precedent for exactly this shape of problem — periodic, hierarchical multi-scope synthesis (team/department/org), with a published data schema (Context Objects, Synthesis Outputs, Query Records, Pattern Flags) and layer model (Connectors/Storage/Synthesis Engine/Access/Sentinel). Not identical to simultaneous fan-out, but close enough to read first rather than designing from scratch"
       ],
       "raisedSession": "022",
       "priority": "low",

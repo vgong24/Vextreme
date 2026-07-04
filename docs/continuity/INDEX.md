@@ -39,7 +39,10 @@ self-contained JS file per page; `data/nodes.json` + `data/arcs-v2.json` + `data
 are the write-side sources `lib/build-index.js` compiles into `data/index.json`, which
 everything downstream reads. Content now has two independent groupings: **arcs** (reader-facing
 narrative order) and **departments** (production-domain ownership — `rd` default, `media` with
-`reviews`/`record-transcripts` workTypes). Any `pages/*.html` file with no `nodes.json` entry is
+`reviews`/`record-transcripts` workTypes, and a new `institute` department with `governance`
+(accountability/testing docs — `witness-committee-operations`, `human-ai-corelational-governance`)
+and `org-design` (`org-blueprint`, `org-history`, `bridge-council`, `bridge-council-os`,
+`bridge-council-schema`) workTypes). Any `pages/*.html` file with no `nodes.json` entry is
 auto-discovered (title scraped from its own `<title>` tag) rather than left invisible —
 `lib/auto-discover-nodes.js`. Declared placement is applied, not hand-edited: `config/content-intents.json`
 + `lib/apply-content-intents.js` upsert a page's `vex:department`/`vex:workType` meta tags and
@@ -49,12 +52,16 @@ an unregistered department from existing in `index.json` while never rendering a
 is the first concrete instance of a longer-term direction — `docs/architecture/13-intent-driven-operations.md`
 names the full perceive → fetch/synthesize → judge → declare-intent → verify loop, what's built,
 and what's intentionally not designed yet (pe-012, od-008) — read it before extending this pattern
-further. Slug uniqueness is mechanically enforced (BLOCK severity) in
+further. `docs/architecture/14-council-model.md` names a related, separate direction: whether one
+AI instance can structure its own judgment across multiple named lenses instead of coordinating
+multiple instances — grounded in `pages/org-blueprint.html`/`data/council-kernel.json`, explicitly
+distinguished from `od-009` (which is about dispatch across genuinely separate targets, not one
+instance's own reasoning). Slug uniqueness is mechanically enforced (BLOCK severity) in
 `lib/build-index.js`; orphan pages and `wip/` placement conflicts are reported (informational)
 via `lib/check-key-alignment.js` and a `contentIntegrity` panel on the Ecosystem Hub. Three
 silent-drift detectors run in CI: `lib/build-lattice-headers.js --check` (LATTICE header drift),
 `lib/check-key-alignment.js` (slug/arc/page/wip drift), `lib/check-design-tokens.js` (CSS token
-resolution). 255/255 tests passing. Lattice coverage 24/35 (69%).
+resolution). 290/290 tests passing. Lattice coverage 26/37 (70%).
 
 **Recent sessions** (one line each — open the batch file below for full reasoning):
 - **Session 022** — Department axis, slug-uniqueness guard, WIP/orphan-page auto-discovery,
@@ -96,6 +103,7 @@ off forever; its record already lives in the batch file and (for od-/td-/pe- ite
 not this list.
 
 **Genuinely open:**
+- [ ] The "Scanner check" named in `docs/architecture/14-council-model.md` (a single-instance structured self-check across named lenses before a significant judgment call) is a **proposal, not adopted practice** — Victor should review the honest-limits framing there before any future instance treats it as standing doctrine.
 - [ ] pe-012 — `lib/check-lattice-edges.js`: verify `docs/lattice-map.json`'s claimed reads/writes/loadedBy edges against actual code (Session 022; see `docs/architecture/13-intent-driven-operations.md` for why this is the decided next step)
 - [ ] od-008 — staged/proposal execution for higher-blast-radius content gestures (consolidation, deletion, connector rewiring) — intentionally not designed yet, blocked on pe-012 and on a real case existing to design against (Session 022)
 - [ ] od-009 — parallel/simultaneous instruction dispatch across multiple departments or orgs, instead of today's one-at-a-time processing — intentionally not designed yet, no real multi-department/multi-org case exists to design against (Session 022)

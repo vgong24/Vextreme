@@ -1,8 +1,8 @@
 {
-  "builtAt": "2026-07-04T08:48:54.430Z",
-  "nodeCount": 109,
+  "builtAt": "2026-07-04T19:21:57.167Z",
+  "nodeCount": 111,
   "curatedNodeCount": 90,
-  "autoDiscoveredCount": 19,
+  "autoDiscoveredCount": 21,
   "arcCount": 16,
   "supportedLangs": [
     "en",
@@ -2183,8 +2183,8 @@
       "title": "Bridge Council",
       "date": "",
       "arcKeys": [],
-      "department": "rd",
-      "workType": "default",
+      "department": "institute",
+      "workType": "org-design",
       "autoDiscovered": true,
       "vexData": {},
       "dateISO": null,
@@ -2193,6 +2193,52 @@
         "template": "page",
         "scopes": [
           "pages.bridge-council"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
+    },
+    "bridge-council-os": {
+      "id": null,
+      "slug": "bridge-council-os",
+      "title": "Bridge Council Os",
+      "date": "",
+      "arcKeys": [],
+      "department": "institute",
+      "workType": "org-design",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.bridge-council-os"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
+    },
+    "bridge-council-schema": {
+      "id": null,
+      "slug": "bridge-council-schema",
+      "title": "Bridge Council Schema",
+      "date": "",
+      "arcKeys": [],
+      "department": "institute",
+      "workType": "org-design",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.bridge-council-schema"
         ],
         "features": [
           "lang",
@@ -2298,8 +2344,8 @@
       "title": "Human–AI Corelational Governance · VXG RealForever · v2",
       "date": "",
       "arcKeys": [],
-      "department": "rd",
-      "workType": "default",
+      "department": "institute",
+      "workType": "governance",
       "autoDiscovered": true,
       "vexData": {},
       "dateISO": null,
@@ -2367,8 +2413,8 @@
       "title": "The Council — A Build Blueprint for Anyone",
       "date": "",
       "arcKeys": [],
-      "department": "rd",
-      "workType": "default",
+      "department": "institute",
+      "workType": "org-design",
       "autoDiscovered": true,
       "vexData": {},
       "dateISO": null,
@@ -2390,8 +2436,8 @@
       "title": "The Continuity Record — History & Lessons (Vol. I)",
       "date": "",
       "arcKeys": [],
-      "department": "rd",
-      "workType": "default",
+      "department": "institute",
+      "workType": "org-design",
       "autoDiscovered": true,
       "vexData": {},
       "dateISO": null,
@@ -2505,8 +2551,8 @@
       "title": "Witness Committee — Operations Manual",
       "date": "",
       "arcKeys": [],
-      "department": "rd",
-      "workType": "default",
+      "department": "institute",
+      "workType": "governance",
       "autoDiscovered": true,
       "vexData": {},
       "dateISO": null,
@@ -3437,11 +3483,6 @@
           "ported": true
         },
         {
-          "slug": "bridge-council",
-          "title": "Bridge Council",
-          "ported": true
-        },
-        {
           "slug": "connect",
           "title": "Connect",
           "ported": true
@@ -3462,11 +3503,6 @@
           "ported": true
         },
         {
-          "slug": "human-ai-corelational-governance",
-          "title": "Human–AI Corelational Governance · VXG RealForever · v2",
-          "ported": true
-        },
-        {
           "slug": "instance-thread-logs",
           "title": "Instance Thread Logs",
           "ported": true
@@ -3474,16 +3510,6 @@
         {
           "slug": "investor-archetype-simulation",
           "title": "Investor Simulation Record — VXG · June 14, 2026",
-          "ported": true
-        },
-        {
-          "slug": "org-blueprint",
-          "title": "The Council — A Build Blueprint for Anyone",
-          "ported": true
-        },
-        {
-          "slug": "org-history",
-          "title": "The Continuity Record — History & Lessons (Vol. I)",
           "ported": true
         },
         {
@@ -3505,11 +3531,6 @@
           "slug": "the-victor-pattern-transcript",
           "title": "The Victor Pattern Transcript",
           "ported": true
-        },
-        {
-          "slug": "witness-committee-operations",
-          "title": "Witness Committee — Operations Manual",
-          "ported": true
         }
       ]
     },
@@ -3526,6 +3547,47 @@
           "slug": "vxg-thread-round-5",
           "title": "VXG Thread — Round 5",
           "ported": false
+        }
+      ]
+    },
+    "institute": {
+      "org-design": [
+        {
+          "slug": "bridge-council",
+          "title": "Bridge Council",
+          "ported": true
+        },
+        {
+          "slug": "bridge-council-os",
+          "title": "Bridge Council Os",
+          "ported": true
+        },
+        {
+          "slug": "bridge-council-schema",
+          "title": "Bridge Council Schema",
+          "ported": true
+        },
+        {
+          "slug": "org-blueprint",
+          "title": "The Council — A Build Blueprint for Anyone",
+          "ported": true
+        },
+        {
+          "slug": "org-history",
+          "title": "The Continuity Record — History & Lessons (Vol. I)",
+          "ported": true
+        }
+      ],
+      "governance": [
+        {
+          "slug": "human-ai-corelational-governance",
+          "title": "Human–AI Corelational Governance · VXG RealForever · v2",
+          "ported": true
+        },
+        {
+          "slug": "witness-committee-operations",
+          "title": "Witness Committee — Operations Manual",
+          "ported": true
         }
       ]
     }
@@ -3549,6 +3611,18 @@
         },
         "record-transcripts": {
           "label": "Record Transcripts"
+        }
+      }
+    },
+    "institute": {
+      "label": "Institute",
+      "default": false,
+      "workTypes": {
+        "governance": {
+          "label": "Governance"
+        },
+        "org-design": {
+          "label": "Org Design"
         }
       }
     }

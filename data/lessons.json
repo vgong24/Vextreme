@@ -1,5 +1,5 @@
 {
-  "count": 10,
+  "count": 11,
   "items": [
     {
       "id": "generated-artifacts-must-be-content-deterministic",
@@ -33,6 +33,17 @@
         "011"
       ],
       "visual": "pages/specimen-architectural-wisdoms.html#decision-3"
+    },
+    {
+      "id": "independently-arrived-discipline-is-worth-naming-not-just-noting",
+      "title": "Two Independently-Authored Documents Converged on This Repo's Own Discipline — Worth Recording Explicitly, Not Filed as Coincidence",
+      "problem": "Victor shared four external design-document URLs (bridge-council, bridge-council-os, bridge-council-schema, org-blueprint) and asked whether a single AI instance could hold 'multi-lens' council awareness internally instead of coordinating across multiple separate instances. Two of the referenced documents (org-blueprint.html, org-history.html) were already sitting in this repo's pages/ directory, uncurated, named in every check-key-alignment report all session, but never actually read for what they described until this pass.",
+      "lesson": "When external material independently reflects a principle already practiced here, say so specifically (what converged, and why it's not coincidental) rather than silently absorbing it or treating it as unrelated background reading. Naming a convergence is itself evidence-gathering: it tells a future reader that a principle has now been independently validated from two directions, which is a stronger claim than either direction supports alone — and that claim is only available to a future reader if someone writes it down.",
+      "impact": "docs/architecture/14-council-model.md and data/council-kernel.json now exist; org-blueprint.html, org-history.html, bridge-council.html, witness-committee-operations.html, and human-ai-corelational-governance.html are placed under a new institute department (org-design/governance workTypes) via config/content-intents.json rather than hand-edited. No claim is made that the 'multi-lens single instance' idea is fully designed or adopted as standing practice — see the architecture doc's honest-limits section for what's proposed versus what's real.",
+      "sessions": [
+        "022"
+      ],
+      "visual": null
     },
     {
       "id": "json-keys-are-strings",

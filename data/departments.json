@@ -14,5 +14,13 @@
       "reviews": { "label": "Reviews" },
       "record-transcripts": { "label": "Record Transcripts" }
     }
+  },
+  "institute": {
+    "label": "Institute",
+    "default": false,
+    "workTypes": {
+      "governance": { "label": "Governance" },
+      "org-design": { "label": "Org Design" }
+    }
   }
 }

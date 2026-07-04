@@ -1,0 +1,294 @@
+<meta name="vex:workType" content="org-design">
+<meta name="vex:department" content="institute">
+<!-- =============================================
+     BRIDGE COUNCIL TECHNICAL SCHEMA — Squarespace Version
+     Page: /bridge-council-schema
+     
+     Paste into: Squarespace Code Block
+     Requires: vextreme-design-system.css in Custom CSS
+     Insert the VERSION C nav bar from sq-bc-nav.html
+     at the top of the bc-page div.
+     ============================================= -->
+
+<div class="bc-page">
+
+  <div class="bc-label">Technical Specification — Open Protocol</div>
+
+  <h1>Bridge Council Schema</h1>
+
+  <p class="bc-lead">The Bridge Council is a protocol, not a product. This document defines the open technical schema so any organization can build it with any tools, any AI provider, and any infrastructure they already own. No vendor lock-in. No subscription hostage. No permission required.</p>
+
+  <div class="bc-divider"></div>
+
+  <!-- CORE PRINCIPLE -->
+
+  <h2>The Core Principle: Protocol, Not Product</h2>
+
+  <p>The Bridge Council must propagate the way email propagates — through an open standard that anyone can implement. The moment someone builds "Bridge Council™" as a proprietary SaaS product, the concept is captured and propagation dies. The value is in the standard, not the implementation.</p>
+
+  <p>This means:</p>
+
+  <div class="bc-principle">
+    <div class="bc-principle-name">Open Specification</div>
+    <div class="bc-principle-desc">The data formats, query interfaces, synthesis structures, and propagation rules are published openly. Anyone can implement them. This document is the specification.</div>
+  </div>
+
+  <div class="bc-principle">
+    <div class="bc-principle-name">Tool Agnostic</div>
+    <div class="bc-principle-desc">A company using Slack + Notion + GitHub implements the Bridge Council differently than one using Teams + Confluence + GitLab. The tools don't matter. The schema is the same. The synthesis outputs are interoperable.</div>
+  </div>
+
+  <div class="bc-principle">
+    <div class="bc-principle-name">Model Agnostic</div>
+    <div class="bc-principle-desc">The synthesis engine can be any LLM — Claude, GPT, Gemini, Llama, a local open-source model. The schema defines the input format and output format. Any model that can read the inputs and produce the outputs works. Switch providers anytime.</div>
+  </div>
+
+  <div class="bc-principle">
+    <div class="bc-principle-name">Data Sovereignty</div>
+    <div class="bc-principle-desc">The organization owns every byte. No external cloud required. The schema runs on local infrastructure, private cloud, or existing enterprise storage. No third party holds organizational memory. Full export at any time.</div>
+  </div>
+
+  <div class="bc-principle">
+    <div class="bc-principle-name">Zero-Cost Entry</div>
+    <div class="bc-principle-desc">A small business can run the Bridge Council with a local folder of JSON files, a spreadsheet for synthesis outputs, and direct API calls to any AI provider including free tiers. Not elegant. But functional. And theirs.</div>
+  </div>
+
+  <div class="bc-pull">Nobody owns the Bridge Council. Anyone can build it. The value is in the practice, not the tooling.</div>
+
+  <!-- FOUR DATA TYPES -->
+
+  <h2>Four Data Types</h2>
+
+  <p>The entire Bridge Council operates on four types of data. Everything the system collects, processes, and produces falls into one of these categories. Standardizing these four types is what makes the protocol interoperable across any implementation.</p>
+
+  <h3>1. Context Objects</h3>
+
+  <p>Any piece of organizational information that enters the Bridge Council system. A Slack message, a code commit, a meeting note, a decision record, a document, an email. The raw material the system synthesizes from.</p>
+
+  <div class="bc-code">
+    <div class="bc-code-label">Context Object Schema</div>
+<pre><span class="bracket">{</span>
+  <span class="key">"id"</span>:          <span class="str">"ctx_20260217_001"</span>,
+  <span class="key">"type"</span>:        <span class="str">"message | commit | decision | document | meeting | email"</span>,
+  <span class="key">"source"</span>:      <span class="str">"slack | github | notion | email | manual"</span>,
+  <span class="key">"timestamp"</span>:   <span class="str">"2026-02-17T18:30:00Z"</span>,
+  <span class="key">"author"</span>:      <span class="str">"person_id or system"</span>,
+  <span class="key">"scope"</span>: <span class="bracket">{</span>
+    <span class="key">"team"</span>:       <span class="str">"engineering-backend"</span>,
+    <span class="key">"department"</span>: <span class="str">"engineering"</span>,
+    <span class="key">"org"</span>:        <span class="str">"acme-corp"</span>
+  <span class="bracket">}</span>,
+  <span class="key">"content"</span>:     <span class="str">"[raw content or reference to source]"</span>,
+  <span class="key">"tags"</span>:        <span class="bracket">[</span><span class="str">"blocker"</span>, <span class="str">"timeline"</span>, <span class="str">"dependency"</span><span class="bracket">]</span>,
+  <span class="key">"relations"</span>:   <span class="bracket">[</span><span class="str">"ctx_20260215_042"</span>, <span class="str">"ctx_20260210_017"</span><span class="bracket">]</span>,
+  <span class="key">"sensitivity"</span>: <span class="str">"standard | regulated | restricted"</span>
+<span class="bracket">}</span></pre>
+  </div>
+
+  <p>Context Objects are generated automatically by connectors (adapters that read from Slack, GitHub, etc.) or entered manually. The <code>relations</code> field links objects that reference each other — this is how the system builds the semantic graph over time. The <code>sensitivity</code> field enforces regulatory boundaries at the data level.</p>
+
+  <h3>2. Synthesis Outputs</h3>
+
+  <p>The processed understanding produced by the Bridge Council at each level. The output of running the question templates against the context objects. This is what people actually read.</p>
+
+  <div class="bc-code">
+    <div class="bc-code-label">Synthesis Output Schema</div>
+<pre><span class="bracket">{</span>
+  <span class="key">"id"</span>:          <span class="str">"syn_20260217_team_backend"</span>,
+  <span class="key">"level"</span>:       <span class="str">"team | department | org"</span>,
+  <span class="key">"scope"</span>:       <span class="str">"engineering-backend"</span>,
+  <span class="key">"period"</span>:      <span class="str">"2026-02-10 to 2026-02-17"</span>,
+  <span class="key">"generated"</span>:   <span class="str">"2026-02-17T19:00:00Z"</span>,
+  <span class="key">"model"</span>:       <span class="str">"claude-sonnet-4 | gpt-4o | llama-3 | any"</span>,
+  <span class="key">"sections"</span>: <span class="bracket">{</span>
+    <span class="key">"architect"</span>:    <span class="str">"[patterns, contradictions, dependencies found]"</span>,
+    <span class="key">"translator"</span>:   <span class="str">"[cross-boundary terms clarified, misalignments noted]"</span>,
+    <span class="key">"synthesizer"</span>:  <span class="str">"[unified state summary, connected pain points]"</span>,
+    <span class="key">"sentinel"</span>:     <span class="str">"[emerging risks, friction patterns, flags]"</span>
+  <span class="bracket">}</span>,
+  <span class="key">"sources"</span>:     <span class="bracket">[</span><span class="str">"ctx_20260215_042"</span>, <span class="str">"ctx_20260212_003"</span>, <span class="str">"..."</span><span class="bracket">]</span>,
+  <span class="key">"challenges"</span>:  <span class="bracket">[</span><span class="bracket">]</span>,  <span class="comment">// domain liaisons flag disagreements here</span>
+  <span class="key">"propagates_to"</span>: <span class="str">"syn_20260217_dept_engineering"</span>
+<span class="bracket">}</span></pre>
+  </div>
+
+  <p>The <code>sections</code> field maps directly to the four Bridge Council roles. The <code>challenges</code> array is where Domain Liaisons and team members flag "that's not what's happening here" — the validation mechanism that prevents false coherence. The <code>propagates_to</code> field links this synthesis to the next level up, creating the vertical connection between team → department → org.</p>
+
+  <h3>3. Query Records</h3>
+
+  <p>Every question asked of the Bridge Council system, by whom, and what was returned. This is the audit trail and the intent-detection surface.</p>
+
+  <div class="bc-code">
+    <div class="bc-code-label">Query Record Schema</div>
+<pre><span class="bracket">{</span>
+  <span class="key">"id"</span>:          <span class="str">"qry_20260217_019"</span>,
+  <span class="key">"author"</span>:      <span class="str">"person_id"</span>,
+  <span class="key">"timestamp"</span>:   <span class="str">"2026-02-17T14:22:00Z"</span>,
+  <span class="key">"access_level"</span>: <span class="str">"team_member | team_lead | dept_head | executive"</span>,
+  <span class="key">"query"</span>:       <span class="str">"Why was the March deadline set? What constraints drove it?"</span>,
+  <span class="key">"response_sources"</span>: <span class="bracket">[</span><span class="str">"syn_20260210_dept_eng"</span>, <span class="str">"ctx_20260108_decision_034"</span><span class="bracket">]</span>,
+  <span class="key">"scope_accessed"</span>: <span class="str">"team + department_synthesis + historical_decisions"</span>
+<span class="bracket">}</span></pre>
+  </div>
+
+  <p>The Sentinel function reads the query records to detect intent trajectories. Individual queries are normal. Patterns of queries that systematically map competitive intelligence or probe access boundaries get flagged. The query record is also what enables the retroactive semantic graph search — "show me every thread that connects to this information node."</p>
+
+  <h3>4. Pattern Flags</h3>
+
+  <p>What the Sentinel detects. Contradictions between teams, emerging risks, anomalous query trajectories, usage death signals, capture attempts. These are the Bridge Council's immune system.</p>
+
+  <div class="bc-code">
+    <div class="bc-code-label">Pattern Flag Schema</div>
+<pre><span class="bracket">{</span>
+  <span class="key">"id"</span>:          <span class="str">"flag_20260217_003"</span>,
+  <span class="key">"type"</span>:        <span class="str">"contradiction | risk | trajectory | usage | capture"</span>,
+  <span class="key">"severity"</span>:    <span class="str">"info | warning | critical"</span>,
+  <span class="key">"detected"</span>:    <span class="str">"2026-02-17T19:15:00Z"</span>,
+  <span class="key">"description"</span>: <span class="str">"Teams A and B solving same authentication problem independently"</span>,
+  <span class="key">"evidence"</span>:    <span class="bracket">[</span><span class="str">"ctx_20260215_042"</span>, <span class="str">"ctx_20260216_088"</span><span class="bracket">]</span>,
+  <span class="key">"scope"</span>:       <span class="str">"department:engineering"</span>,
+  <span class="key">"status"</span>:      <span class="str">"open | acknowledged | resolved | escalated"</span>,
+  <span class="key">"resolved_by"</span>: <span class="str">"null | person_id"</span>,
+  <span class="key">"resolution"</span>:  <span class="str">"null | description of resolution"</span>
+<span class="bracket">}</span></pre>
+  </div>
+
+  <p>Pattern Flags with <code>type: "usage"</code> detect when the Bridge Council itself is dying — outputs not being read, queries dropping, challenges not being filed. Pattern Flags with <code>type: "capture"</code> detect when the system is being co-opted for surveillance or politics. The immune system watches the organism <em>and</em> itself.</p>
+
+  <!-- ARCHITECTURE LAYERS -->
+
+  <h2>Five Architecture Layers</h2>
+
+  <p>The Bridge Council implementation stack has five layers. Each can be built independently with any tooling. No layer depends on a specific vendor for any other layer.</p>
+
+  <div class="bc-level">
+    <div class="bc-level-header">
+      <div class="bc-level-tag">Layer 1</div>
+      <div class="bc-level-title">Connectors</div>
+    </div>
+    <div class="bc-level-body">
+      <p>Adapters that read from existing tools and produce standard Context Objects. One connector per tool: Slack connector, GitHub connector, Jira connector, email connector, Notion connector, manual entry connector.</p>
+      <p>Connectors are open-source, community-built, and interchangeable. Writing a new connector means building one function: read from [tool] → output Context Object JSON. The library of connectors grows as the community contributes. Nobody owns the connector layer.</p>
+      <p><strong>Minimum viable:</strong> Manual entry only. Someone copies relevant information into a shared document or JSON file. No automation required to start.</p>
+    </div>
+  </div>
+
+  <div class="bc-level">
+    <div class="bc-level-header">
+      <div class="bc-level-tag">Layer 2</div>
+      <div class="bc-level-title">Storage</div>
+    </div>
+    <div class="bc-level-body">
+      <p>Where Context Objects, Synthesis Outputs, Query Records, and Pattern Flags live. This can be anything: a local folder of JSON files, a SQLite database, a PostgreSQL instance, an S3 bucket, an enterprise data lake. The schema defines the data format, not the storage medium.</p>
+      <p><strong>Requirements:</strong> The organization must own the storage. Full export must be possible at any time. No external party holds the data. Backup and degradation protocols are the organization's responsibility.</p>
+      <p><strong>Minimum viable:</strong> A shared folder with JSON files organized by date and scope. Literally a directory structure on a local drive.</p>
+    </div>
+  </div>
+
+  <div class="bc-level">
+    <div class="bc-level-header">
+      <div class="bc-level-tag">Layer 3</div>
+      <div class="bc-level-title">Synthesis Engine</div>
+    </div>
+    <div class="bc-level-body">
+      <p>The AI that processes Context Objects using the question templates and produces Synthesis Outputs. This is any LLM — cloud API or local model. The schema defines what goes in (Context Objects + question templates) and what comes out (Synthesis Outputs with the four-role structure). Any model that can do this works.</p>
+      <p><strong>Model switching:</strong> Because the input and output formats are standardized, organizations can switch AI providers without losing their Bridge Council history. All prior Synthesis Outputs, Context Objects, and Pattern Flags remain intact. Only the engine producing new synthesis changes.</p>
+      <p><strong>Minimum viable:</strong> Copy-paste relevant context into any AI chat interface. Ask the question templates. Save the output as a Synthesis Output file. No API integration required to start.</p>
+    </div>
+  </div>
+
+  <div class="bc-level">
+    <div class="bc-level-header">
+      <div class="bc-level-tag">Layer 4</div>
+      <div class="bc-level-title">Access &amp; Query Interface</div>
+    </div>
+    <div class="bc-level-body">
+      <p>How humans interact with the Bridge Council. This can be a custom application, a chatbot interface, a shared dashboard, or a simple document library with search. The interface enforces the access model — showing each person the context objects, synthesis, and historical records appropriate to their scope.</p>
+      <p><strong>Query routing:</strong> When a person asks a question, the interface determines their access level, retrieves relevant synthesis outputs and context objects within their scope, passes the query to the synthesis engine, and records the interaction as a Query Record.</p>
+      <p><strong>Minimum viable:</strong> A shared folder structure where team members can see their team's folder, team leads can see the department folder, and everyone can see the historical decisions folder. Search = Ctrl+F.</p>
+    </div>
+  </div>
+
+  <div class="bc-level">
+    <div class="bc-level-header">
+      <div class="bc-level-tag">Layer 5</div>
+      <div class="bc-level-title">Sentinel Layer</div>
+    </div>
+    <div class="bc-level-body">
+      <p>The immune system. Runs on the same synthesis engine (any LLM) but with a different question set: instead of "what patterns exist in this team's context?" it asks "what patterns exist in the query records, usage metrics, and cross-scope flags?" It watches the Bridge Council itself for capture, false coherence, usage death, and anomalous access patterns.</p>
+      <p><strong>Self-monitoring:</strong> The Sentinel produces its own Pattern Flags, which are visible to all appropriate access levels. The Sentinel cannot be silenced by any single person because its outputs propagate to multiple levels simultaneously.</p>
+      <p><strong>Minimum viable:</strong> A monthly review where someone reads through the query records and synthesis outputs and asks: "Is anyone using this? Are the outputs accurate? Is anyone misusing access?" The Sentinel function can be a human practice before it's an automated system.</p>
+    </div>
+  </div>
+
+  <!-- IMPLEMENTATION PATHS -->
+
+  <h2>Three Implementation Paths</h2>
+
+  <p>Every layer has a minimum viable version that costs nothing and requires no new tools. The Bridge Council scales from manual practice to automated infrastructure, and every point on that spectrum is a real Bridge Council.</p>
+
+  <div class="bc-tier">
+    <div class="bc-tier-label">Path A — Manual</div>
+    <div class="bc-tier-title">Folders + Spreadsheet + Any AI Chat</div>
+    <p>Context: copy relevant information into shared docs. Storage: organized folder structure. Synthesis: paste context into any AI, ask question templates, save outputs. Access: folder permissions. Sentinel: monthly human review. Cost: $0. Time to set up: one afternoon. This is a real Bridge Council. It's manual, slow, and functional.</p>
+  </div>
+
+  <div class="bc-tier">
+    <div class="bc-tier-label">Path B — Semi-Automated</div>
+    <div class="bc-tier-title">Open-Source Connectors + Database + API Calls</div>
+    <p>Context: connectors auto-pull from Slack, GitHub, etc. Storage: SQLite or PostgreSQL. Synthesis: scheduled API calls to any LLM with question templates. Access: simple web interface or shared dashboard. Sentinel: automated pattern detection on query records. Cost: LLM API usage only ($10-100/month for most mid-size orgs). Time to set up: a few days of engineering. This is a production Bridge Council for organizations with basic engineering capability.</p>
+  </div>
+
+  <div class="bc-tier">
+    <div class="bc-tier-label">Path C — Full Infrastructure</div>
+    <div class="bc-tier-title">Enterprise Deployment</div>
+    <p>All layers automated, real-time connectors across all organizational tools, dedicated storage with encryption and compliance controls, multi-model synthesis engine with failover, custom query interface with role-based access, automated Sentinel with real-time pattern detection and alerting. This is what a 500+ person organization builds when the Bridge Council becomes critical infrastructure. Can be built in-house or contracted — but the schema remains open and the data remains theirs.</p>
+  </div>
+
+  <div class="bc-pull">Path A costs nothing and takes an afternoon. Path C is enterprise infrastructure. Both are real Bridge Councils running the same protocol. Start at A. Grow when you need to.</div>
+
+  <!-- ANTI-CAPTURE -->
+
+  <h2>Anti-Capture Design</h2>
+
+  <p>The Bridge Council protocol is designed to resist capture at every level — commercial, political, and technical.</p>
+
+  <p><strong>Commercial capture resistance:</strong> The protocol is open. The schema is published. The connectors are community-built. Any organization can self-supply without paying anyone. Commercial services can offer convenience (managed setup, hosted infrastructure, premium connectors) but can never offer capability that the open protocol doesn't provide. If a vendor disappears, the organization's Bridge Council continues unchanged. The data is theirs. The schema is public. They switch vendors or self-host.</p>
+
+  <p><strong>Political capture resistance:</strong> Synthesis outputs propagate to multiple access levels simultaneously. No single person can intercept, filter, or redirect the council's outputs. The Sentinel watches for co-option. The historical transparency flows bidirectionally — leadership is seen by the system the same way teams are.</p>
+
+  <p><strong>Technical capture resistance:</strong> Model-agnostic synthesis means no AI provider can hold the organization hostage. Storage-agnostic data means no database vendor can lock them in. Connector-agnostic input means no workplace tool is required. Full data export is a core requirement, not a feature. Vendor lock-in is architecturally impossible because every layer is interchangeable.</p>
+
+  <p><strong>The economics of an open protocol:</strong> Commercial services can exist on top of the Bridge Council protocol the same way email hosting services exist on top of SMTP. Gmail doesn't own email. Fastmail doesn't own email. A managed Bridge Council service doesn't own the Bridge Council. The organization can always leave because the protocol is open and the data is theirs. This is the only business model that allows the concept to propagate without being captured.</p>
+
+  <!-- ADOPTION -->
+
+  <h2>Adoption Economics</h2>
+
+  <p>The Bridge Council must be worth it from day one with zero financial commitment. Not "free trial." Actually free. Forever.</p>
+
+  <p>The schema is open. The connectors are open. The question templates are published in the Operating System document. The synthesis can run on any AI tool including free tiers or local models. A team that runs the question templates weekly using a free AI chat and stores the outputs in a shared folder is already running a Bridge Council.</p>
+
+  <p>The value isn't in the tooling. The value is in the <em>practice.</em> Asking the right questions across the right boundaries at the right cadence — that's what creates coherence. The tools are interchangeable. The practice is what matters.</p>
+
+  <p>This means adoption has no gate. No procurement process. No enterprise sales cycle. No pilot program approval. A single team can start tomorrow. They don't need permission from their organization. They don't need budget. They need a shared folder and the question templates. If it works — and it will — it spreads. Other teams adopt it. The department notices. The pattern propagates upward exactly the way the operating system describes.</p>
+
+  <p>Bottom-up adoption is the design. Not top-down mandate. The Bridge Council proves itself at the team level before anyone in leadership has to decide anything.</p>
+
+  <!-- CLOSE -->
+
+  <div class="bc-closing">
+    <p><strong>The Bridge Council is a protocol, not a product.</strong></p>
+    <p>Four data types. Five architecture layers. Three implementation paths. Zero vendor lock-in. Full data sovereignty. Open specification. Free forever.</p>
+    <p>The concept propagates through adoption, not through sales. The schema is published here. The question templates are in the Operating System document. The blueprint is in the companion document. Everything an organization needs to start — from a single team running manual synthesis to an enterprise deploying full infrastructure — is open, free, and theirs.</p>
+    <p style="color: #d4d0cc; margin-top: 24px; margin-bottom: 0;">The organizations that build the Bridge Council will own their own coherence. Not rent it. Not subscribe to it. Own it — the way you own a practice, not a product. That's the only model that lets this scale to every organization that needs it. Which is all of them.</p>
+  </div>
+
+  <div class="bc-footer">
+    <p><strong>Victor Gong</strong> · Founder, Vextreme LLC · Cross-system pattern recognition & organizational coherence architecture</p>
+    <p style="margin-top: 6px;">vextreme24.com · victorgong.com</p>
+    <p style="margin-top: 12px; font-size: 13px; font-style: italic;">Companion documents: "The Bridge Council — Blueprint" · "The Bridge Council — Operating System"</p>
+    <p style="margin-top: 8px; font-size: 12px; color: #a8a29e;">This specification is published openly. No license restricts its use. Build it. Share it. Improve it.</p>
+  </div>
+
+</div>
