@@ -775,6 +775,16 @@ After rebasing, always re-run the build scripts to bake your branch's changes
 into fresh artifacts before committing. Never resolve a generated-file conflict by
 hand — the build script is the only valid author of those files.
 
+**This attribute does nothing on its own.** `merge=ours` requires a matching
+`[merge "ours"] driver = true` entry registered in git config — local machine/session
+state that `.gitattributes` cannot carry and that does not survive a fresh clone. A
+fresh environment (a new session, a new container) should expect a generated-file
+conflict to surface as a real conflict, not resolve silently. When that happens,
+resolve it the same way the driver would have: take main's version of the generated
+file (`git checkout --ours <file>` mid-rebase — "ours" means the upstream base during
+a rebase, not your own branch), then re-run the build scripts as above. See
+`config/lessons/generated-file-merge-driver-needs-local-registration.json`.
+
 **File responsibility map:**
 ```
 data/

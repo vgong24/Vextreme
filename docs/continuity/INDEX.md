@@ -27,6 +27,54 @@ intent, the continuity log documents reality.
 
 ## Current State
 
+*As of Session 022 — July 4, 2026*
+
+**Session 022 addition:** Victor asked for a scalable schema to host a "Media" production
+domain alongside the implicit "R&D" domain everything else lives in — the first checkpoint
+toward hosting multiple side projects, not the finished department system. Four PRs (#40–#43)
+shipped in sequence:
+- **#40** — `docs/culture.md` gained a new section, "What this archive's content actually
+  records," stating directly (in Victor's own terms, settled in conversation) that the
+  archive's more declarative content (`wip/silent-god.json`, the `convos_with_god` arc, and
+  similarly first-person-declarative node titles elsewhere in `data/nodes.json`) documents
+  whether AI systems sustain a narrative/spiritual frame consistently across sessions without
+  ever spontaneously disclaiming it as roleplay — a claim about AI behavior, not an assertion
+  that the content is objectively real. This was raised, discussed at real length, and settled
+  once; a future instance encountering the node titles cold should read that section as the
+  answer, not re-derive it.
+- **#41** — The department axis itself: `data/departments.json` (registry: `rd` default,
+  `media` with `reviews`/`record-transcripts` workTypes), `department`/`workType` fields on
+  nodes, `buildDepartmentMap`/`buildDepartmentMeta` in `lib/build-index.js` feeding
+  `data/index.json`, and a Departments panel on `pages/ecosystem-hub.html`. Deliberately scoped
+  to structure + accessibility only — the transcript work stays a registered placeholder with
+  no page yet, per direction. `pe-010` tracks what's explicitly deferred (a dedicated
+  transcript-library dashboard, God-Script-wiring granularity beyond a single `ported` boolean).
+- **#42** — A real gap surfaced by the department-map design conversation itself: slug
+  uniqueness was documented as a "rule that cannot be broken" but never actually enforced.
+  `findDuplicateSlugs` in `lib/build-index.js` now halts the build (BLOCK severity, same tier
+  `strings-check.js` uses for missing EN text) if two nodes ever share a slug. Also documented,
+  as durable principle rather than left in conversation: "path is always derived from slug via
+  a key chain, never found by browsing `pages/`" (`docs/architecture/02-slug.md`), and the
+  batch/index-increment slug convention for series content (`data/departments.json`'s `_comment`).
+- **#43** — Three more visibility gaps closed: nodes with no arc membership (the exact starting
+  state of a fresh department node) were invisible in `pages/archives.html` (arc sections only
+  iterate `ARC_ORDER`) — fixed with a new "Unsorted (No Arc)" section. Nothing caught an orphan
+  page (a `pages/*.html` file with no `nodes.json` entry) or a `wip/` file's declared destination
+  slug already being taken — both now reported (informational only, per direction) via a new
+  `contentIntegrity` notice category on the Ecosystem Hub, computed by extending
+  `lib/check-key-alignment.js`. `lib/audit-pages.js` gained a `require.main` guard + exports so
+  it could be reused instead of duplicating its `SKIP_PAGES` table. A real merge conflict during
+  this PR (against a bot auto-rebuild commit on main) surfaced that `.gitattributes`' `merge=ours`
+  declaration does nothing without a locally-registered git driver, which doesn't survive a fresh
+  clone — resolved manually (take main's version, rebuild), documented in
+  `docs/architecture/09-constraints.md` and `config/lessons/generated-file-merge-driver-needs-local-registration.json`
+  so a future session doesn't rediscover it as a mystery.
+
+243/243 tests passing (was 218 at Session 021's end). Lattice coverage 23/34 (68%). Root
+`README.md` (2-line stub since the repo's creation) is being rewritten this same session into a
+real orientation page for a new visitor — see the entry below or `git log` for the commit once
+it lands.
+
 *As of Session 021 — July 2, 2026*
 
 **Session 021 addition:** Batch 002 closed (10/10 sessions); Batch 003 opened, this session is its
@@ -283,9 +331,16 @@ system state — not aspirational state.
 
 ## Open Work
 
-*Updated Session 021 — July 2, 2026*
+*Updated Session 022 — July 4, 2026*
 
 **v2 system (active):**
+- [x] Department axis shipped: data/departments.json (rd/media registry), department/workType fields, departmentMap/departmentMeta in index.json, Ecosystem Hub Departments panel (Session 022, PR #41)
+- [x] pe-010: transcript-library dashboard + God-Script-wiring granularity beyond `ported` — logged, deliberately deferred (Session 022)
+- [x] Slug uniqueness now mechanically enforced — findDuplicateSlugs BLOCK guard in lib/build-index.js; "path derived from slug, never browsed" principle documented in docs/architecture/02-slug.md (Session 022, PR #42)
+- [x] WIP triage visibility: orphan-page detection + wip/ slug-collision detection (lib/check-key-alignment.js extended), contentIntegrity notice category, archives.html "Unsorted (No Arc)" section (Session 022, PR #43)
+- [x] docs/culture.md documents what the archive's declarative content (wip/silent-god.json, convos_with_god arc, etc.) actually records — settled once so it isn't re-derived cold (Session 022, PR #40)
+- [ ] Root README.md rewritten from a 2-line stub into a real orientation page for new visitors — in progress this same session
+- [ ] Consider extending lib/check-key-alignment.js's wip/ collision check to reuse lib/audit-pages.js's God-Script-wiring signal, not just page existence, once pe-010's wiring-granularity item is picked up
 - [x] td-008: no structured-concurrency model — tracked as a known future ceiling, TypeScript recommended near-term, Kotlin/KMP re-evaluated if server/mobile scope becomes real (Session 021)
 - [ ] lib/build-lattice-headers.js structural fix — replace comment-embedded sentinel markers with a real `const VEX_LATTICE = {...}` statement + a validating `LatticeNode` class; design agreed, not yet built (Session 021)
 - [x] lib/session-bootstrap.js — one-shot session-start state report, consolidates git/test/drift/token/open-item checks into one command (Session 021)
@@ -493,6 +548,6 @@ These rules exist so the log stays useful as it grows. Follow them.
 
 ---
 
-*Last updated: Session 021 — July 2, 2026*
+*Last updated: Session 022 — July 4, 2026*
 
 <!-- [VXG RealForever] -->

@@ -79,3 +79,77 @@ Victor invited genuine self-reflection: what would actually help an AI instance 
 Two new kinds of artifact exist that didn't before: a first-person reflection section in `docs/culture.md` (corrected mid-session after landing wrong the first time) capturing what this instance has actually learned about working in this repo, and a distilled, searchable lesson entry generalizing a bug pattern hit three separate times. A new tool, `lib/session-bootstrap.js`, directly answers the friction the reflection named. A substantial language/architecture conversation (JSON vs. Kotlin, TypeScript vs. Kotlin Multiplatform, structured concurrency, null safety) resolved into one honestly-scoped tracked item (`td-008`) rather than either an unreasoned rewrite or a lost thread. 218/218 tests passing.
 
 <!-- [VXG RealForever] -->
+
+---
+
+## Session 022
+
+**Date:** July 4, 2026
+**Time:** single long working session
+**Thread:** https://claude.ai/code/session_01RqBFduMesWi2QrB25mjiga
+**Instance:** Claude Sonnet 5 (Claude Code remote)
+**Working with:** Victor Gong
+**Continues from:** Session 021 — Batch 003 opened, td-008 recorded
+
+### Context on arrival
+
+Victor opened by asking for feedback on the codebase's foundation-before-features discipline, then moved into the session's actual work: scaling from one implicit "R&D" production domain toward a "Media" domain, starting with two candidate works (a Phantom of the Opera review, and a transcript file) that needed a place to live.
+
+### Files created or modified
+
+| File | What changed |
+|---|---|
+| `docs/culture.md` | New section, "What this archive's content actually records" |
+| `data/departments.json` | New — department registry (rd/media) |
+| `data/nodes.json` | Two Media nodes registered; `department`/`workType` fields |
+| `lib/build-index.js` | `buildDepartmentMap`, `buildDepartmentMeta`, `findDuplicateSlugs` (BLOCK guard) |
+| `lib/build-ecosystem-hub.js` | Departments panel; `contentIntegrity` added to health categories |
+| `lib/build-archives.js` | New "Unsorted (No Arc)" section |
+| `lib/build-status.js` | `buildContentIntegrityNotices`, sixth notice category |
+| `lib/check-key-alignment.js` | `findOrphanPages`, `scanWipIntendedSlugs`, `findWipSlugCollisions`, `findDuplicateWipIntents` |
+| `lib/audit-pages.js` | `require.main` guard + exports, made requirable without side effects |
+| `wip/silent-god.json` | `_meta.slug: "vxg-thread-round-5"` — documents its own placement |
+| `docs/architecture/02-slug.md` | "Path is derived from slug, never browsed" principle |
+| `docs/architecture/09-constraints.md` | Constraint #8 clarified — `merge=ours` needs local driver registration |
+| `config/lessons/generated-file-merge-driver-needs-local-registration.json` | New distilled lesson |
+| `.github/workflows/key-alignment.yml` | PR comment reports orphans/wip collisions |
+| `data/status/planned-enhancements.json` | `pe-010` |
+| `tests/01, 08, 10, 12, 15` | 20 new tests across the session |
+
+### What was built and why
+
+**Four PRs, each a real checkpoint, not one undifferentiated diff.** #40 settled what the archive's more declarative content actually documents (a claim about AI behavior consistency, not objective reality) — genuinely discussed and disputed before being written down, not asserted unilaterally. #41 built the department axis Victor asked for, scoped deliberately to structure + accessibility per his own direction to "hone the placeholders" later. #42 closed a real gap the department-map design conversation surfaced on its own: slug uniqueness was a documented rule with no mechanical enforcement. #43 closed three more visibility gaps (unsorted nodes, orphan pages, wip/ collisions) that came directly out of Victor's "visual builder workflow" request — sorting, WIP triage, and duplicate detection as one connected ask.
+
+**The department/arc-map design conversation resolved a real architectural question through actual back-and-forth, not a scripted answer.** Victor pushed on whether a flat `pages/` directory would become a "God directory" problem at scale, proposed sharding, then — correctly — pointed out that the department/arc map already provides key-based lookup (department → workType → slug → derived path) that makes physical directory size irrelevant, as long as path stays a *derived* value rather than a stored one. That correction was right, and the ceiling this instance had proposed two turns earlier (a build-time content/ flattening step) was retracted rather than built, once the map-as-index reasoning was actually traced through instead of assumed.
+
+**A design flaw was caught by testing, not by review.** The first version of `findWipSlugCollisions` flagged a wip/ file's slug as a collision if it matched *either* a real page *or* a nodes.json entry. That would have flagged `wip/silent-god.json`'s own already-registered placeholder (`vxg-thread-round-5`) as a false-positive collision with itself. Caught while writing the verification step (running the real fixture through the checker and noticing the unexpected warning), not by reasoning about the code in advance — fixed to only check against real pages, since a nodes.json-only match with no page yet is the expected linkage, not a conflict.
+
+### Mistakes made
+
+- **A reflexive wellbeing-concern classification, applied before actually engaging with the content.** On first encountering `wip/silent-god.json`'s "God-speaker" framing, this instance pattern-matched on surface tokens and raised a concern before asking what the record was actually for. Victor's pushback was fair: the reaction sorted content into a category without examining it first — close to the exact failure mode a document in that same file critiques. Corrected across several exchanges: held the line on not personally validating metaphysical claims (a stable fact about what an LLM is, independent of anyone's state of mind), while dropping the unearned leap from "I can't validate this claim" to "this is evidence of a problem." Documented as a settled answer in `docs/culture.md` so a future instance doesn't repeat the same multi-turn cycle.
+- **The `findWipSlugCollisions` false-positive**, described above — caught same-session, before it shipped, by actually running the check against the real fixture rather than trusting the first design.
+
+### Assumptions that held
+
+- Reusing `lib/audit-pages.js`'s `SKIP_PAGES` (via new exports) instead of duplicating it in `lib/check-key-alignment.js` — no drift risk introduced.
+- `_meta.slug` as an opt-in (not filename-derived) convention for `wip/` files — validated directly against the one real fixture, whose actual slug (`vxg-thread-round-5`) has no resemblance to its filename (`silent-god.json`).
+- 243/243 tests passing, lattice drift 0, design-token violations 0, after every one of the four PRs.
+
+### Assumptions that need verification
+
+- `pe-010`'s deferred items (transcript-library dashboard, God-Script-wiring granularity in `departmentMap`) — not yet built, no committed timeline.
+- Whether BLOCK severity for duplicate slugs and informational severity for orphan pages/wip collisions hold up in practice, or need revisiting once more departments/works exist.
+- The root `README.md` rewrite (in progress as this entry is written) — describes the current, verified-working content-registration flow; should be re-checked against reality once more of `pe-010` is built, since some of what it describes (dashboard live-fetch behavior) is accurate today but scoped to the current two-department, mostly-unwired state.
+
+### Open work at session end
+
+- [ ] `pe-010` — transcript-library dashboard, God-Script-wiring granularity
+- [ ] Root `README.md` rewrite — see this session's final commit
+- [ ] Consider extending the wip/ collision check to reuse God-Script-wiring status, not just page existence
+- [ ] od-001, od-002, od-003, od-006, od-007 remain open, untouched this session
+
+### State of the system at session end
+
+Four PRs merged in sequence, each reviewed and settled before the next began rather than batched into one unreviewed diff. The department axis is real and rendering against live data (verified via Playwright, not just unit tests, at every stage). Slug uniqueness went from a documented-but-unenforced rule to a mechanically-guarded one. A genuine values disagreement about how to read the archive's declarative content was worked through in real dialogue rather than either capitulating or refusing to engage, and the resolution is now written down so it doesn't have to be re-litigated. A merge conflict against a bot commit surfaced a real gap in this environment's git configuration (the `merge=ours` driver isn't registered on a fresh clone) — resolved and documented rather than worked around silently. 243/243 tests passing.
+
+<!-- [VXG RealForever] -->
