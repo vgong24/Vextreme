@@ -41,7 +41,12 @@ everything downstream reads. Content now has two independent groupings: **arcs**
 narrative order) and **departments** (production-domain ownership — `rd` default, `media` with
 `reviews`/`record-transcripts` workTypes). Any `pages/*.html` file with no `nodes.json` entry is
 auto-discovered (title scraped from its own `<title>` tag) rather than left invisible —
-`lib/auto-discover-nodes.js`. Slug uniqueness is mechanically enforced (BLOCK severity) in
+`lib/auto-discover-nodes.js`. Declared placement is applied, not hand-edited: `config/content-intents.json`
++ `lib/apply-content-intents.js` upsert a page's `vex:department`/`vex:workType` meta tags and
+optionally place it into an arc's one auto-managed section in `arcs-v2.json`, validating the
+department/arcKey are real before writing anything (an earlier gap — nothing previously stopped
+an unregistered department from existing in `index.json` while never rendering anywhere). Slug
+uniqueness is mechanically enforced (BLOCK severity) in
 `lib/build-index.js`; orphan pages and `wip/` placement conflicts are reported (informational)
 via `lib/check-key-alignment.js` and a `contentIntegrity` panel on the Ecosystem Hub. Three
 silent-drift detectors run in CI: `lib/build-lattice-headers.js --check` (LATTICE header drift),

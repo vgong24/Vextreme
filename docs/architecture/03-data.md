@@ -110,6 +110,21 @@ is not an active risk requiring a parity check — but it means `data/arcs.json`
 should be treated as frozen, not as a file that stays in sync with future
 `arcs-v2.json` edits. See `config/lessons/v1-arcs-json-is-frozen-not-a-sync-target.json`.
 
+**Content-placement intents.** `config/content-intents.json` extends the
+`vex:department`/`vex:workType` meta-tag pattern to arc membership:
+`{ id, slug, department?, workType?, arcKey?, status }`. `lib/apply-content-intents.js`
+applies each `status:"pending"` entry — upserting the meta tags on the target
+page and, if `arcKey` is set, adding the slug to that arc's one auto-managed
+section in `arcs-v2.json` (removing it from any other arc's auto section
+first, so re-declaring a placement moves it rather than duplicating it) —
+then marks it applied. It never writes into a hand-curated section; arc
+curation (position within a narrative arc) stays a human act, same as
+department/workType's registry-default fallback already works for
+undeclared pages. After applying, it re-runs `lib/build-index.js` (the real
+duplicate-slug BLOCK gate) and reports `lib/check-key-alignment.js`'s output
+as the sanity check — the same verification every other content change here
+goes through.
+
 → *Connects to 04-build-time: the build pipeline is where write-side data
 becomes the read-side structures the browser consumes. Understanding what
 gets computed there is what keeps the browser layer clean.*
