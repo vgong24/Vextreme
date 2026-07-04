@@ -17,7 +17,7 @@ const assert   = require('node:assert/strict');
 const fs       = require('fs');
 const path     = require('path');
 
-const { buildTranslationNotices, buildStatusRollup, countOpen, buildLatticeCoverage } = require('../lib/build-status');
+const { buildTranslationNotices, buildStatusRollup, countOpen, buildLatticeCoverage, buildContentIntegrityNotices } = require('../lib/build-status');
 
 const ROOT = path.join(__dirname, '..');
 
@@ -195,6 +195,38 @@ test('BUILD-STATUS: countOpen handles missing categories', () => {
   assert.equal(countOpen({ techDebt: [{ id: 'x' }] }), 1);
 });
 
+test('BUILD-STATUS: countOpen includes contentIntegrity', () => {
+  assert.equal(countOpen({ contentIntegrity: [{ title: 'a' }, { title: 'b' }] }), 2);
+});
+
+// ── buildContentIntegrityNotices ──────────────────────────────────────────────
+
+test('BUILD-STATUS: buildContentIntegrityNotices maps orphan pages to notice items', () => {
+  const items = buildContentIntegrityNotices(['some-slug'], [], []);
+  assert.equal(items.length, 1);
+  assert.match(items[0].title, /Orphan page/);
+  assert.equal(items[0].priority, 'low');
+});
+
+test('BUILD-STATUS: buildContentIntegrityNotices maps wip collisions at high priority', () => {
+  const items = buildContentIntegrityNotices([], [{ file: 'x.json', slug: 'taken' }], []);
+  assert.equal(items.length, 1);
+  assert.match(items[0].title, /wip\/ collision/);
+  assert.equal(items[0].priority, 'high');
+});
+
+test('BUILD-STATUS: buildContentIntegrityNotices maps duplicate wip intents at medium priority', () => {
+  const items = buildContentIntegrityNotices([], [], [{ slug: 'shared', files: ['a.json', 'b.json'] }]);
+  assert.equal(items.length, 1);
+  assert.match(items[0].title, /Duplicate wip\/ intent/);
+  assert.equal(items[0].priority, 'medium');
+});
+
+test('BUILD-STATUS: buildContentIntegrityNotices returns empty array for all-clean input', () => {
+  assert.deepEqual(buildContentIntegrityNotices([], [], []), []);
+  assert.deepEqual(buildContentIntegrityNotices(), []);
+});
+
 // ── 4. Integration — data/status.json ────────────────────────────────────────
 
 const STATUS_PATH = path.join(ROOT, 'data', 'status.json');
@@ -211,14 +243,15 @@ test('BUILD-STATUS: data/status.json is valid JSON with expected shape', () => {
   assert.ok(typeof status._meta.totalOpen === 'number', 'totalOpen must be number');
 });
 
-test('BUILD-STATUS: data/status.json has all five notice categories', () => {
+test('BUILD-STATUS: data/status.json has all six notice categories', () => {
   const status = JSON.parse(fs.readFileSync(STATUS_PATH, 'utf8'));
   const n = status.notices;
-  assert.ok(n.translation,     'must have translation notices');
-  assert.ok(n.techDebt,        'must have techDebt notices');
-  assert.ok(n.enhancements,    'must have enhancements notices');
-  assert.ok(n.assumptions,     'must have assumptions notices');
-  assert.ok(n.openDiscussions, 'must have openDiscussions notices');
+  assert.ok(n.translation,      'must have translation notices');
+  assert.ok(n.techDebt,         'must have techDebt notices');
+  assert.ok(n.enhancements,     'must have enhancements notices');
+  assert.ok(n.assumptions,      'must have assumptions notices');
+  assert.ok(n.openDiscussions,  'must have openDiscussions notices');
+  assert.ok(n.contentIntegrity, 'must have contentIntegrity notices');
 });
 
 test('BUILD-STATUS: data/status.json translation fixtures do not count toward totalOpen', () => {
