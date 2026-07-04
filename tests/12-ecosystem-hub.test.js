@@ -45,10 +45,17 @@ test('ECOSYSTEM-HUB: does not reference --stone-950 dark-panel fallback', () => 
 
 // ── Live data wiring ─────────────────────────────────────────────────────────
 
-test('ECOSYSTEM-HUB: fetches index.json, status.json, and narrative.json', () => {
+test('ECOSYSTEM-HUB: fetches index.json, status.json, narrative.json, and lessons.json', () => {
   assert.match(html, /data\/index\.json/);
   assert.match(html, /data\/status\.json/);
   assert.match(html, /data\/status\/narrative\.json/);
+  assert.match(html, /data\/lessons\.json/);
+});
+
+test('ECOSYSTEM-HUB: has a Lessons Learned section', () => {
+  assert.match(html, /Lessons Learned/);
+  assert.match(html, /id="lessons-grid"/);
+  assert.match(html, /function renderLessons/);
 });
 
 test('ECOSYSTEM-HUB: renders all six health categories in order, openDiscussions first', () => {

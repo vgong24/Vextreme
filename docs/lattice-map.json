@@ -587,7 +587,7 @@
 
     "lib/build-status.js": {
       "role": "system health manifest assembler — reads hand-authored status/*.json plus the strings manifest and key-alignment report, writes data/status.json",
-      "context": "The write side of the 'what's still open' picture: six notice categories (translation debt and contentIntegrity auto-derived, techDebt/enhancements/assumptions/openDiscussions hand-authored) roll up into one artifact pages/ecosystem-hub.html fetches live. Also computes lattice coverage (mapped nodes vs. total eligible .js files in lib/+widgets/) into _meta.lattice, so the hub can show it without re-deriving the eligibility rule. openDiscussions (added Session 015) is deliberately separate from techDebt/enhancements — see data/status/open-discussions.json's _comment for why. contentIntegrity (Session 022) is auto-generated like translation, not hand-authored like the other three.",
+      "context": "The write side of the 'what's still open' picture: six notice categories (translation debt and contentIntegrity auto-derived, techDebt/enhancements/assumptions/openDiscussions hand-authored) roll up into one artifact pages/ecosystem-hub.html fetches live. Also computes lattice coverage (mapped nodes vs. total eligible .js files in lib/+widgets/) into _meta.lattice, so the hub can show it without re-deriving the eligibility rule. openDiscussions (added Session 015) is deliberately separate from techDebt/enhancements — see data/status/open-discussions.json's _comment for why. contentIntegrity (Session 022) is auto-generated like translation, not hand-authored like the other three. Also Session 022: this generator had been run and committed by hand every session with no CI step actually calling it — now wired into .github/workflows/build-index.yml alongside lib/build-ecosystem-hub.js and the new lib/build-lessons.js.",
       "reads": [
         "data/strings/compiled/manifest.json",
         "data/strings/compiled/strings.en.json",
@@ -604,6 +604,7 @@
       "writes": ["data/status.json"],
       "loadedBy": [
         "pages/ecosystem-hub.html (live fetch)",
+        ".github/workflows/build-index.yml (CI, Session 022)",
         "tests/10-build-status.test.js"
       ],
       "testedBy": ["tests/10-build-status.test.js"],
@@ -625,17 +626,43 @@
       }
     },
 
+    "lib/build-lessons.js": {
+      "role": "compiles config/lessons/*.json into data/lessons.json — the read-side manifest the Ecosystem Hub fetches",
+      "context": "config/lessons/*.json has been the write-side home for distilled architectural/process lessons since Session 010 (see docs/architecture/08-continuity.md's collaboration-documents table), but nothing compiled those files into anything pages/ecosystem-hub.html — the one dashboard meant to answer 'what does this system currently know' — could read. A lesson was discoverable (git log --grep, grepping the directory, or the partial hand-authored decision cards in pages/specimen-architectural-wisdoms.html) but not connected to the generated read side, the same shape of gap lib/auto-discover-nodes.js closed for pages/ in the same session. Handles two lesson-file schema generations: newer files use sessions: [...], older ones (Session 010-011) use pr/session singular fields — both normalize to one sessions array in the output.",
+      "reads": ["config/lessons/*.json (every lesson file, both schema generations)"],
+      "writes": ["data/lessons.json"],
+      "loadedBy": [
+        "manual run: node lib/build-lessons.js",
+        ".github/workflows/build-index.yml (CI, Session 022)",
+        "pages/ecosystem-hub.html (live fetch of the compiled output)",
+        "tests/17-build-lessons.test.js"
+      ],
+      "testedBy": ["tests/17-build-lessons.test.js"],
+      "changeMap": {
+        "a new lesson file added to config/lessons/": [
+          "no action needed — this script picks up every *.json file in the directory automatically on its next run (manual or CI)"
+        ],
+        "lesson file schema changed (new required field, field renamed)": [
+          "buildLessonsManifest() in this file (the field mapping)",
+          "lib/build-ecosystem-hub.js renderLessons() (reads title/problem/lesson/impact/sessions/visual)",
+          "tests/17-build-lessons.test.js"
+        ]
+      }
+    },
+
     "lib/build-ecosystem-hub.js": {
       "role": "generates pages/ecosystem-hub.html — the admin+AI-facing system state dashboard",
-      "context": "Static chrome generated at build time; all data (index.json, status.json, status/narrative.json) is fetched live in the browser at render time, so the page stays current between rebuilds without needing this generator re-run. Session 015 rewrote the CSS after finding it referenced --stone-950/--font-mono tokens that styles/design-system.css never defines — text rendered near-invisible. Now uses only the site's real tokens (--stone, --muted, --border, --cream, --ember, --mono), same as lib/build-demo.js. Not wired into .github/workflows/build-index.yml — regenerate manually after changing this file's HTML/CSS structure (data changes don't require regeneration, since those are fetched live).",
+      "context": "Static chrome generated at build time; all data (index.json, status.json, status/narrative.json, lessons.json) is fetched live in the browser at render time, so the page stays current between rebuilds without needing this generator re-run for data-only changes. Session 015 rewrote the CSS after finding it referenced --stone-950/--font-mono tokens that styles/design-system.css never defines — text rendered near-invisible. Now uses only the site's real tokens (--stone, --muted, --border, --cream, --ember, --mono), same as lib/build-demo.js. Session 022 found this file (and lib/build-status.js) had been generated and committed every session but never actually wired into .github/workflows/build-index.yml — both were regenerated by hand each time, an unenforced manual ritual with no CI backstop if a session forgot. Now wired into the workflow alongside the new lib/build-lessons.js, so a Content Map / System Health / Lessons Learned change lands in the committed HTML automatically, same as every other generated artifact in this pipeline.",
       "reads": [
         "data/index.json (live fetch, browser — including departmentMap/departmentMeta)",
         "data/status.json (live fetch, browser)",
-        "data/status/narrative.json (live fetch, browser)"
+        "data/status/narrative.json (live fetch, browser)",
+        "data/lessons.json (live fetch, browser)"
       ],
       "writes": ["pages/ecosystem-hub.html"],
       "loadedBy": [
         "manual run: node lib/build-ecosystem-hub.js",
+        ".github/workflows/build-index.yml (CI, Session 022)",
         "tests/12-ecosystem-hub.test.js"
       ],
       "testedBy": ["tests/12-ecosystem-hub.test.js"],
@@ -655,6 +682,11 @@
           "renderDepartments() in this file's generated JS",
           "lib/build-index.js (producer)",
           "tests/15-departments.test.js"
+        ],
+        "data/lessons.json schema changed": [
+          "renderLessons() in this file's generated JS",
+          "lib/build-lessons.js (producer)",
+          "tests/17-build-lessons.test.js"
         ]
       }
     },
