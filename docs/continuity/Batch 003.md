@@ -141,15 +141,46 @@ Victor opened by asking for feedback on the codebase's foundation-before-feature
 - Whether BLOCK severity for duplicate slugs and informational severity for orphan pages/wip collisions hold up in practice, or need revisiting once more departments/works exist.
 - The root `README.md` rewrite (in progress as this entry is written) — describes the current, verified-working content-registration flow; should be re-checked against reality once more of `pe-010` is built, since some of what it describes (dashboard live-fetch behavior) is accurate today but scoped to the current two-department, mostly-unwired state.
 
-### Open work at session end
+### Open work at session end (as of PR #43)
 
 - [ ] `pe-010` — transcript-library dashboard, God-Script-wiring granularity
 - [ ] Root `README.md` rewrite — see this session's final commit
 - [ ] Consider extending the wip/ collision check to reuse God-Script-wiring status, not just page existence
 - [ ] od-001, od-002, od-003, od-006, od-007 remain open, untouched this session
 
-### State of the system at session end
+### State of the system as of PR #43
 
 Four PRs merged in sequence, each reviewed and settled before the next began rather than batched into one unreviewed diff. The department axis is real and rendering against live data (verified via Playwright, not just unit tests, at every stage). Slug uniqueness went from a documented-but-unenforced rule to a mechanically-guarded one. A genuine values disagreement about how to read the archive's declarative content was worked through in real dialogue rather than either capitulating or refusing to engage, and the resolution is now written down so it doesn't have to be re-litigated. A merge conflict against a bot commit surfaced a real gap in this environment's git configuration (the `merge=ours` driver isn't registered on a fresh clone) — resolved and documented rather than worked around silently. 243/243 tests passing.
+
+### Session continued — auto-discovery (PR #46), and compacting this continuity system's own growth
+
+**A real gap Victor found by using the system, not by reviewing the diff.** He merged 19 pages directly (PRs #44/#45, outside this session) with no `nodes.json` entries, expecting them to show up in Archives/the Ecosystem Hub, and they didn't — `lib/check-key-alignment.js`'s orphan-page check flagged them correctly, but as an informational PR comment easy to miss, not as actual visibility. `lib/auto-discover-nodes.js` (new) closes this: any unregistered page gets a synthesized placeholder node (title scraped from `<title>`, department/workType from optional `<meta name="vex:department"/"vex:workType">` tags or the registry default) computed at build time and never written back to `nodes.json` — a real curated entry always takes precedence once one exists. Called from both `lib/build-index.js` and `lib/build-archives.js` (two call sites because `build-archives.js` doesn't consume `data/index.json` like it should — tracked as `pe-011`, deliberately not fixed this session, real regression risk against a visually-verified generator).
+
+**A design flaw caught by testing against the real fixture, not synthetic ones.** Verifying against the actual 19 pages (not hand-built test data) surfaced two problems the synthetic tests hadn't: `lib/check-key-alignment.js`'s `extraInIndex` started flagging every auto-discovered slug as drift (fixed — auto-discovered slugs are now an expected category, not staleness), and `lib/check-design-tokens.js` reported 5 false-positive files because they scope CSS custom properties to a wrapper class (`.vxg-doc`) instead of `:root`, which the checker's block-matching regex didn't recognize — broadened to detect any `--token:` declaration anywhere in a file's own `<style>`, verified this can't mask the original Session 015 bug shape. Neither of these was anticipated by reasoning about the code; both came from actually running the real 19-page dataset through the pipeline.
+
+**Victor separately flagged that this continuity system's own Current State/Open Work sections had grown into the append-only-forever pattern they were meant to avoid** — one paragraph per session back to Session 004, a checklist including everything shipped since Session 005. Rewrote both: Current State is now one paragraph describing *now*, plus the last 3 sessions as one-liners, with older detail pointed at the batch files (nothing was deleted — Batch 001/002/003 already hold the full narrative). Open Work now lists only genuinely unshipped items, with od-/td-/pe- status pointed at `data/status/*.json` (already pruned on shipment) instead of hand-copied. The Writing Rules section now says explicitly: "append only" governs the batch files; Current State/Open Work in this file are **replace, don't append** — the distinction that had quietly eroded over 22 sessions.
+
+### Files created or modified (continued)
+
+| File | What changed |
+|---|---|
+| `lib/auto-discover-nodes.js` | New — `discoverOrphanNodes`, `parsePageTitle`, `parsePageMeta`, `titleCaseFromSlug` |
+| `lib/build-index.js`, `lib/build-archives.js` | Both call `discoverOrphanNodes`, concat into their working node array |
+| `lib/check-key-alignment.js` | `extraInIndex` excludes auto-discovered slugs; orphan messaging reframed as "uncurated" |
+| `lib/build-status.js`, `.github/workflows/key-alignment.yml` | Same reframing in notice text and PR comment |
+| `lib/check-design-tokens.js` | `extractRootTokens` detects declarations under any selector, not just `:root`/`[data-theme]` |
+| `data/status/planned-enhancements.json` | `pe-011` |
+| `docs/continuity/INDEX.md` | Current State + Open Work compacted; Writing Rules clarified (append-only vs. replace-don't-append) |
+| `tests/16-auto-discover-nodes.test.js` | New, 12 tests |
+
+### Open work at session end
+
+- [ ] `pe-010`, `pe-011` — both deferred, tracked
+- [ ] od-001, od-002, od-003, od-006, od-007 remain open
+- [ ] Consider documenting the `vex:department`/`vex:workType` meta-tag convention somewhere more visible than `lib/auto-discover-nodes.js`'s own header, if it sees real adoption
+
+### State of the system at session end
+
+Six PRs total this session (#40–#46), each a real checkpoint. Adding a page — registered or not — now reliably becomes visible somewhere, closing the loop Victor actually hit in practice rather than one that was only theorized. Two real, unrelated bugs (the `extraInIndex` false-drift and the design-tokens false-positive) were caught by verifying against Victor's real 19 pages instead of trusting synthetic test fixtures — consistent with this repo's own stated discipline of rendering/running over reasoning. The continuity system itself got the same treatment it prescribes for code: a real growth problem, named directly, fixed by restructuring rather than patched around. 255/255 tests passing, lattice drift 0.
 
 <!-- [VXG RealForever] -->
