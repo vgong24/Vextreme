@@ -239,10 +239,32 @@ Seven PRs total this session (#40–#47). A real values disagreement about a gov
 | `docs/lattice-map.json` | `lib/build-archives.js` context updated with the fix + pointer to the doc/lesson |
 | `docs/continuity/INDEX.md` | Current State updated to reflect the confirmed-frozen v1 relationship |
 
+### Session continued — building the arc-insertion mechanism itself, and two bugs it surfaced by being run for real
+
+**With v1/v2 resolved, Victor asked for the actual foundation: a generic "declare an intent, let a build script fulfill it" mechanism** — not just for arcs, framed as queueable "gesture commands" (his term) so future placement work becomes "input a JSON of what you want to put where," not hand-editing `pages/*.html` and `data/arcs-v2.json` directly. Scoped to one gesture (`place`: department/workType/arc) rather than a full command grammar, extending the existing `vex:department`/`vex:workType` meta-tag pattern rather than inventing a parallel system. Built `config/content-intents.json` (the declared-intent queue) + `lib/apply-content-intents.js` (the applier): each pending intent upserts meta tags on the target page and, if `arcKey` is set, places the slug into that arc's one auto-managed section in `arcs-v2.json` — removing it from any other arc's auto section first, so re-declaring a placement moves it rather than duplicating it (the "self-awareness of its own prior mappings" Victor asked for). Never touches a hand-curated section — arc curation stays a human act. After applying, it shells out to `lib/build-index.js` (the real duplicate-slug BLOCK gate) and reports `lib/check-key-alignment.js`'s output as the sanity check.
+
+**Two real bugs found by actually running it against real content, not by reasoning about the code in advance — the same pattern this repo's history keeps proving out.** First: `pages/about-me.html` and `pages/connect.html` (two of the actual pilot candidates) have no `<head>` tag at all — they're Squarespace paste-block fragments, not full HTML documents. `upsertMetaTag`'s original `</head>`-anchored insert silently no-op'd on them; fixed to prepend the tag at the top of the file when no `</head>` exists, since `lib/auto-discover-nodes.js`'s `parsePageMeta()` is a plain regex over the whole file, not a DOM query — the tag never needed real head placement to work. Second, more significant: applying a test intent with an invented department (`institute`, not yet registered) succeeded silently and `build-index.js` reported `departments: 3` — but `lib/build-ecosystem-hub.js`'s `renderDepartments()` only ever iterates `departmentMeta`'s *registered* keys, never `departmentMap`'s. That content would exist in `data/index.json` forever and render on the Ecosystem Hub *never*, with zero error anywhere. Added `validateIntent()`: rejects any intent whose `department` isn't in `data/departments.json` or whose `arcKey` isn't a real arc, before anything is written; a rejected intent stays `status:"pending"` and the run exits non-zero rather than partially applying.
+
+**Verified end-to-end against real files three times** (dry-run, a full write+rebuild+sanity-check pass with a valid intent, and a rejected-intent pass), each time reverting the repo to clean before committing anything — no real page or arc placement was actually changed this session; the pilot decision (`about-me`/`connect` vs. `bridge-council`/`org-blueprint`) stays open for Victor to declare as real intents once decided.
+
+### Files created or modified (continued)
+
+| File | What changed |
+|---|---|
+| `config/content-intents.json` | New — the declared-intent queue, starts empty |
+| `lib/apply-content-intents.js` | New — applies pending intents, validates before writing, runs the sanity-check pipeline |
+| `docs/architecture/03-data.md` | "Content-placement intents" section |
+| `docs/lattice-map.json` | New `lib/apply-content-intents.js` node |
+| `tests/18-apply-content-intents.test.js` | New, 18 tests |
+
+### Mistakes made (continued)
+
+- First version of `upsertMetaTag` assumed every `pages/*.html` file has a real `<head>` — wrong for at least 2 of the real pilot candidates, caught by running it against them rather than assuming HTML structure.
+- First version shipped with zero validation that a declared department/arcKey actually exists — caught by watching `build-index.js`'s own output (`departments: 3`, one more than the registry has) rather than by inspecting the code in advance.
+
 ### Open work at session end
 
-- [ ] The actual `vex:arcs` meta-tag / build-time arc-insertion mechanism — scoped, unblocked, not yet built
-- [ ] Pilot page-sorting decision still open: `about-me`/`connect` (department-only, no arc — proposed) vs. `bridge-council`/`org-blueprint` (ambiguous arc fit — Victor hasn't yet said whether to ship the department-only pair now or resolve `bridge-council`'s placement first)
+- [ ] Pilot page-sorting decision still open: `about-me`/`connect` (department-only, no arc) vs. `bridge-council`/`org-blueprint` (ambiguous arc fit) — the mechanism to apply either is now built and verified, but no real intents have been declared yet for any of the 19 uncurated pages
 - [ ] `pe-010`, `pe-011`, od-001/002/003/006/007 remain open
 
 <!-- [VXG RealForever] -->

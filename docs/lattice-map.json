@@ -626,6 +626,39 @@
       }
     },
 
+    "lib/apply-content-intents.js": {
+      "role": "applies config/content-intents.json's pending entries — mutates pages/*.html meta tags and data/arcs-v2.json's auto-managed sections, then runs the existing sanity-check pipeline",
+      "context": "Session 022: generalizes the existing vex:department/vex:workType meta-tag pattern (declare intent on the page, let a build step read it) to arc membership too. Rather than inventing a new order:\"auto\" mode in arcs-v2.json's schema, each arc gets one ordinary explicit section with a reserved label (AUTO_SECTION_LABEL) that this tool alone manages — lib/build-archives.js's getArcSlugs() and lib/build-index.js's buildArcMap() need zero changes, since a flat explicit slugs array is exactly what they already render. Re-declaring a slug's arcKey moves it (removes from every other arc's auto section first) rather than duplicating it — the 'repo's own self-awareness of its prior mappings' Victor asked for. Never touches a hand-curated (non-auto-label) section — arc curation stays a human act. validateIntent() catches two silent-failure modes found by actually running this against real content: an unregistered department (buildDepartmentMap groups by any string with no validation, but build-ecosystem-hub.js's renderDepartments() only iterates departmentMeta's registered keys, so unregistered content is present in index.json but rendered nowhere) and a nonexistent arcKey (applyArcPlacement would otherwise throw mid-loop, aborting every remaining intent in the same run). Also: upsertMetaTag() must prepend rather than insert-before-</head> for pages with no <head> at all — several real candidate pages (about-me.html, connect.html) are Squarespace paste-block fragments with no HTML document wrapper; found by running this tool against them, not anticipated in advance. After applying, shells out to lib/build-index.js (the real BLOCK gate for duplicate slugs) then calls lib/check-key-alignment.js's checkKeyAlignment() directly as the sanity-check report, same as every other content change in this repo is verified against.",
+      "reads": [
+        "config/content-intents.json",
+        "pages/*.html (only the slugs named by pending intents)",
+        "data/arcs-v2.json",
+        "data/departments.json (validation only)"
+      ],
+      "writes": [
+        "pages/*.html (meta tag upserts, only for slugs named by pending intents)",
+        "data/arcs-v2.json (auto-managed section only)",
+        "config/content-intents.json (marks applied intents, with appliedAt)"
+      ],
+      "loadedBy": [
+        "manual run: node lib/apply-content-intents.js",
+        "tests/18-apply-content-intents.test.js"
+      ],
+      "testedBy": ["tests/18-apply-content-intents.test.js"],
+      "changeMap": {
+        "content-intents.json schema changed (new field, field renamed)": [
+          "applyIntent() in this file",
+          "tests/18-apply-content-intents.test.js"
+        ],
+        "vex:department / vex:workType meta tag convention changed": [
+          "lib/auto-discover-nodes.js parsePageMeta() (must stay compatible with what this file writes)"
+        ],
+        "AUTO_SECTION_LABEL or arc-placement rule changed": [
+          "lib/build-archives.js getArcSlugs() / lib/build-index.js buildArcMap() — both must keep treating an auto-managed section as an ordinary explicit section (no special-casing needed as long as the label doesn't collide with a real curated label)"
+        ]
+      }
+    },
+
     "lib/build-lessons.js": {
       "role": "compiles config/lessons/*.json into data/lessons.json — the read-side manifest the Ecosystem Hub fetches",
       "context": "config/lessons/*.json has been the write-side home for distilled architectural/process lessons since Session 010 (see docs/architecture/08-continuity.md's collaboration-documents table), but nothing compiled those files into anything pages/ecosystem-hub.html — the one dashboard meant to answer 'what does this system currently know' — could read. A lesson was discoverable (git log --grep, grepping the directory, or the partial hand-authored decision cards in pages/specimen-architectural-wisdoms.html) but not connected to the generated read side, the same shape of gap lib/auto-discover-nodes.js closed for pages/ in the same session. Handles two lesson-file schema generations: newer files use sessions: [...], older ones (Session 010-011) use pr/session singular fields — both normalize to one sessions array in the output.",
