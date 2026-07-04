@@ -1,0 +1,16 @@
+{
+  "types": {
+    "category": {
+      "required": ["id", "directory", "default", "description", "navVisibility"]
+    },
+    "feature": {
+      "required": ["id", "label", "icon", "asset"]
+    },
+    "asset-type": {
+      "required": ["id", "extension", "loadMethod", "directory"]
+    },
+    "template": {
+      "required": ["id", "description", "features"]
+    }
+  }
+}

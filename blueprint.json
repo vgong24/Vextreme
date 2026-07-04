@@ -1,0 +1,32 @@
+{
+  "_meta": {
+    "type": "blueprint",
+    "version": "1.0.0",
+    "description": "Vextreme system definition. Read this before reading anything else in the build pipeline."
+  },
+  "categories":  ["system", "production", "demo", "staging", "experimental"],
+  "features":    ["lang", "demo", "theme", "spiral-fab"],
+  "languages": {
+    "inline": ["en"],
+    "lazy":   ["ja"]
+  },
+  "assetTypes":  ["script", "style"],
+  "templates":   ["page", "specimens-dashboard", "specimen-page"],
+  "build": {
+    "assembly": {
+      "core":    ["lib/shell.js", "lib/vex-config.js"],
+      "output":  { "dir": "dist/", "pattern": "vextreme-{slug}.js" }
+    }
+  },
+  "loading": {
+    "cachePolicies": {
+      "core": { "ttl": "1y", "immutable": true },
+      "data": { "ttl": "1h" },
+      "html": { "ttl": "0", "alwaysFresh": true }
+    }
+  },
+  "performance": {
+    "targets": { "firstLoad": "<100ms", "subsequentLoad": "<50ms" },
+    "budgets": { "perPage": "100KB", "total": "5MB", "core": "25KB" }
+  }
+}

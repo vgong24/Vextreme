@@ -1,0 +1,18 @@
+{
+  "_comment": "Department registry — production-domain grouping (who owns a work, what stage it's in). Orthogonal to arcs-v2.json (reader-facing narrative grouping) and blueprint.json categories (publish-lifecycle: system/production/demo/staging/experimental). A node with no department field belongs to whichever entry here has default:true; a node with no workType field belongs to that department's 'default' workType. Batch/series content within one workType (e.g. multiple transcript rounds) should use an incrementing numeric suffix on a shared base name (\"vxg-thread-round-5\", next one \"vxg-thread-round-6\", not a new base name each time) — slugs stay globally unique this way without inventing a name per item. lib/build-index.js's findDuplicateSlugs is the mechanical backstop if that convention is ever violated by mistake; it halts the build rather than silently overwriting one node with another in the index.",
+  "rd": {
+    "label": "R&D",
+    "default": true,
+    "workTypes": {
+      "default": { "label": "Default" }
+    }
+  },
+  "media": {
+    "label": "Media",
+    "default": false,
+    "workTypes": {
+      "reviews": { "label": "Reviews" },
+      "record-transcripts": { "label": "Record Transcripts" }
+    }
+  }
+}

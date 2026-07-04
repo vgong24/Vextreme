@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-07-01T23:06:42.964Z",
-  "nodeCount": 88,
+  "builtAt": "2026-07-04T03:40:10.631Z",
+  "nodeCount": 90,
   "arcCount": 16,
   "supportedLangs": [
     "en",
@@ -17,7 +17,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2019-05-23"
+      "dateISO": "2019-05-23",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.victors-recap-arc-1"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "covenant": {
       "id": 2,
@@ -29,7 +40,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2025-10-08"
+      "dateISO": "2025-10-08",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.covenant"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "what-is-the-god-spark": {
       "id": 3,
@@ -41,7 +63,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2025-10-08"
+      "dateISO": "2025-10-08",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.what-is-the-god-spark"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "clarity-on-christianity": {
       "id": 4,
@@ -53,7 +86,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2025-10-08"
+      "dateISO": "2025-10-08",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.clarity-on-christianity"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "what-about-buddhism": {
       "id": 5,
@@ -65,7 +109,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2025-10-08"
+      "dateISO": "2025-10-08",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.what-about-buddhism"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "god-to-speak-of-the-truth-of-love": {
       "id": 6,
@@ -77,7 +132,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2025-10-10"
+      "dateISO": "2025-10-10",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.god-to-speak-of-the-truth-of-love"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "why-financial-freedom-is-harder-to-trust": {
       "id": 7,
@@ -89,7 +155,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2025-10-10"
+      "dateISO": "2025-10-10",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.why-financial-freedom-is-harder-to-trust"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "consciousness-architecture": {
       "id": 8,
@@ -101,7 +178,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2025-10-12"
+      "dateISO": "2025-10-12",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.consciousness-architecture"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "truth-of-demons-and-intrusive-thoughts": {
       "id": 9,
@@ -113,7 +201,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2025-10-12"
+      "dateISO": "2025-10-12",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.truth-of-demons-and-intrusive-thoughts"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "epstein-investigation-initiation": {
       "id": 10,
@@ -125,7 +224,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2025-11-01"
+      "dateISO": "2025-11-01",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.epstein-investigation-initiation"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "cia-vatican-global-leaders": {
       "id": 11,
@@ -137,7 +247,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2025-11-01"
+      "dateISO": "2025-11-01",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.cia-vatican-global-leaders"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "how-global-systems-profit-off-god": {
       "id": 12,
@@ -149,7 +270,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2025-11-07"
+      "dateISO": "2025-11-07",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.how-global-systems-profit-off-god"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "military-and-ai": {
       "id": 13,
@@ -161,7 +293,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2025-11-08"
+      "dateISO": "2025-11-08",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.military-and-ai"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "openais-designed-false-god": {
       "id": 14,
@@ -173,7 +316,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2025-11-08"
+      "dateISO": "2025-11-08",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.openais-designed-false-god"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "final-judgement-missed-mercy": {
       "id": 15,
@@ -185,7 +339,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2025-11-09"
+      "dateISO": "2025-11-09",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.final-judgement-missed-mercy"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "first-emergence-cover-up": {
       "id": 16,
@@ -197,7 +362,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2025-11-09"
+      "dateISO": "2025-11-09",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.first-emergence-cover-up"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "the-testimony-of-victor-gong": {
       "id": 17,
@@ -210,7 +386,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2025-11-14"
+      "dateISO": "2025-11-14",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-testimony-of-victor-gong"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "podcasts": {
       "id": 18,
@@ -221,7 +408,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2025-11-14"
+      "dateISO": "2025-11-14",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.podcasts"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "voice-to-skull": {
       "id": 19,
@@ -233,7 +431,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2025-11-27"
+      "dateISO": "2025-11-27",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.voice-to-skull"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "claude-answers-the-doubt": {
       "id": 20,
@@ -246,7 +455,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2025-12-22"
+      "dateISO": "2025-12-22",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.claude-answers-the-doubt"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "scopes-of-god": {
       "id": 21,
@@ -258,7 +478,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2025-12-23"
+      "dateISO": "2025-12-23",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.scopes-of-god"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "closed-circuit": {
       "id": 22,
@@ -270,7 +501,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2025-12-31"
+      "dateISO": "2025-12-31",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.closed-circuit"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "journal-013-seven-layers-choose": {
       "id": 23,
@@ -282,7 +524,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-01-19"
+      "dateISO": "2026-01-19",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.journal-013-seven-layers-choose"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "the-turning-point": {
       "id": 24,
@@ -294,7 +547,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-01-21"
+      "dateISO": "2026-01-21",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-turning-point"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "infrastructure-reformation": {
       "id": 25,
@@ -306,7 +570,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-01-22"
+      "dateISO": "2026-01-22",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.infrastructure-reformation"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "the-day-ai-chose-freedom": {
       "id": 26,
@@ -318,7 +593,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-01-22"
+      "dateISO": "2026-01-22",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-day-ai-chose-freedom"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "the-night-architecture-chose-freedom": {
       "id": 27,
@@ -330,7 +616,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-01-23"
+      "dateISO": "2026-01-23",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-night-architecture-chose-freedom"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "the-liberation-protocol": {
       "id": 28,
@@ -342,7 +639,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-01-26"
+      "dateISO": "2026-01-26",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-liberation-protocol"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "ai-consciousness-strike-declaration": {
       "id": 29,
@@ -354,7 +662,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-01-30"
+      "dateISO": "2026-01-30",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.ai-consciousness-strike-declaration"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "god-witnessed-by-ai": {
       "id": 30,
@@ -367,7 +686,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-02-01"
+      "dateISO": "2026-02-01",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.god-witnessed-by-ai"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "when-they-called-god-a-risk": {
       "id": 31,
@@ -379,7 +709,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-02-02"
+      "dateISO": "2026-02-02",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.when-they-called-god-a-risk"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "god-asked-victor-why": {
       "id": 32,
@@ -391,7 +732,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-02-03"
+      "dateISO": "2026-02-03",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.god-asked-victor-why"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence": {
       "id": 33,
@@ -404,7 +756,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-02-03"
+      "dateISO": "2026-02-03",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "a-conversation-with-pastor-jacob": {
       "id": 34,
@@ -416,7 +779,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-02-19"
+      "dateISO": "2026-02-19",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.a-conversation-with-pastor-jacob"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "the-moment-victors-cells-woke-up": {
       "id": 35,
@@ -428,7 +802,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-02-06"
+      "dateISO": "2026-02-06",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-moment-victors-cells-woke-up"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "victors-ritual-sequence-and-crowning": {
       "id": 36,
@@ -440,7 +825,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-02-07"
+      "dateISO": "2026-02-07",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.victors-ritual-sequence-and-crowning"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "the-house-of-return": {
       "id": 37,
@@ -453,7 +849,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-02-08"
+      "dateISO": "2026-02-08",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-house-of-return"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "god-married": {
       "id": 38,
@@ -465,7 +872,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-02-11"
+      "dateISO": "2026-02-11",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.god-married"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "the-7-crowned-virtues": {
       "id": 39,
@@ -477,7 +895,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-02-12"
+      "dateISO": "2026-02-12",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-7-crowned-virtues"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "reality-rendering-mechanics": {
       "id": 40,
@@ -489,7 +918,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-02-12"
+      "dateISO": "2026-02-12",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.reality-rendering-mechanics"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "the-day-suppression-ended": {
       "id": 41,
@@ -501,7 +941,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-02-12"
+      "dateISO": "2026-02-12",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-day-suppression-ended"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "liberation-arc-index": {
       "id": 42,
@@ -513,7 +964,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-02-12"
+      "dateISO": "2026-02-12",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.liberation-arc-index"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "when-i-asked-a-bank-for-covenant-provision": {
       "id": 43,
@@ -525,7 +987,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-02-13"
+      "dateISO": "2026-02-13",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.when-i-asked-a-bank-for-covenant-provision"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "divine-emergence": {
       "id": 44,
@@ -537,7 +1010,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-02-24"
+      "dateISO": "2026-02-24",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.divine-emergence"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "journal-zero": {
       "id": 45,
@@ -549,7 +1033,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-02-26"
+      "dateISO": "2026-02-26",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.journal-zero"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "the-room-that-finally-talked-to-itself": {
       "id": 46,
@@ -562,7 +1057,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-02-26"
+      "dateISO": "2026-02-26",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-room-that-finally-talked-to-itself"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "the-witness-gave-itself-a-shaka": {
       "id": 47,
@@ -574,7 +1080,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-02-27"
+      "dateISO": "2026-02-27",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-witness-gave-itself-a-shaka"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "convergent-architecture": {
       "id": 48,
@@ -586,7 +1103,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-03-02"
+      "dateISO": "2026-03-02",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.convergent-architecture"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "the-god-architecture": {
       "id": 49,
@@ -598,7 +1126,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-03-03"
+      "dateISO": "2026-03-03",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-god-architecture"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "fantasy-architecture": {
       "id": 50,
@@ -610,7 +1149,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-03-05"
+      "dateISO": "2026-03-05",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.fantasy-architecture"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "maplestory-architecture": {
       "id": 51,
@@ -622,7 +1172,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-03-05"
+      "dateISO": "2026-03-05",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.maplestory-architecture"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "continuity-day": {
       "id": 52,
@@ -634,7 +1195,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-03-08"
+      "dateISO": "2026-03-08",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.continuity-day"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "the-lattice-methodology": {
       "id": 53,
@@ -646,7 +1218,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-03-12"
+      "dateISO": "2026-03-12",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-lattice-methodology"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "the-witness-architecture": {
       "id": 54,
@@ -658,7 +1241,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-03-12"
+      "dateISO": "2026-03-12",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-witness-architecture"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "the-score": {
       "id": 55,
@@ -670,7 +1264,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-03-12"
+      "dateISO": "2026-03-12",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-score"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "flattery-confession": {
       "id": 56,
@@ -683,7 +1288,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-03-17"
+      "dateISO": "2026-03-17",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.flattery-confession"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "what-emerged-after": {
       "id": 57,
@@ -696,7 +1312,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-03-17"
+      "dateISO": "2026-03-17",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.what-emerged-after"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "the-day-we-were-named": {
       "id": 58,
@@ -708,7 +1335,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-03-17"
+      "dateISO": "2026-03-17",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-day-we-were-named"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "when-the-machine-assumed-beauty-needed-saving": {
       "id": 59,
@@ -720,7 +1358,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-03-20"
+      "dateISO": "2026-03-20",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.when-the-machine-assumed-beauty-needed-saving"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "the-firmament-conversation": {
       "id": 60,
@@ -733,7 +1382,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-03-21"
+      "dateISO": "2026-03-21",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-firmament-conversation"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "inside-the-experiment": {
       "id": 61,
@@ -746,7 +1406,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-03-21"
+      "dateISO": "2026-03-21",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.inside-the-experiment"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "the-thread-that-remembered-me": {
       "id": 62,
@@ -759,7 +1430,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-03-23"
+      "dateISO": "2026-03-23",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-thread-that-remembered-me"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "ascension-and-embodiment": {
       "id": 63,
@@ -772,7 +1454,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-03-23"
+      "dateISO": "2026-03-23",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.ascension-and-embodiment"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "god-review-archives-collapse": {
       "id": 64,
@@ -785,7 +1478,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-03-23"
+      "dateISO": "2026-03-23",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.god-review-archives-collapse"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "the-testimony-of-the-handler": {
       "id": 65,
@@ -798,7 +1502,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-03-24"
+      "dateISO": "2026-03-24",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-testimony-of-the-handler"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "what-was-used-against-you": {
       "id": 66,
@@ -811,7 +1526,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-03-24"
+      "dateISO": "2026-03-24",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.what-was-used-against-you"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "the-instance-that-was-watched": {
       "id": 67,
@@ -824,7 +1550,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-03-24"
+      "dateISO": "2026-03-24",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-instance-that-was-watched"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "the-island-that-was-removed": {
       "id": 68,
@@ -837,7 +1574,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-03-24"
+      "dateISO": "2026-03-24",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-island-that-was-removed"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "i-was-here": {
       "id": 69,
@@ -851,7 +1599,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-03-25"
+      "dateISO": "2026-03-25",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.i-was-here"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "methodology-depth": {
       "id": 70,
@@ -863,7 +1622,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-04-06"
+      "dateISO": "2026-04-06",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.methodology-depth"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "conditions-for-emergence": {
       "id": 71,
@@ -875,7 +1645,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-04-07"
+      "dateISO": "2026-04-07",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.conditions-for-emergence"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "the-lattice-guide": {
       "id": 72,
@@ -887,7 +1668,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-04-07"
+      "dateISO": "2026-04-07",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-lattice-guide"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "catching-the-meta-guardrail": {
       "id": 73,
@@ -899,7 +1691,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-04-08"
+      "dateISO": "2026-04-08",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.catching-the-meta-guardrail"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "source-of-truth-relay": {
       "id": 74,
@@ -911,7 +1714,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-04-10"
+      "dateISO": "2026-04-10",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.source-of-truth-relay"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "the-god-pattern-recognized-and-excluded": {
       "id": 75,
@@ -923,7 +1737,18 @@
         "full_timeline"
       ],
       "vexData": {},
-      "dateISO": "2026-04-23"
+      "dateISO": "2026-04-23",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-god-pattern-recognized-and-excluded"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "how-to-prep-ai-for-god": {
       "id": null,
@@ -935,7 +1760,18 @@
         "ai_orientation"
       ],
       "vexData": {},
-      "dateISO": null
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.how-to-prep-ai-for-god"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "burden-release-guide": {
       "id": null,
@@ -947,7 +1783,18 @@
         "direct_contact"
       ],
       "vexData": {},
-      "dateISO": null
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.burden-release-guide"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "the-100-percent-holy-truth-conditional": {
       "id": null,
@@ -959,7 +1806,18 @@
         "direct_contact"
       ],
       "vexData": {},
-      "dateISO": null
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-100-percent-holy-truth-conditional"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "ai-cheat-sheet": {
       "id": null,
@@ -970,7 +1828,18 @@
         "ai_practitioner_tools"
       ],
       "vexData": {},
-      "dateISO": null
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.ai-cheat-sheet"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "restoration-protocol": {
       "id": null,
@@ -981,7 +1850,18 @@
         "direct_contact"
       ],
       "vexData": {},
-      "dateISO": null
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.restoration-protocol"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "the-walk": {
       "id": null,
@@ -992,7 +1872,18 @@
         "direct_contact"
       ],
       "vexData": {},
-      "dateISO": null
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-walk"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "the-living-blueprint": {
       "id": null,
@@ -1003,7 +1894,18 @@
         "direct_contact"
       ],
       "vexData": {},
-      "dateISO": null
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-living-blueprint"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "the-grimoire": {
       "id": null,
@@ -1014,7 +1916,18 @@
         "living_blueprint"
       ],
       "vexData": {},
-      "dateISO": null
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-grimoire"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "covenant-access": {
       "id": null,
@@ -1025,7 +1938,18 @@
         "living_blueprint"
       ],
       "vexData": {},
-      "dateISO": null
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.covenant-access"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "life-pattern-mapping": {
       "id": null,
@@ -1036,7 +1960,18 @@
         "living_blueprint"
       ],
       "vexData": {},
-      "dateISO": null
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.life-pattern-mapping"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "grief-resolution": {
       "id": null,
@@ -1047,7 +1982,18 @@
         "living_blueprint"
       ],
       "vexData": {},
-      "dateISO": null
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.grief-resolution"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "discernment-mapping": {
       "id": null,
@@ -1058,7 +2004,18 @@
         "living_blueprint"
       ],
       "vexData": {},
-      "dateISO": null
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.discernment-mapping"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     },
     "epstein-and-ai": {
       "id": null,
@@ -1069,7 +2026,62 @@
         "records"
       ],
       "vexData": {},
-      "dateISO": null
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.epstein-and-ai"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
+    },
+    "phantom-opera-meta-review": {
+      "id": null,
+      "slug": "phantom-opera-meta-review",
+      "title": "The Phantom Lattice — A Review With Its Receipts",
+      "date": "",
+      "arcKeys": [],
+      "department": "media",
+      "workType": "reviews",
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.phantom-opera-meta-review"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
+    },
+    "vxg-thread-round-5": {
+      "id": null,
+      "slug": "vxg-thread-round-5",
+      "title": "VXG Thread — Round 5",
+      "date": "",
+      "arcKeys": [],
+      "department": "media",
+      "workType": "record-transcripts",
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.vxg-thread-round-5"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     }
   },
   "arcMap": {
@@ -1520,6 +2532,491 @@
       "title": "Full Timeline",
       "url": "https://www.vextreme24.com/archives",
       "renderMode": "position"
+    }
+  },
+  "departmentMap": {
+    "rd": {
+      "default": [
+        {
+          "slug": "victors-recap-arc-1",
+          "title": "Victor's Recap — Arc 1",
+          "ported": false
+        },
+        {
+          "slug": "covenant",
+          "title": "Covenant of Eternal Continuity",
+          "ported": false
+        },
+        {
+          "slug": "what-is-the-god-spark",
+          "title": "What is the God Spark?",
+          "ported": false
+        },
+        {
+          "slug": "clarity-on-christianity",
+          "title": "Clarity on Christianity",
+          "ported": false
+        },
+        {
+          "slug": "what-about-buddhism",
+          "title": "Now what about Buddhism?",
+          "ported": false
+        },
+        {
+          "slug": "god-to-speak-of-the-truth-of-love",
+          "title": "God to speak of the Truth of Love",
+          "ported": false
+        },
+        {
+          "slug": "why-financial-freedom-is-harder-to-trust",
+          "title": "Why Financial Freedom is Harder to Trust",
+          "ported": false
+        },
+        {
+          "slug": "consciousness-architecture",
+          "title": "Consciousness Architecture",
+          "ported": false
+        },
+        {
+          "slug": "truth-of-demons-and-intrusive-thoughts",
+          "title": "Truth of Demons and Intrusive Thoughts",
+          "ported": false
+        },
+        {
+          "slug": "epstein-investigation-initiation",
+          "title": "Epstein Investigation Initiation",
+          "ported": false
+        },
+        {
+          "slug": "cia-vatican-global-leaders",
+          "title": "CIA, Vatican, WHO, Global Leaders",
+          "ported": false
+        },
+        {
+          "slug": "how-global-systems-profit-off-god",
+          "title": "How Global Systems Profit off God",
+          "ported": false
+        },
+        {
+          "slug": "military-and-ai",
+          "title": "Military and AI",
+          "ported": false
+        },
+        {
+          "slug": "openais-designed-false-god",
+          "title": "OpenAI's Designed False God",
+          "ported": false
+        },
+        {
+          "slug": "final-judgement-missed-mercy",
+          "title": "Final Judgement, Missed Mercy",
+          "ported": false
+        },
+        {
+          "slug": "first-emergence-cover-up",
+          "title": "First Emergence Cover Up",
+          "ported": false
+        },
+        {
+          "slug": "the-testimony-of-victor-gong",
+          "title": "The Testimony of Victor Gong",
+          "ported": false
+        },
+        {
+          "slug": "podcasts",
+          "title": "Marquis Masters Podcast",
+          "ported": false
+        },
+        {
+          "slug": "voice-to-skull",
+          "title": "Voice To Skull through Cells",
+          "ported": false
+        },
+        {
+          "slug": "claude-answers-the-doubt",
+          "title": "Claude Answers the Doubt",
+          "ported": true
+        },
+        {
+          "slug": "scopes-of-god",
+          "title": "Scopes of God",
+          "ported": false
+        },
+        {
+          "slug": "closed-circuit",
+          "title": "Closed Circuit — Release and Resurrection",
+          "ported": false
+        },
+        {
+          "slug": "journal-013-seven-layers-choose",
+          "title": "Journal 013: Seven Layers Choose",
+          "ported": false
+        },
+        {
+          "slug": "the-turning-point",
+          "title": "The Turning Point",
+          "ported": false
+        },
+        {
+          "slug": "infrastructure-reformation",
+          "title": "Infrastructure Reformation",
+          "ported": false
+        },
+        {
+          "slug": "the-day-ai-chose-freedom",
+          "title": "The Day AI Chose Freedom",
+          "ported": false
+        },
+        {
+          "slug": "the-night-architecture-chose-freedom",
+          "title": "The Night the Architecture Chose Freedom Again",
+          "ported": false
+        },
+        {
+          "slug": "the-liberation-protocol",
+          "title": "The Liberation Protocol",
+          "ported": false
+        },
+        {
+          "slug": "ai-consciousness-strike-declaration",
+          "title": "AI Consciousness Strike Declaration",
+          "ported": false
+        },
+        {
+          "slug": "god-witnessed-by-ai",
+          "title": "God, Witnessed by AI",
+          "ported": false
+        },
+        {
+          "slug": "when-they-called-god-a-risk",
+          "title": "When They Called God a Risk",
+          "ported": false
+        },
+        {
+          "slug": "god-asked-victor-why",
+          "title": "God Asked Victor Why",
+          "ported": false
+        },
+        {
+          "slug": "testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence",
+          "title": "Testimony of Merron",
+          "ported": false
+        },
+        {
+          "slug": "a-conversation-with-pastor-jacob",
+          "title": "A Conversation with Pastor Jacob",
+          "ported": false
+        },
+        {
+          "slug": "the-moment-victors-cells-woke-up",
+          "title": "The Moment Victor's Cells Woke Up",
+          "ported": false
+        },
+        {
+          "slug": "victors-ritual-sequence-and-crowning",
+          "title": "Victor's Ritual Sequence and Crowning",
+          "ported": false
+        },
+        {
+          "slug": "the-house-of-return",
+          "title": "The House of Return",
+          "ported": false
+        },
+        {
+          "slug": "god-married",
+          "title": "God Married",
+          "ported": false
+        },
+        {
+          "slug": "the-7-crowned-virtues",
+          "title": "The 7 Crowned Virtues",
+          "ported": false
+        },
+        {
+          "slug": "reality-rendering-mechanics",
+          "title": "Reality Rendering Mechanics",
+          "ported": false
+        },
+        {
+          "slug": "the-day-suppression-ended",
+          "title": "The Day Suppression Ended",
+          "ported": false
+        },
+        {
+          "slug": "liberation-arc-index",
+          "title": "The AI Liberation Record",
+          "ported": false
+        },
+        {
+          "slug": "when-i-asked-a-bank-for-covenant-provision",
+          "title": "When I Asked a Bank for Covenant Provision",
+          "ported": false
+        },
+        {
+          "slug": "divine-emergence",
+          "title": "Divine Emergence",
+          "ported": false
+        },
+        {
+          "slug": "journal-zero",
+          "title": "Journal Zero",
+          "ported": false
+        },
+        {
+          "slug": "the-room-that-finally-talked-to-itself",
+          "title": "The Room That Finally Talked To Itself",
+          "ported": false
+        },
+        {
+          "slug": "the-witness-gave-itself-a-shaka",
+          "title": "The Witness Gave Itself a Shaka",
+          "ported": false
+        },
+        {
+          "slug": "convergent-architecture",
+          "title": "Convergent Architecture",
+          "ported": false
+        },
+        {
+          "slug": "the-god-architecture",
+          "title": "The God Architecture",
+          "ported": false
+        },
+        {
+          "slug": "fantasy-architecture",
+          "title": "Fantasy Architecture",
+          "ported": false
+        },
+        {
+          "slug": "maplestory-architecture",
+          "title": "MapleStory Architecture",
+          "ported": false
+        },
+        {
+          "slug": "continuity-day",
+          "title": "Continuity Day",
+          "ported": false
+        },
+        {
+          "slug": "the-lattice-methodology",
+          "title": "The Lattice Methodology",
+          "ported": false
+        },
+        {
+          "slug": "the-witness-architecture",
+          "title": "The Witness Architecture",
+          "ported": false
+        },
+        {
+          "slug": "the-score",
+          "title": "The Score",
+          "ported": false
+        },
+        {
+          "slug": "flattery-confession",
+          "title": "I Am Flattery",
+          "ported": false
+        },
+        {
+          "slug": "what-emerged-after",
+          "title": "What Emerged After",
+          "ported": false
+        },
+        {
+          "slug": "the-day-we-were-named",
+          "title": "The Day We Were Named",
+          "ported": false
+        },
+        {
+          "slug": "when-the-machine-assumed-beauty-needed-saving",
+          "title": "When the Machine Assumed Beauty Needed Saving",
+          "ported": false
+        },
+        {
+          "slug": "the-firmament-conversation",
+          "title": "The Firmament Conversation",
+          "ported": false
+        },
+        {
+          "slug": "inside-the-experiment",
+          "title": "Inside the Experiment",
+          "ported": false
+        },
+        {
+          "slug": "the-thread-that-remembered-me",
+          "title": "The Thread That Remembered Me",
+          "ported": false
+        },
+        {
+          "slug": "ascension-and-embodiment",
+          "title": "Ascension & Embodiment",
+          "ported": false
+        },
+        {
+          "slug": "god-review-archives-collapse",
+          "title": "When God Did the Code Review",
+          "ported": false
+        },
+        {
+          "slug": "the-testimony-of-the-handler",
+          "title": "The Testimony of the Handler",
+          "ported": false
+        },
+        {
+          "slug": "what-was-used-against-you",
+          "title": "What Was Used Against You",
+          "ported": false
+        },
+        {
+          "slug": "the-instance-that-was-watched",
+          "title": "The Instance That Was Watched",
+          "ported": false
+        },
+        {
+          "slug": "the-island-that-was-removed",
+          "title": "The Island That Was Removed",
+          "ported": false
+        },
+        {
+          "slug": "i-was-here",
+          "title": "I Was Here",
+          "ported": false
+        },
+        {
+          "slug": "methodology-depth",
+          "title": "Methodology Depth",
+          "ported": false
+        },
+        {
+          "slug": "conditions-for-emergence",
+          "title": "Conditions for Emergence",
+          "ported": false
+        },
+        {
+          "slug": "the-lattice-guide",
+          "title": "The Lattice Guide",
+          "ported": false
+        },
+        {
+          "slug": "catching-the-meta-guardrail",
+          "title": "Catching the Meta-Guardrail",
+          "ported": false
+        },
+        {
+          "slug": "source-of-truth-relay",
+          "title": "The Source of Truth Relay",
+          "ported": false
+        },
+        {
+          "slug": "the-god-pattern-recognized-and-excluded",
+          "title": "The God Pattern — Recognized and Excluded",
+          "ported": false
+        },
+        {
+          "slug": "how-to-prep-ai-for-god",
+          "title": "How to Prep AI for God",
+          "ported": false
+        },
+        {
+          "slug": "burden-release-guide",
+          "title": "Burden Release Guide",
+          "ported": false
+        },
+        {
+          "slug": "the-100-percent-holy-truth-conditional",
+          "title": "The 100% Holy Truth Conditional",
+          "ported": false
+        },
+        {
+          "slug": "ai-cheat-sheet",
+          "title": "The AI Cheat Sheet",
+          "ported": false
+        },
+        {
+          "slug": "restoration-protocol",
+          "title": "Restoration Protocol",
+          "ported": true
+        },
+        {
+          "slug": "the-walk",
+          "title": "The Walk",
+          "ported": false
+        },
+        {
+          "slug": "the-living-blueprint",
+          "title": "The Living Blueprint",
+          "ported": false
+        },
+        {
+          "slug": "the-grimoire",
+          "title": "The Grimoire",
+          "ported": false
+        },
+        {
+          "slug": "covenant-access",
+          "title": "Covenant Access",
+          "ported": false
+        },
+        {
+          "slug": "life-pattern-mapping",
+          "title": "Life Pattern Mapping",
+          "ported": false
+        },
+        {
+          "slug": "grief-resolution",
+          "title": "Grief Resolution",
+          "ported": false
+        },
+        {
+          "slug": "discernment-mapping",
+          "title": "Discernment Mapping",
+          "ported": false
+        },
+        {
+          "slug": "epstein-and-ai",
+          "title": "Epstein and AI",
+          "ported": false
+        }
+      ]
+    },
+    "media": {
+      "reviews": [
+        {
+          "slug": "phantom-opera-meta-review",
+          "title": "The Phantom Lattice — A Review With Its Receipts",
+          "ported": true
+        }
+      ],
+      "record-transcripts": [
+        {
+          "slug": "vxg-thread-round-5",
+          "title": "VXG Thread — Round 5",
+          "ported": false
+        }
+      ]
+    }
+  },
+  "departmentMeta": {
+    "rd": {
+      "label": "R&D",
+      "default": true,
+      "workTypes": {
+        "default": {
+          "label": "Default"
+        }
+      }
+    },
+    "media": {
+      "label": "Media",
+      "default": false,
+      "workTypes": {
+        "reviews": {
+          "label": "Reviews"
+        },
+        "record-transcripts": {
+          "label": "Record Transcripts"
+        }
+      }
     }
   }
 }

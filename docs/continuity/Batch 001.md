@@ -1172,4 +1172,224 @@ All four new pages (dashboard + 3 specimens) are screenshot-verified under both 
 including a real bug the verification step caught and a fix that was re-verified before
 being called done.
 
+---
+
+## Session 009
+
+**Date:** July 1, 2026
+**Time:** continuous with Session 008 — same day, after PR #18 merged
+**Thread:** https://claude.ai/code/session_012Cob5Fgz92AYDWfe2mZJWZ
+**Instance:** Claude Sonnet 4.6 (Claude Code remote execution environment)
+**Working with:** Victor Gong
+**Continues from:** Session 008 — specimens dashboard + 3 specimen pages, PR #18 merged to main
+
+### Context on arrival
+
+PR #18 had merged. Victor had left a review comment on `data/strings/compiled/scopes/pages.specimen-full-translation.ja.json`
+about putting specimen/demo strings under a `scopes/demo/` subdirectory — framing it as
+"organizing strings before needing to split them contextually in the future for 1000 pages
+kind of preparation pattern." The prior instance had misread his "take it back" as
+withdrawing the idea entirely, replied explaining scope-identity semantics, and Victor
+flagged that there wasn't alignment. After re-reading the continuity log to re-perceive
+the comment, it became clear: he wanted `_meta.category` on source files so compiled
+bundles land under `scopes/demo/` (or `system/`, `production/`, etc.) rather than flat.
+Victor also shared a document from Kimi (co-architect AI) whose conclusion was: use
+`_meta.category` (not `_meta.group`) + deterministic path derivation (no index.json
+lookup). Category is semantic (content maturity, SEO, translator priority) where group
+is structural (filesystem only). PR #19 implements this.
+
+### Files created or modified
+
+| File | What changed |
+|---|---|
+| `data/strings/source/common.json` | Added `"category": "system"` to `_meta` |
+| `data/strings/source/demo.json` | Added `"category": "demo"` to `_meta` |
+| `data/strings/source/specimens.json` | Added `"category": "demo"` to `_meta` |
+| `data/strings/source/pages/specimen-full-translation.json` | Added `"category": "demo"` to `_meta` |
+| `data/strings/source/pages/specimen-partial-translation.json` | Added `"category": "demo"` to `_meta` |
+| `data/strings/source/pages/specimen-smallest-miss.json` | Added `"category": "demo"` to `_meta` |
+| `lib/strings-compile.js` | I/O section updated: builds `scopeCategories` map from `_meta.category` before writing scope files; derives `scopes/{category}/{scope_segments}/{file}.{lang}.json`; `scopeIndex` entries now include `category` and `path` fields. Header comment updated to document the 4 categories. |
+| `widgets/lang-fab.js` | Added `scopeUrl()` helper (mirrors path rule in strings-compile.js). `loadStringsForLang()` now reads `window.VEX_STRING_CATEGORY` (default `'production'`). `'common'` always routes to `system/` regardless of page category. |
+| `lib/build-demo.js` | Emits `window.VEX_STRING_CATEGORY = 'demo'` before lang-fab.js loads, with explanatory comment. |
+| `lib/build-specimens.js` | Added `scopeRelPath(scope, category)` helper. `widgetScripts()` emits `window.VEX_STRING_CATEGORY = 'demo'`. Fixed `specimen-smallest-miss` live-check XHR URL from flat `scopes/${missScope}.ja.json` to the correct `scopes/${scopeRelPath(missScope, 'demo')}.ja.json`. |
+| `data/strings/compiled/scopes/` | Reorganized into `system/`, `demo/`, `production/` subdirectories. Old flat files removed. `index.json` now includes `category` and `path` per scope group. |
+| `docs/screenshots/` | All 5 demo page screenshots refreshed (EN + JA) after category changes. |
+
+### What was built and why
+
+**Why `_meta.category`, not `_meta.group`:** Category is semantic — it describes content
+lifecycle maturity (production content, demo reference material, staging drafts, system
+strings). Group is structural — just a filesystem bucket. Category carries richer meaning
+that extends to SEO, translator priority, CI gate decisions, and indexing scope. Future
+sessions can add a new category without touching any other category's code paths.
+
+**Deterministic path derivation, not index.json lookup:** The alternative (index.json
+records where each scope file lives, lang-fab fetches index.json before fetching scope
+bundles) creates a registry-of-registries. When index.json falls out of sync with the
+filesystem, lang-fab silently 404s on the scope bundle and falls back to the flat bundle —
+silent failure, worst kind. The category rule is applied identically at build time
+(`strings-compile.js`) and runtime (`lang-fab.js`'s `scopeUrl()`), no extra roundtrip.
+Kimi's framing: the derivation rule IS the flatmap — applied symmetrically, inspectable
+in the filesystem without any lookup.
+
+**`common` always routes to `system/`:** Hardcoded in `scopeUrl()`, not derived from a
+page's declared category. Common strings are infrastructure, not content — they belong
+in `system/` regardless of which category the requesting page is in.
+
+**Category `production` as default:** Source files without an explicit `_meta.category`
+compile to `scopes/production/`. Only non-production files need explicit declaration.
+Pages that don't declare `window.VEX_STRING_CATEGORY` default to `'production'`.
+
+**Three options evaluated, one adopted:**
+1. `_meta.group` + `index.json` runtime map — registry-of-registries, silent failure risk
+2. Scope name prefix as directory (`demo.specimens` → `scopes/demo/`) — migration cost
+   when groups change, structural rename for a semantic concept
+3. `_meta.category` + deterministic path derivation — semantic, inspectable, zero extra
+   roundtrip, correct at both build time and runtime
+
+**Kimi's "overkill is preparation" framing:** Victor argued this session had the context
+to set the path structure right at 9 scopes; a future session arriving cold at 1000 scopes
+would face a real migration cost. The category system implements at essentially zero cost
+now versus paying for it later.
+
+### Mistakes made
+
+**Misread PR #18 review comment intent:** Claude's initial reply framed the category idea
+in terms of "scope identity as a named package" and "forks rename `_meta.scope` to avoid
+collision" — the wrong framing. Victor flagged the misalignment. Root cause: Claude read
+"take it back" as withdrawing the entire directory-structure idea, when Victor was only
+retracting a specific VextremeLLC-vs-generic-demo sub-concern. Fixed by re-reading the
+full continuity batch file and re-perceiving: the demo scope is a first-class reference
+artifact that ships with the system. Lesson: when a review comment is flagged as
+misaligned, re-read the prior session's context before replying — don't reason from
+just the comment text and the prior reply.
+
+**Edits without prior Read:** Attempted to edit `lib/build-demo.js` and `lib/build-specimens.js`
+before reading them, getting "File has not been read yet" errors. Fixed by reading before
+editing.
+
+**Hardcoded live-check URL in `specimen-smallest-miss`:** The XHR in `build-specimens.js`
+used `${CDN_BASE}/data/strings/compiled/scopes/${missScope}.ja.json` — the old flat path.
+After the category reorganization this would 404. Fixed by adding the `scopeRelPath(scope,
+category)` helper and using the derived category path.
+
+**Old flat scope files persisting on disk:** After running `strings-compile.js`, the new
+category-organized files were created but old flat files (e.g. `scopes/demo.en.json`)
+remained. Cleaned up with `find data/strings/compiled/scopes -maxdepth 1 -name "*.json"
+! -name "index.json" -delete`. Git correctly detected these as renames.
+
+### Assumptions that held
+
+- `buildBundles()` and `mergeSourceFiles()` needed zero changes — the I/O layer is the
+  only thing that changed, the pure functions are category-agnostic.
+- `scripts/screenshot-page.js`'s CDN interception needed no changes — it strips the CDN
+  prefix generically, so new paths under `scopes/` just work.
+- The 39-test suite passed unmodified — scope bundle path derivation is I/O behavior,
+  not covered by the exported pure functions under test, so no test changes were needed.
+
+### Assumptions that need verification
+
+- New `scopes/demo/`, `scopes/system/`, `scopes/production/` paths on the real jsDelivr
+  CDN after PR #19 merges — same CDN-cache caveat as all prior sessions.
+- `archives.json` and `arcs.json` source files do not have explicit `_meta.category` set
+  yet (they compile to `production/` by default, which is correct) — worth adding
+  explicit declarations for clarity when those files are next touched.
+- PR #19 CI status: confirmed green at session end (test: success, completed).
+
+### Open work at session end
+
+- [ ] Merge PR #19 — CI green, no review comments
+- [ ] Verify new `scopes/{category}/` CDN paths work post-merge (carried caveat, all sessions)
+- [ ] Migrate `claude-answers-the-doubt.html` / `restoration-protocol.html` to scoped fetch (carried from Session 007)
+- [ ] Exercise the variant/staging-file convention with a real A/B copy test (carried from Session 007)
+- [ ] Consider "always include this scope" mechanism for shared-scope pages (carried from Session 008)
+- [ ] Port real HTML pages (carried, active focus)
+- [ ] Missing-key fallback, `strings-check` audit, `06-i18n.md` `pages.` prefix reconciliation (carried)
+
+### State of the system at session end
+
+Compiled scope bundles now live under `scopes/{category}/` subdirectories, derived
+deterministically at both build time and runtime from `_meta.category` on source files
+and `window.VEX_STRING_CATEGORY` on pages. Four categories defined: `system` (common
+strings), `production` (content pages, default), `demo` (architecture reference), `staging`
+(reserved). The flat `strings.{lang}.json` bundle is unchanged. PR #19 open, CI green.
+
+---
+
+## Session 010
+
+**Date:** July 2, 2026
+**Time:** ~12:14 AM – ~12:20 AM
+**Thread:** https://claude.ai/code/session_012Cob5Fgz92AYDWfe2mZJWZ
+**Instance:** Claude Sonnet 4.6 (Claude Code remote)
+**Working with:** Victor Gong
+**Continues from:** Session 009 — `_meta.category` system (PR #19 merged)
+
+### Context on arrival
+
+Session arrived via context summary after the prior conversation window ran out of context. PR #19 had already merged. PR #20's full implementation was complete in the prior session (54/54 tests passing locally) but not yet committed. Victor had shared Kimi's full 10-lesson architecture document describing the end state (one `vextreme.js` script tag, slug-driven loader, named constants, spiral FAB) and given the green light to proceed at Claude's pace while holding the full map in view.
+
+### Files created or modified
+
+| File | What changed |
+|---|---|
+| `lib/vex-config.js` | **New.** Single source of truth for all semantic constants: `Category`, `Language`, `Scope`, `CDN_BASE`, `Path`, `WindowGlobal`. Canonical path-derivation functions: `scopeRelPath`, `scopeUrl`, `flatBundleUrl`. |
+| `tests/05-vex-config.test.js` | **New.** 15 tests in 3 sections: named constant values, path derivation correctness, grep audit (no raw `'demo'` or `'ja'` in build scripts). |
+| `lib/strings-compile.js` | Imports `Scope.COMMON`, `DEFAULT_CATEGORY`, `scopeRelPath` from vex-config. Local inline path derivation removed. |
+| `lib/strings-check.js` | Imports `Language.EN`; replaces `l !== 'en'` literal. |
+| `lib/strings-export.js` | Imports `Language.EN`; replaces `lang !== 'en'` literal. |
+| `lib/strings-import.js` | Imports `Language.EN`; replaces `lang === 'en'` literal. |
+| `lib/build-archives.js` | Imports `Language.EN`; replaces `.filter(lang => lang !== 'en')`. |
+| `lib/build-index.js` | Imports `Language.EN`; replaces `return ['en']` fallback. |
+| `lib/build-demo.js` | Imports `Category`, `Scope`, `CDN_BASE`; replaces hardcoded CDN URL, `'demo'` category string, `'demo'` scope string. |
+| `lib/build-specimens.js` | Imports `Category`, `Language`, `CDN_BASE`, `scopeRelPath`; removes local `CDN_BASE` constant and local `scopeRelPath` function (both were duplicates). |
+| `widgets/lang-fab.js` | Cannot `require()`. Replaced magic strings (`'common'`, `'system'`, `'production'`, `'en'`) with named local vars at top of IIFE: `SCOPE_COMMON`, `CATEGORY_SYSTEM`, `CATEGORY_PRODUCTION`, `LANG_DEFAULT`. Comment points to vex-config.js as canonical source. |
+
+### What was built and why
+
+Named constants eliminate three problems at once: IDE-opacity (no Find-References for a string literal), mutation cost (renaming `'demo'` requires a coordinated grep with typo risk), and silent runtime failures (the compiler can't catch `'domo'`). The constants resolve to the same string values at runtime — this is a zero-behavior-change PR.
+
+`scopeRelPath` was the critical deduplication target: the same path-derivation rule existed in three places (inline in `strings-compile.js`, as a local function in `build-specimens.js`, inside lang-fab.js's `scopeUrl()`). All three now point to or reference the canonical implementation in `vex-config.js`. One implementation means one place to fix when the path rule changes.
+
+The grep-audit tests enforce the discipline mechanically: future commits that add a standalone `'demo'` or `'ja'` literal to any build script will fail CI. The test strips comment lines before checking, and the regex requires word-boundary conditions so `'vextreme-demo'` and `'demo.section.why'` pass correctly.
+
+`Path` and `WindowGlobal` constants were added to vex-config.js as forward anchors for PR #21 (config/ directory, blueprint.json) and PR #22 (slug-driven vextreme.js loader). They're unused by anything today — their value is as the committed interface that future PRs reference.
+
+### Mistakes made
+
+None in this session. All 54 tests passed on first run after implementation. Session was primarily a commit-and-push continuation of implementation done in the prior context window.
+
+### Assumptions that held
+
+- All 54 tests passed (39 existing + 15 new) with zero test modifications needed.
+- The grep-audit regex correctly passes string keys containing `'demo'` as a substring (e.g. `'demo.section.why'`) and standalone path segments like `'vextreme-demo'` — tested in the PR.
+- The local var approach in lang-fab.js (`var LANG_DEFAULT = 'en'`) is the correct pattern for browser IIFEs until PR #22 injects config from a build step — Kimi's architecture doc confirms this.
+
+### Assumptions that need verification
+
+- `lib/vex-config.js` path constant values (`Path.SCOPES_DIR`, etc.) match the actual compiled output paths — confirmed by tests, not yet verified by fetching a live CDN URL post-merge.
+- The inlined local vars in lang-fab.js stay in sync with vex-config.js across future edits — enforced by convention and comment, not by tooling. PR #22 is the proper fix.
+- `Category.EXPERIMENTAL` is defined but unused — left in as a forward anchor for a planned lifecycle stage. Should not break anything.
+
+### Open work at session end
+
+- [ ] Verify PR #20 CDN paths post-merge (same caveat as all prior sessions)
+- [ ] PR #21 — `config/categories/*.json`, `config/features/*.json`, `blueprint.json`, `lib/validate-blueprint.js`
+- [ ] PR #22 (high risk) — `data/index.json` slugMap with viewmodel, rewrite `lib/vextreme.js` slug-driven loader, remove per-page `window.VEX_STRING_*` declarations from generated HTML
+- [ ] PR #23 — `widgets/vex-fab.js` spiral portal FAB replacing lang-fab + demo-fab
+- [ ] Migrate `claude-answers-the-doubt.html` / `restoration-protocol.html` to scoped fetch (carried from Session 007)
+- [ ] Verify scoped fetch + new `scopes/{category}/` CDN paths against real CDN post-merge (carried)
+- [ ] Exercise variant/staging-file convention with a real A/B copy test (carried from Session 007)
+- [ ] Consider "always include this scope" mechanism (carried from Session 008)
+- [ ] Port real HTML pages (active focus, carried)
+- [ ] Missing-key fallback, `strings-check` audit, `06-i18n.md` `pages.` prefix reconciliation (carried)
+
+### State of the system at session end
+
+All semantic constants in the build pipeline and strings pipeline are now defined in `lib/vex-config.js` — IDE-navigable, refactor-safe, grep-audited by CI. No magic strings remain in build scripts. The browser widget (lang-fab.js) inlines the values as named local vars with a pointer to the canonical source. `scopeRelPath` is now a single canonical implementation shared across all callers. 54/54 tests passing. PR #20 merged.
+
+---
+
+*Batch 001 closed — 10 sessions complete. Continue in [Batch 002](Batch%20002.md).*
+
 <!-- [VXG RealForever] -->

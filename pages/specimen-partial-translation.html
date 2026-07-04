@@ -1,20 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dashboard">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vextreme — Specimen: Partial Translation</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/styles/design-system.css">
 <style>
-  :root {
-    --bg:     #0e0e0e;
-    --surface:#111111;
-    --text:   #e8e8e4;
-    --muted:  #6b6b6b;
-    --ember:  #c8502a;
-    --border: #2a2a2a;
-    --mono:   'IBM Plex Mono', monospace;
-    --sans:   'IBM Plex Sans', sans-serif;
-  }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: var(--bg); color: var(--text); font-family: var(--sans); padding: 48px 24px 96px; max-width: 860px; margin: 0 auto; line-height: 1.6; }
   .site-header { margin-bottom: 16px; }
@@ -99,6 +90,7 @@
   </div>
 </section>
 <script>
+  window.VEX_STRING_CATEGORY = 'demo';
   window.VEX_STRING_SCOPES = ["pages.specimen-partial-translation","specimens"];
 </script>
 <script src="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/widgets/lang-fab.js"></script>

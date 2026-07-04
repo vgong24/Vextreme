@@ -9,9 +9,16 @@ data/nodes.json        ──┐                       data/index.json        (s
 data/arcs-v2.json      ──┼── build pipeline ──▶  pages/archives.html   (build dashboard)
 data/strings/source/** ──┘                       sitemap.xml            (crawler index)
                                                  index.html             (root nav page)
+                                                 dist/vextreme-{slug}.js (God Scripts, one per page)
+                                                 sw.js                  (Service Worker, pre-caches dist/)
+
+data/status/tech-debt.json         ──┐
+data/status/planned-enhancements.json ──┼── lib/build-status.js ──▶  data/status.json
+data/status/assumptions.json       ──┘
+data/strings/compiled/manifest.json ─┘                              (system health manifest)
 ```
 
-**Write side files:**
+**Write side files — content pipeline:**
 
 `data/nodes.json` — 88 canonical content nodes. Each node:
 ```json
@@ -35,6 +42,29 @@ data/strings/source/** ──┘                       sitemap.xml            (c
 
 `data/strings/source/` — scoped UI string source files. Each key is an element
 identifier whose value is an extensible object. See 06-i18n for the full pipeline.
+
+**Write side files — system health pipeline:**
+
+`data/status/tech-debt.json` — hand-authored list of structural decisions deferred.
+Each item: `{ id, title, priority, description, addedSession }`.
+
+`data/status/planned-enhancements.json` — long-horizon items with no session endpoint.
+Each item: `{ id, title, priority, description, addedSession }`.
+
+`data/status/assumptions.json` — claims from PR records not yet confirmed live.
+Each item: `{ id, claim, priority, context, addedSession }`.
+
+`data/strings/compiled/manifest.json` — also an input to `build-status.js` for auto-detecting
+string keys missing translations. Demo-category scope keys (under `scopes/demo/`) are marked
+`intentional: true` and excluded from `totalOpen`.
+
+`lib/build-status.js` — assembles `data/status.json` from the three hand-authored write-side
+sources plus the manifest. Run manually: `node lib/build-status.js`. Not yet in CI.
+Exports pure functions for testing: `buildTranslationNotices`, `buildStatusRollup`, `countOpen`.
+
+`data/status.json` — generated system health manifest at the same CQRS layer as `index.json`.
+Structure: `{ _meta: { totalOpen, commit, generated }, notices: { translation, techDebt, enhancements, assumptions } }`.
+First consumer: `pages/ecosystem-hub.html` (developer dashboard, runtime fetch).
 
 **Build pipeline** (runs automatically via GitHub Actions on push to main):
 ```
