@@ -291,4 +291,26 @@ Seven PRs total this session (#40–#47). A real values disagreement about a gov
 - [ ] Pilot page-sorting decision (unchanged from above)
 - [ ] `pe-010`, `pe-011`, od-001/002/003/006/007 remain open
 
+### Session continued — a real merge conflict became a concrete example of the self-healing-system idea
+
+**Victor screenshotted a live merge conflict on PR #50** (`data/status.json`) as an example of what he meant by "the system using its own intent system to address itself without AI involvement." Traced the actual cause rather than reaching for the already-known merge-driver workaround: `lib/build-status.js` stamped a wall-clock timestamp and a git commit SHA into `_meta` on every run, so two branches independently regenerating the file from *identical* underlying content still produced two different files — the branch's own regenerated copy and main's post-merge auto-rebuild commit, conflicting on metadata neither the Ecosystem Hub nor anything else actually reads. Confirmed via grep before touching anything: zero consumers of `_meta.generated`/`_meta.commit` anywhere in the codebase.
+
+**Resolved the live PR #50 conflict directly** (merged `origin/main`, regenerated `data/status.json` fresh rather than hand-picking a side, ran the full pipeline, pushed) — then fixed the actual cause: removed both fields from `buildStatusRollup` entirely, along with the now-unnecessary `execSync('git rev-parse ...')` call. Verified concretely, not just by reasoning: ran `build-status.js` twice in a row and diffed the output — byte-identical. Checked whether the same problem existed elsewhere first (`data/index.json`'s `builtAt`, `sw.js`'s commit-based cache-bust name) — both are genuinely consumed (a user-facing "last built" display, and cache invalidation that specifically needs to change per commit), a different tradeoff, correctly left untouched.
+
+**Recorded as a lesson** (`config/lessons/generated-artifacts-must-be-content-deterministic.json`) rather than just a code fix, since the principle generalizes: any future generated artifact should default to content-determinism (identical input → byte-identical output), and a field that breaks that needs to earn its place by being genuinely read by something, not just be conventional decoration.
+
+### Files created or modified (continued)
+
+| File | What changed |
+|---|---|
+| `lib/build-status.js` | Removed `_meta.generated`/`_meta.commit` and the `execSync` git shell-out; header comment explains why |
+| `tests/10-build-status.test.js` | Asserts the fields are absent; new determinism test (identical input → byte-identical output) |
+| `config/lessons/generated-artifacts-must-be-content-deterministic.json` | New lesson |
+| `docs/lattice-map.json` | `lib/build-status.js` context + changeMap updated |
+
+### Open work at session end (continued)
+
+- [ ] pe-012, od-008, pilot page-sorting decision — unchanged from above
+- [ ] `pe-010`, `pe-011`, od-001/002/003/006/007 remain open
+
 <!-- [VXG RealForever] -->

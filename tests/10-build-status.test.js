@@ -103,42 +103,49 @@ const SAMPLE_NOTICES = {
 };
 
 test('BUILD-STATUS: buildStatusRollup returns object with _meta and notices', () => {
-  const result = buildStatusRollup(SAMPLE_NOTICES, { commit: 'abc1234' });
+  const result = buildStatusRollup(SAMPLE_NOTICES, {});
   assert.ok(result._meta);
   assert.ok(result.notices);
 });
 
-test('BUILD-STATUS: rollup _meta has commit and totalOpen', () => {
-  const result = buildStatusRollup(SAMPLE_NOTICES, { commit: 'abc1234' });
-  assert.equal(result._meta.commit, 'abc1234');
+test('BUILD-STATUS: rollup _meta has totalOpen', () => {
+  const result = buildStatusRollup(SAMPLE_NOTICES, {});
   assert.equal(typeof result._meta.totalOpen, 'number');
 });
 
+test('BUILD-STATUS: rollup carries no wall-clock timestamp or git commit — two builds from identical input must be byte-identical', () => {
+  assert.equal('generated' in buildStatusRollup(SAMPLE_NOTICES, {})._meta, false);
+  assert.equal('commit' in buildStatusRollup(SAMPLE_NOTICES, {})._meta, false);
+  const first  = JSON.stringify(buildStatusRollup(SAMPLE_NOTICES, {}));
+  const second = JSON.stringify(buildStatusRollup(SAMPLE_NOTICES, {}));
+  assert.equal(first, second, 'identical input must produce byte-identical output — the fix for the Session 022 merge-conflict incident');
+});
+
 test('BUILD-STATUS: rollup translation.count excludes fixtures', () => {
-  const result = buildStatusRollup(SAMPLE_NOTICES, { commit: 'test' });
+  const result = buildStatusRollup(SAMPLE_NOTICES, {});
   assert.equal(result.notices.translation.count, 1); // 1 genuine, 1 fixture
 });
 
 test('BUILD-STATUS: rollup separates fixtures from items', () => {
-  const result = buildStatusRollup(SAMPLE_NOTICES, { commit: 'test' });
+  const result = buildStatusRollup(SAMPLE_NOTICES, {});
   assert.equal(result.notices.translation.fixtures.length, 1);
   assert.equal(result.notices.translation.items.length, 1);
 });
 
 test('BUILD-STATUS: rollup preserves techDebt items', () => {
-  const result = buildStatusRollup(SAMPLE_NOTICES, { commit: 'test' });
+  const result = buildStatusRollup(SAMPLE_NOTICES, {});
   assert.equal(result.notices.techDebt.items.length, 1);
   assert.equal(result.notices.techDebt.items[0].id, 'td-001');
 });
 
 test('BUILD-STATUS: rollup totalOpen counts genuine translation + other categories', () => {
-  const result = buildStatusRollup(SAMPLE_NOTICES, { commit: 'test' });
+  const result = buildStatusRollup(SAMPLE_NOTICES, {});
   // 1 genuine translation + 1 techDebt + 1 enhancement + 1 assumption + 1 openDiscussion = 5
   assert.equal(result._meta.totalOpen, 5);
 });
 
 test('BUILD-STATUS: rollup preserves openDiscussions items', () => {
-  const result = buildStatusRollup(SAMPLE_NOTICES, { commit: 'test' });
+  const result = buildStatusRollup(SAMPLE_NOTICES, {});
   assert.equal(result.notices.openDiscussions.items.length, 1);
   assert.equal(result.notices.openDiscussions.items[0].id, 'od-001');
   assert.equal(result.notices.openDiscussions.label, 'Open Discussions');
@@ -148,7 +155,7 @@ test('BUILD-STATUS: rollup._meta.lattice passes through meta.lattice, defaults t
   const withLattice = buildStatusRollup(SAMPLE_NOTICES, { commit: 'test', lattice: { mappedNodes: 3, totalFiles: 10, coveragePct: 30 } });
   assert.deepEqual(withLattice._meta.lattice, { mappedNodes: 3, totalFiles: 10, coveragePct: 30 });
 
-  const withoutLattice = buildStatusRollup(SAMPLE_NOTICES, { commit: 'test' });
+  const withoutLattice = buildStatusRollup(SAMPLE_NOTICES, {});
   assert.equal(withoutLattice._meta.lattice, null);
 });
 
