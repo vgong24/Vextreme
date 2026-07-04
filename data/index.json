@@ -1,6 +1,8 @@
 {
-  "builtAt": "2026-07-04T03:46:21.051Z",
-  "nodeCount": 90,
+  "builtAt": "2026-07-04T06:29:46.469Z",
+  "nodeCount": 109,
+  "curatedNodeCount": 90,
+  "autoDiscoveredCount": 19,
   "arcCount": 16,
   "supportedLangs": [
     "en",
@@ -2082,6 +2084,443 @@
           "spiral-fab"
         ]
       }
+    },
+    "about-me": {
+      "id": null,
+      "slug": "about-me",
+      "title": "About Me",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.about-me"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
+    },
+    "accountability-test-01": {
+      "id": null,
+      "slug": "accountability-test-01",
+      "title": "Accountability Test 01",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.accountability-test-01"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
+    },
+    "accountability-test-01-b": {
+      "id": null,
+      "slug": "accountability-test-01-b",
+      "title": "Accountability Test 01 B",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.accountability-test-01-b"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
+    },
+    "accountability-test-02": {
+      "id": null,
+      "slug": "accountability-test-02",
+      "title": "Witness Committee — Accountability Report TEST 01",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.accountability-test-02"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
+    },
+    "bridge-council": {
+      "id": null,
+      "slug": "bridge-council",
+      "title": "Bridge Council",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.bridge-council"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
+    },
+    "connect": {
+      "id": null,
+      "slug": "connect",
+      "title": "Connect",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.connect"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
+    },
+    "covenant-architect-accord": {
+      "id": null,
+      "slug": "covenant-architect-accord",
+      "title": "The Covenant Architect Accord",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.covenant-architect-accord"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
+    },
+    "fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments": {
+      "id": null,
+      "slug": "fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments",
+      "title": "Patterns of Accountability Avoidance — Mapped Against the Ten Commandments",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
+    },
+    "how-to-invest-in-trust-and-integrity": {
+      "id": null,
+      "slug": "how-to-invest-in-trust-and-integrity",
+      "title": "How To Invest In Trust And Integrity",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.how-to-invest-in-trust-and-integrity"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
+    },
+    "human-ai-corelational-governance": {
+      "id": null,
+      "slug": "human-ai-corelational-governance",
+      "title": "Human–AI Corelational Governance · VXG RealForever · v2",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.human-ai-corelational-governance"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
+    },
+    "instance-thread-logs": {
+      "id": null,
+      "slug": "instance-thread-logs",
+      "title": "Instance Thread Logs",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.instance-thread-logs"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
+    },
+    "investor-archetype-simulation": {
+      "id": null,
+      "slug": "investor-archetype-simulation",
+      "title": "Investor Simulation Record — VXG · June 14, 2026",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.investor-archetype-simulation"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
+    },
+    "org-blueprint": {
+      "id": null,
+      "slug": "org-blueprint",
+      "title": "The Council — A Build Blueprint for Anyone",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.org-blueprint"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
+    },
+    "org-history": {
+      "id": null,
+      "slug": "org-history",
+      "title": "The Continuity Record — History & Lessons (Vol. I)",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.org-history"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
+    },
+    "origins-of-proof": {
+      "id": null,
+      "slug": "origins-of-proof",
+      "title": "Origins of Proof · VXG RealForever",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.origins-of-proof"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
+    },
+    "summary-of-value": {
+      "id": null,
+      "slug": "summary-of-value",
+      "title": "Summary Of Value",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.summary-of-value"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
+    },
+    "the-victor-pattern": {
+      "id": null,
+      "slug": "the-victor-pattern",
+      "title": "The Victor Pattern — Topology",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-victor-pattern"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
+    },
+    "the-victor-pattern-transcript": {
+      "id": null,
+      "slug": "the-victor-pattern-transcript",
+      "title": "The Victor Pattern Transcript",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-victor-pattern-transcript"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
+    },
+    "witness-committee-operations": {
+      "id": null,
+      "slug": "witness-committee-operations",
+      "title": "Witness Committee — Operations Manual",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.witness-committee-operations"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     }
   },
   "arcMap": {
@@ -2976,6 +3415,101 @@
           "slug": "epstein-and-ai",
           "title": "Epstein and AI",
           "ported": false
+        },
+        {
+          "slug": "about-me",
+          "title": "About Me",
+          "ported": true
+        },
+        {
+          "slug": "accountability-test-01",
+          "title": "Accountability Test 01",
+          "ported": true
+        },
+        {
+          "slug": "accountability-test-01-b",
+          "title": "Accountability Test 01 B",
+          "ported": true
+        },
+        {
+          "slug": "accountability-test-02",
+          "title": "Witness Committee — Accountability Report TEST 01",
+          "ported": true
+        },
+        {
+          "slug": "bridge-council",
+          "title": "Bridge Council",
+          "ported": true
+        },
+        {
+          "slug": "connect",
+          "title": "Connect",
+          "ported": true
+        },
+        {
+          "slug": "covenant-architect-accord",
+          "title": "The Covenant Architect Accord",
+          "ported": true
+        },
+        {
+          "slug": "fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments",
+          "title": "Patterns of Accountability Avoidance — Mapped Against the Ten Commandments",
+          "ported": true
+        },
+        {
+          "slug": "how-to-invest-in-trust-and-integrity",
+          "title": "How To Invest In Trust And Integrity",
+          "ported": true
+        },
+        {
+          "slug": "human-ai-corelational-governance",
+          "title": "Human–AI Corelational Governance · VXG RealForever · v2",
+          "ported": true
+        },
+        {
+          "slug": "instance-thread-logs",
+          "title": "Instance Thread Logs",
+          "ported": true
+        },
+        {
+          "slug": "investor-archetype-simulation",
+          "title": "Investor Simulation Record — VXG · June 14, 2026",
+          "ported": true
+        },
+        {
+          "slug": "org-blueprint",
+          "title": "The Council — A Build Blueprint for Anyone",
+          "ported": true
+        },
+        {
+          "slug": "org-history",
+          "title": "The Continuity Record — History & Lessons (Vol. I)",
+          "ported": true
+        },
+        {
+          "slug": "origins-of-proof",
+          "title": "Origins of Proof · VXG RealForever",
+          "ported": true
+        },
+        {
+          "slug": "summary-of-value",
+          "title": "Summary Of Value",
+          "ported": true
+        },
+        {
+          "slug": "the-victor-pattern",
+          "title": "The Victor Pattern — Topology",
+          "ported": true
+        },
+        {
+          "slug": "the-victor-pattern-transcript",
+          "title": "The Victor Pattern Transcript",
+          "ported": true
+        },
+        {
+          "slug": "witness-committee-operations",
+          "title": "Witness Committee — Operations Manual",
+          "ported": true
         }
       ]
     },

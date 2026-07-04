@@ -113,7 +113,18 @@ test('DEPARTMENTS: data/departments.json + data/nodes.json + data/index.json agr
   const nodes          = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'nodes.json'), 'utf8'));
   const index          = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'index.json'), 'utf8'));
 
-  const map  = buildDepartmentMap(nodes, departmentsDef);
+  // index.json's departmentMap includes auto-discovered nodes (lib/auto-discover-nodes.js),
+  // not just curated nodes.json entries — mirror the same allNodes computation
+  // lib/build-index.js's I/O block does, or this comparison is comparing apples to
+  // a bigger apple-plus-oranges bowl.
+  const { discoverOrphanNodes, readPageFromDisk } = require('../lib/auto-discover-nodes');
+  const { SKIP_PAGES, getPageSlugs } = require('../lib/audit-pages');
+  const viewmodels = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'viewmodels.json'), 'utf8'));
+  const viewmodelSlugs = Object.keys(viewmodels).filter(k => !k.startsWith('_'));
+  const discovered = discoverOrphanNodes(getPageSlugs(), nodes.map(n => n.slug), SKIP_PAGES, viewmodelSlugs, readPageFromDisk, departmentsDef);
+  const allNodes = nodes.concat(discovered);
+
+  const map  = buildDepartmentMap(allNodes, departmentsDef);
   const meta = buildDepartmentMeta(departmentsDef);
 
   assert.deepEqual(index.departmentMap,  map,  'data/index.json departmentMap is stale — run node lib/build-index.js');

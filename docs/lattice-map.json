@@ -62,12 +62,15 @@
 
     "lib/build-index.js": {
       "role": "content pipeline assembler — reads source data, writes the single pre-built index everything reads from",
-      "context": "The pipeline hub. Every page, every arc nav render, every God Script assembly starts from data/index.json which this file produces. If the index schema changes, 4+ consumers break. Run manually or via CI after editing nodes.json or arcs-v2.json.",
+      "context": "The pipeline hub. Every page, every arc nav render, every God Script assembly starts from data/index.json which this file produces. If the index schema changes, 4+ consumers break. Run manually or via CI after editing nodes.json or arcs-v2.json. Session 022: nodes.json alone is no longer the complete node set this computes from — lib/auto-discover-nodes.js synthesizes a placeholder node for any pages/*.html file with no nodes.json entry, and those get concatenated in (allNodes) before buildSlugMap/buildArcMap/buildDepartmentMap run. findDuplicateSlugs still runs on raw nodes.json only — synthesized nodes can't collide with each other (one per real filename) or with curated ones (filtered out by definition).",
       "reads": [
         "data/nodes.json",
         "data/arcs-v2.json",
         "data/viewmodels.json",
         "data/departments.json",
+        "pages/*.html (via lib/auto-discover-nodes.js, for any slug with no nodes.json entry)",
+        "lib/audit-pages.js (SKIP_PAGES, getPageSlugs)",
+        "lib/auto-discover-nodes.js (discoverOrphanNodes, readPageFromDisk)",
         "lib/vex-config.js"
       ],
       "writes": ["data/index.json"],
@@ -81,13 +84,15 @@
         "tests/03-browser-nav.test.js",
         "tests/07-viewmodel.test.js",
         "tests/08-build-vextreme.test.js (via KEY-ALIGNMENT tests)",
-        "tests/15-departments.test.js"
+        "tests/15-departments.test.js",
+        "tests/16-auto-discover-nodes.test.js"
       ],
       "testedBy": [
         "tests/01-content-pipeline.test.js",
         "tests/03-browser-nav.test.js",
         "tests/07-viewmodel.test.js",
-        "tests/15-departments.test.js"
+        "tests/15-departments.test.js",
+        "tests/16-auto-discover-nodes.test.js"
       ],
       "changeMap": {
         "slugMap schema": [
@@ -121,6 +126,12 @@
           "lib/logger-codes.js (SLUG_DUPLICATE entry, grouped under build-index.js)",
           "tests/01-content-pipeline.test.js (SLUGS: tests)",
           "docs/architecture/02-slug.md ('path is derived from slug' principle this guard protects)"
+        ],
+        "auto-discovery logic changed (discoverOrphanNodes' output shape or defaults)": [
+          "lib/auto-discover-nodes.js (the shared implementation both this file and lib/build-archives.js call)",
+          "lib/build-archives.js (calls the same function independently — see pe-011, tracked to collapse this someday)",
+          "tests/16-auto-discover-nodes.test.js",
+          "tests/15-departments.test.js (its integration test replicates the allNodes computation)"
         ]
       }
     },
@@ -494,6 +505,30 @@
       }
     },
 
+    "lib/auto-discover-nodes.js": {
+      "role": "synthesizes a node-shaped object for any pages/*.html file with no data/nodes.json entry, so adding a page alone is enough to make it visible",
+      "context": "Built in response to a real gap: pages merged directly (not through this repo's usual node-first flow) sat completely invisible in data/index.json and pages/archives.html except for an easy-to-miss PR-comment warning (lib/check-key-alignment.js's orphan-page check). discoverOrphanNodes() is called independently by both lib/build-index.js and lib/build-archives.js (see pe-011 — ideally only one of them would need to, if build-archives.js consumed index.json instead of re-deriving from nodes.json). Synthesized nodes are never written back to data/nodes.json — nodes.json stays hand-curated, single source of truth; a real nodes.json entry for the same slug always takes precedence once one exists. A page can declare its own department/workType via <meta name=\"vex:department\"> / <meta name=\"vex:workType\"> tags, entirely without touching JSON; absent that, it falls back to whichever department in data/departments.json is marked default:true.",
+      "reads": ["pages/*.html (title + optional vex:department/vex:workType meta tags)"],
+      "writes": ["nothing — pure in-memory synthesis, never persisted to data/nodes.json"],
+      "loadedBy": [
+        "lib/build-index.js (feeds data/index.json's slugMap/arcMap/departmentMap)",
+        "lib/build-archives.js (feeds the Unsorted section — see pe-011 for why this is two call sites, not one)",
+        "tests/16-auto-discover-nodes.test.js",
+        "tests/15-departments.test.js (integration test)"
+      ],
+      "testedBy": ["tests/16-auto-discover-nodes.test.js"],
+      "changeMap": {
+        "synthesized node shape changed (fields added/removed)": [
+          "lib/build-index.js (allNodes concat — buildSlugMap/buildArcMap/buildDepartmentMap all consume the result)",
+          "lib/build-archives.js (same concat, independently)",
+          "tests/16, tests/15 (integration test replicates this shape)"
+        ],
+        "vex:department / vex:workType meta tag convention changed": [
+          "docs/culture.md or docs/architecture — not yet documented outside this file's own header; consider adding if the convention gets real adoption"
+        ]
+      }
+    },
+
     "lib/audit-pages.js": {
       "role": "page wiring auditor — read-only report of which pages/*.html are wired to a God Script, blocked, or intentionally skipped",
       "context": "The canonical way to answer 'what's the current wiring status' without manually reading every page. CLAUDE.md points here instead of describing wiring status in prose, since prose goes stale and this doesn't — it reads dist/ and pages/ directly on every run. SKIP_PAGES and BLOCKERS are the only hand-maintained parts; both are dated the moment a page's status actually changes.",
@@ -506,7 +541,9 @@
       "loadedBy": [
         "manual run: node lib/audit-pages.js",
         "CLAUDE.md (points here as the wiring-status source of truth)",
-        "lib/check-key-alignment.js (imports SKIP_PAGES + getPageSlugs — reuses the skip list instead of duplicating it)"
+        "lib/check-key-alignment.js (imports SKIP_PAGES + getPageSlugs — reuses the skip list instead of duplicating it)",
+        "lib/build-index.js (SKIP_PAGES + getPageSlugs, feeds auto-discovery)",
+        "lib/build-archives.js (same, independently — see pe-011)"
       ],
       "testedBy": [],
       "changeMap": {
@@ -624,14 +661,17 @@
 
     "lib/build-archives.js": {
       "role": "generates pages/archives.html — the complete page registry: every arc's slugs as ported/missing cells, plus unsorted and dev/demo pages",
-      "context": "Session 022 added an 'Unsorted (No Arc)' section: nodes.json entries with empty arcKeys are invisible in every arc section (those only ever iterate ARC_ORDER), which was a real gap for department-only content (phantom-opera-meta-review, vxg-thread-round-5) that has no arc membership yet. Sits alongside the pre-existing 'Dev & Demo Pages' section (viewmodels.json category:demo pages, which aren't nodes.json entries at all) as a second, distinct population of non-arc content — the two are kept separate rather than merged, since 'a real node with no arc yet' and 'a non-node dev fixture' are different states worth telling apart at a glance.",
+      "context": "Session 022 added an 'Unsorted (No Arc)' section: nodes.json entries with empty arcKeys are invisible in every arc section (those only ever iterate ARC_ORDER), which was a real gap for department-only content (phantom-opera-meta-review, vxg-thread-round-5) that has no arc membership yet. Sits alongside the pre-existing 'Dev & Demo Pages' section (viewmodels.json category:demo pages, which aren't nodes.json entries at all) as a second, distinct population of non-arc content — the two are kept separate rather than merged, since 'a real node with no arc yet' and 'a non-node dev fixture' are different states worth telling apart at a glance. Same session, later: also calls lib/auto-discover-nodes.js's discoverOrphanNodes() (same function lib/build-index.js calls) so a page merged with no nodes.json entry at all shows up in the Unsorted section automatically, not just as a PR-comment warning. This file reads nodes.json/arcs-v2.json directly rather than data/index.json — a pre-existing violation of 'everything downstream reads index.json' (see pe-011) that made this auto-discovery wiring a two-place job instead of one.",
       "reads": [
         "data/nodes.json",
         "data/arcs-v2.json",
         "data/viewmodels.json",
+        "data/departments.json",
         "data/strings/compiled/strings.en.json",
         "data/strings/compiled/manifest.json",
-        "pages/*.html (existence check, per slug, for the ported/missing cell state)"
+        "pages/*.html (existence check, per slug, for the ported/missing cell state; also read in full via lib/auto-discover-nodes.js for any slug with no nodes.json entry)",
+        "lib/audit-pages.js (SKIP_PAGES, getPageSlugs)",
+        "lib/auto-discover-nodes.js (discoverOrphanNodes, readPageFromDisk)"
       ],
       "writes": ["pages/archives.html"],
       "loadedBy": [
@@ -645,6 +685,11 @@
         ],
         "ARC_ORDER or ARC_KEY_MAP changed": [
           "must stay in sync with data/arcs-v2.json's keys — a typo here silently drops that arc's whole section"
+        ],
+        "auto-discovery logic changed": [
+          "lib/auto-discover-nodes.js (shared implementation)",
+          "lib/build-index.js (calls the same function independently — see pe-011)",
+          "tests/16-auto-discover-nodes.test.js"
         ]
       }
     },

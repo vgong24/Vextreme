@@ -204,7 +204,7 @@ test('BUILD-STATUS: countOpen includes contentIntegrity', () => {
 test('BUILD-STATUS: buildContentIntegrityNotices maps orphan pages to notice items', () => {
   const items = buildContentIntegrityNotices(['some-slug'], [], []);
   assert.equal(items.length, 1);
-  assert.match(items[0].title, /Orphan page/);
+  assert.match(items[0].title, /Uncurated page/);
   assert.equal(items[0].priority, 'low');
 });
 
@@ -257,7 +257,7 @@ test('BUILD-STATUS: data/status.json has all six notice categories', () => {
 test('BUILD-STATUS: data/status.json translation fixtures do not count toward totalOpen', () => {
   const status   = JSON.parse(fs.readFileSync(STATUS_PATH, 'utf8'));
   const n        = status.notices;
-  const computed = n.translation.count + n.techDebt.count + n.enhancements.count + n.assumptions.count + n.openDiscussions.count;
+  const computed = n.translation.count + n.techDebt.count + n.enhancements.count + n.assumptions.count + n.openDiscussions.count + n.contentIntegrity.count;
   assert.equal(computed, status._meta.totalOpen, 'totalOpen must equal sum of category counts');
 });
 
