@@ -67,6 +67,13 @@
       "priority": "medium"
     },
     {
+      "id": "pe-010",
+      "title": "Department dashboard depth — dedicated transcript library, God-Script wiring granularity",
+      "description": "Session 022 shipped the first checkpoint of the department axis (data/departments.json, department/workType fields on nodes, index.json departmentMap/departmentMeta, an ecosystem-hub.html Departments panel) deliberately scoped to structure + accessibility only, per Victor's direction to 'hone the placeholders' later. Two concrete follow-ups named explicitly at that time, not yet built: (1) wip/silent-god.json and its record-transcripts workType siblings are expected to eventually become their own 'library' with a dedicated dashboard, not just entries in the shared Departments panel; (2) departmentMap's per-node status is currently a single `ported` boolean (does pages/{slug}.html exist) — it does not yet distinguish 'ported' from 'wired to a God Script' the way lib/audit-pages.js does for the whole site. Extending departmentMap to reuse audit-pages.js's wiring logic (would require exporting its pure functions instead of running immediately) is the natural next step once there's more than one Media page to make the distinction meaningful.",
+      "addedSession": "022",
+      "priority": "low"
+    },
+    {
       "id": "pe-009",
       "title": "Expand LATTICE coverage beyond the current 27 nodes (64% of lib/+widgets/)",
       "description": "docs/lattice-map.json covers 27 of ~33 eligible files under lib/ and widgets/ (64% coverage per lib/check-design-tokens.js-style accounting in data/status.json._meta.lattice). Session 019 added lib/logger.js, lib/logger-codes.js, lib/validate-blueprint.js, lib/build-sitemap.js, lib/strings-check.js, lib/build-index-page.js. lib/build-lattice-headers.js (Session 014) makes adding a node cheap — it generates the in-file header automatically, so expansion is JSON-authoring work only, not comment-formatting work. Remaining candidates: lib/strings-export.js, lib/strings-import.js, widgets/fab-demo.js, widgets/demo-fab.js, widgets/lang-fab.js (legacy pre-rename copies), lib/shell.js, lib/vextreme.js, lib/archive-renderer.js (v1 system). Grep for LATTICE:BEGIN vs total file count in lib/+widgets/ shows current coverage at any time.",
