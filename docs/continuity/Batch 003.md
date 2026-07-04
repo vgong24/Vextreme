@@ -409,4 +409,81 @@ Seven PRs total this session (#40–#47). A real values disagreement about a gov
 - [ ] `pe-012`, `od-008`, `od-009` (now with a real precedent named), pilot page-sorting decision — unchanged otherwise
 - [ ] `pe-010`, `pe-011`, od-001/002/003/006/007 remain open
 
+### Session continued — re-perceiving the role/lens ask as an instruction to actually try it, not just describe it
+
+**Victor's follow-up asked something categorically different from a design question: to actually attempt the multi-lens pass on a real decision and report the honest lessons** ("if you need practice you can simulate what im saying... test the effects and share the lessons from your attempt"). Treated this literally rather than as another round of documentation — the decision picked to run the Scanner pass on was the smallest real one available: "what should this response build."
+
+**What the pass actually surfaced, lens by lens:** Truth — the kanban/non-scheduled/"addressed anytime" discussion mechanism Victor described already exists (`od-`/`td-`/`pe-` items on the Ecosystem Hub); building a second one would duplicate, not fulfill, the ask. Proportion — role "positioning," "communication channels," and "instruction routing through department→role lenses back to a surface" are each a real subsystem, none has a real case yet to design against (same test `od-008`/`od-009` already apply). Center — the honest scope for one response is a small, gradable slice, not the whole architecture. Architect/Builder/Designer/Manager/Test-Node converged on: tag a few real backlog items with an optional `lens` field (which faculty's judgment call an item represents), surface it on the Ecosystem Hub, and write down what a "Council Lenses" panel can honestly claim to be — a proposal marker, not a working communication channel.
+
+**Built:** `lens` field added to 4 real items (`od-009`→architect, `od-008`→architect, `pe-012`→manager, `pe-010`→proportion) in `data/status/open-discussions.json`/`planned-enhancements.json`; `renderHealthPanel()` in `lib/build-ecosystem-hub.js` reads it into each item's meta line; a new "Council Lenses" section (`id="lenses-grid"`, `renderLenses()`) renders `data/council-kernel.json`'s roster, explicitly labeled "proposal, not adopted" in the section header itself, not just in prose elsewhere. Hit and fixed a real bug in the process: a doc comment used literal backticks around the word `lens` inside `build-ecosystem-hub.js`'s single giant template-literal return statement, prematurely closing the string (`SyntaxError: Unexpected identifier 'lens'`) — fixed by writing the word without backtick delimiters. `docs/architecture/14-council-model.md` got a new closing section, "First attempt: actually running it, on a real decision," naming exactly what was built vs. what was deliberately not built (communication channels, meeting scheduling, an instruction-routing pipeline — all still lack a real case).
+
+**The honest lesson, stated plainly rather than softened:** running an explicit multi-lens pass took real, noticeable deliberate effort — worth it for a decision this size (shapes what ships and what gets deferred), not something to run on every small edit, and a judgment call about *when* to invoke it rather than a rule. Also explicit that this must stay a single instance structuring its own reasoning in one pass, not something to hand off to separate subagents per lens — that would reintroduce exactly the token/coordination cost the whole idea was meant to avoid, collapsing the distinction this repo has maintained all session between "The Council" (one mind, many faculties) and "The Bridge Council" (many minds, many councils).
+
+### Files created or modified (continued)
+
+| File | What changed |
+|---|---|
+| `data/status/open-discussions.json` | `od-009`, `od-008` — added `lens` field |
+| `data/status/planned-enhancements.json` | `pe-012`, `pe-010` — added `lens` field |
+| `lib/build-ecosystem-hub.js` | `renderHealthPanel()` reads `item.lens`; new "Council Lenses" section + `renderLenses()` + `KERNEL_URL` fetch of `data/council-kernel.json`; fixed a backtick-in-template-literal SyntaxError in a doc comment |
+| `docs/architecture/14-council-model.md` | New closing section, "First attempt: actually running it, on a real decision" — what was built, what was deliberately not built, the honest lesson |
+| `docs/lattice-map.json` | `lib/build-ecosystem-hub.js` changeMap updated for the `lens` field convention and `renderLenses()` |
+| `tests/12-ecosystem-hub.test.js` | 2 new tests: Council Lenses section is marked as a proposal; `renderHealthPanel` reads `item.lens` |
+| `docs/architecture.md` | Rebuilt from source |
+| `docs/continuity/INDEX.md` | Current State/Open Work replaced to describe this round; Recent Sessions compacted to 3 entries |
+
+### Mistakes made (continued)
+
+- Literal backticks inside a doc comment (`` `lens` ``) closed `lib/build-ecosystem-hub.js`'s outer template literal early, producing `SyntaxError: Unexpected identifier 'lens'` the first time the script was run after the edit. Fixed by removing the backtick delimiters from the comment text. A reminder that this file's entire output being one JS template literal makes even comments part of the string's syntax surface — not just a formatting nuance.
+
+### Open work at session end (continued)
+
+- [ ] The "Scanner check" / lens-pass practice — still a proposal, not adopted; Victor should decide whether and when future instances should run it, per the honest-limits framing in `docs/architecture/14-council-model.md`
+- [ ] Communication channels between roles/departments, meeting scheduling, and an instruction→department→role routing pipeline remain explicitly undesigned — no real case yet, same discipline as `od-008`/`od-009`
+- [ ] `pe-012`, `pe-010`, `pe-011`, od-001/002/003/006/007/008/009 remain open, unchanged otherwise
+
+### Session continued — the roles/contributions ask: from a label to a traceable record
+
+**Victor's direct follow-up named a specific gap the first attempt left open:** the `lens` field and Council Lenses panel gave each role a name and a place to be looked up, but nothing traced *why* a role existed at that position or what it had actually done — "so the roles get fully defined instead of randomly placed without traceability." He also asked explicitly to re-read `CLAUDE.md` in full and traverse the pattern/architecture conventions before building, rather than assume.
+
+**Re-reading `data/council-kernel.json` in full (not just the parts referenced in the last round) surfaced something under-used the first time: `connectionArchitecture.channels` — plenary, vertical, intraCouncilRelay, crossCouncilBridge — had already been transcribed from `pages/org-blueprint.html` but never rendered anywhere.** This turned out to be the literal answer to the "communication channels that connect latticely around the org back to ecosystem hub" half of Victor's original ask — the data already existed, it just had no read side. Rather than invent new channel machinery, this round mapped each existing channel description to what actually instantiates it today: plenary → the Ecosystem Hub's status.json panels (real, live); vertical → the continuity docs (real); intraCouncilRelay → the Scanner pass from the first attempt (real but manual, not automated); crossCouncilBridge → honestly marked **not yet real**, since only one council exists in this repo and Bridge Council is a different pattern.
+
+**Built, following the established write-side → build script → generated read-side pattern used everywhere else in this pipeline (`lib/build-lessons.js`/`lib/build-ecosystem-hub.js` as the direct template):**
+
+- `lib/build-roles.js` → `data/roles.json` — compiles `data/council-kernel.json`'s roster against every `data/status/*.json` item's `lens` field, so a role's page shows real linked contributions or an explicit zero, never silence. Classifies each role against `decisionTriangle` (decider/gate/surface/perceiver). Gives every role the same `position` string today ("org-wide — The Council") since only one council exists — claiming a per-department position would overclaim a structure (per-department Bridge Councils) that isn't built yet; this is itself a traceability choice, not an omission.
+- `lib/build-roles-page.js` → `pages/roles-index.html` — a dedicated page (Victor asked for "an index json and webpage," not a bigger hub panel) showing every role's full record plus the four channels and their manifestations. Linked from the Ecosystem Hub's Council Lenses section.
+- Registered `roles-index` in `lib/audit-pages.js`'s `SKIP_PAGES` (generated dashboard page, same treatment as `ecosystem-hub`) so it doesn't report as an orphan or a blocked page.
+- Wired both scripts into `.github/workflows/build-index.yml`, added both to the path-trigger list along with `data/council-kernel.json`.
+- Visually verified both `pages/ecosystem-hub.html`'s updated Council Lenses section and the new `pages/roles-index.html` by running a local server with a `/Vextreme` path prefix (the repo's `scripts/screenshot-page.js` serves from repo root without that prefix, so its own screenshot of any hub-style page 404s on every live fetch — a pre-existing limitation, not a regression, confirmed by checking `BASE = '/Vextreme'` predates this session).
+
+**docs/architecture/14-council-model.md gained a "Second attempt" section** documenting this round the same way the first attempt was documented — what was found (the unused channels data), what was built, and what's still explicitly not built (any mechanism that actually *sends* a signal through a channel — the channels are now traceably described, not wired as live infrastructure).
+
+### Files created or modified (continued)
+
+| File | What changed |
+|---|---|
+| `lib/build-roles.js` | New — compiles `data/council-kernel.json` + `data/status/*.json`'s `lens` fields into `data/roles.json` |
+| `lib/build-roles-page.js` | New — generates `pages/roles-index.html` |
+| `data/roles.json` | New generated artifact |
+| `pages/roles-index.html` | New generated page |
+| `lib/audit-pages.js` | `SKIP_PAGES` — added `roles-index` entry |
+| `lib/build-ecosystem-hub.js` | Council Lenses section now links to `pages/roles-index.html`; kept the "proposal, not adopted" note as separate text |
+| `.github/workflows/build-index.yml` | Added `lib/build-roles.js`/`lib/build-roles-page.js` build steps, path triggers, and `data/roles.json`/`pages/roles-index.html` to the commit-artifacts step |
+| `docs/lattice-map.json` | Two new nodes (`lib/build-roles.js`, `lib/build-roles-page.js`); `data/council-kernel.json`'s `loadedBy`/`changeMap` updated |
+| `tests/20-roles.test.js` | New, 13 tests |
+| `docs/architecture/14-council-model.md` | New "Second attempt" section |
+| `docs/architecture.md` | Rebuilt from source |
+| `data/status.json` | Rebuilt — lattice coverage now 28/39 |
+
+### Mistakes made (continued)
+
+- Wrote three string literals in `lib/build-roles.js` using single quotes around text containing a real apostrophe (`data/status.json's panels...`, `...14-council-model.md's "First attempt"...`, `data/departments.json's production-domain...`) — each would have closed its enclosing string early, a `SyntaxError` the same class as the backtick bug from the first attempt. Caught before running the script by re-reading the diff, not by executing it and hitting the error; fixed by switching those three strings to double quotes.
+
+### Open work at session end (continued)
+
+- [ ] Any mechanism that actually sends a signal through `plenary`/`vertical`/`intraCouncilRelay`/`crossCouncilBridge` remains undesigned — the channels are now traceably described with honest manifestations, not live infrastructure
+- [ ] `crossCouncilBridge` has no real manifestation yet — only one council exists in this repo; would need a second real council to design against
+- [ ] The "Scanner check" — still a proposal, not adopted
+- [ ] `pe-012`, `pe-010`, `pe-011`, od-001/002/003/006/007/008/009 remain open, unchanged otherwise
+
 <!-- [VXG RealForever] -->

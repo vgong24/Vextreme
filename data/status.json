@@ -2,9 +2,9 @@
   "_meta": {
     "totalOpen": 52,
     "lattice": {
-      "mappedNodes": 26,
-      "totalFiles": 37,
-      "coveragePct": 70
+      "mappedNodes": 28,
+      "totalFiles": 39,
+      "coveragePct": 72
     }
   },
   "notices": {
@@ -103,7 +103,8 @@
           "description": "docs/lattice-map.json's edges are hand-written and have never been checked against the source they describe. Session 022 found two stale claims by hand (a comment misdescribing data/arcs.json's key casing in lib/build-archives.js; two files' lattice context claiming build-status.js/build-ecosystem-hub.js were 'not yet in CI' after they'd been wired into .github/workflows/build-index.yml). Same failure shape lib/check-design-tokens.js already catches for CSS custom properties: a written claim silently drifting from what's actually true. Named as the correct next increment (not the bigger consolidation/deletion gesture in od-008) in docs/architecture/13-intent-driven-operations.md — any future attempt to trace connectors for a riskier operation depends on the map describing those connectors accurately first. Scope: for each lattice node, confirm its claimed reads/writes targets are actually referenced in that file's source, and flag any file that references a lattice-mapped node without appearing in that node's loadedBy list. Informational severity, wired into CI the same way as the other three drift detectors.",
           "addedSession": "022",
           "requires": "none — same pattern as check-design-tokens.js/check-key-alignment.js, no new infrastructure",
-          "priority": "medium"
+          "priority": "medium",
+          "lens": "manager"
         },
         {
           "id": "pe-001",
@@ -185,7 +186,8 @@
           "title": "Department dashboard depth — dedicated transcript library, God-Script wiring granularity",
           "description": "Session 022 shipped the first checkpoint of the department axis (data/departments.json, department/workType fields on nodes, index.json departmentMap/departmentMeta, an ecosystem-hub.html Departments panel) deliberately scoped to structure + accessibility only, per Victor's direction to 'hone the placeholders' later. Two concrete follow-ups named explicitly at that time, not yet built: (1) wip/silent-god.json and its record-transcripts workType siblings are expected to eventually become their own 'library' with a dedicated dashboard, not just entries in the shared Departments panel; (2) departmentMap's per-node status is currently a single `ported` boolean (does pages/{slug}.html exist) — it does not yet distinguish 'ported' from 'wired to a God Script' the way lib/audit-pages.js does for the whole site. Extending departmentMap to reuse audit-pages.js's wiring logic (would require exporting its pure functions instead of running immediately) is the natural next step once there's more than one Media page to make the distinction meaningful.",
           "addedSession": "022",
-          "priority": "low"
+          "priority": "low",
+          "lens": "proportion"
         },
         {
           "id": "pe-009",
@@ -254,7 +256,8 @@
           ],
           "raisedSession": "022",
           "priority": "low",
-          "status": "open"
+          "status": "open",
+          "lens": "architect"
         },
         {
           "id": "od-008",
@@ -268,7 +271,8 @@
           ],
           "raisedSession": "022",
           "priority": "low",
-          "status": "open"
+          "status": "open",
+          "lens": "architect"
         },
         {
           "id": "od-001",

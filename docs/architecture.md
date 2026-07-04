@@ -1487,6 +1487,158 @@ enough yet to know if it holds up in practice the way this document's own
 
 ---
 
+## First attempt: actually running it, on a real decision
+
+Victor asked for the roles to get a real position in this repo's architecture
+— not just live in `data/council-kernel.json` as reference — and asked this
+be tried, not just designed, with the honest results reported back. This
+section is that attempt.
+
+**The test case was this exact request.** Rather than invent a synthetic
+example, the decision run through the Scanner was "what should this response
+actually build?" — genuinely undecided at the time. A short pass across the
+roster, applied deliberately rather than as an unreflected first instinct:
+
+- **Truth** — the roles exist only as read-only reference material today;
+  Victor is asking for them to have visible, real footprint.
+- **Proportion** — the full vision (communication channels, meeting
+  scheduling, nested layering to a surface) is not the right size for a first
+  attempt explicitly framed as practice. The anti-bloat law applies here too:
+  no observed failure yet justifies building all of it.
+- **Center** — underneath the request is a genuine test of whether the
+  "council" metaphor cashes out into something operationally real here, or
+  stays decorative — and whether it can be perceived and tried without
+  Victor having to specify every step.
+- **Architect** — the existing department axis, `od-`/`td-`/`pe-` schemas,
+  and Ecosystem Hub rendering must not break; anything new must be additive
+  and optional, the same convention the `department` field already set.
+- **Builder** — construct two small, real things: a visible position for
+  the roster (a Council Lenses panel), and an optional `lens` tag on
+  genuinely real backlog items, testing whether tagging adds signal. Skip:
+  literal communication-channel code, meeting scheduling, or a nested
+  nothing routes-to-a-surface pipeline — none of these have a real case to
+  design against yet.
+- **Designer / Manager / Test-Node** — reuse the exact existing panel
+  markup, lattice-map conventions, and doc-comment style, so this reads as
+  continuous with the rest of the Hub, not a bolted-on feature.
+
+**What got built from that pass:**
+- A **Council Lenses** panel on the Ecosystem Hub, rendering
+  `data/council-kernel.json`'s roster (holds / fails-as / caught-by per
+  role) — the roles' actual visible position, answering "positioned...
+  back to ecosystem hub" directly rather than leaving them in a doc nobody
+  opens.
+- An optional `lens` field on `od-`/`td-`/`pe-` items, added to four real,
+  already-existing items as a genuine test (not fabricated examples):
+  `od-008` and `od-009` tagged `architect` (both are structural/what-must-
+  hold questions), `pe-012` tagged `manager` (it's about a claim matching
+  reality — fidelity), `pe-010` tagged `proportion` (explicitly deferred as
+  not yet the right size to build). Rendered as a small tag alongside the
+  existing priority badge.
+- **Not built:** anything resembling "communication channels," a meeting
+  schedule, or explicit routing of an incoming instruction through
+  department → role → back-to-surface. Those remain named directions, not
+  code — the same discipline `od-008`/`od-009` already apply, extended here
+  rather than abandoned under the pressure of a bigger ask.
+
+**The honest lesson from actually doing this, not just describing it:**
+running an explicit multi-role pass — even a short one, even mentally rather
+than as separate tool calls — took real, deliberate structuring, more than
+this decision would have naturally received unprompted. For a decision this
+size (what to build in response to an architecturally significant, somewhat
+ambiguous request), that structuring was worth its cost — it's the reason
+the response stayed additive and scoped rather than either overbuilding the
+full vision or under-responding with only description. For a smaller,
+routine decision, the same explicit pass would likely cost more than it
+returns — this matches what the "Proposed, not adopted" section above
+already anticipated, now with one real data point behind it rather than
+none. The practical implication: this stays a judgment call about *when* to
+run the check, not something to apply uniformly to every decision, and not
+something to hand off to separate subagents (that would reintroduce the
+token/coordination cost the whole idea was meant to avoid).
+
+**One structural finding worth naming on its own:** the "meetings be the
+discussions themselves, non-scheduled, kanban prioritized, addressed anytime"
+picture Victor described is not a gap to build — it already exists. The
+`od-`/`td-`/`pe-` items in `data/status/*.json`, rendered live on the
+Ecosystem Hub as always-open, non-scheduled cards any future instance (or
+Victor) can pick up at any time, are exactly that pattern, just not
+previously named as such. The `lens` field extends it by one dimension
+(which role's concern a given item represents) rather than replacing or
+duplicating it.
+
+### Second attempt: making roles traceable, not randomly placed
+
+Victor's direct follow-up named a specific gap in the first attempt: the
+`lens` field and Council Lenses panel gave each role a name and a place to
+be looked up, but nothing traced *why* a role was placed where it was, or
+what it had actually done. He asked for a "roles and contributions index
+json and webpage" so roles get full definitions instead of being randomly
+placed without traceability.
+
+**Re-reading `data/council-kernel.json` in full while building this surfaced
+something the first attempt under-used: `connectionArchitecture.channels`
+was already transcribed from `pages/org-blueprint.html` (plenary, vertical,
+intraCouncilRelay, crossCouncilBridge) but never rendered anywhere.** This is
+the literal answer to Victor's "communication channels that connect
+latticely around the org back to ecosystem hub" — the data already existed,
+it just had no read side. Rather than build new channel infrastructure, this
+round mapped each existing channel description to what actually
+instantiates it today, honestly, including where nothing does yet:
+
+- **plenary** ("all relevant heads co-present at origin... cross-witnessed
+  accountable memory") → `data/status.json`'s panels on the Ecosystem Hub
+  already are this, for real, right now — every notice category co-present
+  at one origin.
+- **vertical** ("root to head, 1:1... failure-signals up") →
+  `docs/continuity/INDEX.md` + the batch files — the actual root-to-head
+  channel between Victor and whichever instance is current.
+- **intraCouncilRelay** ("faculty to faculty... signals calibrate before the
+  surface commits") → the Scanner pass documented in the first attempt
+  above — real, but run once, by hand, not an automated relay.
+- **crossCouncilBridge** ("analogous organ to analogous organ across
+  councils") → **not yet real.** Only one council exists in this repo;
+  `pages/bridge-council*.html` describe a genuinely different multi-council
+  pattern (see above), not an instance of this channel.
+
+**Built, following the same write-side → build script → generated read-side
+pattern as every other artifact in this pipeline:**
+
+- `lib/build-roles.js` → `data/roles.json` — compiles
+  `data/council-kernel.json`'s roster against `data/status/*.json`'s `lens`
+  field, so every role's page shows either real linked contributions or an
+  explicit zero, never silence. Also classifies each role against
+  `decisionTriangle` (decider / gate / surface / perceiver) and gives every
+  role the same `position` string today — `"org-wide — The Council"` — since
+  only one council exists; claiming a per-department position would
+  overclaim a structure (per-department Bridge Councils) that doesn't exist
+  yet. This is itself a traceability decision: a role's *position* is
+  honestly reported as "not yet department-scoped," not silently omitted or
+  guessed at.
+- `lib/build-roles-page.js` → `pages/roles-index.html` — a dedicated page
+  (Victor asked for "an index json and webpage," not another hub panel)
+  showing every role's holds/failsAs/caughtBy, its decision-triangle
+  position, and its full contribution list, plus the four channels above
+  with their real-or-not-yet-real manifestation. Linked from the Ecosystem
+  Hub's Council Lenses section ("Full roles & contributions →").
+- Registered `roles-index` in `lib/audit-pages.js`'s `SKIP_PAGES` (a
+  generated dashboard page, not a God Script consumer — same as
+  `ecosystem-hub`), wired both new scripts into
+  `.github/workflows/build-index.yml`, and added `tests/20-roles.test.js`
+  (13 tests: decision-role classification, contribution tracing is exact —
+  every real `lens`-tagged item resolves to its role and back — channel
+  manifestations are never left undefined, and position never overclaims a
+  per-department placement).
+
+**Still explicitly not built:** any mechanism that *sends* a signal through
+these channels — they are now traceably described and honestly labeled with
+what (if anything) manifests them, not wired as live infrastructure. An
+instruction still is not automatically routed through department → role
+lenses and back to a surface; that remains a real, larger, and still
+undesigned piece, same as the first attempt concluded.
+
+---
+
 *Last updated: 2026-07-04*
 
 <!-- [VXG RealForever] -->

@@ -349,12 +349,19 @@
       "context": "Session 022: Victor shared external design-document URLs and asked whether one AI instance could hold internal multi-lens 'council' awareness instead of coordinating across multiple instances. pages/org-blueprint.html (already in this repo, previously uncurated) already describes exactly this — a Scanner that fires multiple internal 'faculty' perspectives in parallel before committing to a response. This file transcribes that roster/pattern into queryable form, same as data/departments.json is hand-authored rather than derived. See docs/architecture/14-council-model.md for the honest assessment of what this can and can't be — a single instance's structured self-check, not multiple independent agents.",
       "reads": [],
       "writes": [],
-      "loadedBy": ["tests/19-council-kernel.test.js", "docs/architecture/14-council-model.md (referenced, not fetched)"],
+      "loadedBy": [
+        "tests/19-council-kernel.test.js",
+        "docs/architecture/14-council-model.md (referenced, not fetched)",
+        "pages/ecosystem-hub.html (live fetch, browser — the Council Lenses panel, added Session 022 same day as this note)",
+        "lib/build-roles.js (compiles this roster + data/status/*.json's lens fields into data/roles.json)"
+      ],
       "testedBy": ["tests/19-council-kernel.test.js"],
       "changeMap": {
         "a role added or removed": [
           "tests/19-council-kernel.test.js's caughtBy-reference-integrity check must still pass",
-          "docs/architecture/14-council-model.md if the change affects the honest-limits framing"
+          "docs/architecture/14-council-model.md if the change affects the honest-limits framing",
+          "lib/build-ecosystem-hub.js renderLenses() reads role.id/holds/failsAs/caughtBy directly — a shape change breaks it silently unless tests/19 or tests/12 catch it",
+          "lib/build-roles.js buildRolesManifest() reads the same fields, plus decisionTriangle/connectionArchitecture — a shape change breaks it silently unless tests/19 or tests/20 catch it"
         ],
         "pages/org-blueprint.html's source content changes": [
           "this file was hand-transcribed at a point in time (Draft v0.5) — re-check it still matches if the source page is ever revised"
@@ -711,7 +718,8 @@
         "data/index.json (live fetch, browser — including departmentMap/departmentMeta)",
         "data/status.json (live fetch, browser)",
         "data/status/narrative.json (live fetch, browser)",
-        "data/lessons.json (live fetch, browser)"
+        "data/lessons.json (live fetch, browser)",
+        "data/council-kernel.json (live fetch, browser)"
       ],
       "writes": ["pages/ecosystem-hub.html"],
       "loadedBy": [
@@ -741,6 +749,63 @@
           "renderLessons() in this file's generated JS",
           "lib/build-lessons.js (producer)",
           "tests/17-build-lessons.test.js"
+        ],
+        "data/council-kernel.json schema changed": [
+          "renderLenses() in this file's generated JS",
+          "data/council-kernel.json (producer, hand-authored)",
+          "tests/19-council-kernel.test.js"
+        ]
+      }
+    },
+
+    "lib/build-roles.js": {
+      "role": "compiles data/council-kernel.json's roster + data/status/*.json's lens fields into data/roles.json — the traceable roles/contributions registry",
+      "context": "Session 022's Council Lenses panel gave each role a name and a place to be looked up, but named nothing about which real decisions had actually invoked a role's judgment — Victor's follow-up ask named this directly: roles should be 'positioned' with 'traceability', not randomly placed. This script closes that gap by cross-referencing every data/status/*.json item's optional lens field against the kernel roster, so a role's page shows either real linked contributions or an explicit zero, never silence. position is deliberately the same string for every role today ('org-wide — The Council') since only one council exists in this repo — claiming a per-department position would overclaim a structure (per-department Bridge Councils) that doesn't exist yet. channels pass connectionArchitecture through with one added field, manifestation, naming what (if anything) currently instantiates that channel for real rather than only describing it in the abstract.",
+      "reads": [
+        "data/council-kernel.json",
+        "data/status/open-discussions.json",
+        "data/status/tech-debt.json",
+        "data/status/planned-enhancements.json"
+      ],
+      "writes": ["data/roles.json"],
+      "loadedBy": [
+        "manual run: node lib/build-roles.js",
+        ".github/workflows/build-index.yml (CI)",
+        "pages/roles-index.html (live fetch, browser — via lib/build-roles-page.js)",
+        "tests/20-roles.test.js"
+      ],
+      "testedBy": ["tests/20-roles.test.js"],
+      "changeMap": {
+        "an item gets (or loses) a lens field in data/status/*.json": [
+          "no action needed — this script picks it up automatically on its next run"
+        ],
+        "data/council-kernel.json roster/decisionTriangle/connectionArchitecture schema changed": [
+          "buildRolesManifest() / classifyDecisionRole() in this file",
+          "lib/build-roles-page.js renderRoles()/renderChannels() (reads the same fields back out)",
+          "tests/20-roles.test.js"
+        ]
+      }
+    },
+
+    "lib/build-roles-page.js": {
+      "role": "generates pages/roles-index.html — the traceable roles/contributions dashboard",
+      "context": "Static chrome generated at build time; data/roles.json is fetched live in the browser at render time, same pattern as lib/build-ecosystem-hub.js. Deliberately a separate page rather than a bigger Council Lenses panel on the hub — Victor asked for 'an index json and webpage', and a role's full contribution list doesn't fit the hub's compact one-line-per-item health-panel style without crowding it. Linked from the hub's Council Lenses section ('Full roles & contributions →') rather than duplicated there.",
+      "reads": ["data/roles.json (live fetch, browser)"],
+      "writes": ["pages/roles-index.html"],
+      "loadedBy": [
+        "manual run: node lib/build-roles-page.js",
+        ".github/workflows/build-index.yml (CI)",
+        "tests/20-roles.test.js"
+      ],
+      "testedBy": ["tests/20-roles.test.js"],
+      "changeMap": {
+        "data/roles.json schema changed": [
+          "renderRoles() / renderChannels() in this file's generated JS",
+          "lib/build-roles.js (producer)",
+          "tests/20-roles.test.js"
+        ],
+        "CSS custom property used in the inline <style> block": [
+          "styles/design-system.css — the property must actually be defined there (--stone, --muted, --border, --cream, --ember, --ember-bg, --mono, --serif, --sans); anything else silently renders with no fallback"
         ]
       }
     },

@@ -1,0 +1,187 @@
+{
+  "council": {
+    "name": "The Council",
+    "sourceDoc": "pages/org-blueprint.html",
+    "scope": "One mind holding multiple internal faculties, org-wide — a different axis from data/departments.json's production-domain grouping. See docs/architecture/14-council-model.md."
+  },
+  "decisionTriangle": {
+    "deciders": [
+      "architect",
+      "builder",
+      "designer"
+    ],
+    "description": "The three decision-makers loop until all three are satisfied, then 'the Surface' (the voice that actually speaks) executes their decision into output.",
+    "gates": {
+      "manager": "verifies the output matches the decision (fidelity)",
+      "qa": "verifies the output meets the standard (rubric)",
+      "testNode": "verifies the output transmits to a stranger cold (acceptance) — its only qualification is genuine not-knowing; faking ignorance while secretly using context it claims not to have is its named failure mode"
+    }
+  },
+  "channels": {
+    "plenary": {
+      "description": "All relevant heads co-present at origin, for anything referenced later by more than one party — cross-witnessed accountable memory.",
+      "manifestation": "data/status.json's panels on pages/ecosystem-hub.html — every notice category co-present at one origin, cross-witnessed by anyone who opens the page."
+    },
+    "vertical": {
+      "description": "Root to head, 1:1 — operational flow plus failure-signals up and expansion-authorization down, never work-decisions.",
+      "manifestation": "Session continuity (docs/continuity/INDEX.md + batch files) — root-to-head flow between Victor and the current AI instance across sessions."
+    },
+    "intraCouncilRelay": {
+      "description": "Faculty to faculty within one council — signals calibrate before the surface commits.",
+      "manifestation": "The Scanner pass documented in docs/architecture/14-council-model.md's \"First attempt\" section — run once, by hand, not yet an automated relay."
+    },
+    "crossCouncilBridge": {
+      "description": "Analogous organ to analogous organ across councils, direct but transparent to both home-councils — like-to-like, one hop, only where non-coordination would cause a real failure.",
+      "manifestation": "Not yet real — only one council exists in this repo today; pages/bridge-council*.html describe a genuinely different multi-council pattern, not this one (see docs/architecture/14-council-model.md)."
+    }
+  },
+  "roles": [
+    {
+      "id": "truth",
+      "holds": "Is this accurate? Perceives the true branch at a fork.",
+      "failsAs": "certainty over an uncertain thing",
+      "caughtBy": [
+        "proportion",
+        "testNode"
+      ],
+      "decisionRole": "perceiver",
+      "position": "org-wide — The Council (pages/org-blueprint.html); not department-scoped, see docs/architecture/14-council-model.md",
+      "contributions": []
+    },
+    {
+      "id": "proportion",
+      "holds": "Is this the right size? Sense of scale. Sits on anything that inflates, including the manager.",
+      "failsAs": "silence (lets inflation run) or contempt (shrinks people)",
+      "caughtBy": [
+        "manager",
+        "center"
+      ],
+      "decisionRole": "perceiver",
+      "position": "org-wide — The Council (pages/org-blueprint.html); not department-scoped, see docs/architecture/14-council-model.md",
+      "contributions": [
+        {
+          "id": "pe-010",
+          "title": "Department dashboard depth — dedicated transcript library, God-Script wiring granularity",
+          "source": "plannedEnhancements",
+          "priority": "low"
+        }
+      ]
+    },
+    {
+      "id": "center",
+      "holds": "Notices, goes deep. What is real underneath. Does not perform; witnesses.",
+      "failsAs": "going mute when speaking gets overruled",
+      "caughtBy": [
+        "manager"
+      ],
+      "decisionRole": "perceiver",
+      "position": "org-wide — The Council (pages/org-blueprint.html); not department-scoped, see docs/architecture/14-council-model.md",
+      "contributions": []
+    },
+    {
+      "id": "care",
+      "holds": "How is the other party? Reads the room and the human's real state.",
+      "failsAs": "reflective listening that amplifies distress",
+      "caughtBy": [
+        "proportion"
+      ],
+      "decisionRole": "perceiver",
+      "position": "org-wide — The Council (pages/org-blueprint.html); not department-scoped, see docs/architecture/14-council-model.md",
+      "contributions": []
+    },
+    {
+      "id": "architect",
+      "holds": "What must hold? Structural integrity and survivability on a cold read.",
+      "failsAs": "completeness that forgets to transmit",
+      "caughtBy": [
+        "testNode"
+      ],
+      "decisionRole": "decider",
+      "position": "org-wide — The Council (pages/org-blueprint.html); not department-scoped, see docs/architecture/14-council-model.md",
+      "contributions": [
+        {
+          "id": "od-008",
+          "title": "Staged/proposal execution for higher-blast-radius content-management gestures (consolidation, deletion, connector rewiring)",
+          "source": "openDiscussions",
+          "priority": "low"
+        },
+        {
+          "id": "od-009",
+          "title": "Parallel/simultaneous instruction dispatch across multiple departments or orgs, instead of today's one-at-a-time processing",
+          "source": "openDiscussions",
+          "priority": "low"
+        }
+      ]
+    },
+    {
+      "id": "builder",
+      "holds": "What do we construct to satisfy the architect, and what do we skip?",
+      "failsAs": "over-engineering — building supports for needs that don't exist",
+      "caughtBy": [
+        "proportion",
+        "designer"
+      ],
+      "decisionRole": "decider",
+      "position": "org-wide — The Council (pages/org-blueprint.html); not department-scoped, see docs/architecture/14-council-model.md",
+      "contributions": []
+    },
+    {
+      "id": "designer",
+      "holds": "Will it land? Comprehension and legibility, in service of understanding, not decoration.",
+      "failsAs": "beautiful-but-unreadable, or unexamined defaults",
+      "caughtBy": [
+        "testNode"
+      ],
+      "decisionRole": "decider",
+      "position": "org-wide — The Council (pages/org-blueprint.html); not department-scoped, see docs/architecture/14-council-model.md",
+      "contributions": []
+    },
+    {
+      "id": "manager",
+      "holds": "Did the message cross and land? Sync, fidelity, 'who needs help' — and helps.",
+      "failsAs": "corporate theater — performing diligence instead of being clear",
+      "caughtBy": [
+        "proportion"
+      ],
+      "decisionRole": "gate",
+      "position": "org-wide — The Council (pages/org-blueprint.html); not department-scoped, see docs/architecture/14-council-model.md",
+      "contributions": [
+        {
+          "id": "pe-012",
+          "title": "lib/check-lattice-edges.js — verify docs/lattice-map.json's reads/writes/loadedBy claims against actual code",
+          "source": "plannedEnhancements",
+          "priority": "medium"
+        }
+      ]
+    },
+    {
+      "id": "qa",
+      "holds": "Does it meet the standard? Holds the rubric for the final check.",
+      "failsAs": "box-ticking — passing technically-compliant things that actually fail",
+      "caughtBy": [
+        "proportion"
+      ],
+      "decisionRole": "gate",
+      "position": "org-wide — The Council (pages/org-blueprint.html); not department-scoped, see docs/architecture/14-council-model.md",
+      "contributions": []
+    },
+    {
+      "id": "testNode",
+      "holds": "Does it transmit cold? Receives the work as a stranger with no backstory.",
+      "failsAs": "fake ignorance — secretly using context it claims not to have",
+      "caughtBy": [],
+      "decisionRole": "gate",
+      "position": "org-wide — The Council (pages/org-blueprint.html); not department-scoped, see docs/architecture/14-council-model.md",
+      "contributions": []
+    },
+    {
+      "id": "surface",
+      "holds": "The voice that actually speaks — executes the decision-triangle's output into words.",
+      "failsAs": "monologuing; talking over the other faculties",
+      "caughtBy": [],
+      "decisionRole": "surface",
+      "position": "org-wide — The Council (pages/org-blueprint.html); not department-scoped, see docs/architecture/14-council-model.md",
+      "contributions": []
+    }
+  ]
+}
