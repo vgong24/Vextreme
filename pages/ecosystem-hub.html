@@ -141,6 +141,12 @@
     <div class="stat-tile"><div class="val" id="stat-open">—</div><div class="lbl">Open Items</div></div>
   </div>
 
+  <!-- Departments -->
+  <div class="section"><h2>Departments</h2></div>
+  <div class="health-grid" id="dept-grid">
+    <span class="loading">Loading…</span>
+  </div>
+
   <!-- Current Architecture -->
   <div class="section"><h2>Current Architecture</h2></div>
   <div id="narrative-body" class="narrative-body">
@@ -245,6 +251,60 @@
       el('stat-lattice').textContent = lattice ? (lattice.mappedNodes + '/' + lattice.totalFiles) : '—';
     }
 
+    // Departments — production-domain grouping (index.json departmentMap/departmentMeta),
+    // a different axis from arcs: which domain owns a work and whether it's live yet,
+    // not how a reader navigates between pieces. Reuses the same health-panel/notice-item
+    // markup as System Health rather than inventing new CSS for a second grid.
+    function renderDepartments(data) {
+      var deptMap  = data.departmentMap  || {};
+      var deptMeta = data.departmentMeta || {};
+
+      var order = Object.keys(deptMeta).sort(function (a, b) {
+        return (deptMeta[b].default ? 1 : 0) - (deptMeta[a].default ? 1 : 0);
+      });
+
+      if (!order.length) {
+        el('dept-grid').innerHTML = '<span class="empty-state">No departments registered.</span>';
+        return;
+      }
+
+      var html = order.map(function (deptId) {
+        var meta      = deptMeta[deptId] || { label: deptId, workTypes: {} };
+        var workTypes = deptMap[deptId]  || {};
+        var total = 0, ported = 0;
+        Object.keys(workTypes).forEach(function (wt) {
+          workTypes[wt].forEach(function (n) { total++; if (n.ported) ported++; });
+        });
+
+        var body = Object.keys(workTypes).map(function (wt) {
+          var wtLabel = (meta.workTypes[wt] && meta.workTypes[wt].label) || wt;
+          var rows = workTypes[wt].map(function (n) {
+            var badge = n.ported
+              ? '<span class="ni-tag tag-low">live</span>'
+              : '<span class="ni-tag tag-high">planned</span>';
+            var titleHtml = n.ported
+              ? '<a href="' + BASE + '/pages/' + n.slug + '.html">' + esc(n.title) + '</a>'
+              : esc(n.title);
+            return '<div class="notice-item"><div class="ni-title">' + badge + ' ' + titleHtml + '</div></div>';
+          }).join('');
+          return '<div style="margin-bottom:0.75rem">' +
+            '<div class="ni-meta" style="margin-bottom:0.35rem">' + esc(wtLabel) + '</div>' +
+            rows +
+          '</div>';
+        }).join('');
+
+        return '<details class="health-panel">' +
+          '<summary class="panel-head">' +
+            '<span class="panel-title">' + esc(meta.label) + ' <span class="panel-badge">' + ported + '/' + total + '</span></span>' +
+            '<span class="panel-caret"></span>' +
+          '</summary>' +
+          '<div class="panel-body">' + (body || '<div class="empty-state">No works yet.</div>') + '</div>' +
+        '</details>';
+      }).join('');
+
+      el('dept-grid').innerHTML = html;
+    }
+
     function renderNarrative(narrative) {
       var pipelineHtml = (narrative.pipeline || []).map(function (step) {
         return '<li>' + esc(step) + '</li>';
@@ -269,9 +329,11 @@
         el('stat-nodes').textContent = Object.keys(data.slugMap || {}).length;
         el('stat-arcs').textContent  = Object.keys(data.arcMap  || {}).length;
         el('stat-langs').textContent = (data.supportedLangs || []).join(', ').toUpperCase();
+        renderDepartments(data);
       })
       .catch(function (e) {
         el('stat-nodes').textContent = 'err';
+        el('dept-grid').innerHTML = '<span class="error-msg">Failed to load index.json: ' + e.message + '</span>';
         console.error('index.json failed:', e);
       });
 

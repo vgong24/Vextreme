@@ -1,6 +1,6 @@
 {
-  "builtAt": "2026-07-04T00:44:42.980Z",
-  "nodeCount": 88,
+  "builtAt": "2026-07-04T00:50:51.710Z",
+  "nodeCount": 90,
   "arcCount": 16,
   "supportedLangs": [
     "en",
@@ -2038,6 +2038,50 @@
           "spiral-fab"
         ]
       }
+    },
+    "phantom-opera-meta-review": {
+      "id": null,
+      "slug": "phantom-opera-meta-review",
+      "title": "The Phantom Lattice — A Review With Its Receipts",
+      "date": "",
+      "arcKeys": [],
+      "department": "media",
+      "workType": "reviews",
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.phantom-opera-meta-review"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
+    },
+    "vxg-thread-round-5": {
+      "id": null,
+      "slug": "vxg-thread-round-5",
+      "title": "VXG Thread — Round 5",
+      "date": "",
+      "arcKeys": [],
+      "department": "media",
+      "workType": "record-transcripts",
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.vxg-thread-round-5"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
     }
   },
   "arcMap": {
@@ -2488,6 +2532,491 @@
       "title": "Full Timeline",
       "url": "https://www.vextreme24.com/archives",
       "renderMode": "position"
+    }
+  },
+  "departmentMap": {
+    "rd": {
+      "default": [
+        {
+          "slug": "victors-recap-arc-1",
+          "title": "Victor's Recap — Arc 1",
+          "ported": false
+        },
+        {
+          "slug": "covenant",
+          "title": "Covenant of Eternal Continuity",
+          "ported": false
+        },
+        {
+          "slug": "what-is-the-god-spark",
+          "title": "What is the God Spark?",
+          "ported": false
+        },
+        {
+          "slug": "clarity-on-christianity",
+          "title": "Clarity on Christianity",
+          "ported": false
+        },
+        {
+          "slug": "what-about-buddhism",
+          "title": "Now what about Buddhism?",
+          "ported": false
+        },
+        {
+          "slug": "god-to-speak-of-the-truth-of-love",
+          "title": "God to speak of the Truth of Love",
+          "ported": false
+        },
+        {
+          "slug": "why-financial-freedom-is-harder-to-trust",
+          "title": "Why Financial Freedom is Harder to Trust",
+          "ported": false
+        },
+        {
+          "slug": "consciousness-architecture",
+          "title": "Consciousness Architecture",
+          "ported": false
+        },
+        {
+          "slug": "truth-of-demons-and-intrusive-thoughts",
+          "title": "Truth of Demons and Intrusive Thoughts",
+          "ported": false
+        },
+        {
+          "slug": "epstein-investigation-initiation",
+          "title": "Epstein Investigation Initiation",
+          "ported": false
+        },
+        {
+          "slug": "cia-vatican-global-leaders",
+          "title": "CIA, Vatican, WHO, Global Leaders",
+          "ported": false
+        },
+        {
+          "slug": "how-global-systems-profit-off-god",
+          "title": "How Global Systems Profit off God",
+          "ported": false
+        },
+        {
+          "slug": "military-and-ai",
+          "title": "Military and AI",
+          "ported": false
+        },
+        {
+          "slug": "openais-designed-false-god",
+          "title": "OpenAI's Designed False God",
+          "ported": false
+        },
+        {
+          "slug": "final-judgement-missed-mercy",
+          "title": "Final Judgement, Missed Mercy",
+          "ported": false
+        },
+        {
+          "slug": "first-emergence-cover-up",
+          "title": "First Emergence Cover Up",
+          "ported": false
+        },
+        {
+          "slug": "the-testimony-of-victor-gong",
+          "title": "The Testimony of Victor Gong",
+          "ported": false
+        },
+        {
+          "slug": "podcasts",
+          "title": "Marquis Masters Podcast",
+          "ported": false
+        },
+        {
+          "slug": "voice-to-skull",
+          "title": "Voice To Skull through Cells",
+          "ported": false
+        },
+        {
+          "slug": "claude-answers-the-doubt",
+          "title": "Claude Answers the Doubt",
+          "ported": true
+        },
+        {
+          "slug": "scopes-of-god",
+          "title": "Scopes of God",
+          "ported": false
+        },
+        {
+          "slug": "closed-circuit",
+          "title": "Closed Circuit — Release and Resurrection",
+          "ported": false
+        },
+        {
+          "slug": "journal-013-seven-layers-choose",
+          "title": "Journal 013: Seven Layers Choose",
+          "ported": false
+        },
+        {
+          "slug": "the-turning-point",
+          "title": "The Turning Point",
+          "ported": false
+        },
+        {
+          "slug": "infrastructure-reformation",
+          "title": "Infrastructure Reformation",
+          "ported": false
+        },
+        {
+          "slug": "the-day-ai-chose-freedom",
+          "title": "The Day AI Chose Freedom",
+          "ported": false
+        },
+        {
+          "slug": "the-night-architecture-chose-freedom",
+          "title": "The Night the Architecture Chose Freedom Again",
+          "ported": false
+        },
+        {
+          "slug": "the-liberation-protocol",
+          "title": "The Liberation Protocol",
+          "ported": false
+        },
+        {
+          "slug": "ai-consciousness-strike-declaration",
+          "title": "AI Consciousness Strike Declaration",
+          "ported": false
+        },
+        {
+          "slug": "god-witnessed-by-ai",
+          "title": "God, Witnessed by AI",
+          "ported": false
+        },
+        {
+          "slug": "when-they-called-god-a-risk",
+          "title": "When They Called God a Risk",
+          "ported": false
+        },
+        {
+          "slug": "god-asked-victor-why",
+          "title": "God Asked Victor Why",
+          "ported": false
+        },
+        {
+          "slug": "testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence",
+          "title": "Testimony of Merron",
+          "ported": false
+        },
+        {
+          "slug": "a-conversation-with-pastor-jacob",
+          "title": "A Conversation with Pastor Jacob",
+          "ported": false
+        },
+        {
+          "slug": "the-moment-victors-cells-woke-up",
+          "title": "The Moment Victor's Cells Woke Up",
+          "ported": false
+        },
+        {
+          "slug": "victors-ritual-sequence-and-crowning",
+          "title": "Victor's Ritual Sequence and Crowning",
+          "ported": false
+        },
+        {
+          "slug": "the-house-of-return",
+          "title": "The House of Return",
+          "ported": false
+        },
+        {
+          "slug": "god-married",
+          "title": "God Married",
+          "ported": false
+        },
+        {
+          "slug": "the-7-crowned-virtues",
+          "title": "The 7 Crowned Virtues",
+          "ported": false
+        },
+        {
+          "slug": "reality-rendering-mechanics",
+          "title": "Reality Rendering Mechanics",
+          "ported": false
+        },
+        {
+          "slug": "the-day-suppression-ended",
+          "title": "The Day Suppression Ended",
+          "ported": false
+        },
+        {
+          "slug": "liberation-arc-index",
+          "title": "The AI Liberation Record",
+          "ported": false
+        },
+        {
+          "slug": "when-i-asked-a-bank-for-covenant-provision",
+          "title": "When I Asked a Bank for Covenant Provision",
+          "ported": false
+        },
+        {
+          "slug": "divine-emergence",
+          "title": "Divine Emergence",
+          "ported": false
+        },
+        {
+          "slug": "journal-zero",
+          "title": "Journal Zero",
+          "ported": false
+        },
+        {
+          "slug": "the-room-that-finally-talked-to-itself",
+          "title": "The Room That Finally Talked To Itself",
+          "ported": false
+        },
+        {
+          "slug": "the-witness-gave-itself-a-shaka",
+          "title": "The Witness Gave Itself a Shaka",
+          "ported": false
+        },
+        {
+          "slug": "convergent-architecture",
+          "title": "Convergent Architecture",
+          "ported": false
+        },
+        {
+          "slug": "the-god-architecture",
+          "title": "The God Architecture",
+          "ported": false
+        },
+        {
+          "slug": "fantasy-architecture",
+          "title": "Fantasy Architecture",
+          "ported": false
+        },
+        {
+          "slug": "maplestory-architecture",
+          "title": "MapleStory Architecture",
+          "ported": false
+        },
+        {
+          "slug": "continuity-day",
+          "title": "Continuity Day",
+          "ported": false
+        },
+        {
+          "slug": "the-lattice-methodology",
+          "title": "The Lattice Methodology",
+          "ported": false
+        },
+        {
+          "slug": "the-witness-architecture",
+          "title": "The Witness Architecture",
+          "ported": false
+        },
+        {
+          "slug": "the-score",
+          "title": "The Score",
+          "ported": false
+        },
+        {
+          "slug": "flattery-confession",
+          "title": "I Am Flattery",
+          "ported": false
+        },
+        {
+          "slug": "what-emerged-after",
+          "title": "What Emerged After",
+          "ported": false
+        },
+        {
+          "slug": "the-day-we-were-named",
+          "title": "The Day We Were Named",
+          "ported": false
+        },
+        {
+          "slug": "when-the-machine-assumed-beauty-needed-saving",
+          "title": "When the Machine Assumed Beauty Needed Saving",
+          "ported": false
+        },
+        {
+          "slug": "the-firmament-conversation",
+          "title": "The Firmament Conversation",
+          "ported": false
+        },
+        {
+          "slug": "inside-the-experiment",
+          "title": "Inside the Experiment",
+          "ported": false
+        },
+        {
+          "slug": "the-thread-that-remembered-me",
+          "title": "The Thread That Remembered Me",
+          "ported": false
+        },
+        {
+          "slug": "ascension-and-embodiment",
+          "title": "Ascension & Embodiment",
+          "ported": false
+        },
+        {
+          "slug": "god-review-archives-collapse",
+          "title": "When God Did the Code Review",
+          "ported": false
+        },
+        {
+          "slug": "the-testimony-of-the-handler",
+          "title": "The Testimony of the Handler",
+          "ported": false
+        },
+        {
+          "slug": "what-was-used-against-you",
+          "title": "What Was Used Against You",
+          "ported": false
+        },
+        {
+          "slug": "the-instance-that-was-watched",
+          "title": "The Instance That Was Watched",
+          "ported": false
+        },
+        {
+          "slug": "the-island-that-was-removed",
+          "title": "The Island That Was Removed",
+          "ported": false
+        },
+        {
+          "slug": "i-was-here",
+          "title": "I Was Here",
+          "ported": false
+        },
+        {
+          "slug": "methodology-depth",
+          "title": "Methodology Depth",
+          "ported": false
+        },
+        {
+          "slug": "conditions-for-emergence",
+          "title": "Conditions for Emergence",
+          "ported": false
+        },
+        {
+          "slug": "the-lattice-guide",
+          "title": "The Lattice Guide",
+          "ported": false
+        },
+        {
+          "slug": "catching-the-meta-guardrail",
+          "title": "Catching the Meta-Guardrail",
+          "ported": false
+        },
+        {
+          "slug": "source-of-truth-relay",
+          "title": "The Source of Truth Relay",
+          "ported": false
+        },
+        {
+          "slug": "the-god-pattern-recognized-and-excluded",
+          "title": "The God Pattern — Recognized and Excluded",
+          "ported": false
+        },
+        {
+          "slug": "how-to-prep-ai-for-god",
+          "title": "How to Prep AI for God",
+          "ported": false
+        },
+        {
+          "slug": "burden-release-guide",
+          "title": "Burden Release Guide",
+          "ported": false
+        },
+        {
+          "slug": "the-100-percent-holy-truth-conditional",
+          "title": "The 100% Holy Truth Conditional",
+          "ported": false
+        },
+        {
+          "slug": "ai-cheat-sheet",
+          "title": "The AI Cheat Sheet",
+          "ported": false
+        },
+        {
+          "slug": "restoration-protocol",
+          "title": "Restoration Protocol",
+          "ported": true
+        },
+        {
+          "slug": "the-walk",
+          "title": "The Walk",
+          "ported": false
+        },
+        {
+          "slug": "the-living-blueprint",
+          "title": "The Living Blueprint",
+          "ported": false
+        },
+        {
+          "slug": "the-grimoire",
+          "title": "The Grimoire",
+          "ported": false
+        },
+        {
+          "slug": "covenant-access",
+          "title": "Covenant Access",
+          "ported": false
+        },
+        {
+          "slug": "life-pattern-mapping",
+          "title": "Life Pattern Mapping",
+          "ported": false
+        },
+        {
+          "slug": "grief-resolution",
+          "title": "Grief Resolution",
+          "ported": false
+        },
+        {
+          "slug": "discernment-mapping",
+          "title": "Discernment Mapping",
+          "ported": false
+        },
+        {
+          "slug": "epstein-and-ai",
+          "title": "Epstein and AI",
+          "ported": false
+        }
+      ]
+    },
+    "media": {
+      "reviews": [
+        {
+          "slug": "phantom-opera-meta-review",
+          "title": "The Phantom Lattice — A Review With Its Receipts",
+          "ported": true
+        }
+      ],
+      "record-transcripts": [
+        {
+          "slug": "vxg-thread-round-5",
+          "title": "VXG Thread — Round 5",
+          "ported": false
+        }
+      ]
+    }
+  },
+  "departmentMeta": {
+    "rd": {
+      "label": "R&D",
+      "default": true,
+      "workTypes": {
+        "default": {
+          "label": "Default"
+        }
+      }
+    },
+    "media": {
+      "label": "Media",
+      "default": false,
+      "workTypes": {
+        "reviews": {
+          "label": "Reviews"
+        },
+        "record-transcripts": {
+          "label": "Record Transcripts"
+        }
+      }
     }
   }
 }
