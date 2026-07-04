@@ -45,8 +45,11 @@ auto-discovered (title scraped from its own `<title>` tag) rather than left invi
 + `lib/apply-content-intents.js` upsert a page's `vex:department`/`vex:workType` meta tags and
 optionally place it into an arc's one auto-managed section in `arcs-v2.json`, validating the
 department/arcKey are real before writing anything (an earlier gap — nothing previously stopped
-an unregistered department from existing in `index.json` while never rendering anywhere). Slug
-uniqueness is mechanically enforced (BLOCK severity) in
+an unregistered department from existing in `index.json` while never rendering anywhere). This
+is the first concrete instance of a longer-term direction — `docs/architecture/13-intent-driven-operations.md`
+names the full perceive → fetch/synthesize → judge → declare-intent → verify loop, what's built,
+and what's intentionally not designed yet (pe-012, od-008) — read it before extending this pattern
+further. Slug uniqueness is mechanically enforced (BLOCK severity) in
 `lib/build-index.js`; orphan pages and `wip/` placement conflicts are reported (informational)
 via `lib/check-key-alignment.js` and a `contentIntegrity` panel on the Ecosystem Hub. Three
 silent-drift detectors run in CI: `lib/build-lattice-headers.js --check` (LATTICE header drift),
@@ -93,6 +96,8 @@ off forever; its record already lives in the batch file and (for od-/td-/pe- ite
 not this list.
 
 **Genuinely open:**
+- [ ] pe-012 — `lib/check-lattice-edges.js`: verify `docs/lattice-map.json`'s claimed reads/writes/loadedBy edges against actual code (Session 022; see `docs/architecture/13-intent-driven-operations.md` for why this is the decided next step)
+- [ ] od-008 — staged/proposal execution for higher-blast-radius content gestures (consolidation, deletion, connector rewiring) — intentionally not designed yet, blocked on pe-012 and on a real case existing to design against (Session 022)
 - [ ] `lib/build-lattice-headers.js` structural fix — replace comment-embedded sentinel markers with a real `const VEX_LATTICE = {...}` statement + a validating `LatticeNode` class; design agreed (Session 021), not yet built
 - [ ] pe-011 — collapse `lib/build-archives.js` onto `data/index.json` instead of independently re-deriving from `nodes.json`/`arcs-v2.json` (Session 022)
 - [ ] pe-010 — dedicated transcript-library dashboard; distinguish `ported` from God-Script-wired in `departmentMap` (Session 022)

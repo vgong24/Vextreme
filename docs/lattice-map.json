@@ -587,7 +587,7 @@
 
     "lib/build-status.js": {
       "role": "system health manifest assembler — reads hand-authored status/*.json plus the strings manifest and key-alignment report, writes data/status.json",
-      "context": "The write side of the 'what's still open' picture: six notice categories (translation debt and contentIntegrity auto-derived, techDebt/enhancements/assumptions/openDiscussions hand-authored) roll up into one artifact pages/ecosystem-hub.html fetches live. Also computes lattice coverage (mapped nodes vs. total eligible .js files in lib/+widgets/) into _meta.lattice, so the hub can show it without re-deriving the eligibility rule. openDiscussions (added Session 015) is deliberately separate from techDebt/enhancements — see data/status/open-discussions.json's _comment for why. contentIntegrity (Session 022) is auto-generated like translation, not hand-authored like the other three. Also Session 022: this generator had been run and committed by hand every session with no CI step actually calling it — now wired into .github/workflows/build-index.yml alongside lib/build-ecosystem-hub.js and the new lib/build-lessons.js.",
+      "context": "The write side of the 'what's still open' picture: six notice categories (translation debt and contentIntegrity auto-derived, techDebt/enhancements/assumptions/openDiscussions hand-authored) roll up into one artifact pages/ecosystem-hub.html fetches live. Also computes lattice coverage (mapped nodes vs. total eligible .js files in lib/+widgets/) into _meta.lattice, so the hub can show it without re-deriving the eligibility rule. openDiscussions (added Session 015) is deliberately separate from techDebt/enhancements — see data/status/open-discussions.json's _comment for why. contentIntegrity (Session 022) is auto-generated like translation, not hand-authored like the other three. Also Session 022: this generator had been run and committed by hand every session with no CI step actually calling it — now wired into .github/workflows/build-index.yml alongside lib/build-ecosystem-hub.js and the new lib/build-lessons.js. Later, Session 022: _meta.generated (wall-clock timestamp) and _meta.commit (git SHA at build time) removed entirely — neither was consumed anywhere, and both guaranteed a manufactured merge conflict any time two branches independently regenerated this file from identical source data (real incident, PR #50). Output is now content-deterministic: identical input always produces a byte-identical file. See config/lessons/generated-artifacts-must-be-content-deterministic.json.",
       "reads": [
         "data/strings/compiled/manifest.json",
         "data/strings/compiled/strings.en.json",
@@ -622,6 +622,9 @@
         ],
         "check-key-alignment.js report shape changed": [
           "buildContentIntegrityNotices() here reads report.pages.orphans / report.wip.collisions / report.wip.duplicateIntents directly — a shape change there breaks this silently unless tests/10 or tests/08 catch it"
+        ],
+        "any new _meta field being considered": [
+          "must not vary run-to-run for identical source data (no wall-clock timestamp, no git commit SHA) — see config/lessons/generated-artifacts-must-be-content-deterministic.json for why; if a field genuinely needs to reflect build time (like data/index.json's builtAt), that's a deliberate, different tradeoff, not the default"
         ]
       }
     },

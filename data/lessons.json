@@ -1,6 +1,17 @@
 {
-  "count": 8,
+  "count": 9,
   "items": [
+    {
+      "id": "generated-artifacts-must-be-content-deterministic",
+      "title": "A Generated File's Metadata Must Not Change Unless Its Real Content Does — Otherwise Every Independent Rebuild Is a Manufactured Merge Conflict",
+      "problem": "PR #50 hit a real GitHub merge conflict in data/status.json: the branch had regenerated the file after PR #49 merged, main's own auto-rebuild commit (.github/workflows/build-index.yml) had also regenerated it independently in the meantime, and the two copies conflicted — not because the underlying tech-debt/enhancement/open-discussion content actually differed, but because lib/build-status.js stamped _meta.generated (a wall-clock ISO timestamp) and _meta.commit (the git SHA at build time) into the file on every single run. Two builds of identical source data produced two different files purely because of when and on what commit each one happened to run.",
+      "lesson": "Before stamping a wall-clock timestamp or a commit SHA into any file this build pipeline regenerates and commits, ask who actually reads that field. If the answer is nobody, it is not metadata — it is a guaranteed source of spurious merge conflicts on every PR that happens to overlap an unrelated rebuild, and the fix is to remove it, not to reach for a smarter conflict-resolution mechanism (merge drivers, custom scripts) to paper over a self-inflicted problem. Content-determinism (same input → byte-identical output) should be the default assumption for any generated artifact; a field that breaks it needs to earn its place by being genuinely consumed (data/index.json's builtAt, sw.js's cache-bust name), not just be conventional decoration.",
+      "impact": "Removed the field entirely from data/status.json's schema (tests/10-build-status.test.js updated to assert its absence and to assert byte-identical output for identical input). Directly closes the class of merge conflict that blocked PR #50. No other generated artifact in this pipeline was found to have the same unused-volatility problem (checked data/index.json's builtAt and sw.js's cache name — both are legitimately consumed and were left alone).",
+      "sessions": [
+        "022"
+      ],
+      "visual": null
+    },
     {
       "id": "generated-file-merge-driver-needs-local-registration",
       "title": "A .gitattributes merge=ours Declaration Does Nothing Without a Locally-Registered Driver",

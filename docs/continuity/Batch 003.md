@@ -267,4 +267,50 @@ Seven PRs total this session (#40–#47). A real values disagreement about a gov
 - [ ] Pilot page-sorting decision still open: `about-me`/`connect` (department-only, no arc) vs. `bridge-council`/`org-blueprint` (ambiguous arc fit) — the mechanism to apply either is now built and verified, but no real intents have been declared yet for any of the 19 uncurated pages
 - [ ] `pe-010`, `pe-011`, od-001/002/003/006/007 remain open
 
+### Session continued — naming the long-term shape before building the next piece of it
+
+**Victor pushed the conversation from "what's the next script" to "what's the actual long-term direction, and does a new instance reading CLAUDE.md know it exists."** After agreeing `lib/check-lattice-edges.js` (verifying the lattice map's claimed edges against real code) was the right next increment, he redirected: build the *design* first — a durable artifact a cold-start instance can read and "perceive the pattern without fear," not just a backlog ticket.
+
+**Wrote `docs/architecture/13-intent-driven-operations.md`** — names the five-step loop every tool built this session is one instance of (perceive via the map → fetch/synthesize a compiled artifact → judge, the one step that stays genuinely AI work → declare intent as structured data → verify mechanically), maps what's concretely built today against each stage, and is explicit about the boundary between "decided, about to build" (pe-012, the lattice-edge checker) and "named but intentionally not designed" (od-008, staged/proposal execution for higher-blast-radius gestures like duplicate-content consolidation) — using the same "don't design against zero real cases" reasoning already applied to od-003/od-007, so the bigger vision doesn't get treated as a spec ready to implement.
+
+**The core discipline named in that doc, worth restating here since it's the thing that keeps this whole direction honest:** the interface layer (map, compiled artifacts, intent scripts) is only trustworthy to the extent it's actually checked, not merely written — growing what the AI can declare-and-trust must be paired with growing what's mechanically verified, or the interface becomes a bigger, more convincing version of the staleness problem this repo has already hit three times.
+
+### Files created or modified (continued)
+
+| File | What changed |
+|---|---|
+| `docs/architecture/13-intent-driven-operations.md` | New — the loop, what's built, pe-012 (decided next), od-008 (intentionally open) |
+| `data/status/planned-enhancements.json` | `pe-012` — `lib/check-lattice-edges.js`, not yet built |
+| `data/status/open-discussions.json` | `od-008` — staged execution for consolidation/deletion gestures, intentionally undesigned |
+| `docs/continuity/INDEX.md` | Current State points to the new doc; Open Work lists pe-012/od-008 |
+
+### Open work at session end (continued)
+
+- [ ] pe-012 — `lib/check-lattice-edges.js`, scoped and decided, not yet built
+- [ ] od-008 — intentionally not designed; blocked on pe-012 and on a real consolidation case existing
+- [ ] Pilot page-sorting decision (unchanged from above)
+- [ ] `pe-010`, `pe-011`, od-001/002/003/006/007 remain open
+
+### Session continued — a real merge conflict became a concrete example of the self-healing-system idea
+
+**Victor screenshotted a live merge conflict on PR #50** (`data/status.json`) as an example of what he meant by "the system using its own intent system to address itself without AI involvement." Traced the actual cause rather than reaching for the already-known merge-driver workaround: `lib/build-status.js` stamped a wall-clock timestamp and a git commit SHA into `_meta` on every run, so two branches independently regenerating the file from *identical* underlying content still produced two different files — the branch's own regenerated copy and main's post-merge auto-rebuild commit, conflicting on metadata neither the Ecosystem Hub nor anything else actually reads. Confirmed via grep before touching anything: zero consumers of `_meta.generated`/`_meta.commit` anywhere in the codebase.
+
+**Resolved the live PR #50 conflict directly** (merged `origin/main`, regenerated `data/status.json` fresh rather than hand-picking a side, ran the full pipeline, pushed) — then fixed the actual cause: removed both fields from `buildStatusRollup` entirely, along with the now-unnecessary `execSync('git rev-parse ...')` call. Verified concretely, not just by reasoning: ran `build-status.js` twice in a row and diffed the output — byte-identical. Checked whether the same problem existed elsewhere first (`data/index.json`'s `builtAt`, `sw.js`'s commit-based cache-bust name) — both are genuinely consumed (a user-facing "last built" display, and cache invalidation that specifically needs to change per commit), a different tradeoff, correctly left untouched.
+
+**Recorded as a lesson** (`config/lessons/generated-artifacts-must-be-content-deterministic.json`) rather than just a code fix, since the principle generalizes: any future generated artifact should default to content-determinism (identical input → byte-identical output), and a field that breaks that needs to earn its place by being genuinely read by something, not just be conventional decoration.
+
+### Files created or modified (continued)
+
+| File | What changed |
+|---|---|
+| `lib/build-status.js` | Removed `_meta.generated`/`_meta.commit` and the `execSync` git shell-out; header comment explains why |
+| `tests/10-build-status.test.js` | Asserts the fields are absent; new determinism test (identical input → byte-identical output) |
+| `config/lessons/generated-artifacts-must-be-content-deterministic.json` | New lesson |
+| `docs/lattice-map.json` | `lib/build-status.js` context + changeMap updated |
+
+### Open work at session end (continued)
+
+- [ ] pe-012, od-008, pilot page-sorting decision — unchanged from above
+- [ ] `pe-010`, `pe-011`, od-001/002/003/006/007 remain open
+
 <!-- [VXG RealForever] -->
