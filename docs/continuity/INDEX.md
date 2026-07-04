@@ -29,8 +29,12 @@ intent, the continuity log documents reality.
 
 *As of Session 022 — July 4, 2026*
 
-The v2 GitHub Pages architecture is the active system (v1 Squarespace loader still lives in
-the repo, historical only — see `docs/Readme.md`). The God Script pipeline assembles one
+The v2 GitHub Pages architecture is the active system. v1 (`data/arcs.json`, `data/pages.json`,
+`lib/vextreme.js`/`archive-renderer.js`/`arc-nav.js`) still serves the live Squarespace site
+directly at runtime, but shares no runtime path with v2's build pipeline — confirmed frozen,
+not a file future arc work needs to keep in sync (Session 022; see
+`docs/architecture/03-data.md`'s "v1 vs v2" section and
+`config/lessons/v1-arcs-json-is-frozen-not-a-sync-target.json`). The God Script pipeline assembles one
 self-contained JS file per page; `data/nodes.json` + `data/arcs-v2.json` + `data/departments.json`
 are the write-side sources `lib/build-index.js` compiles into `data/index.json`, which
 everything downstream reads. Content now has two independent groupings: **arcs** (reader-facing

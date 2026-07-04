@@ -1,5 +1,5 @@
 {
-  "count": 7,
+  "count": 8,
   "items": [
     {
       "id": "generated-file-merge-driver-needs-local-registration",
@@ -77,6 +77,17 @@
         "013",
         "014",
         "019"
+      ],
+      "visual": null
+    },
+    {
+      "id": "v1-arcs-json-is-frozen-not-a-sync-target",
+      "title": "data/arcs.json (v1) and data/arcs-v2.json (v2) Share No Runtime Path — v1 Is Frozen, Not a File to Keep in Sync",
+      "problem": "Before building any arc-membership automation for the v2 pipeline (a vex:arcs meta-tag / build-time slug-insertion feature, requested Session 022), Victor raised a real, previously-unresolved concern: does data/arcs.json (which the still-live Squarespace site fetches at runtime) depend on or get affected by anything done to data/arcs-v2.json (the v2 GitHub Pages build pipeline's source)? Neither party had full recall of whether that dependency existed.",
+      "lesson": "Two files that look like versioned copies of the same concept (same arc keys, same apparent purpose) can share zero runtime path — confirm the actual consumer set before assuming a dependency exists in either direction. The risk here wasn't 'v2 changes could break v1' (they can't — nothing during a v2 build ever touches data/arcs.json) or 'v1 changes could break v2' (same reason) — the real, subtler risk was that new arc-insertion tooling built for v2 only would silently drift from v1's current parity going forward, if v1 were still an active target. Once confirmed it isn't, that risk doesn't apply, but it would apply again the moment either file resumes taking new content — worth re-checking if that ever changes.",
+      "impact": "No code behavior change. Fixed one stale/incorrect code comment (lib/build-archives.js's ARC_KEY_MAP). Documented the full v1/v2 relationship in docs/architecture/03-data.md so it doesn't need re-tracing. Unblocks building vex:arcs-style arc-insertion automation against data/arcs-v2.json alone, without needing to also write data/arcs.json or build a parity check for it.",
+      "sessions": [
+        "022"
       ],
       "visual": null
     }
