@@ -214,6 +214,25 @@ This encodes authorial intent — the system cannot auto-derive story sequence.
 with `dateRange` boundaries. Adding a new dated node automatically places it
 in the correct position on next build.
 
+**v1 vs v2 — two arc files that look related but share no runtime path.**
+`data/arcs.json` and `data/pages.json` are the v1 system's write-side sources —
+read only by `lib/vextreme.js`, `lib/archive-renderer.js`, and `lib/arc-nav.js`,
+which serve the live Squarespace site (`vextreme24.com`) directly at runtime via
+`fetch()`. They are not inputs to the v2 build pipeline above, and `lib/build-*.js`
+never reads either file. `data/arcs.json` uses the same snake_case arc keys as
+`data/arcs-v2.json` (not kebab-case — a stale comment in `lib/build-archives.js`
+claimed otherwise until Session 022; kebab-case is only the i18n string-key
+naming convention `ARC_KEY_MAP` translates into, unrelated to either arcs file),
+but a different per-arc schema: `sections[].entries[]` (each `{n, title, slug}`,
+carrying its own titles) instead of v2's flat `sections[].slugs[]` (titles come
+from `nodes.json` instead). Diffing every arc's slug set between the two files
+(Session 022) found zero drift on every explicit-order arc — the two have been
+hand-kept in parallel, not by any mechanism. Since v1 is deprecated and receives
+no new Squarespace content going forward (confirmed directly, Session 022), this
+is not an active risk requiring a parity check — but it means `data/arcs.json`
+should be treated as frozen, not as a file that stays in sync with future
+`arcs-v2.json` edits. See `config/lessons/v1-arcs-json-is-frozen-not-a-sync-target.json`.
+
 → *Connects to 04-build-time: the build pipeline is where write-side data
 becomes the read-side structures the browser consumes. Understanding what
 gets computed there is what keeps the browser layer clean.*

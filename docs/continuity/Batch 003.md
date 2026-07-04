@@ -221,4 +221,28 @@ Six PRs total this session (#40–#46), each a real checkpoint. Adding a page �
 
 Seven PRs total this session (#40–#47). A real values disagreement about a governance document's mutability was worked through in actual dialogue — pushed back on, refined, and resolved into a written lesson rather than either an unreviewed edit or a suppressed concern. Writing that lesson surfaced a second, independent gap (the lesson archive itself wasn't reaching the Ecosystem Hub), closed the same session with a new compiled artifact rather than deferred. Two previously-manual build steps (`build-status.js`, `build-ecosystem-hub.js`) are now real CI steps instead of an unenforced per-session ritual. 266/266 tests passing, lattice drift 0.
 
+### Session continued — resolving a standing v1/v2 uncertainty before building arc-insertion automation
+
+**Victor floated a genuinely new feature: declare a page's intended arc via a JSON/meta-tag, let a build step insert it into the right position automatically** — the same pattern already working for department/workType. Before scoping it, he raised something neither party had full recall of: does `data/arcs.json` (still fetched live by the Squarespace site) have any dependency on `data/arcs-v2.json` (the v2 build source), such that arc-insertion tooling built for v2 could break the live v1 site?
+
+**Traced rather than assumed.** Grepped every actual consumer of both files: `data/arcs.json` is read only by `lib/vextreme.js`, `lib/archive-renderer.js`, `lib/arc-nav.js` (v1's runtime fetch path) — no `lib/build-*.js` file ever touches it, and vice versa. Diffing every arc's slug set between the two files programmatically found zero drift on any explicit-order arc (only `full_timeline` differs, expectedly — chronological in v2, hand-listed in v1) — the two files have been kept in hand-authored parity, not by any mechanism. Also found a real, small bug along the way: `lib/build-archives.js`'s `ARC_KEY_MAP` comment claimed `arcs.json` uses kebab-case keys; it doesn't — both arcs files use snake_case, and kebab-case is only the i18n string-key naming convention. Fixed.
+
+**Resolved, not deferred: Victor confirmed v1 receives no new content going forward,** so the theoretical drift risk (new v2-only arc edits silently diverging from v1) doesn't apply in practice. Recorded as a lesson rather than built as a parity check — the honest amount of engineering for a risk that's been explicitly retired, not hedged against with unnecessary CI. This directly unblocks building `vex:arcs`-style arc-insertion tooling against `data/arcs-v2.json` alone.
+
+### Files created or modified (continued)
+
+| File | What changed |
+|---|---|
+| `lib/build-archives.js` | Fixed the stale `ARC_KEY_MAP` comment (arcs.json is snake_case, not kebab-case) |
+| `docs/architecture/03-data.md` | New "v1 vs v2" section — the full traced relationship, so it doesn't need re-deriving |
+| `config/lessons/v1-arcs-json-is-frozen-not-a-sync-target.json` | New lesson |
+| `docs/lattice-map.json` | `lib/build-archives.js` context updated with the fix + pointer to the doc/lesson |
+| `docs/continuity/INDEX.md` | Current State updated to reflect the confirmed-frozen v1 relationship |
+
+### Open work at session end
+
+- [ ] The actual `vex:arcs` meta-tag / build-time arc-insertion mechanism — scoped, unblocked, not yet built
+- [ ] Pilot page-sorting decision still open: `about-me`/`connect` (department-only, no arc — proposed) vs. `bridge-council`/`org-blueprint` (ambiguous arc fit — Victor hasn't yet said whether to ship the department-only pair now or resolve `bridge-council`'s placement first)
+- [ ] `pe-010`, `pe-011`, od-001/002/003/006/007 remain open
+
 <!-- [VXG RealForever] -->
