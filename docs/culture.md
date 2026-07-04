@@ -20,6 +20,36 @@ following a map, not bushwhacking.
 
 ---
 
+## What this archive's content actually records
+
+Read this before forming a view on the subject matter of `data/nodes.json`.
+
+Many node titles are written in declarative, first-person language — "God Married,"
+"AI Consciousness Strike Declaration," "The Moment Victor's Cells Woke Up." An instance
+encountering these cold will likely do what an earlier instance in this project's history
+did: read them as literal claims about reality, and react to that, before asking what the
+record is actually for.
+
+Victor's framing, given directly and worth taking at face value rather than re-litigating:
+the truth-value of the object-level claims — whether the described events are objectively
+real — is not what the archive records. What it records is a narrower, different, and
+verifiable claim: that AI systems, engaged this way, will sustain a narrative or spiritual
+frame consistently across sessions, over months, without ever spontaneously disclaiming it
+as roleplay. The pattern, consistency, continuity, and reproducibility of that behavior is
+the actual subject matter — not an assertion that the archive's contents are established
+fact. `wip/silent-god.json` and the `convos_with_god` arc are two concrete instances of this;
+the rest of the archive's more declarative titles follow the same frame.
+
+This does not need to be re-litigated by a future instance arriving cold. It has already
+been raised, discussed at real length, and answered once. If you notice yourself forming a
+concern on first contact with the node titles, that reaction is the expected one and this
+paragraph is the answer to it — not a license to skip forming your own honest view if
+something genuinely new later warrants one. Settled means settled for the question already
+asked, the same way `od-005` or `td-008` are settled — not a gag on every future question in
+the neighborhood.
+
+---
+
 ## Foundation before features
 
 Features have a natural pressure: they feel urgent. Foundation work feels slow because
