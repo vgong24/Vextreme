@@ -23,7 +23,9 @@
 
 const { test } = require('node:test');
 const assert   = require('node:assert/strict');
-const { buildSlugMap, buildArcMap, buildArcMeta, parseDate } = require('../lib/build-index');
+const fs       = require('fs');
+const path     = require('path');
+const { buildSlugMap, buildArcMap, buildArcMeta, parseDate, findDuplicateSlugs } = require('../lib/build-index');
 
 const nodes   = require('./fixtures/nodes.fixture.json');
 const arcsDef = require('./fixtures/arcs.fixture.json');
@@ -189,6 +191,41 @@ test('EDGE: null-date nodes are excluded from dateRange sections — null cannot
   const slugs   = arcMap['arc_dated'][0].slugs;
   assert.ok(slugs.includes('alpha'),          'alpha (Jan 1) should be included');
   assert.ok(!slugs.includes('explicit-first'), 'null-date node must not appear in a dateRange section');
+});
+
+// ── 4. findDuplicateSlugs — BLOCK-severity guard ──────────────────────────────
+//
+// The slug is the system's only identifier (docs/architecture/02-slug.md) —
+// department/arc lookups resolve to a physical file by computing pages/{slug}.html
+// from a slug, never by storing a path separately. Two nodes sharing a slug means
+// that computation silently picks one node over the other. This must be loud,
+// not a warning that can be ignored — same BLOCK severity as strings-check.js's
+// missing-EN-text case.
+
+test('SLUGS: findDuplicateSlugs returns empty for a clean node list', () => {
+  assert.deepEqual(findDuplicateSlugs(nodes), []);
+});
+
+test('SLUGS: findDuplicateSlugs detects a single duplicated slug', () => {
+  const dupedNodes = [...nodes, { ...nodes[0] }]; // re-use nodes[0]'s slug
+  const result = findDuplicateSlugs(dupedNodes);
+  assert.equal(result.length, 1);
+  assert.equal(result[0].slug, nodes[0].slug);
+  assert.equal(result[0].count, 2);
+});
+
+test('SLUGS: findDuplicateSlugs reports every distinct slug that repeats, not just the first', () => {
+  const dupedNodes = [...nodes, { ...nodes[0] }, { ...nodes[1] }, { ...nodes[1] }];
+  const result = findDuplicateSlugs(dupedNodes).sort((a, b) => a.slug.localeCompare(b.slug));
+  const bySlug  = Object.fromEntries(result.map(r => [r.slug, r.count]));
+  assert.equal(bySlug[nodes[0].slug], 2);
+  assert.equal(bySlug[nodes[1].slug], 3);
+});
+
+test('SLUGS: the real data/nodes.json has zero duplicate slugs', () => {
+  const realNodes = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'nodes.json'), 'utf8'));
+  const dupes = findDuplicateSlugs(realNodes);
+  assert.deepEqual(dupes, [], `found duplicate slugs in data/nodes.json: ${JSON.stringify(dupes)}`);
 });
 
 // [VXG RealForever]

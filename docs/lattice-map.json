@@ -116,6 +116,11 @@
           "data/departments.json (registry — add a department or workType here first)",
           "lib/build-ecosystem-hub.js (renderDepartments reads both, browser-side)",
           "tests/15-departments.test.js"
+        ],
+        "findDuplicateSlugs / SLUG_DUPLICATE guard": [
+          "lib/logger-codes.js (SLUG_DUPLICATE entry, grouped under build-index.js)",
+          "tests/01-content-pipeline.test.js (SLUGS: tests)",
+          "docs/architecture/02-slug.md ('path is derived from slug' principle this guard protects)"
         ]
       }
     },
