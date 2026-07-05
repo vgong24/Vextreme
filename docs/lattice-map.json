@@ -533,15 +533,17 @@
     "lib/auto-discover-nodes.js": {
       "role": "synthesizes a node-shaped object for any pages/*.html file with no data/nodes.json entry, so adding a page alone is enough to make it visible",
       "context": "Built in response to a real gap: pages merged directly (not through this repo's usual node-first flow) sat completely invisible in data/index.json and pages/archives.html except for an easy-to-miss PR-comment warning (lib/check-key-alignment.js's orphan-page check). discoverOrphanNodes() is called independently by both lib/build-index.js and lib/build-archives.js (see pe-011 — ideally only one of them would need to, if build-archives.js consumed index.json instead of re-deriving from nodes.json). Synthesized nodes are never written back to data/nodes.json — nodes.json stays hand-curated, single source of truth; a real nodes.json entry for the same slug always takes precedence once one exists. A page can declare its own department/workType via <meta name=\"vex:department\"> / <meta name=\"vex:workType\"> tags, entirely without touching JSON; absent that, it falls back to whichever department in data/departments.json is marked default:true.",
-      "reads": ["pages/*.html (title + optional vex:department/vex:workType meta tags)"],
+      "reads": ["pages/*.html (title + optional vex:department/vex:workType meta tags)", "wip/*.html (title only, via discoverWipDrafts)"],
       "writes": ["nothing — pure in-memory synthesis, never persisted to data/nodes.json"],
       "loadedBy": [
         "lib/build-index.js (feeds data/index.json's slugMap/arcMap/departmentMap)",
         "lib/build-archives.js (feeds the Unsorted section — see pe-011 for why this is two call sites, not one)",
+        "lib/check-key-alignment.js (discoverWipDrafts, feeds report.wip.htmlDrafts)",
         "tests/16-auto-discover-nodes.test.js",
-        "tests/15-departments.test.js (integration test)"
+        "tests/15-departments.test.js (integration test)",
+        "tests/21-wip-drafts.test.js"
       ],
-      "testedBy": ["tests/16-auto-discover-nodes.test.js"],
+      "testedBy": ["tests/16-auto-discover-nodes.test.js", "tests/21-wip-drafts.test.js"],
       "changeMap": {
         "synthesized node shape changed (fields added/removed)": [
           "lib/build-index.js (allNodes concat — buildSlugMap/buildArcMap/buildDepartmentMap all consume the result)",
@@ -550,6 +552,11 @@
         ],
         "vex:department / vex:workType meta tag convention changed": [
           "docs/culture.md or docs/architecture — not yet documented outside this file's own header; consider adding if the convention gets real adoption"
+        ],
+        "discoverWipDrafts shape changed": [
+          "lib/check-key-alignment.js (scanWipHtmlDrafts consumes it, feeds report.wip.htmlDrafts)",
+          "lib/build-status.js (buildContentIntegrityNotices reads slug/title)",
+          "tests/21-wip-drafts.test.js"
         ]
       }
     },
@@ -588,24 +595,48 @@
 
     "lib/check-key-alignment.js": {
       "role": "non-blocking CI check — compares slug/arc keys across nodes.json, arcs-v2.json, index.json, cross-checks pages/ and wip/, and reports drift",
-      "context": "JSON is string-based; a slug or arc key can drift between the three files silently (node added but index.json not rebuilt, arc renamed but index stale). This check catches that class of bug with a PR comment, without blocking merge — informational only. Complements lib/audit-pages.js (page wiring) and lib/build-lattice-headers.js --check (header drift) as the third 'silent drift' detector in the repo. Session 022 added two more checks in the same spirit: orphan pages (a pages/*.html file with no nodes.json entry — excludes SKIP_PAGES and data/viewmodels.json-registered dev/demo pages, both legitimate non-node pages) and wip/ slug collisions (a wip/*.json file's optional _meta.slug already exists as a real pages/*.html file). A wip/ slug matching only a nodes.json placeholder with no page yet is deliberately NOT flagged — that's the expected linkage (the placeholder exists precisely to reserve that wip file's destination), not a conflict.",
-      "reads": ["data/nodes.json", "data/arcs-v2.json", "data/index.json", "data/viewmodels.json", "wip/*.json (_meta.slug field only)", "lib/audit-pages.js (SKIP_PAGES, getPageSlugs)"],
+      "context": "JSON is string-based; a slug or arc key can drift between the three files silently (node added but index.json not rebuilt, arc renamed but index stale). This check catches that class of bug with a PR comment, without blocking merge — informational only. Complements lib/audit-pages.js (page wiring) and lib/build-lattice-headers.js --check (header drift) as the third 'silent drift' detector in the repo. Session 022 added two more checks in the same spirit: orphan pages (a pages/*.html file with no nodes.json entry — excludes SKIP_PAGES and data/viewmodels.json-registered dev/demo pages, both legitimate non-node pages) and wip/ slug collisions (a wip/*.json file's optional _meta.slug already exists as a real pages/*.html file). A wip/ slug matching only a nodes.json placeholder with no page yet is deliberately NOT flagged — that's the expected linkage (the placeholder exists precisely to reserve that wip file's destination), not a conflict. Session 022 continued: Victor added wip/victor-methodology-presentation.html directly and found zero automated mapping — this file's wip/ scan only ever read *.json's _meta.slug, never raw *.html. scanWipHtmlDrafts() closes that: every wip/*.html file's filename becomes its working slug (derived, not declared), scraped the same way lib/auto-discover-nodes.js's discoverWipDrafts scrapes a title, and merged into the same collision/duplicate-intent checks as json-declared intents — a draft's filename colliding with a real page is exactly as real a mistake either way.",
+      "reads": ["data/nodes.json", "data/arcs-v2.json", "data/index.json", "data/viewmodels.json", "wip/*.json (_meta.slug field only)", "wip/*.html (filename-derived slug + title, via lib/auto-discover-nodes.js discoverWipDrafts)", "lib/audit-pages.js (SKIP_PAGES, getPageSlugs)"],
       "writes": ["stdout (JSON report with --json flag); PR comment via .github/workflows/key-alignment.yml"],
       "loadedBy": [
         ".github/workflows/key-alignment.yml (auto-run on pull_request)",
         "tests/08-build-vextreme.test.js (KEY-ALIGNMENT tests)",
-        "lib/build-status.js (feeds the contentIntegrity notice category)"
+        "lib/build-status.js (feeds the contentIntegrity notice category)",
+        "tests/21-wip-drafts.test.js"
       ],
-      "testedBy": ["tests/08-build-vextreme.test.js"],
+      "testedBy": ["tests/08-build-vextreme.test.js", "tests/21-wip-drafts.test.js"],
       "changeMap": {
         "report schema changed": [
           ".github/workflows/key-alignment.yml (formats the PR comment table from this shape)",
-          "lib/build-status.js (buildContentIntegrityNotices reads report.pages.orphans, report.wip.collisions, report.wip.duplicateIntents)",
-          "tests/08"
+          "lib/build-status.js (buildContentIntegrityNotices reads report.pages.orphans, report.wip.collisions, report.wip.duplicateIntents, report.wip.htmlDrafts)",
+          "tests/08, tests/21"
         ],
         "wip/ collision rule changed (what counts as a real collision)": [
           "tests/08 (WIP-COLLISION tests — especially the placeholder-is-not-a-collision case)",
+          "tests/21 (html-draft collision/duplicate cases)",
           "data/departments.json's _comment (documents the convention this check enforces)"
+        ]
+      }
+    },
+
+    "lib/detect-wip-promotions.js": {
+      "role": "detects a wip/*.html → pages/*.html move within a PR's diff, so a promotion shows up as a positive PR notice instead of silence or a false 'broken reference'",
+      "context": "The second half of Victor's stated intent (Session 022 continued): once a wip/*.html draft has an initial mapping (lib/auto-discover-nodes.js discoverWipDrafts / lib/check-key-alignment.js scanWipHtmlDrafts), moving it to pages/{same-slug}.html later should read as a reconciliation, not an error. Deliberately reuses git's own similarity-based rename detection (git diff --name-status -M) rather than persisting any cross-build state to compare against — nothing tracks 'this slug used to be in wip/', so there is nothing to go stale or conflict when the file moves; the draft simply stops appearing in scanWipHtmlDrafts's next-build output, which is correct behavior by construction, not a special case handled here. This file only adds the positive notice on top of that already-correct baseline.",
+      "reads": ["git diff --name-status -M output between two refs (wip/ and pages/ paths only)"],
+      "writes": ["stdout (JSON with --json flag); PR comment via .github/workflows/key-alignment.yml"],
+      "loadedBy": [
+        "manual run: node lib/detect-wip-promotions.js <base-ref> [<head-ref>]",
+        ".github/workflows/key-alignment.yml (CI, Session 022 continued)",
+        "tests/21-wip-drafts.test.js"
+      ],
+      "testedBy": ["tests/21-wip-drafts.test.js"],
+      "changeMap": {
+        "promotion shape changed (fields added/removed)": [
+          ".github/workflows/key-alignment.yml (formats the PR comment section from this shape)",
+          "tests/21-wip-drafts.test.js"
+        ],
+        "similarity threshold changed": [
+          ".github/workflows/key-alignment.yml (the -M flag passed to git diff must match what this file's doc comment claims)"
         ]
       }
     },
@@ -630,9 +661,10 @@
       "loadedBy": [
         "pages/ecosystem-hub.html (live fetch)",
         ".github/workflows/build-index.yml (CI, Session 022)",
-        "tests/10-build-status.test.js"
+        "tests/10-build-status.test.js",
+        "tests/21-wip-drafts.test.js"
       ],
-      "testedBy": ["tests/10-build-status.test.js"],
+      "testedBy": ["tests/10-build-status.test.js", "tests/21-wip-drafts.test.js"],
       "changeMap": {
         "notice category added/removed": [
           "lib/build-ecosystem-hub.js (render order array + icon map)",
@@ -646,7 +678,7 @@
           "lib/build-lattice-headers.js isEligibleNode() (must stay identical or the two coverage numbers disagree)"
         ],
         "check-key-alignment.js report shape changed": [
-          "buildContentIntegrityNotices() here reads report.pages.orphans / report.wip.collisions / report.wip.duplicateIntents directly — a shape change there breaks this silently unless tests/10 or tests/08 catch it"
+          "buildContentIntegrityNotices() here reads report.pages.orphans / report.wip.collisions / report.wip.duplicateIntents / report.wip.htmlDrafts directly — a shape change there breaks this silently unless tests/10, tests/08, or tests/21 catch it"
         ],
         "any new _meta field being considered": [
           "must not vary run-to-run for identical source data (no wall-clock timestamp, no git commit SHA) — see config/lessons/generated-artifacts-must-be-content-deterministic.json for why; if a field genuinely needs to reflect build time (like data/index.json's builtAt), that's a deliberate, different tradeoff, not the default"
