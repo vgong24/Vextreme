@@ -486,4 +486,28 @@ Seven PRs total this session (#40–#47). A real values disagreement about a gov
 - [ ] The "Scanner check" — still a proposal, not adopted
 - [ ] `pe-012`, `pe-010`, `pe-011`, od-001/002/003/006/007/008/009 remain open, unchanged otherwise
 
+### Session continued — async dispatch, and a real correction from Victor about standing memory
+
+**Two more exchanges after the roles/contributions PR merged, both conceptual — no code from the first, one tracked item logged from the second.**
+
+Victor asked whether the "multi-department dispatch" concern from `od-009` is actually resolved by async task dispatch from a single orchestrating instance (spawn bounded scoped subtasks, keep working, reassemble on return) rather than requiring genuinely separate persistent minds. Answered honestly: yes, this covers *parallel execution of scoped work* — and it's not hypothetical, the Agent tool's `run_in_background`, Bash background jobs, `Monitor`, and `TaskCreate`/`TaskList` are exactly this mechanism, already available in this environment. But it does not by itself cover *standing departmental memory* — a subagent does its job and is gone, it doesn't accumulate history the way Bridge Council's periodic synthesis pattern does. That distinction was named but nothing was built (a conceptual answer, correctly not requiring code).
+
+**Victor then corrected the premise of that distinction directly:** `docs/continuity/` (INDEX.md + batch files) and `config/lessons/*.json` already *are* the standing-memory pattern — they just aren't yet divided per department the way `connectionArchitecture.cellsNotBranches` describes. He generalized further: this may not be the only foundational structure built once at origin scope that's never been checked for fractal-expansion candidacy, and asked for this to be added to the queue rather than built now.
+
+**Logged `od-010`** in `data/status/open-discussions.json` (lens: architect) — names the specific case (continuity/lessons as an unexpanded single cell) and the general audit ask (other single-scope structures worth checking: `data/status/*.json`'s three tracked-item files, `lib/build-status.js`'s rollup, `docs/architecture/*.md` itself — named as candidates, not confirmed). Considerations are explicit that building the per-department expansion now would be premature — media/institute don't yet generate enough independent history to justify their own cell — matching the same anti-bloat reasoning already applied to od-008/od-009.
+
+### Files created or modified (continued)
+
+| File | What changed |
+|---|---|
+| `data/status/open-discussions.json` | New `od-010` entry |
+| `data/status.json`, `data/roles.json`, `pages/ecosystem-hub.html`, `pages/roles-index.html` | Rebuilt — architect lens now traces 5 contributions (od-008, od-009, od-010) |
+| `docs/continuity/INDEX.md` | Current State note + Open Work entry for od-010 |
+
+### Open work at session end (continued)
+
+- [ ] od-010 — logged, not built; revisit once a department generates enough real independent history
+- [ ] The general "other single-scope foundational structures" audit named in od-010 has candidates listed but not verified — a real next step if picked up
+- [ ] All prior open items (pe-012, pe-010, pe-011, od-001/002/003/006/007/008/009) remain open, unchanged
+
 <!-- [VXG RealForever] -->

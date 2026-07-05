@@ -72,7 +72,11 @@ manifests it today (the Ecosystem Hub's panels *are* the "plenary" channel; the 
 a new dedicated page, `lib/build-roles-page.js` → `pages/roles-index.html`, linked from the hub.
 Communication-channel infrastructure, meeting scheduling, and instruction-routing remain
 explicitly undesigned — same discipline as od-008/od-009 — see `14-council-model.md`'s "First
-attempt" and "Second attempt" sections for the honest lessons from both rounds. Slug uniqueness
+attempt" and "Second attempt" sections for the honest lessons from both rounds. Victor also named
+a real correction worth tracking (`od-010`): `docs/continuity/` + `config/lessons/*.json` already
+are a standing-memory pattern, just not yet divided per department the way
+`connectionArchitecture.cellsNotBranches` describes — logged as a future direction, not built,
+since no department yet generates enough independent history to need its own cell. Slug uniqueness
 is mechanically enforced (BLOCK severity) in `lib/build-index.js`; orphan pages and `wip/`
 placement conflicts are reported (informational) via `lib/check-key-alignment.js` and a
 `contentIntegrity` panel on the Ecosystem Hub. Three silent-drift detectors run in CI:
@@ -131,6 +135,7 @@ not this list.
 - [ ] pe-012 — `lib/check-lattice-edges.js`: verify `docs/lattice-map.json`'s claimed reads/writes/loadedBy edges against actual code (Session 022; see `docs/architecture/13-intent-driven-operations.md` for why this is the decided next step)
 - [ ] od-008 — staged/proposal execution for higher-blast-radius content gestures (consolidation, deletion, connector rewiring) — intentionally not designed yet, blocked on pe-012 and on a real case existing to design against (Session 022)
 - [ ] od-009 — parallel/simultaneous instruction dispatch across multiple departments or orgs, instead of today's one-at-a-time processing — intentionally not designed yet, no real multi-department/multi-org case exists to design against (Session 022)
+- [ ] od-010 — fractal expansion of the continuity/lessons memory pattern into per-department standing memory, plus an audit for other single-scope foundational structures never checked for the same expansion — intentionally not built yet, no department generates enough independent history to need its own cell (Session 022)
 - [ ] `lib/build-lattice-headers.js` structural fix — replace comment-embedded sentinel markers with a real `const VEX_LATTICE = {...}` statement + a validating `LatticeNode` class; design agreed (Session 021), not yet built
 - [ ] pe-011 — collapse `lib/build-archives.js` onto `data/index.json` instead of independently re-deriving from `nodes.json`/`arcs-v2.json` (Session 022)
 - [ ] pe-010 — dedicated transcript-library dashboard; distinguish `ported` from God-Script-wired in `departmentMap` (Session 022)
