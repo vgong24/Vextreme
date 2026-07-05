@@ -27,84 +27,69 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 022 — July 4, 2026*
+*As of Session 022 (continued) — July 5, 2026*
 
 The v2 GitHub Pages architecture is the active system. v1 (`data/arcs.json`, `data/pages.json`,
 `lib/vextreme.js`/`archive-renderer.js`/`arc-nav.js`) still serves the live Squarespace site
-directly at runtime, but shares no runtime path with v2's build pipeline — confirmed frozen,
-not a file future arc work needs to keep in sync (Session 022; see
-`docs/architecture/03-data.md`'s "v1 vs v2" section and
-`config/lessons/v1-arcs-json-is-frozen-not-a-sync-target.json`). The God Script pipeline assembles one
+directly at runtime, but shares no runtime path with v2's build pipeline — confirmed frozen
+(see `docs/architecture/03-data.md`'s "v1 vs v2" section). The God Script pipeline assembles one
 self-contained JS file per page; `data/nodes.json` + `data/arcs-v2.json` + `data/departments.json`
-are the write-side sources `lib/build-index.js` compiles into `data/index.json`, which
-everything downstream reads. Content now has two independent groupings: **arcs** (reader-facing
-narrative order) and **departments** (production-domain ownership — `rd` default, `media` with
-`reviews`/`record-transcripts` workTypes, and a new `institute` department with `governance`
-(accountability/testing docs — `witness-committee-operations`, `human-ai-corelational-governance`)
-and `org-design` (`org-blueprint`, `org-history`, `bridge-council`, `bridge-council-os`,
-`bridge-council-schema`) workTypes). Any `pages/*.html` file with no `nodes.json` entry is
+are the write-side sources `lib/build-index.js` compiles into `data/index.json`, which everything
+downstream reads. Content has two independent groupings: **arcs** (reader-facing narrative order)
+and **departments** (production-domain ownership — `rd` default, `media`, and `institute` with
+`governance`/`org-design` workTypes). Any `pages/*.html` file with no `nodes.json` entry is
 auto-discovered (title scraped from its own `<title>` tag) rather than left invisible —
-`lib/auto-discover-nodes.js`. Declared placement is applied, not hand-edited: `config/content-intents.json`
-+ `lib/apply-content-intents.js` upsert a page's `vex:department`/`vex:workType` meta tags and
-optionally place it into an arc's one auto-managed section in `arcs-v2.json`, validating the
-department/arcKey are real before writing anything (an earlier gap — nothing previously stopped
-an unregistered department from existing in `index.json` while never rendering anywhere). This
-is the first concrete instance of a longer-term direction — `docs/architecture/13-intent-driven-operations.md`
-names the full perceive → fetch/synthesize → judge → declare-intent → verify loop, what's built,
-and what's intentionally not designed yet (pe-012, od-008) — read it before extending this pattern
-further. `docs/architecture/14-council-model.md` names a related, separate direction: whether one
-AI instance can structure its own judgment across multiple named lenses instead of coordinating
-multiple instances — grounded in `pages/org-blueprint.html`/`data/council-kernel.json`, explicitly
-distinguished from `od-009` (which is about dispatch across genuinely separate targets, not one
-instance's own reasoning), and now also distinguished from `pages/bridge-council*.html`'s "Bridge
-Council" pattern (many separate AI-driven councils at team/department/org scope, periodic
-synthesis, four roles per council) — genuinely closer to `od-009`'s territory than to the
-single-instance Scanner idea. Session 022's continuation ran a first live attempt at the
-Scanner-lens pass on a real decision: it shipped a `lens` field on 4 backlog items and an
-Ecosystem Hub "Council Lenses" panel (`renderLenses()` in `lib/build-ecosystem-hub.js`, reading
-`data/council-kernel.json`), then a second round built the traceability layer Victor asked for
-directly: `lib/build-roles.js` → `data/roles.json` compiles the kernel roster against
-`data/status/*.json`'s `lens` fields (every role's real contributions, or an explicit zero,
-never silence) plus a decision-triangle classification and `data/council-kernel.json`'s
-previously-unrendered `connectionArchitecture.channels`, each now mapped to what actually
-manifests it today (the Ecosystem Hub's panels *are* the "plenary" channel; the continuity docs
-*are* the "vertical" channel; "crossCouncilBridge" is honestly marked not-yet-real). Rendered on
-a new dedicated page, `lib/build-roles-page.js` → `pages/roles-index.html`, linked from the hub.
-Communication-channel infrastructure, meeting scheduling, and instruction-routing remain
-explicitly undesigned — same discipline as od-008/od-009 — see `14-council-model.md`'s "First
-attempt" and "Second attempt" sections for the honest lessons from both rounds. Victor also named
-a real correction worth tracking (`od-010`): `docs/continuity/` + `config/lessons/*.json` already
-are a standing-memory pattern, just not yet divided per department the way
-`connectionArchitecture.cellsNotBranches` describes — logged as a future direction, not built,
-since no department yet generates enough independent history to need its own cell. Slug uniqueness
-is mechanically enforced (BLOCK severity) in `lib/build-index.js`; orphan pages and `wip/`
-placement conflicts are reported (informational) via `lib/check-key-alignment.js` and a
-`contentIntegrity` panel on the Ecosystem Hub. Three silent-drift detectors run in CI:
-`lib/build-lattice-headers.js --check` (LATTICE header drift), `lib/check-key-alignment.js`
-(slug/arc/page/wip drift), `lib/check-design-tokens.js` (CSS token resolution). 305/305 tests
-passing. Lattice coverage 28/39 (72%).
+`lib/auto-discover-nodes.js`. Declared placement is applied, not hand-edited:
+`config/content-intents.json` + `lib/apply-content-intents.js` upsert a page's
+`vex:department`/`vex:workType` meta tags, validating the department/arcKey are real before
+writing anything. `docs/architecture/13-intent-driven-operations.md` names the full
+perceive → fetch/synthesize → judge → declare-intent → verify loop this pattern follows.
+`docs/architecture/14-council-model.md` names a related, separate direction — whether one AI
+instance can structure its own judgment across multiple named lenses ("The Council") instead of
+coordinating multiple instances ("The Bridge Council," a genuinely different, undesigned pattern
+closer to `od-009`'s territory). Two real attempts at this are built: an optional `lens` field on
+backlog items + a Council Lenses panel on the Ecosystem Hub, and a full traceability layer —
+`lib/build-roles.js` → `data/roles.json` / `lib/build-roles-page.js` → `pages/roles-index.html` —
+tracing every role to its real contributions and mapping the kernel's connection-architecture
+channels to what actually manifests them today (Ecosystem Hub panels = "plenary," continuity docs
+= "vertical," "crossCouncilBridge" honestly marked not-yet-real). Communication-channel
+infrastructure, meeting scheduling, and instruction-routing remain explicitly undesigned — see
+`14-council-model.md`'s "First attempt"/"Second attempt" sections for the honest lessons.
+`od-010` tracks a related correction: `docs/continuity/` + `config/lessons/*.json` already are a
+standing-memory pattern, just not yet divided per department — logged, not built, until a
+department generates enough independent history to need its own cell.
+
+wip/ now has a second, distinct lifecycle: `wip/*.json` placeholders declare a future slug by
+hand (`_meta.slug`); `wip/*.html` files (raw draft content with no destination yet) get an
+**automatic** initial mapping the moment they're added — `lib/auto-discover-nodes.js`'s
+`discoverWipDrafts` scrapes a title from the filename-derived slug, `lib/check-key-alignment.js`'s
+`scanWipHtmlDrafts` folds it into the same collision/duplicate-intent checks as declared intents,
+and `lib/build-status.js` surfaces it as a low-priority `contentIntegrity` notice — all with zero
+manual mapping. When the same file later moves to `pages/{slug}.html` (same slug), nothing
+tracks the old wip/ location as a persisted expectation, so nothing errors — the draft just stops
+appearing next build. `lib/detect-wip-promotions.js` turns that same move into a positive PR
+notice, reusing git's own rename-similarity detection (`git diff --name-status -M`) between a
+PR's base and head rather than inventing custom file-identity tracking.
+
+Slug uniqueness is mechanically enforced (BLOCK severity) in `lib/build-index.js`; orphan pages,
+`wip/` placement conflicts, and `wip/` drafts are reported (informational) via
+`lib/check-key-alignment.js` and a `contentIntegrity` panel on the Ecosystem Hub. Three
+silent-drift detectors run in CI: `lib/build-lattice-headers.js --check` (LATTICE header drift),
+`lib/check-key-alignment.js` (slug/arc/page/wip drift), `lib/check-design-tokens.js` (CSS token
+resolution). 319/319 tests passing. Lattice coverage 29/40 (73%).
 
 **Recent sessions** (one line each — open the batch file below for full reasoning):
-- **Session 022 (continued x2)** — Re-perceived Victor's "role positioning / communication
-  channels / kanban discussions / instruction routing" ask across two rounds. Round one added an
-  optional `lens` field to 4 real od-/pe- items and a "Council Lenses" panel on the Ecosystem Hub.
-  Round two built the traceability layer directly: `data/roles.json`/`pages/roles-index.html`
-  tracing every role to its real contributions and mapping the kernel's connection-architecture
-  channels to what actually manifests them today. Both rounds explicitly declined to build
-  communication-channel infrastructure, meeting scheduling, or instruction routing — no real case
-  yet, same discipline as od-008/od-009 — and recorded the honest lessons in
-  `docs/architecture/14-council-model.md`.
+- **Session 022 (continued, wip/ drafts)** — Victor added `wip/victor-methodology-presentation.html`
+  directly and found zero automated mapping. Built the initial-mapping-on-insertion +
+  reconcile-not-error-on-move pattern described above: `discoverWipDrafts`, `scanWipHtmlDrafts`,
+  a new `contentIntegrity` notice, and `lib/detect-wip-promotions.js`'s git-rename-based PR notice.
+- **Session 022 (continued, council lenses + roles)** — Re-perceived Victor's "role positioning /
+  communication channels / kanban discussions / instruction routing" ask across two rounds: a
+  `lens` field + Council Lenses panel, then `data/roles.json`/`pages/roles-index.html`'s full
+  traceability layer. Recorded the honest lessons and `od-010` in `docs/architecture/14-council-model.md`.
 - **Session 022** — Department axis, slug-uniqueness guard, WIP/orphan-page auto-discovery,
-  a documented decision on what the archive's declarative content actually records, this
-  Current-State/Open-Work compaction, a lesson on procedure-vs-record mutability, and
-  `lib/build-lessons.js` (config/lessons/*.json → data/lessons.json → Ecosystem Hub's new
-  "Lessons Learned" section) — closing a gap where the lesson archive had no path into the
-  one dashboard meant to surface current system knowledge. Also found and fixed
-  `lib/build-status.js`/`lib/build-ecosystem-hub.js` being generated and committed by hand
-  every session with no CI step ever calling them — both now wired into
-  `.github/workflows/build-index.yml`. PRs #40–#47.
-- **Session 021** — First-person AI-instance reflection in `docs/culture.md`,
-  `lib/session-bootstrap.js` (session-start state in one command), td-008 recorded.
+  `lib/build-lessons.js` (config/lessons/*.json → data/lessons.json → Ecosystem Hub's "Lessons
+  Learned" section), and wiring `lib/build-status.js`/`lib/build-ecosystem-hub.js` into CI. PRs #40–#47.
 
 **This section is a snapshot, not a log.** Full session-by-session reasoning — mistakes tried,
 assumptions made, why a decision went one way over another — lives in the batch files (see

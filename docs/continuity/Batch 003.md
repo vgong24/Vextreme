@@ -510,4 +510,48 @@ Victor asked whether the "multi-department dispatch" concern from `od-009` is ac
 - [ ] The general "other single-scope foundational structures" audit named in od-010 has candidates listed but not verified — a real next step if picked up
 - [ ] All prior open items (pe-012, pe-010, pe-011, od-001/002/003/006/007/008/009) remain open, unchanged
 
+### Session continued — wip/ drafts: initial mapping on insertion, reconciliation not errors on move
+
+**Victor found a real, live gap by hitting it directly:** he added `wip/victor-methodology-presentation.html` to the repo and merged it (PR #55), then reported that no build script gave it any mapping at all — confirmed by checking `origin/main`: `nodeCount` was unchanged and `archives.html` had zero reference to the new file. His stated functional intent, in his own words: dropping an `.html` file into `wip/` should get an "initial mapping assigned upon insertion" automatically; later moving the file to its real destination (assuming the slug doesn't change) should read as a reconciliation on the next PR, not silence or a false error.
+
+**Root cause, found by reading the actual code rather than assuming:** `lib/check-key-alignment.js`'s `scanWipIntendedSlugs` only ever read `wip/*.json` files for a declared `_meta.slug` — it never looked at `.html` files at all. `wip/silent-god.json` (the one pre-existing wip/ artifact) is a JSON *placeholder* declaring an intended future slug; Victor's file is a fundamentally different case — real draft content sitting in `wip/` with no placeholder pointing to it yet. Two genuinely different lifecycles, previously only one of which was handled.
+
+**Built three pieces, each reusing an existing pattern rather than inventing a new one:**
+
+1. `lib/auto-discover-nodes.js`'s new `discoverWipDrafts(wipHtmlSlugs, readWipPage)` — the same title/meta-scraping logic `discoverOrphanNodes` already uses for `pages/*.html` orphans, applied to `wip/*.html` instead. Deliberately a lighter shape than a real node (no forced department default, no `autoDiscovered` flag) — a draft isn't a real page yet and shouldn't be mistaken for one downstream.
+2. `lib/check-key-alignment.js`'s new `scanWipHtmlDrafts(wipDir)` — lists every `wip/*.html` file, uses its filename as the working slug (same convention `_meta.slug` already establishes, just derived instead of declared), and merges the result into the *same* `findWipSlugCollisions`/`findDuplicateWipIntents` checks json-declared intents already use — a draft's filename colliding with a real page is exactly as real a mistake either way. Caught and fixed a real bug before it shipped: the first draft of `scanWipHtmlDrafts` took a `wipDir` parameter for listing files but still called the hardcoded `readWipPageFromDisk` (bound to the real `wip/` directory) for reading content — meaning a test passing a tmp directory would silently read the wrong files. Fixed by building a `readPage` closure bound to the actual `wipDir` argument, the same pattern `scanWipIntendedSlugs` already uses correctly.
+3. `lib/detect-wip-promotions.js` (new) — detects a `wip/*.html` → `pages/*.html` move within a PR's diff by reusing git's own similarity-based rename detection (`git diff --name-status -M50%`) rather than persisting any cross-build tracking state. This was the key design decision: since nothing tracks "this slug used to live in wip/," there is nothing to go stale or conflict when the file moves — the draft simply stops appearing in `scanWipHtmlDrafts`'s output next build, which is already correct by construction. This file only adds a *positive* notice on top of that already-correct baseline. Verified against a real throwaway git repo (not Victor's actual file, which was never moved this session) — created a file in `wip/`, committed, `git mv`'d it to `pages/`, committed again, and confirmed the tool correctly reported a 100%-similarity rename.
+
+**Wired into CI:** `.github/workflows/key-alignment.yml` now runs with `fetch-depth: 0` (needed for the diff against the PR's base) and an extra step running `detect-wip-promotions.js` between `github.event.pull_request.base.sha` and `HEAD`; the PR comment gained a "📦 Promoted from wip/ to pages/" line and a "wip/ drafts (no destination yet)" line, both empty (and invisible) when there's nothing to report.
+
+**Also surfaced on the Ecosystem Hub:** `lib/build-status.js`'s `buildContentIntegrityNotices` now emits a low-priority "Draft in wip/: {title}" notice per html draft — visually verified with a local proxy server serving the `/Vextreme` path prefix (the same workaround established two rounds ago for `scripts/screenshot-page.js`'s pre-existing local-path limitation).
+
+### Files created or modified (continued)
+
+| File | What changed |
+|---|---|
+| `lib/auto-discover-nodes.js` | New `discoverWipDrafts` + `readWipPageFromDisk` |
+| `lib/check-key-alignment.js` | New `scanWipHtmlDrafts`; `wipIntents` now merges json-declared and html-derived sources; new `report.wip.htmlDrafts` |
+| `lib/build-status.js` | `buildContentIntegrityNotices` takes a 4th `wipHtmlDrafts` param, emits a low-priority notice per draft |
+| `lib/detect-wip-promotions.js` | New — `parseRenameStatus` pure function + CLI wrapper running the actual git diff |
+| `.github/workflows/key-alignment.yml` | `fetch-depth: 0`; new promotion-detection step; PR comment gained drafts + promoted sections |
+| `docs/lattice-map.json` | New node for `lib/detect-wip-promotions.js`; updated nodes for `lib/auto-discover-nodes.js`, `lib/check-key-alignment.js`, `lib/build-status.js` |
+| `tests/21-wip-drafts.test.js` | New, 14 tests |
+| `docs/continuity/INDEX.md` | Current State rewritten (compacted, not just appended) to describe the current round; Recent Sessions split into 3 entries |
+
+### Mistakes made (continued)
+
+- `scanWipHtmlDrafts(wipDir)` accepted a directory parameter but its first draft still read file contents via the hardcoded `readWipPageFromDisk` (bound to the real `wip/` directory), not the passed-in `wipDir` — meaning the parameter was honored for listing files but silently ignored for reading them. Would have made any test passing a tmp directory read the wrong content (or nothing, falling back to a title-cased slug) without erroring, a false-pass risk. Caught before writing the tests that would have exercised it, by rereading the function against `scanWipIntendedSlugs`'s already-correct pattern. Fixed by building a `readPage` closure scoped to the actual `wipDir` argument.
+
+### Assumptions that need verification
+
+- [ ] Victor's actual `wip/victor-methodology-presentation.html` was never moved this session — the promotion-detection mechanism was verified against a throwaway sandbox git repo, not his real file. The real move (whenever it happens) is the first live test of the full path.
+- [ ] `-M50%` (git's similarity threshold) hasn't been tuned against a real edited-then-moved file in this repo — only a byte-identical move was tested.
+
+### Open work at session end (continued)
+
+- [ ] The real promotion (moving `wip/victor-methodology-presentation.html` to `pages/`) hasn't happened yet — first real end-to-end test of `lib/detect-wip-promotions.js` is still pending
+- [ ] `pages/archives.html` does not yet show wip/ drafts (only the Ecosystem Hub does) — not built this round, a reasonable future extension if wip/ draft volume grows
+- [ ] od-010, pe-012, pe-010, pe-011, od-001/002/003/006/007/008/009 remain open, unchanged
+
 <!-- [VXG RealForever] -->
