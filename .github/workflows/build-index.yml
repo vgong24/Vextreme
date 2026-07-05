@@ -3,7 +3,7 @@ name: Build Vextreme Index
 on:
   push:
     branches: [main]
-    paths:
+    paths: &build_trigger_paths
       - 'data/nodes.json'
       - 'data/arcs-v2.json'
       - 'data/viewmodels.json'
@@ -32,6 +32,14 @@ on:
       - 'widgets/**'
       - 'data/specimens.json'
       - 'pages/**'
+  # Session 022 continued: also runs on the PR itself, not just after merge to
+  # main. Without this, a raw file move (like wip/*.html -> pages/*.html) left
+  # data/index.json / pages/archives.html / data/status.json stale until
+  # someone ran the build scripts by hand and pushed a fix — which is exactly
+  # what happened on PR #58. Reuses the same trigger path list (the &anchor
+  # above) so there is one list to maintain, not two that can drift apart.
+  pull_request:
+    paths: *build_trigger_paths
 
 jobs:
   build:
@@ -42,6 +50,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # For a pull_request event, checkout defaults to the synthetic merge
+          # ref (refs/pull/N/merge), which nothing can push back to. Check out
+          # the PR's actual head branch instead so the commit below lands
+          # somewhere real. github.head_ref is empty for push events, so this
+          # falls through to github.ref (refs/heads/main) unchanged there.
+          ref: ${{ github.head_ref || github.ref }}
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -91,9 +106,24 @@ jobs:
         run: node lib/build-roles-page.js
 
       - name: Commit artifacts
+        # On push (to main): commit with [skip ci] as before — the same
+        # GITHUB_TOKEN push cannot retrigger a new workflow run anyway (GitHub
+        # blocks that to prevent recursive runs), so this is just a clear
+        # marker for anyone reading history, not what actually prevents a loop.
+        # On pull_request: push straight to the PR's own head branch. Note
+        # this corrective push will NOT automatically re-run the PR's other
+        # checks (same GITHUB_TOKEN limitation) — click "re-run checks" (or
+        # push anything else) once to see them go green against the fixed files.
         run: |
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
           git add data/strings/compiled data/index.json data/lessons.json data/roles.json data/status.json dist sw.js pages/archives.html pages/vextreme-demo.html pages/specimens.html pages/specimen-*.html pages/ecosystem-hub.html pages/roles-index.html sitemap.xml index.html
-          git diff --staged --quiet && echo "No changes to commit" || git commit -m "Auto-rebuild artifacts [skip ci]"
-          git push
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          elif [ "${{ github.event_name }}" = "pull_request" ]; then
+            git commit -m "Auto-rebuild artifacts for PR #${{ github.event.pull_request.number }}"
+            git push origin HEAD:${{ github.head_ref }}
+          else
+            git commit -m "Auto-rebuild artifacts [skip ci]"
+            git push
+          fi

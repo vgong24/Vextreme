@@ -572,4 +572,30 @@ Victor asked whether the "multi-department dispatch" concern from `od-009` is ac
 
 - [ ] Same as above — nothing new opened by this fix; it closes a gap in already-shipped infrastructure
 
+### Session continued — the real end-to-end test: Victor actually moved the file, and PR-time auto-rebuild landed
+
+**Victor moved `wip/victor-methodology-presentation.html` to `pages/` for real, in PR #58 — the first genuine test of the whole round's work, not a sandbox.** GitHub itself detected it as a 100%-similarity rename (confirmed via `pull_request_read get_files`: `status: "renamed"`, `previous_filename: "wip/victor-methodology-presentation.html"`). The required `test` check failed — but for the right reason: `tests/15-departments.test.js`'s integration test correctly caught that the committed `data/index.json` was stale (missing the file as a `ported` node), because the raw file move never re-ran any build script. This is the drift-detector working exactly as designed, not a bug in the wip-drafts feature.
+
+**Fixed by hand first** — checked out Victor's actual PR branch (`VXG-070526-Victor-Methodology-Presentation`), ran the full build chain locally, confirmed all 319 tests passed, and pushed the corrected artifacts directly to his branch. Confirmed the page now appears in both places: a live `ported` cell in `pages/archives.html`'s Unsorted section, and the Ecosystem Hub's `contentIntegrity` panel — transitioned automatically from a "Draft in wip/" notice to a normal "Uncurated page" notice, exactly the handoff `discoverWipDrafts`/`discoverOrphanNodes` were built for.
+
+**Then Victor asked the sharper question: how to make this run without needing me to manage it, so he can add HTML files "offline from your awareness."** Answered honestly rather than just building something: the existing `build-index.yml` only auto-rebuilds and commits *after* a merge to `main` (proven twice already this session), not during PR review — nothing runs the build chain automatically when a PR is merely opened or updated. Proposed extending it to also trigger on `pull_request`, but flagged a real GitHub Actions constraint before building: a commit pushed using the workflow's own `GITHUB_TOKEN` does not retrigger other checks on the same PR (GitHub's built-in anti-recursion rule) — so an auto-fix commit would correct the files but leave the checks tab stale until a manual "re-run" or another push. Gave Victor three real options (auto-fix + manual re-run click / auto-fix + a real PAT for full auto-green / diagnose-only) via `AskUserQuestion` rather than picking unilaterally, since it's a real tradeoff affecting his workflow (bot commits landing on his own branches). He chose the middle option: auto-fix, accept one manual re-run click.
+
+**Built:** `.github/workflows/build-index.yml` now triggers on `pull_request` as well as `push` to `main`, sharing one path list via a YAML anchor (`&build_trigger_paths` / `*build_trigger_paths`) instead of duplicating it — avoiding exactly the kind of two-copies-that-can-drift problem this repo's lattice/status tooling already goes out of its way to prevent elsewhere. Checkout now targets `${{ github.head_ref || github.ref }}` (the PR's actual branch, not the synthetic merge ref, which nothing can push back to) so the commit step lands somewhere real. The commit-and-push step branches on `github.event_name`: `pull_request` pushes straight to the PR's head branch (no `[skip ci]`, since a manual re-run is expected to actually re-run something); `push` keeps the existing `[skip ci]`-tagged commit to `main` unchanged.
+
+### Files created or modified (continued)
+
+| File | What changed |
+|---|---|
+| `.github/workflows/build-index.yml` | Added `pull_request` trigger (shared path list via YAML anchor); checkout targets the PR's head branch; commit-and-push step branches on event type |
+
+### Assumptions that need verification
+
+- [ ] The PR-time auto-rebuild has not yet been exercised against a real PR — the sandbox verification only exercised the git checkout/commit/push sequence in isolation, not the full GitHub Actions trigger path. First real PR opened after this merges is the actual test.
+- [ ] Victor accepted "one manual re-run click" as the tradeoff over a fully hands-off PAT-based setup — if that friction turns out to matter more than expected in practice, the PAT option is still available, not rejected outright.
+
+### Open work at session end (continued)
+
+- [ ] First real PR exercising the new `pull_request` trigger is still pending — confirm the corrective commit lands and that a manual re-run does turn the checks green
+- [ ] od-010, pe-012, pe-010, pe-011, od-001/002/003/006/007/008/009 remain open, unchanged
+
 <!-- [VXG RealForever] -->
