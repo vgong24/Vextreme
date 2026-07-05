@@ -554,4 +554,22 @@ Victor asked whether the "multi-department dispatch" concern from `od-009` is ac
 - [ ] `pages/archives.html` does not yet show wip/ drafts (only the Ecosystem Hub does) — not built this round, a reasonable future extension if wip/ draft volume grows
 - [ ] od-010, pe-012, pe-010, pe-011, od-001/002/003/006/007/008/009 remain open, unchanged
 
+### Session continued — a real reliability gap found while answering "does this actually work yet"
+
+**Victor asked three direct verification questions after PR #56 merged:** does the wip/ draft mapping only fire on insertion or also for a file already sitting there; is `victor-methodology-presentation.html` actually visible on the Ecosystem Hub or Archives right now; and is there an equivalent auto-commit step to the move-detection, similar to how `.github/workflows/build-index.yml` already auto-rebuilds and commits after a merge.
+
+**Verified all three concretely, not by assumption:** (1) `discoverWipDrafts`/`scanWipHtmlDrafts` scan the current filesystem state fresh on every run — no "on-add" event needed, so an already-existing file is picked up exactly the same as a brand-new one. (2) Checked `origin/main`'s actual `data/status.json` directly: the "Draft in wip/: Victor Gong — The Mapping Methodology" notice is already there, live on the Ecosystem Hub's Content Integrity panel — confirmed via `git show origin/main:data/status.json`, not by assuming the merge worked. `pages/archives.html` does not show it, matching what was scoped (and explicitly logged as not-built) last round. (3) `.github/workflows/build-index.yml` did run a second, automatic "Auto-rebuild artifacts [skip ci]" commit (`12b3f4a`) right after PR #56 merged — real, already-existing infrastructure, not something built this round.
+
+**Checking (3) surfaced a real gap:** `build-index.yml`'s trigger path list never included `lib/check-key-alignment.js` or `lib/auto-discover-nodes.js` — the rebuild only fired for PR #56 because `lib/build-status.js` (which is listed) was also touched. A future change scoped only to the wip-drafts logic itself (or a future `wip/*.html` addition with no accompanying `lib/` change) would not trigger an auto-rebuild, leaving `data/status.json` stale until something else happened to touch a listed path. Fixed by adding `lib/check-key-alignment.js`, `lib/auto-discover-nodes.js`, and `wip/**` to the trigger list — the last one closes the loop completely: adding or editing a `wip/*.html` draft now triggers its own rebuild without needing an accompanying code change.
+
+### Files created or modified (continued)
+
+| File | What changed |
+|---|---|
+| `.github/workflows/build-index.yml` | Added `lib/check-key-alignment.js`, `lib/auto-discover-nodes.js`, `wip/**` to the trigger path list |
+
+### Open work at session end (continued)
+
+- [ ] Same as above — nothing new opened by this fix; it closes a gap in already-shipped infrastructure
+
 <!-- [VXG RealForever] -->
