@@ -1,8 +1,8 @@
 {
-  "builtAt": "2026-07-05T21:36:18.786Z",
-  "nodeCount": 111,
+  "builtAt": "2026-07-05T22:04:15.441Z",
+  "nodeCount": 112,
   "curatedNodeCount": 90,
-  "autoDiscoveredCount": 21,
+  "autoDiscoveredCount": 22,
   "arcCount": 16,
   "supportedLangs": [
     "en",
@@ -2545,6 +2545,29 @@
         ]
       }
     },
+    "victor-methodology-presentation": {
+      "id": null,
+      "slug": "victor-methodology-presentation",
+      "title": "Victor Gong — The Mapping Methodology · 制图方法论",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.victor-methodology-presentation"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
+    },
     "witness-committee-operations": {
       "id": null,
       "slug": "witness-committee-operations",
@@ -3530,6 +3553,11 @@
         {
           "slug": "the-victor-pattern-transcript",
           "title": "The Victor Pattern Transcript",
+          "ported": true
+        },
+        {
+          "slug": "victor-methodology-presentation",
+          "title": "Victor Gong — The Mapping Methodology · 制图方法论",
           "ported": true
         }
       ]
