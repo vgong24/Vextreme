@@ -78,6 +78,43 @@ Victor invited genuine self-reflection: what would actually help an AI instance 
 
 Two new kinds of artifact exist that didn't before: a first-person reflection section in `docs/culture.md` (corrected mid-session after landing wrong the first time) capturing what this instance has actually learned about working in this repo, and a distilled, searchable lesson entry generalizing a bug pattern hit three separate times. A new tool, `lib/session-bootstrap.js`, directly answers the friction the reflection named. A substantial language/architecture conversation (JSON vs. Kotlin, TypeScript vs. Kotlin Multiplatform, structured concurrency, null safety) resolved into one honestly-scoped tracked item (`td-008`) rather than either an unreasoned rewrite or a lost thread. 218/218 tests passing.
 
+### Session continued — context-note registry and merge-order reasoning
+
+**Victor and Codex paused during draft PR #62 to solve a continuity-order problem rather than
+bury it in conversation.** The immediate PR remained page-binding health checks, but the working
+session surfaced two larger pieces of preserved reasoning: a 2026-07-05 architectural expansion
+summary from ChatGPT/Vex, and a 2026-07-06 culture discovery about how to preserve reasoning when
+multiple open PRs or discussions overlap.
+
+The key distinction established here: batch files should not copy large context notes, but they
+must point to them with enough reason that a future instance knows whether deeper reading is
+necessary.
+
+### Context notes referenced or created (continued)
+
+| Note | Why it matters to this session | Read deeper when |
+|---|---|---|
+| `docs/continuity/context-notes/architectural-discussion-2026-07-05.md` | Preserves Victor's external architecture summary: source vs. projections, localization URL state, GitHub event stream, notification projections, screenshot PR checks, org adapters, and AI-readable maps | Touching repo topology, AI workflow, localization, notification flow, external org mapping, slug/registry scalability, or visual PR validation |
+| `docs/continuity/context-notes/pr-ordering-and-reasoning-continuity-2026-07-06.md` | Preserves the culture rule discovered while PR #62 was open: conversation order, decision order, implementation order, and current architecture order must stay distinct | Multiple PRs/discussions are open and a new architectural lesson emerges midstream |
+
+### Files created or modified (continued)
+
+| File | What changed |
+|---|---|
+| `docs/continuity/CONTEXT-NOTES.md` | New registry for large preserved context notes |
+| `docs/continuity/context-notes/README.md` | New folder guide and batch-map rule |
+| `docs/continuity/context-notes/architectural-discussion-2026-07-05.md` | New preserved architecture context note from Victor's summary |
+| `docs/continuity/context-notes/pr-ordering-and-reasoning-continuity-2026-07-06.md` | New preserved culture/context note explaining merge order vs. reasoning order |
+| `CLAUDE.md` | Added pointer to the context-note registry, not individual notes |
+| `docs/continuity/INDEX.md` | Added context-note registry pointer and updated the batch template with a context-note map row |
+
+### Open work at session end (continued)
+
+- [ ] Decide whether the 2026-07-06 PR-ordering rule should later be distilled into
+  `docs/culture.md` as standing doctrine, or remain preserved context only
+- [ ] Page provenance and generated-artifact audit remains unbuilt; likely future planned
+  enhancement after PR #62 and the context-note PR are separated cleanly
+
 <!-- [VXG RealForever] -->
 
 ---

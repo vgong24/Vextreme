@@ -13,6 +13,19 @@
 Do not start new work without completing this reading sequence. The README documents
 intended design; the continuity log documents actual system state — they diverge.
 
+## Expansion context notes
+
+Some architectural discussions are too large for `CLAUDE.md` but still affect future
+design decisions. Before implementing changes touching repo topology, AI workflow,
+localization, notification flow, external org mapping, or slug/registry scalability, check:
+
+- `docs/continuity/CONTEXT-NOTES.md`
+
+That registry links large external or cross-session discussions without turning
+`CLAUDE.md` into a catch-all archive. Treat listed files as preserved reasoning and
+candidate architecture, not as accepted implementation work. Convert any piece into
+implementation only through the normal PR decision-record process.
+
 **Before touching any lib/ file, read:**
 
 `docs/lattice-map.json` — file dependency lattice. Each node names what it reads,
