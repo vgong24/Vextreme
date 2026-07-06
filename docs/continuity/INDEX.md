@@ -103,6 +103,11 @@ they're not lost, they're in the batch file where the reasoning actually lives.
 already-pruned source for od-/td-/pe- tracked items (removed from their file once shipped) — the
 Ecosystem Hub renders them live. Don't hand-copy their status into this file; point to them.
 
+**Where large preserved context lives:** `docs/continuity/CONTEXT-NOTES.md` indexes external
+or cross-session architectural discussions that may affect future decisions but are not yet
+accepted architecture or active queue items. Promote specific pieces into `data/status/*.json`,
+architecture docs, or lessons only through a PR decision record.
+
 ---
 
 ## Open Work
@@ -230,6 +235,7 @@ These rules exist so the log stays useful as it grows. Follow them.
 
 **What to log:**
 - Files created or modified (with one-line description of what changed)
+- Context notes referenced or created (map key only, not the full note)
 - Mistakes — specific, with cause and fix
 - Assumptions — both confirmed and unconfirmed
 - Open work at session end
@@ -238,6 +244,7 @@ These rules exist so the log stays useful as it grows. Follow them.
 **What not to log:**
 - Blow-by-blow of what commands were run
 - Content of files (that's what the files are for)
+- Full context-note bodies; link them and summarize why they matter
 - Speculation about future sessions
 - Anything you wouldn't want a future instance to treat as factual
 
@@ -263,6 +270,12 @@ These rules exist so the log stays useful as it grows. Follow them.
 **Continues from:** Session 0NN — [one line]
 
 ### Context on arrival
+
+### Context notes referenced or created
+
+| Note | Why it matters to this session | Read deeper when |
+|---|---|---|
+| | | |
 
 ### Files created or modified
 
