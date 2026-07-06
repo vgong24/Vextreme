@@ -151,14 +151,7 @@
       ],
       "decisionRole": "gate",
       "position": "org-wide — The Council (pages/org-blueprint.html); not department-scoped, see docs/architecture/14-council-model.md",
-      "contributions": [
-        {
-          "id": "pe-012",
-          "title": "lib/check-lattice-edges.js — verify docs/lattice-map.json's reads/writes/loadedBy claims against actual code",
-          "source": "plannedEnhancements",
-          "priority": "medium"
-        }
-      ]
+      "contributions": []
     },
     {
       "id": "qa",

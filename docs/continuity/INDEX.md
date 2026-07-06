@@ -79,7 +79,10 @@ silent-drift detectors run in CI: `lib/build-lattice-headers.js --check` (LATTIC
 `lib/check-key-alignment.js` (slug/arc/page/wip drift), `lib/check-design-tokens.js` (CSS token
 resolution), and `lib/check-map-bindings.js` (pe-013, shipped Session 024 — layered-map drift:
 registry ↔ files, batch registry ↔ directories, INDEX's "Last updated" ↔ newest session file).
-337/337 tests passing. Lattice coverage 30/41 (73%).
+A fifth, `lib/check-lattice-edges.js` (pe-012, shipped Session 024 continued), verifies the
+lattice map's claimed reads/writes/loadedBy edges against actual code — informational at the
+CLI, blocking in CI via tests/23's integration test; its first run found and fixed 22 stale
+edges. 345/345 tests passing. Lattice coverage 31/42 (74%).
 
 The continuity system itself changed shape in Session 024: batches are now **directories of
 per-session files** (`docs/continuity/batch-003/`, filenames `YYYY-MM-DD-session-0NN.md`)
@@ -94,6 +97,9 @@ entries had been injected mid-file into Session 021's record.
   `batch-003/` per-session files, relocated Session 023 with corrected attribution, taught
   `lib/session-bootstrap.js` the directory form, and distilled the anchor-insertion lesson.
   Continued: shipped pe-013 as `lib/check-map-bindings.js` — the fourth CI drift detector.
+  Continued again: shipped pe-012 as `lib/check-lattice-edges.js` — 22 stale lattice edges
+  found and fixed on its first run; the sentinel hazard bit the tool itself twice while
+  building it (fresh evidence for the `const VEX_LATTICE` structural fix).
 - **Session 023 (Codex)** — Context-note registry (`docs/continuity/CONTEXT-NOTES.md` +
   `context-notes/`), then "perceivable context" culture (`docs/culture.md` layered-maps section,
   pe-013 map-binding health check). PRs #63–#64. Entries originally misfiled; see Session 024.
