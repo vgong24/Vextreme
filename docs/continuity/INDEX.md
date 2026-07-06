@@ -74,10 +74,12 @@ PR's base and head rather than inventing custom file-identity tracking.
 
 Slug uniqueness is mechanically enforced (BLOCK severity) in `lib/build-index.js`; orphan pages,
 `wip/` placement conflicts, and `wip/` drafts are reported (informational) via
-`lib/check-key-alignment.js` and a `contentIntegrity` panel on the Ecosystem Hub. Three
+`lib/check-key-alignment.js` and a `contentIntegrity` panel on the Ecosystem Hub. Four
 silent-drift detectors run in CI: `lib/build-lattice-headers.js --check` (LATTICE header drift),
 `lib/check-key-alignment.js` (slug/arc/page/wip drift), `lib/check-design-tokens.js` (CSS token
-resolution). 325/325 tests passing. Lattice coverage 29/40 (73%).
+resolution), and `lib/check-map-bindings.js` (pe-013, shipped Session 024 — layered-map drift:
+registry ↔ files, batch registry ↔ directories, INDEX's "Last updated" ↔ newest session file).
+337/337 tests passing. Lattice coverage 30/41 (73%).
 
 The continuity system itself changed shape in Session 024: batches are now **directories of
 per-session files** (`docs/continuity/batch-003/`, filenames `YYYY-MM-DD-session-0NN.md`)
@@ -91,6 +93,7 @@ entries had been injected mid-file into Session 021's record.
   block, anchored to a sentinel marker instead of appended); restructured Batch 003 into
   `batch-003/` per-session files, relocated Session 023 with corrected attribution, taught
   `lib/session-bootstrap.js` the directory form, and distilled the anchor-insertion lesson.
+  Continued: shipped pe-013 as `lib/check-map-bindings.js` — the fourth CI drift detector.
 - **Session 023 (Codex)** — Context-note registry (`docs/continuity/CONTEXT-NOTES.md` +
   `context-notes/`), then "perceivable context" culture (`docs/culture.md` layered-maps section,
   pe-013 map-binding health check). PRs #63–#64. Entries originally misfiled; see Session 024.

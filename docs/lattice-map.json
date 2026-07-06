@@ -1034,10 +1034,11 @@
         "git log / git status (via subprocess)",
         "node lib/build-lattice-headers.js --check (via subprocess)",
         "node lib/check-design-tokens.js (via subprocess)",
+        "node lib/check-map-bindings.js (via subprocess)",
         "node --test tests/*.test.js (via subprocess, with VEX_BOOTSTRAP_NESTED=1 to prevent recursion)"
       ],
       "writes": ["stdout only — read-only, changes nothing"],
-      "loadedBy": ["manual run: node lib/session-bootstrap.js", "tests/14-session-bootstrap.test.js"],
+      "loadedBy": ["manual run: node lib/session-bootstrap.js", "tests/14-session-bootstrap.test.js", "lib/check-map-bindings.js (requires the parse/latest helpers)"],
       "testedBy": ["tests/14-session-bootstrap.test.js"],
       "changeMap": {
         "docs/continuity/INDEX.md's 'Last updated' line or Batch Registry table format changed": [
@@ -1050,7 +1051,35 @@
           "it must check process.env.VEX_BOOTSTRAP_NESTED and skip its own integration test when nested, same pattern as tests/14 — otherwise the same recursion hazard recurs for a new file"
         ],
         "the per-session filename convention (YYYY-MM-DD-session-0NN.md) or the directory-batch form changed": [
-          "latestSessionFile() here — filters and sorts by that exact filename shape; docs/continuity/batch-003/README.md and INDEX.md's batch rules document the convention it assumes"
+          "latestSessionFile() here — filters and sorts by that exact filename shape; docs/continuity/batch-003/README.md and INDEX.md's batch rules document the convention it assumes",
+          "lib/check-map-bindings.js — enforces the same convention against the registry's declared range"
+        ]
+      }
+    },
+
+    "lib/check-map-bindings.js": {
+      "role": "pe-013 layered-maps drift detector — verifies the bindings between cold-start maps and the files they claim to bind",
+      "context": "Built in Session 024 after Session 023's continuity entries were injected into the wrong session record and nothing mechanical noticed: INDEX.md claimed one latest session while the record held another. The layered-maps culture (docs/culture.md) says every new context layer needs the health check that would detect its map drifting; this is that check for the continuity layer. Checks: CLAUDE.md → CONTEXT-NOTES.md pointer; CONTEXT-NOTES.md Notes table ↔ context-notes/*.md both directions; Batch Registry rows exist, exactly one active row, last, agreeing with the Active batch line; directory-form batch has README.md and convention-named session files inside the declared range; INDEX.md's 'Last updated: Session NNN' equals the newest session file on disk. Any finding exits 1 — drift posture like build-lattice-headers --check, not informational like check-key-alignment.",
+      "reads": [
+        "CLAUDE.md (CONTEXT-NOTES.md pointer)",
+        "docs/continuity/INDEX.md (batch registry, Active batch line, Last updated line)",
+        "docs/continuity/CONTEXT-NOTES.md (Notes table rows)",
+        "docs/continuity/context-notes/ directory listing",
+        "active batch directory listing (session filenames)",
+        "lib/session-bootstrap.js (requires parseLastSession/parseBatchRegistry/latestSessionFile)"
+      ],
+      "writes": ["stdout only — read-only, changes nothing; exit code 1 on drift"],
+      "loadedBy": ["manual run: node lib/check-map-bindings.js", "lib/session-bootstrap.js (report subprocess)", "tests/22-check-map-bindings.test.js"],
+      "testedBy": ["tests/22-check-map-bindings.test.js"],
+      "changeMap": {
+        "INDEX.md's Batch Registry table, Active batch line, or Last updated line format changed": [
+          "parseActiveBatchLine()/sessionRange() here, and parseBatchRegistry()/parseLastSession() in lib/session-bootstrap.js — all parse those exact markdown shapes by regex"
+        ],
+        "CONTEXT-NOTES.md's Notes table stops using backticked paths, or context-notes/ gains non-note .md files beyond README.md": [
+          "parseNoteRows()/checkContextNoteBindings() here — the path regex and the README.md exemption encode those two assumptions"
+        ],
+        "a new map layer is added (a folder README, a registry, a generated index)": [
+          "add its binding check here — the layered-maps culture section says the map and its health check arrive together"
         ]
       }
     },
