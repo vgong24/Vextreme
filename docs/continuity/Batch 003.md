@@ -115,6 +115,34 @@ necessary.
 - [ ] Page provenance and generated-artifact audit remains unbuilt; likely future planned
   enhancement after PR #62 and the context-note PR are separated cleanly
 
+### Session continued — perceivable-context culture and map-binding health
+
+**After PR #62 and PR #63 merged, Victor chose to hone culture before moving into org-specific
+work.** The concern was whether context remains perceivable as the repo gains more README files,
+registries, batch map rows, and context notes. The architectural risk named here: a layered map can
+scale better than a top-heavy `CLAUDE.md`, but only if the bindings between layers stay healthy.
+
+The session converted that concern into two lightweight source changes: a standing culture section
+for layered maps, and a planned enhancement for a future health check that can detect drift between
+README files, registries, context notes, and batch references.
+
+### Files created or modified (continued)
+
+| File | What changed |
+|---|---|
+| `docs/culture.md` | Added "Layered maps, not top-heavy memory" to describe `CLAUDE.md` as router, folder READMEs/registries as local maps, and health checks as the guard against map drift |
+| `data/status/planned-enhancements.json` | Added `pe-013` for a repo map-binding health check across README, registry, context-note, and batch references |
+| `data/status.json` | Rebuilt generated status projection; planned enhancements increased to 13 and total open to 59 |
+
+### Verification (continued)
+
+- `node lib/build-status.js`
+- `node --test tests/10-build-status.test.js` — 44/44 passing
+
+### Open work at session end (continued)
+
+- [ ] pe-013 — build the repo map-binding health check; start with context-note registry/file/batch/CLAUDE.md drift, then generalize if the pattern proves useful
+
 <!-- [VXG RealForever] -->
 
 ---

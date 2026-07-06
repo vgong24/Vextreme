@@ -123,6 +123,25 @@ context boundaries, handoffs, and re-instantiations without re-deriving settled 
 Write for the next instance. That instance will not have this conversation. Give it
 what it needs to understand not just what changed, but why — and what the next step is.
 
+### Layered maps, not top-heavy memory
+
+Cold-start files should route attention, not absorb every detail. `CLAUDE.md` should name the
+reading order and point to the right front doors; folder-level READMEs and registries should carry
+the local rules for their own files.
+
+This keeps context perceivable at scale:
+- the top-level guide says where to begin
+- the continuity index says what is current and what is open
+- a folder README says how to work inside that folder
+- a registry says which files exist and when to read deeper
+- a batch entry records why a deeper note mattered during a real session
+
+When a new context layer appears, do not only add files. Add the map that lets a future instance
+decide whether to read them, and name the health check that would detect the map drifting from the
+files it claims to bind. The cost to watch is not only token volume; it is ambiguity. A reader who
+cannot tell whether a note is context, doctrine, queue, or accepted architecture will either reread
+too much or trust the wrong layer.
+
 ### Branch, PR, and commit naming
 
 Branch names carry continuity too. Use a date + instance + work pattern so the origin of
