@@ -1,6 +1,18 @@
 {
-  "count": 11,
+  "count": 12,
   "items": [
+    {
+      "id": "append-only-records-need-append-at-end-not-anchor-insertion",
+      "title": "An Append-Only Record Needs A Physical Append Operation, Not An Insertion Anchored To Text",
+      "problem": "Session 023's two continuity entries were committed into the middle of the old monolithic Batch 003.md — inside Session 021's closed record — instead of appended after the actual most recent session. The edit was anchored to the first '<!-- [VXG RealForever] -->' marker in the file, treating the continuity marker like an end-of-file sentinel in a code file. The record stayed structurally valid markdown, so nothing failed loudly; the damage was semantic: the two newest sessions became invisible to the documented cold-start path ('scroll to the bottom, read the most recent session'), were mis-attributed to an older session by a different instance, and carried none of the required session metadata (date, instance, thread).",
+      "lesson": "A convention that says 'append only' but is implemented as 'edit a shared file at the right spot' will eventually be violated by any writer that anchors its edit on searchable text — the same hazard class as sentinel-based tools corrupting themselves. When a record must be append-only, choose a storage shape where appending is the only physically natural operation (new file in a directory beats new block in a file) and where the ordering key lives in metadata the file system already sorts (a date-prefixed filename), not in position within a document.",
+      "impact": "The misplacement failure mode is structurally impossible for new sessions: closed sessions are closed files. Session 023 was relocated with corrected attribution and a provenance note rather than silently rewritten. Regression-tested in tests/14-session-bootstrap.test.js (latestSessionFile unit tests plus an integration test binding the registry row to a real directory and a real newest session file).",
+      "sessions": [
+        "023",
+        "024"
+      ],
+      "visual": null
+    },
     {
       "id": "generated-artifacts-must-be-content-deterministic",
       "title": "A Generated File's Metadata Must Not Change Unless Its Real Content Does — Otherwise Every Independent Rebuild Is a Manufactured Merge Conflict",

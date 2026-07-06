@@ -1029,6 +1029,7 @@
       "context": "Written directly in response to a standing observation recorded in docs/culture.md ('What an AI instance actually needs here'): reconstructing 'what's the current state' at the start of a session meant reading INDEX.json, running git log, and running three separate verification commands by hand, every time. Not a replacement for the continuity system — this is the fast mechanical glance (is anything broken, what changed, how many open items); the reasoning behind any of it still lives in the continuity log. Guards against a real recursion hazard: it runs the full test suite internally, which includes its own test file (tests/14), whose integration tests would otherwise spawn this script again — VEX_BOOTSTRAP_NESTED=1 tells that nested run to skip instead of recursing.",
       "reads": [
         "docs/continuity/INDEX.md (last logged session, batch registry)",
+        "docs/continuity/batch-00N/ directory listing (newest YYYY-MM-DD-session-0NN.md file, when the active batch is a directory)",
         "data/status.json (open item counts per category)",
         "git log / git status (via subprocess)",
         "node lib/build-lattice-headers.js --check (via subprocess)",
@@ -1047,6 +1048,9 @@
         ],
         "a new tests/*.test.js file added that itself spawns this script": [
           "it must check process.env.VEX_BOOTSTRAP_NESTED and skip its own integration test when nested, same pattern as tests/14 — otherwise the same recursion hazard recurs for a new file"
+        ],
+        "the per-session filename convention (YYYY-MM-DD-session-0NN.md) or the directory-batch form changed": [
+          "latestSessionFile() here — filters and sorts by that exact filename shape; docs/continuity/batch-003/README.md and INDEX.md's batch rules document the convention it assumes"
         ]
       }
     },
