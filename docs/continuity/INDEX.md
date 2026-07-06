@@ -13,8 +13,9 @@ and the Open Work list before closing.
 
 1. Read **Current State** below — one paragraph on where the system stands
 2. Read **Open Work** — what was unfinished when the last session ended
-3. Open the current batch file (listed under **Batch Registry**) and read
-   the most recent session entry
+3. Open the active batch directory (listed under **Batch Registry**) and read
+   the newest-dated session file — filenames are `YYYY-MM-DD-session-0NN.md`,
+   so the last file in `ls` order is the most recent session
 4. Cross-reference `docs/README.md` for architecture decisions and load order
 5. Use `docs/test-playground.html` (slug: `test-playground`) to verify the
    live system before touching anything
@@ -27,7 +28,7 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 022 (continued) — July 5, 2026*
+*As of Session 024 — July 6, 2026*
 
 The v2 GitHub Pages architecture is the active system. v1 (`data/arcs.json`, `data/pages.json`,
 `lib/vextreme.js`/`archive-renderer.js`/`arc-nav.js`) still serves the live Squarespace site
@@ -76,20 +77,27 @@ Slug uniqueness is mechanically enforced (BLOCK severity) in `lib/build-index.js
 `lib/check-key-alignment.js` and a `contentIntegrity` panel on the Ecosystem Hub. Three
 silent-drift detectors run in CI: `lib/build-lattice-headers.js --check` (LATTICE header drift),
 `lib/check-key-alignment.js` (slug/arc/page/wip drift), `lib/check-design-tokens.js` (CSS token
-resolution). 319/319 tests passing. Lattice coverage 29/40 (73%).
+resolution). 325/325 tests passing. Lattice coverage 29/40 (73%).
 
-**Recent sessions** (one line each — open the batch file below for full reasoning):
+The continuity system itself changed shape in Session 024: batches are now **directories of
+per-session files** (`docs/continuity/batch-003/`, filenames `YYYY-MM-DD-session-0NN.md`)
+instead of one monolithic markdown file per batch. Logging a session is a file creation — no
+insertion anchor to miss, no closed record to disturb. Batches 001–002 remain legacy single files.
+The change repairs Session 023 (Codex's July 6 context-note and perceivable-context work), whose
+entries had been injected mid-file into Session 021's record.
+
+**Recent sessions** (one line each — open the session files below for full reasoning):
+- **Session 024** — Reviewed Session 023's misplaced batch entries (injected into Session 021's
+  block, anchored to a sentinel marker instead of appended); restructured Batch 003 into
+  `batch-003/` per-session files, relocated Session 023 with corrected attribution, taught
+  `lib/session-bootstrap.js` the directory form, and distilled the anchor-insertion lesson.
+- **Session 023 (Codex)** — Context-note registry (`docs/continuity/CONTEXT-NOTES.md` +
+  `context-notes/`), then "perceivable context" culture (`docs/culture.md` layered-maps section,
+  pe-013 map-binding health check). PRs #63–#64. Entries originally misfiled; see Session 024.
 - **Session 022 (continued, wip/ drafts)** — Victor added `wip/victor-methodology-presentation.html`
   directly and found zero automated mapping. Built the initial-mapping-on-insertion +
   reconcile-not-error-on-move pattern described above: `discoverWipDrafts`, `scanWipHtmlDrafts`,
   a new `contentIntegrity` notice, and `lib/detect-wip-promotions.js`'s git-rename-based PR notice.
-- **Session 022 (continued, council lenses + roles)** — Re-perceived Victor's "role positioning /
-  communication channels / kanban discussions / instruction routing" ask across two rounds: a
-  `lens` field + Council Lenses panel, then `data/roles.json`/`pages/roles-index.html`'s full
-  traceability layer. Recorded the honest lessons and `od-010` in `docs/architecture/14-council-model.md`.
-- **Session 022** — Department axis, slug-uniqueness guard, WIP/orphan-page auto-discovery,
-  `lib/build-lessons.js` (config/lessons/*.json → data/lessons.json → Ecosystem Hub's "Lessons
-  Learned" section), and wiring `lib/build-status.js`/`lib/build-ecosystem-hub.js` into CI. PRs #40–#47.
 
 **This section is a snapshot, not a log.** Full session-by-session reasoning — mistakes tried,
 assumptions made, why a decision went one way over another — lives in the batch files (see
@@ -162,24 +170,31 @@ lives in the batch files.
 
 ## Batch Registry
 
-Sessions are grouped in batches of 10. When a batch file reaches 10 entries,
-create the next batch file and update this registry.
+Sessions are grouped in batches of 10. From Batch 003 onward, a batch is a
+**directory of per-session files**, one file per session, named
+`YYYY-MM-DD-session-0NN.md` — the date prefix makes the directory listing
+chronological and lets future tooling filter sessions by time without parsing
+anything. Batches 001–002 predate this form and remain single legacy files.
 
 | Batch | File | Sessions | Status |
 |---|---|---|---|
-| 001 | `docs/continuity/Batch 001.md` | 001–010 | closed |
-| 002 | `docs/continuity/Batch 002.md` | 011–020 | closed |
-| 003 | `docs/continuity/Batch 003.md` | 021–030 | active |
+| 001 | `docs/continuity/Batch 001.md` | 001–010 | closed (legacy single file) |
+| 002 | `docs/continuity/Batch 002.md` | 011–020 | closed (legacy single file) |
+| 003 | `docs/continuity/batch-003/` | 021–030 | active |
 
-**Active batch:** `docs/continuity/Batch 003.md`
+**Active batch:** `docs/continuity/batch-003/`
 
-When starting a new session: open the active batch file, scroll to the bottom,
-append your session block using the template at the bottom of the batch file.
+When starting a new session: **create a new file** in the active batch directory
+(`YYYY-MM-DD-session-0NN.md`, next session number) using the session template below.
+Never insert into or edit an existing session file — a closed session is a closed
+file. A continuation of the *current* session (same day, same thread) appends
+`### Session continued` blocks inside that session's own file.
 
 When a batch reaches 10 sessions:
-1. Create `docs/continuity/batch-00N.md` using the batch template below
-2. Add it to this registry table
-3. Update **Active batch** to point to the new file
+1. Create the directory `docs/continuity/batch-00N/` with a `README.md` carrying
+   the local rules (copy `batch-003/README.md` and adjust the session range)
+2. Add it to this registry table and mark the previous batch closed
+3. Update **Active batch** to point to the new directory
 
 ---
 
@@ -199,7 +214,7 @@ When a batch reaches 10 sessions:
 | How do I add a new arc? | Add arc object to `data/arcs.json`, increment cache version |
 | Fonts loaded globally? | Yes — via header injection, no per-page font tags needed |
 | Does every page need a per-page block? | No — URL auto-detection covers standard pages |
-| What broke last time? | See most recent session in active batch file |
+| What broke last time? | See newest-dated session file in the active batch directory |
 
 ---
 
@@ -209,28 +224,40 @@ These rules exist so the log stays useful as it grows. Follow them.
 
 **Reading rules:**
 - Always read INDEX.md first
-- Read the most recent session in the active batch before starting work
+- Read the newest-dated session file in the active batch directory before starting work
+- The date prefix in session filenames is there for time-based filtering: "what happened
+  since date X" is a filename comparison, not a content search
 - You do not need to read old batches unless debugging something historical
 
 **Writing rules:**
-- **"Append only" applies to the batch files, not to this file's Current State / Open Work.**
-  A batch file session entry, once written, is never edited by a later session — that's the
-  append-only historical record. This file's Current State and Open Work sections are the
+- **"Append only" applies to session records, not to this file's Current State / Open Work.**
+  A session entry, once written, is never edited by a later session — that's the
+  append-only historical record. In batch directories this rule has a physical shape:
+  log a new session by **creating a new file**, never by inserting into an existing one.
+  (Session 023's entries were once injected mid-file into Session 021's record by anchoring
+  on a sentinel marker — the per-session-file form exists so that mistake is structurally
+  impossible: file creation has no insertion anchor to miss.) This file's Current State and Open Work sections are the
   opposite: **replace, don't append.** Session 022 compacted both after they'd grown to a
   full paragraph per session back to Session 004 and a checklist of everything ever shipped
   since Session 005 — exactly the failure mode this rule exists to prevent. Rewrite the
   Current State paragraph to describe *now*; keep at most 3 "Recent sessions" one-liners;
   remove Open Work items the session they ship rather than checking them off and leaving them.
-- One session block per working session, regardless of length (in the batch file)
+- One session file per working session, regardless of length. A different day or a
+  different instance means a new session (and a new file), even mid-discussion
 - If a session is a continuation of the prior one (same day, same thread),
-  note that in the Context on Arrival field rather than creating a new session
+  append a `### Session continued` block inside that session's own file rather
+  than creating a new session
 - Update **Current State** and **Open Work** in this file at session end — by replacing, not appending
 - Include the Claude thread link — it is the primary source of reasoning
 
 **Batch rules:**
-- Maximum 10 sessions per batch file
-- When a batch is full, create the next batch and update the registry here
-- Batch files are named `batch-001.md`, `batch-002.md` etc. — zero-padded
+- Maximum 10 sessions per batch
+- When a batch is full, create the next batch directory (with its README) and
+  update the registry here
+- Batch directories are named `batch-003/`, `batch-004/` etc. — zero-padded;
+  session files inside are named `YYYY-MM-DD-session-0NN.md`
+- Batches 001–002 are legacy single files (`Batch 001.md`, `Batch 002.md`) —
+  leave them as they are; do not convert closed history
 - Do not merge or split batches after creation
 
 **What to log:**
@@ -250,13 +277,14 @@ These rules exist so the log stays useful as it grows. Follow them.
 
 ---
 
-## New batch template
+## New session file template
+
+Create as `docs/continuity/batch-00N/YYYY-MM-DD-session-0NN.md`:
 
 ```markdown
-# VEXTREME — Continuity Batch 00N
-# Sessions 0NN–0NN
+# VEXTREME — Continuity Batch 00N · Session 0NN
 
-[← Batch 00N-1](batch-00N-1.md)
+[← Session 0NN-1](YYYY-MM-DD-session-0NN-1.md) · [Batch 00N guide](README.md)
 
 ---
 
@@ -296,10 +324,12 @@ These rules exist so the log stays useful as it grows. Follow them.
 - [ ] item
 
 ### State of the system at session end
+
+<!-- [VXG RealForever] -->
 ```
 
 ---
 
-*Last updated: Session 022 — July 4, 2026*
+*Last updated: Session 024 — July 6, 2026*
 
 <!-- [VXG RealForever] -->

@@ -6,7 +6,9 @@
    on this project. Read this before anything else. The architecture makes more sense
    once you understand why this system exists and what kind of developer it expects.
 1. `docs/continuity/INDEX.md` — current system state, open work, and batch registry
-2. The most recent session in the active batch file (listed in INDEX.md's Batch Registry)
+2. The newest-dated session file in the active batch directory (listed in INDEX.md's
+   Batch Registry) — session files are named `YYYY-MM-DD-session-0NN.md`, so the last
+   file in `ls` order is the most recent session
 3. `docs/architecture.md` — full system design, data flow, file responsibilities, key constraints
 4. `docs/Readme.md` — v1 Squarespace system (historical context, lower priority)
 

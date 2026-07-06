@@ -636,15 +636,19 @@ has moved and a future instance would need to know what happened to pick up clea
 
 At that threshold, the instance re-reads its own thread — not just the final diff,
 but the reasoning that produced it — and writes the summary itself, while that
-reasoning is still live in context. This is why session entries in the batch files
-read as reasoning chains (what was tried, what was rejected, what's still assumed)
-rather than commit-log summaries: the commit log already has the diff. The batch
+reasoning is still live in context. This is why session entries in the continuity
+log read as reasoning chains (what was tried, what was rejected, what's still assumed)
+rather than commit-log summaries: the commit log already has the diff. The session
 entry is the thing the diff can't tell you.
 
-A session is not bounded by wall-clock time or by a single PR. Two sessions on the
-same day, continuing the same thread, are recorded as one entry with a "continues
-from" note (see Session 004 → 005 in the active batch file for an example) — the
-split that matters is the reasoning arc, not the calendar.
+A session is not bounded by wall-clock time or by a single PR. Two rounds of work on
+the same day, continuing the same thread, are recorded in one session's file with
+"Session continued" blocks — the split that matters is the reasoning arc, not the
+calendar. But a different day or a different instance is a new session, and (from
+Batch 003 on) a new file: sessions live one-per-file in the active batch directory,
+named `YYYY-MM-DD-session-0NN.md`, so logging a session is a file creation that
+cannot disturb a closed record (see `docs/continuity/batch-003/README.md` for why
+this form replaced the monolithic batch file).
 
 ---
 
@@ -653,7 +657,7 @@ Three layers, three time horizons:
 | Layer | File | Purpose | Written by |
 |---|---|---|---|
 | Current snapshot | `docs/continuity/INDEX.md` | Where is the system right now | Claude at session end |
-| Session narrative | `docs/continuity/Batch 00N.md` | Mistakes, reasoning, assumptions | Claude on Victor's signal |
+| Session narrative | `docs/continuity/batch-00N/YYYY-MM-DD-session-0NN.md` (batches 001–002: legacy `Batch 00N.md` single files) | Mistakes, reasoning, assumptions | Claude on Victor's signal |
 | Decision record | PR description (`.github/pull_request_template.md`) | Why the system moved at each PR | Claude when opening PR |
 
 ---
@@ -730,8 +734,8 @@ similar. The distilled content is the artifact; the original doc is the meeting.
 
 **`config/lessons/` is archive reference, not cold-start reading.** As the lesson
 count grows, lessons do not need to be read on every session start — they exist for
-lookup, not pre-loading. A cold-start instance reads INDEX.md → most recent batch
-session → architecture.md. Lessons are consulted when a pattern recurs or when
+lookup, not pre-loading. A cold-start instance reads INDEX.md → newest session file
+in the active batch directory → architecture.md. Lessons are consulted when a pattern recurs or when
 building something adjacent to a known lesson domain. Keeping them out of the
 mandatory reading sequence is intentional.
 
@@ -1639,6 +1643,6 @@ undesigned piece, same as the first attempt concluded.
 
 ---
 
-*Last updated: 2026-07-05*
+*Last updated: 2026-07-06*
 
 <!-- [VXG RealForever] -->

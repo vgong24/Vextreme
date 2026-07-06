@@ -19,7 +19,7 @@ const fs        = require('fs');
 const path      = require('path');
 const { execFileSync } = require('child_process');
 
-const { parseLastSession, parseBatchRegistry, summarizeStatus } = require('../lib/session-bootstrap');
+const { parseLastSession, parseBatchRegistry, latestSessionFile, summarizeStatus } = require('../lib/session-bootstrap');
 
 const ROOT = path.join(__dirname, '..');
 
@@ -61,6 +61,42 @@ test('SESSION-BOOTSTRAP: parses multiple batch registry rows in order', () => {
 
 test('SESSION-BOOTSTRAP: returns empty array when no registry table is present', () => {
   assert.deepEqual(parseBatchRegistry('nothing here'), []);
+});
+
+// ── 2b. latestSessionFile ────────────────────────────────────────────────────
+
+test('SESSION-BOOTSTRAP: latestSessionFile picks the newest date-prefixed session file', () => {
+  const files = [
+    'README.md',
+    '2026-07-02-session-021.md',
+    '2026-07-06-session-023.md',
+    '2026-07-04-session-022.md',
+  ];
+  assert.equal(latestSessionFile(files), '2026-07-06-session-023.md');
+});
+
+test('SESSION-BOOTSTRAP: latestSessionFile breaks same-day ties by session number', () => {
+  const files = ['2026-07-06-session-023.md', '2026-07-06-session-024.md'];
+  assert.equal(latestSessionFile(files), '2026-07-06-session-024.md');
+});
+
+test('SESSION-BOOTSTRAP: latestSessionFile returns null when no session files match', () => {
+  assert.equal(latestSessionFile(['README.md', 'notes.txt']), null);
+  assert.equal(latestSessionFile([]), null);
+});
+
+test('SESSION-BOOTSTRAP: the real active batch directory resolves to a real newest session file', () => {
+  // Ties the convention to reality: the registry's active batch is a directory
+  // and its newest session file exists. If this fails, either the registry row
+  // or the directory contents drifted from the documented convention.
+  const indexMd = fs.readFileSync(path.join(ROOT, 'docs', 'continuity', 'INDEX.md'), 'utf8');
+  const rows = parseBatchRegistry(indexMd);
+  const active = rows[rows.length - 1];
+  const batchPath = path.join(ROOT, active.file);
+  assert.ok(fs.statSync(batchPath).isDirectory(), `expected ${active.file} to be a directory`);
+  const newest = latestSessionFile(fs.readdirSync(batchPath));
+  assert.ok(newest, 'expected at least one YYYY-MM-DD-session-0NN.md file');
+  assert.ok(fs.existsSync(path.join(batchPath, newest)));
 });
 
 // ── 3. summarizeStatus ───────────────────────────────────────────────────────
