@@ -17,7 +17,7 @@ const assert   = require('node:assert/strict');
 const fs       = require('fs');
 const path     = require('path');
 
-const { buildTranslationNotices, buildStatusRollup, countOpen, buildLatticeCoverage, buildContentIntegrityNotices } = require('../lib/build-status');
+const { buildTranslationNotices, buildStatusRollup, countOpen, buildLatticeCoverage, buildContentIntegrityNotices, buildPageBindingNotices } = require('../lib/build-status');
 
 const ROOT = path.join(__dirname, '..');
 
@@ -232,6 +232,34 @@ test('BUILD-STATUS: buildContentIntegrityNotices maps duplicate wip intents at m
 test('BUILD-STATUS: buildContentIntegrityNotices returns empty array for all-clean input', () => {
   assert.deepEqual(buildContentIntegrityNotices([], [], []), []);
   assert.deepEqual(buildContentIntegrityNotices(), []);
+});
+
+test('BUILD-STATUS: buildPageBindingNotices groups page binding states into compact notices', () => {
+  const items = buildPageBindingNotices({
+    rows: [
+      { slug: 'blocked-page', state: 'blocked' },
+      { slug: 'old-widget-page', state: 'legacy-pattern' },
+      { slug: 'ready-page', state: 'ready-to-wire' },
+      { slug: 'missing-script-page', state: 'missing-god-script' },
+    ],
+    summary: {
+      arcNavMountWithoutGodScript: ['blocked-page'],
+      i18nBindingsWithoutLangLoader: ['ready-page'],
+    },
+  });
+
+  assert.equal(items.length, 6);
+  assert.ok(items.some(item => item.context === 'page-binding-blocked' && item.priority === 'high'));
+  assert.ok(items.some(item => item.context === 'page-binding-legacy-pattern' && item.priority === 'medium'));
+  assert.ok(items.some(item => item.context === 'page-binding-ready-to-wire' && item.priority === 'medium'));
+  assert.ok(items.some(item => item.context === 'page-binding-missing-god-script' && item.priority === 'low'));
+  assert.ok(items.some(item => item.context === 'page-binding-arc-nav' && item.priority === 'high'));
+  assert.ok(items.some(item => item.context === 'page-binding-i18n-loader' && item.priority === 'high'));
+});
+
+test('BUILD-STATUS: buildPageBindingNotices returns empty array for clean or missing input', () => {
+  assert.deepEqual(buildPageBindingNotices({ rows: [], summary: {} }), []);
+  assert.deepEqual(buildPageBindingNotices(), []);
 });
 
 // ── 4. Integration — data/status.json ────────────────────────────────────────

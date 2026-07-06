@@ -211,6 +211,8 @@ test('KEY-ALIGNMENT: report includes pages and wip sections', () => {
   assert.ok(report.pages, 'report must have a pages section');
   assert.ok(report.wip,   'report must have a wip section');
   assert.ok(Array.isArray(report.pages.orphans));
+  assert.ok(report.pages.bindings, 'report.pages must include the page binding report');
+  assert.ok(Array.isArray(report.pages.bindings.rows));
   assert.ok(Array.isArray(report.wip.collisions));
   assert.ok(Array.isArray(report.wip.duplicateIntents));
 });
