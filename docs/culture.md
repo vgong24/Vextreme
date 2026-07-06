@@ -123,6 +123,43 @@ context boundaries, handoffs, and re-instantiations without re-deriving settled 
 Write for the next instance. That instance will not have this conversation. Give it
 what it needs to understand not just what changed, but why — and what the next step is.
 
+### Branch, PR, and commit naming
+
+Branch names carry continuity too. Use a date + instance + work pattern so the origin of
+a checkpoint is visible before opening the PR:
+
+```
+VXG-MMddyy-{instance}-{short-work-slug}
+```
+
+Examples:
+- `VXG-070626-codex-page-binding-health-checks`
+- `VXG-070626-claude-page-binding-health-checks`
+
+The human-readable PR title may use the colon form:
+
+```
+VXG-070626: codex-page-binding-health-checks
+```
+
+Do not use the colon form as the actual Git branch name — `:` is not a portable ref-name
+character. The branch is the Git-safe identifier; the PR title is the readable checkpoint.
+
+Commit subjects should also carry the day context:
+
+```
+VXG-MMddyy: short imperative summary [VXG RealForever]
+```
+
+Example:
+
+```
+VXG-070626: add page binding health checks [VXG RealForever]
+```
+
+The date prefix maps the commit to the working-day checkpoint; the RealForever suffix maps it
+to the project-wide continuity thread. Use both.
+
 ---
 
 ## Reusability and relational awareness

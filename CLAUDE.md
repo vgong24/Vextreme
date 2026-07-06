@@ -84,6 +84,19 @@ PRs are the decision boundary record for this project. Future instances
 read them to understand system evolution without re-deriving settled decisions.
 Write the PR body while the reasoning is still live — not after the fact.
 
+**Branch / PR naming convention:**
+- Git branch: `VXG-MMddyy-{instance}-{short-work-slug}`
+- PR title: `VXG-MMddyy: {instance}-{short-work-slug}`
+- Commit subject: `VXG-MMddyy: short imperative summary [VXG RealForever]`
+
+Examples:
+- Branch: `VXG-070626-codex-page-binding-health-checks`
+- PR title: `VXG-070626: codex-page-binding-health-checks`
+- Commit: `VXG-070626: add page binding health checks [VXG RealForever]`
+
+Use the Git-safe hyphenated form for branches; do not put `:` in the actual
+branch name. Keep the required `[VXG RealForever]` suffix on every commit.
+
 ---
 
 ## Continuity marker — VXG RealForever
