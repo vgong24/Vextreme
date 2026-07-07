@@ -619,7 +619,7 @@
 
     "widgets/fab-lang.js": {
       "role": "browser language switcher FAB — fetches JA/ZH scope or arc bundles, applies [data-i18n] swaps",
-      "context": "The runtime i18n engine. On language switch, constructs scope bundle URLs using the same scopeRelPath rule as strings-compile.js (build time) — these MUST stay in sync. Session 025 correction: fetched strings are held only in the in-memory _langStrings variable, not cached in localStorage — only the selected language preference (LS_LANG) persists there; a fresh fetch happens on every switch. Reads VEX_STRING_SCOPES, VEX_STRING_CATEGORY from window (set by God Script). Session 025 also added an arc-chunked bundle path (od-001/td-006 pilot): if window.VEX_STRING_ARC_BUNDLE is set, fetches the one merged arc bundle instead of the per-scope fan-out below. Session 025 (continued) — real bug found: lib/build-vextreme.js has baked window.VEX_SUPPORTED_LANGS into every God Script since it was introduced (verified: dossier's God Script correctly emits [\"en\",\"ja\",\"zh\"]), but loadSupportedLangs() here never read it — it went straight to a localStorage blob written by a DIFFERENT widget (vextreme-index-v2.js's LS_DATA cache) or a live index.json fetch, neither of which is guaranteed to reflect what THIS page's God Script actually has (a browser that cached LS_DATA before a language was added never sees the addition until that shared key happens to be overwritten). This is the same shape as PR #76's ARC_ORDER gap — real data existing while a separate consumption path silently doesn't know about it. loadSupportedLangs() now checks window.VEX_SUPPORTED_LANGS first, matching the existing VEX_STRINGS_EN fast-path pattern.",
+      "context": "The runtime i18n engine. On language switch, constructs scope bundle URLs using the same scopeRelPath rule as strings-compile.js (build time) — these MUST stay in sync. Session 025 correction: fetched strings are held only in the in-memory _langStrings variable, not cached in localStorage — only the selected language preference (LS_LANG) persists there; a fresh fetch happens on every switch. Reads VEX_STRING_SCOPES, VEX_STRING_CATEGORY from window (set by God Script). Session 025 also added an arc-chunked bundle path (od-001/td-006 pilot): if window.VEX_STRING_ARC_BUNDLE is set, fetches the one merged arc bundle instead of the per-scope fan-out below. Session 025 (continued) — real bug found: lib/build-vextreme.js has baked window.VEX_SUPPORTED_LANGS into every God Script since it was introduced (verified: dossier's God Script correctly emits [\"en\",\"ja\",\"zh\"]), but loadSupportedLangs() here never read it — it went straight to a localStorage blob written by a DIFFERENT widget (vextreme-index-v2.js's LS_DATA cache) or a live index.json fetch, neither of which is guaranteed to reflect what THIS page's God Script actually has (a browser that cached LS_DATA before a language was added never sees the addition until that shared key happens to be overwritten). This is the same shape as PR #76's ARC_ORDER gap — real data existing while a separate consumption path silently doesn't know about it. loadSupportedLangs() now checks window.VEX_SUPPORTED_LANGS first, matching the existing VEX_STRINGS_EN fast-path pattern. Session 025 (continued again) — Victor asked to make the effective language shareable via URL: forwarding a link with ?lang=zh shouldn't require the recipient to already have zh saved locally or to find the language wheel themselves. computeLangSearch() is the pure query-string logic (English is represented by the param's ABSENCE, every other language explicit); getUrlLang()/syncUrlLang() are the location/history side effects around it. ?lang= wins over localStorage on load, and mount() always calls syncUrlLang() once resolved (from URL, localStorage, or default) so the address bar reflects the actual on-screen language even when no manual switch happened this visit.",
       "reads": [
         "window.VEX_STRING_SCOPES",
         "window.VEX_STRING_CATEGORY",
@@ -628,11 +628,13 @@
         "data/strings/compiled/scopes/{category}/{scope}.{lang}.json via CDN",
         "data/strings/compiled/arcs/{arc}.{lang}.json via CDN (when VEX_STRING_ARC_BUNDLE is set)",
         "localStorage (LS_LANG — the selected language preference only, not fetched string content)",
-        "DOM: #vex-spiral-group (widgets/vex-fab.js — Session 025 FAB unification, nests its orb there if present)"
+        "DOM: #vex-spiral-group (widgets/vex-fab.js — Session 025 FAB unification, nests its orb there if present)",
+        "location.search (?lang= param — explicit override for the effective language, wins over localStorage)"
       ],
       "writes": [
         "innerHTML / textContent of [data-i18n] elements",
-        "localStorage (LS_LANG — selected language preference)"
+        "localStorage (LS_LANG — selected language preference)",
+        "location/history (history.replaceState — reflects the effective language into ?lang= so the current URL is always forwardable)"
       ],
       "loadedBy": [
         "lib/build-vextreme.js (inlined as lang feature in God Scripts)",
@@ -657,6 +659,9 @@
         ],
         "VEX_* global names read": [
           "lib/build-vextreme.js assembleGodScript() (must emit matching global names)"
+        ],
+        "URL ?lang= param name": [
+          "any future feature that reads/writes page query params — must not collide with 'lang'; grep pages/*.html for location.search/URLSearchParams usage before introducing a new param name"
         ]
       }
     },

@@ -32,8 +32,10 @@
  *               data/strings/compiled/arcs/{arc}.{lang}.json via CDN (when VEX_STRING_ARC_BUNDLE is set)
  *               localStorage (LS_LANG — the selected language preference only, not fetched string content)
  *               DOM: #vex-spiral-group (widgets/vex-fab.js — Session 025 FAB unification, nests its orb there if present)
+ *               location.search (?lang= param — explicit override for the effective language, wins over localStorage)
  *   writes    : innerHTML / textContent of [data-i18n] elements
  *               localStorage (LS_LANG — selected language preference)
+ *               location/history (history.replaceState — reflects the effective language into ?lang= so the current URL is always forwardable)
  *   loaded-by : lib/build-vextreme.js (inlined as lang feature in God Scripts)
  *               legacy pages via direct CDN script tag (pre-God-Script pattern)
  *   tested-by : tests/08-build-vextreme.test.js (structural guard: loadSupportedLangs() must read window.VEX_SUPPORTED_LANGS)
@@ -51,6 +53,8 @@
  *       - any future offline FAB that reads cache state (pe-008)
  *     VEX_* global names read:
  *       - lib/build-vextreme.js assembleGodScript() (must emit matching global names)
+ *     URL ?lang= param name:
+ *       - any future feature that reads/writes page query params — must not collide with 'lang'; grep pages∕*.html for location.search/URLSearchParams usage before introducing a new param name
  * LATTICE:END
  */
 
@@ -111,6 +115,53 @@
 
   function flagFor(lang) {
     return LANG_FLAGS[lang] || '🏳';
+  }
+
+  var URL_LANG_PARAM = 'lang';
+
+  // computeLangSearch — pure query-string logic, kept separate from the
+  // location/history side effects below so it's directly testable. Given the
+  // current `location.search` string and a target language, returns the new
+  // search string: the default language (English) is represented by the
+  // param's ABSENCE, so a shared link for the common case stays clean, and
+  // any other language is explicit — the whole point being that pasting the
+  // resulting URL to someone else reproduces the same language without them
+  // needing to touch the language wheel at all.
+  function computeLangSearch(currentSearch, lang) {
+    var params = new URLSearchParams(currentSearch);
+    if (lang === LANG_DEFAULT) {
+      params.delete(URL_LANG_PARAM);
+    } else {
+      params.set(URL_LANG_PARAM, lang);
+    }
+    return params.toString();
+  }
+
+  // getUrlLang — reads ?lang= from the current address, if present. Returns
+  // null on anything unusable (no URLSearchParams support, sandboxed
+  // context) rather than throwing, since this is a nice-to-have, not
+  // load-bearing for the widget to function.
+  function getUrlLang() {
+    try {
+      return new URLSearchParams(location.search).get(URL_LANG_PARAM);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  // syncUrlLang — reflects the given language into the address bar via
+  // replaceState (not pushState — switching languages shouldn't fill the
+  // back-button history with one entry per flag tapped). Preserves every
+  // other query param and the hash untouched.
+  function syncUrlLang(lang) {
+    try {
+      var newSearch = computeLangSearch(location.search, lang);
+      var newUrl = location.pathname + (newSearch ? '?' + newSearch : '') + location.hash;
+      var oldUrl = location.pathname + location.search + location.hash;
+      if (newUrl !== oldUrl && history.replaceState) {
+        history.replaceState(null, '', newUrl);
+      }
+    } catch (e) { /* URL/History API unavailable or restricted */ }
   }
 
   // English display names, used only to sort the wheel — not shown as text
@@ -462,6 +513,7 @@
         item.addEventListener('click', function () {
           btn.textContent = flagFor(lang);
           wheel.classList.remove('open');
+          syncUrlLang(lang);
           if (lang !== currentLang) {
             currentLang = lang;
             applyLang(lang);
@@ -497,7 +549,24 @@
 
       var savedLang = LANG_DEFAULT;
       try { savedLang = localStorage.getItem(LS_LANG) || LANG_DEFAULT; } catch (e) {}
+
+      // A ?lang= in the URL wins over the stored preference — this is what
+      // makes a shared link actually reproducible: someone forwarding a page
+      // with ?lang=zh should not need the recipient to already have zh saved
+      // locally, or to find the language wheel and pick it themselves.
+      var urlLang = getUrlLang();
+      if (urlLang && langs.indexOf(urlLang) >= 0) {
+        savedLang = urlLang;
+        try { localStorage.setItem(LS_LANG, savedLang); } catch (e) {}
+      }
+
       if (langs.indexOf(savedLang) < 0) savedLang = langs[0];
+
+      // Reflect the effective language into the URL even when it came from
+      // localStorage, not the querystring — so the address bar is always an
+      // accurate, forwardable snapshot of what's currently on screen, not
+      // only right after a manual language switch.
+      syncUrlLang(savedLang);
 
       injectStyles();
       var fab = buildFAB(langs, savedLang);
