@@ -918,7 +918,9 @@
         "data/viewmodels.json",
         "wip/*.json (_meta.slug field only)",
         "wip/*.html (filename-derived slug + title, via lib/auto-discover-nodes.js discoverWipDrafts)",
-        "lib/audit-pages.js (SKIP_PAGES, getPageSlugs)"
+        "lib/audit-pages.js (SKIP_PAGES, getPageSlugs)",
+        "lib/build-archives.js (source text — ARC_ORDER, ARC_KEY_MAP, regex-scanned not required)",
+        "lib/build-index-page.js (source text — its own separate ARC_ORDER, regex-scanned not required)"
       ],
       "writes": [
         "stdout (JSON report with --json flag); PR comment via .github/workflows/key-alignment.yml"
@@ -1619,6 +1621,14 @@
     [
       "lib/check-key-alignment.js",
       "lib/apply-content-intents.js"
+    ],
+    [
+      "lib/check-key-alignment.js",
+      "lib/build-archives.js"
+    ],
+    [
+      "lib/check-key-alignment.js",
+      "lib/build-index-page.js"
     ],
     [
       "lib/check-key-alignment.js",
