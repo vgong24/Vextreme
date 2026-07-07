@@ -89,6 +89,31 @@
 
 ---
 
+## Bug-chain check
+
+<!--
+  If this PR fixes a bug: is it the only PR needed to fix it, or part of a chain?
+
+  - If this PR alone fully resolves the bug: label `bug`. Nothing else needed.
+  - If this PR is one of several needed (a prior PR was correct but insufficient,
+    or this PR is itself correct but insufficient alone): label `bug` +
+    `partial-fix`, and post a comment on every PR in the chain (this one included)
+    that names the full sequence with plain `#N` references — GitHub auto-links
+    those into clickable cross-references in both directions. Additionally label
+    whichever PR identified the *originating* defect (not necessarily the one
+    that closes the loop) `root-cause`.
+  - If the pattern is reusable beyond this one incident, add a
+    `config/lessons/*.json` entry with `relatedPRs` (every PR in the chain) and
+    `resolvedByPR` (the one that actually closed the loop).
+
+  Full worked example and reasoning: docs/culture.md, "Multi-PR bug chains:
+  root-cause, partial-fix, and cross-linking."
+
+  Not a bug fix, or a bug fully resolved in this one PR? Say so — "N/A, single-PR fix."
+-->
+
+---
+
 ## Assumptions this PR makes
 
 <!--

@@ -188,6 +188,64 @@ VXG-070626: add page binding health checks [VXG RealForever]
 The date prefix maps the commit to the working-day checkpoint; the RealForever suffix maps it
 to the project-wide continuity thread. Use both.
 
+### Multi-PR bug chains: root-cause, partial-fix, and cross-linking
+
+Some bugs don't close in one PR. A fix can be entirely correct on `main` and still be
+invisible — because a caching layer, a load path, or a lifecycle timing gap sits between
+"correct code merged" and "user actually sees it." The caching-layers bug this pattern was
+named from (`config/lessons/caching-layers-multiply-and-each-one-can-independently-hide-a-fix.json`)
+took six PRs (#79, #82, #83, #84, #86, #87) to actually resolve, each one independently
+correct and independently insufficient alone.
+
+When this happens, use labels plus comments — not branch names, which can drift, and not
+just a lesson file, which isn't visible from the PR list itself:
+
+- **`root-cause`** — the PR that identified the *originating* defect, not the one that
+  finally made it visible. In the caching-layers chain this was #79, which found that
+  `fab-lang.js` never read the God Script's own baked global — the first domino. The PR that
+  closes the loop is not automatically `root-cause`; it earned `partial-fix` like the rest of
+  the chain, because it still depended on everything before it.
+- **`partial-fix`** — every PR in the chain that shipped a real, necessary, but
+  not-sufficient-alone fix, including the diagnosis PR itself (it shipped code, not just a
+  finding) and the PR that finally closes the loop. A PR can carry both labels.
+- **Cross-link with comments, not just labels.** Labels alone can't express "resolved by" or
+  "led to" — GitHub's plain `#N` mentions inside a PR comment auto-link to the real PR, so
+  post a comment on every PR in the chain naming the full sequence and where it sits in it
+  (see #79/#82/#83/#84/#86/#87 for the worked example). This makes the chain navigable in
+  both directions directly from any single PR in it, without needing the lesson file open.
+- **Distill into a lesson if the pattern is reusable**, using `relatedPRs` (every PR in the
+  chain) and `resolvedByPR` (the one that actually closed the loop) — see
+  `lib/build-lessons.js` and `tests/17-build-lessons.test.js` for the schema.
+
+This is standing practice for any future bug that needs more than one PR to actually resolve,
+not a one-time cleanup of this particular chain.
+
+### Generated-file merge conflicts
+
+Several files are pure build output — `data/index.json`, `sw.js`, `data/status.json`,
+`data/lessons.json`, the compiled string bundles, `pages/archives.html`, `sitemap.xml`,
+`index.html`, `docs/architecture.md` (full list in `.gitattributes`). They conflict on
+almost every PR for a reason that has nothing to do with real content: each branch's own
+CI run regenerates them with a fresh timestamp (`builtAt`) or commit-hash-derived value
+(`sw.js`'s `CACHE_NAME`), so two branches touching completely unrelated source files still
+produce byte-different "generated" output. There is no real decision buried in that diff —
+whichever copy wins gets overwritten by the next CI run regardless.
+
+`.gitattributes` declares `merge=ours` for these paths, but that alone does not resolve
+anything: the "ours" driver it names must be registered per-clone in `.git/config` (which
+git does not track, so it never travels with the repo), and GitHub's own web-based PR
+conflict UI does not consult custom merge drivers at all — which is exactly the screenshot
+this pattern was named from, a manual "accept incoming" click on `data/index.json` and
+`sw.js` in the browser.
+
+Run `node lib/resolve-generated-conflicts.js` mid-conflict — after `git rebase origin/main`
+stops, before `git rebase --continue` — instead of resolving these by hand. It reads the
+same `.gitattributes` list, checks `git status` for conflicted files, and auto-takes the
+incoming copy for anything on that list, leaving genuinely unresolved files (real conflicts)
+for manual attention. If a future generated file starts conflicting, add it to
+`.gitattributes` first — the script and the attributes file share one source of truth for
+"this is build output, never hand-resolved."
+
 ---
 
 ## Reusability and relational awareness
