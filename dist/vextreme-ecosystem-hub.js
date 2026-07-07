@@ -82,11 +82,13 @@
 /**
  * VEXTREME — widgets/fab-lang.js
  *
- * Floating language-selector button. Reads supportedLangs from the pre-built
- * index.json (same CDN URL used by vextreme-index-v2.js). Shows only when
- * 2 or more languages are available. Opens an iOS-style scroll wheel of emoji
- * flags; picking a flag swaps all [data-i18n] elements on the page and persists
- * the choice to localStorage.
+ * Floating language-selector button. Determines the language list to offer
+ * from, in order: window.VEX_SUPPORTED_LANGS (baked in at build time by
+ * lib/build-vextreme.js — the ground truth for what THIS page's God Script
+ * actually has), then a cached index.json blob in localStorage, then a live
+ * fetch of index.json. Shows only when 2 or more languages are available.
+ * Opens an iOS-style scroll wheel of emoji flags; picking a flag swaps all
+ * [data-i18n] elements on the page and persists the choice to localStorage.
  *
  * God Script optimization: if window.VEX_STRINGS_EN is set (inlined at build
  * time by lib/build-vextreme.js), EN strings are used directly without a fetch.
@@ -165,9 +167,23 @@
     return LANG_FLAGS[lang] || '🏳';
   }
 
-  // ── Index loading (reads cache first, same key as vextreme-index-v2.js) ──────
+  // ── Index loading (God Script global first, then cache, then network) ────────
+  //
+  // God Script optimization: lib/build-vextreme.js bakes window.VEX_SUPPORTED_LANGS
+  // in at build time (same pattern as window.VEX_STRINGS_EN) — the exact list this
+  // page's God Script was actually assembled with. Checking it first means the FAB
+  // never depends on a same-origin localStorage blob written by a DIFFERENT widget
+  // (vextreme-index-v2.js) or a live index.json fetch that could be stale or slow —
+  // both of which can silently omit a language this page genuinely has (e.g. a
+  // browser that cached vex-index-v2-data before a language was added never sees
+  // it added until that cache key happens to be overwritten by something else).
 
   function loadSupportedLangs(onReady) {
+    if (window.VEX_SUPPORTED_LANGS && window.VEX_SUPPORTED_LANGS.length) {
+      onReady(window.VEX_SUPPORTED_LANGS);
+      return;
+    }
+
     try {
       var raw = localStorage.getItem(LS_DATA);
       if (raw) {

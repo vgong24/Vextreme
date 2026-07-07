@@ -1470,12 +1470,14 @@
         "lib/build-vextreme.js (inlined as lang feature in God Scripts)",
         "legacy pages via direct CDN script tag (pre-God-Script pattern)"
       ],
-      "testedBy": [],
+      "testedBy": [
+        "tests/08-build-vextreme.test.js (structural guard: loadSupportedLangs() must read window.VEX_SUPPORTED_LANGS)"
+      ],
       "debts": [
         "td-002",
         "td-006"
       ],
-      "status": "critical",
+      "status": "warning",
       "engineerFocus": false,
       "auditorFocus": true,
       "auditorRank": 0
