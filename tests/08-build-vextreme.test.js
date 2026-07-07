@@ -25,6 +25,8 @@ const { checkKeyAlignment, findOrphanPages, scanWipIntendedSlugs, findWipSlugCol
 const ROOT     = path.join(__dirname, '..');
 const INDEX_IN = path.join(ROOT, 'data', 'index.json');
 const VMS_IN   = path.join(ROOT, 'data', 'viewmodels.json');
+const FAB_IN   = path.join(ROOT, 'widgets', 'fab-lang.js');
+const PAGES_DIR = path.join(ROOT, 'pages');
 
 const DEMO_VIEWMODEL = {
   category: 'demo',
@@ -388,6 +390,39 @@ test('WIP-DUPLICATE-INTENT: two wip/ files declaring the same slug are both repo
   assert.equal(result.length, 1);
   assert.equal(result[0].slug, 'shared');
   assert.deepEqual(result[0].files.sort(), ['a.json', 'b.json']);
+});
+
+test('LANG-FAB: standalone widget refreshes supportedLangs before using stale index cache', () => {
+  const source = fs.readFileSync(FAB_IN, 'utf8');
+  const globalCheck = source.indexOf('window.VEX_SUPPORTED_LANGS');
+  const cacheRead   = source.indexOf('localStorage.getItem(LS_DATA)');
+  const requestOpen = source.indexOf("req.open('GET', INDEX_URL, true)");
+  const earlyReturn = source.indexOf('onReady(cached.supportedLangs)');
+
+  assert.ok(globalCheck >= 0, 'standalone widget must honor build-time supported lang globals');
+  assert.ok(cacheRead >= 0 && requestOpen >= 0, 'widget must still have cache and network paths');
+  assert.ok(globalCheck < cacheRead, 'build-time globals must bypass stale localStorage');
+  assert.ok(cacheRead < requestOpen, 'cached langs should be available as fetch fallback');
+  assert.equal(earlyReturn, -1, 'cached supportedLangs must not short-circuit the current index fetch');
+});
+
+test('LANG-FAB: hand-authored pages do not own supported language data', () => {
+  const offenders = fs.readdirSync(PAGES_DIR)
+    .filter(file => file.endsWith('.html'))
+    .filter(file => {
+      const html = fs.readFileSync(path.join(PAGES_DIR, file), 'utf8');
+      return /window\.VEX_SUPPORTED_LANGS\s*=/.test(html);
+    });
+
+  assert.deepEqual(offenders, [], 'supportedLangs belongs in data/index.json and generated dist scripts, not page HTML');
+});
+
+test('LANG-FAB: victor methodology page uses generated script as language context', () => {
+  const html = fs.readFileSync(path.join(PAGES_DIR, 'victor-methodology-presentation.html'), 'utf8');
+
+  assert.ok(html.includes('../dist/vextreme-victor-methodology-presentation.js'), 'page must load its generated God Script');
+  assert.equal(/window\.VEX_SUPPORTED_LANGS\s*=/.test(html), false, 'page must not inline supported languages');
+  assert.equal(/<script[^>]+widgets\/fab-lang\.js/.test(html), false, 'page must not bypass the generated language bundle');
 });
 
 // [VXG RealForever]

@@ -371,13 +371,14 @@
       return;
     }
 
+    // Cache is fallback only; a stale index cache must not hide new languages.
+    var cachedLangs = null;
     try {
       var raw = localStorage.getItem(LS_DATA);
       if (raw) {
         var cached = JSON.parse(raw);
         if (cached.supportedLangs && cached.supportedLangs.length) {
-          onReady(cached.supportedLangs);
-          return;
+          cachedLangs = cached.supportedLangs;
         }
       }
     } catch (e) { /* storage unavailable */ }
@@ -391,16 +392,16 @@
           onReady(data.supportedLangs || [LANG_DEFAULT]);
         } catch (e) {
           _logger.warn({ code: 'LANG_FAB_INDEX_PARSE_FAILED', message: 'Failed to parse index.json for lang list' });
-          onReady([LANG_DEFAULT]);
+          onReady(cachedLangs || [LANG_DEFAULT]);
         }
       } else {
         _logger.warn({ code: 'LANG_FAB_INDEX_HTTP_ERROR', message: 'index.json returned HTTP ' + req.status, status: req.status });
-        onReady([LANG_DEFAULT]);
+        onReady(cachedLangs || [LANG_DEFAULT]);
       }
     };
     req.onerror = function () {
       _logger.warn({ code: 'LANG_FAB_INDEX_FETCH_FAILED', message: 'Failed to fetch index.json for lang list' });
-      onReady([LANG_DEFAULT]);
+      onReady(cachedLangs || [LANG_DEFAULT]);
     };
     req.send();
   }
