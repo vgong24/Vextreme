@@ -64,12 +64,12 @@
       "key": 4,
       "name": "RUNTIME",
       "sub": "loaded by pages in the browser",
-      "count": 2,
+      "count": 5,
       "rect": {
         "x": 1710,
         "y": 40,
         "width": 300,
-        "height": 210
+        "height": 390
       }
     }
   ],
@@ -590,6 +590,7 @@
         "tests/01-content-pipeline.test.js",
         "tests/03-browser-nav.test.js",
         "tests/07-viewmodel.test.js",
+        "tests/08-build-vextreme.test.js (FAB SYSTEM propagation tests — calls buildViewmodel directly)",
         "tests/15-departments.test.js"
       ],
       "testedBy": [
@@ -877,7 +878,10 @@
         "data/viewmodels.json",
         "data/strings/compiled/scopes/{category}/{scope}.en.json",
         "widgets/sw-register.js",
+        "widgets/vex-fab.js",
         "widgets/fab-lang.js",
+        "widgets/fab-theme.js",
+        "widgets/fab-map.js",
         "widgets/fab-demo.js",
         "lib/vextreme-index-v2.js (arc-nav feature, via srcDir: LIB_DIR in FEATURES registry)",
         "lib/vex-config.js"
@@ -1355,6 +1359,7 @@
         "tests/05-vex-config.test.js",
         "tests/06-blueprint.test.js",
         "tests/07-viewmodel.test.js",
+        "tests/08-build-vextreme.test.js (FAB SYSTEM propagation tests — reads Feature.* constants directly)",
         "lib/build-demo.js",
         "lib/build-arc-bundles.js"
       ],
@@ -1460,7 +1465,8 @@
         "window.VEX_STRING_ARC_BUNDLE (arc-chunked bundling pilot, checked before the scope path)",
         "data/strings/compiled/scopes/{category}/{scope}.{lang}.json via CDN",
         "data/strings/compiled/arcs/{arc}.{lang}.json via CDN (when VEX_STRING_ARC_BUNDLE is set)",
-        "localStorage (LS_LANG — the selected language preference only, not fetched string content)"
+        "localStorage (LS_LANG — the selected language preference only, not fetched string content)",
+        "DOM: #vex-spiral-group (widgets/vex-fab.js — Session 025 FAB unification, nests its orb there if present)"
       ],
       "writes": [
         "innerHTML / textContent of [data-i18n] elements",
@@ -1483,12 +1489,64 @@
       "auditorRank": 0
     },
     {
-      "id": "widgets/sw-register.js",
+      "id": "widgets/fab-map.js",
       "cluster": "widgets",
       "stage": 4,
       "stageName": "RUNTIME",
       "x": 1760,
       "y": 150,
+      "role": "orb linking to pages/terrain-map.html",
+      "reads": [],
+      "writes": [],
+      "loadedBy": [
+        "lib/build-vextreme.js (inlined as map feature in God Scripts)",
+        "tests/08-build-vextreme.test.js"
+      ],
+      "testedBy": [
+        "tests/08-build-vextreme.test.js"
+      ],
+      "debts": [],
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": false,
+      "auditorRank": 2
+    },
+    {
+      "id": "widgets/fab-theme.js",
+      "cluster": "widgets",
+      "stage": 4,
+      "stageName": "RUNTIME",
+      "x": 1760,
+      "y": 210,
+      "role": "dark/light theme toggle orb — sets document.documentElement's data-theme attribute, persists to localStorage",
+      "reads": [
+        "localStorage (vex-theme — persisted preference)",
+        "document.documentElement's data-theme attribute (current state)"
+      ],
+      "writes": [
+        "document.documentElement's data-theme attribute",
+        "localStorage (vex-theme)"
+      ],
+      "loadedBy": [
+        "lib/build-vextreme.js (inlined as theme feature in God Scripts)",
+        "tests/08-build-vextreme.test.js"
+      ],
+      "testedBy": [
+        "tests/08-build-vextreme.test.js"
+      ],
+      "debts": [],
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": false,
+      "auditorRank": 3
+    },
+    {
+      "id": "widgets/sw-register.js",
+      "cluster": "widgets",
+      "stage": 4,
+      "stageName": "RUNTIME",
+      "x": 1760,
+      "y": 270,
       "role": "Service Worker registration — activates offline caching on first page load",
       "reads": [
         "navigator.serviceWorker API"
@@ -1506,6 +1564,33 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
+      "auditorRank": 4
+    },
+    {
+      "id": "widgets/vex-fab.js",
+      "cluster": "widgets",
+      "stage": 4,
+      "stageName": "RUNTIME",
+      "x": 1760,
+      "y": 330,
+      "role": "spiral FAB — trigger button + shared expandable group container that other orb widgets mount into",
+      "reads": [],
+      "writes": [
+        "DOM: #vex-spiral-fab / #vex-spiral-trigger / #vex-spiral-group (consumed by fab-lang.js, fab-theme.js, fab-map.js)"
+      ],
+      "loadedBy": [
+        "lib/build-vextreme.js (inlined as spiral-fab feature in God Scripts, must be first among the FAB-group features)",
+        "tests/08-build-vextreme.test.js"
+      ],
+      "testedBy": [
+        "tests/08-build-vextreme.test.js"
+      ],
+      "debts": [
+        "pe-003"
+      ],
+      "status": "warning",
+      "engineerFocus": false,
+      "auditorFocus": true,
       "auditorRank": 1
     }
   ],
@@ -1712,7 +1797,19 @@
     ],
     [
       "lib/build-vextreme.js",
+      "widgets/fab-map.js"
+    ],
+    [
+      "lib/build-vextreme.js",
+      "widgets/fab-theme.js"
+    ],
+    [
+      "lib/build-vextreme.js",
       "widgets/sw-register.js"
+    ],
+    [
+      "lib/build-vextreme.js",
+      "widgets/vex-fab.js"
     ],
     [
       "lib/check-key-alignment.js",
@@ -1845,6 +1942,18 @@
     [
       "sw.js",
       "widgets/sw-register.js"
+    ],
+    [
+      "widgets/vex-fab.js",
+      "widgets/fab-lang.js"
+    ],
+    [
+      "widgets/vex-fab.js",
+      "widgets/fab-map.js"
+    ],
+    [
+      "widgets/vex-fab.js",
+      "widgets/fab-theme.js"
     ]
   ],
   "debtTitles": {

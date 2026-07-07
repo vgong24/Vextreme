@@ -1,0 +1,7 @@
+{
+  "_meta": { "type": "feature" },
+  "id": "map",
+  "label": "Terrain Map",
+  "icon": "🗺️",
+  "asset": { "type": "script", "path": "fab-map.js" }
+}
