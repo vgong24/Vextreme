@@ -36,7 +36,8 @@ jobs:
             const wip = report.wip;
 
             const nodeStatus  = (nd.missingFromIndex.length || nd.extraInIndex.length) ? '⚠️' : '✅';
-            const arcStatus   = (ar.missingFromIndex.length || ar.extraInIndex.length)  ? '⚠️' : '✅';
+            const arcStatus   = (ar.missingFromIndex.length || ar.extraInIndex.length
+                                 || ar.missingFromArcOrder.length || ar.missingFromArcKeyMap.length || ar.missingFromHomepageOrder.length) ? '⚠️' : '✅';
             const pageStatus  = pg.orphans.length ? '⚠️' : '✅';
             const wipStatus   = (wip.collisions.length || wip.duplicateIntents.length) ? '⚠️' : '✅';
             const overallOK   = nodeStatus === '✅' && arcStatus === '✅' && pageStatus === '✅' && wipStatus === '✅';
@@ -52,6 +53,12 @@ jobs:
               : '';
             const extraArcs = ar.extraInIndex.length
               ? `\n> **Extra in index:** \`${ar.extraInIndex.join('`, `')}\``
+              : '';
+            const unwiredArcs = (ar.missingFromArcOrder.length || ar.missingFromArcKeyMap.length || ar.missingFromHomepageOrder.length)
+              ? '\n> **In arcs-v2.json but unreachable — a real page could be invisible:**'
+                + (ar.missingFromArcOrder.length ? ` no Archives section (\`${ar.missingFromArcOrder.join('`, `')}\`)` : '')
+                + (ar.missingFromArcKeyMap.length ? ` · no i18n heading (\`${ar.missingFromArcKeyMap.join('`, `')}\`)` : '')
+                + (ar.missingFromHomepageOrder.length ? ` · no homepage hub card (\`${ar.missingFromHomepageOrder.join('`, `')}\`)` : '')
               : '';
             const orphanPages = pg.orphans.length
               ? `\n> **Uncurated pages (auto-discovered, no nodes.json entry yet):** \`${pg.orphans.join('`, `')}\``
@@ -84,6 +91,7 @@ jobs:
               extraNodes,
               missingArcs,
               extraArcs,
+              unwiredArcs,
               '',
               `| ${pageStatus} Pages | ${pg.total} total | ${pg.orphans.length} uncurated |`,
               `| ${wipStatus} wip/  | ${wip.totalDeclared} declared | ${wip.collisions.length} collision(s), ${wip.duplicateIntents.length} duplicate intent(s) |`,
