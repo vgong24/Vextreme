@@ -6,8 +6,38 @@ on:
   pull_request:
 
 jobs:
-  test:
+  shards:
     runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.compute.outputs.matrix }}
+      total: ${{ steps.compute.outputs.total }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Shard count is computed fresh every run from the real current
+      # tests/*.test.js file count (lib/compute-test-shards.js) — nobody
+      # hand-picks or remembers to update a shard number here. At today's
+      # suite size this resolves to a single shard; it grows on its own as
+      # test files are added. See that file's docstring for the tradeoffs.
+      - name: Compute shard matrix
+        id: compute
+        run: |
+          result=$(node lib/compute-test-shards.js matrix)
+          echo "matrix=$(echo "$result" | jq -c '.shards')" >> "$GITHUB_OUTPUT"
+          echo "total=$(echo "$result" | jq -r '.total')" >> "$GITHUB_OUTPUT"
+
+  test:
+    needs: shards
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        shard: ${{ fromJson(needs.shards.outputs.matrix) }}
 
     steps:
       - name: Checkout
@@ -19,7 +49,26 @@ jobs:
           node-version: '20'
 
       - name: Build test prerequisites
-        run: node lib/strings-compile.js && node lib/build-archives.js
+        run: node lib/run-test-prereqs.js
 
-      - name: Run tests
-        run: node --test tests/*.test.js
+      - name: Run tests (shard ${{ matrix.shard }}/${{ needs.shards.outputs.total }})
+        run: node --test $(node lib/compute-test-shards.js files --shard ${{ matrix.shard }} --total ${{ needs.shards.outputs.total }})
+
+  # Stable, single check name for branch protection to require. The `test`
+  # job's own check name changes shape with the shard count (test (1),
+  # test (1), test (2), ...), which GitHub's required-status-checks list
+  # can't track automatically — this job always has exactly one name
+  # ("Tests / all shards passed") regardless of how many shards ran, and
+  # fails if any shard failed or was skipped.
+  all-shards-passed:
+    needs: test
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check shard results
+        run: |
+          if [ "${{ needs.test.result }}" != "success" ]; then
+            echo "One or more test shards failed or did not run."
+            exit 1
+          fi
+          echo "All shards passed."
