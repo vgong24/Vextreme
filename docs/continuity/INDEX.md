@@ -109,11 +109,27 @@ into a real self-updating feature following the same CQRS split as `data/status.
 `pages/ecosystem-hub.html`: `lib/build-terrain-map.js` computes a deterministic layout + health +
 edges + auto-discovered screenshots into `data/terrain-map.json`; `pages/terrain-map.html` is
 hand-authored once and live-fetches that JSON — adding a page, lattice node, or screenshot never
-needs the HTML touched again, only a rebuild. Covers the full 46-node lattice and all 8 pages with
-a real captured screenshot today. A `Feature.MAP` "FAB back to the map" round-trip on real live
-pages was named as the natural next increment and deliberately not built — it touches the shared
-`FEATURES` registry in `lib/build-vextreme.js`, real production surface, and needs Victor's
-explicit go-ahead rather than a leisure-pilot default.
+needs the HTML touched again, only a rebuild. Covers the full 44-node lattice and all 8 pages with
+a real captured screenshot today.
+
+Same day, a second continuation replaced the terrain map's navigation entirely, after a round of
+Artifact POCs (portal/galaxy zoom, continuous pan/zoom field, zoom bands, a fractal level ladder)
+each tested live and critiqued before the next was built — the interaction model this repo's own
+`docs/culture.md` names ("prove the interaction model before committing anything"), applied to a
+much bigger design surface than the original pilot. `lib/build-terrain-map.js` now computes a
+lifecycle-stage layout (source → generate → utilities → check → output → runtime, replacing the
+folder-grid) and two role-lens fields per node (`engineerFocus`/`auditorFocus` — a naming-pattern
+heuristic, explicitly v1, rendered visibly so it can be challenged). `pages/terrain-map.html`'s
+read side is now a real fractal zoom-level ladder (system → stage → node, each level snapping to
+its own full framing on entry, exiting always stepping back one level, never to the top — a real
+bug the POCs caught and fixed by construction), a right-docked detail panel (a true overlay
+drawer, not a reserved layout column — an earlier version of this same session silently shrank
+the navigable canvas by 340px at all times, caught and fixed before landing), and click-to-travel
+cross-references (a Reads/Writes/Loaded-by entry that names a real file is clickable and moves the
+camera there). A `Feature.MAP` "FAB back to the map" round-trip on real live pages is still named
+as the natural next increment and still deliberately not built — it touches the shared `FEATURES`
+registry in `lib/build-vextreme.js`, real production surface, and needs Victor's explicit
+go-ahead rather than a leisure-pilot default.
 
 The continuity system itself changed shape in Session 024: batches are now **directories of
 per-session files** (`docs/continuity/batch-003/`, filenames `YYYY-MM-DD-session-0NN.md`)
@@ -133,6 +149,12 @@ entries had been injected mid-file into Session 021's record.
   screenshots, not just tests. Continued: piloted, then generalized, the **terrain map** — a
   self-updating navigable atlas over the full lattice (`lib/build-terrain-map.js` →
   `data/terrain-map.json` → `pages/terrain-map.html`, live-fetched, never hand-edited again).
+  Continued again, same day: replaced the terrain map's navigation with a fractal zoom-level
+  ladder (system → stage → node) and role-lens layout (source → generate → check → output →
+  runtime), after several Artifact POCs tested the interaction model live; fixed two real bugs
+  the POCs and Playwright verification caught (level-exit skipping straight to the top instead
+  of stepping back one level; a detail panel that silently reserved layout width even while
+  hidden, permanently shrinking the navigable canvas).
 - **Session 024** — Reviewed Session 023's misplaced batch entries (injected into Session 021's
   block, anchored to a sentinel marker instead of appended); restructured Batch 003 into
   `batch-003/` per-session files, relocated Session 023 with corrected attribution, taught
@@ -176,7 +198,8 @@ not this list.
 
 **Genuinely open:**
 - [ ] `Feature.MAP` — a live-page FAB linking back to `pages/terrain-map.html` (Session 025 continued) — the natural next increment for the terrain map, touches the shared `FEATURES` registry in `lib/build-vextreme.js` (real production surface), needs Victor's explicit go-ahead
-- [ ] The "multi-navigational lens" / role-based-view idea Victor floated (Session 025 continued) — the terrain map's Engineer/Health-lead toggle is a first, minimal proof of the concept; the fuller vision is unstarted, filed as a future "fun side project"
+- [ ] The "multi-navigational lens" / role-based-view idea Victor floated (Session 025 continued) — the terrain map's lens toggle is now Engineer/Auditor/All (recede-not-hide, off-lens nodes stay visible but smaller/dimmer) instead of the original Engineer/Health-lead pair; whether Victor wants true add/remove-by-lens instead (matching his own org-chart mockup screenshots, where a broader lens reveals boxes a narrower one didn't show at all) is still unconfirmed — the conservative recede behavior was a deliberate choice, not yet validated against what he actually pictured
+- [ ] `Feature.MAP`'s live-page FAB (below) should also account for the terrain map's new fractal zoom-level ladder — a page's FAB linking "back to the map" needs to decide which level/stage to land the camera on, not just open the page at its default view
 - [ ] The "Scanner check" named in `docs/architecture/14-council-model.md` (a single-instance structured self-check across named lenses before a significant judgment call) is a **proposal, not adopted practice** — Victor should review the honest-limits framing there before any future instance treats it as standing doctrine.
 - [ ] `lib/build-lattice-headers.js` structural fix — replace comment-embedded sentinel markers with a real `const VEX_LATTICE = {...}` statement + a validating `LatticeNode` class; design agreed (Session 021), fresh motivating evidence from Session 024 (the sentinel hazard hit `check-lattice-edges.js` itself twice while building it) — recommended next foundational move, not yet built
 - [ ] od-008 — staged/proposal execution for higher-blast-radius content gestures (consolidation, deletion, connector rewiring) — intentionally not designed yet, blocked on a real case existing to design against (Session 022)

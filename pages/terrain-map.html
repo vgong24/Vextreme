@@ -16,11 +16,13 @@
     --ink-faint:   #5b6472;
     --accent:      #3987e5;
     --accent-soft: rgba(57,135,229,0.16);
+    --pin:         #e8b04a;
     --good:        #0ca30c;
     --warning:     #fab219;
     --critical:    #d03b3b;
     --mono: ui-monospace, "SF Mono", "Cascadia Code", "IBM Plex Mono", Menlo, Consolas, monospace;
     --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --topbar-h: 62px; /* overwritten at runtime with the topbar's real measured height */
   }
   :root[data-theme="light"]{
     --ground:#f4f5f3; --panel:#fff; --panel-2:#eef0ee;
@@ -40,10 +42,10 @@
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
-  body{ background:var(--ground); color:var(--ink); font-family:var(--sans); min-height:100vh; overflow-x:hidden; }
+  body{ background:var(--ground); color:var(--ink); font-family:var(--sans); min-height:100vh; overflow:hidden; }
   .app{ display:flex; flex-direction:column; height:100vh; }
 
-  .topbar{ display:flex; align-items:center; gap:20px; flex-wrap:wrap; padding:14px 20px; border-bottom:1px solid var(--line); background:var(--panel); flex:none; }
+  .topbar{ display:flex; align-items:center; gap:20px; flex-wrap:wrap; padding:14px 20px; border-bottom:1px solid var(--line); background:var(--panel); flex:none; z-index:5; }
   .brand{ display:flex; flex-direction:column; gap:2px; margin-right:auto; min-width:220px; }
   .brand .eyebrow{ font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); }
   .brand h1{ margin:0; font-size:18px; font-weight:650; letter-spacing:-.01em; }
@@ -63,56 +65,98 @@
   .search{ position:relative; }
   .search input{
     background:var(--panel-2); border:1px solid var(--line); color:var(--ink); border-radius:8px;
-    padding:8px 12px; font-size:13px; font-family:var(--sans); width:200px;
+    padding:8px 12px; font-size:13px; font-family:var(--sans); width:190px;
   }
   .search input:focus{ outline:1.5px solid var(--accent); }
 
-  .body{ display:flex; flex:1; min-height:0; }
-  .map-wrap{ position:relative; flex:1; min-width:0; overflow:hidden; background: radial-gradient(ellipse at 30% 15%, var(--accent-soft), transparent 55%), var(--ground); }
-  .map-hint{ position:absolute; left:16px; bottom:14px; z-index:2; font-family:var(--mono); font-size:10.5px; color:var(--ink-faint); pointer-events:none; }
-  .zoom-controls{ position:absolute; right:16px; bottom:14px; z-index:2; display:flex; flex-direction:column; gap:6px; }
+  .body{ position:relative; flex:1; min-height:0; }
+  .map-wrap{ position:absolute; inset:0; overflow:hidden; background: radial-gradient(ellipse at 30% 15%, var(--accent-soft), transparent 55%), var(--ground); cursor:grab; }
+  .map-wrap.grabbing{ cursor:grabbing; }
+  .map-hint{ position:absolute; left:16px; bottom:14px; z-index:2; font-family:var(--mono); font-size:10.5px; color:var(--ink-faint); pointer-events:none; max-width:60%; }
+  .level-readout{ position:absolute; left:16px; top:14px; z-index:2; font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-muted); background:var(--panel); border:1px solid var(--line); padding:6px 10px; border-radius:20px; }
+  .level-readout b{ color:var(--accent); }
+  /* offset by the drawer's own width so it's never covered once the panel slides in —
+     the drawer is an overlay over the map, not a reserved column, so this can't be
+     solved by measuring map-wrap's width (it's always the full window now) */
+  .zoom-controls{ position:absolute; right:356px; bottom:14px; z-index:9; display:flex; flex-direction:column; gap:6px; }
   .zoom-btn{ width:28px; height:28px; border-radius:7px; border:1px solid var(--line-strong); background:var(--panel); color:var(--ink); font-size:15px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
   .zoom-btn:hover{ background:var(--panel-2); }
-  .scope-chip{ position:absolute; left:16px; top:14px; z-index:2; font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-muted); background:var(--panel); border:1px solid var(--line); padding:6px 10px; border-radius:20px; }
-  .scope-chip b{ color:var(--ink); }
-  .load-state{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:var(--ink-muted); font-family:var(--mono); font-size:13px; }
+  .load-state{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:var(--ink-muted); font-family:var(--mono); font-size:13px; z-index:3; background:var(--ground); }
 
-  svg{ display:block; width:100%; height:100%; cursor:grab; }
-  svg.dragging{ cursor:grabbing; }
-  .cluster-halo{ fill:var(--panel-2); opacity:.5; }
-  .cluster-label{ font-family:var(--mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase; fill:var(--ink-faint); }
-  .cluster-count{ font-family:var(--mono); font-size:10.5px; fill:var(--ink-faint); }
-  .edge{ stroke:var(--line-strong); stroke-width:1.2; fill:none; }
-  .edge.dim{ stroke:var(--line); }
-  .edge.lit{ stroke:var(--accent); stroke-width:2; }
-  .node-group{ cursor:pointer; }
-  .node-halo{ fill:transparent; }
-  .node-group.selected .node-halo{ fill:var(--accent-soft); }
-  .node-group.matched .node-halo{ fill:var(--accent-soft); }
-  .node-dot{ stroke:var(--ground); stroke-width:2; }
-  .node-group:hover .node-dot{ filter:brightness(1.18); }
-  .node-label{ font-family:var(--mono); font-size:9.5px; fill:var(--ink); paint-order:stroke; stroke:var(--ground); stroke-width:3px; }
+  svg{ display:block; width:100%; height:100%; }
+  #world.snapping{ transition:transform .3s cubic-bezier(.2,.7,.3,1); }
+  .pop-in{ animation:popIn .16s ease-out; }
+  @keyframes popIn{ from{ opacity:0; } to{ opacity:1; } }
 
-  .panel{ width:340px; flex:none; border-left:1px solid var(--line); background:var(--panel); padding:20px; overflow-y:auto; }
+  .system-blob{ fill:var(--panel-2); stroke:var(--line-strong); stroke-width:1.5; }
+  .system-title{ font-family:var(--mono); font-weight:700; fill:var(--ink); letter-spacing:.06em; }
+  .system-sub{ font-family:var(--mono); fill:var(--ink-muted); }
+
+  .stage-halo{ fill:var(--panel-2); stroke:var(--line); stroke-width:1; }
+  .stage-label{ font-family:var(--mono); font-size:13px; font-weight:700; fill:var(--ink); text-transform:uppercase; letter-spacing:.06em; }
+  .stage-sub{ font-family:var(--mono); font-size:9.5px; fill:var(--ink-muted); }
+  .stage-arrow{ stroke:var(--line-strong); stroke-width:2; marker-end:url(#arrowhead); }
+  .stage-hint{ font-family:var(--mono); font-size:9px; fill:var(--ink-faint); font-style:italic; }
+
+  .edge{ stroke:var(--line-strong); stroke-width:1; opacity:.55; }
+  .edge.cross{ stroke:var(--accent); opacity:.35; }
+  .edge.lit{ stroke:var(--accent); opacity:.95; stroke-width:1.8; }
+  .edge.pinned{ stroke:var(--pin); opacity:1; stroke-width:2; }
+  .edge.receded{ opacity:.08; }
+
+  .node-dot{ stroke:var(--ground); stroke-width:1; cursor:pointer; }
+  .node-dot.good{ fill:var(--good); }
+  .node-dot.warning{ fill:var(--warning); }
+  .node-dot.critical{ fill:var(--critical); }
+  .node-dot.receded{ opacity:.4; }
+  .node-label{ font-family:var(--mono); fill:var(--ink); font-size:11px; pointer-events:none; }
+  .node-label.receded{ fill:var(--ink-faint); }
+  .node-hit{ fill:transparent; cursor:pointer; }
+  .node-pin-tag{ font-family:var(--mono); fill:var(--pin); font-size:10px; pointer-events:none; font-weight:700; }
+  .node-focus-ring{ fill:none; stroke:var(--accent); stroke-width:1.5; }
+  .node-focus-ring.pinned{ stroke:var(--pin); stroke-width:2; }
+  .node-focus-ring.matched{ stroke:var(--accent); stroke-width:2; opacity:.9 !important; }
+
+  .screen-dot{ stroke:var(--ground); stroke-width:1; fill:var(--good); cursor:pointer; }
+
+  /* an overlay drawer, not a reserved layout column — the map underneath
+     always measures the FULL viewport, open or closed, so panning/zooming
+     can center anywhere on screen instead of being permanently shrunk by
+     340px whether or not anything is selected. */
+  .panel{
+    position:fixed; top:var(--topbar-h, 62px); right:0; bottom:0; width:340px; z-index:8;
+    border-left:1px solid var(--line); background:var(--panel); padding:20px; overflow-y:auto;
+    box-shadow:-12px 0 30px rgba(0,0,0,.28);
+    transform:translateX(100%); transition:transform .22s ease;
+  }
+  .panel.show{ transform:translateX(0); }
   .panel-empty{ color:var(--ink-muted); font-size:13px; line-height:1.6; padding-top:40px; text-align:center; }
   .panel-empty .glyph{ font-size:26px; display:block; margin-bottom:10px; opacity:.5; }
   .panel-eyebrow{ font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-faint); }
   .panel h2{ font-family:var(--mono); font-size:15px; font-weight:650; margin:4px 0 2px; word-break:break-all; line-height:1.3; }
-  .status-pill{ display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:700; padding:4px 10px; border-radius:20px; margin:8px 0 14px; text-transform:uppercase; letter-spacing:.04em; }
+  .status-pill{ display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:700; padding:4px 10px; border-radius:20px; margin:8px 0 10px; text-transform:uppercase; letter-spacing:.04em; }
   .status-pill .dot{ width:7px; height:7px; border-radius:50%; }
   .status-good{ background:rgba(12,163,12,0.16); color:var(--good); }
   .status-warning{ background:rgba(250,178,25,0.16); color:var(--warning); }
   .status-critical{ background:rgba(208,59,59,0.16); color:var(--critical); }
+  .lens-tags{ display:flex; gap:5px; flex-wrap:wrap; margin-bottom:14px; }
+  .lens-tag{ font-family:var(--mono); font-size:9px; padding:2px 7px; border-radius:20px; border:1px solid var(--line-strong); color:var(--ink-faint); }
+  .lens-tag.active{ border-color:var(--accent); color:var(--accent); }
   .panel p.role{ font-size:13px; line-height:1.55; color:var(--ink); margin:0 0 18px; }
   .field{ margin-bottom:16px; }
   .field-label{ font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:6px; }
   .field-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:5px; }
   .field-list li{ font-family:var(--mono); font-size:11.5px; color:var(--ink-muted); padding-left:12px; position:relative; line-height:1.5; word-break:break-word; }
   .field-list li::before{ content:"›"; position:absolute; left:0; color:var(--ink-faint); }
+  .field-list li.linkable{ cursor:pointer; color:var(--ink); }
+  .field-list li.linkable::before{ content:"→"; color:var(--accent); }
+  .field-list li.linkable:hover{ color:var(--accent); }
   .field-empty{ font-size:11.5px; color:var(--ink-faint); font-style:italic; }
   .debt-item{ display:block; font-size:12px; padding:8px 10px; border-radius:7px; background:var(--panel-2); margin-bottom:6px; line-height:1.4; }
   .debt-item b{ font-family:var(--mono); font-size:10px; text-transform:uppercase; letter-spacing:.05em; }
   .footnote{ margin-top:22px; padding-top:16px; border-top:1px solid var(--line); font-size:10.5px; color:var(--ink-faint); line-height:1.6; }
+  .unpin-btn{ font-family:var(--mono); font-size:10px; color:var(--ink-muted); background:none; border:1px solid var(--line-strong); border-radius:14px; padding:4px 10px; cursor:pointer; margin-bottom:12px; }
+  .unpin-btn:hover{ border-color:var(--accent); color:var(--accent); }
 
   .screen-lang-toggle{ display:flex; gap:6px; margin-bottom:10px; flex-wrap:wrap; }
   .screen-lang-toggle button{ appearance:none; border:1px solid var(--line-strong); background:var(--panel-2); color:var(--ink-muted); font-family:var(--mono); font-size:10.5px; font-weight:700; padding:5px 11px; border-radius:6px; cursor:pointer; }
@@ -137,26 +181,25 @@
       <div class="sub" id="subline">Loading…</div>
     </div>
     <div class="search">
-      <input type="text" id="searchInput" placeholder="Find a node…" autocomplete="off">
+      <input type="text" id="searchInput" placeholder="Find a file, Enter to travel…" autocomplete="off">
     </div>
     <div class="lens">
       <span class="lens-label">Lens</span>
-      <div class="lens-toggle" role="group" aria-label="Viewing lens">
-        <button class="lens-btn" data-lens="engineer" aria-pressed="true">Engineer</button>
-        <button class="lens-btn" data-lens="health" aria-pressed="false">Health lead</button>
+      <div class="lens-toggle" role="group" aria-label="Viewing lens" id="lensBar">
+        <button class="lens-btn" data-lens="all" aria-pressed="true">All</button>
+        <button class="lens-btn" data-lens="engineer" aria-pressed="false">Engineer</button>
+        <button class="lens-btn" data-lens="auditor" aria-pressed="false">Auditor</button>
       </div>
     </div>
     <div class="legend" id="legend"></div>
   </div>
 
   <div class="body">
-    <div class="map-wrap">
-      <div class="scope-chip" id="scopeChip">Loading…</div>
-      <svg id="map" viewBox="0 0 2200 1050" preserveAspectRatio="xMidYMid meet">
-        <g id="viewport"></g>
-      </svg>
+    <div class="map-wrap" id="mapWrap">
+      <div class="level-readout" id="levelReadout">Loading…</div>
+      <svg id="svg"><defs><marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="currentColor" style="color:var(--line-strong)"/></marker></defs><g id="world"></g></svg>
       <div id="loadState" class="load-state">Fetching data/terrain-map.json…</div>
-      <div class="map-hint">drag to pan · scroll or +/&minus; to zoom · click a node · squares are real screens</div>
+      <div class="map-hint">scroll to zoom (levels snap to their own framing) · drag to pan · click a file or screen · off-lens files recede, never disappear</div>
       <div class="zoom-controls">
         <button class="zoom-btn" id="zoomIn" aria-label="Zoom in">+</button>
         <button class="zoom-btn" id="zoomOut" aria-label="Zoom out">&minus;</button>
@@ -166,7 +209,7 @@
     <div class="panel" id="panel">
       <div class="panel-empty">
         <span class="glyph">&#8982;</span>
-        Click any node to open its record — role, edges, tests, and the real open items that reference it.
+        Zoom into a stage, then a file, or click any node — role, edges, tests, and the real open items that reference it. Reads/Writes/Loaded-by entries that name a real file are clickable and travel you there.
       </div>
     </div>
   </div>
@@ -179,149 +222,334 @@
   var BASE = '/Vextreme';
   var TERRAIN_URL = BASE + '/data/terrain-map.json';
 
-  var STATUS_COLOR = { good:'var(--good)', warning:'var(--warning)', critical:'var(--critical)' };
-  var STATUS_TEXT  = { good:'Healthy', warning:'Tested, open item(s)', critical:'Untested, open item(s)' };
-  var CLUSTER_Y_MAX = 90; // recomputed once data loads
+  var STATUS_TEXT = { good: 'Healthy', warning: 'Tested, open item(s)', critical: 'Untested, open item(s)' };
+  var ICON = { good: '●', warning: '▲', critical: '✗' };
+  var SCREENS_KEY = 'screens';
 
   var NS = 'http://www.w3.org/2000/svg';
-  function el(tag, attrs) {
-    var e = document.createElementNS(NS, tag);
-    for (var k in attrs) e.setAttribute(k, attrs[k]);
-    return e;
-  }
-  function esc(s) { return String(s == null ? '' : s).replace(/[&<>]/g, function (c) { return { '&':'&amp;', '<':'&lt;', '>':'&gt;' }[c]; }); }
-  function listOrEmpty(items) {
-    if (!items || !items.length) return '<div class="field-empty">none recorded</div>';
-    return '<ul class="field-list">' + items.map(function (i) { return '<li>' + esc(i) + '</li>'; }).join('') + '</ul>';
-  }
+  function el(tag, attrs) { var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); return e; }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]; }); }
 
-  var viewport = document.getElementById('viewport');
-  var byId = {};
-  var edgeEls = [];
-  var nodeEls = {};
-  var selected = null;
+  var svg = document.getElementById('svg');
+  var world = document.getElementById('world');
+  var mapWrap = document.getElementById('mapWrap');
+
+  var DATA = null, ALL = [], byId = {}, neighborsOf = {}, STAGES = [];
+  var renderedNodes = {}, renderedEdges = {};
+  var pinnedId = null, focusId = null, currentLens = 'all';
+  var view = { x: 0, y: 0, scale: 1 };
+  var levelIndex = 0, levelBaseScale = 1, levelCtx = {};
+  var ENTER_RATIO = 3.0, EXIT_RATIO = 0.55;
+  var FULL_RECT = null, COL_W = 340;
   var panelLang = 'en';
-  var DATA = null;
 
-  function render(data) {
+  // ── fetch, then build the client-side view model on top of the real data ──
+  fetch(TERRAIN_URL)
+    .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(boot)
+    .catch(function (err) {
+      document.getElementById('loadState').textContent = 'Could not load data/terrain-map.json (' + err.message + ')';
+    });
+
+  function boot(data) {
     DATA = data;
-    data.nodes.forEach(function (n) { byId[n.id] = n; });
-
     document.getElementById('loadState').style.display = 'none';
     document.getElementById('subline').textContent =
       data.nodes.length + ' code nodes · ' + data.screens.length + ' live screens · computed fresh, not hand-authored';
-    document.getElementById('scopeChip').innerHTML =
-      'Full lattice — <b>' + data.nodes.length + ' nodes</b>, ' + data.clusters.length + ' clusters';
 
-    // Legend
+    // measure the real topbar height so the panel drawer starts exactly
+    // below it instead of guessing a fixed pixel value
+    document.documentElement.style.setProperty('--topbar-h', document.querySelector('.topbar').offsetHeight + 'px');
+
     var legend = document.getElementById('legend');
     ['good', 'warning', 'critical'].forEach(function (s) {
       var d = document.createElement('div');
       d.className = 'legend-item';
-      d.innerHTML = '<span class="legend-dot" style="background:' + STATUS_COLOR[s] + '"></span>' + STATUS_TEXT[s];
+      d.innerHTML = '<span class="legend-dot" style="background:var(--' + s + ')"></span>' + STATUS_TEXT[s];
       legend.appendChild(d);
     });
 
-    // Cluster halos
-    var maxRows = 0;
-    data.clusters.forEach(function (c) {
-      maxRows = Math.max(maxRows, c.rows);
-      var w = c.x1 - c.x0;
-      var h = c.rows * 130 + 40;
-      viewport.appendChild(el('rect', { x: c.x0 + 20, y: 50, width: w - 40, height: h, rx: 16, class: 'cluster-halo' }));
-      viewport.appendChild(el('text', { x: c.x0 + 40, y: 76, class: 'cluster-label' })).textContent = c.label;
-      var countEl = el('text', { x: c.x0 + 40, y: 50 + h - 14, class: 'cluster-count' });
-      countEl.textContent = c.count + ' node' + (c.count === 1 ? '' : 's');
-      viewport.appendChild(countEl);
-    });
-    CLUSTER_Y_MAX = 50 + maxRows * 130 + 40 + 90;
+    // real stage columns (rect bounds come from the generator — single source of truth)
+    STAGES = data.stages.map(function (s) { return { key: s.key, name: s.name, sub: s.sub, count: s.count, rect: s.rect }; });
+    COL_W = (STAGES.length > 1) ? (STAGES[1].rect.x - STAGES[0].rect.x) : 340;
 
-    // Screens row (client-computed — a page layer, not part of the lattice grid)
-    var screenY = CLUSTER_Y_MAX;
+    // screens are a client-side layer appended as one more column, same
+    // pattern the original page used ("client-computed, not part of the lattice grid")
+    var screensColIndex = STAGES.length;
     data.screens.forEach(function (s, i) {
-      var x = 110 + i * 150;
-      s._x = x; s._y = screenY;
+      s.id = 'screen:' + s.slug;
+      s.kind = 'screen';
+      s.stage = SCREENS_KEY;
+      s.stageName = 'LIVE SCREENS';
+      s.status = 'good';
+      s.x = screensColIndex * COL_W + 60;
+      s.y = i * 60 + 90;
     });
-    if (data.screens.length) {
-      viewport.appendChild(el('text', { x: 40, y: screenY - 34, class: 'cluster-label' })).textContent = 'LIVE SCREENS';
-    }
-
-    // Edges
-    edgeEls = data.edges.map(function (pair) {
-      var a = byId[pair[0]], b = byId[pair[1]];
-      if (!a || !b) return null;
-      var d = 'M' + a.x + ',' + a.y + ' Q' + ((a.x + b.x) / 2 + (a.y - b.y) * 0.06) + ',' + ((a.y + b.y) / 2 + (b.x - a.x) * 0.06) + ' ' + b.x + ',' + b.y;
-      var line = el('path', { class: 'edge', d: d });
-      viewport.appendChild(line);
-      return { a: pair[0], b: pair[1], el: line };
-    }).filter(Boolean);
-
-    // Code nodes
-    data.nodes.forEach(function (n) {
-      var g = el('g', { class: 'node-group', 'data-id': n.id });
-      g.appendChild(el('circle', { cx: n.x, cy: n.y, r: 22, class: 'node-halo' }));
-      g.appendChild(el('circle', { cx: n.x, cy: n.y, r: 7, class: 'node-dot', fill: STATUS_COLOR[n.status] }));
-      var label = el('text', { x: n.x, y: n.y - 12, 'text-anchor': 'middle', class: 'node-label' });
-      label.textContent = n.id.split('/').pop();
-      g.appendChild(label);
-      g.addEventListener('click', function () { selectNode(n.id, false); });
-      viewport.appendChild(g);
-      nodeEls[n.id] = g;
+    STAGES.push({
+      key: SCREENS_KEY, name: 'LIVE SCREENS', sub: 'real pages, verified by screenshot', count: data.screens.length,
+      rect: { x: screensColIndex * COL_W + 10, y: 40, width: COL_W - 40, height: data.screens.length * 60 + 60 },
     });
 
-    // Screen nodes (squares)
-    data.screens.forEach(function (s) {
-      var g = el('g', { class: 'node-group', 'data-id': 'screen:' + s.slug });
-      g.appendChild(el('rect', { x: s._x - 26, y: s._y - 20, width: 52, height: 40, rx: 8, class: 'node-halo' }));
-      g.appendChild(el('rect', { x: s._x - 10, y: s._y - 7, width: 20, height: 14, rx: 3, class: 'node-dot', fill: STATUS_COLOR.good }));
-      var label = el('text', { x: s._x, y: s._y + 30, 'text-anchor': 'middle', class: 'node-label' });
-      label.textContent = s.slug.length > 16 ? s.slug.slice(0, 15) + '…' : s.slug;
-      g.appendChild(label);
-      g.addEventListener('click', function () { selectNode('screen:' + s.slug, true); });
-      viewport.appendChild(g);
-      nodeEls['screen:' + s.slug] = g;
+    data.nodes.forEach(function (n) { n.kind = 'code'; });
+    ALL = data.nodes.concat(data.screens);
+    ALL.forEach(function (n) { byId[n.id] = n; });
+
+    data.edges.forEach(function (p) {
+      neighborsOf[p[0]] = neighborsOf[p[0]] || []; neighborsOf[p[0]].push(p[1]);
+      neighborsOf[p[1]] = neighborsOf[p[1]] || []; neighborsOf[p[1]].push(p[0]);
+    });
+
+    var allX = ALL.map(function (n) { return n.x; }), allY = ALL.map(function (n) { return n.y; });
+    FULL_RECT = {
+      x: Math.min.apply(null, allX) - 130, y: Math.min.apply(null, allY) - 100,
+      width: (Math.max.apply(null, allX) + 130) - (Math.min.apply(null, allX) - 130),
+      height: (Math.max.apply(null, allY) + 100) - (Math.min.apply(null, allY) - 100),
+    };
+
+    wireControls();
+    resetView();
+  }
+
+  // ── fractal level ladder: system (everything, lots of margin) -> stage
+  // (all columns) -> node (one stage's files, tile-culled to viewport).
+  // Every level snaps to its own full framing on entry; exiting always steps
+  // to the level directly above, never back to the top. ─────────────────────
+  function viewportSize() { return { w: mapWrap.clientWidth, h: mapWrap.clientHeight }; }
+  function fitRectToView(rect, fillFactor) {
+    var vp = viewportSize();
+    var s = Math.min(vp.w * fillFactor / rect.width, vp.h * fillFactor / rect.height);
+    return { scale: s, x: vp.w / 2 - (rect.x + rect.width / 2) * s, y: vp.h / 2 - (rect.y + rect.height / 2) * s };
+  }
+  function applyTransform() { world.setAttribute('transform', 'translate(' + view.x + ',' + view.y + ') scale(' + view.scale + ')'); }
+  function screenToWorld(sx, sy) { return { x: (sx - view.x) / view.scale, y: (sy - view.y) / view.scale }; }
+  function toScreen(n) { return { x: view.x + n.x * view.scale, y: view.y + n.y * view.scale }; }
+
+  var OVERVIEW_LEVELS = [
+    { id: 'system', fill: 0.60, rect: function () { return FULL_RECT; }, render: renderSystemBand },
+    { id: 'stage',  fill: 0.92, rect: function () { return FULL_RECT; }, render: renderStageBand },
+    { id: 'node',   fill: 0.62, rect: function (ctx) { return STAGES[ctx.stageIdx].rect; }, render: renderNodeLevel },
+  ];
+
+  function snapTo(target) {
+    world.classList.add('snapping');
+    view.scale = target.scale; view.x = target.x; view.y = target.y;
+    applyTransform();
+    setTimeout(function () { world.classList.remove('snapping'); }, 320);
+  }
+  function enterLevel(idx, ctx) {
+    levelIndex = idx; levelCtx = ctx || {};
+    var fit = fitRectToView(OVERVIEW_LEVELS[idx].rect(levelCtx), OVERVIEW_LEVELS[idx].fill);
+    levelBaseScale = fit.scale;
+    snapTo(fit);
+    OVERVIEW_LEVELS[idx].render(levelCtx);
+    updateReadout();
+  }
+  function resetView() { pinnedId = null; focusId = null; renderPanel(null); enterLevel(0, {}); }
+
+  function renderSystemBand() {
+    clearWorld();
+    var worst = 'good';
+    DATA.nodes.forEach(function (n) { if (rank(n.status) < rank(worst)) worst = n.status; });
+    world.appendChild(el('rect', { x: FULL_RECT.x, y: FULL_RECT.y, width: FULL_RECT.width, height: FULL_RECT.height, rx: 60, class: 'system-blob pop-in' }));
+    var t = el('text', { x: FULL_RECT.x + FULL_RECT.width / 2, y: FULL_RECT.y + FULL_RECT.height / 2 - 10, 'font-size': 30, 'text-anchor': 'middle', class: 'system-title pop-in' });
+    t.textContent = 'VEXTREME'; world.appendChild(t);
+    var s = el('text', { x: FULL_RECT.x + FULL_RECT.width / 2, y: FULL_RECT.y + FULL_RECT.height / 2 + 20, 'font-size': 14, 'text-anchor': 'middle', class: 'system-sub pop-in' });
+    s.textContent = DATA.nodes.length + ' files, ' + DATA.screens.length + ' live screens · worst status ' + ICON[worst] + ' ' + worst + ' · zoom in to see stages';
+    world.appendChild(s);
+  }
+  function rank(status) { return status === 'critical' ? 0 : status === 'warning' ? 1 : 2; }
+
+  function renderStageBand() {
+    clearWorld();
+    STAGES.forEach(function (stage, i) {
+      var members = ALL.filter(function (n) { return n.stage === stage.key; });
+      if (!members.length) return;
+      var r = stage.rect;
+      var worst = 'good';
+      members.forEach(function (n) { if (rank(n.status) < rank(worst)) worst = n.status; });
+      var lensCount = members.filter(inLens).length;
+      world.appendChild(el('rect', { x: r.x, y: r.y, width: r.width, height: r.height, rx: 16, class: 'stage-halo pop-in' }));
+      var label = el('text', { x: r.x + 14, y: r.y + 26, class: 'stage-label pop-in' }); label.textContent = stage.name; world.appendChild(label);
+      var sub = el('text', { x: r.x + 14, y: r.y + 42, class: 'stage-sub pop-in' }); sub.textContent = stage.sub; world.appendChild(sub);
+      var stat = el('text', { x: r.x + 14, y: r.y + 58, class: 'stage-sub pop-in', fill: 'var(--' + worst + ')' });
+      stat.textContent = ICON[worst] + ' worst · ' + members.length + (stage.key === SCREENS_KEY ? ' screen' : ' file') + (members.length === 1 ? '' : 's') + ' · ' + lensCount + ' in lens';
+      world.appendChild(stat);
+      var hint = el('text', { x: r.x + 14, y: r.y + r.height - 14, class: 'stage-hint pop-in' });
+      hint.textContent = 'scroll to zoom into this column'; world.appendChild(hint);
+      var next = STAGES[i + 1];
+      if (next && ALL.some(function (n) { return n.stage === next.key; })) {
+        world.appendChild(el('line', { x1: r.x + r.width, y1: r.y + r.height / 2, x2: next.rect.x, y2: r.y + r.height / 2, class: 'stage-arrow pop-in' }));
+      }
     });
   }
 
-  function selectNode(id, isScreen) {
-    if (selected) nodeEls[selected].classList.remove('selected');
-    selected = id;
-    nodeEls[id].classList.add('selected');
+  function clearWorld() { while (world.firstChild) world.removeChild(world.firstChild); renderedNodes = {}; renderedEdges = {}; }
 
-    edgeEls.forEach(function (e) {
-      var lit = e.a === id || e.b === id;
-      e.el.classList.toggle('lit', lit);
-      e.el.classList.toggle('dim', !lit);
-    });
-
-    if (isScreen) {
-      var slug = id.replace('screen:', '');
-      var screen = DATA.screens.filter(function (s) { return s.slug === slug; })[0];
-      renderScreenPanel(screen);
-    } else {
-      renderNodePanel(byId[id]);
-    }
+  function inLens(n) {
+    if (n.kind === 'screen') return true; // lenses are a code-role concept; screens stay visible to everyone
+    if (currentLens === 'all') return true;
+    if (currentLens === 'engineer') return n.engineerFocus;
+    if (currentLens === 'auditor') return n.auditorFocus;
+    return true;
   }
 
-  function renderNodePanel(n) {
+  function viewportWorldBounds() {
+    var vp = viewportSize(), margin = 160 / view.scale;
+    var tl = screenToWorld(-160, -160), br = screenToWorld(vp.w + 160, vp.h + 160);
+    return { minX: tl.x - margin, minY: tl.y - margin, maxX: br.x + margin, maxY: br.y + margin };
+  }
+
+  function renderNodeLevel() { clearWorld(); syncTiles(); }
+
+  function syncTiles() {
+    var b = viewportWorldBounds();
+    var visible = {};
+    ALL.forEach(function (n) { if (n.x >= b.minX && n.x <= b.maxX && n.y >= b.minY && n.y <= b.maxY) visible[n.id] = true; });
+    Object.keys(renderedNodes).forEach(function (id) { if (!visible[id]) { renderedNodes[id].g.remove(); delete renderedNodes[id]; } });
+    Object.keys(visible).forEach(function (id) {
+      if (renderedNodes[id]) return;
+      var n = byId[id];
+      var g = el('g', { class: 'node-group pop-in' });
+      var ring = el('circle', { cx: n.x, cy: n.y, r: 12, class: 'node-focus-ring' });
+      var hit = el('circle', { cx: n.x, cy: n.y, r: 16, class: 'node-hit' });
+      var dot = (n.kind === 'screen')
+        ? el('rect', { x: n.x - 9, y: n.y - 7, width: 18, height: 14, rx: 3, class: 'screen-dot' })
+        : el('circle', { cx: n.x, cy: n.y, r: 6, class: 'node-dot ' + n.status });
+      var labelText = n.kind === 'screen' ? (n.slug.length > 18 ? n.slug.slice(0, 17) + '…' : n.slug) : n.id;
+      var label = el('text', { x: n.x + 11, y: n.y + 4, class: 'node-label' }); label.textContent = labelText;
+      var pinTag = el('text', { x: n.x + 11, y: n.y - 12, class: 'node-pin-tag', opacity: 0 });
+      pinTag.textContent = n.kind === 'screen' ? 'screen' : (n.cluster + ' / ' + n.id.split('/').pop());
+      g.appendChild(ring); g.appendChild(hit); g.appendChild(dot); g.appendChild(label); g.appendChild(pinTag);
+      g.addEventListener('click', function (ev) { ev.stopPropagation(); togglePin(n.id); });
+      world.appendChild(g);
+      renderedNodes[id] = { g: g, dot: dot, label: label, pinTag: pinTag, ring: ring };
+    });
+    var wantEdges = {};
+    DATA.edges.forEach(function (pair) { if (renderedNodes[pair[0]] && renderedNodes[pair[1]]) wantEdges[pair[0] + '|' + pair[1]] = pair; });
+    Object.keys(renderedEdges).forEach(function (key) { if (!wantEdges[key]) { renderedEdges[key].remove(); delete renderedEdges[key]; } });
+    Object.keys(wantEdges).forEach(function (key) {
+      if (renderedEdges[key]) return;
+      var pair = wantEdges[key], a = byId[pair[0]], b = byId[pair[1]];
+      var line = el('line', { x1: a.x, y1: a.y, x2: b.x, y2: b.y, class: 'edge pop-in' + (a.cluster !== b.cluster ? ' cross' : ''), 'data-a': a.id, 'data-b': b.id });
+      world.insertBefore(line, world.firstChild);
+      renderedEdges[key] = line;
+    });
+    applyLOD();
+  }
+
+  function applyLOD() {
+    var vp = viewportSize(), cx = vp.w / 2, cy = vp.h / 2;
+    var closestId = null, closestDist = Infinity;
+    Object.keys(renderedNodes).forEach(function (id) {
+      var n = byId[id], p = toScreen(n), dist = Math.hypot(p.x - cx, p.y - cy);
+      if (dist < closestDist) { closestDist = dist; closestId = id; }
+    });
+    var ratio = view.scale / levelBaseScale;
+    var radius = 110 + Math.max(0, ratio - 2.0) * 60; // grows with zoom depth so cursor drift doesn't drop focus
+    var newFocus = (ratio > 2.0 && closestId && closestDist < radius) ? closestId : null;
+    if (newFocus !== focusId) { focusId = newFocus; if (!pinnedId) renderPanel(focusId ? byId[focusId] : null); }
+
+    var pinnedSet = pinnedId ? new Set((neighborsOf[pinnedId] || []).concat([pinnedId])) : null;
+    var searchQuery = (document.getElementById('searchInput').value || '').trim().toLowerCase();
+
+    Object.keys(renderedNodes).forEach(function (id) {
+      var n = byId[id], ref = renderedNodes[id];
+      var receded = !inLens(n);
+      if (ref.dot.tagName === 'circle') { ref.dot.classList.toggle('receded', receded); ref.dot.setAttribute('r', receded ? 3.5 : 6); }
+      ref.label.classList.toggle('receded', receded);
+      var p = toScreen(n);
+      var matched = searchQuery.length > 1 && id.toLowerCase().indexOf(searchQuery) !== -1;
+      var showLabel = !receded && (Math.hypot(p.x - cx, p.y - cy) < 260 || (pinnedSet && pinnedSet.has(id)) || matched);
+      ref.label.style.opacity = showLabel ? '1' : '0';
+      ref.pinTag.setAttribute('opacity', (pinnedSet && pinnedSet.has(id) && id !== pinnedId) ? '1' : '0');
+      ref.ring.classList.toggle('pinned', id === pinnedId);
+      ref.ring.classList.toggle('matched', matched);
+      ref.ring.style.opacity = matched ? '' : (id === pinnedId ? '.9' : (id === focusId ? '.5' : '0'));
+    });
+    Object.keys(renderedEdges).forEach(function (key) {
+      var e = renderedEdges[key], a = e.getAttribute('data-a'), b = e.getAttribute('data-b');
+      var pinned = pinnedId && (a === pinnedId || b === pinnedId);
+      var bothReceded = currentLens !== 'all' && !inLens(byId[a]) && !inLens(byId[b]);
+      e.classList.toggle('pinned', !!pinned);
+      e.classList.toggle('receded', bothReceded && !pinned);
+    });
+  }
+
+  function togglePin(id) {
+    pinnedId = (pinnedId === id) ? null : id;
+    renderPanel(pinnedId ? byId[pinnedId] : (focusId ? byId[focusId] : null));
+    applyLOD();
+  }
+
+  // ── cross-reference trails: a Reads/Writes/etc entry that names a real
+  // file becomes clickable and travels the camera there. ────────────────────
+  var idByBasename = {};
+  function resolveRef(text) {
+    if (byId[text]) return text;
+    if (!idByBasename._built) {
+      DATA.nodes.forEach(function (n) { idByBasename[n.id.split('/').pop()] = n.id; });
+      idByBasename._built = true;
+    }
+    var base = text.split('/').pop().split(' ')[0];
+    if (idByBasename[base] && text.indexOf(base) !== -1) return idByBasename[base];
+    return null;
+  }
+  function travelTo(id) {
+    var n = byId[id]; if (!n) return;
+    var stageIdx = STAGES.findIndex(function (s) { return s.key === n.stage; });
+    if (OVERVIEW_LEVELS[levelIndex].id !== 'node' || levelCtx.stageIdx !== stageIdx) {
+      enterLevel(2, { stageIdx: stageIdx });
+    }
+    pinnedId = id;
+    var vp = viewportSize();
+    var target = { scale: view.scale, x: vp.w / 2 - n.x * view.scale, y: vp.h / 2 - n.y * view.scale };
+    snapTo(target);
+    syncTiles();
+    renderPanel(n);
+  }
+
+  function listOrEmpty(arr) {
+    if (!arr || !arr.length) return '<div class="field-empty">none recorded</div>';
+    return '<ul class="field-list">' + arr.map(function (x) {
+      var target = resolveRef(x);
+      return '<li' + (target ? ' class="linkable" data-travel="' + target + '"' : '') + '>' + esc(x) + '</li>';
+    }).join('') + '</ul>';
+  }
+
+  function renderPanel(n) {
     var panel = document.getElementById('panel');
-    var debtsHtml = n.debts.length
-      ? n.debts.map(function (id) {
-          return '<div class="debt-item"><b>' + id + '</b><br>' + esc(DATA.debtTitles[id] || '') + '</div>';
-        }).join('')
+    if (!n) {
+      panel.classList.remove('show'); // slide the drawer away — the map reclaims the full viewport, not just visually
+      return;
+    }
+    panel.classList.add('show');
+    if (n.kind === 'screen') { renderScreenPanel(n); return; }
+
+    var debtsHtml = (n.debts && n.debts.length)
+      ? n.debts.map(function (id) { return '<div class="debt-item"><b>' + id + '</b><br>' + esc(DATA.debtTitles[id] || '') + '</div>'; }).join('')
       : '<div class="field-empty">no open tech-debt / discussion / enhancement references this file</div>';
 
     panel.innerHTML =
-      '<div class="panel-eyebrow">' + esc(n.cluster.toUpperCase()) + '</div>' +
+      (pinnedId === n.id ? '<button class="unpin-btn" onclick="window.__vexUnpin && window.__vexUnpin()">✕ unpin</button>' : '') +
+      '<div class="panel-eyebrow">' + esc(n.stageName) + ' &middot; ' + esc(n.cluster) + '</div>' +
       '<h2>' + esc(n.id) + '</h2>' +
-      '<span class="status-pill status-' + n.status + '"><span class="dot" style="background:' + STATUS_COLOR[n.status] + '"></span>' + STATUS_TEXT[n.status] + '</span>' +
+      '<span class="status-pill status-' + n.status + '"><span class="dot" style="background:var(--' + n.status + ')"></span>' + STATUS_TEXT[n.status] + '</span>' +
+      '<div class="lens-tags">' +
+        '<span class="lens-tag' + (n.engineerFocus ? ' active' : '') + '">engineer focus</span>' +
+        '<span class="lens-tag' + (n.auditorFocus ? ' active' : '') + '">auditor focus</span>' +
+      '</div>' +
       '<p class="role">' + esc(n.role) + '</p>' +
       '<div class="field"><div class="field-label">Reads</div>' + listOrEmpty(n.reads) + '</div>' +
       '<div class="field"><div class="field-label">Writes</div>' + listOrEmpty(n.writes) + '</div>' +
       '<div class="field"><div class="field-label">Loaded by</div>' + listOrEmpty(n.loadedBy) + '</div>' +
       '<div class="field"><div class="field-label">Tested by</div>' + listOrEmpty(n.testedBy) + '</div>' +
       '<div class="field"><div class="field-label">Open items referencing this file</div>' + debtsHtml + '</div>' +
-      '<div class="footnote">Computed live from docs/lattice-map.json and data/status/*.json by lib/build-terrain-map.js. This page never needs hand-editing when a node changes.</div>';
+      '<div class="footnote">Computed live from docs/lattice-map.json and data/status/*.json by lib/build-terrain-map.js. Stage and lens tags are a naming-pattern heuristic (v1) — not a designed taxonomy. This page never needs hand-editing when a node changes.</div>';
+
+    panel.querySelectorAll('[data-travel]').forEach(function (elx) {
+      elx.addEventListener('click', function () { travelTo(elx.getAttribute('data-travel')); });
+    });
+    window.__vexUnpin = function () { togglePin(n.id); };
   }
 
   function renderScreenPanel(s) {
@@ -330,9 +558,10 @@
     if (langs.indexOf(panelLang) === -1) panelLang = langs[0];
 
     panel.innerHTML =
+      (pinnedId === s.id ? '<button class="unpin-btn" onclick="window.__vexUnpin && window.__vexUnpin()">✕ unpin</button>' : '') +
       '<div class="panel-eyebrow">LIVE SCREEN</div>' +
       '<h2>' + esc(s.title) + '</h2>' +
-      '<span class="status-pill status-good"><span class="dot" style="background:' + STATUS_COLOR.good + '"></span>Verified by screenshot</span>' +
+      '<span class="status-pill status-good"><span class="dot" style="background:var(--good)"></span>Verified by screenshot</span>' +
       '<div class="field">' +
         '<div class="field-label">Real screenshot</div>' +
         '<div class="screen-lang-toggle" id="screenLangToggle">' +
@@ -352,60 +581,90 @@
         document.getElementById('screenThumb').src = BASE + '/' + s.screenshots[panelLang];
       });
     });
+    window.__vexUnpin = function () { togglePin(s.id); };
   }
 
-  // ── Lens ─────────────────────────────────────────────────────────────────
-  var lensBtns = document.querySelectorAll('.lens-btn');
-  Array.prototype.forEach.call(lensBtns, function (btn) {
-    btn.addEventListener('click', function () {
-      Array.prototype.forEach.call(lensBtns, function (b) { b.setAttribute('aria-pressed', 'false'); });
-      btn.setAttribute('aria-pressed', 'true');
-      applyLens(btn.getAttribute('data-lens'));
-    });
-  });
-  function applyLens(lens) {
-    var dots = viewport.querySelectorAll('.node-dot');
-    if (lens === 'health') {
-      dots.forEach(function (d) { if (d.tagName === 'circle') d.setAttribute('r', 10); });
-      edgeEls.forEach(function (e) { e.el.style.opacity = 0.2; });
-    } else {
-      dots.forEach(function (d) { if (d.tagName === 'circle') d.setAttribute('r', 7); });
-      edgeEls.forEach(function (e) { e.el.style.opacity = 1; });
+  function updateReadout() {
+    document.getElementById('levelReadout').innerHTML =
+      'level: <b>' + OVERVIEW_LEVELS[levelIndex].id + '</b> · zoom ' + (view.scale / levelBaseScale).toFixed(2) + '×';
+  }
+
+  // ── the navigation fix: exiting always steps to the level directly above,
+  // never straight back to the top. Entering a deeper level always snaps to
+  // that level's own full framing first. ─────────────────────────────────────
+  function handleZoomAt(mx, my, newScale) {
+    var world0 = screenToWorld(mx, my);
+    var ratio = newScale / levelBaseScale;
+
+    if (levelIndex < OVERVIEW_LEVELS.length - 1 && ratio > ENTER_RATIO) {
+      var ctx = {};
+      if (OVERVIEW_LEVELS[levelIndex + 1].id === 'node') {
+        ctx.stageIdx = Math.min(STAGES.length - 1, Math.max(0, Math.round(world0.x / COL_W)));
+      }
+      enterLevel(levelIndex + 1, ctx);
+      return;
     }
+    if (levelIndex > 0 && ratio < EXIT_RATIO) {
+      enterLevel(levelIndex - 1, levelIndex - 1 === 0 ? {} : { stageIdx: levelCtx.stageIdx });
+      return;
+    }
+    if (levelIndex === 0 && ratio < 1) return; // floor: never zoom out past "see everything with margin"
+    var MAX_NODE_RATIO = 7; // ceiling at the deepest level: past this there's nowhere left to go, and off-node
+                             // cursor positions would otherwise zoom into empty space with nothing to show
+    if (levelIndex === OVERVIEW_LEVELS.length - 1 && ratio > MAX_NODE_RATIO) {
+      newScale = levelBaseScale * MAX_NODE_RATIO;
+      if (Math.abs(newScale - view.scale) < 0.001) return;
+    }
+
+    view.scale = newScale; view.x = mx - world0.x * newScale; view.y = my - world0.y * newScale;
+    applyTransform();
+    if (OVERVIEW_LEVELS[levelIndex].id === 'node') syncTiles();
+    updateReadout();
   }
 
-  // ── Search ───────────────────────────────────────────────────────────────
-  document.getElementById('searchInput').addEventListener('input', function (e) {
-    var q = e.target.value.trim().toLowerCase();
-    Object.keys(nodeEls).forEach(function (id) {
-      var matched = q.length > 1 && id.toLowerCase().indexOf(q) !== -1;
-      nodeEls[id].classList.toggle('matched', matched);
-    });
-  });
+  function wireControls() {
+    mapWrap.addEventListener('wheel', function (ev) {
+      ev.preventDefault();
+      var rect = mapWrap.getBoundingClientRect();
+      handleZoomAt(ev.clientX - rect.left, ev.clientY - rect.top, view.scale * Math.pow(1.0015, -ev.deltaY));
+    }, { passive: false });
 
-  // ── Pan + zoom ───────────────────────────────────────────────────────────
-  var svg = document.getElementById('map');
-  var scale = 1, tx = 0, ty = 0, dragging = false, lastX = 0, lastY = 0;
-  function applyTransform() { viewport.setAttribute('transform', 'translate(' + tx + ',' + ty + ') scale(' + scale + ')'); }
-  svg.addEventListener('mousedown', function (e) { dragging = true; lastX = e.clientX; lastY = e.clientY; svg.classList.add('dragging'); });
-  window.addEventListener('mousemove', function (e) { if (!dragging) return; tx += (e.clientX - lastX); ty += (e.clientY - lastY); lastX = e.clientX; lastY = e.clientY; applyTransform(); });
-  window.addEventListener('mouseup', function () { dragging = false; svg.classList.remove('dragging'); });
-  svg.addEventListener('wheel', function (e) { e.preventDefault(); scale = Math.min(2.6, Math.max(0.35, scale * (e.deltaY > 0 ? 0.92 : 1.08))); applyTransform(); }, { passive: false });
-  document.getElementById('zoomIn').addEventListener('click', function () { scale = Math.min(2.6, scale * 1.15); applyTransform(); });
-  document.getElementById('zoomOut').addEventListener('click', function () { scale = Math.max(0.35, scale * 0.87); applyTransform(); });
-  document.getElementById('zoomReset').addEventListener('click', function () { scale = 1; tx = 0; ty = 0; applyTransform(); });
-  var touchLast = null;
-  svg.addEventListener('touchstart', function (e) { if (e.touches.length === 1) touchLast = e.touches[0]; });
-  svg.addEventListener('touchmove', function (e) { if (e.touches.length !== 1 || !touchLast) return; var t = e.touches[0]; tx += (t.clientX - touchLast.clientX); ty += (t.clientY - touchLast.clientY); touchLast = t; applyTransform(); }, { passive: true });
-  svg.addEventListener('touchend', function () { touchLast = null; });
-
-  // ── Fetch ────────────────────────────────────────────────────────────────
-  fetch(TERRAIN_URL)
-    .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-    .then(render)
-    .catch(function (err) {
-      document.getElementById('loadState').textContent = 'Could not load data/terrain-map.json (' + err.message + ')';
+    var dragging = false, lastX, lastY, dragMoved = false;
+    mapWrap.addEventListener('mousedown', function (ev) { dragging = true; dragMoved = false; lastX = ev.clientX; lastY = ev.clientY; mapWrap.classList.add('grabbing'); });
+    window.addEventListener('mousemove', function (ev) {
+      if (!dragging) return; dragMoved = true;
+      view.x += ev.clientX - lastX; view.y += ev.clientY - lastY; lastX = ev.clientX; lastY = ev.clientY;
+      applyTransform();
+      if (OVERVIEW_LEVELS[levelIndex].id === 'node') syncTiles();
     });
+    window.addEventListener('mouseup', function () { dragging = false; mapWrap.classList.remove('grabbing'); });
+    mapWrap.addEventListener('click', function () { if (!dragMoved && pinnedId) togglePin(pinnedId); });
+
+    document.getElementById('zoomIn').addEventListener('click', function () { var vp = viewportSize(); handleZoomAt(vp.w / 2, vp.h / 2, view.scale * 1.3); });
+    document.getElementById('zoomOut').addEventListener('click', function () { var vp = viewportSize(); handleZoomAt(vp.w / 2, vp.h / 2, view.scale * 0.75); });
+    document.getElementById('zoomReset').addEventListener('click', resetView);
+
+    document.querySelectorAll('.lens-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.lens-btn').forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+        btn.setAttribute('aria-pressed', 'true'); currentLens = btn.getAttribute('data-lens');
+        if (OVERVIEW_LEVELS[levelIndex].id === 'stage') renderStageBand(); else if (OVERVIEW_LEVELS[levelIndex].id === 'node') applyLOD();
+      });
+    });
+
+    document.getElementById('searchInput').addEventListener('input', function () {
+      if (OVERVIEW_LEVELS[levelIndex].id === 'node') applyLOD();
+    });
+    document.getElementById('searchInput').addEventListener('keydown', function (ev) {
+      if (ev.key !== 'Enter') return;
+      var q = ev.target.value.trim().toLowerCase();
+      if (q.length < 2) return;
+      var match = DATA.nodes.find(function (n) { return n.id.toLowerCase().indexOf(q) !== -1; });
+      if (match) travelTo(match.id);
+    });
+
+    window.addEventListener('resize', function () { enterLevel(levelIndex, levelCtx); });
+  }
 }());
 </script>
 </body>

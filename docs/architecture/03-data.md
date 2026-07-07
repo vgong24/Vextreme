@@ -66,6 +66,21 @@ Exports pure functions for testing: `buildTranslationNotices`, `buildStatusRollu
 Structure: `{ _meta: { totalOpen, commit, generated }, notices: { translation, techDebt, enhancements, assumptions } }`.
 First consumer: `pages/ecosystem-hub.html` (developer dashboard, runtime fetch).
 
+`data/terrain-map.json` — same CQRS split again, one layer up: `lib/build-terrain-map.js`
+computes every mapped lattice node's real status/debts/reads/writes plus a deterministic
+lifecycle-stage layout (`stageOf`: source → generate → utilities → check → output → runtime,
+replacing an earlier folder-based grid) and two role-lens tags per node (`engineerFocus`,
+`auditorFocus` — naming-pattern heuristics over real fields, explicitly not a designed
+taxonomy). `pages/terrain-map.html` is hand-authored once and live-fetches this JSON, same as
+`ecosystem-hub.html` fetches `status.json`. Its read side is a fractal zoom-level ladder
+(system → stage → node, each level snapping the camera to its own full framing on entry,
+exiting always stepping back exactly one level rather than to the top) reached after a round
+of Artifact POCs tested the interaction model live before anything landed in the repo — see
+`docs/culture.md`. Off-lens nodes recede rather than disappear (`reveal state, never skip nor
+hide`, the same principle the Archives-visibility regression established). This pair is a
+candidate reference pattern for any future "role-scoped navigable map over the lattice" —
+the lens/stage split is generic, not terrain-map-specific.
+
 **Build pipeline** (runs automatically via GitHub Actions on push to main):
 ```
 lib/strings-compile.js   → data/strings/compiled/strings.{lang}.json
