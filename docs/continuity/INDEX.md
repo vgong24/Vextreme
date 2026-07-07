@@ -28,7 +28,7 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 024 — July 6, 2026*
+*As of Session 025 — July 7, 2026*
 
 The v2 GitHub Pages architecture is the active system. v1 (`data/arcs.json`, `data/pages.json`,
 `lib/vextreme.js`/`archive-renderer.js`/`arc-nav.js`) still serves the live Squarespace site
@@ -82,7 +82,24 @@ registry ↔ files, batch registry ↔ directories, INDEX's "Last updated" ↔ n
 A fifth, `lib/check-lattice-edges.js` (pe-012, shipped Session 024 continued), verifies the
 lattice map's claimed reads/writes/loadedBy edges against actual code — informational at the
 CLI, blocking in CI via tests/23's integration test; its first run found and fixed 22 stale
-edges. 345/345 tests passing. Lattice coverage 31/42 (74%).
+edges. 380/380 tests passing. Lattice coverage 33/44 (75%).
+
+Session 025 added a real third language. `victor_dossier` (`pages/victor-methodology-presentation.html`)
+is the first non-fixture page with a real `data/strings/source/pages/*.json` file, a real arc, and
+en/zh content driven by `data-i18n` instead of two duplicated HTML files. Adding `zh` for real
+collided with `td-006`'s standing gate ("do not design a 3rd language's pipeline on the current
+per-scope-combo model") — resolved via a **scoped pilot**, not a full migration: an opt-in
+`bundlingStrategy: "arc-chunked"` field on an arc in `data/arcs-v2.json`, a new
+`lib/build-arc-bundles.js` that merges one `data/strings/compiled/arcs/{arc}.{lang}.json` per
+language for opted-in arcs only, and matching branches in `lib/build-vextreme.js`,
+`widgets/fab-lang.js`, and `lib/build-sw.js` — all inert for the other 16 arcs. od-001 (the
+question this answers) is resolved and removed from `data/status/open-discussions.json`; td-006
+is updated, not closed, since only one arc migrated. See `docs/architecture/06-i18n.md`'s
+"Arc-chunked bundling pilot" section for the mechanism and its one honest known limitation
+(`supportedLangs` is site-wide, so 🇨🇳 is selectable everywhere though only one page has zh
+content — degrades safely via the existing missing-key-shows-EN fallback). `lib/trace-string-usage.js`
+(new) answers "where is this string used?" / "what does this page use?" by cross-referencing
+`data-i18n` usage against the compiled manifest, doubling as an orphan/unused-key integrity check.
 
 The continuity system itself changed shape in Session 024: batches are now **directories of
 per-session files** (`docs/continuity/batch-003/`, filenames `YYYY-MM-DD-session-0NN.md`)
@@ -92,6 +109,14 @@ The change repairs Session 023 (Codex's July 6 context-note and perceivable-cont
 entries had been injected mid-file into Session 021's record.
 
 **Recent sessions** (one line each — open the session files below for full reasoning):
+- **Session 025** — Reviewed three Codex registry-graph context docs (well communicated into
+  `docs/architecture/15–17`, recommended `context-notes/` as their raw-form home). Merged a
+  bilingual (en/zh) engineering dossier from two duplicated HTML files into one
+  `data-i18n`-driven page — the first non-fixture page with a real string source file and arc.
+  Resolved od-001/td-006 with a scoped arc-chunked bundling pilot (`lib/build-arc-bundles.js`,
+  opt-in per arc, only `victor_dossier` uses it) rather than a full-site migration. Built
+  `lib/trace-string-usage.js` (reverse string tracer). Verified the merge with real before/after
+  screenshots, not just tests.
 - **Session 024** — Reviewed Session 023's misplaced batch entries (injected into Session 021's
   block, anchored to a sentinel marker instead of appended); restructured Batch 003 into
   `batch-003/` per-session files, relocated Session 023 with corrected attribution, taught
@@ -103,10 +128,6 @@ entries had been injected mid-file into Session 021's record.
 - **Session 023 (Codex)** — Context-note registry (`docs/continuity/CONTEXT-NOTES.md` +
   `context-notes/`), then "perceivable context" culture (`docs/culture.md` layered-maps section,
   pe-013 map-binding health check). PRs #63–#64. Entries originally misfiled; see Session 024.
-- **Session 022 (continued, wip/ drafts)** — Victor added `wip/victor-methodology-presentation.html`
-  directly and found zero automated mapping. Built the initial-mapping-on-insertion +
-  reconcile-not-error-on-move pattern described above: `discoverWipDrafts`, `scanWipHtmlDrafts`,
-  a new `contentIntegrity` notice, and `lib/detect-wip-promotions.js`'s git-rename-based PR notice.
 
 **This section is a snapshot, not a log.** Full session-by-session reasoning — mistakes tried,
 assumptions made, why a decision went one way over another — lives in the batch files (see
@@ -129,7 +150,7 @@ architecture docs, or lessons only through a PR decision record.
 
 ## Open Work
 
-*Updated Session 022 — July 4, 2026*
+*Updated Session 025 — July 7, 2026*
 
 This list holds only genuinely open items — things nobody has done yet, not a running log of
 what shipped. A completed item is removed here the same session it ships, not kept and checked
@@ -139,15 +160,17 @@ not this list.
 
 **Genuinely open:**
 - [ ] The "Scanner check" named in `docs/architecture/14-council-model.md` (a single-instance structured self-check across named lenses before a significant judgment call) is a **proposal, not adopted practice** — Victor should review the honest-limits framing there before any future instance treats it as standing doctrine.
-- [ ] pe-012 — `lib/check-lattice-edges.js`: verify `docs/lattice-map.json`'s claimed reads/writes/loadedBy edges against actual code (Session 022; see `docs/architecture/13-intent-driven-operations.md` for why this is the decided next step)
-- [ ] od-008 — staged/proposal execution for higher-blast-radius content gestures (consolidation, deletion, connector rewiring) — intentionally not designed yet, blocked on pe-012 and on a real case existing to design against (Session 022)
+- [ ] `lib/build-lattice-headers.js` structural fix — replace comment-embedded sentinel markers with a real `const VEX_LATTICE = {...}` statement + a validating `LatticeNode` class; design agreed (Session 021), fresh motivating evidence from Session 024 (the sentinel hazard hit `check-lattice-edges.js` itself twice while building it) — recommended next foundational move, not yet built
+- [ ] od-008 — staged/proposal execution for higher-blast-radius content gestures (consolidation, deletion, connector rewiring) — intentionally not designed yet, blocked on a real case existing to design against (Session 022)
 - [ ] od-009 — parallel/simultaneous instruction dispatch across multiple departments or orgs, instead of today's one-at-a-time processing — intentionally not designed yet, no real multi-department/multi-org case exists to design against (Session 022)
 - [ ] od-010 — fractal expansion of the continuity/lessons memory pattern into per-department standing memory, plus an audit for other single-scope foundational structures never checked for the same expansion — intentionally not built yet, no department generates enough independent history to need its own cell (Session 022)
-- [ ] `lib/build-lattice-headers.js` structural fix — replace comment-embedded sentinel markers with a real `const VEX_LATTICE = {...}` statement + a validating `LatticeNode` class; design agreed (Session 021), not yet built
 - [ ] pe-011 — collapse `lib/build-archives.js` onto `data/index.json` instead of independently re-deriving from `nodes.json`/`arcs-v2.json` (Session 022)
 - [ ] pe-010 — dedicated transcript-library dashboard; distinguish `ported` from God-Script-wired in `departmentMap` (Session 022)
 - [ ] pe-009 (remaining) — `strings-export.js`, `strings-import.js`, legacy widget copies, `shell.js`, `vextreme.js`, `archive-renderer.js` still unmapped in the lattice
-- [ ] od-001 — should the per-scope JA bundling strategy change before a 3rd language is added?
+- [ ] Migrate a second arc to `bundlingStrategy: "arc-chunked"` — the mechanism already generalizes (Session 025); no second arc has enough traffic/language need yet to justify it
+- [ ] `supportedLangs` is site-wide, not page-aware — adding `zh` to one arc (Session 025) makes 🇨🇳 selectable on every page, most of which have zero zh translations; degrades safely (missing-key falls back to EN) but is a known, undecided-on limitation, not a hidden defect. See `docs/architecture/06-i18n.md`'s "Arc-chunked bundling pilot."
+- [ ] Session 023's standing decision: distill the PR-ordering rule (merge order vs. reasoning order) into `docs/culture.md` as doctrine, or leave it as preserved context — Victor has not yet said which
+- [ ] Promote the three raw wip/ registry-graph docs (`registry-documentation-standard.md`, `ui-identiy-registry-graph.md`, `localization-registry-graph.md`) into `docs/continuity/context-notes/` — recommended (Session 025), not done; Victor said no rush
 - [ ] od-002 — should build-time content synthesis use a live LLM call, or stay session-authored?
 - [ ] od-003 — future: local/lightweight model as an admin-facing chat interface, escalating to Claude when needed
 - [ ] od-006 — "init baseline" scaffold separating the reusable engine from this repo's specific content
@@ -343,6 +366,6 @@ Create as `docs/continuity/batch-00N/YYYY-MM-DD-session-0NN.md`:
 
 ---
 
-*Last updated: Session 024 — July 6, 2026*
+*Last updated: Session 025 — July 7, 2026*
 
 <!-- [VXG RealForever] -->

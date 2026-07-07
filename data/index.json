@@ -1,12 +1,13 @@
 {
-  "builtAt": "2026-07-07T02:19:43.335Z",
+  "builtAt": "2026-07-07T03:29:37.309Z",
   "nodeCount": 112,
-  "curatedNodeCount": 90,
-  "autoDiscoveredCount": 22,
-  "arcCount": 16,
+  "curatedNodeCount": 91,
+  "autoDiscoveredCount": 21,
+  "arcCount": 17,
   "supportedLangs": [
     "en",
-    "ja"
+    "ja",
+    "zh"
   ],
   "slugMap": {
     "victors-recap-arc-1": {
@@ -2085,6 +2086,28 @@
         ]
       }
     },
+    "victor-methodology-presentation": {
+      "id": 76,
+      "slug": "victor-methodology-presentation",
+      "title": "Victor Gong — The Mapping Methodology",
+      "date": "July 4, 2026",
+      "arcKeys": [
+        "victor_dossier"
+      ],
+      "vexData": {},
+      "dateISO": "2026-07-04",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.victor-methodology-presentation"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
+    },
     "about-me": {
       "id": null,
       "slug": "about-me",
@@ -2545,29 +2568,6 @@
         ]
       }
     },
-    "victor-methodology-presentation": {
-      "id": null,
-      "slug": "victor-methodology-presentation",
-      "title": "Victor Gong — The Mapping Methodology · 制图方法论",
-      "date": "",
-      "arcKeys": [],
-      "department": "rd",
-      "workType": "default",
-      "autoDiscovered": true,
-      "vexData": {},
-      "dateISO": null,
-      "viewmodel": {
-        "category": "production",
-        "template": "page",
-        "scopes": [
-          "pages.victor-methodology-presentation"
-        ],
-        "features": [
-          "lang",
-          "spiral-fab"
-        ]
-      }
-    },
     "witness-committee-operations": {
       "id": null,
       "slug": "witness-committee-operations",
@@ -2789,6 +2789,14 @@
           "when-i-asked-a-bank-for-covenant-provision",
           "a-conversation-with-pastor-jacob",
           "the-island-that-was-removed"
+        ]
+      }
+    ],
+    "victor_dossier": [
+      {
+        "label": "Engineering Dossier",
+        "slugs": [
+          "victor-methodology-presentation"
         ]
       }
     ],
@@ -3015,6 +3023,12 @@
       "title": "Victor's Record",
       "url": "https://www.vextreme24.com/archives",
       "renderMode": "dots"
+    },
+    "victor_dossier": {
+      "title": "Victor Gong — Engineering Dossier",
+      "url": "https://www.vextreme24.com/archives",
+      "renderMode": "dots",
+      "bundlingStrategy": "arc-chunked"
     },
     "excavation": {
       "title": "The Excavation",
@@ -3486,6 +3500,11 @@
           "ported": false
         },
         {
+          "slug": "victor-methodology-presentation",
+          "title": "Victor Gong — The Mapping Methodology",
+          "ported": true
+        },
+        {
           "slug": "about-me",
           "title": "About Me",
           "ported": true
@@ -3553,11 +3572,6 @@
         {
           "slug": "the-victor-pattern-transcript",
           "title": "The Victor Pattern Transcript",
-          "ported": true
-        },
-        {
-          "slug": "victor-methodology-presentation",
-          "title": "Victor Gong — The Mapping Methodology · 制图方法论",
           "ported": true
         }
       ]

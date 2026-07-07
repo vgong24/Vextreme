@@ -37,13 +37,14 @@
     },
     {
       "id": "td-006",
-      "title": "i18n string bundling strategy does not scale to multiple languages",
-      "description": "JA strings are currently fetched and cached per page scope-combination (e.g. vex-lang-strings-1.0.0-ja-pages.specimen-full-translation,specimens). This is fine at 2 languages and 88 nodes. Adding a third language (Korean, Mandarin, etc.) multiplies the fetch surface and localStorage footprint linearly per language. At global scale — many languages × many nodes × many users switching language on their first visit to each new page — the scope-keyed approach compounds into exponential CDN cost and localStorage pressure. The natural migration is arc-chunked language bundles: one file per arc per language, SW-preloaded on arc entry. This is a build-script change (build-vextreme.js + fab-lang.js + build-sw.js), not a content change — slugs, arcs, and string source files do not move. Decision must be made before adding a third language. Do not design the third language's pipeline on the current per-scope-combo model.",
+      "title": "i18n per-scope-combo bundling does not scale to multiple languages — pilot resolved for one arc, full migration still pending",
+      "description": "JA (and now zh) strings are fetched per page scope-combination, one parallel request per scope on every language switch — no localStorage caching of fetched string content actually happens (only the selected-language preference persists; an earlier version of this description claimed a localStorage cache key that does not exist in the real code, corrected in Session 025). This is fine at 2-3 languages and under 100 nodes. At global scale — many languages x many nodes x many first-time language switches — the fetch fan-out compounds into real CDN request-count and latency cost. Session 025 resolved the trigger condition below for real (a 3rd language, zh, was added) via a scoped pilot rather than a full migration: data/arcs-v2.json's opt-in `bundlingStrategy: \"arc-chunked\"` field, lib/build-arc-bundles.js, and matching changes in build-vextreme.js/fab-lang.js/build-sw.js prove the arc-chunked alternative end to end on one arc (victor_dossier). The other 16 arcs remain on the per-scope-combo model unchanged — this debt is reduced, not closed. See docs/architecture/06-i18n.md 'Arc-chunked bundling pilot'.",
       "context": "widgets/fab-lang.js (loadStringsForLang), lib/build-vextreme.js, lib/build-sw.js",
       "addedSession": "013",
-      "triggerCondition": "Before adding any language beyond English and Japanese",
-      "migrationPath": "Arc-chunked bundles: one strings.{arc}.{lang}.json per arc, pre-fetched by SW on arc entry. Build script assembles chunks; browser receives without assembling.",
-      "priority": "high"
+      "triggerCondition": "RESOLVED (Session 025) for the pilot's scope — a 3rd language (zh) was added, and it did not go on the old model. Remaining trigger: a 4th+ language, or enough traffic on a non-piloted arc to justify migrating it too.",
+      "migrationPath": "Proven and available: add `bundlingStrategy: \"arc-chunked\"` to any arc in data/arcs-v2.json — lib/build-arc-bundles.js already generalizes. Migrating a currently-unpiloted arc needs no new code, only the opt-in field and a rebuild.",
+      "priority": "high",
+      "pilotedSession": "025"
     },
     {
       "id": "td-008",

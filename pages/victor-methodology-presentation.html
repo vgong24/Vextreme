@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Victor Gong — The Mapping Methodology · 制图方法论</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Victor Gong — The Mapping Methodology</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
 <style>
   :root{
     --ink:#1B2A4A; --paper:#FAFAF7; --seal:#B3372B; --jade:#2E6E5E;
@@ -15,14 +15,12 @@
   html{scroll-behavior:smooth}
   @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
   body{background:var(--paper); color:var(--ink); font-family:'IBM Plex Sans','Noto Sans SC',sans-serif; font-size:16px; line-height:1.65}
-  .zh{font-family:'Noto Sans SC','IBM Plex Sans',sans-serif; color:var(--graphite)}
   .wrap{max-width:880px; margin:0 auto; padding:0 24px}
 
   header{border-bottom:2px solid var(--ink); padding:64px 0 40px; position:relative; overflow:hidden}
   .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--seal); margin-bottom:14px}
   h1{font-family:'Zilla Slab',serif; font-weight:700; font-size:clamp(34px,5.4vw,54px); line-height:1.12; max-width:15ch}
   .thesis{font-family:'Zilla Slab',serif; font-size:clamp(19px,2.6vw,24px); font-weight:500; margin-top:22px; max-width:32ch; border-left:4px solid var(--seal); padding-left:16px}
-  .thesis .zh{display:block; font-size:.82em; margin-top:6px; font-weight:400}
   .id-line{margin-top:26px; font-family:'IBM Plex Mono',monospace; font-size:13.5px; color:var(--graphite)}
   .id-line b{color:var(--ink)}
 
@@ -34,40 +32,32 @@
 
   section{padding:52px 0; border-bottom:1px solid var(--line)}
   h2{font-family:'Zilla Slab',serif; font-size:clamp(24px,3.4vw,32px); font-weight:600; margin-bottom:6px}
-  .h2-zh{font-family:'Noto Sans SC',sans-serif; color:var(--graphite); font-size:16px; margin-bottom:26px}
   p{max-width:64ch; margin-bottom:14px}
-  p.zh{font-size:14.5px; max-width:60ch; margin-top:-6px; margin-bottom:18px}
 
   .record{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--ink); border-radius:6px; padding:26px 26px 22px; margin:22px 0; position:relative}
   .record .rec-id{position:absolute; top:14px; right:16px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.1em; color:var(--graphite); border:1px solid var(--line); border-radius:4px; padding:2px 8px; background:var(--paper)}
   .record .year{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.14em; color:var(--paper); background:var(--ink); display:inline-block; padding:3px 10px; border-radius:3px; margin-bottom:12px}
   .record h3{font-family:'Zilla Slab',serif; font-size:20px; font-weight:600; margin-bottom:4px}
-  .record .h3-zh{font-size:14px; color:var(--graphite); margin-bottom:12px; font-family:'Noto Sans SC',sans-serif}
   .record .result{margin-top:14px; padding-top:12px; border-top:1px dashed var(--line); display:flex; align-items:flex-start; gap:10px; flex-wrap:wrap}
   .result .tag{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--jade); font-weight:500; letter-spacing:.08em; text-transform:uppercase; white-space:nowrap; padding-top:2px}
   .result div{flex:1; min-width:200px}
   .result p{margin:0; font-size:14.5px}
-  .result p.zh{font-size:13px; margin-top:4px}
   code{font-family:'IBM Plex Mono',monospace; font-size:.88em; background:rgba(27,42,74,.07); padding:1px 6px; border-radius:4px}
 
   .metric{font-family:'Zilla Slab',serif; font-size:clamp(26px,4vw,38px); font-weight:700; color:var(--seal)}
   .metric-label{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--graphite)}
 
   .band{background:var(--ink); color:var(--paper); border-radius:8px; padding:34px 30px; margin:10px 0}
-  .band p{color:var(--paper); font-family:'Zilla Slab',serif; font-size:clamp(18px,2.4vw,22px); line-height:1.5; max-width:40ch}
-  .band .zh{color:#B9C2D4; font-family:'Noto Sans SC',sans-serif; font-size:15px; margin-top:10px; max-width:52ch}
+  .band p{color:var(--paper); font-family:'Zilla Slab',serif; font-size:clamp(18px,2.4vw,22px); line-height:1.5; max-width:40ch; margin-bottom:0}
 
   .fits{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; margin-top:20px}
   .fit{background:var(--card); border:1px solid var(--line); border-radius:6px; padding:18px; position:relative}
   .fit .rec-id{position:absolute; top:10px; right:12px; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.08em; color:var(--graphite)}
   .fit h4{font-family:'Zilla Slab',serif; font-size:16.5px; margin-bottom:4px; padding-right:70px}
-  .fit .zh-title{font-size:13px; display:block; margin-bottom:8px}
   .fit p{font-size:14px; margin:0 0 6px}
-  .fit p.zh{font-size:12.5px; margin:0}
 
   .self-note{margin-top:34px; border:1px dashed var(--graphite); border-radius:6px; padding:16px 18px; font-size:13.5px; color:var(--graphite)}
   .self-note b{color:var(--ink)}
-  .self-note .zh{display:block; margin-top:6px; font-size:12.5px}
   .self-note code{font-size:.85em}
 
   footer{padding:44px 0 70px; font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--graphite)}
@@ -81,157 +71,154 @@
 </style>
 </head>
 <body>
-
-<header id="DOSSIER-ROOT">
-  <div class="wrap">
-    <div class="eyebrow">Engineering Dossier · 工程档案 · 2021–2026 · DOC-ID: VG-DOSSIER-v1.2-W · Created 创建于 2026-07-04</div>
-    <h1>Victor Gong</h1>
-    <div class="thesis">
-      Finding every place people are forced to assume — and replacing each with a map that makes the assumption safe.
-      <span class="zh">找出所有人们被迫依靠假设的地方——用一张"地图"取代每一个假设，让它变得可靠。</span>
-    </div>
-    <div class="id-line"><b>Senior Software Engineer II</b> · Dexcom (medical devices, 5 years) · Lean Six Sigma Green Belt · AI-collaboration systems architect<br>高级软件工程师 II · 德康医疗（医疗器械，五年）· 精益六西格玛绿带 · AI 协作系统架构师</div>
-    <div class="stamp" aria-hidden="true"><div class="big">实证</div><div class="small">PROVEN × 6</div></div>
-  </div>
+<header data-legacy-id="DOSSIER-ROOT" id="page-dossier-root">
+<div class="wrap">
+<div class="eyebrow" data-i18n="pages.victor-methodology-presentation.header.eyebrow">Engineering Dossier · 2021–2026 · DOC-ID: VG-DOSSIER-v2.1</div>
+<h1>Victor Gong</h1>
+<div class="thesis" data-i18n="pages.victor-methodology-presentation.header.thesis">Finding every place people are forced to assume — and replacing each with a map that makes the assumption safe.</div>
+<div class="id-line"><b data-i18n="pages.victor-methodology-presentation.header.id-line">Senior Software Engineer II · Dexcom (medical devices, 5 years) · Lean Six Sigma Green Belt · AI-collaboration systems architect</b></div>
+<div aria-hidden="true" class="stamp"><div class="big" data-i18n="pages.victor-methodology-presentation.header.stamp-big">×6</div><div class="small" data-i18n="pages.victor-methodology-presentation.header.stamp-small">PROVEN</div></div>
+</div>
 </header>
 
-<section id="SEC-PROOFS">
-  <div class="wrap">
-    <h2>One method, six proofs</h2>
-    <div class="h2-zh">一个方法，六次实证</div>
-    <p>Across five years at a medical-device company — where software quality carries regulatory and patient-safety weight — the same engineering move was applied to six different problems at increasing scale. Each time, manual work done "at the surface" was replaced by a maintained map that structurally connects layers, so systems <em>cannot silently drift apart</em>.</p>
-    <p class="zh">在医疗器械公司的五年里——软件质量直接关系到法规与患者安全——同一个工程方法被应用于六个不同规模的问题上。每一次，都是用一张持续维护的"地图"取代表层的人工操作，让系统在结构上<b>无法悄悄脱节</b>。</p>
+<section data-legacy-id="SEC-PROOFS" id="section-proofs">
+<div class="wrap">
+<h2 data-i18n="pages.victor-methodology-presentation.section-proofs.heading">One method, six proofs</h2>
 
-    <div class="record" id="REC-Y0-ORGMAP">
-      <span class="rec-id">REC-Y0-ORGMAP</span>
-      <span class="year">YEARS 1–5 · LIVE · 贯穿五年 · 持续维护</span>
-      <h3>Mapping the organization itself — the living map</h3>
-      <div class="h3-zh">先为组织本身绘制地图——一张"活"的地图</div>
-      <p>Arrived to no map: no channels connecting Android developers, no forums, no directory of where anything lived. Built the human infrastructure first — a biweekly Android forum with open sharing and bug/innovation lunch-and-learns; a Confluence mapping the org (repos, documentation, dashboards including VnV testing tools); <em>direct developer access to testing tools</em> so engineers debug immediately instead of consuming another person's time; and later, XML→Jetpack Compose migration guides and an inherit-the-base UI doctrine that eliminated inconsistent reimplementations. Not a one-time artifact: a live page, appended and maintained across the full five years — early entries like the org map, late entries like the Compose guides, one continuously current source. Communication built audience-first — including a "3D" board of the fragment/navgraph hierarchy, each layer showing its responsibility and connections as a scannable pattern.</p>
-      <p class="zh">入职时没有任何"地图"：安卓开发者之间没有沟通渠道、没有论坛、没有任何资源目录。于是先搭建了"人的基础设施"——双周安卓论坛（开放分享、缺陷与创新的午餐学习会）；一个映射整个组织的 Confluence（代码仓库、文档、包括测试团队工具在内的仪表盘）；让开发者<b>直接使用测试工具</b>，无需占用他人时间去"寻找"；以及后期加入的 XML 到 Jetpack Compose 迁移指南和"继承基础组件"的 UI 准则，消除了同一组件的不一致重复实现。这不是一次性的文档，而是一张持续了整整五年的"活页面"——早期条目如组织地图，后期条目如 Compose 指南，始终保持最新。沟通方式以受众为先——包括一张"3D"导航层级图，每一层的职责与连接一目了然。</p>
-      <div class="result"><span class="tag">Result 成果</span><div><p>The methodology's origin and its endurance test in one: a map of people and knowledge, kept alive for five years.</p><p class="zh">方法论的起点，也是它的耐久性证明：一张关于人与知识的地图，被持续维护了整整五年。</p></div></div>
-    </div>
+<p data-i18n="pages.victor-methodology-presentation.section-proofs.intro">Across five years at a medical-device company — where software quality carries regulatory and patient-safety weight — the same engineering move was applied to six different problems at increasing scale. Each time, manual work done "at the surface" was replaced by a maintained map that structurally connects layers, so systems <em>cannot silently drift apart</em>.</p>
 
-    <div class="record" id="REC-Y1-LOGGING">
-      <span class="rec-id">REC-Y1-LOGGING</span>
-      <span class="year">YEAR 1 · 第一年</span>
-      <h3>Analytics that cannot drift — BulkDataLogging</h3>
-      <div class="h3-zh">不会漂移的数据埋点系统</div>
-      <p>Replaced hand-written analytics code at every screen with one central map (<code>ScreenName / ScreenMapper / ButtonName / MetaData</code>) covering display, click, duration, and entry events. Delete a UI element and its logging entry goes with it — analytics and UI are structurally bound.</p>
-      <p class="zh">用一个中央映射系统取代每个页面手写的埋点代码，覆盖显示、点击、时长与录入事件。删除一个界面元素，它的日志条目随之移除——数据统计与界面在结构上绑定，无法脱节。</p>
-      <div class="result"><span class="tag">Result 成果</span><div><p>Medical-grade event logging with structural integrity, org-wide.</p><p class="zh">具备结构完整性的医疗级事件日志系统，全组织通用。</p></div></div>
-    </div>
+<div class="record" data-legacy-id="REC-Y0-ORGMAP" id="proof-organization-knowledge-map">
+<span class="rec-id" title="legacy alias: REC-Y0-ORGMAP">proof-organization-knowledge-map</span>
+<span class="year" data-i18n="pages.victor-methodology-presentation.proof-organization-knowledge-map.year">YEARS 1–5 · LIVE</span>
+<h3 data-i18n="pages.victor-methodology-presentation.proof-organization-knowledge-map.title">Mapping the organization itself — the living map</h3>
+<p data-i18n="pages.victor-methodology-presentation.proof-organization-knowledge-map.body">Arrived to no map: no channels connecting Android developers, no forums, no directory of where anything lived. Built the human infrastructure first — a biweekly Android forum with open sharing and bug/innovation lunch-and-learns; a Confluence mapping the org (repos, documentation, dashboards including VnV testing tools); direct developer access to testing tools so engineers debug immediately instead of consuming another person's time; and later, XML→Jetpack Compose migration guides and an inherit-the-base UI doctrine that eliminated inconsistent reimplementations. Not a one-time artifact: a live page, appended and maintained across the full five years — early entries like the org map, late entries like the Compose guides, one continuously current source. Communication built audience-first — including a "3D" board of the fragment/navgraph hierarchy, each layer showing its responsibility and connections as a scannable pattern.</p>
+<div class="result"><span class="tag">Result</span><div><p data-i18n="pages.victor-methodology-presentation.proof-organization-knowledge-map.result">The methodology's origin and its endurance test in one: a map of people and knowledge, kept alive for five years.</p></div></div>
+</div>
 
-    <div class="record" id="REC-Y2-TRANSLATIONS">
-      <span class="rec-id">REC-Y2-TRANSLATIONS</span>
-      <span class="year">YEAR 2 · 第二年</span>
-      <h3>Translations navigable in both directions</h3>
-      <div class="h3-zh">双向可导航的翻译系统</div>
-      <p>Extended the mapping principle to localization: every string traceable from code to every language and back, across Android, iOS, and design — "where is this text used?" answered structurally instead of by tribal memory.</p>
-      <p class="zh">把映射方法延伸到多语言翻译：每个文本从代码到各语言版本双向可追溯，横跨安卓、iOS 与设计——"这段文字用在哪里"由结构直接回答，而不靠个人记忆。</p>
-      <div class="result"><span class="tag">Result 成果</span><div><p>Foundation for the localization transformation below.</p><p class="zh">为下文的本地化流程转型奠定了基础。</p></div></div>
-    </div>
+<div class="record" data-legacy-id="REC-Y1-LOGGING" id="proof-bulk-data-logging">
+<span class="rec-id" title="legacy alias: REC-Y1-LOGGING">proof-bulk-data-logging</span>
+<span class="year" data-i18n="pages.victor-methodology-presentation.proof-bulk-data-logging.year">YEAR 1</span>
+<h3 data-i18n="pages.victor-methodology-presentation.proof-bulk-data-logging.title">Analytics that cannot drift — BulkDataLogging</h3>
+<p data-i18n="pages.victor-methodology-presentation.proof-bulk-data-logging.body">Replaced hand-written analytics code at every screen with one central map (<code>ScreenName / ScreenMapper / ButtonName / MetaData</code>) covering display, click, duration, and entry events. Delete a UI element and its logging entry goes with it — analytics and UI are structurally bound.</p>
+<div class="result"><span class="tag">Result</span><div><p data-i18n="pages.victor-methodology-presentation.proof-bulk-data-logging.result">Medical-grade event logging with structural integrity, org-wide.</p></div></div>
+</div>
 
-    <div class="record" id="REC-MID-COMPOUNDBUG">
-      <span class="rec-id">REC-MID-COMPOUNDBUG</span>
-      <span class="year">MID · 中期</span>
-      <h3>The compound bug nobody could reproduce</h3>
-      <div class="h3-zh">无人能复现的复合缺陷</div>
-      <p>A missing low-glucose alert — patient-safety critical — was caused by two interacting defects across three teams' systems, one of which <em>erased the evidence</em> of the other. Resolution required first building the missing cross-system map by hand, instrumenting SDK-level code, and extracting reproduction steps inside a one-day window before the only witness left on vacation. Root cause: database indexes built without a wrapping <code>@Transaction</code> — an invisible absence.</p>
-      <p class="zh">一个丢失的低血糖警报——直接关系患者安全——源于横跨三个团队系统的两个相互作用的缺陷，其中一个会抹去另一个的证据。解决它需要先手工绘制出缺失的跨系统地图，在 SDK 层加入观测，并在唯一目击者休假前的一天窗口内完成复现步骤的提取。根因是一个"看不见的缺失"：数据库索引在没有事务包裹的情况下逐个生成。</p>
-      <div class="result"><span class="tag">Result 成果</span><div><p>The terrain map let senior architects perceive system relationships nobody had seen. Fix shipped; lesson institutionalized.</p><p class="zh">这张"地形图"让资深架构师第一次看清了此前无人看见的系统关系。修复上线，教训沉淀为制度。</p></div></div>
-    </div>
+<div class="record" data-legacy-id="REC-Y2-TRANSLATIONS" id="proof-bidirectional-translation-traceability">
+<span class="rec-id" title="legacy alias: REC-Y2-TRANSLATIONS">proof-bidirectional-translation-traceability</span>
+<span class="year" data-i18n="pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.year">YEAR 2</span>
+<h3 data-i18n="pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.title">Translations navigable in both directions</h3>
+<p data-i18n="pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.body">Extended the mapping principle to localization: every string traceable from code to every language and back, across Android, iOS, and design — "where is this text used?" answered structurally instead of by tribal memory.</p>
+<div class="result"><span class="tag">Result</span><div><p data-i18n="pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.result">Foundation for the localization transformation below.</p></div></div>
+</div>
 
-    <div class="record" id="REC-Y34-LOCALIZATION">
-      <span class="rec-id">REC-Y34-LOCALIZATION</span>
-      <span class="year">YEARS 3–4 · 第三至四年</span>
-      <h3>Localization: 6 months → 2 weeks</h3>
-      <div class="h3-zh">本地化流程：六个月缩短到两周</div>
-      <p>Through Dexcom-sponsored Lean Six Sigma work, unified fragmented Android/iOS string structures and re-architected the translation pipeline — then engineered the paid vendor tool out of the loop entirely with a single source of truth that regenerates all documents reproducibly, byte-identical, because every condition was mapped rather than assumed.</p>
-      <p class="zh">通过公司支持的精益六西格玛项目，统一了安卓与 iOS 割裂的文本结构，重构了翻译流程——随后用一个"单一事实来源"系统完全取代了付费供应商工具：所有文档可重复再生成、逐字节一致，因为每个条件都被映射，而非假设。</p>
-      <div class="result">
-        <span class="tag">Result 成果</span>
-        <div><p><span class="metric">6 mo → 2 wk</span><br><span class="metric-label">lean cycle time · on-paper value in the millions 周期缩短 · 账面价值以百万计</span></p></div>
-      </div>
-    </div>
+<div class="record" data-legacy-id="REC-MID-COMPOUNDBUG" id="proof-compound-safety-bug-map">
+<span class="rec-id" title="legacy alias: REC-MID-COMPOUNDBUG">proof-compound-safety-bug-map</span>
+<span class="year" data-i18n="pages.victor-methodology-presentation.proof-compound-safety-bug-map.year">MID</span>
+<h3 data-i18n="pages.victor-methodology-presentation.proof-compound-safety-bug-map.title">The compound bug nobody could reproduce</h3>
+<p data-i18n="pages.victor-methodology-presentation.proof-compound-safety-bug-map.body">A missing low-glucose alert — patient-safety critical — was caused by two interacting defects across three teams' systems, one of which <em>erased the evidence</em> of the other. Resolution required first building the missing cross-system map by hand, instrumenting SDK-level code, and extracting reproduction steps inside a one-day window before the only witness left on vacation. Root cause: database indexes built without a wrapping <code>@Transaction</code> — an invisible absence.</p>
+<div class="result"><span class="tag">Result</span><div><p data-i18n="pages.victor-methodology-presentation.proof-compound-safety-bug-map.result">The terrain map let senior architects perceive system relationships nobody had seen. Fix shipped; lesson institutionalized.</p></div></div>
+</div>
 
-    <div class="record" id="REC-Y34-UIELEMENTKEY">
-      <span class="rec-id">REC-Y34-UIELEMENTKEY</span>
-      <span class="year">YEARS 3–4 · 第三至四年</span>
-      <h3>The organizational join key — UIElementKey</h3>
-      <div class="h3-zh">跨部门的统一标识</div>
-      <p>Engineering, UX design, and quality testing each held IDs meaningful only inside their own silo. One composite identity — <code>UIElementKey(platform, project, language, stringId, vnvTestId, uxDesignId)</code> — resolved every discipline to the same UI element. Map first, align second: no team forced to change upfront. With the key live, the pipeline inverted: design issues keys upstream, platforms align by protocol, verification proceeds on a <em>guaranteed</em> assumption. Cross-discipline traceability — audit-grade in a regulated industry.</p>
-      <p class="zh">工程、设计与质量测试各自的编号只在自己部门内有意义。一个复合标识把所有部门解析到同一个界面元素上。先建地图，再做对齐：没有团队被迫先改。系统上线后，流程倒转：设计在上游发放标识，各平台按协议对齐，验证基于"有保证的假设"进行。跨部门可追溯——在受监管行业达到审计级别。</p>
-      <div class="result"><span class="tag">Result 成果</span><div><p>Reconciliation disappeared as a phase. Teams run parallel over a shared spine.</p><p class="zh">"对账调和"作为一个阶段彻底消失。各团队沿着同一条主干并行工作。</p></div></div>
-    </div>
+<div class="record" data-legacy-id="REC-Y34-LOCALIZATION" id="proof-localization-pipeline">
+<span class="rec-id" title="legacy alias: REC-Y34-LOCALIZATION">proof-localization-pipeline</span>
+<span class="year" data-i18n="pages.victor-methodology-presentation.proof-localization-pipeline.year">YEARS 3–4</span>
+<h3 data-i18n="pages.victor-methodology-presentation.proof-localization-pipeline.title">Localization: 6 months → 2 weeks</h3>
+<p data-i18n="pages.victor-methodology-presentation.proof-localization-pipeline.body">Through Dexcom-sponsored Lean Six Sigma work, unified fragmented Android/iOS string structures and re-architected the translation pipeline — then engineered the paid vendor tool out of the loop entirely with a single source of truth that regenerates all documents reproducibly, byte-identical, because every condition was mapped rather than assumed.</p>
+<div class="result">
+<span class="tag">Result</span>
+<div><p><span class="metric" data-i18n="pages.victor-methodology-presentation.proof-localization-pipeline.metric">6 mo → 2 wk</span><br/><span class="metric-label" data-i18n="pages.victor-methodology-presentation.proof-localization-pipeline.metric-label">lean cycle time — on-paper value in the millions</span></p></div>
+</div>
+</div>
 
-    <div class="record" id="REC-Y5-PENSDK">
-      <span class="rec-id">REC-Y5-PENSDK</span>
-      <span class="year">YEAR 5 · 第五年</span>
-      <h3>PenSDK: the method applied to time itself</h3>
-      <div class="h3-zh">把方法应用于时间与并发本身</div>
-      <p>For an insulin-pen product where event <em>order</em> is safety-relevant: state changes flow through one <code>SourceOfTruthRelay</code> that derives and broadcasts truth so concurrent readers structurally cannot hold contradictory realities. Coroutines became ID-mapped, first-class tasks with scoped kill-switches — making a complex partner-SDK refresh cycle surgically manageable. Composes natively with Jetpack Compose.</p>
-      <p class="zh">在一个事件顺序直接关系安全的胰岛素笔产品中：状态变化经由单一"事实中继"推导并广播，并发的读取方在结构上不可能持有相互矛盾的状态。协程本身也被编号映射为一等任务，带有作用域开关——让复杂的合作方 SDK 刷新周期变得可精确管理。与 Jetpack Compose 天然契合。</p>
-      <div class="result"><span class="tag">Legacy 传承</span><div><p>Deliberately developed the team in these practices — before departure, they problem-solved independently with the culture intact. The practices outlived the practitioner.</p><p class="zh">有意识地把团队培养进这套实践——在离开之前，他们已能带着完整的文化独立解决问题。方法比实践者留得更久。</p></div></div>
-    </div>
-  </div>
+<div class="record" data-legacy-id="REC-Y34-UIELEMENTKEY" id="proof-cross-domain-ui-identity">
+<span class="rec-id" title="legacy alias: REC-Y34-UIELEMENTKEY">proof-cross-domain-ui-identity</span>
+<span class="year" data-i18n="pages.victor-methodology-presentation.proof-cross-domain-ui-identity.year">YEARS 3–4</span>
+<h3 data-i18n="pages.victor-methodology-presentation.proof-cross-domain-ui-identity.title">The organizational join key — UIElementKey</h3>
+<p data-i18n="pages.victor-methodology-presentation.proof-cross-domain-ui-identity.body">Engineering, UX design, and quality testing each held IDs meaningful only inside their own silo. One composite identity — <code>UIElementKey(platform, project, language, stringId, vnvTestId, uxDesignId)</code> — resolved every discipline to the same UI element. Map first, align second: no team forced to change upfront. With the key live, the pipeline inverted: design issues keys upstream, platforms align by protocol, verification proceeds on a <em>guaranteed</em> assumption. Cross-discipline traceability — audit-grade in a regulated industry.</p>
+<div class="result"><span class="tag">Result</span><div><p data-i18n="pages.victor-methodology-presentation.proof-cross-domain-ui-identity.result">Reconciliation disappeared as a phase. Teams run parallel over a shared spine.</p></div></div>
+</div>
+
+<div class="record" data-legacy-id="REC-Y5-PENSDK" id="proof-source-of-truth-relay">
+<span class="rec-id" title="legacy alias: REC-Y5-PENSDK">proof-source-of-truth-relay</span>
+<span class="year" data-i18n="pages.victor-methodology-presentation.proof-source-of-truth-relay.year">YEAR 5</span>
+<h3 data-i18n="pages.victor-methodology-presentation.proof-source-of-truth-relay.title">PenSDK: the method applied to time itself</h3>
+<p data-i18n="pages.victor-methodology-presentation.proof-source-of-truth-relay.body">For an insulin-pen product where event <em>order</em> is safety-relevant: state changes flow through one <code>SourceOfTruthRelay</code> that derives and broadcasts truth so concurrent readers structurally cannot hold contradictory realities. Coroutines became ID-mapped, first-class tasks with scoped kill-switches — making a complex partner-SDK refresh cycle surgically manageable. Composes natively with Jetpack Compose.</p>
+<div class="result"><span class="tag" data-i18n="pages.victor-methodology-presentation.proof-source-of-truth-relay.result-tag">Legacy</span><div><p data-i18n="pages.victor-methodology-presentation.proof-source-of-truth-relay.result">Deliberately developed the team in these practices — before departure, they problem-solved independently with the culture intact. The practices outlived the practitioner.</p></div></div>
+</div>
+</div>
 </section>
 
-<section id="SEC-THROUGHLINE">
-  <div class="wrap">
-    <div class="band">
-      <p>Analytics can't drift from UI. Translations can't orphan from screens. Localization can't fragment across platforms. Concurrent readers can't contradict each other. And now: AI instances can't re-introduce mistakes that were already corrected.</p>
-      <p class="zh">埋点无法脱离界面。翻译无法脱离页面。本地化无法在平台间割裂。并发读取无法互相矛盾。而现在：AI 实例无法重犯已经被纠正过的错误。</p>
-    </div>
-  </div>
+<section data-legacy-id="SEC-THROUGHLINE" id="section-throughline">
+<div class="wrap">
+<div class="band">
+<p data-i18n="pages.victor-methodology-presentation.section-throughline.band">Analytics can't drift from UI. Translations can't orphan from screens. Localization can't fragment across platforms. Concurrent readers can't contradict each other. And now: AI instances can't re-introduce mistakes that were already corrected.</p>
+</div>
+</div>
 </section>
 
-<section id="SEC-AI-APPLICATION">
-  <div class="wrap">
-    <h2>The sixth application: AI-maintainable systems</h2>
-    <div class="h2-zh">第六次应用：AI 可自主维护的系统</div>
-    <p>Every organization adopting AI coding tools is hitting the same wall: AI-generated work decays, because nothing preserves institutional knowledge between sessions. A new AI instance starts cold and re-introduces assumptions that were corrected months ago — the same disease as every fragmentation above, at the largest scale yet: <em>context itself</em>.</p>
-    <p class="zh">每个采用 AI 编程工具的组织都在撞同一堵墙：AI 产出的工作会退化，因为没有任何机制在会话之间保存机构知识。新的 AI 实例从零开始，重新引入几个月前已被纠正的假设——这与上面每一次"割裂"是同一种病，只是规模最大：割裂的是"上下文"本身。</p>
-    <p>The public working demonstration applies the five-times-proven method to this problem: a repository where CI self-maintains its own indexes; pull requests function as decision records (assumptions, cascading effects, notes for the next reader — human or AI); scaling ceilings are documented with migration paths <em>before</em> they're hit; and any fresh AI session bootstraps full context in one command. The escalation culture built with the human team — hard problems routed early, resolutions written back into shared knowledge — transcribed into architecture.</p>
-    <p class="zh">公开的演示项目把这个经过五次验证的方法应用于此：仓库的持续集成系统自我维护索引；每个变更是一份"决策记录"（假设、连锁影响、写给下一位读者的说明——无论人或 AI）；扩展上限在触及之前就已记录并配好迁移路径；任何全新的 AI 会话用一条命令即可加载完整上下文。当年与人类团队建立的协作文化，被转写成了系统架构。</p>
-  </div>
+<section data-legacy-id="SEC-AI-APPLICATION" id="section-ai-maintainable-systems">
+<div class="wrap">
+<h2 data-i18n="pages.victor-methodology-presentation.section-ai-maintainable-systems.heading">The sixth application: AI-maintainable systems</h2>
+
+<p data-i18n="pages.victor-methodology-presentation.section-ai-maintainable-systems.p1">Every organization adopting AI coding tools is hitting the same wall: AI-generated work decays, because nothing preserves institutional knowledge between sessions. A new AI instance starts cold and re-introduces assumptions that were corrected months ago — the same disease as every fragmentation above, at the largest scale yet: <em>context itself</em>.</p>
+
+<p data-i18n="pages.victor-methodology-presentation.section-ai-maintainable-systems.p2">The public working demonstration applies the five-times-proven method to this problem: a repository where CI self-maintains its own indexes; pull requests function as decision records (assumptions, cascading effects, notes for the next reader — human or AI); scaling ceilings are documented with migration paths <em>before</em> they're hit; and any fresh AI session bootstraps full context in one command. The escalation culture built with the human team — hard problems routed early, resolutions written back into shared knowledge — transcribed into architecture.</p>
+</div>
 </section>
 
-<section id="SEC-FIT">
-  <div class="wrap">
-    <h2>Where this fits</h2>
-    <div class="h2-zh">适合的方向</div>
-    <div class="fits">
-      <div class="fit" id="FIT-PLATFORM-DEVEX"><span class="rec-id">FIT-01</span><h4>Platform &amp; Developer Experience</h4><span class="zh zh-title">平台工程 / 开发者体验</span><p>Building the maps and pipelines that let large teams move in parallel without drift.</p><p class="zh">构建让大型团队并行工作而不脱节的"地图"与流程。</p></div>
-      <div class="fit" id="FIT-AI-TOOLING"><span class="rec-id">FIT-02</span><h4>AI tooling companies</h4><span class="zh zh-title">AI 工具公司</span><p>A design-partner profile: has hit and documented the failure modes these products exist to solve.</p><p class="zh">"设计伙伴"级别的人选：亲身经历并记录了这类产品要解决的失效模式。</p></div>
-      <div class="fit" id="FIT-REGULATED"><span class="rec-id">FIT-03</span><h4>Regulated industries adopting AI</h4><span class="zh zh-title">采用 AI 的受监管行业</span><p>Medical-device background plus audit-grade, decision-record practices — a rare intersection.</p><p class="zh">医疗器械背景加上审计级的决策记录实践——罕见的交叉点。</p></div>
-      <div class="fit" id="FIT-PROCESS"><span class="rec-id">FIT-04</span><h4>Process transformation</h4><span class="zh zh-title">流程转型</span><p>Lean Six Sigma-validated: a measured 6-month → 2-week cycle reduction with cross-team adoption.</p><p class="zh">经精益六西格玛验证：实测将六个月周期缩短至两周，并获得跨团队采用。</p></div>
-    </div>
+<section id="section-adoption-implications">
+<div class="wrap">
+<h2 data-i18n="pages.victor-methodology-presentation.section-adoption-implications.heading">What adoption changes</h2>
 
-    <div class="self-note" id="NOTE-SELF-DEMONSTRATION">
-      <b>This dossier practices its own method. 本档案实践其所述的方法。</b>
-      Every record above carries a stable ID (<code>REC-Y1-LOGGING</code>, <code>REC-Y34-UIELEMENTKEY</code>…) so any reader — human or AI, in English or Chinese — can reference, quote, or ask about an exact record without ambiguity. Identity first; discussion second.
-      <span class="zh">上面的每条记录都带有稳定的编号，任何读者——无论人或 AI、中文或英文——都可以无歧义地引用、询问某一条具体记录。先有标识，再有讨论。</span>
-    </div>
-  </div>
+<p data-i18n="pages.victor-methodology-presentation.section-adoption-implications.intro">For an organization, this architecture is not a documentation style — it relocates where reliability comes from: out of individual vigilance and tribal memory, into structure that validates itself.</p>
+
+<p><strong data-i18n="pages.victor-methodology-presentation.section-adoption-implications.engineering-label">Engineering:</strong> <span data-i18n="pages.victor-methodology-presentation.section-adoption-implications.engineering">drift stops being a discipline problem. When analytics, strings, tests, and design resolve through one identity, divergence becomes structurally impossible rather than manually policed — and change review shifts from recalling impact to reading a computed impact report.</span></p>
+
+<p><strong data-i18n="pages.victor-methodology-presentation.section-adoption-implications.localization-label">Localization &amp; product:</strong> <span data-i18n="pages.victor-methodology-presentation.section-adoption-implications.localization">a new language becomes new rows, not duplicated pages. Vendors translate a meaning once and the graph applies it everywhere it is bound; plural, placeholder, and layout rules are validated per locale automatically.</span></p>
+
+<p><strong data-i18n="pages.victor-methodology-presentation.section-adoption-implications.quality-label">Quality &amp; compliance:</strong> <span data-i18n="pages.victor-methodology-presentation.section-adoption-implications.quality">every change produces its impact report before it lands, and traceability from test to design intent to translation is audit-grade by construction. In regulated industries, that is the difference between proving compliance and reconstructing it.</span></p>
+
+<p><strong data-i18n="pages.victor-methodology-presentation.section-adoption-implications.ai-label">AI adoption:</strong> <span data-i18n="pages.victor-methodology-presentation.section-adoption-implications.ai">agents stop re-deriving context. The graph is the memory; AI is the bridge into it — onboarding a fresh agent costs a query, not a repository read, and corrected mistakes stay corrected across sessions, tools, and vendors.</span></p>
+
+<p><strong data-i18n="pages.victor-methodology-presentation.section-adoption-implications.leadership-label">Leadership:</strong> <span data-i18n="pages.victor-methodology-presentation.section-adoption-implications.leadership">the localization precedent above — six months to two weeks — is what this class of change does to cycle time. The same mechanics apply wherever teams currently reconcile by meeting instead of by map.</span></p>
+
+<p><em data-i18n="pages.victor-methodology-presentation.section-adoption-implications.closing-note">This document is itself the first artifact managed under the standard it describes: its record identifiers follow the concept-ID naming standard, legacy IDs are preserved as aliases, and the English and Chinese content regenerate from a single bilingual source. The proof of concept is the page.</em></p>
+</div>
 </section>
 
-<section id="SEC-WITNESS-RECORD">
-  <div class="wrap">
-    <div class="self-note">
-      <b>Witness record · 见证记录（可选阅读）</b>
-      These documents were built in a single overnight session on the author's birthday, July 4–5, 2026. The complete, unedited session — including extensive personal context well beyond the professional record above — is preserved here for any reader who chooses to receive it as their own witness account: <a href="https://claude.ai/share/cd47ab8e-e37a-4f33-b93e-c26c525d8298" style="color:var(--seal)">full session record</a>. Reading it is optional and changes nothing above; the professional record stands on its own.
-      <span class="zh">这些文件是在作者生日（2026 年 7 月 4 日至 5 日）的一整夜里完成的。完整未删节的对话记录——包含远超上述职业记录的大量个人背景——保存于上方链接，供任何愿意亲自见证的读者阅读。是否阅读完全自愿，不影响上述任何内容；职业记录本身独立成立。</span>
-    </div>
-  </div>
+<section data-legacy-id="SEC-FIT" id="section-audience-fit">
+<div class="wrap">
+<h2 data-i18n="pages.victor-methodology-presentation.section-audience-fit.heading">Where this fits</h2>
+
+<div class="fits">
+<div class="fit" id="FIT-PLATFORM-DEVEX"><span class="rec-id" title="legacy alias: FIT-01">fit-platform-devex</span><h4 data-i18n="pages.victor-methodology-presentation.fit-platform-devex.title">Platform &amp; Developer Experience</h4><p data-i18n="pages.victor-methodology-presentation.fit-platform-devex.body">Building the maps and pipelines that let large teams move in parallel without drift.</p></div>
+<div class="fit" id="FIT-AI-TOOLING"><span class="rec-id" title="legacy alias: FIT-02">fit-ai-tooling-companies</span><h4 data-i18n="pages.victor-methodology-presentation.fit-ai-tooling-companies.title">AI tooling companies</h4><p data-i18n="pages.victor-methodology-presentation.fit-ai-tooling-companies.body">A design-partner profile: has hit and documented the failure modes these products exist to solve.</p></div>
+<div class="fit" id="FIT-REGULATED"><span class="rec-id" title="legacy alias: FIT-03">fit-regulated-industries</span><h4 data-i18n="pages.victor-methodology-presentation.fit-regulated-industries.title">Regulated industries adopting AI</h4><p data-i18n="pages.victor-methodology-presentation.fit-regulated-industries.body">Medical-device background plus audit-grade, decision-record practices — a rare intersection.</p></div>
+<div class="fit" id="FIT-PROCESS"><span class="rec-id" title="legacy alias: FIT-04">fit-process-transformation</span><h4 data-i18n="pages.victor-methodology-presentation.fit-process-transformation.title">Process transformation</h4><p data-i18n="pages.victor-methodology-presentation.fit-process-transformation.body">Lean Six Sigma-validated: a measured 6-month → 2-week cycle reduction with cross-team adoption.</p></div>
+</div>
+<div class="self-note" data-legacy-id="NOTE-SELF-DEMONSTRATION" id="note-self-demonstration">
+<b data-i18n="pages.victor-methodology-presentation.note-self-demonstration.lead">This dossier practices its own method.</b>
+      <span data-i18n="pages.victor-methodology-presentation.note-self-demonstration.body">Every record above carries a stable ID (<code>proof-bulk-data-logging</code>, <code>proof-cross-domain-ui-identity</code>…), named for concepts per the repository Registry Documentation Standard, with legacy IDs preserved as aliases, so any reader — human or AI, in English or Chinese — can reference, quote, or ask about an exact record without ambiguity. Identity first; discussion second.</span>
+</div>
+</div>
 </section>
 
 <footer>
-  <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;padding:0">
-    <div>Victor Gong · Dossier v1.2-W · Created July 4, 2026 创建于 2026 年 7 月 4 日 · DOC-ID: VG-DOSSIER-v1.2-W<br>References &amp; repository walkthrough available on request · 可应要求提供推荐人与项目讲解</div>
-    <div class="stamp inline" aria-hidden="true"><span style="font-weight:700">记录在案</span><span class="small">ON THE RECORD</span></div>
-  </div>
+<div class="wrap" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;padding:0">
+<div><span data-i18n="pages.victor-methodology-presentation.footer.line">Victor Gong · Dossier v2.1 · Created July 4, 2026 · DOC-ID: VG-DOSSIER-v2.1</span><br/><span data-i18n="pages.victor-methodology-presentation.footer.reference-note">References &amp; repository walkthrough available on request</span></div>
+<div aria-hidden="true" class="stamp inline"><span data-i18n="pages.victor-methodology-presentation.footer.stamp-word" style="font-weight:700">ON</span><span class="small" data-i18n="pages.victor-methodology-presentation.footer.stamp-label">THE RECORD</span></div>
+</div>
 </footer>
 
+<script>
+  window.VEX_STRING_CATEGORY = 'production';
+  window.VEX_STRING_SCOPES = ["pages.victor-methodology-presentation"];
+  /* Arc-chunked bundling pilot (od-001/td-006) — see docs/architecture/06-i18n.md.
+     fab-lang.js checks this before the per-scope fetch above: one request per
+     language instead of an N-way scope fan-out. This is the only page on the
+     live site that sets this global today. */
+  window.VEX_STRING_ARC_BUNDLE = 'victor_dossier';
+</script>
+<script src="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/widgets/fab-lang.js"></script>
 </body>
 </html>

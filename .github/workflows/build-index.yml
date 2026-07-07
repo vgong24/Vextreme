@@ -12,6 +12,7 @@ on:
       - 'data/status/**'
       - 'config/lessons/**'
       - 'lib/strings-compile.js'
+      - 'lib/build-arc-bundles.js'
       - 'lib/build-index.js'
       - 'lib/build-archives.js'
       - 'lib/build-demo.js'
@@ -65,6 +66,9 @@ jobs:
 
       - name: Compile strings
         run: node lib/strings-compile.js
+
+      - name: Build arc-chunked language bundles (od-001/td-006 pilot)
+        run: node lib/build-arc-bundles.js
 
       - name: Build index.json
         run: node lib/build-index.js

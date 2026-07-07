@@ -10,6 +10,7 @@
  *   2. generateSWContent — produces valid sw.js string
  *   3. CORE_ASSETS constant — required shared assets present
  *   4. getCommitHash — returns a non-empty string
+ *   5. collectArcBundleUrls — arc-chunked bundling pilot (od-001/td-006)
  */
 
 const { test } = require('node:test');
@@ -17,10 +18,11 @@ const assert   = require('node:assert/strict');
 const fs       = require('fs');
 const path     = require('path');
 
-const { collectDistUrls, generateSWContent, getCommitHash, CORE_ASSETS } = require('../lib/build-sw');
+const { collectDistUrls, collectArcBundleUrls, generateSWContent, getCommitHash, CORE_ASSETS } = require('../lib/build-sw');
 
 const ROOT     = path.join(__dirname, '..');
 const DIST_DIR = path.join(ROOT, 'dist');
+const ARC_BUNDLES_INDEX = path.join(ROOT, 'data', 'strings', 'compiled', 'arcs', 'index.json');
 
 // ── 1. collectDistUrls ────────────────────────────────────────────────────────
 
@@ -143,6 +145,41 @@ test('BUILD-SW: getCommitHash returns a short git hash or dev', () => {
   // Either a valid short hash (hex chars) or the fallback 'dev'
   assert.ok(/^[0-9a-f]{4,12}$/.test(hash) || hash === 'dev',
     `hash "${hash}" must be a short git hash or 'dev'`);
+});
+
+// ── 5. collectArcBundleUrls ──────────────────────────────────────────────────
+
+test('BUILD-SW: collectArcBundleUrls returns an array', () => {
+  const urls = collectArcBundleUrls(ARC_BUNDLES_INDEX);
+  assert.ok(Array.isArray(urls), 'must return array');
+});
+
+test('BUILD-SW: collectArcBundleUrls returns empty array for a nonexistent index', () => {
+  const urls = collectArcBundleUrls('/nonexistent/path/index.json');
+  assert.deepEqual(urls, []);
+});
+
+test('BUILD-SW: collectArcBundleUrls builds one URL per arc per language', () => {
+  const fixture = { 'sample_arc': { langs: { en: 10, zh: 8 } } };
+  const tmpPath = path.join(require('os').tmpdir(), `arc-bundles-index-${Date.now()}.json`);
+  fs.writeFileSync(tmpPath, JSON.stringify(fixture));
+  try {
+    const urls = collectArcBundleUrls(tmpPath);
+    assert.deepEqual(urls, [
+      '/Vextreme/data/strings/compiled/arcs/sample_arc.en.json',
+      '/Vextreme/data/strings/compiled/arcs/sample_arc.zh.json',
+    ]);
+  } finally {
+    fs.unlinkSync(tmpPath);
+  }
+});
+
+test('BUILD-SW: the real arc bundles index (if present) only contributes URLs for opted-in arcs', () => {
+  // This is the blast-radius guarantee: the pilot should add a handful of
+  // URLs (one per opted-in arc per language), not one per page on the site.
+  if (!fs.existsSync(ARC_BUNDLES_INDEX)) return; // no arc has opted in yet — nothing to check
+  const urls = collectArcBundleUrls(ARC_BUNDLES_INDEX);
+  assert.ok(urls.length < 20, `expected a small, bounded URL count for the pilot, got ${urls.length}`);
 });
 
 // [VXG RealForever]

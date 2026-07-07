@@ -32,7 +32,8 @@
         "tests/05-vex-config.test.js",
         "tests/06-blueprint.test.js",
         "tests/07-viewmodel.test.js",
-        "lib/build-demo.js"
+        "lib/build-demo.js",
+        "lib/build-arc-bundles.js"
       ],
       "testedBy": ["tests/05-vex-config.test.js", "tests/06-blueprint.test.js"],
       "changeMap": {
@@ -159,9 +160,14 @@
           "tests/08 (add coverage for new feature output)"
         ],
         "assembleGodScript() output globals": [
-          "widgets/fab-lang.js (reads VEX_STRING_SCOPES, VEX_STRING_CATEGORY, VEX_STRINGS_EN)",
+          "widgets/fab-lang.js (reads VEX_STRING_SCOPES, VEX_STRING_CATEGORY, VEX_STRINGS_EN, VEX_STRING_ARC_BUNDLE)",
           "lib/vextreme-index-v2.js (reads VEX_STRINGS_EN fast path)",
           "tests/08 (all ASSEMBLER: assertions)"
+        ],
+        "arc-chunked bundling pilot (VEX_STRING_ARC_BUNDLE, od-001/td-006)": [
+          "lib/build-arc-bundles.js (writes the bundle this global points at)",
+          "widgets/fab-lang.js (fetches it instead of per-scope fan-out when set)",
+          "lib/build-sw.js (precaches the arc bundle URLs for opted-in arcs)"
         ],
         "scope bundle path convention": [
           "lib/strings-compile.js (must write to same path this reads from)",
@@ -170,6 +176,38 @@
         "dist/ output filenames": [
           "lib/build-sw.js (PRECACHE_URLS — sw.js must include new filenames)",
           "pages/*.html (each page references its dist/ file by name)"
+        ]
+      }
+    },
+
+    "lib/build-arc-bundles.js": {
+      "role": "arc-chunked language bundle assembler — the od-001/td-006 pilot, opt-in per arc",
+      "context": "Resolves od-001 ('should the per-scope JA bundling strategy change before a 3rd language is added?') by proving the arc-chunked alternative td-006 names, scoped to one arc rather than migrating the whole site. Any arc with `bundlingStrategy: \"arc-chunked\"` in data/arcs-v2.json gets one data/strings/compiled/arcs/{arcId}.{lang}.json per language present — the merge of every member slug's scope bundles, done once at build time instead of an N-way runtime fetch. Arcs that don't opt in are completely unaffected. Today's only opted-in arc is victor_dossier (Session 025).",
+      "reads": [
+        "data/arcs-v2.json (bundlingStrategy per arc)",
+        "data/nodes.json (arc section slugs, via data/arcs-v2.json)",
+        "data/viewmodels.json (per-slug scope overrides)",
+        "data/strings/compiled/scopes/{category}/{scope}.{lang}.json (lib/strings-compile.js's output)",
+        "lib/vex-config.js"
+      ],
+      "writes": [
+        "data/strings/compiled/arcs/{arcId}.{lang}.json (one per opted-in arc per language present)",
+        "data/strings/compiled/arcs/index.json (which arcs are chunked, their langs, key counts)"
+      ],
+      "loadedBy": [
+        "manual run: node lib/build-arc-bundles.js",
+        ".github/workflows/build-index.yml (after strings-compile.js, before build-vextreme.js)",
+        "tests/26-build-arc-bundles.test.js"
+      ],
+      "testedBy": ["tests/26-build-arc-bundles.test.js"],
+      "changeMap": {
+        "a second arc opts into bundlingStrategy: \"arc-chunked\"": [
+          "nothing code-side — this script already generalizes; only the pilot's scope is one arc, not the mechanism"
+        ],
+        "data/strings/compiled/arcs/{arcId}.{lang}.json path or shape changed": [
+          "widgets/fab-lang.js (fetches this exact path when window.VEX_STRING_ARC_BUNDLE is set)",
+          "lib/build-vextreme.js (emits window.VEX_STRING_ARC_BUNDLE)",
+          "lib/build-sw.js (precaches this exact path for opted-in arcs)"
         ]
       }
     },
@@ -416,18 +454,20 @@
     },
 
     "widgets/fab-lang.js": {
-      "role": "browser language switcher FAB — fetches JA scope bundles, applies [data-i18n] swaps",
-      "context": "The runtime i18n engine. On language switch, constructs scope bundle URLs using the same scopeRelPath rule as strings-compile.js (build time) — these MUST stay in sync. Caches fetched JA strings in localStorage keyed by version + sorted scope list. Reads VEX_STRING_SCOPES, VEX_STRING_CATEGORY from window (set by God Script).",
+      "role": "browser language switcher FAB — fetches JA/ZH scope or arc bundles, applies [data-i18n] swaps",
+      "context": "The runtime i18n engine. On language switch, constructs scope bundle URLs using the same scopeRelPath rule as strings-compile.js (build time) — these MUST stay in sync. Session 025 correction: fetched strings are held only in the in-memory _langStrings variable, not cached in localStorage — only the selected language preference (LS_LANG) persists there; a fresh fetch happens on every switch. Reads VEX_STRING_SCOPES, VEX_STRING_CATEGORY from window (set by God Script). Session 025 also added an arc-chunked bundle path (od-001/td-006 pilot): if window.VEX_STRING_ARC_BUNDLE is set, fetches the one merged arc bundle instead of the per-scope fan-out below.",
       "reads": [
         "window.VEX_STRING_SCOPES",
         "window.VEX_STRING_CATEGORY",
         "window.VEX_SUPPORTED_LANGS",
+        "window.VEX_STRING_ARC_BUNDLE (arc-chunked bundling pilot, checked before the scope path)",
         "data/strings/compiled/scopes/{category}/{scope}.{lang}.json via CDN",
-        "localStorage (string cache)"
+        "data/strings/compiled/arcs/{arc}.{lang}.json via CDN (when VEX_STRING_ARC_BUNDLE is set)",
+        "localStorage (LS_LANG — the selected language preference only, not fetched string content)"
       ],
       "writes": [
         "innerHTML / textContent of [data-i18n] elements",
-        "localStorage (string cache per scope+lang combination)"
+        "localStorage (LS_LANG — selected language preference)"
       ],
       "loadedBy": [
         "lib/build-vextreme.js (inlined as lang feature in God Scripts)",
@@ -435,6 +475,11 @@
       ],
       "testedBy": [],
       "changeMap": {
+        "arc-chunked bundling pilot (VEX_STRING_ARC_BUNDLE, od-001/td-006)": [
+          "lib/build-arc-bundles.js (writes the bundle this fetches)",
+          "lib/build-vextreme.js (emits the global this reads)",
+          "lib/build-sw.js (precaches the arc bundle URLs for opted-in arcs)"
+        ],
         "scope bundle URL construction": [
           "lib/strings-compile.js (must write to same path)",
           "lib/vex-config.js scopeRelPath() (canonical rule)"
@@ -482,9 +527,9 @@
     },
 
     "lib/build-sw.js": {
-      "role": "Service Worker generator — reads dist/ filenames, writes sw.js",
-      "context": "Scans dist/ for God Script filenames and bakes them into the SW PRECACHE_URLS list. Run after build-vextreme.js adds new dist/ files. The generated sw.js is committed — the SW cache version is pinned to the git commit hash at generation time.",
-      "reads": ["dist/*.js (all God Script filenames)", "git commit hash"],
+      "role": "Service Worker generator — reads dist/ filenames + arc-chunked bundle index, writes sw.js",
+      "context": "Scans dist/ for God Script filenames and bakes them into the SW PRECACHE_URLS list. Run after build-vextreme.js adds new dist/ files. The generated sw.js is committed — the SW cache version is pinned to the git commit hash at generation time. Session 025 added precaching for lib/build-arc-bundles.js's opted-in arc bundles (od-001/td-006 pilot) — bounded to (opted-in arcs x their languages), not every scope of every page.",
+      "reads": ["dist/*.js (all God Script filenames)", "data/strings/compiled/arcs/index.json (opted-in arc bundles, if any)", "git commit hash"],
       "writes": ["sw.js"],
       "loadedBy": [".github/workflows/build-index.yml", "tests/09-build-sw.test.js"],
       "testedBy": ["tests/09-build-sw.test.js"],
@@ -495,6 +540,11 @@
         ],
         "cache name format": [
           "sw.js activate handler (cleans caches by name pattern)",
+          "tests/09"
+        ],
+        "data/strings/compiled/arcs/index.json shape changed": [
+          "collectArcBundleUrls() here — reads entry.langs keys directly",
+          "lib/build-arc-bundles.js (writes that exact shape)",
           "tests/09"
         ]
       }
@@ -1132,6 +1182,27 @@
         ],
         "a new lib/tests/widgets file mentions a require() in a comment or string fixture": [
           "comments are stripped by requiresOf(); string fixtures are not — use unmapped fixture paths in tests, per tests/23's own header note"
+        ]
+      }
+    },
+
+    "lib/trace-string-usage.js": {
+      "role": "string reverse-tracer — data-i18n usage in pages/wip HTML cross-referenced against the compiled manifest",
+      "context": "Built in Session 025 alongside the victor_dossier merge, answering the 'where is this text used?' / 'what does this page use?' questions structurally rather than by tribal memory — the same capability the wip/ registry-graph context notes named (getBindingsForString, getUIElementsByContext), scoped to what's actually validatable today: a grep of data-i18n attributes against data/strings/compiled/manifest.json's per-key language list. Three modes: --key, --page, and a repo-wide orphan/unused summary. Read-only, informational — a key with zero page usage is often legitimate work in progress, not dead weight.",
+      "reads": [
+        "pages/*.html (data-i18n attribute scan)",
+        "wip/*.html (data-i18n attribute scan)",
+        "data/strings/compiled/manifest.json (per-key language coverage)"
+      ],
+      "writes": ["stdout only — read-only, changes nothing"],
+      "loadedBy": ["manual run: node lib/trace-string-usage.js", "tests/27-trace-string-usage.test.js"],
+      "testedBy": ["tests/27-trace-string-usage.test.js"],
+      "changeMap": {
+        "data/strings/compiled/manifest.json schema changed (the langs field)": [
+          "traceKey()/tracePage() here read entry.langs directly"
+        ],
+        "a new content directory besides pages/ and wip/ can carry data-i18n attributes": [
+          "SCAN_DIRS here"
         ]
       }
     },
