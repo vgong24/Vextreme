@@ -22,6 +22,10 @@ creation**, which has no insertion anchor to miss, and cannot disturb any closed
 - **Never edit a prior session's file.** The append-only rule now has a physical shape:
   closed sessions are closed files. Continuations of the *current* session (same day, same
   thread) append `### Session continued` blocks inside that session's own file.
+- Prefer `node lib/append-session-continuation.js <session-file.md> <continuation.md>` for
+  same-session continuation blocks. The VXG marker is a completion boundary/signature, not
+  an insertion anchor; the helper appends at EOF, preserves line endings, and ensures the
+  continuation ends with the marker.
 - Session files follow the template in `../INDEX.md` (metadata header, context on arrival,
   files changed, mistakes, assumptions, open work, end state).
 - This README carries only local rules; current state, open work, and the batch registry

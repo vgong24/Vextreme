@@ -1,0 +1,16 @@
+{
+  "_meta": { "type": "lesson" },
+  "id": "ci-green-is-not-environment-complete",
+  "title": "A Green CI Run Only Proves the Environments CI Actually Exercises",
+  "sessions": ["024"],
+  "problem": "After Session 024 reported 345/345 tests passing on GitHub/Linux, a Windows checkout with Git core.autocrlf=true failed the same health path: node lib/build-lattice-headers.js --check reported all 31 covered JS files as drifted, which made lib/session-bootstrap.js and the test suite fail locally. The lattice header content was semantically identical; the generator had hardcoded LF line endings while the working tree files were CRLF. GitHub Actions never saw the failure because it ran on ubuntu-latest with LF files, and the existing idempotence tests only used LF string fixtures.",
+  "exploration": [
+    "31/31 eligible lattice-covered JS files reported drift at once, which pointed to a global representation issue rather than 31 independent missed regenerations",
+    "comparing visible lines showed no semantic header difference; counting raw newline forms showed CRLF input and mixed/changed LF output",
+    "git ls-files --eol showed i/lf w/crlf for the affected files, and git config core.autocrlf was true in Victor's local checkout",
+    "the original tests proved idempotence for LF fixtures only, so the platform-specific byte behavior was outside the exercised test matrix"
+  ],
+  "decision": "Changed lib/build-lattice-headers.js to detect the target file's existing newline style and preserve it when replacing or inserting generated lattice blocks, instead of branching on platform or assuming LF. Added a regression test using a CRLF fixture so the suite now exercises the local Windows checkout case that GitHub Actions missed. This fixes the root cause without regenerating all headers just to hide the symptom.",
+  "lesson": "When a check compares bytes, paths, file modes, line endings, clocks, shell behavior, device APIs, or runtime capabilities, do not treat one green CI platform as proof of general correctness. Name the environment assumption, then either make the code representation-aware (preserve the file's own convention, query the runtime capability, use the platform-neutral API) or add a health check that exercises the other real environment. This same discipline will matter more in Android/mobile work, where stability means a mapped set of devices, OS versions, permissions, storage states, and lifecycle transitions, not 'it passed once on the emulator I happened to use.'",
+  "impact": "Local Windows tests now pass without changing 31 unrelated lattice headers; node lib/build-lattice-headers.js --check reports zero drift on CRLF working-tree files; the full suite reports 346/346 passing. The broader practice was added to docs/culture.md and docs/architecture/11-debugging-practices.md."
+}

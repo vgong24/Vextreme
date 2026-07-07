@@ -56,6 +56,13 @@ class that requires *simulating* something to see — not reasoning about it:
   work in both color schemes it's supposed to support, or only the one that
   happened to get eyeballed once?
 
+- **Environment representations** — does the logic still hold when the same
+  file is checked out with CRLF instead of LF, or when the shell, filesystem,
+  browser, device, permission state, storage state, or app lifecycle differs
+  from CI? Session 024's lattice-header drift bug was exactly this: Linux CI
+  proved the LF path, while a Windows working tree exposed the untested CRLF
+  path.
+
 None of these are caught by "is the logic sound." All of them are caught by
 actually producing the runtime condition — a real render, a real concurrent
 call, a real toggle — and looking at what happens.
@@ -85,6 +92,16 @@ otherwise only reason about:
    conditions and UX-state coverage don't have an equivalent automated check
    yet, and might not ever; the practice above is what covers them until or
    unless one exists.
+
+5. **Treat CI as one environment in the map, not the whole map.** If a bug can
+   depend on working-tree representation, operating system, shell, browser,
+   device, permission, storage, network, or lifecycle state, add a fixture or
+   check for the other real state before calling it platform-safe. Prefer
+   representation-aware code (preserve the target file's existing line endings,
+   query runtime capabilities, use platform-neutral APIs) over platform-name
+   branches. When the project grows into Android/mobile scope, this becomes a
+   device/runtime matrix question: stability is tested across named conditions,
+   not inferred from one emulator or one CI runner.
 
 ## Relationship to the design system
 

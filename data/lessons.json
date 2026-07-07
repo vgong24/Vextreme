@@ -1,5 +1,5 @@
 {
-  "count": 12,
+  "count": 13,
   "items": [
     {
       "id": "append-only-records-need-append-at-end-not-anchor-insertion",
@@ -9,6 +9,17 @@
       "impact": "The misplacement failure mode is structurally impossible for new sessions: closed sessions are closed files. Session 023 was relocated with corrected attribution and a provenance note rather than silently rewritten. Regression-tested in tests/14-session-bootstrap.test.js (latestSessionFile unit tests plus an integration test binding the registry row to a real directory and a real newest session file).",
       "sessions": [
         "023",
+        "024"
+      ],
+      "visual": null
+    },
+    {
+      "id": "ci-green-is-not-environment-complete",
+      "title": "A Green CI Run Only Proves the Environments CI Actually Exercises",
+      "problem": "After Session 024 reported 345/345 tests passing on GitHub/Linux, a Windows checkout with Git core.autocrlf=true failed the same health path: node lib/build-lattice-headers.js --check reported all 31 covered JS files as drifted, which made lib/session-bootstrap.js and the test suite fail locally. The lattice header content was semantically identical; the generator had hardcoded LF line endings while the working tree files were CRLF. GitHub Actions never saw the failure because it ran on ubuntu-latest with LF files, and the existing idempotence tests only used LF string fixtures.",
+      "lesson": "When a check compares bytes, paths, file modes, line endings, clocks, shell behavior, device APIs, or runtime capabilities, do not treat one green CI platform as proof of general correctness. Name the environment assumption, then either make the code representation-aware (preserve the file's own convention, query the runtime capability, use the platform-neutral API) or add a health check that exercises the other real environment. This same discipline will matter more in Android/mobile work, where stability means a mapped set of devices, OS versions, permissions, storage states, and lifecycle transitions, not 'it passed once on the emulator I happened to use.'",
+      "impact": "Local Windows tests now pass without changing 31 unrelated lattice headers; node lib/build-lattice-headers.js --check reports zero drift on CRLF working-tree files; the full suite reports 346/346 passing. The broader practice was added to docs/culture.md and docs/architecture/11-debugging-practices.md.",
+      "sessions": [
         "024"
       ],
       "visual": null
