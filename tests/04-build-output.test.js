@@ -108,4 +108,13 @@ test('STRUCTURE: system pages skipped by the God Script audit are still visible 
   assert.ok(html.includes('Terrain Map'), 'Terrain Map title missing from Archives');
 });
 
+test('STRUCTURE: every real arc in data/arcs-v2.json has a rendered section — a new arc left out of build-archives.js\'s hardcoded ARC_ORDER silently orphans every page in it (real regression: victor_dossier shipped in Session 025 but never added to ARC_ORDER)', () => {
+  const arcs = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/arcs-v2.json'), 'utf8'));
+  for (const key of Object.keys(arcs)) {
+    if (key.startsWith('_')) continue; // e.g. "_meta" — not a real arc
+    const sectionId = 'id="arc-' + key.replace(/_/g, '-') + '"';
+    assert.ok(html.includes(sectionId), `arc "${key}" has no rendered section in archives.html (${sectionId} missing) — add it to ARC_ORDER in lib/build-archives.js`);
+  }
+});
+
 // [VXG RealForever]
