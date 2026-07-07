@@ -662,14 +662,14 @@
     },
 
     "widgets/sw-register.js": {
-      "role": "Service Worker registration — activates offline caching on first page load",
-      "context": "Core module: default: true in the FEATURES registry, inlined into every God Script. Registers sw.js. Once active, the SW pre-caches all God Scripts + core assets at install time — subsequent page loads make zero network requests for HTML or JS. Without this, the offline/caching pyramid is inactivated.",
+      "role": "Service Worker registration — activates offline caching, auto-reloads once when a new SW takes control",
+      "context": "Core module: default: true in the FEATURES registry, inlined into every God Script. Registers sw.js. Once active, the SW pre-caches all God Scripts + core assets at install time — subsequent page loads make zero network requests for HTML or JS. Without this, the offline/caching pyramid is inactivated. Session 025 (continued) — real bug found while chasing why a merged VEX_SUPPORTED_LANGS/God-Script-wiring fix still didn't show live on the dossier page after Victor rechecked it: sw.js's install/activate handlers always call self.skipWaiting()/clients.claim(), so a new SW version genuinely does become the controller, but only for requests made AFTER that happens — the God Script <script src> tag that already fetched during THIS page load ran before that point, so the page can render under a stale SW-cached copy even when the server (and a freshly-installed SW) already have correct content. The classic 'works after a second reload, not the first' Service Worker gotcha. Nothing forced that second reload before. Also removed a dead SKIP_WAITING postMessage this file sent on registration — sw.js never listens for a 'message' event at all (confirmed via grep), so that call had no effect; skipWaiting() already happens unconditionally in install regardless.",
       "reads": ["navigator.serviceWorker API"],
-      "writes": ["Service Worker registration in browser"],
+      "writes": ["Service Worker registration in browser", "window.location.reload() — exactly once, when a new SW becomes the controller"],
       "loadedBy": [
         "lib/build-vextreme.js (inlined as core module in every God Script, default: true)"
       ],
-      "testedBy": ["tests/09-build-sw.test.js (tests sw.js generation, not this file directly)"],
+      "testedBy": ["tests/09-build-sw.test.js (BUILD-SW: widgets/sw-register.js auto-reloads once... — structural guard on this file directly; the rest of tests/09 tests sw.js generation)"],
       "changeMap": {
         "SW registration scope or path": [
           "sw.js (must exist at the registered path)",

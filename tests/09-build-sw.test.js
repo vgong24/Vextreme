@@ -113,6 +113,22 @@ test('BUILD-SW: output has fetch event listener', () => {
   assert.ok(content.includes("'text/html'"), 'fetch must skip HTML requests');
 });
 
+test('BUILD-SW: widgets/sw-register.js auto-reloads once when a new Service Worker takes control', () => {
+  // Regression guard (Session 025 continued): sw.js's install/activate
+  // handlers always skipWaiting()/clients.claim(), so a new SW version DOES
+  // become the controller — but only for requests made AFTER that happens.
+  // A page whose <script src="...God Script..."> tag already fetched under
+  // the OLD SW keeps running stale content until something reloads it.
+  // Without a controllerchange listener, that reload never happens
+  // automatically — real content changes (e.g. a newly supported language)
+  // can appear "fixed on the server" but still not visible in an open tab.
+  const swRegisterSrc = fs.readFileSync(path.join(ROOT, 'widgets', 'sw-register.js'), 'utf8');
+  assert.ok(swRegisterSrc.includes("addEventListener('controllerchange'"),
+    'sw-register.js must listen for controllerchange to catch a new SW taking control');
+  assert.ok(swRegisterSrc.includes('window.location.reload()'),
+    'sw-register.js must reload the page once a new SW becomes the controller');
+});
+
 test('BUILD-SW: output uses dev hash when commitHash is empty', () => {
   const content = generateSWContent([], '');
   assert.ok(content.includes('vextreme-v1-dev'), 'must fall back to dev hash');
