@@ -210,15 +210,15 @@
 </div>
 </footer>
 
-<script>
-  window.VEX_STRING_CATEGORY = 'production';
-  window.VEX_STRING_SCOPES = ["pages.victor-methodology-presentation"];
-  /* Arc-chunked bundling pilot (od-001/td-006) — see docs/architecture/06-i18n.md.
-     fab-lang.js checks this before the per-scope fetch above: one request per
-     language instead of an N-way scope fan-out. This is the only page on the
-     live site that sets this global today. */
-  window.VEX_STRING_ARC_BUNDLE = 'victor_dossier';
-</script>
-<script src="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/widgets/fab-lang.js"></script>
+<!-- God Script — assembled by lib/build-vextreme.js from data/index.json +
+     compiled string bundles. DO NOT hand-edit the globals/widgets this used
+     to set inline above (VEX_STRING_CATEGORY/SCOPES/ARC_BUNDLE, fab-lang.js
+     CDN tag) — they're now baked into dist/vextreme-victor-methodology-presentation.js
+     itself, including window.VEX_SUPPORTED_LANGS (see widgets/fab-lang.js's
+     loadSupportedLangs()). Served as a relative path from GitHub Pages
+     directly, not via jsdelivr CDN — this page no longer depends on any
+     CDN cache invalidation at all for its language list. Regenerate with:
+     node lib/build-vextreme.js -->
+<script src="../dist/vextreme-victor-methodology-presentation.js"></script>
 </body>
 </html>
