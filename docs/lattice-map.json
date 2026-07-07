@@ -1054,6 +1054,37 @@
       }
     },
 
+    "lib/append-session-continuation.js": {
+      "role": "append-only continuity helper — appends a same-session continuation block at EOF without treating the VXG marker as an insertion anchor",
+      "context": "Built after Codex nearly repeated Session 023's continuity-placement failure shape while appending a Session 024 continuation: repeated VXG markers and display-path encoding made text-patch anchors brittle. This helper encodes the local rule physically: a continuation starts with '### Session continued', the target session file must already end with the VXG marker, line endings are preserved, and the new block is appended after EOF rather than inserted before any marker. The VXG marker remains a completion boundary/signature, not a search target.",
+      "reads": [
+        "docs/continuity/batch-{NNN}/{YYYY-MM-DD-session-0NN}.md (target session file)",
+        "{continuation}.md (caller-provided continuation block)"
+      ],
+      "writes": ["docs/continuity/batch-{NNN}/{YYYY-MM-DD-session-0NN}.md (append-only EOF continuation)"],
+      "loadedBy": [
+        "manual run: node lib/append-session-continuation.js <session-file.md> <continuation.md>",
+        "tests/24-append-session-continuation.test.js"
+      ],
+      "testedBy": ["tests/24-append-session-continuation.test.js"],
+      "changeMap": {
+        "continuation heading convention changed": [
+          "docs/continuity/batch-003/README.md (local rule)",
+          "tests/24-append-session-continuation.test.js"
+        ],
+        "VXG marker completion rule changed": [
+          "CLAUDE.md (continuity marker rule)",
+          "docs/continuity/INDEX.md (continuity rules)",
+          "docs/continuity/batch-003/README.md",
+          "tests/24-append-session-continuation.test.js"
+        ],
+        "line-ending preservation changed": [
+          "lib/build-lattice-headers.js (same file-style-aware convention)",
+          "tests/24-append-session-continuation.test.js"
+        ]
+      }
+    },
+
     "lib/check-map-bindings.js": {
       "role": "pe-013 layered-maps drift detector — verifies the bindings between cold-start maps and the files they claim to bind",
       "context": "Built in Session 024 after Session 023's continuity entries were injected into the wrong session record and nothing mechanical noticed: INDEX.md claimed one latest session while the record held another. The layered-maps culture (docs/culture.md) says every new context layer needs the health check that would detect its map drifting; this is that check for the continuity layer. Checks: CLAUDE.md → CONTEXT-NOTES.md pointer; CONTEXT-NOTES.md Notes table ↔ context-notes/*.md both directions; Batch Registry rows exist, exactly one active row, last, agreeing with the Active batch line; directory-form batch has README.md and convention-named session files inside the declared range; INDEX.md's 'Last updated: Session NNN' equals the newest session file on disk. Any finding exits 1 — drift posture like build-lattice-headers --check, not informational like check-key-alignment.",

@@ -26,6 +26,7 @@ const {
   detectPrefix,
   sanitizeForComment,
   findLineStartDocComment,
+  detectLineEnding,
 } = require('../lib/build-lattice-headers');
 
 const ROOT = path.join(__dirname, '..');
@@ -248,6 +249,23 @@ test('LATTICE-HEADERS: re-injecting into already-generated output is idempotent'
   const second = injectLatticeBlock(first.content, SAMPLE_NODE);
   assert.equal(second.mode, 'replaced');
   assert.equal(second.content, first.content);
+});
+
+test('LATTICE-HEADERS: replacing an existing CRLF file preserves CRLF line endings', () => {
+  const source = [
+    '/**',
+    ' * Some file.',
+    ' * LATTICE:BEGIN old stuff here',
+    ' *   role : old',
+    ' * LATTICE:END',
+    ' */',
+    '',
+    'code();',
+  ].join('\r\n');
+  const { content, mode } = injectLatticeBlock(source, SAMPLE_NODE);
+  assert.equal(mode, 'replaced');
+  assert.equal(detectLineEnding(content), '\r\n');
+  assert.equal((content.match(/(?<!\r)\n/g) || []).length, 0, 'must not introduce bare LF into a CRLF file');
 });
 
 // ── 5. Integration — real repo has zero drift ───────────────────────────────────

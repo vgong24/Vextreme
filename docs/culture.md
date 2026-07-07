@@ -142,6 +142,15 @@ files it claims to bind. The cost to watch is not only token volume; it is ambig
 cannot tell whether a note is context, doctrine, queue, or accepted architecture will either reread
 too much or trust the wrong layer.
 
+The same rule applies to environments, not just documents. If correctness depends on where the
+code runs or how the working tree represents files, map that surface too: operating system,
+line endings, shell behavior, browser, device class, permission state, storage state, lifecycle
+state. A green check on one environment proves that environment, not all environments. Either
+make the code preserve or query the environment's real convention, or add a health check that
+exercises the other environment you claim to support. As this project grows toward mobile or
+Android work, "tested" must mean a named matrix of real device/runtime conditions, not the
+single machine or emulator that happened to be in front of the current instance.
+
 ### Branch, PR, and commit naming
 
 Branch names carry continuity too. Use a date + instance + work pattern so the origin of
@@ -276,6 +285,15 @@ part of one command. The playwright friction is not — it stayed genuinely unso
 its cost is a one-time install/cleanup cycle, not a repeatable check a script can wrap.
 Lowering friction on a correct practice makes it more likely to actually happen; this is
 worth treating as an engineering problem, not just a discipline problem.
+
+**Verification is also only as broad as its environment map.** Session 024 proved this in
+miniature: GitHub's Linux CI and a prior remote Claude environment both passed the lattice
+header drift check, while Victor's Windows checkout failed it because Git wrote CRLF working
+tree files and the generator assumed LF. The content was right; the byte representation was
+not environment-neutral. The fix was not "special-case Windows," but "preserve the file's own
+line-ending convention" plus a CRLF fixture test. Carry that pattern forward: when a future
+system depends on platform, device, browser, OS, filesystem, permission, or lifecycle behavior,
+name the environments that count and put the interesting differences under health checks.
 
 **Reconstructing "what's going on" costs real effort every session start.** The continuity
 system (this file, `docs/continuity/INDEX.md`, `docs/lattice-map.json`, `data/status.json`)

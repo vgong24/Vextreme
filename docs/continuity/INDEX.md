@@ -256,6 +256,10 @@ These rules exist so the log stays useful as it grows. Follow them.
 - If a session is a continuation of the prior one (same day, same thread),
   append a `### Session continued` block inside that session's own file rather
   than creating a new session
+- Prefer `node lib/append-session-continuation.js <session-file.md> <continuation.md>`
+  for same-session continuations. The VXG marker is a completion boundary/signature,
+  not an insertion anchor; the helper appends at EOF and preserves the file's line
+  endings.
 - Update **Current State** and **Open Work** in this file at session end — by replacing, not appending
 - Include the Claude thread link — it is the primary source of reasoning
 
