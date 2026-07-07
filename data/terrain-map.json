@@ -1,0 +1,1633 @@
+{
+  "clusters": [
+    {
+      "id": "data",
+      "label": "DATA SOURCES",
+      "count": 6,
+      "x0": 0,
+      "x1": 450,
+      "rows": 2
+    },
+    {
+      "id": "lib",
+      "label": "BUILD SCRIPTS",
+      "count": 33,
+      "x0": 520,
+      "x1": 1360,
+      "rows": 6
+    },
+    {
+      "id": "root",
+      "label": "ROOT",
+      "count": 3,
+      "x0": 1430,
+      "x1": 1750,
+      "rows": 2
+    },
+    {
+      "id": "widgets",
+      "label": "BROWSER WIDGETS",
+      "count": 2,
+      "x0": 1820,
+      "x1": 2140,
+      "rows": 1
+    }
+  ],
+  "nodes": [
+    {
+      "id": "blueprint.json",
+      "cluster": "root",
+      "x": 1500,
+      "y": 90,
+      "role": "system blueprint — canonical registry of all feature IDs, category IDs, template IDs",
+      "reads": [],
+      "writes": [],
+      "loadedBy": [
+        "lib/validate-blueprint.js",
+        "tests/06-blueprint.test.js"
+      ],
+      "testedBy": [
+        "tests/06-blueprint.test.js"
+      ],
+      "debts": [
+        "pe-009"
+      ],
+      "status": "warning"
+    },
+    {
+      "id": "data/arcs-v2.json",
+      "cluster": "data",
+      "x": 70,
+      "y": 90,
+      "role": "arc structure source — defines arc membership, ordering, and metadata",
+      "reads": [],
+      "writes": [],
+      "loadedBy": [
+        "lib/build-index.js"
+      ],
+      "testedBy": [
+        "tests/01-content-pipeline.test.js",
+        "tests/08-build-vextreme.test.js (KEY-ALIGNMENT)"
+      ],
+      "debts": [
+        "td-006",
+        "od-006",
+        "pe-011"
+      ],
+      "status": "warning"
+    },
+    {
+      "id": "data/council-kernel.json",
+      "cluster": "data",
+      "x": 200,
+      "y": 90,
+      "role": "hand-transcribed structured extract of pages/org-blueprint.html's roster and patterns — the 'runnable kernel' that document names as its own unfinished ambition",
+      "reads": [],
+      "writes": [],
+      "loadedBy": [
+        "tests/19-council-kernel.test.js",
+        "docs/architecture/14-council-model.md (referenced, not fetched)",
+        "pages/ecosystem-hub.html (live fetch, browser — the Council Lenses panel, added Session 022 same day as this note)",
+        "lib/build-roles.js (compiles this roster + data/status/*.json's lens fields into data/roles.json)"
+      ],
+      "testedBy": [
+        "tests/19-council-kernel.test.js"
+      ],
+      "debts": [],
+      "status": "good"
+    },
+    {
+      "id": "data/departments.json",
+      "cluster": "data",
+      "x": 330,
+      "y": 90,
+      "role": "department registry source — production-domain grouping, orthogonal to arcs (narrative) and blueprint.json categories (publish lifecycle)",
+      "reads": [],
+      "writes": [],
+      "loadedBy": [
+        "lib/build-index.js (buildDepartmentMap, buildDepartmentMeta)"
+      ],
+      "testedBy": [
+        "tests/15-departments.test.js"
+      ],
+      "debts": [
+        "od-009",
+        "od-008",
+        "pe-010"
+      ],
+      "status": "warning"
+    },
+    {
+      "id": "data/index.json",
+      "cluster": "data",
+      "x": 70,
+      "y": 220,
+      "role": "pre-built read index — the single artifact every page and build script reads from",
+      "reads": [],
+      "writes": [],
+      "loadedBy": [
+        "lib/vextreme-index-v2.js (browser fetches via CDN, caches in localStorage)",
+        "lib/build-vextreme.js (reads slugMap for assembly)",
+        "lib/check-key-alignment.js",
+        "lib/build-ecosystem-hub.js (departmentMap/departmentMeta, live fetch)",
+        "pages/vextreme-demo.html (live fetch to show nodeCount/arcCount/supportedLangs)"
+      ],
+      "testedBy": [
+        "tests/08-build-vextreme.test.js (KEY-ALIGNMENT)",
+        "tests/15-departments.test.js"
+      ],
+      "debts": [
+        "td-004",
+        "pe-006",
+        "pe-011",
+        "pe-010",
+        "pe-009"
+      ],
+      "status": "warning"
+    },
+    {
+      "id": "data/nodes.json",
+      "cluster": "data",
+      "x": 200,
+      "y": 220,
+      "role": "content node source — the authoritative list of all content slugs",
+      "reads": [],
+      "writes": [],
+      "loadedBy": [
+        "lib/build-index.js (primary consumer — reads on every build)"
+      ],
+      "testedBy": [
+        "tests/01-content-pipeline.test.js",
+        "tests/08-build-vextreme.test.js (KEY-ALIGNMENT)"
+      ],
+      "debts": [
+        "td-004",
+        "td-006",
+        "od-002",
+        "od-006",
+        "pe-006",
+        "pe-011",
+        "pe-010",
+        "pe-009"
+      ],
+      "status": "warning"
+    },
+    {
+      "id": "data/viewmodels.json",
+      "cluster": "data",
+      "x": 330,
+      "y": 220,
+      "role": "per-slug viewmodel overrides — demo/specimen pages that aren't content nodes",
+      "reads": [],
+      "writes": [],
+      "loadedBy": [
+        "lib/build-index.js (buildViewmodel reads overrides)",
+        "lib/build-vextreme.js (resolveAllSlugs merges these with slugMap)"
+      ],
+      "testedBy": [
+        "tests/07-viewmodel.test.js",
+        "tests/08-build-vextreme.test.js"
+      ],
+      "debts": [],
+      "status": "good"
+    },
+    {
+      "id": "lib/append-session-continuation.js",
+      "cluster": "lib",
+      "x": 590,
+      "y": 90,
+      "role": "append-only continuity helper — appends a same-session continuation block at EOF without treating the VXG marker as an insertion anchor",
+      "reads": [
+        "docs/continuity/batch-{NNN}/{YYYY-MM-DD-session-0NN}.md (target session file)",
+        "{continuation}.md (caller-provided continuation block)"
+      ],
+      "writes": [
+        "docs/continuity/batch-{NNN}/{YYYY-MM-DD-session-0NN}.md (append-only EOF continuation)"
+      ],
+      "loadedBy": [
+        "manual run: node lib/append-session-continuation.js <session-file.md> <continuation.md>",
+        "tests/24-append-session-continuation.test.js"
+      ],
+      "testedBy": [
+        "tests/24-append-session-continuation.test.js"
+      ],
+      "debts": [],
+      "status": "good"
+    },
+    {
+      "id": "lib/apply-content-intents.js",
+      "cluster": "lib",
+      "x": 720,
+      "y": 90,
+      "role": "applies config/content-intents.json's pending entries — mutates pages/*.html meta tags and data/arcs-v2.json's auto-managed sections, then runs the existing sanity-check pipeline",
+      "reads": [
+        "config/content-intents.json",
+        "pages/*.html (only the slugs named by pending intents)",
+        "data/arcs-v2.json",
+        "data/departments.json (validation only)"
+      ],
+      "writes": [
+        "pages/*.html (meta tag upserts, only for slugs named by pending intents)",
+        "data/arcs-v2.json (auto-managed section only)",
+        "config/content-intents.json (marks applied intents, with appliedAt)"
+      ],
+      "loadedBy": [
+        "manual run: node lib/apply-content-intents.js",
+        "tests/18-apply-content-intents.test.js"
+      ],
+      "testedBy": [
+        "tests/18-apply-content-intents.test.js"
+      ],
+      "debts": [
+        "od-009",
+        "od-008"
+      ],
+      "status": "warning"
+    },
+    {
+      "id": "lib/arc-nav.js",
+      "cluster": "lib",
+      "x": 850,
+      "y": 90,
+      "role": "v1 Squarespace-era arc nav — DO NOT USE for God Script pages",
+      "reads": [
+        "window.VEXTREME_ARCS (old arcs.json format)",
+        "window.PAGE_ARCS (set per-page by the embedding loader)",
+        "window.VEXTREME_PAGES (renderModes registry)"
+      ],
+      "writes": [
+        "innerHTML of #arcNavMount"
+      ],
+      "loadedBy": [
+        "lib/vextreme.js (v1 runtime — loadScript of /lib/arc-nav.js; squarespace-injection.html only loads vextreme.js)"
+      ],
+      "testedBy": [],
+      "debts": [
+        "od-006",
+        "pe-002",
+        "pe-007"
+      ],
+      "status": "critical"
+    },
+    {
+      "id": "lib/audit-pages.js",
+      "cluster": "lib",
+      "x": 980,
+      "y": 90,
+      "role": "page wiring auditor — read-only report of which pages/*.html are wired to a God Script, blocked, or intentionally skipped",
+      "reads": [
+        "pages/*.html (checks for a dist/vextreme-{slug}.js script src)",
+        "dist/*.js (checks which God Scripts exist)"
+      ],
+      "writes": [
+        "stdout only — read-only, changes nothing"
+      ],
+      "loadedBy": [
+        "manual run: node lib/audit-pages.js",
+        "CLAUDE.md (points here as the wiring-status source of truth)",
+        "lib/check-key-alignment.js (imports SKIP_PAGES + getPageSlugs — reuses the skip list instead of duplicating it)",
+        "lib/build-index.js (SKIP_PAGES + getPageSlugs, feeds auto-discovery)",
+        "lib/build-archives.js (same, independently — see pe-011)",
+        "tests/15-departments.test.js",
+        "tests/20-roles.test.js",
+        "tests/28-build-terrain-map.test.js"
+      ],
+      "testedBy": [],
+      "debts": [
+        "pe-002",
+        "pe-010"
+      ],
+      "status": "critical"
+    },
+    {
+      "id": "lib/auto-discover-nodes.js",
+      "cluster": "lib",
+      "x": 1110,
+      "y": 90,
+      "role": "synthesizes a node-shaped object for any pages/*.html file with no data/nodes.json entry, so adding a page alone is enough to make it visible",
+      "reads": [
+        "pages/*.html (title + optional vex:department/vex:workType meta tags)",
+        "wip/*.html (title only, via discoverWipDrafts)"
+      ],
+      "writes": [
+        "nothing — pure in-memory synthesis, never persisted to data/nodes.json"
+      ],
+      "loadedBy": [
+        "lib/build-index.js (feeds data/index.json's slugMap/arcMap/departmentMap)",
+        "lib/build-archives.js (feeds the Unsorted section — see pe-011 for why this is two call sites, not one)",
+        "lib/check-key-alignment.js (discoverWipDrafts, feeds report.wip.htmlDrafts)",
+        "tests/16-auto-discover-nodes.test.js",
+        "tests/15-departments.test.js (integration test)",
+        "tests/21-wip-drafts.test.js"
+      ],
+      "testedBy": [
+        "tests/16-auto-discover-nodes.test.js",
+        "tests/21-wip-drafts.test.js"
+      ],
+      "debts": [
+        "pe-011"
+      ],
+      "status": "warning"
+    },
+    {
+      "id": "lib/build-arc-bundles.js",
+      "cluster": "lib",
+      "x": 1240,
+      "y": 90,
+      "role": "arc-chunked language bundle assembler — the od-001/td-006 pilot, opt-in per arc",
+      "reads": [
+        "data/arcs-v2.json (bundlingStrategy per arc)",
+        "data/nodes.json (arc section slugs, via data/arcs-v2.json)",
+        "data/viewmodels.json (per-slug scope overrides)",
+        "data/strings/compiled/scopes/{category}/{scope}.{lang}.json (lib/strings-compile.js's output)",
+        "lib/vex-config.js"
+      ],
+      "writes": [
+        "data/strings/compiled/arcs/{arcId}.{lang}.json (one per opted-in arc per language present)",
+        "data/strings/compiled/arcs/index.json (which arcs are chunked, their langs, key counts)"
+      ],
+      "loadedBy": [
+        "manual run: node lib/build-arc-bundles.js",
+        ".github/workflows/build-index.yml (after strings-compile.js, before build-vextreme.js)",
+        "tests/26-build-arc-bundles.test.js"
+      ],
+      "testedBy": [
+        "tests/26-build-arc-bundles.test.js"
+      ],
+      "debts": [
+        "td-006"
+      ],
+      "status": "warning"
+    },
+    {
+      "id": "lib/build-archives.js",
+      "cluster": "lib",
+      "x": 590,
+      "y": 220,
+      "role": "generates pages/archives.html — the complete page registry: every arc's slugs as ported/missing cells, plus unsorted and dev/demo pages",
+      "reads": [
+        "data/nodes.json",
+        "data/arcs-v2.json",
+        "data/viewmodels.json",
+        "data/departments.json",
+        "data/strings/compiled/strings.en.json",
+        "data/strings/compiled/manifest.json",
+        "pages/*.html (existence check, per slug, for the ported/missing cell state; also read in full via lib/auto-discover-nodes.js for any slug with no nodes.json entry)",
+        "lib/audit-pages.js (SKIP_PAGES, getPageSlugs)",
+        "lib/auto-discover-nodes.js (discoverOrphanNodes, readPageFromDisk)"
+      ],
+      "writes": [
+        "pages/archives.html"
+      ],
+      "loadedBy": [
+        "manual run: node lib/build-archives.js",
+        ".github/workflows/build-index.yml"
+      ],
+      "testedBy": [],
+      "debts": [
+        "pe-011"
+      ],
+      "status": "critical"
+    },
+    {
+      "id": "lib/build-ecosystem-hub.js",
+      "cluster": "lib",
+      "x": 720,
+      "y": 220,
+      "role": "generates pages/ecosystem-hub.html — the admin+AI-facing system state dashboard",
+      "reads": [
+        "data/index.json (live fetch, browser — including departmentMap/departmentMeta)",
+        "data/status.json (live fetch, browser)",
+        "data/status/narrative.json (live fetch, browser)",
+        "data/lessons.json (live fetch, browser)",
+        "data/council-kernel.json (live fetch, browser)"
+      ],
+      "writes": [
+        "pages/ecosystem-hub.html"
+      ],
+      "loadedBy": [
+        "manual run: node lib/build-ecosystem-hub.js",
+        ".github/workflows/build-index.yml (CI, Session 022)",
+        "tests/12-ecosystem-hub.test.js"
+      ],
+      "testedBy": [
+        "tests/12-ecosystem-hub.test.js"
+      ],
+      "debts": [
+        "od-002"
+      ],
+      "status": "warning"
+    },
+    {
+      "id": "lib/build-index-page.js",
+      "cluster": "lib",
+      "x": 850,
+      "y": 220,
+      "role": "generates index.html — the root landing page, arc hub links plus the 5 most recently added nodes",
+      "reads": [
+        "data/nodes.json",
+        "data/arcs-v2.json",
+        "pages/*.html (existence check, per slug)"
+      ],
+      "writes": [
+        "index.html"
+      ],
+      "loadedBy": [
+        ".github/workflows/build-index.yml"
+      ],
+      "testedBy": [],
+      "debts": [
+        "pe-009"
+      ],
+      "status": "critical"
+    },
+    {
+      "id": "lib/build-index.js",
+      "cluster": "lib",
+      "x": 980,
+      "y": 220,
+      "role": "content pipeline assembler — reads source data, writes the single pre-built index everything reads from",
+      "reads": [
+        "data/nodes.json",
+        "data/arcs-v2.json",
+        "data/viewmodels.json",
+        "data/departments.json",
+        "pages/*.html (via lib/auto-discover-nodes.js, for any slug with no nodes.json entry)",
+        "lib/audit-pages.js (SKIP_PAGES, getPageSlugs)",
+        "lib/auto-discover-nodes.js (discoverOrphanNodes, readPageFromDisk)",
+        "lib/vex-config.js"
+      ],
+      "writes": [
+        "data/index.json"
+      ],
+      "loadedBy": [
+        "lib/vextreme-index-v2.js (browser reads index.json via CDN)",
+        "lib/build-vextreme.js (reads index.json for slugMap + supportedLangs)",
+        "lib/check-key-alignment.js",
+        "tests/01-content-pipeline.test.js",
+        "tests/03-browser-nav.test.js",
+        "tests/07-viewmodel.test.js",
+        "tests/15-departments.test.js"
+      ],
+      "testedBy": [
+        "tests/01-content-pipeline.test.js",
+        "tests/03-browser-nav.test.js",
+        "tests/07-viewmodel.test.js",
+        "tests/15-departments.test.js",
+        "tests/16-auto-discover-nodes.test.js"
+      ],
+      "debts": [
+        "td-004",
+        "pe-011",
+        "pe-009"
+      ],
+      "status": "warning"
+    },
+    {
+      "id": "lib/build-lattice-headers.js",
+      "cluster": "lib",
+      "x": 1110,
+      "y": 220,
+      "role": "LATTICE header generator — reads this JSON, writes the matching in-file header into each eligible node's own file",
+      "reads": [
+        "docs/lattice-map.json"
+      ],
+      "writes": [
+        "LATTICE:BEGIN..LATTICE:END block in every eligible node's own file"
+      ],
+      "loadedBy": [
+        "tests/11-lattice-headers.test.js",
+        "manual run after editing docs/lattice-map.json"
+      ],
+      "testedBy": [
+        "tests/11-lattice-headers.test.js"
+      ],
+      "debts": [
+        "od-010",
+        "pe-009"
+      ],
+      "status": "warning"
+    },
+    {
+      "id": "lib/build-lessons.js",
+      "cluster": "lib",
+      "x": 1240,
+      "y": 220,
+      "role": "compiles config/lessons/*.json into data/lessons.json — the read-side manifest the Ecosystem Hub fetches",
+      "reads": [
+        "config/lessons/*.json (every lesson file, both schema generations)"
+      ],
+      "writes": [
+        "data/lessons.json"
+      ],
+      "loadedBy": [
+        "manual run: node lib/build-lessons.js",
+        ".github/workflows/build-index.yml (CI, Session 022)",
+        "pages/ecosystem-hub.html (live fetch of the compiled output)",
+        "tests/17-build-lessons.test.js"
+      ],
+      "testedBy": [
+        "tests/17-build-lessons.test.js"
+      ],
+      "debts": [],
+      "status": "good"
+    },
+    {
+      "id": "lib/build-roles-page.js",
+      "cluster": "lib",
+      "x": 590,
+      "y": 350,
+      "role": "generates pages/roles-index.html — the traceable roles/contributions dashboard",
+      "reads": [
+        "data/roles.json (live fetch, browser)"
+      ],
+      "writes": [
+        "pages/roles-index.html"
+      ],
+      "loadedBy": [
+        "manual run: node lib/build-roles-page.js",
+        ".github/workflows/build-index.yml (CI)",
+        "tests/20-roles.test.js"
+      ],
+      "testedBy": [
+        "tests/20-roles.test.js"
+      ],
+      "debts": [],
+      "status": "good"
+    },
+    {
+      "id": "lib/build-roles.js",
+      "cluster": "lib",
+      "x": 720,
+      "y": 350,
+      "role": "compiles data/council-kernel.json's roster + data/status/*.json's lens fields into data/roles.json — the traceable roles/contributions registry",
+      "reads": [
+        "data/council-kernel.json",
+        "data/status/open-discussions.json",
+        "data/status/tech-debt.json",
+        "data/status/planned-enhancements.json"
+      ],
+      "writes": [
+        "data/roles.json"
+      ],
+      "loadedBy": [
+        "manual run: node lib/build-roles.js",
+        ".github/workflows/build-index.yml (CI)",
+        "pages/roles-index.html (live fetch of its output data/roles.json — via lib/build-roles-page.js)",
+        "tests/20-roles.test.js"
+      ],
+      "testedBy": [
+        "tests/20-roles.test.js"
+      ],
+      "debts": [],
+      "status": "good"
+    },
+    {
+      "id": "lib/build-sitemap.js",
+      "cluster": "lib",
+      "x": 850,
+      "y": 350,
+      "role": "generates sitemap.xml — lists only pages that actually exist, so crawlers never hit a 404",
+      "reads": [
+        "data/nodes.json",
+        "pages/*.html (existence check only, per slug)"
+      ],
+      "writes": [
+        "sitemap.xml"
+      ],
+      "loadedBy": [
+        ".github/workflows/build-index.yml"
+      ],
+      "testedBy": [],
+      "debts": [
+        "pe-009"
+      ],
+      "status": "critical"
+    },
+    {
+      "id": "lib/build-status.js",
+      "cluster": "lib",
+      "x": 980,
+      "y": 350,
+      "role": "system health manifest assembler — reads hand-authored status/*.json plus the strings manifest and key-alignment report, writes data/status.json",
+      "reads": [
+        "data/strings/compiled/manifest.json",
+        "data/strings/compiled/strings.en.json",
+        "data/index.json",
+        "data/strings/compiled/scopes/demo/ (recursive walk for fixture detection)",
+        "data/status/tech-debt.json",
+        "data/status/planned-enhancements.json",
+        "data/status/assumptions.json",
+        "data/status/open-discussions.json",
+        "docs/lattice-map.json",
+        "lib/ and widgets/ directory listings (.js files, for coverage denominator)",
+        "lib/check-key-alignment.js (checkKeyAlignment() — orphan pages, wip collisions/duplicate intents)"
+      ],
+      "writes": [
+        "data/status.json"
+      ],
+      "loadedBy": [
+        "pages/ecosystem-hub.html (live fetch of its output data/status.json)",
+        ".github/workflows/build-index.yml (CI, Session 022)",
+        "tests/10-build-status.test.js",
+        "tests/21-wip-drafts.test.js"
+      ],
+      "testedBy": [
+        "tests/10-build-status.test.js",
+        "tests/21-wip-drafts.test.js"
+      ],
+      "debts": [
+        "od-010"
+      ],
+      "status": "warning"
+    },
+    {
+      "id": "lib/build-sw.js",
+      "cluster": "lib",
+      "x": 1110,
+      "y": 350,
+      "role": "Service Worker generator — reads dist/ filenames + arc-chunked bundle index, writes sw.js",
+      "reads": [
+        "dist/*.js (all God Script filenames)",
+        "data/strings/compiled/arcs/index.json (opted-in arc bundles, if any)",
+        "git commit hash"
+      ],
+      "writes": [
+        "sw.js"
+      ],
+      "loadedBy": [
+        ".github/workflows/build-index.yml",
+        "tests/09-build-sw.test.js"
+      ],
+      "testedBy": [
+        "tests/09-build-sw.test.js"
+      ],
+      "debts": [
+        "td-006"
+      ],
+      "status": "warning"
+    },
+    {
+      "id": "lib/build-terrain-map.js",
+      "cluster": "lib",
+      "x": 1240,
+      "y": 350,
+      "role": "terrain-map write side — computes layout, health, edges, and real screenshots into one deterministic JSON",
+      "reads": [
+        "docs/lattice-map.json (every node's role/reads/writes/loadedBy/testedBy)",
+        "data/status/tech-debt.json (health cross-reference)",
+        "data/status/open-discussions.json (health cross-reference)",
+        "data/status/planned-enhancements.json (health cross-reference)",
+        "data/nodes.json (real page titles/arcKeys for the screens layer)",
+        "docs/screenshots/*.png (directory listing — which pages have a real per-language screenshot)"
+      ],
+      "writes": [
+        "data/terrain-map.json"
+      ],
+      "loadedBy": [
+        "manual run: node lib/build-terrain-map.js",
+        ".github/workflows/build-index.yml (CI)",
+        "pages/terrain-map.html (live fetch of its output)",
+        "tests/28-build-terrain-map.test.js"
+      ],
+      "testedBy": [
+        "tests/28-build-terrain-map.test.js"
+      ],
+      "debts": [],
+      "status": "good"
+    },
+    {
+      "id": "lib/build-vextreme.js",
+      "cluster": "lib",
+      "x": 590,
+      "y": 480,
+      "role": "God Script assembler — reads index + string bundles, writes one self-contained dist/ file per page",
+      "reads": [
+        "data/index.json",
+        "data/viewmodels.json",
+        "data/strings/compiled/scopes/{category}/{scope}.en.json",
+        "widgets/sw-register.js",
+        "widgets/fab-lang.js",
+        "widgets/fab-demo.js",
+        "lib/vextreme-index-v2.js (arc-nav feature, via srcDir: LIB_DIR in FEATURES registry)",
+        "lib/vex-config.js"
+      ],
+      "writes": [
+        "dist/vextreme-{slug}.js (one per assembled slug)"
+      ],
+      "loadedBy": [
+        "tests/08-build-vextreme.test.js",
+        ".github/workflows/build-index.yml (auto-run after build-index.js)"
+      ],
+      "testedBy": [
+        "tests/08-build-vextreme.test.js"
+      ],
+      "debts": [
+        "td-006",
+        "pe-007"
+      ],
+      "status": "warning"
+    },
+    {
+      "id": "lib/check-design-tokens.js",
+      "cluster": "lib",
+      "x": 720,
+      "y": 480,
+      "role": "non-blocking-in-spirit, blocking-in-practice check — every var(--token) reference in generated pages and stylesheets must resolve against a real token",
+      "reads": [
+        "styles/design-system.css (the global token source)",
+        "lib/build-*.js (every generator, scanned for inline <style> content)",
+        "pages/*.html (every static page, scanned for inline <style> content)",
+        "styles/*.css (every companion stylesheet, credited with global tokens unconditionally — see alwaysGlobal)"
+      ],
+      "writes": [
+        "stdout only — read-only, changes nothing"
+      ],
+      "loadedBy": [
+        "manual run: node lib/check-design-tokens.js",
+        "tests/13-check-design-tokens.test.js (also runs it as a CI-gating integration test)"
+      ],
+      "testedBy": [
+        "tests/13-check-design-tokens.test.js"
+      ],
+      "debts": [
+        "pe-009"
+      ],
+      "status": "warning"
+    },
+    {
+      "id": "lib/check-key-alignment.js",
+      "cluster": "lib",
+      "x": 850,
+      "y": 480,
+      "role": "non-blocking CI check — compares slug/arc keys across nodes.json, arcs-v2.json, index.json, cross-checks pages/ and wip/, and reports drift",
+      "reads": [
+        "data/nodes.json",
+        "data/arcs-v2.json",
+        "data/index.json",
+        "data/viewmodels.json",
+        "wip/*.json (_meta.slug field only)",
+        "wip/*.html (filename-derived slug + title, via lib/auto-discover-nodes.js discoverWipDrafts)",
+        "lib/audit-pages.js (SKIP_PAGES, getPageSlugs)"
+      ],
+      "writes": [
+        "stdout (JSON report with --json flag); PR comment via .github/workflows/key-alignment.yml"
+      ],
+      "loadedBy": [
+        ".github/workflows/key-alignment.yml (auto-run on pull_request)",
+        "tests/08-build-vextreme.test.js (KEY-ALIGNMENT tests)",
+        "lib/build-status.js (feeds the contentIntegrity notice category)",
+        "lib/apply-content-intents.js (validates department/arcKey against the same maps)",
+        "tests/21-wip-drafts.test.js"
+      ],
+      "testedBy": [
+        "tests/08-build-vextreme.test.js",
+        "tests/21-wip-drafts.test.js"
+      ],
+      "debts": [
+        "td-003",
+        "od-010"
+      ],
+      "status": "warning"
+    },
+    {
+      "id": "lib/check-lattice-edges.js",
+      "cluster": "lib",
+      "x": 980,
+      "y": 480,
+      "role": "pe-012 lattice-edge drift detector — verifies the map's claimed reads/writes/loadedBy edges against actual code",
+      "reads": [
+        "docs/lattice-map.json (every node's claimed edges)",
+        "lib/, tests/, widgets/, components/ *.js sources (mention + require() scans)",
+        "any file a node names in reads/writes/loadedBy (existence + mention checks)"
+      ],
+      "writes": [
+        "stdout only — read-only; exit 1 only with --strict (not wired into CI)"
+      ],
+      "loadedBy": [
+        "manual run: node lib/check-lattice-edges.js",
+        "tests/23-check-lattice-edges.test.js"
+      ],
+      "testedBy": [
+        "tests/23-check-lattice-edges.test.js"
+      ],
+      "debts": [],
+      "status": "good"
+    },
+    {
+      "id": "lib/check-map-bindings.js",
+      "cluster": "lib",
+      "x": 1110,
+      "y": 480,
+      "role": "pe-013 layered-maps drift detector — verifies the bindings between cold-start maps and the files they claim to bind",
+      "reads": [
+        "CLAUDE.md (CONTEXT-NOTES.md pointer)",
+        "docs/continuity/INDEX.md (batch registry, Active batch line, Last updated line)",
+        "docs/continuity/CONTEXT-NOTES.md (Notes table rows)",
+        "docs/continuity/context-notes/ directory listing",
+        "active batch directory listing (session filenames)",
+        "lib/session-bootstrap.js (requires parseLastSession/parseBatchRegistry/latestSessionFile)"
+      ],
+      "writes": [
+        "stdout only — read-only, changes nothing; exit code 1 on drift"
+      ],
+      "loadedBy": [
+        "manual run: node lib/check-map-bindings.js",
+        "lib/session-bootstrap.js (report subprocess)",
+        "tests/22-check-map-bindings.test.js"
+      ],
+      "testedBy": [
+        "tests/22-check-map-bindings.test.js"
+      ],
+      "debts": [],
+      "status": "good"
+    },
+    {
+      "id": "lib/detect-wip-promotions.js",
+      "cluster": "lib",
+      "x": 1240,
+      "y": 480,
+      "role": "detects a wip/*.html → pages/*.html move within a PR's diff, so a promotion shows up as a positive PR notice instead of silence or a false 'broken reference'",
+      "reads": [
+        "git diff --name-status -M output between two refs (wip/ and pages/ paths only)"
+      ],
+      "writes": [
+        "stdout (JSON with --json flag); PR comment via .github/workflows/key-alignment.yml"
+      ],
+      "loadedBy": [
+        "manual run: node lib/detect-wip-promotions.js <base-ref> [<head-ref>]",
+        ".github/workflows/key-alignment.yml (CI, Session 022 continued)",
+        "tests/21-wip-drafts.test.js"
+      ],
+      "testedBy": [
+        "tests/21-wip-drafts.test.js"
+      ],
+      "debts": [],
+      "status": "good"
+    },
+    {
+      "id": "lib/logger-codes.js",
+      "cluster": "lib",
+      "x": 590,
+      "y": 610,
+      "role": "event code registry — the CODES constant every logger.warn/error call references",
+      "reads": [],
+      "writes": [],
+      "loadedBy": [
+        "lib/build-index.js",
+        "lib/build-vextreme.js",
+        "lib/build-lattice-headers.js",
+        "lib/strings-compile.js",
+        "lib/strings-check.js"
+      ],
+      "testedBy": [],
+      "debts": [
+        "pe-009"
+      ],
+      "status": "critical"
+    },
+    {
+      "id": "lib/logger.js",
+      "cluster": "lib",
+      "x": 720,
+      "y": 610,
+      "role": "structured logger — every build script's warn/info/error call goes through here",
+      "reads": [],
+      "writes": [
+        "stdout/stderr via console.warn/log/error"
+      ],
+      "loadedBy": [
+        "lib/build-index.js",
+        "lib/build-vextreme.js",
+        "lib/build-lattice-headers.js",
+        "lib/strings-compile.js",
+        "lib/strings-check.js",
+        "every other lib/build-*.js and lib/check-*.js script that logs a warning"
+      ],
+      "testedBy": [],
+      "debts": [
+        "pe-009"
+      ],
+      "status": "critical"
+    },
+    {
+      "id": "lib/session-bootstrap.js",
+      "cluster": "lib",
+      "x": 850,
+      "y": 610,
+      "role": "one-shot session-start state report — read-only, gathers what would otherwise be several manual checks into one command",
+      "reads": [
+        "docs/continuity/INDEX.md (last logged session, batch registry)",
+        "docs/continuity/batch-00N/ directory listing (newest YYYY-MM-DD-session-0NN.md file, when the active batch is a directory)",
+        "data/status.json (open item counts per category)",
+        "git log / git status (via subprocess)",
+        "node lib/build-lattice-headers.js --check (via subprocess)",
+        "node lib/check-design-tokens.js (via subprocess)",
+        "node lib/check-map-bindings.js (via subprocess)",
+        "node --test tests/*.test.js (via subprocess, with VEX_BOOTSTRAP_NESTED=1 to prevent recursion)"
+      ],
+      "writes": [
+        "stdout only — read-only, changes nothing"
+      ],
+      "loadedBy": [
+        "manual run: node lib/session-bootstrap.js",
+        "tests/14-session-bootstrap.test.js",
+        "lib/check-map-bindings.js (requires the parse/latest helpers)"
+      ],
+      "testedBy": [
+        "tests/14-session-bootstrap.test.js"
+      ],
+      "debts": [],
+      "status": "good"
+    },
+    {
+      "id": "lib/strings-check.js",
+      "cluster": "lib",
+      "x": 980,
+      "y": 610,
+      "role": "strings pipeline integrity check — runs before compile, catches missing EN text, stale translations, and orphaned keys",
+      "reads": [
+        "data/strings/source/**/*.json",
+        "data/strings/migrations.json",
+        "data/strings/compiled/manifest.json (previous compile's content hashes)",
+        "lib/vex-config.js (Language.EN)"
+      ],
+      "writes": [
+        "data/strings/source/**/*.json (in-place mutation: remap/delete keys, tag stale translations)",
+        "data/strings/orphans.json (quarantined unknown keys)"
+      ],
+      "loadedBy": [
+        "manual run: node lib/strings-check.js (intended to run before lib/strings-compile.js)"
+      ],
+      "testedBy": [],
+      "debts": [
+        "pe-005",
+        "pe-009"
+      ],
+      "status": "critical"
+    },
+    {
+      "id": "lib/strings-compile.js",
+      "cluster": "lib",
+      "x": 1110,
+      "y": 610,
+      "role": "strings pipeline compiler — reads source JSON, writes compiled bundles and manifest",
+      "reads": [
+        "data/strings/source/**/*.json",
+        "lib/vex-config.js"
+      ],
+      "writes": [
+        "data/strings/compiled/strings.{lang}.json (flat bundle, legacy fallback)",
+        "data/strings/compiled/scopes/{category}/{scope}.{lang}.json (per-scope bundles)",
+        "data/strings/compiled/manifest.json (content hashes per key)"
+      ],
+      "loadedBy": [
+        "lib/build-vextreme.js (loads its output data/strings/compiled/scopes bundles for God Script assembly)",
+        "widgets/fab-lang.js (fetches its output data/strings/compiled/scopes bundles at runtime for JA)",
+        "lib/strings-check.js (reads its output data/strings/compiled/manifest.json for stale detection)",
+        "tests/02-strings-pipeline.test.js"
+      ],
+      "testedBy": [
+        "tests/02-strings-pipeline.test.js"
+      ],
+      "debts": [
+        "td-005"
+      ],
+      "status": "warning"
+    },
+    {
+      "id": "lib/trace-string-usage.js",
+      "cluster": "lib",
+      "x": 1240,
+      "y": 610,
+      "role": "string reverse-tracer — data-i18n usage in pages/wip HTML cross-referenced against the compiled manifest",
+      "reads": [
+        "pages/*.html (data-i18n attribute scan)",
+        "wip/*.html (data-i18n attribute scan)",
+        "data/strings/compiled/manifest.json (per-key language coverage)"
+      ],
+      "writes": [
+        "stdout only — read-only, changes nothing"
+      ],
+      "loadedBy": [
+        "manual run: node lib/trace-string-usage.js",
+        "tests/27-trace-string-usage.test.js"
+      ],
+      "testedBy": [
+        "tests/27-trace-string-usage.test.js"
+      ],
+      "debts": [],
+      "status": "good"
+    },
+    {
+      "id": "lib/validate-blueprint.js",
+      "cluster": "lib",
+      "x": 590,
+      "y": 740,
+      "role": "blueprint consistency validator — confirms every id in blueprint.json has a matching config file and vex-config constant",
+      "reads": [
+        "blueprint.json",
+        "config/_meta.json (required-field definitions per type)",
+        "config/{categories,features,asset-types,templates}/{id}.json",
+        "lib/vex-config.js (Category, Feature, AssetType constants)"
+      ],
+      "writes": [
+        "stdout only — read-only, changes nothing"
+      ],
+      "loadedBy": [
+        "manual run: node lib/validate-blueprint.js",
+        "tests/06-blueprint.test.js"
+      ],
+      "testedBy": [
+        "tests/06-blueprint.test.js"
+      ],
+      "debts": [
+        "pe-009"
+      ],
+      "status": "warning"
+    },
+    {
+      "id": "lib/vex-config.js",
+      "cluster": "lib",
+      "x": 720,
+      "y": 740,
+      "role": "constants hub — pure declarations, no I/O",
+      "reads": [],
+      "writes": [],
+      "loadedBy": [
+        "lib/build-index.js",
+        "lib/build-vextreme.js",
+        "lib/strings-compile.js",
+        "lib/strings-check.js",
+        "lib/strings-export.js",
+        "lib/strings-import.js",
+        "lib/build-archives.js",
+        "lib/build-specimens.js",
+        "lib/validate-blueprint.js",
+        "tests/05-vex-config.test.js",
+        "tests/06-blueprint.test.js",
+        "tests/07-viewmodel.test.js",
+        "lib/build-demo.js",
+        "lib/build-arc-bundles.js"
+      ],
+      "testedBy": [
+        "tests/05-vex-config.test.js",
+        "tests/06-blueprint.test.js"
+      ],
+      "debts": [
+        "pe-007"
+      ],
+      "status": "warning"
+    },
+    {
+      "id": "lib/vextreme-index-v2.js",
+      "cluster": "lib",
+      "x": 850,
+      "y": 740,
+      "role": "browser arc nav runtime — reads index.json at load time, renders prev/next/position into #arcNavMount",
+      "reads": [
+        "data/index.json via CDN (slugMap, arcMap, arcMeta)",
+        "window.VEX_STRINGS_EN (God Script fast path — already inlined by build-vextreme.js)",
+        "data/strings/compiled/strings.en.json via CDN (non-God-Script fallback)",
+        "localStorage (ETag cache for index + strings)"
+      ],
+      "writes": [
+        "innerHTML of #arcNavMount",
+        "localStorage (index cache, strings cache)"
+      ],
+      "loadedBy": [
+        "lib/build-vextreme.js FEATURES registry (Feature.ARC_NAV, srcDir: LIB_DIR)",
+        "non-God-Script pages via shell.js + vextreme.js"
+      ],
+      "testedBy": [
+        "tests/03-browser-nav.test.js (data logic; no browser render tests yet)"
+      ],
+      "debts": [],
+      "status": "good"
+    },
+    {
+      "id": "pages/terrain-map.html",
+      "cluster": "root",
+      "x": 1630,
+      "y": 90,
+      "role": "the terrain map's read side — a navigable health/dependency atlas, live-fetches data/terrain-map.json",
+      "reads": [
+        "data/terrain-map.json (live fetch, browser)"
+      ],
+      "writes": [],
+      "loadedBy": [
+        "manual browsing only — not embedded elsewhere yet"
+      ],
+      "testedBy": [],
+      "debts": [],
+      "status": "good"
+    },
+    {
+      "id": "sw.js",
+      "cluster": "root",
+      "x": 1500,
+      "y": 220,
+      "role": "Service Worker — pre-caches all God Scripts and core assets at install",
+      "reads": [],
+      "writes": [],
+      "loadedBy": [
+        "widgets/sw-register.js (registers this file in every God Script page)"
+      ],
+      "testedBy": [
+        "tests/09-build-sw.test.js"
+      ],
+      "debts": [],
+      "status": "good"
+    },
+    {
+      "id": "widgets/fab-lang.js",
+      "cluster": "widgets",
+      "x": 1890,
+      "y": 90,
+      "role": "browser language switcher FAB — fetches JA/ZH scope or arc bundles, applies [data-i18n] swaps",
+      "reads": [
+        "window.VEX_STRING_SCOPES",
+        "window.VEX_STRING_CATEGORY",
+        "window.VEX_SUPPORTED_LANGS",
+        "window.VEX_STRING_ARC_BUNDLE (arc-chunked bundling pilot, checked before the scope path)",
+        "data/strings/compiled/scopes/{category}/{scope}.{lang}.json via CDN",
+        "data/strings/compiled/arcs/{arc}.{lang}.json via CDN (when VEX_STRING_ARC_BUNDLE is set)",
+        "localStorage (LS_LANG — the selected language preference only, not fetched string content)"
+      ],
+      "writes": [
+        "innerHTML / textContent of [data-i18n] elements",
+        "localStorage (LS_LANG — selected language preference)"
+      ],
+      "loadedBy": [
+        "lib/build-vextreme.js (inlined as lang feature in God Scripts)",
+        "legacy pages via direct CDN script tag (pre-God-Script pattern)"
+      ],
+      "testedBy": [],
+      "debts": [
+        "td-002",
+        "td-006"
+      ],
+      "status": "critical"
+    },
+    {
+      "id": "widgets/sw-register.js",
+      "cluster": "widgets",
+      "x": 2020,
+      "y": 90,
+      "role": "Service Worker registration — activates offline caching on first page load",
+      "reads": [
+        "navigator.serviceWorker API"
+      ],
+      "writes": [
+        "Service Worker registration in browser"
+      ],
+      "loadedBy": [
+        "lib/build-vextreme.js (inlined as core module in every God Script, default: true)"
+      ],
+      "testedBy": [
+        "tests/09-build-sw.test.js (tests sw.js generation, not this file directly)"
+      ],
+      "debts": [],
+      "status": "good"
+    }
+  ],
+  "edges": [
+    [
+      "data/council-kernel.json",
+      "lib/build-roles.js"
+    ],
+    [
+      "data/index.json",
+      "lib/build-ecosystem-hub.js"
+    ],
+    [
+      "data/index.json",
+      "lib/build-vextreme.js"
+    ],
+    [
+      "data/index.json",
+      "lib/check-key-alignment.js"
+    ],
+    [
+      "data/index.json",
+      "lib/vextreme-index-v2.js"
+    ],
+    [
+      "data/nodes.json",
+      "lib/build-index.js"
+    ],
+    [
+      "lib/apply-content-intents.js",
+      "data/arcs-v2.json"
+    ],
+    [
+      "lib/apply-content-intents.js",
+      "data/departments.json"
+    ],
+    [
+      "lib/audit-pages.js",
+      "data/departments.json"
+    ],
+    [
+      "lib/audit-pages.js",
+      "lib/build-archives.js"
+    ],
+    [
+      "lib/audit-pages.js",
+      "lib/build-terrain-map.js"
+    ],
+    [
+      "lib/audit-pages.js",
+      "lib/check-key-alignment.js"
+    ],
+    [
+      "lib/auto-discover-nodes.js",
+      "data/departments.json"
+    ],
+    [
+      "lib/auto-discover-nodes.js",
+      "lib/build-archives.js"
+    ],
+    [
+      "lib/auto-discover-nodes.js",
+      "lib/check-key-alignment.js"
+    ],
+    [
+      "lib/build-arc-bundles.js",
+      "data/arcs-v2.json"
+    ],
+    [
+      "lib/build-arc-bundles.js",
+      "data/viewmodels.json"
+    ],
+    [
+      "lib/build-arc-bundles.js",
+      "lib/build-index.js"
+    ],
+    [
+      "lib/build-arc-bundles.js",
+      "lib/build-vextreme.js"
+    ],
+    [
+      "lib/build-arc-bundles.js",
+      "lib/strings-compile.js"
+    ],
+    [
+      "lib/build-archives.js",
+      "data/arcs-v2.json"
+    ],
+    [
+      "lib/build-archives.js",
+      "data/departments.json"
+    ],
+    [
+      "lib/build-archives.js",
+      "data/viewmodels.json"
+    ],
+    [
+      "lib/build-archives.js",
+      "lib/build-index.js"
+    ],
+    [
+      "lib/build-ecosystem-hub.js",
+      "data/council-kernel.json"
+    ],
+    [
+      "lib/build-ecosystem-hub.js",
+      "lib/build-index.js"
+    ],
+    [
+      "lib/build-index-page.js",
+      "data/arcs-v2.json"
+    ],
+    [
+      "lib/build-index-page.js",
+      "lib/build-index.js"
+    ],
+    [
+      "lib/build-index.js",
+      "data/arcs-v2.json"
+    ],
+    [
+      "lib/build-index.js",
+      "data/departments.json"
+    ],
+    [
+      "lib/build-index.js",
+      "data/viewmodels.json"
+    ],
+    [
+      "lib/build-index.js",
+      "lib/audit-pages.js"
+    ],
+    [
+      "lib/build-index.js",
+      "lib/auto-discover-nodes.js"
+    ],
+    [
+      "lib/build-index.js",
+      "lib/build-vextreme.js"
+    ],
+    [
+      "lib/build-index.js",
+      "lib/check-key-alignment.js"
+    ],
+    [
+      "lib/build-index.js",
+      "lib/vextreme-index-v2.js"
+    ],
+    [
+      "lib/build-lessons.js",
+      "lib/build-index.js"
+    ],
+    [
+      "lib/build-roles-page.js",
+      "lib/build-index.js"
+    ],
+    [
+      "lib/build-roles.js",
+      "lib/build-index.js"
+    ],
+    [
+      "lib/build-roles.js",
+      "lib/build-roles-page.js"
+    ],
+    [
+      "lib/build-sitemap.js",
+      "lib/build-index.js"
+    ],
+    [
+      "lib/build-status.js",
+      "lib/build-index.js"
+    ],
+    [
+      "lib/build-sw.js",
+      "lib/build-index.js"
+    ],
+    [
+      "lib/build-terrain-map.js",
+      "lib/build-index.js"
+    ],
+    [
+      "lib/build-terrain-map.js",
+      "pages/terrain-map.html"
+    ],
+    [
+      "lib/build-vextreme.js",
+      "data/viewmodels.json"
+    ],
+    [
+      "lib/build-vextreme.js",
+      "lib/arc-nav.js"
+    ],
+    [
+      "lib/build-vextreme.js",
+      "lib/vextreme-index-v2.js"
+    ],
+    [
+      "lib/build-vextreme.js",
+      "widgets/fab-lang.js"
+    ],
+    [
+      "lib/build-vextreme.js",
+      "widgets/sw-register.js"
+    ],
+    [
+      "lib/check-key-alignment.js",
+      "data/arcs-v2.json"
+    ],
+    [
+      "lib/check-key-alignment.js",
+      "data/viewmodels.json"
+    ],
+    [
+      "lib/check-key-alignment.js",
+      "lib/apply-content-intents.js"
+    ],
+    [
+      "lib/check-key-alignment.js",
+      "lib/build-status.js"
+    ],
+    [
+      "lib/check-key-alignment.js",
+      "lib/build-vextreme.js"
+    ],
+    [
+      "lib/logger-codes.js",
+      "lib/build-index.js"
+    ],
+    [
+      "lib/logger-codes.js",
+      "lib/build-lattice-headers.js"
+    ],
+    [
+      "lib/logger-codes.js",
+      "lib/build-vextreme.js"
+    ],
+    [
+      "lib/logger-codes.js",
+      "lib/strings-check.js"
+    ],
+    [
+      "lib/logger-codes.js",
+      "lib/strings-compile.js"
+    ],
+    [
+      "lib/logger.js",
+      "lib/build-index.js"
+    ],
+    [
+      "lib/logger.js",
+      "lib/build-lattice-headers.js"
+    ],
+    [
+      "lib/logger.js",
+      "lib/build-vextreme.js"
+    ],
+    [
+      "lib/logger.js",
+      "lib/strings-check.js"
+    ],
+    [
+      "lib/logger.js",
+      "lib/strings-compile.js"
+    ],
+    [
+      "lib/session-bootstrap.js",
+      "lib/build-lattice-headers.js"
+    ],
+    [
+      "lib/session-bootstrap.js",
+      "lib/check-design-tokens.js"
+    ],
+    [
+      "lib/session-bootstrap.js",
+      "lib/check-map-bindings.js"
+    ],
+    [
+      "lib/strings-compile.js",
+      "lib/build-vextreme.js"
+    ],
+    [
+      "lib/strings-compile.js",
+      "lib/strings-check.js"
+    ],
+    [
+      "lib/strings-compile.js",
+      "widgets/fab-lang.js"
+    ],
+    [
+      "lib/validate-blueprint.js",
+      "blueprint.json"
+    ],
+    [
+      "lib/vex-config.js",
+      "blueprint.json"
+    ],
+    [
+      "lib/vex-config.js",
+      "lib/build-arc-bundles.js"
+    ],
+    [
+      "lib/vex-config.js",
+      "lib/build-archives.js"
+    ],
+    [
+      "lib/vex-config.js",
+      "lib/build-index.js"
+    ],
+    [
+      "lib/vex-config.js",
+      "lib/build-vextreme.js"
+    ],
+    [
+      "lib/vex-config.js",
+      "lib/strings-check.js"
+    ],
+    [
+      "lib/vex-config.js",
+      "lib/strings-compile.js"
+    ],
+    [
+      "lib/vex-config.js",
+      "lib/validate-blueprint.js"
+    ],
+    [
+      "sw.js",
+      "widgets/sw-register.js"
+    ]
+  ],
+  "debtTitles": {
+    "td-002": "Old widget filenames kept for backward compat",
+    "td-003": "No HTML dead link scanner in CI",
+    "td-004": "No atomic slug rename script",
+    "td-005": "specimen-architectural-wisdoms has no string bundle",
+    "td-006": "i18n per-scope-combo bundling does not scale to multiple languages — pilot resolved for one arc, full migration still pending",
+    "td-008": "Current architecture has no structured-concurrency model — a known ceiling once server logic or multi-threaded application scope enters the ecosystem",
+    "od-010": "Fractal expansion of the continuity/lessons memory pattern into per-department standing memory, plus an audit for other single-scope foundational structures never checked for the same expansion",
+    "od-009": "Parallel/simultaneous instruction dispatch across multiple departments or orgs, instead of today's one-at-a-time processing",
+    "od-008": "Staged/proposal execution for higher-blast-radius content-management gestures (consolidation, deletion, connector rewiring)",
+    "od-002": "Should build-time content synthesis use a live LLM call, or stay session-authored?",
+    "od-003": "Future: local/lightweight model as an admin-facing chat interface, escalating to Claude instances when needed",
+    "od-006": "An 'init baseline' scaffold — separate the reusable engine from Vextreme's specific content, so a new project can fork the architecture without the content",
+    "od-007": "Future, downstream of od-006: a cross-org discovery/relationship protocol between independent instances of this architecture",
+    "pe-001": "PWA icons",
+    "pe-002": "Port remaining blocked pages to God Scripts",
+    "pe-003": "Spiral portal FAB (vex-fab.js)",
+    "pe-004": "Missing-key fallback: show EN text instead of raw key string",
+    "pe-005": "strings-check: audit HTML for translatable elements missing data-i18n",
+    "pe-006": "Slug rename tooling",
+    "pe-007": "Unified feature registry — collapse CORE_MODULES and FEATURE_WIDGET into one table",
+    "pe-008": "Offline mode configuration FAB (fab-offline.js)",
+    "pe-011": "Collapse lib/build-archives.js onto data/index.json instead of re-deriving from nodes.json/arcs-v2.json independently",
+    "pe-010": "Department dashboard depth — dedicated transcript library, God-Script wiring granularity",
+    "pe-009": "Expand LATTICE coverage beyond the current 27 nodes (64% of lib/+widgets/)"
+  },
+  "screens": [
+    {
+      "slug": "claude-answers-the-doubt",
+      "title": "Claude Answers the Doubt",
+      "arcKeys": [
+        "epstein",
+        "claude_journals",
+        "full_timeline"
+      ],
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/claude-answers-the-doubt.html",
+      "screenshots": {
+        "en": "docs/screenshots/claude-answers-the-doubt-en.png",
+        "ja": "docs/screenshots/claude-answers-the-doubt-ja.png"
+      }
+    },
+    {
+      "slug": "roles-index",
+      "title": "roles-index",
+      "arcKeys": [],
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/roles-index.html",
+      "screenshots": {
+        "en": "docs/screenshots/roles-index-en.png"
+      }
+    },
+    {
+      "slug": "specimen-full-translation",
+      "title": "specimen-full-translation",
+      "arcKeys": [],
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/specimen-full-translation.html",
+      "screenshots": {
+        "en": "docs/screenshots/specimen-full-translation-en.png",
+        "ja": "docs/screenshots/specimen-full-translation-ja.png"
+      }
+    },
+    {
+      "slug": "specimen-partial-translation",
+      "title": "specimen-partial-translation",
+      "arcKeys": [],
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/specimen-partial-translation.html",
+      "screenshots": {
+        "en": "docs/screenshots/specimen-partial-translation-en.png",
+        "ja": "docs/screenshots/specimen-partial-translation-ja.png"
+      }
+    },
+    {
+      "slug": "specimen-smallest-miss",
+      "title": "specimen-smallest-miss",
+      "arcKeys": [],
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/specimen-smallest-miss.html",
+      "screenshots": {
+        "en": "docs/screenshots/specimen-smallest-miss-en.png",
+        "ja": "docs/screenshots/specimen-smallest-miss-ja.png"
+      }
+    },
+    {
+      "slug": "specimens",
+      "title": "specimens",
+      "arcKeys": [],
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/specimens.html",
+      "screenshots": {
+        "en": "docs/screenshots/specimens-en.png",
+        "ja": "docs/screenshots/specimens-ja.png"
+      }
+    },
+    {
+      "slug": "vextreme-demo",
+      "title": "vextreme-demo",
+      "arcKeys": [],
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/vextreme-demo.html",
+      "screenshots": {
+        "en": "docs/screenshots/vextreme-demo-en.png",
+        "ja": "docs/screenshots/vextreme-demo-ja.png"
+      }
+    },
+    {
+      "slug": "victor-methodology-presentation",
+      "title": "Victor Gong — The Mapping Methodology",
+      "arcKeys": [
+        "victor_dossier"
+      ],
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/victor-methodology-presentation.html",
+      "screenshots": {
+        "en": "docs/screenshots/victor-methodology-presentation-en.png",
+        "zh": "docs/screenshots/victor-methodology-presentation-zh.png"
+      }
+    }
+  ]
+}

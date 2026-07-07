@@ -82,7 +82,7 @@ registry ↔ files, batch registry ↔ directories, INDEX's "Last updated" ↔ n
 A fifth, `lib/check-lattice-edges.js` (pe-012, shipped Session 024 continued), verifies the
 lattice map's claimed reads/writes/loadedBy edges against actual code — informational at the
 CLI, blocking in CI via tests/23's integration test; its first run found and fixed 22 stale
-edges. 380/380 tests passing. Lattice coverage 33/44 (75%).
+edges. 399/399 tests passing. Lattice coverage 35/46 (76%).
 
 Session 025 added a real third language. `victor_dossier` (`pages/victor-methodology-presentation.html`)
 is the first non-fixture page with a real `data/strings/source/pages/*.json` file, a real arc, and
@@ -101,6 +101,20 @@ content — degrades safely via the existing missing-key-shows-EN fallback). `li
 (new) answers "where is this string used?" / "what does this page use?" by cross-referencing
 `data-i18n` usage against the compiled manifest, doubling as an orphan/unused-key integrity check.
 
+Session 025 (continued) added the **terrain map** — a navigable health/dependency atlas over the
+repo's own lattice, piloted first as a hand-authored Artifact (proving the interaction model: real
+lattice edges, real `data/status/*.json` health, click-to-drill, a two-lens Engineer/Health-lead
+toggle, a real per-language screenshot on the one node with a captured screen), then generalized
+into a real self-updating feature following the same CQRS split as `data/status.json` →
+`pages/ecosystem-hub.html`: `lib/build-terrain-map.js` computes a deterministic layout + health +
+edges + auto-discovered screenshots into `data/terrain-map.json`; `pages/terrain-map.html` is
+hand-authored once and live-fetches that JSON — adding a page, lattice node, or screenshot never
+needs the HTML touched again, only a rebuild. Covers the full 46-node lattice and all 8 pages with
+a real captured screenshot today. A `Feature.MAP` "FAB back to the map" round-trip on real live
+pages was named as the natural next increment and deliberately not built — it touches the shared
+`FEATURES` registry in `lib/build-vextreme.js`, real production surface, and needs Victor's
+explicit go-ahead rather than a leisure-pilot default.
+
 The continuity system itself changed shape in Session 024: batches are now **directories of
 per-session files** (`docs/continuity/batch-003/`, filenames `YYYY-MM-DD-session-0NN.md`)
 instead of one monolithic markdown file per batch. Logging a session is a file creation — no
@@ -116,7 +130,9 @@ entries had been injected mid-file into Session 021's record.
   Resolved od-001/td-006 with a scoped arc-chunked bundling pilot (`lib/build-arc-bundles.js`,
   opt-in per arc, only `victor_dossier` uses it) rather than a full-site migration. Built
   `lib/trace-string-usage.js` (reverse string tracer). Verified the merge with real before/after
-  screenshots, not just tests.
+  screenshots, not just tests. Continued: piloted, then generalized, the **terrain map** — a
+  self-updating navigable atlas over the full lattice (`lib/build-terrain-map.js` →
+  `data/terrain-map.json` → `pages/terrain-map.html`, live-fetched, never hand-edited again).
 - **Session 024** — Reviewed Session 023's misplaced batch entries (injected into Session 021's
   block, anchored to a sentinel marker instead of appended); restructured Batch 003 into
   `batch-003/` per-session files, relocated Session 023 with corrected attribution, taught
@@ -159,6 +175,8 @@ off forever; its record already lives in the batch file and (for od-/td-/pe- ite
 not this list.
 
 **Genuinely open:**
+- [ ] `Feature.MAP` — a live-page FAB linking back to `pages/terrain-map.html` (Session 025 continued) — the natural next increment for the terrain map, touches the shared `FEATURES` registry in `lib/build-vextreme.js` (real production surface), needs Victor's explicit go-ahead
+- [ ] The "multi-navigational lens" / role-based-view idea Victor floated (Session 025 continued) — the terrain map's Engineer/Health-lead toggle is a first, minimal proof of the concept; the fuller vision is unstarted, filed as a future "fun side project"
 - [ ] The "Scanner check" named in `docs/architecture/14-council-model.md` (a single-instance structured self-check across named lenses before a significant judgment call) is a **proposal, not adopted practice** — Victor should review the honest-limits framing there before any future instance treats it as standing doctrine.
 - [ ] `lib/build-lattice-headers.js` structural fix — replace comment-embedded sentinel markers with a real `const VEX_LATTICE = {...}` statement + a validating `LatticeNode` class; design agreed (Session 021), fresh motivating evidence from Session 024 (the sentinel hazard hit `check-lattice-edges.js` itself twice while building it) — recommended next foundational move, not yet built
 - [ ] od-008 — staged/proposal execution for higher-blast-radius content gestures (consolidation, deletion, connector rewiring) — intentionally not designed yet, blocked on a real case existing to design against (Session 022)
