@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html lang="zh">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Victor Gong — 制图方法论</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --ink:#1B2A4A; --paper:#FAFAF7; --seal:#B3372B; --jade:#2E6E5E;
+    --graphite:#5A6472; --line:#D8D9D2; --card:#FFFFFF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+  body{background:var(--paper); color:var(--ink); font-family:'IBM Plex Sans','Noto Sans SC',sans-serif; font-size:16px; line-height:1.65}
+  .zh{font-family:'Noto Sans SC','IBM Plex Sans',sans-serif; color:var(--graphite)}
+  .wrap{max-width:880px; margin:0 auto; padding:0 24px}
+
+  header{border-bottom:2px solid var(--ink); padding:64px 0 40px; position:relative; overflow:hidden}
+  .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--seal); margin-bottom:14px}
+  h1{font-family:'Zilla Slab',serif; font-weight:700; font-size:clamp(34px,5.4vw,54px); line-height:1.12; max-width:15ch}
+  .thesis{font-family:'Zilla Slab',serif; font-size:clamp(19px,2.6vw,24px); font-weight:500; margin-top:22px; max-width:32ch; border-left:4px solid var(--seal); padding-left:16px}
+  .thesis .zh{display:block; font-size:.82em; margin-top:6px; font-weight:400}
+  .id-line{margin-top:26px; font-family:'IBM Plex Mono',monospace; font-size:13.5px; color:var(--graphite)}
+  .id-line b{color:var(--ink)}
+
+  .stamp{position:absolute; right:8px; top:52px; width:118px; height:118px; border:3px solid var(--seal); border-radius:10px; color:var(--seal); display:flex; flex-direction:column; align-items:center; justify-content:center; font-family:'Noto Sans SC',sans-serif; font-weight:700; transform:rotate(6deg); opacity:.92; background:rgba(179,55,43,.04)}
+  .stamp .big{font-size:34px; line-height:1.1; letter-spacing:.1em}
+  .stamp .small{font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.18em; margin-top:6px; font-weight:500}
+  .stamp.inline{position:static; transform:rotate(-4deg); width:auto; height:auto; padding:6px 12px; flex-direction:row; gap:8px; border-width:2px; border-radius:6px; font-size:13px}
+  .stamp.inline .small{margin:0; font-size:10px}
+
+  section{padding:52px 0; border-bottom:1px solid var(--line)}
+  h2{font-family:'Zilla Slab',serif; font-size:clamp(24px,3.4vw,32px); font-weight:600; margin-bottom:6px}
+  .h2-zh{font-family:'Noto Sans SC',sans-serif; color:var(--graphite); font-size:16px; margin-bottom:26px}
+  p{max-width:64ch; margin-bottom:14px}
+  p.zh{font-size:14.5px; max-width:60ch; margin-top:-6px; margin-bottom:18px}
+
+  .record{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--ink); border-radius:6px; padding:26px 26px 22px; margin:22px 0; position:relative}
+  .record .rec-id{position:absolute; top:14px; right:16px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.1em; color:var(--graphite); border:1px solid var(--line); border-radius:4px; padding:2px 8px; background:var(--paper)}
+  .record .year{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.14em; color:var(--paper); background:var(--ink); display:inline-block; padding:3px 10px; border-radius:3px; margin-bottom:12px}
+  .record h3{font-family:'Zilla Slab',serif; font-size:20px; font-weight:600; margin-bottom:4px}
+  .record .h3-zh{font-size:14px; color:var(--graphite); margin-bottom:12px; font-family:'Noto Sans SC',sans-serif}
+  .record .result{margin-top:14px; padding-top:12px; border-top:1px dashed var(--line); display:flex; align-items:flex-start; gap:10px; flex-wrap:wrap}
+  .result .tag{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--jade); font-weight:500; letter-spacing:.08em; text-transform:uppercase; white-space:nowrap; padding-top:2px}
+  .result div{flex:1; min-width:200px}
+  .result p{margin:0; font-size:14.5px}
+  .result p.zh{font-size:13px; margin-top:4px}
+  code{font-family:'IBM Plex Mono',monospace; font-size:.88em; background:rgba(27,42,74,.07); padding:1px 6px; border-radius:4px}
+
+  .metric{font-family:'Zilla Slab',serif; font-size:clamp(26px,4vw,38px); font-weight:700; color:var(--seal)}
+  .metric-label{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--graphite)}
+
+  .band{background:var(--ink); color:var(--paper); border-radius:8px; padding:34px 30px; margin:10px 0}
+  .band p{color:var(--paper); font-family:'Zilla Slab',serif; font-size:clamp(18px,2.4vw,22px); line-height:1.5; max-width:40ch}
+  .band .zh{color:#B9C2D4; font-family:'Noto Sans SC',sans-serif; font-size:15px; margin-top:10px; max-width:52ch}
+
+  .fits{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; margin-top:20px}
+  .fit{background:var(--card); border:1px solid var(--line); border-radius:6px; padding:18px; position:relative}
+  .fit .rec-id{position:absolute; top:10px; right:12px; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.08em; color:var(--graphite)}
+  .fit h4{font-family:'Zilla Slab',serif; font-size:16.5px; margin-bottom:4px; padding-right:70px}
+  .fit .zh-title{font-size:13px; display:block; margin-bottom:8px}
+  .fit p{font-size:14px; margin:0 0 6px}
+  .fit p.zh{font-size:12.5px; margin:0}
+
+  .self-note{margin-top:34px; border:1px dashed var(--graphite); border-radius:6px; padding:16px 18px; font-size:13.5px; color:var(--graphite)}
+  .self-note b{color:var(--ink)}
+  .self-note .zh{display:block; margin-top:6px; font-size:12.5px}
+  .self-note code{font-size:.85em}
+
+  footer{padding:44px 0 70px; font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--graphite)}
+
+  @media (max-width:640px){
+    .stamp{width:88px;height:88px;top:auto;bottom:18px;right:12px}
+    .stamp .big{font-size:24px}
+    .record{padding:20px 18px}
+    .record .rec-id{position:static; display:inline-block; margin-bottom:10px}
+  }
+</style>
+</head>
+<body>
+<header data-legacy-id="DOSSIER-ROOT" id="page-dossier-root">
+<div class="wrap">
+<div class="eyebrow">工程档案 · 2021–2026 · 档案编号: VG-DOSSIER-v2.0-ZH · 创建于 2026-07-04</div>
+<h1>Victor Gong</h1>
+<div class="thesis">找出所有人们被迫依靠假设的地方——用一张"地图"取代每一个假设，让它变得可靠。</div>
+<div class="id-line">高级软件工程师 II · 德康医疗（医疗器械，五年）· 精益六西格玛绿带 · AI 协作系统架构师</div>
+<div aria-hidden="true" class="stamp"><div class="big">实证</div><div class="small">PROVEN × 6</div></div>
+</div>
+</header>
+<section data-legacy-id="SEC-PROOFS" id="section-proofs">
+<div class="wrap">
+<h2>一个方法，六次实证</h2>
+
+
+<p class="">在医疗器械公司的五年里——软件质量直接关系到法规与患者安全——同一个工程方法被应用于六个不同规模的问题上。每一次，都是用一张持续维护的"地图"取代表层的人工操作，让系统在结构上<b>无法悄悄脱节</b>。</p>
+<div class="record" data-legacy-id="REC-Y0-ORGMAP" id="proof-organization-knowledge-map">
+<span class="rec-id" title="legacy alias: REC-Y0-ORGMAP">proof-organization-knowledge-map</span>
+<span class="year">贯穿五年 · 持续维护</span>
+<h3>先为组织本身绘制地图——一张"活"的地图</h3>
+
+
+<p class="">入职时没有任何"地图"：安卓开发者之间没有沟通渠道、没有论坛、没有任何资源目录。于是先搭建了"人的基础设施"——双周安卓论坛（开放分享、缺陷与创新的午餐学习会）；一个映射整个组织的 Confluence（代码仓库、文档、包括测试团队工具在内的仪表盘）；让开发者<b>直接使用测试工具</b>，无需占用他人时间去"寻找"；以及后期加入的 XML 到 Jetpack Compose 迁移指南和"继承基础组件"的 UI 准则，消除了同一组件的不一致重复实现。这不是一次性的文档，而是一张持续了整整五年的"活页面"——早期条目如组织地图，后期条目如 Compose 指南，始终保持最新。沟通方式以受众为先——包括一张"3D"导航层级图，每一层的职责与连接一目了然。</p>
+<div class="result"><span class="tag">成果</span><div><p class="">方法论的起点，也是它的耐久性证明：一张关于人与知识的地图，被持续维护了整整五年。</p></div></div>
+</div>
+<div class="record" data-legacy-id="REC-Y1-LOGGING" id="proof-bulk-data-logging">
+<span class="rec-id" title="legacy alias: REC-Y1-LOGGING">proof-bulk-data-logging</span>
+<span class="year">第一年</span>
+<h3>不会漂移的数据埋点系统</h3>
+
+
+<p class="">用一个中央映射系统取代每个页面手写的埋点代码，覆盖显示、点击、时长与录入事件。删除一个界面元素，它的日志条目随之移除——数据统计与界面在结构上绑定，无法脱节。</p>
+<div class="result"><span class="tag">成果</span><div><p class="">具备结构完整性的医疗级事件日志系统，全组织通用。</p></div></div>
+</div>
+<div class="record" data-legacy-id="REC-Y2-TRANSLATIONS" id="proof-bidirectional-translation-traceability">
+<span class="rec-id" title="legacy alias: REC-Y2-TRANSLATIONS">proof-bidirectional-translation-traceability</span>
+<span class="year">第二年</span>
+<h3>双向可导航的翻译系统</h3>
+
+
+<p class="">把映射方法延伸到多语言翻译：每个文本从代码到各语言版本双向可追溯，横跨安卓、iOS 与设计——"这段文字用在哪里"由结构直接回答，而不靠个人记忆。</p>
+<div class="result"><span class="tag">成果</span><div><p class="">为下文的本地化流程转型奠定了基础。</p></div></div>
+</div>
+<div class="record" data-legacy-id="REC-MID-COMPOUNDBUG" id="proof-compound-safety-bug-map">
+<span class="rec-id" title="legacy alias: REC-MID-COMPOUNDBUG">proof-compound-safety-bug-map</span>
+<span class="year">中期</span>
+<h3>无人能复现的复合缺陷</h3>
+
+
+<p class="">一个丢失的低血糖警报——直接关系患者安全——源于横跨三个团队系统的两个相互作用的缺陷，其中一个会抹去另一个的证据。解决它需要先手工绘制出缺失的跨系统地图，在 SDK 层加入观测，并在唯一目击者休假前的一天窗口内完成复现步骤的提取。根因是一个"看不见的缺失"：数据库索引在没有事务包裹的情况下逐个生成。</p>
+<div class="result"><span class="tag">成果</span><div><p class="">这张"地形图"让资深架构师第一次看清了此前无人看见的系统关系。修复上线，教训沉淀为制度。</p></div></div>
+</div>
+<div class="record" data-legacy-id="REC-Y34-LOCALIZATION" id="proof-localization-pipeline">
+<span class="rec-id" title="legacy alias: REC-Y34-LOCALIZATION">proof-localization-pipeline</span>
+<span class="year">第三至四年</span>
+<h3>本地化流程：六个月缩短到两周</h3>
+
+
+<p class="">通过公司支持的精益六西格玛项目，统一了安卓与 iOS 割裂的文本结构，重构了翻译流程——随后用一个"单一事实来源"系统完全取代了付费供应商工具：所有文档可重复再生成、逐字节一致，因为每个条件都被映射，而非假设。</p>
+<div class="result">
+<span class="tag">成果</span>
+<div></div>
+</div>
+</div>
+<div class="record" data-legacy-id="REC-Y34-UIELEMENTKEY" id="proof-cross-domain-ui-identity">
+<span class="rec-id" title="legacy alias: REC-Y34-UIELEMENTKEY">proof-cross-domain-ui-identity</span>
+<span class="year">第三至四年</span>
+<h3>跨部门的统一标识</h3>
+
+
+<p class="">工程、设计与质量测试各自的编号只在自己部门内有意义。一个复合标识把所有部门解析到同一个界面元素上。先建地图，再做对齐：没有团队被迫先改。系统上线后，流程倒转：设计在上游发放标识，各平台按协议对齐，验证基于"有保证的假设"进行。跨部门可追溯——在受监管行业达到审计级别。</p>
+<div class="result"><span class="tag">成果</span><div><p class="">"对账调和"作为一个阶段彻底消失。各团队沿着同一条主干并行工作。</p></div></div>
+</div>
+<div class="record" data-legacy-id="REC-Y5-PENSDK" id="proof-source-of-truth-relay">
+<span class="rec-id" title="legacy alias: REC-Y5-PENSDK">proof-source-of-truth-relay</span>
+<span class="year">第五年</span>
+<h3>把方法应用于时间与并发本身</h3>
+
+
+<p class="">在一个事件顺序直接关系安全的胰岛素笔产品中：状态变化经由单一"事实中继"推导并广播，并发的读取方在结构上不可能持有相互矛盾的状态。协程本身也被编号映射为一等任务，带有作用域开关——让复杂的合作方 SDK 刷新周期变得可精确管理。与 Jetpack Compose 天然契合。</p>
+<div class="result"><span class="tag">传承</span><div><p class="">有意识地把团队培养进这套实践——在离开之前，他们已能带着完整的文化独立解决问题。方法比实践者留得更久。</p></div></div>
+</div>
+</div>
+</section>
+<section data-legacy-id="SEC-THROUGHLINE" id="section-throughline">
+<div class="wrap">
+<div class="band">
+
+<p class="">埋点无法脱离界面。翻译无法脱离页面。本地化无法在平台间割裂。并发读取无法互相矛盾。而现在：AI 实例无法重犯已经被纠正过的错误。</p>
+</div>
+</div>
+</section>
+<section data-legacy-id="SEC-AI-APPLICATION" id="section-ai-maintainable-systems">
+<div class="wrap">
+<h2>第六次应用：AI 可自主维护的系统</h2>
+
+
+<p class="">每个采用 AI 编程工具的组织都在撞同一堵墙：AI 产出的工作会退化，因为没有任何机制在会话之间保存机构知识。新的 AI 实例从零开始，重新引入几个月前已被纠正的假设——这与上面每一次"割裂"是同一种病，只是规模最大：割裂的是"上下文"本身。</p>
+
+<p class="">公开的演示项目把这个经过五次验证的方法应用于此：仓库的持续集成系统自我维护索引；每个变更是一份"决策记录"（假设、连锁影响、写给下一位读者的说明——无论人或 AI）；扩展上限在触及之前就已记录并配好迁移路径；任何全新的 AI 会话用一条命令即可加载完整上下文。当年与人类团队建立的协作文化，被转写成了系统架构。</p>
+</div>
+</section>
+<section id="section-adoption-implications">
+<div class="wrap">
+<h2>采用之后会改变什么</h2>
+
+
+<p class="">对一个组织而言，这套架构不是一种文档风格——它把"可靠性"的来源从个人的警觉与部落式记忆中迁移出来，放进能够自我校验的结构里。</p>
+
+<p class=""><strong>工程：</strong>"脱节"不再是纪律问题。当埋点、文本、测试与设计通过同一个标识解析时，分歧在结构上就不可能发生，而不需要靠人工监督——变更评审也从"凭记忆推测影响"变成"阅读自动生成的影响报告"。</p>
+
+<p class=""><strong>本地化与产品：</strong>新增一种语言意味着新增几行数据，而不是复制整套页面。供应商对一个"含义"只翻译一次，图谱会把它应用到所有绑定之处；复数、占位符与排版规则按语言自动校验。</p>
+
+<p class=""><strong>质量与合规：</strong>每次变更在落地之前就生成影响报告，从测试到设计意图再到翻译的可追溯性是"天生审计级"的。在受监管行业，这就是"证明合规"与"事后重建合规"的区别。</p>
+
+<p class=""><strong>AI 采用：</strong>AI 代理不再反复重推上下文。图谱是记忆，AI 是进入图谱的桥梁——让一个全新的代理上手只需一次查询，而不是通读整个仓库；被纠正过的错误在会话、工具与供应商之间保持已纠正状态。</p>
+
+<p class=""><strong>管理层：</strong>上文的本地化先例——六个月缩短到两周——就是这类变革对周期时间的作用。凡是团队目前靠开会而不是靠"地图"来对齐的地方，同样的机制都适用。</p>
+
+<p class=""><em>本文件本身就是其所述标准管理下的第一个工件：记录标识符遵循"概念命名"标准，旧编号以别名形式保留，中英文版本由同一个双语源文件再生成。这一页，就是概念验证。</em></p>
+</div>
+</section>
+<section data-legacy-id="SEC-FIT" id="section-audience-fit">
+<div class="wrap">
+<h2>适合的方向</h2>
+
+<div class="fits">
+<div class="fit" id="FIT-PLATFORM-DEVEX"><span class="rec-id" title="legacy alias: FIT-01">fit-platform-devex</span><h4>平台工程 / 开发者体验</h4><p class="">构建让大型团队并行工作而不脱节的"地图"与流程。</p></div>
+<div class="fit" id="FIT-AI-TOOLING"><span class="rec-id" title="legacy alias: FIT-02">fit-ai-tooling-companies</span><h4>AI 工具公司</h4><p class="">"设计伙伴"级别的人选：亲身经历并记录了这类产品要解决的失效模式。</p></div>
+<div class="fit" id="FIT-REGULATED"><span class="rec-id" title="legacy alias: FIT-03">fit-regulated-industries</span><h4>采用 AI 的受监管行业</h4><p class="">医疗器械背景加上审计级的决策记录实践——罕见的交叉点。</p></div>
+<div class="fit" id="FIT-PROCESS"><span class="rec-id" title="legacy alias: FIT-04">fit-process-transformation</span><h4>流程转型</h4><p class="">经精益六西格玛验证：实测将六个月周期缩短至两周，并获得跨团队采用。</p></div>
+</div>
+<div class="self-note" data-legacy-id="NOTE-SELF-DEMONSTRATION" id="note-self-demonstration"><b>本档案实践其所述的方法。</b> 上面的每条记录都带有稳定的"概念命名"编号（proof-bulk-data-logging、proof-cross-domain-ui-identity……，旧编号以别名保留，遵循仓库的注册表文档标准），任何读者——无论人或 AI——都可以无歧义地引用、询问某一条具体记录。先有标识，再有讨论。</div>
+</div>
+</section>
+<footer>
+<div class="wrap" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;padding:0">
+<div>Victor Gong · 档案 v2.0 · 创建于 2026 年 7 月 4 日 · 档案编号: VG-DOSSIER-v2.0-ZH<br/>可应要求提供推荐人与项目讲解</div>
+<div aria-hidden="true" class="stamp inline"><span style="font-weight:700">记录在案</span><span class="small">ON THE RECORD</span></div>
+</div>
+</footer>
+</body>
+</html>

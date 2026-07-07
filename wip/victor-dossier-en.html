@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Victor Gong — The Mapping Methodology</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Noto+Sans+SC:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --ink:#1B2A4A; --paper:#FAFAF7; --seal:#B3372B; --jade:#2E6E5E;
+    --graphite:#5A6472; --line:#D8D9D2; --card:#FFFFFF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+  body{background:var(--paper); color:var(--ink); font-family:'IBM Plex Sans','Noto Sans SC',sans-serif; font-size:16px; line-height:1.65}
+  .zh{font-family:'Noto Sans SC','IBM Plex Sans',sans-serif; color:var(--graphite)}
+  .wrap{max-width:880px; margin:0 auto; padding:0 24px}
+
+  header{border-bottom:2px solid var(--ink); padding:64px 0 40px; position:relative; overflow:hidden}
+  .eyebrow{font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--seal); margin-bottom:14px}
+  h1{font-family:'Zilla Slab',serif; font-weight:700; font-size:clamp(34px,5.4vw,54px); line-height:1.12; max-width:15ch}
+  .thesis{font-family:'Zilla Slab',serif; font-size:clamp(19px,2.6vw,24px); font-weight:500; margin-top:22px; max-width:32ch; border-left:4px solid var(--seal); padding-left:16px}
+  .thesis .zh{display:block; font-size:.82em; margin-top:6px; font-weight:400}
+  .id-line{margin-top:26px; font-family:'IBM Plex Mono',monospace; font-size:13.5px; color:var(--graphite)}
+  .id-line b{color:var(--ink)}
+
+  .stamp{position:absolute; right:8px; top:52px; width:118px; height:118px; border:3px solid var(--seal); border-radius:10px; color:var(--seal); display:flex; flex-direction:column; align-items:center; justify-content:center; font-family:'Noto Sans SC',sans-serif; font-weight:700; transform:rotate(6deg); opacity:.92; background:rgba(179,55,43,.04)}
+  .stamp .big{font-size:34px; line-height:1.1; letter-spacing:.1em}
+  .stamp .small{font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.18em; margin-top:6px; font-weight:500}
+  .stamp.inline{position:static; transform:rotate(-4deg); width:auto; height:auto; padding:6px 12px; flex-direction:row; gap:8px; border-width:2px; border-radius:6px; font-size:13px}
+  .stamp.inline .small{margin:0; font-size:10px}
+
+  section{padding:52px 0; border-bottom:1px solid var(--line)}
+  h2{font-family:'Zilla Slab',serif; font-size:clamp(24px,3.4vw,32px); font-weight:600; margin-bottom:6px}
+  .h2-zh{font-family:'Noto Sans SC',sans-serif; color:var(--graphite); font-size:16px; margin-bottom:26px}
+  p{max-width:64ch; margin-bottom:14px}
+  p.zh{font-size:14.5px; max-width:60ch; margin-top:-6px; margin-bottom:18px}
+
+  .record{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--ink); border-radius:6px; padding:26px 26px 22px; margin:22px 0; position:relative}
+  .record .rec-id{position:absolute; top:14px; right:16px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.1em; color:var(--graphite); border:1px solid var(--line); border-radius:4px; padding:2px 8px; background:var(--paper)}
+  .record .year{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.14em; color:var(--paper); background:var(--ink); display:inline-block; padding:3px 10px; border-radius:3px; margin-bottom:12px}
+  .record h3{font-family:'Zilla Slab',serif; font-size:20px; font-weight:600; margin-bottom:4px}
+  .record .h3-zh{font-size:14px; color:var(--graphite); margin-bottom:12px; font-family:'Noto Sans SC',sans-serif}
+  .record .result{margin-top:14px; padding-top:12px; border-top:1px dashed var(--line); display:flex; align-items:flex-start; gap:10px; flex-wrap:wrap}
+  .result .tag{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--jade); font-weight:500; letter-spacing:.08em; text-transform:uppercase; white-space:nowrap; padding-top:2px}
+  .result div{flex:1; min-width:200px}
+  .result p{margin:0; font-size:14.5px}
+  .result p.zh{font-size:13px; margin-top:4px}
+  code{font-family:'IBM Plex Mono',monospace; font-size:.88em; background:rgba(27,42,74,.07); padding:1px 6px; border-radius:4px}
+
+  .metric{font-family:'Zilla Slab',serif; font-size:clamp(26px,4vw,38px); font-weight:700; color:var(--seal)}
+  .metric-label{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--graphite)}
+
+  .band{background:var(--ink); color:var(--paper); border-radius:8px; padding:34px 30px; margin:10px 0}
+  .band p{color:var(--paper); font-family:'Zilla Slab',serif; font-size:clamp(18px,2.4vw,22px); line-height:1.5; max-width:40ch}
+  .band .zh{color:#B9C2D4; font-family:'Noto Sans SC',sans-serif; font-size:15px; margin-top:10px; max-width:52ch}
+
+  .fits{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; margin-top:20px}
+  .fit{background:var(--card); border:1px solid var(--line); border-radius:6px; padding:18px; position:relative}
+  .fit .rec-id{position:absolute; top:10px; right:12px; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.08em; color:var(--graphite)}
+  .fit h4{font-family:'Zilla Slab',serif; font-size:16.5px; margin-bottom:4px; padding-right:70px}
+  .fit .zh-title{font-size:13px; display:block; margin-bottom:8px}
+  .fit p{font-size:14px; margin:0 0 6px}
+  .fit p.zh{font-size:12.5px; margin:0}
+
+  .self-note{margin-top:34px; border:1px dashed var(--graphite); border-radius:6px; padding:16px 18px; font-size:13.5px; color:var(--graphite)}
+  .self-note b{color:var(--ink)}
+  .self-note .zh{display:block; margin-top:6px; font-size:12.5px}
+  .self-note code{font-size:.85em}
+
+  footer{padding:44px 0 70px; font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--graphite)}
+
+  @media (max-width:640px){
+    .stamp{width:88px;height:88px;top:auto;bottom:18px;right:12px}
+    .stamp .big{font-size:24px}
+    .record{padding:20px 18px}
+    .record .rec-id{position:static; display:inline-block; margin-bottom:10px}
+  }
+</style>
+</head>
+<body>
+<header data-legacy-id="DOSSIER-ROOT" id="page-dossier-root">
+<div class="wrap">
+<div class="eyebrow">Engineering Dossier · 2021–2026 · DOC-ID: VG-DOSSIER-v2.0-EN · Created 2026-07-04</div>
+<h1>Victor Gong</h1>
+<div class="thesis">
+      Finding every place people are forced to assume — and replacing each with a map that makes the assumption safe.
+      
+</div>
+<div class="id-line"><b>Senior Software Engineer II</b> · Dexcom (medical devices, 5 years) · Lean Six Sigma Green Belt · AI-collaboration systems architect</div>
+<div aria-hidden="true" class="stamp"><div class="big">×6</div><div class="small">PROVEN</div></div>
+</div>
+</header>
+<section data-legacy-id="SEC-PROOFS" id="section-proofs">
+<div class="wrap">
+<h2>One method, six proofs</h2>
+
+<p>Across five years at a medical-device company — where software quality carries regulatory and patient-safety weight — the same engineering move was applied to six different problems at increasing scale. Each time, manual work done "at the surface" was replaced by a maintained map that structurally connects layers, so systems <em>cannot silently drift apart</em>.</p>
+
+<div class="record" data-legacy-id="REC-Y0-ORGMAP" id="proof-organization-knowledge-map">
+<span class="rec-id" title="legacy alias: REC-Y0-ORGMAP">proof-organization-knowledge-map</span>
+<span class="year">YEARS 1–5 · LIVE</span>
+<h3>Mapping the organization itself — the living map</h3>
+
+<p>Arrived to no map: no channels connecting Android developers, no forums, no directory of where anything lived. Built the human infrastructure first — a biweekly Android forum with open sharing and bug/innovation lunch-and-learns; a Confluence mapping the org (repos, documentation, dashboards including VnV testing tools); <em>direct developer access to testing tools</em> so engineers debug immediately instead of consuming another person's time; and later, XML→Jetpack Compose migration guides and an inherit-the-base UI doctrine that eliminated inconsistent reimplementations. Not a one-time artifact: a live page, appended and maintained across the full five years — early entries like the org map, late entries like the Compose guides, one continuously current source. Communication built audience-first — including a "3D" board of the fragment/navgraph hierarchy, each layer showing its responsibility and connections as a scannable pattern.</p>
+
+<div class="result"><span class="tag">Result</span><div><p>The methodology's origin and its endurance test in one: a map of people and knowledge, kept alive for five years.</p></div></div>
+</div>
+<div class="record" data-legacy-id="REC-Y1-LOGGING" id="proof-bulk-data-logging">
+<span class="rec-id" title="legacy alias: REC-Y1-LOGGING">proof-bulk-data-logging</span>
+<span class="year">YEAR 1</span>
+<h3>Analytics that cannot drift — BulkDataLogging</h3>
+
+<p>Replaced hand-written analytics code at every screen with one central map (<code>ScreenName / ScreenMapper / ButtonName / MetaData</code>) covering display, click, duration, and entry events. Delete a UI element and its logging entry goes with it — analytics and UI are structurally bound.</p>
+
+<div class="result"><span class="tag">Result</span><div><p>Medical-grade event logging with structural integrity, org-wide.</p></div></div>
+</div>
+<div class="record" data-legacy-id="REC-Y2-TRANSLATIONS" id="proof-bidirectional-translation-traceability">
+<span class="rec-id" title="legacy alias: REC-Y2-TRANSLATIONS">proof-bidirectional-translation-traceability</span>
+<span class="year">YEAR 2</span>
+<h3>Translations navigable in both directions</h3>
+
+<p>Extended the mapping principle to localization: every string traceable from code to every language and back, across Android, iOS, and design — "where is this text used?" answered structurally instead of by tribal memory.</p>
+
+<div class="result"><span class="tag">Result</span><div><p>Foundation for the localization transformation below.</p></div></div>
+</div>
+<div class="record" data-legacy-id="REC-MID-COMPOUNDBUG" id="proof-compound-safety-bug-map">
+<span class="rec-id" title="legacy alias: REC-MID-COMPOUNDBUG">proof-compound-safety-bug-map</span>
+<span class="year">MID</span>
+<h3>The compound bug nobody could reproduce</h3>
+
+<p>A missing low-glucose alert — patient-safety critical — was caused by two interacting defects across three teams' systems, one of which <em>erased the evidence</em> of the other. Resolution required first building the missing cross-system map by hand, instrumenting SDK-level code, and extracting reproduction steps inside a one-day window before the only witness left on vacation. Root cause: database indexes built without a wrapping <code>@Transaction</code> — an invisible absence.</p>
+
+<div class="result"><span class="tag">Result</span><div><p>The terrain map let senior architects perceive system relationships nobody had seen. Fix shipped; lesson institutionalized.</p></div></div>
+</div>
+<div class="record" data-legacy-id="REC-Y34-LOCALIZATION" id="proof-localization-pipeline">
+<span class="rec-id" title="legacy alias: REC-Y34-LOCALIZATION">proof-localization-pipeline</span>
+<span class="year">YEARS 3–4</span>
+<h3>Localization: 6 months → 2 weeks</h3>
+
+<p>Through Dexcom-sponsored Lean Six Sigma work, unified fragmented Android/iOS string structures and re-architected the translation pipeline — then engineered the paid vendor tool out of the loop entirely with a single source of truth that regenerates all documents reproducibly, byte-identical, because every condition was mapped rather than assumed.</p>
+
+<div class="result">
+<span class="tag">Result</span>
+<div><p><span class="metric">6 mo → 2 wk</span><br/><span class="metric-label">lean cycle time  on-paper value in the millions</span></p></div>
+</div>
+</div>
+<div class="record" data-legacy-id="REC-Y34-UIELEMENTKEY" id="proof-cross-domain-ui-identity">
+<span class="rec-id" title="legacy alias: REC-Y34-UIELEMENTKEY">proof-cross-domain-ui-identity</span>
+<span class="year">YEARS 3–4</span>
+<h3>The organizational join key — UIElementKey</h3>
+
+<p>Engineering, UX design, and quality testing each held IDs meaningful only inside their own silo. One composite identity — <code>UIElementKey(platform, project, language, stringId, vnvTestId, uxDesignId)</code> — resolved every discipline to the same UI element. Map first, align second: no team forced to change upfront. With the key live, the pipeline inverted: design issues keys upstream, platforms align by protocol, verification proceeds on a <em>guaranteed</em> assumption. Cross-discipline traceability — audit-grade in a regulated industry.</p>
+
+<div class="result"><span class="tag">Result</span><div><p>Reconciliation disappeared as a phase. Teams run parallel over a shared spine.</p></div></div>
+</div>
+<div class="record" data-legacy-id="REC-Y5-PENSDK" id="proof-source-of-truth-relay">
+<span class="rec-id" title="legacy alias: REC-Y5-PENSDK">proof-source-of-truth-relay</span>
+<span class="year">YEAR 5</span>
+<h3>PenSDK: the method applied to time itself</h3>
+
+<p>For an insulin-pen product where event <em>order</em> is safety-relevant: state changes flow through one <code>SourceOfTruthRelay</code> that derives and broadcasts truth so concurrent readers structurally cannot hold contradictory realities. Coroutines became ID-mapped, first-class tasks with scoped kill-switches — making a complex partner-SDK refresh cycle surgically manageable. Composes natively with Jetpack Compose.</p>
+
+<div class="result"><span class="tag">Legacy</span><div><p>Deliberately developed the team in these practices — before departure, they problem-solved independently with the culture intact. The practices outlived the practitioner.</p></div></div>
+</div>
+</div>
+</section>
+<section data-legacy-id="SEC-THROUGHLINE" id="section-throughline">
+<div class="wrap">
+<div class="band">
+<p>Analytics can't drift from UI. Translations can't orphan from screens. Localization can't fragment across platforms. Concurrent readers can't contradict each other. And now: AI instances can't re-introduce mistakes that were already corrected.</p>
+
+</div>
+</div>
+</section>
+<section data-legacy-id="SEC-AI-APPLICATION" id="section-ai-maintainable-systems">
+<div class="wrap">
+<h2>The sixth application: AI-maintainable systems</h2>
+
+<p>Every organization adopting AI coding tools is hitting the same wall: AI-generated work decays, because nothing preserves institutional knowledge between sessions. A new AI instance starts cold and re-introduces assumptions that were corrected months ago — the same disease as every fragmentation above, at the largest scale yet: <em>context itself</em>.</p>
+
+<p>The public working demonstration applies the five-times-proven method to this problem: a repository where CI self-maintains its own indexes; pull requests function as decision records (assumptions, cascading effects, notes for the next reader — human or AI); scaling ceilings are documented with migration paths <em>before</em> they're hit; and any fresh AI session bootstraps full context in one command. The escalation culture built with the human team — hard problems routed early, resolutions written back into shared knowledge — transcribed into architecture.</p>
+
+</div>
+</section>
+<section id="section-adoption-implications">
+<div class="wrap">
+<h2>What adoption changes</h2>
+
+<p>For an organization, this architecture is not a documentation style — it relocates where reliability comes from: out of individual vigilance and tribal memory, into structure that validates itself.</p>
+
+<p><strong>Engineering:</strong> drift stops being a discipline problem. When analytics, strings, tests, and design resolve through one identity, divergence becomes structurally impossible rather than manually policed — and change review shifts from recalling impact to reading a computed impact report.</p>
+
+<p><strong>Localization &amp; product:</strong> a new language becomes new rows, not duplicated pages. Vendors translate a meaning once and the graph applies it everywhere it is bound; plural, placeholder, and layout rules are validated per locale automatically.</p>
+
+<p><strong>Quality &amp; compliance:</strong> every change produces its impact report before it lands, and traceability from test to design intent to translation is audit-grade by construction. In regulated industries, that is the difference between proving compliance and reconstructing it.</p>
+
+<p><strong>AI adoption:</strong> agents stop re-deriving context. The graph is the memory; AI is the bridge into it — onboarding a fresh agent costs a query, not a repository read, and corrected mistakes stay corrected across sessions, tools, and vendors.</p>
+
+<p><strong>Leadership:</strong> the localization precedent above — six months to two weeks — is what this class of change does to cycle time. The same mechanics apply wherever teams currently reconcile by meeting instead of by map.</p>
+
+<p><em>This document is itself the first artifact managed under the standard it describes: its record identifiers follow the concept-ID naming standard, legacy IDs are preserved as aliases, and the English and Chinese builds regenerate from a single bilingual source. The proof of concept is the page.</em></p>
+
+</div>
+</section>
+<section data-legacy-id="SEC-FIT" id="section-audience-fit">
+<div class="wrap">
+<h2>Where this fits</h2>
+
+<div class="fits">
+<div class="fit" id="FIT-PLATFORM-DEVEX"><span class="rec-id" title="legacy alias: FIT-01">fit-platform-devex</span><h4>Platform &amp; Developer Experience</h4><p>Building the maps and pipelines that let large teams move in parallel without drift.</p></div>
+<div class="fit" id="FIT-AI-TOOLING"><span class="rec-id" title="legacy alias: FIT-02">fit-ai-tooling-companies</span><h4>AI tooling companies</h4><p>A design-partner profile: has hit and documented the failure modes these products exist to solve.</p></div>
+<div class="fit" id="FIT-REGULATED"><span class="rec-id" title="legacy alias: FIT-03">fit-regulated-industries</span><h4>Regulated industries adopting AI</h4><p>Medical-device background plus audit-grade, decision-record practices — a rare intersection.</p></div>
+<div class="fit" id="FIT-PROCESS"><span class="rec-id" title="legacy alias: FIT-04">fit-process-transformation</span><h4>Process transformation</h4><p>Lean Six Sigma-validated: a measured 6-month → 2-week cycle reduction with cross-team adoption.</p></div>
+</div>
+<div class="self-note" data-legacy-id="NOTE-SELF-DEMONSTRATION" id="note-self-demonstration">
+<b>This dossier practices its own method. </b>
+      Every record above carries a stable ID (<code>proof-bulk-data-logging</code>, <code>proof-cross-domain-ui-identity</code>…), named for concepts per the repository Registry Documentation Standard, with legacy IDs preserved as aliases, so any reader — human or AI, in English or Chinese — can reference, quote, or ask about an exact record without ambiguity. Identity first; discussion second.
+      
+</div>
+</div>
+</section>
+<footer>
+<div class="wrap" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;padding:0">
+<div>Victor Gong · Dossier v2.0 · Created July 4, 2026 · DOC-ID: VG-DOSSIER-v2.0-EN<br/>References &amp; repository walkthrough available on request</div>
+<div aria-hidden="true" class="stamp inline"><span style="font-weight:700">ON</span><span class="small">THE RECORD</span></div>
+</div>
+</footer>
+</body>
+</html>
