@@ -14,6 +14,58 @@
 
   "nodes": {
 
+    "lib/compute-fab-version.js": {
+      "role": "pure semver classification for widgets/fab-lang.js's CDN cache-busting VERSION — major/minor/patch decision table + diff helpers, no I/O",
+      "context": "Session 025 (continued) — Victor asked whether the just-fixed never-bumped VERSION constant could auto-increment based on real conditions (new/modified strings, new locale, new arc, new department, id/slug identity changes, checks-and-alignment fixes) rather than being hand-maintained again. Mapped those 8 conditions to a 3-tier semver scheme confirmed with Victor: MAJOR = identity changes (slug renamed, id reassigned — the closest thing this system has to a breaking change, since external links/bookmarks key on those), MINOR = additive/backward-compatible (new strings, new locale, new arc, new department), PATCH = content correction with no structural change (an existing string's text edited, or a checks/alignment script touched). Cascading bump confirmed with Victor: a MAJOR bump resets MINOR and PATCH to 0; a MINOR bump resets PATCH to 0 — standard semver, not a Vextreme invention. Deliberately pure/testable — all git plumbing (finding the baseline commit, reading file snapshots at that commit) lives in lib/bump-fab-version.js instead, which is intentionally NOT pure and NOT unit-tested the same way.",
+      "reads": [],
+      "writes": [],
+      "loadedBy": [
+        "lib/bump-fab-version.js",
+        "tests/30-compute-fab-version.test.js"
+      ],
+      "testedBy": [
+        "tests/30-compute-fab-version.test.js"
+      ],
+      "changeMap": {
+        "the 8-condition -> tier mapping changes (e.g. a condition is added or reweighted)": [
+          "classifyChanges() here",
+          "tests/30 (FAB-VERSION: classifyChanges tests)",
+          "lib/bump-fab-version.js's computeSignals() — must supply a matching signal for any new condition"
+        ]
+      }
+    },
+
+    "lib/bump-fab-version.js": {
+      "role": "git-diffing orchestration for lib/compute-fab-version.js — finds the last VERSION-bump commit, diffs data files against it, applies the computed bump to widgets/fab-lang.js",
+      "context": "Companion to lib/compute-fab-version.js (see that node for the tier mapping and why it's split out as pure logic). findBaselineCommit() uses `git log -G` (not -S) to find the last commit that changed a VERSION-shaped line — -S only detects a change in how many times a search string occurs, and \"var VERSION\" occurs exactly once both before and after a bump, so only -G (matches a line matching the given regex appearing in the diff) correctly catches a same-line value edit. Falls back to the file's own add-commit if no bump has ever happened (Session 025's real starting condition — VERSION had never been bumped, so the very first real run classifies the entire accumulated history since file creation, correctly producing a MAJOR catch-up bump). Requires full git history (`fetch-depth: 0`) to work in CI — a shallow clone would make git log/show against older commits fail, most likely silently (empty diffs read as \"no bump needed\" rather than an error) rather than loudly, which is why the checkout step's fetch-depth was changed alongside this file rather than assumed to already be sufficient.",
+      "reads": [
+        "git log/show/diff history (via child_process, not require())",
+        "data/nodes.json (current + at baseline commit)",
+        "data/strings/source/**/*.json (current + at baseline commit)",
+        "data/index.json's supportedLangs (current + at baseline commit)",
+        "data/arcs-v2.json (current + at baseline commit)",
+        "data/departments.json (current + at baseline commit)",
+        "lib/compute-fab-version.js"
+      ],
+      "writes": [
+        "widgets/fab-lang.js (rewrites the VERSION line in place, if a bump tier applies)"
+      ],
+      "loadedBy": [
+        ".github/workflows/build-index.yml ('Auto-increment fab-lang.js CDN version' step, before the artifact-commit step)"
+      ],
+      "testedBy": [],
+      "changeMap": {
+        "widgets/fab-lang.js's VERSION line format changes (e.g. quote style, variable name)": [
+          "VERSION_RE here — the regex that both finds and rewrites the line"
+        ],
+        "a new data file needs to feed into version classification": [
+          "computeSignals() here — add the read + diff call",
+          "lib/compute-fab-version.js — add or reuse a diff helper",
+          "docs/lattice-map.json's own reads list here"
+        ]
+      }
+    },
+
     "lib/compute-test-shards.js": {
       "role": "self-scaling CI test-sharding — computes shard count and per-shard file assignment from the real current tests/*.test.js file count, no hand-picked number to forget updating",
       "context": "Session 025 (continued) — Victor asked whether test sharding could be 'system expandable as a health and build process' rather than something a future instance eyeballs and manually flips on. computeShardCount() answers that: it's a pure function of the real current test-file count (TARGET_FILES_PER_SHARD, tuned so CI's fixed per-job overhead stays cheaper than actual test runtime until the suite has genuinely grown), recomputed by .github/workflows/test.yml's 'shards' job on every run. At today's ~28-file suite this resolves to 1 shard — the workflow runs as a single job, same as before this file existed. assignFilesToShard() is a deterministic round-robin partition (sorted file list, index modulo shard count) so the same inputs always produce the same split and every file lands in exactly one shard — verified by tests/29-compute-test-shards.test.js's partition-coverage tests. Deliberately uses file COUNT, not measured historical per-file duration, as the sharding signal — see the file's own docstring for why (this repo's tests are uniform and fast; a timing-log approach would need persisted CI-committed state to buy back precision this suite doesn't currently need).",

@@ -61,6 +61,12 @@ jobs:
           # somewhere real. github.head_ref is empty for push events, so this
           # falls through to github.ref (refs/heads/main) unchanged there.
           ref: ${{ github.head_ref || github.ref }}
+          # Full history required: lib/bump-fab-version.js walks git log/show
+          # against older commits to find the last VERSION-bump commit and
+          # diff data files against it. The default shallow clone (depth 1)
+          # would make that plumbing fail silently (empty diffs -> no bump
+          # ever detected) rather than loudly, so this is not optional.
+          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -115,6 +121,12 @@ jobs:
       - name: Build terrain-map.json
         run: node lib/build-terrain-map.js
 
+      - name: Auto-increment fab-lang.js CDN version
+        # Replaces a hand-maintained bump (Session 025: it had never been
+        # bumped since introduction) with one computed from what actually
+        # changed since the last bump commit — see lib/compute-fab-version.js.
+        run: node lib/bump-fab-version.js
+
       - name: Commit artifacts
         # On push (to main): commit with [skip ci] as before — the same
         # GITHUB_TOKEN push cannot retrigger a new workflow run anyway (GitHub
@@ -127,7 +139,7 @@ jobs:
         run: |
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
-          git add data/strings/compiled data/index.json data/lessons.json data/roles.json data/status.json data/terrain-map.json dist sw.js pages/archives.html pages/vextreme-demo.html pages/specimens.html pages/specimen-*.html pages/ecosystem-hub.html pages/roles-index.html sitemap.xml index.html
+          git add data/strings/compiled data/index.json data/lessons.json data/roles.json data/status.json data/terrain-map.json dist sw.js pages/archives.html pages/vextreme-demo.html pages/specimens.html pages/specimen-*.html pages/ecosystem-hub.html pages/roles-index.html sitemap.xml index.html widgets/fab-lang.js
           if git diff --staged --quiet; then
             echo "No changes to commit"
           elif [ "${{ github.event_name }}" = "pull_request" ]; then

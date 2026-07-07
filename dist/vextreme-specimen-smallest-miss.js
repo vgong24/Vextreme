@@ -281,6 +281,14 @@
 (function () {
   'use strict';
 
+  // Auto-incremented by lib/bump-fab-version.js on every push to main (see
+  // .github/workflows/build-index.yml) — do not hand-edit. It cache-busts
+  // both this file's script-tag CDN URL indirectly (a version bump means a
+  // new commit lands, which is the actual trigger a human/CI would purge
+  // on) and, directly, the internal index.json fetch below. Session 025:
+  // this constant had never been bumped since introduction, which is most
+  // of why a real fix here silently didn't reach CDN-script-tag pages —
+  // see docs/lattice-map.json's context note on this file for the story.
   var VERSION    = '1.1.0';
   var CDN_BASE   = 'https://cdn.jsdelivr.net/gh/vgong24/vextreme@main';
   var INDEX_URL  = CDN_BASE + '/data/index.json?v=' + VERSION;

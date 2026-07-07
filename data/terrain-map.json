@@ -28,12 +28,12 @@
       "key": 1.5,
       "name": "UTILITIES",
       "sub": "other lib/ helpers, config, tracing",
-      "count": 15,
+      "count": 17,
       "rect": {
         "x": 690,
         "y": 40,
         "width": 300,
-        "height": 990
+        "height": 1110
       }
     },
     {
@@ -906,6 +906,36 @@
       "auditorRank": 6
     },
     {
+      "id": "lib/bump-fab-version.js",
+      "cluster": "lib",
+      "stage": 1.5,
+      "stageName": "UTILITIES",
+      "x": 740,
+      "y": 270,
+      "role": "git-diffing orchestration for lib/compute-fab-version.js — finds the last VERSION-bump commit, diffs data files against it, applies the computed bump to widgets/fab-lang.js",
+      "reads": [
+        "git log/show/diff history (via child_process, not require())",
+        "data/nodes.json (current + at baseline commit)",
+        "data/strings/source/**/*.json (current + at baseline commit)",
+        "data/index.json's supportedLangs (current + at baseline commit)",
+        "data/arcs-v2.json (current + at baseline commit)",
+        "data/departments.json (current + at baseline commit)",
+        "lib/compute-fab-version.js"
+      ],
+      "writes": [
+        "widgets/fab-lang.js (rewrites the VERSION line in place, if a bump tier applies)"
+      ],
+      "loadedBy": [
+        ".github/workflows/build-index.yml ('Auto-increment fab-lang.js CDN version' step, before the artifact-commit step)"
+      ],
+      "testedBy": [],
+      "debts": [],
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": false,
+      "auditorRank": 9
+    },
+    {
       "id": "lib/check-design-tokens.js",
       "cluster": "lib",
       "stage": 2,
@@ -1042,12 +1072,35 @@
       "auditorRank": 3
     },
     {
+      "id": "lib/compute-fab-version.js",
+      "cluster": "lib",
+      "stage": 1.5,
+      "stageName": "UTILITIES",
+      "x": 740,
+      "y": 330,
+      "role": "pure semver classification for widgets/fab-lang.js's CDN cache-busting VERSION — major/minor/patch decision table + diff helpers, no I/O",
+      "reads": [],
+      "writes": [],
+      "loadedBy": [
+        "lib/bump-fab-version.js",
+        "tests/30-compute-fab-version.test.js"
+      ],
+      "testedBy": [
+        "tests/30-compute-fab-version.test.js"
+      ],
+      "debts": [],
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": false,
+      "auditorRank": 10
+    },
+    {
       "id": "lib/compute-test-shards.js",
       "cluster": "lib",
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 270,
+      "y": 390,
       "role": "self-scaling CI test-sharding — computes shard count and per-shard file assignment from the real current tests/*.test.js file count, no hand-picked number to forget updating",
       "reads": [
         "tests/*.test.js (file list only, via fs.readdirSync — not file contents)"
@@ -1066,7 +1119,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 9
+      "auditorRank": 11
     },
     {
       "id": "lib/detect-wip-promotions.js",
@@ -1074,7 +1127,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 330,
+      "y": 450,
       "role": "detects a wip/*.html → pages/*.html move within a PR's diff, so a promotion shows up as a positive PR notice instead of silence or a false 'broken reference'",
       "reads": [
         "git diff --name-status -M output between two refs (wip/ and pages/ paths only)"
@@ -1094,7 +1147,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 10
+      "auditorRank": 12
     },
     {
       "id": "lib/logger-codes.js",
@@ -1102,7 +1155,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 390,
+      "y": 510,
       "role": "event code registry — the CODES constant every logger.warn/error call references",
       "reads": [],
       "writes": [],
@@ -1128,7 +1181,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 450,
+      "y": 570,
       "role": "structured logger — every build script's warn/info/error call goes through here",
       "reads": [],
       "writes": [
@@ -1157,7 +1210,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 510,
+      "y": 630,
       "role": "runs the build scripts tests/helpers/prereqs.js declares as required before the test suite can read generated files — replaces a hardcoded run: line in .github/workflows/test.yml",
       "reads": [
         "tests/helpers/prereqs.js (PREREQUISITE_SCRIPTS)"
@@ -1173,7 +1226,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 11
+      "auditorRank": 13
     },
     {
       "id": "lib/session-bootstrap.js",
@@ -1181,7 +1234,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 570,
+      "y": 690,
       "role": "one-shot session-start state report — read-only, gathers what would otherwise be several manual checks into one command",
       "reads": [
         "docs/continuity/INDEX.md (last logged session, batch registry)",
@@ -1208,7 +1261,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 12
+      "auditorRank": 14
     },
     {
       "id": "lib/strings-check.js",
@@ -1216,7 +1269,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 630,
+      "y": 750,
       "role": "strings pipeline integrity check — runs before compile, catches missing EN text, stale translations, and orphaned keys",
       "reads": [
         "data/strings/source/**/*.json",
@@ -1247,7 +1300,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 690,
+      "y": 810,
       "role": "strings pipeline compiler — reads source JSON, writes compiled bundles and manifest",
       "reads": [
         "data/strings/source/**/*.json",
@@ -1281,7 +1334,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 750,
+      "y": 870,
       "role": "string reverse-tracer — data-i18n usage in pages/wip HTML cross-referenced against the compiled manifest",
       "reads": [
         "pages/*.html (data-i18n attribute scan)",
@@ -1302,7 +1355,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 13
+      "auditorRank": 15
     },
     {
       "id": "lib/validate-blueprint.js",
@@ -1310,7 +1363,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 810,
+      "y": 930,
       "role": "blueprint consistency validator — confirms every id in blueprint.json has a matching config file and vex-config constant",
       "reads": [
         "blueprint.json",
@@ -1342,7 +1395,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 870,
+      "y": 990,
       "role": "constants hub — pure declarations, no I/O",
       "reads": [],
       "writes": [],
@@ -1381,7 +1434,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 930,
+      "y": 1050,
       "role": "browser arc nav runtime — reads index.json at load time, renders prev/next/position into #arcNavMount",
       "reads": [
         "data/index.json via CDN (slugMap, arcMap, arcMeta)",
@@ -1404,7 +1457,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 14
+      "auditorRank": 16
     },
     {
       "id": "pages/terrain-map.html",
@@ -1812,6 +1865,22 @@
       "widgets/vex-fab.js"
     ],
     [
+      "lib/bump-fab-version.js",
+      "data/arcs-v2.json"
+    ],
+    [
+      "lib/bump-fab-version.js",
+      "data/departments.json"
+    ],
+    [
+      "lib/bump-fab-version.js",
+      "lib/build-index.js"
+    ],
+    [
+      "lib/bump-fab-version.js",
+      "widgets/fab-lang.js"
+    ],
+    [
       "lib/check-key-alignment.js",
       "data/arcs-v2.json"
     ],
@@ -1838,6 +1907,10 @@
     [
       "lib/check-key-alignment.js",
       "lib/build-vextreme.js"
+    ],
+    [
+      "lib/compute-fab-version.js",
+      "lib/bump-fab-version.js"
     ],
     [
       "lib/logger-codes.js",
