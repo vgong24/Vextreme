@@ -10,3 +10,14 @@ pages/archives.html                   merge=ours
 sitemap.xml                           merge=ours
 index.html                            merge=ours
 docs/architecture.md                  merge=ours
+sw.js                                  merge=ours
+data/status.json                      merge=ours
+data/lessons.json                     merge=ours
+
+# NOTE: `merge=ours` only takes effect if the "ours" driver is registered
+# locally (git config merge.ours.driver true) — that registration lives in
+# .git/config, which is NOT tracked by git and does NOT apply to GitHub's
+# own web-based PR conflict UI at all. Run `node lib/resolve-generated-conflicts.js`
+# after a `git rebase origin/main` to auto-resolve conflicts in the files
+# above instead of hand-picking "accept incoming" in the browser every time.
+# See docs/culture.md's "Generated-file merge conflicts" section.
