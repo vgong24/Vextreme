@@ -26,6 +26,9 @@ on:
       - 'lib/build-lessons.js'
       - 'lib/build-roles.js'
       - 'lib/build-roles-page.js'
+      - 'lib/build-terrain-map.js'
+      - 'docs/lattice-map.json'
+      - 'docs/screenshots/**'
       - 'data/council-kernel.json'
       - 'lib/check-key-alignment.js'
       - 'lib/auto-discover-nodes.js'
@@ -109,6 +112,9 @@ jobs:
       - name: Build roles-index.html
         run: node lib/build-roles-page.js
 
+      - name: Build terrain-map.json
+        run: node lib/build-terrain-map.js
+
       - name: Commit artifacts
         # On push (to main): commit with [skip ci] as before — the same
         # GITHUB_TOKEN push cannot retrigger a new workflow run anyway (GitHub
@@ -121,7 +127,7 @@ jobs:
         run: |
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
-          git add data/strings/compiled data/index.json data/lessons.json data/roles.json data/status.json dist sw.js pages/archives.html pages/vextreme-demo.html pages/specimens.html pages/specimen-*.html pages/ecosystem-hub.html pages/roles-index.html sitemap.xml index.html
+          git add data/strings/compiled data/index.json data/lessons.json data/roles.json data/status.json data/terrain-map.json dist sw.js pages/archives.html pages/vextreme-demo.html pages/specimens.html pages/specimen-*.html pages/ecosystem-hub.html pages/roles-index.html sitemap.xml index.html
           if git diff --staged --quiet; then
             echo "No changes to commit"
           elif [ "${{ github.event_name }}" = "pull_request" ]; then
