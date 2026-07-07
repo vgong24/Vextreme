@@ -470,4 +470,57 @@ test('LANG-FAB: wheel clips to a partial peek when languages exceed the visible 
   assert.ok(!/#vex-lang-wheel \{[^}]*height:\s*\d+px/.test(source), 'wheel height must not be hardcoded in CSS once it is computed per instance');
 });
 
+// loadComputeLangSearch — pulls the real, pure computeLangSearch() out of the
+// widget source and evaluates it directly (same technique as loadSortLangs
+// above), so the URL-sharing logic is actually exercised rather than only
+// text-matched.
+function loadComputeLangSearch() {
+  const source = fs.readFileSync(FAB_IN, 'utf8');
+  const paramMatch = source.match(/var URL_LANG_PARAM = '[^']+';/);
+  const fnMatch    = source.match(/function computeLangSearch\([\s\S]*?\n  \}/);
+  assert.ok(paramMatch, 'URL_LANG_PARAM must exist in widgets/fab-lang.js');
+  assert.ok(fnMatch, 'computeLangSearch() must exist in widgets/fab-lang.js');
+  const fn = new Function(
+    'LANG_DEFAULT',
+    paramMatch[0] + '\n' + fnMatch[0] + '\nreturn computeLangSearch;'
+  );
+  return fn('en');
+}
+
+test('LANG-FAB: computeLangSearch omits ?lang= for the default language, for a clean shareable URL', () => {
+  const computeLangSearch = loadComputeLangSearch();
+  assert.equal(computeLangSearch('', 'en'), '');
+  assert.equal(computeLangSearch('?lang=zh', 'en'), '');
+});
+
+test('LANG-FAB: computeLangSearch sets ?lang= explicitly for any non-default language', () => {
+  const computeLangSearch = loadComputeLangSearch();
+  assert.equal(computeLangSearch('', 'zh'), 'lang=zh');
+  assert.equal(computeLangSearch('?lang=en', 'ja'), 'lang=ja');
+});
+
+test('LANG-FAB: computeLangSearch preserves unrelated query params', () => {
+  const computeLangSearch = loadComputeLangSearch();
+  const result = computeLangSearch('?utm_source=share&foo=bar', 'zh');
+  const params = new URLSearchParams(result);
+  assert.equal(params.get('lang'), 'zh');
+  assert.equal(params.get('utm_source'), 'share');
+  assert.equal(params.get('foo'), 'bar');
+});
+
+test('LANG-FAB: a URL ?lang= param wins over the stored localStorage preference on load', () => {
+  const source = fs.readFileSync(FAB_IN, 'utf8');
+  const urlLangCheck  = source.indexOf('var urlLang = getUrlLang();');
+  const savedLangUse  = source.indexOf('if (langs.indexOf(savedLang) < 0) savedLang = langs[0];');
+  assert.ok(urlLangCheck >= 0, 'mount() must check the URL for an explicit language override');
+  assert.ok(urlLangCheck < savedLangUse, 'the URL override must be applied before the final savedLang is locked in');
+});
+
+test('LANG-FAB: selecting a language from the wheel updates the URL immediately', () => {
+  const source = fs.readFileSync(FAB_IN, 'utf8');
+  const clickHandler = source.match(/item\.addEventListener\('click', function \(\) \{[\s\S]*?\n\s*\}\);/);
+  assert.ok(clickHandler, 'wheel item click handler must exist');
+  assert.ok(clickHandler[0].includes('syncUrlLang(lang)'), 'clicking a language must sync it into the URL, not just apply it in-page');
+});
+
 // [VXG RealForever]

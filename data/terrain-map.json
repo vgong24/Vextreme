@@ -1520,11 +1520,13 @@
         "data/strings/compiled/scopes/{category}/{scope}.{lang}.json via CDN",
         "data/strings/compiled/arcs/{arc}.{lang}.json via CDN (when VEX_STRING_ARC_BUNDLE is set)",
         "localStorage (LS_LANG — the selected language preference only, not fetched string content)",
-        "DOM: #vex-spiral-group (widgets/vex-fab.js — Session 025 FAB unification, nests its orb there if present)"
+        "DOM: #vex-spiral-group (widgets/vex-fab.js — Session 025 FAB unification, nests its orb there if present)",
+        "location.search (?lang= param — explicit override for the effective language, wins over localStorage)"
       ],
       "writes": [
         "innerHTML / textContent of [data-i18n] elements",
-        "localStorage (LS_LANG — selected language preference)"
+        "localStorage (LS_LANG — selected language preference)",
+        "location/history (history.replaceState — reflects the effective language into ?lang= so the current URL is always forwardable)"
       ],
       "loadedBy": [
         "lib/build-vextreme.js (inlined as lang feature in God Scripts)",
