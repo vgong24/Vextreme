@@ -425,4 +425,49 @@ test('LANG-FAB: victor methodology page uses generated script as language contex
   assert.equal(/<script[^>]+widgets\/fab-lang\.js/.test(html), false, 'page must not bypass the generated language bundle');
 });
 
+// loadSortLangs — pulls the real LANG_NAMES map and sortLangs() function out
+// of the widget source and evaluates them directly, instead of a brittle
+// text-position check, so this test actually exercises the sort behavior
+// rather than just confirming certain strings appear in a certain order.
+function loadSortLangs() {
+  const source = fs.readFileSync(FAB_IN, 'utf8');
+  const namesMatch = source.match(/var LANG_NAMES = \{[\s\S]*?\n  \};/);
+  const sortMatch  = source.match(/function sortLangs\([\s\S]*?\n  \}/);
+  assert.ok(namesMatch, 'LANG_NAMES map must exist in widgets/fab-lang.js');
+  assert.ok(sortMatch, 'sortLangs() must exist in widgets/fab-lang.js');
+  const fn = new Function(
+    'LANG_DEFAULT',
+    namesMatch[0].replace('var LANG_NAMES', 'var LANG_NAMES') + '\n' +
+    sortMatch[0] + '\nreturn sortLangs;'
+  );
+  return fn('en');
+}
+
+test('LANG-FAB: sortLangs pins English first regardless of input order', () => {
+  const sortLangs = loadSortLangs();
+  // Chinese sorts before Japanese alphabetically by display name (C < J).
+  assert.deepEqual(sortLangs(['zh', 'ja', 'en']), ['en', 'zh', 'ja']);
+  assert.deepEqual(sortLangs(['en', 'ja', 'zh']), ['en', 'zh', 'ja']);
+});
+
+test('LANG-FAB: sortLangs orders non-English languages alphabetically by display name', () => {
+  const sortLangs = loadSortLangs();
+  // Chinese, Japanese, Korean — alphabetical by name puts zh before ja before ko,
+  // not code order (ja, ko, zh) and not input order.
+  assert.deepEqual(sortLangs(['ko', 'ja', 'zh', 'en']), ['en', 'zh', 'ja', 'ko']);
+});
+
+test('LANG-FAB: sortLangs still sorts alphabetically by name when English is absent from the list', () => {
+  const sortLangs = loadSortLangs();
+  assert.deepEqual(sortLangs(['zh', 'ja']), ['zh', 'ja']);
+});
+
+test('LANG-FAB: wheel clips to a partial peek when languages exceed the visible cap', () => {
+  const source = fs.readFileSync(FAB_IN, 'utf8');
+  assert.ok(/var WHEEL_VISIBLE_ITEMS\s*=\s*\d+/.test(source), 'must declare a visible-items cap');
+  assert.ok(/var WHEEL_PEEK_FRACTION\s*=\s*[\d.]+/.test(source), 'must declare a peek fraction for the clipped trailing item');
+  assert.ok(source.includes('wheel.style.height'), 'wheel height must be computed per mount, not fixed in CSS, so it can clip to a peek');
+  assert.ok(!/#vex-lang-wheel \{[^}]*height:\s*\d+px/.test(source), 'wheel height must not be hardcoded in CSS once it is computed per instance');
+});
+
 // [VXG RealForever]
