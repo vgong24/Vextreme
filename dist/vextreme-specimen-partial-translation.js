@@ -330,6 +330,18 @@
   var SCOPE_COMMON        = 'common';
   var LANG_DEFAULT        = 'en';
 
+  // Wheel sizing (Session 025 continued — overflow peek affordance). Full
+  // items visible at once before the wheel starts clipping the trailing item
+  // into a partial "there's more, scroll" peek. Set to 2 deliberately while
+  // this system only ships 3 languages (en/ja/zh) — that's the minimum count
+  // where the peek behavior is actually exercised and can be verified live,
+  // rather than sized for a 5-language future that doesn't exist yet. Raise
+  // toward 5 as more languages ship and 2 stops being a meaningful test of
+  // the affordance; the constant is the single place that needs to change.
+  var WHEEL_VISIBLE_ITEMS = 2;
+  var WHEEL_ITEM_HEIGHT   = 52;
+  var WHEEL_PEEK_FRACTION = 0.5;
+
   var _logger = (window.VEXTREME_LOGGER) || {
     warn:  function(e) { console.warn('[' + e.code + ']', e.message, e); },
     error: function(e) { console.error('[' + e.code + ']', e.message, e); },
@@ -352,6 +364,36 @@
 
   function flagFor(lang) {
     return LANG_FLAGS[lang] || '🏳';
+  }
+
+  // English display names, used only to sort the wheel — not shown as text
+  // anywhere (the wheel is flag-only). English itself is pinned first
+  // regardless of alphabetical order since it's this system's primary
+  // language, not because it sorts first.
+  var LANG_NAMES = {
+    en: 'English',
+    ar: 'Arabic',
+    zh: 'Chinese',
+    fr: 'French',
+    de: 'German',
+    hi: 'Hindi',
+    ja: 'Japanese',
+    ko: 'Korean',
+    pt: 'Portuguese',
+    es: 'Spanish',
+  };
+
+  // sortLangs — English first (primary language, not alphabetical), every
+  // other supported language alphabetical by English display name after it.
+  // Keeps wheel order stable and predictable as more languages ship, rather
+  // than reflecting data/index.json's incidental array order.
+  function sortLangs(langs) {
+    var rest = langs.filter(function (l) { return l !== LANG_DEFAULT; });
+    rest.sort(function (a, b) {
+      return (LANG_NAMES[a] || a).localeCompare(LANG_NAMES[b] || b);
+    });
+    if (langs.indexOf(LANG_DEFAULT) === -1) return rest;
+    return [LANG_DEFAULT].concat(rest);
   }
 
   // ── Index loading (God Script global first, then cache, then network) ────────
@@ -576,7 +618,6 @@
       '  top: 52px;',
       '  right: 0;',
       '  width: 60px;',
-      '  height: 160px;',
       '  overflow: hidden;',
       '  display: none;',
       '  border-radius: 12px;',
@@ -586,6 +627,14 @@
       '  box-shadow: 0 4px 24px rgba(0,0,0,0.18);',
       '}',
       '#vex-lang-wheel.open { display: block; }',
+      // Overflow peek affordance (Session 025 continued): when more languages
+      // exist than fit in the visible window, the wheel's own height clips the
+      // trailing item to a fraction — a visibly cut-off flag reads as "more
+      // below, scroll" far more reliably than the old fully-opaque single-item
+      // wheel did, which showed one flag at a time with no indication siblings
+      // existed. This gradient only softens the very top/bottom edges now
+      // (short fade, not a near-opaque cap) so a peeked item stays recognizable
+      // rather than being masked into a blank sliver.
       '#vex-lang-wheel-mask {',
       '  position: absolute;',
       '  inset: 0;',
@@ -593,17 +642,17 @@
       '  z-index: 2;',
       '  background: linear-gradient(',
       '    to bottom,',
-      '    rgba(255,255,255,0.55) 0%,',
-      '    transparent 30%,',
-      '    transparent 70%,',
-      '    rgba(255,255,255,0.55) 100%',
+      '    rgba(255,255,255,0.35) 0%,',
+      '    transparent 12%,',
+      '    transparent 88%,',
+      '    rgba(255,255,255,0.35) 100%',
       '  );',
       '}',
       '#vex-lang-wheel-track {',
       '  position: absolute;',
       '  inset: 0;',
-      '  overflow-y: scroll;',
-      '  scroll-snap-type: y mandatory;',
+      '  overflow-y: auto;',
+      '  scroll-snap-type: y proximity;',
       '  -webkit-overflow-scrolling: touch;',
       '  scrollbar-width: none;',
       '}',
@@ -614,14 +663,13 @@
       '  align-items: center;',
       '  justify-content: center;',
       '  font-size: 28px;',
-      '  scroll-snap-align: center;',
+      '  scroll-snap-align: start;',
       '  cursor: pointer;',
       '  transition: opacity 0.15s;',
       '  line-height: 1;',
       '}',
       '.vex-lang-item:hover { opacity: 0.7; }',
-      '.vex-lang-item:first-child { margin-top: 54px; }',
-      '.vex-lang-item:last-child  { margin-bottom: 54px; }',
+      '.vex-lang-item.vex-lang-current { background: rgba(255,255,255,0.25); }',
     ].join('\n');
 
     var style = document.createElement('style');
@@ -641,6 +689,16 @@
     var wheel = document.createElement('div');
     wheel.id = 'vex-lang-wheel';
 
+    // Overflow peek: show WHEEL_VISIBLE_ITEMS full rows; if there are more
+    // languages than that, clip the wheel's height mid-row so the next item
+    // is visibly cut off (a "peek") instead of hidden entirely — the visual
+    // signal that more languages are reachable by scrolling. When everything
+    // fits, no clipping happens and there's nothing to scroll.
+    var visibleItems = Math.min(langs.length, WHEEL_VISIBLE_ITEMS);
+    var hasOverflow   = langs.length > visibleItems;
+    var wheelHeight   = (hasOverflow ? visibleItems + WHEEL_PEEK_FRACTION : visibleItems) * WHEEL_ITEM_HEIGHT;
+    wheel.style.height = wheelHeight + 'px';
+
     var mask = document.createElement('div');
     mask.id = 'vex-lang-wheel-mask';
 
@@ -650,7 +708,7 @@
     for (var i = 0; i < langs.length; i++) {
       (function (lang) {
         var item = document.createElement('div');
-        item.className = 'vex-lang-item';
+        item.className = 'vex-lang-item' + (lang === currentLang ? ' vex-lang-current' : '');
         item.textContent = flagFor(lang);
         item.setAttribute('data-lang', lang);
         item.setAttribute('title', lang);
@@ -688,6 +746,7 @@
   function mount() {
     loadSupportedLangs(function (langs) {
       if (!langs || langs.length < 2) return;
+      langs = sortLangs(langs);
 
       var savedLang = LANG_DEFAULT;
       try { savedLang = localStorage.getItem(LS_LANG) || LANG_DEFAULT; } catch (e) {}
