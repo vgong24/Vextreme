@@ -161,15 +161,10 @@
 }());
 </script>
 
-<script>
-  // Demo pages live in the 'demo' category — scopes compile to
-  // scopes/demo/ instead of scopes/production/. lang-fab reads this to
-  // construct the correct fetch URL without a runtime lookup table.
-  window.VEX_STRING_CATEGORY = 'demo';
-  window.VEX_STRING_SCOPES = ['demo'];
-</script>
-<script src="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/widgets/lang-fab.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/widgets/demo-fab.js"></script>
+<!-- God Script — assembled by lib/build-vextreme.js. Regenerate with:
+     node lib/build-vextreme.js. See pages/victor-methodology-presentation.html
+     for why this is a relative GitHub Pages path, not a jsdelivr CDN tag. -->
+<script src="../dist/vextreme-vextreme-demo.js"></script>
 
 </body>
 </html>
