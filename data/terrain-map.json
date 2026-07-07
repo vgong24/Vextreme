@@ -1600,19 +1600,20 @@
       "stageName": "RUNTIME",
       "x": 1760,
       "y": 270,
-      "role": "Service Worker registration — activates offline caching, auto-reloads once when a new SW takes control",
+      "role": "Service Worker registration — activates offline caching, forces an immediate update check, auto-reloads once when a new SW takes control",
       "reads": [
         "navigator.serviceWorker API"
       ],
       "writes": [
         "Service Worker registration in browser",
+        "an immediate Service Worker update check on every page load (registration.update())",
         "window.location.reload() — exactly once, when a new SW becomes the controller"
       ],
       "loadedBy": [
         "lib/build-vextreme.js (inlined as core module in every God Script, default: true)"
       ],
       "testedBy": [
-        "tests/09-build-sw.test.js (BUILD-SW: widgets/sw-register.js auto-reloads once... — structural guard on this file directly; the rest of tests/09 tests sw.js generation)"
+        "tests/09-build-sw.test.js (BUILD-SW: widgets/sw-register.js auto-reloads once..., BUILD-SW: widgets/sw-register.js forces an immediate update check... — structural guards on this file directly; the rest of tests/09 tests sw.js generation)"
       ],
       "debts": [],
       "status": "good",

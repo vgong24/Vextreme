@@ -129,6 +129,26 @@ test('BUILD-SW: widgets/sw-register.js auto-reloads once when a new Service Work
     'sw-register.js must reload the page once a new SW becomes the controller');
 });
 
+test('BUILD-SW: widgets/sw-register.js forces an immediate update check on every page load, not just the browser\'s own throttled background check', () => {
+  // Regression guard (Session 025, continued once more): simulated the
+  // controllerchange fix above end-to-end (install a Service Worker with
+  // OLD content, deploy NEW content, then reload repeatedly with no other
+  // intervention) and found it insufficient on its own. Chrome throttles
+  // its own background update check to roughly once per 24h per the spec —
+  // reloading the page any number of times within that window never
+  // triggers a fresh check, so the controllerchange listener above never
+  // gets anything to react to. A returning visitor testing again the same
+  // day could reload indefinitely and keep seeing stale content forever.
+  // registration.update() forces an immediate check on every load instead
+  // of waiting on that throttle. Simulation confirmed: without this call,
+  // three consecutive reloads after a simulated deploy never picked up new
+  // content; with it, the second reload settles on the correct content and
+  // stays correct on a third.
+  const swRegisterSrc = fs.readFileSync(path.join(ROOT, 'widgets', 'sw-register.js'), 'utf8');
+  assert.ok(/\.then\(function\s*\(reg\)\s*\{[\s\S]*?reg\.update\(\)/.test(swRegisterSrc),
+    'sw-register.js must call reg.update() after a successful registration to force an immediate check');
+});
+
 test('BUILD-SW: output uses dev hash when commitHash is empty', () => {
   const content = generateSWContent([], '');
   assert.ok(content.includes('vextreme-v1-dev'), 'must fall back to dev hash');
