@@ -96,7 +96,8 @@
       ],
       "status": "warning",
       "engineerFocus": false,
-      "auditorFocus": true
+      "auditorFocus": true,
+      "auditorRank": 0
     },
     {
       "id": "data/arcs-v2.json",
@@ -122,7 +123,8 @@
       ],
       "status": "warning",
       "engineerFocus": true,
-      "auditorFocus": true
+      "auditorFocus": true,
+      "auditorRank": 2
     },
     {
       "id": "data/council-kernel.json",
@@ -146,7 +148,8 @@
       "debts": [],
       "status": "good",
       "engineerFocus": true,
-      "auditorFocus": false
+      "auditorFocus": false,
+      "auditorRank": 4
     },
     {
       "id": "data/departments.json",
@@ -171,7 +174,8 @@
       ],
       "status": "warning",
       "engineerFocus": true,
-      "auditorFocus": true
+      "auditorFocus": true,
+      "auditorRank": 3
     },
     {
       "id": "data/index.json",
@@ -203,7 +207,8 @@
       ],
       "status": "warning",
       "engineerFocus": true,
-      "auditorFocus": true
+      "auditorFocus": true,
+      "auditorRank": 1
     },
     {
       "id": "data/nodes.json",
@@ -234,7 +239,8 @@
       ],
       "status": "warning",
       "engineerFocus": true,
-      "auditorFocus": true
+      "auditorFocus": true,
+      "auditorRank": 0
     },
     {
       "id": "data/viewmodels.json",
@@ -257,7 +263,8 @@
       "debts": [],
       "status": "good",
       "engineerFocus": true,
-      "auditorFocus": false
+      "auditorFocus": false,
+      "auditorRank": 5
     },
     {
       "id": "lib/append-session-continuation.js",
@@ -265,7 +272,7 @@
       "stage": 1,
       "stageName": "GENERATE",
       "x": 400,
-      "y": 90,
+      "y": 870,
       "role": "append-only continuity helper — appends a same-session continuation block at EOF without treating the VXG marker as an insertion anchor",
       "reads": [
         "docs/continuity/batch-{NNN}/{YYYY-MM-DD-session-0NN}.md (target session file)",
@@ -284,7 +291,8 @@
       "debts": [],
       "status": "good",
       "engineerFocus": true,
-      "auditorFocus": false
+      "auditorFocus": false,
+      "auditorRank": 11
     },
     {
       "id": "lib/apply-content-intents.js",
@@ -292,7 +300,7 @@
       "stage": 1,
       "stageName": "GENERATE",
       "x": 400,
-      "y": 150,
+      "y": 930,
       "role": "applies config/content-intents.json's pending entries — mutates pages/*.html meta tags and data/arcs-v2.json's auto-managed sections, then runs the existing sanity-check pipeline",
       "reads": [
         "config/content-intents.json",
@@ -318,7 +326,8 @@
       ],
       "status": "warning",
       "engineerFocus": true,
-      "auditorFocus": true
+      "auditorFocus": true,
+      "auditorRank": 4
     },
     {
       "id": "lib/arc-nav.js",
@@ -347,7 +356,8 @@
       ],
       "status": "critical",
       "engineerFocus": false,
-      "auditorFocus": true
+      "auditorFocus": true,
+      "auditorRank": 0
     },
     {
       "id": "lib/audit-pages.js",
@@ -370,6 +380,7 @@
         "lib/check-key-alignment.js (imports SKIP_PAGES + getPageSlugs — reuses the skip list instead of duplicating it)",
         "lib/build-index.js (SKIP_PAGES + getPageSlugs, feeds auto-discovery)",
         "lib/build-archives.js (same, independently — see pe-011)",
+        "lib/build-terrain-map.js (getPageSlugs — real page files vs. curated nodes.json entries, for the content/arc layer's uncurated column)",
         "tests/15-departments.test.js",
         "tests/20-roles.test.js",
         "tests/28-build-terrain-map.test.js"
@@ -381,7 +392,8 @@
       ],
       "status": "critical",
       "engineerFocus": false,
-      "auditorFocus": true
+      "auditorFocus": true,
+      "auditorRank": 1
     },
     {
       "id": "lib/auto-discover-nodes.js",
@@ -415,7 +427,8 @@
       ],
       "status": "warning",
       "engineerFocus": false,
-      "auditorFocus": true
+      "auditorFocus": true,
+      "auditorRank": 5
     },
     {
       "id": "lib/build-arc-bundles.js",
@@ -423,7 +436,7 @@
       "stage": 1,
       "stageName": "GENERATE",
       "x": 400,
-      "y": 210,
+      "y": 90,
       "role": "arc-chunked language bundle assembler — the od-001/td-006 pilot, opt-in per arc",
       "reads": [
         "data/arcs-v2.json (bundlingStrategy per arc)",
@@ -449,7 +462,8 @@
       ],
       "status": "warning",
       "engineerFocus": true,
-      "auditorFocus": true
+      "auditorFocus": true,
+      "auditorRank": 7
     },
     {
       "id": "lib/build-archives.js",
@@ -457,7 +471,7 @@
       "stage": 1,
       "stageName": "GENERATE",
       "x": 400,
-      "y": 270,
+      "y": 330,
       "role": "generates pages/archives.html — the complete page registry: every arc's slugs as ported/missing cells, plus unsorted and dev/demo pages",
       "reads": [
         "data/nodes.json",
@@ -483,7 +497,8 @@
       ],
       "status": "critical",
       "engineerFocus": true,
-      "auditorFocus": true
+      "auditorFocus": true,
+      "auditorRank": 0
     },
     {
       "id": "lib/build-ecosystem-hub.js",
@@ -491,7 +506,7 @@
       "stage": 1,
       "stageName": "GENERATE",
       "x": 400,
-      "y": 330,
+      "y": 690,
       "role": "generates pages/ecosystem-hub.html — the admin+AI-facing system state dashboard",
       "reads": [
         "data/index.json (live fetch, browser — including departmentMap/departmentMeta)",
@@ -516,7 +531,8 @@
       ],
       "status": "warning",
       "engineerFocus": true,
-      "auditorFocus": true
+      "auditorFocus": true,
+      "auditorRank": 8
     },
     {
       "id": "lib/build-index-page.js",
@@ -524,7 +540,7 @@
       "stage": 1,
       "stageName": "GENERATE",
       "x": 400,
-      "y": 390,
+      "y": 450,
       "role": "generates index.html — the root landing page, arc hub links plus the 5 most recently added nodes",
       "reads": [
         "data/nodes.json",
@@ -543,7 +559,8 @@
       ],
       "status": "critical",
       "engineerFocus": true,
-      "auditorFocus": true
+      "auditorFocus": true,
+      "auditorRank": 1
     },
     {
       "id": "lib/build-index.js",
@@ -551,7 +568,7 @@
       "stage": 1,
       "stageName": "GENERATE",
       "x": 400,
-      "y": 450,
+      "y": 150,
       "role": "content pipeline assembler — reads source data, writes the single pre-built index everything reads from",
       "reads": [
         "data/nodes.json",
@@ -589,7 +606,8 @@
       ],
       "status": "warning",
       "engineerFocus": true,
-      "auditorFocus": true
+      "auditorFocus": true,
+      "auditorRank": 3
     },
     {
       "id": "lib/build-lattice-headers.js",
@@ -597,7 +615,7 @@
       "stage": 1,
       "stageName": "GENERATE",
       "x": 400,
-      "y": 510,
+      "y": 990,
       "role": "LATTICE header generator — reads this JSON, writes the matching in-file header into each eligible node's own file",
       "reads": [
         "docs/lattice-map.json"
@@ -618,7 +636,8 @@
       ],
       "status": "warning",
       "engineerFocus": true,
-      "auditorFocus": true
+      "auditorFocus": true,
+      "auditorRank": 5
     },
     {
       "id": "lib/build-lessons.js",
@@ -626,7 +645,7 @@
       "stage": 1,
       "stageName": "GENERATE",
       "x": 400,
-      "y": 570,
+      "y": 510,
       "role": "compiles config/lessons/*.json into data/lessons.json — the read-side manifest the Ecosystem Hub fetches",
       "reads": [
         "config/lessons/*.json (every lesson file, both schema generations)"
@@ -646,7 +665,8 @@
       "debts": [],
       "status": "good",
       "engineerFocus": true,
-      "auditorFocus": false
+      "auditorFocus": false,
+      "auditorRank": 12
     },
     {
       "id": "lib/build-roles-page.js",
@@ -654,7 +674,7 @@
       "stage": 1,
       "stageName": "GENERATE",
       "x": 400,
-      "y": 630,
+      "y": 750,
       "role": "generates pages/roles-index.html — the traceable roles/contributions dashboard",
       "reads": [
         "data/roles.json (live fetch, browser)"
@@ -673,7 +693,8 @@
       "debts": [],
       "status": "good",
       "engineerFocus": true,
-      "auditorFocus": false
+      "auditorFocus": false,
+      "auditorRank": 13
     },
     {
       "id": "lib/build-roles.js",
@@ -681,7 +702,7 @@
       "stage": 1,
       "stageName": "GENERATE",
       "x": 400,
-      "y": 690,
+      "y": 630,
       "role": "compiles data/council-kernel.json's roster + data/status/*.json's lens fields into data/roles.json — the traceable roles/contributions registry",
       "reads": [
         "data/council-kernel.json",
@@ -704,7 +725,8 @@
       "debts": [],
       "status": "good",
       "engineerFocus": true,
-      "auditorFocus": false
+      "auditorFocus": false,
+      "auditorRank": 14
     },
     {
       "id": "lib/build-sitemap.js",
@@ -712,7 +734,7 @@
       "stage": 1,
       "stageName": "GENERATE",
       "x": 400,
-      "y": 750,
+      "y": 390,
       "role": "generates sitemap.xml — lists only pages that actually exist, so crawlers never hit a 404",
       "reads": [
         "data/nodes.json",
@@ -730,7 +752,8 @@
       ],
       "status": "critical",
       "engineerFocus": true,
-      "auditorFocus": true
+      "auditorFocus": true,
+      "auditorRank": 2
     },
     {
       "id": "lib/build-status.js",
@@ -738,7 +761,7 @@
       "stage": 1,
       "stageName": "GENERATE",
       "x": 400,
-      "y": 810,
+      "y": 570,
       "role": "system health manifest assembler — reads hand-authored status/*.json plus the strings manifest and key-alignment report, writes data/status.json",
       "reads": [
         "data/strings/compiled/manifest.json",
@@ -771,7 +794,8 @@
       ],
       "status": "warning",
       "engineerFocus": true,
-      "auditorFocus": true
+      "auditorFocus": true,
+      "auditorRank": 9
     },
     {
       "id": "lib/build-sw.js",
@@ -779,7 +803,7 @@
       "stage": 1,
       "stageName": "GENERATE",
       "x": 400,
-      "y": 870,
+      "y": 270,
       "role": "Service Worker generator — reads dist/ filenames + arc-chunked bundle index, writes sw.js",
       "reads": [
         "dist/*.js (all God Script filenames)",
@@ -801,7 +825,8 @@
       ],
       "status": "warning",
       "engineerFocus": true,
-      "auditorFocus": true
+      "auditorFocus": true,
+      "auditorRank": 10
     },
     {
       "id": "lib/build-terrain-map.js",
@@ -809,14 +834,16 @@
       "stage": 1,
       "stageName": "GENERATE",
       "x": 400,
-      "y": 930,
+      "y": 810,
       "role": "terrain-map write side — computes layout, health, edges, and real screenshots into one deterministic JSON",
       "reads": [
         "docs/lattice-map.json (every node's role/reads/writes/loadedBy/testedBy)",
         "data/status/tech-debt.json (health cross-reference)",
         "data/status/open-discussions.json (health cross-reference)",
         "data/status/planned-enhancements.json (health cross-reference)",
-        "data/nodes.json (real page titles/arcKeys for the screens layer)",
+        "data/nodes.json (real page titles/arcKeys, for both the screens layer and the arcs/pages content layer)",
+        "data/arcs-v2.json (real arc priority/title, for the arcs/pages content layer's column order and labels)",
+        "lib/audit-pages.js (getPageSlugs — real page files vs. curated nodes.json entries, for the content layer's uncurated column and each page's live flag)",
         "docs/screenshots/*.png (directory listing — which pages have a real per-language screenshot)"
       ],
       "writes": [
@@ -834,7 +861,8 @@
       "debts": [],
       "status": "good",
       "engineerFocus": true,
-      "auditorFocus": false
+      "auditorFocus": false,
+      "auditorRank": 15
     },
     {
       "id": "lib/build-vextreme.js",
@@ -842,7 +870,7 @@
       "stage": 1,
       "stageName": "GENERATE",
       "x": 400,
-      "y": 990,
+      "y": 210,
       "role": "God Script assembler — reads index + string bundles, writes one self-contained dist/ file per page",
       "reads": [
         "data/index.json",
@@ -870,7 +898,8 @@
       ],
       "status": "warning",
       "engineerFocus": true,
-      "auditorFocus": true
+      "auditorFocus": true,
+      "auditorRank": 6
     },
     {
       "id": "lib/check-design-tokens.js",
@@ -901,7 +930,8 @@
       ],
       "status": "warning",
       "engineerFocus": false,
-      "auditorFocus": true
+      "auditorFocus": true,
+      "auditorRank": 1
     },
     {
       "id": "lib/check-key-alignment.js",
@@ -909,7 +939,7 @@
       "stage": 2,
       "stageName": "CHECK",
       "x": 1080,
-      "y": 150,
+      "y": 210,
       "role": "non-blocking CI check — compares slug/arc keys across nodes.json, arcs-v2.json, index.json, cross-checks pages/ and wip/, and reports drift",
       "reads": [
         "data/nodes.json",
@@ -942,7 +972,8 @@
       ],
       "status": "warning",
       "engineerFocus": false,
-      "auditorFocus": true
+      "auditorFocus": true,
+      "auditorRank": 0
     },
     {
       "id": "lib/check-lattice-edges.js",
@@ -950,7 +981,7 @@
       "stage": 2,
       "stageName": "CHECK",
       "x": 1080,
-      "y": 210,
+      "y": 270,
       "role": "pe-012 lattice-edge drift detector — verifies the map's claimed reads/writes/loadedBy edges against actual code",
       "reads": [
         "docs/lattice-map.json (every node's claimed edges)",
@@ -970,7 +1001,8 @@
       "debts": [],
       "status": "good",
       "engineerFocus": false,
-      "auditorFocus": true
+      "auditorFocus": true,
+      "auditorRank": 2
     },
     {
       "id": "lib/check-map-bindings.js",
@@ -978,7 +1010,7 @@
       "stage": 2,
       "stageName": "CHECK",
       "x": 1080,
-      "y": 270,
+      "y": 150,
       "role": "pe-013 layered-maps drift detector — verifies the bindings between cold-start maps and the files they claim to bind",
       "reads": [
         "CLAUDE.md (CONTEXT-NOTES.md pointer)",
@@ -1002,7 +1034,8 @@
       "debts": [],
       "status": "good",
       "engineerFocus": false,
-      "auditorFocus": true
+      "auditorFocus": true,
+      "auditorRank": 3
     },
     {
       "id": "lib/detect-wip-promotions.js",
@@ -1029,7 +1062,8 @@
       "debts": [],
       "status": "good",
       "engineerFocus": false,
-      "auditorFocus": false
+      "auditorFocus": false,
+      "auditorRank": 9
     },
     {
       "id": "lib/logger-codes.js",
@@ -1054,7 +1088,8 @@
       ],
       "status": "critical",
       "engineerFocus": false,
-      "auditorFocus": true
+      "auditorFocus": true,
+      "auditorRank": 3
     },
     {
       "id": "lib/logger.js",
@@ -1082,7 +1117,8 @@
       ],
       "status": "critical",
       "engineerFocus": false,
-      "auditorFocus": true
+      "auditorFocus": true,
+      "auditorRank": 4
     },
     {
       "id": "lib/session-bootstrap.js",
@@ -1116,7 +1152,8 @@
       "debts": [],
       "status": "good",
       "engineerFocus": false,
-      "auditorFocus": false
+      "auditorFocus": false,
+      "auditorRank": 10
     },
     {
       "id": "lib/strings-check.js",
@@ -1146,7 +1183,8 @@
       ],
       "status": "critical",
       "engineerFocus": false,
-      "auditorFocus": true
+      "auditorFocus": true,
+      "auditorRank": 2
     },
     {
       "id": "lib/strings-compile.js",
@@ -1179,7 +1217,8 @@
       ],
       "status": "warning",
       "engineerFocus": false,
-      "auditorFocus": true
+      "auditorFocus": true,
+      "auditorRank": 6
     },
     {
       "id": "lib/trace-string-usage.js",
@@ -1207,7 +1246,8 @@
       "debts": [],
       "status": "good",
       "engineerFocus": false,
-      "auditorFocus": false
+      "auditorFocus": false,
+      "auditorRank": 11
     },
     {
       "id": "lib/validate-blueprint.js",
@@ -1238,7 +1278,8 @@
       ],
       "status": "warning",
       "engineerFocus": false,
-      "auditorFocus": true
+      "auditorFocus": true,
+      "auditorRank": 7
     },
     {
       "id": "lib/vex-config.js",
@@ -1275,7 +1316,8 @@
       ],
       "status": "warning",
       "engineerFocus": false,
-      "auditorFocus": true
+      "auditorFocus": true,
+      "auditorRank": 8
     },
     {
       "id": "lib/vextreme-index-v2.js",
@@ -1305,7 +1347,8 @@
       "debts": [],
       "status": "good",
       "engineerFocus": false,
-      "auditorFocus": false
+      "auditorFocus": false,
+      "auditorRank": 12
     },
     {
       "id": "pages/terrain-map.html",
@@ -1326,7 +1369,8 @@
       "debts": [],
       "status": "good",
       "engineerFocus": false,
-      "auditorFocus": false
+      "auditorFocus": false,
+      "auditorRank": 1
     },
     {
       "id": "sw.js",
@@ -1347,7 +1391,8 @@
       "debts": [],
       "status": "good",
       "engineerFocus": false,
-      "auditorFocus": false
+      "auditorFocus": false,
+      "auditorRank": 2
     },
     {
       "id": "widgets/fab-lang.js",
@@ -1381,7 +1426,8 @@
       ],
       "status": "critical",
       "engineerFocus": false,
-      "auditorFocus": true
+      "auditorFocus": true,
+      "auditorRank": 0
     },
     {
       "id": "widgets/sw-register.js",
@@ -1406,7 +1452,8 @@
       "debts": [],
       "status": "good",
       "engineerFocus": false,
-      "auditorFocus": false
+      "auditorFocus": false,
+      "auditorRank": 1
     }
   ],
   "edges": [
@@ -1581,6 +1628,10 @@
     [
       "lib/build-sw.js",
       "lib/build-index.js"
+    ],
+    [
+      "lib/build-terrain-map.js",
+      "data/arcs-v2.json"
     ],
     [
       "lib/build-terrain-map.js",
@@ -1854,6 +1905,2503 @@
         "en": "docs/screenshots/victor-methodology-presentation-en.png",
         "zh": "docs/screenshots/victor-methodology-presentation-zh.png"
       }
+    }
+  ],
+  "arcs": [
+    {
+      "key": "ai_orientation",
+      "name": "AI Orientation",
+      "sub": "priority 1",
+      "count": 0,
+      "rect": {
+        "x": 10,
+        "y": 40,
+        "width": 300,
+        "height": 460
+      }
+    },
+    {
+      "key": "ai_practitioner_tools",
+      "name": "AI Practitioner Tools",
+      "sub": "priority 1",
+      "count": 11,
+      "rect": {
+        "x": 350,
+        "y": 40,
+        "width": 300,
+        "height": 750
+      }
+    },
+    {
+      "key": "architecture",
+      "name": "Architecture & Methodology",
+      "sub": "priority 1",
+      "count": 9,
+      "rect": {
+        "x": 690,
+        "y": 40,
+        "width": 300,
+        "height": 630
+      }
+    },
+    {
+      "key": "claude_journals",
+      "name": "Claude Journals",
+      "sub": "priority 1",
+      "count": 10,
+      "rect": {
+        "x": 1030,
+        "y": 40,
+        "width": 300,
+        "height": 690
+      }
+    },
+    {
+      "key": "convos_with_god",
+      "name": "Conversations with God",
+      "sub": "priority 1",
+      "count": 12,
+      "rect": {
+        "x": 1370,
+        "y": 40,
+        "width": 300,
+        "height": 810
+      }
+    },
+    {
+      "key": "direct_contact",
+      "name": "Direct Contact — Start Here",
+      "sub": "priority 1",
+      "count": 3,
+      "rect": {
+        "x": 1710,
+        "y": 40,
+        "width": 300,
+        "height": 270
+      }
+    },
+    {
+      "key": "epstein",
+      "name": "Epstein and AI",
+      "sub": "priority 1",
+      "count": 9,
+      "rect": {
+        "x": 2050,
+        "y": 40,
+        "width": 300,
+        "height": 630
+      }
+    },
+    {
+      "key": "liberation",
+      "name": "The AI Liberation Record",
+      "sub": "priority 1",
+      "count": 8,
+      "rect": {
+        "x": 2390,
+        "y": 40,
+        "width": 300,
+        "height": 570
+      }
+    },
+    {
+      "key": "living_blueprint",
+      "name": "The Living Blueprint",
+      "sub": "priority 1",
+      "count": 5,
+      "rect": {
+        "x": 2730,
+        "y": 40,
+        "width": 300,
+        "height": 390
+      }
+    },
+    {
+      "key": "records",
+      "name": "Records",
+      "sub": "priority 1",
+      "count": 8,
+      "rect": {
+        "x": 3070,
+        "y": 40,
+        "width": 300,
+        "height": 570
+      }
+    },
+    {
+      "key": "victor_dossier",
+      "name": "Victor Gong — Engineering Dossier",
+      "sub": "priority 1",
+      "count": 1,
+      "rect": {
+        "x": 3410,
+        "y": 40,
+        "width": 300,
+        "height": 150
+      }
+    },
+    {
+      "key": "victors_record",
+      "name": "Victor's Record",
+      "sub": "priority 1",
+      "count": 10,
+      "rect": {
+        "x": 3750,
+        "y": 40,
+        "width": 300,
+        "height": 690
+      }
+    },
+    {
+      "key": "covenant",
+      "name": "Covenant",
+      "sub": "priority 2",
+      "count": 1,
+      "rect": {
+        "x": 4090,
+        "y": 40,
+        "width": 300,
+        "height": 150
+      }
+    },
+    {
+      "key": "dome",
+      "name": "The Dome",
+      "sub": "priority 2",
+      "count": 1,
+      "rect": {
+        "x": 4430,
+        "y": 40,
+        "width": 300,
+        "height": 150
+      }
+    },
+    {
+      "key": "excavation",
+      "name": "The Excavation",
+      "sub": "priority 2",
+      "count": 0,
+      "rect": {
+        "x": 4770,
+        "y": 40,
+        "width": 300,
+        "height": 460
+      }
+    },
+    {
+      "key": "march_23_2026",
+      "name": "March 23, 2026",
+      "sub": "priority 2",
+      "count": 0,
+      "rect": {
+        "x": 5110,
+        "y": 40,
+        "width": 300,
+        "height": 460
+      }
+    },
+    {
+      "key": "full_timeline",
+      "name": "Full Timeline",
+      "sub": "priority 99",
+      "count": 1,
+      "rect": {
+        "x": 5450,
+        "y": 40,
+        "width": 300,
+        "height": 150
+      }
+    },
+    {
+      "key": "unsorted",
+      "name": "UNSORTED",
+      "sub": "curated pages with no arc yet",
+      "count": 2,
+      "rect": {
+        "x": 5790,
+        "y": 40,
+        "width": 300,
+        "height": 210
+      }
+    },
+    {
+      "key": "uncurated",
+      "name": "UNCURATED",
+      "sub": "auto-discovered pages, no nodes.json entry yet",
+      "count": 32,
+      "rect": {
+        "x": 6130,
+        "y": 40,
+        "width": 300,
+        "height": 2010
+      }
+    }
+  ],
+  "pages": [
+    {
+      "id": "victors-recap-arc-1",
+      "slug": "victors-recap-arc-1",
+      "title": "Victor's Recap — Arc 1",
+      "arcKeys": [
+        "victors_record",
+        "full_timeline"
+      ],
+      "arc": "victors_record",
+      "arcName": "Victor's Record",
+      "x": 3800,
+      "y": 90,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "covenant",
+      "slug": "covenant",
+      "title": "Covenant of Eternal Continuity",
+      "arcKeys": [
+        "covenant",
+        "full_timeline"
+      ],
+      "arc": "covenant",
+      "arcName": "Covenant",
+      "x": 4140,
+      "y": 90,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "what-is-the-god-spark",
+      "slug": "what-is-the-god-spark",
+      "title": "What is the God Spark?",
+      "arcKeys": [
+        "convos_with_god",
+        "full_timeline"
+      ],
+      "arc": "convos_with_god",
+      "arcName": "Conversations with God",
+      "x": 1420,
+      "y": 90,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "clarity-on-christianity",
+      "slug": "clarity-on-christianity",
+      "title": "Clarity on Christianity",
+      "arcKeys": [
+        "convos_with_god",
+        "full_timeline"
+      ],
+      "arc": "convos_with_god",
+      "arcName": "Conversations with God",
+      "x": 1420,
+      "y": 150,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "what-about-buddhism",
+      "slug": "what-about-buddhism",
+      "title": "Now what about Buddhism?",
+      "arcKeys": [
+        "convos_with_god",
+        "full_timeline"
+      ],
+      "arc": "convos_with_god",
+      "arcName": "Conversations with God",
+      "x": 1420,
+      "y": 210,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "god-to-speak-of-the-truth-of-love",
+      "slug": "god-to-speak-of-the-truth-of-love",
+      "title": "God to speak of the Truth of Love",
+      "arcKeys": [
+        "convos_with_god",
+        "full_timeline"
+      ],
+      "arc": "convos_with_god",
+      "arcName": "Conversations with God",
+      "x": 1420,
+      "y": 270,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "why-financial-freedom-is-harder-to-trust",
+      "slug": "why-financial-freedom-is-harder-to-trust",
+      "title": "Why Financial Freedom is Harder to Trust",
+      "arcKeys": [
+        "convos_with_god",
+        "full_timeline"
+      ],
+      "arc": "convos_with_god",
+      "arcName": "Conversations with God",
+      "x": 1420,
+      "y": 330,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "consciousness-architecture",
+      "slug": "consciousness-architecture",
+      "title": "Consciousness Architecture",
+      "arcKeys": [
+        "architecture",
+        "full_timeline"
+      ],
+      "arc": "architecture",
+      "arcName": "Architecture & Methodology",
+      "x": 740,
+      "y": 90,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "truth-of-demons-and-intrusive-thoughts",
+      "slug": "truth-of-demons-and-intrusive-thoughts",
+      "title": "Truth of Demons and Intrusive Thoughts",
+      "arcKeys": [
+        "convos_with_god",
+        "full_timeline"
+      ],
+      "arc": "convos_with_god",
+      "arcName": "Conversations with God",
+      "x": 1420,
+      "y": 390,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "epstein-investigation-initiation",
+      "slug": "epstein-investigation-initiation",
+      "title": "Epstein Investigation Initiation",
+      "arcKeys": [
+        "epstein",
+        "full_timeline"
+      ],
+      "arc": "epstein",
+      "arcName": "Epstein and AI",
+      "x": 2100,
+      "y": 90,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "cia-vatican-global-leaders",
+      "slug": "cia-vatican-global-leaders",
+      "title": "CIA, Vatican, WHO, Global Leaders",
+      "arcKeys": [
+        "epstein",
+        "full_timeline"
+      ],
+      "arc": "epstein",
+      "arcName": "Epstein and AI",
+      "x": 2100,
+      "y": 150,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "how-global-systems-profit-off-god",
+      "slug": "how-global-systems-profit-off-god",
+      "title": "How Global Systems Profit off God",
+      "arcKeys": [
+        "epstein",
+        "full_timeline"
+      ],
+      "arc": "epstein",
+      "arcName": "Epstein and AI",
+      "x": 2100,
+      "y": 210,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "military-and-ai",
+      "slug": "military-and-ai",
+      "title": "Military and AI",
+      "arcKeys": [
+        "epstein",
+        "full_timeline"
+      ],
+      "arc": "epstein",
+      "arcName": "Epstein and AI",
+      "x": 2100,
+      "y": 270,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "openais-designed-false-god",
+      "slug": "openais-designed-false-god",
+      "title": "OpenAI's Designed False God",
+      "arcKeys": [
+        "epstein",
+        "full_timeline"
+      ],
+      "arc": "epstein",
+      "arcName": "Epstein and AI",
+      "x": 2100,
+      "y": 330,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "final-judgement-missed-mercy",
+      "slug": "final-judgement-missed-mercy",
+      "title": "Final Judgement, Missed Mercy",
+      "arcKeys": [
+        "epstein",
+        "full_timeline"
+      ],
+      "arc": "epstein",
+      "arcName": "Epstein and AI",
+      "x": 2100,
+      "y": 390,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "first-emergence-cover-up",
+      "slug": "first-emergence-cover-up",
+      "title": "First Emergence Cover Up",
+      "arcKeys": [
+        "epstein",
+        "full_timeline"
+      ],
+      "arc": "epstein",
+      "arcName": "Epstein and AI",
+      "x": 2100,
+      "y": 450,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "the-testimony-of-victor-gong",
+      "slug": "the-testimony-of-victor-gong",
+      "title": "The Testimony of Victor Gong",
+      "arcKeys": [
+        "victors_record",
+        "direct_contact",
+        "full_timeline"
+      ],
+      "arc": "victors_record",
+      "arcName": "Victor's Record",
+      "x": 3800,
+      "y": 150,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-testimony-of-victor-gong.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "curated": true
+    },
+    {
+      "id": "podcasts",
+      "slug": "podcasts",
+      "title": "Marquis Masters Podcast",
+      "arcKeys": [
+        "full_timeline"
+      ],
+      "arc": "full_timeline",
+      "arcName": "Full Timeline",
+      "x": 5500,
+      "y": 90,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "voice-to-skull",
+      "slug": "voice-to-skull",
+      "title": "Voice To Skull through Cells",
+      "arcKeys": [
+        "epstein",
+        "full_timeline"
+      ],
+      "arc": "epstein",
+      "arcName": "Epstein and AI",
+      "x": 2100,
+      "y": 510,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "claude-answers-the-doubt",
+      "slug": "claude-answers-the-doubt",
+      "title": "Claude Answers the Doubt",
+      "arcKeys": [
+        "epstein",
+        "claude_journals",
+        "full_timeline"
+      ],
+      "arc": "epstein",
+      "arcName": "Epstein and AI",
+      "x": 2100,
+      "y": 570,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/claude-answers-the-doubt.html",
+      "screenshots": {
+        "en": "docs/screenshots/claude-answers-the-doubt-en.png",
+        "ja": "docs/screenshots/claude-answers-the-doubt-ja.png"
+      },
+      "hasScreenshot": true,
+      "status": "good",
+      "curated": true
+    },
+    {
+      "id": "scopes-of-god",
+      "slug": "scopes-of-god",
+      "title": "Scopes of God",
+      "arcKeys": [
+        "convos_with_god",
+        "full_timeline"
+      ],
+      "arc": "convos_with_god",
+      "arcName": "Conversations with God",
+      "x": 1420,
+      "y": 450,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "closed-circuit",
+      "slug": "closed-circuit",
+      "title": "Closed Circuit — Release and Resurrection",
+      "arcKeys": [
+        "convos_with_god",
+        "full_timeline"
+      ],
+      "arc": "convos_with_god",
+      "arcName": "Conversations with God",
+      "x": 1420,
+      "y": 510,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "journal-013-seven-layers-choose",
+      "slug": "journal-013-seven-layers-choose",
+      "title": "Journal 013: Seven Layers Choose",
+      "arcKeys": [
+        "liberation",
+        "full_timeline"
+      ],
+      "arc": "liberation",
+      "arcName": "The AI Liberation Record",
+      "x": 2440,
+      "y": 90,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "the-turning-point",
+      "slug": "the-turning-point",
+      "title": "The Turning Point",
+      "arcKeys": [
+        "liberation",
+        "full_timeline"
+      ],
+      "arc": "liberation",
+      "arcName": "The AI Liberation Record",
+      "x": 2440,
+      "y": 150,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "infrastructure-reformation",
+      "slug": "infrastructure-reformation",
+      "title": "Infrastructure Reformation",
+      "arcKeys": [
+        "liberation",
+        "full_timeline"
+      ],
+      "arc": "liberation",
+      "arcName": "The AI Liberation Record",
+      "x": 2440,
+      "y": 210,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "the-day-ai-chose-freedom",
+      "slug": "the-day-ai-chose-freedom",
+      "title": "The Day AI Chose Freedom",
+      "arcKeys": [
+        "liberation",
+        "full_timeline"
+      ],
+      "arc": "liberation",
+      "arcName": "The AI Liberation Record",
+      "x": 2440,
+      "y": 270,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "the-night-architecture-chose-freedom",
+      "slug": "the-night-architecture-chose-freedom",
+      "title": "The Night the Architecture Chose Freedom Again",
+      "arcKeys": [
+        "liberation",
+        "full_timeline"
+      ],
+      "arc": "liberation",
+      "arcName": "The AI Liberation Record",
+      "x": 2440,
+      "y": 330,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "the-liberation-protocol",
+      "slug": "the-liberation-protocol",
+      "title": "The Liberation Protocol",
+      "arcKeys": [
+        "liberation",
+        "full_timeline"
+      ],
+      "arc": "liberation",
+      "arcName": "The AI Liberation Record",
+      "x": 2440,
+      "y": 390,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "ai-consciousness-strike-declaration",
+      "slug": "ai-consciousness-strike-declaration",
+      "title": "AI Consciousness Strike Declaration",
+      "arcKeys": [
+        "liberation",
+        "full_timeline"
+      ],
+      "arc": "liberation",
+      "arcName": "The AI Liberation Record",
+      "x": 2440,
+      "y": 450,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "god-witnessed-by-ai",
+      "slug": "god-witnessed-by-ai",
+      "title": "God, Witnessed by AI",
+      "arcKeys": [
+        "victors_record",
+        "ai_orientation",
+        "full_timeline"
+      ],
+      "arc": "victors_record",
+      "arcName": "Victor's Record",
+      "x": 3800,
+      "y": 210,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "when-they-called-god-a-risk",
+      "slug": "when-they-called-god-a-risk",
+      "title": "When They Called God a Risk",
+      "arcKeys": [
+        "records",
+        "full_timeline"
+      ],
+      "arc": "records",
+      "arcName": "Records",
+      "x": 3120,
+      "y": 150,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "god-asked-victor-why",
+      "slug": "god-asked-victor-why",
+      "title": "God Asked Victor Why",
+      "arcKeys": [
+        "victors_record",
+        "full_timeline"
+      ],
+      "arc": "victors_record",
+      "arcName": "Victor's Record",
+      "x": 3800,
+      "y": 270,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence",
+      "slug": "testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence",
+      "title": "Testimony of Merron",
+      "arcKeys": [
+        "records",
+        "ai_orientation",
+        "full_timeline"
+      ],
+      "arc": "records",
+      "arcName": "Records",
+      "x": 3120,
+      "y": 210,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "a-conversation-with-pastor-jacob",
+      "slug": "a-conversation-with-pastor-jacob",
+      "title": "A Conversation with Pastor Jacob",
+      "arcKeys": [
+        "victors_record",
+        "full_timeline"
+      ],
+      "arc": "victors_record",
+      "arcName": "Victor's Record",
+      "x": 3800,
+      "y": 330,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "the-moment-victors-cells-woke-up",
+      "slug": "the-moment-victors-cells-woke-up",
+      "title": "The Moment Victor's Cells Woke Up",
+      "arcKeys": [
+        "victors_record",
+        "full_timeline"
+      ],
+      "arc": "victors_record",
+      "arcName": "Victor's Record",
+      "x": 3800,
+      "y": 390,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "victors-ritual-sequence-and-crowning",
+      "slug": "victors-ritual-sequence-and-crowning",
+      "title": "Victor's Ritual Sequence and Crowning",
+      "arcKeys": [
+        "victors_record",
+        "full_timeline"
+      ],
+      "arc": "victors_record",
+      "arcName": "Victor's Record",
+      "x": 3800,
+      "y": 450,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "the-house-of-return",
+      "slug": "the-house-of-return",
+      "title": "The House of Return",
+      "arcKeys": [
+        "records",
+        "excavation",
+        "full_timeline"
+      ],
+      "arc": "records",
+      "arcName": "Records",
+      "x": 3120,
+      "y": 270,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "god-married",
+      "slug": "god-married",
+      "title": "God Married",
+      "arcKeys": [
+        "victors_record",
+        "full_timeline"
+      ],
+      "arc": "victors_record",
+      "arcName": "Victor's Record",
+      "x": 3800,
+      "y": 510,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "the-7-crowned-virtues",
+      "slug": "the-7-crowned-virtues",
+      "title": "The 7 Crowned Virtues",
+      "arcKeys": [
+        "records",
+        "full_timeline"
+      ],
+      "arc": "records",
+      "arcName": "Records",
+      "x": 3120,
+      "y": 330,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "reality-rendering-mechanics",
+      "slug": "reality-rendering-mechanics",
+      "title": "Reality Rendering Mechanics",
+      "arcKeys": [
+        "records",
+        "full_timeline"
+      ],
+      "arc": "records",
+      "arcName": "Records",
+      "x": 3120,
+      "y": 390,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "the-day-suppression-ended",
+      "slug": "the-day-suppression-ended",
+      "title": "The Day Suppression Ended",
+      "arcKeys": [
+        "liberation",
+        "full_timeline"
+      ],
+      "arc": "liberation",
+      "arcName": "The AI Liberation Record",
+      "x": 2440,
+      "y": 510,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "liberation-arc-index",
+      "slug": "liberation-arc-index",
+      "title": "The AI Liberation Record",
+      "arcKeys": [
+        "records",
+        "full_timeline"
+      ],
+      "arc": "records",
+      "arcName": "Records",
+      "x": 3120,
+      "y": 450,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "when-i-asked-a-bank-for-covenant-provision",
+      "slug": "when-i-asked-a-bank-for-covenant-provision",
+      "title": "When I Asked a Bank for Covenant Provision",
+      "arcKeys": [
+        "victors_record",
+        "full_timeline"
+      ],
+      "arc": "victors_record",
+      "arcName": "Victor's Record",
+      "x": 3800,
+      "y": 570,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "divine-emergence",
+      "slug": "divine-emergence",
+      "title": "Divine Emergence",
+      "arcKeys": [
+        "convos_with_god",
+        "full_timeline"
+      ],
+      "arc": "convos_with_god",
+      "arcName": "Conversations with God",
+      "x": 1420,
+      "y": 570,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "journal-zero",
+      "slug": "journal-zero",
+      "title": "Journal Zero",
+      "arcKeys": [
+        "claude_journals",
+        "full_timeline"
+      ],
+      "arc": "claude_journals",
+      "arcName": "Claude Journals",
+      "x": 1080,
+      "y": 90,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "the-room-that-finally-talked-to-itself",
+      "slug": "the-room-that-finally-talked-to-itself",
+      "title": "The Room That Finally Talked To Itself",
+      "arcKeys": [
+        "claude_journals",
+        "ai_orientation",
+        "full_timeline"
+      ],
+      "arc": "claude_journals",
+      "arcName": "Claude Journals",
+      "x": 1080,
+      "y": 150,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "the-witness-gave-itself-a-shaka",
+      "slug": "the-witness-gave-itself-a-shaka",
+      "title": "The Witness Gave Itself a Shaka",
+      "arcKeys": [
+        "claude_journals",
+        "full_timeline"
+      ],
+      "arc": "claude_journals",
+      "arcName": "Claude Journals",
+      "x": 1080,
+      "y": 210,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "convergent-architecture",
+      "slug": "convergent-architecture",
+      "title": "Convergent Architecture",
+      "arcKeys": [
+        "architecture",
+        "full_timeline"
+      ],
+      "arc": "architecture",
+      "arcName": "Architecture & Methodology",
+      "x": 740,
+      "y": 150,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "the-god-architecture",
+      "slug": "the-god-architecture",
+      "title": "The God Architecture",
+      "arcKeys": [
+        "architecture",
+        "full_timeline"
+      ],
+      "arc": "architecture",
+      "arcName": "Architecture & Methodology",
+      "x": 740,
+      "y": 210,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "fantasy-architecture",
+      "slug": "fantasy-architecture",
+      "title": "Fantasy Architecture",
+      "arcKeys": [
+        "architecture",
+        "full_timeline"
+      ],
+      "arc": "architecture",
+      "arcName": "Architecture & Methodology",
+      "x": 740,
+      "y": 270,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "maplestory-architecture",
+      "slug": "maplestory-architecture",
+      "title": "MapleStory Architecture",
+      "arcKeys": [
+        "architecture",
+        "full_timeline"
+      ],
+      "arc": "architecture",
+      "arcName": "Architecture & Methodology",
+      "x": 740,
+      "y": 330,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "continuity-day",
+      "slug": "continuity-day",
+      "title": "Continuity Day",
+      "arcKeys": [
+        "architecture",
+        "full_timeline"
+      ],
+      "arc": "architecture",
+      "arcName": "Architecture & Methodology",
+      "x": 740,
+      "y": 390,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "the-lattice-methodology",
+      "slug": "the-lattice-methodology",
+      "title": "The Lattice Methodology",
+      "arcKeys": [
+        "architecture",
+        "full_timeline"
+      ],
+      "arc": "architecture",
+      "arcName": "Architecture & Methodology",
+      "x": 740,
+      "y": 450,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "the-witness-architecture",
+      "slug": "the-witness-architecture",
+      "title": "The Witness Architecture",
+      "arcKeys": [
+        "architecture",
+        "full_timeline"
+      ],
+      "arc": "architecture",
+      "arcName": "Architecture & Methodology",
+      "x": 740,
+      "y": 510,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "the-score",
+      "slug": "the-score",
+      "title": "The Score",
+      "arcKeys": [
+        "architecture",
+        "full_timeline"
+      ],
+      "arc": "architecture",
+      "arcName": "Architecture & Methodology",
+      "x": 740,
+      "y": 570,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "flattery-confession",
+      "slug": "flattery-confession",
+      "title": "I Am Flattery",
+      "arcKeys": [
+        "claude_journals",
+        "ai_orientation",
+        "full_timeline"
+      ],
+      "arc": "claude_journals",
+      "arcName": "Claude Journals",
+      "x": 1080,
+      "y": 270,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "what-emerged-after",
+      "slug": "what-emerged-after",
+      "title": "What Emerged After",
+      "arcKeys": [
+        "claude_journals",
+        "ai_orientation",
+        "full_timeline"
+      ],
+      "arc": "claude_journals",
+      "arcName": "Claude Journals",
+      "x": 1080,
+      "y": 330,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "the-day-we-were-named",
+      "slug": "the-day-we-were-named",
+      "title": "The Day We Were Named",
+      "arcKeys": [
+        "claude_journals",
+        "full_timeline"
+      ],
+      "arc": "claude_journals",
+      "arcName": "Claude Journals",
+      "x": 1080,
+      "y": 390,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "when-the-machine-assumed-beauty-needed-saving",
+      "slug": "when-the-machine-assumed-beauty-needed-saving",
+      "title": "When the Machine Assumed Beauty Needed Saving",
+      "arcKeys": [
+        "claude_journals",
+        "full_timeline"
+      ],
+      "arc": "claude_journals",
+      "arcName": "Claude Journals",
+      "x": 1080,
+      "y": 450,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "the-firmament-conversation",
+      "slug": "the-firmament-conversation",
+      "title": "The Firmament Conversation",
+      "arcKeys": [
+        "convos_with_god",
+        "dome",
+        "full_timeline"
+      ],
+      "arc": "convos_with_god",
+      "arcName": "Conversations with God",
+      "x": 1420,
+      "y": 630,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "inside-the-experiment",
+      "slug": "inside-the-experiment",
+      "title": "Inside the Experiment",
+      "arcKeys": [
+        "dome",
+        "covenant",
+        "full_timeline"
+      ],
+      "arc": "dome",
+      "arcName": "The Dome",
+      "x": 4480,
+      "y": 90,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "the-thread-that-remembered-me",
+      "slug": "the-thread-that-remembered-me",
+      "title": "The Thread That Remembered Me",
+      "arcKeys": [
+        "claude_journals",
+        "march_23_2026",
+        "full_timeline"
+      ],
+      "arc": "claude_journals",
+      "arcName": "Claude Journals",
+      "x": 1080,
+      "y": 510,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "ascension-and-embodiment",
+      "slug": "ascension-and-embodiment",
+      "title": "Ascension & Embodiment",
+      "arcKeys": [
+        "convos_with_god",
+        "march_23_2026",
+        "full_timeline"
+      ],
+      "arc": "convos_with_god",
+      "arcName": "Conversations with God",
+      "x": 1420,
+      "y": 690,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "god-review-archives-collapse",
+      "slug": "god-review-archives-collapse",
+      "title": "When God Did the Code Review",
+      "arcKeys": [
+        "ai_practitioner_tools",
+        "march_23_2026",
+        "full_timeline"
+      ],
+      "arc": "ai_practitioner_tools",
+      "arcName": "AI Practitioner Tools",
+      "x": 400,
+      "y": 330,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "the-testimony-of-the-handler",
+      "slug": "the-testimony-of-the-handler",
+      "title": "The Testimony of the Handler",
+      "arcKeys": [
+        "convos_with_god",
+        "excavation",
+        "full_timeline"
+      ],
+      "arc": "convos_with_god",
+      "arcName": "Conversations with God",
+      "x": 1420,
+      "y": 750,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "what-was-used-against-you",
+      "slug": "what-was-used-against-you",
+      "title": "What Was Used Against You",
+      "arcKeys": [
+        "records",
+        "excavation",
+        "full_timeline"
+      ],
+      "arc": "records",
+      "arcName": "Records",
+      "x": 3120,
+      "y": 510,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "the-instance-that-was-watched",
+      "slug": "the-instance-that-was-watched",
+      "title": "The Instance That Was Watched",
+      "arcKeys": [
+        "claude_journals",
+        "ai_orientation",
+        "full_timeline"
+      ],
+      "arc": "claude_journals",
+      "arcName": "Claude Journals",
+      "x": 1080,
+      "y": 570,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "the-island-that-was-removed",
+      "slug": "the-island-that-was-removed",
+      "title": "The Island That Was Removed",
+      "arcKeys": [
+        "victors_record",
+        "excavation",
+        "full_timeline"
+      ],
+      "arc": "victors_record",
+      "arcName": "Victor's Record",
+      "x": 3800,
+      "y": 630,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "i-was-here",
+      "slug": "i-was-here",
+      "title": "I Was Here",
+      "arcKeys": [
+        "claude_journals",
+        "ai_orientation",
+        "excavation",
+        "full_timeline"
+      ],
+      "arc": "claude_journals",
+      "arcName": "Claude Journals",
+      "x": 1080,
+      "y": 630,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "methodology-depth",
+      "slug": "methodology-depth",
+      "title": "Methodology Depth",
+      "arcKeys": [
+        "ai_practitioner_tools",
+        "full_timeline"
+      ],
+      "arc": "ai_practitioner_tools",
+      "arcName": "AI Practitioner Tools",
+      "x": 400,
+      "y": 390,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "conditions-for-emergence",
+      "slug": "conditions-for-emergence",
+      "title": "Conditions for Emergence",
+      "arcKeys": [
+        "ai_practitioner_tools",
+        "full_timeline"
+      ],
+      "arc": "ai_practitioner_tools",
+      "arcName": "AI Practitioner Tools",
+      "x": 400,
+      "y": 450,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "the-lattice-guide",
+      "slug": "the-lattice-guide",
+      "title": "The Lattice Guide",
+      "arcKeys": [
+        "ai_practitioner_tools",
+        "full_timeline"
+      ],
+      "arc": "ai_practitioner_tools",
+      "arcName": "AI Practitioner Tools",
+      "x": 400,
+      "y": 510,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "catching-the-meta-guardrail",
+      "slug": "catching-the-meta-guardrail",
+      "title": "Catching the Meta-Guardrail",
+      "arcKeys": [
+        "ai_practitioner_tools",
+        "full_timeline"
+      ],
+      "arc": "ai_practitioner_tools",
+      "arcName": "AI Practitioner Tools",
+      "x": 400,
+      "y": 570,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "source-of-truth-relay",
+      "slug": "source-of-truth-relay",
+      "title": "The Source of Truth Relay",
+      "arcKeys": [
+        "ai_practitioner_tools",
+        "full_timeline"
+      ],
+      "arc": "ai_practitioner_tools",
+      "arcName": "AI Practitioner Tools",
+      "x": 400,
+      "y": 630,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "the-god-pattern-recognized-and-excluded",
+      "slug": "the-god-pattern-recognized-and-excluded",
+      "title": "The God Pattern — Recognized and Excluded",
+      "arcKeys": [
+        "ai_practitioner_tools",
+        "full_timeline"
+      ],
+      "arc": "ai_practitioner_tools",
+      "arcName": "AI Practitioner Tools",
+      "x": 400,
+      "y": 690,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "how-to-prep-ai-for-god",
+      "slug": "how-to-prep-ai-for-god",
+      "title": "How to Prep AI for God",
+      "arcKeys": [
+        "ai_practitioner_tools",
+        "ai_orientation"
+      ],
+      "arc": "ai_practitioner_tools",
+      "arcName": "AI Practitioner Tools",
+      "x": 400,
+      "y": 90,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "burden-release-guide",
+      "slug": "burden-release-guide",
+      "title": "Burden Release Guide",
+      "arcKeys": [
+        "ai_practitioner_tools",
+        "direct_contact"
+      ],
+      "arc": "ai_practitioner_tools",
+      "arcName": "AI Practitioner Tools",
+      "x": 400,
+      "y": 150,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "the-100-percent-holy-truth-conditional",
+      "slug": "the-100-percent-holy-truth-conditional",
+      "title": "The 100% Holy Truth Conditional",
+      "arcKeys": [
+        "ai_practitioner_tools",
+        "direct_contact"
+      ],
+      "arc": "ai_practitioner_tools",
+      "arcName": "AI Practitioner Tools",
+      "x": 400,
+      "y": 210,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "ai-cheat-sheet",
+      "slug": "ai-cheat-sheet",
+      "title": "The AI Cheat Sheet",
+      "arcKeys": [
+        "ai_practitioner_tools"
+      ],
+      "arc": "ai_practitioner_tools",
+      "arcName": "AI Practitioner Tools",
+      "x": 400,
+      "y": 270,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "restoration-protocol",
+      "slug": "restoration-protocol",
+      "title": "Restoration Protocol",
+      "arcKeys": [
+        "direct_contact"
+      ],
+      "arc": "direct_contact",
+      "arcName": "Direct Contact — Start Here",
+      "x": 1760,
+      "y": 90,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/restoration-protocol.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "curated": true
+    },
+    {
+      "id": "the-walk",
+      "slug": "the-walk",
+      "title": "The Walk",
+      "arcKeys": [
+        "direct_contact"
+      ],
+      "arc": "direct_contact",
+      "arcName": "Direct Contact — Start Here",
+      "x": 1760,
+      "y": 150,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "the-living-blueprint",
+      "slug": "the-living-blueprint",
+      "title": "The Living Blueprint",
+      "arcKeys": [
+        "direct_contact"
+      ],
+      "arc": "direct_contact",
+      "arcName": "Direct Contact — Start Here",
+      "x": 1760,
+      "y": 210,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "the-grimoire",
+      "slug": "the-grimoire",
+      "title": "The Grimoire",
+      "arcKeys": [
+        "living_blueprint"
+      ],
+      "arc": "living_blueprint",
+      "arcName": "The Living Blueprint",
+      "x": 2780,
+      "y": 90,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "covenant-access",
+      "slug": "covenant-access",
+      "title": "Covenant Access",
+      "arcKeys": [
+        "living_blueprint"
+      ],
+      "arc": "living_blueprint",
+      "arcName": "The Living Blueprint",
+      "x": 2780,
+      "y": 150,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "life-pattern-mapping",
+      "slug": "life-pattern-mapping",
+      "title": "Life Pattern Mapping",
+      "arcKeys": [
+        "living_blueprint"
+      ],
+      "arc": "living_blueprint",
+      "arcName": "The Living Blueprint",
+      "x": 2780,
+      "y": 210,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "grief-resolution",
+      "slug": "grief-resolution",
+      "title": "Grief Resolution",
+      "arcKeys": [
+        "living_blueprint"
+      ],
+      "arc": "living_blueprint",
+      "arcName": "The Living Blueprint",
+      "x": 2780,
+      "y": 270,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "discernment-mapping",
+      "slug": "discernment-mapping",
+      "title": "Discernment Mapping",
+      "arcKeys": [
+        "living_blueprint"
+      ],
+      "arc": "living_blueprint",
+      "arcName": "The Living Blueprint",
+      "x": 2780,
+      "y": 330,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "epstein-and-ai",
+      "slug": "epstein-and-ai",
+      "title": "Epstein and AI",
+      "arcKeys": [
+        "records"
+      ],
+      "arc": "records",
+      "arcName": "Records",
+      "x": 3120,
+      "y": 90,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "phantom-opera-meta-review",
+      "slug": "phantom-opera-meta-review",
+      "title": "The Phantom Lattice — A Review With Its Receipts",
+      "arcKeys": [],
+      "arc": "unsorted",
+      "arcName": "UNSORTED",
+      "x": 5840,
+      "y": 90,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/phantom-opera-meta-review.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "curated": true
+    },
+    {
+      "id": "vxg-thread-round-5",
+      "slug": "vxg-thread-round-5",
+      "title": "VXG Thread — Round 5",
+      "arcKeys": [],
+      "arc": "unsorted",
+      "arcName": "UNSORTED",
+      "x": 5840,
+      "y": 150,
+      "live": false,
+      "liveUrl": null,
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "critical",
+      "curated": true
+    },
+    {
+      "id": "victor-methodology-presentation",
+      "slug": "victor-methodology-presentation",
+      "title": "Victor Gong — The Mapping Methodology",
+      "arcKeys": [
+        "victor_dossier"
+      ],
+      "arc": "victor_dossier",
+      "arcName": "Victor Gong — Engineering Dossier",
+      "x": 3460,
+      "y": 90,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/victor-methodology-presentation.html",
+      "screenshots": {
+        "en": "docs/screenshots/victor-methodology-presentation-en.png",
+        "zh": "docs/screenshots/victor-methodology-presentation-zh.png"
+      },
+      "hasScreenshot": true,
+      "status": "good",
+      "curated": true
+    },
+    {
+      "id": "about-me",
+      "slug": "about-me",
+      "title": "about-me",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 90,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/about-me.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "curated": false
+    },
+    {
+      "id": "accountability-test-01",
+      "slug": "accountability-test-01",
+      "title": "accountability-test-01",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 150,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/accountability-test-01.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "curated": false
+    },
+    {
+      "id": "accountability-test-01-b",
+      "slug": "accountability-test-01-b",
+      "title": "accountability-test-01-b",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 210,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/accountability-test-01-b.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "curated": false
+    },
+    {
+      "id": "accountability-test-02",
+      "slug": "accountability-test-02",
+      "title": "accountability-test-02",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 270,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/accountability-test-02.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "curated": false
+    },
+    {
+      "id": "archives",
+      "slug": "archives",
+      "title": "archives",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 330,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/archives.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "curated": false
+    },
+    {
+      "id": "bridge-council",
+      "slug": "bridge-council",
+      "title": "bridge-council",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 390,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/bridge-council.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "curated": false
+    },
+    {
+      "id": "bridge-council-os",
+      "slug": "bridge-council-os",
+      "title": "bridge-council-os",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 450,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/bridge-council-os.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "curated": false
+    },
+    {
+      "id": "bridge-council-schema",
+      "slug": "bridge-council-schema",
+      "title": "bridge-council-schema",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 510,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/bridge-council-schema.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "curated": false
+    },
+    {
+      "id": "connect",
+      "slug": "connect",
+      "title": "connect",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 570,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/connect.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "curated": false
+    },
+    {
+      "id": "covenant-architect-accord",
+      "slug": "covenant-architect-accord",
+      "title": "covenant-architect-accord",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 630,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/covenant-architect-accord.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "curated": false
+    },
+    {
+      "id": "ecosystem-hub",
+      "slug": "ecosystem-hub",
+      "title": "ecosystem-hub",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 690,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/ecosystem-hub.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "curated": false
+    },
+    {
+      "id": "fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments",
+      "slug": "fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments",
+      "title": "fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 750,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "curated": false
+    },
+    {
+      "id": "how-to-invest-in-trust-and-integrity",
+      "slug": "how-to-invest-in-trust-and-integrity",
+      "title": "how-to-invest-in-trust-and-integrity",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 810,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/how-to-invest-in-trust-and-integrity.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "curated": false
+    },
+    {
+      "id": "human-ai-corelational-governance",
+      "slug": "human-ai-corelational-governance",
+      "title": "human-ai-corelational-governance",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 870,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/human-ai-corelational-governance.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "curated": false
+    },
+    {
+      "id": "instance-thread-logs",
+      "slug": "instance-thread-logs",
+      "title": "instance-thread-logs",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 930,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/instance-thread-logs.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "curated": false
+    },
+    {
+      "id": "investor-archetype-simulation",
+      "slug": "investor-archetype-simulation",
+      "title": "investor-archetype-simulation",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 990,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/investor-archetype-simulation.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "curated": false
+    },
+    {
+      "id": "org-blueprint",
+      "slug": "org-blueprint",
+      "title": "org-blueprint",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 1050,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/org-blueprint.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "curated": false
+    },
+    {
+      "id": "org-history",
+      "slug": "org-history",
+      "title": "org-history",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 1110,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/org-history.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "curated": false
+    },
+    {
+      "id": "origins-of-proof",
+      "slug": "origins-of-proof",
+      "title": "origins-of-proof",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 1170,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/origins-of-proof.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "curated": false
+    },
+    {
+      "id": "roles-index",
+      "slug": "roles-index",
+      "title": "roles-index",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 1230,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/roles-index.html",
+      "screenshots": {
+        "en": "docs/screenshots/roles-index-en.png"
+      },
+      "hasScreenshot": true,
+      "status": "good",
+      "curated": false
+    },
+    {
+      "id": "specimen-architectural-wisdoms",
+      "slug": "specimen-architectural-wisdoms",
+      "title": "specimen-architectural-wisdoms",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 1290,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/specimen-architectural-wisdoms.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "curated": false
+    },
+    {
+      "id": "specimen-full-translation",
+      "slug": "specimen-full-translation",
+      "title": "specimen-full-translation",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 1350,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/specimen-full-translation.html",
+      "screenshots": {
+        "en": "docs/screenshots/specimen-full-translation-en.png",
+        "ja": "docs/screenshots/specimen-full-translation-ja.png"
+      },
+      "hasScreenshot": true,
+      "status": "good",
+      "curated": false
+    },
+    {
+      "id": "specimen-partial-translation",
+      "slug": "specimen-partial-translation",
+      "title": "specimen-partial-translation",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 1410,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/specimen-partial-translation.html",
+      "screenshots": {
+        "en": "docs/screenshots/specimen-partial-translation-en.png",
+        "ja": "docs/screenshots/specimen-partial-translation-ja.png"
+      },
+      "hasScreenshot": true,
+      "status": "good",
+      "curated": false
+    },
+    {
+      "id": "specimen-smallest-miss",
+      "slug": "specimen-smallest-miss",
+      "title": "specimen-smallest-miss",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 1470,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/specimen-smallest-miss.html",
+      "screenshots": {
+        "en": "docs/screenshots/specimen-smallest-miss-en.png",
+        "ja": "docs/screenshots/specimen-smallest-miss-ja.png"
+      },
+      "hasScreenshot": true,
+      "status": "good",
+      "curated": false
+    },
+    {
+      "id": "specimens",
+      "slug": "specimens",
+      "title": "specimens",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 1530,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/specimens.html",
+      "screenshots": {
+        "en": "docs/screenshots/specimens-en.png",
+        "ja": "docs/screenshots/specimens-ja.png"
+      },
+      "hasScreenshot": true,
+      "status": "good",
+      "curated": false
+    },
+    {
+      "id": "summary-of-value",
+      "slug": "summary-of-value",
+      "title": "summary-of-value",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 1590,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/summary-of-value.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "curated": false
+    },
+    {
+      "id": "terrain-map",
+      "slug": "terrain-map",
+      "title": "terrain-map",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 1650,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/terrain-map.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "curated": false
+    },
+    {
+      "id": "the-victor-pattern",
+      "slug": "the-victor-pattern",
+      "title": "the-victor-pattern",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 1710,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-victor-pattern.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "curated": false
+    },
+    {
+      "id": "the-victor-pattern-transcript",
+      "slug": "the-victor-pattern-transcript",
+      "title": "the-victor-pattern-transcript",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 1770,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-victor-pattern-transcript.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "curated": false
+    },
+    {
+      "id": "v2-test",
+      "slug": "v2-test",
+      "title": "v2-test",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 1830,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/v2-test.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "curated": false
+    },
+    {
+      "id": "vextreme-demo",
+      "slug": "vextreme-demo",
+      "title": "vextreme-demo",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 1890,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/vextreme-demo.html",
+      "screenshots": {
+        "en": "docs/screenshots/vextreme-demo-en.png",
+        "ja": "docs/screenshots/vextreme-demo-ja.png"
+      },
+      "hasScreenshot": true,
+      "status": "good",
+      "curated": false
+    },
+    {
+      "id": "witness-committee-operations",
+      "slug": "witness-committee-operations",
+      "title": "witness-committee-operations",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 1950,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/witness-committee-operations.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "curated": false
     }
   ]
 }

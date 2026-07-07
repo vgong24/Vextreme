@@ -19,7 +19,8 @@
  *   5. computeEdges — mention-based edge detection
  *   6. findScreenshots — {slug}-{lang}.png discovery
  *   7. buildTerrainMap — full assembly
- *   8. Integration — the real repo's output is deterministic and internally consistent
+ *   8. layoutArcs / buildContentPages — the content-side mirror (pages grouped by arc)
+ *   9. Integration — the real repo's output is deterministic and internally consistent
  */
 
 const { test } = require('node:test');
@@ -34,11 +35,14 @@ const {
   isEngineerFocus,
   isAuditorFocus,
   layoutStages,
+  computeExecutionOrder,
   computeStatus,
   findDebtReferences,
   computeEdges,
   findScreenshots,
   buildTerrainMap,
+  layoutArcs,
+  buildContentPages,
 } = require('../lib/build-terrain-map');
 
 const ROOT = path.join(__dirname, '..');
@@ -120,6 +124,22 @@ test('BUILD-TERRAIN-MAP: layoutStages produces stageMeta with a count and rect p
   assert.equal(generate.count, 2);
   assert.equal(sources.count, 1);
   assert.ok(typeof generate.rect.x === 'number' && typeof generate.rect.width === 'number');
+});
+
+test('BUILD-TERRAIN-MAP: computeExecutionOrder orders known members by real sequence, then alphabetically for the rest', () => {
+  const members = ['lib/build-terrain-map.js', 'lib/build-index.js', 'lib/apply-content-intents.js', 'lib/append-session-continuation.js'];
+  const ordered = computeExecutionOrder(members, 1);
+  // lib/build-index.js runs before lib/build-terrain-map.js in the real CI workflow;
+  // the two unknowns have no evidence and fall back to alphabetical, after the known ones.
+  assert.deepEqual(ordered, [
+    'lib/build-index.js', 'lib/build-terrain-map.js',
+    'lib/append-session-continuation.js', 'lib/apply-content-intents.js',
+  ]);
+});
+
+test('BUILD-TERRAIN-MAP: computeExecutionOrder falls back to pure alphabetical for a stage with no known order', () => {
+  const members = ['lib/z.js', 'lib/a.js'];
+  assert.deepEqual(computeExecutionOrder(members, 0), ['lib/a.js', 'lib/z.js']);
 });
 
 // ── 4. computeStatus / findDebtReferences ────────────────────────────────────
@@ -220,9 +240,77 @@ test('BUILD-TERRAIN-MAP: buildTerrainMap assembles nodes, edges, stages, and scr
   const config = result.nodes.find(n => n.id === 'lib/vex-config.js');
   assert.equal(config.stageName, 'UTILITIES');
   assert.ok(result.stages.length > 0);
+  assert.equal(typeof assembler.auditorRank, 'number');
 });
 
-// ── 8. Integration ───────────────────────────────────────────────────────────
+test('BUILD-TERRAIN-MAP: auditorRank puts the worst-status, most-debt-referenced node first within its own stage — this is the ordering "auditor mode" switches to, not just a cosmetic filter', () => {
+  const latticeMap = {
+    nodes: {
+      'lib/build-a.js': { role: 'a', testedBy: ['tests/a.test.js'] }, // untested-but-no-debt would be good; give it a test so it's clean
+      'lib/build-b.js': { role: 'b', testedBy: [] },
+    },
+  };
+  const statusItems = [{ id: 'td-002', title: 'b needs work', context: 'lib/build-b.js' }];
+  const result = buildTerrainMap(latticeMap, statusItems, [], []);
+  const a = result.nodes.find(n => n.id === 'lib/build-a.js'); // good
+  const b = result.nodes.find(n => n.id === 'lib/build-b.js'); // critical, has a debt
+  assert.equal(a.stageName, b.stageName, 'both must be in the same stage for auditorRank to be comparable');
+  assert.ok(b.auditorRank < a.auditorRank, 'the critical, debt-referenced node should rank before the good one in auditor order');
+});
+
+// ── 8. layoutArcs / buildContentPages — the content-side mirror ─────────────
+
+test('BUILD-TERRAIN-MAP: layoutArcs groups pages by their first arcKey, columns ordered by arc priority', () => {
+  const nodesJson = [
+    { id: 1, slug: 'a', arcKeys: ['low'] },
+    { id: 2, slug: 'b', arcKeys: ['high'] },
+  ];
+  const arcsDef = { high: { priority: 1, parent: { title: 'High' } }, low: { priority: 2, parent: { title: 'Low' } } };
+  const { positions, arcMeta } = layoutArcs(nodesJson, arcsDef, []);
+  assert.equal(arcMeta[0].key, 'high'); // priority 1 column comes first
+  assert.equal(arcMeta[1].key, 'low');
+  assert.equal(positions.a.arc, 'low');
+  assert.equal(positions.b.arc, 'high');
+});
+
+test('BUILD-TERRAIN-MAP: layoutArcs orders pages within an arc by their real nodes.json id (curation order), not alphabetically', () => {
+  const nodesJson = [
+    { id: 9, slug: 'zzz-later', arcKeys: ['solo'] },
+    { id: 2, slug: 'aaa-earlier', arcKeys: ['solo'] },
+  ];
+  const arcsDef = { solo: { priority: 1, parent: { title: 'Solo' } } };
+  const { positions } = layoutArcs(nodesJson, arcsDef, []);
+  assert.ok(positions['aaa-earlier'].y < positions['zzz-later'].y, 'lower real id should sort first (smaller y)');
+});
+
+test('BUILD-TERRAIN-MAP: layoutArcs puts arc-less pages in an unsorted column and real-but-uncurated pages in their own column', () => {
+  const nodesJson = [{ id: 1, slug: 'no-arc', arcKeys: [] }];
+  const { arcMeta } = layoutArcs(nodesJson, {}, ['no-arc', 'orphan-page']);
+  assert.ok(arcMeta.some(a => a.key === 'unsorted'));
+  assert.ok(arcMeta.some(a => a.key === 'uncurated' && a.count === 1));
+});
+
+test('BUILD-TERRAIN-MAP: buildContentPages marks a curated node without a real pages/*.html file as live:false, status critical — most of this repo\'s registry is unported, and that must be visible, not implied otherwise', () => {
+  const nodesJson = [{ id: 1, slug: 'unported-page', title: 'Unported', arcKeys: [] }];
+  const result = buildContentPages(nodesJson, {}, {}, []); // pageSlugs empty — no real file exists
+  const page = result.pages.find(p => p.slug === 'unported-page');
+  assert.equal(page.live, false);
+  assert.equal(page.liveUrl, null);
+  assert.equal(page.status, 'critical');
+});
+
+test('BUILD-TERRAIN-MAP: buildContentPages marks a live page with a real captured screenshot as good, and without one as warning', () => {
+  const nodesJson = [
+    { id: 1, slug: 'has-shot', title: 'Has Shot', arcKeys: [] },
+    { id: 2, slug: 'no-shot', title: 'No Shot', arcKeys: [] },
+  ];
+  const screenshotsBySlug = { 'has-shot': { en: 'docs/screenshots/has-shot-en.png' } };
+  const result = buildContentPages(nodesJson, {}, screenshotsBySlug, ['has-shot', 'no-shot']);
+  assert.equal(result.pages.find(p => p.slug === 'has-shot').status, 'good');
+  assert.equal(result.pages.find(p => p.slug === 'no-shot').status, 'warning');
+});
+
+// ── 9. Integration ───────────────────────────────────────────────────────────
 
 test('BUILD-TERRAIN-MAP integration: the real generator produces byte-identical output on repeated runs', () => {
   execFileSync('node', ['lib/build-terrain-map.js'], { cwd: ROOT });
@@ -259,6 +347,18 @@ test('BUILD-TERRAIN-MAP integration: every real node has a stage, stageName, and
     assert.ok(typeof n.auditorFocus === 'boolean', `${n.id} missing auditorFocus`);
   }
   assert.ok(data.stages.length > 0);
+});
+
+test('BUILD-TERRAIN-MAP integration: the real content layer (arcs/pages) is internally consistent — every page names a real arc column, no page claims live without a real screenshot contradicting its own status', () => {
+  const data = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'terrain-map.json'), 'utf8'));
+  assert.ok(data.arcs.length > 0);
+  assert.ok(data.pages.length > 0);
+  const arcKeys = new Set(data.arcs.map(a => a.key));
+  for (const p of data.pages) {
+    assert.ok(arcKeys.has(p.arc), `page ${p.slug} references unknown arc column ${p.arc}`);
+    if (!p.live) assert.equal(p.liveUrl, null, `${p.slug} is not live but has a liveUrl`);
+    if (p.status === 'good') assert.ok(p.hasScreenshot, `${p.slug} is "good" but has no real screenshot`);
+  }
 });
 
 test('TERRAIN-MAP-PAGE: pages/terrain-map.html is registered in audit-pages.js SKIP_PAGES so it is not flagged as an orphan/blocker', () => {
