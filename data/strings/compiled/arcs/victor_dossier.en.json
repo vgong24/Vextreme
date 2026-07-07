@@ -1,0 +1,265 @@
+{
+  "common.nav.prev": {
+    "text": "← prev",
+    "aria-label": "Previous page"
+  },
+  "common.nav.next": {
+    "text": "next →",
+    "aria-label": "Next page"
+  },
+  "common.label.you-are-here": {
+    "text": "You Are Here"
+  },
+  "common.nav.archives": {
+    "text": "Archives",
+    "aria-label": "View full archive"
+  },
+  "common.nav.primary-site": {
+    "text": "vextreme24.com",
+    "aria-label": "Go to primary site"
+  },
+  "common.nav.github": {
+    "text": "GitHub",
+    "aria-label": "View source on GitHub"
+  },
+  "common.nav.full-archive": {
+    "text": "Full archive →",
+    "aria-label": "View full archive"
+  },
+  "common.button.copy-filename": {
+    "text": "Copy filename",
+    "aria-label": "Copy filename to clipboard"
+  },
+  "common.button.copied": {
+    "text": "Copied!",
+    "aria-label": "Filename copied to clipboard"
+  },
+  "common.label.site-title": {
+    "text": "Vextreme"
+  },
+  "common.label.page-live": {
+    "text": "Page live"
+  },
+  "common.label.not-yet-ported": {
+    "text": "Not yet ported"
+  },
+  "common.label.slug": {
+    "text": "Slug"
+  },
+  "common.status.pages-live": {
+    "text": "{ported, plural, one {# of {total} page live} other {# of {total} pages live}}"
+  },
+  "common.status.remaining": {
+    "text": "{count, plural, one {# remaining} other {# remaining}}"
+  },
+  "common.status.built-on": {
+    "text": "Built {date}"
+  },
+  "pages.victor-methodology-presentation.header.eyebrow": {
+    "text": "Engineering Dossier · 2021–2026 · DOC-ID: VG-DOSSIER-v2.1"
+  },
+  "pages.victor-methodology-presentation.header.thesis": {
+    "text": "Finding every place people are forced to assume — and replacing each with a map that makes the assumption safe."
+  },
+  "pages.victor-methodology-presentation.header.id-line": {
+    "text": "Senior Software Engineer II · Dexcom (medical devices, 5 years) · Lean Six Sigma Green Belt · AI-collaboration systems architect"
+  },
+  "pages.victor-methodology-presentation.header.stamp-big": {
+    "text": "×6"
+  },
+  "pages.victor-methodology-presentation.header.stamp-small": {
+    "text": "PROVEN"
+  },
+  "pages.victor-methodology-presentation.section-proofs.heading": {
+    "text": "One method, six proofs"
+  },
+  "pages.victor-methodology-presentation.section-proofs.intro": {
+    "text": "Across five years at a medical-device company — where software quality carries regulatory and patient-safety weight — the same engineering move was applied to six different problems at increasing scale. Each time, manual work done \"at the surface\" was replaced by a maintained map that structurally connects layers, so systems cannot silently drift apart."
+  },
+  "pages.victor-methodology-presentation.proof-organization-knowledge-map.year": {
+    "text": "YEARS 1–5 · LIVE"
+  },
+  "pages.victor-methodology-presentation.proof-organization-knowledge-map.title": {
+    "text": "Mapping the organization itself — the living map"
+  },
+  "pages.victor-methodology-presentation.proof-organization-knowledge-map.body": {
+    "text": "Arrived to no map: no channels connecting Android developers, no forums, no directory of where anything lived. Built the human infrastructure first — a biweekly Android forum with open sharing and bug/innovation lunch-and-learns; a Confluence mapping the org (repos, documentation, dashboards including VnV testing tools); direct developer access to testing tools so engineers debug immediately instead of consuming another person's time; and later, XML→Jetpack Compose migration guides and an inherit-the-base UI doctrine that eliminated inconsistent reimplementations. Not a one-time artifact: a live page, appended and maintained across the full five years — early entries like the org map, late entries like the Compose guides, one continuously current source. Communication built audience-first — including a \"3D\" board of the fragment/navgraph hierarchy, each layer showing its responsibility and connections as a scannable pattern."
+  },
+  "pages.victor-methodology-presentation.proof-organization-knowledge-map.result": {
+    "text": "The methodology's origin and its endurance test in one: a map of people and knowledge, kept alive for five years."
+  },
+  "pages.victor-methodology-presentation.proof-bulk-data-logging.year": {
+    "text": "YEAR 1"
+  },
+  "pages.victor-methodology-presentation.proof-bulk-data-logging.title": {
+    "text": "Analytics that cannot drift — BulkDataLogging"
+  },
+  "pages.victor-methodology-presentation.proof-bulk-data-logging.body": {
+    "text": "Replaced hand-written analytics code at every screen with one central map (ScreenName / ScreenMapper / ButtonName / MetaData) covering display, click, duration, and entry events. Delete a UI element and its logging entry goes with it — analytics and UI are structurally bound."
+  },
+  "pages.victor-methodology-presentation.proof-bulk-data-logging.result": {
+    "text": "Medical-grade event logging with structural integrity, org-wide."
+  },
+  "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.year": {
+    "text": "YEAR 2"
+  },
+  "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.title": {
+    "text": "Translations navigable in both directions"
+  },
+  "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.body": {
+    "text": "Extended the mapping principle to localization: every string traceable from code to every language and back, across Android, iOS, and design — \"where is this text used?\" answered structurally instead of by tribal memory."
+  },
+  "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.result": {
+    "text": "Foundation for the localization transformation below."
+  },
+  "pages.victor-methodology-presentation.proof-compound-safety-bug-map.year": {
+    "text": "MID"
+  },
+  "pages.victor-methodology-presentation.proof-compound-safety-bug-map.title": {
+    "text": "The compound bug nobody could reproduce"
+  },
+  "pages.victor-methodology-presentation.proof-compound-safety-bug-map.body": {
+    "text": "A missing low-glucose alert — patient-safety critical — was caused by two interacting defects across three teams' systems, one of which erased the evidence of the other. Resolution required first building the missing cross-system map by hand, instrumenting SDK-level code, and extracting reproduction steps inside a one-day window before the only witness left on vacation. Root cause: database indexes built without a wrapping @Transaction — an invisible absence."
+  },
+  "pages.victor-methodology-presentation.proof-compound-safety-bug-map.result": {
+    "text": "The terrain map let senior architects perceive system relationships nobody had seen. Fix shipped; lesson institutionalized."
+  },
+  "pages.victor-methodology-presentation.proof-localization-pipeline.year": {
+    "text": "YEARS 3–4"
+  },
+  "pages.victor-methodology-presentation.proof-localization-pipeline.title": {
+    "text": "Localization: 6 months → 2 weeks"
+  },
+  "pages.victor-methodology-presentation.proof-localization-pipeline.body": {
+    "text": "Through Dexcom-sponsored Lean Six Sigma work, unified fragmented Android/iOS string structures and re-architected the translation pipeline — then engineered the paid vendor tool out of the loop entirely with a single source of truth that regenerates all documents reproducibly, byte-identical, because every condition was mapped rather than assumed."
+  },
+  "pages.victor-methodology-presentation.proof-localization-pipeline.metric": {
+    "text": "6 mo → 2 wk"
+  },
+  "pages.victor-methodology-presentation.proof-localization-pipeline.metric-label": {
+    "text": "lean cycle time — on-paper value in the millions"
+  },
+  "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.year": {
+    "text": "YEARS 3–4"
+  },
+  "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.title": {
+    "text": "The organizational join key — UIElementKey"
+  },
+  "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.body": {
+    "text": "Engineering, UX design, and quality testing each held IDs meaningful only inside their own silo. One composite identity — UIElementKey(platform, project, language, stringId, vnvTestId, uxDesignId) — resolved every discipline to the same UI element. Map first, align second: no team forced to change upfront. With the key live, the pipeline inverted: design issues keys upstream, platforms align by protocol, verification proceeds on a guaranteed assumption. Cross-discipline traceability — audit-grade in a regulated industry."
+  },
+  "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.result": {
+    "text": "Reconciliation disappeared as a phase. Teams run parallel over a shared spine."
+  },
+  "pages.victor-methodology-presentation.proof-source-of-truth-relay.year": {
+    "text": "YEAR 5"
+  },
+  "pages.victor-methodology-presentation.proof-source-of-truth-relay.title": {
+    "text": "PenSDK: the method applied to time itself"
+  },
+  "pages.victor-methodology-presentation.proof-source-of-truth-relay.body": {
+    "text": "For an insulin-pen product where event order is safety-relevant: state changes flow through one SourceOfTruthRelay that derives and broadcasts truth so concurrent readers structurally cannot hold contradictory realities. Coroutines became ID-mapped, first-class tasks with scoped kill-switches — making a complex partner-SDK refresh cycle surgically manageable. Composes natively with Jetpack Compose."
+  },
+  "pages.victor-methodology-presentation.proof-source-of-truth-relay.result-tag": {
+    "text": "Legacy"
+  },
+  "pages.victor-methodology-presentation.proof-source-of-truth-relay.result": {
+    "text": "Deliberately developed the team in these practices — before departure, they problem-solved independently with the culture intact. The practices outlived the practitioner."
+  },
+  "pages.victor-methodology-presentation.section-throughline.band": {
+    "text": "Analytics can't drift from UI. Translations can't orphan from screens. Localization can't fragment across platforms. Concurrent readers can't contradict each other. And now: AI instances can't re-introduce mistakes that were already corrected."
+  },
+  "pages.victor-methodology-presentation.section-ai-maintainable-systems.heading": {
+    "text": "The sixth application: AI-maintainable systems"
+  },
+  "pages.victor-methodology-presentation.section-ai-maintainable-systems.p1": {
+    "text": "Every organization adopting AI coding tools is hitting the same wall: AI-generated work decays, because nothing preserves institutional knowledge between sessions. A new AI instance starts cold and re-introduces assumptions that were corrected months ago — the same disease as every fragmentation above, at the largest scale yet: context itself."
+  },
+  "pages.victor-methodology-presentation.section-ai-maintainable-systems.p2": {
+    "text": "The public working demonstration applies the five-times-proven method to this problem: a repository where CI self-maintains its own indexes; pull requests function as decision records (assumptions, cascading effects, notes for the next reader — human or AI); scaling ceilings are documented with migration paths before they're hit; and any fresh AI session bootstraps full context in one command. The escalation culture built with the human team — hard problems routed early, resolutions written back into shared knowledge — transcribed into architecture."
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.heading": {
+    "text": "What adoption changes"
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.intro": {
+    "text": "For an organization, this architecture is not a documentation style — it relocates where reliability comes from: out of individual vigilance and tribal memory, into structure that validates itself."
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.engineering-label": {
+    "text": "Engineering:"
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.engineering": {
+    "text": "drift stops being a discipline problem. When analytics, strings, tests, and design resolve through one identity, divergence becomes structurally impossible rather than manually policed — and change review shifts from recalling impact to reading a computed impact report."
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.localization-label": {
+    "text": "Localization & product:"
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.localization": {
+    "text": "a new language becomes new rows, not duplicated pages. Vendors translate a meaning once and the graph applies it everywhere it is bound; plural, placeholder, and layout rules are validated per locale automatically."
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.quality-label": {
+    "text": "Quality & compliance:"
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.quality": {
+    "text": "every change produces its impact report before it lands, and traceability from test to design intent to translation is audit-grade by construction. In regulated industries, that is the difference between proving compliance and reconstructing it."
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.ai-label": {
+    "text": "AI adoption:"
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.ai": {
+    "text": "agents stop re-deriving context. The graph is the memory; AI is the bridge into it — onboarding a fresh agent costs a query, not a repository read, and corrected mistakes stay corrected across sessions, tools, and vendors."
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.leadership-label": {
+    "text": "Leadership:"
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.leadership": {
+    "text": "the localization precedent above — six months to two weeks — is what this class of change does to cycle time. The same mechanics apply wherever teams currently reconcile by meeting instead of by map."
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.closing-note": {
+    "text": "This document is itself the first artifact managed under the standard it describes: its record identifiers follow the concept-ID naming standard, legacy IDs are preserved as aliases, and the English and Chinese content regenerate from a single bilingual source. The proof of concept is the page."
+  },
+  "pages.victor-methodology-presentation.section-audience-fit.heading": {
+    "text": "Where this fits"
+  },
+  "pages.victor-methodology-presentation.fit-platform-devex.title": {
+    "text": "Platform & Developer Experience"
+  },
+  "pages.victor-methodology-presentation.fit-platform-devex.body": {
+    "text": "Building the maps and pipelines that let large teams move in parallel without drift."
+  },
+  "pages.victor-methodology-presentation.fit-ai-tooling-companies.title": {
+    "text": "AI tooling companies"
+  },
+  "pages.victor-methodology-presentation.fit-ai-tooling-companies.body": {
+    "text": "A design-partner profile: has hit and documented the failure modes these products exist to solve."
+  },
+  "pages.victor-methodology-presentation.fit-regulated-industries.title": {
+    "text": "Regulated industries adopting AI"
+  },
+  "pages.victor-methodology-presentation.fit-regulated-industries.body": {
+    "text": "Medical-device background plus audit-grade, decision-record practices — a rare intersection."
+  },
+  "pages.victor-methodology-presentation.fit-process-transformation.title": {
+    "text": "Process transformation"
+  },
+  "pages.victor-methodology-presentation.fit-process-transformation.body": {
+    "text": "Lean Six Sigma-validated: a measured 6-month → 2-week cycle reduction with cross-team adoption."
+  },
+  "pages.victor-methodology-presentation.note-self-demonstration.lead": {
+    "text": "This dossier practices its own method."
+  },
+  "pages.victor-methodology-presentation.note-self-demonstration.body": {
+    "text": "Every record above carries a stable ID (proof-bulk-data-logging, proof-cross-domain-ui-identity…), named for concepts per the repository Registry Documentation Standard, with legacy IDs preserved as aliases, so any reader — human or AI, in English or Chinese — can reference, quote, or ask about an exact record without ambiguity. Identity first; discussion second."
+  },
+  "pages.victor-methodology-presentation.footer.line": {
+    "text": "Victor Gong · Dossier v2.1 · Created July 4, 2026 · DOC-ID: VG-DOSSIER-v2.1"
+  },
+  "pages.victor-methodology-presentation.footer.reference-note": {
+    "text": "References & repository walkthrough available on request"
+  },
+  "pages.victor-methodology-presentation.footer.stamp-word": {
+    "text": "ON"
+  },
+  "pages.victor-methodology-presentation.footer.stamp-label": {
+    "text": "THE RECORD"
+  }
+}

@@ -107,6 +107,20 @@ test('ASSEMBLER: output contains VEX_SUPPORTED_LANGS when provided', () => {
   assert.ok(script.includes('"en"') && script.includes('"ja"'), 'supported langs must appear in output');
 });
 
+test('ASSEMBLER: output contains VEX_STRING_ARC_BUNDLE when arcBundle option is set', () => {
+  const script = assembleGodScript('test-slug', DEMO_VIEWMODEL, { includeSourceComment: false, arcBundle: 'victor_dossier' });
+  assert.ok(script.includes('window.VEX_STRING_ARC_BUNDLE'), 'must set VEX_STRING_ARC_BUNDLE');
+  assert.ok(script.includes('"victor_dossier"'), 'arc id must appear in output');
+});
+
+test('ASSEMBLER: VEX_STRING_ARC_BUNDLE assignment is omitted when arcBundle option is absent', () => {
+  // fab-lang.js's own inlined source always *checks* window.VEX_STRING_ARC_BUNDLE
+  // (it's a generic feature of the widget) — what must NOT appear for a page
+  // that didn't opt in is assembleGodScript's *assignment* line for it.
+  const script = assembleGodScript('test-slug', DEMO_VIEWMODEL, { includeSourceComment: false });
+  assert.ok(!script.includes('window.VEX_STRING_ARC_BUNDLE ='), 'must not assign the arc bundle global for a non-piloted page');
+});
+
 test('ASSEMBLER: output is wrapped in an IIFE', () => {
   const script = assembleGodScript('test-slug', DEMO_VIEWMODEL, { includeSourceComment: false });
   assert.ok(script.includes('(function ()'), 'must be wrapped in an IIFE');

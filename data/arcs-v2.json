@@ -167,6 +167,19 @@
     ]
   },
 
+  "victor_dossier": {
+    "priority": 1,
+    "renderMode": "dots",
+    "bundlingStrategy": "arc-chunked",
+    "_bundlingStrategyNote": "Session 025 pilot for od-001/td-006: resolves 'should per-scope-combo JA bundling change before a 3rd language is added' by proving the arc-chunked alternative (lib/build-arc-bundles.js -> data/strings/compiled/arcs/{arc}.{lang}.json, one file per language instead of an N-way scope fetch) on this one arc, not the whole site. See docs/architecture/06-i18n.md 'Arc-chunked bundling pilot'.",
+    "parent": { "title": "Victor Gong — Engineering Dossier", "url": "https://www.vextreme24.com/archives" },
+    "sections": [
+      { "label": "Engineering Dossier", "order": "explicit", "slugs": [
+        "victor-methodology-presentation"
+      ]}
+    ]
+  },
+
   "excavation": {
     "priority": 2,
     "renderMode": "dots",

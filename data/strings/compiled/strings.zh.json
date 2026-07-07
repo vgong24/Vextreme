@@ -1,0 +1,209 @@
+{
+  "pages.victor-methodology-presentation.header.eyebrow": {
+    "text": "工程档案 · 2021–2026 · 档案编号: VG-DOSSIER-v2.1"
+  },
+  "pages.victor-methodology-presentation.header.thesis": {
+    "text": "找出所有人们被迫依靠假设的地方——用一张地图取代每一个假设，让它变得可靠。"
+  },
+  "pages.victor-methodology-presentation.header.id-line": {
+    "text": "高级软件工程师 II · 德康医疗（医疗器械，五年）· 精益六西格玛绿带 · AI 协作系统架构师"
+  },
+  "pages.victor-methodology-presentation.header.stamp-big": {
+    "text": "实证"
+  },
+  "pages.victor-methodology-presentation.header.stamp-small": {
+    "text": "PROVEN × 6"
+  },
+  "pages.victor-methodology-presentation.section-proofs.heading": {
+    "text": "一个方法，六次实证"
+  },
+  "pages.victor-methodology-presentation.section-proofs.intro": {
+    "text": "在医疗器械公司的五年里——软件质量直接关系到法规与患者安全——同一个工程方法被应用于六个不同规模的问题上。每一次，都是用一张持续维护的地图取代表层的人工操作，让系统在结构上无法悄悄脱节。"
+  },
+  "pages.victor-methodology-presentation.proof-organization-knowledge-map.year": {
+    "text": "贯穿五年 · 持续维护"
+  },
+  "pages.victor-methodology-presentation.proof-organization-knowledge-map.title": {
+    "text": "先为组织本身绘制地图——一张\"活\"的地图"
+  },
+  "pages.victor-methodology-presentation.proof-organization-knowledge-map.body": {
+    "text": "入职时没有任何地图：安卓开发者之间没有沟通渠道、没有论坛、没有任何资源目录。于是先搭建了人的基础设施——双周安卓论坛（开放分享、缺陷与创新的午餐学习会）；一个映射整个组织的 Confluence（代码仓库、文档、包括测试团队工具在内的仪表盘）；让开发者直接使用测试工具，无需占用他人时间去寻找；以及后期加入的 XML 到 Jetpack Compose 迁移指南和继承基础组件的 UI 准则，消除了同一组件的不一致重复实现。这不是一次性的文档，而是一张持续了整整五年的活页面——早期条目如组织地图，后期条目如 Compose 指南，始终保持最新。沟通方式以受众为先——包括一张\"3D\"导航层级图，每一层的职责与连接一目了然。"
+  },
+  "pages.victor-methodology-presentation.proof-organization-knowledge-map.result": {
+    "text": "方法论的起点，也是它的耐久性证明：一张关于人与知识的地图，被持续维护了整整五年。"
+  },
+  "pages.victor-methodology-presentation.proof-bulk-data-logging.year": {
+    "text": "第一年"
+  },
+  "pages.victor-methodology-presentation.proof-bulk-data-logging.title": {
+    "text": "不会漂移的数据埋点系统"
+  },
+  "pages.victor-methodology-presentation.proof-bulk-data-logging.body": {
+    "text": "用一个中央映射系统取代每个页面手写的埋点代码，覆盖显示、点击、时长与录入事件。删除一个界面元素，它的日志条目随之移除——数据统计与界面在结构上绑定，无法脱节。"
+  },
+  "pages.victor-methodology-presentation.proof-bulk-data-logging.result": {
+    "text": "具备结构完整性的医疗级事件日志系统，全组织通用。"
+  },
+  "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.year": {
+    "text": "第二年"
+  },
+  "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.title": {
+    "text": "双向可导航的翻译系统"
+  },
+  "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.body": {
+    "text": "把映射方法延伸到多语言翻译：每个文本从代码到各语言版本双向可追溯，横跨安卓、iOS 与设计——\"这段文字用在哪里\"由结构直接回答，而不靠个人记忆。"
+  },
+  "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.result": {
+    "text": "为下文的本地化流程转型奠定了基础。"
+  },
+  "pages.victor-methodology-presentation.proof-compound-safety-bug-map.year": {
+    "text": "中期"
+  },
+  "pages.victor-methodology-presentation.proof-compound-safety-bug-map.title": {
+    "text": "无人能复现的复合缺陷"
+  },
+  "pages.victor-methodology-presentation.proof-compound-safety-bug-map.body": {
+    "text": "一个丢失的低血糖警报——直接关系患者安全——源于横跨三个团队系统的两个相互作用的缺陷，其中一个会抹去另一个的证据。解决它需要先手工绘制出缺失的跨系统地图，在 SDK 层加入观测，并在唯一目击者休假前的一天窗口内完成复现步骤的提取。根因是一个看不见的缺失：数据库索引在没有事务包裹的情况下逐个生成。"
+  },
+  "pages.victor-methodology-presentation.proof-compound-safety-bug-map.result": {
+    "text": "这张地形图让资深架构师第一次看清了此前无人看见的系统关系。修复上线，教训沉淀为制度。"
+  },
+  "pages.victor-methodology-presentation.proof-localization-pipeline.year": {
+    "text": "第三至四年"
+  },
+  "pages.victor-methodology-presentation.proof-localization-pipeline.title": {
+    "text": "本地化流程：六个月缩短到两周"
+  },
+  "pages.victor-methodology-presentation.proof-localization-pipeline.body": {
+    "text": "通过公司支持的精益六西格玛项目，统一了安卓与 iOS 割裂的文本结构，重构了翻译流程——随后用一个单一事实来源系统完全取代了付费供应商工具：所有文档可重复再生成、逐字节一致，因为每个条件都被映射，而非假设。"
+  },
+  "pages.victor-methodology-presentation.proof-localization-pipeline.metric": {
+    "text": "6 个月 → 2 周"
+  },
+  "pages.victor-methodology-presentation.proof-localization-pipeline.metric-label": {
+    "text": "精益周期时间 — 账面价值达数百万"
+  },
+  "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.year": {
+    "text": "第三至四年"
+  },
+  "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.title": {
+    "text": "跨部门的统一标识"
+  },
+  "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.body": {
+    "text": "工程、设计与质量测试各自的编号只在自己部门内有意义。一个复合标识把所有部门解析到同一个界面元素上。先建地图，再做对齐：没有团队被迫先改。系统上线后，流程倒转：设计在上游发放标识，各平台按协议对齐，验证基于有保证的假设进行。跨部门可追溯——在受监管行业达到审计级别。"
+  },
+  "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.result": {
+    "text": "对账调和作为一个阶段彻底消失。各团队沿着同一条主干并行工作。"
+  },
+  "pages.victor-methodology-presentation.proof-source-of-truth-relay.year": {
+    "text": "第五年"
+  },
+  "pages.victor-methodology-presentation.proof-source-of-truth-relay.title": {
+    "text": "把方法应用于时间与并发本身"
+  },
+  "pages.victor-methodology-presentation.proof-source-of-truth-relay.body": {
+    "text": "在一个事件顺序直接关系安全的胰岛素笔产品中：状态变化经由单一事实中继推导并广播，并发的读取方在结构上不可能持有相互矛盾的状态。协程本身也被编号映射为一等任务，带有作用域开关——让复杂的合作方 SDK 刷新周期变得可精确管理。与 Jetpack Compose 天然契合。"
+  },
+  "pages.victor-methodology-presentation.proof-source-of-truth-relay.result-tag": {
+    "text": "传承"
+  },
+  "pages.victor-methodology-presentation.proof-source-of-truth-relay.result": {
+    "text": "有意识地把团队培养进这套实践——在离开之前，他们已能带着完整的文化独立解决问题。方法比实践者留得更久。"
+  },
+  "pages.victor-methodology-presentation.section-throughline.band": {
+    "text": "埋点无法脱离界面。翻译无法脱离页面。本地化无法在平台间割裂。并发读取无法互相矛盾。而现在：AI 实例无法重犯已经被纠正过的错误。"
+  },
+  "pages.victor-methodology-presentation.section-ai-maintainable-systems.heading": {
+    "text": "第六次应用：AI 可自主维护的系统"
+  },
+  "pages.victor-methodology-presentation.section-ai-maintainable-systems.p1": {
+    "text": "每个采用 AI 编程工具的组织都在撞同一堵墙：AI 产出的工作会退化，因为没有任何机制在会话之间保存机构知识。新的 AI 实例从零开始，重新引入几个月前已被纠正的假设——这与上面每一次割裂是同一种病，只是规模最大：割裂的是上下文本身。"
+  },
+  "pages.victor-methodology-presentation.section-ai-maintainable-systems.p2": {
+    "text": "公开的演示项目把这个经过五次验证的方法应用于此：仓库的持续集成系统自我维护索引；每个变更是一份决策记录（假设、连锁影响、写给下一位读者的说明——无论人或 AI）；扩展上限在触及之前就已记录并配好迁移路径；任何全新的 AI 会话用一条命令即可加载完整上下文。当年与人类团队建立的协作文化，被转写成了系统架构。"
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.heading": {
+    "text": "采用之后会改变什么"
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.intro": {
+    "text": "对一个组织而言，这套架构不是一种文档风格——它把可靠性的来源从个人的警觉与部落式记忆中迁移出来，放进能够自我校验的结构里。"
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.engineering-label": {
+    "text": "工程："
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.engineering": {
+    "text": "脱节不再是纪律问题。当埋点、文本、测试与设计通过同一个标识解析时，分歧在结构上就不可能发生，而不需要靠人工监督——变更评审也从凭记忆推测影响变成阅读自动生成的影响报告。"
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.localization-label": {
+    "text": "本地化与产品："
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.localization": {
+    "text": "新增一种语言意味着新增几行数据，而不是复制整套页面。供应商对一个含义只翻译一次，图谱会把它应用到所有绑定之处；复数、占位符与排版规则按语言自动校验。"
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.quality-label": {
+    "text": "质量与合规："
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.quality": {
+    "text": "每次变更在落地之前就生成影响报告，从测试到设计意图再到翻译的可追溯性是天生审计级的。在受监管行业，这就是证明合规与事后重建合规的区别。"
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.ai-label": {
+    "text": "AI 采用："
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.ai": {
+    "text": "AI 代理不再反复重推上下文。图谱是记忆，AI 是进入图谱的桥梁——让一个全新的代理上手只需一次查询，而不是通读整个仓库；被纠正过的错误在会话、工具与供应商之间保持已纠正状态。"
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.leadership-label": {
+    "text": "管理层："
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.leadership": {
+    "text": "上文的本地化先例——六个月缩短到两周——就是这类变革对周期时间的作用。凡是团队目前靠开会而不是靠地图来对齐的地方，同样的机制都适用。"
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.closing-note": {
+    "text": "本文件本身就是其所述标准管理下的第一个工件：记录标识符遵循概念命名标准，旧编号以别名形式保留，中英文内容由同一个双语源文件再生成。这一页，就是概念验证。"
+  },
+  "pages.victor-methodology-presentation.section-audience-fit.heading": {
+    "text": "适合的方向"
+  },
+  "pages.victor-methodology-presentation.fit-platform-devex.title": {
+    "text": "平台工程 / 开发者体验"
+  },
+  "pages.victor-methodology-presentation.fit-platform-devex.body": {
+    "text": "构建让大型团队并行工作而不脱节的地图与流程。"
+  },
+  "pages.victor-methodology-presentation.fit-ai-tooling-companies.title": {
+    "text": "AI 工具公司"
+  },
+  "pages.victor-methodology-presentation.fit-ai-tooling-companies.body": {
+    "text": "设计伙伴级别的人选：亲身经历并记录了这类产品要解决的失效模式。"
+  },
+  "pages.victor-methodology-presentation.fit-regulated-industries.title": {
+    "text": "采用 AI 的受监管行业"
+  },
+  "pages.victor-methodology-presentation.fit-regulated-industries.body": {
+    "text": "医疗器械背景加上审计级的决策记录实践——罕见的交叉点。"
+  },
+  "pages.victor-methodology-presentation.fit-process-transformation.title": {
+    "text": "流程转型"
+  },
+  "pages.victor-methodology-presentation.fit-process-transformation.body": {
+    "text": "经精益六西格玛验证：实测将六个月周期缩短至两周，并获得跨团队采用。"
+  },
+  "pages.victor-methodology-presentation.note-self-demonstration.lead": {
+    "text": "本档案实践其所述的方法。"
+  },
+  "pages.victor-methodology-presentation.note-self-demonstration.body": {
+    "text": "上面的每条记录都带有稳定的概念命名编号（proof-bulk-data-logging、proof-cross-domain-ui-identity……），遵循仓库的注册表文档标准，旧编号以别名保留，任何读者——无论人或 AI，中文或英文——都可以无歧义地引用、询问某一条具体记录。先有标识，再有讨论。"
+  },
+  "pages.victor-methodology-presentation.footer.line": {
+    "text": "Victor Gong · 档案 v2.1 · 创建于 2026 年 7 月 4 日 · 档案编号: VG-DOSSIER-v2.1"
+  },
+  "pages.victor-methodology-presentation.footer.reference-note": {
+    "text": "可应要求提供推荐人与项目讲解"
+  },
+  "pages.victor-methodology-presentation.footer.stamp-word": {
+    "text": "记录在案"
+  },
+  "pages.victor-methodology-presentation.footer.stamp-label": {
+    "text": "ON THE RECORD"
+  }
+}

@@ -541,6 +541,53 @@ to map 1:1 with a page.*
 
 ---
 
+## Arc-chunked bundling pilot (Session 025, resolving od-001/td-006)
+
+Session 013 flagged a real question before the site ever added a third
+language: the per-scope-combo model above issues one parallel fetch per
+scope on every language switch. At 2 languages and a few dozen nodes that's
+fine. td-006 named the ceiling explicitly and set a hard gate: **decision
+must be made before adding a third language; do not design the third
+language's pipeline on the current per-scope-combo model.**
+
+Session 025 needed a real third language (`zh`, for a bilingual engineering
+dossier) and resolved the question with a **scoped pilot**, not a full
+migration:
+
+- `data/arcs-v2.json` supports an opt-in `"bundlingStrategy": "arc-chunked"`
+  field per arc. Arcs that don't set it are completely unaffected — the
+  per-scope-combo path above keeps being the default for the other 16 arcs.
+- `lib/build-arc-bundles.js` (new) writes one
+  `data/strings/compiled/arcs/{arcId}.{lang}.json` per language, for every
+  opted-in arc — the union of every member slug's scope bundles, merged once
+  at build time instead of an N-way runtime fetch.
+- `lib/build-vextreme.js` emits `window.VEX_STRING_ARC_BUNDLE = "{arcId}"`
+  for a slug whose arc opted in. `widgets/fab-lang.js` checks this global
+  *before* the scope-fan-out path — one fetch, not N, when it's set.
+- `lib/build-sw.js` precaches the opted-in arcs' bundle URLs, bounded to
+  (opted-in arcs × their languages) — not proportional to site size.
+
+Today's only opted-in arc is `victor_dossier`. This proves the alternative
+td-006 named actually works end to end (build script → runtime fetch →
+SW precache), without forcing every other page's assembly through an
+unproven, whole-site migration for a change one new page motivated. Migrating
+a second arc means adding one field to its `data/arcs-v2.json` entry — the
+mechanism already generalizes; only the *scope* of adoption is one arc.
+
+**Known limitation, recorded honestly, not hidden:** `supportedLangs` in
+`data/index.json` is site-wide, computed from the flat `strings.{lang}.json`
+bundle (any lang with at least one key, anywhere). Adding `zh` content to one
+page makes 🇨🇳 selectable on *every* page site-wide, including ones with zero
+zh translations. This degrades safely — `fab-lang.js`'s `data-i18n` swap
+leaves an element's original (English) text untouched when a key has no
+entry for the selected language, the same missing-key fallback every other
+page already relies on for partial JA coverage — but a user can still pick a
+language that visibly does nothing on most pages. Making `supportedLangs`
+page-aware, or hiding the FAB entry for languages a given page has zero keys
+for, is unbuilt follow-up work, not a hidden defect.
+
+---
+
 ## Integrity check severity levels
 
 | Level | Condition | Action |
