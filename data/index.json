@@ -1,8 +1,8 @@
 {
-  "builtAt": "2026-07-07T04:19:00.853Z",
-  "nodeCount": 112,
+  "builtAt": "2026-07-07T04:42:42.812Z",
+  "nodeCount": 113,
   "curatedNodeCount": 91,
-  "autoDiscoveredCount": 21,
+  "autoDiscoveredCount": 22,
   "arcCount": 17,
   "supportedLangs": [
     "en",
@@ -2522,6 +2522,29 @@
         ]
       }
     },
+    "test": {
+      "id": null,
+      "slug": "test",
+      "title": "Test",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.test"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab"
+        ]
+      }
+    },
     "the-victor-pattern": {
       "id": null,
       "slug": "the-victor-pattern",
@@ -3562,6 +3585,11 @@
         {
           "slug": "summary-of-value",
           "title": "Summary Of Value",
+          "ported": true
+        },
+        {
+          "slug": "test",
+          "title": "Test",
           "ported": true
         },
         {
