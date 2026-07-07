@@ -1,5 +1,5 @@
 {
-  "count": 13,
+  "count": 14,
   "items": [
     {
       "id": "append-only-records-need-append-at-end-not-anchor-insertion",
@@ -11,7 +11,29 @@
         "023",
         "024"
       ],
-      "visual": null
+      "visual": null,
+      "relatedPRs": [],
+      "resolvedByPR": null
+    },
+    {
+      "id": "caching-layers-multiply-and-each-one-can-independently-hide-a-fix",
+      "title": "\"Confirmed Correct on the Server\" Is Not \"Confirmed Visible to the User\" — Every Caching Layer Between Them Can Independently Hide a Real Fix",
+      "problem": "Victor reported Chinese missing from the language FAB on the dossier page. Across one continuous session, four independent root causes were found and fixed, each confirmed correct on GitHub's main branch at the time — and the symptom persisted through all but the last: (1) widgets/fab-lang.js never read its own build-time-baked window.VEX_SUPPORTED_LANGS global, falling through to a stale localStorage cache or network fetch instead (PR #79); (2) that network fetch's own cache-busting VERSION constant had never been bumped since introduction, so jsdelivr's CDN kept serving a stale index.json indefinitely regardless of what changed on main (PR #82, generalized into an auto-incrementing scheme in PR #83); (3) once the dossier was wired to load its God Script directly (bypassing jsdelivr for that page entirely, PR #84), a newly-activated Service Worker could install a new version but never signaled the already-open tab to use it (PR #86); (4) even with that signal wired up, the Service Worker's own background update CHECK is throttled by the browser to roughly once per 24 hours, so reloading the page — even a hard reload — did not reliably trigger a fresh check at all, meaning the fix from (3) had nothing to react to (PR #87, confirmed only after Victor pushed back and asked for an actual reproduction instead of another assumption-based patch).",
+      "lesson": "A codebase with N independent caching layers between 'the fix shipped' and 'the user sees it' can produce up to N rounds of 'still not visible' before the actual last layer is found — and each round can look, in isolation, like a fully-diagnosed, fully-verified fix, because each one WAS correct for the layer it addressed. The tell that you're mid-stack rather than done is the symptom recurring after a fix that was itself correctly reasoned and server-verified. When that happens, the right move is not a fifth theory — it's reproducing the actual user-visible lifecycle (a simulation, a real device, a real reload cycle) to find out definitively whether you're looking at a new layer or an incomplete fix to the one you thought you'd closed. Server-side correctness and client-visible correctness are different claims requiring different evidence, and caching is exactly where the two can silently diverge for arbitrarily long.",
+      "impact": "Four merged PRs (#79, #82/#83, #84, #86/#87), all labeled bug for retraceability. No single code change generalizes this — it's a standing verification discipline for any future change that touches a browser-cacheable asset in this repo, named here so the next instance recognizes the pattern on fix #2 instead of shipping fix #4 believing each one alone was the answer.",
+      "sessions": [
+        "025"
+      ],
+      "visual": null,
+      "relatedPRs": [
+        79,
+        82,
+        83,
+        84,
+        86,
+        87
+      ],
+      "resolvedByPR": 87
     },
     {
       "id": "ci-green-is-not-environment-complete",
@@ -22,7 +44,9 @@
       "sessions": [
         "024"
       ],
-      "visual": null
+      "visual": null,
+      "relatedPRs": [],
+      "resolvedByPR": null
     },
     {
       "id": "generated-artifacts-must-be-content-deterministic",
@@ -33,7 +57,9 @@
       "sessions": [
         "022"
       ],
-      "visual": null
+      "visual": null,
+      "relatedPRs": [],
+      "resolvedByPR": null
     },
     {
       "id": "generated-file-merge-driver-needs-local-registration",
@@ -44,7 +70,9 @@
       "sessions": [
         "022"
       ],
-      "visual": null
+      "visual": null,
+      "relatedPRs": [],
+      "resolvedByPR": null
     },
     {
       "id": "hunting-to-blueprint",
@@ -55,7 +83,9 @@
       "sessions": [
         "011"
       ],
-      "visual": "pages/specimen-architectural-wisdoms.html#decision-3"
+      "visual": "pages/specimen-architectural-wisdoms.html#decision-3",
+      "relatedPRs": [],
+      "resolvedByPR": null
     },
     {
       "id": "independently-arrived-discipline-is-worth-naming-not-just-noting",
@@ -66,7 +96,9 @@
       "sessions": [
         "022"
       ],
-      "visual": null
+      "visual": null,
+      "relatedPRs": [],
+      "resolvedByPR": null
     },
     {
       "id": "json-keys-are-strings",
@@ -77,7 +109,9 @@
       "sessions": [
         "011"
       ],
-      "visual": "pages/specimen-architectural-wisdoms.html#decision-4"
+      "visual": "pages/specimen-architectural-wisdoms.html#decision-4",
+      "relatedPRs": [],
+      "resolvedByPR": null
     },
     {
       "id": "magic-strings-to-constants",
@@ -88,7 +122,9 @@
       "sessions": [
         "010"
       ],
-      "visual": "pages/specimen-architectural-wisdoms.html#decision-2"
+      "visual": "pages/specimen-architectural-wisdoms.html#decision-2",
+      "relatedPRs": [],
+      "resolvedByPR": null
     },
     {
       "id": "multiple-files-to-god-script",
@@ -99,7 +135,9 @@
       "sessions": [
         "011"
       ],
-      "visual": "pages/specimen-architectural-wisdoms.html#decision-1"
+      "visual": "pages/specimen-architectural-wisdoms.html#decision-1",
+      "relatedPRs": [],
+      "resolvedByPR": null
     },
     {
       "id": "procedure-and-record-need-separate-mutability-rules",
@@ -110,7 +148,9 @@
       "sessions": [
         "022"
       ],
-      "visual": null
+      "visual": null,
+      "relatedPRs": [],
+      "resolvedByPR": null
     },
     {
       "id": "sentinel-text-is-hazardous-to-itself",
@@ -123,7 +163,9 @@
         "014",
         "019"
       ],
-      "visual": null
+      "visual": null,
+      "relatedPRs": [],
+      "resolvedByPR": null
     },
     {
       "id": "token-cost-is-output-volume-not-execution-location",
@@ -134,7 +176,9 @@
       "sessions": [
         "022"
       ],
-      "visual": null
+      "visual": null,
+      "relatedPRs": [],
+      "resolvedByPR": null
     },
     {
       "id": "v1-arcs-json-is-frozen-not-a-sync-target",
@@ -145,7 +189,9 @@
       "sessions": [
         "022"
       ],
-      "visual": null
+      "visual": null,
+      "relatedPRs": [],
+      "resolvedByPR": null
     }
   ]
 }

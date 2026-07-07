@@ -940,7 +940,7 @@
 
     "lib/build-lessons.js": {
       "role": "compiles config/lessons/*.json into data/lessons.json — the read-side manifest the Ecosystem Hub fetches",
-      "context": "config/lessons/*.json has been the write-side home for distilled architectural/process lessons since Session 010 (see docs/architecture/08-continuity.md's collaboration-documents table), but nothing compiled those files into anything pages/ecosystem-hub.html — the one dashboard meant to answer 'what does this system currently know' — could read. A lesson was discoverable (git log --grep, grepping the directory, or the partial hand-authored decision cards in pages/specimen-architectural-wisdoms.html) but not connected to the generated read side, the same shape of gap lib/auto-discover-nodes.js closed for pages/ in the same session. Handles two lesson-file schema generations: newer files use sessions: [...], older ones (Session 010-011) use pr/session singular fields — both normalize to one sessions array in the output.",
+      "context": "config/lessons/*.json has been the write-side home for distilled architectural/process lessons since Session 010 (see docs/architecture/08-continuity.md's collaboration-documents table), but nothing compiled those files into anything pages/ecosystem-hub.html — the one dashboard meant to answer 'what does this system currently know' — could read. A lesson was discoverable (git log --grep, grepping the directory, or the partial hand-authored decision cards in pages/specimen-architectural-wisdoms.html) but not connected to the generated read side, the same shape of gap lib/auto-discover-nodes.js closed for pages/ in the same session. Handles two lesson-file schema generations: newer files use sessions: [...], older ones (Session 010-011) use pr/session singular fields — both normalize to one sessions array in the output. Session 025 (continued) — added relatedPRs (array) and resolvedByPR (single number) pass-through fields, both optional/defaulting to empty/null: a lesson chasing one bug across several necessary-but-insufficient fixes (see caching-layers-multiply-and-each-one-can-independently-hide-a-fix.json) needs to name every PR in the chain and distinguish which one actually closed it, a Jira-style 'resolved by' vs 'related to' distinction. Victor also pointed out plain 'PR #N' text anywhere in this repo (here, and the pre-existing addedPR field on status.json debt items) was never actually clickable — lib/build-ecosystem-hub.js's new prLink() helper fixes both.",
       "reads": ["config/lessons/*.json (every lesson file, both schema generations)"],
       "writes": ["data/lessons.json"],
       "loadedBy": [
@@ -956,7 +956,7 @@
         ],
         "lesson file schema changed (new required field, field renamed)": [
           "buildLessonsManifest() in this file (the field mapping)",
-          "lib/build-ecosystem-hub.js renderLessons() (reads title/problem/lesson/impact/sessions/visual)",
+          "lib/build-ecosystem-hub.js renderLessons() (reads title/problem/lesson/impact/sessions/visual/relatedPRs/resolvedByPR)",
           "tests/17-build-lessons.test.js"
         ]
       }

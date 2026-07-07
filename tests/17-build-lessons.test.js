@@ -76,6 +76,30 @@ test('BUILD-LESSONS: buildLessonsManifest defaults impact to empty string and vi
   assert.equal(a.impact, '');
 });
 
+test('BUILD-LESSONS: buildLessonsManifest passes through relatedPRs, defaulting to an empty array when absent', () => {
+  const files = [
+    { filename: 'c-lesson.json', content: { id: 'c-lesson', title: 'C', problem: 'p', lesson: 'l', relatedPRs: [79, 82, 87] } },
+    { filename: 'd-lesson.json', content: { id: 'd-lesson', title: 'D', problem: 'p', lesson: 'l' } },
+  ];
+  const result = buildLessonsManifest(files);
+  const c = result.items.find(i => i.id === 'c-lesson');
+  const d = result.items.find(i => i.id === 'd-lesson');
+  assert.deepEqual(c.relatedPRs, [79, 82, 87]);
+  assert.deepEqual(d.relatedPRs, []);
+});
+
+test('BUILD-LESSONS: buildLessonsManifest passes through resolvedByPR, defaulting to null when absent', () => {
+  const files = [
+    { filename: 'e-lesson.json', content: { id: 'e-lesson', title: 'E', problem: 'p', lesson: 'l', resolvedByPR: 87 } },
+    { filename: 'f-lesson.json', content: { id: 'f-lesson', title: 'F', problem: 'p', lesson: 'l' } },
+  ];
+  const result = buildLessonsManifest(files);
+  const e = result.items.find(i => i.id === 'e-lesson');
+  const f = result.items.find(i => i.id === 'f-lesson');
+  assert.equal(e.resolvedByPR, 87);
+  assert.equal(f.resolvedByPR, null);
+});
+
 // ── 3. Integration ─────────────────────────────────────────────────────────────
 
 test('BUILD-LESSONS integration: data/lessons.json exists and is valid JSON', () => {
@@ -104,6 +128,7 @@ test('BUILD-LESSONS integration: every item has the fields lib/build-ecosystem-h
     assert.equal(typeof item.problem, 'string');
     assert.equal(typeof item.lesson, 'string');
     assert.ok(Array.isArray(item.sessions));
+    assert.ok(Array.isArray(item.relatedPRs));
   }
 });
 
