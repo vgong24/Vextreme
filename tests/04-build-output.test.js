@@ -17,8 +17,9 @@
  *   - Missing DOM element IDs that the JS binds to
  *   - Incorrect clipboard value (slug missing, wrong suffix)
  *
- * PREREQUISITE: run `node lib/strings-compile.js && node lib/build-archives.js`
- * before this test suite. CI does this in the "Build test prerequisites" step.
+ * PREREQUISITE: run `node lib/run-test-prereqs.js` before this test suite
+ * (single source of truth: tests/helpers/prereqs.js). CI does this in the
+ * "Build test prerequisites" step.
  */
 
 const { test } = require('node:test');

@@ -14,6 +14,55 @@
 
   "nodes": {
 
+    "lib/compute-test-shards.js": {
+      "role": "self-scaling CI test-sharding — computes shard count and per-shard file assignment from the real current tests/*.test.js file count, no hand-picked number to forget updating",
+      "context": "Session 025 (continued) — Victor asked whether test sharding could be 'system expandable as a health and build process' rather than something a future instance eyeballs and manually flips on. computeShardCount() answers that: it's a pure function of the real current test-file count (TARGET_FILES_PER_SHARD, tuned so CI's fixed per-job overhead stays cheaper than actual test runtime until the suite has genuinely grown), recomputed by .github/workflows/test.yml's 'shards' job on every run. At today's ~28-file suite this resolves to 1 shard — the workflow runs as a single job, same as before this file existed. assignFilesToShard() is a deterministic round-robin partition (sorted file list, index modulo shard count) so the same inputs always produce the same split and every file lands in exactly one shard — verified by tests/29-compute-test-shards.test.js's partition-coverage tests. Deliberately uses file COUNT, not measured historical per-file duration, as the sharding signal — see the file's own docstring for why (this repo's tests are uniform and fast; a timing-log approach would need persisted CI-committed state to buy back precision this suite doesn't currently need).",
+      "reads": [
+        "tests/*.test.js (file list only, via fs.readdirSync — not file contents)"
+      ],
+      "writes": [
+        "stdout (matrix JSON via `matrix` command, newline-separated file paths via `files` command)"
+      ],
+      "loadedBy": [
+        ".github/workflows/test.yml ('shards' job computes the matrix; 'test' job's matrix jobs compute their own file list)",
+        "tests/29-compute-test-shards.test.js"
+      ],
+      "testedBy": [
+        "tests/29-compute-test-shards.test.js"
+      ],
+      "changeMap": {
+        "TARGET_FILES_PER_SHARD or MAX_SHARDS changed": [
+          "tests/29-compute-test-shards.test.js's integration test asserting the real suite currently resolves to 1 shard — a tighter target may make that assertion legitimately fail as the suite grows; that's the feature activating, not a bug, but confirm the shard count that produces before merging",
+          ".github/workflows/test.yml's 'all-shards-passed' aggregate job — stays a stable required-check name regardless of how many shards run, but worth re-confirming after a target change"
+        ],
+        "tests/*.test.js naming convention changed (no longer *.test.js)": [
+          "listTestFiles()'s filter here",
+          ".github/workflows/test.yml's 'Run tests' step glob"
+        ]
+      }
+    },
+
+    "lib/run-test-prereqs.js": {
+      "role": "runs the build scripts tests/helpers/prereqs.js declares as required before the test suite can read generated files — replaces a hardcoded run: line in .github/workflows/test.yml",
+      "context": "Session 025 (continued) — before this file, the list of 'build scripts that must run before tests can pass' existed in two places that could drift: a literal `run:` line in test.yml, and prose in individual test files' PREREQUISITE docstrings (e.g. tests/04-build-output.test.js). This file and tests/helpers/prereqs.js collapse that to one array; both the CI step and any test file that wants to reference its own prerequisite point at the same source.",
+      "reads": [
+        "tests/helpers/prereqs.js (PREREQUISITE_SCRIPTS)"
+      ],
+      "writes": [
+        "whatever each script in PREREQUISITE_SCRIPTS writes (currently data/strings/compiled/*, pages/archives.html) — this file only orchestrates, it has no output of its own"
+      ],
+      "loadedBy": [
+        ".github/workflows/test.yml ('Build test prerequisites' step)"
+      ],
+      "testedBy": [],
+      "changeMap": {
+        "a test file gains a new build-time prerequisite": [
+          "tests/helpers/prereqs.js's PREREQUISITE_SCRIPTS array — add it there, not to this file or the workflow directly",
+          "the new test file's own PREREQUISITE docstring — reference tests/helpers/prereqs.js rather than re-listing the scripts inline, so the two can't drift again"
+        ]
+      }
+    },
+
     "lib/vex-config.js": {
       "role": "constants hub — pure declarations, no I/O",
       "context": "Every semantic string in the system (category names, language codes, feature IDs, scope names, CDN paths) lives here as a named constant. No build script or widget should hardcode 'demo', 'ja', 'common', etc. Changes here propagate to 9+ files — the widest fan-out of any single file.",

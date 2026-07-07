@@ -28,12 +28,12 @@
       "key": 1.5,
       "name": "UTILITIES",
       "sub": "other lib/ helpers, config, tracing",
-      "count": 13,
+      "count": 15,
       "rect": {
         "x": 690,
         "y": 40,
         "width": 300,
-        "height": 870
+        "height": 990
       }
     },
     {
@@ -1038,12 +1038,39 @@
       "auditorRank": 3
     },
     {
-      "id": "lib/detect-wip-promotions.js",
+      "id": "lib/compute-test-shards.js",
       "cluster": "lib",
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
       "y": 270,
+      "role": "self-scaling CI test-sharding — computes shard count and per-shard file assignment from the real current tests/*.test.js file count, no hand-picked number to forget updating",
+      "reads": [
+        "tests/*.test.js (file list only, via fs.readdirSync — not file contents)"
+      ],
+      "writes": [
+        "stdout (matrix JSON via `matrix` command, newline-separated file paths via `files` command)"
+      ],
+      "loadedBy": [
+        ".github/workflows/test.yml ('shards' job computes the matrix; 'test' job's matrix jobs compute their own file list)",
+        "tests/29-compute-test-shards.test.js"
+      ],
+      "testedBy": [
+        "tests/29-compute-test-shards.test.js"
+      ],
+      "debts": [],
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": false,
+      "auditorRank": 9
+    },
+    {
+      "id": "lib/detect-wip-promotions.js",
+      "cluster": "lib",
+      "stage": 1.5,
+      "stageName": "UTILITIES",
+      "x": 740,
+      "y": 330,
       "role": "detects a wip/*.html → pages/*.html move within a PR's diff, so a promotion shows up as a positive PR notice instead of silence or a false 'broken reference'",
       "reads": [
         "git diff --name-status -M output between two refs (wip/ and pages/ paths only)"
@@ -1063,7 +1090,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 9
+      "auditorRank": 10
     },
     {
       "id": "lib/logger-codes.js",
@@ -1071,7 +1098,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 330,
+      "y": 390,
       "role": "event code registry — the CODES constant every logger.warn/error call references",
       "reads": [],
       "writes": [],
@@ -1097,7 +1124,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 390,
+      "y": 450,
       "role": "structured logger — every build script's warn/info/error call goes through here",
       "reads": [],
       "writes": [
@@ -1121,12 +1148,36 @@
       "auditorRank": 4
     },
     {
+      "id": "lib/run-test-prereqs.js",
+      "cluster": "lib",
+      "stage": 1.5,
+      "stageName": "UTILITIES",
+      "x": 740,
+      "y": 510,
+      "role": "runs the build scripts tests/helpers/prereqs.js declares as required before the test suite can read generated files — replaces a hardcoded run: line in .github/workflows/test.yml",
+      "reads": [
+        "tests/helpers/prereqs.js (PREREQUISITE_SCRIPTS)"
+      ],
+      "writes": [
+        "whatever each script in PREREQUISITE_SCRIPTS writes (currently data/strings/compiled/*, pages/archives.html) — this file only orchestrates, it has no output of its own"
+      ],
+      "loadedBy": [
+        ".github/workflows/test.yml ('Build test prerequisites' step)"
+      ],
+      "testedBy": [],
+      "debts": [],
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": false,
+      "auditorRank": 11
+    },
+    {
       "id": "lib/session-bootstrap.js",
       "cluster": "lib",
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 450,
+      "y": 570,
       "role": "one-shot session-start state report — read-only, gathers what would otherwise be several manual checks into one command",
       "reads": [
         "docs/continuity/INDEX.md (last logged session, batch registry)",
@@ -1153,7 +1204,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 10
+      "auditorRank": 12
     },
     {
       "id": "lib/strings-check.js",
@@ -1161,7 +1212,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 510,
+      "y": 630,
       "role": "strings pipeline integrity check — runs before compile, catches missing EN text, stale translations, and orphaned keys",
       "reads": [
         "data/strings/source/**/*.json",
@@ -1192,7 +1243,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 570,
+      "y": 690,
       "role": "strings pipeline compiler — reads source JSON, writes compiled bundles and manifest",
       "reads": [
         "data/strings/source/**/*.json",
@@ -1226,7 +1277,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 630,
+      "y": 750,
       "role": "string reverse-tracer — data-i18n usage in pages/wip HTML cross-referenced against the compiled manifest",
       "reads": [
         "pages/*.html (data-i18n attribute scan)",
@@ -1247,7 +1298,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 11
+      "auditorRank": 13
     },
     {
       "id": "lib/validate-blueprint.js",
@@ -1255,7 +1306,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 690,
+      "y": 810,
       "role": "blueprint consistency validator — confirms every id in blueprint.json has a matching config file and vex-config constant",
       "reads": [
         "blueprint.json",
@@ -1287,7 +1338,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 750,
+      "y": 870,
       "role": "constants hub — pure declarations, no I/O",
       "reads": [],
       "writes": [],
@@ -1325,7 +1376,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 810,
+      "y": 930,
       "role": "browser arc nav runtime — reads index.json at load time, renders prev/next/position into #arcNavMount",
       "reads": [
         "data/index.json via CDN (slugMap, arcMap, arcMeta)",
@@ -1348,7 +1399,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 12
+      "auditorRank": 14
     },
     {
       "id": "pages/terrain-map.html",
