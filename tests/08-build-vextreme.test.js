@@ -123,6 +123,81 @@ test('ASSEMBLER: widgets/fab-lang.js actually reads window.VEX_SUPPORTED_LANGS �
     'loadSupportedLangs() must check window.VEX_SUPPORTED_LANGS before falling back to cache/network');
 });
 
+// ── Session 025: FAB system unification ─────────────────────────────────────
+//
+// spiral-fab/theme/map were reserved Feature slots since Session 013
+// (filename: null, silently no-op'd) — this is the "you just confirm"
+// health check Victor asked for: since spiral-fab/theme/map/lang are all
+// DEFAULT features (lib/build-index.js's buildViewmodel fallback), every
+// page that gets a God Script at all automatically gets the full FAB group
+// with no per-page wiring. These tests confirm that propagation actually
+// happens, so a future FEATURES registry edit that silently drops one of
+// these back to filename: null fails CI immediately.
+
+test('FAB SYSTEM: a default-viewmodel page\'s assembled God Script contains all four FAB features (spiral-fab, lang, theme, map)', () => {
+  const script = assembleGodScript('test-slug', DEMO_VIEWMODEL, {
+    includeSourceComment: false,
+    supportedLangs: ['en', 'ja'],
+  });
+  // DEMO_VIEWMODEL explicitly lists features: ['lang', 'demo'] — swap for a
+  // features array matching a real default-viewmodel page instead.
+  const defaultFeaturesScript = assembleGodScript('test-slug', {
+    ...DEMO_VIEWMODEL,
+    features: ['lang', 'spiral-fab', 'theme', 'map'],
+  }, { includeSourceComment: false });
+
+  assert.ok(defaultFeaturesScript.includes('feature: spiral-fab') || defaultFeaturesScript.includes('vex-fab.js'),
+    'spiral-fab must be bundled');
+  assert.ok(defaultFeaturesScript.includes('feature: lang') || defaultFeaturesScript.includes('fab-lang.js'),
+    'lang must be bundled');
+  assert.ok(defaultFeaturesScript.includes('feature: theme') || defaultFeaturesScript.includes('fab-theme.js'),
+    'theme must be bundled');
+  assert.ok(defaultFeaturesScript.includes('feature: map') || defaultFeaturesScript.includes('fab-map.js'),
+    'map must be bundled');
+});
+
+test('FAB SYSTEM: spiral-fab is concatenated before lang/theme/map — DOMContentLoaded handlers must fire in that order so #vex-spiral-group exists before an orb widget looks for it', () => {
+  const script = assembleGodScript('test-slug', {
+    ...DEMO_VIEWMODEL,
+    features: ['lang', 'spiral-fab', 'theme', 'map'],
+  }, { includeSourceComment: false });
+
+  const spiralIdx = script.indexOf('vex-fab.js');
+  const langIdx   = script.indexOf('fab-lang.js');
+  const themeIdx  = script.indexOf('fab-theme.js');
+  const mapIdx    = script.indexOf('fab-map.js');
+
+  assert.ok(spiralIdx !== -1 && langIdx !== -1 && themeIdx !== -1 && mapIdx !== -1,
+    'all four widget sources must be present in the assembled script');
+  assert.ok(spiralIdx < langIdx,  'vex-fab.js must be concatenated before fab-lang.js');
+  assert.ok(spiralIdx < themeIdx, 'vex-fab.js must be concatenated before fab-theme.js');
+  assert.ok(spiralIdx < mapIdx,   'vex-fab.js must be concatenated before fab-map.js');
+});
+
+test('FAB SYSTEM: default viewmodel (no override) includes all four FAB features — real-page propagation, not just the assembler accepting them', () => {
+  const { buildViewmodel } = require('../lib/build-index');
+  const { Feature: F } = require('../lib/vex-config');
+  const vm = buildViewmodel('any-slug-with-no-override', {});
+  assert.ok(vm.features.includes(F.SPIRAL_FAB), 'default viewmodel must include spiral-fab');
+  assert.ok(vm.features.includes(F.LANG),       'default viewmodel must include lang');
+  assert.ok(vm.features.includes(F.THEME),      'default viewmodel must include theme');
+  assert.ok(vm.features.includes(F.MAP),        'default viewmodel must include map');
+});
+
+test('FAB SYSTEM: widgets/fab-theme.js and widgets/fab-map.js both check for #vex-spiral-group and nest into it when present', () => {
+  for (const file of ['fab-theme.js', 'fab-map.js']) {
+    const src = fs.readFileSync(path.join(ROOT, 'widgets', file), 'utf8');
+    assert.ok(src.includes("getElementById('vex-spiral-group')"),
+      `${file} must look up #vex-spiral-group to nest its orb, per Session 025's real-estate-conscious design`);
+  }
+});
+
+test('FAB SYSTEM: widgets/fab-lang.js nests into #vex-spiral-group when present, and still falls back to a standalone mount when absent', () => {
+  const src = fs.readFileSync(path.join(ROOT, 'widgets', 'fab-lang.js'), 'utf8');
+  assert.ok(src.includes("getElementById('vex-spiral-group')"), 'must check for the shared group container');
+  assert.ok(src.includes('document.body.appendChild(fab)'), 'must retain the standalone fallback for pages without spiral-fab');
+});
+
 test('ASSEMBLER: output contains VEX_STRING_ARC_BUNDLE when arcBundle option is set', () => {
   const script = assembleGodScript('test-slug', DEMO_VIEWMODEL, { includeSourceComment: false, arcBundle: 'victor_dossier' });
   assert.ok(script.includes('window.VEX_STRING_ARC_BUNDLE'), 'must set VEX_STRING_ARC_BUNDLE');

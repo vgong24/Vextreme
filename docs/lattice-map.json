@@ -81,6 +81,7 @@
         "tests/05-vex-config.test.js",
         "tests/06-blueprint.test.js",
         "tests/07-viewmodel.test.js",
+        "tests/08-build-vextreme.test.js (FAB SYSTEM propagation tests — reads Feature.* constants directly)",
         "lib/build-demo.js",
         "lib/build-arc-bundles.js"
       ],
@@ -131,6 +132,7 @@
         "tests/01-content-pipeline.test.js",
         "tests/03-browser-nav.test.js",
         "tests/07-viewmodel.test.js",
+        "tests/08-build-vextreme.test.js (FAB SYSTEM propagation tests — calls buildViewmodel directly)",
         "tests/15-departments.test.js"
       ],
       "testedBy": [
@@ -184,13 +186,16 @@
 
     "lib/build-vextreme.js": {
       "role": "God Script assembler — reads index + string bundles, writes one self-contained dist/ file per page",
-      "context": "The write side of the page delivery pipeline. Inlines EN strings, bakes in viewmodel, includes feature widgets. Once a God Script is loaded by a page, it needs zero additional fetches for EN. Run after build-index.js and strings-compile.js.",
+      "context": "The write side of the page delivery pipeline. Inlines EN strings, bakes in viewmodel, includes feature widgets. Once a God Script is loaded by a page, it needs zero additional fetches for EN. Run after build-index.js and strings-compile.js. Session 025 FAB unification: spiral-fab and theme have real filenames now (vex-fab.js, fab-theme.js) after sitting reserved-but-unbuilt (filename: null) since Session 013; a new map feature (fab-map.js) was added alongside them. FEATURES object key order was changed so spiral-fab registers before lang/theme/map — that order is the script concatenation order, which is also the DOMContentLoaded firing order in the browser, and vex-fab.js's #vex-spiral-group container must exist before the other three widgets look for it on mount. Honest caveat found while building this: as of Session 025, ZERO live pages actually load a God Script (node lib/audit-pages.js reports 0 wired) — every real page still uses old standalone <script src=CDN> tags, so this feature (and the VEX_SUPPORTED_LANGS fix before it) is correct, tested infrastructure with no live effect until a page's script tags are actually switched over to its dist/ file. Not yet decided whether/when that wiring happens.",
       "reads": [
         "data/index.json",
         "data/viewmodels.json",
         "data/strings/compiled/scopes/{category}/{scope}.en.json",
         "widgets/sw-register.js",
+        "widgets/vex-fab.js",
         "widgets/fab-lang.js",
+        "widgets/fab-theme.js",
+        "widgets/fab-map.js",
         "widgets/fab-demo.js",
         "lib/vextreme-index-v2.js (arc-nav feature, via srcDir: LIB_DIR in FEATURES registry)",
         "lib/vex-config.js"
@@ -502,6 +507,64 @@
       }
     },
 
+    "widgets/vex-fab.js": {
+      "role": "spiral FAB — trigger button + shared expandable group container that other orb widgets mount into",
+      "context": "Session 025 FAB unification: activates the spiral-fab Feature slot reserved-but-unbuilt (filename: null) since Session 013 — Victor asked for one expandable FAB framework instead of one-off widgets, so a new orb is a small widget registration, not a change to this file. Renders a trigger button (#vex-spiral-trigger, 🌀) that toggles a group container (#vex-spiral-group); widgets/fab-theme.js, widgets/fab-map.js, and widgets/fab-lang.js each look up that container on their OWN DOMContentLoaded handler and append their orb into it if present, falling back to a standalone top-level mount if this widget isn't active on the page. This file does not need to change when an orb is added or removed — that is the whole point of the split. MUST be listed before lang/theme/map in lib/build-vextreme.js's FEATURES registry so its DOMContentLoaded handler (which creates #vex-spiral-group) fires before theirs (handlers fire in registration order = script concatenation order).",
+      "reads": [],
+      "writes": [
+        "DOM: #vex-spiral-fab / #vex-spiral-trigger / #vex-spiral-group (consumed by fab-lang.js, fab-theme.js, fab-map.js)"
+      ],
+      "loadedBy": [
+        "lib/build-vextreme.js (inlined as spiral-fab feature in God Scripts, must be first among the FAB-group features)",
+        "tests/08-build-vextreme.test.js"
+      ],
+      "testedBy": ["tests/08-build-vextreme.test.js"],
+      "changeMap": {
+        "#vex-spiral-group DOM id/contract changed": [
+          "widgets/fab-lang.js (getElementById('vex-spiral-group') lookup)",
+          "widgets/fab-theme.js (getElementById('vex-spiral-group') lookup)",
+          "widgets/fab-map.js (getElementById('vex-spiral-group') lookup)",
+          "tests/08 (FAB SYSTEM: nesting assertions)"
+        ]
+      }
+    },
+
+    "widgets/fab-theme.js": {
+      "role": "dark/light theme toggle orb — sets document.documentElement's data-theme attribute, persists to localStorage",
+      "context": "Session 025 FAB unification: activates the theme Feature slot reserved-but-unbuilt (filename: null) since Session 013. Ships the real toggle MECHANISM only — it does not add [data-theme=\"dark\"] CSS to the ~100+ content pages that each hand-author their own inline :root token block rather than sharing styles/design-system.css, so toggling currently has no visible effect on most pages. A page that adds its own dark CSS later needs zero JS changes to pick this up. Mounts into #vex-spiral-group (widgets/vex-fab.js) when present, else falls back to a standalone top-level fixed-position button.",
+      "reads": [
+        "localStorage (vex-theme — persisted preference)",
+        "document.documentElement's data-theme attribute (current state)"
+      ],
+      "writes": [
+        "document.documentElement's data-theme attribute",
+        "localStorage (vex-theme)"
+      ],
+      "loadedBy": [
+        "lib/build-vextreme.js (inlined as theme feature in God Scripts)",
+        "tests/08-build-vextreme.test.js"
+      ],
+      "testedBy": ["tests/08-build-vextreme.test.js"],
+      "changeMap": {
+        "per-page dark CSS added to any page": [
+          "no JS change needed here — the mechanism already sets data-theme=\"dark\"/\"light\" on <html>; a page's own CSS keys off that attribute"
+        ]
+      }
+    },
+
+    "widgets/fab-map.js": {
+      "role": "orb linking to pages/terrain-map.html",
+      "context": "Session 025 FAB unification: activates the new map Feature slot. Distinct from widgets/fab-demo.js's older 'architecture demo' orb (pages/vextreme-demo.html) — Victor: the demo page concept is becoming outdated as the real production system (the terrain map itself) demonstrates the architecture better than a condensed stand-in page. Mounts into #vex-spiral-group (widgets/vex-fab.js) when present, else falls back to a standalone top-level fixed-position button.",
+      "reads": [],
+      "writes": [],
+      "loadedBy": [
+        "lib/build-vextreme.js (inlined as map feature in God Scripts)",
+        "tests/08-build-vextreme.test.js"
+      ],
+      "testedBy": ["tests/08-build-vextreme.test.js"],
+      "changeMap": {}
+    },
+
     "widgets/fab-lang.js": {
       "role": "browser language switcher FAB — fetches JA/ZH scope or arc bundles, applies [data-i18n] swaps",
       "context": "The runtime i18n engine. On language switch, constructs scope bundle URLs using the same scopeRelPath rule as strings-compile.js (build time) — these MUST stay in sync. Session 025 correction: fetched strings are held only in the in-memory _langStrings variable, not cached in localStorage — only the selected language preference (LS_LANG) persists there; a fresh fetch happens on every switch. Reads VEX_STRING_SCOPES, VEX_STRING_CATEGORY from window (set by God Script). Session 025 also added an arc-chunked bundle path (od-001/td-006 pilot): if window.VEX_STRING_ARC_BUNDLE is set, fetches the one merged arc bundle instead of the per-scope fan-out below. Session 025 (continued) — real bug found: lib/build-vextreme.js has baked window.VEX_SUPPORTED_LANGS into every God Script since it was introduced (verified: dossier's God Script correctly emits [\"en\",\"ja\",\"zh\"]), but loadSupportedLangs() here never read it — it went straight to a localStorage blob written by a DIFFERENT widget (vextreme-index-v2.js's LS_DATA cache) or a live index.json fetch, neither of which is guaranteed to reflect what THIS page's God Script actually has (a browser that cached LS_DATA before a language was added never sees the addition until that shared key happens to be overwritten). This is the same shape as PR #76's ARC_ORDER gap — real data existing while a separate consumption path silently doesn't know about it. loadSupportedLangs() now checks window.VEX_SUPPORTED_LANGS first, matching the existing VEX_STRINGS_EN fast-path pattern.",
@@ -512,7 +575,8 @@
         "window.VEX_STRING_ARC_BUNDLE (arc-chunked bundling pilot, checked before the scope path)",
         "data/strings/compiled/scopes/{category}/{scope}.{lang}.json via CDN",
         "data/strings/compiled/arcs/{arc}.{lang}.json via CDN (when VEX_STRING_ARC_BUNDLE is set)",
-        "localStorage (LS_LANG — the selected language preference only, not fetched string content)"
+        "localStorage (LS_LANG — the selected language preference only, not fetched string content)",
+        "DOM: #vex-spiral-group (widgets/vex-fab.js — Session 025 FAB unification, nests its orb there if present)"
       ],
       "writes": [
         "innerHTML / textContent of [data-i18n] elements",

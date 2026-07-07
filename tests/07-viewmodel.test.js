@@ -35,7 +35,9 @@ test('VIEWMODEL: slug with no override returns production defaults', () => {
   assert.deepEqual(vm.scopes, ['pages.some-content-slug'], 'scope defaults to pages.{slug}');
   assert.ok(vm.features.includes(Feature.LANG),       'defaults include lang feature');
   assert.ok(vm.features.includes(Feature.SPIRAL_FAB), 'defaults include spiral-fab feature');
-  assert.equal(vm.features.length, 2, 'exactly two default features');
+  assert.ok(vm.features.includes(Feature.THEME),      'defaults include theme feature (Session 025 FAB unification)');
+  assert.ok(vm.features.includes(Feature.MAP),        'defaults include map feature (Session 025 FAB unification)');
+  assert.equal(vm.features.length, 4, 'exactly four default features');
 });
 
 test('VIEWMODEL: null/undefined viewmodels map treated as empty', () => {
