@@ -113,6 +113,15 @@
 
     .loading { color: var(--muted); font-size: 0.85rem; }
     .error-msg { color: #b03030; font-size: 0.85rem; }
+    .terrain-link-card {
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;
+      border: 1px solid var(--border); border-left: 3px solid var(--ember);
+      border-radius: 6px; padding: 1rem; background: var(--cream);
+    }
+    .terrain-link-card h3 { margin: 0 0 0.35rem; font-size: 0.95rem; color: var(--stone); }
+    .terrain-link-card p { margin: 0; font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+    .terrain-link-card a { font-family: var(--mono); font-size: 0.75rem; color: var(--ember); text-decoration: none; white-space: nowrap; }
+    .terrain-link-card a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -120,12 +129,13 @@
   <nav class="page-nav">
     <a href="https://vgong24.github.io/Vextreme/index.html">Index</a>
     <a href="https://vgong24.github.io/Vextreme/pages/archives.html">Archives</a>
+    <a href="https://vgong24.github.io/Vextreme/pages/terrain-map.html">Terrain Map</a>
     <a class="current" href="#">Ecosystem Hub</a>
   </nav>
 
   <div class="hub-header">
     <h1>Ecosystem Hub</h1>
-    <p>System state for the admin and for any AI instance arriving cold. Full page registry at <a href="https://vgong24.github.io/Vextreme/pages/archives.html">Archives</a>.</p>
+    <p>System state for the admin and for any AI instance arriving cold. Full page registry at <a href="https://vgong24.github.io/Vextreme/pages/archives.html">Archives</a>; code and screen atlas at <a href="https://vgong24.github.io/Vextreme/pages/terrain-map.html">Terrain Map</a>.</p>
   </div>
 
   <!-- Content Map -->
@@ -139,6 +149,19 @@
     <div class="stat-tile"><div class="val" id="stat-langs">—</div><div class="lbl">Languages</div></div>
     <div class="stat-tile"><div class="val" id="stat-lattice">—</div><div class="lbl">Lattice Coverage</div></div>
     <div class="stat-tile"><div class="val" id="stat-open">—</div><div class="lbl">Open Items</div></div>
+  </div>
+
+  <!-- Terrain Map -->
+  <div class="section">
+    <h2>Terrain Map</h2>
+    <a class="section-link" href="https://vgong24.github.io/Vextreme/pages/terrain-map.html">Open atlas →</a>
+  </div>
+  <div class="terrain-link-card">
+    <div>
+      <h3>Code lattice + health + live screens</h3>
+      <p>A navigable atlas over data/terrain-map.json: mapped files, dependency edges, open-item health, and screenshot-backed page records.</p>
+    </div>
+    <a href="https://vgong24.github.io/Vextreme/pages/terrain-map.html">Open Terrain Map →</a>
   </div>
 
   <!-- Departments -->

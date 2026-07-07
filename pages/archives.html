@@ -120,6 +120,16 @@
   .page-nav a { color: var(--muted); text-decoration: none; letter-spacing: 0.04em; }
   .page-nav a:hover { color: var(--ember); }
   .page-nav a.current { color: var(--text); }
+  .terrain-callout {
+    display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;
+    border: 1px solid var(--border); border-left: 3px solid var(--ember);
+    border-radius: 6px; padding: 14px 16px; margin: -12px 0 32px;
+    background: var(--cream);
+  }
+  .terrain-callout-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .terrain-callout-body { font-size: 12px; color: var(--muted); line-height: 1.5; }
+  .terrain-callout a { font-family: var(--mono); font-size: 11px; color: var(--ember); text-decoration: none; white-space: nowrap; }
+  .terrain-callout a:hover { text-decoration: underline; }
 
   /* Dev section */
   .arc-name--dev { color: var(--muted); }
@@ -132,6 +142,13 @@
   .dev-toggle:hover { border-color: var(--ember); color: var(--ember); }
   .cell--dev .cell-pos--dev { color: #444; }
   .dev-section { border-top: 1px dashed var(--border); padding-top: 32px; margin-top: 16px; }
+
+  /* System section */
+  .arc-name--system { color: var(--muted); }
+  .system-count { color: var(--muted); }
+  .cell--system { border-color: #383020; }
+  .cell--system:hover { border-color: var(--ember); }
+  .cell-pos--system { color: var(--ember); }
 </style>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
 </head>
@@ -141,7 +158,16 @@
   <a href="https://vgong24.github.io/Vextreme/index.html">Index</a>
   <a class="current" href="#">Archives</a>
   <a href="https://vgong24.github.io/Vextreme/pages/ecosystem-hub.html">Ecosystem Hub</a>
+  <a href="https://vgong24.github.io/Vextreme/pages/terrain-map.html">Terrain Map</a>
 </nav>
+
+<aside class="terrain-callout">
+  <div>
+    <div class="terrain-callout-title">Need the system map instead of the page list?</div>
+    <div class="terrain-callout-body">Open the Terrain Map for code nodes, health status, dependency edges, and screenshot-backed live screens.</div>
+  </div>
+  <a href="https://vgong24.github.io/Vextreme/pages/terrain-map.html">Open Terrain Map →</a>
+</aside>
 
 <header class="site-header">
   <div class="site-title" data-i18n="common.label.site-title">Vextreme</div>
@@ -1206,6 +1232,29 @@
 <a href="https://vgong24.github.io/Vextreme/pages/witness-committee-operations.html" class="cell cell--ported" title="Witness Committee — Operations Manual — institute/governance">
   <span class="cell-pos">institute/governance</span>
   <span class="cell-title">Witness Committee — Operations Manual</span>
+</a>
+  </div>
+</section>
+
+<section class="arc-section system-section" id="arc-system-pages">
+  <div class="arc-header">
+    <h2 class="arc-name arc-name--system">System Pages</h2>
+    <div class="arc-stats">
+      <span class="arc-count system-count">3 live</span>
+    </div>
+  </div>
+  <div class="cell-grid">
+<a href="https://vgong24.github.io/Vextreme/pages/ecosystem-hub.html" class="cell cell--ported cell--system" title="generated page — has its own renderer script, not a God Script consumer">
+  <span class="cell-pos cell-pos--system">system</span>
+  <span class="cell-title">Ecosystem Hub — Vextreme</span>
+</a>
+<a href="https://vgong24.github.io/Vextreme/pages/roles-index.html" class="cell cell--ported cell--system" title="generated page — has its own renderer script, not a God Script consumer">
+  <span class="cell-pos cell-pos--system">system</span>
+  <span class="cell-title">Roles & Contributions — Vextreme</span>
+</a>
+<a href="https://vgong24.github.io/Vextreme/pages/terrain-map.html" class="cell cell--ported cell--system" title="live-fetch dashboard (data/terrain-map.json) — not a God Script consumer, no nodes.json entry by design">
+  <span class="cell-pos cell-pos--system">system</span>
+  <span class="cell-title">Terrain Map — Vextreme</span>
 </a>
   </div>
 </section>

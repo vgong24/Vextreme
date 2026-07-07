@@ -82,6 +82,12 @@ test('ECOSYSTEM-HUB: has a lattice coverage stat tile', () => {
   assert.match(html, /Lattice Coverage/);
 });
 
+test('ECOSYSTEM-HUB: links to the Terrain Map atlas', () => {
+  assert.match(html, /Terrain Map/);
+  assert.match(html, /pages\/terrain-map\.html/);
+  assert.match(html, /Open Terrain Map/);
+});
+
 test('ECOSYSTEM-HUB: has a Current Architecture narrative section', () => {
   assert.match(html, /Current Architecture/);
   assert.match(html, /id="narrative-body"/);

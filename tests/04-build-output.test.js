@@ -102,4 +102,10 @@ test('STRUCTURE: slug popover starts hidden — visible by default would overlay
   assert.ok(html.includes('style="display:none"'),'slugPopover is not hidden by default');
 });
 
+test('STRUCTURE: system pages skipped by the God Script audit are still visible in Archives', () => {
+  assert.ok(html.includes('id="arc-system-pages"'), 'system pages section missing');
+  assert.ok(html.includes('terrain-map.html'), 'terrain-map.html missing from system pages section');
+  assert.ok(html.includes('Terrain Map'), 'Terrain Map title missing from Archives');
+});
+
 // [VXG RealForever]
