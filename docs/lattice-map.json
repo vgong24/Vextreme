@@ -620,6 +620,7 @@
         "lib/check-key-alignment.js (imports SKIP_PAGES + getPageSlugs — reuses the skip list instead of duplicating it)",
         "lib/build-index.js (SKIP_PAGES + getPageSlugs, feeds auto-discovery)",
         "lib/build-archives.js (same, independently — see pe-011)",
+        "lib/build-terrain-map.js (getPageSlugs — real page files vs. curated nodes.json entries, for the content/arc layer's uncurated column)",
         "tests/15-departments.test.js",
         "tests/20-roles.test.js",
         "tests/28-build-terrain-map.test.js"
@@ -895,13 +896,15 @@
 
     "lib/build-terrain-map.js": {
       "role": "terrain-map write side — computes layout, health, edges, and real screenshots into one deterministic JSON",
-      "context": "Session 025 generalized the terrain-map pilot (an Artifact over 14 hand-picked nodes shown to Victor as a proof of concept) into a real, self-updating feature. Same CQRS split as data/status.json -> pages/ecosystem-hub.html: this script is the write side, pages/terrain-map.html is hand-authored once and live-fetches its output. Adding a lattice node, a page, or a screenshot never requires touching the HTML — only rerunning this generator, wired into CI the same as every other dashboard's data source. Session 025 (continued) replaced the folder-grid layout with a lifecycle-stage layout (source -> generate -> utilities -> check -> output -> runtime) and added two role-lens tags per node (engineerFocus / auditorFocus), after a round of Artifact POCs tested a fractal zoom-level UI (system -> stage -> node, each level snapping to its own full framing on entry, exiting always stepping back one level) against this exact shape. The stage/lens rules are naming-pattern heuristics over real fields, explicitly not a designed taxonomy — each node's lens tags render visibly in the UI so the heuristic can be challenged, not hidden behind a silent classification. Deterministic by construction (config/lessons/generated-artifacts-must-be-content-deterministic.json): fixed column layout per lifecycle stage, nodes sorted by id, no timestamp field — same inputs always produce a byte-identical file, verified by tests/28's repeated-run test.",
+      "context": "Session 025 generalized the terrain-map pilot (an Artifact over 14 hand-picked nodes shown to Victor as a proof of concept) into a real, self-updating feature. Same CQRS split as data/status.json -> pages/ecosystem-hub.html: this script is the write side, pages/terrain-map.html is hand-authored once and live-fetches its output. Adding a lattice node, a page, or a screenshot never requires touching the HTML — only rerunning this generator, wired into CI the same as every other dashboard's data source. Session 025 (continued) replaced the folder-grid layout with a lifecycle-stage layout (source -> generate -> utilities -> check -> output -> runtime) and added two role-lens tags per node (engineerFocus / auditorFocus), after a round of Artifact POCs tested a fractal zoom-level UI (system -> stage -> node, each level snapping to its own full framing on entry, exiting always stepping back one level) against this exact shape. The stage/lens rules are naming-pattern heuristics over real fields, explicitly not a designed taxonomy — each node's lens tags render visibly in the UI so the heuristic can be challenged, not hidden behind a silent classification. Session 025 (continued) again: added computeExecutionOrder (real within-stage ordering sourced from .github/workflows/build-index.yml's literal step sequence and lib/session-bootstrap.js's own check order, not alphabetical) and per-node auditorRank (an alternate within-stage ordering by worst-status-first — the read side swaps to it, recomputing position, only while the auditor lens is active). Also added a second, parallel content layer (layoutArcs/buildContentPages -> the `arcs`/`pages` output fields): the same column-per-group technique applied to data/nodes.json grouped by arc instead of lifecycle stage, ordered within an arc by each node's own real `id` field (curation order) rather than alphabetically. A curated node with no matching pages/*.html file is marked live:false, status:'critical' rather than implied to be a real page — most of this repo's 91 curated nodes are unported v1 content, and that is real, common state to show, not an edge case to hide. A real pages/*.html file with no nodes.json entry lands in a distinct 'uncurated' arc column instead of being silently absent.",
       "reads": [
         "docs/lattice-map.json (every node's role/reads/writes/loadedBy/testedBy)",
         "data/status/tech-debt.json (health cross-reference)",
         "data/status/open-discussions.json (health cross-reference)",
         "data/status/planned-enhancements.json (health cross-reference)",
-        "data/nodes.json (real page titles/arcKeys for the screens layer)",
+        "data/nodes.json (real page titles/arcKeys, for both the screens layer and the arcs/pages content layer)",
+        "data/arcs-v2.json (real arc priority/title, for the arcs/pages content layer's column order and labels)",
+        "lib/audit-pages.js (getPageSlugs — real page files vs. curated nodes.json entries, for the content layer's uncurated column and each page's live flag)",
         "docs/screenshots/*.png (directory listing — which pages have a real per-language screenshot)"
       ],
       "writes": ["data/terrain-map.json"],
@@ -916,9 +919,12 @@
         "docs/lattice-map.json schema changed (reads/writes/loadedBy/testedBy shape)": [
           "computeEdges() / findDebtReferences() here read those fields directly"
         ],
-        "data/terrain-map.json schema changed (nodes/edges/stages/screens shape)": [
-          "pages/terrain-map.html (the only consumer — live-fetches this exact shape)",
+        "data/terrain-map.json schema changed (nodes/edges/stages/screens/arcs/pages shape)": [
+          "pages/terrain-map.html (the only consumer — live-fetches this exact shape, including the CONTENT world's arcs/pages fields)",
           "tests/28-build-terrain-map.test.js"
+        ],
+        "data/arcs-v2.json's priority field or key naming convention changed": [
+          "layoutArcs() here sorts arc columns by priority then key — a differently-shaped priority value silently reorders or misgroups the content layer"
         ],
         "screenshot filename convention ({slug}-{lang}.png) changed": [
           "findScreenshots() here — the regex encodes that exact shape",

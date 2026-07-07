@@ -180,10 +180,17 @@
       <h1>Terrain Map</h1>
       <div class="sub" id="subline">Loading…</div>
     </div>
-    <div class="search">
-      <input type="text" id="searchInput" placeholder="Find a file, Enter to travel…" autocomplete="off">
-    </div>
     <div class="lens">
+      <span class="lens-label">View</span>
+      <div class="lens-toggle" role="group" aria-label="Code or content" id="worldBar">
+        <button class="lens-btn world-btn" data-world="code" aria-pressed="true">Code</button>
+        <button class="lens-btn world-btn" data-world="content" aria-pressed="false">Content</button>
+      </div>
+    </div>
+    <div class="search">
+      <input type="text" id="searchInput" placeholder="Find a file or page, Enter to travel…" autocomplete="off">
+    </div>
+    <div class="lens" id="lensGroup">
       <span class="lens-label">Lens</span>
       <div class="lens-toggle" role="group" aria-label="Viewing lens" id="lensBar">
         <button class="lens-btn" data-lens="all" aria-pressed="true">All</button>
@@ -234,7 +241,7 @@
   var world = document.getElementById('world');
   var mapWrap = document.getElementById('mapWrap');
 
-  var DATA = null, ALL = [], byId = {}, neighborsOf = {}, STAGES = [];
+  var DATA = null, ALL = [], byId = {}, neighborsOf = {}, STAGES = [], currentWorld = 'code';
   var renderedNodes = {}, renderedEdges = {};
   var pinnedId = null, focusId = null, currentLens = 'all';
   var view = { x: 0, y: 0, scale: 1 };
@@ -250,6 +257,49 @@
     .catch(function (err) {
       document.getElementById('loadState').textContent = 'Could not load data/terrain-map.json (' + err.message + ')';
     });
+
+  // WORLDS — two parallel datasets sharing one shape (STAGES-like columns +
+  // ALL-like positioned nodes), so the same fractal engine (levels, panel,
+  // pin, effY) can drive both without being rewritten. CODE is the original
+  // lifecycle-stage map; CONTENT is the same technique applied to a
+  // different real hierarchy — pages grouped by arc — proving the pattern
+  // this repo's own architecture docs called "a candidate reference
+  // pattern for any future role-scoped navigable map, not terrain-map-
+  // specific." Built once in boot(), swapped by switchWorld().
+  var WORLDS = {};
+
+  function buildCodeWorld(data) {
+    var stages = data.stages.map(function (s) { return { key: s.key, name: s.name, sub: s.sub, count: s.count, rect: s.rect }; });
+    var colW = (stages.length > 1) ? (stages[1].rect.x - stages[0].rect.x) : 340;
+    var screensColIndex = stages.length;
+    var screens = data.screens.map(function (s, i) {
+      return Object.assign({}, s, {
+        id: 'screen:' + s.slug, kind: 'screen', stage: SCREENS_KEY, stageName: 'LIVE SCREENS',
+        status: 'good', x: screensColIndex * colW + 60, y: i * 60 + 90,
+      });
+    });
+    stages.push({
+      key: SCREENS_KEY, name: 'LIVE SCREENS', sub: 'real pages, verified by screenshot', count: screens.length,
+      rect: { x: screensColIndex * colW + 10, y: 40, width: colW - 40, height: screens.length * 60 + 60 },
+    });
+    var codeNodes = data.nodes.map(function (n) { return Object.assign({ kind: 'code' }, n); });
+    var all = codeNodes.concat(screens);
+    var neighbors = {};
+    data.edges.forEach(function (p) {
+      neighbors[p[0]] = neighbors[p[0]] || []; neighbors[p[0]].push(p[1]);
+      neighbors[p[1]] = neighbors[p[1]] || []; neighbors[p[1]].push(p[0]);
+    });
+    return { stages: stages, all: all, neighbors: neighbors, colW: colW, hasLenses: true, orderNote: { engineer: 'ordered by real build sequence', auditor: 'ordered by severity (worst first)' } };
+  }
+
+  function buildContentWorld(data) {
+    var stages = (data.arcs || []).map(function (a) { return { key: a.key, name: a.name, sub: a.sub, count: a.count, rect: a.rect }; });
+    var colW = (stages.length > 1) ? (stages[1].rect.x - stages[0].rect.x) : 340;
+    var all = (data.pages || []).map(function (p) {
+      return Object.assign({ kind: 'page' }, p, { stage: p.arc, stageName: p.arcName });
+    });
+    return { stages: stages, all: all, neighbors: {}, colW: colW, hasLenses: false, orderNote: { all: 'ordered by curation order (real nodes.json id)' } };
+  }
 
   function boot(data) {
     DATA = data;
@@ -269,44 +319,30 @@
       legend.appendChild(d);
     });
 
-    // real stage columns (rect bounds come from the generator — single source of truth)
-    STAGES = data.stages.map(function (s) { return { key: s.key, name: s.name, sub: s.sub, count: s.count, rect: s.rect }; });
-    COL_W = (STAGES.length > 1) ? (STAGES[1].rect.x - STAGES[0].rect.x) : 340;
+    WORLDS.code = buildCodeWorld(data);
+    WORLDS.content = buildContentWorld(data);
 
-    // screens are a client-side layer appended as one more column, same
-    // pattern the original page used ("client-computed, not part of the lattice grid")
-    var screensColIndex = STAGES.length;
-    data.screens.forEach(function (s, i) {
-      s.id = 'screen:' + s.slug;
-      s.kind = 'screen';
-      s.stage = SCREENS_KEY;
-      s.stageName = 'LIVE SCREENS';
-      s.status = 'good';
-      s.x = screensColIndex * COL_W + 60;
-      s.y = i * 60 + 90;
-    });
-    STAGES.push({
-      key: SCREENS_KEY, name: 'LIVE SCREENS', sub: 'real pages, verified by screenshot', count: data.screens.length,
-      rect: { x: screensColIndex * COL_W + 10, y: 40, width: COL_W - 40, height: data.screens.length * 60 + 60 },
-    });
+    wireControls();
+    switchWorld('code');
+  }
 
-    data.nodes.forEach(function (n) { n.kind = 'code'; });
-    ALL = data.nodes.concat(data.screens);
-    ALL.forEach(function (n) { byId[n.id] = n; });
-
-    data.edges.forEach(function (p) {
-      neighborsOf[p[0]] = neighborsOf[p[0]] || []; neighborsOf[p[0]].push(p[1]);
-      neighborsOf[p[1]] = neighborsOf[p[1]] || []; neighborsOf[p[1]].push(p[0]);
-    });
-
+  function switchWorld(name) {
+    currentWorld = name;
+    document.querySelectorAll('.world-btn').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-world') === name)); });
+    var w = WORLDS[name];
+    STAGES = w.stages;
+    ALL = w.all;
+    neighborsOf = w.neighbors;
+    COL_W = w.colW;
+    byId = {}; ALL.forEach(function (n) { byId[n.id] = n; });
+    if (!w.hasLenses) currentLens = 'all';
+    document.getElementById('lensGroup').style.display = w.hasLenses ? '' : 'none';
     var allX = ALL.map(function (n) { return n.x; }), allY = ALL.map(function (n) { return n.y; });
-    FULL_RECT = {
+    FULL_RECT = allX.length ? {
       x: Math.min.apply(null, allX) - 130, y: Math.min.apply(null, allY) - 100,
       width: (Math.max.apply(null, allX) + 130) - (Math.min.apply(null, allX) - 130),
       height: (Math.max.apply(null, allY) + 100) - (Math.min.apply(null, allY) - 100),
-    };
-
-    wireControls();
+    } : { x: 0, y: 0, width: 800, height: 600 };
     resetView();
   }
 
@@ -322,7 +358,20 @@
   }
   function applyTransform() { world.setAttribute('transform', 'translate(' + view.x + ',' + view.y + ') scale(' + view.scale + ')'); }
   function screenToWorld(sx, sy) { return { x: (sx - view.x) / view.scale, y: (sy - view.y) / view.scale }; }
-  function toScreen(n) { return { x: view.x + n.x * view.scale, y: view.y + n.y * view.scale }; }
+
+  // ROW_H must match lib/build-terrain-map.js's own ROW_H constant — the
+  // generator ships y = index*ROW_H+90 for the default (execution-order)
+  // layout; auditor mode recomputes y the same way but indexed by
+  // auditorRank instead, so the two orderings share one row spacing.
+  var ROW_H = 60;
+  // effY — the position auditor mode actually changes, not just highlights.
+  // Screens have no auditorRank (lenses are a code-role concept); anything
+  // without one keeps its default execution-order position.
+  function effY(n) {
+    if (currentLens !== 'auditor' || n.kind === 'screen' || typeof n.auditorRank !== 'number') return n.y;
+    return n.auditorRank * ROW_H + 90;
+  }
+  function toScreen(n) { return { x: view.x + n.x * view.scale, y: view.y + effY(n) * view.scale }; }
 
   var OVERVIEW_LEVELS = [
     { id: 'system', fill: 0.60, rect: function () { return FULL_RECT; }, render: renderSystemBand },
@@ -349,12 +398,15 @@
   function renderSystemBand() {
     clearWorld();
     var worst = 'good';
-    DATA.nodes.forEach(function (n) { if (rank(n.status) < rank(worst)) worst = n.status; });
+    ALL.forEach(function (n) { if (rank(n.status) < rank(worst)) worst = n.status; });
     world.appendChild(el('rect', { x: FULL_RECT.x, y: FULL_RECT.y, width: FULL_RECT.width, height: FULL_RECT.height, rx: 60, class: 'system-blob pop-in' }));
     var t = el('text', { x: FULL_RECT.x + FULL_RECT.width / 2, y: FULL_RECT.y + FULL_RECT.height / 2 - 10, 'font-size': 30, 'text-anchor': 'middle', class: 'system-title pop-in' });
     t.textContent = 'VEXTREME'; world.appendChild(t);
     var s = el('text', { x: FULL_RECT.x + FULL_RECT.width / 2, y: FULL_RECT.y + FULL_RECT.height / 2 + 20, 'font-size': 14, 'text-anchor': 'middle', class: 'system-sub pop-in' });
-    s.textContent = DATA.nodes.length + ' files, ' + DATA.screens.length + ' live screens · worst status ' + ICON[worst] + ' ' + worst + ' · zoom in to see stages';
+    var summary = currentWorld === 'code'
+      ? (DATA.nodes.length + ' files, ' + DATA.screens.length + ' live screens')
+      : (ALL.length + ' pages across ' + STAGES.length + ' arcs');
+    s.textContent = summary + ' · worst status ' + ICON[worst] + ' ' + worst + ' · zoom in to see ' + (currentWorld === 'code' ? 'stages' : 'arcs');
     world.appendChild(s);
   }
   function rank(status) { return status === 'critical' ? 0 : status === 'warning' ? 1 : 2; }
@@ -368,11 +420,13 @@
       var worst = 'good';
       members.forEach(function (n) { if (rank(n.status) < rank(worst)) worst = n.status; });
       var lensCount = members.filter(inLens).length;
+      var unit = currentWorld === 'content' ? 'page' : (stage.key === SCREENS_KEY ? 'screen' : 'file');
       world.appendChild(el('rect', { x: r.x, y: r.y, width: r.width, height: r.height, rx: 16, class: 'stage-halo pop-in' }));
       var label = el('text', { x: r.x + 14, y: r.y + 26, class: 'stage-label pop-in' }); label.textContent = stage.name; world.appendChild(label);
       var sub = el('text', { x: r.x + 14, y: r.y + 42, class: 'stage-sub pop-in' }); sub.textContent = stage.sub; world.appendChild(sub);
       var stat = el('text', { x: r.x + 14, y: r.y + 58, class: 'stage-sub pop-in', fill: 'var(--' + worst + ')' });
-      stat.textContent = ICON[worst] + ' worst · ' + members.length + (stage.key === SCREENS_KEY ? ' screen' : ' file') + (members.length === 1 ? '' : 's') + ' · ' + lensCount + ' in lens';
+      stat.textContent = ICON[worst] + ' worst · ' + members.length + ' ' + unit + (members.length === 1 ? '' : 's')
+        + (WORLDS[currentWorld].hasLenses ? (' · ' + lensCount + ' in lens') : '');
       world.appendChild(stat);
       var hint = el('text', { x: r.x + 14, y: r.y + r.height - 14, class: 'stage-hint pop-in' });
       hint.textContent = 'scroll to zoom into this column'; world.appendChild(hint);
@@ -404,21 +458,21 @@
   function syncTiles() {
     var b = viewportWorldBounds();
     var visible = {};
-    ALL.forEach(function (n) { if (n.x >= b.minX && n.x <= b.maxX && n.y >= b.minY && n.y <= b.maxY) visible[n.id] = true; });
+    ALL.forEach(function (n) { var ey = effY(n); if (n.x >= b.minX && n.x <= b.maxX && ey >= b.minY && ey <= b.maxY) visible[n.id] = true; });
     Object.keys(renderedNodes).forEach(function (id) { if (!visible[id]) { renderedNodes[id].g.remove(); delete renderedNodes[id]; } });
     Object.keys(visible).forEach(function (id) {
       if (renderedNodes[id]) return;
-      var n = byId[id];
+      var n = byId[id], ey = effY(n);
       var g = el('g', { class: 'node-group pop-in' });
-      var ring = el('circle', { cx: n.x, cy: n.y, r: 12, class: 'node-focus-ring' });
-      var hit = el('circle', { cx: n.x, cy: n.y, r: 16, class: 'node-hit' });
+      var ring = el('circle', { cx: n.x, cy: ey, r: 12, class: 'node-focus-ring' });
+      var hit = el('circle', { cx: n.x, cy: ey, r: 16, class: 'node-hit' });
       var dot = (n.kind === 'screen')
-        ? el('rect', { x: n.x - 9, y: n.y - 7, width: 18, height: 14, rx: 3, class: 'screen-dot' })
-        : el('circle', { cx: n.x, cy: n.y, r: 6, class: 'node-dot ' + n.status });
-      var labelText = n.kind === 'screen' ? (n.slug.length > 18 ? n.slug.slice(0, 17) + '…' : n.slug) : n.id;
-      var label = el('text', { x: n.x + 11, y: n.y + 4, class: 'node-label' }); label.textContent = labelText;
-      var pinTag = el('text', { x: n.x + 11, y: n.y - 12, class: 'node-pin-tag', opacity: 0 });
-      pinTag.textContent = n.kind === 'screen' ? 'screen' : (n.cluster + ' / ' + n.id.split('/').pop());
+        ? el('rect', { x: n.x - 9, y: ey - 7, width: 18, height: 14, rx: 3, class: 'screen-dot' })
+        : el('circle', { cx: n.x, cy: ey, r: 6, class: 'node-dot ' + n.status });
+      var labelText = (n.kind === 'screen' || n.kind === 'page') ? (n.slug.length > 18 ? n.slug.slice(0, 17) + '…' : n.slug) : n.id;
+      var label = el('text', { x: n.x + 11, y: ey + 4, class: 'node-label' }); label.textContent = labelText;
+      var pinTag = el('text', { x: n.x + 11, y: ey - 12, class: 'node-pin-tag', opacity: 0 });
+      pinTag.textContent = n.kind === 'screen' ? 'screen' : n.kind === 'page' ? n.arcName : (n.cluster + ' / ' + n.id.split('/').pop());
       g.appendChild(ring); g.appendChild(hit); g.appendChild(dot); g.appendChild(label); g.appendChild(pinTag);
       g.addEventListener('click', function (ev) { ev.stopPropagation(); togglePin(n.id); });
       world.appendChild(g);
@@ -430,7 +484,7 @@
     Object.keys(wantEdges).forEach(function (key) {
       if (renderedEdges[key]) return;
       var pair = wantEdges[key], a = byId[pair[0]], b = byId[pair[1]];
-      var line = el('line', { x1: a.x, y1: a.y, x2: b.x, y2: b.y, class: 'edge pop-in' + (a.cluster !== b.cluster ? ' cross' : ''), 'data-a': a.id, 'data-b': b.id });
+      var line = el('line', { x1: a.x, y1: effY(a), x2: b.x, y2: effY(b), class: 'edge pop-in' + (a.cluster !== b.cluster ? ' cross' : ''), 'data-a': a.id, 'data-b': b.id });
       world.insertBefore(line, world.firstChild);
       renderedEdges[key] = line;
     });
@@ -502,7 +556,7 @@
     }
     pinnedId = id;
     var vp = viewportSize();
-    var target = { scale: view.scale, x: vp.w / 2 - n.x * view.scale, y: vp.h / 2 - n.y * view.scale };
+    var target = { scale: view.scale, x: vp.w / 2 - n.x * view.scale, y: vp.h / 2 - effY(n) * view.scale };
     snapTo(target);
     syncTiles();
     renderPanel(n);
@@ -524,6 +578,7 @@
     }
     panel.classList.add('show');
     if (n.kind === 'screen') { renderScreenPanel(n); return; }
+    if (n.kind === 'page') { renderContentPagePanel(n); return; }
 
     var debtsHtml = (n.debts && n.debts.length)
       ? n.debts.map(function (id) { return '<div class="debt-item"><b>' + id + '</b><br>' + esc(DATA.debtTitles[id] || '') + '</div>'; }).join('')
@@ -550,6 +605,56 @@
       elx.addEventListener('click', function () { travelTo(elx.getAttribute('data-travel')); });
     });
     window.__vexUnpin = function () { togglePin(n.id); };
+  }
+
+  // renderContentPagePanel — the content world's detail view. Every state is
+  // shown honestly: most of this repo's curated registry has no real page
+  // file yet (live:false), and most real pages have no captured screenshot
+  // yet (hasScreenshot:false) — neither is hidden or implied otherwise.
+  function renderContentPagePanel(p) {
+    var panel = document.getElementById('panel');
+    var langs = Object.keys(p.screenshots || {});
+    if (langs.length && langs.indexOf(panelLang) === -1) panelLang = langs[0];
+
+    var statusLine = !p.live
+      ? '<span class="status-pill status-critical"><span class="dot" style="background:var(--critical)"></span>Not yet ported — no pages/*.html file</span>'
+      : p.hasScreenshot
+        ? '<span class="status-pill status-good"><span class="dot" style="background:var(--good)"></span>Live, verified by screenshot</span>'
+        : '<span class="status-pill status-warning"><span class="dot" style="background:var(--warning)"></span>Live, no screenshot captured yet</span>';
+
+    var shotHtml = langs.length
+      ? '<div class="field"><div class="field-label">Real screenshot</div>' +
+        '<div class="screen-lang-toggle" id="screenLangToggle">' +
+          langs.map(function (l) { return '<button data-lang="' + l + '" aria-pressed="' + (l === panelLang) + '">' + l.toUpperCase() + '</button>'; }).join('') +
+        '</div>' +
+        '<div class="screen-thumb-frame"><img id="screenThumb" src="' + BASE + '/' + p.screenshots[panelLang] + '" alt="' + esc(p.title) + ' screenshot"></div>' +
+      '</div>'
+      : '<div class="field"><div class="field-label">Real screenshot</div><div class="field-empty">none captured yet — run scripts/screenshot-page.js and rebuild</div></div>';
+
+    panel.innerHTML =
+      (pinnedId === p.id ? '<button class="unpin-btn" onclick="window.__vexUnpin && window.__vexUnpin()">✕ unpin</button>' : '') +
+      '<div class="panel-eyebrow">' + esc(p.arcName) + (p.curated ? '' : ' &middot; UNCURATED') + '</div>' +
+      '<h2>' + esc(p.title) + '</h2>' +
+      statusLine +
+      '<div class="field" style="margin-top:14px;">' + shotHtml + '</div>' +
+      (p.live ? '<a class="visit-btn" href="' + p.liveUrl + '" target="_blank" rel="noopener">Open live page &#8599;</a>' : '') +
+      '<div class="field"><div class="field-label">Arcs</div>' + listOrEmpty(p.arcKeys) + '</div>' +
+      '<div class="footnote">' + (p.curated
+        ? 'A real data/nodes.json entry (registry id: ' + esc(String(p.id)) + '), positioned by its own curation order within ' + esc(p.arcName) + '.'
+        : 'A real pages/*.html file with no data/nodes.json entry — auto-discovered, not yet curated.') +
+      ' Computed live from data/terrain-map.json by lib/build-terrain-map.js.</div>';
+
+    if (langs.length) {
+      var toggle = document.getElementById('screenLangToggle');
+      Array.prototype.forEach.call(toggle.querySelectorAll('button'), function (btn) {
+        btn.addEventListener('click', function () {
+          panelLang = btn.getAttribute('data-lang');
+          Array.prototype.forEach.call(toggle.querySelectorAll('button'), function (b) { b.setAttribute('aria-pressed', String(b === btn)); });
+          document.getElementById('screenThumb').src = BASE + '/' + p.screenshots[panelLang];
+        });
+      });
+    }
+    window.__vexUnpin = function () { togglePin(p.id); };
   }
 
   function renderScreenPanel(s) {
@@ -585,8 +690,10 @@
   }
 
   function updateReadout() {
+    var notes = (WORLDS[currentWorld] && WORLDS[currentWorld].orderNote) || {};
+    var orderNote = notes[currentLens] || notes.all || 'ordered by real sequence';
     document.getElementById('levelReadout').innerHTML =
-      'level: <b>' + OVERVIEW_LEVELS[levelIndex].id + '</b> · zoom ' + (view.scale / levelBaseScale).toFixed(2) + '×';
+      'level: <b>' + OVERVIEW_LEVELS[levelIndex].id + '</b> · zoom ' + (view.scale / levelBaseScale).toFixed(2) + '× · <b>' + orderNote + '</b>';
   }
 
   // ── the navigation fix: exiting always steps to the level directly above,
@@ -644,13 +751,27 @@
     document.getElementById('zoomOut').addEventListener('click', function () { var vp = viewportSize(); handleZoomAt(vp.w / 2, vp.h / 2, view.scale * 0.75); });
     document.getElementById('zoomReset').addEventListener('click', resetView);
 
-    document.querySelectorAll('.lens-btn').forEach(function (btn) {
+    document.querySelectorAll('#lensBar .lens-btn').forEach(function (btn) {
       btn.addEventListener('click', function () {
-        document.querySelectorAll('.lens-btn').forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+        document.querySelectorAll('#lensBar .lens-btn').forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
         btn.setAttribute('aria-pressed', 'true'); currentLens = btn.getAttribute('data-lens');
-        if (OVERVIEW_LEVELS[levelIndex].id === 'stage') renderStageBand(); else if (OVERVIEW_LEVELS[levelIndex].id === 'node') applyLOD();
+        // auditor mode changes actual node position (effY), not just which
+        // dots recede — a full clear+resync is needed, applyLOD() alone
+        // only re-classes/re-opacities already-positioned elements.
+        if (OVERVIEW_LEVELS[levelIndex].id === 'stage') renderStageBand();
+        else if (OVERVIEW_LEVELS[levelIndex].id === 'node') { clearWorld(); syncTiles(); }
+        updateReadout();
       });
     });
+
+    document.querySelectorAll('.world-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (btn.getAttribute('data-world') === currentWorld) return;
+        pinnedId = null; focusId = null; renderPanel(null);
+        switchWorld(btn.getAttribute('data-world'));
+      });
+    });
+    updateReadout();
 
     document.getElementById('searchInput').addEventListener('input', function () {
       if (OVERVIEW_LEVELS[levelIndex].id === 'node') applyLOD();
@@ -659,7 +780,7 @@
       if (ev.key !== 'Enter') return;
       var q = ev.target.value.trim().toLowerCase();
       if (q.length < 2) return;
-      var match = DATA.nodes.find(function (n) { return n.id.toLowerCase().indexOf(q) !== -1; });
+      var match = ALL.find(function (n) { return String(n.id).toLowerCase().indexOf(q) !== -1 || (n.title && n.title.toLowerCase().indexOf(q) !== -1); });
       if (match) travelTo(match.id);
     });
 
