@@ -5,17 +5,21 @@
  *
  * Tests for lib/build-terrain-map.js — the self-updating terrain map's write
  * side. Session 025's pilot (an Artifact over 14 hand-picked nodes) proved
- * the interaction model; this generalizes it into the real lattice, computed
- * fresh every build instead of hand-authored.
+ * the interaction model; Session 025 generalized it into the real lattice,
+ * computed fresh every build instead of hand-authored. Session 025 (continued) replaced
+ * the folder-grid layout with a lifecycle-stage layout and added two
+ * role-lens tags per node, after a round of Artifact POCs tested a fractal
+ * zoom-level UI against this exact shape.
  *
  * Test order:
- *   1. clusterOf — coarse directory-based grouping
- *   2. layoutClusters — deterministic grid layout
- *   3. computeStatus / findDebtReferences — health cross-referencing
- *   4. computeEdges — mention-based edge detection
- *   5. findScreenshots — {slug}-{lang}.png discovery
- *   6. buildTerrainMap — full assembly
- *   7. Integration — the real repo's output is deterministic and internally consistent
+ *   1. clusterOf / stageOf — folder grouping (informational) vs lifecycle stage (layout)
+ *   2. isEngineerFocus / isAuditorFocus — role-lens heuristics
+ *   3. layoutStages — deterministic column-per-stage layout
+ *   4. computeStatus / findDebtReferences — health cross-referencing
+ *   5. computeEdges — mention-based edge detection
+ *   6. findScreenshots — {slug}-{lang}.png discovery
+ *   7. buildTerrainMap — full assembly
+ *   8. Integration — the real repo's output is deterministic and internally consistent
  */
 
 const { test } = require('node:test');
@@ -26,7 +30,10 @@ const path      = require('path');
 
 const {
   clusterOf,
-  layoutClusters,
+  stageOf,
+  isEngineerFocus,
+  isAuditorFocus,
+  layoutStages,
   computeStatus,
   findDebtReferences,
   computeEdges,
@@ -36,7 +43,7 @@ const {
 
 const ROOT = path.join(__dirname, '..');
 
-// ── 1. clusterOf ──────────────────────────────────────────────────────────────
+// ── 1. clusterOf / stageOf ────────────────────────────────────────────────────
 
 test('BUILD-TERRAIN-MAP: clusterOf groups by top-level directory', () => {
   assert.equal(clusterOf('lib/build-index.js'), 'lib');
@@ -47,32 +54,75 @@ test('BUILD-TERRAIN-MAP: clusterOf groups by top-level directory', () => {
   assert.equal(clusterOf('blueprint.json'), 'root');
 });
 
-// ── 2. layoutClusters ─────────────────────────────────────────────────────────
-
-test('BUILD-TERRAIN-MAP: layoutClusters assigns every node a position and cluster', () => {
-  const { positions } = layoutClusters(['lib/a.js', 'lib/b.js', 'widgets/c.js']);
-  assert.equal(Object.keys(positions).length, 3);
-  assert.equal(positions['lib/a.js'].cluster, 'lib');
-  assert.equal(positions['widgets/c.js'].cluster, 'widgets');
-  assert.ok(typeof positions['lib/a.js'].x === 'number');
-  assert.ok(typeof positions['lib/a.js'].y === 'number');
+test('BUILD-TERRAIN-MAP: stageOf places sources, generators, checks, and outputs in the right lifecycle stage', () => {
+  assert.equal(stageOf('data/nodes.json'), 0);
+  assert.equal(stageOf('lib/build-index.js'), 1);
+  assert.equal(stageOf('lib/apply-content-intents.js'), 1);
+  assert.equal(stageOf('lib/check-key-alignment.js'), 2);
+  assert.equal(stageOf('lib/vex-config.js'), 1.5);
+  assert.equal(stageOf('tests/01-foo.test.js'), 2);
+  assert.equal(stageOf('blueprint.json'), 3);
+  assert.equal(stageOf('widgets/fab-lang.js'), 4);
 });
 
-test('BUILD-TERRAIN-MAP: layoutClusters is deterministic — same input, same output', () => {
-  const input = ['lib/z.js', 'lib/a.js', 'widgets/m.js', 'data/x.json'];
-  const a = layoutClusters(input);
-  const b = layoutClusters(input.slice().reverse());
+test('BUILD-TERRAIN-MAP: stageOf never leaves a real clusterOf output unplaced', () => {
+  const samples = ['lib/x.js', 'widgets/x.js', 'tests/x.test.js', 'config/x.json', 'data/x.json', 'docs/x.json', 'x.json'];
+  for (const p of samples) assert.ok(typeof stageOf(p) === 'number', `stageOf(${p}) should return a number`);
+});
+
+// ── 2. isEngineerFocus / isAuditorFocus ───────────────────────────────────────
+
+test('BUILD-TERRAIN-MAP: isEngineerFocus is true for build/apply/append scripts and data sources', () => {
+  assert.equal(isEngineerFocus('lib/build-index.js'), true);
+  assert.equal(isEngineerFocus('lib/apply-content-intents.js'), true);
+  assert.equal(isEngineerFocus('data/nodes.json'), true);
+  assert.equal(isEngineerFocus('lib/vex-config.js'), false);
+});
+
+test('BUILD-TERRAIN-MAP: isAuditorFocus is true for non-good status, debt references, or check/audit naming', () => {
+  assert.equal(isAuditorFocus('warning', 0, 'lib/vex-config.js'), true);
+  assert.equal(isAuditorFocus('good', 1, 'lib/vex-config.js'), true);
+  assert.equal(isAuditorFocus('good', 0, 'lib/check-key-alignment.js'), true);
+  assert.equal(isAuditorFocus('good', 0, 'lib/audit-pages.js'), true);
+  assert.equal(isAuditorFocus('good', 0, 'lib/build-index.js'), false);
+});
+
+// ── 3. layoutStages ────────────────────────────────────────────────────────────
+
+test('BUILD-TERRAIN-MAP: layoutStages assigns every node a position, stage, and stageName', () => {
+  const { positions } = layoutStages(['lib/build-a.js', 'lib/b.js', 'widgets/c.js']);
+  assert.equal(Object.keys(positions).length, 3);
+  assert.equal(positions['lib/build-a.js'].stage, 1);
+  assert.equal(positions['lib/build-a.js'].stageName, 'GENERATE');
+  assert.equal(positions['widgets/c.js'].stageName, 'RUNTIME');
+  assert.ok(typeof positions['lib/build-a.js'].x === 'number');
+  assert.ok(typeof positions['lib/build-a.js'].y === 'number');
+});
+
+test('BUILD-TERRAIN-MAP: layoutStages is deterministic — same input, same output', () => {
+  const input = ['lib/z.js', 'lib/build-a.js', 'widgets/m.js', 'data/x.json'];
+  const a = layoutStages(input);
+  const b = layoutStages(input.slice().reverse());
   assert.deepEqual(a.positions, b.positions);
 });
 
-test('BUILD-TERRAIN-MAP: layoutClusters never overlaps two nodes at the same coordinate', () => {
+test('BUILD-TERRAIN-MAP: layoutStages never overlaps two nodes at the same coordinate', () => {
   const input = Array.from({ length: 12 }, (_, i) => `lib/file-${i}.js`);
-  const { positions } = layoutClusters(input);
+  const { positions } = layoutStages(input);
   const coords = Object.values(positions).map(p => p.x + ',' + p.y);
   assert.equal(new Set(coords).size, coords.length);
 });
 
-// ── 3. computeStatus / findDebtReferences ────────────────────────────────────
+test('BUILD-TERRAIN-MAP: layoutStages produces stageMeta with a count and rect per stage', () => {
+  const { stageMeta } = layoutStages(['lib/build-a.js', 'lib/build-b.js', 'data/x.json']);
+  const generate = stageMeta.find(s => s.name === 'GENERATE');
+  const sources = stageMeta.find(s => s.name === 'SOURCES');
+  assert.equal(generate.count, 2);
+  assert.equal(sources.count, 1);
+  assert.ok(typeof generate.rect.x === 'number' && typeof generate.rect.width === 'number');
+});
+
+// ── 4. computeStatus / findDebtReferences ────────────────────────────────────
 
 test('BUILD-TERRAIN-MAP: computeStatus is good when tested with no debt references', () => {
   assert.equal(computeStatus({ testedBy: ['tests/x.test.js'] }, []), 'good');
@@ -102,7 +152,7 @@ test('BUILD-TERRAIN-MAP: findDebtReferences skips names too short to avoid false
   assert.deepEqual(findDebtReferences('lib/sw.js', items), []);
 });
 
-// ── 4. computeEdges ───────────────────────────────────────────────────────────
+// ── 5. computeEdges ───────────────────────────────────────────────────────────
 
 test('BUILD-TERRAIN-MAP: computeEdges finds a mention-based edge between two nodes', () => {
   const nodes = {
@@ -127,7 +177,7 @@ test('BUILD-TERRAIN-MAP: computeEdges produces no self-edges', () => {
   assert.deepEqual(computeEdges(nodes), []);
 });
 
-// ── 5. findScreenshots ────────────────────────────────────────────────────────
+// ── 6. findScreenshots ────────────────────────────────────────────────────────
 
 test('BUILD-TERRAIN-MAP: findScreenshots groups files by slug and language', () => {
   const result = findScreenshots(['foo-en.png', 'foo-ja.png', 'bar-en.png']);
@@ -142,9 +192,9 @@ test('BUILD-TERRAIN-MAP: findScreenshots ignores files that do not match the {sl
   assert.deepEqual(result, {});
 });
 
-// ── 6. buildTerrainMap ────────────────────────────────────────────────────────
+// ── 7. buildTerrainMap ────────────────────────────────────────────────────────
 
-test('BUILD-TERRAIN-MAP: buildTerrainMap assembles nodes, edges, clusters, and screens together', () => {
+test('BUILD-TERRAIN-MAP: buildTerrainMap assembles nodes, edges, stages, and screens together', () => {
   const latticeMap = {
     nodes: {
       'lib/build-vextreme.js': { role: 'assembler', reads: ['lib/vex-config.js'], testedBy: [] },
@@ -164,9 +214,15 @@ test('BUILD-TERRAIN-MAP: buildTerrainMap assembles nodes, edges, clusters, and s
   assert.equal(assembler.status, 'critical'); // untested + debt-referenced
   assert.deepEqual(assembler.debts, ['td-001']);
   assert.ok(result.debtTitles['td-001']);
+  assert.equal(assembler.stageName, 'GENERATE');
+  assert.equal(assembler.engineerFocus, true);
+  assert.equal(assembler.auditorFocus, true); // critical status
+  const config = result.nodes.find(n => n.id === 'lib/vex-config.js');
+  assert.equal(config.stageName, 'UTILITIES');
+  assert.ok(result.stages.length > 0);
 });
 
-// ── 7. Integration ───────────────────────────────────────────────────────────
+// ── 8. Integration ───────────────────────────────────────────────────────────
 
 test('BUILD-TERRAIN-MAP integration: the real generator produces byte-identical output on repeated runs', () => {
   execFileSync('node', ['lib/build-terrain-map.js'], { cwd: ROOT });
@@ -192,6 +248,17 @@ test('BUILD-TERRAIN-MAP integration: every screen references a screenshot file t
       assert.ok(fs.existsSync(path.join(ROOT, relPath)), `missing screenshot file: ${relPath}`);
     }
   }
+});
+
+test('BUILD-TERRAIN-MAP integration: every real node has a stage, stageName, and both lens fields', () => {
+  const data = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'terrain-map.json'), 'utf8'));
+  for (const n of data.nodes) {
+    assert.ok(typeof n.stage === 'number', `${n.id} missing numeric stage`);
+    assert.ok(typeof n.stageName === 'string' && n.stageName.length > 0, `${n.id} missing stageName`);
+    assert.ok(typeof n.engineerFocus === 'boolean', `${n.id} missing engineerFocus`);
+    assert.ok(typeof n.auditorFocus === 'boolean', `${n.id} missing auditorFocus`);
+  }
+  assert.ok(data.stages.length > 0);
 });
 
 test('TERRAIN-MAP-PAGE: pages/terrain-map.html is registered in audit-pages.js SKIP_PAGES so it is not flagged as an orphan/blocker', () => {

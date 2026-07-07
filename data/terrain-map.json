@@ -1,43 +1,85 @@
 {
-  "clusters": [
+  "stages": [
     {
-      "id": "data",
-      "label": "DATA SOURCES",
+      "key": 0,
+      "name": "SOURCES",
+      "sub": "content & config — nothing upstream of these",
       "count": 6,
-      "x0": 0,
-      "x1": 450,
-      "rows": 2
+      "rect": {
+        "x": 10,
+        "y": 40,
+        "width": 300,
+        "height": 450
+      }
     },
     {
-      "id": "lib",
-      "label": "BUILD SCRIPTS",
-      "count": 33,
-      "x0": 520,
-      "x1": 1360,
-      "rows": 6
+      "key": 1,
+      "name": "GENERATE",
+      "sub": "build/apply/append scripts that read sources",
+      "count": 16,
+      "rect": {
+        "x": 350,
+        "y": 40,
+        "width": 300,
+        "height": 1050
+      }
     },
     {
-      "id": "root",
-      "label": "ROOT",
+      "key": 1.5,
+      "name": "UTILITIES",
+      "sub": "other lib/ helpers, config, tracing",
+      "count": 13,
+      "rect": {
+        "x": 690,
+        "y": 40,
+        "width": 300,
+        "height": 870
+      }
+    },
+    {
+      "key": 2,
+      "name": "CHECK",
+      "sub": "drift detectors and tests — run after generation",
+      "count": 4,
+      "rect": {
+        "x": 1030,
+        "y": 40,
+        "width": 300,
+        "height": 330
+      }
+    },
+    {
+      "key": 3,
+      "name": "OUTPUT",
+      "sub": "generated artifacts: dist, pages, index, sw",
       "count": 3,
-      "x0": 1430,
-      "x1": 1750,
-      "rows": 2
+      "rect": {
+        "x": 1370,
+        "y": 40,
+        "width": 300,
+        "height": 270
+      }
     },
     {
-      "id": "widgets",
-      "label": "BROWSER WIDGETS",
+      "key": 4,
+      "name": "RUNTIME",
+      "sub": "loaded by pages in the browser",
       "count": 2,
-      "x0": 1820,
-      "x1": 2140,
-      "rows": 1
+      "rect": {
+        "x": 1710,
+        "y": 40,
+        "width": 300,
+        "height": 210
+      }
     }
   ],
   "nodes": [
     {
       "id": "blueprint.json",
       "cluster": "root",
-      "x": 1500,
+      "stage": 3,
+      "stageName": "OUTPUT",
+      "x": 1420,
       "y": 90,
       "role": "system blueprint — canonical registry of all feature IDs, category IDs, template IDs",
       "reads": [],
@@ -52,12 +94,16 @@
       "debts": [
         "pe-009"
       ],
-      "status": "warning"
+      "status": "warning",
+      "engineerFocus": false,
+      "auditorFocus": true
     },
     {
       "id": "data/arcs-v2.json",
       "cluster": "data",
-      "x": 70,
+      "stage": 0,
+      "stageName": "SOURCES",
+      "x": 60,
       "y": 90,
       "role": "arc structure source — defines arc membership, ordering, and metadata",
       "reads": [],
@@ -74,13 +120,17 @@
         "od-006",
         "pe-011"
       ],
-      "status": "warning"
+      "status": "warning",
+      "engineerFocus": true,
+      "auditorFocus": true
     },
     {
       "id": "data/council-kernel.json",
       "cluster": "data",
-      "x": 200,
-      "y": 90,
+      "stage": 0,
+      "stageName": "SOURCES",
+      "x": 60,
+      "y": 150,
       "role": "hand-transcribed structured extract of pages/org-blueprint.html's roster and patterns — the 'runnable kernel' that document names as its own unfinished ambition",
       "reads": [],
       "writes": [],
@@ -94,13 +144,17 @@
         "tests/19-council-kernel.test.js"
       ],
       "debts": [],
-      "status": "good"
+      "status": "good",
+      "engineerFocus": true,
+      "auditorFocus": false
     },
     {
       "id": "data/departments.json",
       "cluster": "data",
-      "x": 330,
-      "y": 90,
+      "stage": 0,
+      "stageName": "SOURCES",
+      "x": 60,
+      "y": 210,
       "role": "department registry source — production-domain grouping, orthogonal to arcs (narrative) and blueprint.json categories (publish lifecycle)",
       "reads": [],
       "writes": [],
@@ -115,13 +169,17 @@
         "od-008",
         "pe-010"
       ],
-      "status": "warning"
+      "status": "warning",
+      "engineerFocus": true,
+      "auditorFocus": true
     },
     {
       "id": "data/index.json",
       "cluster": "data",
-      "x": 70,
-      "y": 220,
+      "stage": 0,
+      "stageName": "SOURCES",
+      "x": 60,
+      "y": 270,
       "role": "pre-built read index — the single artifact every page and build script reads from",
       "reads": [],
       "writes": [],
@@ -143,13 +201,17 @@
         "pe-010",
         "pe-009"
       ],
-      "status": "warning"
+      "status": "warning",
+      "engineerFocus": true,
+      "auditorFocus": true
     },
     {
       "id": "data/nodes.json",
       "cluster": "data",
-      "x": 200,
-      "y": 220,
+      "stage": 0,
+      "stageName": "SOURCES",
+      "x": 60,
+      "y": 330,
       "role": "content node source — the authoritative list of all content slugs",
       "reads": [],
       "writes": [],
@@ -170,13 +232,17 @@
         "pe-010",
         "pe-009"
       ],
-      "status": "warning"
+      "status": "warning",
+      "engineerFocus": true,
+      "auditorFocus": true
     },
     {
       "id": "data/viewmodels.json",
       "cluster": "data",
-      "x": 330,
-      "y": 220,
+      "stage": 0,
+      "stageName": "SOURCES",
+      "x": 60,
+      "y": 390,
       "role": "per-slug viewmodel overrides — demo/specimen pages that aren't content nodes",
       "reads": [],
       "writes": [],
@@ -189,12 +255,16 @@
         "tests/08-build-vextreme.test.js"
       ],
       "debts": [],
-      "status": "good"
+      "status": "good",
+      "engineerFocus": true,
+      "auditorFocus": false
     },
     {
       "id": "lib/append-session-continuation.js",
       "cluster": "lib",
-      "x": 590,
+      "stage": 1,
+      "stageName": "GENERATE",
+      "x": 400,
       "y": 90,
       "role": "append-only continuity helper — appends a same-session continuation block at EOF without treating the VXG marker as an insertion anchor",
       "reads": [
@@ -212,13 +282,17 @@
         "tests/24-append-session-continuation.test.js"
       ],
       "debts": [],
-      "status": "good"
+      "status": "good",
+      "engineerFocus": true,
+      "auditorFocus": false
     },
     {
       "id": "lib/apply-content-intents.js",
       "cluster": "lib",
-      "x": 720,
-      "y": 90,
+      "stage": 1,
+      "stageName": "GENERATE",
+      "x": 400,
+      "y": 150,
       "role": "applies config/content-intents.json's pending entries — mutates pages/*.html meta tags and data/arcs-v2.json's auto-managed sections, then runs the existing sanity-check pipeline",
       "reads": [
         "config/content-intents.json",
@@ -242,12 +316,16 @@
         "od-009",
         "od-008"
       ],
-      "status": "warning"
+      "status": "warning",
+      "engineerFocus": true,
+      "auditorFocus": true
     },
     {
       "id": "lib/arc-nav.js",
       "cluster": "lib",
-      "x": 850,
+      "stage": 1.5,
+      "stageName": "UTILITIES",
+      "x": 740,
       "y": 90,
       "role": "v1 Squarespace-era arc nav — DO NOT USE for God Script pages",
       "reads": [
@@ -267,13 +345,17 @@
         "pe-002",
         "pe-007"
       ],
-      "status": "critical"
+      "status": "critical",
+      "engineerFocus": false,
+      "auditorFocus": true
     },
     {
       "id": "lib/audit-pages.js",
       "cluster": "lib",
-      "x": 980,
-      "y": 90,
+      "stage": 1.5,
+      "stageName": "UTILITIES",
+      "x": 740,
+      "y": 150,
       "role": "page wiring auditor — read-only report of which pages/*.html are wired to a God Script, blocked, or intentionally skipped",
       "reads": [
         "pages/*.html (checks for a dist/vextreme-{slug}.js script src)",
@@ -297,13 +379,17 @@
         "pe-002",
         "pe-010"
       ],
-      "status": "critical"
+      "status": "critical",
+      "engineerFocus": false,
+      "auditorFocus": true
     },
     {
       "id": "lib/auto-discover-nodes.js",
       "cluster": "lib",
-      "x": 1110,
-      "y": 90,
+      "stage": 1.5,
+      "stageName": "UTILITIES",
+      "x": 740,
+      "y": 210,
       "role": "synthesizes a node-shaped object for any pages/*.html file with no data/nodes.json entry, so adding a page alone is enough to make it visible",
       "reads": [
         "pages/*.html (title + optional vex:department/vex:workType meta tags)",
@@ -327,13 +413,17 @@
       "debts": [
         "pe-011"
       ],
-      "status": "warning"
+      "status": "warning",
+      "engineerFocus": false,
+      "auditorFocus": true
     },
     {
       "id": "lib/build-arc-bundles.js",
       "cluster": "lib",
-      "x": 1240,
-      "y": 90,
+      "stage": 1,
+      "stageName": "GENERATE",
+      "x": 400,
+      "y": 210,
       "role": "arc-chunked language bundle assembler — the od-001/td-006 pilot, opt-in per arc",
       "reads": [
         "data/arcs-v2.json (bundlingStrategy per arc)",
@@ -357,13 +447,17 @@
       "debts": [
         "td-006"
       ],
-      "status": "warning"
+      "status": "warning",
+      "engineerFocus": true,
+      "auditorFocus": true
     },
     {
       "id": "lib/build-archives.js",
       "cluster": "lib",
-      "x": 590,
-      "y": 220,
+      "stage": 1,
+      "stageName": "GENERATE",
+      "x": 400,
+      "y": 270,
       "role": "generates pages/archives.html — the complete page registry: every arc's slugs as ported/missing cells, plus unsorted and dev/demo pages",
       "reads": [
         "data/nodes.json",
@@ -387,13 +481,17 @@
       "debts": [
         "pe-011"
       ],
-      "status": "critical"
+      "status": "critical",
+      "engineerFocus": true,
+      "auditorFocus": true
     },
     {
       "id": "lib/build-ecosystem-hub.js",
       "cluster": "lib",
-      "x": 720,
-      "y": 220,
+      "stage": 1,
+      "stageName": "GENERATE",
+      "x": 400,
+      "y": 330,
       "role": "generates pages/ecosystem-hub.html — the admin+AI-facing system state dashboard",
       "reads": [
         "data/index.json (live fetch, browser — including departmentMap/departmentMeta)",
@@ -416,13 +514,17 @@
       "debts": [
         "od-002"
       ],
-      "status": "warning"
+      "status": "warning",
+      "engineerFocus": true,
+      "auditorFocus": true
     },
     {
       "id": "lib/build-index-page.js",
       "cluster": "lib",
-      "x": 850,
-      "y": 220,
+      "stage": 1,
+      "stageName": "GENERATE",
+      "x": 400,
+      "y": 390,
       "role": "generates index.html — the root landing page, arc hub links plus the 5 most recently added nodes",
       "reads": [
         "data/nodes.json",
@@ -439,13 +541,17 @@
       "debts": [
         "pe-009"
       ],
-      "status": "critical"
+      "status": "critical",
+      "engineerFocus": true,
+      "auditorFocus": true
     },
     {
       "id": "lib/build-index.js",
       "cluster": "lib",
-      "x": 980,
-      "y": 220,
+      "stage": 1,
+      "stageName": "GENERATE",
+      "x": 400,
+      "y": 450,
       "role": "content pipeline assembler — reads source data, writes the single pre-built index everything reads from",
       "reads": [
         "data/nodes.json",
@@ -481,13 +587,17 @@
         "pe-011",
         "pe-009"
       ],
-      "status": "warning"
+      "status": "warning",
+      "engineerFocus": true,
+      "auditorFocus": true
     },
     {
       "id": "lib/build-lattice-headers.js",
       "cluster": "lib",
-      "x": 1110,
-      "y": 220,
+      "stage": 1,
+      "stageName": "GENERATE",
+      "x": 400,
+      "y": 510,
       "role": "LATTICE header generator — reads this JSON, writes the matching in-file header into each eligible node's own file",
       "reads": [
         "docs/lattice-map.json"
@@ -506,13 +616,17 @@
         "od-010",
         "pe-009"
       ],
-      "status": "warning"
+      "status": "warning",
+      "engineerFocus": true,
+      "auditorFocus": true
     },
     {
       "id": "lib/build-lessons.js",
       "cluster": "lib",
-      "x": 1240,
-      "y": 220,
+      "stage": 1,
+      "stageName": "GENERATE",
+      "x": 400,
+      "y": 570,
       "role": "compiles config/lessons/*.json into data/lessons.json — the read-side manifest the Ecosystem Hub fetches",
       "reads": [
         "config/lessons/*.json (every lesson file, both schema generations)"
@@ -530,13 +644,17 @@
         "tests/17-build-lessons.test.js"
       ],
       "debts": [],
-      "status": "good"
+      "status": "good",
+      "engineerFocus": true,
+      "auditorFocus": false
     },
     {
       "id": "lib/build-roles-page.js",
       "cluster": "lib",
-      "x": 590,
-      "y": 350,
+      "stage": 1,
+      "stageName": "GENERATE",
+      "x": 400,
+      "y": 630,
       "role": "generates pages/roles-index.html — the traceable roles/contributions dashboard",
       "reads": [
         "data/roles.json (live fetch, browser)"
@@ -553,13 +671,17 @@
         "tests/20-roles.test.js"
       ],
       "debts": [],
-      "status": "good"
+      "status": "good",
+      "engineerFocus": true,
+      "auditorFocus": false
     },
     {
       "id": "lib/build-roles.js",
       "cluster": "lib",
-      "x": 720,
-      "y": 350,
+      "stage": 1,
+      "stageName": "GENERATE",
+      "x": 400,
+      "y": 690,
       "role": "compiles data/council-kernel.json's roster + data/status/*.json's lens fields into data/roles.json — the traceable roles/contributions registry",
       "reads": [
         "data/council-kernel.json",
@@ -580,13 +702,17 @@
         "tests/20-roles.test.js"
       ],
       "debts": [],
-      "status": "good"
+      "status": "good",
+      "engineerFocus": true,
+      "auditorFocus": false
     },
     {
       "id": "lib/build-sitemap.js",
       "cluster": "lib",
-      "x": 850,
-      "y": 350,
+      "stage": 1,
+      "stageName": "GENERATE",
+      "x": 400,
+      "y": 750,
       "role": "generates sitemap.xml — lists only pages that actually exist, so crawlers never hit a 404",
       "reads": [
         "data/nodes.json",
@@ -602,13 +728,17 @@
       "debts": [
         "pe-009"
       ],
-      "status": "critical"
+      "status": "critical",
+      "engineerFocus": true,
+      "auditorFocus": true
     },
     {
       "id": "lib/build-status.js",
       "cluster": "lib",
-      "x": 980,
-      "y": 350,
+      "stage": 1,
+      "stageName": "GENERATE",
+      "x": 400,
+      "y": 810,
       "role": "system health manifest assembler — reads hand-authored status/*.json plus the strings manifest and key-alignment report, writes data/status.json",
       "reads": [
         "data/strings/compiled/manifest.json",
@@ -639,13 +769,17 @@
       "debts": [
         "od-010"
       ],
-      "status": "warning"
+      "status": "warning",
+      "engineerFocus": true,
+      "auditorFocus": true
     },
     {
       "id": "lib/build-sw.js",
       "cluster": "lib",
-      "x": 1110,
-      "y": 350,
+      "stage": 1,
+      "stageName": "GENERATE",
+      "x": 400,
+      "y": 870,
       "role": "Service Worker generator — reads dist/ filenames + arc-chunked bundle index, writes sw.js",
       "reads": [
         "dist/*.js (all God Script filenames)",
@@ -665,13 +799,17 @@
       "debts": [
         "td-006"
       ],
-      "status": "warning"
+      "status": "warning",
+      "engineerFocus": true,
+      "auditorFocus": true
     },
     {
       "id": "lib/build-terrain-map.js",
       "cluster": "lib",
-      "x": 1240,
-      "y": 350,
+      "stage": 1,
+      "stageName": "GENERATE",
+      "x": 400,
+      "y": 930,
       "role": "terrain-map write side — computes layout, health, edges, and real screenshots into one deterministic JSON",
       "reads": [
         "docs/lattice-map.json (every node's role/reads/writes/loadedBy/testedBy)",
@@ -694,13 +832,17 @@
         "tests/28-build-terrain-map.test.js"
       ],
       "debts": [],
-      "status": "good"
+      "status": "good",
+      "engineerFocus": true,
+      "auditorFocus": false
     },
     {
       "id": "lib/build-vextreme.js",
       "cluster": "lib",
-      "x": 590,
-      "y": 480,
+      "stage": 1,
+      "stageName": "GENERATE",
+      "x": 400,
+      "y": 990,
       "role": "God Script assembler — reads index + string bundles, writes one self-contained dist/ file per page",
       "reads": [
         "data/index.json",
@@ -726,13 +868,17 @@
         "td-006",
         "pe-007"
       ],
-      "status": "warning"
+      "status": "warning",
+      "engineerFocus": true,
+      "auditorFocus": true
     },
     {
       "id": "lib/check-design-tokens.js",
       "cluster": "lib",
-      "x": 720,
-      "y": 480,
+      "stage": 2,
+      "stageName": "CHECK",
+      "x": 1080,
+      "y": 90,
       "role": "non-blocking-in-spirit, blocking-in-practice check — every var(--token) reference in generated pages and stylesheets must resolve against a real token",
       "reads": [
         "styles/design-system.css (the global token source)",
@@ -753,13 +899,17 @@
       "debts": [
         "pe-009"
       ],
-      "status": "warning"
+      "status": "warning",
+      "engineerFocus": false,
+      "auditorFocus": true
     },
     {
       "id": "lib/check-key-alignment.js",
       "cluster": "lib",
-      "x": 850,
-      "y": 480,
+      "stage": 2,
+      "stageName": "CHECK",
+      "x": 1080,
+      "y": 150,
       "role": "non-blocking CI check — compares slug/arc keys across nodes.json, arcs-v2.json, index.json, cross-checks pages/ and wip/, and reports drift",
       "reads": [
         "data/nodes.json",
@@ -788,13 +938,17 @@
         "td-003",
         "od-010"
       ],
-      "status": "warning"
+      "status": "warning",
+      "engineerFocus": false,
+      "auditorFocus": true
     },
     {
       "id": "lib/check-lattice-edges.js",
       "cluster": "lib",
-      "x": 980,
-      "y": 480,
+      "stage": 2,
+      "stageName": "CHECK",
+      "x": 1080,
+      "y": 210,
       "role": "pe-012 lattice-edge drift detector — verifies the map's claimed reads/writes/loadedBy edges against actual code",
       "reads": [
         "docs/lattice-map.json (every node's claimed edges)",
@@ -812,13 +966,17 @@
         "tests/23-check-lattice-edges.test.js"
       ],
       "debts": [],
-      "status": "good"
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": true
     },
     {
       "id": "lib/check-map-bindings.js",
       "cluster": "lib",
-      "x": 1110,
-      "y": 480,
+      "stage": 2,
+      "stageName": "CHECK",
+      "x": 1080,
+      "y": 270,
       "role": "pe-013 layered-maps drift detector — verifies the bindings between cold-start maps and the files they claim to bind",
       "reads": [
         "CLAUDE.md (CONTEXT-NOTES.md pointer)",
@@ -840,13 +998,17 @@
         "tests/22-check-map-bindings.test.js"
       ],
       "debts": [],
-      "status": "good"
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": true
     },
     {
       "id": "lib/detect-wip-promotions.js",
       "cluster": "lib",
-      "x": 1240,
-      "y": 480,
+      "stage": 1.5,
+      "stageName": "UTILITIES",
+      "x": 740,
+      "y": 270,
       "role": "detects a wip/*.html → pages/*.html move within a PR's diff, so a promotion shows up as a positive PR notice instead of silence or a false 'broken reference'",
       "reads": [
         "git diff --name-status -M output between two refs (wip/ and pages/ paths only)"
@@ -863,13 +1025,17 @@
         "tests/21-wip-drafts.test.js"
       ],
       "debts": [],
-      "status": "good"
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": false
     },
     {
       "id": "lib/logger-codes.js",
       "cluster": "lib",
-      "x": 590,
-      "y": 610,
+      "stage": 1.5,
+      "stageName": "UTILITIES",
+      "x": 740,
+      "y": 330,
       "role": "event code registry — the CODES constant every logger.warn/error call references",
       "reads": [],
       "writes": [],
@@ -884,13 +1050,17 @@
       "debts": [
         "pe-009"
       ],
-      "status": "critical"
+      "status": "critical",
+      "engineerFocus": false,
+      "auditorFocus": true
     },
     {
       "id": "lib/logger.js",
       "cluster": "lib",
-      "x": 720,
-      "y": 610,
+      "stage": 1.5,
+      "stageName": "UTILITIES",
+      "x": 740,
+      "y": 390,
       "role": "structured logger — every build script's warn/info/error call goes through here",
       "reads": [],
       "writes": [
@@ -908,13 +1078,17 @@
       "debts": [
         "pe-009"
       ],
-      "status": "critical"
+      "status": "critical",
+      "engineerFocus": false,
+      "auditorFocus": true
     },
     {
       "id": "lib/session-bootstrap.js",
       "cluster": "lib",
-      "x": 850,
-      "y": 610,
+      "stage": 1.5,
+      "stageName": "UTILITIES",
+      "x": 740,
+      "y": 450,
       "role": "one-shot session-start state report — read-only, gathers what would otherwise be several manual checks into one command",
       "reads": [
         "docs/continuity/INDEX.md (last logged session, batch registry)",
@@ -938,13 +1112,17 @@
         "tests/14-session-bootstrap.test.js"
       ],
       "debts": [],
-      "status": "good"
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": false
     },
     {
       "id": "lib/strings-check.js",
       "cluster": "lib",
-      "x": 980,
-      "y": 610,
+      "stage": 1.5,
+      "stageName": "UTILITIES",
+      "x": 740,
+      "y": 510,
       "role": "strings pipeline integrity check — runs before compile, catches missing EN text, stale translations, and orphaned keys",
       "reads": [
         "data/strings/source/**/*.json",
@@ -964,13 +1142,17 @@
         "pe-005",
         "pe-009"
       ],
-      "status": "critical"
+      "status": "critical",
+      "engineerFocus": false,
+      "auditorFocus": true
     },
     {
       "id": "lib/strings-compile.js",
       "cluster": "lib",
-      "x": 1110,
-      "y": 610,
+      "stage": 1.5,
+      "stageName": "UTILITIES",
+      "x": 740,
+      "y": 570,
       "role": "strings pipeline compiler — reads source JSON, writes compiled bundles and manifest",
       "reads": [
         "data/strings/source/**/*.json",
@@ -993,13 +1175,17 @@
       "debts": [
         "td-005"
       ],
-      "status": "warning"
+      "status": "warning",
+      "engineerFocus": false,
+      "auditorFocus": true
     },
     {
       "id": "lib/trace-string-usage.js",
       "cluster": "lib",
-      "x": 1240,
-      "y": 610,
+      "stage": 1.5,
+      "stageName": "UTILITIES",
+      "x": 740,
+      "y": 630,
       "role": "string reverse-tracer — data-i18n usage in pages/wip HTML cross-referenced against the compiled manifest",
       "reads": [
         "pages/*.html (data-i18n attribute scan)",
@@ -1017,13 +1203,17 @@
         "tests/27-trace-string-usage.test.js"
       ],
       "debts": [],
-      "status": "good"
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": false
     },
     {
       "id": "lib/validate-blueprint.js",
       "cluster": "lib",
-      "x": 590,
-      "y": 740,
+      "stage": 1.5,
+      "stageName": "UTILITIES",
+      "x": 740,
+      "y": 690,
       "role": "blueprint consistency validator — confirms every id in blueprint.json has a matching config file and vex-config constant",
       "reads": [
         "blueprint.json",
@@ -1044,13 +1234,17 @@
       "debts": [
         "pe-009"
       ],
-      "status": "warning"
+      "status": "warning",
+      "engineerFocus": false,
+      "auditorFocus": true
     },
     {
       "id": "lib/vex-config.js",
       "cluster": "lib",
-      "x": 720,
-      "y": 740,
+      "stage": 1.5,
+      "stageName": "UTILITIES",
+      "x": 740,
+      "y": 750,
       "role": "constants hub — pure declarations, no I/O",
       "reads": [],
       "writes": [],
@@ -1077,13 +1271,17 @@
       "debts": [
         "pe-007"
       ],
-      "status": "warning"
+      "status": "warning",
+      "engineerFocus": false,
+      "auditorFocus": true
     },
     {
       "id": "lib/vextreme-index-v2.js",
       "cluster": "lib",
-      "x": 850,
-      "y": 740,
+      "stage": 1.5,
+      "stageName": "UTILITIES",
+      "x": 740,
+      "y": 810,
       "role": "browser arc nav runtime — reads index.json at load time, renders prev/next/position into #arcNavMount",
       "reads": [
         "data/index.json via CDN (slugMap, arcMap, arcMeta)",
@@ -1103,13 +1301,17 @@
         "tests/03-browser-nav.test.js (data logic; no browser render tests yet)"
       ],
       "debts": [],
-      "status": "good"
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": false
     },
     {
       "id": "pages/terrain-map.html",
       "cluster": "root",
-      "x": 1630,
-      "y": 90,
+      "stage": 3,
+      "stageName": "OUTPUT",
+      "x": 1420,
+      "y": 150,
       "role": "the terrain map's read side — a navigable health/dependency atlas, live-fetches data/terrain-map.json",
       "reads": [
         "data/terrain-map.json (live fetch, browser)"
@@ -1120,13 +1322,17 @@
       ],
       "testedBy": [],
       "debts": [],
-      "status": "good"
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": false
     },
     {
       "id": "sw.js",
       "cluster": "root",
-      "x": 1500,
-      "y": 220,
+      "stage": 3,
+      "stageName": "OUTPUT",
+      "x": 1420,
+      "y": 210,
       "role": "Service Worker — pre-caches all God Scripts and core assets at install",
       "reads": [],
       "writes": [],
@@ -1137,12 +1343,16 @@
         "tests/09-build-sw.test.js"
       ],
       "debts": [],
-      "status": "good"
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": false
     },
     {
       "id": "widgets/fab-lang.js",
       "cluster": "widgets",
-      "x": 1890,
+      "stage": 4,
+      "stageName": "RUNTIME",
+      "x": 1760,
       "y": 90,
       "role": "browser language switcher FAB — fetches JA/ZH scope or arc bundles, applies [data-i18n] swaps",
       "reads": [
@@ -1167,13 +1377,17 @@
         "td-002",
         "td-006"
       ],
-      "status": "critical"
+      "status": "critical",
+      "engineerFocus": false,
+      "auditorFocus": true
     },
     {
       "id": "widgets/sw-register.js",
       "cluster": "widgets",
-      "x": 2020,
-      "y": 90,
+      "stage": 4,
+      "stageName": "RUNTIME",
+      "x": 1760,
+      "y": 150,
       "role": "Service Worker registration — activates offline caching on first page load",
       "reads": [
         "navigator.serviceWorker API"
@@ -1188,7 +1402,9 @@
         "tests/09-build-sw.test.js (tests sw.js generation, not this file directly)"
       ],
       "debts": [],
-      "status": "good"
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": false
     }
   ],
   "edges": [
