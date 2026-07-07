@@ -281,7 +281,14 @@
 (function () {
   'use strict';
 
-  var VERSION    = '1.1.0';
+  // Bumped whenever a change here (or to data/index.json's real content)
+  // needs to bypass jsdelivr's CDN cache — that cache is keyed on this exact
+  // query string, so it never refreshes on its own when content changes.
+  // This constant had NEVER been bumped since it was introduced, which is
+  // most of why the VEX_SUPPORTED_LANGS fix above didn't reach live pages
+  // that load this file directly via CDN (not via a God Script) even after
+  // shipping — see docs/lattice-map.json's context note on this file.
+  var VERSION    = '1.2.0';
   var CDN_BASE   = 'https://cdn.jsdelivr.net/gh/vgong24/vextreme@main';
   var INDEX_URL  = CDN_BASE + '/data/index.json?v=' + VERSION;
   var LS_LANG    = 'vex-lang';
