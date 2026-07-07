@@ -107,6 +107,22 @@ test('ASSEMBLER: output contains VEX_SUPPORTED_LANGS when provided', () => {
   assert.ok(script.includes('"en"') && script.includes('"ja"'), 'supported langs must appear in output');
 });
 
+test('ASSEMBLER: widgets/fab-lang.js actually reads window.VEX_SUPPORTED_LANGS — baking the global in at build time is useless if the runtime widget never checks it', () => {
+  // Regression guard: lib/build-vextreme.js has baked VEX_SUPPORTED_LANGS into
+  // every God Script since it was introduced, but loadSupportedLangs() in
+  // widgets/fab-lang.js went straight to a localStorage cache (written by a
+  // DIFFERENT widget) or a live index.json fetch — silently never consuming
+  // the correct, build-time-baked value. A browser with a stale cache could
+  // show a language list missing a language the page's own God Script has
+  // (real bug, e.g. the ZH option missing from the dossier's language FAB).
+  // This asserts the fast-path is wired, not just documented.
+  const widgetSrc = fs.readFileSync(path.join(ROOT, 'widgets', 'fab-lang.js'), 'utf8');
+  const loadFnMatch = widgetSrc.match(/function loadSupportedLangs\([^)]*\)\s*\{([\s\S]*?)\n  \}/);
+  assert.ok(loadFnMatch, 'loadSupportedLangs() function not found in widgets/fab-lang.js');
+  assert.ok(loadFnMatch[1].includes('window.VEX_SUPPORTED_LANGS'),
+    'loadSupportedLangs() must check window.VEX_SUPPORTED_LANGS before falling back to cache/network');
+});
+
 test('ASSEMBLER: output contains VEX_STRING_ARC_BUNDLE when arcBundle option is set', () => {
   const script = assembleGodScript('test-slug', DEMO_VIEWMODEL, { includeSourceComment: false, arcBundle: 'victor_dossier' });
   assert.ok(script.includes('window.VEX_STRING_ARC_BUNDLE'), 'must set VEX_STRING_ARC_BUNDLE');
