@@ -110,7 +110,7 @@
  *               localStorage (LS_LANG — selected language preference)
  *   loaded-by : lib/build-vextreme.js (inlined as lang feature in God Scripts)
  *               legacy pages via direct CDN script tag (pre-God-Script pattern)
- *   tested-by : (none)
+ *   tested-by : tests/08-build-vextreme.test.js (structural guard: loadSupportedLangs() must read window.VEX_SUPPORTED_LANGS)
  *
  *   CHANGE MAP — if you touch X here, also check:
  *     arc-chunked bundling pilot (VEX_STRING_ARC_BUNDLE, od-001/td-006):
