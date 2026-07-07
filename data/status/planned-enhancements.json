@@ -74,6 +74,15 @@
       "priority": "medium"
     },
     {
+      "id": "pe-012",
+      "title": "Function-level reverse traversal map for answering source-of-truth questions with minimal grep",
+      "description": "docs/lattice-map.json and data/terrain-map.json make file-level perception auditable: inputs, build scripts, outputs, and change checks are visible without guessing. They do not yet answer the smaller question a future instance hits during debugging: 'which function or generated global is the source of truth for this runtime value, and what is the shortest checked path from source data to page behavior?' The Chinese-language FAB investigation exposed the gap: finding whether a cache/version/hash field already existed required broad grep across docs, widgets, build scripts, and generated outputs instead of following a generated reverse map. A future tool should build a deterministic function/value-level index from covered files: exported functions, important emitted globals, declared reads/writes, generated artifacts, tests that assert each edge, and reverse lookup by symbol/path such as VEX_SUPPORTED_LANGS, supportedLangs, CACHE_NAME, or builtAt. Start read-only and informational; promote to a drift check only after the map can distinguish intentional legacy direct-script paths from generated God Script paths.",
+      "addedSession": "025",
+      "priority": "medium",
+      "unblocks": ["od-008 connector-trace confidence", "faster AI onboarding for source-of-truth debugging"],
+      "lens": "architect"
+    },
+    {
       "id": "pe-010",
       "title": "Department dashboard depth — dedicated transcript library, God-Script wiring granularity",
       "description": "Session 022 shipped the first checkpoint of the department axis (data/departments.json, department/workType fields on nodes, index.json departmentMap/departmentMeta, an ecosystem-hub.html Departments panel) deliberately scoped to structure + accessibility only, per Victor's direction to 'hone the placeholders' later. Two concrete follow-ups named explicitly at that time, not yet built: (1) wip/silent-god.json and its record-transcripts workType siblings are expected to eventually become their own 'library' with a dedicated dashboard, not just entries in the shared Departments panel; (2) departmentMap's per-node status is currently a single `ported` boolean (does pages/{slug}.html exist) — it does not yet distinguish 'ported' from 'wired to a God Script' the way lib/audit-pages.js does for the whole site. Extending departmentMap to reuse audit-pages.js's wiring logic (would require exporting its pure functions instead of running immediately) is the natural next step once there's more than one Media page to make the distinction meaningful.",

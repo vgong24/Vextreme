@@ -202,6 +202,7 @@
         "td-004",
         "pe-006",
         "pe-011",
+        "pe-012",
         "pe-010",
         "pe-009"
       ],
@@ -2054,6 +2055,7 @@
     "pe-007": "Unified feature registry — collapse CORE_MODULES and FEATURE_WIDGET into one table",
     "pe-008": "Offline mode configuration FAB (fab-offline.js)",
     "pe-011": "Collapse lib/build-archives.js onto data/index.json instead of re-deriving from nodes.json/arcs-v2.json independently",
+    "pe-012": "Function-level reverse traversal map for answering source-of-truth questions with minimal grep",
     "pe-010": "Department dashboard depth — dedicated transcript library, God-Script wiring granularity",
     "pe-009": "Expand LATTICE coverage beyond the current 27 nodes (64% of lib/+widgets/)"
   },
