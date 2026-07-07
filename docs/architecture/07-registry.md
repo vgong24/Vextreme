@@ -15,6 +15,11 @@ No registration functions. No JS-side tables. If it's a named thing that
 can vary, it is a JSON key. Unknown keys fall back with a console warning,
 not a crash.
 
+The UI Identity Registry Graph extends this pattern across layers. The top-level
+registry should route by stable identity; lower-layer registries should own
+domain detail. Do not turn a UIElementKey into a god object just because another
+map needs the relationship. Add a bounded map and a query/health-check path.
+
 **Recognizing a registry opportunity:**
 If you find yourself writing an `if/else` or `switch` that branches on a
 string name — arc key, render mode, scope name, language code — that branch
@@ -35,5 +40,9 @@ No per-page configuration required.
 → *Connects to 08-continuity: the registry pattern is a design constraint,
 not just a preference. Future instances should recognize violations and
 refactor toward the pattern rather than extend the fork.*
+
+→ *Connects to 15-registry-documentation-standard: every new registry layer
+needs a declared scope boundary, completion level, query function path, and
+health check before it becomes part of the operating foundation.*
 
 <!-- [VXG RealForever] -->

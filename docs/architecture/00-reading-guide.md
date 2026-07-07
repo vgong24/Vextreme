@@ -51,6 +51,18 @@ Read in this order. Each section's decisions constrain the next.
       ↓
 10-directory-structure — what lib/, components/, and widgets/ mean and how
                     to decide which directory a new file belongs in.
+      ↓
+15-registry-documentation-standard
+                  — how registry architecture docs declare scope, completion
+                    level, query functions, and out-of-scope boundaries.
+      ↓
+16-ui-identity-registry-graph
+                  — parent graph for UIElementKey, context, binding, lower-layer
+                    maps, deterministic health checks, and AI responsibility.
+      ↓
+17-localization-registry-graph
+                  — lower-layer localization map that extends the existing
+                    string pipeline toward reusable meaning and impact reports.
 ```
 
 <!-- [VXG RealForever] -->

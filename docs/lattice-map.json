@@ -1032,6 +1032,7 @@
         "node lib/build-lattice-headers.js --check (via subprocess)",
         "node lib/check-design-tokens.js (via subprocess)",
         "node lib/check-map-bindings.js (via subprocess)",
+        "node lib/check-registry-docs.js (via subprocess)",
         "node --test tests/*.test.js (via subprocess, with VEX_BOOTSTRAP_NESTED=1 to prevent recursion)"
       ],
       "writes": ["stdout only — read-only, changes nothing"],
@@ -1081,6 +1082,60 @@
         "line-ending preservation changed": [
           "lib/build-lattice-headers.js (same file-style-aware convention)",
           "tests/24-append-session-continuation.test.js"
+        ]
+      }
+    },
+
+    "lib/check-registry-docs.js": {
+      "role": "registry documentation health check — validates completion levels, required headings, query paths, health checks, and VXG markers for registry architecture docs",
+      "context": "Added with the UI Identity Registry Graph foundation so the new architecture layer does not live as prose only. The checker reads data/registry/documentation-standard.json, then validates the registered docs under docs/architecture/*.md. This keeps scope-boundary, query-function, health-check, acceptance-criteria, and completion-level requirements visible to tests and session-bootstrap before the full registry graph becomes operational.",
+      "reads": [
+        "data/registry/documentation-standard.json",
+        "docs/architecture/*.md (registered paths from data/registry/documentation-standard.json)"
+      ],
+      "writes": ["stdout only — read-only, changes nothing; exit code 1 on drift"],
+      "loadedBy": [
+        "manual run: node lib/check-registry-docs.js",
+        "lib/session-bootstrap.js (report subprocess)",
+        "tests/25-registry-docs.test.js"
+      ],
+      "testedBy": ["tests/25-registry-docs.test.js"],
+      "changeMap": {
+        "data/registry/documentation-standard.json schema changed": [
+          "validateStandard() and checkRegistryDocs() in this file",
+          "tests/25-registry-docs.test.js"
+        ],
+        "registry architecture doc required heading changed": [
+          "data/registry/documentation-standard.json",
+          "docs/architecture/15-registry-documentation-standard.md",
+          "tests/25-registry-docs.test.js"
+        ],
+        "this check is added to or removed from session-bootstrap": [
+          "lib/session-bootstrap.js",
+          "tests/14-session-bootstrap.test.js"
+        ]
+      }
+    },
+
+    "data/registry/documentation-standard.json": {
+      "role": "registry documentation standard source — machine-readable completion levels and required headings for registry architecture docs",
+      "context": "The write side of the registry documentation standard. The prose standard lives in docs/architecture/15-registry-documentation-standard.md, but this JSON is what the deterministic checker reads so documentation completeness can be validated without asking an AI instance to remember the rules.",
+      "reads": [],
+      "writes": [],
+      "loadedBy": [
+        "lib/check-registry-docs.js",
+        "tests/25-registry-docs.test.js (via lib/check-registry-docs.js)"
+      ],
+      "testedBy": ["tests/25-registry-docs.test.js"],
+      "changeMap": {
+        "completionLevels changed": [
+          "docs/architecture/15-registry-documentation-standard.md",
+          "lib/check-registry-docs.js",
+          "tests/25-registry-docs.test.js"
+        ],
+        "architectureDocs list changed": [
+          "the listed docs/architecture/*.md files must exist and satisfy requiredHeadings",
+          "node lib/check-registry-docs.js"
         ]
       }
     },

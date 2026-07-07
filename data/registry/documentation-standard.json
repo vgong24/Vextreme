@@ -1,0 +1,96 @@
+{
+  "_meta": {
+    "description": "Machine-readable source for registry documentation requirements. The prose lives in docs/architecture/15-registry-documentation-standard.md; this file is what lib/check-registry-docs.js validates against.",
+    "version": "1",
+    "scope": "registry-documents"
+  },
+  "completionLevels": [
+    {
+      "id": "L0",
+      "name": "Concept captured",
+      "meaning": "Idea exists but is not structured"
+    },
+    {
+      "id": "L1",
+      "name": "Draft mapped",
+      "meaning": "Core objects and relationships are described"
+    },
+    {
+      "id": "L2",
+      "name": "Scope bounded",
+      "meaning": "Max context, fields, and out-of-scope areas are defined"
+    },
+    {
+      "id": "L3",
+      "name": "Registry-ready",
+      "meaning": "Tables, IDs, and naming conventions are defined"
+    },
+    {
+      "id": "L4",
+      "name": "Function-ready",
+      "meaning": "Query/navigation functions are specified"
+    },
+    {
+      "id": "L5",
+      "name": "Validation-ready",
+      "meaning": "Health checks and CI expectations are specified"
+    },
+    {
+      "id": "L6",
+      "name": "Implementation-ready",
+      "meaning": "Scripts, files, and acceptance criteria are actionable"
+    },
+    {
+      "id": "L7",
+      "name": "Operational",
+      "meaning": "Implemented, generated, validated, and used in workflow"
+    }
+  ],
+  "idPolicy": {
+    "preferredCase": "lowercase-kebab-case",
+    "conceptInId": true,
+    "timelineInMetadata": true,
+    "statusInMetadata": true,
+    "historyInMetadata": true,
+    "displayOrderInMetadata": true
+  },
+  "architectureDocs": [
+    {
+      "path": "docs/architecture/15-registry-documentation-standard.md",
+      "completionLevel": "L6",
+      "requiredHeadings": [
+        "## Scope Boundary",
+        "## Query Functions",
+        "## Health Checks",
+        "## Acceptance Criteria"
+      ],
+      "requiresVxgMarker": true
+    },
+    {
+      "path": "docs/architecture/16-ui-identity-registry-graph.md",
+      "completionLevel": "L6",
+      "requiredHeadings": [
+        "## Scope Boundary",
+        "## Owned By",
+        "## Connects To",
+        "## Query Functions",
+        "## Health Checks",
+        "## Acceptance Criteria"
+      ],
+      "requiresVxgMarker": true
+    },
+    {
+      "path": "docs/architecture/17-localization-registry-graph.md",
+      "completionLevel": "L6",
+      "requiredHeadings": [
+        "## Scope Boundary",
+        "## Owned By",
+        "## Connects To",
+        "## Query Functions",
+        "## Health Checks",
+        "## Acceptance Criteria"
+      ],
+      "requiresVxgMarker": true
+    }
+  ]
+}

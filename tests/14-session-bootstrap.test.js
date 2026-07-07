@@ -149,6 +149,7 @@ test('SESSION-BOOTSTRAP: --json output is valid JSON with the expected top-level
   assert.ok('latticeDrift' in out);
   assert.ok('designTokens' in out);
   assert.ok('openItems' in out);
+  assert.ok('registryDocs' in out);
 });
 
 // [VXG RealForever]

@@ -59,6 +59,18 @@ Read in this order. Each section's decisions constrain the next.
       ↓
 10-directory-structure — what lib/, components/, and widgets/ mean and how
                     to decide which directory a new file belongs in.
+      ↓
+15-registry-documentation-standard
+                  — how registry architecture docs declare scope, completion
+                    level, query functions, and out-of-scope boundaries.
+      ↓
+16-ui-identity-registry-graph
+                  — parent graph for UIElementKey, context, binding, lower-layer
+                    maps, deterministic health checks, and AI responsibility.
+      ↓
+17-localization-registry-graph
+                  — lower-layer localization map that extends the existing
+                    string pipeline toward reusable meaning and impact reports.
 ```
 
 ---
@@ -415,6 +427,12 @@ Each consuming system reads only its own namespace. The key registry in
 `data/strings/source/` is not just a string file — it is the **element
 identity layer** for the entire UI.
 
+This is now treated as the seed of the broader Localization Registry Graph
+described in `17-localization-registry-graph.md`. The current string key remains
+the practical handle; future StringNode, MessageNode, UIElementKey, and binding
+maps should extend this pipeline additively rather than replacing it in one
+large migration.
+
 ---
 
 ## Key convention
@@ -582,6 +600,10 @@ translator CSV export without blocking compile.
 registry pattern. The same "flat object, keyed by name, falls back safely"
 rule governs arc definitions, render modes, and string keys alike.*
 
+→ *Connects to 16-ui-identity-registry-graph and
+17-localization-registry-graph: localization is the first major proof layer
+inside the UI identity graph, not an isolated translation table.*
+
 ---
 
 # Registry pattern
@@ -600,6 +622,11 @@ All customizable axes in this system follow one rule:
 No registration functions. No JS-side tables. If it's a named thing that
 can vary, it is a JSON key. Unknown keys fall back with a console warning,
 not a crash.
+
+The UI Identity Registry Graph extends this pattern across layers. The top-level
+registry should route by stable identity; lower-layer registries should own
+domain detail. Do not turn a UIElementKey into a god object just because another
+map needs the relationship. Add a bounded map and a query/health-check path.
 
 **Recognizing a registry opportunity:**
 If you find yourself writing an `if/else` or `switch` that branches on a
@@ -621,6 +648,10 @@ No per-page configuration required.
 → *Connects to 08-continuity: the registry pattern is a design constraint,
 not just a preference. Future instances should recognize violations and
 refactor toward the pattern rather than extend the fork.*
+
+→ *Connects to 15-registry-documentation-standard: every new registry layer
+needs a declared scope boundary, completion level, query function path, and
+health check before it becomes part of the operating foundation.*
 
 ---
 
@@ -1657,6 +1688,775 @@ what (if anything) manifests them, not wired as live infrastructure. An
 instruction still is not automatically routed through department → role
 lenses and back to a surface; that remains a real, larger, and still
 undesigned piece, same as the first attempt concluded.
+
+---
+
+# Registry documentation standard
+
+**Status:** implementation-ready foundation
+**Completion Level:** L6 - Implementation-ready
+**Purpose:** repository-wide standard for registry IDs, scope boundaries, query paths, and completion levels
+**Applies to:** UI Identity Registry Graph, Localization Registry Graph, and future lower-layer maps
+
+---
+
+## Scope Boundary
+
+This section defines how registry architecture is documented in this repo.
+
+It covers:
+- compact handles and full relational metadata
+- naming rules for registry IDs
+- scope-boundary sections for architecture docs
+- query/navigation function expectations
+- completion levels for registry docs
+- the health check that keeps this standard visible
+
+It does not cover:
+- every UI element row
+- every locale value
+- every vendor workflow field
+- every screenshot, test, analytics event, or design binding
+
+Those details belong in lower-layer maps and generated indexes.
+
+---
+
+## Core Rule
+
+IDs are handles, not the whole map.
+
+A handle should orient a fresh reader quickly. It should not be forced to
+contain every scope, state, status, timeline, and history detail.
+
+Use:
+
+```txt
+compact handle -> full metadata -> lower-layer map -> query function
+```
+
+not:
+
+```txt
+one enormous ID that tries to carry the entire system
+```
+
+Concept belongs in the ID. Timeline, display order, status, and source history
+belong in metadata.
+
+---
+
+## Naming Rules
+
+Use lowercase kebab-case for registry object IDs.
+
+Preferred shape:
+
+```txt
+{category}-{concept}-{optional-specificity}
+```
+
+Examples:
+
+```txt
+proof-localization-pipeline
+proof-cross-domain-ui-identity
+proof-bulk-data-logging
+section-ai-maintainable-systems
+note-self-demonstration
+fit-ai-tooling-companies
+```
+
+Avoid compressed historical IDs as canonical IDs:
+
+```txt
+rec-y34-localization
+rec-y34-uielementkey
+sec-thing-02
+item-a
+misc-note
+block-3
+```
+
+Compressed IDs can remain as legacy aliases during migration, but new docs and
+new registry rows should use concept-readable IDs.
+
+---
+
+## Relational Scope
+
+The largest expected identity path may include:
+
+```txt
+org -> repo -> product -> surface -> environment -> route -> page -> section -> context -> element -> slot -> variant -> state
+```
+
+Compact keys should usually be much shorter:
+
+```txt
+vextreme.web.dossier.proof-localization-pipeline.title
+```
+
+The full row behind that handle can carry the larger scope:
+
+```yaml
+orgId: vxg
+repoId: vextreme
+productId: vextreme-site
+surfaceId: web
+environmentId: production
+routeId: dossier
+pageId: dossier
+sectionId: proofs
+contextId: proof-localization-pipeline
+elementId: card
+slotId: title
+variantId: default
+stateId: static
+```
+
+Rule:
+
+```txt
+Canonical key = readable handle.
+Metadata fields = full relational scope.
+Functions = navigation into deeper layers.
+```
+
+---
+
+## Required Object Pattern
+
+Every major registry object document should answer:
+
+```md
+## Object Name
+
+### Compact Handle
+
+### Purpose
+
+### Full Relational Scope
+
+### Owned By
+
+### Connects To
+
+### Query Functions
+
+### Out of Scope
+
+### Fresh-Reader Test
+```
+
+The point is not ceremony. The point is that a cold-start AI instance should
+know what it is editing before it edits, and should know which function or map
+to open next instead of loading the whole graph.
+
+---
+
+## Query Functions
+
+Registry docs should name the function path for deeper context.
+
+Examples:
+
+```ts
+getContextSummary(contextId)
+getUIElementSummary(uiElementKey)
+getLowerLayerMap(handle, layer)
+getImpactReport(changeTarget)
+getMissingWorkReport(scope)
+getReusableStringCandidates(text)
+```
+
+These functions may begin as documented contracts before they exist in code.
+Once implemented, they should return compressed summaries plus pointers, not
+the entire graph.
+
+---
+
+## Completion Levels
+
+Registry docs declare their completion level so future readers do not have to
+guess whether a document is conceptual, actionable, or operational.
+
+| Level | Name | Meaning |
+|---|---|---|
+| L0 | Concept captured | Idea exists but is not structured |
+| L1 | Draft mapped | Core objects and relationships are described |
+| L2 | Scope bounded | Max context, fields, and out-of-scope areas are defined |
+| L3 | Registry-ready | Tables, IDs, and naming conventions are defined |
+| L4 | Function-ready | Query/navigation functions are specified |
+| L5 | Validation-ready | Health checks and CI expectations are specified |
+| L6 | Implementation-ready | Scripts, files, and acceptance criteria are actionable |
+| L7 | Operational | Implemented, generated, validated, and used in workflow |
+
+---
+
+## Health Checks
+
+The machine-readable source for this standard is:
+
+```txt
+data/registry/documentation-standard.json
+```
+
+The deterministic check is:
+
+```txt
+node lib/check-registry-docs.js
+```
+
+That check verifies that registered architecture docs:
+- declare a known completion level
+- include a scope boundary
+- include query functions
+- include health checks
+- include acceptance criteria
+- keep the VXG continuity marker
+
+This is intentionally small at first. The health check exists so the standard
+can grow without depending on memory or manual review alone.
+
+---
+
+## Acceptance Criteria
+
+This standard is working when:
+
+```txt
+A fresh reader can understand the object purpose quickly.
+A fresh AI agent knows which function or lower-layer map to open next.
+Compact IDs remain readable handles instead of god objects.
+Metadata carries timeline, order, status, and aliases.
+Lower-layer maps own deeper detail.
+Health checks catch documentation drift.
+Docs declare completion level honestly.
+No one has to ask what a compressed historical ID means before editing.
+```
+
+---
+
+# UI Identity Registry Graph
+
+**Status:** implementation-ready foundation
+**Completion Level:** L6 - Implementation-ready
+**Purpose:** parent architecture for stable UI identity across code, strings, docs, tests, platforms, and AI context
+**Documentation Standard:** follows `docs/architecture/15-registry-documentation-standard.md`
+
+---
+
+## Scope Boundary
+
+This section defines the parent graph shape.
+
+It covers:
+- UIElementKey as a cross-domain bridge identity
+- context nodes, string/message nodes, bindings, and layer maps
+- deterministic maintenance responsibilities
+- AI responsibilities
+- query functions and impact reports
+- health checks needed before this becomes operational
+
+It does not cover:
+- every locale rendering
+- every screenshot
+- every analytics event
+- every test result
+- every vendor batch row
+- every design node
+
+Those details belong in lower-layer maps. The parent graph routes to them.
+
+---
+
+## Core Thesis
+
+Identity first. Discussion second. Modification third.
+
+Before changing a thing, the system should know what the thing is:
+
+```txt
+stable identity -> lower-layer maps -> generated indexes -> health checks -> impact reports -> approval workflows
+```
+
+The top-level graph should not become a god object. It should contain enough
+identity to route correctly.
+
+---
+
+## Current Repo Fit
+
+The repo already has several registry-shaped systems:
+
+| Current layer | Existing source | Existing generated/read side |
+|---|---|---|
+| Content nodes | `data/nodes.json` | `data/index.json` |
+| Arc navigation | `data/arcs-v2.json` | `data/index.json` |
+| UI strings | `data/strings/source/**/*.json` | `data/strings/compiled/**` |
+| File dependency lattice | `docs/lattice-map.json` | generated LATTICE headers |
+| Continuity batches | `docs/continuity/INDEX.md` | `lib/check-map-bindings.js` |
+
+The UI Identity Registry Graph is the next layer above those systems. It does
+not replace them. It gives them a shared identity language.
+
+---
+
+## Core Objects
+
+| Object | Purpose |
+|---|---|
+| `UIElementKey` | Stable handle for a meaningful UI element or slot |
+| `ContextNode` | Structural location and meaning container |
+| `StringNode` | Reusable meaning node for static text |
+| `MessageNode` | Reusable meaning node for dynamic, pluralized, or variable-dependent text |
+| `BindingNode` | Connects UI identity to strings, messages, variants, platforms, or lower-layer maps |
+| `LayerMap` | Domain-specific map such as localization, design, QA, analytics, docs, platform, or AI context |
+| `GeneratedIndex` | Machine-generated summary derived from source registries |
+
+Example compact key:
+
+```txt
+vextreme.web.dossier.proof-localization-pipeline.title
+```
+
+Example full relational scope:
+
+```yaml
+orgId: vxg
+repoId: vextreme
+productId: vextreme-site
+surfaceId: web
+environmentId: production
+routeId: dossier
+pageId: dossier
+sectionId: proofs
+contextId: proof-localization-pipeline
+elementId: card
+slotId: title
+variantId: default
+stateId: static
+```
+
+---
+
+## Owned By
+
+The parent graph should begin as source data under:
+
+```txt
+data/registry/
+```
+
+Current first source:
+
+```txt
+data/registry/documentation-standard.json
+```
+
+Future source maps can be added as the migration becomes concrete:
+
+```txt
+data/registry/contexts.json
+data/registry/ui-elements.json
+data/registry/bindings.json
+data/registry/aliases.json
+```
+
+Generated indexes should remain separate from source maps, following the repo's
+existing CQRS pattern.
+
+---
+
+## Connects To
+
+The parent graph routes into:
+
+```txt
+Localization Map
+Design Map
+QA / VnV Map
+Analytics Map
+Documentation Map
+Platform Implementation Map
+Vendor Workflow Map
+AI Context Map
+Generated Health Indexes
+```
+
+High-level maps route. Lower-level maps explain.
+
+---
+
+## Query Functions
+
+Recommended contracts:
+
+```ts
+getUIElementSummary(uiElementKey)
+getContextSummary(contextId)
+getLowerLayerMap(handle, layer)
+getImpactReport(changeTarget)
+getMissingWorkReport(scope)
+getReusableStringCandidates(text)
+getEditWarnings(uiElementKey)
+generateApprovalPacket(changeSet)
+```
+
+These functions should return compressed summaries and pointers. They should
+not force an AI agent to read the whole graph.
+
+---
+
+## Deterministic Responsibilities
+
+Once structure is known, scripts should handle:
+
+```txt
+registry generation
+binding validation
+missing map reports
+duplicate candidate reports
+orphan detection
+stale binding detection
+impact reports
+approval packet generation
+```
+
+Humans approve meaning. Scripts maintain structure.
+
+---
+
+## AI Responsibilities
+
+AI should enter when the system encounters:
+
+```txt
+ambiguity
+semantic judgment
+legacy migration
+incompatible input
+schema evolution
+duplicate concept interpretation
+variant recommendation
+human-readable explanation
+```
+
+AI should not be the permanent memory of the system. The graph is the memory.
+AI is the bridge into the graph.
+
+---
+
+## Health Checks
+
+This foundation introduces documentation health first:
+
+```txt
+node lib/check-registry-docs.js
+```
+
+Future graph health checks should validate:
+
+```txt
+every managed UI element has a UIElementKey
+every binding points to an existing context
+every localization binding points to a string_id or message_id
+deleted contexts are not still referenced
+legacy aliases remain searchable during migration
+high-impact changes produce an impact report
+AI context notes are updated for high-impact changes
+```
+
+---
+
+## Migration Rule
+
+Do not rewrite the whole repo into a new registry shape in one pass.
+
+Migration should proceed as:
+
+```txt
+1. Document the bounded graph and standards.
+2. Add small source maps that can be validated.
+3. Generate summary indexes from existing data.
+4. Add health checks before enforcing new edit rules.
+5. Preserve legacy aliases until links and references are migrated.
+```
+
+Current string keys and slugs remain valid handles. The new graph gives them a
+larger place to connect.
+
+---
+
+## Acceptance Criteria
+
+The UI Identity Registry Graph is working when:
+
+```txt
+A fresh AI agent can identify what it is editing before editing.
+A changed string can produce a clear impact report.
+A deleted UI element reveals stale strings, tests, docs, and bindings.
+A duplicate concept is detected before it becomes permanent.
+Generated indexes summarize the registry.
+Humans approve semantic decisions instead of chasing metadata by hand.
+```
+
+---
+
+# Localization Registry Graph
+
+**Status:** implementation-ready foundation
+**Completion Level:** L6 - Implementation-ready
+**Purpose:** lower-layer map for reusable strings, locale renderings, messages, placeholders, plurals, vendor workflow, and AI-safe modification
+**Parent architecture:** `docs/architecture/16-ui-identity-registry-graph.md`
+**Documentation Standard:** follows `docs/architecture/15-registry-documentation-standard.md`
+
+---
+
+## Scope Boundary
+
+This section defines the localization layer inside the UI Identity Registry
+Graph.
+
+It covers:
+- StringNode and MessageNode responsibilities
+- locale values and translation status
+- localization bindings
+- plural, placeholder, and rich-text validation
+- vendor export/import boundaries
+- translation impact reporting
+- migration from today's `data/strings/source` files
+
+It does not cover:
+- full UI identity metadata for every element
+- design constraints
+- screenshot diff storage
+- analytics event ownership
+- all vendor approval workflows
+
+Those belong to sibling maps that the parent graph routes into.
+
+---
+
+## Relationship To Parent Graph
+
+The parent graph defines the cross-domain handle:
+
+```txt
+UIElementKey -> lower-layer maps
+```
+
+The localization graph defines meaning and language rendering:
+
+```txt
+UIElementKey -> binding -> stringId or messageId -> locale rendering -> output page/component
+```
+
+The UIElementKey does not store every language. It routes to the localization
+map.
+
+---
+
+## Current Repo Fit
+
+Today's string pipeline is already a partial Localization Registry Graph:
+
+```txt
+data/strings/source/**/*.json        write-side source
+lib/strings-check.js                 integrity and stale detection
+lib/strings-compile.js               generated bundle compiler
+lib/strings-export.js                translator export
+lib/strings-import.js                translator import
+data/strings/compiled/**             generated read-side bundles
+data/strings/migrations.json         append-only key rename log
+```
+
+The current key is the practical handle. The next migration step is to attach
+explicit meaning IDs and bindings without breaking the existing key pipeline.
+
+---
+
+## Core Objects
+
+| Object | Purpose |
+|---|---|
+| `StringNode` | Reusable meaning node for static text |
+| `MessageNode` | Reusable meaning node for dynamic, pluralized, or variable-dependent text |
+| `LocaleValue` | Language-specific rendering of a string or message |
+| `LocalizationBinding` | Connection between a UIElementKey and a string or message |
+| `ContextNote` | Translator-facing explanation of where text appears and what it means |
+| `VendorBatch` | Controlled translation package exported to a vendor |
+
+Rule:
+
+```txt
+String ID identifies meaning.
+Locale files render that meaning.
+Bindings place that meaning into UI contexts.
+```
+
+English text is not the source of truth. The meaning node is the source of
+truth.
+
+---
+
+## Owned By
+
+Current source:
+
+```txt
+data/strings/source/**/*.json
+data/strings/migrations.json
+```
+
+Current generated output:
+
+```txt
+data/strings/compiled/**
+```
+
+Future source maps may be added after the initial registry foundation:
+
+```txt
+data/localization/strings.json
+data/localization/messages.json
+data/localization/bindings.json
+data/localization/plural-rules.json
+data/localization/placeholder-rules.json
+data/localization/vendor-notes.json
+```
+
+Do not add parallel source-of-truth files until a build script can validate or
+derive them from the current pipeline.
+
+---
+
+## Connects To
+
+Localization connects to:
+
+```txt
+UI Identity Registry Graph
+Context Registry
+Design/Layout Constraints
+QA/VnV Map
+Documentation Map
+Vendor Workflow Map
+Platform Implementation Map
+AI Context Map
+```
+
+Translation is not isolated text replacement. It is identity management for
+meaning across languages, contexts, platforms, vendors, and time.
+
+---
+
+## Query Functions
+
+Recommended contracts:
+
+```ts
+getStringSummary(stringId)
+getMessageSummary(messageId)
+getLocaleStatus(stringIdOrMessageId)
+getBindingsForString(stringId)
+getMissingLocales(scope)
+getPluralValidationReport(messageId)
+getPlaceholderValidationReport(id)
+getTranslationImpactReport(id)
+getReusableStringCandidates(text)
+getVendorExportBatch(scope)
+```
+
+These should return summary cards plus pointers to source rows and generated
+reports.
+
+---
+
+## Decision Rules
+
+Use these rules when adding or changing localized text:
+
+```txt
+Same meaning, same audience -> reuse string.
+Same meaning, different audience -> create variant.
+Different meaning -> create new string.
+Count-dependent meaning -> use message_id.
+Legal or regulated text -> locked/review-required.
+```
+
+If one string appears in twelve places, a vendor should translate it once and
+the graph should apply it twelve times.
+
+---
+
+## Health Checks
+
+Current health:
+
+```txt
+node lib/strings-check.js
+node lib/strings-compile.js
+node --test tests/02-strings-pipeline.test.js
+```
+
+Future localization health should validate:
+
+```txt
+every binding has string_id or message_id
+every string_id exists
+every message_id exists
+required locales exist
+placeholders are preserved
+plural categories are valid per locale
+rich-text tags are allowed and balanced
+locked terms are preserved
+duplicate strings are reviewed
+orphaned locale rows are quarantined
+managed HTML text changes happen through the registry
+localized screenshot diffs are regenerated where required
+```
+
+The first new health check for this milestone is documentation-level:
+
+```txt
+node lib/check-registry-docs.js
+```
+
+---
+
+## Migration Path
+
+The migration should stay additive:
+
+```txt
+1. Preserve current string keys and compiled bundles.
+2. Add documentation standard and graph docs.
+3. Add registry-doc health checks.
+4. Generate a localization summary index from existing source files.
+5. Add explicit StringNode/MessageNode metadata once the summary index is stable.
+6. Add UIElementKey bindings for selected pages before repo-wide enforcement.
+7. Add vendor and placeholder/plural validators after the data exists.
+```
+
+This keeps the current site working while the registry becomes real.
+
+---
+
+## Acceptance Criteria
+
+The Localization Registry Graph is working when:
+
+```txt
+Every localized string is traceable to meaning, context, and UI ownership.
+A new locale can be added without duplicating page structure.
+A vendor receives only the rows they need plus enough context to translate safely.
+A count-dependent message cannot be modeled as a plain string by accident.
+A placeholder-removing translation fails before import.
+A global string edit reports every affected UI element and locale.
+AI proposes mappings only where deterministic scripts cannot decide.
+```
 
 ---
 
