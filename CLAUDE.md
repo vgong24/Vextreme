@@ -66,6 +66,9 @@ Run it instead of manually auditing `pages/*.html`.
 - `specimen-architectural-wisdoms` — needs a compiled string bundle before God Script can be assembled
 - `restoration-protocol` — uses `shell.js` (v1 path); needs investigation before porting
 
+**Before opening or reviewing a PR, run `npm run pr-ready`** — it chains the test suite and every
+drift/health check script in one command.
+
 ## Key constraint
 
 Every `.html` filename in `pages/` must be globally unique across the entire tree —
