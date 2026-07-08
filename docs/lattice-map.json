@@ -1252,8 +1252,8 @@
 
     "lib/build-sitemap.js": {
       "role": "generates sitemap.xml — lists only pages that actually exist, so crawlers never hit a 404",
-      "context": "Filters nodes.json down to nodes with both a non-null id and an actual pages/{slug}.html file on disk before including them — unported nodes are silently excluded rather than producing a dead sitemap entry. UTILITY_PAGES is a small hardcoded list of non-node pages (archives, vextreme-demo, specimens) to include if they exist.",
-      "reads": ["data/nodes.json", "pages/*.html (existence check only, per slug)"],
+      "context": "Filters nodes.json down to nodes with both a non-null id and an actual pages/{slug}.html file on disk before including them — unported nodes are silently excluded rather than producing a dead sitemap entry. UTILITY_PAGES is a small hardcoded list of non-node pages (archives, vextreme-demo, specimens) to include if they exist. Session 027: lastmod per URL used to be a single build-time 'today' stamped on every entry regardless of whether that page's content actually changed — since build-index.yml's trigger paths cover nearly any change, this meant 'everything changed today' on almost every build, defeating the point of lastmod for crawlers. Now computed per file via `git log -1 --format=%aI` (real last-change date), falling back to today only when git can't resolve one. No test file exists for this script (also true before this change) — consistent with several other simple page-generating build-*.js scripts (build-archives, build-demo, build-index-page, build-specimens) that are also untested top-level scripts, not a gap unique to this fix.",
+      "reads": ["data/nodes.json", "pages/*.html (existence check only, per slug)", "git log (per-file last-change date, via subprocess)"],
       "writes": ["sitemap.xml"],
       "loadedBy": [".github/workflows/build-index.yml"],
       "testedBy": [],
@@ -1318,10 +1318,11 @@
         "node lib/build-lattice-headers.js --check (via subprocess)",
         "node lib/check-design-tokens.js (via subprocess)",
         "node lib/check-map-bindings.js (via subprocess)",
+        "node lib/check-continuity-lag.js --json (via subprocess)",
         "node --test tests/*.test.js (via subprocess, with VEX_BOOTSTRAP_NESTED=1 to prevent recursion)"
       ],
       "writes": ["stdout only — read-only, changes nothing"],
-      "loadedBy": ["manual run: node lib/session-bootstrap.js", "tests/14-session-bootstrap.test.js", "lib/check-map-bindings.js (requires the parse/latest helpers)"],
+      "loadedBy": ["manual run: node lib/session-bootstrap.js", "tests/14-session-bootstrap.test.js", "lib/check-map-bindings.js (requires the parse/latest helpers)", "lib/check-continuity-lag.js (requires parseBatchRegistry/latestSessionFile helpers)"],
       "testedBy": ["tests/14-session-bootstrap.test.js"],
       "changeMap": {
         "docs/continuity/INDEX.md's 'Last updated' line or Batch Registry table format changed": [
@@ -1336,6 +1337,9 @@
         "the per-session filename convention (YYYY-MM-DD-session-0NN.md) or the directory-batch form changed": [
           "latestSessionFile() here — filters and sorts by that exact filename shape; docs/continuity/batch-003/README.md and INDEX.md's batch rules document the convention it assumes",
           "lib/check-map-bindings.js — enforces the same convention against the registry's declared range"
+        ],
+        "a new drift/health check script is added to the repo": [
+          "wire it in here the same way lib/check-continuity-lag.js was (Session 027) — add it to the reads list, run it as a subprocess, fold its result into the report object and the console summary — so the one-shot glance stays complete instead of silently missing the newest check"
         ]
       }
     },
@@ -1394,6 +1398,27 @@
         ],
         "a new map layer is added (a folder README, a registry, a generated index)": [
           "add its binding check here — the layered-maps culture section says the map and its health check arrive together"
+        ]
+      }
+    },
+
+    "lib/check-continuity-lag.js": {
+      "role": "informational check comparing merged-PR count against how recently the newest continuity session file was touched",
+      "context": "Built in Session 027 after a cold-start review found 15 merged PRs (#76–#92) — including a six-PR bug chain significant enough to become standing doctrine in docs/culture.md — with no session file and no INDEX.md refresh, invisible to every other drift detector because none of them compare 'how much merged' against 'how much narrated'; they verify internal map consistency, not narrative freshness. Finds the last commit that touched the active batch's newest session file, counts 'Merge pull request #N' commits since, and flags past THRESHOLD (8 — a first guess, picked above a normal single-session continuation cadence and below the 15-PR gap that motivated this file). Deliberately informational, never fails the process — a high count means a session entry is probably overdue, not that the PR crossing the threshold did anything wrong. Fails gracefully (reports skipped + reason) rather than a false all-clear when git history is shallow or the active batch is a legacy single file.",
+      "reads": [
+        "docs/continuity/INDEX.md (batch registry, via lib/session-bootstrap.js's parseBatchRegistry)",
+        "active batch directory listing (newest session file, via lib/session-bootstrap.js's latestSessionFile)",
+        "git log (last commit touching the newest session file; commit range since then, via subprocess)"
+      ],
+      "writes": ["stdout only — read-only, changes nothing; always exits 0 (informational)"],
+      "loadedBy": ["manual run: node lib/check-continuity-lag.js", "lib/session-bootstrap.js (report subprocess)", "tests/32-check-continuity-lag.test.js"],
+      "testedBy": ["tests/32-check-continuity-lag.test.js"],
+      "changeMap": {
+        "INDEX.md's Batch Registry table format, or the YYYY-MM-DD-session-0NN.md filename convention, changed": [
+          "this file reuses lib/session-bootstrap.js's parseBatchRegistry()/latestSessionFile() directly — no separate parsing here, so it moves automatically with those, but confirm the shared assumption still holds"
+        ],
+        "THRESHOLD proves too noisy (flags normal sessions) or too late (another multi-PR gap slips through)": [
+          "it's a single named constant at the top of the file, deliberately not derived from anything — retune it directly, no downstream consumers assume its value"
         ]
       }
     },

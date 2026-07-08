@@ -114,6 +114,28 @@
 
 ---
 
+## Continuity & lesson check
+
+<!--
+  This is the self-check that would have caught it: 15 PRs (#76-#92) once
+  merged clean — tests green, every drift detector green — with no session
+  file and no INDEX.md refresh, because nothing prompted the question. Answer
+  these before marking the PR ready:
+
+  - Does this PR's reasoning belong in config/lessons/*.json? Not just for
+    multi-PR bug chains (the Bug-chain check section above already covers
+    that case) — any reusable "here's what broke and why" is a candidate.
+  - Does merging this make anything in docs/continuity/INDEX.md's Current
+    State or Open Work stale, newly duplicated, or newly resolved?
+  - Run `node lib/check-continuity-lag.js` — if it flags, a session entry is
+    likely overdue (not necessarily for this PR alone; check whether the
+    backlog has grown past what the newest session file accounts for).
+
+  If none of these apply, say so — "N/A, no lesson/continuity impact."
+-->
+
+---
+
 ## Assumptions this PR makes
 
 <!--

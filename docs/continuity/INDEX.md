@@ -28,7 +28,8 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 025 — July 7, 2026*
+*As of Session 025 — July 7, 2026 (corrections and one addition in Session 027 — July 8, 2026,
+noted inline below; the paragraph's substance is otherwise still Session 025's)*
 
 The v2 GitHub Pages architecture is the active system. v1 (`data/arcs.json`, `data/pages.json`,
 `lib/vextreme.js`/`archive-renderer.js`/`arc-nav.js`) still serves the live Squarespace site
@@ -82,7 +83,13 @@ registry ↔ files, batch registry ↔ directories, INDEX's "Last updated" ↔ n
 A fifth, `lib/check-lattice-edges.js` (pe-012, shipped Session 024 continued), verifies the
 lattice map's claimed reads/writes/loadedBy edges against actual code — informational at the
 CLI, blocking in CI via tests/23's integration test; its first run found and fixed 22 stale
-edges. 399/399 tests passing. Lattice coverage 35/46 (76%).
+edges. A sixth, `lib/check-continuity-lag.js` (Session 027), compares merged-PR count against
+how recently the newest continuity session file was touched — informational, built after this
+same review found 15 merged PRs (`#76`–`#92`) with no session file, invisible to the other five
+detectors because none of them check narrative freshness, only internal map consistency. (Test
+count and lattice coverage percentage above are last known from Session 024/025 — stale by an
+unknown amount given the PR #76–#92 gap; a proper refresh belongs with whatever resolves that
+gap, not guessed at here.)
 
 Session 025 added a real third language. `victor_dossier` (`pages/victor-methodology-presentation.html`)
 is the first non-fixture page with a real `data/strings/source/pages/*.json` file, a real arc, and
@@ -139,8 +146,30 @@ The change repairs Session 023 (Codex's July 6 context-note and perceivable-cont
 entries had been injected mid-file into Session 021's record.
 
 **Recent sessions** (one line each — open the session files below for full reasoning):
-- **Session 025** — Reviewed three Codex registry-graph context docs (well communicated into
-  `docs/architecture/15–17`, recommended `context-notes/` as their raw-form home). Merged a
+- **Session 027** — Cold-start review (a fresh instance working through the full boot sequence
+  plus an uploaded "Meta Project" doc proposing process/role/source-truth-map vocabulary) found
+  two real gaps and built the fix for one. First: Session 025's own text describes PR #69's
+  registry-graph docs (`docs/architecture/15–17`, `data/registry/`, `lib/check-registry-docs.js`)
+  as built and reviewed, but PR #69 was closed unmerged the same day — none of that content is in
+  the working tree; corrected here and in Session 025's one-liner above. Second: PRs `#76`–`#92`
+  (15 merged, including the six-PR caching-layers bug chain) landed with no session file and no
+  refresh to this file, invisible to all five existing drift detectors because none compare
+  merged-PR count against narrative freshness. Built `lib/check-continuity-lag.js` (a sixth,
+  informational detector closing that blind spot going forward), added a "Continuity & lesson
+  check" section to the PR template, and surfaced two already-decided-but-invisible items
+  (the queue's `pe-012` reverse-traversal-map enhancement, the translation-debt categorization)
+  into Open Work below — which surfaced a third finding: that `pe-012` is now a reused ID,
+  clashing with the already-shipped `lib/check-lattice-edges.js`'s own long-standing `pe-012`
+  identity (see Open Work). The Meta Project doc itself was treated as pattern input, not adopted
+  architecture — its `sourceTruth.process.*` framing matched the queue's `pe-012` reverse-
+  traversal-map idea closely enough to fold into it rather than invent a parallel concept (and,
+  fittingly, the doc's own Section 3.9 names exactly the "processes need stable keys" problem the
+  collision demonstrates). Whether to reconstruct a Session 026 for the PR #76–#92 gap is still
+  Victor's open call (see Open Work).
+- **Session 025** — Reviewed three Codex registry-graph context docs against PR #69's
+  implementation (`docs/architecture/15–17`, `data/registry/`, `lib/check-registry-docs.js`) —
+  judged well-communicated. **Correction (Session 027): Victor closed PR #69 unmerged shortly
+  after, in favor of PR #70 — none of that content exists in the working tree.** Merged a
   bilingual (en/zh) engineering dossier from two duplicated HTML files into one
   `data-i18n`-driven page — the first non-fixture page with a real string source file and arc.
   Resolved od-001/td-006 with a scoped arc-chunked bundling pilot (`lib/build-arc-bundles.js`,
@@ -163,9 +192,6 @@ entries had been injected mid-file into Session 021's record.
   Continued again: shipped pe-012 as `lib/check-lattice-edges.js` — 22 stale lattice edges
   found and fixed on its first run; the sentinel hazard bit the tool itself twice while
   building it (fresh evidence for the `const VEX_LATTICE` structural fix).
-- **Session 023 (Codex)** — Context-note registry (`docs/continuity/CONTEXT-NOTES.md` +
-  `context-notes/`), then "perceivable context" culture (`docs/culture.md` layered-maps section,
-  pe-013 map-binding health check). PRs #63–#64. Entries originally misfiled; see Session 024.
 
 **This section is a snapshot, not a log.** Full session-by-session reasoning — mistakes tried,
 assumptions made, why a decision went one way over another — lives in the batch files (see
@@ -188,7 +214,7 @@ architecture docs, or lessons only through a PR decision record.
 
 ## Open Work
 
-*Updated Session 025 — July 7, 2026*
+*Updated Session 027 — July 8, 2026*
 
 This list holds only genuinely open items — things nobody has done yet, not a running log of
 what shipped. A completed item is removed here the same session it ships, not kept and checked
@@ -197,6 +223,9 @@ off forever; its record already lives in the batch file and (for od-/td-/pe- ite
 not this list.
 
 **Genuinely open:**
+- [ ] **Continuity gap, PR #76–#92 (found Session 027):** 15 merged PRs — including a six-PR bug chain (`#79/82/83/84/86/87`) significant enough to become standing doctrine in `docs/culture.md`'s "Multi-PR bug chains" section — landed with no session file and no refresh to this file. What survived: one lesson (`config/lessons/caching-layers-multiply-and-each-one-can-independently-hide-a-fix.json`) and nine lines in `planned-enhancements.json`. Whether to reconstruct a Session 026 from the 15 PRs' own decision-record bodies (each already follows the PR template), or handle it some other way, is Victor's call and still undecided — see `lib/check-continuity-lag.js` (new, Session 027) for the mechanism that would catch the next one of these automatically.
+- [ ] **`pe-012` ID collision (found Session 027):** `data/status/planned-enhancements.json`'s current `pe-012` — "function-level reverse traversal map for answering source-of-truth questions with minimal grep" (e.g. "where does `supportedLangs` actually get set" without a broad repo grep; start read-only/informational, promote to a drift check only once it can distinguish legacy direct-script paths from generated God Script paths; added Session 025, landed via PR #89, never previously surfaced here) — **reuses an ID already permanently baked into shipped code and this file's own history**: `lib/check-lattice-edges.js`'s docstring, its `docs/lattice-map.json` node, and this file's "Current State" section (above) all call the already-shipped lattice-edge checker `pe-012`. Two different real things now share one ID. Needs a decision: renumber the new (unbuilt) enhancement, or accept the collision as historical (old `pe-012` = shipped code referenced everywhere; new `pe-012` = queue entry, disambiguate by context) — not fixed here, since renumbering touches shipped code/doc references and is a bigger move than this pass's scope.
+- [ ] `data/status.json` translation-pending count (165) doesn't yet distinguish "structural pilot fallout" (every EN+JA-only key becoming zh-missing once `zh` went site-wide, Session 025) from real per-key debt — named as worth doing in Session 025's own file, never promoted to this list until now.
 - [ ] `Feature.MAP` — a live-page FAB linking back to `pages/terrain-map.html` (Session 025 continued) — the natural next increment for the terrain map, touches the shared `FEATURES` registry in `lib/build-vextreme.js` (real production surface), needs Victor's explicit go-ahead
 - [ ] The "multi-navigational lens" / role-based-view idea Victor floated (Session 025 continued) — the terrain map's lens toggle is now Engineer/Auditor/All (recede-not-hide, off-lens nodes stay visible but smaller/dimmer) instead of the original Engineer/Health-lead pair; whether Victor wants true add/remove-by-lens instead (matching his own org-chart mockup screenshots, where a broader lens reveals boxes a narrower one didn't show at all) is still unconfirmed — the conservative recede behavior was a deliberate choice, not yet validated against what he actually pictured
 - [ ] `Feature.MAP`'s live-page FAB (below) should also account for the terrain map's new fractal zoom-level ladder — a page's FAB linking "back to the map" needs to decide which level/stage to land the camera on, not just open the page at its default view
@@ -211,7 +240,7 @@ not this list.
 - [ ] Migrate a second arc to `bundlingStrategy: "arc-chunked"` — the mechanism already generalizes (Session 025); no second arc has enough traffic/language need yet to justify it
 - [ ] `supportedLangs` is site-wide, not page-aware — adding `zh` to one arc (Session 025) makes 🇨🇳 selectable on every page, most of which have zero zh translations; degrades safely (missing-key falls back to EN) but is a known, undecided-on limitation, not a hidden defect. See `docs/architecture/06-i18n.md`'s "Arc-chunked bundling pilot."
 - [ ] Session 023's standing decision: distill the PR-ordering rule (merge order vs. reasoning order) into `docs/culture.md` as doctrine, or leave it as preserved context — Victor has not yet said which
-- [ ] Promote the three raw wip/ registry-graph docs (`registry-documentation-standard.md`, `ui-identiy-registry-graph.md`, `localization-registry-graph.md`) into `docs/continuity/context-notes/` — recommended (Session 025), not done; Victor said no rush
+- [ ] The three raw wip/ registry-graph docs (`registry-documentation-standard.md`, `ui-identiy-registry-graph.md`, `localization-registry-graph.md`) do **not** currently exist in `wip/` or anywhere else in the working tree — they only ever existed on PR #69 (`VXG-070626-codex-registry-foundation`), which Victor closed unmerged in favor of PR #70's narrower implementation ("Closing due to full implementation forwarded in #70"). Session 025's recommendation to promote them into `docs/continuity/context-notes/` (found Session 027 to still be listed here) would need to pull them from that closed PR's diff specifically, not from `wip/` — correcting this so a future instance doesn't go looking in the wrong place.
 - [ ] od-002 — should build-time content synthesis use a live LLM call, or stay session-authored?
 - [ ] od-003 — future: local/lightweight model as an admin-facing chat interface, escalating to Claude when needed
 - [ ] od-006 — "init baseline" scaffold separating the reusable engine from this repo's specific content
@@ -407,6 +436,6 @@ Create as `docs/continuity/batch-00N/YYYY-MM-DD-session-0NN.md`:
 
 ---
 
-*Last updated: Session 025 — July 7, 2026*
+*Last updated: Session 027 — July 8, 2026*
 
 <!-- [VXG RealForever] -->
