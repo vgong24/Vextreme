@@ -202,7 +202,7 @@
         "td-004",
         "pe-006",
         "pe-011",
-        "pe-012",
+        "pe-014",
         "pe-010",
         "pe-009"
       ],
@@ -965,7 +965,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": true,
-      "auditorRank": 2
+      "auditorRank": 3
     },
     {
       "id": "lib/check-design-tokens.js",
@@ -1064,11 +1064,13 @@
       "testedBy": [
         "tests/23-check-lattice-edges.test.js"
       ],
-      "debts": [],
-      "status": "good",
+      "debts": [
+        "pe-014"
+      ],
+      "status": "warning",
       "engineerFocus": false,
       "auditorFocus": true,
-      "auditorRank": 3
+      "auditorRank": 2
     },
     {
       "id": "lib/check-map-bindings.js",
@@ -2094,7 +2096,7 @@
     "pe-007": "Unified feature registry — collapse CORE_MODULES and FEATURE_WIDGET into one table",
     "pe-008": "Offline mode configuration FAB (fab-offline.js)",
     "pe-011": "Collapse lib/build-archives.js onto data/index.json instead of re-deriving from nodes.json/arcs-v2.json independently",
-    "pe-012": "Function-level reverse traversal map for answering source-of-truth questions with minimal grep",
+    "pe-014": "Function-level reverse traversal map for answering source-of-truth questions with minimal grep",
     "pe-010": "Department dashboard depth — dedicated transcript library, God-Script wiring granularity",
     "pe-009": "Expand LATTICE coverage beyond the current 27 nodes (64% of lib/+widgets/)"
   },

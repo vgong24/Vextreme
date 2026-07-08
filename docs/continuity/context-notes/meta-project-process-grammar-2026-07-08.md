@@ -57,17 +57,21 @@ note... without claiming implementation is accepted") and per this repo's own co
      `check-map-bindings.js`, `build-lattice-headers.js --check`, and the new
      `check-continuity-lag.js`.
 
-3. **The closest concrete match is `pe-012`** (`data/status/planned-enhancements.json`) —
-   "function-level reverse traversal map for answering source-of-truth questions with minimal
-   grep" — added Session 025/landed via PR #89, itself born from a real debugging pain point (the
-   zh/FAB investigation), not designed abstractly. Its own prescribed sequencing ("start read-only
-   and informational; promote to a drift check only after the map can distinguish intentional
-   legacy direct-script paths from generated God Script paths") independently matches this
-   document's own map-then-check discipline. **Note found during this same review: `pe-012` is
-   currently a reused ID** — it also permanently identifies the already-shipped
-   `lib/check-lattice-edges.js` in code, `docs/lattice-map.json`, and this repo's continuity
-   record. See `docs/continuity/INDEX.md`'s Open Work list for that, unresolved separately from
-   this note.
+3. **The closest concrete match is `pe-014`** (`data/status/planned-enhancements.json`, renamed
+   from `pe-012` — see below) — "function-level reverse traversal map for answering source-of-
+   truth questions with minimal grep" — added Session 025/landed via PR #89, itself born from a
+   real debugging pain point (the zh/FAB investigation), not designed abstractly. Its own
+   prescribed sequencing ("start read-only and informational; promote to a drift check only after
+   the map can distinguish intentional legacy direct-script paths from generated God Script
+   paths") independently matches this document's own map-then-check discipline. **A live worked
+   example of this document's own §3.9 lesson:** this item was originally logged as `pe-012`,
+   which turned out to already permanently identify the shipped `lib/check-lattice-edges.js` in
+   code, `docs/lattice-map.json`, and this repo's continuity record — a real ID collision, found
+   during this same review. Resolved (PR #93 continuation, same day, on Victor's and Vex's direct
+   recommendation): the shipped item keeps `pe-012`; this one is renamed to `pe-014` rather than
+   accepting the ambiguity, since "once an ID has shipped and entered continuity history, it is
+   not reused for a different object" — source-truth IDs are stable coordinates, not labels,
+   exactly as this document's own vocabulary would predict.
 
 **Where this stands:** pattern-draft, exactly as the document itself claims for its own maturity
 (§20). Nothing in `data/source-truth-map.json`, `lib/build-process-map.js`, or any of the other

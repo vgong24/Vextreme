@@ -157,14 +157,20 @@ entries had been injected mid-file into Session 021's record.
   merged-PR count against narrative freshness. Built `lib/check-continuity-lag.js` (a sixth,
   informational detector closing that blind spot going forward), added a "Continuity & lesson
   check" section to the PR template, and surfaced two already-decided-but-invisible items
-  (the queue's `pe-012` reverse-traversal-map enhancement, the translation-debt categorization)
-  into Open Work below — which surfaced a third finding: that `pe-012` is now a reused ID,
-  clashing with the already-shipped `lib/check-lattice-edges.js`'s own long-standing `pe-012`
-  identity (see Open Work). The Meta Project doc itself was treated as pattern input, not adopted
-  architecture — its `sourceTruth.process.*` framing matched the queue's `pe-012` reverse-
-  traversal-map idea closely enough to fold into it rather than invent a parallel concept (and,
-  fittingly, the doc's own Section 3.9 names exactly the "processes need stable keys" problem the
-  collision demonstrates). Whether to reconstruct a Session 026 for the PR #76–#92 gap is still
+  (the queue's reverse-traversal-map enhancement, the translation-debt categorization) into Open
+  Work — which surfaced a third finding: that its ID, `pe-012`, was a reused one, clashing with
+  the already-shipped `lib/check-lattice-edges.js`'s own long-standing `pe-012` identity. Also
+  fixed `lib/build-sitemap.js`'s `lastmod`, which stamped every URL with the build date regardless
+  of whether that page's content changed — now computed per file from real git history. **PR #93
+  continuation, same day:** the `pe-012` collision is resolved — the queue item is renamed to
+  `pe-014` (the shipped lattice-edge checker keeps `pe-012`; renaming the still-open item was
+  cheaper than muddying shipped history), per Victor's and Vex's direct recommendation. The Meta
+  Project doc itself was treated as pattern input, not adopted architecture — its
+  `sourceTruth.process.*` framing matched the queue's (now `pe-014`) reverse-traversal-map idea
+  closely enough to fold into it rather than invent a parallel concept, and the collision-then-
+  rename is itself a live worked example of the doc's own Section 3.9 lesson: source-truth IDs
+  are stable coordinates, not labels reused after semantic commitment. Whether to reconstruct a
+  Session 026 for the PR #76–#92 gap is still
   Victor's open call (see Open Work).
 - **Session 025** — Reviewed three Codex registry-graph context docs against PR #69's
   implementation (`docs/architecture/15–17`, `data/registry/`, `lib/check-registry-docs.js`) —
@@ -224,7 +230,7 @@ not this list.
 
 **Genuinely open:**
 - [ ] **Continuity gap, PR #76–#92 (found Session 027):** 15 merged PRs — including a six-PR bug chain (`#79/82/83/84/86/87`) significant enough to become standing doctrine in `docs/culture.md`'s "Multi-PR bug chains" section — landed with no session file and no refresh to this file. What survived: one lesson (`config/lessons/caching-layers-multiply-and-each-one-can-independently-hide-a-fix.json`) and nine lines in `planned-enhancements.json`. Whether to reconstruct a Session 026 from the 15 PRs' own decision-record bodies (each already follows the PR template), or handle it some other way, is Victor's call and still undecided — see `lib/check-continuity-lag.js` (new, Session 027) for the mechanism that would catch the next one of these automatically.
-- [ ] **`pe-012` ID collision (found Session 027):** `data/status/planned-enhancements.json`'s current `pe-012` — "function-level reverse traversal map for answering source-of-truth questions with minimal grep" (e.g. "where does `supportedLangs` actually get set" without a broad repo grep; start read-only/informational, promote to a drift check only once it can distinguish legacy direct-script paths from generated God Script paths; added Session 025, landed via PR #89, never previously surfaced here) — **reuses an ID already permanently baked into shipped code and this file's own history**: `lib/check-lattice-edges.js`'s docstring, its `docs/lattice-map.json` node, and this file's "Current State" section (above) all call the already-shipped lattice-edge checker `pe-012`. Two different real things now share one ID. Needs a decision: renumber the new (unbuilt) enhancement, or accept the collision as historical (old `pe-012` = shipped code referenced everywhere; new `pe-012` = queue entry, disambiguate by context) — not fixed here, since renumbering touches shipped code/doc references and is a bigger move than this pass's scope.
+- [ ] `pe-014` (renamed from `pe-012` — see `data/status/planned-enhancements.json`'s `renamedFrom`/`renameReason` fields) — function-level reverse traversal map for answering source-of-truth questions with minimal grep (e.g. "where does `supportedLangs` actually get set" without a broad repo grep); start read-only/informational, promote to a drift check only once it can distinguish legacy direct-script paths from generated God Script paths. Added Session 025, landed via PR #89, renumbered PR #94 after colliding with the already-shipped `lib/check-lattice-edges.js`'s own `pe-012` identity. Still genuinely unbuilt — only the ID collision is resolved.
 - [ ] `data/status.json` translation-pending count (165) doesn't yet distinguish "structural pilot fallout" (every EN+JA-only key becoming zh-missing once `zh` went site-wide, Session 025) from real per-key debt — named as worth doing in Session 025's own file, never promoted to this list until now.
 - [ ] `Feature.MAP` — a live-page FAB linking back to `pages/terrain-map.html` (Session 025 continued) — the natural next increment for the terrain map, touches the shared `FEATURES` registry in `lib/build-vextreme.js` (real production surface), needs Victor's explicit go-ahead
 - [ ] The "multi-navigational lens" / role-based-view idea Victor floated (Session 025 continued) — the terrain map's lens toggle is now Engineer/Auditor/All (recede-not-hide, off-lens nodes stay visible but smaller/dimmer) instead of the original Engineer/Health-lead pair; whether Victor wants true add/remove-by-lens instead (matching his own org-chart mockup screenshots, where a broader lens reveals boxes a narrower one didn't show at all) is still unconfirmed — the conservative recede behavior was a deliberate choice, not yet validated against what he actually pictured
