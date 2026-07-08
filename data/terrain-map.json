@@ -40,12 +40,12 @@
       "key": 2,
       "name": "CHECK",
       "sub": "drift detectors and tests — run after generation",
-      "count": 4,
+      "count": 5,
       "rect": {
         "x": 1030,
         "y": 40,
         "width": 300,
-        "height": 330
+        "height": 390
       }
     },
     {
@@ -937,6 +937,36 @@
       "auditorRank": 9
     },
     {
+      "id": "lib/check-continuity-lag.js",
+      "cluster": "lib",
+      "stage": 2,
+      "stageName": "CHECK",
+      "x": 1080,
+      "y": 210,
+      "role": "informational check comparing merged-PR count against how recently the newest continuity session file was touched",
+      "reads": [
+        "docs/continuity/INDEX.md (batch registry, via lib/session-bootstrap.js's parseBatchRegistry)",
+        "active batch directory listing (newest session file, via lib/session-bootstrap.js's latestSessionFile)",
+        "git log (last commit touching the newest session file; commit range since then, via subprocess)"
+      ],
+      "writes": [
+        "stdout only — read-only, changes nothing; always exits 0 (informational)"
+      ],
+      "loadedBy": [
+        "manual run: node lib/check-continuity-lag.js",
+        "lib/session-bootstrap.js (report subprocess)",
+        "tests/32-check-continuity-lag.test.js"
+      ],
+      "testedBy": [
+        "tests/32-check-continuity-lag.test.js"
+      ],
+      "debts": [],
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": true,
+      "auditorRank": 2
+    },
+    {
       "id": "lib/check-design-tokens.js",
       "cluster": "lib",
       "stage": 2,
@@ -974,7 +1004,7 @@
       "stage": 2,
       "stageName": "CHECK",
       "x": 1080,
-      "y": 210,
+      "y": 270,
       "role": "non-blocking CI check — compares slug/arc keys across nodes.json, arcs-v2.json, index.json, cross-checks pages/ and wip/, and reports drift",
       "reads": [
         "data/nodes.json",
@@ -1016,7 +1046,7 @@
       "stage": 2,
       "stageName": "CHECK",
       "x": 1080,
-      "y": 270,
+      "y": 330,
       "role": "pe-012 lattice-edge drift detector — verifies the map's claimed reads/writes/loadedBy edges against actual code",
       "reads": [
         "docs/lattice-map.json (every node's claimed edges)",
@@ -1037,7 +1067,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": true,
-      "auditorRank": 2
+      "auditorRank": 3
     },
     {
       "id": "lib/check-map-bindings.js",
@@ -1070,7 +1100,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": true,
-      "auditorRank": 3
+      "auditorRank": 4
     },
     {
       "id": "lib/compute-fab-version.js",
@@ -1245,6 +1275,7 @@
         "node lib/build-lattice-headers.js --check (via subprocess)",
         "node lib/check-design-tokens.js (via subprocess)",
         "node lib/check-map-bindings.js (via subprocess)",
+        "node lib/check-continuity-lag.js --json (via subprocess)",
         "node --test tests/*.test.js (via subprocess, with VEX_BOOTSTRAP_NESTED=1 to prevent recursion)"
       ],
       "writes": [
@@ -1253,7 +1284,8 @@
       "loadedBy": [
         "manual run: node lib/session-bootstrap.js",
         "tests/14-session-bootstrap.test.js",
-        "lib/check-map-bindings.js (requires the parse/latest helpers)"
+        "lib/check-map-bindings.js (requires the parse/latest helpers)",
+        "lib/check-continuity-lag.js (requires parseBatchRegistry/latestSessionFile helpers)"
       ],
       "testedBy": [
         "tests/14-session-bootstrap.test.js"
@@ -1960,6 +1992,10 @@
     [
       "lib/session-bootstrap.js",
       "lib/build-lattice-headers.js"
+    ],
+    [
+      "lib/session-bootstrap.js",
+      "lib/check-continuity-lag.js"
     ],
     [
       "lib/session-bootstrap.js",
