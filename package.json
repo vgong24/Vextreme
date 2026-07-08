@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "test": "node --test tests/*.test.js",
-    "test:coverage": "node --experimental-test-coverage --test tests/*.test.js"
+    "test:coverage": "node --experimental-test-coverage --test tests/*.test.js",
+    "pr-ready": "node --test tests/*.test.js && node lib/check-map-bindings.js && node lib/build-lattice-headers.js --check && node lib/check-lattice-edges.js && node lib/check-continuity-lag.js && node lib/check-string-identity.js && node lib/strings-check.js && node lib/check-design-tokens.js && node lib/check-key-alignment.js"
   },
   "engines": {
     "node": ">=18"
