@@ -318,6 +318,78 @@
       }
     },
 
+    "lib/discover-string-identity.js": {
+      "role": "localization identity pilot, first script — proposal/report tool only, cross-references a page's string keys against its live HTML's data-legacy-id/id/title-alias attributes",
+      "context": "Session 027 (PR #93/#94 continuation, per Victor+Vex's approved narrowed localization-identity pilot). Activates a canonical/observed identity split that already existed unindexed on victor-methodology-presentation.html: every content record carries a data-legacy-id next to its data-i18n key. Groups a page's string keys by their contentNodeKey segment (pages.{slug}.{contentNodeKey}.{field}), finds the matching id=\"...\" attribute in the HTML (case-insensitive, careful not to match the \"-id=\" tail of data-legacy-id — a real bug hit and fixed while building this, since a naive \\b-based regex matches that boundary too), then looks for a data-legacy-id on the same tag or an informal title=\"legacy alias: X\" nearby. Classifies each content node aligned/needs_review/unresolved without ever guessing 'aligned' — the pilot page's own real state is 12 aligned, 1 needs_review (an informal title-alias card), 6 unresolved (including one, header, whose real data-legacy-id exists but is undiscoverable by this heuristic because the HTML id (page-dossier-root) diverges from the key segment (header) — a named, honest limitation, not a bug). Never writes to data/strings/source/** — writes a candidate report only; a human (or, for this pilot, a reviewed-and-recorded one-time merge, not this script) decides which candidates become real identity blocks.",
+      "reads": [
+        "data/strings/source/pages/{slug}.json (existing string keys)",
+        "pages/{slug}.html (id, data-legacy-id, title=\"legacy alias:\" attributes)"
+      ],
+      "writes": [
+        "data/strings/reports/string-identity-candidates-{slug}.json (candidate report only — never touches data/strings/source/**)"
+      ],
+      "loadedBy": [
+        "manual run: node lib/discover-string-identity.js <slug>",
+        "tests/33-string-identity.test.js"
+      ],
+      "testedBy": ["tests/33-string-identity.test.js"],
+      "changeMap": {
+        "a page's HTML restructures its id/data-legacy-id attributes": [
+          "re-run this script for that slug and review the new candidate report before touching source — lib/check-string-identity.js's checkElementIdsStillReal flags recorded ids that no longer resolve, but does not re-discover new ones automatically"
+        ]
+      }
+    },
+
+    "lib/build-string-identity-index.js": {
+      "role": "localization identity pilot, second script — generates pointer indexes and a human-readable report from committed identity metadata",
+      "context": "Reads the `identity` object now optionally present alongside `strings` on any key in data/strings/source/pages/*.json (added by a reviewed merge of lib/discover-string-identity.js's candidates, never by this script). Same CQRS split as every other build-*.js: writes data/strings/compiled/identity-index.json (byCanonicalElementId/byLegacyElementId/byContentNodeKey/byField/byStatus/byStringId — pointers to string keys only, never duplicated full records, per Vex's relay's 'duplicate references not records' rule) and one data/strings/reports/string-identity-{slug}.md per page with any identity coverage. byCanonicalElementId and byLegacyElementId are identical in this pilot (canonical is anchored to the legacy id when one exists) but kept as separate indexes deliberately, in case a future real canonical reassignment makes them diverge. Never touches data/strings/compiled/strings.*.json or manifest.json — confirmed by test that a key's compiled EN/ZH/JA bundle entry contains only {text}, the identity object never leaks into runtime output.",
+      "reads": [
+        "data/strings/source/pages/*.json (identity blocks + strings, for language listing)"
+      ],
+      "writes": [
+        "data/strings/compiled/identity-index.json (pointer indexes)",
+        "data/strings/reports/string-identity-{slug}.md (one per slug with identity coverage)"
+      ],
+      "loadedBy": [
+        "manual run: node lib/build-string-identity-index.js",
+        ".github/workflows/build-index.yml (after strings-compile.js)",
+        "lib/check-string-identity.js (requires collectIdentityRecords/buildIndexes)",
+        "tests/33-string-identity.test.js"
+      ],
+      "testedBy": ["tests/33-string-identity.test.js"],
+      "changeMap": {
+        "a new page gets identity metadata committed": [
+          "no code change needed — this script already scans all of data/strings/source/pages/*.json; re-running picks up the new page automatically"
+        ],
+        "the identity block's field shape changes (canonicalElementId/currentElementId/contentNodeKey/fieldKey/status/canonicalSource renamed or restructured)": [
+          "collectIdentityRecords()/buildIndexes() here, and the same shape assumed by lib/check-string-identity.js and lib/discover-string-identity.js's classifyCandidate() output — all three must agree on the shape"
+        ]
+      }
+    },
+
+    "lib/check-string-identity.js": {
+      "role": "localization identity pilot, third script — informational validator, never rewrites anything",
+      "context": "Same posture as check-key-alignment.js/check-continuity-lag.js: reports, never fails the build. Checks every identity-index.json key resolves to a real source key; no canonicalElementId is claimed by more than one contentNodeKey (a real conflict, distinct from the expected case of many fields inside one content node sharing its canonicalElementId); the committed index isn't stale (regenerated in memory and compared); partial identity coverage on a source file (informational — expected mid-rollout); and that a recorded currentElementId still resolves to a real id in the live HTML (catches drift if a page is restructured after identity was recorded without re-running discovery). This is the hard boundary Vex's relay was explicit about: nothing downstream of this file can ever touch data/strings/source/** or the live HTML — report only, no auto-apply, anywhere in the pilot.",
+      "reads": [
+        "data/strings/compiled/identity-index.json",
+        "data/strings/source/pages/*.json",
+        "pages/*.html (for checkElementIdsStillReal)"
+      ],
+      "writes": [
+        "stdout only — read-only, changes nothing; always exits 0 (informational, matches pe-014's own prescribed start-soft sequencing)"
+      ],
+      "loadedBy": [
+        "manual run: node lib/check-string-identity.js",
+        "tests/33-string-identity.test.js"
+      ],
+      "testedBy": ["tests/33-string-identity.test.js"],
+      "changeMap": {
+        "this check ever proves reliable enough to promote to blocking": [
+          "that is itself the same start-soft-then-earn-trust decision pe-014 and check-continuity-lag.js both name — do not flip process.exit(0) without a deliberate decision recorded in continuity, not just a code change"
+        ]
+      }
+    },
+
     "lib/strings-compile.js": {
       "role": "strings pipeline compiler — reads source JSON, writes compiled bundles and manifest",
       "context": "The write side of the i18n pipeline. Every string key, every language bundle, every stale-detection hash is produced here. Run after editing any file in data/strings/source/. The scope bundle path rule here MUST match the runtime fetch rule in widgets/fab-lang.js.",

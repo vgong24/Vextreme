@@ -16,36 +16,36 @@
       "key": 1,
       "name": "GENERATE",
       "sub": "build/apply/append scripts that read sources",
-      "count": 16,
-      "rect": {
-        "x": 350,
-        "y": 40,
-        "width": 300,
-        "height": 1050
-      }
-    },
-    {
-      "key": 1.5,
-      "name": "UTILITIES",
-      "sub": "other lib/ helpers, config, tracing",
       "count": 17,
       "rect": {
-        "x": 690,
+        "x": 350,
         "y": 40,
         "width": 300,
         "height": 1110
       }
     },
     {
+      "key": 1.5,
+      "name": "UTILITIES",
+      "sub": "other lib/ helpers, config, tracing",
+      "count": 18,
+      "rect": {
+        "x": 690,
+        "y": 40,
+        "width": 300,
+        "height": 1170
+      }
+    },
+    {
       "key": 2,
       "name": "CHECK",
       "sub": "drift detectors and tests — run after generation",
-      "count": 5,
+      "count": 6,
       "rect": {
         "x": 1030,
         "y": 40,
         "width": 300,
-        "height": 390
+        "height": 450
       }
     },
     {
@@ -801,6 +801,36 @@
       "auditorRank": 9
     },
     {
+      "id": "lib/build-string-identity-index.js",
+      "cluster": "lib",
+      "stage": 1,
+      "stageName": "GENERATE",
+      "x": 400,
+      "y": 1050,
+      "role": "localization identity pilot, second script — generates pointer indexes and a human-readable report from committed identity metadata",
+      "reads": [
+        "data/strings/source/pages/*.json (identity blocks + strings, for language listing)"
+      ],
+      "writes": [
+        "data/strings/compiled/identity-index.json (pointer indexes)",
+        "data/strings/reports/string-identity-{slug}.md (one per slug with identity coverage)"
+      ],
+      "loadedBy": [
+        "manual run: node lib/build-string-identity-index.js",
+        ".github/workflows/build-index.yml (after strings-compile.js)",
+        "lib/check-string-identity.js (requires collectIdentityRecords/buildIndexes)",
+        "tests/33-string-identity.test.js"
+      ],
+      "testedBy": [
+        "tests/33-string-identity.test.js"
+      ],
+      "debts": [],
+      "status": "good",
+      "engineerFocus": true,
+      "auditorFocus": false,
+      "auditorRank": 15
+    },
+    {
       "id": "lib/build-sw.js",
       "cluster": "lib",
       "stage": 1,
@@ -865,7 +895,7 @@
       "status": "good",
       "engineerFocus": true,
       "auditorFocus": false,
-      "auditorRank": 15
+      "auditorRank": 16
     },
     {
       "id": "lib/build-vextreme.js",
@@ -1106,6 +1136,35 @@
       "auditorRank": 4
     },
     {
+      "id": "lib/check-string-identity.js",
+      "cluster": "lib",
+      "stage": 2,
+      "stageName": "CHECK",
+      "x": 1080,
+      "y": 390,
+      "role": "localization identity pilot, third script — informational validator, never rewrites anything",
+      "reads": [
+        "data/strings/compiled/identity-index.json",
+        "data/strings/source/pages/*.json",
+        "pages/*.html (for checkElementIdsStillReal)"
+      ],
+      "writes": [
+        "stdout only — read-only, changes nothing; always exits 0 (informational, matches pe-014's own prescribed start-soft sequencing)"
+      ],
+      "loadedBy": [
+        "manual run: node lib/check-string-identity.js",
+        "tests/33-string-identity.test.js"
+      ],
+      "testedBy": [
+        "tests/33-string-identity.test.js"
+      ],
+      "debts": [],
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": true,
+      "auditorRank": 5
+    },
+    {
       "id": "lib/compute-fab-version.js",
       "cluster": "lib",
       "stage": 1.5,
@@ -1184,12 +1243,40 @@
       "auditorRank": 12
     },
     {
-      "id": "lib/logger-codes.js",
+      "id": "lib/discover-string-identity.js",
       "cluster": "lib",
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
       "y": 510,
+      "role": "localization identity pilot, first script — proposal/report tool only, cross-references a page's string keys against its live HTML's data-legacy-id/id/title-alias attributes",
+      "reads": [
+        "data/strings/source/pages/{slug}.json (existing string keys)",
+        "pages/{slug}.html (id, data-legacy-id, title=\"legacy alias:\" attributes)"
+      ],
+      "writes": [
+        "data/strings/reports/string-identity-candidates-{slug}.json (candidate report only — never touches data/strings/source/**)"
+      ],
+      "loadedBy": [
+        "manual run: node lib/discover-string-identity.js <slug>",
+        "tests/33-string-identity.test.js"
+      ],
+      "testedBy": [
+        "tests/33-string-identity.test.js"
+      ],
+      "debts": [],
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": false,
+      "auditorRank": 13
+    },
+    {
+      "id": "lib/logger-codes.js",
+      "cluster": "lib",
+      "stage": 1.5,
+      "stageName": "UTILITIES",
+      "x": 740,
+      "y": 570,
       "role": "event code registry — the CODES constant every logger.warn/error call references",
       "reads": [],
       "writes": [],
@@ -1215,7 +1302,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 570,
+      "y": 630,
       "role": "structured logger — every build script's warn/info/error call goes through here",
       "reads": [],
       "writes": [
@@ -1244,7 +1331,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 630,
+      "y": 690,
       "role": "runs the build scripts tests/helpers/prereqs.js declares as required before the test suite can read generated files — replaces a hardcoded run: line in .github/workflows/test.yml",
       "reads": [
         "tests/helpers/prereqs.js (PREREQUISITE_SCRIPTS)"
@@ -1260,7 +1347,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 13
+      "auditorRank": 14
     },
     {
       "id": "lib/session-bootstrap.js",
@@ -1268,7 +1355,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 690,
+      "y": 750,
       "role": "one-shot session-start state report — read-only, gathers what would otherwise be several manual checks into one command",
       "reads": [
         "docs/continuity/INDEX.md (last logged session, batch registry)",
@@ -1297,7 +1384,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 14
+      "auditorRank": 15
     },
     {
       "id": "lib/strings-check.js",
@@ -1305,7 +1392,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 750,
+      "y": 810,
       "role": "strings pipeline integrity check — runs before compile, catches missing EN text, stale translations, and orphaned keys",
       "reads": [
         "data/strings/source/**/*.json",
@@ -1336,7 +1423,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 810,
+      "y": 870,
       "role": "strings pipeline compiler — reads source JSON, writes compiled bundles and manifest",
       "reads": [
         "data/strings/source/**/*.json",
@@ -1370,7 +1457,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 870,
+      "y": 930,
       "role": "string reverse-tracer — data-i18n usage in pages/wip HTML cross-referenced against the compiled manifest",
       "reads": [
         "pages/*.html (data-i18n attribute scan)",
@@ -1391,7 +1478,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 15
+      "auditorRank": 16
     },
     {
       "id": "lib/validate-blueprint.js",
@@ -1399,7 +1486,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 930,
+      "y": 990,
       "role": "blueprint consistency validator — confirms every id in blueprint.json has a matching config file and vex-config constant",
       "reads": [
         "blueprint.json",
@@ -1431,7 +1518,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 990,
+      "y": 1050,
       "role": "constants hub — pure declarations, no I/O",
       "reads": [],
       "writes": [],
@@ -1470,7 +1557,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1050,
+      "y": 1110,
       "role": "browser arc nav runtime — reads index.json at load time, renders prev/next/position into #arcNavMount",
       "reads": [
         "data/index.json via CDN (slugMap, arcMap, arcMeta)",
@@ -1493,7 +1580,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 16
+      "auditorRank": 17
     },
     {
       "id": "pages/terrain-map.html",
@@ -1855,6 +1942,18 @@
     [
       "lib/build-status.js",
       "lib/build-index.js"
+    ],
+    [
+      "lib/build-string-identity-index.js",
+      "lib/build-index.js"
+    ],
+    [
+      "lib/build-string-identity-index.js",
+      "lib/check-string-identity.js"
+    ],
+    [
+      "lib/build-string-identity-index.js",
+      "lib/strings-compile.js"
     ],
     [
       "lib/build-sw.js",

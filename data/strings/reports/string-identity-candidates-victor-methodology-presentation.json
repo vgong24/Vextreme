@@ -1,0 +1,259 @@
+{
+  "slug": "victor-methodology-presentation",
+  "generatedAt": "2026-07-08T21:01:30.098Z",
+  "totalContentNodes": 19,
+  "byStatus": {
+    "aligned": 12,
+    "needs_review": 1,
+    "unresolved": 6
+  },
+  "candidates": [
+    {
+      "contentNodeKey": "header",
+      "currentElementId": null,
+      "canonicalElementId": null,
+      "canonicalSource": "none",
+      "status": "unresolved",
+      "note": "no data-legacy-id or title alias found for this content node",
+      "fieldKeys": [
+        "eyebrow",
+        "thesis",
+        "id-line",
+        "stamp-big",
+        "stamp-small"
+      ]
+    },
+    {
+      "contentNodeKey": "section-proofs",
+      "currentElementId": "section-proofs",
+      "canonicalElementId": "SEC-PROOFS",
+      "canonicalSource": "html.data-legacy-id",
+      "status": "aligned",
+      "fieldKeys": [
+        "heading",
+        "intro"
+      ]
+    },
+    {
+      "contentNodeKey": "proof-organization-knowledge-map",
+      "currentElementId": "proof-organization-knowledge-map",
+      "canonicalElementId": "REC-Y0-ORGMAP",
+      "canonicalSource": "html.data-legacy-id",
+      "status": "aligned",
+      "fieldKeys": [
+        "year",
+        "title",
+        "body",
+        "result"
+      ]
+    },
+    {
+      "contentNodeKey": "proof-bulk-data-logging",
+      "currentElementId": "proof-bulk-data-logging",
+      "canonicalElementId": "REC-Y1-LOGGING",
+      "canonicalSource": "html.data-legacy-id",
+      "status": "aligned",
+      "fieldKeys": [
+        "year",
+        "title",
+        "body",
+        "result"
+      ]
+    },
+    {
+      "contentNodeKey": "proof-bidirectional-translation-traceability",
+      "currentElementId": "proof-bidirectional-translation-traceability",
+      "canonicalElementId": "REC-Y2-TRANSLATIONS",
+      "canonicalSource": "html.data-legacy-id",
+      "status": "aligned",
+      "fieldKeys": [
+        "year",
+        "title",
+        "body",
+        "result"
+      ]
+    },
+    {
+      "contentNodeKey": "proof-compound-safety-bug-map",
+      "currentElementId": "proof-compound-safety-bug-map",
+      "canonicalElementId": "REC-MID-COMPOUNDBUG",
+      "canonicalSource": "html.data-legacy-id",
+      "status": "aligned",
+      "fieldKeys": [
+        "year",
+        "title",
+        "body",
+        "result"
+      ]
+    },
+    {
+      "contentNodeKey": "proof-localization-pipeline",
+      "currentElementId": "proof-localization-pipeline",
+      "canonicalElementId": "REC-Y34-LOCALIZATION",
+      "canonicalSource": "html.data-legacy-id",
+      "status": "aligned",
+      "fieldKeys": [
+        "year",
+        "title",
+        "body",
+        "metric",
+        "metric-label"
+      ]
+    },
+    {
+      "contentNodeKey": "proof-cross-domain-ui-identity",
+      "currentElementId": "proof-cross-domain-ui-identity",
+      "canonicalElementId": "REC-Y34-UIELEMENTKEY",
+      "canonicalSource": "html.data-legacy-id",
+      "status": "aligned",
+      "fieldKeys": [
+        "year",
+        "title",
+        "body",
+        "result"
+      ]
+    },
+    {
+      "contentNodeKey": "proof-source-of-truth-relay",
+      "currentElementId": "proof-source-of-truth-relay",
+      "canonicalElementId": "REC-Y5-PENSDK",
+      "canonicalSource": "html.data-legacy-id",
+      "status": "aligned",
+      "fieldKeys": [
+        "year",
+        "title",
+        "body",
+        "result-tag",
+        "result"
+      ]
+    },
+    {
+      "contentNodeKey": "section-throughline",
+      "currentElementId": "section-throughline",
+      "canonicalElementId": "SEC-THROUGHLINE",
+      "canonicalSource": "html.data-legacy-id",
+      "status": "aligned",
+      "fieldKeys": [
+        "band"
+      ]
+    },
+    {
+      "contentNodeKey": "section-ai-maintainable-systems",
+      "currentElementId": "section-ai-maintainable-systems",
+      "canonicalElementId": "SEC-AI-APPLICATION",
+      "canonicalSource": "html.data-legacy-id",
+      "status": "aligned",
+      "fieldKeys": [
+        "heading",
+        "p1",
+        "p2"
+      ]
+    },
+    {
+      "contentNodeKey": "section-adoption-implications",
+      "currentElementId": "section-adoption-implications",
+      "canonicalElementId": null,
+      "canonicalSource": "none",
+      "status": "unresolved",
+      "note": "no data-legacy-id or title alias found for this content node",
+      "fieldKeys": [
+        "heading",
+        "intro",
+        "engineering-label",
+        "engineering",
+        "localization-label",
+        "localization",
+        "quality-label",
+        "quality",
+        "ai-label",
+        "ai",
+        "leadership-label",
+        "leadership",
+        "closing-note"
+      ]
+    },
+    {
+      "contentNodeKey": "section-audience-fit",
+      "currentElementId": "section-audience-fit",
+      "canonicalElementId": "SEC-FIT",
+      "canonicalSource": "html.data-legacy-id",
+      "status": "aligned",
+      "fieldKeys": [
+        "heading"
+      ]
+    },
+    {
+      "contentNodeKey": "fit-platform-devex",
+      "currentElementId": "FIT-PLATFORM-DEVEX",
+      "canonicalElementId": "FIT-01",
+      "canonicalSource": "html.title-alias",
+      "status": "needs_review",
+      "note": "legacy source is an informal title=\"legacy alias:\" tooltip, not a real data-legacy-id attribute",
+      "fieldKeys": [
+        "title",
+        "body"
+      ]
+    },
+    {
+      "contentNodeKey": "fit-ai-tooling-companies",
+      "currentElementId": null,
+      "canonicalElementId": null,
+      "canonicalSource": "none",
+      "status": "unresolved",
+      "note": "no data-legacy-id or title alias found for this content node",
+      "fieldKeys": [
+        "title",
+        "body"
+      ]
+    },
+    {
+      "contentNodeKey": "fit-regulated-industries",
+      "currentElementId": null,
+      "canonicalElementId": null,
+      "canonicalSource": "none",
+      "status": "unresolved",
+      "note": "no data-legacy-id or title alias found for this content node",
+      "fieldKeys": [
+        "title",
+        "body"
+      ]
+    },
+    {
+      "contentNodeKey": "fit-process-transformation",
+      "currentElementId": null,
+      "canonicalElementId": null,
+      "canonicalSource": "none",
+      "status": "unresolved",
+      "note": "no data-legacy-id or title alias found for this content node",
+      "fieldKeys": [
+        "title",
+        "body"
+      ]
+    },
+    {
+      "contentNodeKey": "note-self-demonstration",
+      "currentElementId": "note-self-demonstration",
+      "canonicalElementId": "NOTE-SELF-DEMONSTRATION",
+      "canonicalSource": "html.data-legacy-id",
+      "status": "aligned",
+      "fieldKeys": [
+        "lead",
+        "body"
+      ]
+    },
+    {
+      "contentNodeKey": "footer",
+      "currentElementId": null,
+      "canonicalElementId": null,
+      "canonicalSource": "none",
+      "status": "unresolved",
+      "note": "no data-legacy-id or title alias found for this content node",
+      "fieldKeys": [
+        "line",
+        "reference-note",
+        "stamp-word",
+        "stamp-label"
+      ]
+    }
+  ]
+}
