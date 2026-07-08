@@ -13,6 +13,7 @@ docs/architecture.md                  merge=ours
 sw.js                                  merge=ours
 data/status.json                      merge=ours
 data/lessons.json                     merge=ours
+data/strings/compiled/identity-index.json merge=ours
 
 # NOTE: `merge=ours` only takes effect if the "ours" driver is registered
 # locally (git config merge.ours.driver true) — that registration lives in
