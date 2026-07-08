@@ -171,7 +171,19 @@ entries had been injected mid-file into Session 021's record.
   rename is itself a live worked example of the doc's own Section 3.9 lesson: source-truth IDs
   are stable coordinates, not labels reused after semantic commitment. Whether to reconstruct a
   Session 026 for the PR #76–#92 gap is still
-  Victor's open call (see Open Work).
+  Victor's open call (see Open Work). **Continued again, same day:** built a localization
+  identity pilot per Victor+Vex's narrowed approval of a separate "Global Localization
+  Source-of-Truth" north-star document — explicitly *not* `pe-014` (a different domain: UI/string
+  identity, not code/build symbols) and explicitly *not* the north-star doc's full 18-script
+  system, just a canonical/observed identity overlay on the existing `data/strings/` pipeline for
+  `victor-methodology-presentation`. Found the canonical/observed split already existed unindexed
+  in the page's own HTML (`data-legacy-id` next to `data-i18n`, unused); `lib/discover-string-identity.js`
+  (proposal-only), `lib/build-string-identity-index.js` (pointer index + report generator), and
+  `lib/check-string-identity.js` (informational validator) activate it. Confirmed by test that
+  identity metadata never leaks into compiled runtime bundles. Caught and fixed a real regex bug
+  in the discover script (a bare `\b` also matched inside `data-legacy-id`) by cross-checking
+  output against the real HTML before trusting it. Full context in the Meta Project doc's context
+  note (§ wrapper) and this session's own file.
 - **Session 025** — Reviewed three Codex registry-graph context docs against PR #69's
   implementation (`docs/architecture/15–17`, `data/registry/`, `lib/check-registry-docs.js`) —
   judged well-communicated. **Correction (Session 027): Victor closed PR #69 unmerged shortly
@@ -229,6 +241,8 @@ off forever; its record already lives in the batch file and (for od-/td-/pe- ite
 not this list.
 
 **Genuinely open:**
+- [ ] Localization identity pilot (Session 027) — a second page's identity pilot, proving `lib/discover-string-identity.js` generalizes beyond the one page it was built against, is the natural next increment; not started
+- [ ] The discovery heuristic's named limitation (Session 027): `lib/discover-string-identity.js` only finds a content node when its HTML `id` matches the string key's own segment exactly — this misses real legacy identity on `header` (real `data-legacy-id="DOSSIER-ROOT"`, but `id="page-dossier-root"` ≠ key segment `header`) and three `.fit` cards (real informal "legacy alias" tooltips, but abbreviated ids like `FIT-AI-TOOLING` that don't match `fit-ai-tooling-companies`). Named, not fixed — a future pass could search by shared `class=` groupings instead of exact id match, but that's more machinery than this pilot's scope justified.
 - [ ] **Continuity gap, PR #76–#92 (found Session 027):** 15 merged PRs — including a six-PR bug chain (`#79/82/83/84/86/87`) significant enough to become standing doctrine in `docs/culture.md`'s "Multi-PR bug chains" section — landed with no session file and no refresh to this file. What survived: one lesson (`config/lessons/caching-layers-multiply-and-each-one-can-independently-hide-a-fix.json`) and nine lines in `planned-enhancements.json`. Whether to reconstruct a Session 026 from the 15 PRs' own decision-record bodies (each already follows the PR template), or handle it some other way, is Victor's call and still undecided — see `lib/check-continuity-lag.js` (new, Session 027) for the mechanism that would catch the next one of these automatically.
 - [ ] `pe-014` (renamed from `pe-012` — see `data/status/planned-enhancements.json`'s `renamedFrom`/`renameReason` fields) — function-level reverse traversal map for answering source-of-truth questions with minimal grep (e.g. "where does `supportedLangs` actually get set" without a broad repo grep); start read-only/informational, promote to a drift check only once it can distinguish legacy direct-script paths from generated God Script paths. Added Session 025, landed via PR #89, renumbered PR #94 after colliding with the already-shipped `lib/check-lattice-edges.js`'s own `pe-012` identity. Still genuinely unbuilt — only the ID collision is resolved.
 - [ ] `data/status.json` translation-pending count (165) doesn't yet distinguish "structural pilot fallout" (every EN+JA-only key becoming zh-missing once `zh` went site-wide, Session 025) from real per-key debt — named as worth doing in Session 025's own file, never promoted to this list until now.

@@ -1,0 +1,817 @@
+{
+  "_meta": {
+    "generatedAt": "2026-07-08T21:03:04.940Z",
+    "recordCount": 69,
+    "sourceFiles": [
+      "data/strings/source/pages/victor-methodology-presentation.json"
+    ]
+  },
+  "byCanonicalElementId": {
+    "SEC-PROOFS": [
+      "pages.victor-methodology-presentation.section-proofs.heading",
+      "pages.victor-methodology-presentation.section-proofs.intro"
+    ],
+    "REC-Y0-ORGMAP": [
+      "pages.victor-methodology-presentation.proof-organization-knowledge-map.year",
+      "pages.victor-methodology-presentation.proof-organization-knowledge-map.title",
+      "pages.victor-methodology-presentation.proof-organization-knowledge-map.body",
+      "pages.victor-methodology-presentation.proof-organization-knowledge-map.result"
+    ],
+    "REC-Y1-LOGGING": [
+      "pages.victor-methodology-presentation.proof-bulk-data-logging.year",
+      "pages.victor-methodology-presentation.proof-bulk-data-logging.title",
+      "pages.victor-methodology-presentation.proof-bulk-data-logging.body",
+      "pages.victor-methodology-presentation.proof-bulk-data-logging.result"
+    ],
+    "REC-Y2-TRANSLATIONS": [
+      "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.year",
+      "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.title",
+      "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.body",
+      "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.result"
+    ],
+    "REC-MID-COMPOUNDBUG": [
+      "pages.victor-methodology-presentation.proof-compound-safety-bug-map.year",
+      "pages.victor-methodology-presentation.proof-compound-safety-bug-map.title",
+      "pages.victor-methodology-presentation.proof-compound-safety-bug-map.body",
+      "pages.victor-methodology-presentation.proof-compound-safety-bug-map.result"
+    ],
+    "REC-Y34-LOCALIZATION": [
+      "pages.victor-methodology-presentation.proof-localization-pipeline.year",
+      "pages.victor-methodology-presentation.proof-localization-pipeline.title",
+      "pages.victor-methodology-presentation.proof-localization-pipeline.body",
+      "pages.victor-methodology-presentation.proof-localization-pipeline.metric",
+      "pages.victor-methodology-presentation.proof-localization-pipeline.metric-label"
+    ],
+    "REC-Y34-UIELEMENTKEY": [
+      "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.year",
+      "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.title",
+      "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.body",
+      "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.result"
+    ],
+    "REC-Y5-PENSDK": [
+      "pages.victor-methodology-presentation.proof-source-of-truth-relay.year",
+      "pages.victor-methodology-presentation.proof-source-of-truth-relay.title",
+      "pages.victor-methodology-presentation.proof-source-of-truth-relay.body",
+      "pages.victor-methodology-presentation.proof-source-of-truth-relay.result-tag",
+      "pages.victor-methodology-presentation.proof-source-of-truth-relay.result"
+    ],
+    "SEC-THROUGHLINE": [
+      "pages.victor-methodology-presentation.section-throughline.band"
+    ],
+    "SEC-AI-APPLICATION": [
+      "pages.victor-methodology-presentation.section-ai-maintainable-systems.heading",
+      "pages.victor-methodology-presentation.section-ai-maintainable-systems.p1",
+      "pages.victor-methodology-presentation.section-ai-maintainable-systems.p2"
+    ],
+    "SEC-FIT": [
+      "pages.victor-methodology-presentation.section-audience-fit.heading"
+    ],
+    "FIT-01": [
+      "pages.victor-methodology-presentation.fit-platform-devex.title",
+      "pages.victor-methodology-presentation.fit-platform-devex.body"
+    ],
+    "NOTE-SELF-DEMONSTRATION": [
+      "pages.victor-methodology-presentation.note-self-demonstration.lead",
+      "pages.victor-methodology-presentation.note-self-demonstration.body"
+    ]
+  },
+  "byLegacyElementId": {
+    "SEC-PROOFS": [
+      "pages.victor-methodology-presentation.section-proofs.heading",
+      "pages.victor-methodology-presentation.section-proofs.intro"
+    ],
+    "REC-Y0-ORGMAP": [
+      "pages.victor-methodology-presentation.proof-organization-knowledge-map.year",
+      "pages.victor-methodology-presentation.proof-organization-knowledge-map.title",
+      "pages.victor-methodology-presentation.proof-organization-knowledge-map.body",
+      "pages.victor-methodology-presentation.proof-organization-knowledge-map.result"
+    ],
+    "REC-Y1-LOGGING": [
+      "pages.victor-methodology-presentation.proof-bulk-data-logging.year",
+      "pages.victor-methodology-presentation.proof-bulk-data-logging.title",
+      "pages.victor-methodology-presentation.proof-bulk-data-logging.body",
+      "pages.victor-methodology-presentation.proof-bulk-data-logging.result"
+    ],
+    "REC-Y2-TRANSLATIONS": [
+      "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.year",
+      "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.title",
+      "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.body",
+      "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.result"
+    ],
+    "REC-MID-COMPOUNDBUG": [
+      "pages.victor-methodology-presentation.proof-compound-safety-bug-map.year",
+      "pages.victor-methodology-presentation.proof-compound-safety-bug-map.title",
+      "pages.victor-methodology-presentation.proof-compound-safety-bug-map.body",
+      "pages.victor-methodology-presentation.proof-compound-safety-bug-map.result"
+    ],
+    "REC-Y34-LOCALIZATION": [
+      "pages.victor-methodology-presentation.proof-localization-pipeline.year",
+      "pages.victor-methodology-presentation.proof-localization-pipeline.title",
+      "pages.victor-methodology-presentation.proof-localization-pipeline.body",
+      "pages.victor-methodology-presentation.proof-localization-pipeline.metric",
+      "pages.victor-methodology-presentation.proof-localization-pipeline.metric-label"
+    ],
+    "REC-Y34-UIELEMENTKEY": [
+      "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.year",
+      "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.title",
+      "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.body",
+      "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.result"
+    ],
+    "REC-Y5-PENSDK": [
+      "pages.victor-methodology-presentation.proof-source-of-truth-relay.year",
+      "pages.victor-methodology-presentation.proof-source-of-truth-relay.title",
+      "pages.victor-methodology-presentation.proof-source-of-truth-relay.body",
+      "pages.victor-methodology-presentation.proof-source-of-truth-relay.result-tag",
+      "pages.victor-methodology-presentation.proof-source-of-truth-relay.result"
+    ],
+    "SEC-THROUGHLINE": [
+      "pages.victor-methodology-presentation.section-throughline.band"
+    ],
+    "SEC-AI-APPLICATION": [
+      "pages.victor-methodology-presentation.section-ai-maintainable-systems.heading",
+      "pages.victor-methodology-presentation.section-ai-maintainable-systems.p1",
+      "pages.victor-methodology-presentation.section-ai-maintainable-systems.p2"
+    ],
+    "SEC-FIT": [
+      "pages.victor-methodology-presentation.section-audience-fit.heading"
+    ],
+    "FIT-01": [
+      "pages.victor-methodology-presentation.fit-platform-devex.title",
+      "pages.victor-methodology-presentation.fit-platform-devex.body"
+    ],
+    "NOTE-SELF-DEMONSTRATION": [
+      "pages.victor-methodology-presentation.note-self-demonstration.lead",
+      "pages.victor-methodology-presentation.note-self-demonstration.body"
+    ]
+  },
+  "byContentNodeKey": {
+    "header": [
+      "pages.victor-methodology-presentation.header.eyebrow",
+      "pages.victor-methodology-presentation.header.thesis",
+      "pages.victor-methodology-presentation.header.id-line",
+      "pages.victor-methodology-presentation.header.stamp-big",
+      "pages.victor-methodology-presentation.header.stamp-small"
+    ],
+    "section-proofs": [
+      "pages.victor-methodology-presentation.section-proofs.heading",
+      "pages.victor-methodology-presentation.section-proofs.intro"
+    ],
+    "proof-organization-knowledge-map": [
+      "pages.victor-methodology-presentation.proof-organization-knowledge-map.year",
+      "pages.victor-methodology-presentation.proof-organization-knowledge-map.title",
+      "pages.victor-methodology-presentation.proof-organization-knowledge-map.body",
+      "pages.victor-methodology-presentation.proof-organization-knowledge-map.result"
+    ],
+    "proof-bulk-data-logging": [
+      "pages.victor-methodology-presentation.proof-bulk-data-logging.year",
+      "pages.victor-methodology-presentation.proof-bulk-data-logging.title",
+      "pages.victor-methodology-presentation.proof-bulk-data-logging.body",
+      "pages.victor-methodology-presentation.proof-bulk-data-logging.result"
+    ],
+    "proof-bidirectional-translation-traceability": [
+      "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.year",
+      "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.title",
+      "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.body",
+      "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.result"
+    ],
+    "proof-compound-safety-bug-map": [
+      "pages.victor-methodology-presentation.proof-compound-safety-bug-map.year",
+      "pages.victor-methodology-presentation.proof-compound-safety-bug-map.title",
+      "pages.victor-methodology-presentation.proof-compound-safety-bug-map.body",
+      "pages.victor-methodology-presentation.proof-compound-safety-bug-map.result"
+    ],
+    "proof-localization-pipeline": [
+      "pages.victor-methodology-presentation.proof-localization-pipeline.year",
+      "pages.victor-methodology-presentation.proof-localization-pipeline.title",
+      "pages.victor-methodology-presentation.proof-localization-pipeline.body",
+      "pages.victor-methodology-presentation.proof-localization-pipeline.metric",
+      "pages.victor-methodology-presentation.proof-localization-pipeline.metric-label"
+    ],
+    "proof-cross-domain-ui-identity": [
+      "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.year",
+      "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.title",
+      "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.body",
+      "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.result"
+    ],
+    "proof-source-of-truth-relay": [
+      "pages.victor-methodology-presentation.proof-source-of-truth-relay.year",
+      "pages.victor-methodology-presentation.proof-source-of-truth-relay.title",
+      "pages.victor-methodology-presentation.proof-source-of-truth-relay.body",
+      "pages.victor-methodology-presentation.proof-source-of-truth-relay.result-tag",
+      "pages.victor-methodology-presentation.proof-source-of-truth-relay.result"
+    ],
+    "section-throughline": [
+      "pages.victor-methodology-presentation.section-throughline.band"
+    ],
+    "section-ai-maintainable-systems": [
+      "pages.victor-methodology-presentation.section-ai-maintainable-systems.heading",
+      "pages.victor-methodology-presentation.section-ai-maintainable-systems.p1",
+      "pages.victor-methodology-presentation.section-ai-maintainable-systems.p2"
+    ],
+    "section-adoption-implications": [
+      "pages.victor-methodology-presentation.section-adoption-implications.heading",
+      "pages.victor-methodology-presentation.section-adoption-implications.intro",
+      "pages.victor-methodology-presentation.section-adoption-implications.engineering-label",
+      "pages.victor-methodology-presentation.section-adoption-implications.engineering",
+      "pages.victor-methodology-presentation.section-adoption-implications.localization-label",
+      "pages.victor-methodology-presentation.section-adoption-implications.localization",
+      "pages.victor-methodology-presentation.section-adoption-implications.quality-label",
+      "pages.victor-methodology-presentation.section-adoption-implications.quality",
+      "pages.victor-methodology-presentation.section-adoption-implications.ai-label",
+      "pages.victor-methodology-presentation.section-adoption-implications.ai",
+      "pages.victor-methodology-presentation.section-adoption-implications.leadership-label",
+      "pages.victor-methodology-presentation.section-adoption-implications.leadership",
+      "pages.victor-methodology-presentation.section-adoption-implications.closing-note"
+    ],
+    "section-audience-fit": [
+      "pages.victor-methodology-presentation.section-audience-fit.heading"
+    ],
+    "fit-platform-devex": [
+      "pages.victor-methodology-presentation.fit-platform-devex.title",
+      "pages.victor-methodology-presentation.fit-platform-devex.body"
+    ],
+    "fit-ai-tooling-companies": [
+      "pages.victor-methodology-presentation.fit-ai-tooling-companies.title",
+      "pages.victor-methodology-presentation.fit-ai-tooling-companies.body"
+    ],
+    "fit-regulated-industries": [
+      "pages.victor-methodology-presentation.fit-regulated-industries.title",
+      "pages.victor-methodology-presentation.fit-regulated-industries.body"
+    ],
+    "fit-process-transformation": [
+      "pages.victor-methodology-presentation.fit-process-transformation.title",
+      "pages.victor-methodology-presentation.fit-process-transformation.body"
+    ],
+    "note-self-demonstration": [
+      "pages.victor-methodology-presentation.note-self-demonstration.lead",
+      "pages.victor-methodology-presentation.note-self-demonstration.body"
+    ],
+    "footer": [
+      "pages.victor-methodology-presentation.footer.line",
+      "pages.victor-methodology-presentation.footer.reference-note",
+      "pages.victor-methodology-presentation.footer.stamp-word",
+      "pages.victor-methodology-presentation.footer.stamp-label"
+    ]
+  },
+  "byField": {
+    "eyebrow": [
+      "pages.victor-methodology-presentation.header.eyebrow"
+    ],
+    "thesis": [
+      "pages.victor-methodology-presentation.header.thesis"
+    ],
+    "id-line": [
+      "pages.victor-methodology-presentation.header.id-line"
+    ],
+    "stamp-big": [
+      "pages.victor-methodology-presentation.header.stamp-big"
+    ],
+    "stamp-small": [
+      "pages.victor-methodology-presentation.header.stamp-small"
+    ],
+    "heading": [
+      "pages.victor-methodology-presentation.section-proofs.heading",
+      "pages.victor-methodology-presentation.section-ai-maintainable-systems.heading",
+      "pages.victor-methodology-presentation.section-adoption-implications.heading",
+      "pages.victor-methodology-presentation.section-audience-fit.heading"
+    ],
+    "intro": [
+      "pages.victor-methodology-presentation.section-proofs.intro",
+      "pages.victor-methodology-presentation.section-adoption-implications.intro"
+    ],
+    "year": [
+      "pages.victor-methodology-presentation.proof-organization-knowledge-map.year",
+      "pages.victor-methodology-presentation.proof-bulk-data-logging.year",
+      "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.year",
+      "pages.victor-methodology-presentation.proof-compound-safety-bug-map.year",
+      "pages.victor-methodology-presentation.proof-localization-pipeline.year",
+      "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.year",
+      "pages.victor-methodology-presentation.proof-source-of-truth-relay.year"
+    ],
+    "title": [
+      "pages.victor-methodology-presentation.proof-organization-knowledge-map.title",
+      "pages.victor-methodology-presentation.proof-bulk-data-logging.title",
+      "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.title",
+      "pages.victor-methodology-presentation.proof-compound-safety-bug-map.title",
+      "pages.victor-methodology-presentation.proof-localization-pipeline.title",
+      "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.title",
+      "pages.victor-methodology-presentation.proof-source-of-truth-relay.title",
+      "pages.victor-methodology-presentation.fit-platform-devex.title",
+      "pages.victor-methodology-presentation.fit-ai-tooling-companies.title",
+      "pages.victor-methodology-presentation.fit-regulated-industries.title",
+      "pages.victor-methodology-presentation.fit-process-transformation.title"
+    ],
+    "body": [
+      "pages.victor-methodology-presentation.proof-organization-knowledge-map.body",
+      "pages.victor-methodology-presentation.proof-bulk-data-logging.body",
+      "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.body",
+      "pages.victor-methodology-presentation.proof-compound-safety-bug-map.body",
+      "pages.victor-methodology-presentation.proof-localization-pipeline.body",
+      "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.body",
+      "pages.victor-methodology-presentation.proof-source-of-truth-relay.body",
+      "pages.victor-methodology-presentation.fit-platform-devex.body",
+      "pages.victor-methodology-presentation.fit-ai-tooling-companies.body",
+      "pages.victor-methodology-presentation.fit-regulated-industries.body",
+      "pages.victor-methodology-presentation.fit-process-transformation.body",
+      "pages.victor-methodology-presentation.note-self-demonstration.body"
+    ],
+    "result": [
+      "pages.victor-methodology-presentation.proof-organization-knowledge-map.result",
+      "pages.victor-methodology-presentation.proof-bulk-data-logging.result",
+      "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.result",
+      "pages.victor-methodology-presentation.proof-compound-safety-bug-map.result",
+      "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.result",
+      "pages.victor-methodology-presentation.proof-source-of-truth-relay.result"
+    ],
+    "metric": [
+      "pages.victor-methodology-presentation.proof-localization-pipeline.metric"
+    ],
+    "metric-label": [
+      "pages.victor-methodology-presentation.proof-localization-pipeline.metric-label"
+    ],
+    "result-tag": [
+      "pages.victor-methodology-presentation.proof-source-of-truth-relay.result-tag"
+    ],
+    "band": [
+      "pages.victor-methodology-presentation.section-throughline.band"
+    ],
+    "p1": [
+      "pages.victor-methodology-presentation.section-ai-maintainable-systems.p1"
+    ],
+    "p2": [
+      "pages.victor-methodology-presentation.section-ai-maintainable-systems.p2"
+    ],
+    "engineering-label": [
+      "pages.victor-methodology-presentation.section-adoption-implications.engineering-label"
+    ],
+    "engineering": [
+      "pages.victor-methodology-presentation.section-adoption-implications.engineering"
+    ],
+    "localization-label": [
+      "pages.victor-methodology-presentation.section-adoption-implications.localization-label"
+    ],
+    "localization": [
+      "pages.victor-methodology-presentation.section-adoption-implications.localization"
+    ],
+    "quality-label": [
+      "pages.victor-methodology-presentation.section-adoption-implications.quality-label"
+    ],
+    "quality": [
+      "pages.victor-methodology-presentation.section-adoption-implications.quality"
+    ],
+    "ai-label": [
+      "pages.victor-methodology-presentation.section-adoption-implications.ai-label"
+    ],
+    "ai": [
+      "pages.victor-methodology-presentation.section-adoption-implications.ai"
+    ],
+    "leadership-label": [
+      "pages.victor-methodology-presentation.section-adoption-implications.leadership-label"
+    ],
+    "leadership": [
+      "pages.victor-methodology-presentation.section-adoption-implications.leadership"
+    ],
+    "closing-note": [
+      "pages.victor-methodology-presentation.section-adoption-implications.closing-note"
+    ],
+    "lead": [
+      "pages.victor-methodology-presentation.note-self-demonstration.lead"
+    ],
+    "line": [
+      "pages.victor-methodology-presentation.footer.line"
+    ],
+    "reference-note": [
+      "pages.victor-methodology-presentation.footer.reference-note"
+    ],
+    "stamp-word": [
+      "pages.victor-methodology-presentation.footer.stamp-word"
+    ],
+    "stamp-label": [
+      "pages.victor-methodology-presentation.footer.stamp-label"
+    ]
+  },
+  "byStatus": {
+    "unresolved": [
+      "pages.victor-methodology-presentation.header.eyebrow",
+      "pages.victor-methodology-presentation.header.thesis",
+      "pages.victor-methodology-presentation.header.id-line",
+      "pages.victor-methodology-presentation.header.stamp-big",
+      "pages.victor-methodology-presentation.header.stamp-small",
+      "pages.victor-methodology-presentation.section-adoption-implications.heading",
+      "pages.victor-methodology-presentation.section-adoption-implications.intro",
+      "pages.victor-methodology-presentation.section-adoption-implications.engineering-label",
+      "pages.victor-methodology-presentation.section-adoption-implications.engineering",
+      "pages.victor-methodology-presentation.section-adoption-implications.localization-label",
+      "pages.victor-methodology-presentation.section-adoption-implications.localization",
+      "pages.victor-methodology-presentation.section-adoption-implications.quality-label",
+      "pages.victor-methodology-presentation.section-adoption-implications.quality",
+      "pages.victor-methodology-presentation.section-adoption-implications.ai-label",
+      "pages.victor-methodology-presentation.section-adoption-implications.ai",
+      "pages.victor-methodology-presentation.section-adoption-implications.leadership-label",
+      "pages.victor-methodology-presentation.section-adoption-implications.leadership",
+      "pages.victor-methodology-presentation.section-adoption-implications.closing-note",
+      "pages.victor-methodology-presentation.fit-ai-tooling-companies.title",
+      "pages.victor-methodology-presentation.fit-ai-tooling-companies.body",
+      "pages.victor-methodology-presentation.fit-regulated-industries.title",
+      "pages.victor-methodology-presentation.fit-regulated-industries.body",
+      "pages.victor-methodology-presentation.fit-process-transformation.title",
+      "pages.victor-methodology-presentation.fit-process-transformation.body",
+      "pages.victor-methodology-presentation.footer.line",
+      "pages.victor-methodology-presentation.footer.reference-note",
+      "pages.victor-methodology-presentation.footer.stamp-word",
+      "pages.victor-methodology-presentation.footer.stamp-label"
+    ],
+    "aligned": [
+      "pages.victor-methodology-presentation.section-proofs.heading",
+      "pages.victor-methodology-presentation.section-proofs.intro",
+      "pages.victor-methodology-presentation.proof-organization-knowledge-map.year",
+      "pages.victor-methodology-presentation.proof-organization-knowledge-map.title",
+      "pages.victor-methodology-presentation.proof-organization-knowledge-map.body",
+      "pages.victor-methodology-presentation.proof-organization-knowledge-map.result",
+      "pages.victor-methodology-presentation.proof-bulk-data-logging.year",
+      "pages.victor-methodology-presentation.proof-bulk-data-logging.title",
+      "pages.victor-methodology-presentation.proof-bulk-data-logging.body",
+      "pages.victor-methodology-presentation.proof-bulk-data-logging.result",
+      "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.year",
+      "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.title",
+      "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.body",
+      "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.result",
+      "pages.victor-methodology-presentation.proof-compound-safety-bug-map.year",
+      "pages.victor-methodology-presentation.proof-compound-safety-bug-map.title",
+      "pages.victor-methodology-presentation.proof-compound-safety-bug-map.body",
+      "pages.victor-methodology-presentation.proof-compound-safety-bug-map.result",
+      "pages.victor-methodology-presentation.proof-localization-pipeline.year",
+      "pages.victor-methodology-presentation.proof-localization-pipeline.title",
+      "pages.victor-methodology-presentation.proof-localization-pipeline.body",
+      "pages.victor-methodology-presentation.proof-localization-pipeline.metric",
+      "pages.victor-methodology-presentation.proof-localization-pipeline.metric-label",
+      "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.year",
+      "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.title",
+      "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.body",
+      "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.result",
+      "pages.victor-methodology-presentation.proof-source-of-truth-relay.year",
+      "pages.victor-methodology-presentation.proof-source-of-truth-relay.title",
+      "pages.victor-methodology-presentation.proof-source-of-truth-relay.body",
+      "pages.victor-methodology-presentation.proof-source-of-truth-relay.result-tag",
+      "pages.victor-methodology-presentation.proof-source-of-truth-relay.result",
+      "pages.victor-methodology-presentation.section-throughline.band",
+      "pages.victor-methodology-presentation.section-ai-maintainable-systems.heading",
+      "pages.victor-methodology-presentation.section-ai-maintainable-systems.p1",
+      "pages.victor-methodology-presentation.section-ai-maintainable-systems.p2",
+      "pages.victor-methodology-presentation.section-audience-fit.heading",
+      "pages.victor-methodology-presentation.note-self-demonstration.lead",
+      "pages.victor-methodology-presentation.note-self-demonstration.body"
+    ],
+    "needs_review": [
+      "pages.victor-methodology-presentation.fit-platform-devex.title",
+      "pages.victor-methodology-presentation.fit-platform-devex.body"
+    ]
+  },
+  "byStringId": {
+    "pages.victor-methodology-presentation.header.eyebrow": {
+      "contentNodeKey": "header",
+      "canonicalElementId": null,
+      "status": "unresolved"
+    },
+    "pages.victor-methodology-presentation.header.thesis": {
+      "contentNodeKey": "header",
+      "canonicalElementId": null,
+      "status": "unresolved"
+    },
+    "pages.victor-methodology-presentation.header.id-line": {
+      "contentNodeKey": "header",
+      "canonicalElementId": null,
+      "status": "unresolved"
+    },
+    "pages.victor-methodology-presentation.header.stamp-big": {
+      "contentNodeKey": "header",
+      "canonicalElementId": null,
+      "status": "unresolved"
+    },
+    "pages.victor-methodology-presentation.header.stamp-small": {
+      "contentNodeKey": "header",
+      "canonicalElementId": null,
+      "status": "unresolved"
+    },
+    "pages.victor-methodology-presentation.section-proofs.heading": {
+      "contentNodeKey": "section-proofs",
+      "canonicalElementId": "SEC-PROOFS",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.section-proofs.intro": {
+      "contentNodeKey": "section-proofs",
+      "canonicalElementId": "SEC-PROOFS",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.proof-organization-knowledge-map.year": {
+      "contentNodeKey": "proof-organization-knowledge-map",
+      "canonicalElementId": "REC-Y0-ORGMAP",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.proof-organization-knowledge-map.title": {
+      "contentNodeKey": "proof-organization-knowledge-map",
+      "canonicalElementId": "REC-Y0-ORGMAP",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.proof-organization-knowledge-map.body": {
+      "contentNodeKey": "proof-organization-knowledge-map",
+      "canonicalElementId": "REC-Y0-ORGMAP",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.proof-organization-knowledge-map.result": {
+      "contentNodeKey": "proof-organization-knowledge-map",
+      "canonicalElementId": "REC-Y0-ORGMAP",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.proof-bulk-data-logging.year": {
+      "contentNodeKey": "proof-bulk-data-logging",
+      "canonicalElementId": "REC-Y1-LOGGING",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.proof-bulk-data-logging.title": {
+      "contentNodeKey": "proof-bulk-data-logging",
+      "canonicalElementId": "REC-Y1-LOGGING",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.proof-bulk-data-logging.body": {
+      "contentNodeKey": "proof-bulk-data-logging",
+      "canonicalElementId": "REC-Y1-LOGGING",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.proof-bulk-data-logging.result": {
+      "contentNodeKey": "proof-bulk-data-logging",
+      "canonicalElementId": "REC-Y1-LOGGING",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.year": {
+      "contentNodeKey": "proof-bidirectional-translation-traceability",
+      "canonicalElementId": "REC-Y2-TRANSLATIONS",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.title": {
+      "contentNodeKey": "proof-bidirectional-translation-traceability",
+      "canonicalElementId": "REC-Y2-TRANSLATIONS",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.body": {
+      "contentNodeKey": "proof-bidirectional-translation-traceability",
+      "canonicalElementId": "REC-Y2-TRANSLATIONS",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.result": {
+      "contentNodeKey": "proof-bidirectional-translation-traceability",
+      "canonicalElementId": "REC-Y2-TRANSLATIONS",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.proof-compound-safety-bug-map.year": {
+      "contentNodeKey": "proof-compound-safety-bug-map",
+      "canonicalElementId": "REC-MID-COMPOUNDBUG",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.proof-compound-safety-bug-map.title": {
+      "contentNodeKey": "proof-compound-safety-bug-map",
+      "canonicalElementId": "REC-MID-COMPOUNDBUG",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.proof-compound-safety-bug-map.body": {
+      "contentNodeKey": "proof-compound-safety-bug-map",
+      "canonicalElementId": "REC-MID-COMPOUNDBUG",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.proof-compound-safety-bug-map.result": {
+      "contentNodeKey": "proof-compound-safety-bug-map",
+      "canonicalElementId": "REC-MID-COMPOUNDBUG",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.proof-localization-pipeline.year": {
+      "contentNodeKey": "proof-localization-pipeline",
+      "canonicalElementId": "REC-Y34-LOCALIZATION",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.proof-localization-pipeline.title": {
+      "contentNodeKey": "proof-localization-pipeline",
+      "canonicalElementId": "REC-Y34-LOCALIZATION",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.proof-localization-pipeline.body": {
+      "contentNodeKey": "proof-localization-pipeline",
+      "canonicalElementId": "REC-Y34-LOCALIZATION",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.proof-localization-pipeline.metric": {
+      "contentNodeKey": "proof-localization-pipeline",
+      "canonicalElementId": "REC-Y34-LOCALIZATION",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.proof-localization-pipeline.metric-label": {
+      "contentNodeKey": "proof-localization-pipeline",
+      "canonicalElementId": "REC-Y34-LOCALIZATION",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.year": {
+      "contentNodeKey": "proof-cross-domain-ui-identity",
+      "canonicalElementId": "REC-Y34-UIELEMENTKEY",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.title": {
+      "contentNodeKey": "proof-cross-domain-ui-identity",
+      "canonicalElementId": "REC-Y34-UIELEMENTKEY",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.body": {
+      "contentNodeKey": "proof-cross-domain-ui-identity",
+      "canonicalElementId": "REC-Y34-UIELEMENTKEY",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.result": {
+      "contentNodeKey": "proof-cross-domain-ui-identity",
+      "canonicalElementId": "REC-Y34-UIELEMENTKEY",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.proof-source-of-truth-relay.year": {
+      "contentNodeKey": "proof-source-of-truth-relay",
+      "canonicalElementId": "REC-Y5-PENSDK",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.proof-source-of-truth-relay.title": {
+      "contentNodeKey": "proof-source-of-truth-relay",
+      "canonicalElementId": "REC-Y5-PENSDK",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.proof-source-of-truth-relay.body": {
+      "contentNodeKey": "proof-source-of-truth-relay",
+      "canonicalElementId": "REC-Y5-PENSDK",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.proof-source-of-truth-relay.result-tag": {
+      "contentNodeKey": "proof-source-of-truth-relay",
+      "canonicalElementId": "REC-Y5-PENSDK",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.proof-source-of-truth-relay.result": {
+      "contentNodeKey": "proof-source-of-truth-relay",
+      "canonicalElementId": "REC-Y5-PENSDK",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.section-throughline.band": {
+      "contentNodeKey": "section-throughline",
+      "canonicalElementId": "SEC-THROUGHLINE",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.section-ai-maintainable-systems.heading": {
+      "contentNodeKey": "section-ai-maintainable-systems",
+      "canonicalElementId": "SEC-AI-APPLICATION",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.section-ai-maintainable-systems.p1": {
+      "contentNodeKey": "section-ai-maintainable-systems",
+      "canonicalElementId": "SEC-AI-APPLICATION",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.section-ai-maintainable-systems.p2": {
+      "contentNodeKey": "section-ai-maintainable-systems",
+      "canonicalElementId": "SEC-AI-APPLICATION",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.section-adoption-implications.heading": {
+      "contentNodeKey": "section-adoption-implications",
+      "canonicalElementId": null,
+      "status": "unresolved"
+    },
+    "pages.victor-methodology-presentation.section-adoption-implications.intro": {
+      "contentNodeKey": "section-adoption-implications",
+      "canonicalElementId": null,
+      "status": "unresolved"
+    },
+    "pages.victor-methodology-presentation.section-adoption-implications.engineering-label": {
+      "contentNodeKey": "section-adoption-implications",
+      "canonicalElementId": null,
+      "status": "unresolved"
+    },
+    "pages.victor-methodology-presentation.section-adoption-implications.engineering": {
+      "contentNodeKey": "section-adoption-implications",
+      "canonicalElementId": null,
+      "status": "unresolved"
+    },
+    "pages.victor-methodology-presentation.section-adoption-implications.localization-label": {
+      "contentNodeKey": "section-adoption-implications",
+      "canonicalElementId": null,
+      "status": "unresolved"
+    },
+    "pages.victor-methodology-presentation.section-adoption-implications.localization": {
+      "contentNodeKey": "section-adoption-implications",
+      "canonicalElementId": null,
+      "status": "unresolved"
+    },
+    "pages.victor-methodology-presentation.section-adoption-implications.quality-label": {
+      "contentNodeKey": "section-adoption-implications",
+      "canonicalElementId": null,
+      "status": "unresolved"
+    },
+    "pages.victor-methodology-presentation.section-adoption-implications.quality": {
+      "contentNodeKey": "section-adoption-implications",
+      "canonicalElementId": null,
+      "status": "unresolved"
+    },
+    "pages.victor-methodology-presentation.section-adoption-implications.ai-label": {
+      "contentNodeKey": "section-adoption-implications",
+      "canonicalElementId": null,
+      "status": "unresolved"
+    },
+    "pages.victor-methodology-presentation.section-adoption-implications.ai": {
+      "contentNodeKey": "section-adoption-implications",
+      "canonicalElementId": null,
+      "status": "unresolved"
+    },
+    "pages.victor-methodology-presentation.section-adoption-implications.leadership-label": {
+      "contentNodeKey": "section-adoption-implications",
+      "canonicalElementId": null,
+      "status": "unresolved"
+    },
+    "pages.victor-methodology-presentation.section-adoption-implications.leadership": {
+      "contentNodeKey": "section-adoption-implications",
+      "canonicalElementId": null,
+      "status": "unresolved"
+    },
+    "pages.victor-methodology-presentation.section-adoption-implications.closing-note": {
+      "contentNodeKey": "section-adoption-implications",
+      "canonicalElementId": null,
+      "status": "unresolved"
+    },
+    "pages.victor-methodology-presentation.section-audience-fit.heading": {
+      "contentNodeKey": "section-audience-fit",
+      "canonicalElementId": "SEC-FIT",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.fit-platform-devex.title": {
+      "contentNodeKey": "fit-platform-devex",
+      "canonicalElementId": "FIT-01",
+      "status": "needs_review"
+    },
+    "pages.victor-methodology-presentation.fit-platform-devex.body": {
+      "contentNodeKey": "fit-platform-devex",
+      "canonicalElementId": "FIT-01",
+      "status": "needs_review"
+    },
+    "pages.victor-methodology-presentation.fit-ai-tooling-companies.title": {
+      "contentNodeKey": "fit-ai-tooling-companies",
+      "canonicalElementId": null,
+      "status": "unresolved"
+    },
+    "pages.victor-methodology-presentation.fit-ai-tooling-companies.body": {
+      "contentNodeKey": "fit-ai-tooling-companies",
+      "canonicalElementId": null,
+      "status": "unresolved"
+    },
+    "pages.victor-methodology-presentation.fit-regulated-industries.title": {
+      "contentNodeKey": "fit-regulated-industries",
+      "canonicalElementId": null,
+      "status": "unresolved"
+    },
+    "pages.victor-methodology-presentation.fit-regulated-industries.body": {
+      "contentNodeKey": "fit-regulated-industries",
+      "canonicalElementId": null,
+      "status": "unresolved"
+    },
+    "pages.victor-methodology-presentation.fit-process-transformation.title": {
+      "contentNodeKey": "fit-process-transformation",
+      "canonicalElementId": null,
+      "status": "unresolved"
+    },
+    "pages.victor-methodology-presentation.fit-process-transformation.body": {
+      "contentNodeKey": "fit-process-transformation",
+      "canonicalElementId": null,
+      "status": "unresolved"
+    },
+    "pages.victor-methodology-presentation.note-self-demonstration.lead": {
+      "contentNodeKey": "note-self-demonstration",
+      "canonicalElementId": "NOTE-SELF-DEMONSTRATION",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.note-self-demonstration.body": {
+      "contentNodeKey": "note-self-demonstration",
+      "canonicalElementId": "NOTE-SELF-DEMONSTRATION",
+      "status": "aligned"
+    },
+    "pages.victor-methodology-presentation.footer.line": {
+      "contentNodeKey": "footer",
+      "canonicalElementId": null,
+      "status": "unresolved"
+    },
+    "pages.victor-methodology-presentation.footer.reference-note": {
+      "contentNodeKey": "footer",
+      "canonicalElementId": null,
+      "status": "unresolved"
+    },
+    "pages.victor-methodology-presentation.footer.stamp-word": {
+      "contentNodeKey": "footer",
+      "canonicalElementId": null,
+      "status": "unresolved"
+    },
+    "pages.victor-methodology-presentation.footer.stamp-label": {
+      "contentNodeKey": "footer",
+      "canonicalElementId": null,
+      "status": "unresolved"
+    }
+  }
+}
