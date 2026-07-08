@@ -740,7 +740,8 @@
       "role": "generates sitemap.xml — lists only pages that actually exist, so crawlers never hit a 404",
       "reads": [
         "data/nodes.json",
-        "pages/*.html (existence check only, per slug)"
+        "pages/*.html (existence check only, per slug)",
+        "git log (per-file last-change date, via subprocess)"
       ],
       "writes": [
         "sitemap.xml"
