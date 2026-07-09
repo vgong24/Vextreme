@@ -79,6 +79,9 @@ steps. It never mutates anything and does not run `pr-ready` for you.
 For the Victor/Vex/Claude/Codex relay and review protocol — role boundaries, the green-path
 Claude ↔ Codex loop, and when to return to Vex — see `docs/process/cross-model-orchestration.md`.
 
+The next stabilization layer, environment/tooling-capability awareness, is designed but not yet
+built — see `docs/process/environment-health-design.md` before implementing `environment-health`.
+
 ## Key constraint
 
 Every `.html` filename in `pages/` must be globally unique across the entire tree —
