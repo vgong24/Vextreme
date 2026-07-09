@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vextreme — SDK Identity Demo</title>
+<meta name="description" content="A static, public-safe demonstration of the private Vextreme SDK's identity resolver, shown as sanitized output from a synthetic fixture.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500&family=Source+Serif+4:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream:  #fafaf9;
+    --stone:  #1c1917;
+    --ink:    #44403c;
+    --muted:  #78716c;
+    --border: #e7e5e4;
+    --ember:  #b45830;
+    --ember-bg: #fdf8f6;
+    --green:  #16a34a;
+    --amber:  #d97706;
+    --serif:  'Source Serif 4', Georgia, serif;
+    --sans:   'IBM Plex Sans', sans-serif;
+    --mono:   'IBM Plex Mono', monospace;
+  }
+  body {
+    font-family: var(--sans);
+    color: var(--stone);
+    background: var(--cream);
+    font-size: clamp(15px, 1.5vw, 16.5px);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: clamp(32px, 6vw, 64px) 20px clamp(48px, 8vw, 80px);
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ember);
+    margin-bottom: 14px;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(26px, 4.5vw, 38px);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .sub {
+    color: var(--muted);
+    max-width: 62ch;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(19px, 2.6vw, 23px);
+    margin: 40px 0 12px;
+  }
+  p { margin-bottom: 14px; max-width: 68ch; }
+  p:last-child { margin-bottom: 0; }
+
+  ul { margin: 0 0 14px 1.2em; max-width: 64ch; }
+  li { margin-bottom: 6px; }
+
+  .flow {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--ink);
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .flow .arrow { color: var(--ember); padding-left: 2px; }
+
+  .panel {
+    background: white;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--ember);
+    border-radius: 10px;
+    padding: clamp(20px, 3vw, 28px);
+    margin: 20px 0;
+  }
+  .panel-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--ember);
+    margin-bottom: 12px;
+  }
+
+  pre {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.7;
+    background: var(--stone);
+    color: #d6d3d1;
+    padding: 18px 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 16px 0;
+  }
+  .tok-key    { color: #93c5fd; }
+  .tok-str    { color: #86efac; }
+  .tok-status { color: #fcd34d; }
+
+  .result-row {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13.5px;
+    flex-wrap: wrap;
+  }
+  .result-row:last-child { border-bottom: none; }
+  .result-key {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    min-width: 130px;
+  }
+  .result-val { font-family: var(--mono); color: var(--ink); word-break: break-word; }
+  .badge {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 2px 8px;
+    border-radius: 5px;
+    background: var(--ember-bg);
+    color: var(--ember);
+  }
+
+  .reason-trail { list-style: none; margin: 0; padding: 0; }
+  .reason-trail li {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink);
+    padding: 6px 0 6px 18px;
+    position: relative;
+  }
+  .reason-trail li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--ember);
+  }
+
+  .boundary {
+    background: var(--ember-bg);
+    border: 1px solid rgba(180,88,48,0.25);
+    border-radius: 10px;
+    padding: clamp(18px, 2.5vw, 24px);
+    margin: 32px 0;
+    font-size: 13.5px;
+    color: var(--ink);
+    line-height: 1.75;
+  }
+  .boundary strong { color: var(--stone); }
+
+  .not-shown {
+    font-size: 13.5px;
+    color: var(--muted);
+  }
+  .not-shown li::marker { color: var(--muted); }
+
+  footer {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--muted);
+  }
+  footer a { color: var(--ember); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<p class="eyebrow">SDK Identity Demo</p>
+<h1>What the private resolver decided, and why.</h1>
+<p class="sub">A static, public-safe look at the private Vextreme SDK's identity resolver — a component whose general problem and boundary are documented in this repo's own <a href="https://github.com/vgong24/Vextreme/blob/main/docs/process/public-private-boundary.md">public/private architecture split</a>, but whose implementation is built and maintained privately as commercial-depth work.</p>
+
+<h2>What this demo shows</h2>
+<p>The private Vextreme SDK includes a resolver that takes a synthetic UI identity signal and a set of localization key candidates, and decides which candidate the signal actually refers to — even when the obvious match (an exact id) doesn't resolve the ambiguity on its own.</p>
+<div class="flow">
+  <div>Synthetic fixture</div>
+  <div class="arrow">↓</div>
+  <div>Private Vextreme-SDK resolver CLI</div>
+  <div class="arrow">↓</div>
+  <div>Sanitized JSON output</div>
+  <div class="arrow">↓</div>
+  <div>This public static page</div>
+</div>
+<p>Public Vextreme displays the result below exactly as the private CLI produced it. Nothing on this page calls anything live — the output is copied here as a static artifact.</p>
+
+<h2>The input</h2>
+<p>A synthetic element identity signal, and two localization key candidates that happen to share the same final segment at different levels of nesting — the kind of ambiguity an id alone can't resolve:</p>
+<pre><span class="tok-key">"element"</span>: {
+  <span class="tok-key">"id"</span>: <span class="tok-str">"hero-title"</span>,
+  <span class="tok-key">"context"</span>: <span class="tok-str">"landing"</span>
+},
+<span class="tok-key">"keyCandidates"</span>: [
+  { <span class="tok-key">"key"</span>: <span class="tok-str">"pages.demo-site.landing.section.1.hero-title"</span> },
+  { <span class="tok-key">"key"</span>: <span class="tok-str">"pages.demo-site.about.section.1.hero-title"</span> }
+]</pre>
+
+<h2>The result</h2>
+<div class="panel">
+  <p class="panel-label">Resolver output</p>
+  <div class="result-row">
+    <span class="result-key">Status</span>
+    <span class="result-val"><span class="badge">resolved</span></span>
+  </div>
+  <div class="result-row">
+    <span class="result-key">Confidence</span>
+    <span class="result-val">weak</span>
+  </div>
+  <div class="result-row">
+    <span class="result-key">Resolved key</span>
+    <span class="result-val">pages.demo-site.landing.section.1.hero-title</span>
+  </div>
+  <div class="result-row" style="border-bottom: none; align-items: flex-start;">
+    <span class="result-key">Reason trail</span>
+    <ul class="reason-trail" style="flex: 1;">
+      <li>Multiple key candidates share a final segment matching the element id.</li>
+      <li>Key candidate scoped to element context "landing" narrowed an otherwise ambiguous set.</li>
+    </ul>
+  </div>
+  <div class="result-row">
+    <span class="result-key">Warnings</span>
+    <span class="result-val">none</span>
+  </div>
+</div>
+<p>Both candidate keys end in <code>hero-title</code>, so the id alone matches both — genuinely ambiguous. The resolver doesn't guess between them; it narrows using the element's own context (<code>landing</code>) and only resolves once that narrows the set to exactly one candidate. If context hadn't resolved it, the honest output would have been <code>status: "ambiguous"</code>, not a forced pick.</p>
+
+<div class="boundary">
+  <strong>This is a static public demonstration artifact.</strong> The private Vextreme-SDK generated this sanitized resolver output from a synthetic fixture, and public Vextreme displays the result. No live connection exists between this page and the private SDK. Viewing this page does not grant access to the SDK, private code, secrets, or client data.
+</div>
+
+<h2>What this demo does not show</h2>
+<ul class="not-shown">
+  <li>No private SDK source code.</li>
+  <li>No client data — every value on this page is invented.</li>
+  <li>No secrets, credentials, or tokens.</li>
+  <li>No live API — this page makes no network calls to anything private.</li>
+  <li>No authenticated user flow.</li>
+  <li>No production service — this is a controlled proof, not a live product.</li>
+  <li>No full localization engine — the resolver is one component, not the whole system.</li>
+</ul>
+
+<footer>
+  Public Vextreme repository. The private implementation lives elsewhere and stays private.
+</footer>
+
+</body>
+</html>
