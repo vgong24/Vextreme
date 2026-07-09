@@ -69,6 +69,9 @@ Run it instead of manually auditing `pages/*.html`.
 **Before opening or reviewing a PR, run `npm run pr-ready`** — it chains the test suite and every
 drift/health check script in one command.
 
+Use `npm run branch-triage` to inspect stale/dirty branch state before cleanup or cross-model handoff.
+It is read-only and does not replace human approval for cleanup.
+
 ## Key constraint
 
 Every `.html` filename in `pages/` must be globally unique across the entire tree —
