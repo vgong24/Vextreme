@@ -123,6 +123,9 @@ context boundaries, handoffs, and re-instantiations without re-deriving settled 
 Write for the next instance. That instance will not have this conversation. Give it
 what it needs to understand not just what changed, but why — and what the next step is.
 
+Cross-model work carries its own continuity needs too: see `docs/process/cross-model-orchestration.md`
+for the bounded relay protocol Victor, Vex, Claude, and Codex use to hand work to each other.
+
 ### Layered maps, not top-heavy memory
 
 Cold-start files should route attention, not absorb every detail. `CLAUDE.md` should name the
