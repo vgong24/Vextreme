@@ -11,6 +11,12 @@ how this project is built, read `docs/culture.md`. This is the layer in between:
 the actual mechanics of how work moves between four different agents without
 losing scope, state, or safety along the way.
 
+`docs/process/` is a deliberate placement, not a default: `docs/continuity/` holds
+system *state*, `docs/culture.md` holds *why*, and this directory holds *how the
+four roles actually coordinate*. If a future revision needs a second process doc,
+it belongs here too — not folded into this file, and not summarized into
+`CLAUDE.md` or `culture.md` beyond a one-line pointer.
+
 ---
 
 ## Why this exists
@@ -79,6 +85,25 @@ values, or unbounded repo refactors.
 
 ---
 
+## Standing principles vs. task-scoped constraints
+
+The role boundaries above are standing principles — they hold across every task unless
+this document itself is revised. Individual relay packets, by contrast, often carry
+constraints scoped to *that task only*: "no code changes," "no secrets," "no
+localization," "docs only." Those are boundaries for the active PR, not new standing law.
+
+Concretely: a docs-only constraint on one PR does not mean Claude stops writing code in
+future tasks. A "Codex, observation only" instruction on one relay does not mean Codex
+only ever reviews. A "no implementation authorized" state update does not freeze the
+whole workflow — it freezes that moment, pending the next bounded task.
+
+When a task-scoped constraint reveals something that should become a standing
+principle, that promotion happens explicitly, through a revision to this document (see
+*Document evolution* below) — not by a future instance assuming the last task's
+boundary was always the rule.
+
+---
+
 ## Green-path Claude ↔ Codex loop
 
 Victor can relay directly between Claude and Codex, without looping Vex back in, when
@@ -125,6 +150,37 @@ these appear:
 - Codex cannot verify PR state.
 - Claude asks for a design decision rather than executing a bounded one.
 - Victor feels unsure.
+
+---
+
+## Report types, by purpose
+
+"Report back" is not one shape. Claude and Codex should match the report to why it's
+being sent, so whoever reads it downstream knows what kind of claim is being made —
+flattening every report into one generic dump loses that signal.
+
+- **Implementation report** — new work, built and verified. Branch, files changed, what
+  was added and why, exact commands run, test/check results, PR link.
+- **Review report** — Codex reviewing a PR. Approve / request changes / comment only;
+  whether the target blocker is resolved; changed files verified against expected
+  scope; command/test results; any new blockers found; recommended next action.
+- **Targeted fix report** — a fix applied in response to a review finding. Files
+  changed, what changed and why, sample output if relevant, focused tests, full
+  readiness result, explicit confirmation nothing outside the requested fix was
+  touched.
+- **Observation report** — a read-only investigation, no files touched. What was
+  inspected, what was found, explicit confirmation no mutation occurred.
+- **Merge checkpoint** — a PR has merged. Purpose, files changed, review path it took,
+  test results, known non-blocking notes, next likely roadmap item.
+- **Exception/escalation report** — something hit a return-to-Vex condition above. What
+  triggered it, what boundary was crossed or would need to be, what the options are, and
+  confirmation no action was taken past the boundary without authorization.
+- **Roadmap decision request** — multiple viable paths exist and the choice isn't
+  Claude's or Codex's to make alone. The paths, their tradeoffs, and what's blocked
+  until a choice is made.
+
+The templates below are the *request* side of this — what Victor sends out. These
+report types are the *response* side — what comes back.
 
 ---
 
@@ -253,6 +309,33 @@ Please report:
 
 ---
 
+## Living collaboration
+
+Claude and Codex are not limited to executing exactly what a relay specifies. When
+either one discovers a real edge case the process doesn't account for, naming it is
+part of the job — not scope creep — as long as naming it doesn't mean acting on it
+unilaterally.
+
+- **Tiny wording clarifications** inside an already-authorized docs scope (a typo, an
+  ambiguous sentence in a doc being actively edited) can just be fixed.
+- **Anything larger** — a gap in the role boundaries, a return-to-Vex condition that
+  didn't fire when it should have, a relay template missing a field it turns out to
+  need — gets surfaced back to Vex/Victor as an observation, not resolved silently by
+  whichever instance found it.
+
+A worked example, from this same PR sequence: this session's execution harness
+constrains it to a single designated git branch. When PR #96's investigation work was
+still open and a second, unrelated piece of authorized work (dossier report hardening)
+finished, there was no way to open a second, cleanly separate PR for it — the
+green-path loop above implicitly assumes one lane maps to one PR. The two pieces landed
+on the same branch as separate, clearly-labeled commits instead, and the PR body was
+updated to say so explicitly. That's a real gap between this process and what a
+single-branch execution environment can actually do, noted here rather than quietly
+treated as the norm — it doesn't yet have a resolution, and isn't this document's call
+to make one.
+
+---
+
 ## Current stabilization stack
 
 Three read-only commands exist for orienting, classifying, and verifying work, in
@@ -298,6 +381,29 @@ status — never the secret value itself.
 When a relay is genuinely needed, provide a complete, copy-pasteable block rather than
 a fragment Victor has to assemble — use the templates above as the baseline shape, and
 prefix with "Victor — send this to `[recipient]`:" so the hand-off is unambiguous.
+
+---
+
+## Document evolution
+
+This document describes the current operating protocol, not a fixed constitution. It
+should change when the process it describes changes — and the record of *why* matters
+as much as the change itself.
+
+When revising this document, preserve:
+
+- **What changed** — the specific section or template.
+- **Why it changed** — the reasoning, not just the new text.
+- **What edge case revealed the need** — the concrete situation that showed the old
+  version was incomplete or wrong, if there was one.
+- **Whether it's a standing principle or a task-specific pattern** — per the distinction
+  above. Most revisions should be standing-principle changes; a task-specific
+  constraint belongs in that task's own relay or PR, not folded into this document,
+  unless it's being explicitly promoted.
+
+Record this the way the rest of the repo records decisions: in the PR that makes the
+change, per `docs/culture.md`'s "Perceivable continuity" — the diff shows what changed,
+the PR explains why.
 
 ---
 
