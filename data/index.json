@@ -1,8 +1,8 @@
 {
-  "builtAt": "2026-07-08T21:54:25.492Z",
-  "nodeCount": 112,
+  "builtAt": "2026-07-09T07:25:54.216Z",
+  "nodeCount": 113,
   "curatedNodeCount": 91,
-  "autoDiscoveredCount": 21,
+  "autoDiscoveredCount": 22,
   "arcCount": 17,
   "supportedLangs": [
     "en",
@@ -2715,6 +2715,31 @@
         ]
       }
     },
+    "sdk-identity-demo": {
+      "id": null,
+      "slug": "sdk-identity-demo",
+      "title": "Vextreme — SDK Identity Demo",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.sdk-identity-demo"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map"
+        ]
+      }
+    },
     "summary-of-value": {
       "id": null,
       "slug": "summary-of-value",
@@ -3781,6 +3806,11 @@
         {
           "slug": "origins-of-proof",
           "title": "Origins of Proof · VXG RealForever",
+          "ported": true
+        },
+        {
+          "slug": "sdk-identity-demo",
+          "title": "Vextreme — SDK Identity Demo",
           "ported": true
         },
         {
