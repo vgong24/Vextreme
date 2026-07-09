@@ -374,6 +374,9 @@ being able to orient itself. When a secrets layer is eventually built, it should
 secret name, purpose, storage location, allowed repo/workflow, owner, and rotation
 status — never the secret value itself.
 
+The environment-health layer is designed (not yet built) in
+`docs/process/environment-health-design.md` — read that before implementing it.
+
 ---
 
 ## Relay formatting
@@ -381,6 +384,19 @@ status — never the secret value itself.
 When a relay is genuinely needed, provide a complete, copy-pasteable block rather than
 a fragment Victor has to assemble — use the templates above as the baseline shape, and
 prefix with "Victor — send this to `[recipient]`:" so the hand-off is unambiguous.
+
+Live deliverables should include the *next* relay when the next recipient is already
+known, not just a report of what happened. Concretely:
+
+- When Claude finishes an implementation or docs PR, it includes a complete
+  "Victor — send this to Codex:" review relay, ready to paste, as part of its report.
+- When Codex completes a review, it includes "Victor — send this to Claude:" if
+  changes are requested, or "Victor — send this to Vex:" if the result is a merge
+  checkpoint or a roadmap decision.
+
+No unresolved placeholders (`[number]`, `[paste ...]`) should appear in a *live* relay
+packet — those only belong in the reusable templates above. A live relay is filled in
+completely, because Victor is meant to send it as-is, not assemble it.
 
 ---
 
