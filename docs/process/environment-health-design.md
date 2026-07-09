@@ -221,6 +221,48 @@ picked by whichever instance implements this next:
   their own dedicated classifier, or stay a documented known-artifact note?
 - Where should the future secrets pointer registry actually live in the repo, once its
   turn comes?
+- Should environment-health (or an adjacent layer) distinguish "already-seen, no new
+  action" from genuinely new state, so repeated notices don't get mistaken for new
+  roadmap state? See *Signal vs. repeated notice* below.
+
+---
+
+## 8. Signal vs. repeated notice (open design consideration)
+
+This session surfaced a concrete, recurring case worth designing for rather than
+letting a future instance rediscover from scratch: a local git-check stop-hook fired
+an "Unverified commit" notice on the same commit, with no new state, many times across
+this session — not because the check was wrong (the commit genuinely has no GPG
+signature), but because the hook re-runs the same check every turn with no way to tell
+"this is still true" apart from "this is new." The correct response each time was to
+do nothing, but that judgment call was made freshly every time rather than recognized
+once and remembered.
+
+The same shape of problem showed up with the repo's own key-alignment PR-comment bot:
+across several PRs in this same session, it posted an identical report (0 missing/
+extra nodes and arcs, the same 21 uncurated pages) on every push, carrying no new
+information after the first occurrence.
+
+Environment-health, or a layer adjacent to it, may eventually need to help distinguish:
+
+- new actionable state
+- repeated notice on the same commit
+- repeated check output with no diff
+- recurring informational warnings
+- stale/no-op notifications
+- an actual new blocker
+
+**Suggested principle** (offered as a design consideration, not a specification this
+PR implements): if a notice/check/message repeats on the same commit and carries no
+new file diff, no new check result, no new blocker, no new reviewer decision, and no
+new merge state, it should be classified as `already-seen / no new action` rather than
+re-triggering work.
+
+This stays an open question, not a resolution. This PR does not implement a
+notification deduper, does not add new code or scripts, and does not touch webhook
+handling — the concept is preserved here so a future instance building
+environment-health (or something adjacent to it) has the shape of the problem already
+named, rather than having to notice it independently the way this session did.
 
 ---
 
