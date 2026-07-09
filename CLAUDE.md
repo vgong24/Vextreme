@@ -82,6 +82,10 @@ Claude ↔ Codex loop, and when to return to Vex — see `docs/process/cross-mod
 The next stabilization layer, environment/tooling-capability awareness, is designed but not yet
 built — see `docs/process/environment-health-design.md` before implementing `environment-health`.
 
+Before continuing localization implementation architecture beyond what's already public, read
+`docs/process/public-private-boundary.md` — high-value implementation work is meant to move to a
+private repo, not build out further here.
+
 ## Key constraint
 
 Every `.html` filename in `pages/` must be globally unique across the entire tree —
