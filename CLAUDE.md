@@ -72,6 +72,10 @@ drift/health check script in one command.
 Use `npm run branch-triage` to inspect stale/dirty branch state before cleanup or cross-model handoff.
 It is read-only and does not replace human approval for cleanup.
 
+Use `npm run current-work` for a read-only orientation report at the start of a session — current
+branch, working-tree state, gone-upstream branches, open PRs (if `gh` is available), and safe next
+steps. It never mutates anything and does not run `pr-ready` for you.
+
 ## Key constraint
 
 Every `.html` filename in `pages/` must be globally unique across the entire tree —
