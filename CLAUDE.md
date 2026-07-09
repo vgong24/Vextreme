@@ -76,6 +76,9 @@ Use `npm run current-work` for a read-only orientation report at the start of a 
 branch, working-tree state, gone-upstream branches, open PRs (if `gh` is available), and safe next
 steps. It never mutates anything and does not run `pr-ready` for you.
 
+For the Victor/Vex/Claude/Codex relay and review protocol — role boundaries, the green-path
+Claude ↔ Codex loop, and when to return to Vex — see `docs/process/cross-model-orchestration.md`.
+
 ## Key constraint
 
 Every `.html` filename in `pages/` must be globally unique across the entire tree —
