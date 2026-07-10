@@ -165,6 +165,19 @@
   .unpin-btn{ font-family:var(--mono); font-size:10px; color:var(--ink-muted); background:none; border:1px solid var(--line-strong); border-radius:14px; padding:4px 10px; cursor:pointer; margin-bottom:12px; }
   .unpin-btn:hover{ border-color:var(--accent); color:var(--accent); }
 
+  .journey-section{ margin:18px 0; padding-top:16px; border-top:1px solid var(--line); }
+  .journey-summary{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:9px; }
+  .journey-depth{ font-family:var(--mono); font-size:9.5px; color:var(--ink-faint); }
+  .journey-list{ list-style:none; margin:0 0 11px; padding:0; display:flex; flex-direction:column; gap:7px; }
+  .journey-step{ display:grid; grid-template-columns:18px minmax(0,1fr); gap:7px; font-family:var(--mono); font-size:10.5px; color:var(--ink-muted); }
+  .journey-step[aria-current="step"]{ color:var(--ink); font-weight:700; }
+  .journey-index{ color:var(--ink-faint); text-align:right; }
+  .journey-reason{ display:block; color:var(--accent); font-size:9px; font-weight:500; margin-top:2px; }
+  .journey-actions{ display:flex; gap:7px; flex-wrap:wrap; }
+  .journey-btn{ border:1px solid var(--line-strong); background:var(--panel-2); color:var(--ink-muted); border-radius:6px; padding:6px 9px; font-family:var(--mono); font-size:9.5px; cursor:pointer; }
+  .journey-btn:hover:not(:disabled){ border-color:var(--accent); color:var(--accent); }
+  .journey-btn:disabled{ opacity:.45; cursor:default; }
+
   .screen-lang-toggle{ display:flex; gap:6px; margin-bottom:10px; flex-wrap:wrap; }
   .screen-lang-toggle button{ appearance:none; border:1px solid var(--line-strong); background:var(--panel-2); color:var(--ink-muted); font-family:var(--mono); font-size:10.5px; font-weight:700; padding:5px 11px; border-radius:6px; cursor:pointer; }
   .screen-lang-toggle button[aria-pressed="true"]{ background:var(--accent); border-color:var(--accent); color:#fff; }
@@ -231,6 +244,7 @@
   </div>
 </div>
 
+<script src="../lib/terrain-journey.js"></script>
 <script>
 (function () {
   'use strict';
@@ -258,6 +272,8 @@
   var ENTER_RATIO = 3.0, EXIT_RATIO = 0.55;
   var FULL_RECT = null, COL_W = 340;
   var panelLang = 'en';
+  var Journey = window.VextremeTerrainJourney;
+  var journeySnapshot = null, historyReady = false, restoringHistory = false;
 
   // ── fetch, then build the client-side view model on top of the real data ──
   fetch(TERRAIN_URL)
@@ -329,6 +345,7 @@
 
     wireControls();
     switchWorld('code');
+    initializeJourneyHistory();
   }
 
   function switchWorld(name) {
@@ -399,6 +416,84 @@
     updateReadout();
   }
   function resetView() { pinnedId = null; focusId = null; renderPanel(null); enterLevel(0, {}); }
+
+  function currentLevelName() {
+    return OVERVIEW_LEVELS[levelIndex].id;
+  }
+
+  function captureSemanticState() {
+    var stage = typeof levelCtx.stageIdx === 'number' ? STAGES[levelCtx.stageIdx] : null;
+    return {
+      world: currentWorld,
+      lens: currentLens,
+      level: currentLevelName(),
+      stageKey: stage ? stage.key : null,
+      pinnedId: pinnedId,
+    };
+  }
+
+  function labelForNode(id) {
+    var n = id && byId[id];
+    return n ? (n.id || n.title || n.slug) : null;
+  }
+
+  function historyEntry(details) {
+    details = details || {};
+    return {
+      label: details.label || labelForNode(pinnedId) || currentLevelName().toUpperCase(),
+      nodeId: details.nodeId || pinnedId || null,
+      fromNodeId: details.fromNodeId || null,
+      relationship: details.relationship || null,
+      reason: details.reason || null,
+      world: currentWorld,
+      level: currentLevelName(),
+    };
+  }
+
+  function initializeJourneyHistory() {
+    if (!Journey) throw new Error('Terrain Journey state module did not load');
+    var existing = Journey.unwrap(history.state);
+    if (existing) {
+      journeySnapshot = existing;
+      historyReady = true;
+      restoreSemanticState(existing.semantic);
+      return;
+    }
+    journeySnapshot = Journey.create(captureSemanticState(), historyEntry({ label: 'VEXTREME' }));
+    history.replaceState(Journey.wrap(journeySnapshot, history.state), '', window.location.href);
+    historyReady = true;
+  }
+
+  function commitSemanticState(details) {
+    if (!historyReady || restoringHistory) return;
+    var semantic = captureSemanticState();
+    if (Journey.sameSemantic(journeySnapshot.semantic, semantic)) return;
+    journeySnapshot = Journey.append(journeySnapshot, semantic, historyEntry(details));
+    history.pushState(Journey.wrap(journeySnapshot, history.state), '', window.location.href);
+    refreshJourneyPanel();
+  }
+
+  function setLensState(lens) {
+    currentLens = WORLDS[currentWorld].hasLenses ? lens : 'all';
+    document.querySelectorAll('#lensBar .lens-btn').forEach(function (button) {
+      button.setAttribute('aria-pressed', String(button.getAttribute('data-lens') === currentLens));
+    });
+  }
+
+  function restoreSemanticState(semantic) {
+    restoringHistory = true;
+    switchWorld(WORLDS[semantic.world] ? semantic.world : 'code');
+    setLensState(semantic.lens || 'all');
+
+    var targetLevel = OVERVIEW_LEVELS.findIndex(function (level) { return level.id === semantic.level; });
+    if (targetLevel > 0) {
+      var stageIdx = STAGES.findIndex(function (stage) { return stage.key === semantic.stageKey; });
+      enterLevel(targetLevel, targetLevel === 2 ? { stageIdx: Math.max(0, stageIdx) } : {});
+    }
+    if (semantic.pinnedId && byId[semantic.pinnedId]) travelTo(semantic.pinnedId, { record: false });
+    else renderPanel(null);
+    restoringHistory = false;
+  }
 
   function renderSystemBand() {
     clearWorld();
@@ -479,7 +574,10 @@
       var pinTag = el('text', { x: n.x + 11, y: ey - 12, class: 'node-pin-tag', opacity: 0 });
       pinTag.textContent = n.kind === 'screen' ? 'screen' : n.kind === 'page' ? n.arcName : (n.cluster + ' / ' + n.id.split('/').pop());
       g.appendChild(ring); g.appendChild(hit); g.appendChild(dot); g.appendChild(label); g.appendChild(pinTag);
-      g.addEventListener('click', function (ev) { ev.stopPropagation(); togglePin(n.id); });
+      g.addEventListener('click', function (ev) {
+        ev.stopPropagation();
+        togglePin(n.id, { relationship: 'selected', reason: 'direct node selection' });
+      });
       world.appendChild(g);
       renderedNodes[id] = { g: g, dot: dot, label: label, pinTag: pinTag, ring: ring };
     });
@@ -534,10 +632,19 @@
     });
   }
 
-  function togglePin(id) {
+  function togglePin(id, details) {
+    var previousId = pinnedId;
     pinnedId = (pinnedId === id) ? null : id;
     renderPanel(pinnedId ? byId[pinnedId] : (focusId ? byId[focusId] : null));
     applyLOD();
+    details = details || {};
+    commitSemanticState({
+      label: pinnedId ? labelForNode(pinnedId) : currentLevelName().toUpperCase(),
+      nodeId: pinnedId,
+      fromNodeId: details.fromNodeId || previousId,
+      relationship: details.relationship || (pinnedId ? 'selected' : 'closed selection'),
+      reason: details.reason || (pinnedId ? 'node selection' : 'returned to map'),
+    });
   }
 
   // ── cross-reference trails: a Reads/Writes/etc entry that names a real
@@ -553,7 +660,9 @@
     if (idByBasename[base] && text.indexOf(base) !== -1) return idByBasename[base];
     return null;
   }
-  function travelTo(id) {
+  function travelTo(id, details) {
+    details = details || {};
+    var previousId = details.fromNodeId || pinnedId;
     var n = byId[id]; if (!n) return;
     var stageIdx = STAGES.findIndex(function (s) { return s.key === n.stage; });
     if (OVERVIEW_LEVELS[levelIndex].id !== 'node' || levelCtx.stageIdx !== stageIdx) {
@@ -565,14 +674,66 @@
     snapTo(target);
     syncTiles();
     renderPanel(n);
+    if (details.record !== false) {
+      commitSemanticState({
+        label: labelForNode(id),
+        nodeId: id,
+        fromNodeId: previousId,
+        relationship: details.relationship || 'traveled to',
+        reason: details.reason || 'semantic travel',
+      });
+    }
   }
 
-  function listOrEmpty(arr) {
+  function listOrEmpty(arr, relationship, sourceId) {
     if (!arr || !arr.length) return '<div class="field-empty">none recorded</div>';
     return '<ul class="field-list">' + arr.map(function (x) {
       var target = resolveRef(x);
-      return '<li' + (target ? ' class="linkable" data-travel="' + target + '"' : '') + '>' + esc(x) + '</li>';
+      return '<li' + (target ? ' class="linkable" data-travel="' + target + '" data-relationship="' + esc(relationship || 'related to') + '" data-source="' + esc(sourceId || '') + '"' : '') + '>' + esc(x) + '</li>';
     }).join('') + '</ul>';
+  }
+
+  function journeyHtml() {
+    if (!journeySnapshot) return '';
+    var journey = journeySnapshot.journey;
+    var start = Math.max(0, journey.cursor - 5);
+    var steps = journey.entries.slice(start, journey.cursor + 1).map(function (entry, offset) {
+      var index = start + offset;
+      var reason = entry.relationship
+        ? '<span class="journey-reason">' + esc(entry.relationship) + (entry.fromNodeId ? ' from ' + esc(entry.fromNodeId) : '') + '</span>'
+        : '';
+      return '<li class="journey-step"' + (index === journey.cursor ? ' aria-current="step"' : '') + '>' +
+        '<span class="journey-index">' + (index + 1) + '.</span><span>' + esc(entry.label) + reason + '</span></li>';
+    }).join('');
+    return '<section class="journey-section" aria-label="Journey">' +
+      '<div class="journey-summary"><div class="field-label" style="margin:0">Journey</div>' +
+      '<span class="journey-depth">' + journey.cursor + ' semantic step' + (journey.cursor === 1 ? '' : 's') + '</span></div>' +
+      '<ol class="journey-list">' + steps + '</ol>' +
+      '<div class="journey-actions">' +
+        '<button class="journey-btn" data-journey-action="origin"' + (journey.cursor === 0 ? ' disabled' : '') + '>Return to origin</button>' +
+        '<button class="journey-btn" data-journey-action="clear">Clear journey</button>' +
+      '</div></section>';
+  }
+
+  function wireJourneyControls(panel) {
+    var origin = panel.querySelector('[data-journey-action="origin"]');
+    var clear = panel.querySelector('[data-journey-action="clear"]');
+    if (origin) origin.addEventListener('click', function () {
+      if (journeySnapshot.journey.cursor > 0) history.go(-journeySnapshot.journey.cursor);
+    });
+    if (clear) clear.addEventListener('click', function () {
+      journeySnapshot = Journey.reset(journeySnapshot, captureSemanticState(), Journey.current(journeySnapshot));
+      history.replaceState(Journey.wrap(journeySnapshot, history.state), '', window.location.href);
+      refreshJourneyPanel();
+    });
+  }
+
+  function refreshJourneyPanel() {
+    var panel = document.getElementById('panel');
+    var section = panel.querySelector('.journey-section');
+    if (!section) return;
+    section.outerHTML = journeyHtml();
+    wireJourneyControls(panel);
   }
 
   function renderPanel(n) {
@@ -599,16 +760,24 @@
         '<span class="lens-tag' + (n.auditorFocus ? ' active' : '') + '">auditor focus</span>' +
       '</div>' +
       '<p class="role">' + esc(n.role) + '</p>' +
-      '<div class="field"><div class="field-label">Reads</div>' + listOrEmpty(n.reads) + '</div>' +
-      '<div class="field"><div class="field-label">Writes</div>' + listOrEmpty(n.writes) + '</div>' +
-      '<div class="field"><div class="field-label">Loaded by</div>' + listOrEmpty(n.loadedBy) + '</div>' +
-      '<div class="field"><div class="field-label">Tested by</div>' + listOrEmpty(n.testedBy) + '</div>' +
+      '<div class="field"><div class="field-label">Reads</div>' + listOrEmpty(n.reads, 'reads', n.id) + '</div>' +
+      '<div class="field"><div class="field-label">Writes</div>' + listOrEmpty(n.writes, 'writes', n.id) + '</div>' +
+      '<div class="field"><div class="field-label">Loaded by</div>' + listOrEmpty(n.loadedBy, 'loaded by', n.id) + '</div>' +
+      '<div class="field"><div class="field-label">Tested by</div>' + listOrEmpty(n.testedBy, 'tested by', n.id) + '</div>' +
+      journeyHtml() +
       '<div class="field"><div class="field-label">Open items referencing this file</div>' + debtsHtml + '</div>' +
       '<div class="footnote">Computed live from docs/lattice-map.json and data/status/*.json by lib/build-terrain-map.js. Stage and lens tags are a naming-pattern heuristic (v1) — not a designed taxonomy. This page never needs hand-editing when a node changes.</div>';
 
     panel.querySelectorAll('[data-travel]').forEach(function (elx) {
-      elx.addEventListener('click', function () { travelTo(elx.getAttribute('data-travel')); });
+      elx.addEventListener('click', function () {
+        travelTo(elx.getAttribute('data-travel'), {
+          fromNodeId: elx.getAttribute('data-source'),
+          relationship: elx.getAttribute('data-relationship'),
+          reason: 'relationship link',
+        });
+      });
     });
+    wireJourneyControls(panel);
     window.__vexUnpin = function () { togglePin(n.id); };
   }
 
@@ -656,7 +825,8 @@
       capabilityHtml +
       '<div class="field" style="margin-top:14px;">' + shotHtml + '</div>' +
       (p.live ? '<a class="visit-btn" href="' + p.liveUrl + '" target="_blank" rel="noopener">Open live page &#8599;</a>' : '') +
-      '<div class="field"><div class="field-label">Arcs</div>' + listOrEmpty(p.arcKeys) + '</div>' +
+      '<div class="field"><div class="field-label">Arcs</div>' + listOrEmpty(p.arcKeys, 'belongs to', p.id) + '</div>' +
+      journeyHtml() +
       '<div class="footnote">' + (p.curated
         ? 'A real data/nodes.json entry (registry id: ' + esc(String(p.id)) + '), positioned by its own curation order within ' + esc(p.arcName) + '.'
         : 'A real pages/*.html file with no data/nodes.json entry — auto-discovered, not yet curated.') +
@@ -672,6 +842,7 @@
         });
       });
     }
+    wireJourneyControls(panel);
     window.__vexUnpin = function () { togglePin(p.id); };
   }
 
@@ -693,7 +864,8 @@
         '<div class="screen-thumb-frame"><img id="screenThumb" src="' + BASE + '/' + s.screenshots[panelLang] + '" alt="' + esc(s.title) + ' screenshot"></div>' +
       '</div>' +
       '<a class="visit-btn" href="' + s.liveUrl + '" target="_blank" rel="noopener">Open live page &#8599;</a>' +
-      '<div class="field"><div class="field-label">Arcs</div>' + listOrEmpty(s.arcKeys) + '</div>' +
+      '<div class="field"><div class="field-label">Arcs</div>' + listOrEmpty(s.arcKeys, 'belongs to', s.id) + '</div>' +
+      journeyHtml() +
       '<div class="footnote">Thumbnail is a real file at docs/screenshots/, written by scripts/screenshot-page.js — not a mockup. Add a page + run the screenshot tool + rebuild the terrain map, and it appears here automatically.</div>';
 
     var toggle = document.getElementById('screenLangToggle');
@@ -704,6 +876,7 @@
         document.getElementById('screenThumb').src = BASE + '/' + s.screenshots[panelLang];
       });
     });
+    wireJourneyControls(panel);
     window.__vexUnpin = function () { togglePin(s.id); };
   }
 
@@ -727,10 +900,21 @@
         ctx.stageIdx = Math.min(STAGES.length - 1, Math.max(0, Math.round(world0.x / COL_W)));
       }
       enterLevel(levelIndex + 1, ctx);
+      var enteredStage = typeof levelCtx.stageIdx === 'number' ? STAGES[levelCtx.stageIdx] : null;
+      commitSemanticState({
+        label: enteredStage ? enteredStage.name : currentLevelName().toUpperCase(),
+        relationship: 'zoomed into',
+        reason: 'semantic level transition',
+      });
       return;
     }
     if (levelIndex > 0 && ratio < EXIT_RATIO) {
       enterLevel(levelIndex - 1, levelIndex - 1 === 0 ? {} : { stageIdx: levelCtx.stageIdx });
+      commitSemanticState({
+        label: currentLevelName().toUpperCase(),
+        relationship: 'zoomed out to',
+        reason: 'semantic level transition',
+      });
       return;
     }
     if (levelIndex === 0 && ratio < 1) return; // floor: never zoom out past "see everything with margin"
@@ -767,7 +951,10 @@
 
     document.getElementById('zoomIn').addEventListener('click', function () { var vp = viewportSize(); handleZoomAt(vp.w / 2, vp.h / 2, view.scale * 1.3); });
     document.getElementById('zoomOut').addEventListener('click', function () { var vp = viewportSize(); handleZoomAt(vp.w / 2, vp.h / 2, view.scale * 0.75); });
-    document.getElementById('zoomReset').addEventListener('click', resetView);
+    document.getElementById('zoomReset').addEventListener('click', function () {
+      resetView();
+      commitSemanticState({ label: 'VEXTREME', relationship: 'reset to', reason: 'reset control' });
+    });
 
     document.querySelectorAll('#lensBar .lens-btn').forEach(function (btn) {
       btn.addEventListener('click', function () {
@@ -779,6 +966,11 @@
         if (OVERVIEW_LEVELS[levelIndex].id === 'stage') renderStageBand();
         else if (OVERVIEW_LEVELS[levelIndex].id === 'node') { clearWorld(); syncTiles(); }
         updateReadout();
+        commitSemanticState({
+          label: currentLens.charAt(0).toUpperCase() + currentLens.slice(1) + ' lens',
+          relationship: 'changed lens to',
+          reason: 'lens control',
+        });
       });
     });
 
@@ -787,6 +979,11 @@
         if (btn.getAttribute('data-world') === currentWorld) return;
         pinnedId = null; focusId = null; renderPanel(null);
         switchWorld(btn.getAttribute('data-world'));
+        commitSemanticState({
+          label: currentWorld.charAt(0).toUpperCase() + currentWorld.slice(1) + ' view',
+          relationship: 'changed view to',
+          reason: 'view control',
+        });
       });
     });
     updateReadout();
@@ -799,10 +996,20 @@
       var q = ev.target.value.trim().toLowerCase();
       if (q.length < 2) return;
       var match = ALL.find(function (n) { return String(n.id).toLowerCase().indexOf(q) !== -1 || (n.title && n.title.toLowerCase().indexOf(q) !== -1); });
-      if (match) travelTo(match.id);
+      if (match) travelTo(match.id, { relationship: 'searched for', reason: 'search result' });
     });
 
     window.addEventListener('resize', function () { enterLevel(levelIndex, levelCtx); });
+    window.addEventListener('popstate', function (event) {
+      var snapshot = Journey && Journey.unwrap(event.state);
+      if (!snapshot) return;
+      if (journeySnapshot && snapshot.generation !== journeySnapshot.generation) {
+        history.back();
+        return;
+      }
+      journeySnapshot = snapshot;
+      restoreSemanticState(snapshot.semantic);
+    });
   }
 }());
 </script>
