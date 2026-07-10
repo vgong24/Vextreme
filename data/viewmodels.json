@@ -1,5 +1,5 @@
 {
-  "_comment": "Per-slug viewmodel overrides. Omitted slugs get the default viewmodel (production, page template, pages.{slug} scope, lang+spiral-fab features). Only non-default pages need entries here. 'title' is used by build-archives.js to display the dev section — it is not consumed by the God Script assembler.",
+  "_comment": "Per-slug viewmodel overrides. Omitted slugs get the default viewmodel (production, page template, pages.{slug} scope, lang+spiral-fab+theme+map+analysis features — see lib/build-index.js buildViewmodel()). Only non-default pages need entries here; every entry below intentionally excludes theme/map/analysis for a minimal demo/specimen feature set. 'title' is used by build-archives.js to display the dev section — it is not consumed by the God Script assembler.",
 
   "vextreme-demo": {
     "title": "Vextreme Demo",

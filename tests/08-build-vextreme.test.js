@@ -136,7 +136,7 @@ test('ASSEMBLER: widgets/fab-lang.js actually reads window.VEX_SUPPORTED_LANGS �
 // happens, so a future FEATURES registry edit that silently drops one of
 // these back to filename: null fails CI immediately.
 
-test('FAB SYSTEM: a default-viewmodel page\'s assembled God Script contains all four FAB features (spiral-fab, lang, theme, map)', () => {
+test('FAB SYSTEM: a default-viewmodel page\'s assembled God Script contains all five FAB features (spiral-fab, lang, theme, map, analysis)', () => {
   const script = assembleGodScript('test-slug', DEMO_VIEWMODEL, {
     includeSourceComment: false,
     supportedLangs: ['en', 'ja'],
@@ -145,7 +145,7 @@ test('FAB SYSTEM: a default-viewmodel page\'s assembled God Script contains all 
   // features array matching a real default-viewmodel page instead.
   const defaultFeaturesScript = assembleGodScript('test-slug', {
     ...DEMO_VIEWMODEL,
-    features: ['lang', 'spiral-fab', 'theme', 'map'],
+    features: ['lang', 'spiral-fab', 'theme', 'map', 'analysis'],
   }, { includeSourceComment: false });
 
   assert.ok(defaultFeaturesScript.includes('feature: spiral-fab') || defaultFeaturesScript.includes('vex-fab.js'),
@@ -156,27 +156,31 @@ test('FAB SYSTEM: a default-viewmodel page\'s assembled God Script contains all 
     'theme must be bundled');
   assert.ok(defaultFeaturesScript.includes('feature: map') || defaultFeaturesScript.includes('fab-map.js'),
     'map must be bundled');
+  assert.ok(defaultFeaturesScript.includes('feature: analysis') || defaultFeaturesScript.includes('fab-analysis.js'),
+    'analysis must be bundled (docs/architecture/15-analysis-mode.md Phase C)');
 });
 
-test('FAB SYSTEM: spiral-fab is concatenated before lang/theme/map — DOMContentLoaded handlers must fire in that order so #vex-spiral-group exists before an orb widget looks for it', () => {
+test('FAB SYSTEM: spiral-fab is concatenated before lang/theme/map/analysis — DOMContentLoaded handlers must fire in that order so #vex-spiral-group exists before an orb widget looks for it', () => {
   const script = assembleGodScript('test-slug', {
     ...DEMO_VIEWMODEL,
-    features: ['lang', 'spiral-fab', 'theme', 'map'],
+    features: ['lang', 'spiral-fab', 'theme', 'map', 'analysis'],
   }, { includeSourceComment: false });
 
-  const spiralIdx = script.indexOf('vex-fab.js');
-  const langIdx   = script.indexOf('fab-lang.js');
-  const themeIdx  = script.indexOf('fab-theme.js');
-  const mapIdx    = script.indexOf('fab-map.js');
+  const spiralIdx   = script.indexOf('vex-fab.js');
+  const langIdx     = script.indexOf('fab-lang.js');
+  const themeIdx    = script.indexOf('fab-theme.js');
+  const mapIdx      = script.indexOf('fab-map.js');
+  const analysisIdx = script.indexOf('fab-analysis.js');
 
-  assert.ok(spiralIdx !== -1 && langIdx !== -1 && themeIdx !== -1 && mapIdx !== -1,
-    'all four widget sources must be present in the assembled script');
-  assert.ok(spiralIdx < langIdx,  'vex-fab.js must be concatenated before fab-lang.js');
-  assert.ok(spiralIdx < themeIdx, 'vex-fab.js must be concatenated before fab-theme.js');
-  assert.ok(spiralIdx < mapIdx,   'vex-fab.js must be concatenated before fab-map.js');
+  assert.ok(spiralIdx !== -1 && langIdx !== -1 && themeIdx !== -1 && mapIdx !== -1 && analysisIdx !== -1,
+    'all five widget sources must be present in the assembled script');
+  assert.ok(spiralIdx < langIdx,     'vex-fab.js must be concatenated before fab-lang.js');
+  assert.ok(spiralIdx < themeIdx,    'vex-fab.js must be concatenated before fab-theme.js');
+  assert.ok(spiralIdx < mapIdx,      'vex-fab.js must be concatenated before fab-map.js');
+  assert.ok(spiralIdx < analysisIdx, 'vex-fab.js must be concatenated before fab-analysis.js');
 });
 
-test('FAB SYSTEM: default viewmodel (no override) includes all four FAB features — real-page propagation, not just the assembler accepting them', () => {
+test('FAB SYSTEM: default viewmodel (no override) includes all five FAB features — real-page propagation, not just the assembler accepting them', () => {
   const { buildViewmodel } = require('../lib/build-index');
   const { Feature: F } = require('../lib/vex-config');
   const vm = buildViewmodel('any-slug-with-no-override', {});
@@ -184,10 +188,11 @@ test('FAB SYSTEM: default viewmodel (no override) includes all four FAB features
   assert.ok(vm.features.includes(F.LANG),       'default viewmodel must include lang');
   assert.ok(vm.features.includes(F.THEME),      'default viewmodel must include theme');
   assert.ok(vm.features.includes(F.MAP),        'default viewmodel must include map');
+  assert.ok(vm.features.includes(F.ANALYSIS),   'default viewmodel must include analysis');
 });
 
-test('FAB SYSTEM: widgets/fab-theme.js and widgets/fab-map.js both check for #vex-spiral-group and nest into it when present', () => {
-  for (const file of ['fab-theme.js', 'fab-map.js']) {
+test('FAB SYSTEM: widgets/fab-theme.js, widgets/fab-map.js, and widgets/fab-analysis.js all check for #vex-spiral-group and nest into it when present', () => {
+  for (const file of ['fab-theme.js', 'fab-map.js', 'fab-analysis.js']) {
     const src = fs.readFileSync(path.join(ROOT, 'widgets', file), 'utf8');
     assert.ok(src.includes("getElementById('vex-spiral-group')"),
       `${file} must look up #vex-spiral-group to nest its orb, per Session 025's real-estate-conscious design`);
