@@ -70,12 +70,39 @@ with its own pre-existing dark-mode toggle) via Playwright — both render the m
 nav correctly, zero conflicts with existing page elements, zero errors. Real result:
 **14/39 pages navigable, up from 8/39.**
 
-### Step 4+ — remaining pages, and eventually the God-Script path
+### Step 4 — the 3 deferred pages, individually reviewed (done)
 
-Next real batch: the 3 pages deferred from Step 3 (`connect`, `human-ai-corelational-governance`,
-`origins-of-proof`) — each needs its existing script tag(s) read and understood before
-`shell.js` is added alongside them, not a blind repeat of Step 3's pattern. After that, the
-remaining isolated pages. Whether the long-term target is universal `shell.js` coverage,
+Read each of `connect.html`, `human-ai-corelational-governance.html`, and
+`origins-of-proof.html`'s existing `<script>` block(s) before touching anything, per Step 3's
+own deferral note. `connect.html` (fragment, a copy-button handler and an accordion
+persistence handler, both single-init-guarded) and `human-ai-corelational-governance.html`
+(full document, a section-scroll sticky sub-nav and its own light/dark theme toggle scoped to
+`<html>`) both verified cleanly with `shell.js`'s default settings via Playwright — nav
+injected, body wrap applied, no console errors, no visual conflicts.
+
+`origins-of-proof.html` did **not** verify cleanly with defaults: it's a full document whose
+own `#op-root` layout is intentionally wide (`--op-page-width: 1100px`), and `shell.js`'s
+default body-wrap (`max-width: 720px`) squashed it to ~640px — a real, measured layout
+break, not a guess. Fixed using `shell.js`'s own documented override mechanism:
+`window.VEXTREME_OVERRIDE = { bodyWrap: false }` declared before the `shell.js` script tag,
+disabling only the auto-wrap while keeping the nav injection. Re-verified: `#op-root` back to
+its full 1280px width, nav present, no conflicts.
+
+**Real bug found during this verification, out of scope to fix here:** a real scroll test
+(not just "element exists at page load") showed `.vex-nav`'s `position: sticky` never
+actually keeps the nav pinned during scroll, on *any* page using `shell.js` — including
+already-merged pages from Step 3, not just this batch. Root cause: `#vex-site-nav`, the
+wrapper `injectNav()` creates, is sized to exactly its sticky child's height, leaving no
+room for the sticky behavior to engage. Recorded as `td-010` in
+`data/status/tech-debt.json` rather than fixed inline, since it's a pre-existing, site-wide
+CSS issue unrelated to which pages get `shell.js` added — bundling an unrelated fix into a
+rollout PR would blur what each change is actually for.
+
+Real result: **17/39 pages navigable, up from 14/39** (`node lib/audit-nav.js`).
+
+### Step 5+ — remaining pages, and eventually the God-Script path
+
+22 pages remain isolated. Whether the long-term target is universal `shell.js` coverage,
 universal God-Script wiring (`pe-002`), or a deliberate mix, is a decision to make once
 more of the rollout's real results are in — not guessed now.
 

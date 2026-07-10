@@ -2374,5 +2374,16 @@ opCalc();
 </script>
 
 </div><!-- /op-root -->
+<script>
+  /* bodyWrap:false -- this page's own #op-root layout is intentionally
+     wider (--op-page-width: 1100px) than shell.js's default .vex-page-body
+     wrap (max-width: 720px). Wrapping would squash #op-root to ~640px,
+     breaking the designed layout -- confirmed empirically (Playwright,
+     real width measurement) during nav-coverage rollout Step 4. The nav
+     bar itself is unaffected by this override; only the auto body-wrap
+     is disabled. See docs/architecture/16-nav-coverage.md Step 4. */
+  window.VEXTREME_OVERRIDE = { bodyWrap: false };
+</script>
+<script src="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/lib/shell.js"></script>
 </body>
 </html>
