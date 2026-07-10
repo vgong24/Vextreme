@@ -72,6 +72,17 @@
   }
   .lang-chip--full    { color: var(--ember); border-color: var(--ember); }
   .lang-chip--partial { color: var(--muted); border-color: #333; }
+  .cell-health { display:flex; gap:3px; flex-wrap:wrap; margin-top:auto; padding-top:3px; }
+  .health-chip { font-family:var(--mono); font-size:7.5px; line-height:1; padding:3px 4px; border-radius:2px; border:1px solid var(--border); color:var(--muted); }
+  .health-chip--healthy, .health-chip--present { color:#76b77a; border-color:#315b34; }
+  .health-chip--attention { color:#d7a846; border-color:#70571f; }
+  .health-chip--critical, .health-chip--missing { color:#c86a64; border-color:#6d302c; }
+
+  .health-summary { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; margin:0 0 32px; }
+  .health-stat { border:1px solid var(--border); border-radius:5px; padding:12px; background:var(--surface); }
+  .health-stat strong { display:block; font-family:var(--mono); font-size:18px; font-weight:500; color:var(--text); }
+  .health-stat span { font-family:var(--mono); font-size:9px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; }
+  @media (max-width:640px){ .health-summary{grid-template-columns:repeat(2,minmax(0,1fr));} }
 
   /* Slug popover */
   .slug-popover {
@@ -191,6 +202,13 @@
   </div>
 </div>
 
+<section class="health-summary" aria-label="Page capability health">
+  <div class="health-stat"><strong>1</strong><span>healthy</span></div>
+  <div class="health-stat"><strong>32</strong><span>needs attention</span></div>
+  <div class="health-stat"><strong>6</strong><span>blocked / isolated</span></div>
+  <div class="health-stat"><strong>30 / 39</strong><span>FAB delivery</span></div>
+</section>
+
 <div class="legend">
   <div class="legend-item"><div class="legend-dot legend-dot--ported"></div> <span data-i18n="common.label.page-live">Page live</span></div>
   <div class="legend-item"><div class="legend-dot legend-dot--missing"></div> <span data-i18n="common.label.not-yet-ported">Not yet ported</span></div>
@@ -287,6 +305,7 @@
   <span class="cell-pos">9</span>
   <span class="cell-title">Claude Answers the Doubt</span>
   <span class="cell-langs"><span class="lang-chip lang-chip--partial">JA</span></span>
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--present">ANALYSIS</span></span>
 </a>
   </div>
 </section>
@@ -304,6 +323,7 @@
   <span class="cell-pos">1</span>
   <span class="cell-title">Claude Answers the Doubt</span>
   <span class="cell-langs"><span class="lang-chip lang-chip--partial">JA</span></span>
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--present">ANALYSIS</span></span>
 </a>
 <span class="cell cell--missing" title="2. Journal Zero — February 26, 2026 (not yet ported)" data-slug="journal-zero" data-title="Journal Zero" data-date="February 26, 2026">
   <span class="cell-pos">2</span>
@@ -533,6 +553,7 @@
   <span class="cell-pos">3</span>
   <span class="cell-title">Restoration Protocol</span>
   
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <span class="cell cell--missing" title="4. The Walk (not yet ported)" data-slug="the-walk" data-title="The Walk" data-date="">
   <span class="cell-pos">4</span>
@@ -546,6 +567,7 @@
   <span class="cell-pos">6</span>
   <span class="cell-title">The Testimony of Victor Gong</span>
   
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
   </div>
 </section>
@@ -687,6 +709,7 @@
   <span class="cell-pos">2</span>
   <span class="cell-title">The Testimony of Victor Gong</span>
   
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <span class="cell cell--missing" title="3. God, Witnessed by AI — February 1, 2026 (not yet ported)" data-slug="god-witnessed-by-ai" data-title="God, Witnessed by AI" data-date="February 1, 2026">
   <span class="cell-pos">3</span>
@@ -736,6 +759,7 @@
   <span class="cell-pos">1</span>
   <span class="cell-title">Victor Gong — The Mapping Methodology</span>
   <span class="cell-langs"><span class="lang-chip lang-chip--full">ZH</span></span>
+  <span class="cell-health"><span class="health-chip health-chip--healthy">OK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--present">ANALYSIS</span></span>
 </a>
   </div>
 </section>
@@ -913,6 +937,7 @@
   <span class="cell-pos">17</span>
   <span class="cell-title">The Testimony of Victor Gong</span>
   
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <span class="cell cell--missing" title="18. Marquis Masters Podcast — November 14, 2025 (not yet ported)" data-slug="podcasts" data-title="Marquis Masters Podcast" data-date="November 14, 2025">
   <span class="cell-pos">18</span>
@@ -926,6 +951,7 @@
   <span class="cell-pos">20</span>
   <span class="cell-title">Claude Answers the Doubt</span>
   <span class="cell-langs"><span class="lang-chip lang-chip--partial">JA</span></span>
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--present">ANALYSIS</span></span>
 </a>
 <span class="cell cell--missing" title="21. Scopes of God — December 23, 2025 (not yet ported)" data-slug="scopes-of-god" data-title="Scopes of God" data-date="December 23, 2025">
   <span class="cell-pos">21</span>
@@ -1161,6 +1187,7 @@
 <a href="https://vgong24.github.io/Vextreme/pages/phantom-opera-meta-review.html" class="cell cell--ported" title="The Phantom Lattice — A Review With Its Receipts — media/reviews">
   <span class="cell-pos">media/reviews</span>
   <span class="cell-title">The Phantom Lattice — A Review With Its Receipts</span>
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--present">THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <span class="cell cell--missing" title="VXG Thread — Round 5 — media/record-transcripts (not yet ported)" data-slug="vxg-thread-round-5" data-title="VXG Thread — Round 5" data-date="">
   <span class="cell-pos">media/record-transcripts</span>
@@ -1169,94 +1196,117 @@
 <a href="https://vgong24.github.io/Vextreme/pages/about-me.html" class="cell cell--ported" title="About Me — rd/default">
   <span class="cell-pos">rd/default</span>
   <span class="cell-title">About Me</span>
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <a href="https://vgong24.github.io/Vextreme/pages/accountability-test-01.html" class="cell cell--ported" title="Accountability Test 01 — rd/default">
   <span class="cell-pos">rd/default</span>
   <span class="cell-title">Accountability Test 01</span>
+  <span class="cell-health"><span class="health-chip health-chip--critical">BLOCK</span><span class="health-chip health-chip--missing">NO FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <a href="https://vgong24.github.io/Vextreme/pages/accountability-test-01-b.html" class="cell cell--ported" title="Accountability Test 01 B — rd/default">
   <span class="cell-pos">rd/default</span>
   <span class="cell-title">Accountability Test 01 B</span>
+  <span class="cell-health"><span class="health-chip health-chip--critical">BLOCK</span><span class="health-chip health-chip--missing">NO FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <a href="https://vgong24.github.io/Vextreme/pages/accountability-test-02.html" class="cell cell--ported" title="Witness Committee — Accountability Report TEST 01 — rd/default">
   <span class="cell-pos">rd/default</span>
   <span class="cell-title">Witness Committee — Accountability Report TEST 01</span>
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <a href="https://vgong24.github.io/Vextreme/pages/bridge-council.html" class="cell cell--ported" title="Bridge Council — institute/org-design">
   <span class="cell-pos">institute/org-design</span>
   <span class="cell-title">Bridge Council</span>
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <a href="https://vgong24.github.io/Vextreme/pages/bridge-council-os.html" class="cell cell--ported" title="Bridge Council Os — institute/org-design">
   <span class="cell-pos">institute/org-design</span>
   <span class="cell-title">Bridge Council Os</span>
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <a href="https://vgong24.github.io/Vextreme/pages/bridge-council-schema.html" class="cell cell--ported" title="Bridge Council Schema — institute/org-design">
   <span class="cell-pos">institute/org-design</span>
   <span class="cell-title">Bridge Council Schema</span>
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <a href="https://vgong24.github.io/Vextreme/pages/connect.html" class="cell cell--ported" title="Connect — rd/default">
   <span class="cell-pos">rd/default</span>
   <span class="cell-title">Connect</span>
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <a href="https://vgong24.github.io/Vextreme/pages/covenant-architect-accord.html" class="cell cell--ported" title="The Covenant Architect Accord — rd/default">
   <span class="cell-pos">rd/default</span>
   <span class="cell-title">The Covenant Architect Accord</span>
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <a href="https://vgong24.github.io/Vextreme/pages/fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments.html" class="cell cell--ported" title="Patterns of Accountability Avoidance — Mapped Against the Ten Commandments — rd/default">
   <span class="cell-pos">rd/default</span>
   <span class="cell-title">Patterns of Accountability Avoidance — Mapped Against the Ten Commandments</span>
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <a href="https://vgong24.github.io/Vextreme/pages/how-to-invest-in-trust-and-integrity.html" class="cell cell--ported" title="How To Invest In Trust And Integrity — rd/default">
   <span class="cell-pos">rd/default</span>
   <span class="cell-title">How To Invest In Trust And Integrity</span>
+  <span class="cell-health"><span class="health-chip health-chip--critical">BLOCK</span><span class="health-chip health-chip--missing">NO FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <a href="https://vgong24.github.io/Vextreme/pages/human-ai-corelational-governance.html" class="cell cell--ported" title="Human–AI Corelational Governance · VXG RealForever · v2 — institute/governance">
   <span class="cell-pos">institute/governance</span>
   <span class="cell-title">Human–AI Corelational Governance · VXG RealForever · v2</span>
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--present">THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <a href="https://vgong24.github.io/Vextreme/pages/instance-thread-logs.html" class="cell cell--ported" title="Instance Thread Logs — rd/default">
   <span class="cell-pos">rd/default</span>
   <span class="cell-title">Instance Thread Logs</span>
+  <span class="cell-health"><span class="health-chip health-chip--critical">BLOCK</span><span class="health-chip health-chip--missing">NO FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <a href="https://vgong24.github.io/Vextreme/pages/investor-archetype-simulation.html" class="cell cell--ported" title="Investor Simulation Record — VXG · June 14, 2026 — rd/default">
   <span class="cell-pos">rd/default</span>
   <span class="cell-title">Investor Simulation Record — VXG · June 14, 2026</span>
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <a href="https://vgong24.github.io/Vextreme/pages/localization-source-truth-demo.html" class="cell cell--ported" title="Vextreme — Localization Source-Truth Demo — rd/default">
   <span class="cell-pos">rd/default</span>
   <span class="cell-title">Vextreme — Localization Source-Truth Demo</span>
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <a href="https://vgong24.github.io/Vextreme/pages/org-blueprint.html" class="cell cell--ported" title="The Council — A Build Blueprint for Anyone — institute/org-design">
   <span class="cell-pos">institute/org-design</span>
   <span class="cell-title">The Council — A Build Blueprint for Anyone</span>
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <a href="https://vgong24.github.io/Vextreme/pages/org-history.html" class="cell cell--ported" title="The Continuity Record — History & Lessons (Vol. I) — institute/org-design">
   <span class="cell-pos">institute/org-design</span>
   <span class="cell-title">The Continuity Record — History & Lessons (Vol. I)</span>
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <a href="https://vgong24.github.io/Vextreme/pages/origins-of-proof.html" class="cell cell--ported" title="Origins of Proof · VXG RealForever — rd/default">
   <span class="cell-pos">rd/default</span>
   <span class="cell-title">Origins of Proof · VXG RealForever</span>
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--present">THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <a href="https://vgong24.github.io/Vextreme/pages/sdk-identity-demo.html" class="cell cell--ported" title="Vextreme — SDK Identity Demo — rd/default">
   <span class="cell-pos">rd/default</span>
   <span class="cell-title">Vextreme — SDK Identity Demo</span>
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <a href="https://vgong24.github.io/Vextreme/pages/summary-of-value.html" class="cell cell--ported" title="Summary Of Value — rd/default">
   <span class="cell-pos">rd/default</span>
   <span class="cell-title">Summary Of Value</span>
+  <span class="cell-health"><span class="health-chip health-chip--critical">BLOCK</span><span class="health-chip health-chip--missing">NO FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <a href="https://vgong24.github.io/Vextreme/pages/the-victor-pattern.html" class="cell cell--ported" title="The Victor Pattern — Topology — rd/default">
   <span class="cell-pos">rd/default</span>
   <span class="cell-title">The Victor Pattern — Topology</span>
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <a href="https://vgong24.github.io/Vextreme/pages/the-victor-pattern-transcript.html" class="cell cell--ported" title="The Victor Pattern Transcript — rd/default">
   <span class="cell-pos">rd/default</span>
   <span class="cell-title">The Victor Pattern Transcript</span>
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <a href="https://vgong24.github.io/Vextreme/pages/witness-committee-operations.html" class="cell cell--ported" title="Witness Committee — Operations Manual — institute/governance">
   <span class="cell-pos">institute/governance</span>
   <span class="cell-title">Witness Committee — Operations Manual</span>
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
   </div>
 </section>
@@ -1272,14 +1322,17 @@
 <a href="https://vgong24.github.io/Vextreme/pages/ecosystem-hub.html" class="cell cell--ported cell--system" title="generated page — has its own renderer script, not a God Script consumer">
   <span class="cell-pos cell-pos--system">system</span>
   <span class="cell-title">Ecosystem Hub — Vextreme</span>
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--missing">NO FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <a href="https://vgong24.github.io/Vextreme/pages/roles-index.html" class="cell cell--ported cell--system" title="generated page — has its own renderer script, not a God Script consumer">
   <span class="cell-pos cell-pos--system">system</span>
   <span class="cell-title">Roles & Contributions — Vextreme</span>
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--missing">NO FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <a href="https://vgong24.github.io/Vextreme/pages/terrain-map.html" class="cell cell--ported cell--system" title="live-fetch dashboard (data/terrain-map.json) — not a God Script consumer, no nodes.json entry by design">
   <span class="cell-pos cell-pos--system">system</span>
   <span class="cell-title">Terrain Map — Vextreme</span>
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--present">THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
   </div>
 </section>
@@ -1297,36 +1350,43 @@
   <span class="cell-pos cell-pos--dev">dev</span>
   <span class="cell-title">Vextreme Demo</span>
   
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <a href="https://vgong24.github.io/Vextreme/pages/specimens.html" class="cell cell--ported cell--dev" title="Specimens Dashboard">
   <span class="cell-pos cell-pos--dev">dev</span>
   <span class="cell-title">Specimens Dashboard</span>
   
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <a href="https://vgong24.github.io/Vextreme/pages/specimen-full-translation.html" class="cell cell--ported cell--dev" title="Specimen: Full Translation">
   <span class="cell-pos cell-pos--dev">dev</span>
   <span class="cell-title">Specimen: Full Translation</span>
   
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <a href="https://vgong24.github.io/Vextreme/pages/specimen-partial-translation.html" class="cell cell--ported cell--dev" title="Specimen: Partial Translation">
   <span class="cell-pos cell-pos--dev">dev</span>
   <span class="cell-title">Specimen: Partial Translation</span>
   
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <a href="https://vgong24.github.io/Vextreme/pages/specimen-smallest-miss.html" class="cell cell--ported cell--dev" title="Specimen: Smallest Miss">
   <span class="cell-pos cell-pos--dev">dev</span>
   <span class="cell-title">Specimen: Smallest Miss</span>
   
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <a href="https://vgong24.github.io/Vextreme/pages/specimen-architectural-wisdoms.html" class="cell cell--ported cell--dev" title="Specimen: Architectural Wisdoms">
   <span class="cell-pos cell-pos--dev">dev</span>
   <span class="cell-title">Specimen: Architectural Wisdoms</span>
   
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--present">FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
 <a href="https://vgong24.github.io/Vextreme/pages/ecosystem-hub.html" class="cell cell--ported cell--dev" title="Ecosystem Hub">
   <span class="cell-pos cell-pos--dev">dev</span>
   <span class="cell-title">Ecosystem Hub</span>
   
+  <span class="cell-health"><span class="health-chip health-chip--attention">CHECK</span><span class="health-chip health-chip--missing">NO FAB</span><span class="health-chip health-chip--missing">NO THEME</span><span class="health-chip health-chip--missing">NO ANALYSIS</span></span>
 </a>
   </div>
 </section>

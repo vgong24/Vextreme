@@ -23,7 +23,10 @@
 
 const PREREQUISITE_SCRIPTS = [
   'lib/strings-compile.js',
+  'lib/build-analysis-index.js',
+  'lib/build-page-health.js',
   'lib/build-archives.js',
+  'lib/build-terrain-map.js',
 ];
 
 module.exports = { PREREQUISITE_SCRIPTS };

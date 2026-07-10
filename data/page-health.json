@@ -1,0 +1,2113 @@
+{
+  "schemaVersion": 1,
+  "summary": {
+    "total": 39,
+    "healthy": 1,
+    "attention": 32,
+    "critical": 6,
+    "sorted": 4,
+    "withFab": 30,
+    "withIdentity": 9,
+    "withScreenshots": 10
+  },
+  "pages": {
+    "about-me": {
+      "slug": "about-me",
+      "title": "about-me",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": true,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": true,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "shell"
+      },
+      "theme": {
+        "control": "shared",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "uncurated",
+          "identity",
+          "screenshot",
+          "theme-effect"
+        ]
+      }
+    },
+    "accountability-test-01": {
+      "slug": "accountability-test-01",
+      "title": "accountability-test-01",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": false,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "missing"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "health": {
+        "state": "critical",
+        "blockers": [
+          "isolated"
+        ],
+        "gaps": [
+          "fab",
+          "uncurated",
+          "identity",
+          "screenshot"
+        ]
+      }
+    },
+    "accountability-test-01-b": {
+      "slug": "accountability-test-01-b",
+      "title": "accountability-test-01-b",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": false,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "missing"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "health": {
+        "state": "critical",
+        "blockers": [
+          "isolated"
+        ],
+        "gaps": [
+          "fab",
+          "uncurated",
+          "identity",
+          "screenshot"
+        ]
+      }
+    },
+    "accountability-test-02": {
+      "slug": "accountability-test-02",
+      "title": "accountability-test-02",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": true,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": true,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "shell"
+      },
+      "theme": {
+        "control": "shared",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "uncurated",
+          "identity",
+          "screenshot",
+          "theme-effect"
+        ]
+      }
+    },
+    "archives": {
+      "slug": "archives",
+      "title": "archives",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 3,
+        "shell": false,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "missing"
+      },
+      "theme": {
+        "control": "page-owned",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 12,
+        "languages": {
+          "en": {
+            "translated": 12,
+            "total": 12,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 12,
+            "total": 12,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "fab",
+          "uncurated",
+          "screenshot",
+          "theme-effect"
+        ]
+      }
+    },
+    "bridge-council": {
+      "slug": "bridge-council",
+      "title": "bridge-council",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": true,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": true,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "shell"
+      },
+      "theme": {
+        "control": "shared",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "uncurated",
+          "identity",
+          "screenshot",
+          "theme-effect"
+        ]
+      }
+    },
+    "bridge-council-os": {
+      "slug": "bridge-council-os",
+      "title": "bridge-council-os",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": true,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": true,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "shell"
+      },
+      "theme": {
+        "control": "shared",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "uncurated",
+          "identity",
+          "screenshot",
+          "theme-effect"
+        ]
+      }
+    },
+    "bridge-council-schema": {
+      "slug": "bridge-council-schema",
+      "title": "bridge-council-schema",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": true,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": true,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "shell"
+      },
+      "theme": {
+        "control": "shared",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "uncurated",
+          "identity",
+          "screenshot",
+          "theme-effect"
+        ]
+      }
+    },
+    "claude-answers-the-doubt": {
+      "slug": "claude-answers-the-doubt",
+      "title": "Claude Answers the Doubt",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "epstein",
+          "claude_journals",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": true,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": true,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "shell"
+      },
+      "theme": {
+        "control": "shared",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 56,
+        "languages": {
+          "en": {
+            "translated": 56,
+            "total": 56,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 55,
+            "total": 56,
+            "state": "partial"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": [
+          "en",
+          "ja"
+        ]
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "theme-effect"
+        ]
+      }
+    },
+    "connect": {
+      "slug": "connect",
+      "title": "connect",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": true,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": true,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "shell"
+      },
+      "theme": {
+        "control": "shared",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "uncurated",
+          "identity",
+          "screenshot",
+          "theme-effect"
+        ]
+      }
+    },
+    "covenant-architect-accord": {
+      "slug": "covenant-architect-accord",
+      "title": "covenant-architect-accord",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": true,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": true,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "shell"
+      },
+      "theme": {
+        "control": "shared",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "uncurated",
+          "identity",
+          "screenshot",
+          "theme-effect"
+        ]
+      }
+    },
+    "ecosystem-hub": {
+      "slug": "ecosystem-hub",
+      "title": "ecosystem-hub",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 3,
+        "shell": false,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "missing"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": [
+          "lenses"
+        ]
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "fab",
+          "uncurated",
+          "identity"
+        ]
+      }
+    },
+    "fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments": {
+      "slug": "fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments",
+      "title": "fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": true,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": true,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "shell"
+      },
+      "theme": {
+        "control": "shared",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "uncurated",
+          "identity",
+          "screenshot",
+          "theme-effect"
+        ]
+      }
+    },
+    "how-to-invest-in-trust-and-integrity": {
+      "slug": "how-to-invest-in-trust-and-integrity",
+      "title": "how-to-invest-in-trust-and-integrity",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": false,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "missing"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "health": {
+        "state": "critical",
+        "blockers": [
+          "isolated"
+        ],
+        "gaps": [
+          "fab",
+          "uncurated",
+          "identity",
+          "screenshot"
+        ]
+      }
+    },
+    "human-ai-corelational-governance": {
+      "slug": "human-ai-corelational-governance",
+      "title": "human-ai-corelational-governance",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": true,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": true,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "shell"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": true
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "uncurated",
+          "identity",
+          "screenshot"
+        ]
+      }
+    },
+    "instance-thread-logs": {
+      "slug": "instance-thread-logs",
+      "title": "instance-thread-logs",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": false,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "missing"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "health": {
+        "state": "critical",
+        "blockers": [
+          "isolated"
+        ],
+        "gaps": [
+          "fab",
+          "uncurated",
+          "identity",
+          "screenshot"
+        ]
+      }
+    },
+    "investor-archetype-simulation": {
+      "slug": "investor-archetype-simulation",
+      "title": "investor-archetype-simulation",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": true,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": true,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "shell"
+      },
+      "theme": {
+        "control": "shared",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "uncurated",
+          "identity",
+          "screenshot",
+          "theme-effect"
+        ]
+      }
+    },
+    "localization-source-truth-demo": {
+      "slug": "localization-source-truth-demo",
+      "title": "localization-source-truth-demo",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": true,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": true,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "shell"
+      },
+      "theme": {
+        "control": "shared",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "uncurated",
+          "identity",
+          "screenshot",
+          "theme-effect"
+        ]
+      }
+    },
+    "org-blueprint": {
+      "slug": "org-blueprint",
+      "title": "org-blueprint",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": true,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": true,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "shell"
+      },
+      "theme": {
+        "control": "shared",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "uncurated",
+          "identity",
+          "screenshot",
+          "theme-effect"
+        ]
+      }
+    },
+    "org-history": {
+      "slug": "org-history",
+      "title": "org-history",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": true,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": true,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "shell"
+      },
+      "theme": {
+        "control": "shared",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "uncurated",
+          "identity",
+          "screenshot",
+          "theme-effect"
+        ]
+      }
+    },
+    "origins-of-proof": {
+      "slug": "origins-of-proof",
+      "title": "origins-of-proof",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": true,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": true,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "shell"
+      },
+      "theme": {
+        "control": "shared",
+        "visibleStyles": true
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "uncurated",
+          "identity",
+          "screenshot"
+        ]
+      }
+    },
+    "phantom-opera-meta-review": {
+      "slug": "phantom-opera-meta-review",
+      "title": "The Phantom Lattice — A Review With Its Receipts",
+      "placement": {
+        "state": "unsorted",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": true,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": true,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "shell"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": true
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "unsorted",
+          "identity",
+          "screenshot"
+        ]
+      }
+    },
+    "restoration-protocol": {
+      "slug": "restoration-protocol",
+      "title": "Restoration Protocol",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "direct_contact"
+        ]
+      },
+      "runtime": {
+        "shell": true,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": true,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "shell"
+      },
+      "theme": {
+        "control": "shared",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "identity",
+          "screenshot",
+          "theme-effect"
+        ]
+      }
+    },
+    "roles-index": {
+      "slug": "roles-index",
+      "title": "roles-index",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 3,
+        "shell": false,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "missing"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": [
+          "en"
+        ]
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "fab",
+          "uncurated",
+          "identity"
+        ]
+      }
+    },
+    "sdk-identity-demo": {
+      "slug": "sdk-identity-demo",
+      "title": "sdk-identity-demo",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": true,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": true,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "shell"
+      },
+      "theme": {
+        "control": "shared",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "uncurated",
+          "identity",
+          "screenshot",
+          "theme-effect"
+        ]
+      }
+    },
+    "specimen-architectural-wisdoms": {
+      "slug": "specimen-architectural-wisdoms",
+      "title": "specimen-architectural-wisdoms",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": true,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": true,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "shell"
+      },
+      "theme": {
+        "control": "page-owned",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 2,
+        "languages": {
+          "en": {
+            "translated": 2,
+            "total": 2,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 2,
+            "total": 2,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "uncurated",
+          "screenshot",
+          "theme-effect"
+        ]
+      }
+    },
+    "specimen-full-translation": {
+      "slug": "specimen-full-translation",
+      "title": "specimen-full-translation",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": true,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": true,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "shell"
+      },
+      "theme": {
+        "control": "page-owned",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 14,
+        "languages": {
+          "en": {
+            "translated": 14,
+            "total": 14,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 14,
+            "total": 14,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": [
+          "en",
+          "ja"
+        ]
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "uncurated",
+          "theme-effect"
+        ]
+      }
+    },
+    "specimen-partial-translation": {
+      "slug": "specimen-partial-translation",
+      "title": "specimen-partial-translation",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": true,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": true,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "shell"
+      },
+      "theme": {
+        "control": "page-owned",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 15,
+        "languages": {
+          "en": {
+            "translated": 15,
+            "total": 15,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 14,
+            "total": 15,
+            "state": "partial"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": [
+          "en",
+          "ja"
+        ]
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "uncurated",
+          "theme-effect"
+        ]
+      }
+    },
+    "specimen-smallest-miss": {
+      "slug": "specimen-smallest-miss",
+      "title": "specimen-smallest-miss",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": true,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": true,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "shell"
+      },
+      "theme": {
+        "control": "page-owned",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 15,
+        "languages": {
+          "en": {
+            "translated": 15,
+            "total": 15,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 15,
+            "total": 15,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": [
+          "en",
+          "ja"
+        ]
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "uncurated",
+          "theme-effect"
+        ]
+      }
+    },
+    "specimens": {
+      "slug": "specimens",
+      "title": "specimens",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": true,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 1,
+        "shell": true,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "shell"
+      },
+      "theme": {
+        "control": "page-owned",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 12,
+        "languages": {
+          "en": {
+            "translated": 12,
+            "total": 12,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 12,
+            "total": 12,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": [
+          "en",
+          "ja"
+        ]
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "uncurated",
+          "theme-effect"
+        ]
+      }
+    },
+    "summary-of-value": {
+      "slug": "summary-of-value",
+      "title": "summary-of-value",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": false,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "missing"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "health": {
+        "state": "critical",
+        "blockers": [
+          "isolated"
+        ],
+        "gaps": [
+          "fab",
+          "uncurated",
+          "identity",
+          "screenshot"
+        ]
+      }
+    },
+    "terrain-map": {
+      "slug": "terrain-map",
+      "title": "terrain-map",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": true,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": true,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "shell"
+      },
+      "theme": {
+        "control": "shared",
+        "visibleStyles": true
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": [
+          "dark",
+          "overview",
+          "search"
+        ]
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "uncurated",
+          "identity"
+        ]
+      }
+    },
+    "the-testimony-of-victor-gong": {
+      "slug": "the-testimony-of-victor-gong",
+      "title": "The Testimony of Victor Gong",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "victors_record",
+          "direct_contact",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": true,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": true,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "shell"
+      },
+      "theme": {
+        "control": "shared",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "identity",
+          "screenshot",
+          "theme-effect"
+        ]
+      }
+    },
+    "the-victor-pattern": {
+      "slug": "the-victor-pattern",
+      "title": "the-victor-pattern",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": true,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": true,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "shell"
+      },
+      "theme": {
+        "control": "shared",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "uncurated",
+          "identity",
+          "screenshot",
+          "theme-effect"
+        ]
+      }
+    },
+    "the-victor-pattern-transcript": {
+      "slug": "the-victor-pattern-transcript",
+      "title": "the-victor-pattern-transcript",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": true,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": true,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "shell"
+      },
+      "theme": {
+        "control": "shared",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "uncurated",
+          "identity",
+          "screenshot",
+          "theme-effect"
+        ]
+      }
+    },
+    "v2-test": {
+      "slug": "v2-test",
+      "title": "v2-test",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": false,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "missing"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "health": {
+        "state": "critical",
+        "blockers": [
+          "isolated"
+        ],
+        "gaps": [
+          "fab",
+          "uncurated",
+          "identity",
+          "screenshot"
+        ]
+      }
+    },
+    "vextreme-demo": {
+      "slug": "vextreme-demo",
+      "title": "vextreme-demo",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 1,
+        "shell": false,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "page-owned"
+      },
+      "theme": {
+        "control": "page-owned",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 31,
+        "languages": {
+          "en": {
+            "translated": 31,
+            "total": 31,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 31,
+            "total": 31,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": [
+          "en",
+          "ja"
+        ]
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "uncurated",
+          "theme-effect"
+        ]
+      }
+    },
+    "victor-methodology-presentation": {
+      "slug": "victor-methodology-presentation",
+      "title": "Victor Gong — The Mapping Methodology",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "victor_dossier"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 69,
+        "languages": {
+          "en": {
+            "translated": 69,
+            "total": 69,
+            "state": "full"
+          },
+          "zh": {
+            "translated": 69,
+            "total": 69,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": [
+          "en",
+          "zh"
+        ]
+      },
+      "health": {
+        "state": "healthy",
+        "blockers": [],
+        "gaps": []
+      }
+    },
+    "witness-committee-operations": {
+      "slug": "witness-committee-operations",
+      "title": "witness-committee-operations",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": true,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": true,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "shell"
+      },
+      "theme": {
+        "control": "shared",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "uncurated",
+          "identity",
+          "screenshot",
+          "theme-effect"
+        ]
+      }
+    }
+  }
+}

@@ -16,12 +16,12 @@
       "key": 1,
       "name": "GENERATE",
       "sub": "build/apply/append scripts that read sources",
-      "count": 18,
+      "count": 19,
       "rect": {
         "x": 350,
         "y": 40,
         "width": 300,
-        "height": 1170
+        "height": 1230
       }
     },
     {
@@ -328,7 +328,7 @@
       "status": "warning",
       "engineerFocus": true,
       "auditorFocus": true,
-      "auditorRank": 5
+      "auditorRank": 4
     },
     {
       "id": "lib/arc-nav.js",
@@ -378,7 +378,8 @@
       ],
       "loadedBy": [
         "manual run: node lib/audit-nav.js",
-        "tests/38-audit-nav.test.js"
+        "tests/38-audit-nav.test.js",
+        "lib/build-page-health.js (reuses the navigation report)"
       ],
       "testedBy": [
         "tests/38-audit-nav.test.js"
@@ -415,7 +416,8 @@
         "tests/20-roles.test.js",
         "tests/28-build-terrain-map.test.js",
         "lib/build-analysis-index.js (reuses getPageSlugs)",
-        "lib/audit-nav.js (reuses getPageSlugs, isWiredToGodScript)"
+        "lib/audit-nav.js (reuses getPageSlugs, isWiredToGodScript)",
+        "lib/build-page-health.js (reuses page inventory and God Script wiring)"
       ],
       "testedBy": [],
       "debts": [
@@ -530,7 +532,7 @@
       "status": "warning",
       "engineerFocus": true,
       "auditorFocus": true,
-      "auditorRank": 7
+      "auditorRank": 6
     },
     {
       "id": "lib/build-archives.js",
@@ -547,6 +549,7 @@
         "data/departments.json",
         "data/strings/compiled/strings.en.json",
         "data/strings/compiled/manifest.json",
+        "data/page-health.json",
         "pages/*.html (existence check, per slug, for the ported/missing cell state; also read in full via lib/auto-discover-nodes.js for any slug with no nodes.json entry)",
         "lib/audit-pages.js (SKIP_PAGES, getPageSlugs)",
         "lib/auto-discover-nodes.js (discoverOrphanNodes, readPageFromDisk)"
@@ -558,14 +561,16 @@
         "manual run: node lib/build-archives.js",
         ".github/workflows/build-index.yml"
       ],
-      "testedBy": [],
+      "testedBy": [
+        "tests/44-page-health.test.js"
+      ],
       "debts": [
         "pe-011"
       ],
-      "status": "critical",
+      "status": "warning",
       "engineerFocus": true,
       "auditorFocus": true,
-      "auditorRank": 0
+      "auditorRank": 7
     },
     {
       "id": "lib/build-ecosystem-hub.js",
@@ -627,7 +632,7 @@
       "status": "critical",
       "engineerFocus": true,
       "auditorFocus": true,
-      "auditorRank": 1
+      "auditorRank": 0
     },
     {
       "id": "lib/build-index.js",
@@ -675,7 +680,7 @@
       "status": "warning",
       "engineerFocus": true,
       "auditorFocus": true,
-      "auditorRank": 3
+      "auditorRank": 2
     },
     {
       "id": "lib/build-lattice-headers.js",
@@ -705,7 +710,7 @@
       "status": "warning",
       "engineerFocus": true,
       "auditorFocus": true,
-      "auditorRank": 6
+      "auditorRank": 5
     },
     {
       "id": "lib/build-lessons.js",
@@ -737,6 +742,43 @@
       "auditorRank": 13
     },
     {
+      "id": "lib/build-page-health.js",
+      "cluster": "lib",
+      "stage": 1,
+      "stageName": "GENERATE",
+      "x": 400,
+      "y": 1110,
+      "role": "joins existing page registries, runtime audits, localization identity, analysis, and screenshot evidence into one deterministic per-page capability projection",
+      "reads": [
+        "pages/*.html (runtime tags, data-i18n bindings, authored theme styles)",
+        "data/nodes.json (arc placement)",
+        "data/strings/compiled/manifest.json (translation coverage)",
+        "data/analysis-index.json (analysis indexing)",
+        "dist/*.js (God Script FAB and analysis delivery)",
+        "docs/screenshots/*.png (evidence presence)",
+        "lib/audit-pages.js (page inventory and God Script wiring)",
+        "lib/audit-nav.js (navigation classification)",
+        "lib/audit-fab.js (theme ownership and opt-out classification)"
+      ],
+      "writes": [
+        "data/page-health.json"
+      ],
+      "loadedBy": [
+        "manual run: node lib/build-page-health.js",
+        ".github/workflows/build-index.yml (before Archives and Terrain)",
+        "tests/helpers/prereqs.js",
+        "tests/44-page-health.test.js"
+      ],
+      "testedBy": [
+        "tests/44-page-health.test.js"
+      ],
+      "debts": [],
+      "status": "good",
+      "engineerFocus": true,
+      "auditorFocus": false,
+      "auditorRank": 14
+    },
+    {
       "id": "lib/build-roles-page.js",
       "cluster": "lib",
       "stage": 1,
@@ -762,7 +804,7 @@
       "status": "good",
       "engineerFocus": true,
       "auditorFocus": false,
-      "auditorRank": 14
+      "auditorRank": 15
     },
     {
       "id": "lib/build-roles.js",
@@ -794,7 +836,7 @@
       "status": "good",
       "engineerFocus": true,
       "auditorFocus": false,
-      "auditorRank": 15
+      "auditorRank": 16
     },
     {
       "id": "lib/build-sitemap.js",
@@ -822,7 +864,7 @@
       "status": "critical",
       "engineerFocus": true,
       "auditorFocus": true,
-      "auditorRank": 2
+      "auditorRank": 1
     },
     {
       "id": "lib/build-status.js",
@@ -872,7 +914,7 @@
       "stage": 1,
       "stageName": "GENERATE",
       "x": 400,
-      "y": 1110,
+      "y": 1170,
       "role": "localization identity pilot, second script — generates pointer indexes and a human-readable report from committed identity metadata",
       "reads": [
         "data/strings/source/pages/*.json (identity blocks + strings, for language listing)"
@@ -894,7 +936,7 @@
       "status": "good",
       "engineerFocus": true,
       "auditorFocus": false,
-      "auditorRank": 16
+      "auditorRank": 17
     },
     {
       "id": "lib/build-sw.js",
@@ -943,6 +985,7 @@
         "data/nodes.json (real page titles/arcKeys, for both the screens layer and the arcs/pages content layer)",
         "data/arcs-v2.json (real arc priority/title, for the arcs/pages content layer's column order and labels)",
         "lib/audit-pages.js (getPageSlugs — real page files vs. curated nodes.json entries, for the content layer's uncurated column and each page's live flag)",
+        "data/page-health.json (shared page capability and health projection)",
         "docs/screenshots/*.png (directory listing — which pages have a real per-language screenshot)"
       ],
       "writes": [
@@ -956,13 +999,14 @@
         "lib/build-analysis-index.js (reuses findScreenshots)"
       ],
       "testedBy": [
-        "tests/28-build-terrain-map.test.js"
+        "tests/28-build-terrain-map.test.js",
+        "tests/44-page-health.test.js"
       ],
       "debts": [],
       "status": "good",
       "engineerFocus": true,
       "auditorFocus": false,
-      "auditorRank": 17
+      "auditorRank": 18
     },
     {
       "id": "lib/build-vextreme.js",
@@ -1003,7 +1047,7 @@
       "status": "warning",
       "engineerFocus": true,
       "auditorFocus": true,
-      "auditorRank": 4
+      "auditorRank": 3
     },
     {
       "id": "lib/bump-fab-version.js",
@@ -1928,6 +1972,10 @@
     ],
     [
       "lib/audit-pages.js",
+      "lib/build-page-health.js"
+    ],
+    [
+      "lib/audit-pages.js",
       "lib/build-terrain-map.js"
     ],
     [
@@ -2036,6 +2084,14 @@
     ],
     [
       "lib/build-lessons.js",
+      "lib/build-index.js"
+    ],
+    [
+      "lib/build-page-health.js",
+      "lib/audit-nav.js"
+    ],
+    [
+      "lib/build-page-health.js",
       "lib/build-index.js"
     ],
     [
@@ -2669,6 +2725,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -2688,6 +2745,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -2707,6 +2765,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -2726,6 +2785,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -2745,6 +2805,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -2764,6 +2825,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -2783,6 +2845,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -2802,6 +2865,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -2821,6 +2885,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -2840,6 +2905,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -2859,6 +2925,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -2878,6 +2945,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -2897,6 +2965,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -2916,6 +2985,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -2935,6 +3005,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -2954,6 +3025,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -2974,6 +3046,27 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "identity",
+            "screenshot",
+            "theme-effect"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "shell",
+        "theme": {
+          "control": "shared",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": []
+      },
       "curated": true
     },
     {
@@ -2992,6 +3085,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3011,6 +3105,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3033,7 +3128,29 @@
         "ja": "docs/screenshots/claude-answers-the-doubt-ja.png"
       },
       "hasScreenshot": true,
-      "status": "good",
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "theme-effect"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "shell",
+        "theme": {
+          "control": "shared",
+          "visibleStyles": false
+        },
+        "identityKeys": 56,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [
+          "en",
+          "ja"
+        ]
+      },
       "curated": true
     },
     {
@@ -3053,6 +3170,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3072,6 +3190,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3091,6 +3210,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3110,6 +3230,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3129,6 +3250,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3148,6 +3270,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3167,6 +3290,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3186,6 +3310,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3205,6 +3330,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3225,6 +3351,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3244,6 +3371,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3263,6 +3391,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3283,6 +3412,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3302,6 +3432,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3321,6 +3452,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3340,6 +3472,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3360,6 +3493,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3379,6 +3513,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3398,6 +3533,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3417,6 +3553,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3436,6 +3573,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3455,6 +3593,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3474,6 +3613,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3493,6 +3633,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3512,6 +3653,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3532,6 +3674,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3551,6 +3694,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3570,6 +3714,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3589,6 +3734,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3608,6 +3754,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3627,6 +3774,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3646,6 +3794,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3665,6 +3814,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3684,6 +3834,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3703,6 +3854,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3723,6 +3875,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3743,6 +3896,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3762,6 +3916,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3781,6 +3936,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3801,6 +3957,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3821,6 +3978,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3841,6 +3999,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3861,6 +4020,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3881,6 +4041,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3901,6 +4062,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3921,6 +4083,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3941,6 +4104,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3961,6 +4125,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -3982,6 +4147,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -4001,6 +4167,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -4020,6 +4187,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -4039,6 +4207,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -4058,6 +4227,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -4077,6 +4247,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -4096,6 +4267,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -4115,6 +4287,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -4134,6 +4307,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -4153,6 +4327,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -4171,6 +4346,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -4189,6 +4365,27 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "identity",
+            "screenshot",
+            "theme-effect"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "shell",
+        "theme": {
+          "control": "shared",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": []
+      },
       "curated": true
     },
     {
@@ -4207,6 +4404,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -4225,6 +4423,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -4243,6 +4442,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -4261,6 +4461,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -4279,6 +4480,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -4297,6 +4499,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -4315,6 +4518,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -4333,6 +4537,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -4349,6 +4554,27 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "unsorted",
+            "identity",
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "unsorted",
+        "fab": "shell",
+        "theme": {
+          "control": "none",
+          "visibleStyles": true
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": []
+      },
       "curated": true
     },
     {
@@ -4365,6 +4591,7 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "critical",
+      "capability": null,
       "curated": true
     },
     {
@@ -4386,6 +4613,26 @@
       },
       "hasScreenshot": true,
       "status": "good",
+      "capability": {
+        "health": {
+          "state": "healthy",
+          "gaps": [],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 69,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [
+          "en",
+          "zh"
+        ]
+      },
       "curated": true
     },
     {
@@ -4402,6 +4649,28 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "uncurated",
+            "identity",
+            "screenshot",
+            "theme-effect"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "shell",
+        "theme": {
+          "control": "shared",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": []
+      },
       "curated": false
     },
     {
@@ -4417,7 +4686,31 @@
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/accountability-test-01.html",
       "screenshots": {},
       "hasScreenshot": false,
-      "status": "warning",
+      "status": "critical",
+      "capability": {
+        "health": {
+          "state": "critical",
+          "gaps": [
+            "fab",
+            "uncurated",
+            "identity",
+            "screenshot"
+          ],
+          "blockers": [
+            "isolated"
+          ]
+        },
+        "placement": "uncurated",
+        "fab": "missing",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": []
+      },
       "curated": false
     },
     {
@@ -4433,7 +4726,31 @@
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/accountability-test-01-b.html",
       "screenshots": {},
       "hasScreenshot": false,
-      "status": "warning",
+      "status": "critical",
+      "capability": {
+        "health": {
+          "state": "critical",
+          "gaps": [
+            "fab",
+            "uncurated",
+            "identity",
+            "screenshot"
+          ],
+          "blockers": [
+            "isolated"
+          ]
+        },
+        "placement": "uncurated",
+        "fab": "missing",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": []
+      },
       "curated": false
     },
     {
@@ -4450,6 +4767,28 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "uncurated",
+            "identity",
+            "screenshot",
+            "theme-effect"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "shell",
+        "theme": {
+          "control": "shared",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": []
+      },
       "curated": false
     },
     {
@@ -4466,6 +4805,28 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "fab",
+            "uncurated",
+            "screenshot",
+            "theme-effect"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "missing",
+        "theme": {
+          "control": "page-owned",
+          "visibleStyles": false
+        },
+        "identityKeys": 12,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": []
+      },
       "curated": false
     },
     {
@@ -4482,6 +4843,28 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "uncurated",
+            "identity",
+            "screenshot",
+            "theme-effect"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "shell",
+        "theme": {
+          "control": "shared",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": []
+      },
       "curated": false
     },
     {
@@ -4498,6 +4881,28 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "uncurated",
+            "identity",
+            "screenshot",
+            "theme-effect"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "shell",
+        "theme": {
+          "control": "shared",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": []
+      },
       "curated": false
     },
     {
@@ -4514,6 +4919,28 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "uncurated",
+            "identity",
+            "screenshot",
+            "theme-effect"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "shell",
+        "theme": {
+          "control": "shared",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": []
+      },
       "curated": false
     },
     {
@@ -4530,6 +4957,28 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "uncurated",
+            "identity",
+            "screenshot",
+            "theme-effect"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "shell",
+        "theme": {
+          "control": "shared",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": []
+      },
       "curated": false
     },
     {
@@ -4546,6 +4995,28 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "uncurated",
+            "identity",
+            "screenshot",
+            "theme-effect"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "shell",
+        "theme": {
+          "control": "shared",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": []
+      },
       "curated": false
     },
     {
@@ -4562,6 +5033,29 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "fab",
+            "uncurated",
+            "identity"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "missing",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": [
+          "lenses"
+        ]
+      },
       "curated": false
     },
     {
@@ -4578,6 +5072,28 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "uncurated",
+            "identity",
+            "screenshot",
+            "theme-effect"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "shell",
+        "theme": {
+          "control": "shared",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": []
+      },
       "curated": false
     },
     {
@@ -4593,7 +5109,31 @@
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/how-to-invest-in-trust-and-integrity.html",
       "screenshots": {},
       "hasScreenshot": false,
-      "status": "warning",
+      "status": "critical",
+      "capability": {
+        "health": {
+          "state": "critical",
+          "gaps": [
+            "fab",
+            "uncurated",
+            "identity",
+            "screenshot"
+          ],
+          "blockers": [
+            "isolated"
+          ]
+        },
+        "placement": "uncurated",
+        "fab": "missing",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": []
+      },
       "curated": false
     },
     {
@@ -4610,6 +5150,27 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "uncurated",
+            "identity",
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "shell",
+        "theme": {
+          "control": "none",
+          "visibleStyles": true
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": []
+      },
       "curated": false
     },
     {
@@ -4625,7 +5186,31 @@
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/instance-thread-logs.html",
       "screenshots": {},
       "hasScreenshot": false,
-      "status": "warning",
+      "status": "critical",
+      "capability": {
+        "health": {
+          "state": "critical",
+          "gaps": [
+            "fab",
+            "uncurated",
+            "identity",
+            "screenshot"
+          ],
+          "blockers": [
+            "isolated"
+          ]
+        },
+        "placement": "uncurated",
+        "fab": "missing",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": []
+      },
       "curated": false
     },
     {
@@ -4642,6 +5227,28 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "uncurated",
+            "identity",
+            "screenshot",
+            "theme-effect"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "shell",
+        "theme": {
+          "control": "shared",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": []
+      },
       "curated": false
     },
     {
@@ -4658,6 +5265,28 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "uncurated",
+            "identity",
+            "screenshot",
+            "theme-effect"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "shell",
+        "theme": {
+          "control": "shared",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": []
+      },
       "curated": false
     },
     {
@@ -4674,6 +5303,28 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "uncurated",
+            "identity",
+            "screenshot",
+            "theme-effect"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "shell",
+        "theme": {
+          "control": "shared",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": []
+      },
       "curated": false
     },
     {
@@ -4690,6 +5341,28 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "uncurated",
+            "identity",
+            "screenshot",
+            "theme-effect"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "shell",
+        "theme": {
+          "control": "shared",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": []
+      },
       "curated": false
     },
     {
@@ -4706,6 +5379,27 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "uncurated",
+            "identity",
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "shell",
+        "theme": {
+          "control": "shared",
+          "visibleStyles": true
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": []
+      },
       "curated": false
     },
     {
@@ -4723,7 +5417,30 @@
         "en": "docs/screenshots/roles-index-en.png"
       },
       "hasScreenshot": true,
-      "status": "good",
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "fab",
+            "uncurated",
+            "identity"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "missing",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": [
+          "en"
+        ]
+      },
       "curated": false
     },
     {
@@ -4740,6 +5457,28 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "uncurated",
+            "identity",
+            "screenshot",
+            "theme-effect"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "shell",
+        "theme": {
+          "control": "shared",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": []
+      },
       "curated": false
     },
     {
@@ -4756,6 +5495,27 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "uncurated",
+            "screenshot",
+            "theme-effect"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "shell",
+        "theme": {
+          "control": "page-owned",
+          "visibleStyles": false
+        },
+        "identityKeys": 2,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": []
+      },
       "curated": false
     },
     {
@@ -4774,7 +5534,30 @@
         "ja": "docs/screenshots/specimen-full-translation-ja.png"
       },
       "hasScreenshot": true,
-      "status": "good",
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "uncurated",
+            "theme-effect"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "shell",
+        "theme": {
+          "control": "page-owned",
+          "visibleStyles": false
+        },
+        "identityKeys": 14,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": [
+          "en",
+          "ja"
+        ]
+      },
       "curated": false
     },
     {
@@ -4793,7 +5576,30 @@
         "ja": "docs/screenshots/specimen-partial-translation-ja.png"
       },
       "hasScreenshot": true,
-      "status": "good",
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "uncurated",
+            "theme-effect"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "shell",
+        "theme": {
+          "control": "page-owned",
+          "visibleStyles": false
+        },
+        "identityKeys": 15,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": [
+          "en",
+          "ja"
+        ]
+      },
       "curated": false
     },
     {
@@ -4812,7 +5618,30 @@
         "ja": "docs/screenshots/specimen-smallest-miss-ja.png"
       },
       "hasScreenshot": true,
-      "status": "good",
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "uncurated",
+            "theme-effect"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "shell",
+        "theme": {
+          "control": "page-owned",
+          "visibleStyles": false
+        },
+        "identityKeys": 15,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": [
+          "en",
+          "ja"
+        ]
+      },
       "curated": false
     },
     {
@@ -4831,7 +5660,30 @@
         "ja": "docs/screenshots/specimens-ja.png"
       },
       "hasScreenshot": true,
-      "status": "good",
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "uncurated",
+            "theme-effect"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "shell",
+        "theme": {
+          "control": "page-owned",
+          "visibleStyles": false
+        },
+        "identityKeys": 12,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": [
+          "en",
+          "ja"
+        ]
+      },
       "curated": false
     },
     {
@@ -4847,7 +5699,31 @@
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/summary-of-value.html",
       "screenshots": {},
       "hasScreenshot": false,
-      "status": "warning",
+      "status": "critical",
+      "capability": {
+        "health": {
+          "state": "critical",
+          "gaps": [
+            "fab",
+            "uncurated",
+            "identity",
+            "screenshot"
+          ],
+          "blockers": [
+            "isolated"
+          ]
+        },
+        "placement": "uncurated",
+        "fab": "missing",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": []
+      },
       "curated": false
     },
     {
@@ -4864,6 +5740,30 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "uncurated",
+            "identity"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "shell",
+        "theme": {
+          "control": "shared",
+          "visibleStyles": true
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": [
+          "dark",
+          "overview",
+          "search"
+        ]
+      },
       "curated": false
     },
     {
@@ -4880,6 +5780,28 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "uncurated",
+            "identity",
+            "screenshot",
+            "theme-effect"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "shell",
+        "theme": {
+          "control": "shared",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": []
+      },
       "curated": false
     },
     {
@@ -4896,6 +5818,28 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "uncurated",
+            "identity",
+            "screenshot",
+            "theme-effect"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "shell",
+        "theme": {
+          "control": "shared",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": []
+      },
       "curated": false
     },
     {
@@ -4911,7 +5855,31 @@
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/v2-test.html",
       "screenshots": {},
       "hasScreenshot": false,
-      "status": "warning",
+      "status": "critical",
+      "capability": {
+        "health": {
+          "state": "critical",
+          "gaps": [
+            "fab",
+            "uncurated",
+            "identity",
+            "screenshot"
+          ],
+          "blockers": [
+            "isolated"
+          ]
+        },
+        "placement": "uncurated",
+        "fab": "missing",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": []
+      },
       "curated": false
     },
     {
@@ -4930,7 +5898,30 @@
         "ja": "docs/screenshots/vextreme-demo-ja.png"
       },
       "hasScreenshot": true,
-      "status": "good",
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "uncurated",
+            "theme-effect"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "page-owned",
+        "theme": {
+          "control": "page-owned",
+          "visibleStyles": false
+        },
+        "identityKeys": 31,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": [
+          "en",
+          "ja"
+        ]
+      },
       "curated": false
     },
     {
@@ -4947,6 +5938,28 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "uncurated",
+            "identity",
+            "screenshot",
+            "theme-effect"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "shell",
+        "theme": {
+          "control": "shared",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": []
+      },
       "curated": false
     }
   ]
