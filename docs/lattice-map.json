@@ -927,7 +927,8 @@
         "tests/15-departments.test.js",
         "tests/20-roles.test.js",
         "tests/28-build-terrain-map.test.js",
-        "lib/build-analysis-index.js (reuses getPageSlugs)"
+        "lib/build-analysis-index.js (reuses getPageSlugs)",
+        "lib/audit-nav.js (reuses getPageSlugs, isWiredToGodScript)"
       ],
       "testedBy": [],
       "changeMap": {
@@ -1800,6 +1801,33 @@
         "default features array in lib/build-index.js buildViewmodel() changed": [
           "this widget's inclusion on default-viewmodel pages changes with it",
           "tests/07-viewmodel.test.js, tests/08-build-vextreme.test.js (FAB SYSTEM default-feature-count assertions)"
+        ]
+      }
+    },
+    "lib/audit-nav.js": {
+      "role": "nav-coverage auditor -- read-only report of which pages∕*.html give a visitor any way to navigate elsewhere in the system",
+      "context": "Prompted directly by Victor (2026-07-10): pages have no visible header, no way to reach the main index or the map. Measures three independent, pre-existing navigation mechanisms (static hub links baked into a page's own HTML, shell.js's real but narrowly-adopted v1 site-nav injection, and God-Script FAB navigation) against every real page, rather than assuming any of them reach further than they actually do. First real run found 31 of 39 pages are dead ends -- including terrain-map.html, the system's own health dashboard.",
+      "reads": [
+        "pages∕*.html (checks for hub links, shell.js reference)",
+        "dist∕*.js (checks for spiral-fab feature, only for pages already wired)",
+        "lib/audit-pages.js (getPageSlugs, isWiredToGodScript -- reused directly, not duplicated)"
+      ],
+      "writes": [
+        "stdout only -- read-only, changes nothing"
+      ],
+      "loadedBy": [
+        "manual run: node lib/audit-nav.js",
+        "tests/38-audit-nav.test.js"
+      ],
+      "testedBy": [
+        "tests/38-audit-nav.test.js"
+      ],
+      "changeMap": {
+        "HUB_DESTINATIONS changed (a hub page renamed or a new hub page added)": [
+          "countStaticHubLinks() here reads this list directly"
+        ],
+        "lib/audit-pages.js isWiredToGodScript()/getPageSlugs() shape changed": [
+          "this file destructures both by name -- a rename there breaks this require"
         ]
       }
     }

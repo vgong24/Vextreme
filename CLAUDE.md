@@ -61,6 +61,15 @@ node lib/audit-pages.js
 This is the canonical source of truth for which pages are wired, blocked, or skipped.
 Run it instead of manually auditing `pages/*.html`.
 
+**To see which pages a visitor can actually navigate away from:**
+```
+node lib/audit-nav.js
+```
+Being wired to a God Script does not by itself mean a page is reachable from, or can reach,
+anywhere else — this checks static hub links, `shell.js`, and God-Script FAB navigation
+independently. As of Session 2026-07-10, 31 of 39 pages are dead ends (no way out) —
+see `docs/architecture/16-nav-coverage.md` for the fuller account and rollout plan.
+
 **Current blockers (as of Session 013):**
 - `claude-answers-the-doubt` — needs `vextreme-index-v2.js` inlined into its God Script (arc nav)
 - `specimen-architectural-wisdoms` — needs a compiled string bundle before God Script can be assembled
