@@ -64,12 +64,12 @@
       "key": 4,
       "name": "RUNTIME",
       "sub": "loaded by pages in the browser",
-      "count": 5,
+      "count": 6,
       "rect": {
         "x": 1710,
         "y": 40,
         "width": 300,
-        "height": 390
+        "height": 450
       }
     }
   ],
@@ -1668,12 +1668,37 @@
       "auditorRank": 2
     },
     {
-      "id": "widgets/fab-lang.js",
+      "id": "widgets/fab-analysis.js",
       "cluster": "widgets",
       "stage": 4,
       "stageName": "RUNTIME",
       "x": 1760,
       "y": 90,
+      "role": "Analysis Mode orb + panel — searches data/analysis-index.json, exports the visible result set as CSV",
+      "reads": [
+        "data/analysis-index.json via CDN (lazy fetch, first panel open only)"
+      ],
+      "writes": [],
+      "loadedBy": [
+        "not yet wired into lib/build-vextreme.js FEATURES registry -- Phase C decision, docs/architecture/15-analysis-mode.md",
+        "tests/37-fab-analysis.test.js"
+      ],
+      "testedBy": [
+        "tests/37-fab-analysis.test.js"
+      ],
+      "debts": [],
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": false,
+      "auditorRank": 2
+    },
+    {
+      "id": "widgets/fab-lang.js",
+      "cluster": "widgets",
+      "stage": 4,
+      "stageName": "RUNTIME",
+      "x": 1760,
+      "y": 150,
       "role": "browser language switcher FAB — fetches JA/ZH scope or arc bundles, applies [data-i18n] swaps",
       "reads": [
         "window.VEX_STRING_SCOPES",
@@ -1713,7 +1738,7 @@
       "stage": 4,
       "stageName": "RUNTIME",
       "x": 1760,
-      "y": 150,
+      "y": 210,
       "role": "orb linking to pages/terrain-map.html",
       "reads": [],
       "writes": [],
@@ -1728,7 +1753,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 2
+      "auditorRank": 3
     },
     {
       "id": "widgets/fab-theme.js",
@@ -1736,7 +1761,7 @@
       "stage": 4,
       "stageName": "RUNTIME",
       "x": 1760,
-      "y": 210,
+      "y": 270,
       "role": "dark/light theme toggle orb — sets document.documentElement's data-theme attribute, persists to localStorage",
       "reads": [
         "localStorage (vex-theme — persisted preference)",
@@ -1757,7 +1782,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 3
+      "auditorRank": 4
     },
     {
       "id": "widgets/sw-register.js",
@@ -1765,7 +1790,7 @@
       "stage": 4,
       "stageName": "RUNTIME",
       "x": 1760,
-      "y": 270,
+      "y": 330,
       "role": "Service Worker registration — activates offline caching, forces an immediate update check, auto-reloads once when a new SW takes control",
       "reads": [
         "navigator.serviceWorker API"
@@ -1785,7 +1810,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 4
+      "auditorRank": 5
     },
     {
       "id": "widgets/vex-fab.js",
@@ -1793,7 +1818,7 @@
       "stage": 4,
       "stageName": "RUNTIME",
       "x": 1760,
-      "y": 330,
+      "y": 390,
       "role": "spiral FAB — trigger button + shared expandable group container that other orb widgets mount into",
       "reads": [],
       "writes": [
@@ -2215,6 +2240,10 @@
     [
       "sw.js",
       "widgets/sw-register.js"
+    ],
+    [
+      "widgets/fab-analysis.js",
+      "lib/build-vextreme.js"
     ],
     [
       "widgets/vex-fab.js",

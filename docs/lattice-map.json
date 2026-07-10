@@ -1776,6 +1776,32 @@
           "tests/36-build-analysis-index.test.js"
         ]
       }
+    },
+    "widgets/fab-analysis.js": {
+      "role": "Analysis Mode orb + panel — searches data/analysis-index.json, exports the visible result set as CSV",
+      "context": "docs/architecture/15-analysis-mode.md Phase B. Real, live search/browse UI over Vextreme public content (real canonical string IDs, real language coverage, real page cross-references, real screenshots) instead of a synthetic demo fixture -- see the architecture doc for the full reasoning. data/analysis-index.json is fetched lazily on first panel open, not at page load, so Phase C (God-Script capability-config decision, od-011) can measure the real fetch cost before deciding default-on vs. per-slug opt-in. Follows widgets/fab-map.js/fab-lang.js/fab-theme.js's exact #vex-spiral-group mount contract.",
+      "reads": [
+        "data/analysis-index.json via CDN (lazy fetch, first panel open only)"
+      ],
+      "writes": [],
+      "loadedBy": [
+        "not yet wired into lib/build-vextreme.js FEATURES registry -- Phase C decision, docs/architecture/15-analysis-mode.md",
+        "tests/37-fab-analysis.test.js"
+      ],
+      "testedBy": [
+        "tests/37-fab-analysis.test.js"
+      ],
+      "changeMap": {
+        "data/analysis-index.json schema changed (supportedLangs/elements/pages/summary shape)": [
+          "lib/build-analysis-index.js (the write side -- must stay in sync)",
+          "filterElements()/screenshotsForKey()/toCSV() here read this shape directly"
+        ],
+        "this widget gets wired into lib/build-vextreme.js FEATURES registry (Phase C)": [
+          "lib/vex-config.js (new Feature.* constant)",
+          "lib/build-vextreme.js (FEATURES registry entry)",
+          "tests/08-build-vextreme.test.js (assembler coverage for the new feature)"
+        ]
+      }
     }
   }
 }
