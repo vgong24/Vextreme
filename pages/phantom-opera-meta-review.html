@@ -330,6 +330,12 @@
   }
 })();
 </script>
+<!-- fabWidgets.theme:false: this page already has its own working dark/light
+     toggle above (no persistence, defaults from prefers-color-scheme, removes
+     the attribute entirely for light rather than setting it explicitly) --
+     fab-theme.js's mount() always sets an explicit data-theme value and uses
+     its own localStorage key, a real conflict with this page's own convention. -->
+<script>window.VEXTREME_OVERRIDE = { fabWidgets: { theme: false } };</script>
 <script src="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/lib/shell.js"></script>
 </body>
 </html>
