@@ -1,8 +1,8 @@
 {
-  "builtAt": "2026-07-09T18:50:40.642Z",
-  "nodeCount": 113,
+  "builtAt": "2026-07-10T02:27:27.655Z",
+  "nodeCount": 114,
   "curatedNodeCount": 91,
-  "autoDiscoveredCount": 22,
+  "autoDiscoveredCount": 23,
   "arcCount": 17,
   "supportedLangs": [
     "en",
@@ -2640,6 +2640,31 @@
         ]
       }
     },
+    "localization-source-truth-demo": {
+      "id": null,
+      "slug": "localization-source-truth-demo",
+      "title": "Vextreme — Localization Source-Truth Demo",
+      "date": "",
+      "arcKeys": [],
+      "department": "rd",
+      "workType": "default",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.localization-source-truth-demo"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map"
+        ]
+      }
+    },
     "org-blueprint": {
       "id": null,
       "slug": "org-blueprint",
@@ -3801,6 +3826,11 @@
         {
           "slug": "investor-archetype-simulation",
           "title": "Investor Simulation Record — VXG · June 14, 2026",
+          "ported": true
+        },
+        {
+          "slug": "localization-source-truth-demo",
+          "title": "Vextreme — Localization Source-Truth Demo",
           "ported": true
         },
         {
