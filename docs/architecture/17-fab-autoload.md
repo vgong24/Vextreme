@@ -130,4 +130,58 @@ all three sub-widgets — lang, theme, map — actually nest inside `#vex-spiral
 just present somewhere in the DOM). Zero `fab-demo.js` orbs found on any page, confirming
 the deprecation holds everywhere, not just where explicitly checked.
 
+## Addendum (2026-07-10, same day): three real regressions found after the rollout shipped
+
+Victor reported all three from the live site; each traced to a real root cause and fixed
+in the follow-up regression PR. Recorded here because each one is a lesson about what this
+architecture does when runtime chrome meets authored pages:
+
+1. **Authored styles overwritten (phantom-opera-meta-review).** `vextreme.js`
+   blanket-injected `design-system.css` on every `shell.js` page — a universal reset,
+   `:root` tokens (`--muted`, `--border`, `--ember`, `--mono`…) and a global `body`
+   typography rule. Appended as a `<link>` after the page's own inline `<style>`, it wins
+   the cascade at equal specificity and silently replaced authored token values and body
+   styles. Worse, blanket-loaded `section-toggle.js` auto-discovers ANY `[data-section]`
+   attribute and attaches collapse-on-click listeners — a real behavior hijack on
+   `fourteen-patterns…html`, whose own sub-nav uses `data-section` for something else.
+   **Fix:** the whole v1 enhancement layer (`design-system.css`, `arc-nav.css`,
+   `arc-nav.js`, `archive-renderer.js`, `section-toggle.js`, `bc-nav.js`) is now gated to
+   pages that actually consume the v1 system — a `pages.json` template entry or an
+   `#arcNavMount`. Authored pages get chrome (nav, FAB, `site-nav.css` — all class-scoped),
+   never a restyle. This is the defensive half of the Runtime View Profiles /
+   Composition Container proposal (`od-012`,
+   `docs/continuity/context-notes/runtime-view-profiles-composition-container-2026-07-10.md`):
+   runtime modules decorate authored content, they do not rewrite it.
+
+2. **The FAB never appeared on production (cache).** The FAB-autoload change shipped
+   without bumping the cache version — `shell.js` still requested `vextreme.js?v=6`, and
+   jsDelivr/browser caches kept serving the pre-FAB build indefinitely. `shell.js`'s own
+   header says `VEXTREME_VER` and `DEFAULT_CACHE` must be bumped together; nobody did.
+   **Fix:** both bumped to `?v=7`, and `tests/41` now enforces the sync so a mismatch fails
+   CI instead of relying on someone remembering. Note the propagation reality: jsDelivr
+   caches `@main` refs for up to ~12 hours — after any merge that changes runtime JS, the
+   live site lags until the CDN refreshes (or a manual purge via `purge.jsdelivr.net`).
+
+3. **Wide authored layouts squashed (terrain-map and 8 others).** The default 720px
+   body-wrap constrained pages whose own layouts are wider — including patterns the earlier
+   rollout's manual checks missed: widths routed through arbitrary-named custom properties
+   (`org-blueprint`'s `--maxw: 1160px`) and viewport-relative layouts (`terrain-map`'s
+   `max-width:60%`). **Fix:** `bodyWrap: false` on all 9 flagged pages, found by the new
+   `lib/audit-fab.js` (below), not by hand.
+
+**The auditor (`lib/audit-fab.js`)** makes all three regression classes script-perceptible
+— per Victor's direct ask: "i was hoping for pattern recognition so that honing could be
+script perceptible." It checks every `shell.js` page for: authored widths beyond the wrap
+cap (px, var()-routed, or viewport-relative) without `bodyWrap:false`; document-level
+`data-theme` management without `fabWidgets:{theme:false}`; and hand-authored FAB widget
+tags (now duplication — the auditor also caught `claude-answers-the-doubt` and
+`restoration-protocol` still carrying legacy `lang-fab.js`/`demo-fab.js` tags, which under
+autoload would have produced double language orbs; both cleaned). `tests/42` pins the
+whole `pages/` tree at zero findings, so reintroducing any known-conflict pattern fails CI.
+
+Also fixed alongside: `fab-lang.js` now mounts with a single language (previously hid
+itself below 2) — per Victor: "the language even if just 1, should still be there." The
+orb is part of the consistent FAB chrome; with one language the wheel simply shows the
+current language.
+
 <!-- [VXG RealForever] -->

@@ -544,7 +544,14 @@
 
   function mount() {
     loadSupportedLangs(function (langs) {
-      if (!langs || langs.length < 2) return;
+      // Mount even with a single language (previously skipped when
+      // langs.length < 2). Per Victor, 2026-07-10: "the language even if
+      // just 1, should still be there" — the orb is part of the consistent
+      // FAB chrome, and hiding it made the whole spiral look broken on
+      // pages/environments where the supported-langs fetch fell back to
+      // the single default. With one language the wheel simply shows the
+      // current language; selecting it is a no-op.
+      if (!langs || !langs.length) return;
       langs = sortLangs(langs);
 
       var savedLang = LANG_DEFAULT;

@@ -1717,10 +1717,12 @@
       "testedBy": [
         "tests/37-fab-analysis.test.js"
       ],
-      "debts": [],
-      "status": "good",
+      "debts": [
+        "od-012"
+      ],
+      "status": "warning",
       "engineerFocus": false,
-      "auditorFocus": false,
+      "auditorFocus": true,
       "auditorRank": 2
     },
     {
@@ -1863,6 +1865,7 @@
         "tests/08-build-vextreme.test.js"
       ],
       "debts": [
+        "od-012",
         "pe-003"
       ],
       "status": "warning",
@@ -2306,6 +2309,7 @@
     "td-008": "Current architecture has no structured-concurrency model — a known ceiling once server logic or multi-threaded application scope enters the ecosystem",
     "td-009": "lib/vextreme.js injectNav() hardcodes English nav-label display strings",
     "td-010": "styles/site-nav.css's .vex-nav position:sticky never actually sticks on scroll -- site-wide, not page-specific",
+    "od-012": "Adopt Runtime View Profiles + a real Composition Container — one authored page, many runtime lenses (Production/Developer/QA/Localization/Accessibility), selectable from the FAB — or keep composing chrome piecewise as today",
     "od-011": "God Script inclusion should be a default-on, per-slug-configurable pattern instead of a data-readiness accident — and the public SDK demo pages should be built through that same generic pattern instead of one-off hand-authored static HTML",
     "od-010": "Fractal expansion of the continuity/lessons memory pattern into per-department standing memory, plus an audit for other single-scope foundational structures never checked for the same expansion",
     "od-009": "Parallel/simultaneous instruction dispatch across multiple departments or orgs, instead of today's one-at-a-time processing",
