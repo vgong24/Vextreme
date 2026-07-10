@@ -28,12 +28,12 @@
       "key": 1.5,
       "name": "UTILITIES",
       "sub": "other lib/ helpers, config, tracing",
-      "count": 18,
+      "count": 19,
       "rect": {
         "x": 690,
         "y": 40,
         "width": 300,
-        "height": 1170
+        "height": 1230
       }
     },
     {
@@ -361,12 +361,41 @@
       "auditorRank": 0
     },
     {
-      "id": "lib/audit-pages.js",
+      "id": "lib/audit-nav.js",
       "cluster": "lib",
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
       "y": 150,
+      "role": "nav-coverage auditor -- read-only report of which pages∕*.html give a visitor any way to navigate elsewhere in the system",
+      "reads": [
+        "pages∕*.html (checks for hub links, shell.js reference)",
+        "dist∕*.js (checks for spiral-fab feature, only for pages already wired)",
+        "lib/audit-pages.js (getPageSlugs, isWiredToGodScript -- reused directly, not duplicated)"
+      ],
+      "writes": [
+        "stdout only -- read-only, changes nothing"
+      ],
+      "loadedBy": [
+        "manual run: node lib/audit-nav.js",
+        "tests/38-audit-nav.test.js"
+      ],
+      "testedBy": [
+        "tests/38-audit-nav.test.js"
+      ],
+      "debts": [],
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": true,
+      "auditorRank": 9
+    },
+    {
+      "id": "lib/audit-pages.js",
+      "cluster": "lib",
+      "stage": 1.5,
+      "stageName": "UTILITIES",
+      "x": 740,
+      "y": 210,
       "role": "page wiring auditor — read-only report of which pages/*.html are wired to a God Script, blocked, or intentionally skipped",
       "reads": [
         "pages/*.html (checks for a dist/vextreme-{slug}.js script src)",
@@ -385,7 +414,8 @@
         "tests/15-departments.test.js",
         "tests/20-roles.test.js",
         "tests/28-build-terrain-map.test.js",
-        "lib/build-analysis-index.js (reuses getPageSlugs)"
+        "lib/build-analysis-index.js (reuses getPageSlugs)",
+        "lib/audit-nav.js (reuses getPageSlugs, isWiredToGodScript)"
       ],
       "testedBy": [],
       "debts": [
@@ -404,7 +434,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 210,
+      "y": 270,
       "role": "synthesizes a node-shaped object for any pages/*.html file with no data/nodes.json entry, so adding a page alone is enough to make it visible",
       "reads": [
         "pages/*.html (title + optional vex:department/vex:workType meta tags)",
@@ -981,7 +1011,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 270,
+      "y": 330,
       "role": "git-diffing orchestration for lib/compute-fab-version.js — finds the last VERSION-bump commit, diffs data files against it, applies the computed bump to widgets/fab-lang.js",
       "reads": [
         "git log/show/diff history (via child_process, not require())",
@@ -1003,7 +1033,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 9
+      "auditorRank": 10
     },
     {
       "id": "lib/check-continuity-lag.js",
@@ -1210,7 +1240,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 330,
+      "y": 390,
       "role": "pure semver classification for widgets/fab-lang.js's CDN cache-busting VERSION — major/minor/patch decision table + diff helpers, no I/O",
       "reads": [],
       "writes": [],
@@ -1225,7 +1255,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 10
+      "auditorRank": 11
     },
     {
       "id": "lib/compute-test-shards.js",
@@ -1233,7 +1263,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 390,
+      "y": 450,
       "role": "self-scaling CI test-sharding — computes shard count and per-shard file assignment from the real current tests/*.test.js file count, no hand-picked number to forget updating",
       "reads": [
         "tests/*.test.js (file list only, via fs.readdirSync — not file contents)"
@@ -1252,7 +1282,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 11
+      "auditorRank": 12
     },
     {
       "id": "lib/detect-wip-promotions.js",
@@ -1260,7 +1290,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 450,
+      "y": 510,
       "role": "detects a wip/*.html → pages/*.html move within a PR's diff, so a promotion shows up as a positive PR notice instead of silence or a false 'broken reference'",
       "reads": [
         "git diff --name-status -M output between two refs (wip/ and pages/ paths only)"
@@ -1280,7 +1310,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 12
+      "auditorRank": 13
     },
     {
       "id": "lib/discover-string-identity.js",
@@ -1288,7 +1318,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 510,
+      "y": 570,
       "role": "localization identity pilot, first script — proposal/report tool only, cross-references a page's string keys against its live HTML's data-legacy-id/id/title-alias attributes",
       "reads": [
         "data/strings/source/pages/{slug}.json (existing string keys)",
@@ -1308,7 +1338,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 13
+      "auditorRank": 14
     },
     {
       "id": "lib/logger-codes.js",
@@ -1316,7 +1346,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 570,
+      "y": 630,
       "role": "event code registry — the CODES constant every logger.warn/error call references",
       "reads": [],
       "writes": [],
@@ -1342,7 +1372,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 630,
+      "y": 690,
       "role": "structured logger — every build script's warn/info/error call goes through here",
       "reads": [],
       "writes": [
@@ -1371,7 +1401,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 690,
+      "y": 750,
       "role": "runs the build scripts tests/helpers/prereqs.js declares as required before the test suite can read generated files — replaces a hardcoded run: line in .github/workflows/test.yml",
       "reads": [
         "tests/helpers/prereqs.js (PREREQUISITE_SCRIPTS)"
@@ -1387,7 +1417,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 14
+      "auditorRank": 15
     },
     {
       "id": "lib/session-bootstrap.js",
@@ -1395,7 +1425,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 750,
+      "y": 810,
       "role": "one-shot session-start state report — read-only, gathers what would otherwise be several manual checks into one command",
       "reads": [
         "docs/continuity/INDEX.md (last logged session, batch registry)",
@@ -1424,7 +1454,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 15
+      "auditorRank": 16
     },
     {
       "id": "lib/strings-check.js",
@@ -1432,7 +1462,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 810,
+      "y": 870,
       "role": "strings pipeline integrity check — runs before compile, catches missing EN text, stale translations, and orphaned keys",
       "reads": [
         "data/strings/source/**/*.json",
@@ -1463,7 +1493,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 870,
+      "y": 930,
       "role": "strings pipeline compiler — reads source JSON, writes compiled bundles and manifest",
       "reads": [
         "data/strings/source/**/*.json",
@@ -1497,7 +1527,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 930,
+      "y": 990,
       "role": "string reverse-tracer — data-i18n usage in pages/wip HTML cross-referenced against the compiled manifest",
       "reads": [
         "pages/*.html (data-i18n attribute scan)",
@@ -1519,7 +1549,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 16
+      "auditorRank": 17
     },
     {
       "id": "lib/validate-blueprint.js",
@@ -1527,7 +1557,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 990,
+      "y": 1050,
       "role": "blueprint consistency validator — confirms every id in blueprint.json has a matching config file and vex-config constant",
       "reads": [
         "blueprint.json",
@@ -1559,7 +1589,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1050,
+      "y": 1110,
       "role": "constants hub — pure declarations, no I/O",
       "reads": [],
       "writes": [],
@@ -1598,7 +1628,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1110,
+      "y": 1170,
       "role": "browser arc nav runtime — reads index.json at load time, renders prev/next/position into #arcNavMount",
       "reads": [
         "data/index.json via CDN (slugMap, arcMap, arcMeta)",
@@ -1621,7 +1651,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 17
+      "auditorRank": 18
     },
     {
       "id": "pages/terrain-map.html",
@@ -1877,6 +1907,10 @@
     [
       "lib/audit-pages.js",
       "data/departments.json"
+    ],
+    [
+      "lib/audit-pages.js",
+      "lib/audit-nav.js"
     ],
     [
       "lib/audit-pages.js",
