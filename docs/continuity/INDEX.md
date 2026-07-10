@@ -148,6 +148,22 @@ The change repairs Session 023 (Codex's July 6 context-note and perceivable-cont
 entries had been injected mid-file into Session 021's record.
 
 **Recent sessions** (one line each — open the session files below for full reasoning):
+- **Session 030** — Reviewed a Victor/Vex business packet (product-first stewardship,
+  maturity-based pricing) against live repository state rather than the documents' own
+  claims — caught this file's own "31 of 39 pages are dead ends" line already stale
+  same-day (`audit-nav.js` live: 33/39). Closed a real gap in
+  `docs/process/cross-model-orchestration.md`: it names business/stewardship docs only as
+  a return-to-Vex trigger, never as a defined review workflow. Added
+  `docs/process/business-document-review-protocol.md` (the workflow) and
+  `docs/process/README.md` (a process map indexing all of this repo's recurring processes
+  by trigger condition). The review itself, being business/pricing-adjacent, lives in
+  `Vextreme-SDK`'s private holding context, not here, per the new protocol's own routing
+  rule — it flags an unreconciled overlap with pre-existing private stewardship draft
+  material for Victor to resolve. Batch 003 reached its declared 021–030 range this
+  session; `batch-004/` is not pre-created — per batch-003's own README rule, it comes
+  into existence at the start of Session 031, not before (an initial attempt to
+  pre-create it this session tripped `check-map-bindings.js`'s own real validation,
+  corrected before this PR was opened).
 - **Session 029** — Compared PR #119's authored-style/FAB repair against rendered
   terrain and Phantom behavior. Preserved its v1-layer gate and cache fix, then
   closed the remaining geometry gap with a v8 nav action rail, a separate
@@ -175,44 +191,6 @@ entries had been injected mid-file into Session 021's record.
   each. Named, not yet started: a structural HTML→identity discovery wedge for the private SDK,
   using this repo's own real unconverted legacy pages as a license-safe test corpus. Full detail
   in this session's own file.
-- **Session 027** — Cold-start review (a fresh instance working through the full boot sequence
-  plus an uploaded "Meta Project" doc proposing process/role/source-truth-map vocabulary) found
-  two real gaps and built the fix for one. First: Session 025's own text describes PR #69's
-  registry-graph docs (`docs/architecture/15–17`, `data/registry/`, `lib/check-registry-docs.js`)
-  as built and reviewed, but PR #69 was closed unmerged the same day — none of that content is in
-  the working tree; corrected here and in Session 025's one-liner above. Second: PRs `#76`–`#92`
-  (15 merged, including the six-PR caching-layers bug chain) landed with no session file and no
-  refresh to this file, invisible to all five existing drift detectors because none compare
-  merged-PR count against narrative freshness. Built `lib/check-continuity-lag.js` (a sixth,
-  informational detector closing that blind spot going forward), added a "Continuity & lesson
-  check" section to the PR template, and surfaced two already-decided-but-invisible items
-  (the queue's reverse-traversal-map enhancement, the translation-debt categorization) into Open
-  Work — which surfaced a third finding: that its ID, `pe-012`, was a reused one, clashing with
-  the already-shipped `lib/check-lattice-edges.js`'s own long-standing `pe-012` identity. Also
-  fixed `lib/build-sitemap.js`'s `lastmod`, which stamped every URL with the build date regardless
-  of whether that page's content changed — now computed per file from real git history. **PR #93
-  continuation, same day:** the `pe-012` collision is resolved — the queue item is renamed to
-  `pe-014` (the shipped lattice-edge checker keeps `pe-012`; renaming the still-open item was
-  cheaper than muddying shipped history), per Victor's and Vex's direct recommendation. The Meta
-  Project doc itself was treated as pattern input, not adopted architecture — its
-  `sourceTruth.process.*` framing matched the queue's (now `pe-014`) reverse-traversal-map idea
-  closely enough to fold into it rather than invent a parallel concept, and the collision-then-
-  rename is itself a live worked example of the doc's own Section 3.9 lesson: source-truth IDs
-  are stable coordinates, not labels reused after semantic commitment. Whether to reconstruct a
-  Session 026 for the PR #76–#92 gap is still
-  Victor's open call (see Open Work). **Continued again, same day:** built a localization
-  identity pilot per Victor+Vex's narrowed approval of a separate "Global Localization
-  Source-of-Truth" north-star document — explicitly *not* `pe-014` (a different domain: UI/string
-  identity, not code/build symbols) and explicitly *not* the north-star doc's full 18-script
-  system, just a canonical/observed identity overlay on the existing `data/strings/` pipeline for
-  `victor-methodology-presentation`. Found the canonical/observed split already existed unindexed
-  in the page's own HTML (`data-legacy-id` next to `data-i18n`, unused); `lib/discover-string-identity.js`
-  (proposal-only), `lib/build-string-identity-index.js` (pointer index + report generator), and
-  `lib/check-string-identity.js` (informational validator) activate it. Confirmed by test that
-  identity metadata never leaks into compiled runtime bundles. Caught and fixed a real regex bug
-  in the discover script (a bare `\b` also matched inside `data-legacy-id`) by cross-checking
-  output against the real HTML before trusting it. Full context in the Meta Project doc's context
-  note (§ wrapper) and this session's own file.
 **This section is a snapshot, not a log.** Full session-by-session reasoning — mistakes tried,
 assumptions made, why a decision went one way over another — lives in the batch files (see
 **Batch Registry** below), not here. Rewrite the paragraph above at the start of each session to
@@ -306,7 +284,7 @@ anything. Batches 001–002 predate this form and remain single legacy files.
 |---|---|---|---|
 | 001 | `docs/continuity/Batch 001.md` | 001–010 | closed (legacy single file) |
 | 002 | `docs/continuity/Batch 002.md` | 011–020 | closed (legacy single file) |
-| 003 | `docs/continuity/batch-003/` | 021–030 | active |
+| 003 | `docs/continuity/batch-003/` | 021–030 | active (full — Session 030 filled its declared range; `batch-004/` is created at the start of Session 031, per this batch's own README rule, not pre-emptively) |
 
 **Active batch:** `docs/continuity/batch-003/`
 
@@ -460,6 +438,6 @@ Create as `docs/continuity/batch-00N/YYYY-MM-DD-session-0NN.md`:
 
 ---
 
-*Last updated: Session 029 — July 10, 2026*
+*Last updated: Session 030 — July 10, 2026*
 
 <!-- [VXG RealForever] -->
