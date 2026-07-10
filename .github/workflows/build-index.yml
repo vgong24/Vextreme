@@ -125,6 +125,9 @@ jobs:
       - name: Build terrain-map.json
         run: node lib/build-terrain-map.js
 
+      - name: Build analysis-index.json
+        run: node lib/build-analysis-index.js
+
       - name: Auto-increment fab-lang.js CDN version
         # Replaces a hand-maintained bump (Session 025: it had never been
         # bumped since introduction) with one computed from what actually
