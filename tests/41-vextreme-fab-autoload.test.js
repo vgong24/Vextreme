@@ -24,7 +24,7 @@ const ROOT  = path.join(__dirname, '..');
 const VX_IN = path.join(ROOT, 'lib', 'vextreme.js');
 
 function readSource() {
-  return fs.readFileSync(VX_IN, 'utf8');
+  return fs.readFileSync(VX_IN, 'utf8').replace(/\r\n/g, '\n');
 }
 
 // loadFabWidgets — extracted with a fake loadScript(src) that records call

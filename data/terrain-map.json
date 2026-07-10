@@ -1855,14 +1855,17 @@
       "role": "spiral FAB — trigger button + shared expandable group container that other orb widgets mount into",
       "reads": [],
       "writes": [
-        "DOM: #vex-spiral-fab / #vex-spiral-trigger / #vex-spiral-group (consumed by fab-lang.js, fab-theme.js, fab-map.js)"
+        "DOM: #vex-spiral-fab / #vex-spiral-trigger / #vex-spiral-group (consumed by fab-lang.js, fab-theme.js, fab-map.js)",
+        "DOM: mounts into #vex-nav-actions when provided by lib/vextreme.js; otherwise appends to document.body"
       ],
       "loadedBy": [
         "lib/build-vextreme.js (inlined as spiral-fab feature in God Scripts, must be first among the FAB-group features)",
+        "lib/vextreme.js (shell.js runtime path, loaded before lang/theme/map)",
         "tests/08-build-vextreme.test.js"
       ],
       "testedBy": [
-        "tests/08-build-vextreme.test.js"
+        "tests/08-build-vextreme.test.js",
+        "tests/43-runtime-chrome-composition.test.js"
       ],
       "debts": [
         "od-012",

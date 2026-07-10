@@ -128,6 +128,9 @@
  *
  * Self-contained IIFE — no global exports, no framework dependencies.
  * Works standalone as a <script> tag or bundled inside a God Script.
+ * When shell.js provides #vex-nav-actions, the FAB mounts into that reserved
+ * global action rail. Pages without site nav retain the original fixed
+ * top-right placement, including the methodology presentation's God Script.
  * Must be the FIRST fab-group feature listed in lib/build-vextreme.js's
  * FEATURES registry — see the comment there for why registration order
  * matters (DOMContentLoaded handlers fire in the order they're added).
@@ -136,9 +139,12 @@
  *   role      : spiral FAB — trigger button + shared expandable group container that other orb widgets mount into
  *   reads     : (none)
  *   writes    : DOM: #vex-spiral-fab / #vex-spiral-trigger / #vex-spiral-group (consumed by fab-lang.js, fab-theme.js, fab-map.js)
+ *               DOM: mounts into #vex-nav-actions when provided by lib/vextreme.js; otherwise appends to document.body
  *   loaded-by : lib/build-vextreme.js (inlined as spiral-fab feature in God Scripts, must be first among the FAB-group features)
+ *               lib/vextreme.js (shell.js runtime path, loaded before lang/theme/map)
  *               tests/08-build-vextreme.test.js
  *   tested-by : tests/08-build-vextreme.test.js
+ *               tests/43-runtime-chrome-composition.test.js
  *
  *   CHANGE MAP — if you touch X here, also check:
  *     #vex-spiral-group DOM id/contract changed:
@@ -146,6 +152,10 @@
  *       - widgets/fab-theme.js (getElementById('vex-spiral-group') lookup)
  *       - widgets/fab-map.js (getElementById('vex-spiral-group') lookup)
  *       - tests/08 (FAB SYSTEM: nesting assertions)
+ *     #vex-nav-actions mount contract changed:
+ *       - lib/vextreme.js injectNav() (must create the action rail before loading this widget)
+ *       - styles/site-nav.css (.vex-nav-actions owns rail geometry)
+ *       - tests/43-runtime-chrome-composition.test.js
  * LATTICE:END
  */
 
@@ -184,6 +194,22 @@
       '  transition: background 0.2s, transform 0.2s;',
       '  line-height: 1;',
       '  padding: 0;',
+      '}',
+      '#vex-spiral-fab.vex-spiral-fab--nav {',
+      '  position: relative;',
+      '  top: auto;',
+      '  right: auto;',
+      '  z-index: 1;',
+      '  align-items: center;',
+      '  flex-direction: row-reverse;',
+      '}',
+      '#vex-spiral-fab.vex-spiral-fab--nav #vex-spiral-trigger {',
+      '  color: var(--stone, #1c1917);',
+      '  background: var(--ember-bg, rgba(255,255,255,0.18));',
+      '  border: 1px solid var(--border, rgba(0,0,0,0.08));',
+      '}',
+      '#vex-spiral-fab.vex-spiral-fab--nav #vex-spiral-group {',
+      '  flex-wrap: nowrap;',
       '}',
       '#vex-spiral-trigger:hover { background: rgba(255,255,255,0.32); }',
       '#vex-spiral-trigger.open { transform: rotate(90deg); }',
@@ -236,7 +262,14 @@
 
     container.appendChild(trigger);
     container.appendChild(group);
-    document.body.appendChild(container);
+
+    var navActions = document.getElementById('vex-nav-actions');
+    if (navActions) {
+      container.classList.add('vex-spiral-fab--nav');
+      navActions.appendChild(container);
+    } else {
+      document.body.appendChild(container);
+    }
   }
 
   if (document.readyState === 'loading') {

@@ -166,6 +166,19 @@ question.
 
 Real result: **29/39 pages navigable, up from 21/39** (`node lib/audit-nav.js`).
 
+**Post-merge visual correction (2026-07-10):** Step 6's "verified clean" label
+was too broad for `terrain-map` and `phantom-opera-meta-review`. Source-width
+inspection missed two authored composition contracts: terrain is a viewport
+application whose height must subtract the injected nav, and Phantom's hero is
+full-bleed even though its reading column is 720px. The first shell rollout
+therefore clipped terrain by one nav height and reduced Phantom's hero to 640px.
+Once FAB v7 was forced past CDN cache, rendered hit-testing also showed the FAB
+covering desktop nav links, the mobile hamburger, and Phantom's House Lights
+control. The corrected geometry and shared action-rail contract are recorded in
+`docs/architecture/17-fab-autoload.md` Addendum 2 with screenshots. Future
+"verified clean" claims for runtime chrome require rendered rectangles and hit
+targets, not width grep alone.
+
 ### Step 7 — the 4 specimen pages, FAB-widget compatibility checked and unified (done)
 
 **Superseded by `docs/architecture/17-fab-autoload.md`**: the per-page fix described below

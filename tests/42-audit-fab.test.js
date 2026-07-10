@@ -23,10 +23,13 @@ const {
   hasShellJs,
   maxAuthoredWidth,
   usesViewportRelativeLayout,
+  usesViewportHeightLayout,
   hasBodyWrapOptOut,
   managesOwnDataTheme,
   hasThemeOptOut,
   handAuthoredFabTags,
+  hasFixedTopRightChrome,
+  hasPageActionMarker,
   auditPage,
 } = require('../lib/audit-fab');
 
@@ -82,6 +85,12 @@ test('AUDIT-FAB: usesViewportRelativeLayout excludes percentage widths inside @m
 
 test('AUDIT-FAB: usesViewportRelativeLayout catches vw widths', () => {
   assert.equal(usesViewportRelativeLayout('<style>.hero { width: 100vw; }</style>'), true);
+});
+
+test('AUDIT-FAB: usesViewportHeightLayout catches deliberate 90vh+ page surfaces', () => {
+  assert.equal(usesViewportHeightLayout('<style>.hero { min-height: 92vh; }</style>'), true);
+  assert.equal(usesViewportHeightLayout('<style>.app { height: 100dvh; }</style>'), true);
+  assert.equal(usesViewportHeightLayout('<style>.section { min-height: 70vh; }</style>'), false);
 });
 
 // ── theme management detection ───────────────────────────────────────────────
@@ -148,6 +157,28 @@ test('AUDIT-FAB: document-level theme management without opt-out is flagged; wit
 test('AUDIT-FAB: hand-authored FAB tags on a shell.js page are flagged', () => {
   const html = '<script src="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/widgets/fab-lang.js"></script>' + SHELL_TAG;
   assert.equal(auditPage('x', html).findings.some((f) => f.type === 'hand-authored-fab-tags'), true);
+});
+
+test('AUDIT-FAB: fixed top-right page chrome requires the shared page-action marker', () => {
+  const control = '<style>.lights{position:fixed;top:1rem;right:1rem}</style>' +
+    '<button class="lights">Lights</button>' + SHELL_TAG;
+  assert.equal(hasFixedTopRightChrome(control), true);
+  assert.equal(hasPageActionMarker(control), false);
+  assert.equal(auditPage('x', control).findings.some((f) => f.type === 'page-action-collision'), true);
+
+  const marked = control.replace('<button class="lights"', '<button class="lights" data-vex-page-action');
+  assert.equal(hasPageActionMarker(marked), true);
+  assert.equal(auditPage('x', marked).findings.some((f) => f.type === 'page-action-collision'), false);
+});
+
+test('AUDIT-FAB: full-width top bars and bottom-right controls are not page-action collisions', () => {
+  assert.equal(hasFixedTopRightChrome('<style>.bar{position:fixed;top:0;left:0;right:0}</style>'), false);
+  assert.equal(hasFixedTopRightChrome('<style>.orb{position:fixed;bottom:1rem;right:1rem}</style>'), false);
+});
+
+test('AUDIT-FAB: a full-viewport hero without bodyWrap:false is flagged', () => {
+  const html = '<style>.hero{min-height:92vh}</style>' + SHELL_TAG;
+  assert.equal(auditPage('x', html).findings.some((f) => f.type === 'wide-layout'), true);
 });
 
 // ── Integration: the real repo is clean ──────────────────────────────────────

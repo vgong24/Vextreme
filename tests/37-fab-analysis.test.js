@@ -27,8 +27,12 @@ const path      = require('path');
 const ROOT      = path.join(__dirname, '..');
 const WIDGET_IN = path.join(ROOT, 'widgets', 'fab-analysis.js');
 
+function readSource() {
+  return fs.readFileSync(WIDGET_IN, 'utf8').replace(/\r\n/g, '\n');
+}
+
 function loadFn(name) {
-  const source = fs.readFileSync(WIDGET_IN, 'utf8');
+  const source = readSource();
   const fnMatch = source.match(new RegExp('function ' + name + '\\([\\s\\S]*?\\n  \\}'));
   assert.ok(fnMatch, name + '() must exist in widgets/fab-analysis.js');
   const fn = new Function(fnMatch[0] + '\nreturn ' + name + ';');
@@ -36,7 +40,7 @@ function loadFn(name) {
 }
 
 function loadFnWithDep(name, depNames) {
-  const source = fs.readFileSync(WIDGET_IN, 'utf8');
+  const source = readSource();
   let body = '';
   depNames.forEach((dep) => {
     const depMatch = source.match(new RegExp('function ' + dep + '\\([\\s\\S]*?\\n  \\}'));
@@ -135,13 +139,13 @@ test('toCSV: quotes and escapes a value containing a comma', () => {
 // ── 4. Structural ──────────────────────────────────────────────────────────────
 
 test('STRUCTURAL: mounts into #vex-spiral-group when present, with a standalone fallback', () => {
-  const source = fs.readFileSync(WIDGET_IN, 'utf8');
+  const source = readSource();
   assert.ok(source.includes("getElementById('vex-spiral-group')"), 'must check for the shared spiral group, same contract as every other orb widget');
   assert.ok(source.includes('vex-standalone'), 'must have a standalone fallback class for pages without spiral-fab');
 });
 
 test('STRUCTURAL: data/analysis-index.json is fetched lazily on first open, not unconditionally at mount time', () => {
-  const source = fs.readFileSync(WIDGET_IN, 'utf8');
+  const source = readSource();
   const mountMatch = source.match(/function mount\(\)[\s\S]*?\n  \}\n\n  if \(document\.readyState/);
   assert.ok(mountMatch, 'mount() function must exist');
   assert.equal(/loadIndex\(/.test(mountMatch[0].replace(/btn\.addEventListener[\s\S]*/, '')), false,
@@ -150,7 +154,7 @@ test('STRUCTURAL: data/analysis-index.json is fetched lazily on first open, not 
 });
 
 test('STRUCTURAL: CSV export column header documents coverage/mapping only, not translated text', () => {
-  const source = fs.readFileSync(WIDGET_IN, 'utf8');
+  const source = readSource();
   assert.ok(source.includes("'key,inManifest,langs,missingLangs,usedIn'"),
     'CSV header must stay explicit about what it exports — do not silently add text columns without updating the file header\'s documented scope');
 });

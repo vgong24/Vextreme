@@ -184,4 +184,48 @@ itself below 2) — per Victor: "the language even if just 1, should still be th
 orb is part of the consistent FAB chrome; with one language the wheel simply shows the
 current language.
 
+## Addendum 2 (2026-07-10): global chrome needs owned geometry, not shared coordinates
+
+The v7 regression repair correctly protected authored styles and made the FAB
+autoload cache-coherent, but rendered comparison found a separate composition
+gap. Nav, spiral FAB, mobile hamburger, and page-owned controls all independently
+claimed the top-right corner:
+
+- At 1035px, the closed FAB covered `vextreme24.com`; opened, it covered that
+  link plus `AI Tools`.
+- At 390px, the FAB and hamburger occupied the same rectangle. Hit-testing the
+  hamburger returned `#vex-spiral-trigger`.
+- Phantom's House Lights button overlapped both nav and FAB and hit-tested the
+  nav instead of the button.
+- Terrain's app still measured 100vh below a 61px nav (`bottom: 1021` in a
+  960px viewport), clipping its lower controls.
+- Phantom still received the generic 720px wrapper, reducing its full-width
+  hero to 640px even though the authored-style gate preserved its colors.
+
+The v8 contract assigns those surfaces instead of offsetting them ad hoc:
+
+1. `injectNav()` creates `#vex-nav-actions` before FAB scripts load.
+2. `vex-fab.js` mounts into that rail when present. Its trigger remains at the
+   rail's right edge while the group expands left in normal flex layout.
+3. Headerless/God-Script pages retain the original fixed top-right fallback.
+   The methodology presentation therefore keeps its existing authored layout.
+4. Page-owned fixed controls opt into the separate below-nav lane with
+   `data-vex-page-action`; the shell does not move or restyle their DOM.
+5. The nav cancels authored body margin/padding on `#vex-site-nav` only, so
+   global chrome reaches viewport edges without changing the raw page body.
+
+The terrain map now consumes exactly the viewport remaining below nav, and the
+Phantom page opts out of prose wrapping while lending its own palette aliases to
+the class-scoped nav. Rendered evidence:
+
+- [`terrain-runtime-chrome-action-rail.png`](../screenshots/terrain-runtime-chrome-action-rail.png)
+- [`terrain-runtime-chrome-mobile-open.png`](../screenshots/terrain-runtime-chrome-mobile-open.png)
+- [`phantom-runtime-chrome-dark.png`](../screenshots/phantom-runtime-chrome-dark.png)
+
+This does **not** make the FAB universal across every public HTML surface yet.
+Current delivery is 28 shell pages plus one God-Script page; ten `pages/*.html`
+surfaces still have neither path. Global rollout is the next bounded PR after
+this composition contract is accepted. Analysis traversal, view profiles, and
+cross-page string navigation remain product direction, not completed behavior.
+
 <!-- [VXG RealForever] -->

@@ -26,11 +26,16 @@
  *   .vex-nav-links          — link list (desktop)
  *   .vex-nav-link           — individual link
  *   .vex-nav-toggle         — mobile hamburger button
+ *   .vex-nav-actions        — reserved global action rail (spiral FAB mount)
  *   .vex-nav-mobile         — mobile overlay panel
  *   .vex-nav-mobile-links   — mobile link list
  *   .vex-nav-mobile-link    — individual mobile link
  *   .vex-nav--open          — state class on .vex-nav when menu is open
  */
+
+:root {
+  --vex-site-nav-height: 61px;
+}
 
 
 /* ── OUTER BAR ───────────────────────────────────────────── */
@@ -45,14 +50,19 @@
 }
 
 .vex-nav-inner {
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 0 clamp(16px, 4vw, 40px);
+  width: 100%;
+  margin: 0;
+  padding: 0 clamp(16px, 2vw, 28px);
   height: 60px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
+  justify-content: flex-start;
+  gap: clamp(12px, 2vw, 24px);
+}
+
+.vex-nav,
+.vex-nav * {
+  box-sizing: border-box;
 }
 
 
@@ -67,6 +77,7 @@
   letter-spacing: -0.01em;
   white-space: nowrap;
   flex-shrink: 0;
+  margin-right: auto;
 }
 
 .vex-nav-title:hover {
@@ -85,7 +96,7 @@
   padding: 0;
 }
 
-@media (max-width: 680px) {
+@media (max-width: 960px) {
   .vex-nav-links { display: none; }
 }
 
@@ -131,8 +142,29 @@
   background: var(--ember-bg, #fdf8f6);
 }
 
-@media (max-width: 680px) {
+@media (max-width: 960px) {
   .vex-nav-toggle { display: flex; align-items: center; justify-content: center; }
+}
+
+
+/* ── GLOBAL ACTION RAIL ─────────────────────────────────────────────────── */
+/* Runtime tools own this rail. They participate in nav layout instead of
+   independently claiming top/right coordinates over links or the hamburger. */
+
+.vex-nav-actions {
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 0 0 auto;
+}
+
+/* Authored fixed controls remain page-owned, but can opt into the shared
+   below-nav lane without the shell moving or restyling their DOM. */
+#vex-site-nav ~ [data-vex-page-action],
+#vex-site-nav ~ * [data-vex-page-action] {
+  top: calc(var(--vex-site-nav-height) + 15px);
 }
 
 /* Hamburger icon — three bars drawn in CSS */
