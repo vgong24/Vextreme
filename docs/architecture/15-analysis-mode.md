@@ -78,16 +78,29 @@ translation was last touched) is not included in Phase A — `manifest.json` sto
 logic, not as a persisted field. Wiring that in is a small, separate follow-up once Phase A
 is live, not blocking it.
 
-### Phase B — Analysis Mode FAB + panel (next PR)
+### Phase B — Analysis Mode FAB + panel (built, this PR)
 
 `widgets/fab-analysis.js`, following the exact mount-into-`#vex-spiral-group` contract
 `fab-lang.js`/`fab-map.js`/`fab-theme.js` already use (see `widgets/vex-fab.js`'s own
 docstring — "a new orb is a new small widget... this file does not need to change"). Opens
-a slide-out panel, not a new page: search/filter by key, language, or page; a result list
-showing canonical id, current text per selected language, coverage status, and every page
-that references it (the reverse-usage view); a screenshot thumbnail when one exists for the
-current page/language, linking to the real file in `docs/screenshots/`; a CSV export button
-reusing `strings-export.js`'s exact column shape client-side.
+a slide-out panel, not a new page: search by key or page slug substring; a result list
+showing each key's language coverage (present/missing), every page that references it as a
+clickable link, and a screenshot link when one exists for a referencing page (linking to the
+real file under `docs/screenshots/` on GitHub); a CSV export button downloading the
+currently-filtered result set client-side (Blob download, no server round-trip).
+
+**Scoped honestly, not silently bigger than it is:** the CSV export is the coverage/mapping
+table (key, present/missing languages, referencing pages) — not translated text bodies.
+`data/analysis-index.json` doesn't carry string text (only `manifest.json`'s `enHash`, not
+the text itself), so full-text export would mean a second fetch layer (compiled scope
+bundles) not built here. Verified live via a local Playwright pass (temporary
+`playwright-core` install, cleaned up after, per this repo's own documented friction note):
+real search/filter against the real 246-element index, language badges, page links,
+screenshot links, empty-state handling, and a real CSV download all confirmed working
+end-to-end against this repo's actual data — not a mock.
+
+`data/analysis-index.json` is fetched lazily on first panel open, not at page load — this
+matters for Phase C below, not just performance hygiene.
 
 ### Phase C — capability wiring decision (after B ships and its real cost is known)
 
