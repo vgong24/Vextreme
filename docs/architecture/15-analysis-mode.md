@@ -1,5 +1,16 @@
 # Analysis Mode
 
+**Boundary context:** Analysis Mode itself prompted a refinement of this repo's
+public/private architecture split, recorded in
+`docs/process/public-private-boundary.md` — Public Vextreme is not a limited demo but
+"one organization that has already reached the desired architectural condition,"
+proving the pattern by dogfooding its own architecture; Vextreme-SDK is "the reusable
+machinery capable of helping other organizations reach that condition." Read that
+document's "Refined principle" section before extending Analysis Mode further — it's
+the checklist for keeping new phases on the public side of the line (demonstrating an
+already-real pattern over public data) instead of drifting into SDK territory
+(generalized resolution, heterogeneous-input adaptation, vendor workflow, governance).
+
 ## The decision
 
 Victor asked (2026-07-10) for something bigger than a fixed sanitized-output demo page:
