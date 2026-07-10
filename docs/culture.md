@@ -167,14 +167,22 @@ Examples:
 - `VXG-070626-codex-page-binding-health-checks`
 - `VXG-070626-claude-page-binding-health-checks`
 
-The human-readable PR title may use the colon form:
+Human-readable PR titles communicate durable epic scope and local position:
 
 ```
-VXG-070626: codex-page-binding-health-checks
+[Epic: <epic name>][<item index>/<known total or N>] <outcome>
 ```
 
-Do not use the colon form as the actual Git branch name — `:` is not a portable ref-name
-character. The branch is the Git-safe identifier; the PR title is the readable checkpoint.
+Example:
+
+```
+[Epic: Page Health][1/N] Add screen capability projection
+```
+
+Independent one-PR work declares `Epic: none` in its PR body and uses an
+imperative/outcome title. Keep date and instance in the Git-safe branch and
+commit; use `N` while the epic total is still discoverable. Do not rename merged
+PRs only because a later total changes.
 
 Commit subjects should also carry the day context:
 

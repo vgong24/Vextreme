@@ -7,9 +7,20 @@
 
   Fill every section. One sentence is enough for sections where there
   is genuinely nothing to say — but "N/A" without a reason is a red flag.
-  Future Claude instances will read this to understand system evolution
+  Future instances will read this to understand system evolution
   without re-deriving decisions that are already settled.
 -->
+
+## Epic Position
+
+- Epic: <!-- Durable epic name, or `none` for independent one-PR work -->
+- Epic position: <!-- Optional portfolio position, or `not applicable` -->
+- Item sequence: <!-- `1/N`, `2/7`, or `not applicable` -->
+- Depends on: <!-- Merged PRs, decisions, or `none` -->
+- Completion signal: <!-- What proves this row is done -->
+- Next safe item: <!-- Next bounded row, branch condition, or `none` -->
+
+---
 
 ## Transition
 

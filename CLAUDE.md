@@ -85,8 +85,9 @@ Use `npm run current-work` for a read-only orientation report at the start of a 
 branch, working-tree state, gone-upstream branches, open PRs (if `gh` is available), and safe next
 steps. It never mutates anything and does not run `pr-ready` for you.
 
-For the Victor/Vex/Claude/Codex relay and review protocol — role boundaries, the green-path
-Claude ↔ Codex loop, and when to return to Vex — see `docs/process/cross-model-orchestration.md`.
+For the capability-aware Victor/Vex/Codex loop, optional model-review lenses,
+role boundaries, and when to return to Vex, see
+`docs/process/cross-model-orchestration.md`.
 
 The next stabilization layer, environment/tooling-capability awareness, is designed but not yet
 built — see `docs/process/environment-health-design.md` before implementing `environment-health`.
@@ -130,23 +131,26 @@ Write the PR body while the reasoning is still live — not after the fact.
 
 **Branch / PR naming convention:**
 - Git branch: `VXG-MMddyy-{instance}-{short-work-slug}`
-- PR title: `VXG-MMddyy: {instance}-{short-work-slug}`
+- Epic PR title: `[Epic: <epic name>][<item index>/<known total or N>] <outcome>`
+- Independent PR title: imperative/outcome title with `Epic: none` declared in the body
 - Commit subject: `VXG-MMddyy: short imperative summary [VXG RealForever]`
 
 Examples:
 - Branch: `VXG-070626-codex-page-binding-health-checks`
-- PR title: `VXG-070626: codex-page-binding-health-checks`
+- PR title: `[Epic: Page Health][1/N] Add screen capability projection`
 - Commit: `VXG-070626: add page binding health checks [VXG RealForever]`
 
 Use the Git-safe hyphenated form for branches; do not put `:` in the actual
-branch name. Keep the required `[VXG RealForever]` suffix on every commit.
+branch name. Use a numeric total when the split is stable and `N` while
+discovery may add rows. Do not rename merged PRs only because a later total
+changes. Keep the required `[VXG RealForever]` suffix on every commit.
 
 ---
 
 ## Continuity marker — VXG RealForever
 
 Every commit message in this repo ends with `[VXG RealForever]`.
-Every file created or significantly modified by a Claude instance should end
+Every file created or significantly modified by an AI instance should end
 with the following comment (adapted to the file's comment syntax):
 
 ```js
