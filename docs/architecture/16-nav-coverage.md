@@ -166,25 +166,38 @@ question.
 
 Real result: **29/39 pages navigable, up from 21/39** (`node lib/audit-nav.js`).
 
-### Step 7 — the 4 specimen pages, FAB-widget compatibility checked (done)
+### Step 7 — the 4 specimen pages, FAB-widget compatibility checked and unified (done)
 
 Read all 4 `specimen-*` pages' existing v2 FAB widget wiring before touching anything.
 Corrected an assumption from the Step 6 PR body along the way: these don't use a God
 Script's 3-tag include pattern — 3 of the 4 (`specimen-full-translation`,
-`specimen-partial-translation`, `specimen-smallest-miss`) load the older, standalone
-`widgets/lang-fab.js` + `widgets/demo-fab.js` pair directly; the fourth
-(`specimen-architectural-wisdoms`) loads the newer, unified `widgets/fab-lang.js` +
-`widgets/fab-demo.js` pair (per the "Session 025 FAB unification" comment in
-`fab-lang.js`'s own header — it mounts into `#vex-spiral-group` if present, falling back to
-the same standalone fixed-position mount otherwise, which is what happens here since none
-of these pages have God-Script FAB group wiring).
+`specimen-partial-translation`, `specimen-smallest-miss`) loaded the older, standalone
+`widgets/lang-fab.js` + `widgets/demo-fab.js` pair directly, pre-unification; the fourth
+(`specimen-architectural-wisdoms`) loaded the newer `widgets/fab-lang.js` +
+`widgets/fab-demo.js` pair — but *without* `widgets/vex-fab.js`, the actual "spiral" trigger
+those newer widgets are meant to nest into (per the "Session 025 FAB unification" comment in
+`fab-lang.js`'s own header). All 4 were therefore running their orbs in the same degraded
+standalone-fallback mode, missing the real high-level container.
 
-Checked the real conflict risk directly: both widget versions position their orb at
-`top: 16px; right: 16px` — the same corner `shell.js`'s injected nav bar's own top-right
-content (the "vextreme24.com" link) occupies. Verified via Playwright, not assumed: **no
-actual overlap** — the orb uses `position: fixed` (anchored to the viewport), the nav sits
-in normal document flow below it, and at this specific vertical offset they render as two
-visually distinct elements, not overlapping.
+Caught directly by Victor mid-rollout: "there should be a 'spiral one'... theres always a
+'high level container' and sub features underneath, we never duplicate a category." Fixed
+properly, not just visually verified around: `widgets/vex-fab.js` added to all 4 pages
+(confirmed via `lib/build-vextreme.js`'s own `FEATURES` registry that it must load *before*
+`fab-lang.js`/`fab-theme.js`/`fab-map.js` — their `DOMContentLoaded` handlers fire in
+registration order, and `vex-fab.js` has to create `#vex-spiral-group` first). The 3 pages on
+the legacy `lang-fab.js`/`demo-fab.js` pair were migrated to the current `fab-lang.js`/
+`fab-demo.js` pair — confirmed behaviorally identical via direct diff (same
+`VEX_STRING_SCOPES`/`VEX_STRING_CATEGORY` contract, same `DOMContentLoaded` → `mount()`
+pattern) before swapping, not assumed compatible. `widgets/fab-demo.js` itself has no
+spiral-group awareness by design (it's a simple, permanent standalone orb offset next to the
+lang orb, per its own header comment) — the "never duplicate a category" fix applies to the
+language-switcher orb, which now genuinely nests, not to the demo-link orb, which was never
+meant to.
+
+Verified via Playwright after the fix, not assumed: `#vex-spiral-group` exists, the language
+orb is a real DOM child of it (not a same-named element floating outside), the spiral trigger
+opens correctly, and `shell.js`'s top nav bar renders with zero visual or positional conflict
+against the now-unified spiral trigger + orb pair.
 
 **Real finding, addressed:** all 4 pages set `max-width`/`margin: 0 auto`/`padding` directly
 on `<body>` itself (860px for 3 of them, 920px for `specimen-architectural-wisdoms`) — a
