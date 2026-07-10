@@ -64,6 +64,15 @@
       "addedSession": "2026-07-10 (nav-coverage rollout)",
       "migrationPath": "Move nav labels into data/strings/source/ (a new scope, e.g. common.nav.*) and reference by key, same pattern every v2 page already uses -- per injectNav()'s own header comment.",
       "priority": "low"
+    },
+    {
+      "id": "td-010",
+      "title": "styles/site-nav.css's .vex-nav position:sticky never actually sticks on scroll -- site-wide, not page-specific",
+      "description": "Discovered empirically (Playwright, real scroll test) while verifying nav-coverage rollout Step 4: on every page that loads shell.js (including already-merged pages like connect.html from Step 3, not just the 3 pages added in Step 4), the nav bar is visible at the top on initial load but does not stay pinned once the page is scrolled -- it scrolls away like ordinary content. Root cause: injectNav() creates #vex-site-nav as a plain wrapper div sized exactly to its child .vex-nav's height (both ~61px), and .vex-nav itself carries `position: sticky; top: 0`. Sticky positioning only has room to stick within the bounds of its own containing block -- with zero slack between #vex-site-nav's height and .vex-nav's height, the sticky child runs out of room to stick the instant the page scrolls past 61px, so it never visibly pins. This is a real, previously-unverified gap between the CSS's stated intent (position:sticky) and its actual on-scroll behavior -- not a regression introduced by Step 4's own changes, and not fixed as part of that rollout to keep its scope to 'add shell.js safely,' not 'fix unrelated pre-existing CSS behavior.'",
+      "context": "styles/site-nav.css .vex-nav rule; lib/vextreme.js injectNav()'s #vex-site-nav wrapper creation",
+      "addedSession": "2026-07-10 (nav-coverage rollout Step 4)",
+      "migrationPath": "Give #vex-site-nav itself `position: sticky; top: 0` (removing the redundant nested sticky, since the wrapper and its single child are the same size and either one sticking has the same visible effect), or set an explicit min-height on #vex-site-nav taller than .vex-nav so the inner sticky element has real room to stick. Verify with a real scroll test (not just 'element exists at load'), same discipline this finding was caught with.",
+      "priority": "medium"
     }
   ]
 }
