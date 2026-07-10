@@ -120,25 +120,63 @@ direct link, now discoverable from the nav's own hub trail.
 
 Real result: **21/39 pages navigable, up from 17/39** (`node lib/audit-nav.js`).
 
-### Step 6+ — pages with existing script tags, and eventually the God-Script path
+### Step 6 — pages with pre-existing `<script>` tags, individually reviewed (done)
 
-13 pages remain isolated with real content and at least one pre-existing `<script>` tag each
-(`fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments`,
-`org-blueprint`, `org-history`, `phantom-opera-meta-review`, `specimen-architectural-wisdoms`,
-`specimen-full-translation`, `specimen-partial-translation`, `specimen-smallest-miss`,
-`terrain-map`, `the-testimony-of-victor-gong`, `the-victor-pattern`,
-`the-victor-pattern-transcript`) — each needs the same individual review Step 4 gave
-`origins-of-proof.html`, not a blind batch. `v2-test` (a dev fixture for arc-nav testing, not a
-real content page) and the 5 empty placeholders are deliberately left out of any future batch's
-scope.
+Read all 8 non-`specimen-*` pages from Step 5's named list individually — same discipline
+Step 4 gave `origins-of-proof.html` — before adding anything:
 
-Four of the thirteen (`specimen-full-translation`, `specimen-partial-translation`,
-`specimen-smallest-miss`, and `specimens` itself, already navigable) already carry a God
-Script's own "old 3-tag pattern" per `lib/audit-pages.js` — worth checking whether `shell.js`
-would double up with an eventual God-Script FAB nav on those specifically, before adding it
-blindly. Whether the long-term target is universal `shell.js` coverage, universal God-Script
-wiring (`pe-002`), or a deliberate mix, remains a decision to make once more of the rollout's
-real results are in — not guessed now.
+- **5 verified clean with `shell.js` defaults:** `org-blueprint`, `org-history`,
+  `phantom-opera-meta-review`, `terrain-map`, `the-testimony-of-victor-gong` — each already
+  had one or two small, self-contained inline scripts (link-population from a config object,
+  a theme toggle, the terrain-map dashboard's own data-fetch renderer) with `max-width`s at or
+  under 760px, no conflicts.
+- **3 needed `bodyWrap: false`, same fix as `origins-of-proof.html`:**
+  `fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments`
+  (`--page-width: 1300px`), `the-victor-pattern` (`--max-width: 1300px`, its own interactive
+  witness-map visualization), and `the-victor-pattern-transcript` (`--vp-page-width: 1180px`,
+  fragment-style like `about-me.html` — script tags appended at end of file, not before a
+  `</body>` it doesn't have). All three re-verified at full designed width after the override.
+
+**Real bonus found during review, not just risk:** `the-testimony-of-victor-gong.html`
+already had a dormant `<div id="arcNavMount">` and its own `window.VEXTREME_mount()` call —
+authored for the v1 arc-nav system but never activated, since no loader script was ever added
+to the page and the call silently no-ops without one. `lib/vextreme.js` loads `lib/arc-nav.js`
+unconditionally (not gated on a template), so adding `shell.js` here didn't just fix the
+top-nav dead end — it activated real, already-authored arc navigation
+(`data/arcs.json`'s `victors_record` arc, confirmed present) for the first time. Verified via
+Playwright: `#arcNavMount` renders a real arc-nav box, not empty.
+
+**Left out of this batch, deliberately:** `v2-test` (a dev fixture for arc-nav testing, not a
+real content page, per `lib/audit-pages.js`'s own description) and the 4 `specimen-*` pages —
+those already carry real v2 FAB widgets (`lang-fab.js`/`fab-lang.js` +
+`demo-fab.js`/`fab-demo.js`, not a God Script's full 3-tag include pattern as earlier assumed;
+that description was corrected during this review) and a static "← Back to specimens" link.
+Adding `shell.js`'s top nav alongside an already-present FAB orb system is a different,
+untested combination from every page in Steps 3-6 so far — deserves its own check, not folded
+into this batch.
+
+One inconclusive finding, not filed as tech debt: `the-victor-pattern-transcript.html` (a raw
+fragment with no `<head>`/charset declaration) rendered visible mojibake in local
+verification — confirmed caused by the local Python test server omitting a `charset` in its
+`Content-Type` header (`curl -sI` showed plain `text/html`, no `charset=utf-8`), not
+necessarily present on the real GitHub Pages deployment, which likely sends an explicit UTF-8
+charset. Not fixed or filed here since it couldn't be confirmed as a real, live bug — noted so
+a future instance with real GitHub Pages access can check rather than re-discover the same
+question.
+
+Real result: **29/39 pages navigable, up from 21/39** (`node lib/audit-nav.js`).
+
+### Step 7+ — the 4 specimen pages, and eventually the God-Script path
+
+10 pages remain isolated: `accountability-test-01`, `accountability-test-01-b`,
+`how-to-invest-in-trust-and-integrity`, `instance-thread-logs`, `summary-of-value` (the 5 empty
+placeholders, still deliberately out of scope), `v2-test` (dev fixture, likely out of scope),
+and `specimen-architectural-wisdoms`, `specimen-full-translation`, `specimen-partial-translation`,
+`specimen-smallest-miss` (real content, already carry v2 FAB widgets — needs a compatibility
+check with `shell.js`'s nav before adding, per Step 6's own deferral above). Whether the
+long-term target is universal `shell.js` coverage, universal God-Script wiring (`pe-002`), or a
+deliberate mix, remains a decision to make once more of the rollout's real results are in — not
+guessed now.
 
 ## What this is not
 
