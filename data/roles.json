@@ -124,6 +124,12 @@
           "priority": "high"
         },
         {
+          "id": "od-012",
+          "title": "Adopt Runtime View Profiles + a real Composition Container — one authored page, many runtime lenses (Production/Developer/QA/Localization/Accessibility), selectable from the FAB — or keep composing chrome piecewise as today",
+          "source": "openDiscussions",
+          "priority": "high"
+        },
+        {
           "id": "pe-014",
           "title": "Function-level reverse traversal map for answering source-of-truth questions with minimal grep",
           "source": "plannedEnhancements",

@@ -196,3 +196,69 @@ test('FAB-AUTOLOAD: CONFIG SCHEMA doc comment documents the new fab field', () =
   const source = readSource();
   assert.match(source, /\*\s+fab\s+boolean\s+Auto-load the spiral-FAB widget set/);
 });
+
+// ── Cache-version sync (regression guard) ──────────────────────────────────
+// The FAB autoload originally shipped without bumping the cache version, so
+// jsDelivr/browser caches kept serving the pre-FAB vextreme.js and the FAB
+// never appeared on production pages. shell.js's own header says the two
+// versions must be bumped together; this makes that instruction enforced
+// instead of remembered.
+
+test('CACHE-SYNC: shell.js VEXTREME_VER matches vextreme.js DEFAULT_CACHE exactly', () => {
+  const shell = fs.readFileSync(path.join(ROOT, 'lib', 'shell.js'), 'utf8');
+  const vx    = readSource();
+  const shellVer = shell.match(/var VEXTREME_VER = '([^']+)';/);
+  const vxVer    = vx.match(/var DEFAULT_CACHE = '([^']+)';/);
+  assert.ok(shellVer, 'shell.js must declare VEXTREME_VER');
+  assert.ok(vxVer, 'vextreme.js must declare DEFAULT_CACHE');
+  assert.equal(shellVer[1], vxVer[1],
+    `shell.js VEXTREME_VER (${shellVer[1]}) and vextreme.js DEFAULT_CACHE (${vxVer[1]}) must be bumped together — a mismatch means production serves a stale vextreme.js`);
+});
+
+// ── v1 enhancement-layer gating (authored-style protection) ─────────────────
+// design-system.css carries a universal reset + :root tokens + a global body
+// rule; blanket-injecting it overwrote authored pages' own styles (real
+// regression: phantom-opera-meta-review). section-toggle.js auto-discovers
+// [data-section] and attaches collapse listeners; blanket-loading it hijacked
+// fourteen-patterns' own sub-nav markup. Both now load only for pages that
+// actually consume the v1 system (a pages.json template entry or #arcNavMount).
+
+test('V1-GATE: design-system.css is not injected in the unconditional pre-data section of run()', () => {
+  const source = readSource();
+  const runMatch = source.match(/function run\(cfg\) \{[\s\S]*?\/\/ 5\. Fetch data/);
+  assert.ok(runMatch, 'run() up to the data fetch must be extractable');
+  assert.equal(runMatch[0].includes("loadStyle(BASE + '/styles/design-system.css'"), false,
+    'design-system.css must not load before the template/arcNavMount gate can be evaluated');
+});
+
+test('V1-GATE: the v1 layer is gated on a template entry or #arcNavMount', () => {
+  const source = readSource();
+  assert.match(source, /isV1Consumer = !!\(template \|\| document\.getElementById\('arcNavMount'\)\)/);
+});
+
+test('V1-GATE: v1 behavior scripts (arc-nav, archive-renderer, section-toggle, bc-nav) load only inside the gated branch', () => {
+  const source = readSource();
+  // Extract the gated block: from the isV1Consumer declaration to the mount step
+  const gated = source.match(/var isV1Consumer[\s\S]*?\/\/ 9\. Mount/);
+  assert.ok(gated, 'gated block must be extractable');
+  for (const script of ['lib/arc-nav.js', 'lib/archive-renderer.js', 'components/section-toggle.js', 'components/bc-nav.js']) {
+    assert.ok(gated[0].includes(script), `${script} must load inside the gated v1 branch`);
+    // and must appear nowhere else in run() before the gate
+    const preGate = source.match(/function run\(cfg\) \{[\s\S]*?var isV1Consumer/);
+    assert.equal(preGate[0].includes(script), false, `${script} must not also load before the gate`);
+  }
+});
+
+test('V1-GATE: the gated branch returns early for non-v1 pages before loading anything', () => {
+  const source = readSource();
+  assert.match(source, /if \(!isV1Consumer\) \{\s*\n\s*log\(cfg, 'v1 layer skipped[^']*'\);\s*\n\s*return;/);
+});
+
+// ── Single-language FAB mount (fab-lang.js) ────────────────────────────────
+
+test('LANG-MOUNT: fab-lang.js mounts with a single language (guard is length 0, not < 2)', () => {
+  const fabLang = fs.readFileSync(path.join(ROOT, 'widgets', 'fab-lang.js'), 'utf8');
+  assert.equal(/if \(!langs \|\| langs\.length < 2\) return;/.test(fabLang), false,
+    'the old < 2 guard must be gone — per Victor: "the language even if just 1, should still be there"');
+  assert.match(fabLang, /if \(!langs \|\| !langs\.length\) return;/);
+});

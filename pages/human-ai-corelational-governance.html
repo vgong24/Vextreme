@@ -1360,7 +1360,7 @@ body, body *, p, h1, h2, h3, h4, h5, h6, a, span, div, li, ul, ol {
      toggle above (localStorage key 'vxg-theme', sets <html data-theme>) --
      fab-theme.js's mount() would overwrite the same attribute using a
      different storage key ('vex-theme'), desyncing the two on load/click. -->
-<script>window.VEXTREME_OVERRIDE = { fabWidgets: { theme: false } };</script>
+<script>window.VEXTREME_OVERRIDE = { bodyWrap: false, fabWidgets: { theme: false } };</script>
 <script src="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/lib/shell.js"></script>
 </body>
 </html>
