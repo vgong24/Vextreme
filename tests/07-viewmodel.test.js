@@ -37,7 +37,8 @@ test('VIEWMODEL: slug with no override returns production defaults', () => {
   assert.ok(vm.features.includes(Feature.SPIRAL_FAB), 'defaults include spiral-fab feature');
   assert.ok(vm.features.includes(Feature.THEME),      'defaults include theme feature (Session 025 FAB unification)');
   assert.ok(vm.features.includes(Feature.MAP),        'defaults include map feature (Session 025 FAB unification)');
-  assert.equal(vm.features.length, 4, 'exactly four default features');
+  assert.ok(vm.features.includes(Feature.ANALYSIS),   'defaults include analysis feature (docs/architecture/15-analysis-mode.md Phase C)');
+  assert.equal(vm.features.length, 5, 'exactly five default features');
 });
 
 test('VIEWMODEL: null/undefined viewmodels map treated as empty', () => {

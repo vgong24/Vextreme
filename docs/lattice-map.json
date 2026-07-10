@@ -1779,13 +1779,14 @@
     },
     "widgets/fab-analysis.js": {
       "role": "Analysis Mode orb + panel — searches data/analysis-index.json, exports the visible result set as CSV",
-      "context": "docs/architecture/15-analysis-mode.md Phase B. Real, live search/browse UI over Vextreme public content (real canonical string IDs, real language coverage, real page cross-references, real screenshots) instead of a synthetic demo fixture -- see the architecture doc for the full reasoning. data/analysis-index.json is fetched lazily on first panel open, not at page load, so Phase C (God-Script capability-config decision, od-011) can measure the real fetch cost before deciding default-on vs. per-slug opt-in. Follows widgets/fab-map.js/fab-lang.js/fab-theme.js's exact #vex-spiral-group mount contract.",
+      "context": "docs/architecture/15-analysis-mode.md Phase B. Real, live search/browse UI over Vextreme public content (real canonical string IDs, real language coverage, real page cross-references, real screenshots) instead of a synthetic demo fixture -- see the architecture doc for the full reasoning. data/analysis-index.json is fetched lazily on first panel open, not at page load, so Phase C (God-Script capability-config decision, od-011) can measure the real fetch cost before deciding default-on vs. per-slug opt-in. Follows widgets/fab-map.js/fab-lang.js/fab-theme.js's exact #vex-spiral-group mount contract. Phase C (docs/architecture/15-analysis-mode.md): wired into lib/build-index.js buildViewmodel()'s default features array alongside lang/spiral-fab/theme/map -- default-on for any page using the standard viewmodel path, same mechanism every sibling FAB feature already uses (an explicit data/viewmodels.json override excludes it per-slug, same escape hatch demo/specimen pages already use to exclude theme/map). Decision was measured, not guessed: fab-analysis.js is 17.5KB (comparable to sibling orb widgets), and the actual data/analysis-index.json fetch (~100KB, ~5.4KB gzipped) stays lazy -- paid only if a visitor opens the panel, never at page load.",
       "reads": [
         "data/analysis-index.json via CDN (lazy fetch, first panel open only)"
       ],
       "writes": [],
       "loadedBy": [
-        "not yet wired into lib/build-vextreme.js FEATURES registry -- Phase C decision, docs/architecture/15-analysis-mode.md",
+        "lib/build-vextreme.js (inlined as analysis feature in God Scripts, default viewmodel via lib/build-index.js buildViewmodel())",
+        "tests/08-build-vextreme.test.js",
         "tests/37-fab-analysis.test.js"
       ],
       "testedBy": [
@@ -1796,10 +1797,9 @@
           "lib/build-analysis-index.js (the write side -- must stay in sync)",
           "filterElements()/screenshotsForKey()/toCSV() here read this shape directly"
         ],
-        "this widget gets wired into lib/build-vextreme.js FEATURES registry (Phase C)": [
-          "lib/vex-config.js (new Feature.* constant)",
-          "lib/build-vextreme.js (FEATURES registry entry)",
-          "tests/08-build-vextreme.test.js (assembler coverage for the new feature)"
+        "default features array in lib/build-index.js buildViewmodel() changed": [
+          "this widget's inclusion on default-viewmodel pages changes with it",
+          "tests/07-viewmodel.test.js, tests/08-build-vextreme.test.js (FAB SYSTEM default-feature-count assertions)"
         ]
       }
     }

@@ -1680,7 +1680,8 @@
       ],
       "writes": [],
       "loadedBy": [
-        "not yet wired into lib/build-vextreme.js FEATURES registry -- Phase C decision, docs/architecture/15-analysis-mode.md",
+        "lib/build-vextreme.js (inlined as analysis feature in God Scripts, default viewmodel via lib/build-index.js buildViewmodel())",
+        "tests/08-build-vextreme.test.js",
         "tests/37-fab-analysis.test.js"
       ],
       "testedBy": [
@@ -2240,6 +2241,10 @@
     [
       "sw.js",
       "widgets/sw-register.js"
+    ],
+    [
+      "widgets/fab-analysis.js",
+      "lib/build-index.js"
     ],
     [
       "widgets/fab-analysis.js",

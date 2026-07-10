@@ -5,7 +5,7 @@
     "description": "Vextreme system definition. Read this before reading anything else in the build pipeline."
   },
   "categories":  ["system", "production", "demo", "staging", "experimental"],
-  "features":    ["lang", "demo", "theme", "spiral-fab", "map"],
+  "features":    ["lang", "demo", "theme", "spiral-fab", "map", "analysis"],
   "languages": {
     "inline": ["en"],
     "lazy":   ["ja"]

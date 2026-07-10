@@ -113,18 +113,49 @@ end-to-end against this repo's actual data — not a mock.
 `data/analysis-index.json` is fetched lazily on first panel open, not at page load — this
 matters for Phase C below, not just performance hygiene.
 
-### Phase C — capability wiring decision (after B ships and its real cost is known)
+### Phase C — capability wiring decision (built)
 
-Add `analysis` to `lib/vex-config.js`'s `Feature` enum and `lib/build-vextreme.js`'s
-`FEATURES` registry. Decide default-on vs. per-slug opt-in using Phase B's actual measured
-`data/analysis-index.json` fetch weight, not a guess — this is `od-011`'s real answer,
-derived instead of debated.
+Measured before deciding, per the plan above: `widgets/fab-analysis.js` is 17.5KB (in
+line with sibling orb widgets — `fab-lang.js` alone is 25.6KB); `data/analysis-index.json`
+is ~100KB raw / ~5.4KB gzipped but is fetched lazily, only on first panel open, never at
+page load. `blueprint.json`'s own `performance.budgets.perPage` ceiling is 100KB — the
+widget's page-load cost is a small fraction of that.
 
-### Phase D — code/HTML navigation (stretch, may fold into B)
+Decision: added `Feature.ANALYSIS` to `lib/vex-config.js`, a `config/features/analysis.json`
+entry, a `lib/build-vextreme.js` `FEATURES` registry entry (`default: false`, same as
+every sibling orb feature — inclusion is still driven by the viewmodel, not unconditional),
+and — the actual "default-on with configurable visibility" answer to `od-011` — added
+`Feature.ANALYSIS` to `lib/build-index.js`'s `buildViewmodel()` default features array,
+alongside `lang`/`spiral-fab`/`theme`/`map`. This is not a new mechanism: it's the exact
+mechanism `theme` and `map` already use to be "on by default, per-slug excludable."
 
-From a search result, link to the real source: `pages/{slug}.html` and
-`data/strings/source/pages/{slug}.json` on GitHub (public repo, already browsable — no new
-infrastructure needed, just a URL template).
+**`od-011` finding, stated plainly:** the "God Script should be default-on with per-slug
+configurable visibility" question already had a working answer inside this repo before
+Analysis Mode existed — `buildViewmodel()`'s default features array plus
+`data/viewmodels.json`'s per-slug override array. It's opt-in-by-default at the *feature*
+level (every page using the standard viewmodel gets `lang`/`spiral-fab`/`theme`/`map`, and
+now `analysis`, automatically), not opt-in at the *page* level (whether a page gets a God
+Script at all is still gated by `hasScopeBundle()` — a separate, still-open question,
+scoped to `pe-002`, not this manifest). Demo/specimen pages that want a minimal feature set
+already exclude `theme`/`map` via an explicit `viewmodels.json` override; they now also
+exclude `analysis` the same way, with no new code — verified by rebuilding: their assembled
+scripts don't gain the analysis feature, `victor-methodology-presentation`'s does.
+
+**Verified end-to-end, not just at the assembler level:** rebuilt the real
+`dist/vextreme-victor-methodology-presentation.js` and confirmed `feature: analysis` is
+present; loaded the real, actually-built page (temporary `playwright-core`, cleaned up
+after) with only the CDN URL locally redirected (network access to the real CDN isn't
+available in this environment) and drove the real assembled God Script through the real
+panel: 246 real elements loaded, filtered correctly to 17 matches on "archives," zero
+widget-related errors.
+
+### Phase D — code/HTML navigation (built, folded into Phase B)
+
+Already shipped as part of Phase B: `screenshotsForKey()` links directly to the real
+screenshot file on GitHub (`github.com/vgong24/Vextreme/blob/main/{path}`), and each result
+row links to the real live page. Linking to the raw source HTML/string-source JSON on
+GitHub (rather than the rendered page) remains a small, optional follow-up if a future
+instance finds it valuable — not blocking, not scoped further here.
 
 ## Why this order
 
@@ -132,5 +163,22 @@ Phase A first because every later phase depends on the artifact existing and bei
 trustworthy — building the UI before the data layer would mean designing against guesses.
 Phase C is deliberately sequenced after B, not before, because `od-011` asked a real
 scaling question that Phase B's actual output size will answer better than speculation.
+
+## Manifest status: complete
+
+All four phases (A: data layer, B: FAB panel, C: capability wiring, D: source navigation)
+are built and verified end-to-end. `od-011`'s two questions — should demo pages show real
+IDs/mapping, should God Script inclusion be a configurable pattern instead of a one-off —
+both have concrete, working answers: yes, over Vextreme's own real content
+(`docs/process/public-private-boundary.md`'s "Refined principle" is the reasoning this
+manifest is built on), through the repo's existing per-slug feature-override mechanism,
+extended rather than replaced.
+
+Read `docs/process/public-private-boundary.md`'s "Refined principle" section before
+proposing a Phase E or extending Analysis Mode further — it's the checklist for keeping
+new capability on the public side of the line (demonstrating an already-real pattern over
+public data) instead of drifting into what `Vextreme-SDK`'s own
+`docs/architecture/public-private-interface-boundary.md` names as SDK territory
+(generalized resolution, heterogeneous-input adaptation, vendor workflow, governance).
 
 <!-- [VXG RealForever] -->

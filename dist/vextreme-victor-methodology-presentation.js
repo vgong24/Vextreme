@@ -7,7 +7,7 @@
   'use strict';
 
   /* Per-page viewmodel — baked in at build time */
-  window.VEX_VIEWMODEL          = {"category":"production","template":"page","scopes":["pages.victor-methodology-presentation"],"features":["lang","spiral-fab","theme","map"]};
+  window.VEX_VIEWMODEL          = {"category":"production","template":"page","scopes":["pages.victor-methodology-presentation"],"features":["lang","spiral-fab","theme","map","analysis"]};
 
   /* EN strings — inlined at build time, no fetch on default language */
   window.VEX_STRINGS_EN         = {"common.nav.prev":{"text":"← prev","aria-label":"Previous page"},"common.nav.next":{"text":"next →","aria-label":"Next page"},"common.label.you-are-here":{"text":"You Are Here"},"common.nav.archives":{"text":"Archives","aria-label":"View full archive"},"common.nav.primary-site":{"text":"vextreme24.com","aria-label":"Go to primary site"},"common.nav.github":{"text":"GitHub","aria-label":"View source on GitHub"},"common.nav.full-archive":{"text":"Full archive →","aria-label":"View full archive"},"common.button.copy-filename":{"text":"Copy filename","aria-label":"Copy filename to clipboard"},"common.button.copied":{"text":"Copied!","aria-label":"Filename copied to clipboard"},"common.label.site-title":{"text":"Vextreme"},"common.label.page-live":{"text":"Page live"},"common.label.not-yet-ported":{"text":"Not yet ported"},"common.label.slug":{"text":"Slug"},"common.status.pages-live":{"text":"{ported, plural, one {# of {total} page live} other {# of {total} pages live}}"},"common.status.remaining":{"text":"{count, plural, one {# remaining} other {# remaining}}"},"common.status.built-on":{"text":"Built {date}"},"pages.victor-methodology-presentation.header.eyebrow":{"text":"Engineering Dossier · 2021–2026 · DOC-ID: VG-DOSSIER-v2.1"},"pages.victor-methodology-presentation.header.thesis":{"text":"Finding every place people are forced to assume — and replacing each with a map that makes the assumption safe."},"pages.victor-methodology-presentation.header.id-line":{"text":"Senior Software Engineer II · Dexcom (medical devices, 5 years) · Lean Six Sigma Green Belt · AI-collaboration systems architect"},"pages.victor-methodology-presentation.header.stamp-big":{"text":"×6"},"pages.victor-methodology-presentation.header.stamp-small":{"text":"PROVEN"},"pages.victor-methodology-presentation.section-proofs.heading":{"text":"One method, six proofs"},"pages.victor-methodology-presentation.section-proofs.intro":{"text":"Across five years at a medical-device company — where software quality carries regulatory and patient-safety weight — the same engineering move was applied to six different problems at increasing scale. Each time, manual work done \"at the surface\" was replaced by a maintained map that structurally connects layers, so systems cannot silently drift apart."},"pages.victor-methodology-presentation.proof-organization-knowledge-map.year":{"text":"YEARS 1–5 · LIVE"},"pages.victor-methodology-presentation.proof-organization-knowledge-map.title":{"text":"Mapping the organization itself — the living map"},"pages.victor-methodology-presentation.proof-organization-knowledge-map.body":{"text":"Arrived to no map: no channels connecting Android developers, no forums, no directory of where anything lived. Built the human infrastructure first — a biweekly Android forum with open sharing and bug/innovation lunch-and-learns; a Confluence mapping the org (repos, documentation, dashboards including VnV testing tools); direct developer access to testing tools so engineers debug immediately instead of consuming another person's time; and later, XML→Jetpack Compose migration guides and an inherit-the-base UI doctrine that eliminated inconsistent reimplementations. Not a one-time artifact: a live page, appended and maintained across the full five years — early entries like the org map, late entries like the Compose guides, one continuously current source. Communication built audience-first — including a \"3D\" board of the fragment/navgraph hierarchy, each layer showing its responsibility and connections as a scannable pattern."},"pages.victor-methodology-presentation.proof-organization-knowledge-map.result":{"text":"The methodology's origin and its endurance test in one: a map of people and knowledge, kept alive for five years."},"pages.victor-methodology-presentation.proof-bulk-data-logging.year":{"text":"YEAR 1"},"pages.victor-methodology-presentation.proof-bulk-data-logging.title":{"text":"Analytics that cannot drift — BulkDataLogging"},"pages.victor-methodology-presentation.proof-bulk-data-logging.body":{"text":"Replaced hand-written analytics code at every screen with one central map (ScreenName / ScreenMapper / ButtonName / MetaData) covering display, click, duration, and entry events. Delete a UI element and its logging entry goes with it — analytics and UI are structurally bound."},"pages.victor-methodology-presentation.proof-bulk-data-logging.result":{"text":"Medical-grade event logging with structural integrity, org-wide."},"pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.year":{"text":"YEAR 2"},"pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.title":{"text":"Translations navigable in both directions"},"pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.body":{"text":"Extended the mapping principle to localization: every string traceable from code to every language and back, across Android, iOS, and design — \"where is this text used?\" answered structurally instead of by tribal memory."},"pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.result":{"text":"Foundation for the localization transformation below."},"pages.victor-methodology-presentation.proof-compound-safety-bug-map.year":{"text":"MID"},"pages.victor-methodology-presentation.proof-compound-safety-bug-map.title":{"text":"The compound bug nobody could reproduce"},"pages.victor-methodology-presentation.proof-compound-safety-bug-map.body":{"text":"A missing low-glucose alert — patient-safety critical — was caused by two interacting defects across three teams' systems, one of which erased the evidence of the other. Resolution required first building the missing cross-system map by hand, instrumenting SDK-level code, and extracting reproduction steps inside a one-day window before the only witness left on vacation. Root cause: database indexes built without a wrapping @Transaction — an invisible absence."},"pages.victor-methodology-presentation.proof-compound-safety-bug-map.result":{"text":"The terrain map let senior architects perceive system relationships nobody had seen. Fix shipped; lesson institutionalized."},"pages.victor-methodology-presentation.proof-localization-pipeline.year":{"text":"YEARS 3–4"},"pages.victor-methodology-presentation.proof-localization-pipeline.title":{"text":"Localization: 6 months → 2 weeks"},"pages.victor-methodology-presentation.proof-localization-pipeline.body":{"text":"Through Dexcom-sponsored Lean Six Sigma work, unified fragmented Android/iOS string structures and re-architected the translation pipeline — then engineered the paid vendor tool out of the loop entirely with a single source of truth that regenerates all documents reproducibly, byte-identical, because every condition was mapped rather than assumed."},"pages.victor-methodology-presentation.proof-localization-pipeline.metric":{"text":"6 mo → 2 wk"},"pages.victor-methodology-presentation.proof-localization-pipeline.metric-label":{"text":"lean cycle time — on-paper value in the millions"},"pages.victor-methodology-presentation.proof-cross-domain-ui-identity.year":{"text":"YEARS 3–4"},"pages.victor-methodology-presentation.proof-cross-domain-ui-identity.title":{"text":"The organizational join key — UIElementKey"},"pages.victor-methodology-presentation.proof-cross-domain-ui-identity.body":{"text":"Engineering, UX design, and quality testing each held IDs meaningful only inside their own silo. One composite identity — UIElementKey(platform, project, language, stringId, vnvTestId, uxDesignId) — resolved every discipline to the same UI element. Map first, align second: no team forced to change upfront. With the key live, the pipeline inverted: design issues keys upstream, platforms align by protocol, verification proceeds on a guaranteed assumption. Cross-discipline traceability — audit-grade in a regulated industry."},"pages.victor-methodology-presentation.proof-cross-domain-ui-identity.result":{"text":"Reconciliation disappeared as a phase. Teams run parallel over a shared spine."},"pages.victor-methodology-presentation.proof-source-of-truth-relay.year":{"text":"YEAR 5"},"pages.victor-methodology-presentation.proof-source-of-truth-relay.title":{"text":"PenSDK: the method applied to time itself"},"pages.victor-methodology-presentation.proof-source-of-truth-relay.body":{"text":"For an insulin-pen product where event order is safety-relevant: state changes flow through one SourceOfTruthRelay that derives and broadcasts truth so concurrent readers structurally cannot hold contradictory realities. Coroutines became ID-mapped, first-class tasks with scoped kill-switches — making a complex partner-SDK refresh cycle surgically manageable. Composes natively with Jetpack Compose."},"pages.victor-methodology-presentation.proof-source-of-truth-relay.result-tag":{"text":"Legacy"},"pages.victor-methodology-presentation.proof-source-of-truth-relay.result":{"text":"Deliberately developed the team in these practices — before departure, they problem-solved independently with the culture intact. The practices outlived the practitioner."},"pages.victor-methodology-presentation.section-throughline.band":{"text":"Analytics can't drift from UI. Translations can't orphan from screens. Localization can't fragment across platforms. Concurrent readers can't contradict each other. And now: AI instances can't re-introduce mistakes that were already corrected."},"pages.victor-methodology-presentation.section-ai-maintainable-systems.heading":{"text":"The sixth application: AI-maintainable systems"},"pages.victor-methodology-presentation.section-ai-maintainable-systems.p1":{"text":"Every organization adopting AI coding tools is hitting the same wall: AI-generated work decays, because nothing preserves institutional knowledge between sessions. A new AI instance starts cold and re-introduces assumptions that were corrected months ago — the same disease as every fragmentation above, at the largest scale yet: context itself."},"pages.victor-methodology-presentation.section-ai-maintainable-systems.p2":{"text":"The public working demonstration applies the five-times-proven method to this problem: a repository where CI self-maintains its own indexes; pull requests function as decision records (assumptions, cascading effects, notes for the next reader — human or AI); scaling ceilings are documented with migration paths before they're hit; and any fresh AI session bootstraps full context in one command. The escalation culture built with the human team — hard problems routed early, resolutions written back into shared knowledge — transcribed into architecture."},"pages.victor-methodology-presentation.section-adoption-implications.heading":{"text":"What adoption changes"},"pages.victor-methodology-presentation.section-adoption-implications.intro":{"text":"For an organization, this architecture is not a documentation style — it relocates where reliability comes from: out of individual vigilance and tribal memory, into structure that validates itself."},"pages.victor-methodology-presentation.section-adoption-implications.engineering-label":{"text":"Engineering:"},"pages.victor-methodology-presentation.section-adoption-implications.engineering":{"text":"drift stops being a discipline problem. When analytics, strings, tests, and design resolve through one identity, divergence becomes structurally impossible rather than manually policed — and change review shifts from recalling impact to reading a computed impact report."},"pages.victor-methodology-presentation.section-adoption-implications.localization-label":{"text":"Localization & product:"},"pages.victor-methodology-presentation.section-adoption-implications.localization":{"text":"a new language becomes new rows, not duplicated pages. Vendors translate a meaning once and the graph applies it everywhere it is bound; plural, placeholder, and layout rules are validated per locale automatically."},"pages.victor-methodology-presentation.section-adoption-implications.quality-label":{"text":"Quality & compliance:"},"pages.victor-methodology-presentation.section-adoption-implications.quality":{"text":"every change produces its impact report before it lands, and traceability from test to design intent to translation is audit-grade by construction. In regulated industries, that is the difference between proving compliance and reconstructing it."},"pages.victor-methodology-presentation.section-adoption-implications.ai-label":{"text":"AI adoption:"},"pages.victor-methodology-presentation.section-adoption-implications.ai":{"text":"agents stop re-deriving context. The graph is the memory; AI is the bridge into it — onboarding a fresh agent costs a query, not a repository read, and corrected mistakes stay corrected across sessions, tools, and vendors."},"pages.victor-methodology-presentation.section-adoption-implications.leadership-label":{"text":"Leadership:"},"pages.victor-methodology-presentation.section-adoption-implications.leadership":{"text":"the localization precedent above — six months to two weeks — is what this class of change does to cycle time. The same mechanics apply wherever teams currently reconcile by meeting instead of by map."},"pages.victor-methodology-presentation.section-adoption-implications.closing-note":{"text":"This document is itself the first artifact managed under the standard it describes: its record identifiers follow the concept-ID naming standard, legacy IDs are preserved as aliases, and the English and Chinese content regenerate from a single bilingual source. The proof of concept is the page."},"pages.victor-methodology-presentation.section-audience-fit.heading":{"text":"Where this fits"},"pages.victor-methodology-presentation.fit-platform-devex.title":{"text":"Platform & Developer Experience"},"pages.victor-methodology-presentation.fit-platform-devex.body":{"text":"Building the maps and pipelines that let large teams move in parallel without drift."},"pages.victor-methodology-presentation.fit-ai-tooling-companies.title":{"text":"AI tooling companies"},"pages.victor-methodology-presentation.fit-ai-tooling-companies.body":{"text":"A design-partner profile: has hit and documented the failure modes these products exist to solve."},"pages.victor-methodology-presentation.fit-regulated-industries.title":{"text":"Regulated industries adopting AI"},"pages.victor-methodology-presentation.fit-regulated-industries.body":{"text":"Medical-device background plus audit-grade, decision-record practices — a rare intersection."},"pages.victor-methodology-presentation.fit-process-transformation.title":{"text":"Process transformation"},"pages.victor-methodology-presentation.fit-process-transformation.body":{"text":"Lean Six Sigma-validated: a measured 6-month → 2-week cycle reduction with cross-team adoption."},"pages.victor-methodology-presentation.note-self-demonstration.lead":{"text":"This dossier practices its own method."},"pages.victor-methodology-presentation.note-self-demonstration.body":{"text":"Every record above carries a stable ID (proof-bulk-data-logging, proof-cross-domain-ui-identity…), named for concepts per the repository Registry Documentation Standard, with legacy IDs preserved as aliases, so any reader — human or AI, in English or Chinese — can reference, quote, or ask about an exact record without ambiguity. Identity first; discussion second."},"pages.victor-methodology-presentation.footer.line":{"text":"Victor Gong · Dossier v2.1 · Created July 4, 2026 · DOC-ID: VG-DOSSIER-v2.1"},"pages.victor-methodology-presentation.footer.reference-note":{"text":"References & repository walkthrough available on request"},"pages.victor-methodology-presentation.footer.stamp-word":{"text":"ON"},"pages.victor-methodology-presentation.footer.stamp-label":{"text":"THE RECORD"}};
@@ -1148,6 +1148,441 @@
     container.id = 'vex-map-fab';
     container.appendChild(btn);
     document.body.appendChild(container);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', mount);
+  } else {
+    mount();
+  }
+
+}());
+
+// [VXG RealForever]
+
+
+/* === feature: analysis (fab-analysis.js) === */
+/**
+ * VEXTREME — widgets/fab-analysis.js
+ *
+ * Analysis Mode — search/browse panel over data/analysis-index.json
+ * (lib/build-analysis-index.js, docs/architecture/15-analysis-mode.md Phase B).
+ * Not a demo of the private Vextreme SDK: this is a real, live interface over
+ * this repo's own real canonical string IDs, real per-language coverage, real
+ * page cross-references, and real screenshots — the same pattern the private
+ * SDK's localization product proves, dogfooded on public content instead of
+ * shown as a fixture.
+ *
+ * Search filters by key substring or page slug substring. Each result shows:
+ * languages present/missing, every page that references the key, and a
+ * screenshot link when one exists for a referencing page. "Export CSV"
+ * downloads the currently-filtered result set client-side (Blob download,
+ * no server round-trip) — this exports the coverage/mapping table (key,
+ * pages, languages present/missing), not translated text bodies. Full-text
+ * export is a named fast-follow, not silently implied here — see
+ * docs/architecture/15-analysis-mode.md.
+ *
+ * data/analysis-index.json is fetched lazily on first panel open, not on
+ * page load — Phase C (God-Script capability-config decision, od-011) uses
+ * this file's real measured fetch weight to decide default-on vs. per-slug
+ * opt-in, so this widget must not force that cost onto every page load
+ * before that decision is made.
+ *
+ * Mounts an orb into #vex-spiral-group if present (widgets/vex-fab.js), else
+ * falls back to its own top-level fixed-position button, same contract as
+ * every other orb widget in this system (see widgets/fab-map.js).
+ *
+ * Self-contained IIFE — no global exports, no framework dependencies.
+ *
+ * LATTICE:BEGIN — generated by lib/build-lattice-headers.js from docs/lattice-map.json. Do not hand-edit; edit the JSON and regenerate.
+ *   role      : Analysis Mode orb + panel — searches data/analysis-index.json, exports the visible result set as CSV
+ *   reads     : data/analysis-index.json via CDN (lazy fetch, first panel open only)
+ *   writes    : (none)
+ *   loaded-by : lib/build-vextreme.js (inlined as analysis feature in God Scripts, default viewmodel via lib/build-index.js buildViewmodel())
+ *               tests/08-build-vextreme.test.js
+ *               tests/37-fab-analysis.test.js
+ *   tested-by : tests/37-fab-analysis.test.js
+ *
+ *   CHANGE MAP — if you touch X here, also check:
+ *     data/analysis-index.json schema changed (supportedLangs/elements/pages/summary shape):
+ *       - lib/build-analysis-index.js (the write side -- must stay in sync)
+ *       - filterElements()/screenshotsForKey()/toCSV() here read this shape directly
+ *     default features array in lib/build-index.js buildViewmodel() changed:
+ *       - this widget's inclusion on default-viewmodel pages changes with it
+ *       - tests/07-viewmodel.test.js, tests/08-build-vextreme.test.js (FAB SYSTEM default-feature-count assertions)
+ * LATTICE:END
+ */
+
+(function () {
+  'use strict';
+
+  var CDN_BASE   = 'https://cdn.jsdelivr.net/gh/vgong24/vextreme@main';
+  var INDEX_URL  = CDN_BASE + '/data/analysis-index.json';
+
+  var _logger = (window.VEXTREME_LOGGER) || {
+    warn:  function(e) { console.warn('[' + e.code + ']', e.message, e); },
+    error: function(e) { console.error('[' + e.code + ']', e.message, e); },
+  };
+
+  var _data = null;      // fetched analysis-index.json, once loaded
+  var _loading = false;
+  var _loadError = null;
+
+  // ── Pure computation ─────────────────────────────────────────────────────────
+
+  // filterElements — case-insensitive substring match against the key itself
+  // or any page slug that references it. Empty query returns everything
+  // (bounded by the caller's own render limit, not here).
+  function filterElements(elements, query) {
+    var q = (query || '').trim().toLowerCase();
+    if (!q) return Object.keys(elements).sort();
+    return Object.keys(elements).filter(function (key) {
+      if (key.toLowerCase().indexOf(q) !== -1) return true;
+      var usedIn = elements[key].usedIn || [];
+      for (var i = 0; i < usedIn.length; i++) {
+        if (usedIn[i].toLowerCase().indexOf(q) !== -1) return true;
+      }
+      return false;
+    }).sort();
+  }
+
+  // screenshotsForKey — every {slug, lang, path} triple available for any
+  // page this key is used on, via the pages index (not duplicated per-key —
+  // analysis-index.json intentionally doesn't repeat screenshot data on
+  // every element, only per page).
+  function screenshotsForKey(key, elements, pages) {
+    var usedIn = (elements[key] && elements[key].usedIn) || [];
+    var shots = [];
+    usedIn.forEach(function (relPath) {
+      var slug = relPath.replace(/^pages\//, '').replace(/\.html$/, '');
+      var page = pages[slug];
+      if (!page || !page.screenshots) return;
+      Object.keys(page.screenshots).forEach(function (lang) {
+        shots.push({ slug: slug, lang: lang, path: page.screenshots[lang] });
+      });
+    });
+    return shots;
+  }
+
+  // toCSV — coverage/mapping export for a given key list. Explicitly not
+  // translated text — see file header. Columns: key, inManifest, langs,
+  // missingLangs, usedIn (pipe-separated within a cell).
+  function toCSV(keys, elements) {
+    function esc(v) {
+      var s = String(v == null ? '' : v);
+      if (s.indexOf(',') !== -1 || s.indexOf('"') !== -1 || s.indexOf('\n') !== -1) {
+        return '"' + s.replace(/"/g, '""') + '"';
+      }
+      return s;
+    }
+    var lines = ['key,inManifest,langs,missingLangs,usedIn'];
+    keys.forEach(function (key) {
+      var el = elements[key];
+      lines.push([
+        esc(key),
+        esc(el.inManifest),
+        esc((el.langs || []).join('|')),
+        esc((el.missingLangs || []).join('|')),
+        esc((el.usedIn || []).join('|')),
+      ].join(','));
+    });
+    return lines.join('\n');
+  }
+
+  // ── Data loading ──────────────────────────────────────────────────────────────
+
+  function loadIndex(onReady) {
+    if (_data) { onReady(_data); return; }
+    if (_loading) return; // a second click while a fetch is in flight is a no-op; onReady already queued by the first caller's render path
+    _loading = true;
+
+    var req = new XMLHttpRequest();
+    req.open('GET', INDEX_URL, true);
+    req.onload = function () {
+      _loading = false;
+      if (req.status === 200) {
+        try {
+          _data = JSON.parse(req.responseText);
+          onReady(_data);
+        } catch (e) {
+          _loadError = 'Failed to parse analysis-index.json';
+          _logger.warn({ code: 'ANALYSIS_FAB_PARSE_FAILED', message: _loadError });
+          onReady(null);
+        }
+      } else {
+        _loadError = 'analysis-index.json returned HTTP ' + req.status;
+        _logger.warn({ code: 'ANALYSIS_FAB_HTTP_ERROR', message: _loadError, status: req.status });
+        onReady(null);
+      }
+    };
+    req.onerror = function () {
+      _loading = false;
+      _loadError = 'Failed to fetch analysis-index.json';
+      _logger.warn({ code: 'ANALYSIS_FAB_FETCH_FAILED', message: _loadError });
+      onReady(null);
+    };
+    req.send();
+  }
+
+  // ── Panel DOM + styles ───────────────────────────────────────────────────────
+
+  var MAX_RESULTS = 40; // render cap — real repos can have hundreds of keys; the search box narrows before rendering everything
+
+  function injectStyles() {
+    var css = [
+      '#vex-analysis-fab { position: relative; font-family: inherit; }',
+      '#vex-analysis-fab.vex-standalone { position: fixed; top: 16px; right: 120px; z-index: 9999; }',
+      '#vex-analysis-panel {',
+      '  display: none;',
+      '  position: absolute;',
+      '  top: 52px;',
+      '  right: 0;',
+      '  width: min(360px, 90vw);',
+      '  max-height: 70vh;',
+      '  overflow: hidden;',
+      '  display: none;',
+      '  flex-direction: column;',
+      '  border-radius: 12px;',
+      '  background: rgba(255,255,255,0.92);',
+      '  backdrop-filter: blur(10px);',
+      '  -webkit-backdrop-filter: blur(10px);',
+      '  box-shadow: 0 4px 24px rgba(0,0,0,0.18);',
+      '  font-size: 13px;',
+      '  color: #1c1917;',
+      '}',
+      '#vex-analysis-panel.open { display: flex; }',
+      '#vex-analysis-header { display: flex; gap: 6px; padding: 10px; border-bottom: 1px solid rgba(0,0,0,0.08); }',
+      '#vex-analysis-search {',
+      '  flex: 1; border: 1px solid rgba(0,0,0,0.15); border-radius: 6px; padding: 6px 8px;',
+      '  font-size: 13px; font-family: inherit;',
+      '}',
+      '#vex-analysis-export {',
+      '  border: none; border-radius: 6px; padding: 6px 10px; font-size: 12px; cursor: pointer;',
+      '  background: rgba(180,88,48,0.12); color: #b45830; font-weight: 600;',
+      '}',
+      '#vex-analysis-export:hover { background: rgba(180,88,48,0.22); }',
+      '#vex-analysis-export:disabled { opacity: 0.4; cursor: default; }',
+      '#vex-analysis-results { overflow-y: auto; padding: 6px 10px 10px; }',
+      '#vex-analysis-summary { padding: 4px 10px 8px; font-size: 11px; opacity: 0.65; }',
+      '.vex-analysis-row { padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.06); }',
+      '.vex-analysis-row:last-child { border-bottom: none; }',
+      '.vex-analysis-key { font-family: monospace; font-size: 11.5px; word-break: break-all; }',
+      '.vex-analysis-langs { margin-top: 3px; }',
+      '.vex-analysis-lang-badge {',
+      '  display: inline-block; font-size: 10px; font-weight: 600; padding: 1px 5px; border-radius: 4px;',
+      '  margin-right: 4px; background: rgba(22,163,74,0.12); color: #16a34a;',
+      '}',
+      '.vex-analysis-lang-badge.missing { background: rgba(217,119,6,0.12); color: #d97706; }',
+      '.vex-analysis-usedin { margin-top: 3px; font-size: 11px; opacity: 0.7; }',
+      '.vex-analysis-usedin a { color: #b45830; text-decoration: none; }',
+      '.vex-analysis-usedin a:hover { text-decoration: underline; }',
+      '.vex-analysis-empty { padding: 16px 4px; font-size: 12px; opacity: 0.6; text-align: center; }',
+    ].join('\n');
+    var style = document.createElement('style');
+    style.textContent = css;
+    document.head.appendChild(style);
+  }
+
+  function renderResults(container, keys, elements, pages, summaryEl) {
+    container.innerHTML = '';
+
+    if (_loadError) {
+      var errEl = document.createElement('div');
+      errEl.className = 'vex-analysis-empty';
+      errEl.textContent = 'Could not load the analysis index. Try again shortly.';
+      container.appendChild(errEl);
+      summaryEl.textContent = '';
+      return;
+    }
+
+    summaryEl.textContent = keys.length + ' match' + (keys.length === 1 ? '' : 'es') +
+      (keys.length > MAX_RESULTS ? ' (showing first ' + MAX_RESULTS + ')' : '');
+
+    if (!keys.length) {
+      var empty = document.createElement('div');
+      empty.className = 'vex-analysis-empty';
+      empty.textContent = 'No matches.';
+      container.appendChild(empty);
+      return;
+    }
+
+    keys.slice(0, MAX_RESULTS).forEach(function (key) {
+      var el = elements[key];
+      var row = document.createElement('div');
+      row.className = 'vex-analysis-row';
+
+      var keyEl = document.createElement('div');
+      keyEl.className = 'vex-analysis-key';
+      keyEl.textContent = key;
+      row.appendChild(keyEl);
+
+      var langsEl = document.createElement('div');
+      langsEl.className = 'vex-analysis-langs';
+      (el.langs || []).forEach(function (l) {
+        var b = document.createElement('span');
+        b.className = 'vex-analysis-lang-badge';
+        b.textContent = l;
+        langsEl.appendChild(b);
+      });
+      (el.missingLangs || []).forEach(function (l) {
+        var b = document.createElement('span');
+        b.className = 'vex-analysis-lang-badge missing';
+        b.textContent = l + ' missing';
+        langsEl.appendChild(b);
+      });
+      row.appendChild(langsEl);
+
+      var usedEl = document.createElement('div');
+      usedEl.className = 'vex-analysis-usedin';
+      if (el.usedIn && el.usedIn.length) {
+        var shots = screenshotsForKey(key, elements, pages);
+        var shotBySlug = {};
+        shots.forEach(function (s) { shotBySlug[s.slug] = shotBySlug[s.slug] || []; shotBySlug[s.slug].push(s); });
+
+        el.usedIn.forEach(function (relPath, i) {
+          var slug = relPath.replace(/^pages\//, '').replace(/\.html$/, '');
+          var link = document.createElement('a');
+          link.href = 'https://vgong24.github.io/Vextreme/pages/' + slug + '.html';
+          link.target = '_blank';
+          link.rel = 'noopener';
+          link.textContent = slug;
+          usedEl.appendChild(link);
+          if (shotBySlug[slug] && shotBySlug[slug].length) {
+            usedEl.appendChild(document.createTextNode(' ('));
+            shotBySlug[slug].forEach(function (s, j) {
+              var shotLink = document.createElement('a');
+              shotLink.href = 'https://github.com/vgong24/Vextreme/blob/main/' + s.path;
+              shotLink.target = '_blank';
+              shotLink.rel = 'noopener';
+              shotLink.textContent = '📷' + s.lang;
+              usedEl.appendChild(shotLink);
+              if (j < shotBySlug[slug].length - 1) usedEl.appendChild(document.createTextNode(' '));
+            });
+            usedEl.appendChild(document.createTextNode(')'));
+          }
+          if (i < el.usedIn.length - 1) usedEl.appendChild(document.createTextNode(', '));
+        });
+      } else {
+        usedEl.textContent = 'not referenced by any scanned page';
+      }
+      row.appendChild(usedEl);
+
+      container.appendChild(row);
+    });
+  }
+
+  function downloadCSV(keys, elements) {
+    var csv = toCSV(keys, elements);
+    var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'vextreme-analysis-export.csv';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  }
+
+  function buildPanel() {
+    var panel = document.createElement('div');
+    panel.id = 'vex-analysis-panel';
+
+    var header = document.createElement('div');
+    header.id = 'vex-analysis-header';
+
+    var search = document.createElement('input');
+    search.id = 'vex-analysis-search';
+    search.type = 'search';
+    search.placeholder = 'Search key or page…';
+
+    var exportBtn = document.createElement('button');
+    exportBtn.id = 'vex-analysis-export';
+    exportBtn.type = 'button';
+    exportBtn.textContent = 'Export CSV';
+    exportBtn.disabled = true;
+
+    header.appendChild(search);
+    header.appendChild(exportBtn);
+
+    var summary = document.createElement('div');
+    summary.id = 'vex-analysis-summary';
+
+    var results = document.createElement('div');
+    results.id = 'vex-analysis-results';
+
+    panel.appendChild(header);
+    panel.appendChild(summary);
+    panel.appendChild(results);
+
+    var currentKeys = [];
+
+    function refresh() {
+      if (!_data) return;
+      currentKeys = filterElements(_data.elements, search.value);
+      renderResults(results, currentKeys, _data.elements, _data.pages, summary);
+      exportBtn.disabled = currentKeys.length === 0;
+    }
+
+    search.addEventListener('input', refresh);
+    exportBtn.addEventListener('click', function () {
+      if (!_data || !currentKeys.length) return;
+      downloadCSV(currentKeys, _data.elements);
+    });
+    panel.addEventListener('click', function (e) { e.stopPropagation(); });
+
+    return { panel: panel, refresh: refresh, summary: summary };
+  }
+
+  function mount() {
+    injectStyles();
+
+    var group = document.getElementById('vex-spiral-group');
+
+    var container = document.createElement('div');
+    container.id = 'vex-analysis-fab';
+
+    var btn = document.createElement('button');
+    btn.setAttribute('aria-label', 'Analysis mode — search strings, coverage, and pages');
+    btn.setAttribute('title', 'Analysis mode');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.textContent = '🔍';
+
+    var built = buildPanel();
+
+    if (group) {
+      btn.className = 'vex-orb';
+      btn.id = 'vex-analysis-orb';
+      container.appendChild(btn);
+      container.appendChild(built.panel);
+      group.appendChild(container);
+    } else {
+      container.className = 'vex-standalone';
+      btn.id = 'vex-analysis-fab-btn';
+      container.appendChild(btn);
+      container.appendChild(built.panel);
+      document.body.appendChild(container);
+    }
+
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var open = built.panel.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+      if (!open) return;
+
+      if (!_data && !_loadError) {
+        built.summary.textContent = 'Loading…';
+      }
+      loadIndex(function () {
+        built.refresh();
+      });
+    });
+
+    document.addEventListener('click', function (e) {
+      if (built.panel.contains(e.target) || btn.contains(e.target)) return;
+      built.panel.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
   }
 
   if (document.readyState === 'loading') {
