@@ -28,8 +28,11 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 025 — July 7, 2026 (corrections and one addition in Session 027 — July 8, 2026,
-noted inline below; the paragraph's substance is otherwise still Session 025's)*
+*As of Session 025 — July 7, 2026 (corrections and one addition in Session 027 — July 8, 2026;
+Analysis Mode, the boundary-principle refinement, and the nav-coverage audit added in Session 028
+— July 10, 2026 — recorded in the one-liner above and this session's own file, not rewritten into
+this architecture paragraph since none of it changes the v1/v2, God Script, or department/arc
+architecture described below. The paragraph's core substance is still Session 025's.)*
 
 The v2 GitHub Pages architecture is the active system. v1 (`data/arcs.json`, `data/pages.json`,
 `lib/vextreme.js`/`archive-renderer.js`/`arc-nav.js`) still serves the live Squarespace site
@@ -146,6 +149,26 @@ The change repairs Session 023 (Codex's July 6 context-note and perceivable-cont
 entries had been injected mid-file into Session 021's record.
 
 **Recent sessions** (one line each — open the session files below for full reasoning):
+- **Session 028** — Continued a private Vextreme-SDK localization roadmap (L1–L6 already merged)
+  through L7 (public demo page, shipped to an already-accepted plan). Victor reviewed the shipped
+  page same-day and named two connected gaps — no real IDs/mapping shown, and whether God Script
+  inclusion should be a default-on configurable pattern (`od-011`) — resolved together by
+  building **Analysis Mode**: a live search/browse/export FAB panel composing three already-real
+  pieces of this repo (`data/strings/`'s canonical-ID system, `lib/trace-string-usage.js`'s
+  reverse index, `lib/build-terrain-map.js`'s screenshot index) instead of a synthetic fixture,
+  wired into the real default page-build path (`lib/build-index.js` `buildViewmodel()`'s default
+  features array — the same "default-on, per-slug-configurable" mechanism `theme`/`map` already
+  used, now proven to answer `od-011` for real instead of guessed). Victor separately sent a
+  refined public/private boundary principle ("public proves the pattern on itself; SDK is the
+  machinery that gets other orgs there"), recorded in both repos. Second, separate gap named
+  directly by Victor: no page has a visible header/way to navigate elsewhere. Measured before
+  building (`lib/audit-nav.js`): 31 of 39 pages are dead ends. Modernized `shell.js`'s stale nav
+  destination list (small, verified fix); staged the rest as `docs/architecture/16-nav-coverage.md`
+  rather than mass-editing 30+ differently-authored pages unverified. Mid-session, Victor
+  authorized batching 3–5 PRs at high confidence without merge-by-merge confirmation between
+  each. Named, not yet started: a structural HTML→identity discovery wedge for the private SDK,
+  using this repo's own real unconverted legacy pages as a license-safe test corpus. Full detail
+  in this session's own file.
 - **Session 027** — Cold-start review (a fresh instance working through the full boot sequence
   plus an uploaded "Meta Project" doc proposing process/role/source-truth-map vocabulary) found
   two real gaps and built the fix for one. First: Session 025's own text describes PR #69's
@@ -202,15 +225,6 @@ entries had been injected mid-file into Session 021's record.
   the POCs and Playwright verification caught (level-exit skipping straight to the top instead
   of stepping back one level; a detail panel that silently reserved layout width even while
   hidden, permanently shrinking the navigable canvas).
-- **Session 024** — Reviewed Session 023's misplaced batch entries (injected into Session 021's
-  block, anchored to a sentinel marker instead of appended); restructured Batch 003 into
-  `batch-003/` per-session files, relocated Session 023 with corrected attribution, taught
-  `lib/session-bootstrap.js` the directory form, and distilled the anchor-insertion lesson.
-  Continued: shipped pe-013 as `lib/check-map-bindings.js` — the fourth CI drift detector.
-  Continued again: shipped pe-012 as `lib/check-lattice-edges.js` — 22 stale lattice edges
-  found and fixed on its first run; the sentinel hazard bit the tool itself twice while
-  building it (fresh evidence for the `const VEX_LATTICE` structural fix).
-
 **This section is a snapshot, not a log.** Full session-by-session reasoning — mistakes tried,
 assumptions made, why a decision went one way over another — lives in the batch files (see
 **Batch Registry** below), not here. Rewrite the paragraph above at the start of each session to
@@ -456,6 +470,6 @@ Create as `docs/continuity/batch-00N/YYYY-MM-DD-session-0NN.md`:
 
 ---
 
-*Last updated: Session 027 — July 8, 2026*
+*Last updated: Session 028 — July 10, 2026*
 
 <!-- [VXG RealForever] -->
