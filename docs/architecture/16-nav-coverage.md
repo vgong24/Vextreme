@@ -100,11 +100,45 @@ rollout PR would blur what each change is actually for.
 
 Real result: **17/39 pages navigable, up from 14/39** (`node lib/audit-nav.js`).
 
-### Step 5+ — remaining pages, and eventually the God-Script path
+### Step 5 — zero-script-tag batch from the remaining 22 (done)
 
-22 pages remain isolated. Whether the long-term target is universal `shell.js` coverage,
-universal God-Script wiring (`pe-002`), or a deliberate mix, is a decision to make once
-more of the rollout's real results are in — not guessed now.
+Of the 22 remaining isolated pages, 5 turned out to be genuine zero-byte placeholder files
+(`accountability-test-01`, `accountability-test-01-b`, `how-to-invest-in-trust-and-integrity`,
+`instance-thread-logs`, `summary-of-value`) — confirmed via `git log --follow`, created empty
+in a prior commit alongside real siblings (e.g. `accountability-test-02`) and never written.
+Not given `shell.js`: a nav bar on a page with no other content isn't fixing a real dead-end,
+it's decorating an empty file. Excluded from this batch and from the isolated-page count's
+practical target, though `lib/audit-nav.js` still (correctly) reports them isolated — the tool
+measures navigability, not content-readiness, on purpose.
+
+Of the rest, 4 had zero pre-existing `<script>` tags — the same safe-first criterion Step 3
+used — and got `shell.js` after individual `max-width` checks (all comfortably under or near
+`.vex-page-body`'s 720px cap, verified via Playwright, no layout conflicts):
+`accountability-test-02`, `covenant-architect-accord`, and this session's own two SDK demo
+pages, `localization-source-truth-demo` and `sdk-identity-demo` — previously landable only by
+direct link, now discoverable from the nav's own hub trail.
+
+Real result: **21/39 pages navigable, up from 17/39** (`node lib/audit-nav.js`).
+
+### Step 6+ — pages with existing script tags, and eventually the God-Script path
+
+13 pages remain isolated with real content and at least one pre-existing `<script>` tag each
+(`fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments`,
+`org-blueprint`, `org-history`, `phantom-opera-meta-review`, `specimen-architectural-wisdoms`,
+`specimen-full-translation`, `specimen-partial-translation`, `specimen-smallest-miss`,
+`terrain-map`, `the-testimony-of-victor-gong`, `the-victor-pattern`,
+`the-victor-pattern-transcript`) — each needs the same individual review Step 4 gave
+`origins-of-proof.html`, not a blind batch. `v2-test` (a dev fixture for arc-nav testing, not a
+real content page) and the 5 empty placeholders are deliberately left out of any future batch's
+scope.
+
+Four of the thirteen (`specimen-full-translation`, `specimen-partial-translation`,
+`specimen-smallest-miss`, and `specimens` itself, already navigable) already carry a God
+Script's own "old 3-tag pattern" per `lib/audit-pages.js` — worth checking whether `shell.js`
+would double up with an eventual God-Script FAB nav on those specifically, before adding it
+blindly. Whether the long-term target is universal `shell.js` coverage, universal God-Script
+wiring (`pe-002`), or a deliberate mix, remains a decision to make once more of the rollout's
+real results are in — not guessed now.
 
 ## What this is not
 
