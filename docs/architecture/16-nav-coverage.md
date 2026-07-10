@@ -168,6 +168,14 @@ Real result: **29/39 pages navigable, up from 21/39** (`node lib/audit-nav.js`).
 
 ### Step 7 — the 4 specimen pages, FAB-widget compatibility checked and unified (done)
 
+**Superseded by `docs/architecture/17-fab-autoload.md`**: the per-page fix described below
+(individually hand-adding `vex-fab.js`/`fab-lang.js` script tags) was replaced by making
+`lib/vextreme.js` auto-load the full FAB set for any page that already includes `shell.js`
+— no per-page widget `<script>` tags needed anymore, anywhere. Kept below for the real
+history of how the gap was found; see `17-fab-autoload.md` for the current, durable fix and
+a real bug that per-page approach ran into (CI silently reverting the hand-edit on
+generated pages).
+
 Read all 4 `specimen-*` pages' existing v2 FAB widget wiring before touching anything.
 Corrected an assumption from the Step 6 PR body along the way: these don't use a God
 Script's 3-tag include pattern — 3 of the 4 (`specimen-full-translation`,
