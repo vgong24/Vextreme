@@ -656,17 +656,20 @@
     },
     "widgets/vex-fab.js": {
       "role": "spiral FAB — trigger button + shared expandable group container that other orb widgets mount into",
-      "context": "Session 025 FAB unification: activates the spiral-fab Feature slot reserved-but-unbuilt (filename: null) since Session 013 — Victor asked for one expandable FAB framework instead of one-off widgets, so a new orb is a small widget registration, not a change to this file. Renders a trigger button (#vex-spiral-trigger, 🌀) that toggles a group container (#vex-spiral-group); widgets/fab-theme.js, widgets/fab-map.js, and widgets/fab-lang.js each look up that container on their OWN DOMContentLoaded handler and append their orb into it if present, falling back to a standalone top-level mount if this widget isn't active on the page. This file does not need to change when an orb is added or removed — that is the whole point of the split. MUST be listed before lang/theme/map in lib/build-vextreme.js's FEATURES registry so its DOMContentLoaded handler (which creates #vex-spiral-group) fires before theirs (handlers fire in registration order = script concatenation order).",
+      "context": "Session 025 FAB unification: activates the spiral-fab Feature slot reserved-but-unbuilt (filename: null) since Session 013 — Victor asked for one expandable FAB framework instead of one-off widgets, so a new orb is a small widget registration, not a change to this file. Renders a trigger button (#vex-spiral-trigger, 🌀) that toggles a group container (#vex-spiral-group); widgets/fab-theme.js, widgets/fab-map.js, and widgets/fab-lang.js each look up that container on their OWN DOMContentLoaded handler and append their orb into it if present. Session 029 composition repair: when shell.js has injected #vex-nav-actions, the complete spiral mounts into that reserved action rail and participates in nav layout instead of overlaying nav links or the mobile hamburger. God-Script pages without site nav retain the original fixed top-right fallback. This file does not need to change when an orb is added or removed — that is the whole point of the split. MUST be listed before lang/theme/map in lib/build-vextreme.js's FEATURES registry so its DOMContentLoaded handler (which creates #vex-spiral-group) fires before theirs (handlers fire in registration order = script concatenation order).",
       "reads": [],
       "writes": [
-        "DOM: #vex-spiral-fab / #vex-spiral-trigger / #vex-spiral-group (consumed by fab-lang.js, fab-theme.js, fab-map.js)"
+        "DOM: #vex-spiral-fab / #vex-spiral-trigger / #vex-spiral-group (consumed by fab-lang.js, fab-theme.js, fab-map.js)",
+        "DOM: mounts into #vex-nav-actions when provided by lib/vextreme.js; otherwise appends to document.body"
       ],
       "loadedBy": [
         "lib/build-vextreme.js (inlined as spiral-fab feature in God Scripts, must be first among the FAB-group features)",
+        "lib/vextreme.js (shell.js runtime path, loaded before lang/theme/map)",
         "tests/08-build-vextreme.test.js"
       ],
       "testedBy": [
-        "tests/08-build-vextreme.test.js"
+        "tests/08-build-vextreme.test.js",
+        "tests/43-runtime-chrome-composition.test.js"
       ],
       "changeMap": {
         "#vex-spiral-group DOM id/contract changed": [
@@ -674,6 +677,11 @@
           "widgets/fab-theme.js (getElementById('vex-spiral-group') lookup)",
           "widgets/fab-map.js (getElementById('vex-spiral-group') lookup)",
           "tests/08 (FAB SYSTEM: nesting assertions)"
+        ],
+        "#vex-nav-actions mount contract changed": [
+          "lib/vextreme.js injectNav() (must create the action rail before loading this widget)",
+          "styles/site-nav.css (.vex-nav-actions owns rail geometry)",
+          "tests/43-runtime-chrome-composition.test.js"
         ]
       }
     },

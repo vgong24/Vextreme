@@ -28,11 +28,10 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 025 — July 7, 2026 (corrections and one addition in Session 027 — July 8, 2026;
-Analysis Mode, the boundary-principle refinement, and the nav-coverage audit added in Session 028
-— July 10, 2026 — recorded in the one-liner above and this session's own file, not rewritten into
-this architecture paragraph since none of it changes the v1/v2, God Script, or department/arc
-architecture described below. The paragraph's core substance is still Session 025's.)*
+*As of Session 029 — July 10, 2026. The architecture paragraph's core remains
+Session 025's; Sessions 028–029 added Analysis Mode, nav/FAB rollout, authored-style
+protection, and a runtime-chrome composition contract without changing the v1/v2,
+God Script, or department/arc architecture described below.*
 
 The v2 GitHub Pages architecture is the active system. v1 (`data/arcs.json`, `data/pages.json`,
 `lib/vextreme.js`/`archive-renderer.js`/`arc-nav.js`) still serves the live Squarespace site
@@ -149,6 +148,13 @@ The change repairs Session 023 (Codex's July 6 context-note and perceivable-cont
 entries had been injected mid-file into Session 021's record.
 
 **Recent sessions** (one line each — open the session files below for full reasoning):
+- **Session 029** — Compared PR #119's authored-style/FAB repair against rendered
+  terrain and Phantom behavior. Preserved its v1-layer gate and cache fix, then
+  closed the remaining geometry gap with a v8 nav action rail, a separate
+  `data-vex-page-action` lane, exact terrain viewport containment, and Phantom's
+  full-bleed/page-owned theme composition. Strengthened `audit-fab` around
+  full-viewport layouts and fixed top-right controls. Current FAB delivery is
+  28 shell pages plus one God-Script page; global coverage is a separate next PR.
 - **Session 028** — Continued a private Vextreme-SDK localization roadmap (L1–L6 already merged)
   through L7 (public demo page, shipped to an already-accepted plan). Victor reviewed the shipped
   page same-day and named two connected gaps — no real IDs/mapping shown, and whether God Script
@@ -207,24 +213,6 @@ entries had been injected mid-file into Session 021's record.
   in the discover script (a bare `\b` also matched inside `data-legacy-id`) by cross-checking
   output against the real HTML before trusting it. Full context in the Meta Project doc's context
   note (§ wrapper) and this session's own file.
-- **Session 025** — Reviewed three Codex registry-graph context docs against PR #69's
-  implementation (`docs/architecture/15–17`, `data/registry/`, `lib/check-registry-docs.js`) —
-  judged well-communicated. **Correction (Session 027): Victor closed PR #69 unmerged shortly
-  after, in favor of PR #70 — none of that content exists in the working tree.** Merged a
-  bilingual (en/zh) engineering dossier from two duplicated HTML files into one
-  `data-i18n`-driven page — the first non-fixture page with a real string source file and arc.
-  Resolved od-001/td-006 with a scoped arc-chunked bundling pilot (`lib/build-arc-bundles.js`,
-  opt-in per arc, only `victor_dossier` uses it) rather than a full-site migration. Built
-  `lib/trace-string-usage.js` (reverse string tracer). Verified the merge with real before/after
-  screenshots, not just tests. Continued: piloted, then generalized, the **terrain map** — a
-  self-updating navigable atlas over the full lattice (`lib/build-terrain-map.js` →
-  `data/terrain-map.json` → `pages/terrain-map.html`, live-fetched, never hand-edited again).
-  Continued again, same day: replaced the terrain map's navigation with a fractal zoom-level
-  ladder (system → stage → node) and role-lens layout (source → generate → check → output →
-  runtime), after several Artifact POCs tested the interaction model live; fixed two real bugs
-  the POCs and Playwright verification caught (level-exit skipping straight to the top instead
-  of stepping back one level; a detail panel that silently reserved layout width even while
-  hidden, permanently shrinking the navigable canvas).
 **This section is a snapshot, not a log.** Full session-by-session reasoning — mistakes tried,
 assumptions made, why a decision went one way over another — lives in the batch files (see
 **Batch Registry** below), not here. Rewrite the paragraph above at the start of each session to
@@ -246,7 +234,7 @@ architecture docs, or lessons only through a PR decision record.
 
 ## Open Work
 
-*Updated Session 027 — July 8, 2026*
+*Updated Session 029 — July 10, 2026*
 
 This list holds only genuinely open items — things nobody has done yet, not a running log of
 what shipped. A completed item is removed here the same session it ships, not kept and checked
@@ -255,6 +243,8 @@ off forever; its record already lives in the batch file and (for od-/td-/pe- ite
 not this list.
 
 **Genuinely open:**
+- [ ] Global FAB coverage after the v8 action-rail contract: 10 of 39 `pages/*.html` surfaces still have neither `shell.js` nor a God-Script FAB path. Add them in a bounded PR, updating generators for generated pages and visually checking each authored surface.
+- [ ] Re-render one default-body-margin legacy page after Session 029's nav inset normalization; localhost browser access was blocked after source/test verification, so this final pixel check remains explicit.
 - [ ] Localization identity pilot (Session 027) — a second page's identity pilot, proving `lib/discover-string-identity.js` generalizes beyond the one page it was built against, is the natural next increment; not started
 - [ ] The discovery heuristic's named limitation (Session 027): `lib/discover-string-identity.js` only finds a content node when its HTML `id` matches the string key's own segment exactly — this misses real legacy identity on `header` (real `data-legacy-id="DOSSIER-ROOT"`, but `id="page-dossier-root"` ≠ key segment `header`) and three `.fit` cards (real informal "legacy alias" tooltips, but abbreviated ids like `FIT-AI-TOOLING` that don't match `fit-ai-tooling-companies`). Named, not fixed — a future pass could search by shared `class=` groupings instead of exact id match, but that's more machinery than this pilot's scope justified.
 - [ ] **Continuity gap, PR #76–#92 (found Session 027):** 15 merged PRs — including a six-PR bug chain (`#79/82/83/84/86/87`) significant enough to become standing doctrine in `docs/culture.md`'s "Multi-PR bug chains" section — landed with no session file and no refresh to this file. What survived: one lesson (`config/lessons/caching-layers-multiply-and-each-one-can-independently-hide-a-fix.json`) and nine lines in `planned-enhancements.json`. Whether to reconstruct a Session 026 from the 15 PRs' own decision-record bodies (each already follows the PR template), or handle it some other way, is Victor's call and still undecided — see `lib/check-continuity-lag.js` (new, Session 027) for the mechanism that would catch the next one of these automatically.
@@ -470,6 +460,6 @@ Create as `docs/continuity/batch-00N/YYYY-MM-DD-session-0NN.md`:
 
 ---
 
-*Last updated: Session 028 — July 10, 2026*
+*Last updated: Session 029 — July 10, 2026*
 
 <!-- [VXG RealForever] -->

@@ -20,10 +20,14 @@
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto} *{transition:none!important;animation:none!important}}
-  body{
+  html body{
     background:var(--bg); color:var(--ink);
     font-family:'EB Garamond',serif; font-size:19px; line-height:1.65;
     transition:background .5s ease, color .5s ease;
+    /* The class-scoped site nav consumes these aliases while this page
+       remains the owner of the actual light/dark palette. */
+    --cream:var(--bg); --stone:var(--ink); --border:var(--line);
+    --ember:var(--gold); --ember-bg:var(--surface);
   }
   .eyebrow{
     font-family:'Jost',sans-serif; font-weight:400; text-transform:uppercase;
@@ -123,7 +127,7 @@
 </style>
 </head>
 <body>
-<button class="lights" id="lights" aria-label="Toggle theme">House Lights</button>
+<button class="lights" id="lights" data-vex-page-action aria-label="Toggle theme">House Lights</button>
 
 <header class="hero">
   <div class="eyebrow">A review with its receipts · Pantages Theatre · 2026</div>
@@ -335,7 +339,7 @@
      the attribute entirely for light rather than setting it explicitly) --
      fab-theme.js's mount() always sets an explicit data-theme value and uses
      its own localStorage key, a real conflict with this page's own convention. -->
-<script>window.VEXTREME_OVERRIDE = { fabWidgets: { theme: false } };</script>
+<script>window.VEXTREME_OVERRIDE = { bodyWrap: false, fabWidgets: { theme: false } };</script>
 <script src="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/lib/shell.js"></script>
 </body>
 </html>
