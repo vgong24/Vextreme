@@ -1,8 +1,11 @@
 # Public / Private Architecture Split
 
 **Anchor:** `[VXG RealForever]`
-**Status:** Design/policy only. No repository has been created, no files have been
-moved, and nothing described here has been implemented yet.
+**Status:** Design/policy, refined 2026-07-10. The private repository (`Vextreme-SDK`)
+now exists and is actively built (L1-L6 localization product core merged) — the
+original "no repository has been created yet" framing below is historical, kept for
+context, not current state. See "Refined principle" immediately below for the
+operative framing.
 **Placement reasoning:** `docs/architecture/*.md` files are source sections for the
 *generated* `docs/architecture.md` (`lib/build-architecture.js` concatenates every
 `.md` file in that directory, in filename order, into one blueprint of technical
@@ -12,6 +15,55 @@ business policy into the generated architecture blueprint and require a source-f
 rebuild this task didn't scope. It belongs with this repo's other process/roadmap
 documents instead, alongside `docs/process/cross-model-orchestration.md` and
 `docs/process/environment-health-design.md`.
+
+---
+
+## Refined principle (2026-07-10)
+
+Victor's own reasoning, prompted by building Analysis Mode
+(`docs/architecture/15-analysis-mode.md`) — this is stronger than, and supersedes as
+the operative framing, the "public = demo, private = implementation" shorthand used
+elsewhere in this document:
+
+```text
+Public Vextreme
+    =
+one organization that has already reached
+the desired architectural condition.
+
+Vextreme-SDK
+    =
+the reusable machinery capable of helping
+other organizations reach that condition.
+```
+
+Public Vextreme is not a limited demo of the private product. It is **living proof
+that the architectural condition is real** — the repository dogfoods its own
+architecture: canonical string identities, multilingual bundles, forward/reverse
+usage tracing, screenshot navigation, source navigation, exportable artifacts,
+generated indices, and — as of Analysis Mode — a live search/browse interface over
+all of it. None of this requires or calls the private SDK; it's the public repo
+operating on itself, which is exactly why it's credible as proof rather than
+performance.
+
+What stays private is not "the IDs" or "the data" — it's **generalized
+transformation**: messy/heterogeneous input adaptation (inconsistent HTML, missing or
+duplicate IDs, Android/iOS/Figma identifiers, vendor spreadsheets, legacy systems),
+identity *discovery* and resolution (Vextreme already knows its canonical IDs; the SDK
+has to determine them for organizations that don't), registry construction from
+unstructured sources, client adapters, bidirectional vendor round-trip
+synchronization, and organizational governance (approval ownership, workflow states,
+review policy). Public Vextreme assumes its own architecture already exists; the SDK's
+job is organizations whose reality is far less structured — a fundamentally different,
+harder problem than displaying an already-clean result.
+
+Compression: **Public Vextreme demonstrates what an architecturally mature
+organization looks like. Vextreme-SDK provides the reusable machinery that helps
+other organizations become one.**
+
+The private SDK repo's own `docs/architecture/public-private-interface-boundary.md`
+carries the SDK-side detail (the six owned-capability categories) and references this
+document rather than duplicating it.
 
 ---
 
