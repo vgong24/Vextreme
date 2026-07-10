@@ -28,12 +28,12 @@
       "key": 1.5,
       "name": "UTILITIES",
       "sub": "other lib/ helpers, config, tracing",
-      "count": 19,
+      "count": 20,
       "rect": {
         "x": 690,
         "y": 40,
         "width": 300,
-        "height": 1230
+        "height": 1290
       }
     },
     {
@@ -1566,12 +1566,35 @@
       "auditorRank": 6
     },
     {
-      "id": "lib/trace-string-usage.js",
+      "id": "lib/terrain-journey.js",
       "cluster": "lib",
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
       "y": 990,
+      "role": "pure semantic-history state for Terrain Journey commits and browser Back/Forward restoration",
+      "reads": [],
+      "writes": [],
+      "loadedBy": [
+        "pages/terrain-map.html (browser script before the page's inline interaction layer)",
+        "tests/45-terrain-journey.test.js (CommonJS pure-state coverage)"
+      ],
+      "testedBy": [
+        "tests/45-terrain-journey.test.js"
+      ],
+      "debts": [],
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": false,
+      "auditorRank": 17
+    },
+    {
+      "id": "lib/trace-string-usage.js",
+      "cluster": "lib",
+      "stage": 1.5,
+      "stageName": "UTILITIES",
+      "x": 740,
+      "y": 1050,
       "role": "string reverse-tracer — data-i18n usage in pages/wip HTML cross-referenced against the compiled manifest",
       "reads": [
         "pages/*.html (data-i18n attribute scan)",
@@ -1593,7 +1616,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 17
+      "auditorRank": 18
     },
     {
       "id": "lib/validate-blueprint.js",
@@ -1601,7 +1624,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1050,
+      "y": 1110,
       "role": "blueprint consistency validator — confirms every id in blueprint.json has a matching config file and vex-config constant",
       "reads": [
         "blueprint.json",
@@ -1633,7 +1656,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1110,
+      "y": 1170,
       "role": "constants hub — pure declarations, no I/O",
       "reads": [],
       "writes": [],
@@ -1672,7 +1695,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1170,
+      "y": 1230,
       "role": "browser arc nav runtime — reads index.json at load time, renders prev/next/position into #arcNavMount",
       "reads": [
         "data/index.json via CDN (slugMap, arcMap, arcMeta)",
@@ -1695,7 +1718,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 18
+      "auditorRank": 19
     },
     {
       "id": "pages/terrain-map.html",
@@ -1706,13 +1729,17 @@
       "y": 150,
       "role": "the terrain map's read side — a navigable health/dependency atlas, live-fetches data/terrain-map.json",
       "reads": [
-        "data/terrain-map.json (live fetch, browser)"
+        "data/terrain-map.json (live fetch, browser)",
+        "lib/terrain-journey.js (namespaced semantic-history snapshots and journey transitions)"
       ],
       "writes": [],
       "loadedBy": [
         "manual browsing only — not embedded elsewhere yet"
       ],
-      "testedBy": [],
+      "testedBy": [
+        "tests/43-runtime-chrome-composition.test.js",
+        "tests/45-terrain-journey.test.js"
+      ],
       "debts": [],
       "status": "good",
       "engineerFocus": false,
@@ -2293,6 +2320,10 @@
     [
       "lib/strings-compile.js",
       "widgets/fab-lang.js"
+    ],
+    [
+      "lib/terrain-journey.js",
+      "pages/terrain-map.html"
     ],
     [
       "lib/trace-string-usage.js",

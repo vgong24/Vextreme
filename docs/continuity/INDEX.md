@@ -28,10 +28,10 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 031 — July 10, 2026. The architecture paragraph's core remains
-Session 025's; Sessions 029–031 added nav/FAB rollout, authored-style protection,
-runtime-chrome composition, generated page-capability health, and capability-aware
-work coordination without changing the v1/v2,
+*As of Session 032 — July 10, 2026. The architecture paragraph's core remains
+Session 025's; Sessions 029–032 added nav/FAB rollout, authored-style protection,
+runtime-chrome composition, generated page-capability health, capability-aware
+work coordination, and Terrain semantic Journey history without changing the v1/v2,
 God Script, or department/arc architecture described below.*
 
 The v2 GitHub Pages architecture is the active system. v1 (`data/arcs.json`, `data/pages.json`,
@@ -136,7 +136,11 @@ bug the POCs caught and fixed by construction), a right-docked detail panel (a t
 drawer, not a reserved layout column — an earlier version of this same session silently shrank
 the navigable canvas by 340px at all times, caught and fixed before landing), and click-to-travel
 cross-references (a Reads/Writes/Loaded-by entry that names a real file is clickable and moves the
-camera there). A `Feature.MAP` "FAB back to the map" round-trip on real live pages is still named
+camera there). Session 032 made those meaningful movements restorable: namespaced browser state
+records View, Lens, semantic level, stage, selected node, and the relationship used while leaving
+pan/zoom coordinates ephemeral. Browser Back/Forward now traverses semantic commitments before
+leaving Terrain, and the overlay drawer exposes Journey, Return to origin, and Clear journey
+without shrinking the map. A `Feature.MAP` "FAB back to the map" round-trip on real live pages is still named
 as the natural next increment and still deliberately not built — it touches the shared `FEATURES`
 registry in `lib/build-vextreme.js`, real production surface, and needs Victor's explicit
 go-ahead rather than a leisure-pilot default.
@@ -149,6 +153,9 @@ The change repairs Session 023 (Codex's July 6 context-note and perceivable-cont
 entries had been injected mid-file into Session 021's record.
 
 **Recent sessions** (one line each — open the session files below for full reasoning):
+- **Session 032** — Added Terrain's Phase 1 semantic Journey history: relationship-aware
+  browser Back/Forward restoration, a compact drawer path, Return to origin, Clear journey,
+  focused state-machine tests, and rendered desktop/mobile evidence.
 - **Session 031** — Replaced model-dependent sequencing with the active
   Victor/Vex/Codex loop, kept Claude as an optional second lens, mirrored epic
   PR positioning into the public PR template, and opened Batch 004 at the first
@@ -158,13 +165,6 @@ entries had been injected mid-file into Session 021's record.
   Archives now exposes page health; Terrain consumes a compact digest for
   organizational health without expanding its graph. Rendered localhost
   verification remains pending because browser access was blocked.
-- **Session 029** — Compared PR #119's authored-style/FAB repair against rendered
-  terrain and Phantom behavior. Preserved its v1-layer gate and cache fix, then
-  closed the remaining geometry gap with a v8 nav action rail, a separate
-  `data-vex-page-action` lane, exact terrain viewport containment, and Phantom's
-  full-bleed/page-owned theme composition. Strengthened `audit-fab` around
-  full-viewport layouts and fixed top-right controls. Current FAB delivery is
-  28 shell pages plus one God-Script page; global coverage is a separate next PR.
 - **Session 027** — Cold-start review (a fresh instance working through the full boot sequence
   plus an uploaded "Meta Project" doc proposing process/role/source-truth-map vocabulary) found
   two real gaps and built the fix for one. First: Session 025's own text describes PR #69's
@@ -224,7 +224,7 @@ architecture docs, or lessons only through a PR decision record.
 
 ## Open Work
 
-*Updated Session 031 — July 10, 2026*
+*Updated Session 032 — July 10, 2026*
 
 This list holds only genuinely open items — things nobody has done yet, not a running log of
 what shipped. A completed item is removed here the same session it ships, not kept and checked
@@ -233,6 +233,8 @@ off forever; its record already lives in the batch file and (for od-/td-/pe- ite
 not this list.
 
 **Genuinely open:**
+- [ ] Terrain Relational Projection Phase 2 — add a visible semantic threshold rail that exposes prior/current/next level and transition proximity while preserving the Phase 1 Journey contract; do not add user-editable threshold controls yet.
+- [ ] Terrain Relational Projection later phases — context-bearing stage portals, projection/profile grammar, alternate spatial POCs, public-safe organization/process views, and accessibility stabilization remain ordered horizon work, not bundled into Phase 1.
 - [ ] Global FAB coverage after the v8 action-rail contract: 10 of 39 `pages/*.html` surfaces still have neither `shell.js` nor a God-Script FAB path. Add them in a bounded PR, updating generators for generated pages and visually checking each authored surface.
 - [ ] Re-render one default-body-margin legacy page after Session 029's nav inset normalization; localhost browser access was blocked after source/test verification, so this final pixel check remains explicit.
 - [ ] Localization identity pilot (Session 027) — a second page's identity pilot, proving `lib/discover-string-identity.js` generalizes beyond the one page it was built against, is the natural next increment; not started
@@ -452,6 +454,6 @@ Create as `docs/continuity/batch-00N/YYYY-MM-DD-session-0NN.md`:
 
 ---
 
-*Last updated: Session 031 — July 10, 2026*
+*Last updated: Session 032 — July 10, 2026*
 
 <!-- [VXG RealForever] -->
