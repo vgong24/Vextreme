@@ -328,7 +328,7 @@
       "status": "warning",
       "engineerFocus": true,
       "auditorFocus": true,
-      "auditorRank": 4
+      "auditorRank": 5
     },
     {
       "id": "lib/arc-nav.js",
@@ -388,6 +388,7 @@
       ],
       "testedBy": [],
       "debts": [
+        "od-011",
         "pe-002",
         "pe-010"
       ],
@@ -639,7 +640,7 @@
       "status": "warning",
       "engineerFocus": true,
       "auditorFocus": true,
-      "auditorRank": 5
+      "auditorRank": 6
     },
     {
       "id": "lib/build-lessons.js",
@@ -930,12 +931,13 @@
       ],
       "debts": [
         "td-006",
+        "od-011",
         "pe-007"
       ],
       "status": "warning",
       "engineerFocus": true,
       "auditorFocus": true,
-      "auditorRank": 6
+      "auditorRank": 4
     },
     {
       "id": "lib/bump-fab-version.js",
@@ -991,11 +993,13 @@
       "testedBy": [
         "tests/32-check-continuity-lag.test.js"
       ],
-      "debts": [],
-      "status": "good",
+      "debts": [
+        "od-011"
+      ],
+      "status": "warning",
       "engineerFocus": false,
       "auditorFocus": true,
-      "auditorRank": 3
+      "auditorRank": 1
     },
     {
       "id": "lib/check-design-tokens.js",
@@ -1027,7 +1031,7 @@
       "status": "warning",
       "engineerFocus": false,
       "auditorFocus": true,
-      "auditorRank": 1
+      "auditorRank": 2
     },
     {
       "id": "lib/check-key-alignment.js",
@@ -1100,7 +1104,7 @@
       "status": "warning",
       "engineerFocus": false,
       "auditorFocus": true,
-      "auditorRank": 2
+      "auditorRank": 3
     },
     {
       "id": "lib/check-map-bindings.js",
@@ -2179,6 +2183,7 @@
     "td-005": "specimen-architectural-wisdoms has no string bundle",
     "td-006": "i18n per-scope-combo bundling does not scale to multiple languages — pilot resolved for one arc, full migration still pending",
     "td-008": "Current architecture has no structured-concurrency model — a known ceiling once server logic or multi-threaded application scope enters the ecosystem",
+    "od-011": "God Script inclusion should be a default-on, per-slug-configurable pattern instead of a data-readiness accident — and the public SDK demo pages should be built through that same generic pattern instead of one-off hand-authored static HTML",
     "od-010": "Fractal expansion of the continuity/lessons memory pattern into per-department standing memory, plus an audit for other single-scope foundational structures never checked for the same expansion",
     "od-009": "Parallel/simultaneous instruction dispatch across multiple departments or orgs, instead of today's one-at-a-time processing",
     "od-008": "Staged/proposal execution for higher-blast-radius content-management gestures (consolidation, deletion, connector rewiring)",

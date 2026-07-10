@@ -118,6 +118,12 @@
           "priority": "low"
         },
         {
+          "id": "od-011",
+          "title": "God Script inclusion should be a default-on, per-slug-configurable pattern instead of a data-readiness accident — and the public SDK demo pages should be built through that same generic pattern instead of one-off hand-authored static HTML",
+          "source": "openDiscussions",
+          "priority": "high"
+        },
+        {
           "id": "pe-014",
           "title": "Function-level reverse traversal map for answering source-of-truth questions with minimal grep",
           "source": "plannedEnhancements",
