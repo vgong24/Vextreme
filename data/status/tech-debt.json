@@ -55,6 +55,15 @@
       "triggerCondition": "Before adding server-side logic or any application with genuine concurrent/multi-threaded requirements — do not discover this ceiling mid-build.",
       "migrationPath": "Two-tier decision, not proposed as one migration: (1) near-term, adopt TypeScript with strictNullChecks for the existing JS layer — same toolchain, no JVM dependency, closes most of the null-safety gap and forces compiler-enforced reference consistency in build-script-to-build-script calls (see the JSON-vs-typed-references reasoning in the same Session 021 conversation). (2) If and when server/application/mobile scope becomes real, seriously re-evaluate Kotlin (or Kotlin Multiplatform specifically if Android/iOS is also real) for that new scope — it would deliver both the concurrency-safety and platform-reach cases at once, whereas adopting it now for the current JS-only, single-threaded scope would add JVM toolchain cost without a concurrency problem yet to solve.",
       "priority": "medium"
+    },
+    {
+      "id": "td-009",
+      "title": "lib/vextreme.js injectNav() hardcodes English nav-label display strings",
+      "description": "injectNav()'s own header comment already names this ('violates architecture rule 7 (no hardcoded display strings). Pre-dates the rule's codification.') and claims it is 'Tracked: data/status/tech-debt.json' -- but no matching entry actually existed until this one. Discovered while modernizing injectNav()'s destination link list (docs/architecture/16-nav-coverage.md Step 2) -- fixing the stale destinations was in scope; fixing the i18n violation was not, so the labels stay hardcoded English for now, same as before this change.",
+      "context": "lib/vextreme.js injectNav()",
+      "addedSession": "2026-07-10 (nav-coverage rollout)",
+      "migrationPath": "Move nav labels into data/strings/source/ (a new scope, e.g. common.nav.*) and reference by key, same pattern every v2 page already uses -- per injectNav()'s own header comment.",
+      "priority": "low"
     }
   ]
 }
