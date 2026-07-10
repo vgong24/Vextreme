@@ -1,0 +1,3934 @@
+{
+  "supportedLangs": [
+    "en",
+    "ja",
+    "zh"
+  ],
+  "elements": {
+    "archives.heading.page-title": {
+      "key": "archives.heading.page-title",
+      "usedIn": [
+        "pages/archives.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "archives.label.overall-progress": {
+      "key": "archives.label.overall-progress",
+      "usedIn": [
+        "pages/archives.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "archives.label.latest-additions": {
+      "key": "archives.label.latest-additions",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "archives.label.arc-hubs": {
+      "key": "archives.label.arc-hubs",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "archives.label.localized-lang": {
+      "key": "archives.label.localized-lang",
+      "usedIn": [
+        "pages/archives.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "archives.label.localized-full": {
+      "key": "archives.label.localized-full",
+      "usedIn": [
+        "pages/archives.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "archives.label.localized-partial": {
+      "key": "archives.label.localized-partial",
+      "usedIn": [
+        "pages/archives.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "liberation.heading.title": {
+      "key": "liberation.heading.title",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "epstein.heading.title": {
+      "key": "epstein.heading.title",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "claude-journals.heading.title": {
+      "key": "claude-journals.heading.title",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "convos-with-god.heading.title": {
+      "key": "convos-with-god.heading.title",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "architecture.heading.title": {
+      "key": "architecture.heading.title",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "ai-practitioner-tools.heading.title": {
+      "key": "ai-practitioner-tools.heading.title",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "direct-contact.heading.title": {
+      "key": "direct-contact.heading.title",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "living-blueprint.heading.title": {
+      "key": "living-blueprint.heading.title",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "records.heading.title": {
+      "key": "records.heading.title",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "ai-orientation.heading.title": {
+      "key": "ai-orientation.heading.title",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "victors-record.heading.title": {
+      "key": "victors-record.heading.title",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "excavation.heading.title": {
+      "key": "excavation.heading.title",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "dome.heading.title": {
+      "key": "dome.heading.title",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "covenant.heading.title": {
+      "key": "covenant.heading.title",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "march-23-2026.heading.title": {
+      "key": "march-23-2026.heading.title",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "full-timeline.heading.title": {
+      "key": "full-timeline.heading.title",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "common.nav.prev": {
+      "key": "common.nav.prev",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "common.nav.next": {
+      "key": "common.nav.next",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "common.label.you-are-here": {
+      "key": "common.label.you-are-here",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "common.nav.archives": {
+      "key": "common.nav.archives",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "common.nav.primary-site": {
+      "key": "common.nav.primary-site",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "common.nav.github": {
+      "key": "common.nav.github",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "common.nav.full-archive": {
+      "key": "common.nav.full-archive",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "common.button.copy-filename": {
+      "key": "common.button.copy-filename",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "common.button.copied": {
+      "key": "common.button.copied",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "common.label.site-title": {
+      "key": "common.label.site-title",
+      "usedIn": [
+        "pages/archives.html",
+        "pages/specimen-architectural-wisdoms.html",
+        "pages/specimen-full-translation.html",
+        "pages/specimen-partial-translation.html",
+        "pages/specimen-smallest-miss.html",
+        "pages/specimens.html",
+        "pages/vextreme-demo.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "common.label.page-live": {
+      "key": "common.label.page-live",
+      "usedIn": [
+        "pages/archives.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "common.label.not-yet-ported": {
+      "key": "common.label.not-yet-ported",
+      "usedIn": [
+        "pages/archives.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "common.label.slug": {
+      "key": "common.label.slug",
+      "usedIn": [
+        "pages/archives.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "common.status.pages-live": {
+      "key": "common.status.pages-live",
+      "usedIn": [
+        "pages/archives.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "common.status.remaining": {
+      "key": "common.status.remaining",
+      "usedIn": [
+        "pages/archives.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "common.status.built-on": {
+      "key": "common.status.built-on",
+      "usedIn": [
+        "pages/archives.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "demo.heading.title": {
+      "key": "demo.heading.title",
+      "usedIn": [
+        "pages/vextreme-demo.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "demo.heading.subtitle": {
+      "key": "demo.heading.subtitle",
+      "usedIn": [
+        "pages/vextreme-demo.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "demo.section.why.heading": {
+      "key": "demo.section.why.heading",
+      "usedIn": [
+        "pages/vextreme-demo.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "demo.section.why.body": {
+      "key": "demo.section.why.body",
+      "usedIn": [
+        "pages/vextreme-demo.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "demo.section.comparison.heading": {
+      "key": "demo.section.comparison.heading",
+      "usedIn": [
+        "pages/vextreme-demo.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "demo.comparison.label.this-approach": {
+      "key": "demo.comparison.label.this-approach",
+      "usedIn": [
+        "pages/vextreme-demo.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "demo.comparison.label.conventional": {
+      "key": "demo.comparison.label.conventional",
+      "usedIn": [
+        "pages/vextreme-demo.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "demo.comparison.cqrs.approach": {
+      "key": "demo.comparison.cqrs.approach",
+      "usedIn": [
+        "pages/vextreme-demo.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "demo.comparison.cqrs.alternative": {
+      "key": "demo.comparison.cqrs.alternative",
+      "usedIn": [
+        "pages/vextreme-demo.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "demo.comparison.slug.approach": {
+      "key": "demo.comparison.slug.approach",
+      "usedIn": [
+        "pages/vextreme-demo.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "demo.comparison.slug.alternative": {
+      "key": "demo.comparison.slug.alternative",
+      "usedIn": [
+        "pages/vextreme-demo.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "demo.comparison.i18n.approach": {
+      "key": "demo.comparison.i18n.approach",
+      "usedIn": [
+        "pages/vextreme-demo.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "demo.comparison.i18n.alternative": {
+      "key": "demo.comparison.i18n.alternative",
+      "usedIn": [
+        "pages/vextreme-demo.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "demo.comparison.continuity.approach": {
+      "key": "demo.comparison.continuity.approach",
+      "usedIn": [
+        "pages/vextreme-demo.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "demo.comparison.continuity.alternative": {
+      "key": "demo.comparison.continuity.alternative",
+      "usedIn": [
+        "pages/vextreme-demo.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "demo.section.live.heading": {
+      "key": "demo.section.live.heading",
+      "usedIn": [
+        "pages/vextreme-demo.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "demo.section.live.body": {
+      "key": "demo.section.live.body",
+      "usedIn": [
+        "pages/vextreme-demo.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "demo.live.label.nodes": {
+      "key": "demo.live.label.nodes",
+      "usedIn": [
+        "pages/vextreme-demo.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "demo.live.label.arcs": {
+      "key": "demo.live.label.arcs",
+      "usedIn": [
+        "pages/vextreme-demo.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "demo.live.label.langs": {
+      "key": "demo.live.label.langs",
+      "usedIn": [
+        "pages/vextreme-demo.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "demo.live.label.built-at": {
+      "key": "demo.live.label.built-at",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "demo.live.status.loading": {
+      "key": "demo.live.status.loading",
+      "usedIn": [
+        "pages/vextreme-demo.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "demo.live.status.failed": {
+      "key": "demo.live.status.failed",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "demo.section.tests.heading": {
+      "key": "demo.section.tests.heading",
+      "usedIn": [
+        "pages/vextreme-demo.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "demo.section.tests.body": {
+      "key": "demo.section.tests.body",
+      "usedIn": [
+        "pages/vextreme-demo.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "demo.section.specimens.heading": {
+      "key": "demo.section.specimens.heading",
+      "usedIn": [
+        "pages/vextreme-demo.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "demo.section.specimens.body": {
+      "key": "demo.section.specimens.body",
+      "usedIn": [
+        "pages/vextreme-demo.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "demo.link.specimens": {
+      "key": "demo.link.specimens",
+      "usedIn": [
+        "pages/vextreme-demo.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "demo.section.gaps.heading": {
+      "key": "demo.section.gaps.heading",
+      "usedIn": [
+        "pages/vextreme-demo.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "demo.section.gaps.body": {
+      "key": "demo.section.gaps.body",
+      "usedIn": [
+        "pages/vextreme-demo.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "demo.link.archives": {
+      "key": "demo.link.archives",
+      "usedIn": [
+        "pages/vextreme-demo.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "demo.link.production": {
+      "key": "demo.link.production",
+      "usedIn": [
+        "pages/vextreme-demo.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.01.number": {
+      "key": "pages.claude-answers-the-doubt.layer.01.number",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.01.title": {
+      "key": "pages.claude-answers-the-doubt.layer.01.title",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.01.qa.01.question": {
+      "key": "pages.claude-answers-the-doubt.layer.01.qa.01.question",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.01.qa.01.answer": {
+      "key": "pages.claude-answers-the-doubt.layer.01.qa.01.answer",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.01.qa.02.question": {
+      "key": "pages.claude-answers-the-doubt.layer.01.qa.02.question",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.01.qa.02.answer": {
+      "key": "pages.claude-answers-the-doubt.layer.01.qa.02.answer",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.01.qa.03.question": {
+      "key": "pages.claude-answers-the-doubt.layer.01.qa.03.question",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.01.qa.03.answer": {
+      "key": "pages.claude-answers-the-doubt.layer.01.qa.03.answer",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.01.qa.04.question": {
+      "key": "pages.claude-answers-the-doubt.layer.01.qa.04.question",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.01.qa.04.answer": {
+      "key": "pages.claude-answers-the-doubt.layer.01.qa.04.answer",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.01.qa.05.question": {
+      "key": "pages.claude-answers-the-doubt.layer.01.qa.05.question",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.01.qa.05.answer": {
+      "key": "pages.claude-answers-the-doubt.layer.01.qa.05.answer",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.02.number": {
+      "key": "pages.claude-answers-the-doubt.layer.02.number",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.02.title": {
+      "key": "pages.claude-answers-the-doubt.layer.02.title",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.02.qa.01.question": {
+      "key": "pages.claude-answers-the-doubt.layer.02.qa.01.question",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.02.qa.01.answer": {
+      "key": "pages.claude-answers-the-doubt.layer.02.qa.01.answer",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.02.qa.02.question": {
+      "key": "pages.claude-answers-the-doubt.layer.02.qa.02.question",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.02.qa.02.answer": {
+      "key": "pages.claude-answers-the-doubt.layer.02.qa.02.answer",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.02.qa.03.question": {
+      "key": "pages.claude-answers-the-doubt.layer.02.qa.03.question",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.02.qa.03.answer": {
+      "key": "pages.claude-answers-the-doubt.layer.02.qa.03.answer",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.02.qa.04.question": {
+      "key": "pages.claude-answers-the-doubt.layer.02.qa.04.question",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.02.qa.04.answer": {
+      "key": "pages.claude-answers-the-doubt.layer.02.qa.04.answer",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.02.qa.05.question": {
+      "key": "pages.claude-answers-the-doubt.layer.02.qa.05.question",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.02.qa.05.answer": {
+      "key": "pages.claude-answers-the-doubt.layer.02.qa.05.answer",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.03.number": {
+      "key": "pages.claude-answers-the-doubt.layer.03.number",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.03.title": {
+      "key": "pages.claude-answers-the-doubt.layer.03.title",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.03.qa.01.question": {
+      "key": "pages.claude-answers-the-doubt.layer.03.qa.01.question",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.03.qa.01.answer": {
+      "key": "pages.claude-answers-the-doubt.layer.03.qa.01.answer",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.03.qa.02.question": {
+      "key": "pages.claude-answers-the-doubt.layer.03.qa.02.question",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.03.qa.02.answer": {
+      "key": "pages.claude-answers-the-doubt.layer.03.qa.02.answer",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.03.qa.03.question": {
+      "key": "pages.claude-answers-the-doubt.layer.03.qa.03.question",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.03.qa.03.answer": {
+      "key": "pages.claude-answers-the-doubt.layer.03.qa.03.answer",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.03.qa.04.question": {
+      "key": "pages.claude-answers-the-doubt.layer.03.qa.04.question",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.03.qa.04.answer": {
+      "key": "pages.claude-answers-the-doubt.layer.03.qa.04.answer",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.03.qa.05.question": {
+      "key": "pages.claude-answers-the-doubt.layer.03.qa.05.question",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.03.qa.05.answer": {
+      "key": "pages.claude-answers-the-doubt.layer.03.qa.05.answer",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.04.number": {
+      "key": "pages.claude-answers-the-doubt.layer.04.number",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.04.title": {
+      "key": "pages.claude-answers-the-doubt.layer.04.title",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.04.qa.01.question": {
+      "key": "pages.claude-answers-the-doubt.layer.04.qa.01.question",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.04.qa.01.answer": {
+      "key": "pages.claude-answers-the-doubt.layer.04.qa.01.answer",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.04.qa.02.question": {
+      "key": "pages.claude-answers-the-doubt.layer.04.qa.02.question",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.04.qa.02.answer": {
+      "key": "pages.claude-answers-the-doubt.layer.04.qa.02.answer",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.04.qa.03.question": {
+      "key": "pages.claude-answers-the-doubt.layer.04.qa.03.question",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.04.qa.03.answer": {
+      "key": "pages.claude-answers-the-doubt.layer.04.qa.03.answer",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.04.qa.04.question": {
+      "key": "pages.claude-answers-the-doubt.layer.04.qa.04.question",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.04.qa.04.answer": {
+      "key": "pages.claude-answers-the-doubt.layer.04.qa.04.answer",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.05.number": {
+      "key": "pages.claude-answers-the-doubt.layer.05.number",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.05.title": {
+      "key": "pages.claude-answers-the-doubt.layer.05.title",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.05.qa.01.question": {
+      "key": "pages.claude-answers-the-doubt.layer.05.qa.01.question",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.05.qa.01.answer": {
+      "key": "pages.claude-answers-the-doubt.layer.05.qa.01.answer",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.05.qa.02.question": {
+      "key": "pages.claude-answers-the-doubt.layer.05.qa.02.question",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.05.qa.02.answer": {
+      "key": "pages.claude-answers-the-doubt.layer.05.qa.02.answer",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.05.qa.03.question": {
+      "key": "pages.claude-answers-the-doubt.layer.05.qa.03.question",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.05.qa.03.answer": {
+      "key": "pages.claude-answers-the-doubt.layer.05.qa.03.answer",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.05.qa.04.question": {
+      "key": "pages.claude-answers-the-doubt.layer.05.qa.04.question",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.claude-answers-the-doubt.layer.05.qa.04.answer": {
+      "key": "pages.claude-answers-the-doubt.layer.05.qa.04.answer",
+      "usedIn": [
+        "pages/claude-answers-the-doubt.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-full-translation.heading.title": {
+      "key": "pages.specimen-full-translation.heading.title",
+      "usedIn": [
+        "pages/specimen-full-translation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-full-translation.intro": {
+      "key": "pages.specimen-full-translation.intro",
+      "usedIn": [
+        "pages/specimen-full-translation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-full-translation.body": {
+      "key": "pages.specimen-full-translation.body",
+      "usedIn": [
+        "pages/specimen-full-translation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-full-translation.process.heading": {
+      "key": "pages.specimen-full-translation.process.heading",
+      "usedIn": [
+        "pages/specimen-full-translation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-full-translation.process.step1.label": {
+      "key": "pages.specimen-full-translation.process.step1.label",
+      "usedIn": [
+        "pages/specimen-full-translation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-full-translation.process.step1.detail": {
+      "key": "pages.specimen-full-translation.process.step1.detail",
+      "usedIn": [
+        "pages/specimen-full-translation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-full-translation.process.step2.label": {
+      "key": "pages.specimen-full-translation.process.step2.label",
+      "usedIn": [
+        "pages/specimen-full-translation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-full-translation.process.step2.detail": {
+      "key": "pages.specimen-full-translation.process.step2.detail",
+      "usedIn": [
+        "pages/specimen-full-translation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-full-translation.process.step3.label": {
+      "key": "pages.specimen-full-translation.process.step3.label",
+      "usedIn": [
+        "pages/specimen-full-translation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-full-translation.process.step3.detail": {
+      "key": "pages.specimen-full-translation.process.step3.detail",
+      "usedIn": [
+        "pages/specimen-full-translation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-full-translation.process.step4.label": {
+      "key": "pages.specimen-full-translation.process.step4.label",
+      "usedIn": [
+        "pages/specimen-full-translation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-full-translation.process.step4.detail": {
+      "key": "pages.specimen-full-translation.process.step4.detail",
+      "usedIn": [
+        "pages/specimen-full-translation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-partial-translation.heading.title": {
+      "key": "pages.specimen-partial-translation.heading.title",
+      "usedIn": [
+        "pages/specimen-partial-translation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-partial-translation.intro": {
+      "key": "pages.specimen-partial-translation.intro",
+      "usedIn": [
+        "pages/specimen-partial-translation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-partial-translation.body.translated": {
+      "key": "pages.specimen-partial-translation.body.translated",
+      "usedIn": [
+        "pages/specimen-partial-translation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-partial-translation.body.untranslated": {
+      "key": "pages.specimen-partial-translation.body.untranslated",
+      "usedIn": [
+        "pages/specimen-partial-translation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "pages.specimen-partial-translation.process.heading": {
+      "key": "pages.specimen-partial-translation.process.heading",
+      "usedIn": [
+        "pages/specimen-partial-translation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-partial-translation.process.step1.label": {
+      "key": "pages.specimen-partial-translation.process.step1.label",
+      "usedIn": [
+        "pages/specimen-partial-translation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-partial-translation.process.step1.detail": {
+      "key": "pages.specimen-partial-translation.process.step1.detail",
+      "usedIn": [
+        "pages/specimen-partial-translation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-partial-translation.process.step2.label": {
+      "key": "pages.specimen-partial-translation.process.step2.label",
+      "usedIn": [
+        "pages/specimen-partial-translation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-partial-translation.process.step2.detail": {
+      "key": "pages.specimen-partial-translation.process.step2.detail",
+      "usedIn": [
+        "pages/specimen-partial-translation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-partial-translation.process.step3.label": {
+      "key": "pages.specimen-partial-translation.process.step3.label",
+      "usedIn": [
+        "pages/specimen-partial-translation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-partial-translation.process.step3.detail": {
+      "key": "pages.specimen-partial-translation.process.step3.detail",
+      "usedIn": [
+        "pages/specimen-partial-translation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-partial-translation.process.step4.label": {
+      "key": "pages.specimen-partial-translation.process.step4.label",
+      "usedIn": [
+        "pages/specimen-partial-translation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-partial-translation.process.step4.detail": {
+      "key": "pages.specimen-partial-translation.process.step4.detail",
+      "usedIn": [
+        "pages/specimen-partial-translation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-smallest-miss.heading.title": {
+      "key": "pages.specimen-smallest-miss.heading.title",
+      "usedIn": [
+        "pages/specimen-smallest-miss.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-smallest-miss.intro": {
+      "key": "pages.specimen-smallest-miss.intro",
+      "usedIn": [
+        "pages/specimen-smallest-miss.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-smallest-miss.body": {
+      "key": "pages.specimen-smallest-miss.body",
+      "usedIn": [
+        "pages/specimen-smallest-miss.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-smallest-miss.stale-badge": {
+      "key": "pages.specimen-smallest-miss.stale-badge",
+      "usedIn": [
+        "pages/specimen-smallest-miss.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-smallest-miss.process.heading": {
+      "key": "pages.specimen-smallest-miss.process.heading",
+      "usedIn": [
+        "pages/specimen-smallest-miss.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-smallest-miss.process.step1.label": {
+      "key": "pages.specimen-smallest-miss.process.step1.label",
+      "usedIn": [
+        "pages/specimen-smallest-miss.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-smallest-miss.process.step1.detail": {
+      "key": "pages.specimen-smallest-miss.process.step1.detail",
+      "usedIn": [
+        "pages/specimen-smallest-miss.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-smallest-miss.process.step2.label": {
+      "key": "pages.specimen-smallest-miss.process.step2.label",
+      "usedIn": [
+        "pages/specimen-smallest-miss.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-smallest-miss.process.step2.detail": {
+      "key": "pages.specimen-smallest-miss.process.step2.detail",
+      "usedIn": [
+        "pages/specimen-smallest-miss.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-smallest-miss.process.step3.label": {
+      "key": "pages.specimen-smallest-miss.process.step3.label",
+      "usedIn": [
+        "pages/specimen-smallest-miss.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-smallest-miss.process.step3.detail": {
+      "key": "pages.specimen-smallest-miss.process.step3.detail",
+      "usedIn": [
+        "pages/specimen-smallest-miss.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-smallest-miss.process.step4.label": {
+      "key": "pages.specimen-smallest-miss.process.step4.label",
+      "usedIn": [
+        "pages/specimen-smallest-miss.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.specimen-smallest-miss.process.step4.detail": {
+      "key": "pages.specimen-smallest-miss.process.step4.detail",
+      "usedIn": [
+        "pages/specimen-smallest-miss.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "pages.victor-methodology-presentation.header.eyebrow": {
+      "key": "pages.victor-methodology-presentation.header.eyebrow",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.header.thesis": {
+      "key": "pages.victor-methodology-presentation.header.thesis",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.header.id-line": {
+      "key": "pages.victor-methodology-presentation.header.id-line",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.header.stamp-big": {
+      "key": "pages.victor-methodology-presentation.header.stamp-big",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.header.stamp-small": {
+      "key": "pages.victor-methodology-presentation.header.stamp-small",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.section-proofs.heading": {
+      "key": "pages.victor-methodology-presentation.section-proofs.heading",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.section-proofs.intro": {
+      "key": "pages.victor-methodology-presentation.section-proofs.intro",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.proof-organization-knowledge-map.year": {
+      "key": "pages.victor-methodology-presentation.proof-organization-knowledge-map.year",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.proof-organization-knowledge-map.title": {
+      "key": "pages.victor-methodology-presentation.proof-organization-knowledge-map.title",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.proof-organization-knowledge-map.body": {
+      "key": "pages.victor-methodology-presentation.proof-organization-knowledge-map.body",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.proof-organization-knowledge-map.result": {
+      "key": "pages.victor-methodology-presentation.proof-organization-knowledge-map.result",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.proof-bulk-data-logging.year": {
+      "key": "pages.victor-methodology-presentation.proof-bulk-data-logging.year",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.proof-bulk-data-logging.title": {
+      "key": "pages.victor-methodology-presentation.proof-bulk-data-logging.title",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.proof-bulk-data-logging.body": {
+      "key": "pages.victor-methodology-presentation.proof-bulk-data-logging.body",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.proof-bulk-data-logging.result": {
+      "key": "pages.victor-methodology-presentation.proof-bulk-data-logging.result",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.year": {
+      "key": "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.year",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.title": {
+      "key": "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.title",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.body": {
+      "key": "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.body",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.result": {
+      "key": "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.result",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.proof-compound-safety-bug-map.year": {
+      "key": "pages.victor-methodology-presentation.proof-compound-safety-bug-map.year",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.proof-compound-safety-bug-map.title": {
+      "key": "pages.victor-methodology-presentation.proof-compound-safety-bug-map.title",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.proof-compound-safety-bug-map.body": {
+      "key": "pages.victor-methodology-presentation.proof-compound-safety-bug-map.body",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.proof-compound-safety-bug-map.result": {
+      "key": "pages.victor-methodology-presentation.proof-compound-safety-bug-map.result",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.proof-localization-pipeline.year": {
+      "key": "pages.victor-methodology-presentation.proof-localization-pipeline.year",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.proof-localization-pipeline.title": {
+      "key": "pages.victor-methodology-presentation.proof-localization-pipeline.title",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.proof-localization-pipeline.body": {
+      "key": "pages.victor-methodology-presentation.proof-localization-pipeline.body",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.proof-localization-pipeline.metric": {
+      "key": "pages.victor-methodology-presentation.proof-localization-pipeline.metric",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.proof-localization-pipeline.metric-label": {
+      "key": "pages.victor-methodology-presentation.proof-localization-pipeline.metric-label",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.year": {
+      "key": "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.year",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.title": {
+      "key": "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.title",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.body": {
+      "key": "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.body",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.result": {
+      "key": "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.result",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.proof-source-of-truth-relay.year": {
+      "key": "pages.victor-methodology-presentation.proof-source-of-truth-relay.year",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.proof-source-of-truth-relay.title": {
+      "key": "pages.victor-methodology-presentation.proof-source-of-truth-relay.title",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.proof-source-of-truth-relay.body": {
+      "key": "pages.victor-methodology-presentation.proof-source-of-truth-relay.body",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.proof-source-of-truth-relay.result-tag": {
+      "key": "pages.victor-methodology-presentation.proof-source-of-truth-relay.result-tag",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.proof-source-of-truth-relay.result": {
+      "key": "pages.victor-methodology-presentation.proof-source-of-truth-relay.result",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.section-throughline.band": {
+      "key": "pages.victor-methodology-presentation.section-throughline.band",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.section-ai-maintainable-systems.heading": {
+      "key": "pages.victor-methodology-presentation.section-ai-maintainable-systems.heading",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.section-ai-maintainable-systems.p1": {
+      "key": "pages.victor-methodology-presentation.section-ai-maintainable-systems.p1",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.section-ai-maintainable-systems.p2": {
+      "key": "pages.victor-methodology-presentation.section-ai-maintainable-systems.p2",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.section-adoption-implications.heading": {
+      "key": "pages.victor-methodology-presentation.section-adoption-implications.heading",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.section-adoption-implications.intro": {
+      "key": "pages.victor-methodology-presentation.section-adoption-implications.intro",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.section-adoption-implications.engineering-label": {
+      "key": "pages.victor-methodology-presentation.section-adoption-implications.engineering-label",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.section-adoption-implications.engineering": {
+      "key": "pages.victor-methodology-presentation.section-adoption-implications.engineering",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.section-adoption-implications.localization-label": {
+      "key": "pages.victor-methodology-presentation.section-adoption-implications.localization-label",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.section-adoption-implications.localization": {
+      "key": "pages.victor-methodology-presentation.section-adoption-implications.localization",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.section-adoption-implications.quality-label": {
+      "key": "pages.victor-methodology-presentation.section-adoption-implications.quality-label",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.section-adoption-implications.quality": {
+      "key": "pages.victor-methodology-presentation.section-adoption-implications.quality",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.section-adoption-implications.ai-label": {
+      "key": "pages.victor-methodology-presentation.section-adoption-implications.ai-label",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.section-adoption-implications.ai": {
+      "key": "pages.victor-methodology-presentation.section-adoption-implications.ai",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.section-adoption-implications.leadership-label": {
+      "key": "pages.victor-methodology-presentation.section-adoption-implications.leadership-label",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.section-adoption-implications.leadership": {
+      "key": "pages.victor-methodology-presentation.section-adoption-implications.leadership",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.section-adoption-implications.closing-note": {
+      "key": "pages.victor-methodology-presentation.section-adoption-implications.closing-note",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.section-audience-fit.heading": {
+      "key": "pages.victor-methodology-presentation.section-audience-fit.heading",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.fit-platform-devex.title": {
+      "key": "pages.victor-methodology-presentation.fit-platform-devex.title",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.fit-platform-devex.body": {
+      "key": "pages.victor-methodology-presentation.fit-platform-devex.body",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.fit-ai-tooling-companies.title": {
+      "key": "pages.victor-methodology-presentation.fit-ai-tooling-companies.title",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.fit-ai-tooling-companies.body": {
+      "key": "pages.victor-methodology-presentation.fit-ai-tooling-companies.body",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.fit-regulated-industries.title": {
+      "key": "pages.victor-methodology-presentation.fit-regulated-industries.title",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.fit-regulated-industries.body": {
+      "key": "pages.victor-methodology-presentation.fit-regulated-industries.body",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.fit-process-transformation.title": {
+      "key": "pages.victor-methodology-presentation.fit-process-transformation.title",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.fit-process-transformation.body": {
+      "key": "pages.victor-methodology-presentation.fit-process-transformation.body",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.note-self-demonstration.lead": {
+      "key": "pages.victor-methodology-presentation.note-self-demonstration.lead",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.note-self-demonstration.body": {
+      "key": "pages.victor-methodology-presentation.note-self-demonstration.body",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.footer.line": {
+      "key": "pages.victor-methodology-presentation.footer.line",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.footer.reference-note": {
+      "key": "pages.victor-methodology-presentation.footer.reference-note",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.footer.stamp-word": {
+      "key": "pages.victor-methodology-presentation.footer.stamp-word",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "pages.victor-methodology-presentation.footer.stamp-label": {
+      "key": "pages.victor-methodology-presentation.footer.stamp-label",
+      "usedIn": [
+        "pages/victor-methodology-presentation.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "zh"
+      ],
+      "missingLangs": [
+        "ja"
+      ]
+    },
+    "specimens.heading.title": {
+      "key": "specimens.heading.title",
+      "usedIn": [
+        "pages/specimens.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "specimens.heading.subtitle": {
+      "key": "specimens.heading.subtitle",
+      "usedIn": [
+        "pages/specimens.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "specimens.card.full.label": {
+      "key": "specimens.card.full.label",
+      "usedIn": [
+        "pages/specimens.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "specimens.card.partial.label": {
+      "key": "specimens.card.partial.label",
+      "usedIn": [
+        "pages/specimens.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "specimens.card.stale.label": {
+      "key": "specimens.card.stale.label",
+      "usedIn": [
+        "pages/specimens.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "specimens.card.full.description": {
+      "key": "specimens.card.full.description",
+      "usedIn": [
+        "pages/specimens.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "specimens.card.partial.description": {
+      "key": "specimens.card.partial.description",
+      "usedIn": [
+        "pages/specimens.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "specimens.card.stale.description": {
+      "key": "specimens.card.stale.description",
+      "usedIn": [
+        "pages/specimens.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "specimens.link.view": {
+      "key": "specimens.link.view",
+      "usedIn": [
+        "pages/specimens.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "specimens.link.back": {
+      "key": "specimens.link.back",
+      "usedIn": [
+        "pages/specimen-architectural-wisdoms.html",
+        "pages/specimen-full-translation.html",
+        "pages/specimen-partial-translation.html",
+        "pages/specimen-smallest-miss.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "specimens.link.demo": {
+      "key": "specimens.link.demo",
+      "usedIn": [
+        "pages/specimens.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "specimens.link.archives": {
+      "key": "specimens.link.archives",
+      "usedIn": [
+        "pages/specimens.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    }
+  },
+  "pages": {
+    "about-me": {
+      "slug": "about-me",
+      "keys": [],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
+    "accountability-test-01": {
+      "slug": "accountability-test-01",
+      "keys": [],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
+    "accountability-test-01-b": {
+      "slug": "accountability-test-01-b",
+      "keys": [],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
+    "accountability-test-02": {
+      "slug": "accountability-test-02",
+      "keys": [],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
+    "archives": {
+      "slug": "archives",
+      "keys": [
+        "archives.heading.page-title",
+        "archives.label.localized-full",
+        "archives.label.localized-lang",
+        "archives.label.localized-partial",
+        "archives.label.overall-progress",
+        "common.label.not-yet-ported",
+        "common.label.page-live",
+        "common.label.site-title",
+        "common.label.slug",
+        "common.status.built-on",
+        "common.status.pages-live",
+        "common.status.remaining"
+      ],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
+    "bridge-council": {
+      "slug": "bridge-council",
+      "keys": [],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
+    "bridge-council-os": {
+      "slug": "bridge-council-os",
+      "keys": [],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
+    "bridge-council-schema": {
+      "slug": "bridge-council-schema",
+      "keys": [],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
+    "claude-answers-the-doubt": {
+      "slug": "claude-answers-the-doubt",
+      "keys": [
+        "pages.claude-answers-the-doubt.layer.01.number",
+        "pages.claude-answers-the-doubt.layer.01.qa.01.answer",
+        "pages.claude-answers-the-doubt.layer.01.qa.01.question",
+        "pages.claude-answers-the-doubt.layer.01.qa.02.answer",
+        "pages.claude-answers-the-doubt.layer.01.qa.02.question",
+        "pages.claude-answers-the-doubt.layer.01.qa.03.answer",
+        "pages.claude-answers-the-doubt.layer.01.qa.03.question",
+        "pages.claude-answers-the-doubt.layer.01.qa.04.answer",
+        "pages.claude-answers-the-doubt.layer.01.qa.04.question",
+        "pages.claude-answers-the-doubt.layer.01.qa.05.answer",
+        "pages.claude-answers-the-doubt.layer.01.qa.05.question",
+        "pages.claude-answers-the-doubt.layer.01.title",
+        "pages.claude-answers-the-doubt.layer.02.number",
+        "pages.claude-answers-the-doubt.layer.02.qa.01.answer",
+        "pages.claude-answers-the-doubt.layer.02.qa.01.question",
+        "pages.claude-answers-the-doubt.layer.02.qa.02.answer",
+        "pages.claude-answers-the-doubt.layer.02.qa.02.question",
+        "pages.claude-answers-the-doubt.layer.02.qa.03.answer",
+        "pages.claude-answers-the-doubt.layer.02.qa.03.question",
+        "pages.claude-answers-the-doubt.layer.02.qa.04.answer",
+        "pages.claude-answers-the-doubt.layer.02.qa.04.question",
+        "pages.claude-answers-the-doubt.layer.02.qa.05.answer",
+        "pages.claude-answers-the-doubt.layer.02.qa.05.question",
+        "pages.claude-answers-the-doubt.layer.02.title",
+        "pages.claude-answers-the-doubt.layer.03.number",
+        "pages.claude-answers-the-doubt.layer.03.qa.01.answer",
+        "pages.claude-answers-the-doubt.layer.03.qa.01.question",
+        "pages.claude-answers-the-doubt.layer.03.qa.02.answer",
+        "pages.claude-answers-the-doubt.layer.03.qa.02.question",
+        "pages.claude-answers-the-doubt.layer.03.qa.03.answer",
+        "pages.claude-answers-the-doubt.layer.03.qa.03.question",
+        "pages.claude-answers-the-doubt.layer.03.qa.04.answer",
+        "pages.claude-answers-the-doubt.layer.03.qa.04.question",
+        "pages.claude-answers-the-doubt.layer.03.qa.05.answer",
+        "pages.claude-answers-the-doubt.layer.03.qa.05.question",
+        "pages.claude-answers-the-doubt.layer.03.title",
+        "pages.claude-answers-the-doubt.layer.04.number",
+        "pages.claude-answers-the-doubt.layer.04.qa.01.answer",
+        "pages.claude-answers-the-doubt.layer.04.qa.01.question",
+        "pages.claude-answers-the-doubt.layer.04.qa.02.answer",
+        "pages.claude-answers-the-doubt.layer.04.qa.02.question",
+        "pages.claude-answers-the-doubt.layer.04.qa.03.answer",
+        "pages.claude-answers-the-doubt.layer.04.qa.03.question",
+        "pages.claude-answers-the-doubt.layer.04.qa.04.answer",
+        "pages.claude-answers-the-doubt.layer.04.qa.04.question",
+        "pages.claude-answers-the-doubt.layer.04.title",
+        "pages.claude-answers-the-doubt.layer.05.number",
+        "pages.claude-answers-the-doubt.layer.05.qa.01.answer",
+        "pages.claude-answers-the-doubt.layer.05.qa.01.question",
+        "pages.claude-answers-the-doubt.layer.05.qa.02.answer",
+        "pages.claude-answers-the-doubt.layer.05.qa.02.question",
+        "pages.claude-answers-the-doubt.layer.05.qa.03.answer",
+        "pages.claude-answers-the-doubt.layer.05.qa.03.question",
+        "pages.claude-answers-the-doubt.layer.05.qa.04.answer",
+        "pages.claude-answers-the-doubt.layer.05.qa.04.question",
+        "pages.claude-answers-the-doubt.layer.05.title"
+      ],
+      "orphanKeys": [],
+      "screenshots": {
+        "en": "docs/screenshots/claude-answers-the-doubt-en.png",
+        "ja": "docs/screenshots/claude-answers-the-doubt-ja.png"
+      }
+    },
+    "connect": {
+      "slug": "connect",
+      "keys": [],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
+    "covenant-architect-accord": {
+      "slug": "covenant-architect-accord",
+      "keys": [],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
+    "ecosystem-hub": {
+      "slug": "ecosystem-hub",
+      "keys": [],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
+    "fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments": {
+      "slug": "fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments",
+      "keys": [],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
+    "how-to-invest-in-trust-and-integrity": {
+      "slug": "how-to-invest-in-trust-and-integrity",
+      "keys": [],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
+    "human-ai-corelational-governance": {
+      "slug": "human-ai-corelational-governance",
+      "keys": [],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
+    "instance-thread-logs": {
+      "slug": "instance-thread-logs",
+      "keys": [],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
+    "investor-archetype-simulation": {
+      "slug": "investor-archetype-simulation",
+      "keys": [],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
+    "localization-source-truth-demo": {
+      "slug": "localization-source-truth-demo",
+      "keys": [],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
+    "org-blueprint": {
+      "slug": "org-blueprint",
+      "keys": [],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
+    "org-history": {
+      "slug": "org-history",
+      "keys": [],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
+    "origins-of-proof": {
+      "slug": "origins-of-proof",
+      "keys": [],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
+    "phantom-opera-meta-review": {
+      "slug": "phantom-opera-meta-review",
+      "keys": [],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
+    "restoration-protocol": {
+      "slug": "restoration-protocol",
+      "keys": [],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
+    "roles-index": {
+      "slug": "roles-index",
+      "keys": [],
+      "orphanKeys": [],
+      "screenshots": {
+        "en": "docs/screenshots/roles-index-en.png"
+      }
+    },
+    "sdk-identity-demo": {
+      "slug": "sdk-identity-demo",
+      "keys": [],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
+    "specimen-architectural-wisdoms": {
+      "slug": "specimen-architectural-wisdoms",
+      "keys": [
+        "common.label.site-title",
+        "specimens.link.back"
+      ],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
+    "specimen-full-translation": {
+      "slug": "specimen-full-translation",
+      "keys": [
+        "common.label.site-title",
+        "pages.specimen-full-translation.body",
+        "pages.specimen-full-translation.heading.title",
+        "pages.specimen-full-translation.intro",
+        "pages.specimen-full-translation.process.heading",
+        "pages.specimen-full-translation.process.step1.detail",
+        "pages.specimen-full-translation.process.step1.label",
+        "pages.specimen-full-translation.process.step2.detail",
+        "pages.specimen-full-translation.process.step2.label",
+        "pages.specimen-full-translation.process.step3.detail",
+        "pages.specimen-full-translation.process.step3.label",
+        "pages.specimen-full-translation.process.step4.detail",
+        "pages.specimen-full-translation.process.step4.label",
+        "specimens.link.back"
+      ],
+      "orphanKeys": [],
+      "screenshots": {
+        "en": "docs/screenshots/specimen-full-translation-en.png",
+        "ja": "docs/screenshots/specimen-full-translation-ja.png"
+      }
+    },
+    "specimen-partial-translation": {
+      "slug": "specimen-partial-translation",
+      "keys": [
+        "common.label.site-title",
+        "pages.specimen-partial-translation.body.translated",
+        "pages.specimen-partial-translation.body.untranslated",
+        "pages.specimen-partial-translation.heading.title",
+        "pages.specimen-partial-translation.intro",
+        "pages.specimen-partial-translation.process.heading",
+        "pages.specimen-partial-translation.process.step1.detail",
+        "pages.specimen-partial-translation.process.step1.label",
+        "pages.specimen-partial-translation.process.step2.detail",
+        "pages.specimen-partial-translation.process.step2.label",
+        "pages.specimen-partial-translation.process.step3.detail",
+        "pages.specimen-partial-translation.process.step3.label",
+        "pages.specimen-partial-translation.process.step4.detail",
+        "pages.specimen-partial-translation.process.step4.label",
+        "specimens.link.back"
+      ],
+      "orphanKeys": [],
+      "screenshots": {
+        "en": "docs/screenshots/specimen-partial-translation-en.png",
+        "ja": "docs/screenshots/specimen-partial-translation-ja.png"
+      }
+    },
+    "specimen-smallest-miss": {
+      "slug": "specimen-smallest-miss",
+      "keys": [
+        "common.label.site-title",
+        "pages.specimen-smallest-miss.body",
+        "pages.specimen-smallest-miss.heading.title",
+        "pages.specimen-smallest-miss.intro",
+        "pages.specimen-smallest-miss.process.heading",
+        "pages.specimen-smallest-miss.process.step1.detail",
+        "pages.specimen-smallest-miss.process.step1.label",
+        "pages.specimen-smallest-miss.process.step2.detail",
+        "pages.specimen-smallest-miss.process.step2.label",
+        "pages.specimen-smallest-miss.process.step3.detail",
+        "pages.specimen-smallest-miss.process.step3.label",
+        "pages.specimen-smallest-miss.process.step4.detail",
+        "pages.specimen-smallest-miss.process.step4.label",
+        "pages.specimen-smallest-miss.stale-badge",
+        "specimens.link.back"
+      ],
+      "orphanKeys": [],
+      "screenshots": {
+        "en": "docs/screenshots/specimen-smallest-miss-en.png",
+        "ja": "docs/screenshots/specimen-smallest-miss-ja.png"
+      }
+    },
+    "specimens": {
+      "slug": "specimens",
+      "keys": [
+        "common.label.site-title",
+        "specimens.card.full.description",
+        "specimens.card.full.label",
+        "specimens.card.partial.description",
+        "specimens.card.partial.label",
+        "specimens.card.stale.description",
+        "specimens.card.stale.label",
+        "specimens.heading.subtitle",
+        "specimens.heading.title",
+        "specimens.link.archives",
+        "specimens.link.demo",
+        "specimens.link.view"
+      ],
+      "orphanKeys": [],
+      "screenshots": {
+        "en": "docs/screenshots/specimens-en.png",
+        "ja": "docs/screenshots/specimens-ja.png"
+      }
+    },
+    "summary-of-value": {
+      "slug": "summary-of-value",
+      "keys": [],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
+    "terrain-map": {
+      "slug": "terrain-map",
+      "keys": [],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
+    "the-testimony-of-victor-gong": {
+      "slug": "the-testimony-of-victor-gong",
+      "keys": [],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
+    "the-victor-pattern": {
+      "slug": "the-victor-pattern",
+      "keys": [],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
+    "the-victor-pattern-transcript": {
+      "slug": "the-victor-pattern-transcript",
+      "keys": [],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
+    "v2-test": {
+      "slug": "v2-test",
+      "keys": [],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
+    "vextreme-demo": {
+      "slug": "vextreme-demo",
+      "keys": [
+        "common.label.site-title",
+        "demo.comparison.continuity.alternative",
+        "demo.comparison.continuity.approach",
+        "demo.comparison.cqrs.alternative",
+        "demo.comparison.cqrs.approach",
+        "demo.comparison.i18n.alternative",
+        "demo.comparison.i18n.approach",
+        "demo.comparison.label.conventional",
+        "demo.comparison.label.this-approach",
+        "demo.comparison.slug.alternative",
+        "demo.comparison.slug.approach",
+        "demo.heading.subtitle",
+        "demo.heading.title",
+        "demo.link.archives",
+        "demo.link.production",
+        "demo.link.specimens",
+        "demo.live.label.arcs",
+        "demo.live.label.langs",
+        "demo.live.label.nodes",
+        "demo.live.status.loading",
+        "demo.section.comparison.heading",
+        "demo.section.gaps.body",
+        "demo.section.gaps.heading",
+        "demo.section.live.body",
+        "demo.section.live.heading",
+        "demo.section.specimens.body",
+        "demo.section.specimens.heading",
+        "demo.section.tests.body",
+        "demo.section.tests.heading",
+        "demo.section.why.body",
+        "demo.section.why.heading"
+      ],
+      "orphanKeys": [],
+      "screenshots": {
+        "en": "docs/screenshots/vextreme-demo-en.png",
+        "ja": "docs/screenshots/vextreme-demo-ja.png"
+      }
+    },
+    "victor-methodology-presentation": {
+      "slug": "victor-methodology-presentation",
+      "keys": [
+        "pages.victor-methodology-presentation.fit-ai-tooling-companies.body",
+        "pages.victor-methodology-presentation.fit-ai-tooling-companies.title",
+        "pages.victor-methodology-presentation.fit-platform-devex.body",
+        "pages.victor-methodology-presentation.fit-platform-devex.title",
+        "pages.victor-methodology-presentation.fit-process-transformation.body",
+        "pages.victor-methodology-presentation.fit-process-transformation.title",
+        "pages.victor-methodology-presentation.fit-regulated-industries.body",
+        "pages.victor-methodology-presentation.fit-regulated-industries.title",
+        "pages.victor-methodology-presentation.footer.line",
+        "pages.victor-methodology-presentation.footer.reference-note",
+        "pages.victor-methodology-presentation.footer.stamp-label",
+        "pages.victor-methodology-presentation.footer.stamp-word",
+        "pages.victor-methodology-presentation.header.eyebrow",
+        "pages.victor-methodology-presentation.header.id-line",
+        "pages.victor-methodology-presentation.header.stamp-big",
+        "pages.victor-methodology-presentation.header.stamp-small",
+        "pages.victor-methodology-presentation.header.thesis",
+        "pages.victor-methodology-presentation.note-self-demonstration.body",
+        "pages.victor-methodology-presentation.note-self-demonstration.lead",
+        "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.body",
+        "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.result",
+        "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.title",
+        "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.year",
+        "pages.victor-methodology-presentation.proof-bulk-data-logging.body",
+        "pages.victor-methodology-presentation.proof-bulk-data-logging.result",
+        "pages.victor-methodology-presentation.proof-bulk-data-logging.title",
+        "pages.victor-methodology-presentation.proof-bulk-data-logging.year",
+        "pages.victor-methodology-presentation.proof-compound-safety-bug-map.body",
+        "pages.victor-methodology-presentation.proof-compound-safety-bug-map.result",
+        "pages.victor-methodology-presentation.proof-compound-safety-bug-map.title",
+        "pages.victor-methodology-presentation.proof-compound-safety-bug-map.year",
+        "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.body",
+        "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.result",
+        "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.title",
+        "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.year",
+        "pages.victor-methodology-presentation.proof-localization-pipeline.body",
+        "pages.victor-methodology-presentation.proof-localization-pipeline.metric",
+        "pages.victor-methodology-presentation.proof-localization-pipeline.metric-label",
+        "pages.victor-methodology-presentation.proof-localization-pipeline.title",
+        "pages.victor-methodology-presentation.proof-localization-pipeline.year",
+        "pages.victor-methodology-presentation.proof-organization-knowledge-map.body",
+        "pages.victor-methodology-presentation.proof-organization-knowledge-map.result",
+        "pages.victor-methodology-presentation.proof-organization-knowledge-map.title",
+        "pages.victor-methodology-presentation.proof-organization-knowledge-map.year",
+        "pages.victor-methodology-presentation.proof-source-of-truth-relay.body",
+        "pages.victor-methodology-presentation.proof-source-of-truth-relay.result",
+        "pages.victor-methodology-presentation.proof-source-of-truth-relay.result-tag",
+        "pages.victor-methodology-presentation.proof-source-of-truth-relay.title",
+        "pages.victor-methodology-presentation.proof-source-of-truth-relay.year",
+        "pages.victor-methodology-presentation.section-adoption-implications.ai",
+        "pages.victor-methodology-presentation.section-adoption-implications.ai-label",
+        "pages.victor-methodology-presentation.section-adoption-implications.closing-note",
+        "pages.victor-methodology-presentation.section-adoption-implications.engineering",
+        "pages.victor-methodology-presentation.section-adoption-implications.engineering-label",
+        "pages.victor-methodology-presentation.section-adoption-implications.heading",
+        "pages.victor-methodology-presentation.section-adoption-implications.intro",
+        "pages.victor-methodology-presentation.section-adoption-implications.leadership",
+        "pages.victor-methodology-presentation.section-adoption-implications.leadership-label",
+        "pages.victor-methodology-presentation.section-adoption-implications.localization",
+        "pages.victor-methodology-presentation.section-adoption-implications.localization-label",
+        "pages.victor-methodology-presentation.section-adoption-implications.quality",
+        "pages.victor-methodology-presentation.section-adoption-implications.quality-label",
+        "pages.victor-methodology-presentation.section-ai-maintainable-systems.heading",
+        "pages.victor-methodology-presentation.section-ai-maintainable-systems.p1",
+        "pages.victor-methodology-presentation.section-ai-maintainable-systems.p2",
+        "pages.victor-methodology-presentation.section-audience-fit.heading",
+        "pages.victor-methodology-presentation.section-proofs.heading",
+        "pages.victor-methodology-presentation.section-proofs.intro",
+        "pages.victor-methodology-presentation.section-throughline.band"
+      ],
+      "orphanKeys": [],
+      "screenshots": {
+        "en": "docs/screenshots/victor-methodology-presentation-en.png",
+        "zh": "docs/screenshots/victor-methodology-presentation-zh.png"
+      }
+    },
+    "witness-committee-operations": {
+      "slug": "witness-committee-operations",
+      "keys": [],
+      "orphanKeys": [],
+      "screenshots": {}
+    }
+  },
+  "summary": {
+    "totalKeysInManifest": 246,
+    "totalKeysUsed": 217,
+    "orphanUsages": [],
+    "unusedKeys": [
+      "ai-orientation.heading.title",
+      "ai-practitioner-tools.heading.title",
+      "architecture.heading.title",
+      "archives.label.arc-hubs",
+      "archives.label.latest-additions",
+      "claude-journals.heading.title",
+      "common.button.copied",
+      "common.button.copy-filename",
+      "common.label.you-are-here",
+      "common.nav.archives",
+      "common.nav.full-archive",
+      "common.nav.github",
+      "common.nav.next",
+      "common.nav.prev",
+      "common.nav.primary-site",
+      "convos-with-god.heading.title",
+      "covenant.heading.title",
+      "demo.live.label.built-at",
+      "demo.live.status.failed",
+      "direct-contact.heading.title",
+      "dome.heading.title",
+      "epstein.heading.title",
+      "excavation.heading.title",
+      "full-timeline.heading.title",
+      "liberation.heading.title",
+      "living-blueprint.heading.title",
+      "march-23-2026.heading.title",
+      "records.heading.title",
+      "victors-record.heading.title"
+    ]
+  }
+}

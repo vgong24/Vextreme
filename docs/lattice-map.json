@@ -1,6 +1,5 @@
 {
   "_schema": "Vextreme file lattice — one entry per file, edges define reads/writes/loads/tests. Load this file first when arriving cold: it gives you the system topology without reading any implementation. Navigate laterally (adjacent nodes in changeMap) before diving into depth (file contents). This map is the write side; the LATTICE block inside each eligible file's own header is a generated read side (see lib/build-lattice-headers.js) — they cannot diverge because the file copy is regenerated from this one, not hand-maintained.",
-
   "_usage": [
     "1. Read this file before opening any lib/ file — understand what a file does and what it touches before reading it",
     "2. When about to change something, look up the file's changeMap to find every adjacent node that must also be checked",
@@ -9,11 +8,8 @@
     "5. node lib/build-lattice-headers.js --check exits non-zero if any eligible file's header would change on regeneration — this is what CI runs (tests/11-lattice-headers.test.js) to catch drift between this JSON and the files it describes",
     "6. Coverage is partial by design, not by accident: only files worth a lateral-navigation stop are nodes here. Most lib/ and widgets/ files are not yet mapped — see pe-009 in data/status/planned-enhancements.json for the expansion queue. Grep-ing for 'LATTICE:BEGIN' shows current coverage."
   ],
-
   "version": "1",
-
   "nodes": {
-
     "lib/compute-fab-version.js": {
       "role": "pure semver classification for widgets/fab-lang.js's CDN cache-busting VERSION — major/minor/patch decision table + diff helpers, no I/O",
       "context": "Session 025 (continued) — Victor asked whether the just-fixed never-bumped VERSION constant could auto-increment based on real conditions (new/modified strings, new locale, new arc, new department, id/slug identity changes, checks-and-alignment fixes) rather than being hand-maintained again. Mapped those 8 conditions to a 3-tier semver scheme confirmed with Victor: MAJOR = identity changes (slug renamed, id reassigned — the closest thing this system has to a breaking change, since external links/bookmarks key on those), MINOR = additive/backward-compatible (new strings, new locale, new arc, new department), PATCH = content correction with no structural change (an existing string's text edited, or a checks/alignment script touched). Cascading bump confirmed with Victor: a MAJOR bump resets MINOR and PATCH to 0; a MINOR bump resets PATCH to 0 — standard semver, not a Vextreme invention. Deliberately pure/testable — all git plumbing (finding the baseline commit, reading file snapshots at that commit) lives in lib/bump-fab-version.js instead, which is intentionally NOT pure and NOT unit-tested the same way.",
@@ -34,7 +30,6 @@
         ]
       }
     },
-
     "lib/bump-fab-version.js": {
       "role": "git-diffing orchestration for lib/compute-fab-version.js — finds the last VERSION-bump commit, diffs data files against it, applies the computed bump to widgets/fab-lang.js",
       "context": "Companion to lib/compute-fab-version.js (see that node for the tier mapping and why it's split out as pure logic). findBaselineCommit() uses `git log -G` (not -S) to find the last commit that changed a VERSION-shaped line — -S only detects a change in how many times a search string occurs, and \"var VERSION\" occurs exactly once both before and after a bump, so only -G (matches a line matching the given regex appearing in the diff) correctly catches a same-line value edit. Falls back to the file's own add-commit if no bump has ever happened (Session 025's real starting condition — VERSION had never been bumped, so the very first real run classifies the entire accumulated history since file creation, correctly producing a MAJOR catch-up bump). Requires full git history (`fetch-depth: 0`) to work in CI — a shallow clone would make git log/show against older commits fail, most likely silently (empty diffs read as \"no bump needed\" rather than an error) rather than loudly, which is why the checkout step's fetch-depth was changed alongside this file rather than assumed to already be sufficient.",
@@ -65,7 +60,6 @@
         ]
       }
     },
-
     "lib/compute-test-shards.js": {
       "role": "self-scaling CI test-sharding — computes shard count and per-shard file assignment from the real current tests/*.test.js file count, no hand-picked number to forget updating",
       "context": "Session 025 (continued) — Victor asked whether test sharding could be 'system expandable as a health and build process' rather than something a future instance eyeballs and manually flips on. computeShardCount() answers that: it's a pure function of the real current test-file count (TARGET_FILES_PER_SHARD, tuned so CI's fixed per-job overhead stays cheaper than actual test runtime until the suite has genuinely grown), recomputed by .github/workflows/test.yml's 'shards' job on every run. At today's ~28-file suite this resolves to 1 shard — the workflow runs as a single job, same as before this file existed. assignFilesToShard() is a deterministic round-robin partition (sorted file list, index modulo shard count) so the same inputs always produce the same split and every file lands in exactly one shard — verified by tests/29-compute-test-shards.test.js's partition-coverage tests. Deliberately uses file COUNT, not measured historical per-file duration, as the sharding signal — see the file's own docstring for why (this repo's tests are uniform and fast; a timing-log approach would need persisted CI-committed state to buy back precision this suite doesn't currently need).",
@@ -93,7 +87,6 @@
         ]
       }
     },
-
     "lib/run-test-prereqs.js": {
       "role": "runs the build scripts tests/helpers/prereqs.js declares as required before the test suite can read generated files — replaces a hardcoded run: line in .github/workflows/test.yml",
       "context": "Session 025 (continued) — before this file, the list of 'build scripts that must run before tests can pass' existed in two places that could drift: a literal `run:` line in test.yml, and prose in individual test files' PREREQUISITE docstrings (e.g. tests/04-build-output.test.js). This file and tests/helpers/prereqs.js collapse that to one array; both the CI step and any test file that wants to reference its own prerequisite point at the same source.",
@@ -114,7 +107,6 @@
         ]
       }
     },
-
     "lib/vex-config.js": {
       "role": "constants hub — pure declarations, no I/O",
       "context": "Every semantic string in the system (category names, language codes, feature IDs, scope names, CDN paths) lives here as a named constant. No build script or widget should hardcode 'demo', 'ja', 'common', etc. Changes here propagate to 9+ files — the widest fan-out of any single file.",
@@ -137,7 +129,10 @@
         "lib/build-demo.js",
         "lib/build-arc-bundles.js"
       ],
-      "testedBy": ["tests/05-vex-config.test.js", "tests/06-blueprint.test.js"],
+      "testedBy": [
+        "tests/05-vex-config.test.js",
+        "tests/06-blueprint.test.js"
+      ],
       "changeMap": {
         "Feature.* added/renamed": [
           "blueprint.json (features array)",
@@ -162,7 +157,6 @@
         ]
       }
     },
-
     "lib/build-index.js": {
       "role": "content pipeline assembler — reads source data, writes the single pre-built index everything reads from",
       "context": "The pipeline hub. Every page, every arc nav render, every God Script assembly starts from data/index.json which this file produces. If the index schema changes, 4+ consumers break. Run manually or via CI after editing nodes.json or arcs-v2.json. Session 022: nodes.json alone is no longer the complete node set this computes from — lib/auto-discover-nodes.js synthesizes a placeholder node for any pages/*.html file with no nodes.json entry, and those get concatenated in (allNodes) before buildSlugMap/buildArcMap/buildDepartmentMap run. findDuplicateSlugs still runs on raw nodes.json only — synthesized nodes can't collide with each other (one per real filename) or with curated ones (filtered out by definition).",
@@ -176,7 +170,9 @@
         "lib/auto-discover-nodes.js (discoverOrphanNodes, readPageFromDisk)",
         "lib/vex-config.js"
       ],
-      "writes": ["data/index.json"],
+      "writes": [
+        "data/index.json"
+      ],
       "loadedBy": [
         "lib/vextreme-index-v2.js (browser reads index.json via CDN)",
         "lib/build-vextreme.js (reads index.json for slugMap + supportedLangs)",
@@ -235,7 +231,6 @@
         ]
       }
     },
-
     "lib/build-vextreme.js": {
       "role": "God Script assembler — reads index + string bundles, writes one self-contained dist/ file per page",
       "context": "The write side of the page delivery pipeline. Inlines EN strings, bakes in viewmodel, includes feature widgets. Once a God Script is loaded by a page, it needs zero additional fetches for EN. Run after build-index.js and strings-compile.js. Session 025 FAB unification: spiral-fab and theme have real filenames now (vex-fab.js, fab-theme.js) after sitting reserved-but-unbuilt (filename: null) since Session 013; a new map feature (fab-map.js) was added alongside them. FEATURES object key order was changed so spiral-fab registers before lang/theme/map — that order is the script concatenation order, which is also the DOMContentLoaded firing order in the browser, and vex-fab.js's #vex-spiral-group container must exist before the other three widgets look for it on mount. Honest caveat found while building this: as of Session 025, ZERO live pages actually load a God Script (node lib/audit-pages.js reports 0 wired) — every real page still uses old standalone <script src=CDN> tags, so this feature (and the VEX_SUPPORTED_LANGS fix before it) is correct, tested infrastructure with no live effect until a page's script tags are actually switched over to its dist/ file. Not yet decided whether/when that wiring happens.",
@@ -252,12 +247,16 @@
         "lib/vextreme-index-v2.js (arc-nav feature, via srcDir: LIB_DIR in FEATURES registry)",
         "lib/vex-config.js"
       ],
-      "writes": ["dist/vextreme-{slug}.js (one per assembled slug)"],
+      "writes": [
+        "dist/vextreme-{slug}.js (one per assembled slug)"
+      ],
       "loadedBy": [
         "tests/08-build-vextreme.test.js",
         ".github/workflows/build-index.yml (auto-run after build-index.js)"
       ],
-      "testedBy": ["tests/08-build-vextreme.test.js"],
+      "testedBy": [
+        "tests/08-build-vextreme.test.js"
+      ],
       "changeMap": {
         "FEATURES registry entry added": [
           "lib/vex-config.js (Feature.* constant)",
@@ -285,7 +284,6 @@
         ]
       }
     },
-
     "lib/build-arc-bundles.js": {
       "role": "arc-chunked language bundle assembler — the od-001/td-006 pilot, opt-in per arc",
       "context": "Resolves od-001 ('should the per-scope JA bundling strategy change before a 3rd language is added?') by proving the arc-chunked alternative td-006 names, scoped to one arc rather than migrating the whole site. Any arc with `bundlingStrategy: \"arc-chunked\"` in data/arcs-v2.json gets one data/strings/compiled/arcs/{arcId}.{lang}.json per language present — the merge of every member slug's scope bundles, done once at build time instead of an N-way runtime fetch. Arcs that don't opt in are completely unaffected. Today's only opted-in arc is victor_dossier (Session 025).",
@@ -305,7 +303,9 @@
         ".github/workflows/build-index.yml (after strings-compile.js, before build-vextreme.js)",
         "tests/26-build-arc-bundles.test.js"
       ],
-      "testedBy": ["tests/26-build-arc-bundles.test.js"],
+      "testedBy": [
+        "tests/26-build-arc-bundles.test.js"
+      ],
       "changeMap": {
         "a second arc opts into bundlingStrategy: \"arc-chunked\"": [
           "nothing code-side — this script already generalizes; only the pilot's scope is one arc, not the mechanism"
@@ -317,7 +317,6 @@
         ]
       }
     },
-
     "lib/discover-string-identity.js": {
       "role": "localization identity pilot, first script — proposal/report tool only, cross-references a page's string keys against its live HTML's data-legacy-id/id/title-alias attributes",
       "context": "Session 027 (PR #93/#94 continuation, per Victor+Vex's approved narrowed localization-identity pilot). Activates a canonical/observed identity split that already existed unindexed on victor-methodology-presentation.html: every content record carries a data-legacy-id next to its data-i18n key. Groups a page's string keys by their contentNodeKey segment (pages.{slug}.{contentNodeKey}.{field}), finds the matching id=\"...\" attribute in the HTML (case-insensitive, careful not to match the \"-id=\" tail of data-legacy-id — a real bug hit and fixed while building this, since a naive \\b-based regex matches that boundary too), then looks for a data-legacy-id on the same tag or an informal title=\"legacy alias: X\" nearby. Classifies each content node aligned/needs_review/unresolved without ever guessing 'aligned' — the pilot page's own real state is 12 aligned, 1 needs_review (an informal title-alias card), 6 unresolved (including one, header, whose real data-legacy-id exists but is undiscoverable by this heuristic because the HTML id (page-dossier-root) diverges from the key segment (header) — a named, honest limitation, not a bug). Never writes to data/strings/source/** — writes a candidate report only; a human (or, for this pilot, a reviewed-and-recorded one-time merge, not this script) decides which candidates become real identity blocks.",
@@ -332,14 +331,15 @@
         "manual run: node lib/discover-string-identity.js <slug>",
         "tests/33-string-identity.test.js"
       ],
-      "testedBy": ["tests/33-string-identity.test.js"],
+      "testedBy": [
+        "tests/33-string-identity.test.js"
+      ],
       "changeMap": {
         "a page's HTML restructures its id/data-legacy-id attributes": [
           "re-run this script for that slug and review the new candidate report before touching source — lib/check-string-identity.js's checkElementIdsStillReal flags recorded ids that no longer resolve, but does not re-discover new ones automatically"
         ]
       }
     },
-
     "lib/build-string-identity-index.js": {
       "role": "localization identity pilot, second script — generates pointer indexes and a human-readable report from committed identity metadata",
       "context": "Reads the `identity` object now optionally present alongside `strings` on any key in data/strings/source/pages/*.json (added by a reviewed merge of lib/discover-string-identity.js's candidates, never by this script). Same CQRS split as every other build-*.js: writes data/strings/compiled/identity-index.json (byCanonicalElementId/byLegacyElementId/byContentNodeKey/byField/byStatus/byStringId — pointers to string keys only, never duplicated full records, per Vex's relay's 'duplicate references not records' rule) and one data/strings/reports/string-identity-{slug}.md per page with any identity coverage. byCanonicalElementId and byLegacyElementId are identical in this pilot (canonical is anchored to the legacy id when one exists) but kept as separate indexes deliberately, in case a future real canonical reassignment makes them diverge. Never touches data/strings/compiled/strings.*.json or manifest.json — confirmed by test that a key's compiled EN/ZH/JA bundle entry contains only {text}, the identity object never leaks into runtime output. PR #97 (dossier report hardening, per Vex's post-PR#96 relay — explicitly NOT the second-page pilot, which stayed unbuilt pending a named discovery-strategy decision): collectIdentityRecords() now also carries each key's actual per-language `texts` for the markdown report's side-by-side display; buildIndexes() still never includes it, so identity-index.json stays pointers-only (a test asserts this directly). renderMarkdownReport() gained a Page/Language summary, an aggregated Known Limitations section (every non-aligned node named once, not buried per-field), a side-by-side text table per content node, Screenshot refs (from the source file's _meta.screenshotRefs), and pointers to the generated index + lib/check-string-identity.js — the check's own live results are never embedded (would go stale independently of the report), only referenced.",
@@ -356,7 +356,9 @@
         "lib/check-string-identity.js (requires collectIdentityRecords/buildIndexes)",
         "tests/33-string-identity.test.js"
       ],
-      "testedBy": ["tests/33-string-identity.test.js"],
+      "testedBy": [
+        "tests/33-string-identity.test.js"
+      ],
       "changeMap": {
         "a new page gets identity metadata committed": [
           "no code change needed — this script already scans all of data/strings/source/pages/*.json; re-running picks up the new page automatically"
@@ -366,7 +368,6 @@
         ]
       }
     },
-
     "lib/check-string-identity.js": {
       "role": "localization identity pilot, third script — informational validator, never rewrites anything",
       "context": "Same posture as check-key-alignment.js/check-continuity-lag.js: reports, never fails the build. Checks every identity-index.json key resolves to a real source key; no canonicalElementId is claimed by more than one contentNodeKey (a real conflict, distinct from the expected case of many fields inside one content node sharing its canonicalElementId); the committed index isn't stale (regenerated in memory and compared); partial identity coverage on a source file (informational — expected mid-rollout); and that a recorded currentElementId still resolves to a real id in the live HTML (catches drift if a page is restructured after identity was recorded without re-running discovery). This is the hard boundary Vex's relay was explicit about: nothing downstream of this file can ever touch data/strings/source/** or the live HTML — report only, no auto-apply, anywhere in the pilot.",
@@ -382,14 +383,15 @@
         "manual run: node lib/check-string-identity.js",
         "tests/33-string-identity.test.js"
       ],
-      "testedBy": ["tests/33-string-identity.test.js"],
+      "testedBy": [
+        "tests/33-string-identity.test.js"
+      ],
       "changeMap": {
         "this check ever proves reliable enough to promote to blocking": [
           "that is itself the same start-soft-then-earn-trust decision pe-014 and check-continuity-lag.js both name — do not flip process.exit(0) without a deliberate decision recorded in continuity, not just a code change"
         ]
       }
     },
-
     "lib/strings-compile.js": {
       "role": "strings pipeline compiler — reads source JSON, writes compiled bundles and manifest",
       "context": "The write side of the i18n pipeline. Every string key, every language bundle, every stale-detection hash is produced here. Run after editing any file in data/strings/source/. The scope bundle path rule here MUST match the runtime fetch rule in widgets/fab-lang.js.",
@@ -408,7 +410,9 @@
         "lib/strings-check.js (reads its output data/strings/compiled/manifest.json for stale detection)",
         "tests/02-strings-pipeline.test.js"
       ],
-      "testedBy": ["tests/02-strings-pipeline.test.js"],
+      "testedBy": [
+        "tests/02-strings-pipeline.test.js"
+      ],
       "changeMap": {
         "scopeRelPath() path rule": [
           "lib/vex-config.js (canonical implementation lives here)",
@@ -428,7 +432,6 @@
         ]
       }
     },
-
     "lib/vextreme-index-v2.js": {
       "role": "browser arc nav runtime — reads index.json at load time, renders prev/next/position into #arcNavMount",
       "context": "THE arc nav widget for the v2 architecture. Supersedes lib/arc-nav.js (v1, Squarespace-era, reads VEXTREME_ARCS). Inlined into God Scripts via the arc-nav feature in the FEATURES registry. Also loads standalone on non-God-Script pages via shell.js.",
@@ -446,7 +449,9 @@
         "lib/build-vextreme.js FEATURES registry (Feature.ARC_NAV, srcDir: LIB_DIR)",
         "non-God-Script pages via shell.js + vextreme.js"
       ],
-      "testedBy": ["tests/03-browser-nav.test.js (data logic; no browser render tests yet)"],
+      "testedBy": [
+        "tests/03-browser-nav.test.js (data logic; no browser render tests yet)"
+      ],
       "changeMap": {
         "buildArcNavData() reads slugMap/arcMap/arcMeta": [
           "lib/build-index.js (must produce matching schema)",
@@ -465,7 +470,6 @@
         ]
       }
     },
-
     "lib/arc-nav.js": {
       "role": "v1 Squarespace-era arc nav — DO NOT USE for God Script pages",
       "context": "The original arc nav widget, designed for squarespace-injection.html. Reads from window.VEXTREME_ARCS (old arcs.json format), not index.json. Kept for reference and the Squarespace deployment path. For all GitHub Pages / God Script pages, use lib/vextreme-index-v2.js instead.",
@@ -474,8 +478,12 @@
         "window.PAGE_ARCS (set per-page by the embedding loader)",
         "window.VEXTREME_PAGES (renderModes registry)"
       ],
-      "writes": ["innerHTML of #arcNavMount"],
-      "loadedBy": ["lib/vextreme.js (v1 runtime — loadScript of /lib/arc-nav.js; squarespace-injection.html only loads vextreme.js)"],
+      "writes": [
+        "innerHTML of #arcNavMount"
+      ],
+      "loadedBy": [
+        "lib/vextreme.js (v1 runtime — loadScript of /lib/arc-nav.js; squarespace-injection.html only loads vextreme.js)"
+      ],
       "testedBy": [],
       "changeMap": {
         "any change": [
@@ -484,14 +492,18 @@
         ]
       }
     },
-
     "data/nodes.json": {
       "role": "content node source — the authoritative list of all content slugs",
       "context": "Every piece of content is a node here. The slug is the system's only identifier — arc membership, string scope keys, HTML filenames, and God Script names all derive from it. This is the write side; data/index.json is the read side.",
       "reads": [],
       "writes": [],
-      "loadedBy": ["lib/build-index.js (primary consumer — reads on every build)"],
-      "testedBy": ["tests/01-content-pipeline.test.js", "tests/08-build-vextreme.test.js (KEY-ALIGNMENT)"],
+      "loadedBy": [
+        "lib/build-index.js (primary consumer — reads on every build)"
+      ],
+      "testedBy": [
+        "tests/01-content-pipeline.test.js",
+        "tests/08-build-vextreme.test.js (KEY-ALIGNMENT)"
+      ],
       "changeMap": {
         "slug added": [
           "data/arcs-v2.json (add to arc membership if it belongs to an arc)",
@@ -516,14 +528,18 @@
         ]
       }
     },
-
     "data/arcs-v2.json": {
       "role": "arc structure source — defines arc membership, ordering, and metadata",
       "context": "Arcs are the navigation layer: ordered groups of content nodes with display metadata. The v2 format uses slug-keyed entries (not URL-keyed). build-index.js reads this alongside nodes.json to produce arcMap and arcMeta in index.json.",
       "reads": [],
       "writes": [],
-      "loadedBy": ["lib/build-index.js"],
-      "testedBy": ["tests/01-content-pipeline.test.js", "tests/08-build-vextreme.test.js (KEY-ALIGNMENT)"],
+      "loadedBy": [
+        "lib/build-index.js"
+      ],
+      "testedBy": [
+        "tests/01-content-pipeline.test.js",
+        "tests/08-build-vextreme.test.js (KEY-ALIGNMENT)"
+      ],
       "changeMap": {
         "arc entry added": [
           "data/nodes.json (all slugs in the arc must exist there)",
@@ -536,14 +552,17 @@
         ]
       }
     },
-
     "data/departments.json": {
       "role": "department registry source — production-domain grouping, orthogonal to arcs (narrative) and blueprint.json categories (publish lifecycle)",
       "context": "A node with no department/workType field defaults to whichever entry here has default:true (and that department's 'default' workType). Currently two departments: rd (default) and media (workTypes: reviews, record-transcripts). This is the write side; data/index.json's departmentMap/departmentMeta is the read side lib/build-ecosystem-hub.js actually renders from.",
       "reads": [],
       "writes": [],
-      "loadedBy": ["lib/build-index.js (buildDepartmentMap, buildDepartmentMeta)"],
-      "testedBy": ["tests/15-departments.test.js"],
+      "loadedBy": [
+        "lib/build-index.js (buildDepartmentMap, buildDepartmentMeta)"
+      ],
+      "testedBy": [
+        "tests/15-departments.test.js"
+      ],
       "changeMap": {
         "department or workType added": [
           "data/nodes.json (nodes opting into the new department/workType — department field, workType field)",
@@ -555,7 +574,6 @@
         ]
       }
     },
-
     "data/council-kernel.json": {
       "role": "hand-transcribed structured extract of pages/org-blueprint.html's roster and patterns — the 'runnable kernel' that document names as its own unfinished ambition",
       "context": "Session 022: Victor shared external design-document URLs and asked whether one AI instance could hold internal multi-lens 'council' awareness instead of coordinating across multiple instances. pages/org-blueprint.html (already in this repo, previously uncurated) already describes exactly this — a Scanner that fires multiple internal 'faculty' perspectives in parallel before committing to a response. This file transcribes that roster/pattern into queryable form, same as data/departments.json is hand-authored rather than derived. See docs/architecture/14-council-model.md for the honest assessment of what this can and can't be — a single instance's structured self-check, not multiple independent agents.",
@@ -567,7 +585,9 @@
         "pages/ecosystem-hub.html (live fetch, browser — the Council Lenses panel, added Session 022 same day as this note)",
         "lib/build-roles.js (compiles this roster + data/status/*.json's lens fields into data/roles.json)"
       ],
-      "testedBy": ["tests/19-council-kernel.test.js"],
+      "testedBy": [
+        "tests/19-council-kernel.test.js"
+      ],
       "changeMap": {
         "a role added or removed": [
           "tests/19-council-kernel.test.js's caughtBy-reference-integrity check must still pass",
@@ -580,7 +600,6 @@
         ]
       }
     },
-
     "data/viewmodels.json": {
       "role": "per-slug viewmodel overrides — demo/specimen pages that aren't content nodes",
       "context": "Content nodes in nodes.json get default viewmodels (production/page template). This file holds overrides for demo and specimen pages that have different categories, templates, or feature sets. Also used to add non-node slugs (demo pages, specimens) to the God Script assembly pipeline.",
@@ -590,7 +609,10 @@
         "lib/build-index.js (buildViewmodel reads overrides)",
         "lib/build-vextreme.js (resolveAllSlugs merges these with slugMap)"
       ],
-      "testedBy": ["tests/07-viewmodel.test.js", "tests/08-build-vextreme.test.js"],
+      "testedBy": [
+        "tests/07-viewmodel.test.js",
+        "tests/08-build-vextreme.test.js"
+      ],
       "changeMap": {
         "slug entry added/changed": [
           "lib/build-vextreme.js (rebuild God Script for that slug)",
@@ -603,7 +625,6 @@
         ]
       }
     },
-
     "data/index.json": {
       "role": "pre-built read index — the single artifact every page and build script reads from",
       "context": "Generated by lib/build-index.js. Never edit directly. Contains slugMap (slug → viewmodel + arcKeys + nav data), arcMap (arc → sections → slug lists), arcMeta (arc → display metadata), departmentMap (department → workType → [{slug, title, ported}]), departmentMeta (department → display labels), supportedLangs, nodeCount, arcCount, builtAt. Everything downstream reads this; nothing downstream reads nodes.json, arcs-v2.json, or departments.json directly.",
@@ -616,7 +637,10 @@
         "lib/build-ecosystem-hub.js (departmentMap/departmentMeta, live fetch)",
         "pages/vextreme-demo.html (live fetch to show nodeCount/arcCount/supportedLangs)"
       ],
-      "testedBy": ["tests/08-build-vextreme.test.js (KEY-ALIGNMENT)", "tests/15-departments.test.js"],
+      "testedBy": [
+        "tests/08-build-vextreme.test.js (KEY-ALIGNMENT)",
+        "tests/15-departments.test.js"
+      ],
       "changeMap": {
         "schema changes": [
           "lib/build-index.js (producer — update to emit new schema)",
@@ -630,7 +654,6 @@
         ]
       }
     },
-
     "widgets/vex-fab.js": {
       "role": "spiral FAB — trigger button + shared expandable group container that other orb widgets mount into",
       "context": "Session 025 FAB unification: activates the spiral-fab Feature slot reserved-but-unbuilt (filename: null) since Session 013 — Victor asked for one expandable FAB framework instead of one-off widgets, so a new orb is a small widget registration, not a change to this file. Renders a trigger button (#vex-spiral-trigger, 🌀) that toggles a group container (#vex-spiral-group); widgets/fab-theme.js, widgets/fab-map.js, and widgets/fab-lang.js each look up that container on their OWN DOMContentLoaded handler and append their orb into it if present, falling back to a standalone top-level mount if this widget isn't active on the page. This file does not need to change when an orb is added or removed — that is the whole point of the split. MUST be listed before lang/theme/map in lib/build-vextreme.js's FEATURES registry so its DOMContentLoaded handler (which creates #vex-spiral-group) fires before theirs (handlers fire in registration order = script concatenation order).",
@@ -642,7 +665,9 @@
         "lib/build-vextreme.js (inlined as spiral-fab feature in God Scripts, must be first among the FAB-group features)",
         "tests/08-build-vextreme.test.js"
       ],
-      "testedBy": ["tests/08-build-vextreme.test.js"],
+      "testedBy": [
+        "tests/08-build-vextreme.test.js"
+      ],
       "changeMap": {
         "#vex-spiral-group DOM id/contract changed": [
           "widgets/fab-lang.js (getElementById('vex-spiral-group') lookup)",
@@ -652,7 +677,6 @@
         ]
       }
     },
-
     "widgets/fab-theme.js": {
       "role": "dark/light theme toggle orb — sets document.documentElement's data-theme attribute, persists to localStorage",
       "context": "Session 025 FAB unification: activates the theme Feature slot reserved-but-unbuilt (filename: null) since Session 013. Ships the real toggle MECHANISM only — it does not add [data-theme=\"dark\"] CSS to the ~100+ content pages that each hand-author their own inline :root token block rather than sharing styles/design-system.css, so toggling currently has no visible effect on most pages. A page that adds its own dark CSS later needs zero JS changes to pick this up. Mounts into #vex-spiral-group (widgets/vex-fab.js) when present, else falls back to a standalone top-level fixed-position button.",
@@ -668,14 +692,15 @@
         "lib/build-vextreme.js (inlined as theme feature in God Scripts)",
         "tests/08-build-vextreme.test.js"
       ],
-      "testedBy": ["tests/08-build-vextreme.test.js"],
+      "testedBy": [
+        "tests/08-build-vextreme.test.js"
+      ],
       "changeMap": {
         "per-page dark CSS added to any page": [
           "no JS change needed here — the mechanism already sets data-theme=\"dark\"/\"light\" on <html>; a page's own CSS keys off that attribute"
         ]
       }
     },
-
     "widgets/fab-map.js": {
       "role": "orb linking to pages/terrain-map.html",
       "context": "Session 025 FAB unification: activates the new map Feature slot. Distinct from widgets/fab-demo.js's older 'architecture demo' orb (pages/vextreme-demo.html) — Victor: the demo page concept is becoming outdated as the real production system (the terrain map itself) demonstrates the architecture better than a condensed stand-in page. Mounts into #vex-spiral-group (widgets/vex-fab.js) when present, else falls back to a standalone top-level fixed-position button.",
@@ -685,10 +710,11 @@
         "lib/build-vextreme.js (inlined as map feature in God Scripts)",
         "tests/08-build-vextreme.test.js"
       ],
-      "testedBy": ["tests/08-build-vextreme.test.js"],
+      "testedBy": [
+        "tests/08-build-vextreme.test.js"
+      ],
       "changeMap": {}
     },
-
     "widgets/fab-lang.js": {
       "role": "browser language switcher FAB — fetches JA/ZH scope or arc bundles, applies [data-i18n] swaps",
       "context": "The runtime i18n engine. On language switch, constructs scope bundle URLs using the same scopeRelPath rule as strings-compile.js (build time) — these MUST stay in sync. Session 025 correction: fetched strings are held only in the in-memory _langStrings variable, not cached in localStorage — only the selected language preference (LS_LANG) persists there; a fresh fetch happens on every switch. Reads VEX_STRING_SCOPES, VEX_STRING_CATEGORY from window (set by God Script). Session 025 also added an arc-chunked bundle path (od-001/td-006 pilot): if window.VEX_STRING_ARC_BUNDLE is set, fetches the one merged arc bundle instead of the per-scope fan-out below. Session 025 (continued) — real bug found: lib/build-vextreme.js has baked window.VEX_SUPPORTED_LANGS into every God Script since it was introduced (verified: dossier's God Script correctly emits [\"en\",\"ja\",\"zh\"]), but loadSupportedLangs() here never read it — it went straight to a localStorage blob written by a DIFFERENT widget (vextreme-index-v2.js's LS_DATA cache) or a live index.json fetch, neither of which is guaranteed to reflect what THIS page's God Script actually has (a browser that cached LS_DATA before a language was added never sees the addition until that shared key happens to be overwritten). This is the same shape as PR #76's ARC_ORDER gap — real data existing while a separate consumption path silently doesn't know about it. loadSupportedLangs() now checks window.VEX_SUPPORTED_LANGS first, matching the existing VEX_STRINGS_EN fast-path pattern. Session 025 (continued again) — Victor asked to make the effective language shareable via URL: forwarding a link with ?lang=zh shouldn't require the recipient to already have zh saved locally or to find the language wheel themselves. computeLangSearch() is the pure query-string logic (English is represented by the param's ABSENCE, every other language explicit); getUrlLang()/syncUrlLang() are the location/history side effects around it. ?lang= wins over localStorage on load, and mount() always calls syncUrlLang() once resolved (from URL, localStorage, or default) so the address bar reflects the actual on-screen language even when no manual switch happened this visit.",
@@ -737,16 +763,23 @@
         ]
       }
     },
-
     "widgets/sw-register.js": {
       "role": "Service Worker registration — activates offline caching, forces an immediate update check, auto-reloads once when a new SW takes control",
       "context": "Core module: default: true in the FEATURES registry, inlined into every God Script. Registers sw.js. Once active, the SW pre-caches all God Scripts + core assets at install time — subsequent page loads make zero network requests for HTML or JS. Without this, the offline/caching pyramid is inactivated. Session 025 (continued) — real bug found while chasing why a merged VEX_SUPPORTED_LANGS/God-Script-wiring fix still didn't show live on the dossier page after Victor rechecked it: sw.js's install/activate handlers always call self.skipWaiting()/clients.claim(), so a new SW version genuinely does become the controller, but only for requests made AFTER that happens — the God Script <script src> tag that already fetched during THIS page load ran before that point, so the page can render under a stale SW-cached copy even when the server (and a freshly-installed SW) already have correct content. The classic 'works after a second reload, not the first' Service Worker gotcha. Nothing forced that second reload before. Also removed a dead SKIP_WAITING postMessage this file sent on registration — sw.js never listens for a 'message' event at all (confirmed via grep), so that call had no effect; skipWaiting() already happens unconditionally in install regardless. Session 025 (continued once more) — Victor reported the controllerchange fix still wasn't enough; simulated the full lifecycle end-to-end (a local server that can swap between an 'old' and 'new' deployed version mid-test, a real Service Worker install, then repeated plain reloads with no other intervention) before shipping anything, per his explicit ask not to assume/patch blind. Confirmed: without an explicit registration.update() call, three consecutive reloads after a simulated deploy never picked up new content — Chrome throttles its own background update check to roughly once per 24h per spec, so reloading alone (even a hard reload) never asks for a fresh check, and the controllerchange listener above never gets anything to react to. Added reg.update() after every successful registration to force an immediate check on every page load. Re-ran the same simulation with the fix in place: second reload settles on correct content, third reload confirms it stays correct — no manual intervention needed beyond normal navigation.",
-      "reads": ["navigator.serviceWorker API"],
-      "writes": ["Service Worker registration in browser", "an immediate Service Worker update check on every page load (registration.update())", "window.location.reload() — exactly once, when a new SW becomes the controller"],
+      "reads": [
+        "navigator.serviceWorker API"
+      ],
+      "writes": [
+        "Service Worker registration in browser",
+        "an immediate Service Worker update check on every page load (registration.update())",
+        "window.location.reload() — exactly once, when a new SW becomes the controller"
+      ],
       "loadedBy": [
         "lib/build-vextreme.js (inlined as core module in every God Script, default: true)"
       ],
-      "testedBy": ["tests/09-build-sw.test.js (BUILD-SW: widgets/sw-register.js auto-reloads once..., BUILD-SW: widgets/sw-register.js forces an immediate update check... — structural guards on this file directly; the rest of tests/09 tests sw.js generation)"],
+      "testedBy": [
+        "tests/09-build-sw.test.js (BUILD-SW: widgets/sw-register.js auto-reloads once..., BUILD-SW: widgets/sw-register.js forces an immediate update check... — structural guards on this file directly; the rest of tests/09 tests sw.js generation)"
+      ],
       "changeMap": {
         "SW registration scope or path": [
           "sw.js (must exist at the registered path)",
@@ -754,14 +787,17 @@
         ]
       }
     },
-
     "sw.js": {
       "role": "Service Worker — pre-caches all God Scripts and core assets at install",
       "context": "Generated by lib/build-sw.js. Pre-caches every dist/vextreme-{slug}.js file plus core CSS/JSON assets. After install, page visits cost zero network requests for cached assets. Stale SW caches are cleaned up on activate. Never edit directly — regenerate with node lib/build-sw.js.",
       "reads": [],
       "writes": [],
-      "loadedBy": ["widgets/sw-register.js (registers this file in every God Script page)"],
-      "testedBy": ["tests/09-build-sw.test.js"],
+      "loadedBy": [
+        "widgets/sw-register.js (registers this file in every God Script page)"
+      ],
+      "testedBy": [
+        "tests/09-build-sw.test.js"
+      ],
       "changeMap": {
         "PRECACHE_URLS list": [
           "lib/build-sw.js (generates this list from dist/ filenames)",
@@ -769,14 +805,24 @@
         ]
       }
     },
-
     "lib/build-sw.js": {
       "role": "Service Worker generator — reads dist/ filenames + arc-chunked bundle index, writes sw.js",
       "context": "Scans dist/ for God Script filenames and bakes them into the SW PRECACHE_URLS list. Run after build-vextreme.js adds new dist/ files. The generated sw.js is committed — the SW cache version is pinned to the git commit hash at generation time. Session 025 added precaching for lib/build-arc-bundles.js's opted-in arc bundles (od-001/td-006 pilot) — bounded to (opted-in arcs x their languages), not every scope of every page.",
-      "reads": ["dist/*.js (all God Script filenames)", "data/strings/compiled/arcs/index.json (opted-in arc bundles, if any)", "git commit hash"],
-      "writes": ["sw.js"],
-      "loadedBy": [".github/workflows/build-index.yml", "tests/09-build-sw.test.js"],
-      "testedBy": ["tests/09-build-sw.test.js"],
+      "reads": [
+        "dist/*.js (all God Script filenames)",
+        "data/strings/compiled/arcs/index.json (opted-in arc bundles, if any)",
+        "git commit hash"
+      ],
+      "writes": [
+        "sw.js"
+      ],
+      "loadedBy": [
+        ".github/workflows/build-index.yml",
+        "tests/09-build-sw.test.js"
+      ],
+      "testedBy": [
+        "tests/09-build-sw.test.js"
+      ],
       "changeMap": {
         "CORE_ASSETS list": [
           "styles/design-system.css, styles/arc-nav.css, data/index.json (must exist at these paths)",
@@ -793,17 +839,22 @@
         ]
       }
     },
-
     "lib/build-lattice-headers.js": {
       "role": "LATTICE header generator — reads this JSON, writes the matching in-file header into each eligible node's own file",
       "context": "This file exists because lattice-map.json and in-file LATTICE headers used to be two hand-maintained copies of the same facts, which drifted the moment one was edited without the other. This script makes the JSON the write side and the in-file block the generated read side — the same CQRS shape used everywhere else in this repo (nodes.json → index.json, strings/source → strings/compiled). Never hand-edit text between LATTICE:BEGIN/LATTICE:END markers in any file; edit this JSON and run the script.",
-      "reads": ["docs/lattice-map.json"],
-      "writes": ["LATTICE:BEGIN..LATTICE:END block in every eligible node's own file"],
+      "reads": [
+        "docs/lattice-map.json"
+      ],
+      "writes": [
+        "LATTICE:BEGIN..LATTICE:END block in every eligible node's own file"
+      ],
       "loadedBy": [
         "tests/11-lattice-headers.test.js",
         "manual run after editing docs/lattice-map.json"
       ],
-      "testedBy": ["tests/11-lattice-headers.test.js"],
+      "testedBy": [
+        "tests/11-lattice-headers.test.js"
+      ],
       "changeMap": {
         "node added/removed/edited in this JSON": [
           "run: node lib/build-lattice-headers.js to regenerate the affected file's header",
@@ -818,12 +869,16 @@
         ]
       }
     },
-
     "lib/auto-discover-nodes.js": {
       "role": "synthesizes a node-shaped object for any pages/*.html file with no data/nodes.json entry, so adding a page alone is enough to make it visible",
       "context": "Built in response to a real gap: pages merged directly (not through this repo's usual node-first flow) sat completely invisible in data/index.json and pages/archives.html except for an easy-to-miss PR-comment warning (lib/check-key-alignment.js's orphan-page check). discoverOrphanNodes() is called independently by both lib/build-index.js and lib/build-archives.js (see pe-011 — ideally only one of them would need to, if build-archives.js consumed index.json instead of re-deriving from nodes.json). Synthesized nodes are never written back to data/nodes.json — nodes.json stays hand-curated, single source of truth; a real nodes.json entry for the same slug always takes precedence once one exists. A page can declare its own department/workType via <meta name=\"vex:department\"> / <meta name=\"vex:workType\"> tags, entirely without touching JSON; absent that, it falls back to whichever department in data/departments.json is marked default:true.",
-      "reads": ["pages/*.html (title + optional vex:department/vex:workType meta tags)", "wip/*.html (title only, via discoverWipDrafts)"],
-      "writes": ["nothing — pure in-memory synthesis, never persisted to data/nodes.json"],
+      "reads": [
+        "pages/*.html (title + optional vex:department/vex:workType meta tags)",
+        "wip/*.html (title only, via discoverWipDrafts)"
+      ],
+      "writes": [
+        "nothing — pure in-memory synthesis, never persisted to data/nodes.json"
+      ],
       "loadedBy": [
         "lib/build-index.js (feeds data/index.json's slugMap/arcMap/departmentMap)",
         "lib/build-archives.js (feeds the Unsorted section — see pe-011 for why this is two call sites, not one)",
@@ -832,7 +887,10 @@
         "tests/15-departments.test.js (integration test)",
         "tests/21-wip-drafts.test.js"
       ],
-      "testedBy": ["tests/16-auto-discover-nodes.test.js", "tests/21-wip-drafts.test.js"],
+      "testedBy": [
+        "tests/16-auto-discover-nodes.test.js",
+        "tests/21-wip-drafts.test.js"
+      ],
       "changeMap": {
         "synthesized node shape changed (fields added/removed)": [
           "lib/build-index.js (allNodes concat — buildSlugMap/buildArcMap/buildDepartmentMap all consume the result)",
@@ -849,7 +907,6 @@
         ]
       }
     },
-
     "lib/audit-pages.js": {
       "role": "page wiring auditor — read-only report of which pages/*.html are wired to a God Script, blocked, or intentionally skipped",
       "context": "The canonical way to answer 'what's the current wiring status' without manually reading every page. CLAUDE.md points here instead of describing wiring status in prose, since prose goes stale and this doesn't — it reads dist/ and pages/ directly on every run. SKIP_PAGES and BLOCKERS are the only hand-maintained parts; both are dated the moment a page's status actually changes.",
@@ -857,7 +914,9 @@
         "pages/*.html (checks for a dist/vextreme-{slug}.js script src)",
         "dist/*.js (checks which God Scripts exist)"
       ],
-      "writes": ["stdout only — read-only, changes nothing"],
+      "writes": [
+        "stdout only — read-only, changes nothing"
+      ],
       "loadedBy": [
         "manual run: node lib/audit-pages.js",
         "CLAUDE.md (points here as the wiring-status source of truth)",
@@ -867,7 +926,8 @@
         "lib/build-terrain-map.js (getPageSlugs — real page files vs. curated nodes.json entries, for the content/arc layer's uncurated column)",
         "tests/15-departments.test.js",
         "tests/20-roles.test.js",
-        "tests/28-build-terrain-map.test.js"
+        "tests/28-build-terrain-map.test.js",
+        "lib/build-analysis-index.js (reuses getPageSlugs)"
       ],
       "testedBy": [],
       "changeMap": {
@@ -884,12 +944,23 @@
         ]
       }
     },
-
     "lib/check-key-alignment.js": {
       "role": "non-blocking CI check — compares slug/arc keys across nodes.json, arcs-v2.json, index.json, cross-checks pages/ and wip/, and reports drift",
       "context": "JSON is string-based; a slug or arc key can drift between the three files silently (node added but index.json not rebuilt, arc renamed but index stale). This check catches that class of bug with a PR comment, without blocking merge — informational only. Complements lib/audit-pages.js (page wiring) and lib/build-lattice-headers.js --check (header drift) as the third 'silent drift' detector in the repo. Session 022 added two more checks in the same spirit: orphan pages (a pages/*.html file with no nodes.json entry — excludes SKIP_PAGES and data/viewmodels.json-registered dev/demo pages, both legitimate non-node pages) and wip/ slug collisions (a wip/*.json file's optional _meta.slug already exists as a real pages/*.html file). A wip/ slug matching only a nodes.json placeholder with no page yet is deliberately NOT flagged — that's the expected linkage (the placeholder exists precisely to reserve that wip file's destination), not a conflict. Session 022 continued: Victor added wip/victor-methodology-presentation.html directly and found zero automated mapping — this file's wip/ scan only ever read *.json's _meta.slug, never raw *.html. scanWipHtmlDrafts() closes that: every wip/*.html file's filename becomes its working slug (derived, not declared), scraped the same way lib/auto-discover-nodes.js's discoverWipDrafts scrapes a title, and merged into the same collision/duplicate-intent checks as json-declared intents — a draft's filename colliding with a real page is exactly as real a mistake either way. Session 025 (continued): a real gap found the hard way — the victor_dossier arc existed in arcs-v2.json and even reached index.json cleanly, but its one real page was unreachable from Archives for a full session because three separate hand-maintained rendering constants (lib/build-archives.js's ARC_ORDER and ARC_KEY_MAP, lib/build-index-page.js's own separate priority-1-only ARC_ORDER) each independently needed the same arc key added and none of them were. findArcsUnwiredInRendering() closes that: scans the two files' source TEXT via regex (not require(), since both files execute their build as a side effect at require-time with no require.main guard) and reports any arc present in arcs-v2.json but absent from any of the three constants. This is the same shape of gap as PR #74's SKIP_PAGES dual-meaning fix — a piece of real data agreeing with itself while a separate rendering list silently doesn't know about it — but a different list, a different silent-failure mode, caught only because Victor happened to look for the page and not find it.",
-      "reads": ["data/nodes.json", "data/arcs-v2.json", "data/index.json", "data/viewmodels.json", "wip/*.json (_meta.slug field only)", "wip/*.html (filename-derived slug + title, via lib/auto-discover-nodes.js discoverWipDrafts)", "lib/audit-pages.js (SKIP_PAGES, getPageSlugs)", "lib/build-archives.js (source text — ARC_ORDER, ARC_KEY_MAP, regex-scanned not required)", "lib/build-index-page.js (source text — its own separate ARC_ORDER, regex-scanned not required)"],
-      "writes": ["stdout (JSON report with --json flag); PR comment via .github/workflows/key-alignment.yml"],
+      "reads": [
+        "data/nodes.json",
+        "data/arcs-v2.json",
+        "data/index.json",
+        "data/viewmodels.json",
+        "wip/*.json (_meta.slug field only)",
+        "wip/*.html (filename-derived slug + title, via lib/auto-discover-nodes.js discoverWipDrafts)",
+        "lib/audit-pages.js (SKIP_PAGES, getPageSlugs)",
+        "lib/build-archives.js (source text — ARC_ORDER, ARC_KEY_MAP, regex-scanned not required)",
+        "lib/build-index-page.js (source text — its own separate ARC_ORDER, regex-scanned not required)"
+      ],
+      "writes": [
+        "stdout (JSON report with --json flag); PR comment via .github/workflows/key-alignment.yml"
+      ],
       "loadedBy": [
         ".github/workflows/key-alignment.yml (auto-run on pull_request)",
         "tests/08-build-vextreme.test.js (KEY-ALIGNMENT tests)",
@@ -897,7 +968,10 @@
         "lib/apply-content-intents.js (validates department/arcKey against the same maps)",
         "tests/21-wip-drafts.test.js"
       ],
-      "testedBy": ["tests/08-build-vextreme.test.js", "tests/21-wip-drafts.test.js"],
+      "testedBy": [
+        "tests/08-build-vextreme.test.js",
+        "tests/21-wip-drafts.test.js"
+      ],
       "changeMap": {
         "report schema changed": [
           ".github/workflows/key-alignment.yml (formats the PR comment table from this shape)",
@@ -914,18 +988,23 @@
         ]
       }
     },
-
     "lib/detect-wip-promotions.js": {
       "role": "detects a wip/*.html → pages/*.html move within a PR's diff, so a promotion shows up as a positive PR notice instead of silence or a false 'broken reference'",
       "context": "The second half of Victor's stated intent (Session 022 continued): once a wip/*.html draft has an initial mapping (lib/auto-discover-nodes.js discoverWipDrafts / lib/check-key-alignment.js scanWipHtmlDrafts), moving it to pages/{same-slug}.html later should read as a reconciliation, not an error. Deliberately reuses git's own similarity-based rename detection (git diff --name-status -M) rather than persisting any cross-build state to compare against — nothing tracks 'this slug used to be in wip/', so there is nothing to go stale or conflict when the file moves; the draft simply stops appearing in scanWipHtmlDrafts's next-build output, which is correct behavior by construction, not a special case handled here. This file only adds the positive notice on top of that already-correct baseline.",
-      "reads": ["git diff --name-status -M output between two refs (wip/ and pages/ paths only)"],
-      "writes": ["stdout (JSON with --json flag); PR comment via .github/workflows/key-alignment.yml"],
+      "reads": [
+        "git diff --name-status -M output between two refs (wip/ and pages/ paths only)"
+      ],
+      "writes": [
+        "stdout (JSON with --json flag); PR comment via .github/workflows/key-alignment.yml"
+      ],
       "loadedBy": [
         "manual run: node lib/detect-wip-promotions.js <base-ref> [<head-ref>]",
         ".github/workflows/key-alignment.yml (CI, Session 022 continued)",
         "tests/21-wip-drafts.test.js"
       ],
-      "testedBy": ["tests/21-wip-drafts.test.js"],
+      "testedBy": [
+        "tests/21-wip-drafts.test.js"
+      ],
       "changeMap": {
         "promotion shape changed (fields added/removed)": [
           ".github/workflows/key-alignment.yml (formats the PR comment section from this shape)",
@@ -936,7 +1015,6 @@
         ]
       }
     },
-
     "lib/build-status.js": {
       "role": "system health manifest assembler — reads hand-authored status/*.json plus the strings manifest and key-alignment report, writes data/status.json",
       "context": "The write side of the 'what's still open' picture: six notice categories (translation debt and contentIntegrity auto-derived, techDebt/enhancements/assumptions/openDiscussions hand-authored) roll up into one artifact pages/ecosystem-hub.html fetches live. Also computes lattice coverage (mapped nodes vs. total eligible .js files in lib/+widgets/) into _meta.lattice, so the hub can show it without re-deriving the eligibility rule. openDiscussions (added Session 015) is deliberately separate from techDebt/enhancements — see data/status/open-discussions.json's _comment for why. contentIntegrity (Session 022) is auto-generated like translation, not hand-authored like the other three. Also Session 022: this generator had been run and committed by hand every session with no CI step actually calling it — now wired into .github/workflows/build-index.yml alongside lib/build-ecosystem-hub.js and the new lib/build-lessons.js. Later, Session 022: _meta.generated (wall-clock timestamp) and _meta.commit (git SHA at build time) removed entirely — neither was consumed anywhere, and both guaranteed a manufactured merge conflict any time two branches independently regenerated this file from identical source data (real incident, PR #50). Output is now content-deterministic: identical input always produces a byte-identical file. See config/lessons/generated-artifacts-must-be-content-deterministic.json.",
@@ -953,14 +1031,19 @@
         "lib/ and widgets/ directory listings (.js files, for coverage denominator)",
         "lib/check-key-alignment.js (checkKeyAlignment() — orphan pages, wip collisions/duplicate intents)"
       ],
-      "writes": ["data/status.json"],
+      "writes": [
+        "data/status.json"
+      ],
       "loadedBy": [
         "pages/ecosystem-hub.html (live fetch of its output data/status.json)",
         ".github/workflows/build-index.yml (CI, Session 022)",
         "tests/10-build-status.test.js",
         "tests/21-wip-drafts.test.js"
       ],
-      "testedBy": ["tests/10-build-status.test.js", "tests/21-wip-drafts.test.js"],
+      "testedBy": [
+        "tests/10-build-status.test.js",
+        "tests/21-wip-drafts.test.js"
+      ],
       "changeMap": {
         "notice category added/removed": [
           "lib/build-ecosystem-hub.js (render order array + icon map)",
@@ -981,7 +1064,6 @@
         ]
       }
     },
-
     "lib/apply-content-intents.js": {
       "role": "applies config/content-intents.json's pending entries — mutates pages/*.html meta tags and data/arcs-v2.json's auto-managed sections, then runs the existing sanity-check pipeline",
       "context": "Session 022: generalizes the existing vex:department/vex:workType meta-tag pattern (declare intent on the page, let a build step read it) to arc membership too. Rather than inventing a new order:\"auto\" mode in arcs-v2.json's schema, each arc gets one ordinary explicit section with a reserved label (AUTO_SECTION_LABEL) that this tool alone manages — lib/build-archives.js's getArcSlugs() and lib/build-index.js's buildArcMap() need zero changes, since a flat explicit slugs array is exactly what they already render. Re-declaring a slug's arcKey moves it (removes from every other arc's auto section first) rather than duplicating it — the 'repo's own self-awareness of its prior mappings' Victor asked for. Never touches a hand-curated (non-auto-label) section — arc curation stays a human act. validateIntent() catches two silent-failure modes found by actually running this against real content: an unregistered department (buildDepartmentMap groups by any string with no validation, but build-ecosystem-hub.js's renderDepartments() only iterates departmentMeta's registered keys, so unregistered content is present in index.json but rendered nowhere) and a nonexistent arcKey (applyArcPlacement would otherwise throw mid-loop, aborting every remaining intent in the same run). Also: upsertMetaTag() must prepend rather than insert-before-</head> for pages with no <head> at all — several real candidate pages (about-me.html, connect.html) are Squarespace paste-block fragments with no HTML document wrapper; found by running this tool against them, not anticipated in advance. After applying, shells out to lib/build-index.js (the real BLOCK gate for duplicate slugs) then calls lib/check-key-alignment.js's checkKeyAlignment() directly as the sanity-check report, same as every other content change in this repo is verified against.",
@@ -1000,7 +1082,9 @@
         "manual run: node lib/apply-content-intents.js",
         "tests/18-apply-content-intents.test.js"
       ],
-      "testedBy": ["tests/18-apply-content-intents.test.js"],
+      "testedBy": [
+        "tests/18-apply-content-intents.test.js"
+      ],
       "changeMap": {
         "content-intents.json schema changed (new field, field renamed)": [
           "applyIntent() in this file",
@@ -1014,19 +1098,24 @@
         ]
       }
     },
-
     "lib/build-lessons.js": {
       "role": "compiles config/lessons/*.json into data/lessons.json — the read-side manifest the Ecosystem Hub fetches",
       "context": "config/lessons/*.json has been the write-side home for distilled architectural/process lessons since Session 010 (see docs/architecture/08-continuity.md's collaboration-documents table), but nothing compiled those files into anything pages/ecosystem-hub.html — the one dashboard meant to answer 'what does this system currently know' — could read. A lesson was discoverable (git log --grep, grepping the directory, or the partial hand-authored decision cards in pages/specimen-architectural-wisdoms.html) but not connected to the generated read side, the same shape of gap lib/auto-discover-nodes.js closed for pages/ in the same session. Handles two lesson-file schema generations: newer files use sessions: [...], older ones (Session 010-011) use pr/session singular fields — both normalize to one sessions array in the output. Session 025 (continued) — added relatedPRs (array) and resolvedByPR (single number) pass-through fields, both optional/defaulting to empty/null: a lesson chasing one bug across several necessary-but-insufficient fixes (see caching-layers-multiply-and-each-one-can-independently-hide-a-fix.json) needs to name every PR in the chain and distinguish which one actually closed it, a Jira-style 'resolved by' vs 'related to' distinction. Victor also pointed out plain 'PR #N' text anywhere in this repo (here, and the pre-existing addedPR field on status.json debt items) was never actually clickable — lib/build-ecosystem-hub.js's new prLink() helper fixes both.",
-      "reads": ["config/lessons/*.json (every lesson file, both schema generations)"],
-      "writes": ["data/lessons.json"],
+      "reads": [
+        "config/lessons/*.json (every lesson file, both schema generations)"
+      ],
+      "writes": [
+        "data/lessons.json"
+      ],
       "loadedBy": [
         "manual run: node lib/build-lessons.js",
         ".github/workflows/build-index.yml (CI, Session 022)",
         "pages/ecosystem-hub.html (live fetch of the compiled output)",
         "tests/17-build-lessons.test.js"
       ],
-      "testedBy": ["tests/17-build-lessons.test.js"],
+      "testedBy": [
+        "tests/17-build-lessons.test.js"
+      ],
       "changeMap": {
         "a new lesson file added to config/lessons/": [
           "no action needed — this script picks up every *.json file in the directory automatically on its next run (manual or CI)"
@@ -1038,7 +1127,6 @@
         ]
       }
     },
-
     "lib/build-ecosystem-hub.js": {
       "role": "generates pages/ecosystem-hub.html — the admin+AI-facing system state dashboard",
       "context": "Static chrome generated at build time; all data (index.json, status.json, status/narrative.json, lessons.json) is fetched live in the browser at render time, so the page stays current between rebuilds without needing this generator re-run for data-only changes. Session 015 rewrote the CSS after finding it referenced --stone-950/--font-mono tokens that styles/design-system.css never defines — text rendered near-invisible. Now uses only the site's real tokens (--stone, --muted, --border, --cream, --ember, --mono), same as lib/build-demo.js. Session 022 found this file (and lib/build-status.js) had been generated and committed every session but never actually wired into .github/workflows/build-index.yml — both were regenerated by hand each time, an unenforced manual ritual with no CI backstop if a session forgot. Now wired into the workflow alongside the new lib/build-lessons.js, so a Content Map / System Health / Lessons Learned change lands in the committed HTML automatically, same as every other generated artifact in this pipeline.",
@@ -1049,13 +1137,17 @@
         "data/lessons.json (live fetch, browser)",
         "data/council-kernel.json (live fetch, browser)"
       ],
-      "writes": ["pages/ecosystem-hub.html"],
+      "writes": [
+        "pages/ecosystem-hub.html"
+      ],
       "loadedBy": [
         "manual run: node lib/build-ecosystem-hub.js",
         ".github/workflows/build-index.yml (CI, Session 022)",
         "tests/12-ecosystem-hub.test.js"
       ],
-      "testedBy": ["tests/12-ecosystem-hub.test.js"],
+      "testedBy": [
+        "tests/12-ecosystem-hub.test.js"
+      ],
       "changeMap": {
         "CSS custom property used in the inline <style> block": [
           "styles/design-system.css — the property must actually be defined there (--stone, --muted, --border, --cream, --ember, --ember-bg, --mono, --serif, --sans); anything else silently renders with no fallback"
@@ -1085,7 +1177,6 @@
         ]
       }
     },
-
     "lib/build-roles.js": {
       "role": "compiles data/council-kernel.json's roster + data/status/*.json's lens fields into data/roles.json — the traceable roles/contributions registry",
       "context": "Session 022's Council Lenses panel gave each role a name and a place to be looked up, but named nothing about which real decisions had actually invoked a role's judgment — Victor's follow-up ask named this directly: roles should be 'positioned' with 'traceability', not randomly placed. This script closes that gap by cross-referencing every data/status/*.json item's optional lens field against the kernel roster, so a role's page shows either real linked contributions or an explicit zero, never silence. position is deliberately the same string for every role today ('org-wide — The Council') since only one council exists in this repo — claiming a per-department position would overclaim a structure (per-department Bridge Councils) that doesn't exist yet. channels pass connectionArchitecture through with one added field, manifestation, naming what (if anything) currently instantiates that channel for real rather than only describing it in the abstract.",
@@ -1095,14 +1186,18 @@
         "data/status/tech-debt.json",
         "data/status/planned-enhancements.json"
       ],
-      "writes": ["data/roles.json"],
+      "writes": [
+        "data/roles.json"
+      ],
       "loadedBy": [
         "manual run: node lib/build-roles.js",
         ".github/workflows/build-index.yml (CI)",
         "pages/roles-index.html (live fetch of its output data/roles.json — via lib/build-roles-page.js)",
         "tests/20-roles.test.js"
       ],
-      "testedBy": ["tests/20-roles.test.js"],
+      "testedBy": [
+        "tests/20-roles.test.js"
+      ],
       "changeMap": {
         "an item gets (or loses) a lens field in data/status/*.json": [
           "no action needed — this script picks it up automatically on its next run"
@@ -1114,18 +1209,23 @@
         ]
       }
     },
-
     "lib/build-roles-page.js": {
       "role": "generates pages/roles-index.html — the traceable roles/contributions dashboard",
       "context": "Static chrome generated at build time; data/roles.json is fetched live in the browser at render time, same pattern as lib/build-ecosystem-hub.js. Deliberately a separate page rather than a bigger Council Lenses panel on the hub — Victor asked for 'an index json and webpage', and a role's full contribution list doesn't fit the hub's compact one-line-per-item health-panel style without crowding it. Linked from the hub's Council Lenses section ('Full roles & contributions →') rather than duplicated there.",
-      "reads": ["data/roles.json (live fetch, browser)"],
-      "writes": ["pages/roles-index.html"],
+      "reads": [
+        "data/roles.json (live fetch, browser)"
+      ],
+      "writes": [
+        "pages/roles-index.html"
+      ],
       "loadedBy": [
         "manual run: node lib/build-roles-page.js",
         ".github/workflows/build-index.yml (CI)",
         "tests/20-roles.test.js"
       ],
-      "testedBy": ["tests/20-roles.test.js"],
+      "testedBy": [
+        "tests/20-roles.test.js"
+      ],
       "changeMap": {
         "data/roles.json schema changed": [
           "renderRoles() / renderChannels() in this file's generated JS",
@@ -1137,7 +1237,6 @@
         ]
       }
     },
-
     "lib/build-terrain-map.js": {
       "role": "terrain-map write side — computes layout, health, edges, and real screenshots into one deterministic JSON",
       "context": "Session 025 generalized the terrain-map pilot (an Artifact over 14 hand-picked nodes shown to Victor as a proof of concept) into a real, self-updating feature. Same CQRS split as data/status.json -> pages/ecosystem-hub.html: this script is the write side, pages/terrain-map.html is hand-authored once and live-fetches its output. Adding a lattice node, a page, or a screenshot never requires touching the HTML — only rerunning this generator, wired into CI the same as every other dashboard's data source. Session 025 (continued) replaced the folder-grid layout with a lifecycle-stage layout (source -> generate -> utilities -> check -> output -> runtime) and added two role-lens tags per node (engineerFocus / auditorFocus), after a round of Artifact POCs tested a fractal zoom-level UI (system -> stage -> node, each level snapping to its own full framing on entry, exiting always stepping back one level) against this exact shape. The stage/lens rules are naming-pattern heuristics over real fields, explicitly not a designed taxonomy — each node's lens tags render visibly in the UI so the heuristic can be challenged, not hidden behind a silent classification. Session 025 (continued) again: added computeExecutionOrder (real within-stage ordering sourced from .github/workflows/build-index.yml's literal step sequence and lib/session-bootstrap.js's own check order, not alphabetical) and per-node auditorRank (an alternate within-stage ordering by worst-status-first — the read side swaps to it, recomputing position, only while the auditor lens is active). Also added a second, parallel content layer (layoutArcs/buildContentPages -> the `arcs`/`pages` output fields): the same column-per-group technique applied to data/nodes.json grouped by arc instead of lifecycle stage, ordered within an arc by each node's own real `id` field (curation order) rather than alphabetically. A curated node with no matching pages/*.html file is marked live:false, status:'critical' rather than implied to be a real page — most of this repo's 91 curated nodes are unported v1 content, and that is real, common state to show, not an edge case to hide. A real pages/*.html file with no nodes.json entry lands in a distinct 'uncurated' arc column instead of being silently absent.",
@@ -1151,14 +1250,19 @@
         "lib/audit-pages.js (getPageSlugs — real page files vs. curated nodes.json entries, for the content layer's uncurated column and each page's live flag)",
         "docs/screenshots/*.png (directory listing — which pages have a real per-language screenshot)"
       ],
-      "writes": ["data/terrain-map.json"],
+      "writes": [
+        "data/terrain-map.json"
+      ],
       "loadedBy": [
         "manual run: node lib/build-terrain-map.js",
         ".github/workflows/build-index.yml (CI)",
         "pages/terrain-map.html (live fetch of its output)",
+        "tests/28-build-terrain-map.test.js",
+        "lib/build-analysis-index.js (reuses findScreenshots)"
+      ],
+      "testedBy": [
         "tests/28-build-terrain-map.test.js"
       ],
-      "testedBy": ["tests/28-build-terrain-map.test.js"],
       "changeMap": {
         "docs/lattice-map.json schema changed (reads/writes/loadedBy/testedBy shape)": [
           "computeEdges() / findDebtReferences() here read those fields directly"
@@ -1176,13 +1280,16 @@
         ]
       }
     },
-
     "pages/terrain-map.html": {
       "role": "the terrain map's read side — a navigable health/dependency atlas, live-fetches data/terrain-map.json",
       "context": "Hand-authored once, like pages/ecosystem-hub.html's own interaction chrome; unlike that file, this one is not itself regenerated by a build script — only its data source (data/terrain-map.json) is. Session 025 (continued) replaced the pan/zoom-anywhere SVG map with a fractal zoom-level ladder (system -> stage -> node), reached after a round of Artifact POCs tested the interaction model live before anything landed here — see docs/culture.md's 'prove the model before committing anything' precedent. Each level snaps the camera to its own full framing on entry (fitRectToView); exiting always steps back exactly one level, never straight to the top — that asymmetry was a real bug in the POCs (zooming out from the deepest level skipped the middle one) fixed by making the level ladder an explicit array instead of deriving level from a raw continuous scale number. A grown-radius focus mechanism opens a right-docked detail panel (a true CSS overlay drawer, not a reserved layout column — the map always measures the full viewport whether the panel is open or closed, fixed after Session 025 (continued) first shipped it as a static flex column that silently shrank the navigable canvas by 340px at all times). Reads/Writes/Loaded-by entries in the panel that name a real lattice node are clickable and travel the camera there (resolveRef/travelTo). Two lenses (Engineer / Auditor) recede off-lens nodes rather than hiding them, per the 'reveal state, never skip nor hide' principle from the Archives-visibility regression review. Screens (live pages with real screenshots) render as one more stage column, client-computed same as before — this file's only true hand-authored data. Adding a page, lattice node, or screenshot needs no edit here — only a rebuild of data/terrain-map.json.",
-      "reads": ["data/terrain-map.json (live fetch, browser)"],
+      "reads": [
+        "data/terrain-map.json (live fetch, browser)"
+      ],
       "writes": [],
-      "loadedBy": ["manual browsing only — not embedded elsewhere yet"],
+      "loadedBy": [
+        "manual browsing only — not embedded elsewhere yet"
+      ],
       "testedBy": [],
       "changeMap": {
         "data/terrain-map.json schema changed (nodes/edges/stages/screens shape)": [
@@ -1196,7 +1303,6 @@
         ]
       }
     },
-
     "lib/build-archives.js": {
       "role": "generates pages/archives.html — the complete page registry: every arc's slugs as ported/missing cells, plus unsorted and dev/demo pages",
       "context": "Session 022 added an 'Unsorted (No Arc)' section: nodes.json entries with empty arcKeys are invisible in every arc section (those only ever iterate ARC_ORDER), which was a real gap for department-only content (phantom-opera-meta-review, vxg-thread-round-5) that has no arc membership yet. Sits alongside the pre-existing 'Dev & Demo Pages' section (viewmodels.json category:demo pages, which aren't nodes.json entries at all) as a second, distinct population of non-arc content — the two are kept separate rather than merged, since 'a real node with no arc yet' and 'a non-node dev fixture' are different states worth telling apart at a glance. Same session, later: also calls lib/auto-discover-nodes.js's discoverOrphanNodes() (same function lib/build-index.js calls) so a page merged with no nodes.json entry at all shows up in the Unsorted section automatically, not just as a PR-comment warning. This file reads nodes.json/arcs-v2.json directly rather than data/index.json — a pre-existing violation of 'everything downstream reads index.json' (see pe-011) that made this auto-discovery wiring a two-place job instead of one. Also Session 022: ARC_KEY_MAP's comment wrongly claimed data/arcs.json (the unrelated v1 file) uses kebab-case arc keys — it doesn't; both arcs files use snake_case, and the kebab-case format is purely the i18n string-key convention. Fixed the comment; see docs/architecture/03-data.md's 'v1 vs v2' section and config/lessons/v1-arcs-json-is-frozen-not-a-sync-target.json for the full v1/v2 relationship this traced.",
@@ -1211,7 +1317,9 @@
         "lib/audit-pages.js (SKIP_PAGES, getPageSlugs)",
         "lib/auto-discover-nodes.js (discoverOrphanNodes, readPageFromDisk)"
       ],
-      "writes": ["pages/archives.html"],
+      "writes": [
+        "pages/archives.html"
+      ],
       "loadedBy": [
         "manual run: node lib/build-archives.js",
         ".github/workflows/build-index.yml"
@@ -1231,7 +1339,6 @@
         ]
       }
     },
-
     "lib/check-design-tokens.js": {
       "role": "non-blocking-in-spirit, blocking-in-practice check — every var(--token) reference in generated pages and stylesheets must resolve against a real token",
       "context": "Built od-004's concrete deliverable: an automated replacement for remembering to check CSS token usage by hand. Two legitimate token families exist — the global light theme in styles/design-system.css, and a self-contained local dark :root block repeated across lib/build-archives.js, build-demo.js, build-specimens.js, and pages/specimen-architectural-wisdoms.html (see docs/architecture/12-design-system.md). A file's valid tokens are its own local :root tokens, plus the global set only if it actually links design-system.css — a fallback value inside var(--x, #hex) does not count as the token being defined, since that's exactly the pattern that partially masked the Session 015 bug.",
@@ -1241,12 +1348,16 @@
         "pages/*.html (every static page, scanned for inline <style> content)",
         "styles/*.css (every companion stylesheet, credited with global tokens unconditionally — see alwaysGlobal)"
       ],
-      "writes": ["stdout only — read-only, changes nothing"],
+      "writes": [
+        "stdout only — read-only, changes nothing"
+      ],
       "loadedBy": [
         "manual run: node lib/check-design-tokens.js",
         "tests/13-check-design-tokens.test.js (also runs it as a CI-gating integration test)"
       ],
-      "testedBy": ["tests/13-check-design-tokens.test.js"],
+      "testedBy": [
+        "tests/13-check-design-tokens.test.js"
+      ],
       "changeMap": {
         "a new local dark-theme file added": [
           "no action needed — checkFile() reads each file's own :root block dynamically, nothing to register"
@@ -1260,15 +1371,19 @@
         ]
       }
     },
-
     "lib/logger.js": {
       "role": "structured logger — every build script's warn/info/error call goes through here",
       "context": "The widest fan-in of any file in lib/: nearly every build script imports { logger } and calls logger.warn({ code, message, ...fields }) rather than console.warn directly. Optional fields attach without changing the call signature — a call site can add { arc, slug } without touching any other call site. Swapping the backing store (e.g. write to a DB instead of console) means changing the three methods here, not every call site.",
       "reads": [],
-      "writes": ["stdout/stderr via console.warn/log/error"],
+      "writes": [
+        "stdout/stderr via console.warn/log/error"
+      ],
       "loadedBy": [
-        "lib/build-index.js", "lib/build-vextreme.js", "lib/build-lattice-headers.js",
-        "lib/strings-compile.js", "lib/strings-check.js",
+        "lib/build-index.js",
+        "lib/build-vextreme.js",
+        "lib/build-lattice-headers.js",
+        "lib/strings-compile.js",
+        "lib/strings-check.js",
         "every other lib/build-*.js and lib/check-*.js script that logs a warning"
       ],
       "testedBy": [],
@@ -1281,13 +1396,18 @@
         ]
       }
     },
-
     "lib/logger-codes.js": {
       "role": "event code registry — the CODES constant every logger.warn/error call references",
       "context": "Adding a new logger call site means adding its code here first — grouped by the file that emits it, with a comment documenting the optional fields that call carries. Prevents the same failure mode magic-strings-to-constants.json (config/lessons/) already names for other string literals: a typo'd code string silently creates a new, uncorrelated event instead of erroring.",
       "reads": [],
       "writes": [],
-      "loadedBy": ["lib/build-index.js", "lib/build-vextreme.js", "lib/build-lattice-headers.js", "lib/strings-compile.js", "lib/strings-check.js"],
+      "loadedBy": [
+        "lib/build-index.js",
+        "lib/build-vextreme.js",
+        "lib/build-lattice-headers.js",
+        "lib/strings-compile.js",
+        "lib/strings-check.js"
+      ],
       "testedBy": [],
       "changeMap": {
         "a new logger.warn/error call site added": [
@@ -1298,7 +1418,6 @@
         ]
       }
     },
-
     "lib/validate-blueprint.js": {
       "role": "blueprint consistency validator — confirms every id in blueprint.json has a matching config file and vex-config constant",
       "context": "blueprint.json declares which feature/category/assetType/template ids exist; config/{type}/{id}.json is expected to exist for each with required fields; vex-config.js's Feature/Category/AssetType constants are expected to cover every id too. This script is the only thing that actually checks all three agree — exits 1 and lists every mismatch if they don't.",
@@ -1308,9 +1427,16 @@
         "config/{categories,features,asset-types,templates}/{id}.json",
         "lib/vex-config.js (Category, Feature, AssetType constants)"
       ],
-      "writes": ["stdout only — read-only, changes nothing"],
-      "loadedBy": ["manual run: node lib/validate-blueprint.js", "tests/06-blueprint.test.js"],
-      "testedBy": ["tests/06-blueprint.test.js"],
+      "writes": [
+        "stdout only — read-only, changes nothing"
+      ],
+      "loadedBy": [
+        "manual run: node lib/validate-blueprint.js",
+        "tests/06-blueprint.test.js"
+      ],
+      "testedBy": [
+        "tests/06-blueprint.test.js"
+      ],
       "changeMap": {
         "a new id added to blueprint.json": [
           "config/{type}/{id}.json must exist with the required fields config/_meta.json declares for that type",
@@ -1321,13 +1447,20 @@
         ]
       }
     },
-
     "lib/build-sitemap.js": {
       "role": "generates sitemap.xml — lists only pages that actually exist, so crawlers never hit a 404",
       "context": "Filters nodes.json down to nodes with both a non-null id and an actual pages/{slug}.html file on disk before including them — unported nodes are silently excluded rather than producing a dead sitemap entry. UTILITY_PAGES is a small hardcoded list of non-node pages (archives, vextreme-demo, specimens) to include if they exist. Session 027: lastmod per URL used to be a single build-time 'today' stamped on every entry regardless of whether that page's content actually changed — since build-index.yml's trigger paths cover nearly any change, this meant 'everything changed today' on almost every build, defeating the point of lastmod for crawlers. Now computed per file via `git log -1 --format=%aI` (real last-change date), falling back to today only when git can't resolve one. No test file exists for this script (also true before this change) — consistent with several other simple page-generating build-*.js scripts (build-archives, build-demo, build-index-page, build-specimens) that are also untested top-level scripts, not a gap unique to this fix.",
-      "reads": ["data/nodes.json", "pages/*.html (existence check only, per slug)", "git log (per-file last-change date, via subprocess)"],
-      "writes": ["sitemap.xml"],
-      "loadedBy": [".github/workflows/build-index.yml"],
+      "reads": [
+        "data/nodes.json",
+        "pages/*.html (existence check only, per slug)",
+        "git log (per-file last-change date, via subprocess)"
+      ],
+      "writes": [
+        "sitemap.xml"
+      ],
+      "loadedBy": [
+        ".github/workflows/build-index.yml"
+      ],
       "testedBy": [],
       "changeMap": {
         "a new utility page added (non-node, not from nodes.json)": [
@@ -1335,7 +1468,6 @@
         ]
       }
     },
-
     "lib/strings-check.js": {
       "role": "strings pipeline integrity check — runs before compile, catches missing EN text, stale translations, and orphaned keys",
       "context": "Four severity levels: BLOCK (missing EN text — compile cannot proceed, exits 1), REMAP (key found in migrations.json — auto-remaps in source), WARN (EN text changed since last compile — tags existing translations _stale), INFO (orphaned key whose EN text hash matches another key — suggests a missing migration entry). Unmatched orphans get quarantined to data/strings/orphans.json rather than silently dropped. Mutates source files in place for REMAP and WARN cases — this is the one script in the strings pipeline that writes back into data/strings/source/, not just reads it.",
@@ -1349,7 +1481,9 @@
         "data/strings/source/**/*.json (in-place mutation: remap/delete keys, tag stale translations)",
         "data/strings/orphans.json (quarantined unknown keys)"
       ],
-      "loadedBy": ["manual run: node lib/strings-check.js (intended to run before lib/strings-compile.js)"],
+      "loadedBy": [
+        "manual run: node lib/strings-check.js (intended to run before lib/strings-compile.js)"
+      ],
       "testedBy": [],
       "changeMap": {
         "manifest schema changed (enHash field)": [
@@ -1361,13 +1495,20 @@
         ]
       }
     },
-
     "lib/build-index-page.js": {
       "role": "generates index.html — the root landing page, arc hub links plus the 5 most recently added nodes",
       "context": "The first page a visitor or crawler hits. Reads nodes.json directly for recency (by id, not date) rather than going through data/index.json's arcMap, since 'most recently added' is a raw-nodes-order question, not an arc-position question. Has its own local :root light-theme token block (see docs/architecture/12-design-system.md) — a renamed restatement of styles/design-system.css's tokens, not a copy of the dashboard dark theme; noted there as a minor non-urgent migration opportunity, not tracked as debt.",
-      "reads": ["data/nodes.json", "data/arcs-v2.json", "pages/*.html (existence check, per slug)"],
-      "writes": ["index.html"],
-      "loadedBy": [".github/workflows/build-index.yml"],
+      "reads": [
+        "data/nodes.json",
+        "data/arcs-v2.json",
+        "pages/*.html (existence check, per slug)"
+      ],
+      "writes": [
+        "index.html"
+      ],
+      "loadedBy": [
+        ".github/workflows/build-index.yml"
+      ],
       "testedBy": [],
       "changeMap": {
         "local :root token values changed": [
@@ -1378,7 +1519,6 @@
         ]
       }
     },
-
     "lib/session-bootstrap.js": {
       "role": "one-shot session-start state report — read-only, gathers what would otherwise be several manual checks into one command",
       "context": "Written directly in response to a standing observation recorded in docs/culture.md ('What an AI instance actually needs here'): reconstructing 'what's the current state' at the start of a session meant reading INDEX.json, running git log, and running three separate verification commands by hand, every time. Not a replacement for the continuity system — this is the fast mechanical glance (is anything broken, what changed, how many open items); the reasoning behind any of it still lives in the continuity log. Guards against a real recursion hazard: it runs the full test suite internally, which includes its own test file (tests/14), whose integration tests would otherwise spawn this script again — VEX_BOOTSTRAP_NESTED=1 tells that nested run to skip instead of recursing.",
@@ -1393,9 +1533,18 @@
         "node lib/check-continuity-lag.js --json (via subprocess)",
         "node --test tests/*.test.js (via subprocess, with VEX_BOOTSTRAP_NESTED=1 to prevent recursion)"
       ],
-      "writes": ["stdout only — read-only, changes nothing"],
-      "loadedBy": ["manual run: node lib/session-bootstrap.js", "tests/14-session-bootstrap.test.js", "lib/check-map-bindings.js (requires the parse/latest helpers)", "lib/check-continuity-lag.js (requires parseBatchRegistry/latestSessionFile helpers)"],
-      "testedBy": ["tests/14-session-bootstrap.test.js"],
+      "writes": [
+        "stdout only — read-only, changes nothing"
+      ],
+      "loadedBy": [
+        "manual run: node lib/session-bootstrap.js",
+        "tests/14-session-bootstrap.test.js",
+        "lib/check-map-bindings.js (requires the parse/latest helpers)",
+        "lib/check-continuity-lag.js (requires parseBatchRegistry/latestSessionFile helpers)"
+      ],
+      "testedBy": [
+        "tests/14-session-bootstrap.test.js"
+      ],
       "changeMap": {
         "docs/continuity/INDEX.md's 'Last updated' line or Batch Registry table format changed": [
           "parseLastSession() / parseBatchRegistry() here — both parse that exact markdown shape by regex"
@@ -1415,7 +1564,6 @@
         ]
       }
     },
-
     "lib/append-session-continuation.js": {
       "role": "append-only continuity helper — appends a same-session continuation block at EOF without treating the VXG marker as an insertion anchor",
       "context": "Built after Codex nearly repeated Session 023's continuity-placement failure shape while appending a Session 024 continuation: repeated VXG markers and display-path encoding made text-patch anchors brittle. This helper encodes the local rule physically: a continuation starts with '### Session continued', the target session file must already end with the VXG marker, line endings are preserved, and the new block is appended after EOF rather than inserted before any marker. The VXG marker remains a completion boundary/signature, not a search target.",
@@ -1423,12 +1571,16 @@
         "docs/continuity/batch-{NNN}/{YYYY-MM-DD-session-0NN}.md (target session file)",
         "{continuation}.md (caller-provided continuation block)"
       ],
-      "writes": ["docs/continuity/batch-{NNN}/{YYYY-MM-DD-session-0NN}.md (append-only EOF continuation)"],
+      "writes": [
+        "docs/continuity/batch-{NNN}/{YYYY-MM-DD-session-0NN}.md (append-only EOF continuation)"
+      ],
       "loadedBy": [
         "manual run: node lib/append-session-continuation.js <session-file.md> <continuation.md>",
         "tests/24-append-session-continuation.test.js"
       ],
-      "testedBy": ["tests/24-append-session-continuation.test.js"],
+      "testedBy": [
+        "tests/24-append-session-continuation.test.js"
+      ],
       "changeMap": {
         "continuation heading convention changed": [
           "docs/continuity/batch-003/README.md (local rule)",
@@ -1446,7 +1598,6 @@
         ]
       }
     },
-
     "lib/check-map-bindings.js": {
       "role": "pe-013 layered-maps drift detector — verifies the bindings between cold-start maps and the files they claim to bind",
       "context": "Built in Session 024 after Session 023's continuity entries were injected into the wrong session record and nothing mechanical noticed: INDEX.md claimed one latest session while the record held another. The layered-maps culture (docs/culture.md) says every new context layer needs the health check that would detect its map drifting; this is that check for the continuity layer. Checks: CLAUDE.md → CONTEXT-NOTES.md pointer; CONTEXT-NOTES.md Notes table ↔ context-notes/*.md both directions; Batch Registry rows exist, exactly one active row, last, agreeing with the Active batch line; directory-form batch has README.md and convention-named session files inside the declared range; INDEX.md's 'Last updated: Session NNN' equals the newest session file on disk. Any finding exits 1 — drift posture like build-lattice-headers --check, not informational like check-key-alignment.",
@@ -1458,9 +1609,17 @@
         "active batch directory listing (session filenames)",
         "lib/session-bootstrap.js (requires parseLastSession/parseBatchRegistry/latestSessionFile)"
       ],
-      "writes": ["stdout only — read-only, changes nothing; exit code 1 on drift"],
-      "loadedBy": ["manual run: node lib/check-map-bindings.js", "lib/session-bootstrap.js (report subprocess)", "tests/22-check-map-bindings.test.js"],
-      "testedBy": ["tests/22-check-map-bindings.test.js"],
+      "writes": [
+        "stdout only — read-only, changes nothing; exit code 1 on drift"
+      ],
+      "loadedBy": [
+        "manual run: node lib/check-map-bindings.js",
+        "lib/session-bootstrap.js (report subprocess)",
+        "tests/22-check-map-bindings.test.js"
+      ],
+      "testedBy": [
+        "tests/22-check-map-bindings.test.js"
+      ],
       "changeMap": {
         "INDEX.md's Batch Registry table, Active batch line, or Last updated line format changed": [
           "parseActiveBatchLine()/sessionRange() here, and parseBatchRegistry()/parseLastSession() in lib/session-bootstrap.js — all parse those exact markdown shapes by regex"
@@ -1473,7 +1632,6 @@
         ]
       }
     },
-
     "lib/check-continuity-lag.js": {
       "role": "informational check comparing merged-PR count against how recently the newest continuity session file was touched",
       "context": "Built in Session 027 after a cold-start review found 15 merged PRs (#76–#92) — including a six-PR bug chain significant enough to become standing doctrine in docs/culture.md — with no session file and no INDEX.md refresh, invisible to every other drift detector because none of them compare 'how much merged' against 'how much narrated'; they verify internal map consistency, not narrative freshness. Finds the last commit that touched the active batch's newest session file, counts 'Merge pull request #N' commits since, and flags past THRESHOLD (8 — a first guess, picked above a normal single-session continuation cadence and below the 15-PR gap that motivated this file). Deliberately informational, never fails the process — a high count means a session entry is probably overdue, not that the PR crossing the threshold did anything wrong. Fails gracefully (reports skipped + reason) rather than a false all-clear when git history is shallow or the active batch is a legacy single file.",
@@ -1482,9 +1640,17 @@
         "active batch directory listing (newest session file, via lib/session-bootstrap.js's latestSessionFile)",
         "git log (last commit touching the newest session file; commit range since then, via subprocess)"
       ],
-      "writes": ["stdout only — read-only, changes nothing; always exits 0 (informational)"],
-      "loadedBy": ["manual run: node lib/check-continuity-lag.js", "lib/session-bootstrap.js (report subprocess)", "tests/32-check-continuity-lag.test.js"],
-      "testedBy": ["tests/32-check-continuity-lag.test.js"],
+      "writes": [
+        "stdout only — read-only, changes nothing; always exits 0 (informational)"
+      ],
+      "loadedBy": [
+        "manual run: node lib/check-continuity-lag.js",
+        "lib/session-bootstrap.js (report subprocess)",
+        "tests/32-check-continuity-lag.test.js"
+      ],
+      "testedBy": [
+        "tests/32-check-continuity-lag.test.js"
+      ],
       "changeMap": {
         "INDEX.md's Batch Registry table format, or the YYYY-MM-DD-session-0NN.md filename convention, changed": [
           "this file reuses lib/session-bootstrap.js's parseBatchRegistry()/latestSessionFile() directly — no separate parsing here, so it moves automatically with those, but confirm the shared assumption still holds"
@@ -1494,7 +1660,6 @@
         ]
       }
     },
-
     "lib/check-lattice-edges.js": {
       "role": "pe-012 lattice-edge drift detector — verifies the map's claimed reads/writes/loadedBy edges against actual code",
       "context": "Built in Session 024 (continued). The lattice's edges are hand-written prose; Session 022 found two stale claims by hand, and docs/architecture/13-intent-driven-operations.md named this checker as the prerequisite for trusting the map in higher-blast-radius automation (od-008). Three verifications: claimed read paths exist on disk; the node's own source (LATTICE header stripped, so a claim cannot vouch for itself) mentions each claimed target's basename; claimed loaders mention the node (or a mediating artifact named in the edge's annotation), and every actual require() of a mapped node appears in that node's loadedBy. First real run found 22 stale/missing edges, all fixed the same session. Informational at the CLI (mention heuristics have false negatives); tests/23's integration test is what makes stale edges fail CI. Its own development hit the sentinel hazard twice: a comment spelling out a require, then a test fixture naming a mapped node — comments are stripped, fixtures name unmapped files.",
@@ -1503,9 +1668,16 @@
         "lib/, tests/, widgets/, components/ *.js sources (mention + require() scans)",
         "any file a node names in reads/writes/loadedBy (existence + mention checks)"
       ],
-      "writes": ["stdout only — read-only; exit 1 only with --strict (not wired into CI)"],
-      "loadedBy": ["manual run: node lib/check-lattice-edges.js", "tests/23-check-lattice-edges.test.js"],
-      "testedBy": ["tests/23-check-lattice-edges.test.js"],
+      "writes": [
+        "stdout only — read-only; exit 1 only with --strict (not wired into CI)"
+      ],
+      "loadedBy": [
+        "manual run: node lib/check-lattice-edges.js",
+        "tests/23-check-lattice-edges.test.js"
+      ],
+      "testedBy": [
+        "tests/23-check-lattice-edges.test.js"
+      ],
       "changeMap": {
         "docs/lattice-map.json edge prose conventions changed (annotations, template placeholders, non-path claims)": [
           "pathToken()/isTemplate()/mentionName() here — they encode exactly those conventions; a new prose shape silently becomes a skipped edge, not an error"
@@ -1518,7 +1690,6 @@
         ]
       }
     },
-
     "lib/trace-string-usage.js": {
       "role": "string reverse-tracer — data-i18n usage in pages/wip HTML cross-referenced against the compiled manifest",
       "context": "Built in Session 025 alongside the victor_dossier merge, answering the 'where is this text used?' / 'what does this page use?' questions structurally rather than by tribal memory — the same capability the wip/ registry-graph context notes named (getBindingsForString, getUIElementsByContext), scoped to what's actually validatable today: a grep of data-i18n attributes against data/strings/compiled/manifest.json's per-key language list. Three modes: --key, --page, and a repo-wide orphan/unused summary. Read-only, informational — a key with zero page usage is often legitimate work in progress, not dead weight.",
@@ -1527,9 +1698,17 @@
         "wip/*.html (data-i18n attribute scan)",
         "data/strings/compiled/manifest.json (per-key language coverage)"
       ],
-      "writes": ["stdout only — read-only, changes nothing"],
-      "loadedBy": ["manual run: node lib/trace-string-usage.js", "tests/27-trace-string-usage.test.js"],
-      "testedBy": ["tests/27-trace-string-usage.test.js"],
+      "writes": [
+        "stdout only — read-only, changes nothing"
+      ],
+      "loadedBy": [
+        "manual run: node lib/trace-string-usage.js",
+        "tests/27-trace-string-usage.test.js",
+        "lib/build-analysis-index.js (reuses scanUsages/traceKey/tracePage/findOrphanUsages/findUnusedKeys)"
+      ],
+      "testedBy": [
+        "tests/27-trace-string-usage.test.js"
+      ],
       "changeMap": {
         "data/strings/compiled/manifest.json schema changed (the langs field)": [
           "traceKey()/tracePage() here read entry.langs directly"
@@ -1539,7 +1718,6 @@
         ]
       }
     },
-
     "blueprint.json": {
       "role": "system blueprint — canonical registry of all feature IDs, category IDs, template IDs",
       "context": "The configuration contract. Every Feature constant in vex-config.js must have a matching entry here, and every entry here must have a config file in config/features/. Tests/06 enforces this. Adding a new feature to FEATURES registry in build-vextreme.js without adding it here will fail the blueprint tests.",
@@ -1549,7 +1727,9 @@
         "lib/validate-blueprint.js",
         "tests/06-blueprint.test.js"
       ],
-      "testedBy": ["tests/06-blueprint.test.js"],
+      "testedBy": [
+        "tests/06-blueprint.test.js"
+      ],
       "changeMap": {
         "features[] entry added": [
           "lib/vex-config.js (Feature.* constant must exist)",
@@ -1560,7 +1740,42 @@
           "config/categories/{id}.json (must create matching config file)"
         ]
       }
+    },
+    "lib/build-analysis-index.js": {
+      "role": "Analysis Mode data-layer write side — composes trace-string-usage.js and build-terrain-map.js findScreenshots() into one browser-fetchable artifact",
+      "context": "docs/architecture/15-analysis-mode.md Phase A. Victor asked (2026-07-10) for a live, searchable, exportable interface over real canonical IDs, real forward/reverse mapping, and real screenshot evidence, surfaced through a FAB panel — not a synthetic demo fixture. This resolves that by reusing three already-real, already-built pieces of this repo (compiled string bundles as a canonical-ID system, trace-string-usage.js as the reverse index, build-terrain-map.js findScreenshots() as the screenshot index) instead of duplicating their logic, and writing one deterministic JSON artifact Phase B (widgets/fab-analysis.js, not yet built) will fetch. Same CQRS shape as data/terrain-map.json: write-side script, deterministic, no live compute, nothing renders yet.",
+      "reads": [
+        "data/strings/compiled/manifest.json (per-key language coverage)",
+        "data/index.json (supportedLangs — the language set to compare coverage against)",
+        "pages/*.html, wip/*.html (data-i18n usage scan, via trace-string-usage.js scanUsages)",
+        "docs/screenshots/*.png (directory listing, via build-terrain-map.js findScreenshots)",
+        "lib/trace-string-usage.js (scanUsages, traceKey, tracePage, findOrphanUsages, findUnusedKeys — reused directly, not duplicated)",
+        "lib/build-terrain-map.js (findScreenshots — reused directly)",
+        "lib/audit-pages.js (getPageSlugs — real page files, for the per-page index)"
+      ],
+      "writes": [
+        "data/analysis-index.json"
+      ],
+      "loadedBy": [
+        "manual run: node lib/build-analysis-index.js",
+        ".github/workflows/build-index.yml (CI, after build-terrain-map.js)",
+        "tests/36-build-analysis-index.test.js"
+      ],
+      "testedBy": [
+        "tests/36-build-analysis-index.test.js"
+      ],
+      "changeMap": {
+        "lib/trace-string-usage.js exported function signatures changed (scanUsages/traceKey/tracePage/findOrphanUsages/findUnusedKeys)": [
+          "buildElementIndex()/buildPageIndex() here call these directly"
+        ],
+        "lib/build-terrain-map.js findScreenshots() shape changed": [
+          "the I/O section here passes its output straight into buildPageIndex()"
+        ],
+        "data/analysis-index.json schema changed (supportedLangs/elements/pages/summary shape)": [
+          "widgets/fab-analysis.js (Phase B, not yet built — will be the first live consumer)",
+          "tests/36-build-analysis-index.test.js"
+        ]
+      }
     }
-
   }
 }

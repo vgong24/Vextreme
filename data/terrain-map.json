@@ -16,12 +16,12 @@
       "key": 1,
       "name": "GENERATE",
       "sub": "build/apply/append scripts that read sources",
-      "count": 17,
+      "count": 18,
       "rect": {
         "x": 350,
         "y": 40,
         "width": 300,
-        "height": 1110
+        "height": 1170
       }
     },
     {
@@ -384,7 +384,8 @@
         "lib/build-terrain-map.js (getPageSlugs — real page files vs. curated nodes.json entries, for the content/arc layer's uncurated column)",
         "tests/15-departments.test.js",
         "tests/20-roles.test.js",
-        "tests/28-build-terrain-map.test.js"
+        "tests/28-build-terrain-map.test.js",
+        "lib/build-analysis-index.js (reuses getPageSlugs)"
       ],
       "testedBy": [],
       "debts": [
@@ -431,6 +432,40 @@
       "engineerFocus": false,
       "auditorFocus": true,
       "auditorRank": 5
+    },
+    {
+      "id": "lib/build-analysis-index.js",
+      "cluster": "lib",
+      "stage": 1,
+      "stageName": "GENERATE",
+      "x": 400,
+      "y": 990,
+      "role": "Analysis Mode data-layer write side — composes trace-string-usage.js and build-terrain-map.js findScreenshots() into one browser-fetchable artifact",
+      "reads": [
+        "data/strings/compiled/manifest.json (per-key language coverage)",
+        "data/index.json (supportedLangs — the language set to compare coverage against)",
+        "pages/*.html, wip/*.html (data-i18n usage scan, via trace-string-usage.js scanUsages)",
+        "docs/screenshots/*.png (directory listing, via build-terrain-map.js findScreenshots)",
+        "lib/trace-string-usage.js (scanUsages, traceKey, tracePage, findOrphanUsages, findUnusedKeys — reused directly, not duplicated)",
+        "lib/build-terrain-map.js (findScreenshots — reused directly)",
+        "lib/audit-pages.js (getPageSlugs — real page files, for the per-page index)"
+      ],
+      "writes": [
+        "data/analysis-index.json"
+      ],
+      "loadedBy": [
+        "manual run: node lib/build-analysis-index.js",
+        ".github/workflows/build-index.yml (CI, after build-terrain-map.js)",
+        "tests/36-build-analysis-index.test.js"
+      ],
+      "testedBy": [
+        "tests/36-build-analysis-index.test.js"
+      ],
+      "debts": [],
+      "status": "good",
+      "engineerFocus": true,
+      "auditorFocus": false,
+      "auditorRank": 12
     },
     {
       "id": "lib/build-arc-bundles.js",
@@ -618,7 +653,7 @@
       "stage": 1,
       "stageName": "GENERATE",
       "x": 400,
-      "y": 990,
+      "y": 1050,
       "role": "LATTICE header generator — reads this JSON, writes the matching in-file header into each eligible node's own file",
       "reads": [
         "docs/lattice-map.json"
@@ -669,7 +704,7 @@
       "status": "good",
       "engineerFocus": true,
       "auditorFocus": false,
-      "auditorRank": 12
+      "auditorRank": 13
     },
     {
       "id": "lib/build-roles-page.js",
@@ -697,7 +732,7 @@
       "status": "good",
       "engineerFocus": true,
       "auditorFocus": false,
-      "auditorRank": 13
+      "auditorRank": 14
     },
     {
       "id": "lib/build-roles.js",
@@ -729,7 +764,7 @@
       "status": "good",
       "engineerFocus": true,
       "auditorFocus": false,
-      "auditorRank": 14
+      "auditorRank": 15
     },
     {
       "id": "lib/build-sitemap.js",
@@ -807,7 +842,7 @@
       "stage": 1,
       "stageName": "GENERATE",
       "x": 400,
-      "y": 1050,
+      "y": 1110,
       "role": "localization identity pilot, second script — generates pointer indexes and a human-readable report from committed identity metadata",
       "reads": [
         "data/strings/source/pages/*.json (identity blocks + strings, for language listing)"
@@ -829,7 +864,7 @@
       "status": "good",
       "engineerFocus": true,
       "auditorFocus": false,
-      "auditorRank": 15
+      "auditorRank": 16
     },
     {
       "id": "lib/build-sw.js",
@@ -887,7 +922,8 @@
         "manual run: node lib/build-terrain-map.js",
         ".github/workflows/build-index.yml (CI)",
         "pages/terrain-map.html (live fetch of its output)",
-        "tests/28-build-terrain-map.test.js"
+        "tests/28-build-terrain-map.test.js",
+        "lib/build-analysis-index.js (reuses findScreenshots)"
       ],
       "testedBy": [
         "tests/28-build-terrain-map.test.js"
@@ -896,7 +932,7 @@
       "status": "good",
       "engineerFocus": true,
       "auditorFocus": false,
-      "auditorRank": 16
+      "auditorRank": 17
     },
     {
       "id": "lib/build-vextreme.js",
@@ -1473,7 +1509,8 @@
       ],
       "loadedBy": [
         "manual run: node lib/trace-string-usage.js",
-        "tests/27-trace-string-usage.test.js"
+        "tests/27-trace-string-usage.test.js",
+        "lib/build-analysis-index.js (reuses scanUsages/traceKey/tracePage/findOrphanUsages/findUnusedKeys)"
       ],
       "testedBy": [
         "tests/27-trace-string-usage.test.js"
@@ -1817,6 +1854,10 @@
     ],
     [
       "lib/audit-pages.js",
+      "lib/build-analysis-index.js"
+    ],
+    [
+      "lib/audit-pages.js",
       "lib/build-archives.js"
     ],
     [
@@ -1838,6 +1879,10 @@
     [
       "lib/auto-discover-nodes.js",
       "lib/check-key-alignment.js"
+    ],
+    [
+      "lib/build-analysis-index.js",
+      "lib/build-index.js"
     ],
     [
       "lib/build-arc-bundles.js",
@@ -1966,6 +2011,10 @@
     [
       "lib/build-terrain-map.js",
       "data/arcs-v2.json"
+    ],
+    [
+      "lib/build-terrain-map.js",
+      "lib/build-analysis-index.js"
     ],
     [
       "lib/build-terrain-map.js",
@@ -2122,6 +2171,10 @@
     [
       "lib/strings-compile.js",
       "widgets/fab-lang.js"
+    ],
+    [
+      "lib/trace-string-usage.js",
+      "lib/build-analysis-index.js"
     ],
     [
       "lib/validate-blueprint.js",
