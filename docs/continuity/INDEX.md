@@ -30,9 +30,14 @@ intent, the continuity log documents reality.
 
 *As of Session 025 — July 7, 2026 (corrections and one addition in Session 027 — July 8, 2026;
 Analysis Mode, the boundary-principle refinement, and the nav-coverage audit added in Session 028
-— July 10, 2026 — recorded in the one-liner above and this session's own file, not rewritten into
-this architecture paragraph since none of it changes the v1/v2, God Script, or department/arc
-architecture described below. The paragraph's core substance is still Session 025's.)*
+— July 10, 2026; the nav/FAB rollout completed and then made safe in Session 029 — July 10, 2026:
+`lib/vextreme.js` is now the one bootstrap for site chrome (nav + full spiral-FAB set) on every
+`shell.js` page, and its v1 enhancement layer (design-system.css + behavior components) loads
+only for actual v1 consumers (a `pages.json` template entry or `#arcNavMount`) after blanket
+injection caused real authored-style regressions. All recorded in each session's own file, not
+rewritten into this architecture paragraph since none of it changes the v1/v2, God Script, or
+department/arc architecture described below. The paragraph's core substance is still Session
+025's.)*
 
 The v2 GitHub Pages architecture is the active system. v1 (`data/arcs.json`, `data/pages.json`,
 `lib/vextreme.js`/`archive-renderer.js`/`arc-nav.js`) still serves the live Squarespace site
@@ -149,6 +154,22 @@ The change repairs Session 023 (Codex's July 6 context-note and perceivable-cont
 entries had been injected mid-file into Session 021's record.
 
 **Recent sessions** (one line each — open the session files below for full reasoning):
+- **Session 029** — Same-day continuation of Session 028's thread, executing both of its open
+  items to completion and surviving a real regression cycle. Nav-coverage rollout Steps 4–7
+  took navigability from 14/39 to 33/39 pages (the 6 remaining are empty placeholders + a dev
+  fixture, deliberately out of scope). The SDK's structural HTML→identity discovery arc shipped
+  end-to-end (SDK PRs #30–#37: handoff → Stage 1 mapper + CLI → Stage 2 design + value
+  cross-referencer + CLI → source-lens data model), all tested against this repo's own real
+  legacy pages. Victor caught Step 7 using the wrong FAB layer, which led to `lib/vextreme.js`
+  auto-loading the full spiral-FAB set for every `shell.js` page (PR #118) — then reported three
+  real live-site regressions (authored styles overwritten, terrain map squashed, FAB absent on
+  production), each traced to root cause and structurally guarded in PR #119: the v1
+  enhancement layer is now gated to actual v1 consumers, CDN cache versions are test-enforced
+  in sync, and the new `lib/audit-fab.js` + `tests/42` make all three regression classes
+  script-perceptible. Victor's Runtime View Profiles / Composition Container proposal is
+  preserved as candidate architecture (`od-012` + context note) — PR #119 implemented its
+  defensive half (runtime decorates authored pages, never rewrites them). Full detail in this
+  session's own file.
 - **Session 028** — Continued a private Vextreme-SDK localization roadmap (L1–L6 already merged)
   through L7 (public demo page, shipped to an already-accepted plan). Victor reviewed the shipped
   page same-day and named two connected gaps — no real IDs/mapping shown, and whether God Script
@@ -207,24 +228,6 @@ entries had been injected mid-file into Session 021's record.
   in the discover script (a bare `\b` also matched inside `data-legacy-id`) by cross-checking
   output against the real HTML before trusting it. Full context in the Meta Project doc's context
   note (§ wrapper) and this session's own file.
-- **Session 025** — Reviewed three Codex registry-graph context docs against PR #69's
-  implementation (`docs/architecture/15–17`, `data/registry/`, `lib/check-registry-docs.js`) —
-  judged well-communicated. **Correction (Session 027): Victor closed PR #69 unmerged shortly
-  after, in favor of PR #70 — none of that content exists in the working tree.** Merged a
-  bilingual (en/zh) engineering dossier from two duplicated HTML files into one
-  `data-i18n`-driven page — the first non-fixture page with a real string source file and arc.
-  Resolved od-001/td-006 with a scoped arc-chunked bundling pilot (`lib/build-arc-bundles.js`,
-  opt-in per arc, only `victor_dossier` uses it) rather than a full-site migration. Built
-  `lib/trace-string-usage.js` (reverse string tracer). Verified the merge with real before/after
-  screenshots, not just tests. Continued: piloted, then generalized, the **terrain map** — a
-  self-updating navigable atlas over the full lattice (`lib/build-terrain-map.js` →
-  `data/terrain-map.json` → `pages/terrain-map.html`, live-fetched, never hand-edited again).
-  Continued again, same day: replaced the terrain map's navigation with a fractal zoom-level
-  ladder (system → stage → node) and role-lens layout (source → generate → check → output →
-  runtime), after several Artifact POCs tested the interaction model live; fixed two real bugs
-  the POCs and Playwright verification caught (level-exit skipping straight to the top instead
-  of stepping back one level; a detail panel that silently reserved layout width even while
-  hidden, permanently shrinking the navigable canvas).
 **This section is a snapshot, not a log.** Full session-by-session reasoning — mistakes tried,
 assumptions made, why a decision went one way over another — lives in the batch files (see
 **Batch Registry** below), not here. Rewrite the paragraph above at the start of each session to
@@ -470,6 +473,6 @@ Create as `docs/continuity/batch-00N/YYYY-MM-DD-session-0NN.md`:
 
 ---
 
-*Last updated: Session 028 — July 10, 2026*
+*Last updated: Session 029 — July 10, 2026*
 
 <!-- [VXG RealForever] -->
