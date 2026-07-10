@@ -166,17 +166,64 @@ question.
 
 Real result: **29/39 pages navigable, up from 21/39** (`node lib/audit-nav.js`).
 
-### Step 7+ — the 4 specimen pages, and eventually the God-Script path
+### Step 7 — the 4 specimen pages, FAB-widget compatibility checked and unified (done)
 
-10 pages remain isolated: `accountability-test-01`, `accountability-test-01-b`,
-`how-to-invest-in-trust-and-integrity`, `instance-thread-logs`, `summary-of-value` (the 5 empty
-placeholders, still deliberately out of scope), `v2-test` (dev fixture, likely out of scope),
-and `specimen-architectural-wisdoms`, `specimen-full-translation`, `specimen-partial-translation`,
-`specimen-smallest-miss` (real content, already carry v2 FAB widgets — needs a compatibility
-check with `shell.js`'s nav before adding, per Step 6's own deferral above). Whether the
-long-term target is universal `shell.js` coverage, universal God-Script wiring (`pe-002`), or a
-deliberate mix, remains a decision to make once more of the rollout's real results are in — not
-guessed now.
+Read all 4 `specimen-*` pages' existing v2 FAB widget wiring before touching anything.
+Corrected an assumption from the Step 6 PR body along the way: these don't use a God
+Script's 3-tag include pattern — 3 of the 4 (`specimen-full-translation`,
+`specimen-partial-translation`, `specimen-smallest-miss`) loaded the older, standalone
+`widgets/lang-fab.js` + `widgets/demo-fab.js` pair directly, pre-unification; the fourth
+(`specimen-architectural-wisdoms`) loaded the newer `widgets/fab-lang.js` +
+`widgets/fab-demo.js` pair — but *without* `widgets/vex-fab.js`, the actual "spiral" trigger
+those newer widgets are meant to nest into (per the "Session 025 FAB unification" comment in
+`fab-lang.js`'s own header). All 4 were therefore running their orbs in the same degraded
+standalone-fallback mode, missing the real high-level container.
+
+Caught directly by Victor mid-rollout: "there should be a 'spiral one'... theres always a
+'high level container' and sub features underneath, we never duplicate a category." Fixed
+properly, not just visually verified around: `widgets/vex-fab.js` added to all 4 pages
+(confirmed via `lib/build-vextreme.js`'s own `FEATURES` registry that it must load *before*
+`fab-lang.js`/`fab-theme.js`/`fab-map.js` — their `DOMContentLoaded` handlers fire in
+registration order, and `vex-fab.js` has to create `#vex-spiral-group` first). The 3 pages on
+the legacy `lang-fab.js`/`demo-fab.js` pair were migrated to the current `fab-lang.js`/
+`fab-demo.js` pair — confirmed behaviorally identical via direct diff (same
+`VEX_STRING_SCOPES`/`VEX_STRING_CATEGORY` contract, same `DOMContentLoaded` → `mount()`
+pattern) before swapping, not assumed compatible. `widgets/fab-demo.js` itself has no
+spiral-group awareness by design (it's a simple, permanent standalone orb offset next to the
+lang orb, per its own header comment) — the "never duplicate a category" fix applies to the
+language-switcher orb, which now genuinely nests, not to the demo-link orb, which was never
+meant to.
+
+Verified via Playwright after the fix, not assumed: `#vex-spiral-group` exists, the language
+orb is a real DOM child of it (not a same-named element floating outside), the spiral trigger
+opens correctly, and `shell.js`'s top nav bar renders with zero visual or positional conflict
+against the now-unified spiral trigger + orb pair.
+
+**Real finding, addressed:** all 4 pages set `max-width`/`margin: 0 auto`/`padding` directly
+on `<body>` itself (860px for 3 of them, 920px for `specimen-architectural-wisdoms`) — a
+different authoring pattern from every other page in this rollout, which used an inner
+wrapper element instead. Since `injectNav()` inserts `#vex-site-nav` as `body`'s first
+child, `body`'s own padding applied to the nav too, and — with `shell.js`'s default
+`bodyWrap: true` — its own `.vex-page-body` wrapper (another 44px of top padding, another
+720px max-width) stacked on top of `body`'s own padding, roughly doubling top whitespace
+and narrowing already-reasonable content further than necessary. Fixed the same way as the
+wide-layout pages in Steps 4 and 6: `window.VEXTREME_OVERRIDE = { bodyWrap: false }`,
+letting each page's own pre-existing width/padding system stand alone. Re-verified: clean,
+single-padding layout, full designed width, no orb overlap, on all 4.
+
+Real result: **33/39 pages navigable, up from 29/39** (`node lib/audit-nav.js`).
+
+### What's left, deliberately out of scope
+
+6 pages remain isolated: `accountability-test-01`, `accountability-test-01-b`,
+`how-to-invest-in-trust-and-integrity`, `instance-thread-logs`, `summary-of-value` (the 5
+empty placeholders confirmed in Step 5 — real dead files, not real dead ends) and `v2-test`
+(a dev fixture for arc-nav testing, not real content, per `lib/audit-pages.js`'s own
+description). None of the six are a rollout target as currently scoped — if any of them
+ever gets real content, it should get the same individual review every other page in this
+rollout got, not a blind default. Whether the long-term target beyond this rollout is
+universal `shell.js` coverage, universal God-Script wiring (`pe-002`), or a deliberate mix,
+remains a decision to make with real usage data, not guessed now.
 
 ## What this is not
 
