@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vextreme — Localization Source-Truth Demo</title>
+<meta name="description" content="A static, public-safe demonstration of the private Vextreme SDK's localization source-of-truth product, shown as sanitized output from a synthetic registry.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500&family=Source+Serif+4:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream:  #fafaf9;
+    --stone:  #1c1917;
+    --ink:    #44403c;
+    --muted:  #78716c;
+    --border: #e7e5e4;
+    --ember:  #b45830;
+    --ember-bg: #fdf8f6;
+    --green:  #16a34a;
+    --amber:  #d97706;
+    --serif:  'Source Serif 4', Georgia, serif;
+    --sans:   'IBM Plex Sans', sans-serif;
+    --mono:   'IBM Plex Mono', monospace;
+  }
+  body {
+    font-family: var(--sans);
+    color: var(--stone);
+    background: var(--cream);
+    font-size: clamp(15px, 1.5vw, 16.5px);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: clamp(32px, 6vw, 64px) 20px clamp(48px, 8vw, 80px);
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ember);
+    margin-bottom: 14px;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(26px, 4.5vw, 38px);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .sub {
+    color: var(--muted);
+    max-width: 62ch;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(19px, 2.6vw, 23px);
+    margin: 40px 0 12px;
+  }
+  p { margin-bottom: 14px; max-width: 68ch; }
+  p:last-child { margin-bottom: 0; }
+
+  ul { margin: 0 0 14px 1.2em; max-width: 64ch; }
+  li { margin-bottom: 6px; }
+
+  .flow {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--ink);
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .flow .arrow { color: var(--ember); padding-left: 2px; }
+
+  .panel {
+    background: white;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--ember);
+    border-radius: 10px;
+    padding: clamp(20px, 3vw, 28px);
+    margin: 20px 0;
+  }
+  .panel-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--ember);
+    margin-bottom: 12px;
+  }
+
+  .result-row {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13.5px;
+    flex-wrap: wrap;
+  }
+  .result-row:last-child { border-bottom: none; }
+  .result-key {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    min-width: 130px;
+  }
+  .result-val { font-family: var(--mono); color: var(--ink); word-break: break-word; }
+  .badge {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 2px 8px;
+    border-radius: 5px;
+    background: var(--ember-bg);
+    color: var(--ember);
+  }
+  .badge.ok { background: #f0fdf4; color: var(--green); }
+
+  .reg-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    font-size: 13px;
+    margin: 20px 0;
+  }
+  .reg-table th, .reg-table td {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .reg-table tr:last-child td { border-bottom: none; }
+  .reg-table th {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--ember-bg);
+  }
+  .reg-table td.missing { color: var(--muted); font-style: italic; }
+  .reg-table td.status { font-family: var(--mono); font-size: 11.5px; white-space: nowrap; }
+
+  .boundary {
+    background: var(--ember-bg);
+    border: 1px solid rgba(180,88,48,0.25);
+    border-radius: 10px;
+    padding: clamp(18px, 2.5vw, 24px);
+    margin: 32px 0;
+    font-size: 13.5px;
+    color: var(--ink);
+    line-height: 1.75;
+  }
+  .boundary strong { color: var(--stone); }
+
+  .not-shown {
+    font-size: 13.5px;
+    color: var(--muted);
+  }
+  .not-shown li::marker { color: var(--muted); }
+
+  footer {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--muted);
+  }
+  footer a { color: var(--ember); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<p class="eyebrow">Localization Source-Truth Demo</p>
+<h1>Where a string lives, and whether it can be trusted.</h1>
+<p class="sub">A static, public-safe look at the private Vextreme SDK's localization source-of-truth product — the same private implementation whose identity resolver is shown on the <a href="sdk-identity-demo.html">SDK Identity Demo</a> page, here shown working across a small body of content rather than one call.</p>
+
+<h2>What this demo shows</h2>
+<p>The private Vextreme SDK maintains a registry of canonical UI strings — one record per piece of translatable content, tracking where it lives, what language values it has, and whether anything about it needs attention. Two things the registry can answer that a plain translation file usually can't: <strong>is this content correctly identified</strong>, and <strong>is anything missing</strong>.</p>
+<div class="flow">
+  <div>Synthetic string registry</div>
+  <div class="arrow">↓</div>
+  <div>Private Vextreme-SDK reporting tools</div>
+  <div class="arrow">↓</div>
+  <div>Sanitized findings</div>
+  <div class="arrow">↓</div>
+  <div>This public static page</div>
+</div>
+<p>Everything below is copied here as a static artifact, exactly as the private tools produced it against an invented, synthetic set of content. Nothing on this page calls anything live.</p>
+
+<h2>The registry sample</h2>
+<p>A small synthetic site with four pieces of content, in English and (partially) Chinese:</p>
+<table class="reg-table">
+  <thead>
+    <tr><th>Element</th><th>English</th><th>Chinese</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Hero title</td>
+      <td>Welcome to the demo site</td>
+      <td>欢迎访问演示站点</td>
+      <td class="status">aligned</td>
+    </tr>
+    <tr>
+      <td>Hero subtitle</td>
+      <td>A synthetic fixture, not a real page</td>
+      <td>这是一个合成夹具，不是真实页面</td>
+      <td class="status">needs review</td>
+    </tr>
+    <tr>
+      <td>Team heading</td>
+      <td>Meet the team</td>
+      <td class="missing">— missing —</td>
+      <td class="status">needs review</td>
+    </tr>
+    <tr>
+      <td>Team body</td>
+      <td>Invented team description text for fixture purposes only.</td>
+      <td>仅用于夹具目的的虚构团队描述文本。</td>
+      <td class="status">aligned</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Misalignment finding</h2>
+<p>An identity signal recorded under one element's usage actually resolves to a <em>different</em> element — the kind of thing that would otherwise sit silently wrong until someone happened to notice:</p>
+<div class="panel">
+  <p class="panel-label">Finding</p>
+  <div class="result-row">
+    <span class="result-key">Recorded under</span>
+    <span class="result-val">Hero subtitle</span>
+  </div>
+  <div class="result-row">
+    <span class="result-key">Actually belongs to</span>
+    <span class="result-val">Hero title</span>
+  </div>
+  <div class="result-row">
+    <span class="result-key">Confidence</span>
+    <span class="result-val"><span class="badge">strong</span></span>
+  </div>
+  <div class="result-row" style="border-bottom: none;">
+    <span class="result-key">Why</span>
+    <span class="result-val">A shared naming pattern pointed to the title element, not the subtitle element it was recorded under.</span>
+  </div>
+</div>
+<p>This is flagged for review, not silently trusted and not silently corrected — a human decides what to do with a finding like this.</p>
+
+<h2>Missing translation finding</h2>
+<p>Every piece of content can be checked against the languages a project actually needs:</p>
+<div class="panel">
+  <p class="panel-label">Finding</p>
+  <div class="result-row">
+    <span class="result-key">Element</span>
+    <span class="result-val">Team heading</span>
+  </div>
+  <div class="result-row">
+    <span class="result-key">Has</span>
+    <span class="result-val"><span class="badge ok">English</span></span>
+  </div>
+  <div class="result-row" style="border-bottom: none;">
+    <span class="result-key">Missing</span>
+    <span class="result-val"><span class="badge">Chinese</span></span>
+  </div>
+</div>
+
+<h2>Evidence and source-truth relationship</h2>
+<p>The same registry can connect a piece of content back to visual evidence — a screenshot showing where and how it actually appears — and forward to every other place it's used. This page doesn't demonstrate that traversal directly; it exists in the private product as a way to move from "here's a screenshot" to "here's the exact content and status behind it," and back.</p>
+
+<h2>Vendor round-trip principle</h2>
+<p>When translated content comes back from outside the system — a vendor, a translator, a reviewer — it's compared against what was actually sent out before anything changes. Real, intentional edits are proposed for review. Anything that looks like it touched a field it shouldn't have, or arrived stale relative to a newer change already made to the source, is flagged instead of applied. Nothing is ever silently overwritten.</p>
+
+<div class="boundary">
+  <strong>This is a static public demonstration artifact.</strong> The private Vextreme-SDK generated this sanitized output from a synthetic registry, and public Vextreme displays the result. No live connection exists between this page and the private SDK — there is no upload, no live call, no backend, and nothing on this page can trigger the private system to do anything. Viewing this page does not grant access to the SDK, private code, secrets, or client data.
+</div>
+
+<h2>What this demo does not show</h2>
+<ul class="not-shown">
+  <li>No private SDK source code.</li>
+  <li>No client data — every value on this page is invented.</li>
+  <li>No secrets, credentials, or tokens.</li>
+  <li>No live API — this page makes no network calls to anything private.</li>
+  <li>No authenticated user flow, no file upload, no "analyze your own content" interaction.</li>
+  <li>No production service — this is a controlled proof, not a live product.</li>
+  <li>No screenshot evidence viewer, no vendor packet format, no import tooling.</li>
+  <li>No full localization engine — this shows a slice of what the product finds, not the whole system.</li>
+</ul>
+
+<footer>
+  Public Vextreme repository. The private implementation lives elsewhere and stays private. See also the <a href="sdk-identity-demo.html">SDK Identity Demo</a> for how one identity signal gets resolved.
+</footer>
+
+</body>
+</html>
