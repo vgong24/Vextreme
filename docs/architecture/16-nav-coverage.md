@@ -44,33 +44,40 @@ it's a gap between them.
 Sequential, same discipline as Analysis Mode's own manifest — measure before deciding,
 smallest safe increment first, verify before scaling up.
 
-### Step 1 — measurement (done, this PR)
+### Step 1 — measurement (done)
 
-`lib/audit-nav.js`. Read-only, no page touched. Establishes the real baseline (31/39
+`lib/audit-nav.js`. Read-only, no page touched. Established the real baseline (31/39
 isolated) so later steps have something concrete to improve against and verify.
 
-### Step 2 — modernize `shell.js`'s destination links (next, small, low-risk)
+### Step 2 — modernize `shell.js`'s destination links (done)
 
-`lib/vextreme.js`'s `injectNav()` hardcodes a link list built for `vextreme24.com`-era
-navigation. Update it to include this repo's own real, current hub pages (Archives,
-Terrain Map, Ecosystem Hub) alongside whatever `vextreme24.com` links still make sense.
-One file, no page rollout yet — makes the *existing* 3 `shell.js` pages' nav actually
-useful before extending `shell.js`'s reach.
+`lib/vextreme.js`'s `injectNav()` hardcoded a link list built for `vextreme24.com`-era
+navigation. Added this repo's own real, current hub pages (Archives, Terrain Map,
+Ecosystem Hub) alongside the existing `vextreme24.com` links, additive only. Made the
+*existing* 3 `shell.js` pages' nav actually useful before extending `shell.js`'s reach.
 
-### Step 3 — first safe rollout batch
+### Step 3 — first safe rollout batch (done)
 
-Add `shell.js` to a small, verified batch of currently-isolated pages, starting with
-pages that have no existing `<script>` tags to conflict with (the raw, fragment-style
-legacy pages — `about-me.html` and siblings) rather than the more structurally varied
-full-document pages. Verify each batch visually (Playwright) before widening — a
-mechanical-looking find/replace across 30+ differently-authored pages is exactly the kind
-of change that looks safe and isn't, until actually rendered.
+Added `shell.js` to 6 pages with zero pre-existing `<script>` tags to conflict with —
+`about-me`, `bridge-council`, `bridge-council-os`, `bridge-council-schema`,
+`investor-archetype-simulation`, `witness-committee-operations` — deliberately excluding
+`connect.html`, `human-ai-corelational-governance.html`, and `origins-of-proof.html` from
+this batch even though `lib/audit-nav.js` also flags them isolated, since each already has
+its own `<script>` tag(s) that need individual review before adding a second loader, not
+a blind extension of this batch. Verified two structurally different pages
+(`about-me.html`, a raw fragment; `witness-committee-operations.html`, a full document
+with its own pre-existing dark-mode toggle) via Playwright — both render the modernized
+nav correctly, zero conflicts with existing page elements, zero errors. Real result:
+**14/39 pages navigable, up from 8/39.**
 
 ### Step 4+ — remaining pages, and eventually the God-Script path
 
-Extend the same verified rollout to the rest of the isolated pages. Whether the long-term
-target is universal `shell.js` coverage, universal God-Script wiring (`pe-002`), or a
-deliberate mix, is a decision to make once Step 3's real results are in — not guessed now.
+Next real batch: the 3 pages deferred from Step 3 (`connect`, `human-ai-corelational-governance`,
+`origins-of-proof`) — each needs its existing script tag(s) read and understood before
+`shell.js` is added alongside them, not a blind repeat of Step 3's pattern. After that, the
+remaining isolated pages. Whether the long-term target is universal `shell.js` coverage,
+universal God-Script wiring (`pe-002`), or a deliberate mix, is a decision to make once
+more of the rollout's real results are in — not guessed now.
 
 ## What this is not
 
