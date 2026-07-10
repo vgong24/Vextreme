@@ -16,6 +16,7 @@ on:
       - 'lib/build-string-identity-index.js'
       - 'lib/build-index.js'
       - 'lib/build-archives.js'
+      - 'lib/build-page-health.js'
       - 'lib/build-demo.js'
       - 'lib/build-specimens.js'
       - 'lib/build-sitemap.js'
@@ -92,6 +93,12 @@ jobs:
       - name: Build Service Worker
         run: node lib/build-sw.js
 
+      - name: Build analysis-index.json
+        run: node lib/build-analysis-index.js
+
+      - name: Build page capability health
+        run: node lib/build-page-health.js
+
       - name: Build archives.html
         run: node lib/build-archives.js
 
@@ -125,9 +132,6 @@ jobs:
       - name: Build terrain-map.json
         run: node lib/build-terrain-map.js
 
-      - name: Build analysis-index.json
-        run: node lib/build-analysis-index.js
-
       - name: Auto-increment fab-lang.js CDN version
         # Replaces a hand-maintained bump (Session 025: it had never been
         # bumped since introduction) with one computed from what actually
@@ -146,7 +150,7 @@ jobs:
         run: |
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
-          git add data/strings/compiled data/strings/reports data/index.json data/lessons.json data/roles.json data/status.json data/terrain-map.json dist sw.js pages/archives.html pages/vextreme-demo.html pages/specimens.html pages/specimen-*.html pages/ecosystem-hub.html pages/roles-index.html sitemap.xml index.html widgets/fab-lang.js
+          git add data/strings/compiled data/strings/reports data/index.json data/lessons.json data/roles.json data/status.json data/page-health.json data/terrain-map.json dist sw.js pages/archives.html pages/vextreme-demo.html pages/specimens.html pages/specimen-*.html pages/ecosystem-hub.html pages/roles-index.html sitemap.xml index.html widgets/fab-lang.js
           if git diff --staged --quiet; then
             echo "No changes to commit"
           elif [ "${{ github.event_name }}" = "pull_request" ]; then

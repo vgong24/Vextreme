@@ -936,7 +936,8 @@
         "tests/20-roles.test.js",
         "tests/28-build-terrain-map.test.js",
         "lib/build-analysis-index.js (reuses getPageSlugs)",
-        "lib/audit-nav.js (reuses getPageSlugs, isWiredToGodScript)"
+        "lib/audit-nav.js (reuses getPageSlugs, isWiredToGodScript)",
+        "lib/build-page-health.js (reuses page inventory and God Script wiring)"
       ],
       "testedBy": [],
       "changeMap": {
@@ -1246,6 +1247,44 @@
         ]
       }
     },
+    "lib/build-page-health.js": {
+      "role": "joins existing page registries, runtime audits, localization identity, analysis, and screenshot evidence into one deterministic per-page capability projection",
+      "context": "Archives answers page health while Terrain answers organizational health. This generator gives both read sides one source without making either interface re-scan HTML or duplicate classification rules. It distinguishes mechanism presence from visible effect, especially shared theme control versus authored light/dark styles.",
+      "reads": [
+        "pages/*.html (runtime tags, data-i18n bindings, authored theme styles)",
+        "data/nodes.json (arc placement)",
+        "data/strings/compiled/manifest.json (translation coverage)",
+        "data/analysis-index.json (analysis indexing)",
+        "dist/*.js (God Script FAB and analysis delivery)",
+        "docs/screenshots/*.png (evidence presence)",
+        "lib/audit-pages.js (page inventory and God Script wiring)",
+        "lib/audit-nav.js (navigation classification)",
+        "lib/audit-fab.js (theme ownership and opt-out classification)"
+      ],
+      "writes": [
+        "data/page-health.json"
+      ],
+      "loadedBy": [
+        "manual run: node lib/build-page-health.js",
+        ".github/workflows/build-index.yml (before Archives and Terrain)",
+        "tests/helpers/prereqs.js",
+        "tests/44-page-health.test.js"
+      ],
+      "testedBy": [
+        "tests/44-page-health.test.js"
+      ],
+      "changeMap": {
+        "data/page-health.json schema changed": [
+          "lib/build-archives.js (page-health badges and summary)",
+          "lib/build-terrain-map.js (content node status and capability payload)",
+          "pages/terrain-map.html (content detail panel)",
+          "tests/44-page-health.test.js"
+        ],
+        "health severity rules changed": [
+          "Archives summary counts and Terrain content status colors both change"
+        ]
+      }
+    },
     "lib/build-terrain-map.js": {
       "role": "terrain-map write side — computes layout, health, edges, and real screenshots into one deterministic JSON",
       "context": "Session 025 generalized the terrain-map pilot (an Artifact over 14 hand-picked nodes shown to Victor as a proof of concept) into a real, self-updating feature. Same CQRS split as data/status.json -> pages/ecosystem-hub.html: this script is the write side, pages/terrain-map.html is hand-authored once and live-fetches its output. Adding a lattice node, a page, or a screenshot never requires touching the HTML — only rerunning this generator, wired into CI the same as every other dashboard's data source. Session 025 (continued) replaced the folder-grid layout with a lifecycle-stage layout (source -> generate -> utilities -> check -> output -> runtime) and added two role-lens tags per node (engineerFocus / auditorFocus), after a round of Artifact POCs tested a fractal zoom-level UI (system -> stage -> node, each level snapping to its own full framing on entry, exiting always stepping back one level) against this exact shape. The stage/lens rules are naming-pattern heuristics over real fields, explicitly not a designed taxonomy — each node's lens tags render visibly in the UI so the heuristic can be challenged, not hidden behind a silent classification. Session 025 (continued) again: added computeExecutionOrder (real within-stage ordering sourced from .github/workflows/build-index.yml's literal step sequence and lib/session-bootstrap.js's own check order, not alphabetical) and per-node auditorRank (an alternate within-stage ordering by worst-status-first — the read side swaps to it, recomputing position, only while the auditor lens is active). Also added a second, parallel content layer (layoutArcs/buildContentPages -> the `arcs`/`pages` output fields): the same column-per-group technique applied to data/nodes.json grouped by arc instead of lifecycle stage, ordered within an arc by each node's own real `id` field (curation order) rather than alphabetically. A curated node with no matching pages/*.html file is marked live:false, status:'critical' rather than implied to be a real page — most of this repo's 91 curated nodes are unported v1 content, and that is real, common state to show, not an edge case to hide. A real pages/*.html file with no nodes.json entry lands in a distinct 'uncurated' arc column instead of being silently absent.",
@@ -1257,6 +1296,7 @@
         "data/nodes.json (real page titles/arcKeys, for both the screens layer and the arcs/pages content layer)",
         "data/arcs-v2.json (real arc priority/title, for the arcs/pages content layer's column order and labels)",
         "lib/audit-pages.js (getPageSlugs — real page files vs. curated nodes.json entries, for the content layer's uncurated column and each page's live flag)",
+        "data/page-health.json (shared page capability and health projection)",
         "docs/screenshots/*.png (directory listing — which pages have a real per-language screenshot)"
       ],
       "writes": [
@@ -1270,7 +1310,8 @@
         "lib/build-analysis-index.js (reuses findScreenshots)"
       ],
       "testedBy": [
-        "tests/28-build-terrain-map.test.js"
+        "tests/28-build-terrain-map.test.js",
+        "tests/44-page-health.test.js"
       ],
       "changeMap": {
         "docs/lattice-map.json schema changed (reads/writes/loadedBy/testedBy shape)": [
@@ -1322,6 +1363,7 @@
         "data/departments.json",
         "data/strings/compiled/strings.en.json",
         "data/strings/compiled/manifest.json",
+        "data/page-health.json",
         "pages/*.html (existence check, per slug, for the ported/missing cell state; also read in full via lib/auto-discover-nodes.js for any slug with no nodes.json entry)",
         "lib/audit-pages.js (SKIP_PAGES, getPageSlugs)",
         "lib/auto-discover-nodes.js (discoverOrphanNodes, readPageFromDisk)"
@@ -1333,7 +1375,9 @@
         "manual run: node lib/build-archives.js",
         ".github/workflows/build-index.yml"
       ],
-      "testedBy": [],
+      "testedBy": [
+        "tests/44-page-health.test.js"
+      ],
       "changeMap": {
         "a node gets department/workType fields but no arcKeys": [
           "shows up automatically in the Unsorted section here — no build-archives.js change needed, renderUnsortedSection() reads arcKeys directly"
@@ -1825,7 +1869,8 @@
       ],
       "loadedBy": [
         "manual run: node lib/audit-nav.js",
-        "tests/38-audit-nav.test.js"
+        "tests/38-audit-nav.test.js",
+        "lib/build-page-health.js (reuses the navigation report)"
       ],
       "testedBy": [
         "tests/38-audit-nav.test.js"

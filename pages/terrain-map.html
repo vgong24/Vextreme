@@ -627,6 +627,18 @@
         ? '<span class="status-pill status-good"><span class="dot" style="background:var(--good)"></span>Live, verified by screenshot</span>'
         : '<span class="status-pill status-warning"><span class="dot" style="background:var(--warning)"></span>Live, no screenshot captured yet</span>';
 
+    var capability = p.capability;
+    var capabilityHtml = capability
+      ? '<div class="field"><div class="field-label">Page capabilities</div><ul class="field-list">' +
+        '<li>placement: ' + esc(capability.placement) + '</li>' +
+        '<li>FAB: ' + esc(capability.fab) + '</li>' +
+        '<li>theme: ' + esc(capability.theme.control) + (capability.theme.visibleStyles ? ' + visible styles' : ' (no visible theme styles)') + '</li>' +
+        '<li>identity: ' + capability.identityKeys + ' bound key(s)</li>' +
+        '<li>analysis: ' + (capability.analysisControl ? 'control available' : (capability.analysisIndexed ? 'indexed only' : 'unavailable')) + '</li>' +
+        '<li>evidence: ' + (capability.evidenceLanguages.join(', ').toUpperCase() || 'no screenshot') + '</li>' +
+        '</ul></div>'
+      : '';
+
     var shotHtml = langs.length
       ? '<div class="field"><div class="field-label">Real screenshot</div>' +
         '<div class="screen-lang-toggle" id="screenLangToggle">' +
@@ -641,6 +653,7 @@
       '<div class="panel-eyebrow">' + esc(p.arcName) + (p.curated ? '' : ' &middot; UNCURATED') + '</div>' +
       '<h2>' + esc(p.title) + '</h2>' +
       statusLine +
+      capabilityHtml +
       '<div class="field" style="margin-top:14px;">' + shotHtml + '</div>' +
       (p.live ? '<a class="visit-btn" href="' + p.liveUrl + '" target="_blank" rel="noopener">Open live page &#8599;</a>' : '') +
       '<div class="field"><div class="field-label">Arcs</div>' + listOrEmpty(p.arcKeys) + '</div>' +
