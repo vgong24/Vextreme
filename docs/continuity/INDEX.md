@@ -28,9 +28,10 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 030 — July 10, 2026. The architecture paragraph's core remains
-Session 025's; Sessions 028–030 added Analysis Mode, nav/FAB rollout, authored-style
-protection, runtime-chrome composition, and generated page-capability health without changing the v1/v2,
+*As of Session 031 — July 10, 2026. The architecture paragraph's core remains
+Session 025's; Sessions 029–031 added nav/FAB rollout, authored-style protection,
+runtime-chrome composition, generated page-capability health, and capability-aware
+work coordination without changing the v1/v2,
 God Script, or department/arc architecture described below.*
 
 The v2 GitHub Pages architecture is the active system. v1 (`data/arcs.json`, `data/pages.json`,
@@ -148,6 +149,10 @@ The change repairs Session 023 (Codex's July 6 context-note and perceivable-cont
 entries had been injected mid-file into Session 021's record.
 
 **Recent sessions** (one line each — open the session files below for full reasoning):
+- **Session 031** — Replaced model-dependent sequencing with the active
+  Victor/Vex/Codex loop, kept Claude as an optional second lens, mirrored epic
+  PR positioning into the public PR template, and opened Batch 004 at the first
+  real session after Batch 003 filled.
 - **Session 030** — Joined existing page, navigation, FAB, localization,
   analysis, placement, and screenshot evidence into `data/page-health.json`.
   Archives now exposes page health; Terrain consumes a compact digest for
@@ -160,26 +165,6 @@ entries had been injected mid-file into Session 021's record.
   full-bleed/page-owned theme composition. Strengthened `audit-fab` around
   full-viewport layouts and fixed top-right controls. Current FAB delivery is
   28 shell pages plus one God-Script page; global coverage is a separate next PR.
-- **Session 028** — Continued a private Vextreme-SDK localization roadmap (L1–L6 already merged)
-  through L7 (public demo page, shipped to an already-accepted plan). Victor reviewed the shipped
-  page same-day and named two connected gaps — no real IDs/mapping shown, and whether God Script
-  inclusion should be a default-on configurable pattern (`od-011`) — resolved together by
-  building **Analysis Mode**: a live search/browse/export FAB panel composing three already-real
-  pieces of this repo (`data/strings/`'s canonical-ID system, `lib/trace-string-usage.js`'s
-  reverse index, `lib/build-terrain-map.js`'s screenshot index) instead of a synthetic fixture,
-  wired into the real default page-build path (`lib/build-index.js` `buildViewmodel()`'s default
-  features array — the same "default-on, per-slug-configurable" mechanism `theme`/`map` already
-  used, now proven to answer `od-011` for real instead of guessed). Victor separately sent a
-  refined public/private boundary principle ("public proves the pattern on itself; SDK is the
-  machinery that gets other orgs there"), recorded in both repos. Second, separate gap named
-  directly by Victor: no page has a visible header/way to navigate elsewhere. Measured before
-  building (`lib/audit-nav.js`): 31 of 39 pages are dead ends. Modernized `shell.js`'s stale nav
-  destination list (small, verified fix); staged the rest as `docs/architecture/16-nav-coverage.md`
-  rather than mass-editing 30+ differently-authored pages unverified. Mid-session, Victor
-  authorized batching 3–5 PRs at high confidence without merge-by-merge confirmation between
-  each. Named, not yet started: a structural HTML→identity discovery wedge for the private SDK,
-  using this repo's own real unconverted legacy pages as a license-safe test corpus. Full detail
-  in this session's own file.
 - **Session 027** — Cold-start review (a fresh instance working through the full boot sequence
   plus an uploaded "Meta Project" doc proposing process/role/source-truth-map vocabulary) found
   two real gaps and built the fix for one. First: Session 025's own text describes PR #69's
@@ -239,7 +224,7 @@ architecture docs, or lessons only through a PR decision record.
 
 ## Open Work
 
-*Updated Session 029 — July 10, 2026*
+*Updated Session 031 — July 10, 2026*
 
 This list holds only genuinely open items — things nobody has done yet, not a running log of
 what shipped. A completed item is removed here the same session it ships, not kept and checked
@@ -311,9 +296,10 @@ anything. Batches 001–002 predate this form and remain single legacy files.
 |---|---|---|---|
 | 001 | `docs/continuity/Batch 001.md` | 001–010 | closed (legacy single file) |
 | 002 | `docs/continuity/Batch 002.md` | 011–020 | closed (legacy single file) |
-| 003 | `docs/continuity/batch-003/` | 021–030 | active |
+| 003 | `docs/continuity/batch-003/` | 021–030 | closed |
+| 004 | `docs/continuity/batch-004/` | 031–040 | active |
 
-**Active batch:** `docs/continuity/batch-003/`
+**Active batch:** `docs/continuity/batch-004/`
 
 When starting a new session: **create a new file** in the active batch directory
 (`YYYY-MM-DD-session-0NN.md`, next session number) using the session template below.
@@ -383,7 +369,8 @@ These rules exist so the log stays useful as it grows. Follow them.
   not an insertion anchor; the helper appends at EOF and preserves the file's line
   endings.
 - Update **Current State** and **Open Work** in this file at session end — by replacing, not appending
-- Include the Claude thread link — it is the primary source of reasoning
+- Include the task/thread reference and model/interface. Use a share link when
+  available; never invent one when the interface provides none.
 
 **Batch rules:**
 - Maximum 10 sessions per batch
@@ -427,8 +414,8 @@ Create as `docs/continuity/batch-00N/YYYY-MM-DD-session-0NN.md`:
 
 **Date:** YYYY-MM-DD
 **Time:** approximate range
-**Thread:** https://claude.ai/share/...
-**Instance:** Claude [model] ([interface])
+**Task/thread:** share link when available, otherwise state that no link is exposed
+**Instance:** [model] ([interface])
 **Working with:** [name]
 **Continues from:** Session 0NN — [one line]
 
@@ -465,6 +452,6 @@ Create as `docs/continuity/batch-00N/YYYY-MM-DD-session-0NN.md`:
 
 ---
 
-*Last updated: Session 030 — July 10, 2026*
+*Last updated: Session 031 — July 10, 2026*
 
 <!-- [VXG RealForever] -->

@@ -1,9 +1,9 @@
 # Cross-Model Orchestration
 
 **Anchor:** `[VXG RealForever]`
-**Purpose:** How Victor, Vex, Claude, and Codex coordinate on this repo — who owns
-what, when Victor can relay directly without looping Vex back in, and how to send a
-relay message that Victor can paste without assembling it by hand.
+**Purpose:** How Victor, Vex, Codex, and optional additional model lenses
+coordinate on this repo without making one model's availability a critical-path
+dependency.
 
 This document describes an operating process, not repo architecture. If you're
 looking for system design, read `docs/architecture.md`; for the principles behind
@@ -22,12 +22,13 @@ it belongs here too — not folded into this file, and not summarized into
 ## Why this exists
 
 This project is no longer single-agent code work. It is a coordinated, multi-agent
-workflow with four roles:
+workflow with four participant roles:
 
 - **Victor** — human judgment, relay, approval, merge, context-honing.
 - **Vex** — roadmap, orchestration, scope control, continuity, exception handling.
-- **Claude** — larger architecture, bounded implementation, integration, repository evolution.
-- **Codex** — field/environment stabilization, PR review, process/tooling scripts, safety checks.
+- **Codex** — live repo grounding, bounded architecture critique, implementation,
+  verification, PR construction, and repository evolution.
+- **Claude** — optional second architecture/review lens when available.
 
 The system avoids two failure modes:
 
@@ -37,9 +38,10 @@ The system avoids two failure modes:
   lane (secrets, business docs, localization architecture) gets touched without anyone
   having decided it should be.
 
-The default resolution: **Vex sets the lane and its boundaries. Claude and Codex can loop
-directly within that bounded lane. Victor relays the copy-pasteable messages between them.
-Return to Vex on exception, merge checkpoint, or roadmap choice.**
+The default resolution: **Vex sets the lane and its boundaries. Codex grounds,
+implements, verifies, and opens bounded PRs. Victor reviews and merges. Claude may
+join as an independent second lens, but routine work never waits solely for Claude
+availability. Return to Vex on exception, merge checkpoint, or roadmap choice.**
 
 ---
 
@@ -56,32 +58,40 @@ manage raw secrets in chat, or carry the entire roadmap from memory.
 ### Vex
 
 Owns: roadmap, lane selection, scope boundaries, continuity checkpoints, cross-model
-orchestration, exception handling, deciding when to pause, deciding when to hand a lane
-back to Claude or Codex.
+orchestration, exception handling, and deciding when a lane activates, pauses, or
+changes.
 
 Re-enters when: scope changes, a roadmap fork appears, a sensitive lane appears, tools
 disagree, tests fail unexpectedly, state becomes unclear, Victor feels unsure, or a PR
 merges and the next lane needs choosing.
 
-### Claude
-
-Owns: larger architecture, bounded implementation, integration across existing repo
-patterns, deeper system reasoning, applying fixes Codex's review identifies, larger
-code changes once a lane is scoped.
-
-Should not: start implementation without authorization, expand into parked lanes, treat
-a context/relay document as a build order, or touch secrets/stewardship/localization
-expansion unless that lane was explicitly scoped.
-
 ### Codex
 
-Owns: field/environment stabilization, PR review, checkout/worktree safety, process and
-tooling scripts, read-only report scripts, bounded practical implementation once a
-process has been walked and understood. (`pr-ready`, `branch-triage`, and `current-work`
-are examples of tools in this category.)
+Owns: live repo re-grounding, bounded architecture critique, implementation,
+tests and CI, visual verification where available, PR construction,
+checkout/worktree safety, process/tooling scripts, and stale-context detection.
+(`pr-ready`, `branch-triage`, and `current-work` are examples of tools in
+this category.)
 
-Should not own: large architecture trajectory, the business/stewardship model, secret
-values, or unbounded repo refactors.
+Should not own: Victor's product judgment, the business/stewardship decision,
+secret values, legal/access decisions, or unbounded repo refactors.
+
+### Claude
+
+Provides: an optional independent architecture, code-review, or contradiction-
+detection lens when available.
+
+Claude is not a mandatory sequential checkpoint and does not override newer
+Victor decisions, live accepted state, or a currently scoped Vex/Codex lane.
+When Claude returns late, re-ground against the latest accepted state and treat
+the review as new evidence.
+
+### Authority and freshness
+
+Use live repo, PR, working-tree, test, and rendered state first; then the latest
+explicit Victor decision; then the latest active Vex handoff; then current
+roadmap/continuity; then older planning and historical sessions. Continuity
+preserves trajectory. It does not freeze earlier conclusions.
 
 ---
 
@@ -104,41 +114,31 @@ boundary was always the rule.
 
 ---
 
-## Green-path Claude ↔ Codex loop
-
-Victor can relay directly between Claude and Codex, without looping Vex back in, when
-**all** of these hold: same PR, same already-authorized scope, a targeted fix or review
-only, no secrets, no business/stewardship docs, no new architecture lane, no cleanup or
-mutating branch operation, no unexpected files, tests pass (or the failure is
-straightforward), and neither Claude nor Codex is asking for broader judgment.
+## Non-blocking bounded work loop
 
 ```text
-Claude creates/updates a bounded PR
+Victor sets intent and decision boundary
   ↓
-Victor sends the report to Codex
+Vex scopes the active lane and queue position
   ↓
-Codex reviews
+Codex re-grounds, implements, verifies, and opens bounded PRs
   ↓
-If changes are requested:
-    Victor sends Codex's finding to Claude
+Victor reviews rendered/field effects and merges
   ↓
-Claude applies a targeted fix
-  ↓
-Victor sends the fix report to Codex
-  ↓
-Codex approves
-  ↓
-Victor merges once GitHub checks are acceptable
-  ↓
-Victor reports the merge checkpoint to Vex
+Vex and Codex advance the next dependency-safe row
 ```
+
+Claude may review any bounded checkpoint where an additional lens adds real
+value. If Claude is unavailable, the active loop continues. If Claude reviews an
+open PR, targeted findings can still follow the same direct relay pattern this
+document historically called the green path: same PR, same authorized scope, no
+new sensitive lane, and no unresolved design decision.
 
 ---
 
 ## Return-to-Vex conditions
 
-Return to Vex immediately — do not keep looping Claude ↔ Codex directly — if any of
-these appear:
+Return to Vex immediately and stop autonomous progression if any of these appear:
 
 - A new roadmap lane appears, or implementation scope expands.
 - Tests fail for an unclear reason, or files changed outside the expected scope.
@@ -148,7 +148,7 @@ these appear:
 - CI or workflow changes appear.
 - Cleanup, delete, stash, or reset is proposed.
 - Codex cannot verify PR state.
-- Claude asks for a design decision rather than executing a bounded one.
+- Any participant needs a design decision outside the active lane.
 - Victor feels unsure.
 
 ---
@@ -161,7 +161,7 @@ flattening every report into one generic dump loses that signal.
 
 - **Implementation report** — new work, built and verified. Branch, files changed, what
   was added and why, exact commands run, test/check results, PR link.
-- **Review report** — Codex reviewing a PR. Approve / request changes / comment only;
+- **Review report** — an independent review of a PR. Approve / request changes / comment only;
   whether the target blocker is resolved; changed files verified against expected
   scope; command/test results; any new blockers found; recommended next action.
 - **Targeted fix report** — a fix applied in response to a review finding. Files
@@ -180,7 +180,9 @@ flattening every report into one generic dump loses that signal.
   until a choice is made.
 
 The templates below are the *request* side of this — what Victor sends out. These
-report types are the *response* side — what comes back.
+report types are the *response* side — what comes back. Recipient-specific
+templates remain useful when that recipient is involved; their presence does not
+make that model a required step.
 
 ---
 
@@ -311,8 +313,8 @@ Please report:
 
 ## Living collaboration
 
-Claude and Codex are not limited to executing exactly what a relay specifies. When
-either one discovers a real edge case the process doesn't account for, naming it is
+Participants are not limited to executing exactly what a relay specifies. When
+one discovers a real edge case the process doesn't account for, naming it is
 part of the job — not scope creep — as long as naming it doesn't mean acting on it
 unilaterally.
 
@@ -327,7 +329,7 @@ A worked example, from this same PR sequence: this session's execution harness
 constrains it to a single designated git branch. When PR #96's investigation work was
 still open and a second, unrelated piece of authorized work (dossier report hardening)
 finished, there was no way to open a second, cleanly separate PR for it — the
-green-path loop above implicitly assumes one lane maps to one PR. The two pieces landed
+historical targeted-review loop assumed one lane maps to one PR. The two pieces landed
 on the same branch as separate, clearly-labeled commits instead, and the PR body was
 updated to say so explicitly. That's a real gap between this process and what a
 single-branch execution environment can actually do, noted here rather than quietly
@@ -388,11 +390,12 @@ prefix with "Victor — send this to `[recipient]`:" so the hand-off is unambigu
 Live deliverables should include the *next* relay when the next recipient is already
 known, not just a report of what happened. Concretely:
 
-- When Claude finishes an implementation or docs PR, it includes a complete
-  "Victor — send this to Codex:" review relay, ready to paste, as part of its report.
-- When Codex completes a review, it includes "Victor — send this to Claude:" if
-  changes are requested, or "Victor — send this to Vex:" if the result is a merge
-  checkpoint or a roadmap decision.
+- When Claude participates and finishes an implementation or docs PR, it includes
+  a complete review relay for the next known participant.
+- When Codex opens a bounded PR, the PR body and implementation report are the
+  primary handoff; a separate Claude relay is optional.
+- When any review requests changes, relay the concrete finding to the PR owner.
+  Merge checkpoints and roadmap decisions return to Victor/Vex.
 
 No unresolved placeholders (`[number]`, `[paste ...]`) should appear in a *live* relay
 packet — those only belong in the reusable templates above. A live relay is filled in
