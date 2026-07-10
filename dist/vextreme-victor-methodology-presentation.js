@@ -1198,7 +1198,8 @@
  *   role      : Analysis Mode orb + panel — searches data/analysis-index.json, exports the visible result set as CSV
  *   reads     : data/analysis-index.json via CDN (lazy fetch, first panel open only)
  *   writes    : (none)
- *   loaded-by : not yet wired into lib/build-vextreme.js FEATURES registry -- Phase C decision, docs/architecture/15-analysis-mode.md
+ *   loaded-by : lib/build-vextreme.js (inlined as analysis feature in God Scripts, default viewmodel via lib/build-index.js buildViewmodel())
+ *               tests/08-build-vextreme.test.js
  *               tests/37-fab-analysis.test.js
  *   tested-by : tests/37-fab-analysis.test.js
  *
@@ -1206,10 +1207,9 @@
  *     data/analysis-index.json schema changed (supportedLangs/elements/pages/summary shape):
  *       - lib/build-analysis-index.js (the write side -- must stay in sync)
  *       - filterElements()/screenshotsForKey()/toCSV() here read this shape directly
- *     this widget gets wired into lib/build-vextreme.js FEATURES registry (Phase C):
- *       - lib/vex-config.js (new Feature.* constant)
- *       - lib/build-vextreme.js (FEATURES registry entry)
- *       - tests/08-build-vextreme.test.js (assembler coverage for the new feature)
+ *     default features array in lib/build-index.js buildViewmodel() changed:
+ *       - this widget's inclusion on default-viewmodel pages changes with it
+ *       - tests/07-viewmodel.test.js, tests/08-build-vextreme.test.js (FAB SYSTEM default-feature-count assertions)
  * LATTICE:END
  */
 
