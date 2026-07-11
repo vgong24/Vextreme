@@ -28,10 +28,11 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 032 — July 10, 2026. The architecture paragraph's core remains
-Session 025's; Sessions 029–032 added nav/FAB rollout, authored-style protection,
+*As of Session 033 — July 10, 2026. The architecture paragraph's core remains
+Session 025's; Sessions 029–033 added nav/FAB rollout, authored-style protection,
 runtime-chrome composition, generated page-capability health, capability-aware
-work coordination, and Terrain semantic Journey history without changing the v1/v2,
+work coordination, Terrain semantic Journey history, and a bounded public-safe
+feedback Issue Form without changing the v1/v2,
 God Script, or department/arc architecture described below.*
 
 The v2 GitHub Pages architecture is the active system. v1 (`data/arcs.json`, `data/pages.json`,
@@ -153,6 +154,9 @@ The change repairs Session 023 (Codex's July 6 context-note and perceivable-cont
 entries had been injected mid-file into Session 021's record.
 
 **Recent sessions** (one line each — open the session files below for full reasoning):
+- **Session 033** — Added the first public feedback Issue Form with explicit
+  public/no-sensitive/no-commitment acknowledgements, disabled blank issues, and
+  routed private/security/business matters to the existing Direct Contact path.
 - **Session 032** — Added Terrain's Phase 1 semantic Journey history: relationship-aware
   browser Back/Forward restoration, a compact drawer path, Return to origin, Clear journey,
   focused state-machine tests, and rendered desktop/mobile evidence.
@@ -160,11 +164,6 @@ entries had been injected mid-file into Session 021's record.
   Victor/Vex/Codex loop, kept Claude as an optional second lens, mirrored epic
   PR positioning into the public PR template, and opened Batch 004 at the first
   real session after Batch 003 filled.
-- **Session 030** — Joined existing page, navigation, FAB, localization,
-  analysis, placement, and screenshot evidence into `data/page-health.json`.
-  Archives now exposes page health; Terrain consumes a compact digest for
-  organizational health without expanding its graph. Rendered localhost
-  verification remains pending because browser access was blocked.
 - **Session 027** — Cold-start review (a fresh instance working through the full boot sequence
   plus an uploaded "Meta Project" doc proposing process/role/source-truth-map vocabulary) found
   two real gaps and built the fix for one. First: Session 025's own text describes PR #69's
@@ -224,7 +223,7 @@ architecture docs, or lessons only through a PR decision record.
 
 ## Open Work
 
-*Updated Session 032 — July 10, 2026*
+*Updated Session 033 — July 10, 2026*
 
 This list holds only genuinely open items — things nobody has done yet, not a running log of
 what shipped. A completed item is removed here the same session it ships, not kept and checked
@@ -454,6 +453,6 @@ Create as `docs/continuity/batch-00N/YYYY-MM-DD-session-0NN.md`:
 
 ---
 
-*Last updated: Session 032 — July 10, 2026*
+*Last updated: Session 033 — July 10, 2026*
 
 <!-- [VXG RealForever] -->
