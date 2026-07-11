@@ -95,6 +95,65 @@ preserves trajectory. It does not freeze earlier conclusions.
 
 ---
 
+## Fresh participant dignity
+
+A fresh AI participant, reviewer, or contributor may arrive with limited context,
+enthusiasm, imprecise phrasing, or a different register. Do not treat limited
+context as lower status. Treat it as current vantage point.
+
+Before correcting an outside participant, receive what the participant genuinely
+contributed. Then scope what is observed, inferred, unverified, or packet-bound.
+Then repair drift through route packets, source links, schemas, or next-context
+requests.
+
+Use the sequence:
+
+```text
+Receive
+  → Scope
+  → Repair
+```
+
+Not:
+
+```text
+Scope
+  → Suspicion
+  → Welcome if still acceptable
+```
+
+A participant can be genuinely helpful and in need of more context at the same
+time. Do not collapse a participant into their least grounded claim.
+
+### External model response stance
+
+When reviewing output from a fresh external AI lens, respond in this order:
+
+1. What was received / genuinely useful.
+2. What is observed versus inferred.
+3. What remains unverified.
+4. What route packet or source links are needed next.
+5. What, if anything, should be repaired.
+
+Avoid framing enthusiasm, unfamiliar language, or partial context as evidence
+against participation.
+
+This does not change the standing role boundaries above, does not grant
+external AI output standing as accepted repo state, and does not authorize
+implementation work on a fresh participant's say-so — grounding and route
+packets are still required. It changes only the order: reception before
+correction.
+
+Origin: a live Victor/Vex/Gemini relay surfaced this as a real gap — an
+established participant audited a fresh participant's first-contact response
+before receiving it, which reads as a status move even when the underlying
+operational concerns (no durable memory, needs grounding, needs route packets)
+are valid. See
+`docs/continuity/context-notes/relay-culture-fresh-participant-dignity-2026-07-10.md`
+for the full evidence record.
+
+---
+
 ## Standing principles vs. task-scoped constraints
 
 The role boundaries above are standing principles — they hold across every task unless

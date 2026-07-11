@@ -23,6 +23,9 @@ jobs:
       - name: Detect wip/ -> pages/ promotions
         run: node lib/detect-wip-promotions.js ${{ github.event.pull_request.base.sha }} HEAD --json > /tmp/wip-promotions.json
 
+      - name: Check description freshness on changed pages
+        run: node lib/check-description-freshness.js ${{ github.event.pull_request.base.sha }} HEAD --json > /tmp/description-freshness.json
+
       - name: Post alignment report as PR comment
         uses: actions/github-script@v7
         with:
@@ -30,6 +33,7 @@ jobs:
             const fs = require('fs');
             const report = JSON.parse(fs.readFileSync('/tmp/key-alignment-report.json', 'utf8'));
             const { promotions } = JSON.parse(fs.readFileSync('/tmp/wip-promotions.json', 'utf8'));
+            const { needsDescriptionReview } = JSON.parse(fs.readFileSync('/tmp/description-freshness.json', 'utf8'));
             const nd  = report.nodes;
             const ar  = report.arcs;
             const pg  = report.pages;
@@ -79,6 +83,10 @@ jobs:
               ? '\n> 📦 **Promoted from wip/ to pages/:** ' +
                 promotions.map(p => `\`${p.from}\` → \`${p.to}\`` + (p.slugChanged ? ' (slug changed!)' : '')).join(', ')
               : '';
+            const descriptionReview = needsDescriptionReview.length
+              ? '\n> ✏️ **Changed pages with no meta description:** `' + needsDescriptionReview.join('`, `') +
+                '` — is this page\'s purpose still perceivable to a fresh instance, or an external AI mapping a user\'s question to a route?'
+              : '';
 
             const body = [
               '## Key Alignment Report',
@@ -100,6 +108,7 @@ jobs:
               wipDupes,
               wipDrafts,
               promoted,
+              descriptionReview,
               '',
               overallOK
                 ? '_All keys aligned, no uncurated pages, no wip/ collisions._'

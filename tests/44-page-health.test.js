@@ -12,6 +12,7 @@ const {
   pageI18nKeys,
   languageCoverage,
   hasVisibleThemeStyles,
+  metaDescriptionText,
   fabDelivery,
   buildPageHealth,
   loadInputs,
@@ -33,6 +34,16 @@ test('PAGE-HEALTH: identity keys and language completeness are source-derived', 
 test('PAGE-HEALTH: theme mechanism is distinct from visible theme styles', () => {
   assert.equal(hasVisibleThemeStyles('<html data-theme="dark"><style>body{color:red}</style>'), false);
   assert.equal(hasVisibleThemeStyles('<style>:root[data-theme="light"]{color:black}</style>'), true);
+});
+
+test('PAGE-HEALTH: meta description is extracted as text, not flattened to a boolean', () => {
+  assert.equal(metaDescriptionText('<meta name="description" content="A real summary.">'), 'A real summary.');
+  assert.equal(metaDescriptionText('<meta name="description" content="  padded  ">'), 'padded');
+  assert.equal(metaDescriptionText('<meta name="description" content="">'), '');
+  assert.equal(metaDescriptionText('<meta name="description" content="   ">'), '');
+  assert.equal(metaDescriptionText('<title>No description tag</title>'), '');
+  assert.equal(metaDescriptionText('<meta content="reversed attribute order" name="description">'), 'reversed attribute order');
+  assert.equal(metaDescriptionText('<meta property="og:description" content="not the same tag">'), '');
 });
 
 test('PAGE-HEALTH: FAB delivery preserves shell, God Script, disabled, and missing states', () => {
@@ -58,7 +69,7 @@ test('PAGE-HEALTH: critical means isolated; incomplete capabilities remain visib
     pageSlugs: ['healthy', 'isolated'],
     htmlBySlug: {
       healthy: '<style>:root[data-theme="light"]{color:black}</style><p data-i18n="x.a"></p><script src="/lib/shell.js"></script>',
-      isolated: '<p>plain</p>',
+      isolated: '<meta name="description" content="Present but still isolated."><p>plain</p>',
     },
     distBySlug: { healthy: '', isolated: '' },
     wiredBySlug: {},
@@ -75,6 +86,10 @@ test('PAGE-HEALTH: critical means isolated; incomplete capabilities remain visib
   assert.equal(result.pages.healthy.health.state, 'healthy');
   assert.equal(result.pages.isolated.health.state, 'critical');
   assert.equal(result.pages.isolated.placement.state, 'uncurated');
+  assert.equal(result.pages.healthy.discovery.metaDescription, '', 'a missing meta description alone must not demote an otherwise-healthy page');
+  assert.equal(result.pages.healthy.health.state, 'healthy', 'a missing meta description alone must not affect health state');
+  assert.equal(result.pages.isolated.discovery.metaDescription, 'Present but still isolated.');
+  assert.equal(result.summary.withMetaDescription, 1);
 });
 
 test('PAGE-HEALTH integration: committed projection equals fresh source computation', () => {

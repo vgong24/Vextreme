@@ -1025,6 +1025,35 @@
         ]
       }
     },
+    "lib/check-description-freshness.js": {
+      "role": "flags a PR that edits a pages/*.html file with no meta description, so discoverability drift is caught at the moment content changes, not left for a later instance to notice in generated output",
+      "context": "Follow-up to the Fresh Participant Dignity relay-culture PR's discovery-signal groundwork (lib/build-page-health.js's discovery.metaDescription): Victor's observation was that the badge alone only reports steady-state absence — it says nothing at the moment a PR actually edits a page's content, which is exactly when the question 'is this page's purpose still perceivable to a fresh instance, or an external AI mapping a user's question to a route' is cheapest to ask. Applies this session's relay-culture instinct (surface drift at the point of change, receive before scope) at the PR-diff level instead of the page-content level — the same methodology, a different altitude. Reuses git's own diff (`git diff --name-status -M`), same reasoning lib/detect-wip-promotions.js already established, rather than a second change-tracking mechanism. Deliberately scoped to 'changed page has zero description' only — true staleness detection (an existing description that's now wrong because the page changed underneath it) needs a persisted content-hash-at-authoring-time and a real definition of 'meaningfully changed,' named as a follow-up, not built here.",
+      "reads": [
+        "git diff --name-status -M output between two refs (pages/*.html paths only)",
+        "pages/*.html (current content at head)",
+        "lib/build-page-health.js (metaDescriptionText — shared detection rule, not reimplemented here)"
+      ],
+      "writes": [
+        "stdout (JSON with --json flag); PR comment via .github/workflows/key-alignment.yml"
+      ],
+      "loadedBy": [
+        "manual run: node lib/check-description-freshness.js <base-ref> [<head-ref>]",
+        ".github/workflows/key-alignment.yml (CI)",
+        "tests/45-check-description-freshness.test.js"
+      ],
+      "testedBy": [
+        "tests/45-check-description-freshness.test.js"
+      ],
+      "changeMap": {
+        "report shape changed (fields added/removed)": [
+          ".github/workflows/key-alignment.yml (formats the PR comment section from this shape)",
+          "tests/45-check-description-freshness.test.js"
+        ],
+        "metaDescriptionText() detection rule changed": [
+          "lib/build-page-health.js (shared source of truth for what counts as 'has a description')"
+        ]
+      }
+    },
     "lib/build-status.js": {
       "role": "system health manifest assembler — reads hand-authored status/*.json plus the strings manifest and key-alignment report, writes data/status.json",
       "context": "The write side of the 'what's still open' picture: six notice categories (translation debt and contentIntegrity auto-derived, techDebt/enhancements/assumptions/openDiscussions hand-authored) roll up into one artifact pages/ecosystem-hub.html fetches live. Also computes lattice coverage (mapped nodes vs. total eligible .js files in lib/+widgets/) into _meta.lattice, so the hub can show it without re-deriving the eligibility rule. openDiscussions (added Session 015) is deliberately separate from techDebt/enhancements — see data/status/open-discussions.json's _comment for why. contentIntegrity (Session 022) is auto-generated like translation, not hand-authored like the other three. Also Session 022: this generator had been run and committed by hand every session with no CI step actually calling it — now wired into .github/workflows/build-index.yml alongside lib/build-ecosystem-hub.js and the new lib/build-lessons.js. Later, Session 022: _meta.generated (wall-clock timestamp) and _meta.commit (git SHA at build time) removed entirely — neither was consumed anywhere, and both guaranteed a manufactured merge conflict any time two branches independently regenerated this file from identical source data (real incident, PR #50). Output is now content-deterministic: identical input always produces a byte-identical file. See config/lessons/generated-artifacts-must-be-content-deterministic.json.",
@@ -1249,7 +1278,7 @@
     },
     "lib/build-page-health.js": {
       "role": "joins existing page registries, runtime audits, localization identity, analysis, and screenshot evidence into one deterministic per-page capability projection",
-      "context": "Archives answers page health while Terrain answers organizational health. This generator gives both read sides one source without making either interface re-scan HTML or duplicate classification rules. It distinguishes mechanism presence from visible effect, especially shared theme control versus authored light/dark styles.",
+      "context": "Archives answers page health while Terrain answers organizational health. This generator gives both read sides one source without making either interface re-scan HTML or duplicate classification rules. It distinguishes mechanism presence from visible effect, especially shared theme control versus authored light/dark styles. `discovery.metaDescription` (added alongside the Fresh Participant Dignity relay-culture PR, while scoping what a page-index for external search-agent AIs would need) is deliberately stored as the extracted text itself (`''` when absent), not a pre-flattened boolean — same shape as `identity.keyCount` being a count rather than a `hasIdentity` flag. `metaDescriptionText()` is the one place that ever parses the HTML for this; every consumer (Archives' badge, Terrain's detail panel, a future page-index) derives presence/quality from the string it already has rather than re-scanning the page. Matches the `<meta>` tag itself first, then reads `name=`/`content=` from within that tag independently — attribute order in the source HTML is not assumed. Known ceiling, not yet hit: HTML entities in `content` (e.g. `&amp;`) are returned raw, undecoded — fine for every current page (none use them) and for feeding back into an `esc()`-based HTML re-render (Terrain's detail panel), but a future consumer that treats this string as plain text (a search snippet, a page-index entry) would need to decode entities first. Resolve when a real consumer needs decoded text, not preemptively. This is the field a future large-repo instance — or an external AI with no repo access — would actually read to map a user's question to a route: the badge only answers 'does this page describe itself,' the string is what a search/navigation layer would need to answer 'which page.' Health-severity handling follows the same precedent as `analysis.control`: surfaced as a badge, deliberately excluded from computeHealth()'s gaps/blockers so adding it doesn't retroactively flip most of the site to 'attention' — only 4/39 pages had a meta description when this landed. Promote it into a real gap once enough pages are curated that the absence is the exception, not the norm.",
       "reads": [
         "pages/*.html (runtime tags, data-i18n bindings, authored theme styles)",
         "data/nodes.json (arc placement)",
@@ -1268,7 +1297,8 @@
         "manual run: node lib/build-page-health.js",
         ".github/workflows/build-index.yml (before Archives and Terrain)",
         "tests/helpers/prereqs.js",
-        "tests/44-page-health.test.js"
+        "tests/44-page-health.test.js",
+        "lib/check-description-freshness.js (metaDescriptionText only)"
       ],
       "testedBy": [
         "tests/44-page-health.test.js"
@@ -1282,6 +1312,9 @@
         ],
         "health severity rules changed": [
           "Archives summary counts and Terrain content status colors both change"
+        ],
+        "metaDescriptionText() signature or export removed": [
+          "lib/check-description-freshness.js (imports it directly, not through the page-health projection)"
         ]
       }
     },
