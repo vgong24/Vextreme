@@ -805,6 +805,7 @@
         '<li>identity: ' + capability.identityKeys + ' bound key(s)</li>' +
         '<li>analysis: ' + (capability.analysisControl ? 'control available' : (capability.analysisIndexed ? 'indexed only' : 'unavailable')) + '</li>' +
         '<li>evidence: ' + (capability.evidenceLanguages.join(', ').toUpperCase() || 'no screenshot') + '</li>' +
+        '<li>discovery: ' + (capability.metaDescription ? 'meta description present' : 'no meta description') + '</li>' +
         '</ul></div>'
       : '';
 

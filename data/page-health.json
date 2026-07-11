@@ -8,7 +8,8 @@
     "sorted": 4,
     "withFab": 30,
     "withIdentity": 9,
-    "withScreenshots": 10
+    "withScreenshots": 10,
+    "withMetaDescription": 4
   },
   "pages": {
     "about-me": {
@@ -51,6 +52,9 @@
       },
       "evidence": {
         "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": false
       },
       "health": {
         "state": "attention",
@@ -103,6 +107,9 @@
       },
       "evidence": {
         "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": false
       },
       "health": {
         "state": "critical",
@@ -158,6 +165,9 @@
       "evidence": {
         "screenshotLanguages": []
       },
+      "discovery": {
+        "metaDescription": false
+      },
       "health": {
         "state": "critical",
         "blockers": [
@@ -211,6 +221,9 @@
       },
       "evidence": {
         "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": false
       },
       "health": {
         "state": "attention",
@@ -269,6 +282,9 @@
       "evidence": {
         "screenshotLanguages": []
       },
+      "discovery": {
+        "metaDescription": true
+      },
       "health": {
         "state": "attention",
         "blockers": [],
@@ -320,6 +336,9 @@
       },
       "evidence": {
         "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": false
       },
       "health": {
         "state": "attention",
@@ -373,6 +392,9 @@
       "evidence": {
         "screenshotLanguages": []
       },
+      "discovery": {
+        "metaDescription": false
+      },
       "health": {
         "state": "attention",
         "blockers": [],
@@ -424,6 +446,9 @@
       },
       "evidence": {
         "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": false
       },
       "health": {
         "state": "attention",
@@ -489,6 +514,9 @@
           "ja"
         ]
       },
+      "discovery": {
+        "metaDescription": false
+      },
       "health": {
         "state": "attention",
         "blockers": [],
@@ -537,6 +565,9 @@
       },
       "evidence": {
         "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": false
       },
       "health": {
         "state": "attention",
@@ -589,6 +620,9 @@
       },
       "evidence": {
         "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": false
       },
       "health": {
         "state": "attention",
@@ -644,6 +678,9 @@
           "lenses"
         ]
       },
+      "discovery": {
+        "metaDescription": false
+      },
       "health": {
         "state": "attention",
         "blockers": [],
@@ -694,6 +731,9 @@
       },
       "evidence": {
         "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": false
       },
       "health": {
         "state": "attention",
@@ -746,6 +786,9 @@
       },
       "evidence": {
         "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": false
       },
       "health": {
         "state": "critical",
@@ -801,6 +844,9 @@
       "evidence": {
         "screenshotLanguages": []
       },
+      "discovery": {
+        "metaDescription": false
+      },
       "health": {
         "state": "attention",
         "blockers": [],
@@ -851,6 +897,9 @@
       },
       "evidence": {
         "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": false
       },
       "health": {
         "state": "critical",
@@ -906,6 +955,9 @@
       "evidence": {
         "screenshotLanguages": []
       },
+      "discovery": {
+        "metaDescription": false
+      },
       "health": {
         "state": "attention",
         "blockers": [],
@@ -957,6 +1009,9 @@
       },
       "evidence": {
         "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": true
       },
       "health": {
         "state": "attention",
@@ -1010,6 +1065,9 @@
       "evidence": {
         "screenshotLanguages": []
       },
+      "discovery": {
+        "metaDescription": false
+      },
       "health": {
         "state": "attention",
         "blockers": [],
@@ -1061,6 +1119,9 @@
       },
       "evidence": {
         "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": false
       },
       "health": {
         "state": "attention",
@@ -1114,6 +1175,9 @@
       "evidence": {
         "screenshotLanguages": []
       },
+      "discovery": {
+        "metaDescription": false
+      },
       "health": {
         "state": "attention",
         "blockers": [],
@@ -1164,6 +1228,9 @@
       },
       "evidence": {
         "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": false
       },
       "health": {
         "state": "attention",
@@ -1218,6 +1285,9 @@
       "evidence": {
         "screenshotLanguages": []
       },
+      "discovery": {
+        "metaDescription": false
+      },
       "health": {
         "state": "attention",
         "blockers": [],
@@ -1271,6 +1341,9 @@
           "en"
         ]
       },
+      "discovery": {
+        "metaDescription": false
+      },
       "health": {
         "state": "attention",
         "blockers": [],
@@ -1321,6 +1394,9 @@
       },
       "evidence": {
         "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": true
       },
       "health": {
         "state": "attention",
@@ -1378,6 +1454,9 @@
       },
       "evidence": {
         "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": false
       },
       "health": {
         "state": "attention",
@@ -1438,6 +1517,9 @@
           "ja"
         ]
       },
+      "discovery": {
+        "metaDescription": false
+      },
       "health": {
         "state": "attention",
         "blockers": [],
@@ -1495,6 +1577,9 @@
           "en",
           "ja"
         ]
+      },
+      "discovery": {
+        "metaDescription": false
       },
       "health": {
         "state": "attention",
@@ -1554,6 +1639,9 @@
           "ja"
         ]
       },
+      "discovery": {
+        "metaDescription": false
+      },
       "health": {
         "state": "attention",
         "blockers": [],
@@ -1612,6 +1700,9 @@
           "ja"
         ]
       },
+      "discovery": {
+        "metaDescription": false
+      },
       "health": {
         "state": "attention",
         "blockers": [],
@@ -1661,6 +1752,9 @@
       },
       "evidence": {
         "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": false
       },
       "health": {
         "state": "critical",
@@ -1720,6 +1814,9 @@
           "search"
         ]
       },
+      "discovery": {
+        "metaDescription": false
+      },
       "health": {
         "state": "attention",
         "blockers": [],
@@ -1774,6 +1871,9 @@
       "evidence": {
         "screenshotLanguages": []
       },
+      "discovery": {
+        "metaDescription": false
+      },
       "health": {
         "state": "attention",
         "blockers": [],
@@ -1824,6 +1924,9 @@
       },
       "evidence": {
         "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": false
       },
       "health": {
         "state": "attention",
@@ -1877,6 +1980,9 @@
       "evidence": {
         "screenshotLanguages": []
       },
+      "discovery": {
+        "metaDescription": false
+      },
       "health": {
         "state": "attention",
         "blockers": [],
@@ -1928,6 +2034,9 @@
       },
       "evidence": {
         "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": false
       },
       "health": {
         "state": "critical",
@@ -1991,6 +2100,9 @@
           "ja"
         ]
       },
+      "discovery": {
+        "metaDescription": true
+      },
       "health": {
         "state": "attention",
         "blockers": [],
@@ -2051,6 +2163,9 @@
           "zh"
         ]
       },
+      "discovery": {
+        "metaDescription": false
+      },
       "health": {
         "state": "healthy",
         "blockers": [],
@@ -2097,6 +2212,9 @@
       },
       "evidence": {
         "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": false
       },
       "health": {
         "state": "attention",
