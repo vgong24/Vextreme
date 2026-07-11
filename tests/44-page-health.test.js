@@ -42,6 +42,8 @@ test('PAGE-HEALTH: meta description is extracted as text, not flattened to a boo
   assert.equal(metaDescriptionText('<meta name="description" content="">'), '');
   assert.equal(metaDescriptionText('<meta name="description" content="   ">'), '');
   assert.equal(metaDescriptionText('<title>No description tag</title>'), '');
+  assert.equal(metaDescriptionText('<meta content="reversed attribute order" name="description">'), 'reversed attribute order');
+  assert.equal(metaDescriptionText('<meta property="og:description" content="not the same tag">'), '');
 });
 
 test('PAGE-HEALTH: FAB delivery preserves shell, God Script, disabled, and missing states', () => {
