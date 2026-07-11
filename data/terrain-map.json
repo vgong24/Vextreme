@@ -40,12 +40,12 @@
       "key": 2,
       "name": "CHECK",
       "sub": "drift detectors and tests — run after generation",
-      "count": 6,
+      "count": 7,
       "rect": {
         "x": 1030,
         "y": 40,
         "width": 300,
-        "height": 450
+        "height": 510
       }
     },
     {
@@ -767,7 +767,8 @@
         "manual run: node lib/build-page-health.js",
         ".github/workflows/build-index.yml (before Archives and Terrain)",
         "tests/helpers/prereqs.js",
-        "tests/44-page-health.test.js"
+        "tests/44-page-health.test.js",
+        "lib/check-description-freshness.js (metaDescriptionText only)"
       ],
       "testedBy": [
         "tests/44-page-health.test.js"
@@ -1112,6 +1113,36 @@
       "auditorRank": 1
     },
     {
+      "id": "lib/check-description-freshness.js",
+      "cluster": "lib",
+      "stage": 2,
+      "stageName": "CHECK",
+      "x": 1080,
+      "y": 270,
+      "role": "flags a PR that edits a pages/*.html file with no meta description, so discoverability drift is caught at the moment content changes, not left for a later instance to notice in generated output",
+      "reads": [
+        "git diff --name-status -M output between two refs (pages/*.html paths only)",
+        "pages/*.html (current content at head)",
+        "lib/build-page-health.js (metaDescriptionText — shared detection rule, not reimplemented here)"
+      ],
+      "writes": [
+        "stdout (JSON with --json flag); PR comment via .github/workflows/key-alignment.yml"
+      ],
+      "loadedBy": [
+        "manual run: node lib/check-description-freshness.js <base-ref> [<head-ref>]",
+        ".github/workflows/key-alignment.yml (CI)",
+        "tests/45-check-description-freshness.test.js"
+      ],
+      "testedBy": [
+        "tests/45-check-description-freshness.test.js"
+      ],
+      "debts": [],
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": true,
+      "auditorRank": 4
+    },
+    {
       "id": "lib/check-design-tokens.js",
       "cluster": "lib",
       "stage": 2,
@@ -1149,7 +1180,7 @@
       "stage": 2,
       "stageName": "CHECK",
       "x": 1080,
-      "y": 270,
+      "y": 330,
       "role": "non-blocking CI check — compares slug/arc keys across nodes.json, arcs-v2.json, index.json, cross-checks pages/ and wip/, and reports drift",
       "reads": [
         "data/nodes.json",
@@ -1191,7 +1222,7 @@
       "stage": 2,
       "stageName": "CHECK",
       "x": 1080,
-      "y": 330,
+      "y": 390,
       "role": "pe-012 lattice-edge drift detector — verifies the map's claimed reads/writes/loadedBy edges against actual code",
       "reads": [
         "docs/lattice-map.json (every node's claimed edges)",
@@ -1247,7 +1278,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": true,
-      "auditorRank": 4
+      "auditorRank": 5
     },
     {
       "id": "lib/check-string-identity.js",
@@ -1255,7 +1286,7 @@
       "stage": 2,
       "stageName": "CHECK",
       "x": 1080,
-      "y": 390,
+      "y": 450,
       "role": "localization identity pilot, third script — informational validator, never rewrites anything",
       "reads": [
         "data/strings/compiled/identity-index.json",
@@ -1276,7 +1307,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": true,
-      "auditorRank": 5
+      "auditorRank": 6
     },
     {
       "id": "lib/compute-fab-version.js",
@@ -2220,6 +2251,10 @@
     [
       "lib/bump-fab-version.js",
       "widgets/fab-lang.js"
+    ],
+    [
+      "lib/check-description-freshness.js",
+      "lib/build-page-health.js"
     ],
     [
       "lib/check-key-alignment.js",
