@@ -12,7 +12,7 @@ const {
   pageI18nKeys,
   languageCoverage,
   hasVisibleThemeStyles,
-  hasMetaDescription,
+  metaDescriptionText,
   fabDelivery,
   buildPageHealth,
   loadInputs,
@@ -36,11 +36,12 @@ test('PAGE-HEALTH: theme mechanism is distinct from visible theme styles', () =>
   assert.equal(hasVisibleThemeStyles('<style>:root[data-theme="light"]{color:black}</style>'), true);
 });
 
-test('PAGE-HEALTH: meta description presence requires non-empty content, not just the tag', () => {
-  assert.equal(hasMetaDescription('<meta name="description" content="A real summary.">'), true);
-  assert.equal(hasMetaDescription('<meta name="description" content="">'), false);
-  assert.equal(hasMetaDescription('<meta name="description" content="   ">'), false);
-  assert.equal(hasMetaDescription('<title>No description tag</title>'), false);
+test('PAGE-HEALTH: meta description is extracted as text, not flattened to a boolean', () => {
+  assert.equal(metaDescriptionText('<meta name="description" content="A real summary.">'), 'A real summary.');
+  assert.equal(metaDescriptionText('<meta name="description" content="  padded  ">'), 'padded');
+  assert.equal(metaDescriptionText('<meta name="description" content="">'), '');
+  assert.equal(metaDescriptionText('<meta name="description" content="   ">'), '');
+  assert.equal(metaDescriptionText('<title>No description tag</title>'), '');
 });
 
 test('PAGE-HEALTH: FAB delivery preserves shell, God Script, disabled, and missing states', () => {
@@ -83,9 +84,9 @@ test('PAGE-HEALTH: critical means isolated; incomplete capabilities remain visib
   assert.equal(result.pages.healthy.health.state, 'healthy');
   assert.equal(result.pages.isolated.health.state, 'critical');
   assert.equal(result.pages.isolated.placement.state, 'uncurated');
-  assert.equal(result.pages.healthy.discovery.metaDescription, false, 'a missing meta description alone must not demote an otherwise-healthy page');
+  assert.equal(result.pages.healthy.discovery.metaDescription, '', 'a missing meta description alone must not demote an otherwise-healthy page');
   assert.equal(result.pages.healthy.health.state, 'healthy', 'a missing meta description alone must not affect health state');
-  assert.equal(result.pages.isolated.discovery.metaDescription, true);
+  assert.equal(result.pages.isolated.discovery.metaDescription, 'Present but still isolated.');
   assert.equal(result.summary.withMetaDescription, 1);
 });
 
