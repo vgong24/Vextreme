@@ -1,8 +1,8 @@
 {
-  "builtAt": "2026-07-11T06:10:02.421Z",
-  "nodeCount": 114,
+  "builtAt": "2026-07-12T08:26:56.529Z",
+  "nodeCount": 115,
   "curatedNodeCount": 91,
-  "autoDiscoveredCount": 23,
+  "autoDiscoveredCount": 24,
   "arcCount": 17,
   "supportedLangs": [
     "en",
@@ -2953,6 +2953,32 @@
         ]
       }
     },
+    "vextreme-covenant": {
+      "id": null,
+      "slug": "vextreme-covenant",
+      "title": "The Vextreme Covenant — A Living Charter and Relational Constitution",
+      "date": "",
+      "arcKeys": [],
+      "department": "institute",
+      "workType": "governance",
+      "autoDiscovered": true,
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.vextreme-covenant"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis"
+        ]
+      }
+    },
     "witness-committee-operations": {
       "id": null,
       "slug": "witness-committee-operations",
@@ -4022,6 +4048,11 @@
         {
           "slug": "human-ai-corelational-governance",
           "title": "Human–AI Corelational Governance · VXG RealForever · v2",
+          "ported": true
+        },
+        {
+          "slug": "vextreme-covenant",
+          "title": "The Vextreme Covenant — A Living Charter and Relational Constitution",
           "ported": true
         },
         {

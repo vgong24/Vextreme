@@ -28,12 +28,13 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 033 — July 10, 2026. The architecture paragraph's core remains
-Session 025's; Sessions 029–033 added nav/FAB rollout, authored-style protection,
+*As of Session 034 — July 12, 2026. The architecture paragraph's core remains
+Session 025's; Sessions 029–034 added nav/FAB rollout, authored-style protection,
 runtime-chrome composition, generated page-capability health, capability-aware
-work coordination, Terrain semantic Journey history, and a bounded public-safe
-feedback Issue Form without changing the v1/v2,
-God Script, or department/arc architecture described below.*
+work coordination, Terrain semantic Journey history, a bounded public-safe
+feedback Issue Form, and the public Vextreme Covenant charter page
+(`pages/vextreme-covenant.html`, from Vex's 2026-07-12 handoff) without changing
+the v1/v2, God Script, or department/arc architecture described below.*
 
 The v2 GitHub Pages architecture is the active system. v1 (`data/arcs.json`, `data/pages.json`,
 `lib/vextreme.js`/`archive-renderer.js`/`arc-nav.js`) still serves the live Squarespace site
@@ -154,16 +155,16 @@ The change repairs Session 023 (Codex's July 6 context-note and perceivable-cont
 entries had been injected mid-file into Session 021's record.
 
 **Recent sessions** (one line each — open the session files below for full reasoning):
+- **Session 034** — Built `pages/vextreme-covenant.html` (The Vextreme Covenant, from
+  Vex's living-charter handoff): ten Articles each carrying a public-repo receipt,
+  participants unranked, self-contained in the design system's own tokens; placed via
+  content intent (institute/governance), verified with rendered desktop/mobile/print evidence.
 - **Session 033** — Added the first public feedback Issue Form with explicit
   public/no-sensitive/no-commitment acknowledgements, disabled blank issues, and
   routed private/security/business matters to the existing Direct Contact path.
 - **Session 032** — Added Terrain's Phase 1 semantic Journey history: relationship-aware
   browser Back/Forward restoration, a compact drawer path, Return to origin, Clear journey,
   focused state-machine tests, and rendered desktop/mobile evidence.
-- **Session 031** — Replaced model-dependent sequencing with the active
-  Victor/Vex/Codex loop, kept Claude as an optional second lens, mirrored epic
-  PR positioning into the public PR template, and opened Batch 004 at the first
-  real session after Batch 003 filled.
 - **Session 027** — Cold-start review (a fresh instance working through the full boot sequence
   plus an uploaded "Meta Project" doc proposing process/role/source-truth-map vocabulary) found
   two real gaps and built the fix for one. First: Session 025's own text describes PR #69's
@@ -223,7 +224,7 @@ architecture docs, or lessons only through a PR decision record.
 
 ## Open Work
 
-*Updated Session 033 — July 10, 2026*
+*Updated Session 034 — July 12, 2026*
 
 This list holds only genuinely open items — things nobody has done yet, not a running log of
 what shipped. A completed item is removed here the same session it ships, not kept and checked
@@ -232,6 +233,10 @@ off forever; its record already lives in the batch file and (for od-/td-/pe- ite
 not this list.
 
 **Genuinely open:**
+- [ ] Covenant page (`vextreme-covenant`, Session 034) — live-render check on GitHub Pages
+  after merge; whether it enters the localization pipeline (charter language should stabilize
+  first) and whether it gets a curated `nodes.json`/arc placement instead of auto-discovery
+  are Victor's calls
 - [ ] Terrain Relational Projection Phase 2 — add a visible semantic threshold rail that exposes prior/current/next level and transition proximity while preserving the Phase 1 Journey contract; do not add user-editable threshold controls yet.
 - [ ] Terrain Relational Projection later phases — context-bearing stage portals, projection/profile grammar, alternate spatial POCs, public-safe organization/process views, and accessibility stabilization remain ordered horizon work, not bundled into Phase 1.
 - [ ] Global FAB coverage after the v8 action-rail contract: 10 of 39 `pages/*.html` surfaces still have neither `shell.js` nor a God-Script FAB path. Add them in a bounded PR, updating generators for generated pages and visually checking each authored surface.
@@ -453,6 +458,6 @@ Create as `docs/continuity/batch-00N/YYYY-MM-DD-session-0NN.md`:
 
 ---
 
-*Last updated: Session 033 — July 10, 2026*
+*Last updated: Session 034 — July 12, 2026*
 
 <!-- [VXG RealForever] -->

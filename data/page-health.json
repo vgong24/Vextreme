@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 39,
+    "total": 40,
     "healthy": 1,
     "attention": 32,
-    "critical": 6,
+    "critical": 7,
     "sorted": 4,
     "withFab": 30,
     "withIdentity": 9,
-    "withScreenshots": 10,
-    "withMetaDescription": 5
+    "withScreenshots": 11,
+    "withMetaDescription": 6
   },
   "pages": {
     "about-me": {
@@ -2048,6 +2048,66 @@
           "uncurated",
           "identity",
           "screenshot"
+        ]
+      }
+    },
+    "vextreme-covenant": {
+      "slug": "vextreme-covenant",
+      "title": "vextreme-covenant",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": false,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "missing"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": [
+          "en",
+          "mobile",
+          "print"
+        ]
+      },
+      "discovery": {
+        "metaDescription": "The Vextreme Covenant: a living charter for how humans, AI, systems, clients, evidence, authority, memory, and unfinished work remain in honest relationship. Ten Articles, a relational covenant, and the receipts that prove each one is already practiced."
+      },
+      "health": {
+        "state": "critical",
+        "blockers": [
+          "isolated"
+        ],
+        "gaps": [
+          "fab",
+          "uncurated",
+          "identity"
         ]
       }
     },

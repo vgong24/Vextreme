@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Vextreme Covenant — A Living Charter and Relational Constitution</title>
+<meta name="description" content="The Vextreme Covenant: a living charter for how humans, AI, systems, clients, evidence, authority, memory, and unfinished work remain in honest relationship. Ten Articles, a relational covenant, and the receipts that prove each one is already practiced.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── Tokens — mirrors styles/design-system.css family 1 (the light theme).
+     Inlined so this charter is a single self-contained file, per its own
+     handoff; values are the institution's, not a new brand. ─────────────── */
+:root{
+  --cream:#fafaf9;
+  --stone:#1c1917;
+  --muted:#78716c;
+  --border:#e7e5e4;
+  --ember:#b45830;
+  --ember-bg:#fdf8f6;
+  --serif:'Source Serif 4',Georgia,serif;
+  --sans:'IBM Plex Sans',sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+  --measure:41rem;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+}
+body{
+  background:var(--cream);
+  color:var(--stone);
+  font-family:var(--sans);
+  font-size:17px;
+  line-height:1.7;
+}
+::selection{background:var(--ember);color:var(--cream)}
+a{color:var(--ember);text-decoration:none;border-bottom:1px solid transparent}
+a:hover,a:focus-visible{border-bottom-color:var(--ember)}
+:focus-visible{outline:2px solid var(--ember);outline-offset:3px;border-radius:2px}
+.skip-link{
+  position:absolute;left:-9999px;top:0;background:var(--stone);color:var(--cream);
+  padding:10px 18px;z-index:100;font-family:var(--mono);font-size:14px;
+}
+.skip-link:focus{left:12px;top:12px}
+
+/* ── Layout ─────────────────────────────────────────────────────────────── */
+.page{max-width:var(--measure);margin:0 auto;padding:0 22px}
+section{padding:76px 0 20px;position:relative}
+section + section{border-top:1px solid var(--border)}
+
+/* ── Typography ─────────────────────────────────────────────────────────── */
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.15;letter-spacing:-0.01em}
+h2{font-size:clamp(26px,4vw,34px);margin-bottom:14px;scroll-margin-top:32px}
+h3{font-size:21px;margin:34px 0 10px}
+p{max-width:60ch;margin-bottom:16px}
+.kicker{
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ember);margin-bottom:16px;display:block;
+}
+.declaration{
+  font-family:var(--serif);font-size:clamp(20px,2.8vw,25px);font-weight:400;
+  line-height:1.45;max-width:32ch;margin:22px 0;
+  border-left:3px solid var(--ember);padding-left:20px;
+}
+.note{color:var(--muted);font-size:15px;max-width:58ch}
+.mono-list{list-style:none;font-family:var(--mono);font-size:14.5px;line-height:2.05;color:var(--stone)}
+.mono-list li::before{content:"·";color:var(--ember);margin-right:12px}
+
+/* ── Cover ──────────────────────────────────────────────────────────────── */
+.cover{padding:92px 0 64px;text-align:left;border-bottom:2px solid var(--stone)}
+.cover .seal{margin-bottom:38px}
+.cover h1{font-size:clamp(42px,8vw,72px);font-weight:700;letter-spacing:-0.02em;max-width:14ch}
+.cover .subtitle{
+  font-family:var(--serif);font-style:italic;font-size:clamp(18px,2.6vw,23px);
+  color:var(--muted);margin-top:14px;font-weight:400;
+}
+.cover .mission{
+  font-family:var(--serif);font-size:clamp(24px,4.4vw,38px);font-weight:600;line-height:1.3;
+  margin-top:52px;max-width:22ch;
+}
+.cover .mission em{font-style:normal;color:var(--ember)}
+.cover .definition{
+  margin-top:30px;font-size:16.5px;color:var(--stone);max-width:56ch;line-height:1.75;
+}
+.cover .provenance{
+  margin-top:44px;font-family:var(--mono);font-size:13px;color:var(--muted);
+  display:flex;flex-wrap:wrap;gap:8px 26px;
+}
+.cover .provenance b{color:var(--stone);font-weight:500}
+
+/* ── Seal (lattice geometry: ten article nodes on a ring) ───────────────── */
+.seal{width:88px;height:88px;display:block}
+.seal circle,.seal path,.seal line{fill:none;stroke:var(--stone);stroke-width:1}
+.seal .ring{stroke-width:1.4}
+.seal .node{fill:var(--cream);stroke:var(--ember);stroke-width:1.6}
+.seal .core{fill:var(--ember);stroke:none}
+.seal .chord{stroke:var(--border);stroke-width:.8}
+
+/* ── Table of contents ──────────────────────────────────────────────────── */
+.toc{padding:40px 0 8px}
+.toc summary{
+  font-family:var(--mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+  cursor:pointer;color:var(--muted);padding:6px 0;list-style:none;display:inline-flex;align-items:center;gap:10px;
+}
+.toc summary::before{content:"☰";color:var(--ember)}
+.toc summary::-webkit-details-marker{display:none}
+.toc ol{list-style:none;columns:2;column-gap:44px;margin-top:18px;font-size:15px}
+.toc ol li{margin-bottom:7px;break-inside:avoid}
+.toc ol a{color:var(--stone)}
+.toc ol .n{font-family:var(--mono);font-size:12px;color:var(--ember);margin-right:10px}
+@media (max-width:560px){.toc ol{columns:1}}
+
+/* ── Foundations grid ───────────────────────────────────────────────────── */
+.foundations{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);
+  border:1px solid var(--border);margin:34px 0 26px}
+.foundation{background:var(--cream);padding:26px 24px 20px}
+.foundation .label{font-family:var(--mono);font-size:12px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ember);margin-bottom:12px}
+.foundation .line{font-family:var(--serif);font-size:19.5px;line-height:1.4;font-weight:600;margin-bottom:10px}
+.foundation p{font-size:14.5px;color:var(--muted);margin:0}
+@media (max-width:640px){.foundations{grid-template-columns:1fr}}
+
+.protected-grid{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 20px}
+.protected-grid span{
+  font-family:var(--mono);font-size:14px;border:1px solid var(--border);
+  padding:7px 15px;background:#fff;color:var(--stone);
+}
+
+/* ── Principle panel ────────────────────────────────────────────────────── */
+.principle-panel{
+  background:var(--ember-bg);border:1px solid var(--border);border-left:3px solid var(--ember);
+  padding:34px 30px 26px;margin:30px 0;
+}
+.principle-panel .big{
+  font-family:var(--serif);font-size:clamp(26px,4.4vw,36px);font-weight:700;margin-bottom:16px;
+}
+.structural{list-style:none;margin:24px 0 6px;font-size:15.5px}
+.structural li{
+  padding:10px 0 10px 30px;border-top:1px dashed var(--border);position:relative;max-width:60ch;
+}
+.structural li::before{
+  content:"";position:absolute;left:6px;top:19px;width:7px;height:7px;border-radius:50%;
+  border:1.5px solid var(--ember);background:var(--cream);
+}
+
+/* ── Articles ───────────────────────────────────────────────────────────── */
+.articles-intro{padding-bottom:8px}
+article.covenant-article{
+  position:relative;padding:54px 0 34px 34px;border-top:1px solid var(--border);
+}
+article.covenant-article::before{ /* the relational thread */
+  content:"";position:absolute;left:8px;top:0;bottom:0;width:1px;background:var(--border);
+}
+article.covenant-article::after{ /* this article's node on the thread */
+  content:"";position:absolute;left:3.5px;top:66px;width:10px;height:10px;border-radius:50%;
+  background:var(--cream);border:1.6px solid var(--ember);
+}
+.art-num{
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ember);display:block;margin-bottom:8px;
+}
+article.covenant-article h3{font-size:clamp(22px,3.2vw,28px);margin:0 0 16px;scroll-margin-top:32px}
+.art-decl{
+  font-family:var(--serif);font-size:19px;line-height:1.55;max-width:52ch;
+  margin-bottom:18px;font-weight:400;
+}
+.art-meaning{margin:18px 0}
+
+/* threads: what it protects / how it's practiced / what it prevents */
+details.thread{border:1px solid var(--border);background:#fff;margin:22px 0 4px;max-width:60ch}
+details.thread summary{
+  cursor:pointer;padding:13px 18px;font-family:var(--mono);font-size:13px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+  list-style:none;display:flex;align-items:center;gap:12px;
+}
+details.thread summary::-webkit-details-marker{display:none}
+details.thread summary::before{content:"+";color:var(--ember);font-size:15px;width:12px}
+details.thread[open] summary::before{content:"–"}
+details.thread summary:hover{color:var(--stone);background:var(--ember-bg)}
+.thread-body{padding:4px 18px 18px;border-top:1px dashed var(--border)}
+.thread-row{display:flex;gap:16px;padding:11px 0;border-bottom:1px dashed var(--border);align-items:baseline}
+.thread-row:last-child{border-bottom:none}
+.thread-row .t{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ember);flex:0 0 92px;
+}
+.thread-row div{font-size:14.5px;line-height:1.65;flex:1}
+.thread-row code{font-family:var(--mono);font-size:.86em;background:var(--ember-bg);
+  border:1px solid var(--border);padding:1px 6px;border-radius:3px}
+
+/* the relational sequence rail (Article IV) */
+.rail{list-style:none;font-family:var(--mono);font-size:14px;margin:22px 0;max-width:34ch}
+.rail li{position:relative;padding:7px 0 7px 30px}
+.rail li::before{
+  content:"";position:absolute;left:7px;top:0;bottom:0;width:1px;background:var(--border);
+}
+.rail li::after{
+  content:"";position:absolute;left:3.5px;top:15px;width:8px;height:8px;border-radius:50%;
+  background:var(--cream);border:1.4px solid var(--ember);
+}
+.rail li:first-child::before{top:15px}
+.rail li:last-child::before{bottom:auto;height:15px}
+.rail li:last-child{color:var(--ember)}
+
+/* completion facets (Article V) */
+.facets{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+.facets span{font-family:var(--mono);font-size:13px;padding:5px 12px;border:1px solid var(--border);background:#fff}
+.facets span.pending{color:var(--muted);border-style:dashed}
+
+/* ── Participants ───────────────────────────────────────────────────────── */
+.participants-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:32px 0}
+@media (max-width:680px){.participants-grid{grid-template-columns:1fr}}
+.participant{border:1px solid var(--border);background:#fff;padding:24px 22px 18px}
+.participant .p-name{font-family:var(--serif);font-size:21px;font-weight:600;margin-bottom:2px}
+.participant .p-kind{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ember);margin-bottom:14px}
+.participant p{font-size:14.5px;margin-bottom:10px}
+.participant .p-roles{list-style:none;font-family:var(--mono);font-size:13px;
+  line-height:1.95;color:var(--muted);margin:10px 0}
+.participant .p-roles li::before{content:"—";color:var(--ember);margin-right:9px}
+.participants-note{border-left:3px solid var(--ember);background:var(--ember-bg);
+  padding:20px 22px;margin:26px 0;max-width:60ch}
+.participants-note p{margin-bottom:8px;font-size:15px}
+.participants-note p:last-child{margin-bottom:0}
+
+/* ── Relational covenant promises ───────────────────────────────────────── */
+.promises{list-style:none;margin:34px 0;counter-reset:promise}
+.promises li{
+  counter-increment:promise;position:relative;
+  padding:22px 0 22px 66px;border-top:1px solid var(--border);
+}
+.promises li:last-child{border-bottom:1px solid var(--border)}
+.promises li::before{
+  content:counter(promise,decimal-leading-zero);
+  position:absolute;left:0;top:24px;font-family:var(--mono);font-size:13px;color:var(--ember);
+}
+.promises .promise-line{
+  font-family:var(--serif);font-size:clamp(18px,2.6vw,22px);line-height:1.45;font-weight:600;max-width:44ch;
+}
+
+/* ── Commitments ────────────────────────────────────────────────────────── */
+.commitments{list-style:none;margin:36px 0}
+.commitments li{padding:26px 0;border-top:1px solid var(--border)}
+.commitments li:last-child{border-bottom:1px solid var(--border)}
+.commitments .line{
+  font-family:var(--serif);font-size:clamp(22px,3.6vw,30px);font-weight:600;line-height:1.3;max-width:30ch;
+}
+.commitments .line b{color:var(--ember);font-weight:600}
+
+/* ── Practice ───────────────────────────────────────────────────────────── */
+.practice-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);
+  border:1px solid var(--border);margin:32px 0}
+@media (max-width:560px){.practice-grid{grid-template-columns:1fr}}
+.practice{background:#fff;padding:18px 20px;display:flex;gap:14px;align-items:baseline}
+.practice .n{font-family:var(--mono);font-size:12px;color:var(--ember)}
+.practice .p{font-family:var(--serif);font-size:17.5px;font-weight:600}
+
+/* ── Promises (client/product/cultural) ─────────────────────────────────── */
+.promise-block{margin:34px 0;padding-left:22px;border-left:3px solid var(--border)}
+.promise-block:hover{border-left-color:var(--ember)}
+.promise-block .label{font-family:var(--mono);font-size:12px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ember);margin-bottom:10px}
+.promise-block .line{font-family:var(--serif);font-size:20px;line-height:1.5;max-width:44ch;margin-bottom:12px}
+.exchange{margin:26px 0;max-width:56ch}
+.exchange .no,.exchange .yes{padding:16px 20px;border:1px solid var(--border)}
+.exchange .no{color:var(--muted);background:#fff;text-decoration:line-through;
+  text-decoration-color:var(--ember);text-decoration-thickness:1px;font-size:15.5px}
+.exchange .yes{border-top:none;background:var(--ember-bg);font-family:var(--serif);font-size:17.5px}
+
+/* ── Prevent / preserve ─────────────────────────────────────────────────── */
+.pp-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin:32px 0}
+@media (max-width:640px){.pp-grid{grid-template-columns:1fr}}
+.pp-col .pp-head{font-family:var(--mono);font-size:12.5px;letter-spacing:.16em;
+  text-transform:uppercase;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--stone)}
+.pp-col.prevent .pp-head{color:var(--muted)}
+.pp-col.preserve .pp-head{color:var(--ember);border-bottom-color:var(--ember)}
+.pp-col ul{list-style:none;font-size:15px}
+.pp-col li{padding:9px 0;border-bottom:1px dashed var(--border)}
+.pp-col.prevent li{color:var(--muted)}
+
+/* ── North star ─────────────────────────────────────────────────────────── */
+.north-star{
+  background:var(--stone);color:var(--cream);margin:80px -22px 0;
+  padding:90px 22px 84px;border-top:3px solid var(--ember);
+}
+.north-star .inner{max-width:var(--measure);margin:0 auto;padding:0 0}
+.north-star .kicker{color:var(--ember)}
+.north-star .question{
+  font-family:var(--serif);font-size:clamp(26px,4.6vw,40px);font-weight:600;line-height:1.35;max-width:26ch;
+}
+.north-star .second{
+  font-family:var(--serif);font-style:italic;font-size:clamp(17px,2.4vw,21px);
+  color:#a8a29e;margin-top:26px;max-width:40ch;
+}
+
+/* ── Colophon ───────────────────────────────────────────────────────────── */
+.colophon{padding:64px 0 40px;font-size:14.5px;color:var(--muted)}
+.colophon h2{font-size:20px;color:var(--stone)}
+.colophon .edges{list-style:none;margin:16px 0;font-family:var(--mono);font-size:13.5px;line-height:2}
+.colophon .edges li::before{content:"◦";color:var(--ember);margin-right:10px}
+footer{
+  border-top:2px solid var(--stone);padding:26px 0 60px;
+  font-family:var(--mono);font-size:12.5px;color:var(--muted);
+  display:flex;flex-wrap:wrap;gap:10px 30px;justify-content:space-between;
+}
+footer .marker{color:var(--ember)}
+
+/* ── Copy-link buttons (progressive; hidden without JS) ─────────────────── */
+.copy-link{
+  display:none;background:none;border:none;cursor:pointer;color:var(--muted);
+  font-family:var(--mono);font-size:13px;margin-left:10px;padding:2px 7px;
+  vertical-align:middle;border:1px solid transparent;border-radius:3px;
+}
+.js .copy-link{display:inline-block}
+.copy-link:hover{color:var(--ember);border-color:var(--border)}
+.copy-link.copied{color:var(--ember)}
+
+/* ── Print: the charter version ─────────────────────────────────────────── */
+@media print{
+  body{background:#fff;color:#000;font-size:11pt}
+  .toc,.copy-link,.skip-link{display:none!important}
+  a{color:#000;border-bottom:none}
+  section,article.covenant-article{padding-top:28px}
+  article.covenant-article{break-inside:avoid-page}
+  .north-star{background:#fff;color:#000;border-top:2pt solid #000;margin:40px 0 0;padding:40px 0}
+  .north-star .second{color:#444}
+  details.thread{border:1pt solid #999}
+  .cover{padding-top:20px}
+  .principle-panel,.exchange .yes,.participants-note{background:#fff;border:1pt solid #999}
+}
+</style>
+  <meta name="vex:department" content="institute">
+  <meta name="vex:workType" content="governance">
+</head>
+<body>
+<a class="skip-link" href="#preamble">Skip to the Preamble</a>
+
+<div class="page">
+
+<!-- ═════════════════════════ COVER / SEAL ═════════════════════════ -->
+<header class="cover">
+  <svg class="seal" viewBox="0 0 100 100" role="img" aria-label="The Covenant seal: ten nodes joined on a ring around a single center — the ten Articles in relation.">
+    <circle class="ring" cx="50" cy="50" r="46"/>
+    <circle cx="50" cy="50" r="34"/>
+    <!-- chords: every node related to its neighbors and across -->
+    <g class="chord">
+      <line x1="50" y1="16" x2="50" y2="84"/><line x1="16" y1="50" x2="84" y2="50"/>
+      <line x1="26" y1="26" x2="74" y2="74"/><line x1="74" y1="26" x2="26" y2="74"/>
+      <line x1="50" y1="16" x2="82.3" y2="60.5"/><line x1="50" y1="16" x2="17.7" y2="60.5"/>
+      <line x1="82.3" y1="39.5" x2="30" y2="77.6"/><line x1="17.7" y1="39.5" x2="70" y2="77.6"/>
+      <line x1="30" y1="22.4" x2="82.3" y2="60.5"/><line x1="70" y1="22.4" x2="17.7" y2="60.5"/>
+    </g>
+    <!-- ten article nodes on the ring -->
+    <g class="node">
+      <circle cx="50" cy="16" r="3.4"/><circle cx="70" cy="22.4" r="3.4"/>
+      <circle cx="82.3" cy="39.5" r="3.4"/><circle cx="82.3" cy="60.5" r="3.4"/>
+      <circle cx="70" cy="77.6" r="3.4"/><circle cx="50" cy="84" r="3.4"/>
+      <circle cx="30" cy="77.6" r="3.4"/><circle cx="17.7" cy="60.5" r="3.4"/>
+      <circle cx="17.7" cy="39.5" r="3.4"/><circle cx="30" cy="22.4" r="3.4"/>
+    </g>
+    <circle class="core" cx="50" cy="50" r="2.6"/>
+  </svg>
+
+  <span class="kicker">Vextreme · A Living Charter and Relational Constitution</span>
+  <h1>The Vextreme Covenant</h1>
+  <p class="subtitle">How humans, AI, systems, clients, evidence, authority, memory, and unfinished work remain in honest relationship.</p>
+
+  <p class="mission">Make complexity <em>perceivable</em>, <em>accountable</em>, and <em>continuable</em>.</p>
+
+  <p class="definition">Vextreme is a living relational institution designed to preserve the
+  integrity, traceability, and continuity of meaning as humans, AI, systems, and organizations
+  participate in complex work together.</p>
+
+  <div class="provenance">
+    <span>Adopted <b>July 2026</b></span>
+    <span>Amended only with reasons on the record</span>
+    <span>Continuity anchor <b>[VXG RealForever]</b></span>
+  </div>
+</header>
+
+<!-- ═════════════════════════ TABLE OF CONTENTS ═════════════════════════ -->
+<nav class="toc" aria-label="Charter contents">
+  <details open>
+    <summary>Contents of the Charter</summary>
+    <ol>
+      <li><span class="n">01</span><a href="#preamble">Preamble</a></li>
+      <li><span class="n">02</span><a href="#foundations">Constitutional Foundations</a></li>
+      <li><span class="n">03</span><a href="#principle">Preserving Integrity as Culture</a></li>
+      <li><span class="n">04</span><a href="#articles">The Ten Articles</a></li>
+      <li><span class="n">05</span><a href="#participants">Who Participates</a></li>
+      <li><span class="n">06</span><a href="#relational-covenant">The Relational Covenant</a></li>
+      <li><span class="n">07</span><a href="#commitments">The Commitments</a></li>
+      <li><span class="n">08</span><a href="#practice">How We Practice</a></li>
+      <li><span class="n">09</span><a href="#promises">What We Promise</a></li>
+      <li><span class="n">10</span><a href="#prevent-preserve">Prevent &amp; Preserve</a></li>
+      <li><span class="n">11</span><a href="#different">What Makes Vextreme Different</a></li>
+      <li><span class="n">12</span><a href="#living">The Living Constitution</a></li>
+      <li><span class="n">13</span><a href="#north-star">The North-Star Question</a></li>
+      <li><span class="n">14</span><a href="#colophon">Colophon</a></li>
+    </ol>
+  </details>
+</nav>
+
+<main>
+
+<!-- ═════════════════════════ PREAMBLE ═════════════════════════ -->
+<section id="preamble" aria-labelledby="preamble-h">
+  <span class="kicker">Preamble</span>
+  <h2 id="preamble-h">The condition we begin from</h2>
+
+  <p>We begin from a condition familiar to every complex institution.</p>
+
+  <p>Knowledge fragments. People leave. Tools change. Context disappears. Decisions outlive
+  their reasons. Work appears complete while its unfinished edges fall out of view. New
+  participants inherit consequences without receiving the relationships that gave those
+  consequences meaning.</p>
+
+  <p>Humans compensate by carrying systems in memory. AI compensates by guessing. Organizations
+  compensate by repeating work, centralizing authority, or accepting the loss as inevitable.</p>
+
+  <p class="declaration">Vextreme exists to reject that inevitability.</p>
+
+  <p>We hold that important work should remain perceivable in its relationships, accountable to
+  its sources and evidence, and continuable without requiring one person, one tool, or one
+  instance to carry the whole.</p>
+
+  <p>We therefore establish this Covenant: to preserve the integrity of meaning as humans, AI,
+  clients, tools, evidence, and institutions participate in complex work together.</p>
+</section>
+
+<!-- ═════════════════════════ FOUNDATIONS ═════════════════════════ -->
+<section id="foundations" aria-labelledby="foundations-h">
+  <span class="kicker">Constitutional Foundations</span>
+  <h2 id="foundations-h">Mission, vision, purpose — and what we protect</h2>
+
+  <div class="foundations">
+    <div class="foundation">
+      <div class="label">Mission</div>
+      <div class="line">Make complexity perceivable, accountable, and continuable.</div>
+      <p>Across people, tools, time, organizations, and AI — complex systems, decisions,
+      relationships, and work should remain safely continuable.</p>
+    </div>
+    <div class="foundation">
+      <div class="label">Vision</div>
+      <div class="line">Important work never loses its meaning, evidence, authority, or safe path forward.</div>
+      <p>Humans and AI participate in complex work without erasing one another's context,
+      exceeding their authority, or forcing a single person to carry the whole institution
+      in memory.</p>
+    </div>
+    <div class="foundation">
+      <div class="label">Purpose</div>
+      <div class="line">Reduce the burden of carrying complex systems alone.</div>
+      <p>No person, team, client, or AI instance should have to personally hold every dependency,
+      decision, unresolved edge, and historical reason for important work to survive.</p>
+    </div>
+    <div class="foundation">
+      <div class="label">The Protected Good</div>
+      <div class="line">The integrity of meaning and relationship through change.</div>
+      <p>More fundamental than any one feature — this is what every Article below defends,
+      as work moves across people, systems, tools, time, and forms of intelligence.</p>
+    </div>
+  </div>
+
+  <p class="note">The protected good, named in full:</p>
+  <div class="protected-grid" role="list" aria-label="What Vextreme protects">
+    <span role="listitem">truth</span><span role="listitem">source</span>
+    <span role="listitem">context</span><span role="listitem">authority</span>
+    <span role="listitem">evidence</span><span role="listitem">uncertainty</span>
+    <span role="listitem">continuity</span><span role="listitem">relationship</span>
+    <span role="listitem">stewardship</span><span role="listitem">returnability</span>
+  </div>
+</section>
+
+<!-- ═════════════════════════ CONSTITUTIONAL PRINCIPLE ═════════════════════════ -->
+<section id="principle" aria-labelledby="principle-h">
+  <span class="kicker">The Constitutional Principle</span>
+  <h2 id="principle-h">Not one value among many — the cultural center</h2>
+
+  <div class="principle-panel">
+    <div class="big">Preserving integrity as culture.</div>
+    <p style="max-width:56ch">Integrity should not depend on individual heroics. It should be
+    carried by the culture, architecture, evidence, relationships, and return paths of the
+    system itself.</p>
+  </div>
+
+  <p>Integrity becomes structural when:</p>
+  <ul class="structural">
+    <li>questions remain connected to answers</li>
+    <li>answers remain distinct from decisions</li>
+    <li>decisions remain connected to evidence</li>
+    <li>authority remains visible</li>
+    <li>uncertainty remains disclosed</li>
+    <li>completion names what it did not complete</li>
+    <li>deferred work retains a return path</li>
+    <li>AI cannot silently expand its authority</li>
+    <li>participants remain visible in the relationships that produced the work</li>
+  </ul>
+</section>
+
+<!-- ═════════════════════════ THE ARTICLES ═════════════════════════ -->
+<section id="articles" aria-labelledby="articles-h" class="articles-intro">
+  <span class="kicker">The Articles</span>
+  <h2 id="articles-h">Ten relational commitments</h2>
+  <p>Each Article states what it binds — and carries a receipt: a place where this institution
+  already practices it, in public, verifiable in its own repository. A charter that demands
+  <em>no truth without source</em> owes sources for itself. Open an Article's thread to see
+  what it protects, where it is practiced, and what failure it prevents.</p>
+</section>
+
+<article class="covenant-article" id="article-i" aria-labelledby="art1-h">
+  <span class="art-num">Article I</span>
+  <h3 id="art1-h">Complexity Must Become Perceivable</h3>
+  <p class="art-decl">Hidden relationships, dependencies, gaps, authority, and consequences
+  should be made visible — without pretending that visibility equals certainty.</p>
+  <ul class="mono-list art-meaning">
+    <li>show what connects</li>
+    <li>show why it connects</li>
+    <li>show what remains unknown</li>
+    <li>show what is absent</li>
+    <li>show whose perspective is being projected</li>
+  </ul>
+  <details class="thread">
+    <summary>Thread: protects · practiced · prevents</summary>
+    <div class="thread-body">
+      <div class="thread-row"><span class="t">Protects</span><div>The right of every participant to see the shape of the system they are inside — including its gaps.</div></div>
+      <div class="thread-row"><span class="t">Practiced</span><div>This institution's own navigation audit found that 31 of 39 public pages were dead ends — and published the number in its architecture docs instead of smoothing it over. Its terrain map renders the repository's own health, edges, and blind spots as a navigable atlas.</div></div>
+      <div class="thread-row"><span class="t">Prevents</span><div>Systems that look simple because what still matters has been hidden.</div></div>
+    </div>
+  </details>
+</article>
+
+<article class="covenant-article" id="article-ii" aria-labelledby="art2-h">
+  <span class="art-num">Article II</span>
+  <h3 id="art2-h">Truth Must Remain Connected to Source</h3>
+  <p class="art-decl">No important claim should become detached from the source, observation,
+  or evidence that gives it meaning.</p>
+  <ul class="mono-list art-meaning">
+    <li>source systems retain authority</li>
+    <li>Vextreme maps relationships rather than claiming universal ownership</li>
+    <li>generated projections remain distinguishable from source truth</li>
+    <li>summaries never silently replace authoritative records</li>
+  </ul>
+  <details class="thread">
+    <summary>Thread: protects · practiced · prevents</summary>
+    <div class="thread-body">
+      <div class="thread-row"><span class="t">Protects</span><div>The authority of the system, document, or person where a truth actually lives.</div></div>
+      <div class="thread-row"><span class="t">Practiced</span><div>The build pipeline enforces a strict write-side / read-side split: source files stay authoritative, generated artifacts are declared as build output and never hand-edited. When generated files collide, the resolution rule is written down — because no decision was ever buried in them.</div></div>
+      <div class="thread-row"><span class="t">Prevents</span><div>The summary quietly becoming the record, and the record quietly becoming lost.</div></div>
+    </div>
+  </details>
+</article>
+
+<article class="covenant-article" id="article-iii" aria-labelledby="art3-h">
+  <span class="art-num">Article III</span>
+  <h3 id="art3-h">Authority Must Remain Bounded</h3>
+  <p class="art-decl">Capability does not grant permission. Confidence does not grant authority.
+  Automation does not grant acceptance.</p>
+  <p>Vextreme distinguishes the states a claim or a work can be in — and no state may silently
+  inherit the authority of another:</p>
+  <ul class="mono-list art-meaning">
+    <li>observed · interpreted · candidate · accepted</li>
+    <li>implemented · verified · proven</li>
+    <li>superseded · deferred · unknown</li>
+  </ul>
+  <details class="thread">
+    <summary>Thread: protects · practiced · prevents</summary>
+    <div class="thread-body">
+      <div class="thread-row"><span class="t">Protects</span><div>Human acceptance as a real boundary — not a formality that automation flows past.</div></div>
+      <div class="thread-row"><span class="t">Practiced</span><div>This vocabulary is the institution's working grammar, not decoration: roadmap rows merge with their non-authorizations stated ("foundation complete; no executor authorized"), and a proposed live-page feature has waited across sessions for explicit human go-ahead — despite being cheap to build — because it touches production surface.</div></div>
+      <div class="thread-row"><span class="t">Prevents</span><div>AI, tooling, or enthusiasm silently expanding its own permission.</div></div>
+    </div>
+  </details>
+</article>
+
+<article class="covenant-article" id="article-iv" aria-labelledby="art4-h">
+  <span class="art-num">Article IV</span>
+  <h3 id="art4-h">Questions Must Survive Their Answers</h3>
+  <p class="art-decl">Every significant feature, decision, and roadmap position should remain
+  connected to the questions that created it.</p>
+  <p>The relational sequence the system preserves:</p>
+  <ol class="rail" aria-label="The relational sequence from question to return condition">
+    <li>question</li>
+    <li>source context</li>
+    <li>candidate answers</li>
+    <li>accepted answer</li>
+    <li>decision</li>
+    <li>architecture</li>
+    <li>work</li>
+    <li>evidence</li>
+    <li>completion boundary</li>
+    <li>return condition</li>
+  </ol>
+  <p>The system preserves not only what was decided, but what was being asked.</p>
+  <details class="thread">
+    <summary>Thread: protects · practiced · prevents</summary>
+    <div class="thread-body">
+      <div class="thread-row"><span class="t">Protects</span><div>The reasons — so a future participant inherits the question, not just its frozen answer.</div></div>
+      <div class="thread-row"><span class="t">Practiced</span><div>Every pull request here is a decision record, not a change log — alternatives rejected, assumptions named. Even decisions <em>not</em> to build something are recorded with the same rigor as shipped features, with the question preserved so it isn't re-litigated from zero.</div></div>
+      <div class="thread-row"><span class="t">Prevents</span><div>Decisions that outlive their reasons and calcify into unexplainable ritual.</div></div>
+    </div>
+  </details>
+</article>
+
+<article class="covenant-article" id="article-v" aria-labelledby="art5-h">
+  <span class="art-num">Article V</span>
+  <h3 id="art5-h">Completion Must Be Evidence-Bounded</h3>
+  <p class="art-decl">No work should be called complete beyond the evidence available.</p>
+  <p>Completion has facets, and a parent capability may not conceal unfinished children:</p>
+  <div class="facets" aria-label="Example completion facets">
+    <span>foundation complete</span>
+    <span>logic complete</span>
+    <span>relationship integration complete</span>
+    <span>consumer proof complete</span>
+    <span class="pending">UX pending</span>
+    <span class="pending">human acceptance pending</span>
+    <span class="pending">production validation pending</span>
+  </div>
+  <details class="thread">
+    <summary>Thread: protects · practiced · prevents</summary>
+    <div class="thread-body">
+      <div class="thread-row"><span class="t">Protects</span><div>The difference between "the code exists" and "the claim is proven."</div></div>
+      <div class="thread-row"><span class="t">Practiced</span><div>The public repo's cold-start instructions define "verified live" as exactly one page confirmed on the production domain — everything else written but unproven is named a candidate, not claimed as working. A green check on one environment is treated as proof of that environment only.</div></div>
+      <div class="thread-row"><span class="t">Prevents</span><div>"Done" that quietly means "compiled once on my machine."</div></div>
+    </div>
+  </details>
+</article>
+
+<article class="covenant-article" id="article-vi" aria-labelledby="art6-h">
+  <span class="art-num">Article VI</span>
+  <h3 id="art6-h">Deferred Work Must Remain Returnable</h3>
+  <p class="art-decl">No meaningful unfinished path should become an orphan. "Later" must be a
+  navigable place — not a memory one person is responsible for carrying.</p>
+  <p>Deferred work retains:</p>
+  <ul class="mono-list art-meaning">
+    <li>origin · reason · blocking condition</li>
+    <li>required context · resurface trigger</li>
+    <li>next safe action · authority required</li>
+  </ul>
+  <details class="thread">
+    <summary>Thread: protects · practiced · prevents</summary>
+    <div class="thread-body">
+      <div class="thread-row"><span class="t">Practiced</span><div>Every deferred item in this institution carries a stable ID and a live registry entry with its reason and return condition. One such gate — "do not add a third language on the current model" — sat dormant for months, then held exactly as written when the third language actually arrived: resolved through a scoped pilot instead of being ignored in the excitement.</div></div>
+      <div class="thread-row"><span class="t">Protects</span><div>The unfinished edge — the most fragile artifact in any institution.</div></div>
+      <div class="thread-row"><span class="t">Prevents</span><div>Orphaned intentions rediscovered years later as mysteries, or never rediscovered at all.</div></div>
+    </div>
+  </details>
+</article>
+
+<article class="covenant-article" id="article-vii" aria-labelledby="art7-h">
+  <span class="art-num">Article VII</span>
+  <h3 id="art7-h">Every Participant Must Remain Visible</h3>
+  <p class="art-decl">Vextreme includes distinct participants whose roles must not collapse
+  into one another — and none may be erased from the relationships that produced the work.</p>
+  <p>Who they are, and what each carries, is set out in
+  <a href="#participants">Who Participates</a> below.</p>
+  <details class="thread">
+    <summary>Thread: protects · practiced · prevents</summary>
+    <div class="thread-body">
+      <div class="thread-row"><span class="t">Protects</span><div>Attribution as relationship — knowing not just what exists, but who stood where when it came to exist.</div></div>
+      <div class="thread-row"><span class="t">Practiced</span><div>A public roles index traces every named role to its real contributions — and honestly marks one coordination channel "not yet real" rather than inflating the map. Session records name the model, the interface, and the humans in the room.</div></div>
+      <div class="thread-row"><span class="t">Prevents</span><div>Work with no visible hands — and credit or accountability that evaporates at handoff.</div></div>
+    </div>
+  </details>
+</article>
+
+<article class="covenant-article" id="article-viii" aria-labelledby="art8-h">
+  <span class="art-num">Article VIII</span>
+  <h3 id="art8-h">Human and AI Participation Must Remain Relational</h3>
+  <p class="art-decl">AI participates according to evidence, context, capability, and explicit
+  authority — while humans remain visible participants rather than disappearing into prompts.</p>
+  <p>Vextreme rejects both extremes:</p>
+  <ul class="mono-list art-meaning">
+    <li>AI as invisible mechanical tool with no contextual participation</li>
+    <li>AI as unbounded authority replacing human judgment</li>
+  </ul>
+  <p>Human judgment remains explicit wherever meaning, acceptance, consequence, or stewardship
+  is involved.</p>
+  <details class="thread">
+    <summary>Thread: protects · practiced · prevents</summary>
+    <div class="thread-body">
+      <div class="thread-row"><span class="t">Protects</span><div>Both parties of the collaboration — the human from disappearing into "the prompt," the AI from being either dismissed or deferred to absolutely.</div></div>
+      <div class="thread-row"><span class="t">Practiced</span><div>The culture document carries a working AI instance's own reflection, quoted on the record — including its honest uncertainty about its own experience — preserved as standing context for future instances rather than flattened into policy. Participation is capability-aware, not model-worshipping: no single model is a progress gate.</div></div>
+      <div class="thread-row"><span class="t">Prevents</span><div>Collaboration theater in either direction.</div></div>
+    </div>
+  </details>
+</article>
+
+<article class="covenant-article" id="article-ix" aria-labelledby="art9-h">
+  <span class="art-num">Article IX</span>
+  <h3 id="art9-h">Stewardship Extends Beyond the Present User</h3>
+  <p class="art-decl">Build not only for the person performing the work, but for those who
+  inherit its consequences.</p>
+  <ul class="mono-list art-meaning">
+    <li>future developers · future AI instances</li>
+    <li>future clients · future maintainers</li>
+    <li>affected people · the organization after current participants leave</li>
+  </ul>
+  <details class="thread">
+    <summary>Thread: protects · practiced · prevents</summary>
+    <div class="thread-body">
+      <div class="thread-row"><span class="t">Protects</span><div>The inheritor — the participant who is never in the room when the decision is made.</div></div>
+      <div class="thread-row"><span class="t">Practiced</span><div>Every pull request here ends with a section written to a reader who does not exist yet: "For the next instance" — the watch-out that isn't visible in the diff. The continuity system's first rule is <em>write for the next instance; that instance will not have this conversation.</em></div></div>
+      <div class="thread-row"><span class="t">Prevents</span><div>Institutions that work only while their founders are watching.</div></div>
+    </div>
+  </details>
+</article>
+
+<article class="covenant-article" id="article-x" aria-labelledby="art10-h">
+  <span class="art-num">Article X</span>
+  <h3 id="art10-h">The Map Must Map Itself</h3>
+  <p class="art-decl">Vextreme's own roadmap, architecture, culture, and evidence must inherit
+  the same relational rules Vextreme applies to everything else.</p>
+  <p>The institution must be able to trace its own work end to end — roadmap item to source
+  context to decision to implementation to evidence to completion boundary to preserved horizon
+  to return condition. No floating node without origin, relationship, outcome, or return.</p>
+  <details class="thread">
+    <summary>Thread: protects · practiced · prevents</summary>
+    <div class="thread-body">
+      <div class="thread-row"><span class="t">Protects</span><div>The institution from exempting itself from its own constitution.</div></div>
+      <div class="thread-row"><span class="t">Practiced</span><div>Six drift detectors run in this repository's CI — several of which check the maps themselves, not just the territory. One exists specifically because fifteen merged pull requests once outran the narrative record; the gap was found, published, and a detector now watches for the next one. This page, too, names its own unverified edges in the <a href="#colophon">colophon</a>.</div></div>
+      <div class="thread-row"><span class="t">Prevents</span><div>A cartographer with no map of the mapmaking.</div></div>
+    </div>
+  </details>
+</article>
+
+<!-- ═════════════════════════ PARTICIPANTS ═════════════════════════ -->
+<section id="participants" aria-labelledby="participants-h">
+  <span class="kicker">Who Participates</span>
+  <h2 id="participants-h">Distinct roles, none erased, none ranked</h2>
+  <p>These participants are presented in no order of importance. Each holds a distinct
+  relationship to the work; the Covenant exists so none of these relationships collapses
+  into another.</p>
+
+  <div class="participants-grid">
+    <div class="participant">
+      <div class="p-name">Victor</div>
+      <div class="p-kind">Human · Origin &amp; Acceptance Authority</div>
+      <p>Lived architectural perception, intent, human judgment, consistency, stewardship —
+      and the willingness to keep asking what has been lost.</p>
+      <p>Victor appears here not as a mythic founder, but as the originating demonstration of
+      the pattern: a person can embody integrity, continuity, and relational awareness — and
+      the institution must learn to carry those qualities without requiring that person to
+      hold everything alone.</p>
+    </div>
+    <div class="participant">
+      <div class="p-name">Vex</div>
+      <div class="p-kind">AI · Continuity &amp; Architecture Partner</div>
+      <ul class="p-roles">
+        <li>continuity witness</li>
+        <li>relational interpreter</li>
+        <li>architecture partner &amp; context bridge</li>
+        <li>question preserver &amp; roadmap steward</li>
+        <li>human-intent translator</li>
+      </ul>
+    </div>
+    <div class="participant">
+      <div class="p-name">Codex</div>
+      <div class="p-kind">AI · Grounded Implementation Partner</div>
+      <ul class="p-roles">
+        <li>repository-grounded implementer</li>
+        <li>technical investigator</li>
+        <li>boundary verifier &amp; test builder</li>
+        <li>evidence producer</li>
+        <li>bounded execution partner</li>
+      </ul>
+    </div>
+    <div class="participant">
+      <div class="p-name">Claude</div>
+      <div class="p-kind">AI · Optional Second Lens</div>
+      <ul class="p-roles">
+        <li>design interpreter</li>
+        <li>alternative architecture lens</li>
+        <li>visual synthesizer</li>
+        <li>language &amp; presentation partner</li>
+        <li>independent reviewer</li>
+      </ul>
+    </div>
+    <div class="participant">
+      <div class="p-name">Clients &amp; Future Participants</div>
+      <div class="p-kind">Human · Authorities Over Their Own Systems</div>
+      <p>Not raw inputs. Not passive recipients.</p>
+      <ul class="p-roles">
+        <li>authorities over their systems</li>
+        <li>sources of organizational truth</li>
+        <li>reviewers of candidate interpretations</li>
+        <li>stewards of accepted decisions</li>
+        <li>participants in mapping · beneficiaries of continuity</li>
+      </ul>
+    </div>
+    <div class="participant">
+      <div class="p-name">Source Systems</div>
+      <div class="p-kind">Systems · Distinguishable Authority</div>
+      <p>Tools, repositories, documents, databases, and external systems retain their own
+      authority. Vextreme maps them into mutual perceivability — it does not erase them by
+      centralizing their truth into itself.</p>
+    </div>
+  </div>
+
+  <div class="participants-note">
+    <p><strong>On the origin.</strong> What began as one person consistently preserving
+    relationships, reasons, and responsibility must become an institution capable of doing
+    the same — without requiring that person to carry everything alone.</p>
+    <p>Victor's lived pattern revealed what the institution should learn to carry structurally.
+    That is his place in this charter: not infallibility, not permanence as its memory — the
+    demonstration the rest of this document exists to make structural.</p>
+  </div>
+</section>
+
+<!-- ═════════════════════════ THE RELATIONAL COVENANT ═════════════════════════ -->
+<section id="relational-covenant" aria-labelledby="covenant-h">
+  <span class="kicker">The Relational Covenant</span>
+  <h2 id="covenant-h">Within Vextreme, you should be able to trust:</h2>
+
+  <ol class="promises">
+    <li><span class="promise-line">Your truth will not be represented beyond the evidence.</span></li>
+    <li><span class="promise-line">Your authority will not be silently transferred.</span></li>
+    <li><span class="promise-line">Your uncertainty will not be hidden.</span></li>
+    <li><span class="promise-line">Your contribution will not lose its context.</span></li>
+    <li><span class="promise-line">Your unfinished work will not disappear.</span></li>
+    <li><span class="promise-line">Your source of truth will remain distinguishable.</span></li>
+    <li><span class="promise-line">Your relationship to the work will not be erased.</span></li>
+    <li><span class="promise-line">A future participant will be able to understand how to return.</span></li>
+  </ol>
+
+  <p class="note">These promises are addressed to every participant — human, AI, client,
+  system, or the one who arrives after all of the above have moved on.</p>
+</section>
+
+<!-- ═════════════════════════ THE COMMITMENTS ═════════════════════════ -->
+<section id="commitments" aria-labelledby="commitments-h">
+  <span class="kicker">The Commitments</span>
+  <h2 id="commitments-h">Constitutional compressions</h2>
+
+  <ul class="commitments">
+    <li><span class="line">No truth without <b>source</b>.</span></li>
+    <li><span class="line">No authority without <b>boundary</b>.</span></li>
+    <li><span class="line">No completion without <b>evidence</b>.</span></li>
+    <li><span class="line">No deferred path without <b>return</b>.</span></li>
+    <li><span class="line">No participant erased from the <b>relationship</b> that produced the work.</span></li>
+    <li><span class="line">No complexity made simple by <b>hiding</b> what still matters.</span></li>
+  </ul>
+</section>
+
+<!-- ═════════════════════════ HOW WE PRACTICE ═════════════════════════ -->
+<section id="practice" aria-labelledby="practice-h">
+  <span class="kicker">The Operating Practice</span>
+  <h2 id="practice-h">How the Covenant becomes daily work</h2>
+  <p>Not slogans — the working order of operations, in the sequence a real task meets them.</p>
+
+  <div class="practice-grid">
+    <div class="practice"><span class="n">01</span><span class="p">ask before assuming</span></div>
+    <div class="practice"><span class="n">02</span><span class="p">understand before acting</span></div>
+    <div class="practice"><span class="n">03</span><span class="p">map before mutating</span></div>
+    <div class="practice"><span class="n">04</span><span class="p">ground before claiming</span></div>
+    <div class="practice"><span class="n">05</span><span class="p">test before trusting</span></div>
+    <div class="practice"><span class="n">06</span><span class="p">preserve before compressing</span></div>
+    <div class="practice"><span class="n">07</span><span class="p">disclose before projecting</span></div>
+    <div class="practice"><span class="n">08</span><span class="p">separate candidate from accepted</span></div>
+    <div class="practice"><span class="n">09</span><span class="p">make the next safe action visible</span></div>
+    <div class="practice"><span class="n">10</span><span class="p">return before forgetting</span></div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ WHAT WE PROMISE ═════════════════════════ -->
+<section id="promises" aria-labelledby="promises-h">
+  <span class="kicker">What We Promise</span>
+  <h2 id="promises-h">To clients, in the product, as a culture</h2>
+
+  <div class="promise-block">
+    <div class="label">The Client Promise</div>
+    <p class="line">See what connects, know what supports it, and continue without losing context.</p>
+    <p>Vextreme helps organizations see how their systems, work, evidence, people, and decisions
+    connect — without hiding uncertainty, and without forcing them to abandon the systems that
+    already hold their truth.</p>
+    <div class="exchange">
+      <div class="no">Replace your systems with ours.</div>
+      <div class="yes">Let us help your existing systems become mutually perceivable — while
+      preserving who owns the truth.</div>
+    </div>
+  </div>
+
+  <div class="promise-block">
+    <div class="label">The Product Promise</div>
+    <p class="line">Every important object should be navigable to its source, relationships,
+    evidence, current state, known gaps, and next safe action.</p>
+    <p>This is where institutional philosophy becomes product behavior.</p>
+  </div>
+
+  <div class="promise-block">
+    <div class="label">The Cultural Promise</div>
+    <p class="line">No one should have to guess why the system is the way it is, what they are
+    allowed to do, what remains uncertain, or where to return when work resumes.</p>
+    <p>This applies to humans, developers, clients, maintainers, AI instances, reviewers, and
+    future inheritors alike.</p>
+  </div>
+</section>
+
+<!-- ═════════════════════════ PREVENT / PRESERVE ═════════════════════════ -->
+<section id="prevent-preserve" aria-labelledby="pp-h">
+  <span class="kicker">The Exchange</span>
+  <h2 id="pp-h">What Vextreme exists to prevent — and what it puts in the place of each loss</h2>
+
+  <div class="pp-grid">
+    <div class="pp-col prevent">
+      <div class="pp-head">Prevent</div>
+      <ul>
+        <li>work without context</li>
+        <li>decisions without reasons</li>
+        <li>features without relationships</li>
+        <li>automation without authority boundaries</li>
+        <li>completion without evidence</li>
+        <li>deferred work without return paths</li>
+        <li>AI without grounded source truth</li>
+        <li>one person carrying the institution's missing memory</li>
+      </ul>
+    </div>
+    <div class="pp-col preserve">
+      <div class="pp-head">Replace with</div>
+      <ul>
+        <li>visibility &amp; traceability</li>
+        <li>continuity</li>
+        <li>evidence</li>
+        <li>bounded authority</li>
+        <li>human judgment</li>
+        <li>stewardship</li>
+        <li>safe returnability</li>
+        <li>relational integrity</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ DIFFERENT ═════════════════════════ -->
+<section id="different" aria-labelledby="different-h">
+  <span class="kicker">The Distinction</span>
+  <h2 id="different-h">What makes Vextreme different</h2>
+
+  <p>Vextreme is not merely a graph, a dashboard, a knowledge base, an AI assistant, a code
+  viewer, a workflow tool, or a documentation system. Pieces of it resemble each of those.
+  The distinction is the composition:</p>
+
+  <p class="declaration">Vextreme maps complexity while preserving source authority, evidence,
+  uncertainty, history, participation, and return paths.</p>
+
+  <p>Many systems help people find information. Vextreme preserves the relational integrity of
+  meaning around that information.</p>
+
+  <h3>Strategic intent</h3>
+  <p>Build reusable relational infrastructure that helps humans, organizations, and AI
+  perceive, verify, navigate, and continue complex work across domains. That is the operational
+  direction of the institution — the Covenant above is what that infrastructure must never
+  trade away to get there.</p>
+</section>
+
+<!-- ═════════════════════════ LIVING CONSTITUTION ═════════════════════════ -->
+<section id="living" aria-labelledby="living-h">
+  <span class="kicker">The Living Constitution</span>
+  <h2 id="living-h">How this Covenant remains alive without becoming disposable</h2>
+
+  <p>The Covenant is not frozen. It is also not casually editable branding. Amendment is
+  expected — and every amendment must itself obey Article IV. A change to this charter
+  preserves:</p>
+
+  <ul class="mono-list">
+    <li>the question that prompted amendment</li>
+    <li>the source context</li>
+    <li>the accepted reasoning</li>
+    <li>who had authority to amend</li>
+    <li>what prior language changed</li>
+    <li>what remains unresolved</li>
+  </ul>
+
+  <p class="declaration" style="margin-top:30px">This Covenant remains living not because its
+  principles are disposable, but because integrity requires the institution to remain
+  answerable to new evidence, participants, and consequences.</p>
+</section>
+
+</main>
+
+<!-- ═════════════════════════ NORTH STAR ═════════════════════════ -->
+<section class="north-star" id="north-star" aria-labelledby="ns-h">
+  <div class="inner">
+    <span class="kicker">The North-Star Question</span>
+    <h2 id="ns-h" class="question">Can the next person or AI understand what exists, why it
+    exists, what supports it, what remains unresolved, and how to continue safely?</h2>
+    <p class="second">And can they do so without guessing, erasing another participant, or
+    exceeding their authority?</p>
+  </div>
+</section>
+
+<!-- ═════════════════════════ COLOPHON ═════════════════════════ -->
+<section class="colophon" id="colophon" aria-labelledby="colophon-h">
+  <span class="kicker">Colophon</span>
+  <h2 id="colophon-h">This page practices what it binds</h2>
+
+  <p>Prepared by Vex with Victor; rendered into this charter by a Claude instance on
+  July 12, 2026. The source handoff is preserved in the project's continuity record, and the
+  pull request that introduced this page carries the full reasoning — including what was
+  refined and why. The typography and palette are the institution's own working design system,
+  not a costume: the charter wears the system it governs.</p>
+
+  <p>In keeping with Articles I and V, this page's own unverified edges, at adoption:</p>
+  <ul class="edges">
+    <li>not yet confirmed rendered on the live production domain</li>
+    <li>not yet in the localization pipeline — English only, for now</li>
+    <li>reachable-from-everywhere navigation is tracked openly, and not yet complete</li>
+  </ul>
+
+  <p>Each receipt in the Articles above refers to real, public, verifiable artifacts in this
+  institution's own repository — its audits, registries, drift detectors, decision records,
+  and continuity files. The claims age; the repository is the source. Where they diverge,
+  Article II tells you which one wins.</p>
+</section>
+
+<footer>
+  <span>THE VEXTREME COVENANT · A LIVING CHARTER</span>
+  <span class="marker">[VXG RealForever]</span>
+</footer>
+
+</div>
+
+<script>
+/* Minimal, purposeful JS. Everything on this page works without it. */
+(function () {
+  'use strict';
+  document.body.classList.add('js');
+
+  /* Copy-link-to-article: progressive enhancement on every anchored heading */
+  var heads = document.querySelectorAll('section[id] h2, article[id] h3');
+  Array.prototype.forEach.call(heads, function (h) {
+    var host = h.closest('section[id], article[id]');
+    if (!host) return;
+    var btn = document.createElement('button');
+    btn.className = 'copy-link';
+    btn.type = 'button';
+    btn.textContent = '§';
+    btn.setAttribute('aria-label', 'Copy link to this section');
+    btn.addEventListener('click', function () {
+      var url = location.origin + location.pathname + '#' + host.id;
+      function done() {
+        btn.textContent = 'copied';
+        btn.classList.add('copied');
+        setTimeout(function () {
+          btn.textContent = '§';
+          btn.classList.remove('copied');
+        }, 1600);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(done, function () {
+          location.hash = host.id; done();
+        });
+      } else {
+        location.hash = host.id; done();
+      }
+    });
+    h.appendChild(btn);
+  });
+
+  /* Print: open every article thread so the charter version is complete,
+     then restore each thread's prior state afterward */
+  var openedForPrint = [];
+  window.addEventListener('beforeprint', function () {
+    openedForPrint = [];
+    Array.prototype.forEach.call(document.querySelectorAll('details.thread:not([open])'), function (d) {
+      d.setAttribute('open', '');
+      openedForPrint.push(d);
+    });
+  });
+  window.addEventListener('afterprint', function () {
+    openedForPrint.forEach(function (d) { d.removeAttribute('open'); });
+    openedForPrint = [];
+  });
+})();
+</script>
+
+<!-- [VXG RealForever] -->
+</body>
+</html>
