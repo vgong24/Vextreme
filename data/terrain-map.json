@@ -2521,6 +2521,15 @@
       }
     },
     {
+      "slug": "vextreme-covenant",
+      "title": "vextreme-covenant",
+      "arcKeys": [],
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/vextreme-covenant.html",
+      "screenshots": {
+        "en": "docs/screenshots/vextreme-covenant-en.png"
+      }
+    },
+    {
       "slug": "vextreme-demo",
       "title": "vextreme-demo",
       "arcKeys": [],
@@ -2764,12 +2773,12 @@
       "key": "uncurated",
       "name": "UNCURATED",
       "sub": "auto-discovered pages, no nodes.json entry yet",
-      "count": 34,
+      "count": 35,
       "rect": {
         "x": 6130,
         "y": 40,
         "width": 300,
-        "height": 2130
+        "height": 2190
       }
     }
   ],
@@ -5986,6 +5995,52 @@
       "curated": false
     },
     {
+      "id": "vextreme-covenant",
+      "slug": "vextreme-covenant",
+      "title": "vextreme-covenant",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 2010,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/vextreme-covenant.html",
+      "screenshots": {
+        "en": "docs/screenshots/vextreme-covenant-en.png"
+      },
+      "hasScreenshot": true,
+      "status": "critical",
+      "capability": {
+        "health": {
+          "state": "critical",
+          "gaps": [
+            "fab",
+            "uncurated",
+            "identity"
+          ],
+          "blockers": [
+            "isolated"
+          ]
+        },
+        "placement": "uncurated",
+        "fab": "missing",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": [
+          "en",
+          "mobile",
+          "print"
+        ],
+        "metaDescription": "The Vextreme Covenant: a living charter for how humans, AI, systems, clients, evidence, authority, memory, and unfinished work remain in honest relationship. Ten Articles, a relational covenant, and the receipts that prove each one is already practiced."
+      },
+      "curated": false
+    },
+    {
       "id": "vextreme-demo",
       "slug": "vextreme-demo",
       "title": "vextreme-demo",
@@ -5993,7 +6048,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 6180,
-      "y": 2010,
+      "y": 2070,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/vextreme-demo.html",
       "screenshots": {
@@ -6036,7 +6091,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 6180,
-      "y": 2070,
+      "y": 2130,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/witness-committee-operations.html",
       "screenshots": {},
