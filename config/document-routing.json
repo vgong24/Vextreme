@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "document-routing.registry/v1",
+  "root": "docs",
+  "exactDocuments": [
+    {
+      "path": "docs/Readme.md",
+      "category": "historical-architecture",
+      "authority": "historical",
+      "routeOwner": "CLAUDE.md",
+      "healthCheck": "node lib/check-document-routes.js"
+    },
+    {
+      "path": "docs/architecture.md",
+      "category": "generated-architecture",
+      "authority": "generated",
+      "routeOwner": "lib/build-architecture.js",
+      "healthCheck": "node lib/check-architecture-integrity.js"
+    },
+    {
+      "path": "docs/continuity/CONTEXT-NOTES.md",
+      "category": "context-note-registry",
+      "authority": "accepted",
+      "routeOwner": "CLAUDE.md",
+      "healthCheck": "node lib/check-map-bindings.js"
+    },
+    {
+      "path": "docs/continuity/INDEX.md",
+      "category": "continuity-index",
+      "authority": "accepted",
+      "routeOwner": "CLAUDE.md",
+      "healthCheck": "node lib/check-map-bindings.js"
+    },
+    {
+      "path": "docs/culture.md",
+      "category": "doctrine",
+      "authority": "accepted",
+      "routeOwner": "CLAUDE.md",
+      "healthCheck": "node lib/check-document-routes.js"
+    },
+    {
+      "path": "docs/lattice-map.json",
+      "category": "dependency-map",
+      "authority": "accepted",
+      "routeOwner": "CLAUDE.md",
+      "healthCheck": "node lib/check-lattice-edges.js"
+    },
+    {
+      "path": "docs/process/cross-model-orchestration.md",
+      "category": "process",
+      "authority": "accepted",
+      "routeOwner": "CLAUDE.md",
+      "healthCheck": "node lib/check-document-routes.js"
+    },
+    {
+      "path": "docs/process/document-routing.md",
+      "category": "process",
+      "authority": "accepted",
+      "routeOwner": "CLAUDE.md",
+      "healthCheck": "node lib/check-document-routes.js"
+    },
+    {
+      "path": "docs/process/environment-health-design.md",
+      "category": "proposed-process",
+      "authority": "proposed",
+      "routeOwner": "CLAUDE.md",
+      "healthCheck": "node lib/check-document-routes.js"
+    },
+    {
+      "path": "docs/process/multi-agent-work-coordination.md",
+      "category": "process",
+      "authority": "accepted",
+      "routeOwner": "CLAUDE.md",
+      "healthCheck": "node lib/work-coordination.js --check-config"
+    },
+    {
+      "path": "docs/process/orientation-integrity-evaluation.md",
+      "category": "process-evaluation",
+      "authority": "generated-evidence",
+      "routeOwner": "CLAUDE.md",
+      "healthCheck": "node lib/evaluate-orientation-integrity.js --check"
+    },
+    {
+      "path": "docs/process/orientation-integrity.md",
+      "category": "process",
+      "authority": "accepted",
+      "routeOwner": "CLAUDE.md",
+      "healthCheck": "node lib/evaluate-orientation-integrity.js --check"
+    },
+    {
+      "path": "docs/process/public-private-boundary.md",
+      "category": "visibility-boundary",
+      "authority": "accepted",
+      "routeOwner": "CLAUDE.md",
+      "healthCheck": "node lib/check-document-routes.js"
+    },
+    {
+      "path": "docs/process/task-aware-orientation-packets.md",
+      "category": "process",
+      "authority": "accepted",
+      "routeOwner": "CLAUDE.md",
+      "healthCheck": "node --test tests/50-orientation-packets.test.js"
+    },
+    {
+      "path": "docs/squarespace-injection.html",
+      "category": "v1-source-template",
+      "authority": "historical-active-source",
+      "routeOwner": "docs/Readme.md",
+      "healthCheck": "node lib/check-document-routes.js"
+    },
+    {
+      "path": "docs/test-playground.html",
+      "category": "v1-diagnostic",
+      "authority": "historical-active-tool",
+      "routeOwner": "CLAUDE.md",
+      "healthCheck": "node lib/check-document-routes.js"
+    },
+    {
+      "path": "docs/vextreme-v2-architecture.kt",
+      "category": "historical-design-artifact",
+      "authority": "historical",
+      "routeOwner": "docs/continuity/Batch 001.md",
+      "healthCheck": "node lib/check-document-routes.js"
+    }
+  ],
+  "collections": [
+    {
+      "id": "architecture-sources",
+      "pattern": "^docs/architecture/[0-9]{2}-[a-z0-9][a-z0-9-]*\\.md$",
+      "category": "architecture-source",
+      "authority": "accepted",
+      "routeOwner": "docs/architecture/00-reading-guide.md",
+      "healthCheck": "node lib/check-architecture-integrity.js",
+      "placementRule": "Numbered direct-child Markdown sources only; the reading guide must route every source."
+    },
+    {
+      "id": "legacy-continuity-batches",
+      "pattern": "^docs/continuity/Batch [0-9]{3}\\.md$",
+      "category": "continuity-history",
+      "authority": "historical",
+      "routeOwner": "docs/continuity/INDEX.md",
+      "healthCheck": "node lib/check-map-bindings.js",
+      "placementRule": "Legacy single-file batches only."
+    },
+    {
+      "id": "continuity-batch-guides",
+      "pattern": "^docs/continuity/batch-[0-9]{3}/README\\.md$",
+      "category": "continuity-batch-guide",
+      "authority": "accepted",
+      "routeOwner": "docs/continuity/INDEX.md",
+      "healthCheck": "node lib/check-map-bindings.js",
+      "placementRule": "One direct README per registered directory-form batch."
+    },
+    {
+      "id": "continuity-sessions",
+      "pattern": "^docs/continuity/batch-[0-9]{3}/[0-9]{4}-[0-9]{2}-[0-9]{2}-session-[0-9]{3}\\.md$",
+      "category": "continuity-session",
+      "authority": "accepted-history",
+      "routeOwner": "docs/continuity/INDEX.md",
+      "healthCheck": "node lib/check-map-bindings.js",
+      "placementRule": "Convention-named direct-child session files only."
+    },
+    {
+      "id": "context-notes",
+      "pattern": "^docs/continuity/context-notes/(README\\.md|[a-z0-9][a-z0-9-]*-[0-9]{4}-[0-9]{2}-[0-9]{2}\\.md)$",
+      "category": "preserved-context",
+      "authority": "proposed-or-historical",
+      "routeOwner": "docs/continuity/CONTEXT-NOTES.md",
+      "healthCheck": "node lib/check-map-bindings.js",
+      "placementRule": "Direct-child Markdown notes and the folder README only; nested bundles, code, prompts, assets, and uploads are not context notes."
+    },
+    {
+      "id": "visual-evidence",
+      "pattern": "^docs/screenshots/[^/]+\\.png$",
+      "category": "visual-evidence",
+      "authority": "observed-evidence",
+      "routeOwner": "lib/build-page-health.js",
+      "healthCheck": "node --test tests/44-page-health.test.js",
+      "placementRule": "Direct-child PNG evidence only; nested uploads or arbitrary assets require a different mapped home."
+    }
+  ]
+}

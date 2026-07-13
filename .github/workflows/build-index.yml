@@ -145,11 +145,23 @@ jobs:
         # marker for anyone reading history, not what actually prevents a loop.
         # On pull_request: push straight to the PR's own head branch. Note
         # this corrective push will NOT automatically re-run the PR's other
-        # checks (same GITHUB_TOKEN limitation) — click "re-run checks" (or
-        # push anything else) once to see them go green against the fixed files.
+        # checks (same GITHUB_TOKEN limitation) — rerun the non-mutating Tests
+        # and Key Alignment workflows once against the fixed head. If Build is
+        # rerun too, the bot-head guard below makes that rerun non-mutating.
         run: |
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
+          # A PR artifact commit is necessarily built from its human-authored
+          # parent. Rebuilding commit-derived artifacts from the bot commit
+          # itself would move HEAD again and can never converge. A manual rerun
+          # on that already-corrected head therefore verifies the build steps
+          # above but must not create another artifact commit.
+          case "$(git log -1 --pretty=%s)" in
+            "Auto-rebuild artifacts for PR #"*)
+              echo "Current head is already a PR artifact correction; skipping a recursive artifact commit."
+              exit 0
+              ;;
+          esac
           git add data/strings/compiled data/strings/reports data/index.json data/lessons.json data/roles.json data/status.json data/page-health.json data/terrain-map.json dist sw.js pages/archives.html pages/vextreme-demo.html pages/specimens.html pages/specimen-*.html pages/ecosystem-hub.html pages/roles-index.html sitemap.xml index.html widgets/fab-lang.js
           if git diff --staged --quiet; then
             echo "No changes to commit"

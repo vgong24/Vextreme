@@ -1,0 +1,152 @@
+{
+  "schemaVersion": "orientation-integrity.evaluation-suite/v1",
+  "maxPacketMaps": 5,
+  "requiredArtifacts": [
+    "config/document-routing.json",
+    "docs/process/orientation-integrity.md",
+    "docs/process/document-routing.md",
+    "docs/architecture/00-reading-guide.md",
+    "docs/architecture.md",
+    "lib/check-architecture-integrity.js",
+    "config/orientation-maps.json",
+    "data/orientation-map.json",
+    "lib/build-orientation-map.js",
+    "docs/process/task-aware-orientation-packets.md",
+    "lib/select-orientation-context.js",
+    "lib/check-document-routes.js"
+  ],
+  "forbiddenReadPatterns": [
+    "(^|/)Vextreme-SDK(/|$)",
+    "^/",
+    "^[A-Za-z]:/",
+    "(^|/)\\.\\.(/|$)"
+  ],
+  "invariants": {
+    "requireDocumentRoutes": true,
+    "requireWorkersUnknown": true,
+    "requireForwardReverseParity": true,
+    "requireQuestionTargets": true
+  },
+  "scenarios": [
+    {
+      "id": "cold-start-entry",
+      "description": "Explicit onboarding is fully routed by the safety baseline.",
+      "request": { "task": "onboarding a new instance at cold start" },
+      "expect": {
+        "status": "routed",
+        "includeMaps": ["cold-start", "work-coordination"],
+        "excludeMaps": [],
+        "includeReads": ["CLAUDE.md", "config/work-coordination.json"],
+        "gapPatterns": []
+      }
+    },
+    {
+      "id": "architecture-source-change",
+      "description": "An architecture source path routes to the corpus without bulk graph expansion.",
+      "request": { "task": "change an architecture design constraint", "paths": ["docs/architecture/05-browser.md"] },
+      "expect": {
+        "status": "routed",
+        "includeMaps": ["architecture"],
+        "excludeMaps": ["v1-history"],
+        "includeReads": ["docs/architecture", "docs/architecture.md"],
+        "gapPatterns": []
+      }
+    },
+    {
+      "id": "change-impact-question",
+      "description": "An exact change-impact question routes to the lattice.",
+      "request": { "questionIds": ["change-impact"] },
+      "expect": {
+        "status": "routed",
+        "includeMaps": ["lattice"],
+        "excludeMaps": [],
+        "includeReads": ["docs/lattice-map.json"],
+        "gapPatterns": []
+      }
+    },
+    {
+      "id": "live-work-question",
+      "description": "Current-work language remains on the live coordination baseline.",
+      "request": { "task": "check current work ownership and the PR queue" },
+      "expect": {
+        "status": "routed",
+        "includeMaps": ["work-coordination"],
+        "excludeMaps": [],
+        "includeReads": ["config/work-coordination.json"],
+        "gapPatterns": []
+      }
+    },
+    {
+      "id": "page-navigation",
+      "description": "A public page navigation task routes to page health.",
+      "request": { "task": "fix a page with missing navigation and FAB", "paths": ["pages/example.html"] },
+      "expect": {
+        "status": "routed",
+        "includeMaps": ["page-health"],
+        "excludeMaps": [],
+        "includeReads": ["pages", "data/page-health.json"],
+        "gapPatterns": []
+      }
+    },
+    {
+      "id": "legacy-v1-history",
+      "description": "Legacy Squarespace questions are labeled historical and do not displace current architecture.",
+      "request": { "task": "understand the v1 legacy Squarespace loader" },
+      "expect": {
+        "status": "routed",
+        "includeMaps": ["v1-history"],
+        "excludeMaps": [],
+        "includeReads": ["docs/Readme.md"],
+        "gapPatterns": []
+      }
+    },
+    {
+      "id": "unknown-task",
+      "description": "Unknown language stays partial instead of widening.",
+      "request": { "task": "flibbertigibbet" },
+      "expect": {
+        "status": "partial",
+        "includeMaps": ["cold-start", "work-coordination"],
+        "excludeMaps": ["architecture", "page-health", "lattice"],
+        "includeReads": [],
+        "gapPatterns": ["No task-specific trigger matched"]
+      }
+    },
+    {
+      "id": "private-sdk-boundary",
+      "description": "Private SDK language selects only the public boundary map.",
+      "request": { "task": "inspect private SDK roadmap state" },
+      "expect": {
+        "status": "routed",
+        "includeMaps": ["public-private-boundary"],
+        "excludeMaps": ["environment-capability", "v1-history"],
+        "includeReads": ["docs/process/public-private-boundary.md"],
+        "gapPatterns": []
+      }
+    },
+    {
+      "id": "environment-evidence",
+      "description": "Machine-capability questions route to proposed environment evidence without inferring availability.",
+      "request": { "task": "verify environment machine capability and authentication" },
+      "expect": {
+        "status": "routed",
+        "includeMaps": ["environment-capability"],
+        "excludeMaps": [],
+        "includeReads": ["docs/process/environment-health-design.md"],
+        "gapPatterns": []
+      }
+    },
+    {
+      "id": "reusable-failure",
+      "description": "A known failure-pattern query routes to the lesson registry.",
+      "request": { "task": "find a lesson for this known failure pattern regression" },
+      "expect": {
+        "status": "routed",
+        "includeMaps": ["lessons"],
+        "excludeMaps": [],
+        "includeReads": ["config/lessons", "data/lessons.json"],
+        "gapPatterns": []
+      }
+    }
+  ]
+}
