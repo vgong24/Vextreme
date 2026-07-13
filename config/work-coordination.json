@@ -27,6 +27,11 @@
     "liveSource": "open_pull_request_body",
     "unknownLiveStateMeansFree": false,
     "activePathOverlapAllowed": false,
+    "stackedWindowOverlapAllowed": true,
+    "maxOpenClaimsPerWindow": 5,
+    "refillWindowAtOrBelow": 2,
+    "maxConcurrentWindowsPerActorEpic": 2,
+    "maxOpenWindowClaimsPerActorEpic": 7,
     "claimGrantsAuthority": false,
     "mergeProvesHumanAcceptance": false
   }

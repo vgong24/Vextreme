@@ -58,6 +58,8 @@ Every current-state answer should make these fields explicit in prose or data:
 - `status`
 - `knownGaps`
 - `liveVerificationRequired`
+- `permissionEnvelope`, when work may continue beyond one PR
+- `workWindow`, when several relational PRs are intentionally in flight
 - `supersededBy`, when applicable
 - `nextSafeAction`
 
@@ -79,7 +81,8 @@ Statuses may be combined; they must not be collapsed into a single optimistic wo
 Capability discovery is not execution authority. A work claim is coordination
 visibility only. A merge is repository-state evidence only. Neither proves human
 acceptance, implementation permission, disclosure permission, or external-effect
-authority.
+authority. A separate Victor-authorized work window may grant bounded continuation
+permission without changing those claim semantics.
 
 ## Cold-start front doors
 
@@ -91,7 +94,7 @@ The current front doors form a layered route rather than one monolith.
 | `docs/culture.md` | How should ambiguity, maps, generated artifacts, verification, continuity, and handoff be interpreted? | `accepted` | Current state or path ownership | Human/PR review; no corpus-level route check. |
 | `docs/continuity/INDEX.md` | What is the current narrative snapshot, open work, active batch, and latest session coordinate? | `accepted`, `partial` | Live PR claims or accepted technical design by itself | Batch/context bindings via `lib/check-map-bindings.js`; narrative lag is reported by `lib/check-continuity-lag.js`. |
 | Newest active session file | What changed most recently, why, and with which assumptions? | `accepted`, `historical` | The complete current state after later merges or open PRs | Filename/range/latest-session binding is checked; content accuracy remains review-dependent. |
-| `config/work-coordination.json` + open PR claim blocks | Which participants are registered and which bounded paths have visible active/waiting/review claims? | `accepted`, `observed`, `partial` | Actual availability, authenticated identity, implementation authority, or unclaimed PR ownership | `lib/work-coordination.js`, tests, leases, and `npm run current-work`; live GitHub access is required. |
+| `config/work-coordination.json` + open PR claim blocks | Which participants, work windows, dependencies, and bounded paths have visible active/waiting/review claims? | `accepted`, `observed`, `partial` | Actual availability, authenticated identity, implementation authority, or unclaimed PR ownership | `lib/work-coordination.js`, tests, leases, and `npm run current-work`; live GitHub access is required. |
 | `docs/architecture/00-reading-guide.md` | Which architecture source should be read and in what conceptual order? | `accepted`, `partial` | Current work or current system state | No guide/source/projection parity check exists at this audit point. |
 | Task-relevant `docs/architecture/*.md` | What accepted design constraints govern the task? | `accepted` | Live implementation status or open ownership | Source review and subsystem tests; corpus reachability is currently incomplete. |
 | `docs/architecture.md` | What does the assembled architecture projection contain? | `generated`, `partial` | Whether it is fresh unless checked against all sources | Built by `lib/build-architecture.js`; no parity check currently runs. |
@@ -131,7 +134,7 @@ not interpreted away:
 | Cold-start routing | `CLAUDE.md` | `accepted`, `partial` | Yes, to culture, continuity, coordination, architecture, and v1 history | No generated “why this route” index | Partial pointer checks only | Stale embedded snapshots and inconsistent subordinate instructions can remain. |
 | Culture | `docs/culture.md` | `accepted` | Yes, to selected process/architecture examples | Prose cross-links only | Review | Doctrine is not current state. |
 | Continuity | `INDEX.md`, batch files | `accepted`, `historical`, `partial` | Yes, index to active batch/session | Partial, through previous-session links and PR references | Map bindings + continuity-lag report | Narrative freshness cannot be inferred from green structural checks alone. |
-| Work coordination | participant registry + open PR claim blocks; `current-work` projection | `accepted`, `observed`, `partial` | Yes, participant/claim to PR/path | PR disappears from live set when closed; durable historical reverse route depends on PR history | Claim validation, overlap/lease tests | No visible claim means availability `unknown`; legacy/unclaimed PRs remain warnings. |
+| Work coordination | participant registry + open PR claim blocks; `current-work` projection | `accepted`, `observed`, `partial` | Yes, participant/window/claim to PR/path | PR disappears from live set when closed; durable historical reverse route depends on PR history | Claim, window-cap, ordered-overlap, and lease validation | No visible claim means availability `unknown`; legacy/unclaimed PRs remain warnings. |
 | Architecture corpus | reading guide + source chapters + generated blueprint | `accepted`, `generated`, `partial` | Present for chapters 01–10 | Source-to-projection transform exists; guide and full reverse lookup are incomplete | No corpus-parity check | Seven later chapters lack guide routes; three are absent from the projection. |
 | Context notes | `CONTEXT-NOTES.md` + note files | `proposed`, `historical`, `partial` | Registry carries `Use When` and conversion path | Bidirectional registry/file binding | `check-map-bindings` | Preserved reasoning is not adopted work. |
 | File lattice | `docs/lattice-map.json` + generated in-file headers | `accepted`, `partial` | Reads/writes/loadedBy/changeMap | Reciprocal edges and generated headers | Header drift and lattice-edge checks | 61 mapped nodes; status reports 52 of 67 eligible files (78% coverage). File-level, not full symbol/value lineage. |
@@ -258,6 +261,45 @@ protected counts, client information, credentials, or algorithms. Cross-reposito
 convergence requires an explicit boundary and dependency edge; shared vocabulary is
 not shared authority.
 
+## Window-scoped continuation
+
+Victor's 2026-07-12 process refinement supersedes the audit's initial
+merge-by-merge assumption. Victor establishes an epic permission envelope in an
+explicit relay or the first governing PR. Vex and Codex may then shape fixed work
+windows inside that envelope without asking Victor to repeat the same authorization.
+Each window has one unique `windowRef` and covers four PRs, or five when the dependency
+relationships remain explicit. Codex may implement and publish every row in that
+window without waiting for individual predecessor merges or renewed permission.
+
+Dependency order still governs branch bases, review deltas, merge order, feedback
+propagation, and retargeting. It no longer creates mandatory idle time between
+implementation rows. Each PR stays separately reviewable and carries a `windowRef`,
+its exact `dependsOn` edge, and bounded paths. The machine policy permits intentional
+overlap only inside one ordered window owned by the same actor, instance, and epic.
+
+Victor can clear three or four PRs in a batch. When two or fewer claims remain, Codex
+re-runs interval checks, reconciles review comments and merged ancestors, and opens a
+new fixed window within the already-authorized epic. The old `windowRef` is not reused.
+At most two rolling windows and seven total window claims may coexist for one actor,
+instance, and epic. The interval checks occur:
+
+- at window construction;
+- before each new claim begins mutation;
+- after each push and CI result;
+- after an ancestor merges or receives relational review feedback;
+- before refilling the queue.
+
+Expected approval enables planning and continued development. It never changes an
+open PR's status to accepted, grants merge authority, or proves human acceptance.
+
+The live machine check is deliberately narrower than the governing contract. It
+validates schema, leases, queue caps, shared window identity, open dependency cycles,
+explicit `stackedOn` PR bases, rolling-window order, and path overlap. It cannot prove
+Victor's authorization, exact diff coverage, separate reviewability, a completion
+signal, or historical uniqueness of a `windowRef`. Those remain PR and merged-history
+review questions. Unclaimed PRs render warning health and unknown ownership rather
+than a healthy implication that their paths are free.
+
 ## Dependency-ordered repair path
 
 This audit defines the order; it does not pre-implement later rows.
@@ -277,8 +319,9 @@ This audit defines the order; it does not pre-implement later rows.
    reverse traversal, freshness, public/private safety, worker claims, partial-map
    honesty, and environment limitations against real public questions.
 
-No later row begins mutation until its predecessor merges and a fresh
-`npm run current-work` shows no conflicting active claim.
+Rows `1/4`–`4/4` form one authorized work window after this refinement. They may be
+implemented as a relational stack while predecessors remain open, provided every
+interval check stays healthy and each PR preserves its own review boundary.
 
 ## Known gaps preserved for later judgment
 
@@ -293,7 +336,8 @@ No later row begins mutation until its predecessor merges and a fresh
 - No map-of-maps source or generated reverse index exists yet.
 - No measured token/context savings claim exists for task-aware selection.
 - Private capability status is intentionally not knowable from the public map.
-- Human acceptance remains unknown until Victor explicitly records it.
+- Human acceptance remains unknown until Victor explicitly records it; expected
+  approval is continuation posture, not accepted state.
 
 ## Stop conditions
 
@@ -305,7 +349,8 @@ Stop and return to Victor/Vex when:
 - an orientation selector begins to resemble a live AI/RAG crawler;
 - a discovered process capability is treated as execution authority;
 - environment availability or worker capacity would need to be inferred;
-- a later epic row would begin before its predecessor merges;
+- a work window exceeds five open claims, loses its dependency order, or cannot keep
+  each row separately reviewable;
 - a check fails outside the bounded row and its cause is unclear;
 - cleanup, reset, stash, deletion, force-push, or another user’s dirty work is implicated;
 - scope expands beyond Orientation Integrity `0/4`–`4/4`.
