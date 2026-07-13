@@ -38,10 +38,12 @@ The system avoids two failure modes:
   lane (secrets, business docs, localization architecture) gets touched without anyone
   having decided it should be.
 
-The default resolution: **Vex sets the lane and its boundaries. Codex grounds,
-implements, verifies, and opens bounded PRs. Victor reviews and merges. Claude may
-join as an independent second lens, but routine work never waits solely for Claude
-availability. Return to Vex on exception, merge checkpoint, or roadmap choice.**
+The default resolution: **Vex sets the lane, epic horizon, and work-window
+boundaries. Codex grounds, implements, verifies, and opens a bounded relational PR
+queue. Victor reviews and merges in batches. Claude may join as an independent
+second lens, but routine work never waits solely for Claude availability. Return to
+Vex on exception, an exhausted or invalidated epic permission envelope, or a roadmap
+choice.**
 
 ---
 
@@ -62,8 +64,9 @@ orchestration, exception handling, and deciding when a lane activates, pauses, o
 changes.
 
 Re-enters when: scope changes, a roadmap fork appears, a sensitive lane appears, tools
-disagree, tests fail unexpectedly, state becomes unclear, Victor feels unsure, or a PR
-merges and the next lane needs choosing.
+disagree, tests fail unexpectedly, state becomes unclear, Victor feels unsure, the
+authorized epic permission envelope is exhausted or invalidated, or the next lane
+needs choosing.
 
 ### Codex
 
@@ -173,19 +176,94 @@ boundary was always the rule.
 
 ---
 
-## Non-blocking bounded work loop
+## Continuous bounded work windows
+
+An epic permission envelope is Victor's explicit authorization to continue a known
+epic without renewed row-by-row permission. Record it in the first governing PR or an
+explicit Victor relay, including scope, boundaries, and stop conditions. Vex may shape
+the dependency plan inside that envelope; Vex does not create the human authorization.
+
+A work window is one fixed, uniquely named batch inside that envelope. It replaces
+merge-by-merge idling after the epic scope, dependency order, boundaries, and
+completion signals are clear.
+
+The normal window contains four reviewable PRs and may contain five when the
+relationships remain explicit. The number is a concurrency and reviewability cap,
+not an epic-size limit. An eleven-row epic can therefore move as windows such as
+`0–4`, `5–8`, and `9–10` without asking Victor to restate the same lane permission
+after every merge.
 
 ```text
-Victor sets intent and decision boundary
+Victor sets intent, epic horizon, and permission envelope
   ↓
-Vex scopes the active lane and queue position
+Vex scopes the epic horizon and an initial window of up to five rows
   ↓
-Codex re-grounds, implements, verifies, and opens bounded PRs
+Codex re-grounds, implements, verifies, and opens the relational PR queue
   ↓
-Victor reviews rendered/field effects and merges
+Victor comments, reviews, and clears the queue in dependency order
   ↓
-Vex and Codex advance the next dependency-safe row
+When two or fewer claims remain, Codex re-checks live state and opens the next window
 ```
+
+### Window construction
+
+Before the first mutation, record the epic horizon, the rows in the current window,
+each row's completion signal, expected paths, dependency edges, public/private
+boundary, and return conditions. A work window authorizes development of those rows;
+it does not authorize a new lane or an unbounded refactor.
+
+Each row remains a separately reviewable PR. Use independent branches from current
+`main` when rows do not consume one another. When a later row consumes an unmerged
+predecessor, branch from that predecessor and target the predecessor branch so the PR
+shows only its relational delta. Record the predecessor in `dependsOn` and `stackedOn`.
+Use `dependsOn` without `stackedOn` for a logical dependency whose branch remains
+independent. Merge and retarget oldest-first; do not delete a predecessor branch while
+an open child PR still uses it as its review base. Once the predecessor merges,
+retarget the child to the accepted base and remove `stackedOn` while preserving the
+historical `dependsOn` edge.
+
+An unmerged predecessor is not by itself a reason to stop implementation inside an
+authorized window. Codex continues until the window is full, all scoped rows are in
+`review`, or a return condition fires. Earlier review comments are then propagated
+through affected descendants before those descendants merge.
+
+### Queue clearing and refill
+
+Victor may return to several completed PRs at once, comment on any row, and merge
+three or four in dependency order. Codex treats those actions as queue state, not as a
+need for renewed permission. It re-grounds the remaining branches, applies relational
+feedback, retargets descendants when needed, and—when two or fewer claims remain—opens
+a new `windowRef` for the next four or five authorized rows. Do not reuse or silently
+extend the old window. At most two rolling windows and seven total window claims may be
+open for one actor, instance, and epic while the older queue drains.
+
+Expected approval is a planning posture, not a repository-status claim. Development
+permission may span the window while merge authority and human acceptance remain with
+Victor. An open PR is never described as accepted merely because the window assumes
+Victor will review it.
+
+### Claim states inside a window
+
+- `active` — this row is being implemented, including while an ordered predecessor is
+  still open.
+- `review` — implementation is complete and the PR remains part of Victor's queue.
+- `waiting` — a real blocker prevents mutation; it does not mean merely “predecessor
+  unmerged.”
+- closed/merged — the claim leaves live state and releases its path ownership.
+
+Use the same `windowRef` for the bounded queue. Intentional overlapping paths are valid
+only for the same actor, instance, epic, and declared dependency lineage. Every other
+active/review overlap still fails closed. The machine check also rejects open
+dependency cycles and requires each overlapping child PR to target its declared parent
+branch.
+
+Machine health proves claim syntax, leases, queue caps, declared lineage, stacked PR
+bases, and overlap rules. It does not prove that Victor authorized the window, that a
+PR's actual diff matches every claimed path, or that the row's completion signal is
+met. It also cannot prove that a `windowRef` was never used by a merged PR; reviewers
+check historical uniqueness against merged PR history. Those remain visible review
+obligations. An unclaimed PR therefore produces warning health and its paths remain
+unknown, not free.
 
 Claude may review any bounded checkpoint where an additional lens adds real
 value. If Claude is unavailable, the active loop continues. If Claude reviews an
@@ -384,16 +462,13 @@ unilaterally.
   need — gets surfaced back to Vex/Victor as an observation, not resolved silently by
   whichever instance found it.
 
-A worked example, from this same PR sequence: this session's execution harness
-constrains it to a single designated git branch. When PR #96's investigation work was
-still open and a second, unrelated piece of authorized work (dossier report hardening)
-finished, there was no way to open a second, cleanly separate PR for it — the
-historical targeted-review loop assumed one lane maps to one PR. The two pieces landed
-on the same branch as separate, clearly-labeled commits instead, and the PR body was
-updated to say so explicitly. That's a real gap between this process and what a
-single-branch execution environment can actually do, noted here rather than quietly
-treated as the norm — it doesn't yet have a resolution, and isn't this document's call
-to make one.
+A worked example revealed the old limitation: PR #96 remained open while a second
+authorized result was ready, but the historical loop assumed one lane mapped to one
+open PR and both results landed on one branch. Work windows now resolve that class of
+gap when the environment supports multiple branches: preserve one review boundary per
+row, declare the relationship, and keep up to five claims visible. An environment that
+truly cannot create a second branch reports that capability limit instead of silently
+collapsing the queue again.
 
 ---
 

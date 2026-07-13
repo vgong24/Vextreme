@@ -22,10 +22,13 @@
 
 <!--
   Replace every value in this block before mutating shared paths. Open the PR as
-  a draft early so other instances can see the claim. Use `waiting` while a
-  predecessor is unmerged, `active` during mutation, and `review` when changes
-  are complete but still reviewable. Remove the block only for a genuinely
-  unclaimed historical/administrative PR.
+  a draft early so other instances can see the claim. Use `windowRef` for a
+  Victor-authorized work window and remove that field for independent work.
+  Keep `stackedOn` only when this PR targets and consumes an open predecessor.
+  An ordered same-window successor may be `active` before its predecessor merges;
+  use `waiting` only when work is actually blocked. Use `review` when changes are
+  complete but still reviewable. Remove the block only for a genuinely unclaimed
+  historical/administrative PR.
 -->
 <!-- VXG-WORK-CLAIM
 {
@@ -36,9 +39,11 @@
   "repository": "vgong24/Vextreme",
   "branch": "replace-with-branch",
   "epic": { "name": "Replace Me", "item": "0/0" },
+  "windowRef": "window.replace-me",
   "status": "waiting",
   "paths": ["replace/with/bounded/path"],
   "dependsOn": [],
+  "stackedOn": "work.replace-with-open-parent-or-remove-field",
   "lease": { "renewBy": "2099-01-01" },
   "coordinationOnly": true,
   "implementationAuthority": false
