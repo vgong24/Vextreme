@@ -2,64 +2,68 @@
 
 > **This file is generated.** Edit source files in `docs/architecture/`
 > and run `node lib/build-architecture.js` to rebuild.
-> See `docs/architecture/00-reading-guide.md` for reading order.
+> See `docs/architecture/00-reading-guide.md` for question routing and reading order.
 
 ---
 
 # Reading guide
 
-**`docs/architecture.md` is a generated file.** Do not edit it directly.
-Edit the source files in `docs/architecture/` and run `node lib/build-architecture.js`
-to rebuild. The same CQRS principle that governs data governs documentation here.
+**`docs/architecture.md` is a generated projection.** Do not edit it directly.
+Edit the numbered sources in `docs/architecture/`, run
+`node lib/build-architecture.js`, and verify with
+`node lib/check-architecture-integrity.js`.
+
+Architecture records design decisions and their reasoning. For current work,
+accepted state, and the active continuity batch, start with
+`docs/continuity/INDEX.md` instead.
 
 ---
 
-## What this document covers
+## Route by question
 
-Design decisions and their reasoning. Not current system status — for that,
-read `docs/continuity/INDEX.md` first.
+Read the smallest source that answers the question. The trigger column names
+the moment when that source becomes required context. Every numbered source,
+including this guide, must appear exactly once in this table; CI checks that
+coverage and also checks the generated projection byte-for-byte.
+
+| Source | Question answered | Read when / trigger |
+|---|---|---|
+| `docs/architecture/00-reading-guide.md` | Which architecture source should I read first? | Before opening multiple chapters or changing the corpus structure. |
+| `docs/architecture/01-identity.md` | Which public surfaces share this codebase and deployment context? | Before changing domains, deployment, canonical URLs, or surface identity. |
+| `docs/architecture/02-slug.md` | What is the canonical identity primitive? | Before adding or renaming content, routes, node IDs, or data references. |
+| `docs/architecture/03-data.md` | Which files are sources and which are generated read models? | Before editing data, generated artifacts, compilers, or projections. |
+| `docs/architecture/04-build-time.md` | What must be computed before browser execution? | Before moving logic between build scripts, JSON outputs, and browser code. |
+| `docs/architecture/05-browser.md` | What may the browser layer render or compute? | Before changing renderers, `arcView`, page bootstraps, or browser data flow. |
+| `docs/architecture/06-i18n.md` | How do display strings and language bundles remain valid? | Before writing any user-visible string or changing string compilation. |
+| `docs/architecture/07-registry.md` | When should a new behavior extend a registry instead of fork logic? | Before adding an arc, renderer, language, mode, or other extensible axis. |
+| `docs/architecture/08-continuity.md` | How is reasoning handed off and what counts as completion evidence? | Before session handoff, PR closeout, visual verification, or continuity edits. |
+| `docs/architecture/09-constraints.md` | Which system rules are non-negotiable? | Before any architectural change or exception proposal. |
+| `docs/architecture/10-directory-structure.md` | Where should a new engine, component, or widget file live? | Before creating or moving implementation files. |
+| `docs/architecture/11-debugging-practices.md` | How should a failure be reproduced and traced before editing? | Before diagnosing a bug or proposing a speculative fix. |
+| `docs/architecture/12-design-system.md` | Which tokens and style boundaries govern visual work? | Before adding colors, spacing, typography, or reusable UI styling. |
+| `docs/architecture/13-intent-driven-operations.md` | How should intent map to deterministic operations and proof? | Before designing agent-facing commands, automation, or operational workflows. |
+| `docs/architecture/14-council-model.md` | Which council pattern exists and which similarly named pattern is different? | Before changing roles, departments, council pages, or cross-council language. |
+| `docs/architecture/15-analysis-mode.md` | How does Analysis Mode discover, bundle, and expose content? | Before changing analysis search, indexing, feature flags, or the analysis UI. |
+| `docs/architecture/16-nav-coverage.md` | How is navigation coverage kept complete across public pages? | Before adding a page, changing shared nav, or diagnosing a missing nav surface. |
+| `docs/architecture/17-fab-autoload.md` | How are FAB widgets discovered and loaded through the shared shell? | Before adding a FAB, changing autoload rules, or editing shell bootstrap behavior. |
 
 ---
 
-## How the sections connect
+## Dependency reading order
 
-Read in this order. Each section's decisions constrain the next.
+For a broad architectural change, read in numeric order. Each decision narrows
+the choices available to the chapters that follow.
 
+```text
+01 identity -> 02 slug -> 03 data -> 04 build-time -> 05 browser
+            -> 06 i18n -> 07 registry -> 08 continuity -> 09 constraints
+            -> 10 directories -> 11 debugging -> 12 design system
+            -> 13 operations -> 14 council -> 15 analysis
+            -> 16 navigation -> 17 FAB autoload
 ```
-01-identity       — two surfaces, one codebase. Sets the deployment context.
-      ↓
-02-slug           — the primitive everything else references. Understand this
-                    before touching any data file or build script.
-      ↓
-03-data           — CQRS write/read split. Explains why you edit source files,
-                    not generated artifacts. The strings pipeline (06) and
-                    build-time computations (04) are both expressions of this.
-      ↓
-04-build-time     — what the build step computes so the browser doesn't have to.
-                    Directly constrains what is allowed in browser JS.
-      ↓
-05-browser        — browser layer, renderer registry, arcView contract.
-                    Only makes sense after 04 — the browser is data-only
-                    because 04 made it that way.
-      ↓
-06-i18n           — localization pipeline and the localization constraint.
-                    **Read this before writing any display string anywhere.**
-                    Hardcoded English text in JS or build scripts is a violation
-                    of this section's rules regardless of how small it looks.
-      ↓
-07-registry       — the pattern that unifies arcs, strings, render modes, and
-                    future axes. Recognizing it lets you extend without forking.
-      ↓
-08-continuity     — how Claude instances hand off context across sessions.
-                    Read this to understand the VXG RealForever marker and
-                    why PR descriptions are decision records, not changelogs.
-      ↓
-09-constraints    — the hard rules. These are not preferences. Violating any
-                    one breaks the system in ways that are painful to reverse.
-      ↓
-10-directory-structure — what lib/, components/, and widgets/ mean and how
-                    to decide which directory a new file belongs in.
-```
+
+Question routing is preferred for bounded work; the full sequence is for work
+whose effects cross several of those boundaries.
 
 ---
 
@@ -1722,6 +1726,680 @@ undesigned piece, same as the first attempt concluded.
 
 ---
 
-*Last updated: 2026-07-07*
+# Analysis Mode
+
+**Boundary context:** Analysis Mode itself prompted a refinement of this repo's
+public/private architecture split, recorded in
+`docs/process/public-private-boundary.md` — Public Vextreme is not a limited demo but
+"one organization that has already reached the desired architectural condition,"
+proving the pattern by dogfooding its own architecture; Vextreme-SDK is "the reusable
+machinery capable of helping other organizations reach that condition." Read that
+document's "Refined principle" section before extending Analysis Mode further — it's
+the checklist for keeping new phases on the public side of the line (demonstrating an
+already-real pattern over public data) instead of drifting into SDK territory
+(generalized resolution, heterogeneous-input adaptation, vendor workflow, governance).
+
+## The decision
+
+Victor asked (2026-07-10) for something bigger than a fixed sanitized-output demo page:
+a live, searchable, exportable, growing interface — "add an HTML to be mappable, then
+returned in full and exportable in different languages or formats upon a UI interface" —
+plus screenshot-to-code navigation, plus a per-element reverse-usage view, surfaced through
+a FAB-triggered panel like the existing language/theme/map orbs, not a separate page. He
+named this "Lane 1" (L7 demo fidelity: real IDs, real mapping, no private exposure) and
+"Lane 2" (God Script default-wiring/capability config) together, and asked Claude to lead,
+decide, plan as a manifest, and build sequentially — "we're our own client."
+
+**The decision: build this entirely inside the public Vextreme repo, over Vextreme's own
+real content — not as a synthetic demo of the private SDK.**
+
+This resolves the tension both lanes were circling without weakening either boundary:
+
+- Vextreme's own compiled string bundles already are a real canonical-ID system.
+  `docs/architecture/06-i18n.md` says it outright: "The key registry in
+  `data/strings/source/` is not just a string file — it is the element identity layer for
+  the entire UI." Every key (`common.label.page-live`, `pages.victors-recap-arc-1.hero`,
+  etc.) already has real per-language values across `en`/`ja`/`zh` (`data/index.json`'s
+  `supportedLangs`).
+- `lib/trace-string-usage.js` already computes reverse usage (`scanUsages`, `traceKey`,
+  `tracePage`, `findOrphanUsages`, `findUnusedKeys`) — real forward/reverse mapping,
+  today, CLI/stdout-only.
+- `lib/build-terrain-map.js`'s `findScreenshots()` already indexes real per-slug,
+  per-language screenshots (`docs/screenshots/{slug}-{lang}.png`, written by
+  `scripts/screenshot-page.js`) — real screenshot-to-content mapping, today.
+- `lib/strings-export.js` already exports per-scope CSV batches — real export, today,
+  CLI-only.
+
+None of this is synthetic and none of it requires touching the private SDK. What's
+missing is a unified, interactive, browser-facing surface tying these four already-real
+pieces together — that's what Analysis Mode is. The private SDK's actual commercial-depth
+implementation (resolver algorithms, vendor packet internals, client-specific data) stays
+exactly as private as it already is; this is a parallel, independently-real instance of the
+*pattern* (canonical ID, forward/reverse map, misalignment/missing-value detection,
+screenshot evidence, export), proven live on public data instead of performed on a fixture.
+That is the public/private "diff of meaning": the pattern is what's valuable to show: the
+private implementation is what stays hidden, and showing the pattern working for real is
+more convincing than a sanitized narrative ever was.
+
+This also answers Lane 2 concretely instead of abstractly: Analysis Mode becomes a real,
+motivated test case for the God-Script/FEATURES-registry capability-configuration question
+(`od-011`) — built once, its actual cost (index size, fetch weight) tells us whether
+default-on or per-slug opt-in is the right answer, rather than deciding blind.
+
+## What stays out of scope
+
+- No live call to the private Vextreme-SDK repo, ever.
+- No private schema field names as public vocabulary.
+- No client data.
+- Platform scope is web only, matching Victor's own framing ("platform (currently just
+  web)") — no native/mobile surface implied or promised.
+- Export formats start with the CSV shape `strings-export.js` already produces; other
+  formats (Applanga-style, etc.) are a named future phase, not this one — see Phase B below.
+
+## Manifest of work
+
+Sequential, one PR-sized phase at a time, same cadence as the localization product's
+L1-L7 rounds. Each phase is independently mergeable and independently useful.
+
+### Phase A — data layer (this PR)
+
+`lib/build-analysis-index.js`: a new build script, pure-function-tested, that composes
+the outputs of `trace-string-usage.js` (reused, not duplicated — `scanUsages`, `traceKey`,
+`findOrphanUsages`, `findUnusedKeys`) and `build-terrain-map.js`'s `findScreenshots()` into
+one browser-fetchable artifact, `data/analysis-index.json`: every key's canonical id,
+present/missing languages, which page(s) reference it, and per-slug screenshot
+availability. Same CQRS shape as `data/terrain-map.json` (write-side script, deterministic,
+no live compute) — nothing renders yet.
+
+Known limitation, recorded honestly: staleness detection (EN text changed since a
+translation was last touched) is not included in Phase A — `manifest.json` stores an
+`enHash` per key but the `_stale` comparison itself lives in `strings-check.js`'s run-time
+logic, not as a persisted field. Wiring that in is a small, separate follow-up once Phase A
+is live, not blocking it.
+
+### Phase B — Analysis Mode FAB + panel (built, this PR)
+
+`widgets/fab-analysis.js`, following the exact mount-into-`#vex-spiral-group` contract
+`fab-lang.js`/`fab-map.js`/`fab-theme.js` already use (see `widgets/vex-fab.js`'s own
+docstring — "a new orb is a new small widget... this file does not need to change"). Opens
+a slide-out panel, not a new page: search by key or page slug substring; a result list
+showing each key's language coverage (present/missing), every page that references it as a
+clickable link, and a screenshot link when one exists for a referencing page (linking to the
+real file under `docs/screenshots/` on GitHub); a CSV export button downloading the
+currently-filtered result set client-side (Blob download, no server round-trip).
+
+**Scoped honestly, not silently bigger than it is:** the CSV export is the coverage/mapping
+table (key, present/missing languages, referencing pages) — not translated text bodies.
+`data/analysis-index.json` doesn't carry string text (only `manifest.json`'s `enHash`, not
+the text itself), so full-text export would mean a second fetch layer (compiled scope
+bundles) not built here. Verified live via a local Playwright pass (temporary
+`playwright-core` install, cleaned up after, per this repo's own documented friction note):
+real search/filter against the real 246-element index, language badges, page links,
+screenshot links, empty-state handling, and a real CSV download all confirmed working
+end-to-end against this repo's actual data — not a mock.
+
+`data/analysis-index.json` is fetched lazily on first panel open, not at page load — this
+matters for Phase C below, not just performance hygiene.
+
+### Phase C — capability wiring decision (built)
+
+Measured before deciding, per the plan above: `widgets/fab-analysis.js` is 17.5KB (in
+line with sibling orb widgets — `fab-lang.js` alone is 25.6KB); `data/analysis-index.json`
+is ~100KB raw / ~5.4KB gzipped but is fetched lazily, only on first panel open, never at
+page load. `blueprint.json`'s own `performance.budgets.perPage` ceiling is 100KB — the
+widget's page-load cost is a small fraction of that.
+
+Decision: added `Feature.ANALYSIS` to `lib/vex-config.js`, a `config/features/analysis.json`
+entry, a `lib/build-vextreme.js` `FEATURES` registry entry (`default: false`, same as
+every sibling orb feature — inclusion is still driven by the viewmodel, not unconditional),
+and — the actual "default-on with configurable visibility" answer to `od-011` — added
+`Feature.ANALYSIS` to `lib/build-index.js`'s `buildViewmodel()` default features array,
+alongside `lang`/`spiral-fab`/`theme`/`map`. This is not a new mechanism: it's the exact
+mechanism `theme` and `map` already use to be "on by default, per-slug excludable."
+
+**`od-011` finding, stated plainly:** the "God Script should be default-on with per-slug
+configurable visibility" question already had a working answer inside this repo before
+Analysis Mode existed — `buildViewmodel()`'s default features array plus
+`data/viewmodels.json`'s per-slug override array. It's opt-in-by-default at the *feature*
+level (every page using the standard viewmodel gets `lang`/`spiral-fab`/`theme`/`map`, and
+now `analysis`, automatically), not opt-in at the *page* level (whether a page gets a God
+Script at all is still gated by `hasScopeBundle()` — a separate, still-open question,
+scoped to `pe-002`, not this manifest). Demo/specimen pages that want a minimal feature set
+already exclude `theme`/`map` via an explicit `viewmodels.json` override; they now also
+exclude `analysis` the same way, with no new code — verified by rebuilding: their assembled
+scripts don't gain the analysis feature, `victor-methodology-presentation`'s does.
+
+**Verified end-to-end, not just at the assembler level:** rebuilt the real
+`dist/vextreme-victor-methodology-presentation.js` and confirmed `feature: analysis` is
+present; loaded the real, actually-built page (temporary `playwright-core`, cleaned up
+after) with only the CDN URL locally redirected (network access to the real CDN isn't
+available in this environment) and drove the real assembled God Script through the real
+panel: 246 real elements loaded, filtered correctly to 17 matches on "archives," zero
+widget-related errors.
+
+### Phase D — code/HTML navigation (built, folded into Phase B)
+
+Already shipped as part of Phase B: `screenshotsForKey()` links directly to the real
+screenshot file on GitHub (`github.com/vgong24/Vextreme/blob/main/{path}`), and each result
+row links to the real live page. Linking to the raw source HTML/string-source JSON on
+GitHub (rather than the rendered page) remains a small, optional follow-up if a future
+instance finds it valuable — not blocking, not scoped further here.
+
+## Why this order
+
+Phase A first because every later phase depends on the artifact existing and being
+trustworthy — building the UI before the data layer would mean designing against guesses.
+Phase C is deliberately sequenced after B, not before, because `od-011` asked a real
+scaling question that Phase B's actual output size will answer better than speculation.
+
+## Manifest status: complete
+
+All four phases (A: data layer, B: FAB panel, C: capability wiring, D: source navigation)
+are built and verified end-to-end. `od-011`'s two questions — should demo pages show real
+IDs/mapping, should God Script inclusion be a configurable pattern instead of a one-off —
+both have concrete, working answers: yes, over Vextreme's own real content
+(`docs/process/public-private-boundary.md`'s "Refined principle" is the reasoning this
+manifest is built on), through the repo's existing per-slug feature-override mechanism,
+extended rather than replaced.
+
+Read `docs/process/public-private-boundary.md`'s "Refined principle" section before
+proposing a Phase E or extending Analysis Mode further — it's the checklist for keeping
+new capability on the public side of the line (demonstrating an already-real pattern over
+public data) instead of drifting into what `Vextreme-SDK`'s own
+`docs/architecture/public-private-interface-boundary.md` names as SDK territory
+(generalized resolution, heterogeneous-input adaptation, vendor workflow, governance).
+
+---
+
+# Nav Coverage
+
+## The problem, stated by Victor (2026-07-10)
+
+"we don't have a fully visible 'Header' either on all of these htmls, so i can never
+navigate to like the 'main index' or the map through FABs that haven't been displayable
+on any html in Vextreme yet."
+
+Confirmed with real numbers, not assumption: `node lib/audit-nav.js` (see its own header
+for methodology) found **31 of 39 pages are dead ends** — no static link to any hub page,
+no `shell.js`, no God-Script FAB navigation. A visitor who lands on one of these pages has
+no way to discover the rest of the system exists. This includes `terrain-map.html` — the
+system's own health/dependency dashboard — and both SDK demo pages built this session
+(`sdk-identity-demo.html`, `localization-source-truth-demo.html`).
+
+## Why this happened
+
+Three independent navigation mechanisms exist in this repo, each real and working, none
+reaching most pages:
+
+1. **Static hub links** — a page's own raw HTML links directly to a hub destination
+   (`index.html`, `archives.html`, `ecosystem-hub.html`, `terrain-map.html`). Only the
+   generated hub pages themselves have this baked into their own renderer output —
+   `archives`, `ecosystem-hub`, `roles-index`, and the two "demo" pages that happen to
+   link to one hub each (`specimens`, `vextreme-demo`). No hand-authored content page has
+   any of it.
+2. **`shell.js` (v1)** — a real, working loader that injects a genuine site-nav bar
+   (`lib/vextreme.js`'s `injectNav()` — title link, Archives/Direct Contact/AI Tools/
+   vextreme24.com links, mobile-responsive toggle). Only 3 pages reference it
+   (`claude-answers-the-doubt`, `restoration-protocol`, `specimen-architectural-wisdoms`)
+   — and its hardcoded link list itself is stale (points at `vextreme24.com` pages, not
+   this repo's own real Terrain Map/Ecosystem Hub/Analysis Mode).
+3. **God Script FAB navigation (v2)** — `spiral-fab` + orb widgets (`map`, `analysis`,
+   `theme`, `lang`). Real, rich, and the actively-developed system — but only reaches a
+   page that is both assembled *and* wired, which today is exactly one page
+   (`victor-methodology-presentation`).
+
+None of the three was ever the wrong idea. Each was built for a real, narrower purpose
+and never extended to be the site's baseline. Nothing here is a bug in any one of them —
+it's a gap between them.
+
+## Rollout plan
+
+Sequential, same discipline as Analysis Mode's own manifest — measure before deciding,
+smallest safe increment first, verify before scaling up.
+
+### Step 1 — measurement (done)
+
+`lib/audit-nav.js`. Read-only, no page touched. Established the real baseline (31/39
+isolated) so later steps have something concrete to improve against and verify.
+
+### Step 2 — modernize `shell.js`'s destination links (done)
+
+`lib/vextreme.js`'s `injectNav()` hardcoded a link list built for `vextreme24.com`-era
+navigation. Added this repo's own real, current hub pages (Archives, Terrain Map,
+Ecosystem Hub) alongside the existing `vextreme24.com` links, additive only. Made the
+*existing* 3 `shell.js` pages' nav actually useful before extending `shell.js`'s reach.
+
+### Step 3 — first safe rollout batch (done)
+
+Added `shell.js` to 6 pages with zero pre-existing `<script>` tags to conflict with —
+`about-me`, `bridge-council`, `bridge-council-os`, `bridge-council-schema`,
+`investor-archetype-simulation`, `witness-committee-operations` — deliberately excluding
+`connect.html`, `human-ai-corelational-governance.html`, and `origins-of-proof.html` from
+this batch even though `lib/audit-nav.js` also flags them isolated, since each already has
+its own `<script>` tag(s) that need individual review before adding a second loader, not
+a blind extension of this batch. Verified two structurally different pages
+(`about-me.html`, a raw fragment; `witness-committee-operations.html`, a full document
+with its own pre-existing dark-mode toggle) via Playwright — both render the modernized
+nav correctly, zero conflicts with existing page elements, zero errors. Real result:
+**14/39 pages navigable, up from 8/39.**
+
+### Step 4 — the 3 deferred pages, individually reviewed (done)
+
+Read each of `connect.html`, `human-ai-corelational-governance.html`, and
+`origins-of-proof.html`'s existing `<script>` block(s) before touching anything, per Step 3's
+own deferral note. `connect.html` (fragment, a copy-button handler and an accordion
+persistence handler, both single-init-guarded) and `human-ai-corelational-governance.html`
+(full document, a section-scroll sticky sub-nav and its own light/dark theme toggle scoped to
+`<html>`) both verified cleanly with `shell.js`'s default settings via Playwright — nav
+injected, body wrap applied, no console errors, no visual conflicts.
+
+`origins-of-proof.html` did **not** verify cleanly with defaults: it's a full document whose
+own `#op-root` layout is intentionally wide (`--op-page-width: 1100px`), and `shell.js`'s
+default body-wrap (`max-width: 720px`) squashed it to ~640px — a real, measured layout
+break, not a guess. Fixed using `shell.js`'s own documented override mechanism:
+`window.VEXTREME_OVERRIDE = { bodyWrap: false }` declared before the `shell.js` script tag,
+disabling only the auto-wrap while keeping the nav injection. Re-verified: `#op-root` back to
+its full 1280px width, nav present, no conflicts.
+
+**Real bug found during this verification, out of scope to fix here:** a real scroll test
+(not just "element exists at page load") showed `.vex-nav`'s `position: sticky` never
+actually keeps the nav pinned during scroll, on *any* page using `shell.js` — including
+already-merged pages from Step 3, not just this batch. Root cause: `#vex-site-nav`, the
+wrapper `injectNav()` creates, is sized to exactly its sticky child's height, leaving no
+room for the sticky behavior to engage. Recorded as `td-010` in
+`data/status/tech-debt.json` rather than fixed inline, since it's a pre-existing, site-wide
+CSS issue unrelated to which pages get `shell.js` added — bundling an unrelated fix into a
+rollout PR would blur what each change is actually for.
+
+Real result: **17/39 pages navigable, up from 14/39** (`node lib/audit-nav.js`).
+
+### Step 5 — zero-script-tag batch from the remaining 22 (done)
+
+Of the 22 remaining isolated pages, 5 turned out to be genuine zero-byte placeholder files
+(`accountability-test-01`, `accountability-test-01-b`, `how-to-invest-in-trust-and-integrity`,
+`instance-thread-logs`, `summary-of-value`) — confirmed via `git log --follow`, created empty
+in a prior commit alongside real siblings (e.g. `accountability-test-02`) and never written.
+Not given `shell.js`: a nav bar on a page with no other content isn't fixing a real dead-end,
+it's decorating an empty file. Excluded from this batch and from the isolated-page count's
+practical target, though `lib/audit-nav.js` still (correctly) reports them isolated — the tool
+measures navigability, not content-readiness, on purpose.
+
+Of the rest, 4 had zero pre-existing `<script>` tags — the same safe-first criterion Step 3
+used — and got `shell.js` after individual `max-width` checks (all comfortably under or near
+`.vex-page-body`'s 720px cap, verified via Playwright, no layout conflicts):
+`accountability-test-02`, `covenant-architect-accord`, and this session's own two SDK demo
+pages, `localization-source-truth-demo` and `sdk-identity-demo` — previously landable only by
+direct link, now discoverable from the nav's own hub trail.
+
+Real result: **21/39 pages navigable, up from 17/39** (`node lib/audit-nav.js`).
+
+### Step 6 — pages with pre-existing `<script>` tags, individually reviewed (done)
+
+Read all 8 non-`specimen-*` pages from Step 5's named list individually — same discipline
+Step 4 gave `origins-of-proof.html` — before adding anything:
+
+- **5 verified clean with `shell.js` defaults:** `org-blueprint`, `org-history`,
+  `phantom-opera-meta-review`, `terrain-map`, `the-testimony-of-victor-gong` — each already
+  had one or two small, self-contained inline scripts (link-population from a config object,
+  a theme toggle, the terrain-map dashboard's own data-fetch renderer) with `max-width`s at or
+  under 760px, no conflicts.
+- **3 needed `bodyWrap: false`, same fix as `origins-of-proof.html`:**
+  `fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments`
+  (`--page-width: 1300px`), `the-victor-pattern` (`--max-width: 1300px`, its own interactive
+  witness-map visualization), and `the-victor-pattern-transcript` (`--vp-page-width: 1180px`,
+  fragment-style like `about-me.html` — script tags appended at end of file, not before a
+  `</body>` it doesn't have). All three re-verified at full designed width after the override.
+
+**Real bonus found during review, not just risk:** `the-testimony-of-victor-gong.html`
+already had a dormant `<div id="arcNavMount">` and its own `window.VEXTREME_mount()` call —
+authored for the v1 arc-nav system but never activated, since no loader script was ever added
+to the page and the call silently no-ops without one. `lib/vextreme.js` loads `lib/arc-nav.js`
+unconditionally (not gated on a template), so adding `shell.js` here didn't just fix the
+top-nav dead end — it activated real, already-authored arc navigation
+(`data/arcs.json`'s `victors_record` arc, confirmed present) for the first time. Verified via
+Playwright: `#arcNavMount` renders a real arc-nav box, not empty.
+
+**Left out of this batch, deliberately:** `v2-test` (a dev fixture for arc-nav testing, not a
+real content page, per `lib/audit-pages.js`'s own description) and the 4 `specimen-*` pages —
+those already carry real v2 FAB widgets (`lang-fab.js`/`fab-lang.js` +
+`demo-fab.js`/`fab-demo.js`, not a God Script's full 3-tag include pattern as earlier assumed;
+that description was corrected during this review) and a static "← Back to specimens" link.
+Adding `shell.js`'s top nav alongside an already-present FAB orb system is a different,
+untested combination from every page in Steps 3-6 so far — deserves its own check, not folded
+into this batch.
+
+One inconclusive finding, not filed as tech debt: `the-victor-pattern-transcript.html` (a raw
+fragment with no `<head>`/charset declaration) rendered visible mojibake in local
+verification — confirmed caused by the local Python test server omitting a `charset` in its
+`Content-Type` header (`curl -sI` showed plain `text/html`, no `charset=utf-8`), not
+necessarily present on the real GitHub Pages deployment, which likely sends an explicit UTF-8
+charset. Not fixed or filed here since it couldn't be confirmed as a real, live bug — noted so
+a future instance with real GitHub Pages access can check rather than re-discover the same
+question.
+
+Real result: **29/39 pages navigable, up from 21/39** (`node lib/audit-nav.js`).
+
+**Post-merge visual correction (2026-07-10):** Step 6's "verified clean" label
+was too broad for `terrain-map` and `phantom-opera-meta-review`. Source-width
+inspection missed two authored composition contracts: terrain is a viewport
+application whose height must subtract the injected nav, and Phantom's hero is
+full-bleed even though its reading column is 720px. The first shell rollout
+therefore clipped terrain by one nav height and reduced Phantom's hero to 640px.
+Once FAB v7 was forced past CDN cache, rendered hit-testing also showed the FAB
+covering desktop nav links, the mobile hamburger, and Phantom's House Lights
+control. The corrected geometry and shared action-rail contract are recorded in
+`docs/architecture/17-fab-autoload.md` Addendum 2 with screenshots. Future
+"verified clean" claims for runtime chrome require rendered rectangles and hit
+targets, not width grep alone.
+
+### Step 7 — the 4 specimen pages, FAB-widget compatibility checked and unified (done)
+
+**Superseded by `docs/architecture/17-fab-autoload.md`**: the per-page fix described below
+(individually hand-adding `vex-fab.js`/`fab-lang.js` script tags) was replaced by making
+`lib/vextreme.js` auto-load the full FAB set for any page that already includes `shell.js`
+— no per-page widget `<script>` tags needed anymore, anywhere. Kept below for the real
+history of how the gap was found; see `17-fab-autoload.md` for the current, durable fix and
+a real bug that per-page approach ran into (CI silently reverting the hand-edit on
+generated pages).
+
+Read all 4 `specimen-*` pages' existing v2 FAB widget wiring before touching anything.
+Corrected an assumption from the Step 6 PR body along the way: these don't use a God
+Script's 3-tag include pattern — 3 of the 4 (`specimen-full-translation`,
+`specimen-partial-translation`, `specimen-smallest-miss`) loaded the older, standalone
+`widgets/lang-fab.js` + `widgets/demo-fab.js` pair directly, pre-unification; the fourth
+(`specimen-architectural-wisdoms`) loaded the newer `widgets/fab-lang.js` +
+`widgets/fab-demo.js` pair — but *without* `widgets/vex-fab.js`, the actual "spiral" trigger
+those newer widgets are meant to nest into (per the "Session 025 FAB unification" comment in
+`fab-lang.js`'s own header). All 4 were therefore running their orbs in the same degraded
+standalone-fallback mode, missing the real high-level container.
+
+Caught directly by Victor mid-rollout: "there should be a 'spiral one'... theres always a
+'high level container' and sub features underneath, we never duplicate a category." Fixed
+properly, not just visually verified around: `widgets/vex-fab.js` added to all 4 pages
+(confirmed via `lib/build-vextreme.js`'s own `FEATURES` registry that it must load *before*
+`fab-lang.js`/`fab-theme.js`/`fab-map.js` — their `DOMContentLoaded` handlers fire in
+registration order, and `vex-fab.js` has to create `#vex-spiral-group` first). The 3 pages on
+the legacy `lang-fab.js`/`demo-fab.js` pair were migrated to the current `fab-lang.js`/
+`fab-demo.js` pair — confirmed behaviorally identical via direct diff (same
+`VEX_STRING_SCOPES`/`VEX_STRING_CATEGORY` contract, same `DOMContentLoaded` → `mount()`
+pattern) before swapping, not assumed compatible. `widgets/fab-demo.js` itself has no
+spiral-group awareness by design (it's a simple, permanent standalone orb offset next to the
+lang orb, per its own header comment) — the "never duplicate a category" fix applies to the
+language-switcher orb, which now genuinely nests, not to the demo-link orb, which was never
+meant to.
+
+Verified via Playwright after the fix, not assumed: `#vex-spiral-group` exists, the language
+orb is a real DOM child of it (not a same-named element floating outside), the spiral trigger
+opens correctly, and `shell.js`'s top nav bar renders with zero visual or positional conflict
+against the now-unified spiral trigger + orb pair.
+
+**Real finding, addressed:** all 4 pages set `max-width`/`margin: 0 auto`/`padding` directly
+on `<body>` itself (860px for 3 of them, 920px for `specimen-architectural-wisdoms`) — a
+different authoring pattern from every other page in this rollout, which used an inner
+wrapper element instead. Since `injectNav()` inserts `#vex-site-nav` as `body`'s first
+child, `body`'s own padding applied to the nav too, and — with `shell.js`'s default
+`bodyWrap: true` — its own `.vex-page-body` wrapper (another 44px of top padding, another
+720px max-width) stacked on top of `body`'s own padding, roughly doubling top whitespace
+and narrowing already-reasonable content further than necessary. Fixed the same way as the
+wide-layout pages in Steps 4 and 6: `window.VEXTREME_OVERRIDE = { bodyWrap: false }`,
+letting each page's own pre-existing width/padding system stand alone. Re-verified: clean,
+single-padding layout, full designed width, no orb overlap, on all 4.
+
+Real result: **33/39 pages navigable, up from 29/39** (`node lib/audit-nav.js`).
+
+### What's left, deliberately out of scope
+
+6 pages remain isolated: `accountability-test-01`, `accountability-test-01-b`,
+`how-to-invest-in-trust-and-integrity`, `instance-thread-logs`, `summary-of-value` (the 5
+empty placeholders confirmed in Step 5 — real dead files, not real dead ends) and `v2-test`
+(a dev fixture for arc-nav testing, not real content, per `lib/audit-pages.js`'s own
+description). None of the six are a rollout target as currently scoped — if any of them
+ever gets real content, it should get the same individual review every other page in this
+rollout got, not a blind default. Whether the long-term target beyond this rollout is
+universal `shell.js` coverage, universal God-Script wiring (`pe-002`), or a deliberate mix,
+remains a decision to make with real usage data, not guessed now.
+
+## What this is not
+
+Not a redesign of any of the three navigation mechanisms. Not a decision to retire
+`shell.js` or to force universal God-Script wiring. Not a claim that every isolated page
+*should* be reachable the same way — a raw content fragment meant for a Squarespace Code
+Block, for instance, may legitimately never need `shell.js` if it's never viewed outside
+that context. Each page's real disposition is a judgment call informed by
+`lib/audit-nav.js`'s output, not a blanket rule.
+
+---
+
+# FAB Auto-Load: shell.js Becomes the One Bootstrap for Nav *and* FAB
+
+## The problem, stated by Victor (2026-07-10)
+
+Mid-`16-nav-coverage.md` rollout, reviewing a screenshot: *"i think your using the wrong
+'fab', there should be a 'spiral one' which is like the 'latest fab system interface
+intro'... theres always a 'high level container' and sub features underneath, we never
+duplicate a category."*
+
+That correction led to a real, working fix for 4 specimen pages (see `16-nav-coverage.md`
+Step 7): each got `widgets/vex-fab.js` (the spiral trigger + `#vex-spiral-group` container)
+plus `widgets/fab-lang.js`, hand-added as individual `<script>` tags per page.
+
+Victor's follow-up caught the deeper issue: *"the simplest path is 'add what should be
+common via script, and inject script through simplicity so that the automations can work
+with whats provided'... so we don't have to duplicate work to fixing multiple htmls but
+just 1 script while other htmls already hold that bond to a process. Like the script
+should add the 'header + fab + any feature accessible' long term."*
+
+Hand-adding 2-5 widget `<script>` tags per page, repeated across every page that wants the
+current FAB set, is exactly the duplication he named — and it already had a real failure
+mode (below) proving the point.
+
+## What already existed, and what was missing
+
+`lib/vextreme.js` (`shell.js`'s loader) already auto-provides nav and body-wrap from one
+script tag — no page hand-authors its own nav HTML. There was no equivalent for the v2
+spiral-FAB system: every page wanting `vex-fab.js` + `fab-lang.js` + `fab-theme.js` +
+`fab-map.js` had to list all four itself. The only place these got assembled automatically
+was `lib/build-vextreme.js`'s God Script build — a heavier process requiring per-slug
+string-scope/viewmodel configuration most standalone pages don't have.
+
+## The fix: `lib/vextreme.js` auto-loads the FAB set
+
+`loadFabWidgets(cfg)`, wired into `run()`'s main loader chain, fires independently of the
+rest of the loader (none of these widgets read anything `vextreme.js` itself fetches) and
+loads, in this exact order — order is load-bearing, `vex-fab.js` must create
+`#vex-spiral-group` before the others look for it:
+
+```
+widgets/vex-fab.js  → widgets/fab-lang.js → widgets/fab-theme.js → widgets/fab-map.js
+```
+
+Gated the same way `nav`/`bodyWrap` already are (`cfg.fab`, default `true` on
+`github_pages`/`local`, `false` on `squarespace`). A page never needs its own `<script>`
+tags for these — `shell.js` is now the one place this is wired, for nav and FAB alike.
+
+**`widgets/fab-demo.js` is deliberately not included** — deprecated per `fab-map.js`'s own
+header comment ("not `widgets/fab-demo.js`'s older 'architecture demo' concept... the
+terrain map itself demonstrates the architecture better"). Per Victor's own instruction:
+"you can remove the fab-demo as deprecated and focus on the fullest feature."
+
+**`widgets/fab-analysis.js` is deliberately not included** — it depends on a real,
+page-specific `data/analysis-index.json` entry most standalone pages don't have; it stays
+an explicit per-page opt-in via the God-Script build system, not a blanket auto-load.
+
+## A real bug this fix caught, not just a cleanup
+
+Before finding the right fix, the specimen pages' first patch (individually adding
+`vex-fab.js`/`fab-lang.js` script tags per page) was **silently reverted by CI within
+about a minute of merging.** `pages/specimen-*.html` and `pages/specimens.html` are
+generated by `lib/build-specimens.js`, auto-run and auto-committed by
+`.github/workflows/build-index.yml` on every push/PR (`git add ... pages/specimen-*.html
+...`). The hand-edited `<script>` tags weren't in the generator's own template
+(`widgetScripts()`, then still emitting the old `lang-fab.js`+`demo-fab.js` pair) — so the
+next CI run regenerated the files from that stale template and clobbered the manual fix,
+with nobody noticing until this investigation traced `git log` on the affected files.
+
+This is exactly the situation Victor asked to be checked directly: *"i just wanna make
+sure you're ensuring the architecture is auto adding the additions right, theres no ai
+manually adding a correction into an html but checking that there is automated script
+processes."* The honest answer at that point was no — and the fix is the same as the
+broader one: edit the generator (`lib/build-specimens.js`'s `pageShell()`/
+`stringScopeGlobals()`), not the generated HTML, so the change survives every future
+CI-triggered regeneration.
+
+## A real conflict this fix had to design around
+
+`widgets/fab-theme.js`'s own `mount()` unconditionally applies its saved/default
+`"light"`/`"dark"` value to `document.documentElement`'s `data-theme` attribute on load
+(confirmed by reading its source, not assumed). Two real conflicts, found by systematically
+grepping every `shell.js`-including page for `data-theme`/`localStorage` theme references,
+not spot-checked:
+
+- **The specimen/dashboard pages** (`specimens.html` + the 3 generated specimens +
+  `specimen-architectural-wisdoms.html`) set `<html data-theme="dashboard">` — a static CSS
+  variant selector (`styles/design-system.css`'s own `[data-theme="dashboard"]` block, per
+  `fab-theme.js`'s own header comment naming that exact convention), not a dark/light toggle
+  state. `fab-theme.js` mounting would silently overwrite it to `"light"`/`"dark"` on load,
+  breaking the dashboard visual identity the instant the page loaded.
+- **`human-ai-corelational-governance.html`** and **`phantom-opera-meta-review.html`** each
+  already have their own real, working dark/light toggle that also targets
+  `document.documentElement`'s `data-theme` — different localStorage keys
+  (`vxg-theme`/none vs. `fab-theme.js`'s `vex-theme`) and different conventions (explicit
+  both-states vs. attribute-removal-for-light) than `fab-theme.js`'s own. Two toggles
+  fighting over one shared attribute, desynced from load.
+
+`origins-of-proof.html`'s own toggle scopes `data-theme` to `#op-root`, not
+`document.documentElement` — confirmed safe, no conflict, no override needed.
+
+### The fix: `fabWidgets`, a per-widget opt-out
+
+`VEXTREME({ fabWidgets: { theme: false } })` (same shape for `lang`/`map`) skips one widget
+in the auto-loaded set while keeping the rest — `vex-fab.js` (the spiral container itself)
+always loads when `cfg.fab` is true. Applied to the 5 pages above via
+`window.VEXTREME_OVERRIDE = { fabWidgets: { theme: false } }` (the 4 specimen/dashboard
+pages, via the generator template so it survives regeneration) or added directly (the 2
+pages with their own real toggle, hand-authored, no generator to fix instead).
+
+## What this doesn't solve
+
+- `fab-theme.js` itself still unconditionally applies its own theme on every page that
+  doesn't explicitly opt out — a more general fix (e.g., skip applying if
+  `document.documentElement` already has a non-`"light"`/`"dark"` `data-theme` value on
+  mount) would help future pages with a similar convention avoid needing an explicit
+  per-page override, but that's a behavior change to a shared, actively-used widget file —
+  a bigger, separate decision, not made here.
+- No systematic detector for this class of conflict exists — `lib/audit-nav.js` and
+  `lib/audit-pages.js` check navigability and God-Script wiring respectively, neither
+  checks FAB-widget nesting correctness or `data-theme` convention collisions. Found here by
+  manual, systematic grep across every `shell.js`-including page — worth a real audit
+  script if this pattern recurs, not built here.
+
+## Verified, not assumed
+
+Local Playwright verification against 6 real pages spanning every scenario: two
+`data-theme="dashboard"` pages (confirmed attribute preserved, not clobbered), two pages
+with their own working toggle (confirmed unaffected, no desync), two plain pages (confirmed
+all three sub-widgets — lang, theme, map — actually nest inside `#vex-spiral-group`, not
+just present somewhere in the DOM). Zero `fab-demo.js` orbs found on any page, confirming
+the deprecation holds everywhere, not just where explicitly checked.
+
+## Addendum (2026-07-10, same day): three real regressions found after the rollout shipped
+
+Victor reported all three from the live site; each traced to a real root cause and fixed
+in the follow-up regression PR. Recorded here because each one is a lesson about what this
+architecture does when runtime chrome meets authored pages:
+
+1. **Authored styles overwritten (phantom-opera-meta-review).** `vextreme.js`
+   blanket-injected `design-system.css` on every `shell.js` page — a universal reset,
+   `:root` tokens (`--muted`, `--border`, `--ember`, `--mono`…) and a global `body`
+   typography rule. Appended as a `<link>` after the page's own inline `<style>`, it wins
+   the cascade at equal specificity and silently replaced authored token values and body
+   styles. Worse, blanket-loaded `section-toggle.js` auto-discovers ANY `[data-section]`
+   attribute and attaches collapse-on-click listeners — a real behavior hijack on
+   `fourteen-patterns…html`, whose own sub-nav uses `data-section` for something else.
+   **Fix:** the whole v1 enhancement layer (`design-system.css`, `arc-nav.css`,
+   `arc-nav.js`, `archive-renderer.js`, `section-toggle.js`, `bc-nav.js`) is now gated to
+   pages that actually consume the v1 system — a `pages.json` template entry or an
+   `#arcNavMount`. Authored pages get chrome (nav, FAB, `site-nav.css` — all class-scoped),
+   never a restyle. This is the defensive half of the Runtime View Profiles /
+   Composition Container proposal (`od-012`,
+   `docs/continuity/context-notes/runtime-view-profiles-composition-container-2026-07-10.md`):
+   runtime modules decorate authored content, they do not rewrite it.
+
+2. **The FAB never appeared on production (cache).** The FAB-autoload change shipped
+   without bumping the cache version — `shell.js` still requested `vextreme.js?v=6`, and
+   jsDelivr/browser caches kept serving the pre-FAB build indefinitely. `shell.js`'s own
+   header says `VEXTREME_VER` and `DEFAULT_CACHE` must be bumped together; nobody did.
+   **Fix:** both bumped to `?v=7`, and `tests/41` now enforces the sync so a mismatch fails
+   CI instead of relying on someone remembering. Note the propagation reality: jsDelivr
+   caches `@main` refs for up to ~12 hours — after any merge that changes runtime JS, the
+   live site lags until the CDN refreshes (or a manual purge via `purge.jsdelivr.net`).
+
+3. **Wide authored layouts squashed (terrain-map and 8 others).** The default 720px
+   body-wrap constrained pages whose own layouts are wider — including patterns the earlier
+   rollout's manual checks missed: widths routed through arbitrary-named custom properties
+   (`org-blueprint`'s `--maxw: 1160px`) and viewport-relative layouts (`terrain-map`'s
+   `max-width:60%`). **Fix:** `bodyWrap: false` on all 9 flagged pages, found by the new
+   `lib/audit-fab.js` (below), not by hand.
+
+**The auditor (`lib/audit-fab.js`)** makes all three regression classes script-perceptible
+— per Victor's direct ask: "i was hoping for pattern recognition so that honing could be
+script perceptible." It checks every `shell.js` page for: authored widths beyond the wrap
+cap (px, var()-routed, or viewport-relative) without `bodyWrap:false`; document-level
+`data-theme` management without `fabWidgets:{theme:false}`; and hand-authored FAB widget
+tags (now duplication — the auditor also caught `claude-answers-the-doubt` and
+`restoration-protocol` still carrying legacy `lang-fab.js`/`demo-fab.js` tags, which under
+autoload would have produced double language orbs; both cleaned). `tests/42` pins the
+whole `pages/` tree at zero findings, so reintroducing any known-conflict pattern fails CI.
+
+Also fixed alongside: `fab-lang.js` now mounts with a single language (previously hid
+itself below 2) — per Victor: "the language even if just 1, should still be there." The
+orb is part of the consistent FAB chrome; with one language the wheel simply shows the
+current language.
+
+## Addendum 2 (2026-07-10): global chrome needs owned geometry, not shared coordinates
+
+The v7 regression repair correctly protected authored styles and made the FAB
+autoload cache-coherent, but rendered comparison found a separate composition
+gap. Nav, spiral FAB, mobile hamburger, and page-owned controls all independently
+claimed the top-right corner:
+
+- At 1035px, the closed FAB covered `vextreme24.com`; opened, it covered that
+  link plus `AI Tools`.
+- At 390px, the FAB and hamburger occupied the same rectangle. Hit-testing the
+  hamburger returned `#vex-spiral-trigger`.
+- Phantom's House Lights button overlapped both nav and FAB and hit-tested the
+  nav instead of the button.
+- Terrain's app still measured 100vh below a 61px nav (`bottom: 1021` in a
+  960px viewport), clipping its lower controls.
+- Phantom still received the generic 720px wrapper, reducing its full-width
+  hero to 640px even though the authored-style gate preserved its colors.
+
+The v8 contract assigns those surfaces instead of offsetting them ad hoc:
+
+1. `injectNav()` creates `#vex-nav-actions` before FAB scripts load.
+2. `vex-fab.js` mounts into that rail when present. Its trigger remains at the
+   rail's right edge while the group expands left in normal flex layout.
+3. Headerless/God-Script pages retain the original fixed top-right fallback.
+   The methodology presentation therefore keeps its existing authored layout.
+4. Page-owned fixed controls opt into the separate below-nav lane with
+   `data-vex-page-action`; the shell does not move or restyle their DOM.
+5. The nav cancels authored body margin/padding on `#vex-site-nav` only, so
+   global chrome reaches viewport edges without changing the raw page body.
+
+The terrain map now consumes exactly the viewport remaining below nav, and the
+Phantom page opts out of prose wrapping while lending its own palette aliases to
+the class-scoped nav. Rendered evidence:
+
+- [`terrain-runtime-chrome-action-rail.png`](../screenshots/terrain-runtime-chrome-action-rail.png)
+- [`terrain-runtime-chrome-mobile-open.png`](../screenshots/terrain-runtime-chrome-mobile-open.png)
+- [`phantom-runtime-chrome-dark.png`](../screenshots/phantom-runtime-chrome-dark.png)
+
+This does **not** make the FAB universal across every public HTML surface yet.
+Current delivery is 28 shell pages plus one God-Script page; ten `pages/*.html`
+surfaces still have neither path. Global rollout is the next bounded PR after
+this composition contract is accepted. Analysis traversal, view profiles, and
+cross-page string navigation remain product direction, not completed behavior.
+
+---
 
 <!-- [VXG RealForever] -->
