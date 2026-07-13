@@ -20,6 +20,31 @@
 - Completion signal: <!-- What proves this row is done -->
 - Next safe item: <!-- Next bounded row, branch condition, or `none` -->
 
+<!--
+  Replace every value in this block before mutating shared paths. Open the PR as
+  a draft early so other instances can see the claim. Use `waiting` while a
+  predecessor is unmerged, `active` during mutation, and `review` when changes
+  are complete but still reviewable. Remove the block only for a genuinely
+  unclaimed historical/administrative PR.
+-->
+<!-- VXG-WORK-CLAIM
+{
+  "schemaVersion": "work-coordination.claim/v1",
+  "workRef": "work.replace-me",
+  "actorRef": "replace-with-registered-actor",
+  "instanceRef": "replace-with-instance",
+  "repository": "vgong24/Vextreme",
+  "branch": "replace-with-branch",
+  "epic": { "name": "Replace Me", "item": "0/0" },
+  "status": "waiting",
+  "paths": ["replace/with/bounded/path"],
+  "dependsOn": [],
+  "lease": { "renewBy": "2099-01-01" },
+  "coordinationOnly": true,
+  "implementationAuthority": false
+}
+VXG-WORK-CLAIM -->
+
 ---
 
 ## Transition

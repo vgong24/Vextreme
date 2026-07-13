@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "work-coordination.registry/v1",
+  "repository": "vgong24/Vextreme",
+  "participants": [
+    {
+      "actorRef": "codex-windows-continuity",
+      "agentType": "codex",
+      "environmentRef": "windows-desktop-primary"
+    },
+    {
+      "actorRef": "codex-macbook-collaborator",
+      "agentType": "codex",
+      "environmentRef": "macbook-collaborator"
+    },
+    {
+      "actorRef": "claude-code-collaborator",
+      "agentType": "claude-code",
+      "environmentRef": "declared-per-session"
+    },
+    {
+      "actorRef": "victor-human-operator",
+      "agentType": "human",
+      "environmentRef": "declared-per-session"
+    }
+  ],
+  "policy": {
+    "liveSource": "open_pull_request_body",
+    "unknownLiveStateMeansFree": false,
+    "activePathOverlapAllowed": false,
+    "claimGrantsAuthority": false,
+    "mergeProvesHumanAcceptance": false
+  }
+}
