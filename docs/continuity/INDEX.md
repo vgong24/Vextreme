@@ -28,7 +28,7 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 033 — July 10, 2026. The architecture paragraph's core remains
+*As of Session 034 — July 12, 2026. The architecture paragraph's core remains
 Session 025's; Sessions 029–033 added nav/FAB rollout, authored-style protection,
 runtime-chrome composition, generated page-capability health, capability-aware
 work coordination, Terrain semantic Journey history, and a bounded public-safe
@@ -146,6 +146,12 @@ as the natural next increment and still deliberately not built — it touches th
 registry in `lib/build-vextreme.js`, real production surface, and needs Victor's explicit
 go-ahead rather than a leisure-pilot default.
 
+Session 034 adds live multi-agent work coordination without changing product runtime:
+`npm run current-work` reads bounded ownership claims from open PR bodies, reports
+actor/instance references, numeric epic position, dependencies, paths, leases, and
+overlaps, and fails visibly when live state is unavailable. Claims coordinate work;
+they do not prove identity or grant authority.
+
 The continuity system itself changed shape in Session 024: batches are now **directories of
 per-session files** (`docs/continuity/batch-003/`, filenames `YYYY-MM-DD-session-0NN.md`)
 instead of one monolithic markdown file per batch. Logging a session is a file creation — no
@@ -154,6 +160,8 @@ The change repairs Session 023 (Codex's July 6 context-note and perceivable-cont
 entries had been injected mid-file into Session 021's record.
 
 **Recent sessions** (one line each — open the session files below for full reasoning):
+- **Session 034** — Added public-safe live PR ownership claims, participant policy,
+  overlap/lease health, PR-template routing, and cold-start visibility in `current-work`.
 - **Session 033** — Added the first public feedback Issue Form with explicit
   public/no-sensitive/no-commitment acknowledgements, disabled blank issues, and
   routed private/security/business matters to the existing Direct Contact path.
@@ -223,7 +231,7 @@ architecture docs, or lessons only through a PR decision record.
 
 ## Open Work
 
-*Updated Session 033 — July 10, 2026*
+*Updated Session 034 — July 12, 2026*
 
 This list holds only genuinely open items — things nobody has done yet, not a running log of
 what shipped. A completed item is removed here the same session it ships, not kept and checked
@@ -453,6 +461,6 @@ Create as `docs/continuity/batch-00N/YYYY-MM-DD-session-0NN.md`:
 
 ---
 
-*Last updated: Session 033 — July 10, 2026*
+*Last updated: Session 034 — July 12, 2026*
 
 <!-- [VXG RealForever] -->

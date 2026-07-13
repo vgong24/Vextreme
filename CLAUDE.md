@@ -6,14 +6,23 @@
    on this project. Read this before anything else. The architecture makes more sense
    once you understand why this system exists and what kind of developer it expects.
 1. `docs/continuity/INDEX.md` — current system state, open work, and batch registry
-2. The newest-dated session file in the active batch directory (listed in INDEX.md's
+2. `docs/process/multi-agent-work-coordination.md` — live ownership claims, overlap rules, and the cold-start coordination check
+3. The newest-dated session file in the active batch directory (listed in INDEX.md's
    Batch Registry) — session files are named `YYYY-MM-DD-session-0NN.md`, so the last
    file in `ls` order is the most recent session
-3. `docs/architecture.md` — full system design, data flow, file responsibilities, key constraints
-4. `docs/Readme.md` — v1 Squarespace system (historical context, lower priority)
+4. `docs/architecture.md` — full system design, data flow, file responsibilities, key constraints
+5. `docs/Readme.md` — v1 Squarespace system (historical context, lower priority)
 
 Do not start new work without completing this reading sequence. The README documents
 intended design; the continuity log documents actual system state — they diverge.
+
+Run `npm run current-work` before selecting or claiming work. When authenticated
+GitHub CLI access is available, it reads machine-readable ownership claims from
+open pull requests and reports actor, instance, epic position, dependencies,
+bounded paths, leases, and overlaps. If live state is unavailable, ownership is
+unknown; that is a stop condition for shared-path mutation, not permission to begin.
+Open a draft PR with a valid claim before changing shared paths. A claim coordinates
+work and does not grant implementation, merge, acceptance, data, or public authority.
 
 ## Expansion context notes
 

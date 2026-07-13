@@ -28,6 +28,7 @@ function baseReport(overrides = {}) {
     goneBranches: [],
     branchTriage: { status: 'available', classification: 'stale-safe-to-clean-later', recommendedAction: 'cleanup may be safe later, but requires Victor/Vex approval' },
     openPr: { status: 'none found', prs: [] },
+    coordination: { liveStatus: 'available', valid: true, errors: [], warnings: [], claims: [], unclaimed: [] },
     ...overrides,
   };
   report.suggestions = buildSuggestions(report);
@@ -254,6 +255,19 @@ test('CURRENT-WORK: renderReport lists multiple open PRs', () => {
 test('CURRENT-WORK: renderReport always states no mutation was performed', () => {
   const output = renderReport(baseReport());
   assert.match(output, /Mutation performed:\n {2}no/);
+});
+
+test('CURRENT-WORK: renderReport includes live ownership health and authority boundary', () => {
+  const output = renderReport(baseReport());
+  assert.match(output, /Work coordination:\n {2}live state: available/);
+  assert.match(output, /authority: coordination visibility only/);
+});
+
+test('CURRENT-WORK: unavailable coordination state never reads as free paths', () => {
+  const output = renderReport(baseReport({
+    coordination: { liveStatus: 'gh missing', valid: true, errors: [], warnings: [], claims: [], unclaimed: [] },
+  }));
+  assert.match(output, /live assignments are unknown; do not infer paths are free/);
 });
 
 test('CURRENT-WORK: source never invokes npm, so pr-ready is never called by default', () => {
