@@ -1,0 +1,33 @@
+/* ============================================================
+   VEXTREME — SPACING, RADII, BORDER TOKENS
+   Sharp-vs-fluid grammar: structural chrome (cards, inputs,
+   controls) stays low-radius and architectural; only the
+   brand mark's enclosing gesture is allowed to be fluid.
+   ============================================================ */
+
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-full: 999px;
+
+  --border-w: 1px;
+  --border-w-strong: 1.5px;
+
+  --measure: 62ch; /* editorial reading width */
+  --measure-narrow: 46ch;
+
+  --ease-standard: cubic-bezier(0.2, 0.6, 0.2, 1);
+  --duration-fast: 120ms;
+  --duration-base: 180ms;
+}

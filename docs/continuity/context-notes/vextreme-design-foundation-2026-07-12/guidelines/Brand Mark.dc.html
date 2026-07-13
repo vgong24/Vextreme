@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+  html,body{margin:0;height:100%;}
+</style>
+</helmet>
+<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#f4f4f2;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:28px;">
+    <svg viewBox="0 0 240 210" width="360" height="315" fill="none" style="overflow:visible;">
+      <sc-if value="{{ showGuides }}" hint-placeholder-val="{{ false }}">
+        <circle cx="120" cy="92" r="74" stroke="#d33" stroke-width="1" fill="none" stroke-dasharray="3 3"></circle>
+      </sc-if>
+
+      <!-- G · X · V drawn as ONE continuous stroke -->
+      <path d="{{ markPath }}" stroke="{{ markColor }}" stroke-width="{{ strokeWidth }}" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+
+      <!-- stroke-order overlay -->
+      <sc-if value="{{ showStrokeOrder }}" hint-placeholder-val="{{ false }}">
+        <sc-for list="{{ points }}" as="pt" hint-placeholder-count="5">
+          <circle cx="{{ pt.x }}" cy="{{ pt.y }}" r="10" fill="#e8482f" stroke="#fff" stroke-width="2"></circle>
+          <text x="{{ pt.x }}" y="{{ pt.y }}" fill="#fff" font-size="11" font-weight="700" text-anchor="middle" dominant-baseline="central" font-family="ui-monospace,monospace">{{ pt.n }}</text>
+          <text x="{{ pt.x }}" y="{{ pt.labelY }}" fill="#e8482f" font-size="8" text-anchor="middle" font-family="ui-monospace,monospace">{{ pt.coord }}</text>
+        </sc-for>
+      </sc-if>
+    </svg>
+
+    <sc-if value="{{ showStrokeOrder }}" hint-placeholder-val="{{ false }}">
+      <div style="font-size:10px;line-height:1.9;letter-spacing:.04em;color:#7a7a75;text-align:left;">
+        <div style="color:#e8482f;letter-spacing:.18em;text-transform:uppercase;margin-bottom:6px;">Stroke order — one pen path</div>
+        <div>1 → arc over the top → 2&nbsp;&nbsp;<span style="color:#b0b0aa;">the incomplete G, ~5% gap at bottom</span></div>
+        <div>2 → 3&nbsp;&nbsp;<span style="color:#b0b0aa;">up the first X leg</span></div>
+        <div>3 → 4 → 5&nbsp;&nbsp;<span style="color:#b0b0aa;">down into the V, back up</span></div>
+        <div>5 → 1&nbsp;&nbsp;<span style="color:#b0b0aa;">second X leg closes the loop</span></div>
+      </div>
+    </sc-if>
+    <sc-if value="{{ hideStrokeOrder }}" hint-placeholder-val="{{ true }}">
+      <div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#9a9a95;">G · X · V — one stroke</div>
+    </sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:420,&quot;height&quot;:460},&quot;markColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#111111&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;strokeWidth&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:6,&quot;min&quot;:6,&quot;max&quot;:26,&quot;step&quot;:1,&quot;tsType&quot;:&quot;number&quot;},&quot;showStrokeOrder&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Guides&quot;},&quot;showGuides&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Guides&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    const showStrokeOrder = p.showStrokeOrder ?? false;
+
+    // circle centre (120,92) r74 ; ~5% gap centred at the bottom (points 1 & 2)
+    const LF = [108, 165];  // 1 · left foot  = start
+    const RF = [132, 165];  // 2 · right foot = arc end
+    const TL = [90, 56];    // 3 · top-left tip
+    const AP = [120, 100];  // 4 · V apex
+    const TR = [150, 56];   // 5 · top-right tip
+
+    const mk = (n, xy) => ({ n, x: xy[0], y: xy[1], labelY: xy[1] + (xy[1] > 100 ? 24 : -16), coord: "(" + xy[0] + "," + xy[1] + ")" });
+
+    return {
+      markColor: p.markColor ?? "#111111",
+      strokeWidth: p.strokeWidth ?? 15,
+      showGuides: p.showGuides ?? false,
+      showStrokeOrder,
+      hideStrokeOrder: !showStrokeOrder,
+      points: [mk(1, LF), mk(2, RF), mk(3, TL), mk(4, AP), mk(5, TR)],
+
+      // 1 --arc over top--> 2 --leg--> 3 --V--> 4 --V--> 5 --leg (close)--> 1
+      markPath:
+        "M " + LF[0] + " " + LF[1] + " " +
+        "A 74 74 0 1 1 " + RF[0] + " " + RF[1] + " " +
+        "L " + TL[0] + " " + TL[1] + " " +
+        "L " + AP[0] + " " + AP[1] + " " +
+        "L " + TR[0] + " " + TR[1] + " " +
+        "Z"
+    };
+  }
+}
+</script>
+</body>
+</html>

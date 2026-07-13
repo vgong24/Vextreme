@@ -1,0 +1,20 @@
+<!-- @dsCard group="Components" viewport="700x300" name="Layout — Card" -->
+<link rel="stylesheet" href="../../styles.css">
+<script src="../../_ds_bundle.js"></script>
+<div id="root" data-theme="dark" style="background:var(--bg-canvas); padding:24px;"></div>
+<script type="text/babel" data-presets="react">
+  const { Card, Badge } = window.Vextreme;
+  function Demo() {
+    return (
+      <div style={{ display: 'flex', gap: 16 }}>
+        <Card eyebrow="Node · 4 of 12" title="Vendor Contract Review" footer={<Badge tone="success">Verified</Badge>} style={{ flex: 1 }}>
+          Reviewed against the Q3 procurement policy. Evidence attached.
+        </Card>
+        <Card eyebrow="Node · 5 of 12" title="Renewal Terms" raised footer={<Badge tone="caution" variant="outline">Pending</Badge>} style={{ flex: 1 }}>
+          Awaiting counter-signature from legal.
+        </Card>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+</script>

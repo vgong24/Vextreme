@@ -1,0 +1,116 @@
+<!-- @dsCard group="Workbench" viewport="1200x700" name="Product Interface — Workbench" -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.development.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" data-presets="react">
+  function Button({ variant = 'secondary', size = 'sm', children, onClick, style }) {
+    const variants = {
+      primary: { background: 'var(--accent-bg)', color: 'var(--accent-text-on)', borderColor: 'var(--accent-bg)' },
+      secondary: { background: 'var(--bg-surface-raised)', color: 'var(--text-primary)', borderColor: 'var(--border-default)' },
+      ghost: { background: 'transparent', color: 'var(--text-primary)', borderColor: 'transparent' },
+    };
+    return (
+      <button onClick={onClick} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '7px 14px', borderRadius: 'var(--radius-sm)', border: '1px solid transparent', cursor: 'pointer', fontFamily: 'var(--font-sans)', fontWeight: 600, font: 'var(--text-body-sm)', ...variants[variant], ...style }}>
+        {children}
+      </button>
+    );
+  }
+  function Badge({ tone = 'neutral', children }) {
+    const tones = { success: 'var(--status-success)', caution: 'var(--status-caution)', critical: 'var(--status-critical)', info: 'var(--status-info)', neutral: 'var(--text-secondary)' };
+    return (
+      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '3px 8px', borderRadius: 'var(--radius-full)', font: 'var(--text-mono-xs)', letterSpacing: 'var(--tracking-mono)', textTransform: 'uppercase', border: '1px solid var(--border-subtle)', background: 'var(--bg-surface-raised)', color: tones[tone] }}>
+        <span style={{ width: 6, height: 6, borderRadius: '50%', background: tones[tone] }} />{children}
+      </span>
+    );
+  }
+  function Card({ eyebrow, title, children, footer }) {
+    return (
+      <div style={{ background: 'var(--bg-surface)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-md)', padding: 20, display: 'flex', flexDirection: 'column', gap: 10 }}>
+        {eyebrow && <div style={{ font: 'var(--text-mono-xs)', letterSpacing: 'var(--tracking-mono)', textTransform: 'uppercase', color: 'var(--text-tertiary)' }}>{eyebrow}</div>}
+        {title && <div style={{ font: 'var(--text-h3)', color: 'var(--text-primary)' }}>{title}</div>}
+        {children && <div style={{ font: 'var(--text-body-sm)', color: 'var(--text-secondary)' }}>{children}</div>}
+        {footer && <div style={{ marginTop: 6, paddingTop: 10, borderTop: '1px solid var(--border-subtle)' }}>{footer}</div>}
+      </div>
+    );
+  }
+  function Tabs({ tabs, active, onChange }) {
+    return (
+      <div style={{ display: 'flex', gap: 24, borderBottom: '1px solid var(--border-subtle)' }}>
+        {tabs.map((t) => (
+          <button key={t.value} onClick={() => onChange(t.value)} style={{ background: 'transparent', border: 'none', borderBottom: `2px solid ${t.value === active ? 'var(--text-primary)' : 'transparent'}`, color: t.value === active ? 'var(--text-primary)' : 'var(--text-tertiary)', font: 'var(--text-label)', letterSpacing: 'var(--tracking-label)', textTransform: 'uppercase', padding: '10px 2px', marginBottom: -1, cursor: 'pointer' }}>{t.label}</button>
+        ))}
+      </div>
+    );
+  }
+
+  const NAV = ['Journey', 'Evidence', 'Replay', 'Code Terrain', 'Test Console'];
+  const NODES = [
+    { title: 'Vendor Contract Review', eyebrow: 'Node · 4 of 12', tone: 'success', label: 'Verified', body: 'Reviewed against the Q3 procurement policy.' },
+    { title: 'Renewal Terms', eyebrow: 'Node · 5 of 12', tone: 'caution', label: 'Pending', body: 'Awaiting counter-signature from legal.' },
+    { title: 'Escalation Path', eyebrow: 'Node · 6 of 12', tone: 'critical', label: 'Blocked', body: 'Missing owner assignment.' },
+  ];
+
+  function Workbench() {
+    const [theme, setTheme] = React.useState('dark');
+    const [tab, setTab] = React.useState('journey');
+    const [nav, setNav] = React.useState('Journey');
+    return (
+      <div data-theme={theme} style={{ background: 'var(--bg-canvas)', minHeight: '100vh', color: 'var(--text-primary)', fontFamily: 'var(--font-sans)', display: 'grid', gridTemplateColumns: '220px 1fr 280px' }}>
+        <aside style={{ borderRight: '1px solid var(--border-subtle)', padding: '20px 16px', display: 'flex', flexDirection: 'column', gap: 4 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '0 4px 20px' }}>
+            <svg width="22" height="22" viewBox="0 0 120 120" fill="none" style={{ color: 'var(--text-primary)' }}>
+              <path d="M 51.89 109.32 A 50 50 0 1 1 68.11 109.32 L 39.73 35.68 L 60 65.41 L 80.27 35.68 Z" stroke="currentColor" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+            </svg>
+            <span style={{ font: '500 1rem/1 var(--font-serif)' }}>Vextreme</span>
+          </div>
+          {NAV.map((n) => (
+            <div key={n} onClick={() => setNav(n)} style={{ padding: '9px 10px', borderRadius: 'var(--radius-sm)', background: nav === n ? 'var(--bg-surface-raised)' : 'transparent', color: nav === n ? 'var(--text-primary)' : 'var(--text-secondary)', font: 'var(--text-body-sm)', cursor: 'pointer' }}>{n}</div>
+          ))}
+          <div style={{ marginTop: 'auto' }}>
+            <Button variant="ghost" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>{theme === 'dark' ? 'Light' : 'Dark'} Mode</Button>
+          </div>
+        </aside>
+
+        <main style={{ padding: '24px 32px', display: 'flex', flexDirection: 'column', gap: 20 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div>
+              <div style={{ font: 'var(--text-mono-xs)', letterSpacing: 'var(--tracking-mono)', color: 'var(--text-tertiary)', textTransform: 'uppercase' }}>Journey / Q3 Vendor Handoff</div>
+              <div style={{ font: 'var(--text-h2)', fontFamily: 'var(--font-serif)' }}>Q3 Vendor Handoff</div>
+            </div>
+            <Button variant="primary">Continue Journey</Button>
+          </div>
+          <Tabs tabs={[{label:'Journey',value:'journey'},{label:'Evidence',value:'evidence'},{label:'Replay',value:'replay'}]} active={tab} onChange={setTab} />
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
+            {NODES.map((n) => (
+              <Card key={n.title} eyebrow={n.eyebrow} title={n.title} footer={<Badge tone={n.tone}>{n.label}</Badge>}>{n.body}</Card>
+            ))}
+          </div>
+        </main>
+
+        <aside style={{ borderLeft: '1px solid var(--border-subtle)', padding: '20px 20px', display: 'flex', flexDirection: 'column', gap: 14 }}>
+          <div style={{ font: 'var(--text-label)', letterSpacing: 'var(--tracking-label)', textTransform: 'uppercase', color: 'var(--text-tertiary)' }}>Evidence Panel</div>
+          <div style={{ background: 'var(--bg-surface)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-md)', padding: 14, display: 'flex', flexDirection: 'column', gap: 6 }}>
+            <div style={{ font: 'var(--text-mono-sm)', letterSpacing: 'var(--tracking-mono)' }}>commit 7f2a9d1</div>
+            <div style={{ font: 'var(--text-mono-xs)', letterSpacing: 'var(--tracking-mono)', color: 'var(--text-tertiary)' }}>source: journey/2026-07-11/replay.log</div>
+            <div style={{ font: 'var(--text-mono-xs)', letterSpacing: 'var(--tracking-mono)', color: 'var(--text-tertiary)' }}>provenance: claude-4.5 → reviewed by V.K.</div>
+          </div>
+          <div style={{ background: 'var(--bg-surface)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-md)', padding: 14, display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, font: 'var(--text-mono-sm)' }}><span style={{width:8,height:8,borderRadius:'50%',background:'var(--status-success)',display:'inline-block'}}/>3 tests passed</div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, font: 'var(--text-mono-sm)' }}><span style={{width:8,height:8,borderRadius:'50%',background:'var(--status-caution)',display:'inline-block'}}/>1 pending review</div>
+          </div>
+        </aside>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Workbench />);
+</script>
+</body>
+</html>

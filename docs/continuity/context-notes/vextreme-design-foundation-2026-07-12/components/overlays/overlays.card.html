@@ -1,0 +1,27 @@
+<!-- @dsCard group="Components" viewport="700x280" name="Overlays — Dialog & Tooltip" -->
+<link rel="stylesheet" href="../../styles.css">
+<script src="../../_ds_bundle.js"></script>
+<div id="root" data-theme="dark" style="background:var(--bg-canvas); padding:24px; position:relative; min-height:230px;"></div>
+<script type="text/babel" data-presets="react">
+  const { Dialog, Tooltip, Badge, Button } = window.Vextreme;
+  function Demo() {
+    const [open, setOpen] = React.useState(true);
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+        <div style={{ display: 'flex', gap: 12 }}>
+          <Tooltip label="jrn_8a2f · created 2026-07-11"><Badge tone="neutral">Node</Badge></Tooltip>
+          <Button variant="outline" size="sm" onClick={() => setOpen(true)}>Open Dialog</Button>
+        </div>
+        <Dialog
+          open={open}
+          title="Delete Journey?"
+          footer={<><Button variant="ghost" size="sm" onClick={() => setOpen(false)}>Cancel</Button><Button variant="primary" size="sm" onClick={() => setOpen(false)}>Delete</Button></>}
+          onClose={() => setOpen(false)}
+        >
+          This removes the journey and its replay history.
+        </Dialog>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+</script>

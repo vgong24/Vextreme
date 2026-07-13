@@ -233,6 +233,12 @@ off forever; its record already lives in the batch file and (for od-/td-/pe- ite
 not this list.
 
 **Genuinely open:**
+- [ ] Vextreme Design Foundation (Claude Design package, context note
+  `docs/continuity/context-notes/vextreme-design-foundation-2026-07-12.md`) — a complete,
+  unreconciled second visual language (dark-default, B&W identity, React component library)
+  delivered 2026-07-12. Not assigned to anyone (checked directly — no roadmap item in either
+  repo referenced it before this note). Reconciling it against the live `design-system.css`
+  (family 1) or deciding it stays a separate prototyping skill is Victor's call, not started.
 - [ ] Covenant page (`vextreme-covenant`, Session 034) — live-render check on GitHub Pages
   after merge; whether it enters the localization pipeline (charter language should stabilize
   first) and whether it gets a curated `nodes.json`/arc placement instead of auto-discovery
