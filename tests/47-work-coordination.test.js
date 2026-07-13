@@ -57,9 +57,11 @@ test('WORK COORDINATION: claim parser handles missing, malformed, and valid bloc
 
 test('WORK COORDINATION: claims bind actor, branch, repository, and authority flags', () => {
   assert.equal(checkClaim(claim(), policy, { headRefName: claim().branch }).valid, true);
+  assert.equal(checkClaim(claim({ paths: ['.github/pull_request_template.md'] }), policy).valid, true);
   assert.equal(checkClaim(claim({ actorRef: 'unregistered' }), policy).valid, false);
   assert.equal(checkClaim(claim({ implementationAuthority: true }), policy).valid, false);
   assert.equal(checkClaim(claim({ extraPayload: 'blocked' }), policy).valid, false);
+  assert.equal(checkClaim(claim({ paths: ['../private'] }), policy).valid, false);
 });
 
 test('WORK COORDINATION: path comparison catches parent-child overlap', () => {
