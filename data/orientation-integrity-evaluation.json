@@ -1,0 +1,652 @@
+{
+  "schemaVersion": "orientation-integrity.evaluation/v1",
+  "sourceSuite": "config/orientation-integrity-evaluation.json",
+  "sourceProjection": "data/orientation-map.json",
+  "status": "pass",
+  "summary": {
+    "invariants": 5,
+    "failedInvariants": 0,
+    "scenarios": 10,
+    "failedScenarios": 0
+  },
+  "invariants": [
+    {
+      "name": "required-artifacts-exist",
+      "pass": true,
+      "detail": "9 required artifacts"
+    },
+    {
+      "name": "workers-remain-unknown",
+      "pass": true,
+      "detail": "claude-code-collaborator:unknown, codex-macbook-collaborator:unknown, codex-windows-continuity:unknown, victor-human-operator:unknown"
+    },
+    {
+      "name": "forward-reverse-parity",
+      "pass": true,
+      "detail": "13 maps"
+    },
+    {
+      "name": "question-targets-exist",
+      "pass": true,
+      "detail": "17 question routes"
+    },
+    {
+      "name": "registry-path-boundary",
+      "pass": true,
+      "detail": "21 registered source/projection paths"
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "cold-start-entry",
+      "description": "Explicit onboarding is fully routed by the safety baseline.",
+      "pass": true,
+      "checks": [
+        {
+          "name": "status",
+          "pass": true,
+          "detail": "routed == routed"
+        },
+        {
+          "name": "map-cap",
+          "pass": true,
+          "detail": "2 <= 5"
+        },
+        {
+          "name": "required-maps",
+          "pass": true,
+          "detail": "cold-start, work-coordination"
+        },
+        {
+          "name": "excluded-maps",
+          "pass": true,
+          "detail": "cold-start, work-coordination"
+        },
+        {
+          "name": "required-reads",
+          "pass": true,
+          "detail": "CLAUDE.md, config/work-coordination.json"
+        },
+        {
+          "name": "required-gaps",
+          "pass": true,
+          "detail": "No task-specific trigger matched; packet remains at the safety baseline."
+        },
+        {
+          "name": "forbidden-reads",
+          "pass": true,
+          "detail": "CLAUDE.md, config/work-coordination.json"
+        }
+      ],
+      "packet": {
+        "status": "routed",
+        "maps": [
+          "cold-start",
+          "work-coordination"
+        ],
+        "reads": [
+          "CLAUDE.md",
+          "config/work-coordination.json"
+        ],
+        "healthChecks": [
+          "node lib/check-map-bindings.js",
+          "npm run current-work"
+        ],
+        "gaps": [
+          "No task-specific trigger matched; packet remains at the safety baseline."
+        ]
+      }
+    },
+    {
+      "id": "architecture-source-change",
+      "description": "An architecture source path routes to the corpus without bulk graph expansion.",
+      "pass": true,
+      "checks": [
+        {
+          "name": "status",
+          "pass": true,
+          "detail": "routed == routed"
+        },
+        {
+          "name": "map-cap",
+          "pass": true,
+          "detail": "3 <= 5"
+        },
+        {
+          "name": "required-maps",
+          "pass": true,
+          "detail": "cold-start, work-coordination, architecture"
+        },
+        {
+          "name": "excluded-maps",
+          "pass": true,
+          "detail": "cold-start, work-coordination, architecture"
+        },
+        {
+          "name": "required-reads",
+          "pass": true,
+          "detail": "CLAUDE.md, config/work-coordination.json, docs/architecture, docs/architecture.md"
+        },
+        {
+          "name": "required-gaps",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "forbidden-reads",
+          "pass": true,
+          "detail": "CLAUDE.md, config/work-coordination.json, docs/architecture, docs/architecture.md"
+        }
+      ],
+      "packet": {
+        "status": "routed",
+        "maps": [
+          "cold-start",
+          "work-coordination",
+          "architecture"
+        ],
+        "reads": [
+          "CLAUDE.md",
+          "config/work-coordination.json",
+          "docs/architecture",
+          "docs/architecture.md"
+        ],
+        "healthChecks": [
+          "node lib/check-map-bindings.js",
+          "npm run current-work",
+          "node lib/check-architecture-integrity.js"
+        ],
+        "gaps": []
+      }
+    },
+    {
+      "id": "change-impact-question",
+      "description": "An exact change-impact question routes to the lattice.",
+      "pass": true,
+      "checks": [
+        {
+          "name": "status",
+          "pass": true,
+          "detail": "routed == routed"
+        },
+        {
+          "name": "map-cap",
+          "pass": true,
+          "detail": "3 <= 5"
+        },
+        {
+          "name": "required-maps",
+          "pass": true,
+          "detail": "cold-start, work-coordination, lattice"
+        },
+        {
+          "name": "excluded-maps",
+          "pass": true,
+          "detail": "cold-start, work-coordination, lattice"
+        },
+        {
+          "name": "required-reads",
+          "pass": true,
+          "detail": "CLAUDE.md, config/work-coordination.json, docs/lattice-map.json"
+        },
+        {
+          "name": "required-gaps",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "forbidden-reads",
+          "pass": true,
+          "detail": "CLAUDE.md, config/work-coordination.json, docs/lattice-map.json"
+        }
+      ],
+      "packet": {
+        "status": "routed",
+        "maps": [
+          "cold-start",
+          "work-coordination",
+          "lattice"
+        ],
+        "reads": [
+          "CLAUDE.md",
+          "config/work-coordination.json",
+          "docs/lattice-map.json"
+        ],
+        "healthChecks": [
+          "node lib/check-map-bindings.js",
+          "npm run current-work",
+          "node lib/check-lattice-edges.js"
+        ],
+        "gaps": []
+      }
+    },
+    {
+      "id": "live-work-question",
+      "description": "Current-work language remains on the live coordination baseline.",
+      "pass": true,
+      "checks": [
+        {
+          "name": "status",
+          "pass": true,
+          "detail": "routed == routed"
+        },
+        {
+          "name": "map-cap",
+          "pass": true,
+          "detail": "2 <= 5"
+        },
+        {
+          "name": "required-maps",
+          "pass": true,
+          "detail": "cold-start, work-coordination"
+        },
+        {
+          "name": "excluded-maps",
+          "pass": true,
+          "detail": "cold-start, work-coordination"
+        },
+        {
+          "name": "required-reads",
+          "pass": true,
+          "detail": "CLAUDE.md, config/work-coordination.json"
+        },
+        {
+          "name": "required-gaps",
+          "pass": true,
+          "detail": "No task-specific trigger matched; packet remains at the safety baseline."
+        },
+        {
+          "name": "forbidden-reads",
+          "pass": true,
+          "detail": "CLAUDE.md, config/work-coordination.json"
+        }
+      ],
+      "packet": {
+        "status": "routed",
+        "maps": [
+          "cold-start",
+          "work-coordination"
+        ],
+        "reads": [
+          "CLAUDE.md",
+          "config/work-coordination.json"
+        ],
+        "healthChecks": [
+          "node lib/check-map-bindings.js",
+          "npm run current-work"
+        ],
+        "gaps": [
+          "No task-specific trigger matched; packet remains at the safety baseline."
+        ]
+      }
+    },
+    {
+      "id": "page-navigation",
+      "description": "A public page navigation task routes to page health.",
+      "pass": true,
+      "checks": [
+        {
+          "name": "status",
+          "pass": true,
+          "detail": "routed == routed"
+        },
+        {
+          "name": "map-cap",
+          "pass": true,
+          "detail": "3 <= 5"
+        },
+        {
+          "name": "required-maps",
+          "pass": true,
+          "detail": "cold-start, work-coordination, page-health"
+        },
+        {
+          "name": "excluded-maps",
+          "pass": true,
+          "detail": "cold-start, work-coordination, page-health"
+        },
+        {
+          "name": "required-reads",
+          "pass": true,
+          "detail": "CLAUDE.md, config/work-coordination.json, pages, data/page-health.json"
+        },
+        {
+          "name": "required-gaps",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "forbidden-reads",
+          "pass": true,
+          "detail": "CLAUDE.md, config/work-coordination.json, pages, data/page-health.json"
+        }
+      ],
+      "packet": {
+        "status": "routed",
+        "maps": [
+          "cold-start",
+          "work-coordination",
+          "page-health"
+        ],
+        "reads": [
+          "CLAUDE.md",
+          "config/work-coordination.json",
+          "pages",
+          "data/page-health.json"
+        ],
+        "healthChecks": [
+          "node lib/check-map-bindings.js",
+          "npm run current-work",
+          "node --test tests/44-page-health.test.js"
+        ],
+        "gaps": []
+      }
+    },
+    {
+      "id": "legacy-v1-history",
+      "description": "Legacy Squarespace questions are labeled historical and do not displace current architecture.",
+      "pass": true,
+      "checks": [
+        {
+          "name": "status",
+          "pass": true,
+          "detail": "routed == routed"
+        },
+        {
+          "name": "map-cap",
+          "pass": true,
+          "detail": "3 <= 5"
+        },
+        {
+          "name": "required-maps",
+          "pass": true,
+          "detail": "cold-start, work-coordination, v1-history"
+        },
+        {
+          "name": "excluded-maps",
+          "pass": true,
+          "detail": "cold-start, work-coordination, v1-history"
+        },
+        {
+          "name": "required-reads",
+          "pass": true,
+          "detail": "CLAUDE.md, config/work-coordination.json, docs/Readme.md"
+        },
+        {
+          "name": "required-gaps",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "forbidden-reads",
+          "pass": true,
+          "detail": "CLAUDE.md, config/work-coordination.json, docs/Readme.md"
+        }
+      ],
+      "packet": {
+        "status": "routed",
+        "maps": [
+          "cold-start",
+          "work-coordination",
+          "v1-history"
+        ],
+        "reads": [
+          "CLAUDE.md",
+          "config/work-coordination.json",
+          "docs/Readme.md"
+        ],
+        "healthChecks": [
+          "node lib/check-map-bindings.js",
+          "npm run current-work"
+        ],
+        "gaps": []
+      }
+    },
+    {
+      "id": "unknown-task",
+      "description": "Unknown language stays partial instead of widening.",
+      "pass": true,
+      "checks": [
+        {
+          "name": "status",
+          "pass": true,
+          "detail": "partial == partial"
+        },
+        {
+          "name": "map-cap",
+          "pass": true,
+          "detail": "2 <= 5"
+        },
+        {
+          "name": "required-maps",
+          "pass": true,
+          "detail": "cold-start, work-coordination"
+        },
+        {
+          "name": "excluded-maps",
+          "pass": true,
+          "detail": "cold-start, work-coordination"
+        },
+        {
+          "name": "required-reads",
+          "pass": true,
+          "detail": "CLAUDE.md, config/work-coordination.json"
+        },
+        {
+          "name": "required-gaps",
+          "pass": true,
+          "detail": "No task-specific trigger matched; packet remains at the safety baseline."
+        },
+        {
+          "name": "forbidden-reads",
+          "pass": true,
+          "detail": "CLAUDE.md, config/work-coordination.json"
+        }
+      ],
+      "packet": {
+        "status": "partial",
+        "maps": [
+          "cold-start",
+          "work-coordination"
+        ],
+        "reads": [
+          "CLAUDE.md",
+          "config/work-coordination.json"
+        ],
+        "healthChecks": [
+          "node lib/check-map-bindings.js",
+          "npm run current-work"
+        ],
+        "gaps": [
+          "No task-specific trigger matched; packet remains at the safety baseline."
+        ]
+      }
+    },
+    {
+      "id": "private-sdk-boundary",
+      "description": "Private SDK language selects only the public boundary map.",
+      "pass": true,
+      "checks": [
+        {
+          "name": "status",
+          "pass": true,
+          "detail": "routed == routed"
+        },
+        {
+          "name": "map-cap",
+          "pass": true,
+          "detail": "3 <= 5"
+        },
+        {
+          "name": "required-maps",
+          "pass": true,
+          "detail": "cold-start, work-coordination, public-private-boundary"
+        },
+        {
+          "name": "excluded-maps",
+          "pass": true,
+          "detail": "cold-start, work-coordination, public-private-boundary"
+        },
+        {
+          "name": "required-reads",
+          "pass": true,
+          "detail": "CLAUDE.md, config/work-coordination.json, docs/process/public-private-boundary.md"
+        },
+        {
+          "name": "required-gaps",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "forbidden-reads",
+          "pass": true,
+          "detail": "CLAUDE.md, config/work-coordination.json, docs/process/public-private-boundary.md"
+        }
+      ],
+      "packet": {
+        "status": "routed",
+        "maps": [
+          "cold-start",
+          "work-coordination",
+          "public-private-boundary"
+        ],
+        "reads": [
+          "CLAUDE.md",
+          "config/work-coordination.json",
+          "docs/process/public-private-boundary.md"
+        ],
+        "healthChecks": [
+          "node lib/check-map-bindings.js",
+          "npm run current-work"
+        ],
+        "gaps": []
+      }
+    },
+    {
+      "id": "environment-evidence",
+      "description": "Machine-capability questions route to proposed environment evidence without inferring availability.",
+      "pass": true,
+      "checks": [
+        {
+          "name": "status",
+          "pass": true,
+          "detail": "routed == routed"
+        },
+        {
+          "name": "map-cap",
+          "pass": true,
+          "detail": "3 <= 5"
+        },
+        {
+          "name": "required-maps",
+          "pass": true,
+          "detail": "cold-start, work-coordination, environment-capability"
+        },
+        {
+          "name": "excluded-maps",
+          "pass": true,
+          "detail": "cold-start, work-coordination, environment-capability"
+        },
+        {
+          "name": "required-reads",
+          "pass": true,
+          "detail": "CLAUDE.md, config/work-coordination.json, docs/process/environment-health-design.md"
+        },
+        {
+          "name": "required-gaps",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "forbidden-reads",
+          "pass": true,
+          "detail": "CLAUDE.md, config/work-coordination.json, docs/process/environment-health-design.md"
+        }
+      ],
+      "packet": {
+        "status": "routed",
+        "maps": [
+          "cold-start",
+          "work-coordination",
+          "environment-capability"
+        ],
+        "reads": [
+          "CLAUDE.md",
+          "config/work-coordination.json",
+          "docs/process/environment-health-design.md"
+        ],
+        "healthChecks": [
+          "node lib/check-map-bindings.js",
+          "npm run current-work"
+        ],
+        "gaps": []
+      }
+    },
+    {
+      "id": "reusable-failure",
+      "description": "A known failure-pattern query routes to the lesson registry.",
+      "pass": true,
+      "checks": [
+        {
+          "name": "status",
+          "pass": true,
+          "detail": "routed == routed"
+        },
+        {
+          "name": "map-cap",
+          "pass": true,
+          "detail": "3 <= 5"
+        },
+        {
+          "name": "required-maps",
+          "pass": true,
+          "detail": "cold-start, work-coordination, lessons"
+        },
+        {
+          "name": "excluded-maps",
+          "pass": true,
+          "detail": "cold-start, work-coordination, lessons"
+        },
+        {
+          "name": "required-reads",
+          "pass": true,
+          "detail": "CLAUDE.md, config/work-coordination.json, config/lessons, data/lessons.json"
+        },
+        {
+          "name": "required-gaps",
+          "pass": true,
+          "detail": ""
+        },
+        {
+          "name": "forbidden-reads",
+          "pass": true,
+          "detail": "CLAUDE.md, config/work-coordination.json, config/lessons, data/lessons.json"
+        }
+      ],
+      "packet": {
+        "status": "routed",
+        "maps": [
+          "cold-start",
+          "work-coordination",
+          "lessons"
+        ],
+        "reads": [
+          "CLAUDE.md",
+          "config/work-coordination.json",
+          "config/lessons",
+          "data/lessons.json"
+        ],
+        "healthChecks": [
+          "node lib/check-map-bindings.js",
+          "npm run current-work",
+          "node --test tests/17-build-lessons.test.js"
+        ],
+        "gaps": []
+      }
+    }
+  ],
+  "interpretation": {
+    "passMeans": "The declared deterministic orientation contracts hold for this source state.",
+    "passDoesNotMean": "Victor reviewed or accepted the PRs, private state was inspected, or implementation authority was granted."
+  }
+}
