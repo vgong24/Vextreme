@@ -62,6 +62,13 @@ test('ORIENTATION-PACKET: unmatched task remains partial instead of widening', (
   assert.ok(packet.gaps.some(gap => /No task-specific trigger/.test(gap)));
 });
 
+test('ORIENTATION-PACKET: an explicit cold-start trigger is routed by the baseline itself', () => {
+  const packet = selectOrientationContext(projection, { task: 'onboarding a new instance at cold start' });
+  assert.deepEqual(ids(packet), BASELINE_MAPS);
+  assert.equal(packet.status, 'routed');
+  assert.ok(packet.maps.find(map => map.id === 'cold-start').score > 0);
+});
+
 test('ORIENTATION-PACKET: unsafe absolute and parent-traversal paths fail closed', () => {
   assert.throws(() => normalizeRepoPath('/Users/example/private'), /unsafe/);
   assert.throws(() => normalizeRepoPath('C:\\Users\\example\\private'), /unsafe/);
