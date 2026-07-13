@@ -79,13 +79,18 @@ test('COMPUTE-SHARDS: out-of-range shard index throws rather than silently retur
 
 // ── 3. Real-repo integration ──────────────────────────────────────────────────
 
-test('COMPUTE-SHARDS integration: the real tests/ directory currently resolves to a single shard — sharding is dormant until the suite actually grows', () => {
+test('COMPUTE-SHARDS integration: the real suite has activated sharding and still follows the configured scaling formula', () => {
   const files = listTestFiles();
   assert.ok(files.length > 0, 'no test files found — listTestFiles() is broken or tests/ is empty');
   const shardCount = computeShardCount(files.length, TARGET_FILES_PER_SHARD, MAX_SHARDS);
-  assert.equal(shardCount, 1,
-    `expected the current suite (${files.length} files) to stay under TARGET_FILES_PER_SHARD (${TARGET_FILES_PER_SHARD}); ` +
-    'if this now legitimately fails, the suite has grown enough for sharding to activate — that is the feature working as designed, not a bug.');
+  const expected = Math.min(
+    Math.max(Math.ceil(files.length / TARGET_FILES_PER_SHARD), 1),
+    MAX_SHARDS,
+  );
+  assert.equal(shardCount, expected, 'real-suite shard count drifted from the configured scaling formula');
+  assert.ok(files.length > TARGET_FILES_PER_SHARD,
+    `expected the real suite (${files.length} files) to remain above the first activation threshold (${TARGET_FILES_PER_SHARD})`);
+  assert.ok(shardCount >= 2, 'the first self-scaling CI shard transition should remain active');
 });
 
 test('COMPUTE-SHARDS integration: real file list assigned across its own computed shard count still covers every file exactly once', () => {

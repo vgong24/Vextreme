@@ -22,9 +22,9 @@ jobs:
 
       # Shard count is computed fresh every run from the real current
       # tests/*.test.js file count (lib/compute-test-shards.js) — nobody
-      # hand-picks or remembers to update a shard number here. At today's
-      # suite size this resolves to a single shard; it grows on its own as
-      # test files are added. See that file's docstring for the tradeoffs.
+      # hand-picks or remembers to update a shard number here. The suite has
+      # crossed its first threshold, so this now produces multiple shards and
+      # will continue to grow on its own. See that file's docstring for tradeoffs.
       - name: Compute shard matrix
         id: compute
         run: |

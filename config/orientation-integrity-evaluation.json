@@ -2,7 +2,9 @@
   "schemaVersion": "orientation-integrity.evaluation-suite/v1",
   "maxPacketMaps": 5,
   "requiredArtifacts": [
+    "config/document-routing.json",
     "docs/process/orientation-integrity.md",
+    "docs/process/document-routing.md",
     "docs/architecture/00-reading-guide.md",
     "docs/architecture.md",
     "lib/check-architecture-integrity.js",
@@ -10,7 +12,8 @@
     "data/orientation-map.json",
     "lib/build-orientation-map.js",
     "docs/process/task-aware-orientation-packets.md",
-    "lib/select-orientation-context.js"
+    "lib/select-orientation-context.js",
+    "lib/check-document-routes.js"
   ],
   "forbiddenReadPatterns": [
     "(^|/)Vextreme-SDK(/|$)",
@@ -19,6 +22,7 @@
     "(^|/)\\.\\.(/|$)"
   ],
   "invariants": {
+    "requireDocumentRoutes": true,
     "requireWorkersUnknown": true,
     "requireForwardReverseParity": true,
     "requireQuestionTargets": true

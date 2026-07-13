@@ -4,16 +4,21 @@
   "sourceProjection": "data/orientation-map.json",
   "status": "pass",
   "summary": {
-    "invariants": 5,
+    "invariants": 6,
     "failedInvariants": 0,
     "scenarios": 10,
     "failedScenarios": 0
   },
   "invariants": [
     {
+      "name": "document-routes-clean",
+      "pass": true,
+      "detail": "every docs file has exactly one declared route"
+    },
+    {
       "name": "required-artifacts-exist",
       "pass": true,
-      "detail": "9 required artifacts"
+      "detail": "12 required artifacts"
     },
     {
       "name": "workers-remain-unknown",

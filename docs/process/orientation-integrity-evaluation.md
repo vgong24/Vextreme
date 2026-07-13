@@ -10,6 +10,11 @@ graph-wide invariants. `lib/evaluate-orientation-integrity.js` runs them against
 the generated map graph and task-aware selector, then writes
 `data/orientation-integrity-evaluation.json`.
 
+Document-placement integrity is a separate but required closeout gate. See
+`docs/process/document-routing.md`; `lib/check-document-routes.js` requires every
+file under `docs/` to have exactly one route before the evaluation can pass its
+required-artifact invariant and the inherited test suite can pass.
+
 ```bash
 node lib/evaluate-orientation-integrity.js
 node lib/evaluate-orientation-integrity.js --check
@@ -30,7 +35,8 @@ The committed suite covers:
 | Machine capability | Proposed environment evidence is selected without inferring worker availability. |
 | Reusable regression knowledge | The lesson source and generated projection are selected. |
 
-Global invariants also require every declared artifact to exist, every worker to
+Global invariants also require every `docs/` file to have exactly one route,
+every declared artifact to exist, every worker to
 remain `availability: unknown`, every forward map edge to have its generated
 reverse edge, every question route to resolve, every packet to remain within five
 maps, and every registered/read path to stay repository-relative and outside the

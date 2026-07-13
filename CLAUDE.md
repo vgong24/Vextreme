@@ -10,8 +10,10 @@
 3. The newest-dated session file in the active batch directory (listed in INDEX.md's
    Batch Registry) — session files are named `YYYY-MM-DD-session-0NN.md`, so the last
    file in `ls` order is the most recent session
-4. `docs/architecture.md` — full system design, data flow, file responsibilities, key constraints
-5. `docs/Readme.md` — v1 Squarespace system (historical context, lower priority)
+4. `docs/process/orientation-integrity.md` — question-to-map routing, authority,
+   freshness, visibility boundaries, and work-window interpretation
+5. `docs/architecture.md` — full system design, data flow, file responsibilities, key constraints
+6. `docs/Readme.md` — v1 Squarespace system (historical context, lower priority)
 
 Do not start new work without completing this reading sequence. The README documents
 intended design; the continuity log documents actual system state — they diverge.
@@ -23,6 +25,20 @@ bounded paths, leases, and overlaps. If live state is unavailable, ownership is
 unknown; that is a stop condition for shared-path mutation, not permission to begin.
 Open a draft PR with a valid claim before changing shared paths. A claim coordinates
 work and does not grant implementation, merge, acceptance, data, or public authority.
+
+## Orientation and document integrity
+
+Before adding, moving, or nesting any file under `docs/`, read
+`docs/process/document-routing.md`. Every file in that tree must have exactly one
+route in `config/document-routing.json`: either an exact document entry or a strict
+collection shape with a real route owner and health check. Being somewhere under an
+already checked folder is not sufficient. `lib/check-document-routes.js` and its
+integration tests fail on stray or ambiguously placed files.
+
+Use `docs/process/task-aware-orientation-packets.md` when generating a bounded
+question/path packet from the orientation map. Use
+`docs/process/orientation-integrity-evaluation.md` to interpret the deterministic
+evaluation and its explicit “PASS does not mean” boundary.
 
 ## Expansion context notes
 
