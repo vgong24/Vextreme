@@ -1,0 +1,293 @@
+{
+  "schemaVersion": "orientation-maps.registry/v1",
+  "repository": "vgong24/Vextreme",
+  "maps": [
+    {
+      "id": "cold-start",
+      "type": "routing",
+      "scope": "repository-entry",
+      "visibility": "public",
+      "authority": ["accepted", "partial"],
+      "sourcePaths": ["CLAUDE.md"],
+      "projectionPaths": [],
+      "questions": [
+        { "id": "entry-order", "text": "What must a fresh instance read and verify first?" }
+      ],
+      "exclusions": ["live ownership", "complete architecture", "private implementation state"],
+      "triggers": ["cold start", "onboarding", "first read", "new instance"],
+      "forwardEdges": [
+        { "to": "culture", "relation": "requires-doctrine" },
+        { "to": "continuity", "relation": "routes-current-context" },
+        { "to": "work-coordination", "relation": "routes-live-work" },
+        { "to": "architecture", "relation": "routes-design" }
+      ],
+      "health": { "state": "partial", "checker": "node lib/check-map-bindings.js" },
+      "freshness": "accepted-source-plus-live-verification",
+      "lastVerified": { "date": "2026-07-12", "evidence": "Orientation Integrity row 0 audit" },
+      "supersededBy": null
+    },
+    {
+      "id": "culture",
+      "type": "doctrine",
+      "scope": "reasoning-and-handoff",
+      "visibility": "public",
+      "authority": ["accepted"],
+      "sourcePaths": ["docs/culture.md"],
+      "projectionPaths": [],
+      "questions": [
+        { "id": "interpretation-rules", "text": "How should ambiguity, maps, verification, and generated artifacts be interpreted?" }
+      ],
+      "exclusions": ["current queue state", "path ownership"],
+      "triggers": ["ambiguity", "generated artifact", "handoff", "integrity"],
+      "forwardEdges": [
+        { "to": "continuity", "relation": "governs-handoff" },
+        { "to": "lessons", "relation": "routes-reusable-failures" }
+      ],
+      "health": { "state": "manual", "checker": null },
+      "freshness": "accepted-until-superseded",
+      "lastVerified": { "date": "2026-07-12", "evidence": "Orientation Integrity row 0 audit" },
+      "supersededBy": null
+    },
+    {
+      "id": "continuity",
+      "type": "narrative-index",
+      "scope": "accepted-history-and-current-context",
+      "visibility": "public",
+      "authority": ["accepted", "historical", "partial"],
+      "sourcePaths": ["docs/continuity/INDEX.md", "docs/continuity/CONTEXT-NOTES.md"],
+      "projectionPaths": [],
+      "questions": [
+        { "id": "current-narrative", "text": "What changed recently, why, and which continuity record is active?" },
+        { "id": "preserved-reasoning", "text": "Which preserved reasoning applies to this task?" }
+      ],
+      "exclusions": ["unmerged PR state", "live availability", "implementation authority"],
+      "triggers": ["recent change", "session", "context note", "why did this move"],
+      "forwardEdges": [
+        { "to": "work-coordination", "relation": "requires-live-queue-check" },
+        { "to": "architecture", "relation": "routes-adopted-design" }
+      ],
+      "health": { "state": "checked-partial", "checker": "node lib/check-map-bindings.js" },
+      "freshness": "accepted-history-plus-lag-report",
+      "lastVerified": { "date": "2026-07-12", "evidence": "map bindings and continuity-lag check" },
+      "supersededBy": null
+    },
+    {
+      "id": "work-coordination",
+      "type": "live-registry",
+      "scope": "participants-claims-and-bounded-paths",
+      "visibility": "public",
+      "authority": ["accepted", "observed", "partial"],
+      "sourcePaths": ["config/work-coordination.json"],
+      "projectionPaths": [],
+      "questions": [
+        { "id": "current-work", "text": "Which participants and paths have visible active, waiting, or review claims?" },
+        { "id": "worker-availability", "text": "Is a registered worker actually available?" }
+      ],
+      "exclusions": ["implementation permission", "human acceptance", "private work state", "inferred availability"],
+      "triggers": ["current work", "claim", "ownership", "worker", "window", "PR queue"],
+      "forwardEdges": [
+        { "to": "continuity", "relation": "adds-live-state-to-history" },
+        { "to": "public-private-boundary", "relation": "constrains-disclosure" }
+      ],
+      "health": { "state": "live-required", "checker": "npm run current-work" },
+      "freshness": "live-open-pr-observation",
+      "lastVerified": { "date": "2026-07-12", "evidence": "live current-work report; unclaimed PR warning preserved" },
+      "supersededBy": null
+    },
+    {
+      "id": "architecture",
+      "type": "design-corpus",
+      "scope": "accepted-system-decisions",
+      "visibility": "public",
+      "authority": ["accepted", "generated"],
+      "sourcePaths": ["docs/architecture"],
+      "projectionPaths": ["docs/architecture.md"],
+      "questions": [
+        { "id": "governing-architecture", "text": "Which accepted design constraint governs this task?" },
+        { "id": "architecture-projection", "text": "Does the assembled architecture match every numbered source?" }
+      ],
+      "exclusions": ["live implementation status", "open ownership"],
+      "triggers": ["architecture", "design constraint", "source projection", "where should this file live"],
+      "forwardEdges": [
+        { "to": "lattice", "relation": "expands-file-impact" },
+        { "to": "work-coordination", "relation": "checks-live-ownership" }
+      ],
+      "health": { "state": "checked", "checker": "node lib/check-architecture-integrity.js" },
+      "freshness": "exact-source-projection-parity",
+      "lastVerified": { "date": "2026-07-12", "evidence": "Orientation Integrity row 1 checker" },
+      "supersededBy": null
+    },
+    {
+      "id": "lattice",
+      "type": "dependency-graph",
+      "scope": "mapped-file-impact",
+      "visibility": "public",
+      "authority": ["accepted", "partial"],
+      "sourcePaths": ["docs/lattice-map.json"],
+      "projectionPaths": [],
+      "questions": [
+        { "id": "change-impact", "text": "What else must be checked if this mapped file changes?" },
+        { "id": "file-origin", "text": "Which mapped file reads, writes, loads, or tests this path?" }
+      ],
+      "exclusions": ["complete repository coverage", "full symbol or runtime-value lineage"],
+      "triggers": ["change impact", "reads", "writes", "loaded by", "tested by", "dependency"],
+      "forwardEdges": [
+        { "to": "terrain", "relation": "contributes-structure" },
+        { "to": "architecture", "relation": "returns-to-design-constraint" }
+      ],
+      "health": { "state": "checked-partial", "checker": "node lib/check-lattice-edges.js" },
+      "freshness": "generated-headers-plus-edge-check",
+      "lastVerified": { "date": "2026-07-12", "evidence": "377 checked edges; explicit skips retained" },
+      "supersededBy": null
+    },
+    {
+      "id": "terrain",
+      "type": "navigable-projection",
+      "scope": "repository-structure-and-health",
+      "visibility": "public",
+      "authority": ["generated", "partial"],
+      "sourcePaths": ["docs/lattice-map.json", "data/status.json"],
+      "projectionPaths": ["data/terrain-map.json", "pages/terrain-map.html"],
+      "questions": [
+        { "id": "terrain-navigation", "text": "Where can I navigate the repository structure and its mapped health?" }
+      ],
+      "exclusions": ["source authority", "complete repository coverage"],
+      "triggers": ["terrain", "navigate repository", "map visualization"],
+      "forwardEdges": [
+        { "to": "lattice", "relation": "returns-to-structural-source" },
+        { "to": "status", "relation": "returns-to-health-source" }
+      ],
+      "health": { "state": "checked-partial", "checker": "node --test tests/28-build-terrain-map.test.js" },
+      "freshness": "generated-from-lattice-and-status",
+      "lastVerified": { "date": "2026-07-12", "evidence": "row 0 projection inventory" },
+      "supersededBy": null
+    },
+    {
+      "id": "status",
+      "type": "queue-registry",
+      "scope": "debt-enhancements-and-open-questions",
+      "visibility": "public",
+      "authority": ["accepted", "generated"],
+      "sourcePaths": ["data/status"],
+      "projectionPaths": ["data/status.json"],
+      "questions": [
+        { "id": "known-gap", "text": "Which debt, enhancement, assumption, or discussion is already recorded?" }
+      ],
+      "exclusions": ["selection priority", "implementation permission", "live ownership"],
+      "triggers": ["tech debt", "planned enhancement", "open discussion", "known gap", "status"],
+      "forwardEdges": [
+        { "to": "terrain", "relation": "feeds-health-projection" },
+        { "to": "work-coordination", "relation": "requires-selection-and-claim" }
+      ],
+      "health": { "state": "checked", "checker": "node --test tests/10-build-status.test.js" },
+      "freshness": "generated-from-authored-status-items",
+      "lastVerified": { "date": "2026-07-12", "evidence": "row 0 status inventory" },
+      "supersededBy": null
+    },
+    {
+      "id": "page-health",
+      "type": "health-projection",
+      "scope": "public-page-wiring-reachability-and-evidence",
+      "visibility": "public",
+      "authority": ["generated", "partial"],
+      "sourcePaths": ["pages"],
+      "projectionPaths": ["data/page-health.json"],
+      "questions": [
+        { "id": "page-health", "text": "Is a page wired, reachable, identified, localized, and evidenced?" }
+      ],
+      "exclusions": ["visual correctness without inspection", "source authority", "private pages"],
+      "triggers": ["page", "reachable", "navigation", "FAB", "screenshot", "page health"],
+      "forwardEdges": [
+        { "to": "terrain", "relation": "contributes-page-health" },
+        { "to": "architecture", "relation": "returns-to-page-constraints" }
+      ],
+      "health": { "state": "checked-partial", "checker": "node --test tests/44-page-health.test.js" },
+      "freshness": "generated-from-public-page-facts",
+      "lastVerified": { "date": "2026-07-12", "evidence": "row 0 page-health inventory" },
+      "supersededBy": null
+    },
+    {
+      "id": "lessons",
+      "type": "failure-knowledge",
+      "scope": "reusable-repository-lessons",
+      "visibility": "public",
+      "authority": ["accepted", "historical", "generated"],
+      "sourcePaths": ["config/lessons"],
+      "projectionPaths": ["data/lessons.json"],
+      "questions": [
+        { "id": "reusable-failure", "text": "Has this failure pattern already been learned and recorded?" }
+      ],
+      "exclusions": ["mandatory cold-start reading", "live queue state"],
+      "triggers": ["lesson", "failure pattern", "regression", "known mistake"],
+      "forwardEdges": [
+        { "to": "culture", "relation": "supports-doctrine" },
+        { "to": "status", "relation": "may-identify-open-repair" }
+      ],
+      "health": { "state": "checked", "checker": "node --test tests/17-build-lessons.test.js" },
+      "freshness": "generated-from-authored-lessons",
+      "lastVerified": { "date": "2026-07-12", "evidence": "row 0 lessons inventory" },
+      "supersededBy": null
+    },
+    {
+      "id": "environment-capability",
+      "type": "proposed-capability-map",
+      "scope": "local-environment-evidence",
+      "visibility": "public",
+      "authority": ["proposed", "unknown"],
+      "sourcePaths": ["docs/process/environment-health-design.md"],
+      "projectionPaths": [],
+      "questions": [
+        { "id": "environment-capability", "text": "What can this machine or session verifiably do right now?" }
+      ],
+      "exclusions": ["inferred capability", "authorization", "implemented all-in-one command"],
+      "triggers": ["environment", "machine capability", "tool available", "authentication"],
+      "forwardEdges": [
+        { "to": "work-coordination", "relation": "does-not-imply-availability" }
+      ],
+      "health": { "state": "proposed", "checker": null },
+      "freshness": "requires-present-command-evidence",
+      "lastVerified": { "date": "2026-07-12", "evidence": "design exists; complete command not implemented" },
+      "supersededBy": null
+    },
+    {
+      "id": "public-private-boundary",
+      "type": "visibility-boundary",
+      "scope": "public-safe-routing",
+      "visibility": "public-boundary",
+      "authority": ["accepted", "partial", "private-reference"],
+      "sourcePaths": ["docs/process/public-private-boundary.md"],
+      "projectionPaths": [],
+      "questions": [
+        { "id": "visibility-boundary", "text": "What may public orientation state about private capabilities or repositories?" }
+      ],
+      "exclusions": ["private algorithms", "private counts", "private roadmap state", "credentials", "client data"],
+      "triggers": ["private", "public boundary", "SDK", "disclosure", "convergence"],
+      "forwardEdges": [],
+      "health": { "state": "manual", "checker": null },
+      "freshness": "accepted-boundary-plus-task-review",
+      "lastVerified": { "date": "2026-07-12", "evidence": "Orientation Integrity public/private review" },
+      "supersededBy": null
+    },
+    {
+      "id": "v1-history",
+      "type": "historical-architecture",
+      "scope": "legacy-squarespace-system",
+      "visibility": "public",
+      "authority": ["historical"],
+      "sourcePaths": ["docs/Readme.md"],
+      "projectionPaths": [],
+      "questions": [
+        { "id": "legacy-v1", "text": "How did the legacy v1 Squarespace system work?" }
+      ],
+      "exclusions": ["active v2 state", "current implementation authority"],
+      "triggers": ["v1", "legacy", "Squarespace", "historical loader"],
+      "forwardEdges": [
+        { "to": "architecture", "relation": "contrasts-with-current-design" }
+      ],
+      "health": { "state": "historical", "checker": null },
+      "freshness": "historical-only",
+      "lastVerified": { "date": "2026-07-12", "evidence": "row 0 historical-route inventory" },
+      "supersededBy": "architecture"
+    }
+  ]
+}
