@@ -166,7 +166,7 @@
         "data/viewmodels.json",
         "data/departments.json",
         "pages/*.html (via lib/auto-discover-nodes.js, for any slug with no nodes.json entry)",
-        "lib/audit-pages.js (SKIP_PAGES, getPageSlugs)",
+        "lib/audit-pages.js (AUTO_DISCOVERY_EXCLUSIONS, getPageSlugs)",
         "lib/auto-discover-nodes.js (discoverOrphanNodes, readPageFromDisk)",
         "lib/vex-config.js"
       ],
@@ -893,7 +893,8 @@
         "lib/check-key-alignment.js (discoverWipDrafts, feeds report.wip.htmlDrafts)",
         "tests/16-auto-discover-nodes.test.js",
         "tests/15-departments.test.js (integration test)",
-        "tests/21-wip-drafts.test.js"
+        "tests/21-wip-drafts.test.js",
+        "tests/54-institutional-surfaces.test.js (real discovery exclusion integration)"
       ],
       "testedBy": [
         "tests/16-auto-discover-nodes.test.js",
@@ -917,10 +918,11 @@
     },
     "lib/audit-pages.js": {
       "role": "page wiring auditor — read-only report of which pages/*.html are wired to a God Script, blocked, or intentionally skipped",
-      "context": "The canonical way to answer 'what's the current wiring status' without manually reading every page. CLAUDE.md points here instead of describing wiring status in prose, since prose goes stale and this doesn't — it reads dist/ and pages/ directly on every run. SKIP_PAGES and BLOCKERS are the only hand-maintained parts; both are dated the moment a page's status actually changes.",
+      "context": "The canonical way to answer 'what's the current wiring status' without manually reading every page. CLAUDE.md points here instead of describing wiring status in prose, since prose goes stale and this doesn't — it reads dist/ and pages/ directly on every run. Generated/dev exceptions remain in SKIP_PAGES; institutional identity is derived from config/institutional-surfaces.json and merged only into AUTO_DISCOVERY_EXCLUSIONS so it cannot become another hand-maintained slug list or leak into Archives as a system page.",
       "reads": [
         "pages/*.html (checks for a dist/vextreme-{slug}.js script src)",
-        "dist/*.js (checks which God Scripts exist)"
+        "dist/*.js (checks which God Scripts exist)",
+        "config/institutional-surfaces.json (derives institutional classification and record-pipeline exclusions)"
       ],
       "writes": [
         "stdout only — read-only, changes nothing"
@@ -928,11 +930,12 @@
       "loadedBy": [
         "manual run: node lib/audit-pages.js",
         "CLAUDE.md (points here as the wiring-status source of truth)",
-        "lib/check-key-alignment.js (imports SKIP_PAGES + getPageSlugs — reuses the skip list instead of duplicating it)",
-        "lib/build-index.js (SKIP_PAGES + getPageSlugs, feeds auto-discovery)",
-        "lib/build-archives.js (same, independently — see pe-011)",
-        "lib/build-terrain-map.js (getPageSlugs — real page files vs. curated nodes.json entries, for the content/arc layer's uncurated column)",
+        "lib/check-key-alignment.js (imports AUTO_DISCOVERY_EXCLUSIONS + getPageSlugs)",
+        "lib/build-index.js (AUTO_DISCOVERY_EXCLUSIONS + getPageSlugs, feeds auto-discovery)",
+        "lib/build-archives.js (same shared exclusion, independently — see pe-011)",
+        "lib/build-terrain-map.js (getRecordPageSlugs keeps institutional surfaces outside the content/arc layer)",
         "tests/15-departments.test.js",
+        "tests/54-institutional-surfaces.test.js",
         "tests/20-roles.test.js",
         "tests/28-build-terrain-map.test.js",
         "lib/build-analysis-index.js (reuses getPageSlugs)",
@@ -964,7 +967,7 @@
         "data/viewmodels.json",
         "wip/*.json (_meta.slug field only)",
         "wip/*.html (filename-derived slug + title, via lib/auto-discover-nodes.js discoverWipDrafts)",
-        "lib/audit-pages.js (SKIP_PAGES, getPageSlugs)",
+        "lib/audit-pages.js (AUTO_DISCOVERY_EXCLUSIONS, getPageSlugs)",
         "lib/build-archives.js (source text — ARC_ORDER, ARC_KEY_MAP, regex-scanned not required)",
         "lib/build-index-page.js (source text — its own separate ARC_ORDER, regex-scanned not required)"
       ],
@@ -1328,7 +1331,7 @@
         "data/status/planned-enhancements.json (health cross-reference)",
         "data/nodes.json (real page titles/arcKeys, for both the screens layer and the arcs/pages content layer)",
         "data/arcs-v2.json (real arc priority/title, for the arcs/pages content layer's column order and labels)",
-        "lib/audit-pages.js (getPageSlugs — real page files vs. curated nodes.json entries, for the content layer's uncurated column and each page's live flag)",
+        "lib/audit-pages.js (getRecordPageSlugs — real record-page files excluding registry-owned institutional surfaces)",
         "data/page-health.json (shared page capability and health projection)",
         "docs/screenshots/*.png (directory listing — which pages have a real per-language screenshot)"
       ],
@@ -1429,7 +1432,7 @@
         "data/strings/compiled/manifest.json",
         "data/page-health.json",
         "pages/*.html (existence check, per slug, for the ported/missing cell state; also read in full via lib/auto-discover-nodes.js for any slug with no nodes.json entry)",
-        "lib/audit-pages.js (SKIP_PAGES, getPageSlugs)",
+        "lib/audit-pages.js (SKIP_PAGES for generated system pages; AUTO_DISCOVERY_EXCLUSIONS + getPageSlugs for record discovery)",
         "lib/auto-discover-nodes.js (discoverOrphanNodes, readPageFromDisk)"
       ],
       "writes": [
@@ -1490,11 +1493,12 @@
     },
     "config/institutional-surfaces.json": {
       "role": "authored registry for institutional surface identity, lifecycle, runtime exclusions, string scope, theme variants, and required evidence",
-      "context": "Institutional Surface Integration 1/4. PR #135 proved that vextreme-home and vex-support are a real second page class, but encoded their identity across page-local exceptions, duplicated lists, runtime assumptions, and an oversized acceptance surface. This registry holds the two slugs as reservations before any public page exists. Promotion to active happens in the same bounded PR as the page, and lib/check-institutional-surfaces.js rejects every reserved/active half-state. Planned locales are intentionally distinct from required locales so future translation is visible without being misreported as accepted or published.",
+      "context": "Institutional Surface Integration 1/4. PR #135 proved that vextreme-home and vex-support are a real second page class, but encoded their identity across page-local exceptions, duplicated lists, runtime assumptions, and an oversized acceptance surface. This registry holds the two slugs as reservations before any public page exists. A reservation owns the slug across page, node, arc, generated-index, and God Script projections. Promotion to active additionally requires the bound production locale bundles and the declared locale/theme/viewport PNG evidence matrix. Planned locales remain distinct from required locales so future translation is visible without being misreported as accepted or published.",
       "reads": [],
       "writes": [],
       "loadedBy": [
         "lib/check-institutional-surfaces.js",
+        "lib/audit-pages.js",
         "tests/54-institutional-surfaces.test.js",
         "docs/architecture/18-institutional-pages.md"
       ],
@@ -1515,14 +1519,17 @@
       }
     },
     "lib/check-institutional-surfaces.js": {
-      "role": "fail-closed institutional-surface registry and active-projection validator",
-      "context": "Institutional Surface Integration 1/4. Validates one authored registry before later PRs add visible pages. Reserved entries own identity but must have no page; active entries must have one standalone page with explicit surface/string/theme markers, no shell or God Script, no generated dist script, and no archive node or arc membership. This keeps the page class mechanical without accepting #135's two pages, payment state, localization, runtime, and evidence as one merge unit.",
+      "role": "fail-closed institutional-surface registry, identity-reservation, localization, and evidence validator",
+      "context": "Institutional Surface Integration 1/4. Validates one authored registry before later PRs add visible pages. Reserved entries own identity across page, node, arc, generated-index, and God Script projections. Active entries must additionally provide one standalone page with explicit surface/string/theme markers, complete required-locale bindings, and every declared PNG evidence cell. This keeps the page class mechanical without accepting #135's two pages, payment state, localization, runtime, and evidence as one merge unit.",
       "reads": [
         "config/institutional-surfaces.json",
-        "pages/*.html (existence and active projection markers, per registered slug)",
-        "data/nodes.json (active institutional slugs must remain outside archive indexing)",
-        "data/arcs-v2.json (active institutional slugs must remain outside narrative arcs)",
-        "dist/*.js (no God Script may be generated for an active institutional surface)"
+        "pages/*.html (existence, data-i18n bindings, and active projection markers, per registered slug)",
+        "data/nodes.json (every registered institutional slug must remain outside archive indexing)",
+        "data/arcs-v2.json (every registered institutional slug must remain outside narrative arcs)",
+        "data/index.json (registered slugs must remain outside generated content maps)",
+        "data/strings/compiled/scopes/production/*.json (required active-locale bindings)",
+        "docs/screenshots/*.png (required active locale/theme/viewport evidence cells)",
+        "dist/*.js (no God Script may be generated for a registered institutional identity)"
       ],
       "writes": [
         "stdout only — read-only; exits nonzero when registry or projections drift"
@@ -1530,6 +1537,7 @@
       "loadedBy": [
         "manual run: node lib/check-institutional-surfaces.js",
         "package.json (pr-ready and institutional-surfaces:check scripts)",
+        "lib/audit-pages.js (registeredSurfaceSlugs feeds the shared discovery exclusion)",
         "tests/54-institutional-surfaces.test.js"
       ],
       "testedBy": [
@@ -1542,7 +1550,7 @@
           "docs/architecture/18-institutional-pages.md active-page invariants"
         ],
         "a new consumer needs institutional slugs": [
-          "import surfacesByState() or read the registry through this validated contract; do not add a second slug list"
+          "import registeredSurfaceSlugs() or read the registry through this validated contract; do not add a second slug list"
         ]
       }
     },

@@ -2430,8 +2430,8 @@ The registry has two states:
 
 | State | Meaning | Files and public effect |
 |---|---|---|
-| `reserved` | The slug, purpose, and intended contracts are held for a later bounded PR. | The page must not exist and nothing is published. |
-| `active` | A page has crossed the contract and evidence boundary. | `pages/{slug}.html` must exist and every active projection is validated. |
+| `reserved` | The slug, purpose, and intended contracts are held for a later bounded PR. | The page must not exist; the slug must also be absent from node, arc, generated-index, and God Script projections. |
+| `active` | A page has crossed the complete contract and evidence boundary. | `pages/{slug}.html`, every required locale bundle/key, and every declared screenshot cell must exist while archive/runtime exclusions continue to hold. |
 
 The initial reservations are `vextreme-home` and `vex-support`. A reservation
 is not implementation status, acceptance, payment activation, or a promise that
@@ -2439,8 +2439,9 @@ all planned locales already exist. It prevents another page from silently
 claiming the same identity while the integration stack remains reviewable.
 
 Promote `state` from `reserved` to `active` in the same PR that adds the page.
-The validator rejects either half-state: a reserved entry with a page, or an
-active entry without one.
+The validator rejects either half-state: a reserved entry with a page or any
+record/runtime projection, or an active entry without its accepted page,
+localization, and evidence.
 
 ---
 
@@ -2474,19 +2475,37 @@ active entry, proves these projections together:
 
 1. `pages/{slug}.html` exists.
 2. Its `<html>` element declares `data-vex-surface="institutional"`.
-3. It declares the canonical string-scope and theme-family markers.
-4. It does not load `shell.js` or a God Script.
-5. No `dist/vextreme-{slug}.js` artifact exists.
-6. The slug is absent from `data/nodes.json` and every arc in
-   `data/arcs-v2.json`.
+3. It declares the canonical string-scope and theme-family markers, and its
+   initial `data-theme` is one of the declared variants.
+4. It contains at least one `data-i18n` binding. Every bound key has non-empty
+   text in `data/strings/compiled/scopes/production/{scope}.{locale}.json` for
+   every required locale.
+5. Every required locale × declared theme × declared viewport cell exists as
+   `docs/screenshots/{slug}-{locale}-{theme}-{viewport}.png` with a PNG
+   signature. Presence is mechanically checked; reviewer inspection remains
+   the acceptance of what the image actually shows.
+6. It does not load `shell.js` or a God Script.
+7. No `dist/vextreme-{slug}.js` artifact exists.
+8. The slug is absent from `data/nodes.json`, every arc in
+   `data/arcs-v2.json`, and the generated content maps in `data/index.json`.
+
+The identity checks in items 7–8 also apply while a slug is reserved. A
+reservation is an identity claim, not only a promise about a future filename.
 
 The static markers are read-side projections, not competing sources. Their job
 is to make the page's contract perceivable from the file itself; the validator
 keeps them equal to the registry.
 
+`lib/audit-pages.js` derives the auto-discovery exclusions and record-page
+inventory from this registry. `lib/build-index.js`, `lib/build-archives.js`,
+`lib/check-key-alignment.js`, and the Terrain content projection consume that
+derived boundary. The static `SKIP_PAGES` list remains only for generated/dev
+pages; institutional slugs are not copied into it.
+
 `npm run pr-ready` includes the validator. A public page cannot silently appear
-outside the registry, inherit archive runtime, or cross into active state
-without the same check that reviews the rest of the repository.
+outside the registry, inherit archive runtime, be auto-discovered back into the
+record pipeline, or cross into active state without the same check that reviews
+the rest of the repository.
 
 ---
 
