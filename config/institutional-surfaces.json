@@ -15,6 +15,7 @@
         "shell": false
       },
       "strings": {
+        "category": "system",
         "scope": "institution",
         "requiredLocales": [
           "en"
@@ -27,8 +28,8 @@
       "theme": {
         "family": "foundation",
         "variants": [
-          "dark",
-          "light"
+          "foundation",
+          "foundation-light"
         ]
       },
       "evidence": {
@@ -38,8 +39,8 @@
           1440
         ],
         "themes": [
-          "dark",
-          "light"
+          "foundation",
+          "foundation-light"
         ]
       },
       "origin": {
@@ -60,6 +61,7 @@
         "shell": false
       },
       "strings": {
+        "category": "system",
         "scope": "institution",
         "requiredLocales": [
           "en"
@@ -72,8 +74,8 @@
       "theme": {
         "family": "foundation",
         "variants": [
-          "dark",
-          "light"
+          "foundation",
+          "foundation-light"
         ]
       },
       "evidence": {
@@ -83,8 +85,8 @@
           1440
         ],
         "themes": [
-          "dark",
-          "light"
+          "foundation",
+          "foundation-light"
         ]
       },
       "origin": {

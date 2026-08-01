@@ -1212,11 +1212,12 @@
       "role": "fail-closed institutional-surface registry, identity-reservation, localization, and evidence validator",
       "reads": [
         "config/institutional-surfaces.json",
-        "pages/*.html (existence, data-i18n bindings, and active projection markers, per registered slug)",
+        "lib/vex-config.js (valid compiled-string categories)",
+        "pages/*.html (existence, visible/accessibility i18n bindings, and active projection markers, per registered slug)",
         "data/nodes.json (every registered institutional slug must remain outside archive indexing)",
         "data/arcs-v2.json (every registered institutional slug must remain outside narrative arcs)",
         "data/index.json (registered slugs must remain outside generated content maps)",
-        "data/strings/compiled/scopes/production/*.json (required active-locale bindings)",
+        "data/strings/compiled/scopes/{category}/*.json (required active-locale bindings)",
         "docs/screenshots/*.png (required active locale/theme/viewport evidence cells)",
         "dist/*.js (no God Script may be generated for a registered institutional identity)"
       ],
@@ -1770,7 +1771,8 @@
         "tests/07-viewmodel.test.js",
         "tests/08-build-vextreme.test.js (FAB SYSTEM propagation tests — reads Feature.* constants directly)",
         "lib/build-demo.js",
-        "lib/build-arc-bundles.js"
+        "lib/build-arc-bundles.js",
+        "lib/check-institutional-surfaces.js"
       ],
       "testedBy": [
         "tests/05-vex-config.test.js",
@@ -2458,6 +2460,10 @@
     ],
     [
       "lib/vex-config.js",
+      "config/institutional-surfaces.json"
+    ],
+    [
+      "lib/vex-config.js",
       "lib/build-arc-bundles.js"
     ],
     [
@@ -2471,6 +2477,10 @@
     [
       "lib/vex-config.js",
       "lib/build-vextreme.js"
+    ],
+    [
+      "lib/vex-config.js",
+      "lib/check-institutional-surfaces.js"
     ],
     [
       "lib/vex-config.js",

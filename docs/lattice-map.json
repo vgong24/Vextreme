@@ -127,7 +127,8 @@
         "tests/07-viewmodel.test.js",
         "tests/08-build-vextreme.test.js (FAB SYSTEM propagation tests — reads Feature.* constants directly)",
         "lib/build-demo.js",
-        "lib/build-arc-bundles.js"
+        "lib/build-arc-bundles.js",
+        "lib/check-institutional-surfaces.js"
       ],
       "testedBy": [
         "tests/05-vex-config.test.js",
@@ -1520,14 +1521,15 @@
     },
     "lib/check-institutional-surfaces.js": {
       "role": "fail-closed institutional-surface registry, identity-reservation, localization, and evidence validator",
-      "context": "Institutional Surface Integration 1/4. Validates one authored registry before later PRs add visible pages. Reserved entries own identity across page, node, arc, generated-index, and God Script projections. Active entries must additionally provide one standalone page with explicit surface/string/theme markers, complete required-locale bindings, and every declared PNG evidence cell. This keeps the page class mechanical without accepting #135's two pages, payment state, localization, runtime, and evidence as one merge unit.",
+      "context": "Institutional Surface Integration 1/4. Validates one authored registry before later PRs add visible pages. Reserved entries own identity across page, node, arc, generated-index, and God Script projections. Active entries must additionally provide one standalone page with explicit surface/string-category/string-scope/theme markers, complete visible and accessibility locale bindings, and structurally valid PNG evidence for every declared locale/theme/viewport cell. This keeps the page class mechanical without accepting #135's two pages, payment state, localization, runtime, and evidence as one merge unit.",
       "reads": [
         "config/institutional-surfaces.json",
-        "pages/*.html (existence, data-i18n bindings, and active projection markers, per registered slug)",
+        "lib/vex-config.js (valid compiled-string categories)",
+        "pages/*.html (existence, visible/accessibility i18n bindings, and active projection markers, per registered slug)",
         "data/nodes.json (every registered institutional slug must remain outside archive indexing)",
         "data/arcs-v2.json (every registered institutional slug must remain outside narrative arcs)",
         "data/index.json (registered slugs must remain outside generated content maps)",
-        "data/strings/compiled/scopes/production/*.json (required active-locale bindings)",
+        "data/strings/compiled/scopes/{category}/*.json (required active-locale bindings)",
         "docs/screenshots/*.png (required active locale/theme/viewport evidence cells)",
         "dist/*.js (no God Script may be generated for a registered institutional identity)"
       ],

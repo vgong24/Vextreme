@@ -47,8 +47,8 @@ Each slug owns these exact dimensions:
 - semantic `purpose`, without user-facing copy in the registry;
 - archive and arc exclusions;
 - standalone runtime boundary;
-- canonical string scope plus required and planned locales;
-- theme family and variants;
+- canonical string category/scope plus required and planned locales;
+- theme family and variants, with evidence for every variant;
 - the viewport/theme evidence matrix;
 - the source PR that preserves the design/content provenance.
 
@@ -70,15 +70,17 @@ active entry, proves these projections together:
 
 1. `pages/{slug}.html` exists.
 2. Its `<html>` element declares `data-vex-surface="institutional"`.
-3. It declares the canonical string-scope and theme-family markers, and its
-   initial `data-theme` is one of the declared variants.
-4. It contains at least one `data-i18n` binding. Every bound key has non-empty
-   text in `data/strings/compiled/scopes/production/{scope}.{locale}.json` for
-   every required locale.
+3. It declares the canonical string-category, string-scope, and theme-family
+   markers, and its initial `data-theme` is one of the declared variants.
+4. It contains at least one `data-i18n`, `data-i18n-alt`, or `data-i18n-aria`
+   binding. Every visible and accessibility-bound key has non-empty text in
+   `data/strings/compiled/scopes/{category}/{scope}.{locale}.json` for every
+   required locale.
 5. Every required locale × declared theme × declared viewport cell exists as
    `docs/screenshots/{slug}-{locale}-{theme}-{viewport}.png` with a PNG
-   signature. Presence is mechanically checked; reviewer inspection remains
-   the acceptance of what the image actually shows.
+   signature, valid chunk boundaries, positive dimensions, IDAT/IEND chunks,
+   and valid chunk CRCs. Structural validity does not replace reviewer
+   inspection of what the image actually shows.
 6. It does not load `shell.js` or a God Script.
 7. No `dist/vextreme-{slug}.js` artifact exists.
 8. The slug is absent from `data/nodes.json`, every arc in
