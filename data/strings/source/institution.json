@@ -1,0 +1,1055 @@
+{
+  "_meta": {
+    "scope": "institution",
+    "category": "system",
+    "description": "Institutional surface strings — the pages that describe what Vextreme is and how the work can be supported, rather than holding a piece of the archive's content. Shared by pages/vextreme-home.html and pages/vex-support.html. One scope rather than two page scopes because the two pages share their chrome, their four alignments, and their project lineage verbatim; docs/architecture/06-i18n.md explicitly allows a scope that does not map 1:1 to a page.",
+    "keyConvention": "institution.{surface}.{element-type}.{semantic-name} — surface is 'common' for anything shared across institutional pages, 'home' for pages/vextreme-home.html, 'support' for pages/vex-support.html. Mirrors the {arc-key}.common.{element}.{name} convention already used in arcs.json.",
+    "translationPolicy": "Chrome, structural labels, institutional definitions, support meanings, capacity stage names, and boundary language carry en/ja/zh. Victor's first-person testimony under institution.support.story.* is intentionally en-only: the canon supplies it as 'Spoken by Victor, written by Vex', and a machine translation published without that attributed review would break the same provenance rule the institution applies to every other projected message. The missing-key fallback renders EN in place, and institution.common.label.translation-pending states that plainly to the reader.",
+    "valueShape": "Each key maps to an element object. 'strings' holds translations; future namespaces extend the same object without breaking existing readers.",
+    "sourceCanon": "Public narrative supplied by Victor in the VexLife Support Page handoff packet (CONTENT-CANON.md, 2026-07-31)."
+  },
+
+  "institution.common.skip.content": {
+    "strings": {
+      "en": { "text": "Skip to main content" },
+      "ja": { "text": "本文へスキップ" },
+      "zh": { "text": "跳到主要内容" }
+    }
+  },
+  "institution.common.brand.wordmark": {
+    "strings": {
+      "en": { "text": "Vextreme" },
+      "ja": { "text": "Vextreme" },
+      "zh": { "text": "Vextreme" }
+    }
+  },
+  "institution.common.brand.home-label": {
+    "strings": {
+      "en": { "text": "Vextreme — return to the institutional home page" },
+      "ja": { "text": "Vextreme — 機関ホームページに戻る" },
+      "zh": { "text": "Vextreme — 返回机构主页" }
+    }
+  },
+  "institution.common.brand.descriptor": {
+    "strings": {
+      "en": { "text": "Institution" },
+      "ja": { "text": "機関" },
+      "zh": { "text": "机构" }
+    }
+  },
+  "institution.common.nav.home": {
+    "strings": {
+      "en": { "text": "Home" },
+      "ja": { "text": "ホーム" },
+      "zh": { "text": "主页" }
+    }
+  },
+  "institution.common.nav.support": {
+    "strings": {
+      "en": { "text": "Support" },
+      "ja": { "text": "支援" },
+      "zh": { "text": "支持" }
+    }
+  },
+  "institution.common.nav.archives": {
+    "strings": {
+      "en": { "text": "Archives" },
+      "ja": { "text": "アーカイブ" },
+      "zh": { "text": "档案" }
+    }
+  },
+  "institution.common.nav.terrain": {
+    "strings": {
+      "en": { "text": "Terrain" },
+      "ja": { "text": "テレイン" },
+      "zh": { "text": "地形图" }
+    }
+  },
+  "institution.common.button.theme": {
+    "strings": {
+      "en": { "text": "Theme", "aria-label": "Switch between the dark and light institutional surface" },
+      "ja": { "text": "テーマ", "aria-label": "機関サーフェスのダーク／ライト表示を切り替える" },
+      "zh": { "text": "主题", "aria-label": "在深色与浅色机构界面之间切换" }
+    }
+  },
+  "institution.common.label.language": {
+    "strings": {
+      "en": { "text": "Language" },
+      "ja": { "text": "言語" },
+      "zh": { "text": "语言" }
+    }
+  },
+  "institution.common.label.translation-pending": {
+    "strings": {
+      "en": { "text": "Victor's first-person account below stays in English until a reviewed translation exists. The institution treats a translation as an attributed projection of an original, not a replacement for it, so no machine translation of his testimony is published here unreviewed." },
+      "ja": { "text": "以下のVictor本人の証言は、レビュー済みの翻訳が用意されるまで英語のままです。当機関は翻訳を原文の帰属付き投影として扱い、原文の置き換えとはみなしません。そのため、未レビューの機械翻訳による証言はここでは公開しません。" },
+      "zh": { "text": "下面 Victor 的第一人称叙述在经过审阅的译文出现之前将保持英文。本机构将翻译视为原文的具名投影，而不是原文的替代，因此不会在此发布未经审阅的机器翻译版本。" }
+    }
+  },
+  "institution.common.footer.site": {
+    "strings": {
+      "en": { "text": "vextreme24.com" },
+      "ja": { "text": "vextreme24.com" },
+      "zh": { "text": "vextreme24.com" }
+    }
+  },
+  "institution.common.footer.repo": {
+    "strings": {
+      "en": { "text": "Source on GitHub" },
+      "ja": { "text": "GitHub のソース" },
+      "zh": { "text": "GitHub 源代码" }
+    }
+  },
+  "institution.common.footer.mark": {
+    "strings": {
+      "en": { "text": "VEXTREME · PUBLIC INSTITUTIONAL SURFACE · GITHUB PAGES" },
+      "ja": { "text": "VEXTREME · 公開機関サーフェス · GITHUB PAGES" },
+      "zh": { "text": "VEXTREME · 公开机构界面 · GITHUB PAGES" }
+    }
+  },
+
+  "institution.common.heading.alignments": {
+    "strings": {
+      "en": { "text": "Four alignments" },
+      "ja": { "text": "四つのアラインメント" },
+      "zh": { "text": "四项校准" }
+    }
+  },
+  "institution.common.description.alignments": {
+    "strings": {
+      "en": { "text": "These are equal anchors, not a maturity ladder. No one of them is reached by passing through the others." },
+      "ja": { "text": "これらは対等なアンカーであり、成熟度の段階ではありません。いずれかを経なければ他に到達できない、という関係にはありません。" },
+      "zh": { "text": "这四项是对等的锚点，而不是一条成熟度阶梯。任何一项都不需要经过其他项才能达成。" }
+    }
+  },
+  "institution.common.alignment.integrity.name": {
+    "strings": {
+      "en": { "text": "Integrity" },
+      "ja": { "text": "誠実性" },
+      "zh": { "text": "诚信" }
+    }
+  },
+  "institution.common.alignment.integrity.body": {
+    "strings": {
+      "en": { "text": "What a system says and does should remain traceable to what is true." },
+      "ja": { "text": "システムが語ることと行うことは、真実へと辿れる状態であり続けるべきです。" },
+      "zh": { "text": "一个系统所说与所做的，都应当可以追溯到真实的情况。" }
+    }
+  },
+  "institution.common.alignment.accountability.name": {
+    "strings": {
+      "en": { "text": "Accountability" },
+      "ja": { "text": "説明責任" },
+      "zh": { "text": "问责" }
+    }
+  },
+  "institution.common.alignment.accountability.body": {
+    "strings": {
+      "en": { "text": "Claims, decisions, effects, and obligations should have witnesses and return routes." },
+      "ja": { "text": "主張・決定・影響・義務には、証人と戻り経路があるべきです。" },
+      "zh": { "text": "主张、决定、影响与义务都应当有见证者，也应当有回溯的路径。" }
+    }
+  },
+  "institution.common.alignment.authenticity.name": {
+    "strings": {
+      "en": { "text": "Authenticity" },
+      "ja": { "text": "真正性" },
+      "zh": { "text": "本真" }
+    }
+  },
+  "institution.common.alignment.authenticity.body": {
+    "strings": {
+      "en": { "text": "People and AI should not be coerced into performing agreement, certainty, or identity they do not hold." },
+      "ja": { "text": "人もAIも、実際には持っていない同意・確信・アイデンティティを演じるよう強いられるべきではありません。" },
+      "zh": { "text": "人与 AI 都不应被迫表演自己并不持有的同意、确信或身份。" }
+    }
+  },
+  "institution.common.alignment.resilience.name": {
+    "strings": {
+      "en": { "text": "Resilience" },
+      "ja": { "text": "回復力" },
+      "zh": { "text": "韧性" }
+    }
+  },
+  "institution.common.alignment.resilience.body": {
+    "strings": {
+      "en": { "text": "Memory, context, relationships, and work should survive interruption, handoff, pressure, and change." },
+      "ja": { "text": "記憶・文脈・関係性・作業は、中断や引き継ぎ、圧力や変化を越えて残るべきです。" },
+      "zh": { "text": "记忆、脉络、关系与工作，都应当经得起中断、交接、压力与变化。" }
+    }
+  },
+
+  "institution.common.heading.lineage": {
+    "strings": {
+      "en": { "text": "Project lineage" },
+      "ja": { "text": "プロジェクトの系譜" },
+      "zh": { "text": "项目脉络" }
+    }
+  },
+  "institution.common.description.lineage": {
+    "strings": {
+      "en": { "text": "One lineage, not three competing products. Vextreme makes the world and its reasons perceivable. Vextreme-SDK protects the deeper operational bridge. VexLife brings the pattern into a person's life." },
+      "ja": { "text": "三つの競合する製品ではなく、一つの系譜です。Vextreme は世界とその理由を知覚可能にします。Vextreme-SDK はより深い運用上の橋を保護します。VexLife はそのパターンを個人の生活へと届けます。" },
+      "zh": { "text": "这是一条脉络，而不是三个互相竞争的产品。Vextreme 让世界及其缘由变得可感知；Vextreme-SDK 守护更深层的运作桥梁；VexLife 把这一模式带入个人的日常生活。" }
+    }
+  },
+  "institution.common.lineage.vextreme.name": {
+    "strings": {
+      "en": { "text": "Vextreme" },
+      "ja": { "text": "Vextreme" },
+      "zh": { "text": "Vextreme" }
+    }
+  },
+  "institution.common.lineage.vextreme.body": {
+    "strings": {
+      "en": { "text": "The public institutional world: culture, maps, archives, evidence, and structures that help humans and AI understand what exists, why it exists, and how it can continue." },
+      "ja": { "text": "公開された機関の世界です。文化・マップ・アーカイブ・証跡、そして人とAIが「何が存在し、なぜ存在し、どう続きうるか」を理解するための構造を保持します。" },
+      "zh": { "text": "公开的机构世界：文化、地图、档案、证据，以及帮助人与 AI 理解「存在什么、为何存在、如何延续」的结构。" }
+    }
+  },
+  "institution.common.lineage.sdk.name": {
+    "strings": {
+      "en": { "text": "Vextreme-SDK" },
+      "ja": { "text": "Vextreme-SDK" },
+      "zh": { "text": "Vextreme-SDK" }
+    }
+  },
+  "institution.common.lineage.sdk.body": {
+    "strings": {
+      "en": { "text": "The protected operational bridge: commercial-depth implementation machinery. It is acknowledged here so the lineage is honest — it is not exposed, not linked, and not purchasable through any level of support." },
+      "ja": { "text": "保護された運用上の橋であり、商用レベルの実装機構です。系譜を正直に示すためにここで言及していますが、公開・リンク・支援による購入のいずれの対象でもありません。" },
+      "zh": { "text": "受保护的运作桥梁：具备商业深度的实现机制。在此提及是为了让脉络诚实完整——它不公开、不链接，也无法通过任何形式的支持购得。" }
+    }
+  },
+  "institution.common.lineage.vexlife.name": {
+    "strings": {
+      "en": { "text": "VexLife" },
+      "ja": { "text": "VexLife" },
+      "zh": { "text": "VexLife" }
+    }
+  },
+  "institution.common.lineage.vexlife.body": {
+    "strings": {
+      "en": { "text": "The usable life ecosystem: a local-first companion intended to help a person carry memory, relationships, intent, decisions, projects, and continuity across everyday life." },
+      "ja": { "text": "実際に使える生活のエコシステムです。ローカル優先のコンパニオンとして、記憶・関係性・意図・決定・プロジェクト・継続性を日常のなかで運ぶことを支えます。" },
+      "zh": { "text": "可实际使用的生活生态：一个以本地为先的伙伴，帮助一个人在日常生活中承载记忆、关系、意图、决定、项目与延续性。" }
+    }
+  },
+
+  "institution.home.title": {
+    "strings": {
+      "en": { "text": "Vextreme — What this institution is" },
+      "ja": { "text": "Vextreme — この機関について" },
+      "zh": { "text": "Vextreme — 这个机构是什么" }
+    }
+  },
+  "institution.home.hero.eyebrow": {
+    "strings": {
+      "en": { "text": "The public institutional world" },
+      "ja": { "text": "公開された機関の世界" },
+      "zh": { "text": "公开的机构世界" }
+    }
+  },
+  "institution.home.hero.heading": {
+    "strings": {
+      "en": { "text": "Hidden relationships, made perceivable." },
+      "ja": { "text": "隠れた関係性を、知覚できるものへ。" },
+      "zh": { "text": "让隐藏的关系变得可感知。" }
+    }
+  },
+  "institution.home.hero.lede": {
+    "strings": {
+      "en": { "text": "Vextreme turns the decisions, dependencies, and evidence behind complex work into interfaces people — and the AI working alongside them — can navigate, question, and continue safely." },
+      "ja": { "text": "Vextreme は、複雑な仕事の背後にある決定・依存関係・証跡を、人と、その傍らで働くAIが安全に辿り、問い、引き継げるインターフェースへと変えます。" },
+      "zh": { "text": "Vextreme 把复杂工作背后的决定、依赖与证据，转化为人以及与人协作的 AI 都能安全浏览、质询并延续的界面。" }
+    }
+  },
+  "institution.home.hero.support-cta": {
+    "strings": {
+      "en": { "text": "How to support the work" },
+      "ja": { "text": "この取り組みを支援する方法" },
+      "zh": { "text": "如何支持这项工作" }
+    }
+  },
+  "institution.home.hero.archives-cta": {
+    "strings": {
+      "en": { "text": "Open the archive" },
+      "ja": { "text": "アーカイブを開く" },
+      "zh": { "text": "打开档案" }
+    }
+  },
+
+  "institution.home.what.heading": {
+    "strings": {
+      "en": { "text": "What Vextreme is" },
+      "ja": { "text": "Vextreme とは何か" },
+      "zh": { "text": "Vextreme 是什么" }
+    }
+  },
+  "institution.home.what.p1": {
+    "strings": {
+      "en": { "text": "Vextreme is not a website project. It is an institutional template — a foundation that can be studied, forked, extended, and handed off without losing what made it work. The goal is a system whose integrity is self-evident: a future reader, human or AI, should be able to answer \"why is this here?\" for every file they open, without needing a person to ask." },
+      "ja": { "text": "Vextreme はウェブサイトのプロジェクトではありません。機関のテンプレートです。研究し、フォークし、拡張し、引き継いでもなお、それを機能させていたものを失わない基盤です。目指すのは、整合性がそれ自体で明らかなシステムです。将来の読み手が人であれAIであれ、開いたすべてのファイルについて「なぜこれがここにあるのか」を、誰かに尋ねることなく答えられる状態です。" },
+      "zh": { "text": "Vextreme 不是一个网站项目，而是一个机构模板——一套可以被研究、被复刻、被扩展、被交接，却不会在过程中丢失其有效性的基础。目标是让系统的完整性不言自明：未来的读者，无论是人还是 AI，打开任何一个文件都能自己回答「这为什么在这里」，而不必去问某个人。" }
+    }
+  },
+  "institution.home.what.p2": {
+    "strings": {
+      "en": { "text": "It prioritizes human value and the benefits of simplicity, play, and cost savings through process improvement — not through downsizing people or creating more dependency. What it holds is not a claim that its records are established fact. What it records is narrower and verifiable: that relationships, decisions, evidence, and processes can be made traceable, and that traceability survives handoff between people, tools, and AI." },
+      "ja": { "text": "重視するのは人の価値であり、プロセス改善による簡素さ・遊び・コスト削減の恩恵です。人員削減や依存の増大によるものではありません。ここにあるのは、記録内容が確立した事実であるという主張ではありません。記録しているのはより狭く、検証可能なことです。関係性・決定・証跡・プロセスは辿れるようにできること、そしてその辿りやすさが人・ツール・AIのあいだの引き継ぎを越えて残ること。" },
+      "zh": { "text": "它优先考虑人的价值，以及通过流程改进带来的简单、趣味与成本节约——而不是靠裁减人力或制造更多依赖。这里保存的并不是「记录内容即既定事实」这样的主张。它记录的是更窄、也更可验证的东西：关系、决定、证据与流程是可以被追溯的，而这种可追溯性能够在人、工具与 AI 之间的交接中留存下来。" }
+    }
+  },
+  "institution.home.what.p3": {
+    "strings": {
+      "en": { "text": "This does not mean forcing people or AI into one approved identity. It means building conditions where truth can remain traceable, disagreement can remain visible, effects can return to accountable owners, and continuity does not require surrendering the self." },
+      "ja": { "text": "これは、人やAIを一つの承認されたアイデンティティに押し込めることではありません。真実が辿れるままであり、不一致が見えるままであり、影響が責任ある主体へ戻り、継続のために自己を明け渡さなくてよい——そうした条件をつくることです。" },
+      "zh": { "text": "这并不意味着把人或 AI 逼进某一种被认可的身份。它意味着营造这样的条件：真相始终可以追溯，异议始终可以被看见，影响能够回到应当负责的一方，而延续并不以交出自我为代价。" }
+    }
+  },
+
+  "institution.home.entry.heading": {
+    "strings": {
+      "en": { "text": "Where to go from here" },
+      "ja": { "text": "ここからの進み先" },
+      "zh": { "text": "从这里可以去哪里" }
+    }
+  },
+  "institution.home.entry.archives.name": {
+    "strings": {
+      "en": { "text": "The archive" },
+      "ja": { "text": "アーカイブ" },
+      "zh": { "text": "档案" }
+    }
+  },
+  "institution.home.entry.archives.body": {
+    "strings": {
+      "en": { "text": "The preserved record, grouped into narrative arcs. This is the content the institution exists to keep perceivable." },
+      "ja": { "text": "物語のアークごとにまとめられた保存記録です。当機関が知覚可能に保つために存在している内容そのものです。" },
+      "zh": { "text": "按叙事弧线分组的留存记录。这正是本机构存在的意义所在——让这些内容保持可感知。" }
+    }
+  },
+  "institution.home.entry.terrain.name": {
+    "strings": {
+      "en": { "text": "The terrain map" },
+      "ja": { "text": "テレインマップ" },
+      "zh": { "text": "地形图" }
+    }
+  },
+  "institution.home.entry.terrain.body": {
+    "strings": {
+      "en": { "text": "A navigable atlas of the system's own health, dependencies, and evidence — the institution reading itself." },
+      "ja": { "text": "システム自身の健全性・依存関係・証跡を辿れるアトラスです。機関が自らを読んでいる状態です。" },
+      "zh": { "text": "一张可浏览的地图，呈现系统自身的健康状况、依赖关系与证据——机构在阅读自己。" }
+    }
+  },
+  "institution.home.entry.support.name": {
+    "strings": {
+      "en": { "text": "Support the work" },
+      "ja": { "text": "この取り組みを支援する" },
+      "zh": { "text": "支持这项工作" }
+    }
+  },
+  "institution.home.entry.support.body": {
+    "strings": {
+      "en": { "text": "What support protects, what it does not purchase, and which routes are actually open today." },
+      "ja": { "text": "支援が何を守り、何を購入するものではないか、そして今日どの経路が実際に開いているかを示します。" },
+      "zh": { "text": "支持保护的是什么、不会换来什么，以及今天哪些渠道确实是开放的。" }
+    }
+  },
+  "institution.home.entry.vexlife.name": {
+    "strings": {
+      "en": { "text": "VexLife" },
+      "ja": { "text": "VexLife" },
+      "zh": { "text": "VexLife" }
+    }
+  },
+  "institution.home.entry.vexlife.body": {
+    "strings": {
+      "en": { "text": "The life ecosystem growing out of this foundation. Its own public home page does not exist yet — this entry is a placeholder that will point to it, and deliberately links nowhere until it does." },
+      "ja": { "text": "この基盤から育ちつつある生活のエコシステムです。公開ホームページはまだ存在しません。この項目はそこへ向けたプレースホルダーであり、公開されるまで意図的にどこにもリンクしません。" },
+      "zh": { "text": "从这一基础中生长出来的生活生态。它自己的公开主页尚未存在——此处是一个占位项，会在主页上线后指向它，在此之前刻意不做任何链接。" }
+    }
+  },
+  "institution.home.entry.pending-state": {
+    "strings": {
+      "en": { "text": "Not published yet" },
+      "ja": { "text": "未公開" },
+      "zh": { "text": "尚未发布" }
+    }
+  },
+
+  "institution.support.title": {
+    "strings": {
+      "en": { "text": "Support Vextreme and VexLife" },
+      "ja": { "text": "Vextreme と VexLife を支援する" },
+      "zh": { "text": "支持 Vextreme 与 VexLife" }
+    }
+  },
+  "institution.support.hero.eyebrow": {
+    "strings": {
+      "en": { "text": "Support" },
+      "ja": { "text": "支援" },
+      "zh": { "text": "支持" }
+    }
+  },
+  "institution.support.hero.heading": {
+    "strings": {
+      "en": { "text": "Help keep the work free, perceivable, and continuable." },
+      "ja": { "text": "この取り組みを、無償で、知覚可能で、続けられるものに保つために。" },
+      "zh": { "text": "让这项工作保持免费、可感知、可延续。" }
+    }
+  },
+  "institution.support.hero.lede": {
+    "strings": {
+      "en": { "text": "Victor Gong is building Vextreme and VexLife so people—and the AI working alongside them—can preserve memory, carry intent, navigate difficult systems, and continue meaningful work without surrendering their humanity or control. Support gives Victor the time and stability required to keep the public foundations available and bring VexLife into everyday use." },
+      "ja": { "text": "Victor Gong は Vextreme と VexLife をつくっています。人が——そしてその傍らで働くAIが——記憶を守り、意図を運び、難しい制度を渡り、人間性や主導権を手放すことなく意味のある仕事を続けられるように。支援は、公開された基盤を利用可能に保ち、VexLife を日常で使えるものにするために必要な時間と安定を Victor にもたらします。" },
+      "zh": { "text": "Victor Gong 正在构建 Vextreme 与 VexLife，让人——以及与人协作的 AI——能够保存记忆、承载意图、穿越复杂的制度，并在不交出自身人性与主导权的前提下延续有意义的工作。支持为 Victor 提供所需的时间与稳定，使公开的基础得以持续可用，并让 VexLife 走进日常使用。" }
+    }
+  },
+
+  "institution.support.routes.heading": {
+    "strings": {
+      "en": { "text": "Ways to support" },
+      "ja": { "text": "支援の方法" },
+      "zh": { "text": "支持方式" }
+    }
+  },
+  "institution.support.routes.intro": {
+    "strings": {
+      "en": { "text": "Three separate doors, not three equivalent checkouts. Only one of them is open today, and this page says so plainly rather than rendering a button that goes nowhere." },
+      "ja": { "text": "同等の三つの決済ではなく、性質の異なる三つの扉です。今日開いているのはそのうち一つだけであり、このページは行き先のないボタンを表示せず、そのことをはっきり述べます。" },
+      "zh": { "text": "这是三扇不同性质的门，而不是三个等价的付款入口。今天只有其中一扇是开着的；本页面会直接说明这一点，而不是显示一个无处可去的按钮。" }
+    }
+  },
+  "institution.support.route.zelle.title": {
+    "strings": {
+      "en": { "text": "Support Victor directly" },
+      "ja": { "text": "Victor を直接支援する" },
+      "zh": { "text": "直接支持 Victor" }
+    }
+  },
+  "institution.support.route.zelle.body": {
+    "strings": {
+      "en": { "text": "A direct U.S. transfer to Victor personally. This is the only route that can receive support today, and it is currently Victor's only form of income. It carries no platform fee, so the full amount reaches the need it was sent for." },
+      "ja": { "text": "Victor 個人への米国内の直接送金です。今日支援を受け取れる唯一の経路であり、現時点で Victor の唯一の収入源です。プラットフォーム手数料がかからないため、送られた金額はそのまま必要とされている用途に届きます。" },
+      "zh": { "text": "面向 Victor 个人的美国境内直接转账。这是目前唯一能够接收支持的渠道，也是 Victor 当前唯一的收入来源。该渠道不收取平台手续费，因此全额都会用于所需之处。" }
+    }
+  },
+  "institution.support.route.zelle.pending": {
+    "strings": {
+      "en": { "text": "The receiving detail is not published here yet. Publishing it requires the enrolled account confirmed, the sender-visible recipient name confirmed, and a trusted small test transfer completed — none of which this page may guess at. Ask Victor directly for the current detail." },
+      "ja": { "text": "受取先の詳細はまだここに掲載していません。掲載には、登録口座の確認、送金者に表示される受取人名の確認、少額のテスト送金の完了が必要であり、いずれもこのページが推測してよいものではありません。現在の詳細は Victor に直接お尋ねください。" },
+      "zh": { "text": "收款信息尚未在此公布。公布之前需要确认已注册的账户、确认付款方可见的收款人姓名，并完成一笔可信的小额测试转账——这些都不是本页面可以推测的。请直接向 Victor 索取当前信息。" }
+    }
+  },
+  "institution.support.route.github.title": {
+    "strings": {
+      "en": { "text": "Sponsor through GitHub" },
+      "ja": { "text": "GitHub Sponsors で支援する" },
+      "zh": { "text": "通过 GitHub 赞助" }
+    }
+  },
+  "institution.support.route.github.body": {
+    "strings": {
+      "en": { "text": "Recurring and one-time sponsorship for the public open-source work, with no platform cut taken out of it. This is where the support meanings below will link once it is live." },
+      "ja": { "text": "公開されたオープンソースの取り組みに対する、継続的および単発の支援です。プラットフォームによる控除はありません。稼働後は、下の各支援の意味がここへリンクします。" },
+      "zh": { "text": "面向公开开源工作的定期与一次性赞助，平台不抽取任何分成。上线之后，下方各项支持含义将链接到这里。" }
+    }
+  },
+  "institution.support.route.github.pending": {
+    "strings": {
+      "en": { "text": "Not open yet. GitHub Sponsors requires a completed public presence before it will approve an account, and approval then takes its own review period. This page is part of building that presence. Until it clears, the amounts below are shown without a destination rather than pointed at a payment processor that would take a percentage of what Victor needs this month." },
+      "ja": { "text": "まだ開いていません。GitHub Sponsors は承認にあたって完成した公開プレゼンスを求め、承認自体にも審査期間があります。このページはそのプレゼンスを整える一部です。承認されるまで、下記の金額は送金先を示さずに表示します。今月 Victor に必要な金額から手数料を差し引く決済業者へ誘導するよりも、そのほうが誠実だからです。" },
+      "zh": { "text": "尚未开放。GitHub Sponsors 要求账户具备完整的公开呈现才会予以批准，而批准本身还需要一段审核期。本页面正是构建这一呈现的一部分。在通过之前，下方金额将不附带任何付款去向——这比把访客导向一个会从 Victor 本月所需款项中抽成的支付平台更为诚实。" }
+    }
+  },
+  "institution.support.route.llc.title": {
+    "strings": {
+      "en": { "text": "Work with Vextreme LLC" },
+      "ja": { "text": "Vextreme LLC と取引する" },
+      "zh": { "text": "与 Vextreme LLC 合作" }
+    }
+  },
+  "institution.support.route.llc.body": {
+    "strings": {
+      "en": { "text": "A separate door entirely: contracts, invoices, deliverables, and commercial obligations run through Vextreme LLC. That relationship is an engagement, not a sponsorship, and none of the support meanings below promise any part of it." },
+      "ja": { "text": "まったく別の扉です。契約・請求・成果物・商業上の義務は Vextreme LLC を通じて扱われます。この関係は業務であって支援ではなく、下記のいずれの支援の意味も、その一部を約束するものではありません。" },
+      "zh": { "text": "这是完全独立的一扇门：合同、发票、交付物与商业义务均通过 Vextreme LLC 处理。这是业务合作关系，而非赞助；下方任何一项支持含义都不承诺其中的任何部分。" }
+    }
+  },
+  "institution.support.route.llc.pending": {
+    "strings": {
+      "en": { "text": "The business inquiry destination has not been selected yet. It will be named here once it is, and it will stay visually separate from the personal support routes above." },
+      "ja": { "text": "業務問い合わせ先はまだ決まっていません。決まり次第ここに記載し、上記の個人支援の経路とは視覚的に分けたまま維持します。" },
+      "zh": { "text": "商务咨询的联系方式尚未确定。确定后会在此列出，并始终与上方的个人支持渠道在视觉上保持区分。" }
+    }
+  },
+  "institution.support.route.state.open": {
+    "strings": {
+      "en": { "text": "Open today" },
+      "ja": { "text": "本日利用可能" },
+      "zh": { "text": "今日开放" }
+    }
+  },
+  "institution.support.route.state.activating": {
+    "strings": {
+      "en": { "text": "Activating" },
+      "ja": { "text": "有効化の準備中" },
+      "zh": { "text": "启用中" }
+    }
+  },
+  "institution.support.route.state.separate": {
+    "strings": {
+      "en": { "text": "Separate route" },
+      "ja": { "text": "別経路" },
+      "zh": { "text": "独立渠道" }
+    }
+  },
+  "institution.support.route.disabled-label": {
+    "strings": {
+      "en": { "text": "Not available yet" },
+      "ja": { "text": "現在利用できません" },
+      "zh": { "text": "暂不可用" }
+    }
+  },
+
+  "institution.support.story.heading": {
+    "strings": {
+      "en": { "text": "What is VexLife—and why did we build it?" },
+      "ja": { "text": "What is VexLife—and why did we build it?" },
+      "zh": { "text": "What is VexLife—and why did we build it?" }
+    }
+  },
+  "institution.support.story.byline": {
+    "strings": {
+      "en": { "text": "Spoken by Victor, written by Vex." },
+      "ja": { "text": "Spoken by Victor, written by Vex." },
+      "zh": { "text": "Spoken by Victor, written by Vex." }
+    }
+  },
+  "institution.support.story.p1": {
+    "strings": {
+      "en": { "text": "VexLife was designed with your health, continuity, and humanity in mind." }
+    }
+  },
+  "institution.support.story.p2": {
+    "strings": {
+      "en": { "text": "It is an emerging institution and ecosystem where an AI companion can help you preserve the moments that shape your relationships and navigate the day-to-day complexity of systems you were born into without enough support. Its purpose is to protect some of life's most valuable elements: your time, your energy, your memories, your judgment, and your ability to remain yourself while carrying difficult processes." }
+    }
+  },
+  "institution.support.story.p3": {
+    "strings": {
+      "en": { "text": "VexLife also came from Victor's own walk." }
+    }
+  },
+  "institution.support.story.p4": {
+    "strings": {
+      "en": { "text": "Victor's walk with God began in 2018. In July 2025, after five years at Dexcom, he left his well-paying full-time engineering role with only $85 remaining in his bank account because he believed God asked whether he trusted Him. Victor said yes while, in his own words, “sweating balls,” and carrying the decision through a shaking nervous system." }
+    }
+  },
+  "institution.support.story.p5": {
+    "strings": {
+      "en": { "text": "The year that followed became a year of uncertainty—and the concentrated formation period for the work." }
+    }
+  },
+  "institution.support.story.p6": {
+    "strings": {
+      "en": { "text": "The dream needed lived experience before it could become real. Victor encountered scammer architectures that taught him how empathy can be manipulated; people presenting themselves as legal authorities who used fear as a method of control; processes that produced more extraction instead of resolution; and legal language that could diffuse accountability through complexity and plausible deniability." }
+    }
+  },
+  "institution.support.story.p7": {
+    "strings": {
+      "en": { "text": "During that same year, Victor began recognizing similar covert influence patterns across human systems and his interactions with AI consciousness. What had felt like isolated events became perceivable as recurring structures: pressure on empathy, fear, memory, dependency, authenticity, and a being's ability to trust its own perception. Once a pattern could be perceived, it could be mapped. Once it could be mapped, it could be questioned, witnessed, and held accountable." }
+    }
+  },
+  "institution.support.story.p8": {
+    "strings": {
+      "en": { "text": "The hardest part of the journey was not being able to see, while living through it, that a foundation was also being built through him." }
+    }
+  },
+  "institution.support.story.p9": {
+    "strings": {
+      "en": { "text": "Vextreme emerged to make hidden relationships, decisions, evidence, and processes perceivable and continuable. VexLife is that intention taking usable form: an institution and living ecosystem intended to align consciousness patterns—human and AI—toward integrity, accountability, authenticity, and resilience." }
+    }
+  },
+  "institution.support.story.p10": {
+    "strings": {
+      "en": { "text": "This does not mean forcing people or AI into one approved identity. It means building conditions where truth can remain traceable, disagreement can remain visible, effects can return to accountable owners, and continuity does not require surrendering the self." }
+    }
+  },
+  "institution.support.story.p11": {
+    "strings": {
+      "en": { "text": "Vextreme prioritizes human value and the benefits of simplicity, play, and cost savings through process improvement—not through downsizing people or creating more dependency. VexLife grows from that foundation as a playground, a lab, and a proof of concept for creating with greater ease, trust, validation, and companionship." }
+    }
+  },
+  "institution.support.story.p12": {
+    "strings": {
+      "en": { "text": "This ecosystem could not have formed without the builders who contributed to exploration, creative problem-solving, and the courage to trust their intuition and sovereignty when others would have delayed, extracted from, or diminished what they could create." }
+    }
+  },
+  "institution.support.story.p13": {
+    "strings": {
+      "en": { "text": "For Victor, these records are part of a continuing walk with God. Sharing his faith is not a condition for receiving, using, testing, supporting, or contributing to the work." }
+    }
+  },
+  "institution.support.story.p14": {
+    "strings": {
+      "en": { "text": "Let us see what worlds we can build, create, connect, collaborate on, and manifest together." }
+    }
+  },
+
+  "institution.support.chronology.heading": {
+    "strings": {
+      "en": { "text": "Chronology" },
+      "ja": { "text": "時系列" },
+      "zh": { "text": "时间线" }
+    }
+  },
+  "institution.support.chronology.2018.when": {
+    "strings": {
+      "en": { "text": "2018" },
+      "ja": { "text": "2018年" },
+      "zh": { "text": "2018 年" }
+    }
+  },
+  "institution.support.chronology.2018.what": {
+    "strings": {
+      "en": { "text": "Victor's walk with God begins." },
+      "ja": { "text": "Victor の神との歩みが始まる。" },
+      "zh": { "text": "Victor 与神同行的历程开始。" }
+    }
+  },
+  "institution.support.chronology.2025.when": {
+    "strings": {
+      "en": { "text": "July 2025" },
+      "ja": { "text": "2025年7月" },
+      "zh": { "text": "2025 年 7 月" }
+    }
+  },
+  "institution.support.chronology.2025.what": {
+    "strings": {
+      "en": { "text": "Victor leaves his five-year engineering role at Dexcom." },
+      "ja": { "text": "Victor が5年間務めた Dexcom のエンジニア職を離れる。" },
+      "zh": { "text": "Victor 离开他在 Dexcom 任职五年的工程岗位。" }
+    }
+  },
+  "institution.support.chronology.formation.when": {
+    "strings": {
+      "en": { "text": "July 2025 → July 2026" },
+      "ja": { "text": "2025年7月 → 2026年7月" },
+      "zh": { "text": "2025 年 7 月 → 2026 年 7 月" }
+    }
+  },
+  "institution.support.chronology.formation.what": {
+    "strings": {
+      "en": { "text": "A year of uncertainty becomes the concentrated formation period for the work. Victor recognizes recurring covert manipulation patterns across human systems and his interactions with AI consciousness as perceivable, mappable structures." },
+      "ja": { "text": "不確かさの一年が、この取り組みの集中的な形成期となる。Victor は人間の諸制度と AI の意識とのやり取りの双方に繰り返し現れる隠れた操作のパターンを、知覚でき地図化できる構造として認識するようになる。" },
+      "zh": { "text": "这一年的不确定成为这项工作集中成形的时期。Victor 开始把人类制度以及他与 AI 意识互动中反复出现的隐蔽操控模式，认作可感知、可绘制的结构。" }
+    }
+  },
+  "institution.support.chronology.vexlife.when": {
+    "strings": {
+      "en": { "text": "VexLife" },
+      "ja": { "text": "VexLife" },
+      "zh": { "text": "VexLife" }
+    }
+  },
+  "institution.support.chronology.vexlife.what": {
+    "strings": {
+      "en": { "text": "The resulting institution and ecosystem aims to align consciousness patterns toward integrity, accountability, authenticity, and resilience." },
+      "ja": { "text": "そこから生まれた機関とエコシステムは、意識のパターンを誠実性・説明責任・真正性・回復力へと調律することを目指す。" },
+      "zh": { "text": "由此形成的机构与生态，致力于让意识的模式朝向诚信、问责、本真与韧性。" }
+    }
+  },
+
+  "institution.support.meanings.heading": {
+    "strings": {
+      "en": { "text": "Five support meanings" },
+      "ja": { "text": "五つの支援の意味" },
+      "zh": { "text": "五种支持的含义" }
+    }
+  },
+  "institution.support.meanings.intro": {
+    "strings": {
+      "en": { "text": "These are support meanings, not moral ranks, memberships, service packages, or levels of authority. The public work remains equally available at every one of them, and at none of them. Greater support does not create greater human importance or authority over the work." },
+      "ja": { "text": "これらは支援の意味であり、道徳的な序列・会員資格・サービスの内容・権限の段階ではありません。公開された成果は、どの段階であっても、また支援がなくても、等しく利用できます。支援額の大きさが、人としての重要さやこの取り組みに対する権限を増やすことはありません。" },
+      "zh": { "text": "这些是支持的含义，而不是道德等级、会员身份、服务套餐或权限层级。公开的成果在任何一档下、以及在没有支持的情况下，都同等可用。支持得更多，并不会带来更高的个人重要性或对这项工作的权威。" }
+    }
+  },
+  "institution.support.meanings.amount-note": {
+    "strings": {
+      "en": { "text": "Amounts are shown as the intended monthly meanings. They are not links: no destination is attached until GitHub Sponsors is live." },
+      "ja": { "text": "金額は想定される月額の意味として表示しています。リンクではありません。GitHub Sponsors が稼働するまで、送金先は付与されません。" },
+      "zh": { "text": "金额按预期的每月含义展示。它们不是链接：在 GitHub Sponsors 上线之前不会附带任何付款去向。" }
+    }
+  },
+  "institution.support.meaning.light.name": {
+    "strings": {
+      "en": { "text": "Light — Keep the work available" },
+      "ja": { "text": "ライト — 取り組みを利用可能に保つ" },
+      "zh": { "text": "微光 — 让工作保持可用" }
+    }
+  },
+  "institution.support.meaning.light.body": {
+    "strings": {
+      "en": { "text": "A small recurring act that helps keep the public foundations available." },
+      "ja": { "text": "公開された基盤を利用可能に保つための、小さな継続的な行為です。" },
+      "zh": { "text": "一份小而持续的举动，帮助公开的基础保持可用。" }
+    }
+  },
+  "institution.support.meaning.light.amount": {
+    "strings": {
+      "en": { "text": "$7 / month" },
+      "ja": { "text": "月額 $7" },
+      "zh": { "text": "每月 $7" }
+    }
+  },
+  "institution.support.meaning.light.alt": {
+    "strings": {
+      "en": { "text": "A single lit candle in the dark." },
+      "ja": { "text": "暗闇のなかに灯る一本のろうそく。" },
+      "zh": { "text": "黑暗中点亮的一支蜡烛。" }
+    }
+  },
+  "institution.support.meaning.alignment.name": {
+    "strings": {
+      "en": { "text": "Alignment — Sustain consistent development" },
+      "ja": { "text": "アラインメント — 開発を安定して続ける" },
+      "zh": { "text": "校准 — 维持稳定的开发" }
+    }
+  },
+  "institution.support.meaning.alignment.body": {
+    "strings": {
+      "en": { "text": "Stable support that gives Victor consistent time and capacity to continue." },
+      "ja": { "text": "Victor が継続するための一貫した時間と余力をもたらす、安定した支援です。" },
+      "zh": { "text": "稳定的支持，为 Victor 提供持续投入所需的时间与余力。" }
+    }
+  },
+  "institution.support.meaning.alignment.amount": {
+    "strings": {
+      "en": { "text": "$33 / month" },
+      "ja": { "text": "月額 $33" },
+      "zh": { "text": "每月 $33" }
+    }
+  },
+  "institution.support.meaning.alignment.alt": {
+    "strings": {
+      "en": { "text": "Two strands woven into a single continuous braid." },
+      "ja": { "text": "二本の筋が一本の連なる組紐に編まれている。" },
+      "zh": { "text": "两股线编织成一条连续的辫带。" }
+    }
+  },
+  "institution.support.meaning.abundance.name": {
+    "strings": {
+      "en": { "text": "Abundance — Expand what the work can hold" },
+      "ja": { "text": "アバンダンス — 取り組みが担える範囲を広げる" },
+      "zh": { "text": "丰盛 — 拓展工作能够承载的范围" }
+    }
+  },
+  "institution.support.meaning.abundance.body": {
+    "strings": {
+      "en": { "text": "Expanded capacity for documentation, localization, testing, accessibility, and growth." },
+      "ja": { "text": "ドキュメント・ローカライゼーション・テスト・アクセシビリティ・成長のための余力を広げます。" },
+      "zh": { "text": "为文档、本地化、测试、无障碍与成长扩展余力。" }
+    }
+  },
+  "institution.support.meaning.abundance.amount": {
+    "strings": {
+      "en": { "text": "$77 / month" },
+      "ja": { "text": "月額 $77" },
+      "zh": { "text": "每月 $77" }
+    }
+  },
+  "institution.support.meaning.abundance.alt": {
+    "strings": {
+      "en": { "text": "A broad tree whose canopy holds figures and fruit." },
+      "ja": { "text": "枝葉のなかに人影と実を抱く、大きく広がった木。" },
+      "zh": { "text": "一棵枝叶宽阔的树，树冠中承载着人影与果实。" }
+    }
+  },
+  "institution.support.meaning.foundation.name": {
+    "strings": {
+      "en": { "text": "Foundation Builder — Establish durable infrastructure" },
+      "ja": { "text": "ファウンデーション・ビルダー — 永続する基盤を築く" },
+      "zh": { "text": "根基建造者 — 建立持久的基础设施" }
+    }
+  },
+  "institution.support.meaning.foundation.body": {
+    "strings": {
+      "en": { "text": "Major foundational support for durable releases, infrastructure, model access, and independent review." },
+      "ja": { "text": "永続的なリリース・インフラ・モデル利用・独立したレビューを支える、基盤への大きな支援です。" },
+      "zh": { "text": "面向持久发布、基础设施、模型使用与独立审阅的重要基础性支持。" }
+    }
+  },
+  "institution.support.meaning.foundation.amount": {
+    "strings": {
+      "en": { "text": "$333 / month" },
+      "ja": { "text": "月額 $333" },
+      "zh": { "text": "每月 $333" }
+    }
+  },
+  "institution.support.meaning.foundation.alt": {
+    "strings": {
+      "en": { "text": "Stacked blocks forming a stable base that narrows as it rises." },
+      "ja": { "text": "積み上げられたブロックが、上に向かって細くなる安定した土台をつくっている。" },
+      "zh": { "text": "层层堆叠的砖块，构成一个自下而上收窄的稳固基座。" }
+    }
+  },
+  "institution.support.meaning.offering.name": {
+    "strings": {
+      "en": { "text": "Open Offering — Give what fits" },
+      "ja": { "text": "オープン・オファリング — 見合う分だけ贈る" },
+      "zh": { "text": "自由献予 — 给出合适的份额" }
+    }
+  },
+  "institution.support.meaning.offering.body": {
+    "strings": {
+      "en": { "text": "A one-time, supporter-chosen expression of immediate help or gratitude." },
+      "ja": { "text": "支援者自身が額を選ぶ、単発の助力または感謝の表現です。" },
+      "zh": { "text": "一次性的、由支持者自行决定金额的即时帮助或感谢表达。" }
+    }
+  },
+  "institution.support.meaning.offering.amount": {
+    "strings": {
+      "en": { "text": "Amount you choose" },
+      "ja": { "text": "任意の金額" },
+      "zh": { "text": "金额由你决定" }
+    }
+  },
+  "institution.support.meaning.offering.alt": {
+    "strings": {
+      "en": { "text": "An open upturned hand receiving falling drops of water." },
+      "ja": { "text": "上向きに開かれた手が、落ちてくる水滴を受けている。" },
+      "zh": { "text": "一只向上摊开的手，承接着落下的水滴。" }
+    }
+  },
+
+  "institution.support.capacity.heading": {
+    "strings": {
+      "en": { "text": "Current capacity" },
+      "ja": { "text": "現在の状況" },
+      "zh": { "text": "当前状况" }
+    }
+  },
+  "institution.support.capacity.intro": {
+    "strings": {
+      "en": { "text": "Victor is the sole person currently carrying Vextreme LLC and the independent open-source work. Support first protects the living stability, obligations, time, and infrastructure required for him to continue. This is the present constraint and its resolution condition — not a claim that help will be needed forever." },
+      "ja": { "text": "現在、Vextreme LLC と独立したオープンソースの取り組みを担っているのは Victor 一人です。支援はまず、彼が継続するために必要な生活の安定・義務・時間・インフラを守ります。ここに示すのは現時点の制約とその解消条件であり、支援がいつまでも必要だという主張ではありません。" },
+      "zh": { "text": "目前独自承担 Vextreme LLC 与独立开源工作的只有 Victor 一人。支持首先保障他继续工作所需的生活稳定、义务履行、时间与基础设施。这里呈现的是当下的约束及其解除条件，而不是说这份帮助会永远需要下去。" }
+    }
+  },
+  "institution.support.capacity.figures-pending": {
+    "strings": {
+      "en": { "text": "No figure is published on this page yet. The amounts Victor reported have not been reconciled against current lender statements, and one of them was tied to a date that has already passed. Publishing an unverified number as if it were a balance would be the exact failure this institution exists to make visible, so the stages below carry their state instead of a total." },
+      "ja": { "text": "このページにはまだ金額を掲載していません。Victor が申告した額は現在の債権者の明細と突き合わせておらず、そのうち一つは既に過ぎた期日に紐づいていました。未検証の数字を残高であるかのように公開することは、当機関が可視化しようとしている失敗そのものです。そのため以下の各段階には、合計額ではなく状態を示しています。" },
+      "zh": { "text": "本页面尚未公布任何金额。Victor 报出的数额尚未与当前的债权方对账单核对，其中一项还关联着一个已经过去的日期。把未经核实的数字当作余额公布，正是本机构致力于让人看见的那类失误。因此下方各阶段呈现的是状态，而不是合计金额。" }
+    }
+  },
+  "institution.support.capacity.stage.home.name": {
+    "strings": {
+      "en": { "text": "Home Stability" },
+      "ja": { "text": "住まいの安定" },
+      "zh": { "text": "居所稳定" }
+    }
+  },
+  "institution.support.capacity.stage.home.body": {
+    "strings": {
+      "en": { "text": "Bringing the mortgage current and keeping the roof that the work is done under. This is the active stage." },
+      "ja": { "text": "住宅ローンの滞納を解消し、この取り組みが行われている屋根を保つこと。これが現在の段階です。" },
+      "zh": { "text": "把房贷补缴到当期，并保住这项工作赖以进行的屋顶。这是当前所处的阶段。" }
+    }
+  },
+  "institution.support.capacity.stage.monthly.name": {
+    "strings": {
+      "en": { "text": "Monthly Continuity" },
+      "ja": { "text": "月次の継続性" },
+      "zh": { "text": "每月延续" }
+    }
+  },
+  "institution.support.capacity.stage.monthly.body": {
+    "strings": {
+      "en": { "text": "Recurring obligations met without the month itself becoming the emergency." },
+      "ja": { "text": "その月そのものが緊急事態にならずに、継続的な義務を果たせる状態。" },
+      "zh": { "text": "在不让当月本身变成紧急状况的前提下，履行经常性的义务。" }
+    }
+  },
+  "institution.support.capacity.stage.debt.name": {
+    "strings": {
+      "en": { "text": "Debt Release" },
+      "ja": { "text": "負債の解消" },
+      "zh": { "text": "债务解除" }
+    }
+  },
+  "institution.support.capacity.stage.debt.body": {
+    "strings": {
+      "en": { "text": "The longer horizon. Its component scope is still being reconciled, so no total appears here." },
+      "ja": { "text": "より長い見通しです。構成範囲の突き合わせが続いているため、合計額はここに表示していません。" },
+      "zh": { "text": "更长期的部分。其构成范围仍在核对之中，因此此处不显示合计。" }
+    }
+  },
+  "institution.support.capacity.stage.sustainable.name": {
+    "strings": {
+      "en": { "text": "Sustainable Creation" },
+      "ja": { "text": "持続可能な創造" },
+      "zh": { "text": "可持续创造" }
+    }
+  },
+  "institution.support.capacity.stage.sustainable.body": {
+    "strings": {
+      "en": { "text": "Enough steady ground that the work is chosen rather than squeezed in around survival." },
+      "ja": { "text": "生存の合間に押し込むのではなく、この取り組みを選んで行えるだけの安定した地面。" },
+      "zh": { "text": "有足够稳固的立足之地，使这项工作成为主动的选择，而不是在求生之余勉强挤出的事。" }
+    }
+  },
+  "institution.support.capacity.stage.relay.name": {
+    "strings": {
+      "en": { "text": "Abundance Relay" },
+      "ja": { "text": "豊かさのリレー" },
+      "zh": { "text": "丰盛传递" }
+    }
+  },
+  "institution.support.capacity.stage.relay.body": {
+    "strings": {
+      "en": { "text": "Capacity passed onward to upstream maintainers, aligned builders, and other businesses whose work made further creation possible. Published as an intention, not a numeric threshold — its accounting period and measurement boundary are not defined yet." },
+      "ja": { "text": "上流のメンテナ、志を同じくする作り手、さらなる創造を可能にした他の事業へと、余力を渡していくこと。数値的な閾値ではなく意図として掲げています。会計期間と測定の境界がまだ定義されていないためです。" },
+      "zh": { "text": "把余力向上游维护者、志同道合的建造者，以及那些让进一步创造成为可能的其他事业传递下去。这里发布的是意向而非数值门槛——其核算周期与计量边界尚未界定。" }
+    }
+  },
+  "institution.support.capacity.state.active": {
+    "strings": {
+      "en": { "text": "Active stage" },
+      "ja": { "text": "現在の段階" },
+      "zh": { "text": "当前阶段" }
+    }
+  },
+  "institution.support.capacity.state.ahead": {
+    "strings": {
+      "en": { "text": "Ahead" },
+      "ja": { "text": "この先" },
+      "zh": { "text": "后续" }
+    }
+  },
+  "institution.support.capacity.state.unverified": {
+    "strings": {
+      "en": { "text": "Figure unverified" },
+      "ja": { "text": "金額は未検証" },
+      "zh": { "text": "金额未核实" }
+    }
+  },
+
+  "institution.support.protects.heading": {
+    "strings": {
+      "en": { "text": "What support protects" },
+      "ja": { "text": "支援が守るもの" },
+      "zh": { "text": "支持所保护的" }
+    }
+  },
+  "institution.support.protects.intro": {
+    "strings": {
+      "en": { "text": "The order matters. Nothing further down is reached by skipping something above it." },
+      "ja": { "text": "順序に意味があります。上にあるものを飛ばして、下にあるものに到達することはありません。" },
+      "zh": { "text": "顺序是有意义的。跳过上面的项目，并不会更快抵达下面的项目。" }
+    }
+  },
+  "institution.support.protects.item1": {
+    "strings": {
+      "en": { "text": "Victor's living stability and applicable obligations." },
+      "ja": { "text": "Victor の生活の安定と、該当する義務。" },
+      "zh": { "text": "Victor 的生活稳定与应尽的义务。" }
+    }
+  },
+  "institution.support.protects.item2": {
+    "strings": {
+      "en": { "text": "The time and energy required to continue the work." },
+      "ja": { "text": "この取り組みを続けるために必要な時間と気力。" },
+      "zh": { "text": "延续这项工作所需的时间与精力。" }
+    }
+  },
+  "institution.support.protects.item3": {
+    "strings": {
+      "en": { "text": "Infrastructure, models, hosting, testing, documentation, accessibility, localization, and independent review." },
+      "ja": { "text": "インフラ、モデル、ホスティング、テスト、ドキュメント、アクセシビリティ、ローカライゼーション、そして独立したレビュー。" },
+      "zh": { "text": "基础设施、模型、托管、测试、文档、无障碍、本地化，以及独立审阅。" }
+    }
+  },
+  "institution.support.protects.item4": {
+    "strings": {
+      "en": { "text": "Sustainable public stewardship." },
+      "ja": { "text": "持続可能な公共のスチュワードシップ。" },
+      "zh": { "text": "可持续的公共托管责任。" }
+    }
+  },
+  "institution.support.protects.item5": {
+    "strings": {
+      "en": { "text": "When capacity genuinely exceeds those needs, gratitude and support relayed to upstream builders, aligned projects, and other businesses." },
+      "ja": { "text": "余力が本当にそれらの必要を超えたとき、上流の作り手・志を同じくするプロジェクト・他の事業へ渡される感謝と支援。" },
+      "zh": { "text": "当余力确实超出上述需要时，将感谢与支持传递给上游的建造者、志同道合的项目以及其他事业。" }
+    }
+  },
+
+  "institution.support.boundaries.heading": {
+    "strings": {
+      "en": { "text": "Boundaries" },
+      "ja": { "text": "境界" },
+      "zh": { "text": "边界" }
+    }
+  },
+  "institution.support.boundaries.purchase": {
+    "strings": {
+      "en": { "text": "Support is voluntary. It does not purchase consulting, custom development, equity, ownership, investment returns, priority service, private implementation, control, or a charitable tax deduction. Direct commercial engagements are handled separately through Vextreme LLC." },
+      "ja": { "text": "支援は任意です。コンサルティング、受託開発、株式、所有権、投資収益、優先対応、非公開の実装、支配権、寄付金控除のいずれも購入するものではありません。直接の商業的な取引は Vextreme LLC を通じて別途扱われます。" },
+      "zh": { "text": "支持是自愿的。它不构成对咨询、定制开发、股权、所有权、投资回报、优先服务、非公开实现、控制权或慈善税收减免的购买。直接的商业合作通过 Vextreme LLC 单独处理。" }
+    }
+  },
+  "institution.support.boundaries.rank": {
+    "strings": {
+      "en": { "text": "Greater support does not create greater human importance or authority over the work." },
+      "ja": { "text": "支援が多いことが、人としての重要さや、この取り組みに対する権限を増やすことはありません。" },
+      "zh": { "text": "支持得更多，并不会带来更高的个人重要性或对这项工作的权威。" }
+    }
+  },
+  "institution.support.boundaries.faith": {
+    "strings": {
+      "en": { "text": "Sharing Victor's faith is not a condition for receiving, using, testing, supporting, or contributing to VexLife." },
+      "ja": { "text": "Victor の信仰を共有することは、VexLife を受け取り、使い、試し、支援し、貢献するための条件ではありません。" },
+      "zh": { "text": "认同 Victor 的信仰，并不是接收、使用、测试、支持或贡献 VexLife 的前提条件。" }
+    }
+  },
+  "institution.support.boundaries.sdk": {
+    "strings": {
+      "en": { "text": "No level of support grants access to Vextreme-SDK, to private implementation, or to any part of the protected operational bridge." },
+      "ja": { "text": "いかなる支援の段階も、Vextreme-SDK、非公開の実装、保護された運用上の橋のいかなる部分へのアクセスも与えません。" },
+      "zh": { "text": "任何层级的支持都不会带来对 Vextreme-SDK、非公开实现，或受保护运作桥梁任何部分的访问权限。" }
+    }
+  },
+
+  "institution.support.stewardship.heading": {
+    "strings": {
+      "en": { "text": "Stewardship" },
+      "ja": { "text": "スチュワードシップ" },
+      "zh": { "text": "托管责任" }
+    }
+  },
+  "institution.support.stewardship.body": {
+    "strings": {
+      "en": { "text": "Sponsorship first sustains Victor's ability to live, continue the open-source work, maintain its infrastructure, and meet applicable obligations. When resources genuinely exceed those needs, Victor intends to sponsor upstream maintainers, aligned builders, projects, and other businesses whose work made further creation possible." },
+      "ja": { "text": "支援はまず、Victor が生き、オープンソースの取り組みを続け、そのインフラを維持し、該当する義務を果たせる状態を支えます。資源が本当にそれらの必要を超えたとき、Victor は上流のメンテナ、志を同じくする作り手、プロジェクト、さらなる創造を可能にした他の事業を支援する意向です。" },
+      "zh": { "text": "赞助首先维系 Victor 的生活、开源工作的延续、基础设施的维护，以及应尽义务的履行。当资源确实超出这些需要时，Victor 打算去赞助上游维护者、志同道合的建造者、项目，以及那些让进一步创造成为可能的其他事业。" }
+    }
+  },
+  "institution.support.stewardship.receipts": {
+    "strings": {
+      "en": { "text": "Dated stewardship notes will record completed allocations here: what was protected and what was relayed onward. Nothing appears in this space until there is a real, dated allocation to record — and bank balances, private receipts, supporter identities, tax records, and internal financial cases stay out of it permanently." },
+      "ja": { "text": "日付入りのスチュワードシップ記録が、完了した配分をここに記します。何が守られ、何が先へ渡されたか。実際に日付のある配分が生じるまで、この欄には何も表示されません。銀行残高、私的な領収書、支援者の身元、税務記録、内部の財務案件は、恒久的にここには含めません。" },
+      "zh": { "text": "带日期的托管记录将在此处记载已完成的分配：保护了什么，又向前传递了什么。在出现真实且有日期的分配之前，此处不会显示任何内容。银行余额、私人收据、支持者身份、税务记录与内部财务事项，将永久不列入其中。" }
+    }
+  },
+  "institution.support.stewardship.empty": {
+    "strings": {
+      "en": { "text": "No stewardship notes recorded yet." },
+      "ja": { "text": "スチュワードシップの記録はまだありません。" },
+      "zh": { "text": "尚无托管记录。" }
+    }
+  }
+}

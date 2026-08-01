@@ -210,6 +210,24 @@ entries had been injected mid-file into Session 021's record.
   in the discover script (a bare `\b` also matched inside `data-legacy-id`) by cross-checking
   output against the real HTML before trusting it. Full context in the Meta Project doc's context
   note (§ wrapper) and this session's own file.
+**Session 035 (Aug 1, 2026):** added the first **institutional surface** to `pages/` — a second
+kind of page that describes the institution rather than holding a piece of the archive.
+`pages/vextreme-home.html` is the page that describes what Vextreme is, which Victor believed
+existed and had lost track of; it did not exist, and the only artifact that ever did that job
+lived inside the supplied Design Foundation ZIP, never landed here. `pages/vex-support.html` is
+the support page from the Vex-authored handoff canon. Both carry the `vex-`/`vextreme-` slug
+prefix, take no `nodes.json` entry and no arc, use a shared `institution` string scope
+(en/ja/zh) rather than `pages.{slug}`, and are self-contained rather than God-Script-assembled —
+the scope choice is what stops `build-vextreme.js` assembling a God Script nothing loads, since
+`SKIP_PAGES` alone does not. The Vextreme Design Foundation landed as a **third token family**
+in `styles/design-system.css` (`[data-theme="foundation"]` + a ramp-only light override) rather
+than as per-page `:root` copies, per td-007's closed lesson. Deliberately withheld: every
+payment destination (no route is live; a `null` url has no branch that renders a button) and
+every unreconciled capacity figure — one was tied to a date already five months past, one has
+ambiguous component scope. Those decisions are recorded as data in `data/support-routes.json`.
+Full reasoning, including two render-only bugs a code read would not have caught, in
+`docs/architecture/18-institutional-pages.md` and the session file.
+
 **This section is a snapshot, not a log.** Full session-by-session reasoning — mistakes tried,
 assumptions made, why a decision went one way over another — lives in the batch files (see
 **Batch Registry** below), not here. Rewrite the paragraph above at the start of each session to
@@ -461,6 +479,6 @@ Create as `docs/continuity/batch-00N/YYYY-MM-DD-session-0NN.md`:
 
 ---
 
-*Last updated: Session 034 — July 12, 2026*
+*Last updated: Session 035 — August 1, 2026*
 
 <!-- [VXG RealForever] -->

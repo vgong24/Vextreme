@@ -71,6 +71,169 @@
   --sans:    'IBM Plex Sans', sans-serif;
 }
 
+/* ── Institutional / Vextreme Design Foundation theme ───────────────────────
+   Third token family, added for the institutional page surface
+   (pages/vextreme-home.html, pages/vex-support.html — see
+   docs/architecture/18-institutional-pages.md). Ported from the Vextreme
+   Design Foundation package Victor supplied: black-and-white as identity,
+   a cool blue-tinted neutral ramp as structure, no decorative accent hue,
+   and status hues reserved strictly for evidentiary state.
+
+   Declared here rather than in a local :root inside each page for exactly
+   the reason td-007 existed: two pages sharing one hand-copied token block
+   is the drift shape this repo already paid for once. Scoped under
+   [data-theme="foundation"] so it coexists with the light :root and the
+   dashboard family without collision — same opt-in mechanism, a page sets
+   <html data-theme="foundation"> and links this stylesheet.
+
+   Dark is this family's home mode; "foundation-light" is a re-authored
+   light ramp, not an inversion of the dark values, per the foundation's
+   own stated rule. A page's theme control swaps between the two attribute
+   values; every semantic token below exists in both, so nothing downstream
+   needs a per-mode branch. Naming is the foundation's own semantic
+   vocabulary (--bg-*, --text-*, --border-*, --accent-*, --status-*), kept
+   deliberately distinct from families 1 and 2 so a token reference names
+   which surface it belongs to without ambiguity.
+
+   Both attribute values match this first block so every shared token (type,
+   space, radius, motion, and the semantic roles themselves) is declared
+   exactly once. Light mode then re-declares only the ramp beneath it: the
+   semantic roles resolve through var(--gray-N) indirection, so overriding
+   ten ramp steps re-derives the whole surface without restating a single
+   semantic role. Matching only [data-theme="foundation"] here would leave
+   every semantic token undefined in light mode, since the two attribute
+   values are mutually exclusive on one element. */
+[data-theme="foundation"],
+[data-theme="foundation-light"] {
+  /* neutral ramp — dark values */
+  --gray-0: oklch(13.5% 0.004 258);
+  --gray-1: oklch(16.5% 0.004 258);
+  --gray-2: oklch(20% 0.005 258);
+  --gray-3: oklch(24.5% 0.006 258);
+  --gray-4: oklch(30% 0.007 258);
+  --gray-5: oklch(38% 0.008 258);
+  --gray-6: oklch(48% 0.008 258);
+  --gray-7: oklch(62% 0.007 258);
+  --gray-8: oklch(80% 0.005 258);
+  --gray-9: oklch(97% 0.002 258);
+
+  --black: oklch(9% 0.003 258);
+  --white: oklch(99% 0.002 258);
+
+  --bg-canvas:        var(--gray-0);
+  --bg-surface:       var(--gray-1);
+  --bg-surface-raised: var(--gray-2);
+  --bg-overlay:       var(--gray-3);
+  --bg-inverse:       var(--white);
+
+  --text-primary:    var(--gray-9);
+  --text-secondary:  var(--gray-8);
+  --text-tertiary:   var(--gray-7);
+  --text-inverse:    var(--black);
+  --text-on-inverse: var(--white);
+
+  --border-subtle:  var(--gray-4);
+  --border-default: var(--gray-5);
+  --border-strong:  var(--gray-6);
+  --border-focus:   var(--gray-9);
+
+  --accent-fg:      var(--white);
+  --accent-bg:      var(--white);
+  --accent-text-on: var(--black);
+
+  /* evidentiary state only — never decoration */
+  --status-success:  oklch(62% 0.11 155);
+  --status-caution:  oklch(72% 0.13 85);
+  --status-critical: oklch(58% 0.15 25);
+  --status-info:     oklch(65% 0.06 258);
+
+  --shadow-color: 258 8% 2%;
+  --shadow-1: 0 1px 2px hsl(var(--shadow-color) / 0.4);
+  --shadow-2: 0 4px 16px hsl(var(--shadow-color) / 0.45);
+
+  /* three type voices: editorial serif, product sans, technical mono */
+  --font-serif: 'Source Serif 4', 'Iowan Old Style', Georgia, serif;
+  --font-sans:  'IBM Plex Sans', -apple-system, 'Segoe UI', sans-serif;
+  --font-mono:  'IBM Plex Mono', ui-monospace, 'SF Mono', monospace;
+
+  --text-display: 600 clamp(2.5rem, 2.1rem + 2.2vw, 4.25rem)/1.05 var(--font-serif);
+  --text-h1: 600 clamp(1.9rem, 1.7rem + 1.1vw, 2.75rem)/1.12 var(--font-serif);
+  --text-h2: 500 clamp(1.4rem, 1.3rem + 0.6vw, 1.9rem)/1.22 var(--font-serif);
+  --text-h3: 500 1.3rem/1.32 var(--font-serif);
+
+  --text-body-lg: 400 1.125rem/1.62 var(--font-sans);
+  --text-body:    400 1rem/1.62 var(--font-sans);
+  --text-body-sm: 400 0.875rem/1.55 var(--font-sans);
+  --text-label:   600 0.8125rem/1.3 var(--font-sans);
+  --text-caption: 500 0.75rem/1.4 var(--font-sans);
+
+  --text-mono-md: 400 0.875rem/1.5 var(--font-mono);
+  --text-mono-sm: 500 0.75rem/1.45 var(--font-mono);
+  --text-mono-xs: 500 0.6875rem/1.4 var(--font-mono);
+
+  --tracking-mono:    0.02em;
+  --tracking-label:   0.03em;
+  --tracking-display: -0.01em;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  --radius-sm:   4px;
+  --radius-md:   6px;
+  --radius-lg:   10px;
+  --radius-full: 999px;
+
+  --border-w:        1px;
+  --border-w-strong: 1.5px;
+
+  --measure:        62ch;
+  --measure-narrow: 46ch;
+
+  --ease-standard: cubic-bezier(0.2, 0.6, 0.2, 1);
+  --duration-fast: 120ms;
+  --duration-base: 180ms;
+}
+
+/* Light mode of the institutional family — re-derived, not inverted. Only
+   the ramp and the semantics that actually change are restated; every
+   type/space/radius/motion token above is inherited unchanged, because a
+   light surface does not change what a heading is. */
+[data-theme="foundation-light"] {
+  --gray-0: oklch(99% 0.002 258);
+  --gray-1: oklch(97.5% 0.003 258);
+  --gray-2: oklch(95.5% 0.004 258);
+  --gray-3: oklch(92.5% 0.005 258);
+  --gray-4: oklch(88% 0.006 258);
+  --gray-5: oklch(80% 0.007 258);
+  --gray-6: oklch(66% 0.008 258);
+  --gray-7: oklch(50% 0.008 258);
+  --gray-8: oklch(34% 0.006 258);
+  --gray-9: oklch(15% 0.004 258);
+
+  --bg-surface:        var(--white);
+  --bg-surface-raised: var(--white);
+  --bg-overlay:        var(--gray-2);
+  --bg-inverse:        var(--black);
+
+  --text-inverse:    var(--white);
+  --text-on-inverse: var(--black);
+
+  --accent-fg:      var(--black);
+  --accent-bg:      var(--black);
+  --accent-text-on: var(--white);
+
+  --shadow-color: 258 20% 60%;
+  --shadow-1: 0 1px 2px hsl(var(--shadow-color) / 0.16);
+  --shadow-2: 0 8px 24px hsl(var(--shadow-color) / 0.18);
+}
+
 body {
   font-family: var(--sans);
   color: var(--stone);

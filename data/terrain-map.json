@@ -2521,6 +2521,17 @@
       }
     },
     {
+      "slug": "vex-support",
+      "title": "vex-support",
+      "arcKeys": [],
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/vex-support.html",
+      "screenshots": {
+        "en": "docs/screenshots/vex-support-en.png",
+        "ja": "docs/screenshots/vex-support-ja.png",
+        "zh": "docs/screenshots/vex-support-zh.png"
+      }
+    },
+    {
       "slug": "vextreme-demo",
       "title": "vextreme-demo",
       "arcKeys": [],
@@ -2528,6 +2539,17 @@
       "screenshots": {
         "en": "docs/screenshots/vextreme-demo-en.png",
         "ja": "docs/screenshots/vextreme-demo-ja.png"
+      }
+    },
+    {
+      "slug": "vextreme-home",
+      "title": "vextreme-home",
+      "arcKeys": [],
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/vextreme-home.html",
+      "screenshots": {
+        "en": "docs/screenshots/vextreme-home-en.png",
+        "ja": "docs/screenshots/vextreme-home-ja.png",
+        "zh": "docs/screenshots/vextreme-home-zh.png"
       }
     },
     {
@@ -2764,12 +2786,12 @@
       "key": "uncurated",
       "name": "UNCURATED",
       "sub": "auto-discovered pages, no nodes.json entry yet",
-      "count": 34,
+      "count": 36,
       "rect": {
         "x": 6130,
         "y": 40,
         "width": 300,
-        "height": 2130
+        "height": 2250
       }
     }
   ],
@@ -5986,6 +6008,52 @@
       "curated": false
     },
     {
+      "id": "vex-support",
+      "slug": "vex-support",
+      "title": "vex-support",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 2010,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/vex-support.html",
+      "screenshots": {
+        "en": "docs/screenshots/vex-support-en.png",
+        "ja": "docs/screenshots/vex-support-ja.png",
+        "zh": "docs/screenshots/vex-support-zh.png"
+      },
+      "hasScreenshot": true,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "fab",
+            "uncurated",
+            "theme-effect"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "missing",
+        "theme": {
+          "control": "page-owned",
+          "visibleStyles": false
+        },
+        "identityKeys": 123,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": [
+          "en",
+          "ja",
+          "zh"
+        ],
+        "metaDescription": "How to support the open-source work behind Vextreme and VexLife — what support protects, what it does not purchase, and which routes are open today."
+      },
+      "curated": false
+    },
+    {
       "id": "vextreme-demo",
       "slug": "vextreme-demo",
       "title": "vextreme-demo",
@@ -5993,7 +6061,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 6180,
-      "y": 2010,
+      "y": 2070,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/vextreme-demo.html",
       "screenshots": {
@@ -6029,6 +6097,52 @@
       "curated": false
     },
     {
+      "id": "vextreme-home",
+      "slug": "vextreme-home",
+      "title": "vextreme-home",
+      "arcKeys": [],
+      "arc": "uncurated",
+      "arcName": "UNCURATED",
+      "x": 6180,
+      "y": 2130,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/vextreme-home.html",
+      "screenshots": {
+        "en": "docs/screenshots/vextreme-home-en.png",
+        "ja": "docs/screenshots/vextreme-home-ja.png",
+        "zh": "docs/screenshots/vextreme-home-zh.png"
+      },
+      "hasScreenshot": true,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "fab",
+            "uncurated",
+            "theme-effect"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "missing",
+        "theme": {
+          "control": "page-owned",
+          "visibleStyles": false
+        },
+        "identityKeys": 48,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": [
+          "en",
+          "ja",
+          "zh"
+        ],
+        "metaDescription": "Vextreme is an institutional template: culture, maps, archives, evidence, and structures that make complex work perceivable, accountable, and continuable across people, tools, and AI."
+      },
+      "curated": false
+    },
+    {
       "id": "witness-committee-operations",
       "slug": "witness-committee-operations",
       "title": "witness-committee-operations",
@@ -6036,7 +6150,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 6180,
-      "y": 2070,
+      "y": 2190,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/witness-committee-operations.html",
       "screenshots": {},

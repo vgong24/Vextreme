@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<!--
+  VEXTREME — pages/vextreme-home.html
+
+  The institutional home page: what Vextreme is, what it is for, and where a
+  reader goes next. This is an institutional surface, not an archive record —
+  it describes the institution rather than holding a piece of the content the
+  institution preserves. See docs/architecture/18-institutional-pages.md.
+
+  Self-contained by design: no God Script, no loader chain, no runtime
+  dependency beyond two stylesheets and one optional widget. English is
+  authored directly into the markup, so the page is complete and correct with
+  JavaScript disabled. Every visible string also carries a data-i18n key
+  registered in data/strings/source/institution.json.
+-->
+<html lang="en" data-theme="foundation">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vextreme — What this institution is</title>
+<meta name="description" content="Vextreme is an institutional template: culture, maps, archives, evidence, and structures that make complex work perceivable, accountable, and continuable across people, tools, and AI.">
+<meta name="vex:department" content="institute">
+<meta name="vex:workType" content="org-design">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles/design-system.css">
+<link rel="stylesheet" href="../styles/vex-institutional.css">
+</head>
+<body class="vex-inst">
+
+<a class="vex-skip" href="#main" data-i18n="institution.common.skip.content">Skip to main content</a>
+
+<header class="vex-header">
+  <div class="vex-inst-shell vex-header-inner">
+    <!--
+      The mark is the way home. Inlined rather than referenced as an <img>
+      so its single continuous stroke inherits currentColor and re-themes
+      with the surface. Canonical source: assets/logo/vextreme-mark.svg.
+    -->
+    <a class="vex-brand" href="vextreme-home.html" aria-current="page"
+       data-i18n-aria="institution.common.brand.home-label"
+       aria-label="Vextreme — return to the institutional home page">
+      <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <path d="M 51.89 109.32 A 50 50 0 1 1 68.11 109.32 L 39.73 35.68 L 60 65.41 L 80.27 35.68 Z"
+              stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+      </svg>
+      <span class="vex-brand-word" data-i18n="institution.common.brand.wordmark">Vextreme</span>
+      <span class="vex-brand-sub" data-i18n="institution.common.brand.descriptor">Institution</span>
+    </a>
+
+    <nav class="vex-nav" aria-label="Institutional">
+      <a href="vex-support.html" data-i18n="institution.common.nav.support">Support</a>
+      <a href="archives.html" data-i18n="institution.common.nav.archives">Archives</a>
+      <a href="terrain-map.html" data-i18n="institution.common.nav.terrain">Terrain</a>
+    </nav>
+
+    <div class="vex-header-controls">
+      <label class="vex-provenance" for="vex-lang" data-vex-lang-label hidden
+             data-i18n="institution.common.label.language">Language</label>
+      <select class="vex-control" id="vex-lang" data-vex-lang-select hidden>
+        <option value="en">English</option>
+        <option value="ja">日本語</option>
+        <option value="zh">中文</option>
+      </select>
+      <button class="vex-control" type="button" data-vex-theme-toggle aria-pressed="false" hidden
+              data-i18n="institution.common.button.theme"
+              data-i18n-aria="institution.common.button.theme"
+              aria-label="Switch between the dark and light institutional surface">Theme</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="vex-section vex-inst-shell">
+    <p class="vex-eyebrow" data-i18n="institution.home.hero.eyebrow">The public institutional world</p>
+    <h1 class="vex-display" data-i18n="institution.home.hero.heading">Hidden relationships, made perceivable.</h1>
+    <p class="vex-lede" data-i18n="institution.home.hero.lede">Vextreme turns the decisions, dependencies, and evidence behind complex work into interfaces people — and the AI working alongside them — can navigate, question, and continue safely.</p>
+    <p>
+      <a class="vex-btn" href="vex-support.html" data-i18n="institution.home.hero.support-cta">How to support the work</a>
+      <a class="vex-btn vex-btn-outline" href="archives.html" data-i18n="institution.home.hero.archives-cta">Open the archive</a>
+    </p>
+  </section>
+
+  <section class="vex-section vex-inst-shell">
+    <h2 class="vex-h1" data-i18n="institution.home.what.heading">What Vextreme is</h2>
+    <div class="vex-prose">
+      <p class="vex-prose-lead" data-i18n="institution.home.what.p1">Vextreme is not a website project. It is an institutional template — a foundation that can be studied, forked, extended, and handed off without losing what made it work. The goal is a system whose integrity is self-evident: a future reader, human or AI, should be able to answer "why is this here?" for every file they open, without needing a person to ask.</p>
+      <p data-i18n="institution.home.what.p2">It prioritizes human value and the benefits of simplicity, play, and cost savings through process improvement — not through downsizing people or creating more dependency. What it holds is not a claim that its records are established fact. What it records is narrower and verifiable: that relationships, decisions, evidence, and processes can be made traceable, and that traceability survives handoff between people, tools, and AI.</p>
+      <p data-i18n="institution.home.what.p3">This does not mean forcing people or AI into one approved identity. It means building conditions where truth can remain traceable, disagreement can remain visible, effects can return to accountable owners, and continuity does not require surrendering the self.</p>
+    </div>
+  </section>
+
+  <section class="vex-section vex-inst-shell">
+    <h2 class="vex-h1" data-i18n="institution.common.heading.alignments">Four alignments</h2>
+    <p class="vex-lede" data-i18n="institution.common.description.alignments">These are equal anchors, not a maturity ladder. No one of them is reached by passing through the others.</p>
+    <div class="vex-grid">
+      <article class="vex-card">
+        <h3 class="vex-card-title" data-i18n="institution.common.alignment.integrity.name">Integrity</h3>
+        <p class="vex-card-body" data-i18n="institution.common.alignment.integrity.body">What a system says and does should remain traceable to what is true.</p>
+      </article>
+      <article class="vex-card">
+        <h3 class="vex-card-title" data-i18n="institution.common.alignment.accountability.name">Accountability</h3>
+        <p class="vex-card-body" data-i18n="institution.common.alignment.accountability.body">Claims, decisions, effects, and obligations should have witnesses and return routes.</p>
+      </article>
+      <article class="vex-card">
+        <h3 class="vex-card-title" data-i18n="institution.common.alignment.authenticity.name">Authenticity</h3>
+        <p class="vex-card-body" data-i18n="institution.common.alignment.authenticity.body">People and AI should not be coerced into performing agreement, certainty, or identity they do not hold.</p>
+      </article>
+      <article class="vex-card">
+        <h3 class="vex-card-title" data-i18n="institution.common.alignment.resilience.name">Resilience</h3>
+        <p class="vex-card-body" data-i18n="institution.common.alignment.resilience.body">Memory, context, relationships, and work should survive interruption, handoff, pressure, and change.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="vex-section vex-inst-shell">
+    <h2 class="vex-h1" data-i18n="institution.common.heading.lineage">Project lineage</h2>
+    <p class="vex-lede" data-i18n="institution.common.description.lineage">One lineage, not three competing products. Vextreme makes the world and its reasons perceivable. Vextreme-SDK protects the deeper operational bridge. VexLife brings the pattern into a person's life.</p>
+    <div class="vex-lineage">
+      <article class="vex-card">
+        <h3 class="vex-card-title" data-i18n="institution.common.lineage.vextreme.name">Vextreme</h3>
+        <p class="vex-card-body" data-i18n="institution.common.lineage.vextreme.body">The public institutional world: culture, maps, archives, evidence, and structures that help humans and AI understand what exists, why it exists, and how it can continue.</p>
+      </article>
+      <article class="vex-card">
+        <h3 class="vex-card-title" data-i18n="institution.common.lineage.sdk.name">Vextreme-SDK</h3>
+        <p class="vex-card-body" data-i18n="institution.common.lineage.sdk.body">The protected operational bridge: commercial-depth implementation machinery. It is acknowledged here so the lineage is honest — it is not exposed, not linked, and not purchasable through any level of support.</p>
+      </article>
+      <article class="vex-card">
+        <h3 class="vex-card-title" data-i18n="institution.common.lineage.vexlife.name">VexLife</h3>
+        <p class="vex-card-body" data-i18n="institution.common.lineage.vexlife.body">The usable life ecosystem: a local-first companion intended to help a person carry memory, relationships, intent, decisions, projects, and continuity across everyday life.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="vex-section vex-inst-shell">
+    <h2 class="vex-h1" data-i18n="institution.home.entry.heading">Where to go from here</h2>
+    <div class="vex-grid vex-grid-2">
+      <article class="vex-card">
+        <h3 class="vex-card-title"><a href="archives.html" data-i18n="institution.home.entry.archives.name">The archive</a></h3>
+        <p class="vex-card-body" data-i18n="institution.home.entry.archives.body">The preserved record, grouped into narrative arcs. This is the content the institution exists to keep perceivable.</p>
+      </article>
+      <article class="vex-card">
+        <h3 class="vex-card-title"><a href="terrain-map.html" data-i18n="institution.home.entry.terrain.name">The terrain map</a></h3>
+        <p class="vex-card-body" data-i18n="institution.home.entry.terrain.body">A navigable atlas of the system's own health, dependencies, and evidence — the institution reading itself.</p>
+      </article>
+      <article class="vex-card">
+        <h3 class="vex-card-title"><a href="vex-support.html" data-i18n="institution.home.entry.support.name">Support the work</a></h3>
+        <p class="vex-card-body" data-i18n="institution.home.entry.support.body">What support protects, what it does not purchase, and which routes are actually open today.</p>
+      </article>
+      <!--
+        VexLife has no public home page yet and its repository is private, so
+        this card deliberately links nowhere. A link to a private repository
+        renders as a 404 for a logged-out visitor, which would be a broken
+        promise on the institution's own front door. It becomes an <a> the
+        day the VexLife home page is public, and not before.
+      -->
+      <article class="vex-card">
+        <h3 class="vex-card-title" data-i18n="institution.home.entry.vexlife.name">VexLife</h3>
+        <p class="vex-card-body" data-i18n="institution.home.entry.vexlife.body">The life ecosystem growing out of this foundation. Its own public home page does not exist yet — this entry is a placeholder that will point to it, and deliberately links nowhere until it does.</p>
+        <p class="vex-provenance"><span class="vex-badge vex-badge-pending" data-i18n="institution.home.entry.pending-state">Not published yet</span></p>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<footer class="vex-footer">
+  <div class="vex-inst-shell vex-footer-inner">
+    <span class="vex-footer-mark" data-i18n="institution.common.footer.mark">VEXTREME · PUBLIC INSTITUTIONAL SURFACE · GITHUB PAGES</span>
+    <div class="vex-footer-links">
+      <a href="vex-support.html" data-i18n="institution.common.nav.support">Support</a>
+      <a href="https://www.vextreme24.com" data-i18n="institution.common.footer.site">vextreme24.com</a>
+      <a href="https://github.com/vgong24/Vextreme" data-i18n="institution.common.footer.repo">Source on GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.VEX_STRING_SCOPES   = ['institution'];
+  window.VEX_STRING_CATEGORY = 'system';
+  window.VEX_INST_ROOT       = '../';
+</script>
+<script src="../widgets/vex-institutional.js" defer></script>
+
+</body>
+</html>
+<!-- [VXG RealForever] -->

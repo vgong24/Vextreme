@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 39,
+    "total": 41,
     "healthy": 1,
-    "attention": 32,
+    "attention": 34,
     "critical": 6,
     "sorted": 4,
     "withFab": 30,
-    "withIdentity": 9,
-    "withScreenshots": 10,
-    "withMetaDescription": 5
+    "withIdentity": 11,
+    "withScreenshots": 12,
+    "withMetaDescription": 7
   },
   "pages": {
     "about-me": {
@@ -2051,6 +2051,74 @@
         ]
       }
     },
+    "vex-support": {
+      "slug": "vex-support",
+      "title": "vex-support",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 2,
+        "shell": false,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "missing"
+      },
+      "theme": {
+        "control": "page-owned",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 123,
+        "languages": {
+          "en": {
+            "translated": 123,
+            "total": 123,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 109,
+            "total": 123,
+            "state": "partial"
+          },
+          "zh": {
+            "translated": 109,
+            "total": 123,
+            "state": "partial"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": [
+          "en",
+          "ja",
+          "zh"
+        ]
+      },
+      "discovery": {
+        "metaDescription": "How to support the open-source work behind Vextreme and VexLife — what support protects, what it does not purchase, and which routes are open today."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "fab",
+          "uncurated",
+          "theme-effect"
+        ]
+      }
+    },
     "vextreme-demo": {
       "slug": "vextreme-demo",
       "title": "vextreme-demo",
@@ -2107,6 +2175,74 @@
         "state": "attention",
         "blockers": [],
         "gaps": [
+          "uncurated",
+          "theme-effect"
+        ]
+      }
+    },
+    "vextreme-home": {
+      "slug": "vextreme-home",
+      "title": "vextreme-home",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 2,
+        "shell": false,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "missing"
+      },
+      "theme": {
+        "control": "page-owned",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 48,
+        "languages": {
+          "en": {
+            "translated": 48,
+            "total": 48,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 48,
+            "total": 48,
+            "state": "full"
+          },
+          "zh": {
+            "translated": 48,
+            "total": 48,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": [
+          "en",
+          "ja",
+          "zh"
+        ]
+      },
+      "discovery": {
+        "metaDescription": "Vextreme is an institutional template: culture, maps, archives, evidence, and structures that make complex work perceivable, accountable, and continuable across people, tools, and AI."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "fab",
           "uncurated",
           "theme-effect"
         ]

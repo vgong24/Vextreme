@@ -1,0 +1,682 @@
+/**
+ * styles/vex-institutional.css
+ *
+ * The institutional page surface: chrome, layout, and components shared by
+ * pages/vextreme-home.html and pages/vex-support.html.
+ *
+ * These are institutional pages, not archive records — they describe what
+ * Vextreme is and how it can be supported, rather than holding a piece of
+ * the content the archive preserves. They carry the `vex-`/`vextreme-`
+ * naming prefix and opt out of the God Script loader chain on purpose; see
+ * docs/architecture/18-institutional-pages.md for the full distinction.
+ *
+ * Every token here comes from the institutional family declared in
+ * styles/design-system.css under [data-theme="foundation"] /
+ * [data-theme="foundation-light"]. Nothing in this file declares its own
+ * colors, type, or spacing — if a value is missing, add it to that family,
+ * not here. `node lib/check-design-tokens.js` enforces that every var()
+ * below resolves; a plain .css file under styles/ is credited with the
+ * global token set unconditionally, because its pairing with
+ * design-system.css is guaranteed by the page that links both.
+ *
+ * Structural chrome stays low-radius and architectural. The one place a
+ * fluid curve is allowed is the brand mark's own enclosing gesture, which
+ * is part of the SVG, not of this stylesheet.
+ */
+
+
+/* ─────────────────────────────────────────────
+   1. PAGE FRAME
+   ───────────────────────────────────────────── */
+
+/* design-system.css's own body rule targets the archive surface (light,
+   --sans, --stone). The institutional surface re-states its own base here
+   rather than editing that shared rule, so the archive pages are untouched. */
+body.vex-inst {
+  background: var(--bg-canvas);
+  color: var(--text-primary);
+  font: var(--text-body);
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+}
+
+.vex-inst-shell {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 48px);
+}
+
+.vex-inst-measure {
+  max-width: var(--measure);
+}
+
+/* Skip link — first tab stop, visually hidden until focused. */
+.vex-skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--bg-inverse);
+  color: var(--text-inverse);
+  padding: var(--space-3) var(--space-4);
+  font: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  border-radius: 0 0 var(--radius-sm) 0;
+}
+.vex-skip:focus {
+  left: 0;
+}
+
+
+/* ─────────────────────────────────────────────
+   2. HEADER + BRAND MARK
+   ───────────────────────────────────────────── */
+
+.vex-header {
+  border-bottom: var(--border-w) solid var(--border-subtle);
+  background: var(--bg-canvas);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.vex-header-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  padding-block: var(--space-4);
+  flex-wrap: wrap;
+}
+
+/* The mark is a link home, per Victor's own framing: the logo is the way
+   back. It is inlined as SVG in each page (never an <img>) so its stroke
+   inherits currentColor and re-themes with the surface for free. */
+.vex-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--text-primary);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+}
+.vex-brand:hover { color: var(--text-primary); }
+.vex-brand svg {
+  width: 30px;
+  height: 30px;
+  display: block;
+  flex: none;
+}
+.vex-brand-word {
+  font: 500 1.0625rem/1 var(--font-serif);
+  letter-spacing: 0.01em;
+}
+.vex-brand-sub {
+  font: var(--text-mono-xs);
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  padding-left: var(--space-3);
+  margin-left: var(--space-1);
+  border-left: var(--border-w) solid var(--border-subtle);
+}
+
+.vex-nav {
+  display: flex;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+  margin-left: auto;
+  align-items: center;
+}
+.vex-nav a {
+  font: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: var(--space-2) 0;
+  border-bottom: var(--border-w-strong) solid transparent;
+}
+.vex-nav a:hover,
+.vex-nav a:focus-visible {
+  color: var(--text-primary);
+  border-bottom-color: var(--border-strong);
+}
+
+.vex-header-controls {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+
+/* ─────────────────────────────────────────────
+   3. CONTROLS
+   ───────────────────────────────────────────── */
+
+.vex-control {
+  font: var(--text-caption);
+  letter-spacing: var(--tracking-label);
+  color: var(--text-secondary);
+  background: transparent;
+  border: var(--border-w) solid var(--border-default);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-3);
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-standard),
+              border-color var(--duration-fast) var(--ease-standard);
+}
+.vex-control:hover {
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+
+/* Native select keeps the keyboard and screen-reader behaviour the platform
+   already gets right; only the chrome is restyled. */
+select.vex-control {
+  appearance: none;
+  padding-right: var(--space-6);
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
+                    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: calc(100% - 15px) calc(50% + 1px), calc(100% - 10px) calc(50% + 1px);
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+
+:where(a, button, select, [tabindex]):focus-visible {
+  outline: var(--border-w-strong) solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+
+/* ─────────────────────────────────────────────
+   4. SECTIONS + EDITORIAL TYPE
+   ───────────────────────────────────────────── */
+
+.vex-section {
+  border-top: var(--border-w) solid var(--border-subtle);
+  /* Block axis only — see the note on .vex-header-inner. These classes share
+     an element with .vex-inst-shell, so a shorthand here would reset the
+     shell's inline padding and flush every heading to the viewport edge on a
+     narrow screen. */
+  padding-block: clamp(40px, 7vw, 88px);
+}
+.vex-section:first-of-type { border-top: none; }
+
+.vex-eyebrow {
+  font: var(--text-mono-sm);
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: var(--space-4);
+}
+
+.vex-display {
+  font: var(--text-display);
+  letter-spacing: var(--tracking-display);
+  margin: 0 0 var(--space-5);
+  max-width: 18ch;
+  text-wrap: balance;
+}
+.vex-h1 {
+  font: var(--text-h1);
+  letter-spacing: var(--tracking-display);
+  margin: 0 0 var(--space-4);
+  text-wrap: balance;
+}
+
+/* Japanese and Chinese have no spaces to break on, so a display heading will
+   otherwise wrap mid-word — the JA hero split 続けられるも / のに before this.
+   auto-phrase breaks on phrase boundaries where the browser supports it;
+   strict line-break keeps small kana and punctuation off a line start. Both
+   degrade to normal wrapping elsewhere, so nothing regresses. */
+:lang(ja) .vex-display,
+:lang(ja) .vex-h1,
+:lang(zh) .vex-display,
+:lang(zh) .vex-h1 {
+  word-break: auto-phrase;
+  line-break: strict;
+}
+.vex-h2 {
+  font: var(--text-h2);
+  margin: 0 0 var(--space-4);
+}
+.vex-h3 {
+  font: var(--text-h3);
+  margin: 0 0 var(--space-3);
+}
+.vex-lede {
+  font: var(--text-body-lg);
+  color: var(--text-secondary);
+  max-width: var(--measure);
+  margin: 0 0 var(--space-6);
+}
+/* A lede or prose paragraph that ends its section must not stack its own
+   bottom margin on top of the section's padding — that reads as an accidental
+   gap rather than as rhythm. */
+.vex-lede:last-child,
+.vex-prose:last-child p:last-child,
+.vex-ordered:last-child li:last-child { margin-bottom: 0; }
+.vex-prose p {
+  max-width: var(--measure);
+  margin: 0 0 var(--space-5);
+  color: var(--text-secondary);
+}
+.vex-prose p.vex-prose-lead {
+  font: var(--text-body-lg);
+  color: var(--text-primary);
+}
+.vex-byline {
+  font: var(--text-mono-sm);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-tertiary);
+  margin: 0 0 var(--space-6);
+  padding-left: var(--space-4);
+  border-left: var(--border-w-strong) solid var(--border-strong);
+}
+
+
+/* ─────────────────────────────────────────────
+   5. CARDS + GRIDS
+   ───────────────────────────────────────────── */
+
+.vex-grid {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+.vex-grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+
+.vex-card {
+  border: var(--border-w) solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  padding: var(--space-5);
+}
+.vex-card-title {
+  font: 500 1.1875rem/1.3 var(--font-serif);
+  margin: 0 0 var(--space-3);
+}
+.vex-card-body {
+  font: var(--text-body-sm);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Lineage rail — Vextreme → Vextreme-SDK → VexLife shown as a progression,
+   never as a ladder a supporter can buy their way up. */
+.vex-lineage {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  counter-reset: lineage;
+}
+.vex-lineage .vex-card { position: relative; padding-top: var(--space-6); }
+.vex-lineage .vex-card::before {
+  counter-increment: lineage;
+  content: counter(lineage, decimal-leading-zero);
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-5);
+  font: var(--text-mono-xs);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-tertiary);
+}
+
+
+/* ─────────────────────────────────────────────
+   6. STATE + PROVENANCE
+   ───────────────────────────────────────────── */
+
+/* Status colour is reserved for real evidentiary state. "Pending" here means
+   a route or figure genuinely is not verified yet — it is not decoration and
+   must never be used to dress up a section heading. */
+.vex-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 3px var(--space-2);
+  border: var(--border-w) solid var(--border-default);
+  border-radius: var(--radius-full);
+  font: var(--text-mono-xs);
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+}
+.vex-badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: currentColor;
+  flex: none;
+}
+.vex-badge-pending  { color: var(--status-caution); }
+.vex-badge-active   { color: var(--status-success); }
+.vex-badge-separate { color: var(--status-info); }
+
+.vex-provenance {
+  font: var(--text-mono-xs);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-tertiary);
+  margin: var(--space-3) 0 0;
+}
+
+.vex-note {
+  border: var(--border-w) solid var(--border-subtle);
+  border-left: var(--border-w-strong) solid var(--border-strong);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: var(--bg-surface);
+  padding: var(--space-4) var(--space-5);
+  margin: 0 0 var(--space-5);
+  max-width: var(--measure);
+}
+.vex-note p { margin: 0 0 var(--space-3); color: var(--text-secondary); font: var(--text-body-sm); }
+.vex-note p:last-child { margin-bottom: 0; }
+.vex-note-critical { border-left-color: var(--status-caution); }
+
+
+/* ─────────────────────────────────────────────
+   7. SUPPORT ROUTES
+   ───────────────────────────────────────────── */
+
+/* Three routes, deliberately not three equivalent checkout buttons. The
+   primary route is a real action; the other two are quiet doors that
+   describe themselves honestly while they are not yet open. */
+.vex-routes {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  margin: var(--space-6) 0 0;
+}
+
+.vex-route {
+  border: var(--border-w) solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.vex-route-primary {
+  border-color: var(--border-strong);
+  background: var(--bg-surface-raised);
+}
+.vex-route-head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+.vex-route-title {
+  font: 500 1.125rem/1.3 var(--font-serif);
+  margin: 0;
+}
+.vex-route-body {
+  font: var(--text-body-sm);
+  color: var(--text-secondary);
+  margin: 0;
+  flex: 1;
+}
+
+.vex-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  border: var(--border-w) solid var(--accent-bg);
+  border-radius: var(--radius-sm);
+  background: var(--accent-bg);
+  color: var(--accent-text-on);
+  font: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-decoration: none;
+  cursor: pointer;
+  align-self: flex-start;
+}
+.vex-btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+.vex-btn:hover { opacity: 0.88; }
+
+/* A route that is not live renders as a disabled control with its reason
+   attached, never as a dead link. Nothing here is clickable, so nobody can
+   be sent to a payment destination that has not been verified. */
+.vex-btn[aria-disabled="true"],
+.vex-btn-disabled {
+  background: transparent;
+  color: var(--text-tertiary);
+  border-color: var(--border-subtle);
+  border-style: dashed;
+  cursor: not-allowed;
+  opacity: 1;
+}
+.vex-btn[aria-disabled="true"]:hover { opacity: 1; }
+
+
+/* ─────────────────────────────────────────────
+   8. SUPPORT MEANINGS (tier cards)
+   ───────────────────────────────────────────── */
+
+.vex-meanings {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  margin-top: var(--space-6);
+  list-style: none;
+  padding: 0;
+}
+
+.vex-meaning {
+  border: var(--border-w) solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* The five supplied images are warm, gold, and editorial. They are bounded
+   imagery inside a monochrome interface — the surrounding UI never borrows
+   their palette. The frame keeps them contained and consistent in size so
+   no single meaning reads as the "big" one. */
+.vex-meaning-figure {
+  margin: 0;
+  aspect-ratio: 1 / 1;
+  background: var(--bg-overlay);
+  border-bottom: var(--border-w) solid var(--border-subtle);
+}
+.vex-meaning-figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.vex-meaning-content {
+  padding: var(--space-4) var(--space-5) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex: 1;
+}
+.vex-meaning-name {
+  font: 500 1.0625rem/1.3 var(--font-serif);
+  margin: 0;
+}
+.vex-meaning-amount {
+  font: var(--text-mono-sm);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-tertiary);
+  margin: 0;
+}
+.vex-meaning-body {
+  font: var(--text-body-sm);
+  color: var(--text-secondary);
+  margin: 0;
+  flex: 1;
+}
+
+
+/* ─────────────────────────────────────────────
+   9. CAPACITY LADDER
+   ───────────────────────────────────────────── */
+
+/* One active stage at a time. The remaining stages are context beneath it,
+   never a combined total meter — an unreconciled sum published as a number
+   would be a claim this page cannot stand behind. */
+.vex-ladder {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-6) 0 0;
+  border: var(--border-w) solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.vex-stage {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  border-top: var(--border-w) solid var(--border-subtle);
+  background: var(--bg-surface);
+}
+.vex-stage:first-child { border-top: none; }
+.vex-stage-active { background: var(--bg-surface-raised); }
+.vex-stage-marker {
+  font: var(--text-mono-xs);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-tertiary);
+  padding-top: 4px;
+  min-width: 3ch;
+}
+.vex-stage-active .vex-stage-marker { color: var(--text-primary); }
+.vex-stage-name {
+  font: 500 1.0625rem/1.35 var(--font-serif);
+  margin: 0 0 var(--space-1);
+}
+.vex-stage-body {
+  font: var(--text-body-sm);
+  color: var(--text-secondary);
+  margin: 0;
+}
+.vex-stage-state { margin-left: auto; padding-top: 2px; }
+
+
+/* ─────────────────────────────────────────────
+   10. LISTS + FOOTER
+   ───────────────────────────────────────────── */
+
+.vex-ordered {
+  max-width: var(--measure);
+  margin: 0 0 var(--space-5);
+  padding-left: 0;
+  list-style: none;
+  counter-reset: protects;
+}
+.vex-ordered li {
+  counter-increment: protects;
+  position: relative;
+  padding-left: var(--space-7);
+  margin-bottom: var(--space-4);
+  color: var(--text-secondary);
+}
+.vex-ordered li::before {
+  content: counter(protects, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 2px;
+  font: var(--text-mono-sm);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-tertiary);
+}
+
+.vex-chronology {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-6);
+  border-left: var(--border-w) solid var(--border-subtle);
+}
+.vex-chronology li {
+  padding: 0 0 var(--space-4) var(--space-5);
+  position: relative;
+}
+.vex-chronology li::before {
+  content: "";
+  position: absolute;
+  left: -3px;
+  top: 9px;
+  width: 5px;
+  height: 5px;
+  border-radius: var(--radius-full);
+  background: var(--border-strong);
+}
+.vex-chronology-when {
+  display: block;
+  font: var(--text-mono-sm);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-tertiary);
+  margin-bottom: var(--space-1);
+}
+.vex-chronology-what {
+  font: var(--text-body-sm);
+  color: var(--text-secondary);
+}
+
+.vex-footer {
+  border-top: var(--border-w) solid var(--border-subtle);
+  padding: var(--space-6) 0 var(--space-8);
+}
+.vex-footer-inner {
+  display: flex;
+  gap: var(--space-5);
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.vex-footer-links {
+  display: flex;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+}
+.vex-footer a {
+  font: var(--text-caption);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  text-decoration: none;
+}
+.vex-footer a:hover { color: var(--text-primary); }
+.vex-footer-mark {
+  font: var(--text-mono-xs);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-tertiary);
+}
+
+
+/* ─────────────────────────────────────────────
+   11. RESPONSIVE + MOTION
+   ───────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .vex-header { position: static; }
+  .vex-header-inner { gap: var(--space-3); }
+  .vex-nav { width: 100%; margin-left: 0; gap: var(--space-4); }
+  .vex-brand-sub { display: none; }
+  .vex-display { max-width: none; }
+  .vex-stage { flex-wrap: wrap; }
+  .vex-stage-state { margin-left: 0; width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* [VXG RealForever] */

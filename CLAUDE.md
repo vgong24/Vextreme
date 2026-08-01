@@ -127,6 +127,19 @@ Every `.html` filename in `pages/` must be globally unique across the entire tre
 not just within its folder. The slug (filename without `.html`) is the system's only
 identifier. Check `docs/test-playground.html` before creating any new page file.
 
+## Two kinds of page live in `pages/`
+
+Most pages are **records** — a node in `data/nodes.json`, a member of an arc, a
+God Script consumer. A small set are **institutional surfaces**: they describe the
+institution rather than hold a piece of the archive. They carry a `vex-` or
+`vextreme-` slug prefix (`vextreme-home`, `vex-support`), take no nodes.json entry
+and no arc, use the `institution` string scope and the `[data-theme="foundation"]`
+token family, and are self-contained rather than assembled by the loader chain.
+
+Read `docs/architecture/18-institutional-pages.md` before adding, styling, or
+localizing one — several of the repo's usual mechanisms are deliberately opted out
+of there, and the reasons are not guessable from the file itself.
+
 ## What "verified live" means
 
 The loader chain is confirmed working on `vextreme24.com` for one page only

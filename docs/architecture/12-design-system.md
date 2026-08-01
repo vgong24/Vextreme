@@ -12,7 +12,17 @@ violations as of the session that wrote this document — see
 
 ---
 
-## Two token families, both declared in one file
+## Three token families, all declared in one file
+
+> **Family 3 was added after this chapter was first written.** The
+> institutional Vextreme Design Foundation family
+> (`[data-theme="foundation"]` / `[data-theme="foundation-light"]`) is
+> documented in `docs/architecture/18-institutional-pages.md` rather than
+> restated here, because its reason for existing is a page-kind boundary, not
+> a styling decision. The rules in this chapter — declare centrally not
+> per-file, a fallback value never satisfies the check, run
+> `check-design-tokens.js` after touching the stylesheet — govern it
+> identically. The two families below are unchanged by it.
 
 **1. The global light theme — `:root` in `styles/design-system.css`**
 
