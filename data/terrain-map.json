@@ -4,12 +4,12 @@
       "key": 0,
       "name": "SOURCES",
       "sub": "content & config — nothing upstream of these",
-      "count": 6,
+      "count": 7,
       "rect": {
         "x": 10,
         "y": 40,
         "width": 300,
-        "height": 450
+        "height": 510
       }
     },
     {
@@ -40,12 +40,12 @@
       "key": 2,
       "name": "CHECK",
       "sub": "drift detectors and tests — run after generation",
-      "count": 7,
+      "count": 8,
       "rect": {
         "x": 1030,
         "y": 40,
         "width": 300,
-        "height": 510
+        "height": 570
       }
     },
     {
@@ -100,12 +100,36 @@
       "auditorRank": 0
     },
     {
+      "id": "config/institutional-surfaces.json",
+      "cluster": "config",
+      "stage": 0,
+      "stageName": "SOURCES",
+      "x": 60,
+      "y": 90,
+      "role": "authored registry for institutional surface identity, lifecycle, runtime exclusions, string scope, theme variants, and required evidence",
+      "reads": [],
+      "writes": [],
+      "loadedBy": [
+        "lib/check-institutional-surfaces.js",
+        "tests/54-institutional-surfaces.test.js",
+        "docs/architecture/18-institutional-pages.md"
+      ],
+      "testedBy": [
+        "tests/54-institutional-surfaces.test.js"
+      ],
+      "debts": [],
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": false,
+      "auditorRank": 4
+    },
+    {
       "id": "data/arcs-v2.json",
       "cluster": "data",
       "stage": 0,
       "stageName": "SOURCES",
       "x": 60,
-      "y": 90,
+      "y": 150,
       "role": "arc structure source — defines arc membership, ordering, and metadata",
       "reads": [],
       "writes": [],
@@ -132,7 +156,7 @@
       "stage": 0,
       "stageName": "SOURCES",
       "x": 60,
-      "y": 150,
+      "y": 210,
       "role": "hand-transcribed structured extract of pages/org-blueprint.html's roster and patterns — the 'runnable kernel' that document names as its own unfinished ambition",
       "reads": [],
       "writes": [],
@@ -149,7 +173,7 @@
       "status": "good",
       "engineerFocus": true,
       "auditorFocus": false,
-      "auditorRank": 4
+      "auditorRank": 5
     },
     {
       "id": "data/departments.json",
@@ -157,7 +181,7 @@
       "stage": 0,
       "stageName": "SOURCES",
       "x": 60,
-      "y": 210,
+      "y": 270,
       "role": "department registry source — production-domain grouping, orthogonal to arcs (narrative) and blueprint.json categories (publish lifecycle)",
       "reads": [],
       "writes": [],
@@ -183,7 +207,7 @@
       "stage": 0,
       "stageName": "SOURCES",
       "x": 60,
-      "y": 270,
+      "y": 330,
       "role": "pre-built read index — the single artifact every page and build script reads from",
       "reads": [],
       "writes": [],
@@ -217,7 +241,7 @@
       "stage": 0,
       "stageName": "SOURCES",
       "x": 60,
-      "y": 330,
+      "y": 390,
       "role": "content node source — the authoritative list of all content slugs",
       "reads": [],
       "writes": [],
@@ -249,7 +273,7 @@
       "stage": 0,
       "stageName": "SOURCES",
       "x": 60,
-      "y": 390,
+      "y": 450,
       "role": "per-slug viewmodel overrides — demo/specimen pages that aren't content nodes",
       "reads": [],
       "writes": [],
@@ -265,7 +289,7 @@
       "status": "good",
       "engineerFocus": true,
       "auditorFocus": false,
-      "auditorRank": 5
+      "auditorRank": 6
     },
     {
       "id": "lib/append-session-continuation.js",
@@ -1175,12 +1199,44 @@
       "auditorRank": 2
     },
     {
-      "id": "lib/check-key-alignment.js",
+      "id": "lib/check-institutional-surfaces.js",
       "cluster": "lib",
       "stage": 2,
       "stageName": "CHECK",
       "x": 1080,
       "y": 330,
+      "role": "fail-closed institutional-surface registry and active-projection validator",
+      "reads": [
+        "config/institutional-surfaces.json",
+        "pages/*.html (existence and active projection markers, per registered slug)",
+        "data/nodes.json (active institutional slugs must remain outside archive indexing)",
+        "data/arcs-v2.json (active institutional slugs must remain outside narrative arcs)",
+        "dist/*.js (no God Script may be generated for an active institutional surface)"
+      ],
+      "writes": [
+        "stdout only — read-only; exits nonzero when registry or projections drift"
+      ],
+      "loadedBy": [
+        "manual run: node lib/check-institutional-surfaces.js",
+        "package.json (pr-ready and institutional-surfaces:check scripts)",
+        "tests/54-institutional-surfaces.test.js"
+      ],
+      "testedBy": [
+        "tests/54-institutional-surfaces.test.js"
+      ],
+      "debts": [],
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": true,
+      "auditorRank": 5
+    },
+    {
+      "id": "lib/check-key-alignment.js",
+      "cluster": "lib",
+      "stage": 2,
+      "stageName": "CHECK",
+      "x": 1080,
+      "y": 390,
       "role": "non-blocking CI check — compares slug/arc keys across nodes.json, arcs-v2.json, index.json, cross-checks pages/ and wip/, and reports drift",
       "reads": [
         "data/nodes.json",
@@ -1222,7 +1278,7 @@
       "stage": 2,
       "stageName": "CHECK",
       "x": 1080,
-      "y": 390,
+      "y": 450,
       "role": "pe-012 lattice-edge drift detector — verifies the map's claimed reads/writes/loadedBy edges against actual code",
       "reads": [
         "docs/lattice-map.json (every node's claimed edges)",
@@ -1278,7 +1334,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": true,
-      "auditorRank": 5
+      "auditorRank": 6
     },
     {
       "id": "lib/check-string-identity.js",
@@ -1286,7 +1342,7 @@
       "stage": 2,
       "stageName": "CHECK",
       "x": 1080,
-      "y": 450,
+      "y": 510,
       "role": "localization identity pilot, third script — informational validator, never rewrites anything",
       "reads": [
         "data/strings/compiled/identity-index.json",
@@ -1307,7 +1363,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": true,
-      "auditorRank": 6
+      "auditorRank": 7
     },
     {
       "id": "lib/compute-fab-version.js",
@@ -1981,6 +2037,10 @@
   ],
   "edges": [
     [
+      "config/institutional-surfaces.json",
+      "lib/check-institutional-surfaces.js"
+    ],
+    [
       "data/council-kernel.json",
       "lib/build-roles.js"
     ],
@@ -2255,6 +2315,10 @@
     [
       "lib/check-description-freshness.js",
       "lib/build-page-health.js"
+    ],
+    [
+      "lib/check-institutional-surfaces.js",
+      "data/arcs-v2.json"
     ],
     [
       "lib/check-key-alignment.js",

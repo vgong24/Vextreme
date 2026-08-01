@@ -1488,6 +1488,64 @@
         ]
       }
     },
+    "config/institutional-surfaces.json": {
+      "role": "authored registry for institutional surface identity, lifecycle, runtime exclusions, string scope, theme variants, and required evidence",
+      "context": "Institutional Surface Integration 1/4. PR #135 proved that vextreme-home and vex-support are a real second page class, but encoded their identity across page-local exceptions, duplicated lists, runtime assumptions, and an oversized acceptance surface. This registry holds the two slugs as reservations before any public page exists. Promotion to active happens in the same bounded PR as the page, and lib/check-institutional-surfaces.js rejects every reserved/active half-state. Planned locales are intentionally distinct from required locales so future translation is visible without being misreported as accepted or published.",
+      "reads": [],
+      "writes": [],
+      "loadedBy": [
+        "lib/check-institutional-surfaces.js",
+        "tests/54-institutional-surfaces.test.js",
+        "docs/architecture/18-institutional-pages.md"
+      ],
+      "testedBy": [
+        "tests/54-institutional-surfaces.test.js"
+      ],
+      "changeMap": {
+        "a reservation is promoted to active": [
+          "pages/{slug}.html must land in the same PR with the registry projection markers",
+          "lib/check-institutional-surfaces.js must pass after the page, node, arc, and dist projections are built",
+          "the page-specific PR must provide the evidence matrix declared by this entry"
+        ],
+        "the registry schema or entry dimensions change": [
+          "lib/check-institutional-surfaces.js validation rules",
+          "tests/54-institutional-surfaces.test.js fixtures and failure cases",
+          "docs/architecture/18-institutional-pages.md contract description"
+        ]
+      }
+    },
+    "lib/check-institutional-surfaces.js": {
+      "role": "fail-closed institutional-surface registry and active-projection validator",
+      "context": "Institutional Surface Integration 1/4. Validates one authored registry before later PRs add visible pages. Reserved entries own identity but must have no page; active entries must have one standalone page with explicit surface/string/theme markers, no shell or God Script, no generated dist script, and no archive node or arc membership. This keeps the page class mechanical without accepting #135's two pages, payment state, localization, runtime, and evidence as one merge unit.",
+      "reads": [
+        "config/institutional-surfaces.json",
+        "pages/*.html (existence and active projection markers, per registered slug)",
+        "data/nodes.json (active institutional slugs must remain outside archive indexing)",
+        "data/arcs-v2.json (active institutional slugs must remain outside narrative arcs)",
+        "dist/*.js (no God Script may be generated for an active institutional surface)"
+      ],
+      "writes": [
+        "stdout only — read-only; exits nonzero when registry or projections drift"
+      ],
+      "loadedBy": [
+        "manual run: node lib/check-institutional-surfaces.js",
+        "package.json (pr-ready and institutional-surfaces:check scripts)",
+        "tests/54-institutional-surfaces.test.js"
+      ],
+      "testedBy": [
+        "tests/54-institutional-surfaces.test.js"
+      ],
+      "changeMap": {
+        "active page marker, runtime, or archive-boundary rules change": [
+          "config/institutional-surfaces.json entry schema",
+          "tests/54-institutional-surfaces.test.js active valid/invalid fixtures",
+          "docs/architecture/18-institutional-pages.md active-page invariants"
+        ],
+        "a new consumer needs institutional slugs": [
+          "import surfacesByState() or read the registry through this validated contract; do not add a second slug list"
+        ]
+      }
+    },
     "lib/logger.js": {
       "role": "structured logger — every build script's warn/info/error call goes through here",
       "context": "The widest fan-in of any file in lib/: nearly every build script imports { logger } and calls logger.warn({ code, message, ...fields }) rather than console.warn directly. Optional fields attach without changing the call signature — a call site can add { arc, slug } without touching any other call site. Swapping the backing store (e.g. write to a DB instead of console) means changing the three methods here, not every call site.",
