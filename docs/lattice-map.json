@@ -32,7 +32,7 @@
     },
     "lib/bump-fab-version.js": {
       "role": "git-diffing orchestration for lib/compute-fab-version.js — finds the last VERSION-bump commit, diffs data files against it, applies the computed bump to widgets/fab-lang.js",
-      "context": "Companion to lib/compute-fab-version.js (see that node for the tier mapping and why it's split out as pure logic). findBaselineCommit() uses `git log -G` (not -S) to find the last commit that changed a VERSION-shaped line — -S only detects a change in how many times a search string occurs, and \"var VERSION\" occurs exactly once both before and after a bump, so only -G correctly catches a same-line value edit. Its whitespace expression uses POSIX `[[:space:]]`, not `\\s`: GNU Git accepts both in this environment, while Apple Git 2.39.5 does not interpret `\\s` as whitespace and otherwise falls back to the file's original add commit. Falls back to that add commit only when no bump has ever happened. Requires full git history (`fetch-depth: 0`) to work in CI — a shallow clone would make git log/show against older commits fail silently. tests/30 constructs committed VERSION history and simulates Apple Git's rejection of `\\s` so cross-platform baseline discovery is part of readiness.",
+      "context": "Companion to lib/compute-fab-version.js (see that node for the tier mapping and why it's split out as pure logic). findBaselineCommit() uses `git log -G` (not -S) to find the last commit that changed a VERSION-shaped line — -S only detects a change in how many times a search string occurs, and \"var VERSION\" occurs exactly once both before and after a bump, so only -G correctly catches a same-line value edit. Its whitespace expression uses POSIX `[[:space:]]`, not `\\s`: GNU Git accepts both in this environment, while Apple Git 2.39.5 does not interpret `\\s` as whitespace and otherwise falls back to the file's original add commit. Falls back to that add commit only when no bump has ever happened. Institutional home integration exercised the first real qualifying bump after the read-only generation repair and exposed that incrementing the working VERSION on every replay was non-convergent. The target is now always one tier above the baseline commit's VERSION, so a second run is a no-op even before commit. Requires full git history (`fetch-depth: 0`) to work in CI. tests/30 covers both Apple-Git-safe baseline discovery and repeated-run convergence.",
       "reads": [
         "git log/show/diff history (via child_process, not require())",
         "data/nodes.json (current + at baseline commit)",
@@ -55,6 +55,10 @@
       "changeMap": {
         "widgets/fab-lang.js's VERSION line format changes (e.g. quote style, variable name)": [
           "VERSION_RE here — the regex that both finds and rewrites the line"
+        ],
+        "baseline or target-version selection changes": [
+          "targetVersionFromBaseline() here — qualifying changes must converge on the same target across repeated runs",
+          "tests/30 convergence regression and Apple-Git-safe committed-history fixture"
         ],
         "a new data file needs to feed into version classification": [
           "computeSignals() here — add the read + diff call",
@@ -843,7 +847,7 @@
       ],
       "changeMap": {
         "CORE_ASSETS list": [
-          "styles/design-system.css, styles/arc-nav.css, data/index.json (must exist at these paths)",
+          "styles/design-system.css, styles/arc-nav.css, styles/vex-institutional.css, widgets/vex-institutional.js, data/index.json, and the accepted English institutional scope bundle (must exist at these paths)",
           "tests/09 (asserts each core asset)"
         ],
         "cache name format": [
@@ -1343,6 +1347,7 @@
         "lib/build-page-health.js",
         "lib/build-terrain-map.js",
         "lib/build-analysis-index.js",
+        "scripts/screenshot-institutional.js",
         "tests/36-build-analysis-index.test.js"
       ],
       "testedBy": [
@@ -1357,7 +1362,42 @@
           "lib/build-page-health.js (locale and exact-file health evidence)",
           "lib/build-terrain-map.js (representative screen plus exact evidence records)",
           "lib/build-analysis-index.js (per-page evidence projection)",
+          "scripts/screenshot-institutional.js (matrix writer)",
           "tests/28, tests/44, and tests/54"
+        ]
+      }
+    },
+    "scripts/screenshot-institutional.js": {
+      "role": "registry-driven Playwright renderer for exact institutional locale/theme/viewport evidence cells",
+      "context": "Institutional Surface Integration 2/4. The source capsule carried a hard-coded two-page renderer and emitted both a private width/theme vocabulary and legacy locale aliases. This harness reads only active registry entries and writes the exact matrix filename accepted by activation, Page Health, Terrain, and Analysis. It operates the real page runtime, asserts the declared markers and selected state, rejects runtime errors and horizontal overflow, and exercises the theme control before preserving evidence.",
+      "reads": [
+        "config/institutional-surfaces.json (active slugs and declared evidence matrix)",
+        "lib/check-institutional-surfaces.js (surfacesByState; no second lifecycle list)",
+        "lib/screenshot-evidence.js (canonical matrix filename)",
+        "pages/{active institutional slug}.html (rendered through a bounded local server)",
+        "styles and widgets loaded by each active page"
+      ],
+      "writes": [
+        "docs/screenshots/{slug}-{locale}-{theme}-{viewport}.png"
+      ],
+      "loadedBy": [
+        "package.json (institutional-surfaces:screenshots script)",
+        "manual visual-evidence regeneration before institutional review"
+      ],
+      "testedBy": [
+        "lib/check-institutional-surfaces.js (exact output-matrix completeness)",
+        "review-time browser execution and visual inspection"
+      ],
+      "changeMap": {
+        "matrix dimensions or lifecycle selection change": [
+          "config/institutional-surfaces.json (the only authored matrix and lifecycle source)",
+          "lib/check-institutional-surfaces.js (activation acceptance)",
+          "lib/screenshot-evidence.js (filename grammar)"
+        ],
+        "institutional runtime controls change": [
+          "widgets/vex-institutional.js",
+          "pages/{active institutional slug}.html",
+          "lib/check-institutional-surfaces.js behavioral runtime probe"
         ]
       }
     },
@@ -1501,7 +1541,7 @@
     },
     "lib/check-design-tokens.js": {
       "role": "non-blocking-in-spirit, blocking-in-practice check — every var(--token) reference in generated pages and stylesheets must resolve against a real token",
-      "context": "Built od-004's concrete deliverable: an automated replacement for remembering to check CSS token usage by hand. Two legitimate token families exist — the global light theme in styles/design-system.css, and a self-contained local dark :root block repeated across lib/build-archives.js, build-demo.js, build-specimens.js, and pages/specimen-architectural-wisdoms.html (see docs/architecture/12-design-system.md). A file's valid tokens are its own local :root tokens, plus the global set only if it actually links design-system.css — a fallback value inside var(--x, #hex) does not count as the token being defined, since that's exactly the pattern that partially masked the Session 015 bug.",
+      "context": "Built od-004's concrete deliverable: an automated replacement for remembering to check CSS token usage by hand. Three legitimate families now coexist in styles/design-system.css: the archive/global light vocabulary, the shared dashboard dark vocabulary, and the institutional foundation vocabulary with dark/light semantic variants. A file's valid tokens are its own local declarations, plus the global set only if it actually links design-system.css — a fallback value inside var(--x, #hex) does not count as the token being defined, since that's exactly the pattern that partially masked the Session 015 bug.",
       "reads": [
         "styles/design-system.css (the global token source)",
         "lib/build-*.js (every generator, scanned for inline <style> content)",
@@ -1533,13 +1573,15 @@
     },
     "config/institutional-surfaces.json": {
       "role": "authored registry for institutional surface identity, lifecycle, runtime exclusions, string scope, theme variants, and required evidence",
-      "context": "Institutional Surface Integration 1/4. PR #135 proved that vextreme-home and vex-support are a real second page class, but encoded their identity across page-local exceptions, duplicated lists, runtime assumptions, and an oversized acceptance surface. This registry holds the two slugs as reservations before any public page exists. A reservation owns the slug across page, node, arc, generated-index, and God Script projections. Promotion to active additionally requires bound locale bundles at the entry's declared string category/scope, a reachable runtime path for every non-English required locale, and the declared locale/theme/viewport PNG evidence matrix. Planned locales remain distinct from required locales so future translation is visible without being misreported as accepted or published.",
+      "context": "Institutional Surface Integration. PR #135 proved that vextreme-home and vex-support are a real second page class, but encoded their identity across page-local exceptions, duplicated lists, runtime assumptions, and an oversized acceptance surface. Item 1/4 reserved both identities; item 2/4 promotes only vextreme-home after its English standalone page, foundation runtime, compiled scope bundle, and full locale/theme/viewport evidence matrix exist. vex-support remains reserved for the later support-domain row. A reservation owns the slug across page, node, arc, generated-index, and God Script projections. Planned locales remain distinct from required locales so future translation is visible without being misreported as accepted or published.",
       "reads": [],
       "writes": [],
       "loadedBy": [
         "lib/check-institutional-surfaces.js",
         "lib/audit-pages.js",
         "lib/build-page-health.js",
+        "lib/build-sitemap.js",
+        "scripts/screenshot-institutional.js",
         "tests/54-institutional-surfaces.test.js",
         "docs/architecture/18-institutional-pages.md"
       ],
@@ -1582,6 +1624,9 @@
         "manual run: node lib/check-institutional-surfaces.js",
         "package.json (pr-ready and institutional-surfaces:check scripts)",
         "lib/audit-pages.js (registeredSurfaceSlugs feeds the shared discovery exclusion)",
+        "lib/build-index-page.js (surfacesByState selects the active institutional-home route)",
+        "lib/build-sitemap.js (surfacesByState selects publicly advertised institutional pages)",
+        "scripts/screenshot-institutional.js (surfacesByState selects the evidence matrix writer's active pages)",
         "tests/54-institutional-surfaces.test.js"
       ],
       "testedBy": [
@@ -1704,9 +1749,11 @@
     },
     "lib/build-sitemap.js": {
       "role": "generates sitemap.xml — lists only pages that actually exist, so crawlers never hit a 404",
-      "context": "Filters nodes.json down to nodes with both a non-null id and an actual pages/{slug}.html file on disk before including them — unported nodes are silently excluded rather than producing a dead sitemap entry. UTILITY_PAGES is a small hardcoded list of non-node pages (archives, vextreme-demo, specimens) to include if they exist. Session 027 correctly rejected one build-time date stamped across every URL, but its replacement used each generated page's latest git commit; PR #141 replay proved that artifact rebuild history still makes sitemap output depend on the commit carrying it. lastmod is now omitted because no accepted source owns semantic modification time. Absence is more truthful and deterministic than projecting build history as content freshness.",
+      "context": "Filters nodes.json down to nodes with both a non-null id and an actual pages/{slug}.html file on disk before including them — unported nodes are silently excluded rather than producing a dead sitemap entry. UTILITY_PAGES remains the small non-node legacy list. Institutional surfaces are selected from the lifecycle registry instead: an active page is advertised if it exists, while a reserved identity is never leaked. Session 027 correctly rejected one build-time date stamped across every URL, but its replacement used each generated page's latest git commit; PR #141 replay proved that artifact rebuild history still makes sitemap output depend on the commit carrying it. lastmod is now omitted because no accepted source owns semantic modification time. Absence is more truthful and deterministic than projecting build history as content freshness.",
       "reads": [
         "data/nodes.json",
+        "config/institutional-surfaces.json (active lifecycle projection)",
+        "lib/check-institutional-surfaces.js (surfacesByState)",
         "pages/*.html (existence check only, per slug)"
       ],
       "writes": [
@@ -1722,6 +1769,10 @@
       "changeMap": {
         "a new utility page added (non-node, not from nodes.json)": [
           "UTILITY_PAGES array in this file — otherwise it's silently excluded from the sitemap"
+        ],
+        "an institutional surface changes lifecycle state": [
+          "config/institutional-surfaces.json — active entries are included and reserved entries are excluded",
+          "tests/55-build-sitemap.test.js active/reserved projection coverage"
         ]
       }
     },
@@ -1753,11 +1804,13 @@
       }
     },
     "lib/build-index-page.js": {
-      "role": "generates index.html — the root landing page, arc hub links plus the 5 most recently added nodes",
-      "context": "The first page a visitor or crawler hits. Reads nodes.json directly for recency (by id, not date) rather than going through data/index.json's arcMap, since 'most recently added' is a raw-nodes-order question, not an arc-position question. Has its own local :root light-theme token block (see docs/architecture/12-design-system.md) — a renamed restatement of styles/design-system.css's tokens, not a copy of the dashboard dark theme; noted there as a minor non-urgent migration opportunity, not tracked as debt.",
+      "role": "generates index.html — the root archive landing page, active institutional-home route, Terrain/arc links, and 5 most recently added nodes",
+      "context": "The first page a visitor or crawler hits. Reads nodes.json directly for recency (by id, not date) rather than going through data/index.json's arcMap, since 'most recently added' is a raw-nodes-order question, not an arc-position question. Institutional Surface Integration 2/4 adds an About Vextreme route only when the registry has one active institution-home whose page exists; reserved support remains undiscoverable. Has its own local :root light-theme token block (see docs/architecture/12-design-system.md) — a renamed restatement of styles/design-system.css's tokens, not a copy of the dashboard dark theme; noted there as a minor non-urgent migration opportunity, not tracked as debt.",
       "reads": [
         "data/nodes.json",
         "data/arcs-v2.json",
+        "config/institutional-surfaces.json (active institution-home discovery)",
+        "lib/check-institutional-surfaces.js (surfacesByState)",
         "pages/*.html (existence check, per slug)"
       ],
       "writes": [
@@ -1773,6 +1826,10 @@
         ],
         "'most recent 5 nodes' selection logic changed": [
           "confirm it still reads by nodes.json id order, not data/index.json's arc-derived order — they answer different questions"
+        ],
+        "institutional-home lifecycle or purpose changes": [
+          "config/institutional-surfaces.json — only an active existing institution-home is advertised",
+          "tests/54-institutional-surfaces.test.js root discoverability assertion"
         ]
       }
     },

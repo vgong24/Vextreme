@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 39,
-    "healthy": 1,
+    "total": 40,
+    "healthy": 2,
     "attention": 32,
     "critical": 6,
     "sorted": 4,
     "withFab": 30,
-    "withIdentity": 9,
-    "withScreenshots": 8,
-    "withMetaDescription": 5
+    "withIdentity": 10,
+    "withScreenshots": 9,
+    "withMetaDescription": 6
   },
   "pages": {
     "about-me": {
@@ -2106,6 +2106,70 @@
           "uncurated",
           "theme-effect"
         ]
+      }
+    },
+    "vextreme-home": {
+      "slug": "vextreme-home",
+      "title": "vextreme-home",
+      "surface": {
+        "kind": "institutional",
+        "state": "active"
+      },
+      "placement": {
+        "state": "institutional",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 2,
+        "shell": false,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "not-applicable"
+      },
+      "theme": {
+        "control": "page-owned",
+        "visibleStyles": true
+      },
+      "identity": {
+        "keyCount": 48,
+        "languages": {
+          "en": {
+            "translated": 48,
+            "total": 48,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": [
+          "en"
+        ],
+        "screenshotFiles": [
+          "docs/screenshots/vextreme-home-en-foundation-1440.png",
+          "docs/screenshots/vextreme-home-en-foundation-320.png",
+          "docs/screenshots/vextreme-home-en-foundation-768.png",
+          "docs/screenshots/vextreme-home-en-foundation-light-1440.png",
+          "docs/screenshots/vextreme-home-en-foundation-light-320.png",
+          "docs/screenshots/vextreme-home-en-foundation-light-768.png"
+        ]
+      },
+      "discovery": {
+        "metaDescription": "Vextreme is an institutional template: culture, maps, archives, evidence, and structures that make complex work perceivable, accountable, and continuable across people, tools, and AI."
+      },
+      "health": {
+        "state": "healthy",
+        "blockers": [],
+        "gaps": []
       }
     },
     "victor-methodology-presentation": {

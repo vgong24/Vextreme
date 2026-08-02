@@ -169,16 +169,19 @@ function writeActiveAcceptance(root, slug, surfaceEntry) {
   }
 }
 
-test('INSTITUTIONAL-SURFACES: real reservations are valid and deterministic', () => {
+test('INSTITUTIONAL-SURFACES: the home is active while support remains reserved', () => {
   assert.deepEqual(validateRegistry(registry, ROOT), []);
-  assert.deepEqual(surfacesByState(registry, 'reserved').map(surface => surface.slug), [
-    'vex-support',
-    'vextreme-home',
-  ]);
+  assert.deepEqual(surfacesByState(registry, 'active').map(surface => surface.slug), ['vextreme-home']);
+  assert.deepEqual(surfacesByState(registry, 'reserved').map(surface => surface.slug), ['vex-support']);
   assert.deepEqual(Object.keys(institutionalSurfaceExclusions()), ['vex-support', 'vextreme-home']);
   assert.ok(AUTO_DISCOVERY_EXCLUSIONS['vex-support']);
   assert.ok(AUTO_DISCOVERY_EXCLUSIONS['vextreme-home']);
   assert.ok(!getRecordPageSlugs().includes('vex-support'));
+  assert.ok(!getRecordPageSlugs().includes('vextreme-home'));
+  assert.ok(!fs.existsSync(path.join(ROOT, 'pages', 'vex-support.html')));
+  const rootIndex = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+  assert.match(rootIndex, /href="https:\/\/vgong24\.github\.io\/Vextreme\/pages\/vextreme-home\.html">About Vextreme<\/a>/);
+  assert.doesNotMatch(rootIndex, /vex-support\.html/);
 });
 
 test('INSTITUTIONAL-SURFACES: unsafe identity and permissive runtime fail closed', () => {

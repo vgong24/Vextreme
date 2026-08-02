@@ -28,11 +28,12 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 034 — July 12, 2026. The architecture paragraph's core remains
+*As of Session 036 — August 1, 2026. The architecture paragraph's core remains
 Session 025's; Sessions 029–033 added nav/FAB rollout, authored-style protection,
 runtime-chrome composition, generated page-capability health, capability-aware
 work coordination, Terrain semantic Journey history, and a bounded public-safe
-feedback Issue Form without changing the v1/v2,
+feedback Issue Form; Sessions 034 and 036 added live work coordination and the
+first registry-owned institutional home without changing the v1/v2,
 God Script, or department/arc architecture described below.*
 
 The v2 GitHub Pages architecture is the active system. v1 (`data/arcs.json`, `data/pages.json`,
@@ -152,6 +153,16 @@ actor/instance references, numeric epic position, dependencies, paths, leases, a
 overlaps, and fails visibly when live state is unavailable. Claims coordinate work;
 they do not prove identity or grant authority.
 
+Session 036 records the accepted institutional-surface contract lineage through
+PR #143 and prepares integration item 2/4: `vextreme-home` is the first active
+registry-owned institutional surface, with an English authored baseline,
+foundation/foundation-light runtime, six exact render-evidence cells, and
+registry-derived root/sitemap discovery. It remains outside archive placement,
+auto-discovery, FAB/God Script delivery, nodes, and arcs. `vex-support` remains
+reserved; support routes, JA/ZH activation, payments, and private VexLife links
+are not part of this row. PR #135 remains provenance only, including its
+unaccepted Session 035 record; the accepted sequence therefore advances to 036.
+
 The continuity system itself changed shape in Session 024: batches are now **directories of
 per-session files** (`docs/continuity/batch-003/`, filenames `YYYY-MM-DD-session-0NN.md`)
 instead of one monolithic markdown file per batch. Logging a session is a file creation — no
@@ -160,14 +171,14 @@ The change repairs Session 023 (Codex's July 6 context-note and perceivable-cont
 entries had been injected mid-file into Session 021's record.
 
 **Recent sessions** (one line each — open the session files below for full reasoning):
+- **Session 036** — Integrated the English institutional home and foundation
+  runtime from the #135 source capsule onto the accepted #143 contract, with
+  registry-derived discovery, deterministic projections, and six-cell evidence.
 - **Session 034** — Added public-safe live PR ownership claims, participant policy,
   overlap/lease health, PR-template routing, and cold-start visibility in `current-work`.
 - **Session 033** — Added the first public feedback Issue Form with explicit
   public/no-sensitive/no-commitment acknowledgements, disabled blank issues, and
   routed private/security/business matters to the existing Direct Contact path.
-- **Session 032** — Added Terrain's Phase 1 semantic Journey history: relationship-aware
-  browser Back/Forward restoration, a compact drawer path, Return to origin, Clear journey,
-  focused state-machine tests, and rendered desktop/mobile evidence.
 - **Session 031** — Replaced model-dependent sequencing with the active
   Victor/Vex/Codex loop, kept Claude as an optional second lens, mirrored epic
   PR positioning into the public PR template, and opened Batch 004 at the first
@@ -231,7 +242,7 @@ architecture docs, or lessons only through a PR decision record.
 
 ## Open Work
 
-*Updated Session 034 — July 12, 2026*
+*Updated Session 036 — August 1, 2026*
 
 This list holds only genuinely open items — things nobody has done yet, not a running log of
 what shipped. A completed item is removed here the same session it ships, not kept and checked
@@ -240,6 +251,14 @@ off forever; its record already lives in the batch file and (for od-/td-/pe- ite
 not this list.
 
 **Genuinely open:**
+- [ ] Institutional Surface Integration item 2/4 — independent exact-head review
+  and acceptance of the English Vextreme home/foundation row.
+- [ ] Institutional Surface Integration item 3/4 — support domain and English
+  support page; keep payment routes inert until their destinations are verified.
+- [ ] Institutional Surface Integration item 4/4 — reviewed JA/ZH strings,
+  reachable runtime selection, and complete two-page render evidence.
+- [ ] Payment activation — only after Victor verifies every destination; never
+  infer readiness from page implementation or provider-shaped configuration.
 - [ ] Terrain Relational Projection Phase 2 — add a visible semantic threshold rail that exposes prior/current/next level and transition proximity while preserving the Phase 1 Journey contract; do not add user-editable threshold controls yet.
 - [ ] Terrain Relational Projection later phases — context-bearing stage portals, projection/profile grammar, alternate spatial POCs, public-safe organization/process views, and accessibility stabilization remain ordered horizon work, not bundled into Phase 1.
 - [ ] Global FAB coverage after the v8 action-rail contract: 10 of 39 `pages/*.html` surfaces still have neither `shell.js` nor a God-Script FAB path. Add them in a bounded PR, updating generators for generated pages and visually checking each authored surface.
@@ -461,6 +480,6 @@ Create as `docs/continuity/batch-00N/YYYY-MM-DD-session-0NN.md`:
 
 ---
 
-*Last updated: Session 034 — July 12, 2026*
+*Last updated: Session 036 — August 1, 2026*
 
 <!-- [VXG RealForever] -->

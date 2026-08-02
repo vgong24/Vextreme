@@ -36,6 +36,7 @@ const {
 const {
   VERSION_HISTORY_GREP,
   findBaselineCommit,
+  targetVersionFromBaseline,
 } = require('../lib/bump-fab-version');
 
 // ── 1. parseVersion / formatVersion / bumpVersion ─────────────────────────────
@@ -71,6 +72,13 @@ test('FAB-VERSION: bumpVersion major tier increments major and resets minor+patc
 
 test('FAB-VERSION: bumpVersion rejects an unknown tier', () => {
   assert.throws(() => bumpVersion('1.2.3', 'epic'));
+});
+
+test('FAB-VERSION: a qualifying change converges on one baseline-derived target', () => {
+  assert.equal(targetVersionFromBaseline('2.1.0', '2.1.0', 'minor'), '2.2.0');
+  assert.equal(targetVersionFromBaseline('2.1.0', '2.2.0', 'minor'), '2.2.0');
+  assert.equal(targetVersionFromBaseline('2.1.0', '2.3.0', 'minor'), '2.2.0');
+  assert.equal(targetVersionFromBaseline('2.1.0', '9.9.9', null), '9.9.9');
 });
 
 // ── 2. classifyChanges ─────────────────────────────────────────────────────────

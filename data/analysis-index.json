@@ -945,6 +945,676 @@
         "zh"
       ]
     },
+    "institution.common.skip.content": {
+      "key": "institution.common.skip.content",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.common.brand.wordmark": {
+      "key": "institution.common.brand.wordmark",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.common.brand.home-label": {
+      "key": "institution.common.brand.home-label",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.common.brand.descriptor": {
+      "key": "institution.common.brand.descriptor",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.common.nav.archives": {
+      "key": "institution.common.nav.archives",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.common.nav.terrain": {
+      "key": "institution.common.nav.terrain",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.common.button.theme": {
+      "key": "institution.common.button.theme",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.common.footer.site": {
+      "key": "institution.common.footer.site",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.common.footer.repo": {
+      "key": "institution.common.footer.repo",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.common.footer.mark": {
+      "key": "institution.common.footer.mark",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.common.heading.alignments": {
+      "key": "institution.common.heading.alignments",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.common.description.alignments": {
+      "key": "institution.common.description.alignments",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.common.alignment.integrity.name": {
+      "key": "institution.common.alignment.integrity.name",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.common.alignment.integrity.body": {
+      "key": "institution.common.alignment.integrity.body",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.common.alignment.accountability.name": {
+      "key": "institution.common.alignment.accountability.name",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.common.alignment.accountability.body": {
+      "key": "institution.common.alignment.accountability.body",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.common.alignment.authenticity.name": {
+      "key": "institution.common.alignment.authenticity.name",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.common.alignment.authenticity.body": {
+      "key": "institution.common.alignment.authenticity.body",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.common.alignment.resilience.name": {
+      "key": "institution.common.alignment.resilience.name",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.common.alignment.resilience.body": {
+      "key": "institution.common.alignment.resilience.body",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.common.heading.lineage": {
+      "key": "institution.common.heading.lineage",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.common.description.lineage": {
+      "key": "institution.common.description.lineage",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.common.lineage.vextreme.name": {
+      "key": "institution.common.lineage.vextreme.name",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.common.lineage.vextreme.body": {
+      "key": "institution.common.lineage.vextreme.body",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.common.lineage.sdk.name": {
+      "key": "institution.common.lineage.sdk.name",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.common.lineage.sdk.body": {
+      "key": "institution.common.lineage.sdk.body",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.common.lineage.vexlife.name": {
+      "key": "institution.common.lineage.vexlife.name",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.common.lineage.vexlife.body": {
+      "key": "institution.common.lineage.vexlife.body",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.home.hero.eyebrow": {
+      "key": "institution.home.hero.eyebrow",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.home.hero.heading": {
+      "key": "institution.home.hero.heading",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.home.hero.lede": {
+      "key": "institution.home.hero.lede",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.home.hero.archives-cta": {
+      "key": "institution.home.hero.archives-cta",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.home.hero.terrain-cta": {
+      "key": "institution.home.hero.terrain-cta",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.home.what.heading": {
+      "key": "institution.home.what.heading",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.home.what.p1": {
+      "key": "institution.home.what.p1",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.home.what.p2": {
+      "key": "institution.home.what.p2",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.home.what.p3": {
+      "key": "institution.home.what.p3",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.home.entry.heading": {
+      "key": "institution.home.entry.heading",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.home.entry.archives.name": {
+      "key": "institution.home.entry.archives.name",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.home.entry.archives.body": {
+      "key": "institution.home.entry.archives.body",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.home.entry.terrain.name": {
+      "key": "institution.home.entry.terrain.name",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.home.entry.terrain.body": {
+      "key": "institution.home.entry.terrain.body",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.home.entry.support.name": {
+      "key": "institution.home.entry.support.name",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.home.entry.support.body": {
+      "key": "institution.home.entry.support.body",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.home.entry.support-state": {
+      "key": "institution.home.entry.support-state",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.home.entry.vexlife.name": {
+      "key": "institution.home.entry.vexlife.name",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.home.entry.vexlife.body": {
+      "key": "institution.home.entry.vexlife.body",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.home.entry.vexlife-state": {
+      "key": "institution.home.entry.vexlife-state",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
     "pages.claude-answers-the-doubt.layer.01.number": {
       "key": "pages.claude-answers-the-doubt.layer.01.number",
       "usedIn": [
@@ -3806,6 +4476,112 @@
         "ja": "docs/screenshots/vextreme-demo-ja.png"
       }
     },
+    "vextreme-home": {
+      "slug": "vextreme-home",
+      "keys": [
+        "institution.common.alignment.accountability.body",
+        "institution.common.alignment.accountability.name",
+        "institution.common.alignment.authenticity.body",
+        "institution.common.alignment.authenticity.name",
+        "institution.common.alignment.integrity.body",
+        "institution.common.alignment.integrity.name",
+        "institution.common.alignment.resilience.body",
+        "institution.common.alignment.resilience.name",
+        "institution.common.brand.descriptor",
+        "institution.common.brand.wordmark",
+        "institution.common.button.theme",
+        "institution.common.description.alignments",
+        "institution.common.description.lineage",
+        "institution.common.footer.mark",
+        "institution.common.footer.repo",
+        "institution.common.footer.site",
+        "institution.common.heading.alignments",
+        "institution.common.heading.lineage",
+        "institution.common.lineage.sdk.body",
+        "institution.common.lineage.sdk.name",
+        "institution.common.lineage.vexlife.body",
+        "institution.common.lineage.vexlife.name",
+        "institution.common.lineage.vextreme.body",
+        "institution.common.lineage.vextreme.name",
+        "institution.common.nav.archives",
+        "institution.common.nav.terrain",
+        "institution.common.skip.content",
+        "institution.home.entry.archives.body",
+        "institution.home.entry.archives.name",
+        "institution.home.entry.heading",
+        "institution.home.entry.support-state",
+        "institution.home.entry.support.body",
+        "institution.home.entry.support.name",
+        "institution.home.entry.terrain.body",
+        "institution.home.entry.terrain.name",
+        "institution.home.entry.vexlife-state",
+        "institution.home.entry.vexlife.body",
+        "institution.home.entry.vexlife.name",
+        "institution.home.hero.archives-cta",
+        "institution.home.hero.eyebrow",
+        "institution.home.hero.heading",
+        "institution.home.hero.lede",
+        "institution.home.hero.terrain-cta",
+        "institution.home.what.heading",
+        "institution.home.what.p1",
+        "institution.home.what.p2",
+        "institution.home.what.p3"
+      ],
+      "orphanKeys": [],
+      "screenshots": {
+        "en": "docs/screenshots/vextreme-home-en-foundation-1440.png"
+      },
+      "screenshotEvidence": [
+        {
+          "slug": "vextreme-home",
+          "locale": "en",
+          "theme": "foundation",
+          "viewport": 1440,
+          "kind": "matrix",
+          "path": "docs/screenshots/vextreme-home-en-foundation-1440.png"
+        },
+        {
+          "slug": "vextreme-home",
+          "locale": "en",
+          "theme": "foundation",
+          "viewport": 320,
+          "kind": "matrix",
+          "path": "docs/screenshots/vextreme-home-en-foundation-320.png"
+        },
+        {
+          "slug": "vextreme-home",
+          "locale": "en",
+          "theme": "foundation",
+          "viewport": 768,
+          "kind": "matrix",
+          "path": "docs/screenshots/vextreme-home-en-foundation-768.png"
+        },
+        {
+          "slug": "vextreme-home",
+          "locale": "en",
+          "theme": "foundation-light",
+          "viewport": 1440,
+          "kind": "matrix",
+          "path": "docs/screenshots/vextreme-home-en-foundation-light-1440.png"
+        },
+        {
+          "slug": "vextreme-home",
+          "locale": "en",
+          "theme": "foundation-light",
+          "viewport": 320,
+          "kind": "matrix",
+          "path": "docs/screenshots/vextreme-home-en-foundation-light-320.png"
+        },
+        {
+          "slug": "vextreme-home",
+          "locale": "en",
+          "theme": "foundation-light",
+          "viewport": 768,
+          "kind": "matrix",
+          "path": "docs/screenshots/vextreme-home-en-foundation-light-768.png"
+        }
+      ]
+    },
     "victor-methodology-presentation": {
       "slug": "victor-methodology-presentation",
       "keys": [
@@ -3893,8 +4669,8 @@
     }
   },
   "summary": {
-    "totalKeysInManifest": 246,
-    "totalKeysUsed": 216,
+    "totalKeysInManifest": 294,
+    "totalKeysUsed": 263,
     "orphanUsages": [],
     "unusedKeys": [
       "ai-orientation.heading.title",
@@ -3922,6 +4698,7 @@
       "epstein.heading.title",
       "excavation.heading.title",
       "full-timeline.heading.title",
+      "institution.common.brand.home-label",
       "liberation.heading.title",
       "living-blueprint.heading.title",
       "march-23-2026.heading.title",

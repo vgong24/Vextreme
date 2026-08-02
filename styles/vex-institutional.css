@@ -1,0 +1,451 @@
+/**
+ * styles/vex-institutional.css
+ *
+ * Shared chrome, layout, and components for registry-owned institutional
+ * surfaces. It consumes the foundation token family from design-system.css
+ * and declares no page-local color, type, or spacing values.
+ *
+ * This first accepted row includes only the foundation and home vocabulary.
+ * Support-route, capacity, and payment components remain owned by the later
+ * support-domain row rather than arriving here as unused CSS.
+ */
+
+body.vex-inst {
+  background: var(--bg-canvas);
+  color: var(--text-primary);
+  font: var(--text-body);
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+}
+
+.vex-inst-shell {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding-inline: clamp(20px, 5vw, 48px);
+}
+
+.vex-inst-measure {
+  max-width: var(--measure);
+}
+
+.vex-skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--bg-inverse);
+  color: var(--text-inverse);
+  padding: var(--space-3) var(--space-4);
+  font: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  border-radius: 0 0 var(--radius-sm) 0;
+}
+
+.vex-skip:focus {
+  left: 0;
+}
+
+.vex-header {
+  border-bottom: var(--border-w) solid var(--border-subtle);
+  background: var(--bg-canvas);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.vex-header-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  padding-block: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.vex-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--text-primary);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+}
+
+.vex-brand:hover {
+  color: var(--text-primary);
+}
+
+.vex-brand svg {
+  width: 30px;
+  height: 30px;
+  display: block;
+  flex: none;
+}
+
+.vex-brand-word {
+  font: 500 1.0625rem/1 var(--font-serif);
+  letter-spacing: 0.01em;
+}
+
+.vex-brand-sub {
+  font: var(--text-mono-xs);
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  padding-left: var(--space-3);
+  margin-left: var(--space-1);
+  border-left: var(--border-w) solid var(--border-subtle);
+}
+
+.vex-nav {
+  display: flex;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+  margin-left: auto;
+  align-items: center;
+}
+
+.vex-nav a {
+  font: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding-block: var(--space-2);
+  border-bottom: var(--border-w-strong) solid transparent;
+}
+
+.vex-nav a:hover,
+.vex-nav a:focus-visible {
+  color: var(--text-primary);
+  border-bottom-color: var(--border-strong);
+}
+
+.vex-header-controls {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.vex-control {
+  font: var(--text-caption);
+  letter-spacing: var(--tracking-label);
+  color: var(--text-secondary);
+  background: transparent;
+  border: var(--border-w) solid var(--border-default);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-3);
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-standard),
+              border-color var(--duration-fast) var(--ease-standard);
+}
+
+.vex-control:hover {
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+
+select.vex-control {
+  appearance: none;
+  padding-right: var(--space-6);
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
+                    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: calc(100% - 15px) calc(50% + 1px), calc(100% - 10px) calc(50% + 1px);
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+
+:where(a, button, select, [tabindex]):focus-visible {
+  outline: var(--border-w-strong) solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+.vex-section {
+  border-top: var(--border-w) solid var(--border-subtle);
+  padding-block: clamp(40px, 7vw, 88px);
+}
+
+.vex-section:first-of-type {
+  border-top: none;
+}
+
+.vex-eyebrow {
+  font: var(--text-mono-sm);
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: var(--space-4);
+}
+
+.vex-display {
+  font: var(--text-display);
+  letter-spacing: var(--tracking-display);
+  margin: 0 0 var(--space-5);
+  max-width: 18ch;
+  text-wrap: balance;
+}
+
+.vex-h1 {
+  font: var(--text-h1);
+  letter-spacing: var(--tracking-display);
+  margin: 0 0 var(--space-4);
+  text-wrap: balance;
+}
+
+:lang(ja) .vex-display,
+:lang(ja) .vex-h1,
+:lang(zh) .vex-display,
+:lang(zh) .vex-h1 {
+  word-break: auto-phrase;
+  line-break: strict;
+}
+
+.vex-h2 {
+  font: var(--text-h2);
+  margin: 0 0 var(--space-4);
+}
+
+.vex-h3 {
+  font: var(--text-h3);
+  margin: 0 0 var(--space-3);
+}
+
+.vex-lede {
+  font: var(--text-body-lg);
+  color: var(--text-secondary);
+  max-width: var(--measure);
+  margin: 0 0 var(--space-6);
+}
+
+.vex-lede:last-child,
+.vex-prose:last-child p:last-child {
+  margin-bottom: 0;
+}
+
+.vex-prose p {
+  max-width: var(--measure);
+  margin: 0 0 var(--space-5);
+  color: var(--text-secondary);
+}
+
+.vex-prose p.vex-prose-lead {
+  font: var(--text-body-lg);
+  color: var(--text-primary);
+}
+
+.vex-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.vex-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  border: var(--border-w) solid var(--accent-bg);
+  border-radius: var(--radius-sm);
+  background: var(--accent-bg);
+  color: var(--accent-text-on);
+  font: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.vex-btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+
+.vex-btn:hover {
+  opacity: 0.88;
+}
+
+.vex-grid {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.vex-grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.vex-card {
+  border: var(--border-w) solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  padding: var(--space-5);
+}
+
+.vex-card--pending {
+  border-style: dashed;
+}
+
+.vex-card-title {
+  font: 500 1.1875rem/1.3 var(--font-serif);
+  margin: 0 0 var(--space-3);
+}
+
+.vex-card-title a {
+  color: inherit;
+  text-decoration-color: var(--border-strong);
+  text-decoration-thickness: var(--border-w);
+  text-underline-offset: 0.16em;
+}
+
+.vex-card-title a:hover {
+  text-decoration-color: var(--text-primary);
+}
+
+.vex-card-body {
+  font: var(--text-body-sm);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.vex-lineage {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  counter-reset: lineage;
+}
+
+.vex-lineage .vex-card {
+  position: relative;
+  padding-top: var(--space-6);
+}
+
+.vex-lineage .vex-card::before {
+  counter-increment: lineage;
+  content: counter(lineage, decimal-leading-zero);
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-5);
+  font: var(--text-mono-xs);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-tertiary);
+}
+
+.vex-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 3px var(--space-2);
+  border: var(--border-w) solid var(--border-default);
+  border-radius: var(--radius-full);
+  font: var(--text-mono-xs);
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+}
+
+.vex-badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: currentColor;
+  flex: none;
+}
+
+.vex-badge-pending {
+  color: var(--status-caution);
+}
+
+.vex-provenance {
+  font: var(--text-mono-xs);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-tertiary);
+  margin: var(--space-3) 0 0;
+}
+
+.vex-footer {
+  border-top: var(--border-w) solid var(--border-subtle);
+  padding: var(--space-6) 0 var(--space-8);
+}
+
+.vex-footer-inner {
+  display: flex;
+  gap: var(--space-5);
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.vex-footer-links {
+  display: flex;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+}
+
+.vex-footer a {
+  font: var(--text-caption);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  text-decoration: none;
+}
+
+.vex-footer a:hover {
+  color: var(--text-primary);
+}
+
+.vex-footer-mark {
+  font: var(--text-mono-xs);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-tertiary);
+}
+
+@media (max-width: 640px) {
+  .vex-header {
+    position: static;
+  }
+
+  .vex-header-inner {
+    gap: var(--space-3);
+  }
+
+  .vex-header-controls {
+    margin-left: auto;
+  }
+
+  .vex-nav {
+    order: 3;
+    width: 100%;
+    margin-left: 0;
+    gap: var(--space-4);
+  }
+
+  .vex-brand-sub {
+    display: none;
+  }
+
+  .vex-display {
+    max-width: none;
+  }
+
+  .vex-grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 380px) {
+  .vex-display {
+    font-size: 2.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* [VXG RealForever] */

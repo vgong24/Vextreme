@@ -28,10 +28,13 @@ The registry has two states:
 | `reserved` | The slug, purpose, and intended contracts are held for a later bounded PR. | The page must not exist; the slug must also be absent from node, arc, generated-index, and God Script projections. |
 | `active` | A page has crossed the complete contract and evidence boundary. | `pages/{slug}.html`, every required locale bundle/key, and every declared screenshot cell must exist while archive/runtime exclusions continue to hold. |
 
-The initial reservations are `vextreme-home` and `vex-support`. A reservation
-is not implementation status, acceptance, payment activation, or a promise that
-all planned locales already exist. It prevents another page from silently
-claiming the same identity while the integration stack remains reviewable.
+The initial reservations were `vextreme-home` and `vex-support`.
+`vextreme-home` is now active with its English standalone page, foundation
+runtime, and six-cell render matrix; `vex-support` remains reserved for its
+separate support-domain row. A reservation is not implementation status,
+acceptance, payment activation, or a promise that all planned locales already
+exist. It prevents another page from silently claiming the same identity while
+the integration stack remains reviewable.
 
 Promote `state` from `reserved` to `active` in the same PR that adds the page.
 The validator rejects either half-state: a reserved entry with a page or any
@@ -133,9 +136,12 @@ the rest of the repository.
 
 ## What this contract does not decide
 
-This chapter does not land a theme, runtime widget, home page, support page,
-translation, payment destination, funding amount, or financial state. Those are
-later integration rows with their own evidence.
+The registry contract by itself does not decide page copy, payment destination,
+funding amount, or financial state. The first implementation row now lands the
+foundation token family, shared progressive-enhancement widget, English home,
+and its complete English render evidence. The support page/domain and JA/ZH
+activation remain later integration rows with their own evidence; payment
+activation remains held until Victor verifies each destination.
 
 It also does not require separate GitHub accounts or separate operating systems
 to construct or review the work. Linux/Node CI is the deterministic build lane.

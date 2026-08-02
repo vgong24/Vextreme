@@ -1134,13 +1134,32 @@ undecided (a real dark-mode *toggle*, applied to pages that are currently
 light-only); this file is the ground truth of what's already there.
 
 `node lib/check-design-tokens.js` verifies every `var(--token)` reference in
-the repo resolves against one of the two families below. It found zero
+the repo resolves against one of the three families below. It found zero
 violations as of the session that wrote this document — see
 `docs/architecture/11-debugging-practices.md` for the bug that motivated it.
 
 ---
 
-## Two token families, both declared in one file
+## Three token families, all declared in one file
+
+**3. The institutional foundation family — `[data-theme="foundation"]` and
+`[data-theme="foundation-light"]` in `styles/design-system.css`**
+
+The institutional surface uses its own semantic token vocabulary for canvas,
+surface, text, border, accent, evidentiary status, editorial/product/technical
+type, spacing, radius, and motion. Dark is the identity home; light is a
+re-authored neutral ramp rather than a mechanical inversion. Both variants
+match the shared declaration block because the attribute values are mutually
+exclusive on one `<html>` element; light then overrides only its ramp and the
+few semantics that genuinely change.
+
+`styles/vex-institutional.css` consumes this family. It must not restate token
+values locally. The page-kind lifecycle, archive exclusion, string scope, and
+render-evidence boundary remain owned by
+`docs/architecture/18-institutional-pages.md` and
+`config/institutional-surfaces.json` rather than by this styling chapter.
+
+The two earlier families below are unchanged.
 
 **1. The global light theme — `:root` in `styles/design-system.css`**
 
@@ -1202,8 +1221,8 @@ A `var(--x)` reference is valid if `--x` is either:
 
 - declared in that file's own local `:root` block (rare now — only
   `lib/build-index-page.js` still has one), or
-- declared in `styles/design-system.css`'s `:root` **or**
-  `[data-theme="dashboard"]` block, **and** the file actually `<link>`s that
+- declared in `styles/design-system.css`'s `:root`,
+  `[data-theme="dashboard"]`, or institutional foundation block, **and** the file actually `<link>`s that
   stylesheet (or is a `styles/*.css` companion file that's always loaded
   alongside it by its loader).
 
@@ -1215,8 +1234,9 @@ same as no fallback: the token must actually resolve.
 
 ## Adding a token
 
-- **To either shared family** (`styles/design-system.css`): confirm which
-  family it belongs to — this file's `:root` and `[data-theme="dashboard"]`
+- **To any shared family** (`styles/design-system.css`): confirm which
+  family it belongs to — this file's `:root`, `[data-theme="dashboard"]`, and
+  institutional foundation
   blocks are the widest-blast-radius single edit points for typography/color
   in the repo. Run `node lib/check-design-tokens.js` afterward; a removed or
   renamed token will surface every file that broke.
@@ -1227,22 +1247,19 @@ same as no fallback: the token must actually resolve.
 
 ## What's deliberately not here yet
 
-No dark-mode *toggle* exists — `[data-theme="dashboard"]` opts a page in
-permanently at build time, it isn't switched at runtime, and no light-themed
-page can become dark on demand (or vice versa).
+No site-wide archive/dashboard dark-mode *toggle* exists —
+`[data-theme="dashboard"]` still opts those pages in permanently at build
+time. Registry-owned institutional pages are a separate bounded runtime: their
+page-owned control switches only between `foundation` and
+`foundation-light`, with both variants required in their evidence matrix.
 
-**Decided (Session 019, od-005 closed):** not building one now. No page has
-a stated need for a runtime toggle — every current page's theme (content
-pages light, dashboard/dev pages dark) is a reasonable fixed choice, and a
-toggle adds real complexity (a persistence mechanism, a UI control, doubling
-the visual states every page must be verified in) against a need that
-hasn't been named. If a concrete need for one arises, building it is cheap:
-switch the `data-theme` attribute at runtime and let the two token families
-already declared in `styles/design-system.css` handle the rest — the
-consolidation done in Session 018 is what makes that cheap later. This
-document is the durable record of the decision; there is no corresponding
-tech-debt or planned-enhancement entry, since "revisit if a need appears" is
-not a queued task.
+**Decided (Session 019, od-005 closed):** do not add one to the archive and
+dashboard families without a concrete need. The later institutional surface
+did name and accept that need, but keeps the persistence mechanism, control,
+token variants, and doubled visual evidence inside its own page-kind contract.
+That does not silently reopen a global theme migration. This document remains
+the durable record of the distinction; there is no corresponding tech-debt or
+planned-enhancement entry for the older families.
 
 ---
 
@@ -2434,10 +2451,13 @@ The registry has two states:
 | `reserved` | The slug, purpose, and intended contracts are held for a later bounded PR. | The page must not exist; the slug must also be absent from node, arc, generated-index, and God Script projections. |
 | `active` | A page has crossed the complete contract and evidence boundary. | `pages/{slug}.html`, every required locale bundle/key, and every declared screenshot cell must exist while archive/runtime exclusions continue to hold. |
 
-The initial reservations are `vextreme-home` and `vex-support`. A reservation
-is not implementation status, acceptance, payment activation, or a promise that
-all planned locales already exist. It prevents another page from silently
-claiming the same identity while the integration stack remains reviewable.
+The initial reservations were `vextreme-home` and `vex-support`.
+`vextreme-home` is now active with its English standalone page, foundation
+runtime, and six-cell render matrix; `vex-support` remains reserved for its
+separate support-domain row. A reservation is not implementation status,
+acceptance, payment activation, or a promise that all planned locales already
+exist. It prevents another page from silently claiming the same identity while
+the integration stack remains reviewable.
 
 Promote `state` from `reserved` to `active` in the same PR that adds the page.
 The validator rejects either half-state: a reserved entry with a page or any
@@ -2539,9 +2559,12 @@ the rest of the repository.
 
 ## What this contract does not decide
 
-This chapter does not land a theme, runtime widget, home page, support page,
-translation, payment destination, funding amount, or financial state. Those are
-later integration rows with their own evidence.
+The registry contract by itself does not decide page copy, payment destination,
+funding amount, or financial state. The first implementation row now lands the
+foundation token family, shared progressive-enhancement widget, English home,
+and its complete English render evidence. The support page/domain and JA/ZH
+activation remain later integration rows with their own evidence; payment
+activation remains held until Victor verifies each destination.
 
 It also does not require separate GitHub accounts or separate operating systems
 to construct or review the work. Linux/Node CI is the deterministic build lane.
