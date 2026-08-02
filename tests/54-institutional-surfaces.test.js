@@ -307,10 +307,35 @@ test('INSTITUTIONAL-SURFACES: every support route requires an inert action proje
   assert.ok(validateRegistry(active, root).some(issue => issue.check === 'support-route-action-missing'));
 });
 
-test('INSTITUTIONAL-SURFACES: candidateUrl cannot appear in rendered route text', () => {
+test('INSTITUTIONAL-SURFACES: candidateUrl detection preserves rendered text and attribute boundaries', () => {
   const candidateUrl = 'https://example.com/candidate';
+  const cases = [
+    ['raw text', `<p>${candidateUrl}</p>`, true],
+    ['raw attribute', `<span data-candidate="${candidateUrl}"></span>`, true],
+    ['numeric entity', '<p>https&#58;//example.com/candidate</p>', true],
+    ['nested markup', '<p>https<span>:</span>//example.com/candidate</p>', true],
+    ['named entity attribute', '<span data-candidate="https&colon;//example.com/candidate"></span>', true],
+    ['comment', `<!-- ${candidateUrl} -->`, false],
+  ];
+
+  for (const [label, projection, expected] of cases) {
+    const { root, active } = supportRouteFixture(
+      `<article data-vex-route="support.test">${projection}<span data-vex-route-action aria-disabled="true">Held</span></article>`,
+      { candidateUrl }
+    );
+    assert.equal(
+      validateRegistry(active, root).some(issue => issue.check === 'support-route-candidate-held'),
+      expected,
+      label
+    );
+  }
+});
+
+test('INSTITUTIONAL-SURFACES: standard named entity cannot hide the GitHub Sponsors candidateUrl', () => {
+  const candidateUrl = 'https://github.com/sponsors/vgong24';
+  const hostileProjection = '<p>https&colon;//github.com/sponsors/vgong24</p>';
   const { root, active } = supportRouteFixture(
-    `<article data-vex-route="support.test"><p>${candidateUrl}</p><span data-vex-route-action aria-disabled="true">Held</span></article>`,
+    `<article data-vex-route="support.test">${hostileProjection}<span data-vex-route-action aria-disabled="true">Held</span></article>`,
     { candidateUrl }
   );
   assert.ok(validateRegistry(active, root).some(issue => issue.check === 'support-route-candidate-held'));
