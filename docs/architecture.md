@@ -46,6 +46,7 @@ coverage and also checks the generated projection byte-for-byte.
 | `docs/architecture/15-analysis-mode.md` | How does Analysis Mode discover, bundle, and expose content? | Before changing analysis search, indexing, feature flags, or the analysis UI. |
 | `docs/architecture/16-nav-coverage.md` | How is navigation coverage kept complete across public pages? | Before adding a page, changing shared nav, or diagnosing a missing nav surface. |
 | `docs/architecture/17-fab-autoload.md` | How are FAB widgets discovered and loaded through the shared shell? | Before adding a FAB, changing autoload rules, or editing shell bootstrap behavior. |
+| `docs/architecture/18-institutional-pages.md` | How does a public institutional surface differ from an archive record? | Before reserving, adding, localizing, or wiring an institutional home or support page. |
 
 ---
 
@@ -59,7 +60,7 @@ the choices available to the chapters that follow.
             -> 06 i18n -> 07 registry -> 08 continuity -> 09 constraints
             -> 10 directories -> 11 debugging -> 12 design system
             -> 13 operations -> 14 council -> 15 analysis
-            -> 16 navigation -> 17 FAB autoload
+            -> 16 navigation -> 17 FAB autoload -> 18 institutional pages
 ```
 
 Question routing is preferred for bounded work; the full sequence is for work
@@ -1764,9 +1765,10 @@ This resolves the tension both lanes were circling without weakening either boun
 - `lib/trace-string-usage.js` already computes reverse usage (`scanUsages`, `traceKey`,
   `tracePage`, `findOrphanUsages`, `findUnusedKeys`) — real forward/reverse mapping,
   today, CLI/stdout-only.
-- `lib/build-terrain-map.js`'s `findScreenshots()` already indexes real per-slug,
-  per-language screenshots (`docs/screenshots/{slug}-{lang}.png`, written by
-  `scripts/screenshot-page.js`) — real screenshot-to-content mapping, today.
+- `lib/screenshot-evidence.js` indexes both real per-slug/per-locale screenshots
+  (`docs/screenshots/{slug}-{locale}.png`) and institutional
+  locale/theme/viewport evidence. It supplies one deterministic representative
+  per locale for the existing UI while preserving every exact matrix filename.
 - `lib/strings-export.js` already exports per-scope CSV batches — real export, today,
   CLI-only.
 
@@ -1805,7 +1807,7 @@ L1-L7 rounds. Each phase is independently mergeable and independently useful.
 
 `lib/build-analysis-index.js`: a new build script, pure-function-tested, that composes
 the outputs of `trace-string-usage.js` (reused, not duplicated — `scanUsages`, `traceKey`,
-`findOrphanUsages`, `findUnusedKeys`) and `build-terrain-map.js`'s `findScreenshots()` into
+`findOrphanUsages`, `findUnusedKeys`) and `screenshot-evidence.js`'s shared projections into
 one browser-fetchable artifact, `data/analysis-index.json`: every key's canonical id,
 present/missing languages, which page(s) reference it, and per-slug screenshot
 availability. Same CQRS shape as `data/terrain-map.json` (write-side script, deterministic,
@@ -2399,6 +2401,169 @@ Current delivery is 28 shell pages plus one God-Script page; ten `pages/*.html`
 surfaces still have neither path. Global rollout is the next bounded PR after
 this composition contract is accepted. Analysis traversal, view profiles, and
 cross-page string navigation remain product direction, not completed behavior.
+
+---
+
+# Institutional pages
+
+## The distinction
+
+Most files in `pages/` are records: content identified by a globally unique
+slug, placed in archive data, and projected through the repository's content
+pipeline. An institutional page has a different job. It describes the
+institution, its public identity, or the relationship by which its work can be
+supported. It is part of the institution without becoming another record in an
+arc.
+
+PR #135 proved that the distinction is real by designing `vextreme-home` and
+`vex-support`. It also demonstrated the risk of encoding the distinction as a
+collection of page-local exceptions. A new page kind is survivable only when a
+fresh instance can find one authored classification and every consumer can
+derive its behavior from it.
+
+`config/institutional-surfaces.json` is that classification.
+
+---
+
+## Reservation before activation
+
+The registry has two states:
+
+| State | Meaning | Files and public effect |
+|---|---|---|
+| `reserved` | The slug, purpose, and intended contracts are held for a later bounded PR. | The page must not exist; the slug must also be absent from node, arc, generated-index, and God Script projections. |
+| `active` | A page has crossed the complete contract and evidence boundary. | `pages/{slug}.html`, every required locale bundle/key, and every declared screenshot cell must exist while archive/runtime exclusions continue to hold. |
+
+The initial reservations are `vextreme-home` and `vex-support`. A reservation
+is not implementation status, acceptance, payment activation, or a promise that
+all planned locales already exist. It prevents another page from silently
+claiming the same identity while the integration stack remains reviewable.
+
+Promote `state` from `reserved` to `active` in the same PR that adds the page.
+The validator rejects either half-state: a reserved entry with a page or any
+record/runtime projection, or an active entry without its accepted page,
+localization, and evidence.
+
+---
+
+## Contract carried by each entry
+
+Each slug owns these exact dimensions:
+
+- semantic `purpose`, without user-facing copy in the registry;
+- archive and arc exclusions;
+- standalone runtime boundary plus the declared localization loader and control;
+- canonical string category/scope plus required and planned locales;
+- theme family and variants, with evidence for every variant;
+- the viewport/theme evidence matrix;
+- the source PR that preserves the design/content provenance.
+
+The page path is not stored. It remains derived from the slug as
+`pages/{slug}.html`, preserving the repository's canonical addressing model.
+
+The registry deliberately distinguishes `requiredLocales` from
+`plannedLocales`. English can be required for the first accepted surface while
+JA/ZH remain visible future projections. This prevents “planned” from being
+misreported as “published,” and lets translation arrive through its own review
+boundary. Every required or planned locale must already exist in
+`lib/vex-config.js`'s `Language` registry; inventing a bundle filename is not
+enough to make a locale reachable.
+
+---
+
+## Active-page invariants
+
+`node lib/check-institutional-surfaces.js` validates the registry and, for each
+active entry, proves these projections together:
+
+1. `pages/{slug}.html` exists.
+2. Its `<html>` element declares `data-vex-surface="institutional"`.
+3. It declares the canonical string-category, string-scope, and theme-family
+   markers, and its initial `data-theme` is one of the declared variants.
+4. It contains at least one `data-i18n`, `data-i18n-alt`, or `data-i18n-aria`
+   binding. Every visible and accessibility-bound key has non-empty text in
+   `data/strings/compiled/scopes/{category}/{scope}.{locale}.json` for every
+   required locale.
+5. When a required locale is not English, the page loads the registry's
+   declared standalone localization widget, projects matching
+   `VEX_STRING_SCOPES` and `VEX_STRING_CATEGORY` globals, and exposes a native
+   language control with exactly the accepted required locales. Planned
+   locales cannot appear as selectable published options before promotion.
+   Static wiring is not acceptance evidence by itself. The validator executes
+   the declared widget in a bounded child-process DOM, operates the real
+   control through every required non-English locale and back to English, and
+   observes one successfully completed bundle parse for every required locale,
+   the expected visible text, image alt text, ARIA labels, `<html lang>`, and
+   absence of runtime errors. A loader that hard-codes accepted values or only
+   starts a request without consuming its response fails activation.
+6. Every required locale × declared theme × declared viewport cell exists as
+   `docs/screenshots/{slug}-{locale}-{theme}-{viewport}.png` with a PNG
+   signature, valid chunk boundaries, positive dimensions, IDAT/IEND chunks,
+   and valid chunk CRCs. Structural validity does not replace reviewer
+   inspection of what the image actually shows.
+7. It does not load `shell.js` or a God Script.
+8. No `dist/vextreme-{slug}.js` artifact exists.
+9. The slug is absent from `data/nodes.json`, every arc in
+   `data/arcs-v2.json`, and the generated content maps in `data/index.json`.
+
+The identity checks in items 8–9 also apply while a slug is reserved. A
+reservation is an identity claim, not only a promise about a future filename.
+
+The static markers are read-side projections, not competing sources. Their job
+is to make the page's contract perceivable from the file itself; the validator
+keeps them equal to the registry.
+
+`lib/audit-pages.js` derives the auto-discovery exclusions and record-page
+inventory from this registry. `lib/build-index.js`, `lib/build-archives.js`,
+`lib/check-key-alignment.js`, and the Terrain content projection consume that
+derived boundary. The static `SKIP_PAGES` list remains only for generated/dev
+pages; institutional slugs are not copied into it.
+
+`lib/screenshot-evidence.js` owns both the legacy `{slug}-{locale}.png` name
+and the institutional locale/theme/viewport matrix name. Page Health, Terrain,
+and Analysis retain their existing per-locale representative image while also
+preserving every exact matrix filename in their derived data. Page Health also
+consumes the institutional registry directly, so intentional absence from
+record placement and God-Script/FAB delivery is classified as an institutional
+invariant rather than reported as generic page debt. The inverse is fail-closed:
+if an institutional page is ever delivered through `shell.js` or a generated
+God Script, Page Health marks it critical from the registry-derived surface
+classification even when every generic capability is otherwise present.
+
+`npm run pr-ready` includes the validator. A public page cannot silently appear
+outside the registry, inherit archive runtime, be auto-discovered back into the
+record pipeline, or cross into active state without the same check that reviews
+the rest of the repository.
+
+---
+
+## What this contract does not decide
+
+This chapter does not land a theme, runtime widget, home page, support page,
+translation, payment destination, funding amount, or financial state. Those are
+later integration rows with their own evidence.
+
+It also does not require separate GitHub accounts or separate operating systems
+to construct or review the work. Linux/Node CI is the deterministic build lane.
+Windows, macOS, browsers, and assistive technologies are verification conditions
+when their behavior can differ—not prerequisites every contributor must own.
+
+Independent review is a role and evidence boundary. It may be performed by a
+fresh thread, another model, Victor, CI, or a future contributor without turning
+hardware ownership or account count into architecture.
+
+---
+
+## Adding another institutional surface
+
+1. Reserve a globally unique `vex-` or `vextreme-` slug in the registry.
+2. Record its semantic purpose and the smallest honest runtime/string/theme/
+   evidence contract.
+3. Open the page implementation as a separate bounded PR.
+4. Promote the entry to `active` in that PR and run the validator.
+5. Make every later consumer read the registry; do not add another slug list.
+
+The final rule is the reason this contract exists: one truth, many projections.
 
 ---
 

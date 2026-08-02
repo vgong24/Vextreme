@@ -4,12 +4,12 @@
       "key": 0,
       "name": "SOURCES",
       "sub": "content & config — nothing upstream of these",
-      "count": 6,
+      "count": 7,
       "rect": {
         "x": 10,
         "y": 40,
         "width": 300,
-        "height": 450
+        "height": 510
       }
     },
     {
@@ -28,24 +28,24 @@
       "key": 1.5,
       "name": "UTILITIES",
       "sub": "other lib/ helpers, config, tracing",
-      "count": 20,
+      "count": 22,
       "rect": {
         "x": 690,
         "y": 40,
         "width": 300,
-        "height": 1290
+        "height": 1410
       }
     },
     {
       "key": 2,
       "name": "CHECK",
       "sub": "drift detectors and tests — run after generation",
-      "count": 7,
+      "count": 8,
       "rect": {
         "x": 1030,
         "y": 40,
         "width": 300,
-        "height": 510
+        "height": 570
       }
     },
     {
@@ -100,12 +100,38 @@
       "auditorRank": 0
     },
     {
+      "id": "config/institutional-surfaces.json",
+      "cluster": "config",
+      "stage": 0,
+      "stageName": "SOURCES",
+      "x": 60,
+      "y": 90,
+      "role": "authored registry for institutional surface identity, lifecycle, runtime exclusions, string scope, theme variants, and required evidence",
+      "reads": [],
+      "writes": [],
+      "loadedBy": [
+        "lib/check-institutional-surfaces.js",
+        "lib/audit-pages.js",
+        "lib/build-page-health.js",
+        "tests/54-institutional-surfaces.test.js",
+        "docs/architecture/18-institutional-pages.md"
+      ],
+      "testedBy": [
+        "tests/54-institutional-surfaces.test.js"
+      ],
+      "debts": [],
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": false,
+      "auditorRank": 4
+    },
+    {
       "id": "data/arcs-v2.json",
       "cluster": "data",
       "stage": 0,
       "stageName": "SOURCES",
       "x": 60,
-      "y": 90,
+      "y": 150,
       "role": "arc structure source — defines arc membership, ordering, and metadata",
       "reads": [],
       "writes": [],
@@ -132,7 +158,7 @@
       "stage": 0,
       "stageName": "SOURCES",
       "x": 60,
-      "y": 150,
+      "y": 210,
       "role": "hand-transcribed structured extract of pages/org-blueprint.html's roster and patterns — the 'runnable kernel' that document names as its own unfinished ambition",
       "reads": [],
       "writes": [],
@@ -149,7 +175,7 @@
       "status": "good",
       "engineerFocus": true,
       "auditorFocus": false,
-      "auditorRank": 4
+      "auditorRank": 5
     },
     {
       "id": "data/departments.json",
@@ -157,7 +183,7 @@
       "stage": 0,
       "stageName": "SOURCES",
       "x": 60,
-      "y": 210,
+      "y": 270,
       "role": "department registry source — production-domain grouping, orthogonal to arcs (narrative) and blueprint.json categories (publish lifecycle)",
       "reads": [],
       "writes": [],
@@ -183,7 +209,7 @@
       "stage": 0,
       "stageName": "SOURCES",
       "x": 60,
-      "y": 270,
+      "y": 330,
       "role": "pre-built read index — the single artifact every page and build script reads from",
       "reads": [],
       "writes": [],
@@ -195,6 +221,7 @@
         "pages/vextreme-demo.html (live fetch to show nodeCount/arcCount/supportedLangs)"
       ],
       "testedBy": [
+        "tests/01-content-pipeline.test.js",
         "tests/08-build-vextreme.test.js (KEY-ALIGNMENT)",
         "tests/15-departments.test.js"
       ],
@@ -217,7 +244,7 @@
       "stage": 0,
       "stageName": "SOURCES",
       "x": 60,
-      "y": 330,
+      "y": 390,
       "role": "content node source — the authoritative list of all content slugs",
       "reads": [],
       "writes": [],
@@ -249,7 +276,7 @@
       "stage": 0,
       "stageName": "SOURCES",
       "x": 60,
-      "y": 390,
+      "y": 450,
       "role": "per-slug viewmodel overrides — demo/specimen pages that aren't content nodes",
       "reads": [],
       "writes": [],
@@ -265,7 +292,7 @@
       "status": "good",
       "engineerFocus": true,
       "auditorFocus": false,
-      "auditorRank": 5
+      "auditorRank": 6
     },
     {
       "id": "lib/append-session-continuation.js",
@@ -328,7 +355,7 @@
       "status": "warning",
       "engineerFocus": true,
       "auditorFocus": true,
-      "auditorRank": 4
+      "auditorRank": 3
     },
     {
       "id": "lib/arc-nav.js",
@@ -400,7 +427,8 @@
       "role": "page wiring auditor — read-only report of which pages/*.html are wired to a God Script, blocked, or intentionally skipped",
       "reads": [
         "pages/*.html (checks for a dist/vextreme-{slug}.js script src)",
-        "dist/*.js (checks which God Scripts exist)"
+        "dist/*.js (checks which God Scripts exist)",
+        "config/institutional-surfaces.json (derives institutional classification and record-pipeline exclusions)"
       ],
       "writes": [
         "stdout only — read-only, changes nothing"
@@ -408,11 +436,12 @@
       "loadedBy": [
         "manual run: node lib/audit-pages.js",
         "CLAUDE.md (points here as the wiring-status source of truth)",
-        "lib/check-key-alignment.js (imports SKIP_PAGES + getPageSlugs — reuses the skip list instead of duplicating it)",
-        "lib/build-index.js (SKIP_PAGES + getPageSlugs, feeds auto-discovery)",
-        "lib/build-archives.js (same, independently — see pe-011)",
-        "lib/build-terrain-map.js (getPageSlugs — real page files vs. curated nodes.json entries, for the content/arc layer's uncurated column)",
+        "lib/check-key-alignment.js (imports AUTO_DISCOVERY_EXCLUSIONS + getPageSlugs)",
+        "lib/build-index.js (AUTO_DISCOVERY_EXCLUSIONS + getPageSlugs, feeds auto-discovery)",
+        "lib/build-archives.js (same shared exclusion, independently — see pe-011)",
+        "lib/build-terrain-map.js (getRecordPageSlugs keeps institutional surfaces outside the content/arc layer)",
         "tests/15-departments.test.js",
+        "tests/54-institutional-surfaces.test.js",
         "tests/20-roles.test.js",
         "tests/28-build-terrain-map.test.js",
         "lib/build-analysis-index.js (reuses getPageSlugs)",
@@ -451,7 +480,8 @@
         "lib/check-key-alignment.js (discoverWipDrafts, feeds report.wip.htmlDrafts)",
         "tests/16-auto-discover-nodes.test.js",
         "tests/15-departments.test.js (integration test)",
-        "tests/21-wip-drafts.test.js"
+        "tests/21-wip-drafts.test.js",
+        "tests/54-institutional-surfaces.test.js (real discovery exclusion integration)"
       ],
       "testedBy": [
         "tests/16-auto-discover-nodes.test.js",
@@ -472,14 +502,14 @@
       "stageName": "GENERATE",
       "x": 400,
       "y": 990,
-      "role": "Analysis Mode data-layer write side — composes trace-string-usage.js and build-terrain-map.js findScreenshots() into one browser-fetchable artifact",
+      "role": "Analysis Mode data-layer write side — composes trace-string usage and shared screenshot evidence into one browser-fetchable artifact",
       "reads": [
         "data/strings/compiled/manifest.json (per-key language coverage)",
         "data/index.json (supportedLangs — the language set to compare coverage against)",
         "pages/*.html, wip/*.html (data-i18n usage scan, via trace-string-usage.js scanUsages)",
-        "docs/screenshots/*.png (directory listing, via build-terrain-map.js findScreenshots)",
+        "docs/screenshots/*.png (directory listing, parsed through lib/screenshot-evidence.js)",
         "lib/trace-string-usage.js (scanUsages, traceKey, tracePage, findOrphanUsages, findUnusedKeys — reused directly, not duplicated)",
-        "lib/build-terrain-map.js (findScreenshots — reused directly)",
+        "lib/screenshot-evidence.js (representative screenshots plus exact matrix evidence records)",
         "lib/audit-pages.js (getPageSlugs — real page files, for the per-page index)"
       ],
       "writes": [
@@ -532,7 +562,7 @@
       "status": "warning",
       "engineerFocus": true,
       "auditorFocus": true,
-      "auditorRank": 6
+      "auditorRank": 5
     },
     {
       "id": "lib/build-archives.js",
@@ -551,7 +581,7 @@
         "data/strings/compiled/manifest.json",
         "data/page-health.json",
         "pages/*.html (existence check, per slug, for the ported/missing cell state; also read in full via lib/auto-discover-nodes.js for any slug with no nodes.json entry)",
-        "lib/audit-pages.js (SKIP_PAGES, getPageSlugs)",
+        "lib/audit-pages.js (SKIP_PAGES for generated system pages; AUTO_DISCOVERY_EXCLUSIONS + getPageSlugs for record discovery)",
         "lib/auto-discover-nodes.js (discoverOrphanNodes, readPageFromDisk)"
       ],
       "writes": [
@@ -570,7 +600,7 @@
       "status": "warning",
       "engineerFocus": true,
       "auditorFocus": true,
-      "auditorRank": 7
+      "auditorRank": 6
     },
     {
       "id": "lib/build-ecosystem-hub.js",
@@ -604,7 +634,7 @@
       "status": "warning",
       "engineerFocus": true,
       "auditorFocus": true,
-      "auditorRank": 8
+      "auditorRank": 7
     },
     {
       "id": "lib/build-index-page.js",
@@ -648,7 +678,7 @@
         "data/viewmodels.json",
         "data/departments.json",
         "pages/*.html (via lib/auto-discover-nodes.js, for any slug with no nodes.json entry)",
-        "lib/audit-pages.js (SKIP_PAGES, getPageSlugs)",
+        "lib/audit-pages.js (AUTO_DISCOVERY_EXCLUSIONS, getPageSlugs)",
         "lib/auto-discover-nodes.js (discoverOrphanNodes, readPageFromDisk)",
         "lib/vex-config.js"
       ],
@@ -680,7 +710,7 @@
       "status": "warning",
       "engineerFocus": true,
       "auditorFocus": true,
-      "auditorRank": 2
+      "auditorRank": 1
     },
     {
       "id": "lib/build-lattice-headers.js",
@@ -710,7 +740,7 @@
       "status": "warning",
       "engineerFocus": true,
       "auditorFocus": true,
-      "auditorRank": 5
+      "auditorRank": 4
     },
     {
       "id": "lib/build-lessons.js",
@@ -756,6 +786,8 @@
         "data/analysis-index.json (analysis indexing)",
         "dist/*.js (God Script FAB and analysis delivery)",
         "docs/screenshots/*.png (evidence presence)",
+        "config/institutional-surfaces.json (institutional page classification and intentional record-runtime exclusions)",
+        "lib/screenshot-evidence.js (shared legacy and locale/theme/viewport evidence discovery)",
         "lib/audit-pages.js (page inventory and God Script wiring)",
         "lib/audit-nav.js (navigation classification)",
         "lib/audit-fab.js (theme ownership and opt-out classification)"
@@ -849,23 +881,25 @@
       "role": "generates sitemap.xml — lists only pages that actually exist, so crawlers never hit a 404",
       "reads": [
         "data/nodes.json",
-        "pages/*.html (existence check only, per slug)",
-        "git log (per-file last-change date, via subprocess)"
+        "pages/*.html (existence check only, per slug)"
       ],
       "writes": [
         "sitemap.xml"
       ],
       "loadedBy": [
-        ".github/workflows/build-index.yml"
+        ".github/workflows/build-index.yml",
+        "tests/55-build-sitemap.test.js"
       ],
-      "testedBy": [],
+      "testedBy": [
+        "tests/55-build-sitemap.test.js"
+      ],
       "debts": [
         "pe-009"
       ],
-      "status": "critical",
+      "status": "warning",
       "engineerFocus": true,
       "auditorFocus": true,
-      "auditorRank": 1
+      "auditorRank": 8
     },
     {
       "id": "lib/build-status.js",
@@ -950,7 +984,7 @@
       "reads": [
         "dist/*.js (all God Script filenames)",
         "data/strings/compiled/arcs/index.json (opted-in arc bundles, if any)",
-        "git commit hash"
+        "bytes of every precached URL"
       ],
       "writes": [
         "sw.js"
@@ -985,7 +1019,8 @@
         "data/status/planned-enhancements.json (health cross-reference)",
         "data/nodes.json (real page titles/arcKeys, for both the screens layer and the arcs/pages content layer)",
         "data/arcs-v2.json (real arc priority/title, for the arcs/pages content layer's column order and labels)",
-        "lib/audit-pages.js (getPageSlugs — real page files vs. curated nodes.json entries, for the content layer's uncurated column and each page's live flag)",
+        "lib/audit-pages.js (getRecordPageSlugs — real record-page files excluding registry-owned institutional surfaces)",
+        "lib/screenshot-evidence.js (shared representative screenshots and exact matrix evidence records)",
         "data/page-health.json (shared page capability and health projection)",
         "docs/screenshots/*.png (directory listing — which pages have a real per-language screenshot)"
       ],
@@ -996,8 +1031,7 @@
         "manual run: node lib/build-terrain-map.js",
         ".github/workflows/build-index.yml (CI)",
         "pages/terrain-map.html (live fetch of its output)",
-        "tests/28-build-terrain-map.test.js",
-        "lib/build-analysis-index.js (reuses findScreenshots)"
+        "tests/28-build-terrain-map.test.js"
       ],
       "testedBy": [
         "tests/28-build-terrain-map.test.js",
@@ -1048,7 +1082,7 @@
       "status": "warning",
       "engineerFocus": true,
       "auditorFocus": true,
-      "auditorRank": 3
+      "auditorRank": 2
     },
     {
       "id": "lib/bump-fab-version.js",
@@ -1071,9 +1105,12 @@
         "widgets/fab-lang.js (rewrites the VERSION line in place, if a bump tier applies)"
       ],
       "loadedBy": [
-        ".github/workflows/build-index.yml ('Auto-increment fab-lang.js CDN version' step, before the artifact-commit step)"
+        ".github/workflows/build-index.yml ('Auto-increment fab-lang.js CDN version' step, before God Script and service-worker generation)",
+        "tests/30-compute-fab-version.test.js"
       ],
-      "testedBy": [],
+      "testedBy": [
+        "tests/30-compute-fab-version.test.js"
+      ],
       "debts": [],
       "status": "good",
       "engineerFocus": false,
@@ -1175,12 +1212,51 @@
       "auditorRank": 2
     },
     {
-      "id": "lib/check-key-alignment.js",
+      "id": "lib/check-institutional-surfaces.js",
       "cluster": "lib",
       "stage": 2,
       "stageName": "CHECK",
       "x": 1080,
       "y": 330,
+      "role": "fail-closed institutional-surface registry, identity-reservation, localization, and evidence validator",
+      "reads": [
+        "config/institutional-surfaces.json",
+        "lib/vex-config.js (valid compiled-string categories)",
+        "lib/screenshot-evidence.js (canonical locale/theme/viewport evidence filename)",
+        "lib/institutional-localization-runtime.js (bounded behavioral execution of the declared loader and control)",
+        "pages/*.html (existence, visible/accessibility i18n bindings, and active projection markers, per registered slug)",
+        "data/nodes.json (every registered institutional slug must remain outside archive indexing)",
+        "data/arcs-v2.json (every registered institutional slug must remain outside narrative arcs)",
+        "data/index.json (registered slugs must remain outside generated content maps)",
+        "data/strings/compiled/scopes/{category}/*.json (required active-locale bindings)",
+        "docs/screenshots/*.png (required active locale/theme/viewport evidence cells)",
+        "dist/*.js (no God Script may be generated for a registered institutional identity)"
+      ],
+      "writes": [
+        "stdout only — read-only; exits nonzero when registry or projections drift"
+      ],
+      "loadedBy": [
+        "manual run: node lib/check-institutional-surfaces.js",
+        "package.json (pr-ready and institutional-surfaces:check scripts)",
+        "lib/audit-pages.js (registeredSurfaceSlugs feeds the shared discovery exclusion)",
+        "tests/54-institutional-surfaces.test.js"
+      ],
+      "testedBy": [
+        "tests/54-institutional-surfaces.test.js"
+      ],
+      "debts": [],
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": true,
+      "auditorRank": 5
+    },
+    {
+      "id": "lib/check-key-alignment.js",
+      "cluster": "lib",
+      "stage": 2,
+      "stageName": "CHECK",
+      "x": 1080,
+      "y": 390,
       "role": "non-blocking CI check — compares slug/arc keys across nodes.json, arcs-v2.json, index.json, cross-checks pages/ and wip/, and reports drift",
       "reads": [
         "data/nodes.json",
@@ -1189,7 +1265,7 @@
         "data/viewmodels.json",
         "wip/*.json (_meta.slug field only)",
         "wip/*.html (filename-derived slug + title, via lib/auto-discover-nodes.js discoverWipDrafts)",
-        "lib/audit-pages.js (SKIP_PAGES, getPageSlugs)",
+        "lib/audit-pages.js (AUTO_DISCOVERY_EXCLUSIONS, getPageSlugs)",
         "lib/build-archives.js (source text — ARC_ORDER, ARC_KEY_MAP, regex-scanned not required)",
         "lib/build-index-page.js (source text — its own separate ARC_ORDER, regex-scanned not required)"
       ],
@@ -1222,7 +1298,7 @@
       "stage": 2,
       "stageName": "CHECK",
       "x": 1080,
-      "y": 390,
+      "y": 450,
       "role": "pe-012 lattice-edge drift detector — verifies the map's claimed reads/writes/loadedBy edges against actual code",
       "reads": [
         "docs/lattice-map.json (every node's claimed edges)",
@@ -1278,7 +1354,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": true,
-      "auditorRank": 5
+      "auditorRank": 6
     },
     {
       "id": "lib/check-string-identity.js",
@@ -1286,7 +1362,7 @@
       "stage": 2,
       "stageName": "CHECK",
       "x": 1080,
-      "y": 450,
+      "y": 510,
       "role": "localization identity pilot, third script — informational validator, never rewrites anything",
       "reads": [
         "data/strings/compiled/identity-index.json",
@@ -1307,7 +1383,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": true,
-      "auditorRank": 6
+      "auditorRank": 7
     },
     {
       "id": "lib/compute-fab-version.js",
@@ -1416,12 +1492,40 @@
       "auditorRank": 14
     },
     {
-      "id": "lib/logger-codes.js",
+      "id": "lib/institutional-localization-runtime.js",
       "cluster": "lib",
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
       "y": 630,
+      "role": "bounded behavioral probe for institutional localization loaders — operates the declared control and observes visible, alt, and ARIA translations",
+      "reads": [
+        "declared institutional localization widget source (provided by lib/check-institutional-surfaces.js)",
+        "required compiled locale bundles (provided by lib/check-institutional-surfaces.js)",
+        "active page binding keys and localization-control attribute (provided by lib/check-institutional-surfaces.js)"
+      ],
+      "writes": [
+        "stdout JSON only in --probe-child mode"
+      ],
+      "loadedBy": [
+        "lib/check-institutional-surfaces.js"
+      ],
+      "testedBy": [
+        "tests/54-institutional-surfaces.test.js"
+      ],
+      "debts": [],
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": false,
+      "auditorRank": 15
+    },
+    {
+      "id": "lib/logger-codes.js",
+      "cluster": "lib",
+      "stage": 1.5,
+      "stageName": "UTILITIES",
+      "x": 740,
+      "y": 690,
       "role": "event code registry — the CODES constant every logger.warn/error call references",
       "reads": [],
       "writes": [],
@@ -1447,7 +1551,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 690,
+      "y": 750,
       "role": "structured logger — every build script's warn/info/error call goes through here",
       "reads": [],
       "writes": [
@@ -1476,7 +1580,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 750,
+      "y": 810,
       "role": "runs the build scripts tests/helpers/prereqs.js declares as required before the test suite can read generated files — replaces a hardcoded run: line in .github/workflows/test.yml",
       "reads": [
         "tests/helpers/prereqs.js (PREREQUISITE_SCRIPTS)"
@@ -1492,7 +1596,36 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 15
+      "auditorRank": 16
+    },
+    {
+      "id": "lib/screenshot-evidence.js",
+      "cluster": "lib",
+      "stage": 1.5,
+      "stageName": "UTILITIES",
+      "x": 740,
+      "y": 870,
+      "role": "shared screenshot-evidence filename parser and deterministic projection helper",
+      "reads": [],
+      "writes": [],
+      "loadedBy": [
+        "lib/check-institutional-surfaces.js",
+        "lib/build-page-health.js",
+        "lib/build-terrain-map.js",
+        "lib/build-analysis-index.js",
+        "tests/36-build-analysis-index.test.js"
+      ],
+      "testedBy": [
+        "tests/28-build-terrain-map.test.js",
+        "tests/36-build-analysis-index.test.js",
+        "tests/44-page-health.test.js",
+        "tests/54-institutional-surfaces.test.js"
+      ],
+      "debts": [],
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": false,
+      "auditorRank": 17
     },
     {
       "id": "lib/session-bootstrap.js",
@@ -1500,7 +1633,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 810,
+      "y": 930,
       "role": "one-shot session-start state report — read-only, gathers what would otherwise be several manual checks into one command",
       "reads": [
         "docs/continuity/INDEX.md (last logged session, batch registry)",
@@ -1529,7 +1662,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 16
+      "auditorRank": 18
     },
     {
       "id": "lib/strings-check.js",
@@ -1537,7 +1670,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 870,
+      "y": 990,
       "role": "strings pipeline integrity check — runs before compile, catches missing EN text, stale translations, and orphaned keys",
       "reads": [
         "data/strings/source/**/*.json",
@@ -1568,7 +1701,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 930,
+      "y": 1050,
       "role": "strings pipeline compiler — reads source JSON, writes compiled bundles and manifest",
       "reads": [
         "data/strings/source/**/*.json",
@@ -1602,7 +1735,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 990,
+      "y": 1110,
       "role": "pure semantic-history state for Terrain Journey commits and browser Back/Forward restoration",
       "reads": [],
       "writes": [],
@@ -1617,7 +1750,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 17
+      "auditorRank": 19
     },
     {
       "id": "lib/trace-string-usage.js",
@@ -1625,7 +1758,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1050,
+      "y": 1170,
       "role": "string reverse-tracer — data-i18n usage in pages/wip HTML cross-referenced against the compiled manifest",
       "reads": [
         "pages/*.html (data-i18n attribute scan)",
@@ -1647,7 +1780,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 18
+      "auditorRank": 20
     },
     {
       "id": "lib/validate-blueprint.js",
@@ -1655,7 +1788,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1110,
+      "y": 1230,
       "role": "blueprint consistency validator — confirms every id in blueprint.json has a matching config file and vex-config constant",
       "reads": [
         "blueprint.json",
@@ -1687,7 +1820,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1170,
+      "y": 1290,
       "role": "constants hub — pure declarations, no I/O",
       "reads": [],
       "writes": [],
@@ -1706,7 +1839,8 @@
         "tests/07-viewmodel.test.js",
         "tests/08-build-vextreme.test.js (FAB SYSTEM propagation tests — reads Feature.* constants directly)",
         "lib/build-demo.js",
-        "lib/build-arc-bundles.js"
+        "lib/build-arc-bundles.js",
+        "lib/check-institutional-surfaces.js"
       ],
       "testedBy": [
         "tests/05-vex-config.test.js",
@@ -1726,7 +1860,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1230,
+      "y": 1350,
       "role": "browser arc nav runtime — reads index.json at load time, renders prev/next/position into #arcNavMount",
       "reads": [
         "data/index.json via CDN (slugMap, arcMap, arcMeta)",
@@ -1749,7 +1883,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 19
+      "auditorRank": 21
     },
     {
       "id": "pages/terrain-map.html",
@@ -1981,6 +2115,10 @@
   ],
   "edges": [
     [
+      "config/institutional-surfaces.json",
+      "lib/check-institutional-surfaces.js"
+    ],
+    [
       "data/council-kernel.json",
       "lib/build-roles.js"
     ],
@@ -2014,6 +2152,10 @@
     ],
     [
       "lib/audit-pages.js",
+      "config/institutional-surfaces.json"
+    ],
+    [
+      "lib/audit-pages.js",
       "data/departments.json"
     ],
     [
@@ -2042,6 +2184,10 @@
     ],
     [
       "lib/auto-discover-nodes.js",
+      "config/institutional-surfaces.json"
+    ],
+    [
+      "lib/auto-discover-nodes.js",
       "data/departments.json"
     ],
     [
@@ -2055,6 +2201,10 @@
     [
       "lib/build-analysis-index.js",
       "lib/build-index.js"
+    ],
+    [
+      "lib/build-analysis-index.js",
+      "lib/build-terrain-map.js"
     ],
     [
       "lib/build-arc-bundles.js",
@@ -2146,11 +2296,19 @@
     ],
     [
       "lib/build-page-health.js",
+      "config/institutional-surfaces.json"
+    ],
+    [
+      "lib/build-page-health.js",
       "lib/audit-nav.js"
     ],
     [
       "lib/build-page-health.js",
       "lib/build-index.js"
+    ],
+    [
+      "lib/build-page-health.js",
+      "lib/screenshot-evidence.js"
     ],
     [
       "lib/build-roles-page.js",
@@ -2191,10 +2349,6 @@
     [
       "lib/build-terrain-map.js",
       "data/arcs-v2.json"
-    ],
-    [
-      "lib/build-terrain-map.js",
-      "lib/build-analysis-index.js"
     ],
     [
       "lib/build-terrain-map.js",
@@ -2257,6 +2411,18 @@
       "lib/build-page-health.js"
     ],
     [
+      "lib/check-institutional-surfaces.js",
+      "data/arcs-v2.json"
+    ],
+    [
+      "lib/check-institutional-surfaces.js",
+      "lib/audit-pages.js"
+    ],
+    [
+      "lib/check-institutional-surfaces.js",
+      "lib/institutional-localization-runtime.js"
+    ],
+    [
       "lib/check-key-alignment.js",
       "data/arcs-v2.json"
     ],
@@ -2289,6 +2455,10 @@
       "lib/bump-fab-version.js"
     ],
     [
+      "lib/institutional-localization-runtime.js",
+      "config/institutional-surfaces.json"
+    ],
+    [
       "lib/logger-codes.js",
       "lib/build-index.js"
     ],
@@ -2327,6 +2497,22 @@
     [
       "lib/logger.js",
       "lib/strings-compile.js"
+    ],
+    [
+      "lib/screenshot-evidence.js",
+      "config/institutional-surfaces.json"
+    ],
+    [
+      "lib/screenshot-evidence.js",
+      "lib/build-analysis-index.js"
+    ],
+    [
+      "lib/screenshot-evidence.js",
+      "lib/build-terrain-map.js"
+    ],
+    [
+      "lib/screenshot-evidence.js",
+      "lib/check-institutional-surfaces.js"
     ],
     [
       "lib/session-bootstrap.js",
@@ -2374,6 +2560,10 @@
     ],
     [
       "lib/vex-config.js",
+      "config/institutional-surfaces.json"
+    ],
+    [
+      "lib/vex-config.js",
       "lib/build-arc-bundles.js"
     ],
     [
@@ -2387,6 +2577,10 @@
     [
       "lib/vex-config.js",
       "lib/build-vextreme.js"
+    ],
+    [
+      "lib/vex-config.js",
+      "lib/check-institutional-surfaces.js"
     ],
     [
       "lib/vex-config.js",
@@ -4897,7 +5091,7 @@
           "control": "page-owned",
           "visibleStyles": false
         },
-        "identityKeys": 12,
+        "identityKeys": 11,
         "analysisIndexed": true,
         "analysisControl": false,
         "evidenceLanguages": [],
@@ -5120,7 +5314,8 @@
           "gaps": [
             "fab",
             "uncurated",
-            "identity"
+            "identity",
+            "screenshot"
           ],
           "blockers": []
         },
@@ -5133,9 +5328,7 @@
         "identityKeys": 0,
         "analysisIndexed": true,
         "analysisControl": false,
-        "evidenceLanguages": [
-          "lenses"
-        ],
+        "evidenceLanguages": [],
         "metaDescription": ""
       },
       "curated": false
@@ -5844,7 +6037,8 @@
           "state": "attention",
           "gaps": [
             "uncurated",
-            "identity"
+            "identity",
+            "screenshot"
           ],
           "blockers": []
         },
@@ -5857,11 +6051,7 @@
         "identityKeys": 0,
         "analysisIndexed": true,
         "analysisControl": false,
-        "evidenceLanguages": [
-          "dark",
-          "overview",
-          "search"
-        ],
+        "evidenceLanguages": [],
         "metaDescription": "Organizational health map of the Vextreme repo — file lattice, page capability status, and content-node graph in one interactive view."
       },
       "curated": false

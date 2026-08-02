@@ -2,9 +2,9 @@
   "_meta": {
     "totalOpen": 228,
     "lattice": {
-      "mappedNodes": 52,
-      "totalFiles": 73,
-      "coveragePct": 71
+      "mappedNodes": 55,
+      "totalFiles": 76,
+      "coveragePct": 72
     }
   },
   "notices": {
@@ -1311,11 +1311,11 @@
           "en": "supported languages"
         },
         {
-          "key": "demo.live.label.built-at",
+          "key": "demo.live.label.content-fingerprint",
           "lang": "zh",
           "reason": "missing_translation",
           "intentional": true,
-          "en": "index.json last built"
+          "en": "index.json content fingerprint"
         },
         {
           "key": "demo.live.status.loading",

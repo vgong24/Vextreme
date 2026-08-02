@@ -147,7 +147,7 @@
       document.getElementById('liveNodes').textContent = data.nodeCount;
       document.getElementById('liveArcs').textContent = data.arcCount;
       document.getElementById('liveLangs').textContent = (data.supportedLangs || []).join(', ').toUpperCase();
-      note.textContent = "index.json last built" + ': ' + data.builtAt;
+      note.textContent = "index.json content fingerprint" + ': ' + data.contentFingerprint;
     } catch (e) {
       note.textContent = FAILED_TEXT;
     }

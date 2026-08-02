@@ -491,9 +491,7 @@
     },
     "common.status.built-on": {
       "key": "common.status.built-on",
-      "usedIn": [
-        "pages/archives.html"
-      ],
+      "usedIn": [],
       "inManifest": true,
       "langs": [
         "en",
@@ -783,8 +781,8 @@
         "zh"
       ]
     },
-    "demo.live.label.built-at": {
-      "key": "demo.live.label.built-at",
+    "demo.live.label.content-fingerprint": {
+      "key": "demo.live.label.content-fingerprint",
       "usedIn": [],
       "inManifest": true,
       "langs": [
@@ -3438,7 +3436,6 @@
         "common.label.page-live",
         "common.label.site-title",
         "common.label.slug",
-        "common.status.built-on",
         "common.status.pages-live",
         "common.status.remaining"
       ],
@@ -3897,7 +3894,7 @@
   },
   "summary": {
     "totalKeysInManifest": 246,
-    "totalKeysUsed": 217,
+    "totalKeysUsed": 216,
     "orphanUsages": [],
     "unusedKeys": [
       "ai-orientation.heading.title",
@@ -3915,9 +3912,10 @@
       "common.nav.next",
       "common.nav.prev",
       "common.nav.primary-site",
+      "common.status.built-on",
       "convos-with-god.heading.title",
       "covenant.heading.title",
-      "demo.live.label.built-at",
+      "demo.live.label.content-fingerprint",
       "demo.live.status.failed",
       "direct-contact.heading.title",
       "dome.heading.title",

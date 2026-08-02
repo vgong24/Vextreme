@@ -32,7 +32,7 @@
     },
     "lib/bump-fab-version.js": {
       "role": "git-diffing orchestration for lib/compute-fab-version.js — finds the last VERSION-bump commit, diffs data files against it, applies the computed bump to widgets/fab-lang.js",
-      "context": "Companion to lib/compute-fab-version.js (see that node for the tier mapping and why it's split out as pure logic). findBaselineCommit() uses `git log -G` (not -S) to find the last commit that changed a VERSION-shaped line — -S only detects a change in how many times a search string occurs, and \"var VERSION\" occurs exactly once both before and after a bump, so only -G (matches a line matching the given regex appearing in the diff) correctly catches a same-line value edit. Falls back to the file's own add-commit if no bump has ever happened (Session 025's real starting condition — VERSION had never been bumped, so the very first real run classifies the entire accumulated history since file creation, correctly producing a MAJOR catch-up bump). Requires full git history (`fetch-depth: 0`) to work in CI — a shallow clone would make git log/show against older commits fail, most likely silently (empty diffs read as \"no bump needed\" rather than an error) rather than loudly, which is why the checkout step's fetch-depth was changed alongside this file rather than assumed to already be sufficient.",
+      "context": "Companion to lib/compute-fab-version.js (see that node for the tier mapping and why it's split out as pure logic). findBaselineCommit() uses `git log -G` (not -S) to find the last commit that changed a VERSION-shaped line — -S only detects a change in how many times a search string occurs, and \"var VERSION\" occurs exactly once both before and after a bump, so only -G correctly catches a same-line value edit. Its whitespace expression uses POSIX `[[:space:]]`, not `\\s`: GNU Git accepts both in this environment, while Apple Git 2.39.5 does not interpret `\\s` as whitespace and otherwise falls back to the file's original add commit. Falls back to that add commit only when no bump has ever happened. Requires full git history (`fetch-depth: 0`) to work in CI — a shallow clone would make git log/show against older commits fail silently. tests/30 constructs committed VERSION history and simulates Apple Git's rejection of `\\s` so cross-platform baseline discovery is part of readiness.",
       "reads": [
         "git log/show/diff history (via child_process, not require())",
         "data/nodes.json (current + at baseline commit)",
@@ -46,9 +46,12 @@
         "widgets/fab-lang.js (rewrites the VERSION line in place, if a bump tier applies)"
       ],
       "loadedBy": [
-        ".github/workflows/build-index.yml ('Auto-increment fab-lang.js CDN version' step, before the artifact-commit step)"
+        ".github/workflows/build-index.yml ('Auto-increment fab-lang.js CDN version' step, before God Script and service-worker generation)",
+        "tests/30-compute-fab-version.test.js"
       ],
-      "testedBy": [],
+      "testedBy": [
+        "tests/30-compute-fab-version.test.js"
+      ],
       "changeMap": {
         "widgets/fab-lang.js's VERSION line format changes (e.g. quote style, variable name)": [
           "VERSION_RE here — the regex that both finds and rewrites the line"
@@ -127,7 +130,8 @@
         "tests/07-viewmodel.test.js",
         "tests/08-build-vextreme.test.js (FAB SYSTEM propagation tests — reads Feature.* constants directly)",
         "lib/build-demo.js",
-        "lib/build-arc-bundles.js"
+        "lib/build-arc-bundles.js",
+        "lib/check-institutional-surfaces.js"
       ],
       "testedBy": [
         "tests/05-vex-config.test.js",
@@ -159,14 +163,14 @@
     },
     "lib/build-index.js": {
       "role": "content pipeline assembler — reads source data, writes the single pre-built index everything reads from",
-      "context": "The pipeline hub. Every page, every arc nav render, every God Script assembly starts from data/index.json which this file produces. If the index schema changes, 4+ consumers break. Run manually or via CI after editing nodes.json or arcs-v2.json. Session 022: nodes.json alone is no longer the complete node set this computes from — lib/auto-discover-nodes.js synthesizes a placeholder node for any pages/*.html file with no nodes.json entry, and those get concatenated in (allNodes) before buildSlugMap/buildArcMap/buildDepartmentMap run. findDuplicateSlugs still runs on raw nodes.json only — synthesized nodes can't collide with each other (one per real filename) or with curated ones (filtered out by definition).",
+      "context": "The pipeline hub. Every page, every arc nav render, every God Script assembly starts from data/index.json which this file produces. If the index schema changes, 4+ consumers break. Run manually or via CI after editing nodes.json or arcs-v2.json. Session 022: nodes.json alone is no longer the complete node set this computes from — lib/auto-discover-nodes.js synthesizes a placeholder node for any pages/*.html file with no nodes.json entry, and those get concatenated in (allNodes) before buildSlugMap/buildArcMap/buildDepartmentMap run. findDuplicateSlugs still runs on raw nodes.json only — synthesized nodes can't collide with each other (one per real filename) or with curated ones (filtered out by definition). Institutional Surface Integration review closure replaced the wall-clock builtAt field with a SHA-256 contentFingerprint over the actual index payload, so identical source projections remain byte-identical while consumers retain a visible identity for the loaded artifact.",
       "reads": [
         "data/nodes.json",
         "data/arcs-v2.json",
         "data/viewmodels.json",
         "data/departments.json",
         "pages/*.html (via lib/auto-discover-nodes.js, for any slug with no nodes.json entry)",
-        "lib/audit-pages.js (SKIP_PAGES, getPageSlugs)",
+        "lib/audit-pages.js (AUTO_DISCOVERY_EXCLUSIONS, getPageSlugs)",
         "lib/auto-discover-nodes.js (discoverOrphanNodes, readPageFromDisk)",
         "lib/vex-config.js"
       ],
@@ -217,6 +221,11 @@
           "data/departments.json (registry — add a department or workType here first)",
           "lib/build-ecosystem-hub.js (renderDepartments reads both, browser-side)",
           "tests/15-departments.test.js"
+        ],
+        "contentFingerprint derivation": [
+          "data/index.json (generated field replaces wall-clock builtAt)",
+          "lib/build-demo.js (displays the fingerprint rather than a build clock)",
+          "tests/01-content-pipeline.test.js"
         ],
         "findDuplicateSlugs / SLUG_DUPLICATE guard": [
           "lib/logger-codes.js (SLUG_DUPLICATE entry, grouped under build-index.js)",
@@ -342,7 +351,7 @@
     },
     "lib/build-string-identity-index.js": {
       "role": "localization identity pilot, second script — generates pointer indexes and a human-readable report from committed identity metadata",
-      "context": "Reads the `identity` object now optionally present alongside `strings` on any key in data/strings/source/pages/*.json (added by a reviewed merge of lib/discover-string-identity.js's candidates, never by this script). Same CQRS split as every other build-*.js: writes data/strings/compiled/identity-index.json (byCanonicalElementId/byLegacyElementId/byContentNodeKey/byField/byStatus/byStringId — pointers to string keys only, never duplicated full records, per Vex's relay's 'duplicate references not records' rule) and one data/strings/reports/string-identity-{slug}.md per page with any identity coverage. byCanonicalElementId and byLegacyElementId are identical in this pilot (canonical is anchored to the legacy id when one exists) but kept as separate indexes deliberately, in case a future real canonical reassignment makes them diverge. Never touches data/strings/compiled/strings.*.json or manifest.json — confirmed by test that a key's compiled EN/ZH/JA bundle entry contains only {text}, the identity object never leaks into runtime output. PR #97 (dossier report hardening, per Vex's post-PR#96 relay — explicitly NOT the second-page pilot, which stayed unbuilt pending a named discovery-strategy decision): collectIdentityRecords() now also carries each key's actual per-language `texts` for the markdown report's side-by-side display; buildIndexes() still never includes it, so identity-index.json stays pointers-only (a test asserts this directly). renderMarkdownReport() gained a Page/Language summary, an aggregated Known Limitations section (every non-aligned node named once, not buried per-field), a side-by-side text table per content node, Screenshot refs (from the source file's _meta.screenshotRefs), and pointers to the generated index + lib/check-string-identity.js — the check's own live results are never embedded (would go stale independently of the report), only referenced.",
+      "context": "Reads the `identity` object now optionally present alongside `strings` on any key in data/strings/source/pages/*.json (added by a reviewed merge of lib/discover-string-identity.js's candidates, never by this script). Same CQRS split as every other build-*.js: writes data/strings/compiled/identity-index.json (byCanonicalElementId/byLegacyElementId/byContentNodeKey/byField/byStatus/byStringId — pointers to string keys only, never duplicated full records, per Vex's relay's 'duplicate references not records' rule) and one data/strings/reports/string-identity-{slug}.md per page with any identity coverage. Its metadata is content-derived (record count and source paths); the former generatedAt wall clock was removed when PR #141 generation replay proved it prevented exact-head closure without serving a consumer. byCanonicalElementId and byLegacyElementId are identical in this pilot (canonical is anchored to the legacy id when one exists) but kept as separate indexes deliberately, in case a future real canonical reassignment makes them diverge. Never touches data/strings/compiled/strings.*.json or manifest.json — confirmed by test that a key's compiled EN/ZH/JA bundle entry contains only {text}, the identity object never leaks into runtime output. PR #97 (dossier hardening, per Vex's post-PR#96 relay — explicitly NOT the second-page pilot, which stayed unbuilt pending a named discovery-strategy decision): collectIdentityRecords() now also carries each key's actual per-language `texts` for the markdown report's side-by-side display; buildIndexes() still never includes it, so identity-index.json stays pointers-only (a test asserts this directly). renderMarkdownReport() gained a Page/Language summary, an aggregated Known Limitations section (every non-aligned node named once, not buried per-field), a side-by-side text table per content node, Screenshot refs (from the source file's _meta.screenshotRefs), and pointers to the generated index + lib/check-string-identity.js — the check's own live results are never embedded (would go stale independently of the report), only referenced.",
       "reads": [
         "data/strings/source/pages/*.json (identity blocks + strings, for language listing)"
       ],
@@ -627,7 +636,7 @@
     },
     "data/index.json": {
       "role": "pre-built read index — the single artifact every page and build script reads from",
-      "context": "Generated by lib/build-index.js. Never edit directly. Contains slugMap (slug → viewmodel + arcKeys + nav data), arcMap (arc → sections → slug lists), arcMeta (arc → display metadata), departmentMap (department → workType → [{slug, title, ported}]), departmentMeta (department → display labels), supportedLangs, nodeCount, arcCount, builtAt. Everything downstream reads this; nothing downstream reads nodes.json, arcs-v2.json, or departments.json directly.",
+      "context": "Generated by lib/build-index.js. Never edit directly. Contains slugMap (slug → viewmodel + arcKeys + nav data), arcMap (arc → sections → slug lists), arcMeta (arc → display metadata), departmentMap (department → workType → [{slug, title, ported}]), departmentMeta (department → display labels), supportedLangs, nodeCount, arcCount, and a contentFingerprint derived from that payload. Everything downstream reads this; nothing downstream reads nodes.json, arcs-v2.json, or departments.json directly.",
       "reads": [],
       "writes": [],
       "loadedBy": [
@@ -638,6 +647,7 @@
         "pages/vextreme-demo.html (live fetch to show nodeCount/arcCount/supportedLangs)"
       ],
       "testedBy": [
+        "tests/01-content-pipeline.test.js",
         "tests/08-build-vextreme.test.js (KEY-ALIGNMENT)",
         "tests/15-departments.test.js"
       ],
@@ -815,11 +825,11 @@
     },
     "lib/build-sw.js": {
       "role": "Service Worker generator — reads dist/ filenames + arc-chunked bundle index, writes sw.js",
-      "context": "Scans dist/ for God Script filenames and bakes them into the SW PRECACHE_URLS list. Run after build-vextreme.js adds new dist/ files. The generated sw.js is committed — the SW cache version is pinned to the git commit hash at generation time. Session 025 added precaching for lib/build-arc-bundles.js's opted-in arc bundles (od-001/td-006 pilot) — bounded to (opted-in arcs x their languages), not every scope of every page.",
+      "context": "Scans dist/ for God Script filenames and bakes them into the SW PRECACHE_URLS list. Run after build-vextreme.js adds new dist/ files. The generated sw.js is committed, so its cache identity must converge on the commit that carries it. Institutional Surface Integration review closure replaced the former HEAD-derived cache key (which necessarily changed again when sw.js was committed) with a SHA-256 fingerprint of every precached URL and its actual bytes. Equivalent content now produces an equivalent service worker across local and remote transport SHAs. Session 025 added precaching for lib/build-arc-bundles.js's opted-in arc bundles (od-001/td-006 pilot) — bounded to (opted-in arcs x their languages), not every scope of every page.",
       "reads": [
         "dist/*.js (all God Script filenames)",
         "data/strings/compiled/arcs/index.json (opted-in arc bundles, if any)",
-        "git commit hash"
+        "bytes of every precached URL"
       ],
       "writes": [
         "sw.js"
@@ -893,7 +903,8 @@
         "lib/check-key-alignment.js (discoverWipDrafts, feeds report.wip.htmlDrafts)",
         "tests/16-auto-discover-nodes.test.js",
         "tests/15-departments.test.js (integration test)",
-        "tests/21-wip-drafts.test.js"
+        "tests/21-wip-drafts.test.js",
+        "tests/54-institutional-surfaces.test.js (real discovery exclusion integration)"
       ],
       "testedBy": [
         "tests/16-auto-discover-nodes.test.js",
@@ -917,10 +928,11 @@
     },
     "lib/audit-pages.js": {
       "role": "page wiring auditor — read-only report of which pages/*.html are wired to a God Script, blocked, or intentionally skipped",
-      "context": "The canonical way to answer 'what's the current wiring status' without manually reading every page. CLAUDE.md points here instead of describing wiring status in prose, since prose goes stale and this doesn't — it reads dist/ and pages/ directly on every run. SKIP_PAGES and BLOCKERS are the only hand-maintained parts; both are dated the moment a page's status actually changes.",
+      "context": "The canonical way to answer 'what's the current wiring status' without manually reading every page. CLAUDE.md points here instead of describing wiring status in prose, since prose goes stale and this doesn't — it reads dist/ and pages/ directly on every run. Generated/dev exceptions remain in SKIP_PAGES; institutional identity is derived from config/institutional-surfaces.json and merged only into AUTO_DISCOVERY_EXCLUSIONS so it cannot become another hand-maintained slug list or leak into Archives as a system page.",
       "reads": [
         "pages/*.html (checks for a dist/vextreme-{slug}.js script src)",
-        "dist/*.js (checks which God Scripts exist)"
+        "dist/*.js (checks which God Scripts exist)",
+        "config/institutional-surfaces.json (derives institutional classification and record-pipeline exclusions)"
       ],
       "writes": [
         "stdout only — read-only, changes nothing"
@@ -928,11 +940,12 @@
       "loadedBy": [
         "manual run: node lib/audit-pages.js",
         "CLAUDE.md (points here as the wiring-status source of truth)",
-        "lib/check-key-alignment.js (imports SKIP_PAGES + getPageSlugs — reuses the skip list instead of duplicating it)",
-        "lib/build-index.js (SKIP_PAGES + getPageSlugs, feeds auto-discovery)",
-        "lib/build-archives.js (same, independently — see pe-011)",
-        "lib/build-terrain-map.js (getPageSlugs — real page files vs. curated nodes.json entries, for the content/arc layer's uncurated column)",
+        "lib/check-key-alignment.js (imports AUTO_DISCOVERY_EXCLUSIONS + getPageSlugs)",
+        "lib/build-index.js (AUTO_DISCOVERY_EXCLUSIONS + getPageSlugs, feeds auto-discovery)",
+        "lib/build-archives.js (same shared exclusion, independently — see pe-011)",
+        "lib/build-terrain-map.js (getRecordPageSlugs keeps institutional surfaces outside the content/arc layer)",
         "tests/15-departments.test.js",
+        "tests/54-institutional-surfaces.test.js",
         "tests/20-roles.test.js",
         "tests/28-build-terrain-map.test.js",
         "lib/build-analysis-index.js (reuses getPageSlugs)",
@@ -964,7 +977,7 @@
         "data/viewmodels.json",
         "wip/*.json (_meta.slug field only)",
         "wip/*.html (filename-derived slug + title, via lib/auto-discover-nodes.js discoverWipDrafts)",
-        "lib/audit-pages.js (SKIP_PAGES, getPageSlugs)",
+        "lib/audit-pages.js (AUTO_DISCOVERY_EXCLUSIONS, getPageSlugs)",
         "lib/build-archives.js (source text — ARC_ORDER, ARC_KEY_MAP, regex-scanned not required)",
         "lib/build-index-page.js (source text — its own separate ARC_ORDER, regex-scanned not required)"
       ],
@@ -1099,7 +1112,7 @@
           "buildContentIntegrityNotices() here reads report.pages.orphans / report.wip.collisions / report.wip.duplicateIntents / report.wip.htmlDrafts directly — a shape change there breaks this silently unless tests/10, tests/08, or tests/21 catch it"
         ],
         "any new _meta field being considered": [
-          "must not vary run-to-run for identical source data (no wall-clock timestamp, no git commit SHA) — see config/lessons/generated-artifacts-must-be-content-deterministic.json for why; if a field genuinely needs to reflect build time (like data/index.json's builtAt), that's a deliberate, different tradeoff, not the default"
+          "must not vary run-to-run for identical source data (no wall-clock timestamp or git commit SHA) — see config/lessons/generated-artifacts-must-be-content-deterministic.json"
         ]
       }
     },
@@ -1278,7 +1291,7 @@
     },
     "lib/build-page-health.js": {
       "role": "joins existing page registries, runtime audits, localization identity, analysis, and screenshot evidence into one deterministic per-page capability projection",
-      "context": "Archives answers page health while Terrain answers organizational health. This generator gives both read sides one source without making either interface re-scan HTML or duplicate classification rules. It distinguishes mechanism presence from visible effect, especially shared theme control versus authored light/dark styles. `discovery.metaDescription` (added alongside the Fresh Participant Dignity relay-culture PR, while scoping what a page-index for external search-agent AIs would need) is deliberately stored as the extracted text itself (`''` when absent), not a pre-flattened boolean — same shape as `identity.keyCount` being a count rather than a `hasIdentity` flag. `metaDescriptionText()` is the one place that ever parses the HTML for this; every consumer (Archives' badge, Terrain's detail panel, a future page-index) derives presence/quality from the string it already has rather than re-scanning the page. Matches the `<meta>` tag itself first, then reads `name=`/`content=` from within that tag independently — attribute order in the source HTML is not assumed. Known ceiling, not yet hit: HTML entities in `content` (e.g. `&amp;`) are returned raw, undecoded — fine for every current page (none use them) and for feeding back into an `esc()`-based HTML re-render (Terrain's detail panel), but a future consumer that treats this string as plain text (a search snippet, a page-index entry) would need to decode entities first. Resolve when a real consumer needs decoded text, not preemptively. This is the field a future large-repo instance — or an external AI with no repo access — would actually read to map a user's question to a route: the badge only answers 'does this page describe itself,' the string is what a search/navigation layer would need to answer 'which page.' Health-severity handling follows the same precedent as `analysis.control`: surfaced as a badge, deliberately excluded from computeHealth()'s gaps/blockers so adding it doesn't retroactively flip most of the site to 'attention' — only 4/39 pages had a meta description when this landed. Promote it into a real gap once enough pages are curated that the absence is the exception, not the norm.",
+      "context": "Archives answers page health while Terrain answers organizational health. This generator gives both read sides one source without making either interface re-scan HTML or duplicate classification rules. It distinguishes mechanism presence from visible effect, especially shared theme control versus authored light/dark styles. Registry-owned institutional pages intentionally omit record placement and FAB delivery, but the registry's inverse runtime boundary is strict: observed shell or God-Script delivery makes an institutional page critical even when its generic capabilities are complete. `discovery.metaDescription` (added alongside the Fresh Participant Dignity relay-culture PR, while scoping what a page-index for external search-agent AIs would need) is deliberately stored as the extracted text itself (`''` when absent), not a pre-flattened boolean — same shape as `identity.keyCount` being a count rather than a `hasIdentity` flag. `metaDescriptionText()` is the one place that ever parses the HTML for this; every consumer (Archives' badge, Terrain's detail panel, a future page-index) derives presence/quality from the string it already has rather than re-scanning the page. Matches the `<meta>` tag itself first, then reads `name=`/`content=` from within that tag independently — attribute order in the source HTML is not assumed. Known ceiling, not yet hit: HTML entities in `content` (e.g. `&amp;`) are returned raw, undecoded — fine for every current page (none use them) and for feeding back into an `esc()`-based HTML re-render (Terrain's detail panel), but a future consumer that treats this string as plain text (a search snippet, a page-index entry) would need to decode entities first. Resolve when a real consumer needs decoded text, not preemptively. This is the field a future large-repo instance — or an external AI with no repo access — would actually read to map a user's question to a route: the badge only answers 'does this page describe itself,' the string is what a search/navigation layer would need to answer 'which page.' Health-severity handling follows the same precedent as `analysis.control`: surfaced as a badge, deliberately excluded from computeHealth()'s gaps/blockers so adding it doesn't retroactively flip most of the site to 'attention' — only 4/39 pages had a meta description when this landed. Promote it into a real gap once enough pages are curated that the absence is the exception, not the norm.",
       "reads": [
         "pages/*.html (runtime tags, data-i18n bindings, authored theme styles)",
         "data/nodes.json (arc placement)",
@@ -1286,6 +1299,8 @@
         "data/analysis-index.json (analysis indexing)",
         "dist/*.js (God Script FAB and analysis delivery)",
         "docs/screenshots/*.png (evidence presence)",
+        "config/institutional-surfaces.json (institutional page classification and intentional record-runtime exclusions)",
+        "lib/screenshot-evidence.js (shared legacy and locale/theme/viewport evidence discovery)",
         "lib/audit-pages.js (page inventory and God Script wiring)",
         "lib/audit-nav.js (navigation classification)",
         "lib/audit-fab.js (theme ownership and opt-out classification)"
@@ -1318,6 +1333,34 @@
         ]
       }
     },
+    "lib/screenshot-evidence.js": {
+      "role": "shared screenshot-evidence filename parser and deterministic projection helper",
+      "context": "Institutional Surface Integration 1/4 review repair. Legacy visual evidence uses {slug}-{locale}.png while institutional activation requires {slug}-{locale}-{theme}-{viewport}.png. This pure utility owns both shapes so Page Health, Terrain, Analysis, and activation validation cannot accept a file that another projection silently drops. Representative per-locale paths preserve existing UI contracts; matrix records preserve every exact filename for review and reverse traversal.",
+      "reads": [],
+      "writes": [],
+      "loadedBy": [
+        "lib/check-institutional-surfaces.js",
+        "lib/build-page-health.js",
+        "lib/build-terrain-map.js",
+        "lib/build-analysis-index.js",
+        "tests/36-build-analysis-index.test.js"
+      ],
+      "testedBy": [
+        "tests/28-build-terrain-map.test.js",
+        "tests/36-build-analysis-index.test.js",
+        "tests/44-page-health.test.js",
+        "tests/54-institutional-surfaces.test.js"
+      ],
+      "changeMap": {
+        "legacy or matrix filename grammar changed": [
+          "lib/check-institutional-surfaces.js (activation evidence path)",
+          "lib/build-page-health.js (locale and exact-file health evidence)",
+          "lib/build-terrain-map.js (representative screen plus exact evidence records)",
+          "lib/build-analysis-index.js (per-page evidence projection)",
+          "tests/28, tests/44, and tests/54"
+        ]
+      }
+    },
     "lib/build-terrain-map.js": {
       "role": "terrain-map write side — computes layout, health, edges, and real screenshots into one deterministic JSON",
       "context": "Session 025 generalized the terrain-map pilot (an Artifact over 14 hand-picked nodes shown to Victor as a proof of concept) into a real, self-updating feature. Same CQRS split as data/status.json -> pages/ecosystem-hub.html: this script is the write side, pages/terrain-map.html is hand-authored once and live-fetches its output. Adding a lattice node, a page, or a screenshot never requires touching the HTML — only rerunning this generator, wired into CI the same as every other dashboard's data source. Session 025 (continued) replaced the folder-grid layout with a lifecycle-stage layout (source -> generate -> utilities -> check -> output -> runtime) and added two role-lens tags per node (engineerFocus / auditorFocus), after a round of Artifact POCs tested a fractal zoom-level UI (system -> stage -> node, each level snapping to its own full framing on entry, exiting always stepping back one level) against this exact shape. The stage/lens rules are naming-pattern heuristics over real fields, explicitly not a designed taxonomy — each node's lens tags render visibly in the UI so the heuristic can be challenged, not hidden behind a silent classification. Session 025 (continued) again: added computeExecutionOrder (real within-stage ordering sourced from .github/workflows/build-index.yml's literal step sequence and lib/session-bootstrap.js's own check order, not alphabetical) and per-node auditorRank (an alternate within-stage ordering by worst-status-first — the read side swaps to it, recomputing position, only while the auditor lens is active). Also added a second, parallel content layer (layoutArcs/buildContentPages -> the `arcs`/`pages` output fields): the same column-per-group technique applied to data/nodes.json grouped by arc instead of lifecycle stage, ordered within an arc by each node's own real `id` field (curation order) rather than alphabetically. A curated node with no matching pages/*.html file is marked live:false, status:'critical' rather than implied to be a real page — most of this repo's 91 curated nodes are unported v1 content, and that is real, common state to show, not an edge case to hide. A real pages/*.html file with no nodes.json entry lands in a distinct 'uncurated' arc column instead of being silently absent.",
@@ -1328,7 +1371,8 @@
         "data/status/planned-enhancements.json (health cross-reference)",
         "data/nodes.json (real page titles/arcKeys, for both the screens layer and the arcs/pages content layer)",
         "data/arcs-v2.json (real arc priority/title, for the arcs/pages content layer's column order and labels)",
-        "lib/audit-pages.js (getPageSlugs — real page files vs. curated nodes.json entries, for the content layer's uncurated column and each page's live flag)",
+        "lib/audit-pages.js (getRecordPageSlugs — real record-page files excluding registry-owned institutional surfaces)",
+        "lib/screenshot-evidence.js (shared representative screenshots and exact matrix evidence records)",
         "data/page-health.json (shared page capability and health projection)",
         "docs/screenshots/*.png (directory listing — which pages have a real per-language screenshot)"
       ],
@@ -1339,8 +1383,7 @@
         "manual run: node lib/build-terrain-map.js",
         ".github/workflows/build-index.yml (CI)",
         "pages/terrain-map.html (live fetch of its output)",
-        "tests/28-build-terrain-map.test.js",
-        "lib/build-analysis-index.js (reuses findScreenshots)"
+        "tests/28-build-terrain-map.test.js"
       ],
       "testedBy": [
         "tests/28-build-terrain-map.test.js",
@@ -1357,9 +1400,9 @@
         "data/arcs-v2.json's priority field or key naming convention changed": [
           "layoutArcs() here sorts arc columns by priority then key — a differently-shaped priority value silently reorders or misgroups the content layer"
         ],
-        "screenshot filename convention ({slug}-{lang}.png) changed": [
-          "findScreenshots() here — the regex encodes that exact shape",
-          "scripts/screenshot-page.js (writes that exact shape)"
+        "screenshot filename convention changed": [
+          "lib/screenshot-evidence.js (canonical parser for legacy and institutional matrix names)",
+          "scripts/screenshot-page.js and the later institutional harness (writers must emit an accepted shape)"
         ]
       }
     },
@@ -1429,7 +1472,7 @@
         "data/strings/compiled/manifest.json",
         "data/page-health.json",
         "pages/*.html (existence check, per slug, for the ported/missing cell state; also read in full via lib/auto-discover-nodes.js for any slug with no nodes.json entry)",
-        "lib/audit-pages.js (SKIP_PAGES, getPageSlugs)",
+        "lib/audit-pages.js (SKIP_PAGES for generated system pages; AUTO_DISCOVERY_EXCLUSIONS + getPageSlugs for record discovery)",
         "lib/auto-discover-nodes.js (discoverOrphanNodes, readPageFromDisk)"
       ],
       "writes": [
@@ -1485,6 +1528,101 @@
         ],
         "a new companion stylesheet added under styles/": [
           "confirm it's actually always paired with design-system.css by its loader before relying on alwaysGlobal crediting it — if not, it needs its own local :root instead"
+        ]
+      }
+    },
+    "config/institutional-surfaces.json": {
+      "role": "authored registry for institutional surface identity, lifecycle, runtime exclusions, string scope, theme variants, and required evidence",
+      "context": "Institutional Surface Integration 1/4. PR #135 proved that vextreme-home and vex-support are a real second page class, but encoded their identity across page-local exceptions, duplicated lists, runtime assumptions, and an oversized acceptance surface. This registry holds the two slugs as reservations before any public page exists. A reservation owns the slug across page, node, arc, generated-index, and God Script projections. Promotion to active additionally requires bound locale bundles at the entry's declared string category/scope, a reachable runtime path for every non-English required locale, and the declared locale/theme/viewport PNG evidence matrix. Planned locales remain distinct from required locales so future translation is visible without being misreported as accepted or published.",
+      "reads": [],
+      "writes": [],
+      "loadedBy": [
+        "lib/check-institutional-surfaces.js",
+        "lib/audit-pages.js",
+        "lib/build-page-health.js",
+        "tests/54-institutional-surfaces.test.js",
+        "docs/architecture/18-institutional-pages.md"
+      ],
+      "testedBy": [
+        "tests/54-institutional-surfaces.test.js"
+      ],
+      "changeMap": {
+        "a reservation is promoted to active": [
+          "pages/{slug}.html must land in the same PR with the registry projection markers",
+          "lib/check-institutional-surfaces.js must pass after the page, node, arc, and dist projections are built",
+          "the page-specific PR must provide the evidence matrix declared by this entry"
+        ],
+        "the registry schema or entry dimensions change": [
+          "lib/check-institutional-surfaces.js validation rules",
+          "tests/54-institutional-surfaces.test.js fixtures and failure cases",
+          "docs/architecture/18-institutional-pages.md contract description"
+        ]
+      }
+    },
+    "lib/check-institutional-surfaces.js": {
+      "role": "fail-closed institutional-surface registry, identity-reservation, localization, and evidence validator",
+      "context": "Institutional Surface Integration 1/4. Validates one authored registry before later PRs add visible pages. Reserved entries own identity across page, node, arc, generated-index, and God Script projections. Active entries must additionally provide one standalone page with explicit surface/string-category/string-scope/theme markers, complete visible and accessibility locale bindings, behavioral execution of the declared localization loader/control, and structurally valid PNG evidence for every declared locale/theme/viewport cell. This keeps the page class mechanical without accepting #135's two pages, payment state, localization, runtime, and evidence as one merge unit.",
+      "reads": [
+        "config/institutional-surfaces.json",
+        "lib/vex-config.js (valid compiled-string categories)",
+        "lib/screenshot-evidence.js (canonical locale/theme/viewport evidence filename)",
+        "lib/institutional-localization-runtime.js (bounded behavioral execution of the declared loader and control)",
+        "pages/*.html (existence, visible/accessibility i18n bindings, and active projection markers, per registered slug)",
+        "data/nodes.json (every registered institutional slug must remain outside archive indexing)",
+        "data/arcs-v2.json (every registered institutional slug must remain outside narrative arcs)",
+        "data/index.json (registered slugs must remain outside generated content maps)",
+        "data/strings/compiled/scopes/{category}/*.json (required active-locale bindings)",
+        "docs/screenshots/*.png (required active locale/theme/viewport evidence cells)",
+        "dist/*.js (no God Script may be generated for a registered institutional identity)"
+      ],
+      "writes": [
+        "stdout only — read-only; exits nonzero when registry or projections drift"
+      ],
+      "loadedBy": [
+        "manual run: node lib/check-institutional-surfaces.js",
+        "package.json (pr-ready and institutional-surfaces:check scripts)",
+        "lib/audit-pages.js (registeredSurfaceSlugs feeds the shared discovery exclusion)",
+        "tests/54-institutional-surfaces.test.js"
+      ],
+      "testedBy": [
+        "tests/54-institutional-surfaces.test.js"
+      ],
+      "changeMap": {
+        "active page marker, runtime, or archive-boundary rules change": [
+          "config/institutional-surfaces.json entry schema",
+          "tests/54-institutional-surfaces.test.js active valid/invalid fixtures",
+          "docs/architecture/18-institutional-pages.md active-page invariants"
+        ],
+        "a new consumer needs institutional slugs": [
+          "import registeredSurfaceSlugs() or read the registry through this validated contract; do not add a second slug list"
+        ]
+      }
+    },
+    "lib/institutional-localization-runtime.js": {
+      "role": "bounded behavioral probe for institutional localization loaders — operates the declared control and observes visible, alt, and ARIA translations",
+      "context": "Institutional Surface Integration 1/4 exact-head review closure. Static script tags, globals, bundle files, and select options can all exist while the declared widget throws, does nothing, or hard-codes accepted values without consuming the repository bundles. This probe runs the actual loader source in an isolated child-process VM with a minimal browser contract, operates every required non-English option and then returns to English, records bundle requests and completed JSON bodies, requires one successful completion per required locale, and compares visible text, alt text, ARIA labels, and `<html lang>` against the compiled bundles. The child-process timeout bounds hostile or accidental nontermination; no repository code receives Node require/process access inside the VM.",
+      "reads": [
+        "declared institutional localization widget source (provided by lib/check-institutional-surfaces.js)",
+        "required compiled locale bundles (provided by lib/check-institutional-surfaces.js)",
+        "active page binding keys and localization-control attribute (provided by lib/check-institutional-surfaces.js)"
+      ],
+      "writes": [
+        "stdout JSON only in --probe-child mode"
+      ],
+      "loadedBy": [
+        "lib/check-institutional-surfaces.js"
+      ],
+      "testedBy": [
+        "tests/54-institutional-surfaces.test.js"
+      ],
+      "changeMap": {
+        "DOM or fetch harness contract changes": [
+          "widgets/vex-institutional.js (the later runtime implementation must pass this behavior, not target harness internals)",
+          "tests/54-institutional-surfaces.test.js throwing, no-op, and working loader probes"
+        ],
+        "required observed bindings change": [
+          "lib/check-institutional-surfaces.js pageI18nBindings() and activeLocalizationIssues()",
+          "docs/architecture/18-institutional-pages.md active-page runtime invariant"
         ]
       }
     },
@@ -1566,19 +1704,21 @@
     },
     "lib/build-sitemap.js": {
       "role": "generates sitemap.xml — lists only pages that actually exist, so crawlers never hit a 404",
-      "context": "Filters nodes.json down to nodes with both a non-null id and an actual pages/{slug}.html file on disk before including them — unported nodes are silently excluded rather than producing a dead sitemap entry. UTILITY_PAGES is a small hardcoded list of non-node pages (archives, vextreme-demo, specimens) to include if they exist. Session 027: lastmod per URL used to be a single build-time 'today' stamped on every entry regardless of whether that page's content actually changed — since build-index.yml's trigger paths cover nearly any change, this meant 'everything changed today' on almost every build, defeating the point of lastmod for crawlers. Now computed per file via `git log -1 --format=%aI` (real last-change date), falling back to today only when git can't resolve one. No test file exists for this script (also true before this change) — consistent with several other simple page-generating build-*.js scripts (build-archives, build-demo, build-index-page, build-specimens) that are also untested top-level scripts, not a gap unique to this fix.",
+      "context": "Filters nodes.json down to nodes with both a non-null id and an actual pages/{slug}.html file on disk before including them — unported nodes are silently excluded rather than producing a dead sitemap entry. UTILITY_PAGES is a small hardcoded list of non-node pages (archives, vextreme-demo, specimens) to include if they exist. Session 027 correctly rejected one build-time date stamped across every URL, but its replacement used each generated page's latest git commit; PR #141 replay proved that artifact rebuild history still makes sitemap output depend on the commit carrying it. lastmod is now omitted because no accepted source owns semantic modification time. Absence is more truthful and deterministic than projecting build history as content freshness.",
       "reads": [
         "data/nodes.json",
-        "pages/*.html (existence check only, per slug)",
-        "git log (per-file last-change date, via subprocess)"
+        "pages/*.html (existence check only, per slug)"
       ],
       "writes": [
         "sitemap.xml"
       ],
       "loadedBy": [
-        ".github/workflows/build-index.yml"
+        ".github/workflows/build-index.yml",
+        "tests/55-build-sitemap.test.js"
       ],
-      "testedBy": [],
+      "testedBy": [
+        "tests/55-build-sitemap.test.js"
+      ],
       "changeMap": {
         "a new utility page added (non-node, not from nodes.json)": [
           "UTILITY_PAGES array in this file — otherwise it's silently excluded from the sitemap"
@@ -1859,15 +1999,15 @@
       }
     },
     "lib/build-analysis-index.js": {
-      "role": "Analysis Mode data-layer write side — composes trace-string-usage.js and build-terrain-map.js findScreenshots() into one browser-fetchable artifact",
-      "context": "docs/architecture/15-analysis-mode.md Phase A. Victor asked (2026-07-10) for a live, searchable, exportable interface over real canonical IDs, real forward/reverse mapping, and real screenshot evidence, surfaced through a FAB panel — not a synthetic demo fixture. This resolves that by reusing three already-real, already-built pieces of this repo (compiled string bundles as a canonical-ID system, trace-string-usage.js as the reverse index, build-terrain-map.js findScreenshots() as the screenshot index) instead of duplicating their logic, and writing one deterministic JSON artifact Phase B (widgets/fab-analysis.js, not yet built) will fetch. Same CQRS shape as data/terrain-map.json: write-side script, deterministic, no live compute, nothing renders yet.",
+      "role": "Analysis Mode data-layer write side — composes trace-string usage and shared screenshot evidence into one browser-fetchable artifact",
+      "context": "docs/architecture/15-analysis-mode.md Phase A. Victor asked (2026-07-10) for a live, searchable, exportable interface over real canonical IDs, real forward/reverse mapping, and real screenshot evidence, surfaced through a FAB panel — not a synthetic demo fixture. This resolves that by reusing the compiled string registry, trace-string-usage.js, and the shared screenshot-evidence parser instead of duplicating their logic, and writing one deterministic JSON artifact the FAB panel fetches. Legacy screenshots remain one representative path per locale for the existing UI; institutional matrix evidence also preserves every exact filename.",
       "reads": [
         "data/strings/compiled/manifest.json (per-key language coverage)",
         "data/index.json (supportedLangs — the language set to compare coverage against)",
         "pages/*.html, wip/*.html (data-i18n usage scan, via trace-string-usage.js scanUsages)",
-        "docs/screenshots/*.png (directory listing, via build-terrain-map.js findScreenshots)",
+        "docs/screenshots/*.png (directory listing, parsed through lib/screenshot-evidence.js)",
         "lib/trace-string-usage.js (scanUsages, traceKey, tracePage, findOrphanUsages, findUnusedKeys — reused directly, not duplicated)",
-        "lib/build-terrain-map.js (findScreenshots — reused directly)",
+        "lib/screenshot-evidence.js (representative screenshots plus exact matrix evidence records)",
         "lib/audit-pages.js (getPageSlugs — real page files, for the per-page index)"
       ],
       "writes": [
@@ -1885,8 +2025,8 @@
         "lib/trace-string-usage.js exported function signatures changed (scanUsages/traceKey/tracePage/findOrphanUsages/findUnusedKeys)": [
           "buildElementIndex()/buildPageIndex() here call these directly"
         ],
-        "lib/build-terrain-map.js findScreenshots() shape changed": [
-          "the I/O section here passes its output straight into buildPageIndex()"
+        "lib/screenshot-evidence.js projection shape changed": [
+          "buildPageIndex() preserves representative per-locale paths and exact matrix records"
         ],
         "data/analysis-index.json schema changed (supportedLangs/elements/pages/summary shape)": [
           "widgets/fab-analysis.js (Phase B, not yet built — will be the first live consumer)",

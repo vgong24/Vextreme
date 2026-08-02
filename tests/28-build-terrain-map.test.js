@@ -17,7 +17,7 @@
  *   3. layoutStages — deterministic column-per-stage layout
  *   4. computeStatus / findDebtReferences — health cross-referencing
  *   5. computeEdges — mention-based edge detection
- *   6. findScreenshots — {slug}-{lang}.png discovery
+ *   6. screenshot evidence — legacy and institutional-matrix discovery
  *   7. buildTerrainMap — full assembly
  *   8. layoutArcs / buildContentPages — the content-side mirror (pages grouped by arc)
  *   9. Integration — the real repo's output is deterministic and internally consistent
@@ -40,6 +40,7 @@ const {
   findDebtReferences,
   computeEdges,
   findScreenshots,
+  findScreenshotEvidence,
   buildTerrainMap,
   layoutArcs,
   buildContentPages,
@@ -207,9 +208,33 @@ test('BUILD-TERRAIN-MAP: findScreenshots groups files by slug and language', () 
   });
 });
 
-test('BUILD-TERRAIN-MAP: findScreenshots ignores files that do not match the {slug}-{lang}.png convention', () => {
+test('BUILD-TERRAIN-MAP: findScreenshots ignores files outside both accepted naming conventions', () => {
   const result = findScreenshots(['ecosystem-hub-lenses.png', 'plain.png']);
   assert.deepEqual(result, {});
+});
+
+test('BUILD-TERRAIN-MAP: institutional matrix evidence remains discoverable and preserves every filename', () => {
+  const files = [
+    'vex-test-en-foundation-320.png',
+    'vex-test-en-foundation-1440.png',
+    'vex-test-en-foundation-light-320.png',
+  ];
+  assert.deepEqual(findScreenshots(files), {
+    'vex-test': { en: 'docs/screenshots/vex-test-en-foundation-1440.png' },
+  });
+  assert.deepEqual(
+    findScreenshotEvidence(files)['vex-test'].map(record => record.path),
+    files.slice().sort().map(file => `docs/screenshots/${file}`)
+  );
+
+  const terrain = buildTerrainMap({ nodes: {} }, [], [], files, {}, ['vex-test']);
+  assert.deepEqual(terrain.screens[0].screenshots, {
+    en: 'docs/screenshots/vex-test-en-foundation-1440.png',
+  });
+  assert.deepEqual(
+    terrain.screens[0].screenshotEvidence.map(record => record.path),
+    files.slice().sort().map(file => `docs/screenshots/${file}`)
+  );
 });
 
 // ── 7. buildTerrainMap ────────────────────────────────────────────────────────
@@ -334,6 +359,9 @@ test('BUILD-TERRAIN-MAP integration: every screen references a screenshot file t
   for (const screen of data.screens) {
     for (const relPath of Object.values(screen.screenshots)) {
       assert.ok(fs.existsSync(path.join(ROOT, relPath)), `missing screenshot file: ${relPath}`);
+    }
+    for (const record of (screen.screenshotEvidence || [])) {
+      assert.ok(fs.existsSync(path.join(ROOT, record.path)), `missing screenshot evidence file: ${record.path}`);
     }
   }
 });

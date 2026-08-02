@@ -18,6 +18,10 @@
 
 const { test } = require('node:test');
 const assert   = require('node:assert/strict');
+const fs       = require('fs');
+const os       = require('os');
+const path     = require('path');
+const { execFileSync } = require('child_process');
 
 const {
   parseVersion,
@@ -29,6 +33,10 @@ const {
   diffKeyedCollection,
   diffLocales,
 } = require('../lib/compute-fab-version');
+const {
+  VERSION_HISTORY_GREP,
+  findBaselineCommit,
+} = require('../lib/bump-fab-version');
 
 // ── 1. parseVersion / formatVersion / bumpVersion ─────────────────────────────
 
@@ -165,6 +173,43 @@ test('FAB-VERSION: diffLocales detects a new language code', () => {
 test('FAB-VERSION: diffLocales reports false when the locale set is unchanged or shrank', () => {
   assert.equal(diffLocales(['en', 'ja'], ['en', 'ja']), false);
   assert.equal(diffLocales(['en', 'ja'], ['en']), false);
+});
+
+test('FAB-VERSION: baseline discovery uses an Apple-Git-safe POSIX whitespace expression', t => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'vxg-fab-baseline-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  fs.mkdirSync(path.join(root, 'widgets'), { recursive: true });
+
+  function runGit(args) {
+    return execFileSync('git', args, {
+      cwd: root,
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'pipe'],
+    }).trim();
+  }
+
+  runGit(['init']);
+  runGit(['config', 'user.name', 'Vextreme Test']);
+  runGit(['config', 'user.email', 'vextreme-test@example.invalid']);
+  fs.writeFileSync(path.join(root, 'widgets', 'fab-lang.js'), "var VERSION = '1.0.0';\n");
+  runGit(['add', 'widgets/fab-lang.js']);
+  runGit(['commit', '-m', 'add fab']);
+  const addCommit = runGit(['rev-parse', 'HEAD']);
+
+  fs.writeFileSync(path.join(root, 'widgets', 'fab-lang.js'), "var VERSION    = '2.1.0';\n");
+  runGit(['add', 'widgets/fab-lang.js']);
+  runGit(['commit', '-m', 'bump fab']);
+  const bumpCommit = runGit(['rev-parse', 'HEAD']);
+
+  function appleGit(args) {
+    const grepIndex = args.indexOf('-G');
+    if (grepIndex >= 0 && args[grepIndex + 1].includes('\\s')) return '';
+    return runGit(args);
+  }
+
+  assert.equal(VERSION_HISTORY_GREP, "var VERSION[[:space:]]*=[[:space:]]*'[0-9]");
+  assert.notEqual(addCommit, bumpCommit);
+  assert.equal(findBaselineCommit(appleGit), bumpCommit);
 });
 
 // [VXG RealForever]

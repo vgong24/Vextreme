@@ -38,6 +38,7 @@ coverage and also checks the generated projection byte-for-byte.
 | `docs/architecture/15-analysis-mode.md` | How does Analysis Mode discover, bundle, and expose content? | Before changing analysis search, indexing, feature flags, or the analysis UI. |
 | `docs/architecture/16-nav-coverage.md` | How is navigation coverage kept complete across public pages? | Before adding a page, changing shared nav, or diagnosing a missing nav surface. |
 | `docs/architecture/17-fab-autoload.md` | How are FAB widgets discovered and loaded through the shared shell? | Before adding a FAB, changing autoload rules, or editing shell bootstrap behavior. |
+| `docs/architecture/18-institutional-pages.md` | How does a public institutional surface differ from an archive record? | Before reserving, adding, localizing, or wiring an institutional home or support page. |
 
 ---
 
@@ -51,7 +52,7 @@ the choices available to the chapters that follow.
             -> 06 i18n -> 07 registry -> 08 continuity -> 09 constraints
             -> 10 directories -> 11 debugging -> 12 design system
             -> 13 operations -> 14 council -> 15 analysis
-            -> 16 navigation -> 17 FAB autoload
+            -> 16 navigation -> 17 FAB autoload -> 18 institutional pages
 ```
 
 Question routing is preferred for bounded work; the full sequence is for work

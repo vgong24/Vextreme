@@ -11,6 +11,7 @@ const path = require('path');
 const {
   pageI18nKeys,
   languageCoverage,
+  screenshotLanguages,
   hasVisibleThemeStyles,
   metaDescriptionText,
   fabDelivery,
@@ -34,6 +35,11 @@ test('PAGE-HEALTH: identity keys and language completeness are source-derived', 
 test('PAGE-HEALTH: theme mechanism is distinct from visible theme styles', () => {
   assert.equal(hasVisibleThemeStyles('<html data-theme="dark"><style>body{color:red}</style>'), false);
   assert.equal(hasVisibleThemeStyles('<style>:root[data-theme="light"]{color:black}</style>'), true);
+});
+
+test('PAGE-HEALTH: matrix evidence contributes its locale without collapsing the filename', () => {
+  const files = ['vex-test-en-foundation-320.png', 'vex-test-en-foundation-light-320.png'];
+  assert.deepEqual(screenshotLanguages('vex-test', files), ['en']);
 });
 
 test('PAGE-HEALTH: meta description is extracted as text, not flattened to a boolean', () => {
@@ -90,6 +96,70 @@ test('PAGE-HEALTH: critical means isolated; incomplete capabilities remain visib
   assert.equal(result.pages.healthy.health.state, 'healthy', 'a missing meta description alone must not affect health state');
   assert.equal(result.pages.isolated.discovery.metaDescription, 'Present but still isolated.');
   assert.equal(result.summary.withMetaDescription, 1);
+});
+
+test('PAGE-HEALTH: registry-owned institutional pages do not inherit record FAB and placement debt', () => {
+  const slug = 'vex-test';
+  const result = buildPageHealth({
+    pageSlugs: [slug],
+    htmlBySlug: {
+      [slug]: '<html data-theme="foundation" data-vex-theme-family="foundation"><p data-i18n="institution.test">Test</p></html>',
+    },
+    distBySlug: { [slug]: '' },
+    wiredBySlug: {},
+    navRows: [{ slug, navigable: true, staticHubLinks: 1, hasShellJs: false, hasFabNav: false }],
+    nodes: [],
+    manifest: { 'institution.test': { langs: ['en'] } },
+    analysisPages: {},
+    screenshotFiles: [
+      'vex-test-en-foundation-320.png',
+      'vex-test-en-foundation-light-320.png',
+    ],
+    institutionalSurfaces: {
+      [slug]: {
+        state: 'active',
+        evidence: { themes: ['foundation', 'foundation-light'] },
+      },
+    },
+  });
+
+  const page = result.pages[slug];
+  assert.equal(page.surface.kind, 'institutional');
+  assert.equal(page.placement.state, 'institutional');
+  assert.equal(page.fab.delivery, 'not-applicable');
+  assert.equal(page.theme.visibleStyles, true);
+  assert.deepEqual(page.evidence.screenshotFiles, [
+    'docs/screenshots/vex-test-en-foundation-320.png',
+    'docs/screenshots/vex-test-en-foundation-light-320.png',
+  ]);
+  assert.deepEqual(page.health, { state: 'healthy', blockers: [], gaps: [] });
+});
+
+test('PAGE-HEALTH: institutional shell and God Script delivery fail closed', () => {
+  const slug = 'vex-test';
+  const result = buildPageHealth({
+    pageSlugs: [slug],
+    htmlBySlug: {
+      [slug]: '<html data-theme="foundation"><p data-i18n="institution.test">Test</p><script src="../lib/shell.js"></script></html>',
+    },
+    distBySlug: { [slug]: '/* feature: spiral-fab */' },
+    wiredBySlug: { [slug]: true },
+    navRows: [{ slug, navigable: true, staticHubLinks: 1, hasShellJs: true, hasFabNav: true }],
+    nodes: [],
+    manifest: { 'institution.test': { langs: ['en'] } },
+    analysisPages: {},
+    screenshotFiles: ['vex-test-en-foundation-320.png'],
+    institutionalSurfaces: {
+      [slug]: { state: 'active', evidence: { themes: ['foundation'] } },
+    },
+  });
+
+  assert.deepEqual(result.pages[slug].runtime, { shell: true, godScript: true });
+  assert.deepEqual(result.pages[slug].health, {
+    state: 'critical',
+    blockers: ['institutional-shell', 'institutional-god-script'],
+    gaps: [],
+  });
 });
 
 test('PAGE-HEALTH integration: committed projection equals fresh source computation', () => {

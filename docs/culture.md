@@ -235,27 +235,36 @@ not a one-time cleanup of this particular chain.
 
 Several files are pure build output — `data/index.json`, `sw.js`, `data/status.json`,
 `data/lessons.json`, the compiled string bundles, `pages/archives.html`, `sitemap.xml`,
-`index.html`, `docs/architecture.md` (full list in `.gitattributes`). They conflict on
-almost every PR for a reason that has nothing to do with real content: each branch's own
-CI run regenerates them with a fresh timestamp (`builtAt`) or commit-hash-derived value
-(`sw.js`'s `CACHE_NAME`), so two branches touching completely unrelated source files still
-produce byte-different "generated" output. There is no real decision buried in that diff —
-whichever copy wins gets overwritten by the next CI run regardless.
+`index.html`, `docs/architecture.md` (full list in `.gitattributes`). They historically
+conflicted on unrelated PRs because some generators stamped wall-clock time, commit SHA,
+or generated-file git history into their outputs. The exact-head review of Institutional
+Surface Integration 1/4 proved the stronger rule: being displayed or used does not by
+itself justify volatile metadata. The volatility must be necessary to the meaning.
+
+Generated artifacts now default to content determinism: the same authored inputs must
+produce byte-identical outputs. `data/index.json` carries a content fingerprint instead of
+a build clock; `sw.js` fingerprints the URLs and bytes it actually caches instead of HEAD;
+identity projections carry counts and source paths, not generation time; and the sitemap
+omits `lastmod` rather than presenting an artifact rebuild as a content edit. The Build
+workflow regenerates and stages every artifact family, then fails with the drift if the
+reviewed tree is stale. It has read-only repository permission and never commits or pushes
+into a PR branch.
 
 `.gitattributes` declares `merge=ours` for these paths, but that alone does not resolve
 anything: the "ours" driver it names must be registered per-clone in `.git/config` (which
 git does not track, so it never travels with the repo), and GitHub's own web-based PR
-conflict UI does not consult custom merge drivers at all — which is exactly the screenshot
-this pattern was named from, a manual "accept incoming" click on `data/index.json` and
-`sw.js` in the browser.
+conflict UI does not consult custom merge drivers at all. This remains relevant to old
+branches and genuine source divergence; it is no longer the normal mechanism for absorbing
+clock-shaped drift.
 
 Run `node lib/resolve-generated-conflicts.js` mid-conflict — after `git rebase origin/main`
 stops, before `git rebase --continue` — instead of resolving these by hand. It reads the
 same `.gitattributes` list, checks `git status` for conflicted files, and auto-takes the
 incoming copy for anything on that list, leaving genuinely unresolved files (real conflicts)
-for manual attention. If a future generated file starts conflicting, add it to
-`.gitattributes` first — the script and the attributes file share one source of truth for
-"this is build output, never hand-resolved."
+for manual attention. Then regenerate from the converged authored sources and run the
+read-only workflow check. If a future generated file starts conflicting, first test whether
+its generator is content-deterministic; do not normalize a new clock or commit dependency
+by adding conflict machinery around it.
 
 ---
 

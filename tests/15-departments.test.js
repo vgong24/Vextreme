@@ -118,10 +118,10 @@ test('DEPARTMENTS: data/departments.json + data/nodes.json + data/index.json agr
   // lib/build-index.js's I/O block does, or this comparison is comparing apples to
   // a bigger apple-plus-oranges bowl.
   const { discoverOrphanNodes, readPageFromDisk } = require('../lib/auto-discover-nodes');
-  const { SKIP_PAGES, getPageSlugs } = require('../lib/audit-pages');
+  const { AUTO_DISCOVERY_EXCLUSIONS, getPageSlugs } = require('../lib/audit-pages');
   const viewmodels = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'viewmodels.json'), 'utf8'));
   const viewmodelSlugs = Object.keys(viewmodels).filter(k => !k.startsWith('_'));
-  const discovered = discoverOrphanNodes(getPageSlugs(), nodes.map(n => n.slug), SKIP_PAGES, viewmodelSlugs, readPageFromDisk, departmentsDef);
+  const discovered = discoverOrphanNodes(getPageSlugs(), nodes.map(n => n.slug), AUTO_DISCOVERY_EXCLUSIONS, viewmodelSlugs, readPageFromDisk, departmentsDef);
   const allNodes = nodes.concat(discovered);
 
   const map  = buildDepartmentMap(allNodes, departmentsDef);

@@ -1,0 +1,101 @@
+{
+  "schemaVersion": "institutional-surfaces.registry/v1",
+  "surfaces": {
+    "vextreme-home": {
+      "state": "reserved",
+      "kind": "institutional",
+      "purpose": "institution-home",
+      "archive": {
+        "indexed": false,
+        "arcMembership": false
+      },
+      "runtime": {
+        "mode": "standalone",
+        "godScript": false,
+        "shell": false,
+        "localizationLoader": "widgets/vex-institutional.js",
+        "localizationControl": "data-vex-lang-select"
+      },
+      "strings": {
+        "category": "system",
+        "scope": "institution",
+        "requiredLocales": [
+          "en"
+        ],
+        "plannedLocales": [
+          "ja",
+          "zh"
+        ]
+      },
+      "theme": {
+        "family": "foundation",
+        "variants": [
+          "foundation",
+          "foundation-light"
+        ]
+      },
+      "evidence": {
+        "viewports": [
+          320,
+          768,
+          1440
+        ],
+        "themes": [
+          "foundation",
+          "foundation-light"
+        ]
+      },
+      "origin": {
+        "sourcePr": 135
+      }
+    },
+    "vex-support": {
+      "state": "reserved",
+      "kind": "institutional",
+      "purpose": "open-source-support",
+      "archive": {
+        "indexed": false,
+        "arcMembership": false
+      },
+      "runtime": {
+        "mode": "standalone",
+        "godScript": false,
+        "shell": false,
+        "localizationLoader": "widgets/vex-institutional.js",
+        "localizationControl": "data-vex-lang-select"
+      },
+      "strings": {
+        "category": "system",
+        "scope": "institution",
+        "requiredLocales": [
+          "en"
+        ],
+        "plannedLocales": [
+          "ja",
+          "zh"
+        ]
+      },
+      "theme": {
+        "family": "foundation",
+        "variants": [
+          "foundation",
+          "foundation-light"
+        ]
+      },
+      "evidence": {
+        "viewports": [
+          320,
+          768,
+          1440
+        ],
+        "themes": [
+          "foundation",
+          "foundation-light"
+        ]
+      },
+      "origin": {
+        "sourcePr": 135
+      }
+    }
+  }
+}
