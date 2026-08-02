@@ -1572,8 +1572,8 @@
       }
     },
     "config/institutional-surfaces.json": {
-      "role": "authored registry for institutional surface identity, lifecycle, runtime exclusions, string scope, theme variants, and required evidence",
-      "context": "Institutional Surface Integration. PR #135 proved that vextreme-home and vex-support are a real second page class, but encoded their identity across page-local exceptions, duplicated lists, runtime assumptions, and an oversized acceptance surface. Item 1/4 reserved both identities; item 2/4 promotes only vextreme-home after its English standalone page, foundation runtime, compiled scope bundle, and full locale/theme/viewport evidence matrix exist. vex-support remains reserved for the later support-domain row. A reservation owns the slug across page, node, arc, generated-index, and God Script projections. Planned locales remain distinct from required locales so future translation is visible without being misreported as accepted or published.",
+      "role": "authored registry for institutional surface identity, lifecycle, root-discovery label key, runtime exclusions, optional support-route contract, string scope, theme variants, and required evidence",
+      "context": "Institutional Surface Integration. PR #135 proved that vextreme-home and vex-support are a real second page class, but encoded their identity across page-local exceptions, duplicated lists, runtime assumptions, and an oversized acceptance surface. Item 1/4 reserved both identities; item 2/4 promoted the English home; item 3/4 promotes the English support domain with an explicit support-route data path while every payment URL remains null and inert. Each root-discovery label is a key into the canonical compiled institutional bundle, not user-facing copy duplicated in the registry or index generator. Planned locales remain distinct from required locales so future translation is visible without being misreported as accepted or published. A reservation still owns its slug across page, node, arc, generated-index, and God Script projections.",
       "reads": [],
       "writes": [],
       "loadedBy": [
@@ -1602,10 +1602,10 @@
       }
     },
     "lib/check-institutional-surfaces.js": {
-      "role": "fail-closed institutional-surface registry, identity-reservation, static-English, runtime-localization, and evidence validator",
-      "context": "Institutional Surface Integration 1/4. Validates one authored registry before later PRs add visible pages. Reserved entries own identity across page, node, arc, generated-index, and God Script projections. Active entries must additionally provide one standalone page with explicit surface/string-category/string-scope/theme markers, static English text/alt/ARIA values equal to the compiled English bundle, complete visible and accessibility locale bindings, behavioral execution of the declared localization loader/control, and structurally valid PNG evidence for every declared locale/theme/viewport cell. This keeps the page class mechanical without accepting #135's two pages, payment state, localization, runtime, and evidence as one merge unit.",
+      "role": "fail-closed institutional-surface registry, identity-reservation, static-English, inactive-support-route, runtime-localization, and evidence validator",
+      "context": "Institutional Surface Integration 3/4. Reserved entries own identity across page, node, arc, generated-index, and God Script projections. Active entries provide one standalone page with explicit surface/string-category/string-scope/theme markers, static English text/alt/ARIA values equal to the compiled English bundle, complete visible and accessibility locale bindings, behavioral execution of any declared multi-locale loader/control, and structurally valid PNG evidence for every declared locale/theme/viewport cell. The English support domain additionally binds its data-vex-route identities to data/support-routes.json and fails closed unless every route remains inactive, null-backed, prerequisite-bearing, action-bearing, ARIA-disabled, link-free, and candidate-free; payment activation and JA/ZH stay in later review rows.",
       "reads": [
-        "config/institutional-surfaces.json",
+        "config/institutional-surfaces.json (surface lifecycle, discovery, and registry-declared runtime.supportRoutes target)",
         "lib/vex-config.js (valid compiled-string categories)",
         "lib/screenshot-evidence.js (canonical locale/theme/viewport evidence filename)",
         "lib/institutional-localization-runtime.js (bounded behavioral execution of the declared loader and control)",
@@ -1624,7 +1624,7 @@
         "manual run: node lib/check-institutional-surfaces.js",
         "package.json (pr-ready and institutional-surfaces:check scripts)",
         "lib/audit-pages.js (registeredSurfaceSlugs feeds the shared discovery exclusion)",
-        "lib/build-index-page.js (surfacesByState selects the active institutional-home route)",
+        "lib/build-index-page.js (surfacesByState selects every active institutional destination)",
         "lib/build-sitemap.js (surfacesByState selects publicly advertised institutional pages)",
         "scripts/screenshot-institutional.js (surfacesByState selects the evidence matrix writer's active pages)",
         "tests/54-institutional-surfaces.test.js"
@@ -1633,7 +1633,7 @@
         "tests/54-institutional-surfaces.test.js"
       ],
       "changeMap": {
-        "active page marker, static-English, runtime, or archive-boundary rules change": [
+        "active page marker, static-English, inactive-support-route, runtime, or archive-boundary rules change": [
           "config/institutional-surfaces.json entry schema",
           "tests/54-institutional-surfaces.test.js active valid/invalid fixtures",
           "docs/architecture/18-institutional-pages.md active-page invariants"
@@ -1804,13 +1804,14 @@
       }
     },
     "lib/build-index-page.js": {
-      "role": "generates index.html — the root archive landing page, active institutional-home route, Terrain/arc links, and 5 most recently added nodes",
-      "context": "The first page a visitor or crawler hits. Reads nodes.json directly for recency (by id, not date) rather than going through data/index.json's arcMap, since 'most recently added' is a raw-nodes-order question, not an arc-position question. Institutional Surface Integration 2/4 adds an About Vextreme route only when the registry has one active institution-home whose page exists; reserved support remains undiscoverable. Has its own local :root light-theme token block (see docs/architecture/12-design-system.md) — a renamed restatement of styles/design-system.css's tokens, not a copy of the dashboard dark theme; noted there as a minor non-urgent migration opportunity, not tracked as debt.",
+      "role": "generates index.html — the root archive landing page, all active institutional destinations, Terrain/arc links, and 5 most recently added nodes",
+      "context": "The first page a visitor or crawler hits. Reads nodes.json directly for recency (by id, not date) rather than going through data/index.json's arcMap, since 'most recently added' is a raw-nodes-order question, not an arc-position question. Institutional Surface Integration 3/4 advertises every active institutional surface whose page exists and resolves its discovery.rootLabelKey through the compiled English institutional bundle; it owns neither another slug list nor another copy label. Has its own local :root light-theme token block (see docs/architecture/12-design-system.md) — a renamed restatement of styles/design-system.css's tokens, not a copy of the dashboard dark theme; noted there as a minor non-urgent migration opportunity, not tracked as debt.",
       "reads": [
         "data/nodes.json",
         "data/arcs-v2.json",
-        "config/institutional-surfaces.json (active institution-home discovery)",
+        "config/institutional-surfaces.json (all active institutional discovery)",
         "lib/check-institutional-surfaces.js (surfacesByState)",
+        "data/strings/compiled/scopes/{category}/{scope}.en.json (root discovery labels)",
         "pages/*.html (existence check, per slug)"
       ],
       "writes": [
@@ -1827,8 +1828,9 @@
         "'most recent 5 nodes' selection logic changed": [
           "confirm it still reads by nodes.json id order, not data/index.json's arc-derived order — they answer different questions"
         ],
-        "institutional-home lifecycle or purpose changes": [
-          "config/institutional-surfaces.json — only an active existing institution-home is advertised",
+        "institutional lifecycle or discovery label changes": [
+          "config/institutional-surfaces.json — every active existing surface is advertised",
+          "data/strings/source/institution.json — discovery labels remain canonical string projections",
           "tests/54-institutional-surfaces.test.js root discoverability assertion"
         ]
       }

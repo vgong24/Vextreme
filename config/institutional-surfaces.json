@@ -5,6 +5,9 @@
       "state": "active",
       "kind": "institutional",
       "purpose": "institution-home",
+      "discovery": {
+        "rootLabelKey": "institution.common.nav.about"
+      },
       "archive": {
         "indexed": false,
         "arcMembership": false
@@ -14,7 +17,8 @@
         "godScript": false,
         "shell": false,
         "localizationLoader": "widgets/vex-institutional.js",
-        "localizationControl": "data-vex-lang-select"
+        "localizationControl": "data-vex-lang-select",
+        "supportRoutes": null
       },
       "strings": {
         "category": "system",
@@ -50,9 +54,12 @@
       }
     },
     "vex-support": {
-      "state": "reserved",
+      "state": "active",
       "kind": "institutional",
       "purpose": "open-source-support",
+      "discovery": {
+        "rootLabelKey": "institution.home.entry.support.name"
+      },
       "archive": {
         "indexed": false,
         "arcMembership": false
@@ -62,7 +69,8 @@
         "godScript": false,
         "shell": false,
         "localizationLoader": "widgets/vex-institutional.js",
-        "localizationControl": "data-vex-lang-select"
+        "localizationControl": "data-vex-lang-select",
+        "supportRoutes": "data/support-routes.json"
       },
       "strings": {
         "category": "system",

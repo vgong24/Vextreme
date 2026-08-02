@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 40,
-    "healthy": 2,
+    "total": 41,
+    "healthy": 3,
     "attention": 32,
     "critical": 6,
     "sorted": 4,
     "withFab": 30,
-    "withIdentity": 10,
-    "withScreenshots": 9,
-    "withMetaDescription": 6
+    "withIdentity": 11,
+    "withScreenshots": 10,
+    "withMetaDescription": 7
   },
   "pages": {
     "about-me": {
@@ -2047,6 +2047,70 @@
         ]
       }
     },
+    "vex-support": {
+      "slug": "vex-support",
+      "title": "vex-support",
+      "surface": {
+        "kind": "institutional",
+        "state": "active"
+      },
+      "placement": {
+        "state": "institutional",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 2,
+        "shell": false,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "not-applicable"
+      },
+      "theme": {
+        "control": "page-owned",
+        "visibleStyles": true
+      },
+      "identity": {
+        "keyCount": 128,
+        "languages": {
+          "en": {
+            "translated": 128,
+            "total": 128,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": [
+          "en"
+        ],
+        "screenshotFiles": [
+          "docs/screenshots/vex-support-en-foundation-1440.png",
+          "docs/screenshots/vex-support-en-foundation-320.png",
+          "docs/screenshots/vex-support-en-foundation-768.png",
+          "docs/screenshots/vex-support-en-foundation-light-1440.png",
+          "docs/screenshots/vex-support-en-foundation-light-320.png",
+          "docs/screenshots/vex-support-en-foundation-light-768.png"
+        ]
+      },
+      "discovery": {
+        "metaDescription": "How support can protect the open-source work behind Vextreme and VexLife, what support does not purchase, and why every public route remains held until independently verified."
+      },
+      "health": {
+        "state": "healthy",
+        "blockers": [],
+        "gaps": []
+      }
+    },
     "vextreme-demo": {
       "slug": "vextreme-demo",
       "title": "vextreme-demo",
@@ -2137,11 +2201,11 @@
         "visibleStyles": true
       },
       "identity": {
-        "keyCount": 48,
+        "keyCount": 47,
         "languages": {
           "en": {
-            "translated": 48,
-            "total": 48,
+            "translated": 47,
+            "total": 47,
             "state": "full"
           }
         }

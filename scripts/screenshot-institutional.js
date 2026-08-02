@@ -107,18 +107,22 @@ function startServer() {
 async function settlePage(page) {
   await page.evaluate(async () => {
     if (document.fonts && document.fonts.ready) await document.fonts.ready;
+    const images = Array.from(document.images);
+    images.forEach(image => { image.loading = 'eager'; });
     for (let y = 0; y < document.documentElement.scrollHeight; y += window.innerHeight) {
       window.scrollTo(0, y);
       await new Promise(resolve => setTimeout(resolve, 30));
     }
     window.scrollTo(0, 0);
-    await Promise.all(Array.from(document.images).map(image => {
-      if (image.complete) return Promise.resolve();
-      return new Promise(resolve => {
+    await Promise.all(images.map(async image => {
+      if (!image.complete) await new Promise(resolve => {
         image.addEventListener('load', resolve, { once: true });
         image.addEventListener('error', resolve, { once: true });
       });
+      if (!image.naturalWidth) throw new Error(`image failed to load: ${image.currentSrc || image.src}`);
+      if (image.decode) await image.decode();
     }));
+    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
   });
   await page.waitForTimeout(80);
 }
@@ -286,6 +290,14 @@ async function renderCell(browser, baseUrl, surface, locale, theme, viewport, ve
     await settlePage(page);
     await verifyContract(page, surface, locale, theme, viewport);
     if (runtimeErrors.length) throw new Error(`runtime error(s): ${runtimeErrors.join(' | ')}`);
+
+    const documentHeight = await page.evaluate(() => document.documentElement.scrollHeight);
+    if (documentHeight > 25000) throw new Error(`full-page evidence height ${documentHeight}px exceeds the renderer bound`);
+    await page.setViewportSize({ width: viewport, height: documentHeight });
+    await page.evaluate(() => new Promise(resolve => {
+      window.scrollTo(0, 0);
+      requestAnimationFrame(() => requestAnimationFrame(resolve));
+    }));
 
     const filename = evidenceFilename(surface.slug, locale, theme, viewport);
     await page.screenshot({ path: path.join(OUT_DIR, filename), fullPage: true });

@@ -206,7 +206,9 @@
   --accent-text-on: var(--white);
 
   /* Status hues used as text must be re-authored for the light surface. */
+  --status-success: #17613c;
   --status-caution: #805500;
+  --status-info: #315d8a;
 
   --shadow-color: 258 20% 60%;
   --shadow-1: 0 1px 2px hsl(var(--shadow-color) / 0.16);

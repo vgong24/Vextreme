@@ -1,0 +1,62 @@
+{
+  "_comment": "Support route state is kept out of page layout. pages/vex-support.html renders every route's honest inactive state statically, which is the complete no-JavaScript default. The institutional validator requires every non-ACTIVE route to have a null url and an inert page projection. A later payment-activation row may let widgets/vex-institutional.js upgrade a route only when status is ACTIVE and url is a verified HTTPS string. candidateUrl is never renderable. See docs/architecture/18-institutional-pages.md.",
+  "schemaVersion": "vextreme.support-routes/v1",
+  "observedAt": "2026-08-01",
+  "publicationRule": "Never render an unverified route as an active payment action. A route becomes ACTIVE only after every entry in its requiredBeforePublication list is genuinely satisfied — not when the list is deleted.",
+  "routes": [
+    {
+      "routeId": "support.victor.direct",
+      "status": "PENDING_PUBLICATION",
+      "url": null,
+      "recipient": "Victor Gong personally",
+      "note": "A personal direct-transfer route is identified, but its receiving detail is deliberately absent: this repository must not guess, infer, or reconstruct it, and Victor's phone number is not published by default.",
+      "requiredBeforePublication": [
+        "Confirm the intended personal receiving account",
+        "Confirm the sender-visible recipient name",
+        "Complete a trusted small test transfer",
+        "Supply a public-safe QR asset or a dedicated enrolled email",
+        "Do not expose Victor's phone number by default"
+      ]
+    },
+    {
+      "routeId": "support.victor.github-sponsors",
+      "status": "ACTIVATION_IN_PROGRESS",
+      "url": null,
+      "candidateUrl": "https://github.com/sponsors/vgong24",
+      "recipient": "Victor Gong personally",
+      "note": "GitHub Sponsors requires a completed public presence before approval, and approval carries its own review period. Once live it takes no platform cut, which is why the tier amounts below wait for it rather than being pointed at a processor that would take a percentage. candidateUrl is recorded for verification and is intentionally NOT the url field — nothing renders from candidateUrl.",
+      "requiredBeforePublication": [
+        "Confirm GitHub Sponsors approval",
+        "Confirm the public profile resolves for a logged-out visitor",
+        "Confirm published tier amounts and welcome language",
+        "Confirm the button destination exactly"
+      ]
+    },
+    {
+      "routeId": "engage.vextreme-llc",
+      "status": "SEPARATE_ROUTE_URL_REQUIRED",
+      "url": null,
+      "recipient": "Vextreme LLC",
+      "note": "Commercial engagements are a separate door from personal sponsorship. No support meaning promises any commercial deliverable, and this route must stay visually distinct from the two personal routes.",
+      "requiredBeforePublication": [
+        "Victor selects the business inquiry destination",
+        "The page continues to distinguish engagement from sponsorship"
+      ]
+    }
+  ],
+  "tierAmounts": {
+    "status": "CONFIRMED_FOR_DISPLAY_WITHOUT_DESTINATION",
+    "confirmedBy": "Victor, 2026-07-31 — keep the figures, remove the links until GitHub Sponsors is live.",
+    "monthly": { "light": 7, "alignment": 33, "abundance": 77, "foundationBuilder": 333 },
+    "oneTime": { "openOffering": "supporter_chosen" }
+  },
+  "legacyStripeLinks": {
+    "source": "https://www.vextreme24.com/connect",
+    "status": "HISTORICAL_ONLY_DO_NOT_COPY_FORWARD",
+    "reason": "The architecture now separates Victor's personal open-source support from Vextreme LLC engagements, and every active destination must be re-verified independently. A link appearing on the legacy page is not evidence that it is still correct."
+  },
+  "capacityFigures": {
+    "status": "WITHHELD_PENDING_VERIFICATION",
+    "reason": "Founder-reported amounts have not been reconciled against current lender statements, one figure was tied to a date that had already passed when it was supplied, and one total has ambiguous component scope that risks double-counting. The stage ladder on the page therefore carries state, not numbers."
+  }
+}
