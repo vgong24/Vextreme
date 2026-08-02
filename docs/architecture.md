@@ -2535,10 +2535,12 @@ active entry, proves these projections together:
    `open-source-support` purpose, use `vextreme.support-routes/v1`, and match
    the page's `data-vex-route` identities exactly. This support-domain row
    accepts only inactive statuses, null `url` fields, retained publication
-   prerequisites, no route-local anchors, and only ARIA-disabled projected
-   actions. A recorded `candidateUrl` is evidence for later verification, not
-   a renderable destination. Payment activation must change this contract in
-   its own reviewed row; renaming a held state to `ACTIVE` cannot bypass it.
+   prerequisites, no route-local anchors, at least one projected action per
+   route, and only actions carrying `aria-disabled="true"`. A recorded
+   `candidateUrl` is evidence for later verification: its literal value must
+   not appear in rendered route text or attributes. Payment activation must
+   change this contract in its own reviewed row; renaming a held state to
+   `ACTIVE` cannot bypass it.
 7. Every required locale × declared theme × declared viewport cell exists as
    `docs/screenshots/{slug}-{locale}-{theme}-{viewport}.png` with a PNG
    signature, valid chunk boundaries, positive dimensions, IDAT/IEND chunks,

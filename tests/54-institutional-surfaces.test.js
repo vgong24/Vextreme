@@ -225,6 +225,39 @@ function writeActiveAcceptance(root, slug, surfaceEntry) {
   }
 }
 
+function supportRouteFixture(routeBlock, { candidateUrl = null } = {}) {
+  const root = makeRoot();
+  const activeEntry = entry({
+    state: 'active',
+    purpose: 'open-source-support',
+    runtime: {
+      mode: 'standalone', godScript: false, shell: false,
+      localizationLoader: 'widgets/vex-institutional.js',
+      localizationControl: 'data-vex-lang-select',
+      supportRoutes: 'data/support-routes.json',
+    },
+  });
+  fs.writeFileSync(
+    path.join(root, 'pages', 'vex-test.html'),
+    activeHtml().replace('</body>', `${routeBlock}</body>`)
+  );
+  writeActiveAcceptance(root, 'vex-test', activeEntry);
+  const routePath = path.join(root, 'data', 'support-routes.json');
+  const route = {
+    routeId: 'support.test', status: 'PENDING_PUBLICATION', url: null,
+    requiredBeforePublication: ['Verify destination'],
+  };
+  if (candidateUrl) route.candidateUrl = candidateUrl;
+  const routeConfig = { schemaVersion: 'vextreme.support-routes/v1', routes: [route] };
+  fs.writeFileSync(routePath, `${JSON.stringify(routeConfig)}\n`);
+  return {
+    root,
+    active: { schemaVersion: SCHEMA_VERSION, surfaces: { 'vex-test': activeEntry } },
+    routePath,
+    routeConfig,
+  };
+}
+
 test('INSTITUTIONAL-SURFACES: the home and English support domain are active', () => {
   assert.deepEqual(validateRegistry(registry, ROOT), []);
   assert.deepEqual(surfacesByState(registry, 'active').map(surface => surface.slug), ['vex-support', 'vextreme-home']);
@@ -241,35 +274,9 @@ test('INSTITUTIONAL-SURFACES: the home and English support domain are active', (
 });
 
 test('INSTITUTIONAL-SURFACES: inactive support routes fail closed in data and HTML', () => {
-  const root = makeRoot();
-  const activeEntry = entry({
-    state: 'active',
-    purpose: 'open-source-support',
-    runtime: {
-      mode: 'standalone', godScript: false, shell: false,
-      localizationLoader: 'widgets/vex-institutional.js',
-      localizationControl: 'data-vex-lang-select',
-      supportRoutes: 'data/support-routes.json',
-    },
-  });
-  fs.writeFileSync(
-    path.join(root, 'pages', 'vex-test.html'),
-    activeHtml().replace(
-      '</body>',
-      '<article data-vex-route="support.test"><span data-vex-route-action role="link" aria-disabled="true">Held</span></article></body>'
-    )
+  const { root, active, routePath, routeConfig } = supportRouteFixture(
+    '<article data-vex-route="support.test"><span data-vex-route-action role="link" aria-disabled="true">Held</span></article>'
   );
-  writeActiveAcceptance(root, 'vex-test', activeEntry);
-  const routePath = path.join(root, 'data', 'support-routes.json');
-  const routeConfig = {
-    schemaVersion: 'vextreme.support-routes/v1',
-    routes: [{
-      routeId: 'support.test', status: 'PENDING_PUBLICATION', url: null,
-      requiredBeforePublication: ['Verify destination'],
-    }],
-  };
-  fs.writeFileSync(routePath, `${JSON.stringify(routeConfig)}\n`);
-  const active = { schemaVersion: SCHEMA_VERSION, surfaces: { 'vex-test': activeEntry } };
   assert.deepEqual(validateRegistry(active, root), []);
 
   routeConfig.routes[0].status = 'ACTIVE';
@@ -285,9 +292,28 @@ test('INSTITUTIONAL-SURFACES: inactive support routes fail closed in data and HT
   fs.writeFileSync(routePath, `${JSON.stringify(routeConfig)}\n`);
   fs.writeFileSync(
     path.join(root, 'pages', 'vex-test.html'),
-    activeHtml().replace('</body>', '<article data-vex-route="support.test"><a href="https://example.com/pay">Pay</a></article></body>')
+    activeHtml().replace(
+      '</body>',
+      '<article data-vex-route="support.test"><a href="https://example.com/pay">Pay</a><span data-vex-route-action aria-disabled="true">Held</span></article></body>'
+    )
   );
   assert.ok(validateRegistry(active, root).some(issue => issue.check === 'support-route-link-held'));
+});
+
+test('INSTITUTIONAL-SURFACES: every support route requires an inert action projection', () => {
+  const { root, active } = supportRouteFixture(
+    '<article data-vex-route="support.test"><p>Held</p></article>'
+  );
+  assert.ok(validateRegistry(active, root).some(issue => issue.check === 'support-route-action-missing'));
+});
+
+test('INSTITUTIONAL-SURFACES: candidateUrl cannot appear in rendered route text', () => {
+  const candidateUrl = 'https://example.com/candidate';
+  const { root, active } = supportRouteFixture(
+    `<article data-vex-route="support.test"><p>${candidateUrl}</p><span data-vex-route-action aria-disabled="true">Held</span></article>`,
+    { candidateUrl }
+  );
+  assert.ok(validateRegistry(active, root).some(issue => issue.check === 'support-route-candidate-held'));
 });
 
 test('INSTITUTIONAL-SURFACES: unsafe identity and permissive runtime fail closed', () => {
