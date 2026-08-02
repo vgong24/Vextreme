@@ -86,8 +86,10 @@ active entry, proves these projections together:
    Static wiring is not acceptance evidence by itself. The validator executes
    the declared widget in a bounded child-process DOM, operates the real
    control through every required non-English locale and back to English, and
-   observes the expected visible text, image alt text, ARIA labels, `<html
-   lang>`, and absence of runtime errors.
+   observes one successfully completed bundle parse for every required locale,
+   the expected visible text, image alt text, ARIA labels, `<html lang>`, and
+   absence of runtime errors. A loader that hard-codes accepted values or only
+   starts a request without consuming its response fails activation.
 6. Every required locale × declared theme × declared viewport cell exists as
    `docs/screenshots/{slug}-{locale}-{theme}-{viewport}.png` with a PNG
    signature, valid chunk boundaries, positive dimensions, IDAT/IEND chunks,

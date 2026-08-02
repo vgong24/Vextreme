@@ -32,7 +32,7 @@
     },
     "lib/bump-fab-version.js": {
       "role": "git-diffing orchestration for lib/compute-fab-version.js — finds the last VERSION-bump commit, diffs data files against it, applies the computed bump to widgets/fab-lang.js",
-      "context": "Companion to lib/compute-fab-version.js (see that node for the tier mapping and why it's split out as pure logic). findBaselineCommit() uses `git log -G` (not -S) to find the last commit that changed a VERSION-shaped line — -S only detects a change in how many times a search string occurs, and \"var VERSION\" occurs exactly once both before and after a bump, so only -G (matches a line matching the given regex appearing in the diff) correctly catches a same-line value edit. Falls back to the file's own add-commit if no bump has ever happened (Session 025's real starting condition — VERSION had never been bumped, so the very first real run classifies the entire accumulated history since file creation, correctly producing a MAJOR catch-up bump). Requires full git history (`fetch-depth: 0`) to work in CI — a shallow clone would make git log/show against older commits fail, most likely silently (empty diffs read as \"no bump needed\" rather than an error) rather than loudly, which is why the checkout step's fetch-depth was changed alongside this file rather than assumed to already be sufficient.",
+      "context": "Companion to lib/compute-fab-version.js (see that node for the tier mapping and why it's split out as pure logic). findBaselineCommit() uses `git log -G` (not -S) to find the last commit that changed a VERSION-shaped line — -S only detects a change in how many times a search string occurs, and \"var VERSION\" occurs exactly once both before and after a bump, so only -G correctly catches a same-line value edit. Its whitespace expression uses POSIX `[[:space:]]`, not `\\s`: GNU Git accepts both in this environment, while Apple Git 2.39.5 does not interpret `\\s` as whitespace and otherwise falls back to the file's original add commit. Falls back to that add commit only when no bump has ever happened. Requires full git history (`fetch-depth: 0`) to work in CI — a shallow clone would make git log/show against older commits fail silently. tests/30 constructs committed VERSION history and simulates Apple Git's rejection of `\\s` so cross-platform baseline discovery is part of readiness.",
       "reads": [
         "git log/show/diff history (via child_process, not require())",
         "data/nodes.json (current + at baseline commit)",
@@ -46,9 +46,12 @@
         "widgets/fab-lang.js (rewrites the VERSION line in place, if a bump tier applies)"
       ],
       "loadedBy": [
-        ".github/workflows/build-index.yml ('Auto-increment fab-lang.js CDN version' step, before God Script and service-worker generation)"
+        ".github/workflows/build-index.yml ('Auto-increment fab-lang.js CDN version' step, before God Script and service-worker generation)",
+        "tests/30-compute-fab-version.test.js"
       ],
-      "testedBy": [],
+      "testedBy": [
+        "tests/30-compute-fab-version.test.js"
+      ],
       "changeMap": {
         "widgets/fab-lang.js's VERSION line format changes (e.g. quote style, variable name)": [
           "VERSION_RE here — the regex that both finds and rewrites the line"
@@ -1597,7 +1600,7 @@
     },
     "lib/institutional-localization-runtime.js": {
       "role": "bounded behavioral probe for institutional localization loaders — operates the declared control and observes visible, alt, and ARIA translations",
-      "context": "Institutional Surface Integration 1/4 exact-head review closure. Static script tags, globals, bundle files, and select options can all exist while the declared widget throws or does nothing. This probe runs the actual loader source in an isolated child-process VM with a minimal browser contract, operates every required non-English option and then returns to English, waits for the real Promise/fetch path, and compares visible text, alt text, ARIA labels, and `<html lang>` against the compiled bundles. The child-process timeout bounds hostile or accidental nontermination; no repository code receives Node require/process access inside the VM.",
+      "context": "Institutional Surface Integration 1/4 exact-head review closure. Static script tags, globals, bundle files, and select options can all exist while the declared widget throws, does nothing, or hard-codes accepted values without consuming the repository bundles. This probe runs the actual loader source in an isolated child-process VM with a minimal browser contract, operates every required non-English option and then returns to English, records bundle requests and completed JSON bodies, requires one successful completion per required locale, and compares visible text, alt text, ARIA labels, and `<html lang>` against the compiled bundles. The child-process timeout bounds hostile or accidental nontermination; no repository code receives Node require/process access inside the VM.",
       "reads": [
         "declared institutional localization widget source (provided by lib/check-institutional-surfaces.js)",
         "required compiled locale bundles (provided by lib/check-institutional-surfaces.js)",

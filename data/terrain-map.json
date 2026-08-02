@@ -1105,9 +1105,12 @@
         "widgets/fab-lang.js (rewrites the VERSION line in place, if a bump tier applies)"
       ],
       "loadedBy": [
-        ".github/workflows/build-index.yml ('Auto-increment fab-lang.js CDN version' step, before God Script and service-worker generation)"
+        ".github/workflows/build-index.yml ('Auto-increment fab-lang.js CDN version' step, before God Script and service-worker generation)",
+        "tests/30-compute-fab-version.test.js"
       ],
-      "testedBy": [],
+      "testedBy": [
+        "tests/30-compute-fab-version.test.js"
+      ],
       "debts": [],
       "status": "good",
       "engineerFocus": false,

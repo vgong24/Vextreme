@@ -115,6 +115,31 @@ function workingLocalizationLoader() {
   ].join('\n');
 }
 
+function hardCodedLocalizationLoader({ requestOnly = false } = {}) {
+  const copy = {
+    en: { text: 'Test en', alt: 'Test image en', aria: 'Test action en' },
+    ja: { text: 'Test ja', alt: 'Test image ja', aria: 'Test action ja' },
+  };
+  return [
+    '(function () {',
+    `  var copy = ${JSON.stringify(copy)};`,
+    "  var select = document.querySelector('[data-vex-lang-select]');",
+    '  select.hidden = false;',
+    "  select.addEventListener('change', function () {",
+    '    var locale = select.value;',
+    requestOnly
+      ? "    fetch('../data/strings/compiled/scopes/system/institution.' + locale + '.json');"
+      : '    // Deliberately performs no bundle request.',
+    "    document.documentElement.setAttribute('lang', locale);",
+    "    document.querySelectorAll('[data-i18n]')[0].textContent = copy[locale].text;",
+    "    document.querySelectorAll('[data-i18n-alt]')[0].setAttribute('alt', copy[locale].alt);",
+    "    document.querySelectorAll('[data-i18n-aria]')[0].setAttribute('aria-label', copy[locale].aria);",
+    '  });',
+    '}());',
+    '',
+  ].join('\n');
+}
+
 function writeActiveAcceptance(root, slug, surfaceEntry) {
   for (const locale of surfaceEntry.strings.requiredLocales) {
     const bundlePath = path.join(
@@ -307,6 +332,20 @@ test('INSTITUTIONAL-SURFACES: multi-locale activation executes the declared runt
 
   fs.writeFileSync(path.join(root, 'widgets', 'vex-institutional.js'), '// inert fixture\n');
   assert.ok(validateRegistry(active, root).some(issue => issue.check === 'locale-runtime-behavior'));
+
+  fs.writeFileSync(path.join(root, 'widgets', 'vex-institutional.js'), hardCodedLocalizationLoader());
+  const zeroFetchMessages = validateRegistry(active, root)
+    .filter(issue => issue.check === 'locale-runtime-behavior')
+    .map(issue => issue.message);
+  assert.ok(zeroFetchMessages.includes('ja required bundle fetch did not complete'));
+  assert.ok(zeroFetchMessages.includes('en required bundle fetch did not complete'));
+
+  fs.writeFileSync(path.join(root, 'widgets', 'vex-institutional.js'), hardCodedLocalizationLoader({ requestOnly: true }));
+  const incompleteFetchMessages = validateRegistry(active, root)
+    .filter(issue => issue.check === 'locale-runtime-behavior')
+    .map(issue => issue.message);
+  assert.ok(incompleteFetchMessages.includes('ja required bundle fetch did not complete'));
+  assert.ok(incompleteFetchMessages.includes('en required bundle fetch did not complete'));
 
   fs.writeFileSync(path.join(root, 'pages', 'vex-test.html'), activeLocalizedHtml({ category: 'production', locales: ['en'] }));
   const wrongChecks = new Set(validateRegistry(active, root).map(issue => issue.check));
