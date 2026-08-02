@@ -341,6 +341,16 @@ test('INSTITUTIONAL-SURFACES: standard named entity cannot hide the GitHub Spons
   assert.ok(validateRegistry(active, root).some(issue => issue.check === 'support-route-candidate-held'));
 });
 
+test('INSTITUTIONAL-SURFACES: comment-shaped attribute data cannot hide the GitHub Sponsors candidateUrl', () => {
+  const candidateUrl = 'https://github.com/sponsors/vgong24';
+  const hostileProjection = '<span data-candidate="<!--https&colon;//github.com/sponsors/vgong24-->"></span>';
+  const { root, active } = supportRouteFixture(
+    `<article data-vex-route="support.test">${hostileProjection}<span data-vex-route-action aria-disabled="true">Held</span></article>`,
+    { candidateUrl }
+  );
+  assert.ok(validateRegistry(active, root).some(issue => issue.check === 'support-route-candidate-held'));
+});
+
 test('INSTITUTIONAL-SURFACES: unsafe identity and permissive runtime fail closed', () => {
   const broken = {
     schemaVersion: SCHEMA_VERSION,
