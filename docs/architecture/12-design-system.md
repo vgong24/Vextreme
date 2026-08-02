@@ -25,6 +25,12 @@ match the shared declaration block because the attribute values are mutually
 exclusive on one `<html>` element; light then overrides only its ramp and the
 few semantics that genuinely change.
 
+Status tokens are foreground semantics, not palette swatches. When a status
+token renders normal-size text, each theme-specific value must preserve at
+least 4.5:1 contrast against the surface beneath it. The focused institutional
+test resolves the real theme variables and enforces that boundary for pending
+badges in both foundation variants.
+
 `styles/vex-institutional.css` consumes this family. It must not restate token
 values locally. The page-kind lifecycle, archive exclusion, string scope, and
 render-evidence boundary remain owned by

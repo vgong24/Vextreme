@@ -205,6 +205,9 @@
   --accent-bg:      var(--black);
   --accent-text-on: var(--white);
 
+  /* Status hues used as text must be re-authored for the light surface. */
+  --status-caution: #805500;
+
   --shadow-color: 258 20% 60%;
   --shadow-1: 0 1px 2px hsl(var(--shadow-color) / 0.16);
   --shadow-2: 0 8px 24px hsl(var(--shadow-color) / 0.18);

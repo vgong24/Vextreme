@@ -1153,6 +1153,12 @@ match the shared declaration block because the attribute values are mutually
 exclusive on one `<html>` element; light then overrides only its ramp and the
 few semantics that genuinely change.
 
+Status tokens are foreground semantics, not palette swatches. When a status
+token renders normal-size text, each theme-specific value must preserve at
+least 4.5:1 contrast against the surface beneath it. The focused institutional
+test resolves the real theme variables and enforces that boundary for pending
+badges in both foundation variants.
+
 `styles/vex-institutional.css` consumes this family. It must not restate token
 values locally. The page-kind lifecycle, archive exclusion, string scope, and
 render-evidence boundary remain owned by
@@ -2503,7 +2509,9 @@ active entry, proves these projections together:
 4. It contains at least one `data-i18n`, `data-i18n-alt`, or `data-i18n-aria`
    binding. Every visible and accessibility-bound key has non-empty text in
    `data/strings/compiled/scopes/{category}/{scope}.{locale}.json` for every
-   required locale.
+   required locale. The compiled English bundle is the copy authority: every
+   static English text, alt, and ARIA projection in the no-JavaScript page must
+   equal it, so duplicated markup cannot drift while generation stays green.
 5. When a required locale is not English, the page loads the registry's
    declared standalone localization widget, projects matching
    `VEX_STRING_SCOPES` and `VEX_STRING_CATEGORY` globals, and exposes a native
@@ -2529,9 +2537,10 @@ active entry, proves these projections together:
 The identity checks in items 8–9 also apply while a slug is reserved. A
 reservation is an identity claim, not only a promise about a future filename.
 
-The static markers are read-side projections, not competing sources. Their job
-is to make the page's contract perceivable from the file itself; the validator
-keeps them equal to the registry.
+The static markers and English values are read-side projections, not competing
+sources. Their job is to make the page complete without JavaScript and keep its
+contract perceivable from the file itself; the validator keeps the markers
+equal to the registry and the values equal to the compiled English bundle.
 
 `lib/audit-pages.js` derives the auto-discovery exclusions and record-page
 inventory from this registry. `lib/build-index.js`, `lib/build-archives.js`,

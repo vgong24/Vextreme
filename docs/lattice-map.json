@@ -1602,8 +1602,8 @@
       }
     },
     "lib/check-institutional-surfaces.js": {
-      "role": "fail-closed institutional-surface registry, identity-reservation, localization, and evidence validator",
-      "context": "Institutional Surface Integration 1/4. Validates one authored registry before later PRs add visible pages. Reserved entries own identity across page, node, arc, generated-index, and God Script projections. Active entries must additionally provide one standalone page with explicit surface/string-category/string-scope/theme markers, complete visible and accessibility locale bindings, behavioral execution of the declared localization loader/control, and structurally valid PNG evidence for every declared locale/theme/viewport cell. This keeps the page class mechanical without accepting #135's two pages, payment state, localization, runtime, and evidence as one merge unit.",
+      "role": "fail-closed institutional-surface registry, identity-reservation, static-English, runtime-localization, and evidence validator",
+      "context": "Institutional Surface Integration 1/4. Validates one authored registry before later PRs add visible pages. Reserved entries own identity across page, node, arc, generated-index, and God Script projections. Active entries must additionally provide one standalone page with explicit surface/string-category/string-scope/theme markers, static English text/alt/ARIA values equal to the compiled English bundle, complete visible and accessibility locale bindings, behavioral execution of the declared localization loader/control, and structurally valid PNG evidence for every declared locale/theme/viewport cell. This keeps the page class mechanical without accepting #135's two pages, payment state, localization, runtime, and evidence as one merge unit.",
       "reads": [
         "config/institutional-surfaces.json",
         "lib/vex-config.js (valid compiled-string categories)",
@@ -1633,7 +1633,7 @@
         "tests/54-institutional-surfaces.test.js"
       ],
       "changeMap": {
-        "active page marker, runtime, or archive-boundary rules change": [
+        "active page marker, static-English, runtime, or archive-boundary rules change": [
           "config/institutional-surfaces.json entry schema",
           "tests/54-institutional-surfaces.test.js active valid/invalid fixtures",
           "docs/architecture/18-institutional-pages.md active-page invariants"

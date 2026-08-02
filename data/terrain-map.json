@@ -1224,7 +1224,7 @@
       "stageName": "CHECK",
       "x": 1080,
       "y": 330,
-      "role": "fail-closed institutional-surface registry, identity-reservation, localization, and evidence validator",
+      "role": "fail-closed institutional-surface registry, identity-reservation, static-English, runtime-localization, and evidence validator",
       "reads": [
         "config/institutional-surfaces.json",
         "lib/vex-config.js (valid compiled-string categories)",
