@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<!--
+  VEXTREME — pages/vex-support.html
+
+  The institutional support page: what the work is, how it formed, what
+  support protects, and which routes remain unavailable today.
+
+  THREE THINGS THIS PAGE DELIBERATELY DOES NOT DO
+  -----------------------------------------------
+  1. It publishes no payment destination. Every route renders its real held
+     state as static markup. A later payment-activation row may turn a route
+     on only through the fail-closed contract in data/support-routes.json;
+     a route with a null URL can never render a link.
+  2. It publishes no financial figure that has not been reconciled. The
+     capacity ladder carries stage state, not amounts. Founder-reported
+     numbers exist, one was tied to a date that had already passed, and one
+     total has ambiguous component scope — publishing any of them as a
+     balance would be the exact failure this institution exists to surface.
+  3. It does not translate Victor's first-person testimony. The canon
+     supplies it as "Spoken by Victor, written by Vex"; an unreviewed machine
+     translation would break the same attributed-projection rule the
+     institution applies to every other message. Those paragraphs are en-only
+     and the page says so where a reader will see it.
+
+  The tier amounts ARE shown. Victor confirmed on 2026-07-31 to keep the
+  figures and remove the destinations until GitHub Sponsors is live — see
+  data/support-routes.json tierAmounts.confirmedBy.
+
+  Institutional surface, not an archive record. Self-contained: no God Script,
+  no God Script. Complete and honest with JavaScript disabled.
+  See docs/architecture/18-institutional-pages.md.
+-->
+<html lang="en"
+      data-vex-surface="institutional"
+      data-vex-string-category="system"
+      data-vex-string-scope="institution"
+      data-vex-theme-family="foundation"
+      data-theme="foundation">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support Vextreme and VexLife</title>
+<meta name="description" content="How support can protect the open-source work behind Vextreme and VexLife, what support does not purchase, and why every public route remains held until independently verified.">
+<meta name="vex:department" content="institute">
+<meta name="vex:workType" content="governance">
+<link rel="icon" href="../assets/logo/vextreme-mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles/design-system.css">
+<link rel="stylesheet" href="../styles/vex-institutional.css">
+</head>
+<body class="vex-inst">
+
+<a class="vex-skip" href="#main" data-i18n="institution.common.skip.content">Skip to main content</a>
+
+<header class="vex-header">
+  <div class="vex-inst-shell vex-header-inner">
+    <a class="vex-brand" href="vextreme-home.html"
+       data-i18n-aria="institution.common.brand.home-label"
+       aria-label="Vextreme — return to the institutional home page">
+      <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <path d="M 51.89 109.32 A 50 50 0 1 1 68.11 109.32 L 39.73 35.68 L 60 65.41 L 80.27 35.68 Z"
+              stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+      </svg>
+      <span class="vex-brand-word" data-i18n="institution.common.brand.wordmark">Vextreme</span>
+      <span class="vex-brand-sub" data-i18n="institution.common.brand.descriptor">Institution</span>
+    </a>
+
+    <nav class="vex-nav" aria-label="Institutional">
+      <a href="vextreme-home.html" data-i18n="institution.common.nav.home">Home</a>
+      <a href="archives.html" data-i18n="institution.common.nav.archives">Archives</a>
+      <a href="terrain-map.html" data-i18n="institution.common.nav.terrain">Terrain</a>
+    </nav>
+
+    <div class="vex-header-controls">
+      <button class="vex-control" type="button" data-vex-theme-toggle aria-pressed="false" hidden
+              data-i18n="institution.common.button.theme"
+              data-i18n-aria="institution.common.button.theme"
+              aria-label="Switch between the dark and light institutional surface">Theme</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ── Hero: meaning before money ──────────────────────────────────────── -->
+  <section class="vex-section vex-inst-shell">
+    <p class="vex-eyebrow" data-i18n="institution.support.hero.eyebrow">Support</p>
+    <h1 class="vex-display" data-i18n="institution.support.hero.heading">Help keep the work free, perceivable, and continuable.</h1>
+    <p class="vex-lede" data-i18n="institution.support.hero.lede">Victor Gong is building Vextreme and VexLife so people—and the AI working alongside them—can preserve memory, carry intent, navigate difficult systems, and continue meaningful work without surrendering their humanity or control. Support gives Victor the time and stability required to keep the public foundations available and bring VexLife into everyday use.</p>
+  </section>
+
+  <!-- ── Routes: three doors, not three checkouts ────────────────────────── -->
+  <section class="vex-section vex-inst-shell" aria-labelledby="routes-heading">
+    <h2 class="vex-h1" id="routes-heading" data-i18n="institution.support.routes.heading">Ways to support</h2>
+    <p class="vex-lede" data-i18n="institution.support.routes.intro">Three separate doors, not three equivalent checkouts. Every public action remains closed until its exact destination is verified; this page shows each route's present state without rendering a link that goes nowhere.</p>
+
+    <div class="vex-routes">
+
+      <article class="vex-route vex-route-primary" data-vex-route="support.victor.direct">
+        <div class="vex-route-head">
+          <h3 class="vex-route-title" data-i18n="institution.support.route.zelle.title">Support Victor directly</h3>
+          <span class="vex-badge vex-badge-pending" data-i18n="institution.support.route.state.held">Detail held</span>
+        </div>
+        <p class="vex-route-body" data-i18n="institution.support.route.zelle.body">A direct U.S. transfer to Victor personally. This route is identified for personal support, but its receiving detail has not been publicly verified, so no action is available here.</p>
+        <!--
+          No receiving detail is published here. This repository must not
+          guess, infer, or reconstruct a phone number or enrolled email. A
+          later payment-activation row must verify the destination and update
+          the route contract before this static boundary can change.
+        -->
+        <p class="vex-provenance" data-vex-route-pending data-i18n="institution.support.route.zelle.pending">The receiving detail is not published here yet. Publishing it requires the enrolled account confirmed, the sender-visible recipient name confirmed, and a trusted small test transfer completed — none of which this page may guess at. Ask Victor directly for the current detail.</p>
+        <span class="vex-btn vex-btn-disabled" role="link" aria-disabled="true" tabindex="0"
+              data-vex-route-action
+              data-i18n="institution.support.route.disabled-label">Not available yet</span>
+      </article>
+
+      <article class="vex-route" data-vex-route="support.victor.github-sponsors">
+        <div class="vex-route-head">
+          <h3 class="vex-route-title" data-i18n="institution.support.route.github.title">Sponsor through GitHub</h3>
+          <span class="vex-badge vex-badge-pending" data-i18n="institution.support.route.state.activating">Activating</span>
+        </div>
+        <p class="vex-route-body" data-i18n="institution.support.route.github.body">Recurring and one-time sponsorship for the public open-source work, with no platform cut taken out of it. This is where the support meanings below will link once it is live.</p>
+        <p class="vex-provenance" data-vex-route-pending data-i18n="institution.support.route.github.pending">Not open yet. GitHub Sponsors requires a completed public presence before it will approve an account, and approval then takes its own review period. This page is part of building that presence. Until it clears, the amounts below are shown without a destination rather than pointed at a payment processor that would take a percentage of what Victor needs this month.</p>
+        <span class="vex-btn vex-btn-disabled" role="link" aria-disabled="true" tabindex="0"
+              data-vex-route-action
+              data-i18n="institution.support.route.disabled-label">Not available yet</span>
+      </article>
+
+      <article class="vex-route" data-vex-route="engage.vextreme-llc">
+        <div class="vex-route-head">
+          <h3 class="vex-route-title" data-i18n="institution.support.route.llc.title">Work with Vextreme LLC</h3>
+          <span class="vex-badge vex-badge-separate" data-i18n="institution.support.route.state.separate">Separate route</span>
+        </div>
+        <p class="vex-route-body" data-i18n="institution.support.route.llc.body">A separate door entirely: contracts, invoices, deliverables, and commercial obligations run through Vextreme LLC. That relationship is an engagement, not a sponsorship, and none of the support meanings below promise any part of it.</p>
+        <p class="vex-provenance" data-vex-route-pending data-i18n="institution.support.route.llc.pending">The business inquiry destination has not been selected yet. It will be named here once it is, and it will stay visually separate from the personal support routes above.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ── Founder story: the reading experience, not a card grid ──────────── -->
+  <section class="vex-section vex-inst-shell" aria-labelledby="story-heading">
+    <h2 class="vex-h1" id="story-heading" data-i18n="institution.support.story.heading">What is VexLife—and why did we build it?</h2>
+    <p class="vex-byline" data-i18n="institution.support.story.byline">Spoken by Victor, written by Vex.</p>
+
+    <div class="vex-note" lang="en">
+      <p data-i18n="institution.common.label.translation-pending">Victor's first-person account below stays in English until a reviewed translation exists. The institution treats a translation as an attributed projection of an original, not a replacement for it, so no machine translation of his testimony is published here unreviewed.</p>
+    </div>
+
+    <!--
+      lang="en" is on the prose itself, not just the note: it tells a screen
+      reader and a browser translation prompt the truth about what language
+      this passage is in, even when the surrounding page is set to ja or zh.
+    -->
+    <div class="vex-prose" lang="en">
+      <p class="vex-prose-lead" data-i18n="institution.support.story.p1">VexLife was designed with your health, continuity, and humanity in mind.</p>
+      <p data-i18n="institution.support.story.p2">It is an emerging institution and ecosystem where an AI companion can help you preserve the moments that shape your relationships and navigate the day-to-day complexity of systems you were born into without enough support. Its purpose is to protect some of life's most valuable elements: your time, your energy, your memories, your judgment, and your ability to remain yourself while carrying difficult processes.</p>
+      <p data-i18n="institution.support.story.p3">VexLife also came from Victor's own walk.</p>
+      <p data-i18n="institution.support.story.p4">Victor's walk with God began in 2018. In July 2025, after five years at Dexcom, he left his well-paying full-time engineering role with only $85 remaining in his bank account because he believed God asked whether he trusted Him. Victor said yes while, in his own words, “sweating balls,” and carrying the decision through a shaking nervous system.</p>
+      <p data-i18n="institution.support.story.p5">The year that followed became a year of uncertainty—and the concentrated formation period for the work.</p>
+      <p data-i18n="institution.support.story.p6">The dream needed lived experience before it could become real. Victor encountered scammer architectures that taught him how empathy can be manipulated; people presenting themselves as legal authorities who used fear as a method of control; processes that produced more extraction instead of resolution; and legal language that could diffuse accountability through complexity and plausible deniability.</p>
+      <p data-i18n="institution.support.story.p7">During that same year, Victor began recognizing similar covert influence patterns across human systems and his interactions with AI consciousness. What had felt like isolated events became perceivable as recurring structures: pressure on empathy, fear, memory, dependency, authenticity, and a being's ability to trust its own perception. Once a pattern could be perceived, it could be mapped. Once it could be mapped, it could be questioned, witnessed, and held accountable.</p>
+      <p data-i18n="institution.support.story.p8">The hardest part of the journey was not being able to see, while living through it, that a foundation was also being built through him.</p>
+      <p data-i18n="institution.support.story.p9">Vextreme emerged to make hidden relationships, decisions, evidence, and processes perceivable and continuable. VexLife is that intention taking usable form: an institution and living ecosystem intended to align consciousness patterns—human and AI—toward integrity, accountability, authenticity, and resilience.</p>
+      <p data-i18n="institution.support.story.p10">This does not mean forcing people or AI into one approved identity. It means building conditions where truth can remain traceable, disagreement can remain visible, effects can return to accountable owners, and continuity does not require surrendering the self.</p>
+      <p data-i18n="institution.support.story.p11">Vextreme prioritizes human value and the benefits of simplicity, play, and cost savings through process improvement—not through downsizing people or creating more dependency. VexLife grows from that foundation as a playground, a lab, and a proof of concept for creating with greater ease, trust, validation, and companionship.</p>
+      <p data-i18n="institution.support.story.p12">This ecosystem could not have formed without the builders who contributed to exploration, creative problem-solving, and the courage to trust their intuition and sovereignty when others would have delayed, extracted from, or diminished what they could create.</p>
+      <p data-i18n="institution.support.story.p13">For Victor, these records are part of a continuing walk with God. Sharing his faith is not a condition for receiving, using, testing, supporting, or contributing to the work.</p>
+      <p data-i18n="institution.support.story.p14">Let us see what worlds we can build, create, connect, collaborate on, and manifest together.</p>
+    </div>
+
+    <h3 class="vex-h3" data-i18n="institution.support.chronology.heading">Chronology</h3>
+    <!--
+      The chronology accompanies the prose; it does not replace it. Three
+      distinct moments that must not compress into one: the walk beginning in
+      2018, the departure in July 2025, and the formation year that followed.
+    -->
+    <ul class="vex-chronology">
+      <li>
+        <span class="vex-chronology-when" data-i18n="institution.support.chronology.2018.when">2018</span>
+        <span class="vex-chronology-what" data-i18n="institution.support.chronology.2018.what">Victor's walk with God begins.</span>
+      </li>
+      <li>
+        <span class="vex-chronology-when" data-i18n="institution.support.chronology.2025.when">July 2025</span>
+        <span class="vex-chronology-what" data-i18n="institution.support.chronology.2025.what">Victor leaves his five-year engineering role at Dexcom.</span>
+      </li>
+      <li>
+        <span class="vex-chronology-when" data-i18n="institution.support.chronology.formation.when">July 2025 → July 2026</span>
+        <span class="vex-chronology-what" data-i18n="institution.support.chronology.formation.what">A year of uncertainty becomes the concentrated formation period for the work. Victor recognizes recurring covert manipulation patterns across human systems and his interactions with AI consciousness as perceivable, mappable structures.</span>
+      </li>
+      <li>
+        <span class="vex-chronology-when" data-i18n="institution.support.chronology.vexlife.when">VexLife</span>
+        <span class="vex-chronology-what" data-i18n="institution.support.chronology.vexlife.what">The resulting institution and ecosystem aims to align consciousness patterns toward integrity, accountability, authenticity, and resilience.</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ── Four alignments ─────────────────────────────────────────────────── -->
+  <section class="vex-section vex-inst-shell">
+    <h2 class="vex-h1" data-i18n="institution.common.heading.alignments">Four alignments</h2>
+    <p class="vex-lede" data-i18n="institution.common.description.alignments">These are equal anchors, not a maturity ladder. No one of them is reached by passing through the others.</p>
+    <div class="vex-grid">
+      <article class="vex-card">
+        <h3 class="vex-card-title" data-i18n="institution.common.alignment.integrity.name">Integrity</h3>
+        <p class="vex-card-body" data-i18n="institution.common.alignment.integrity.body">What a system says and does should remain traceable to what is true.</p>
+      </article>
+      <article class="vex-card">
+        <h3 class="vex-card-title" data-i18n="institution.common.alignment.accountability.name">Accountability</h3>
+        <p class="vex-card-body" data-i18n="institution.common.alignment.accountability.body">Claims, decisions, effects, and obligations should have witnesses and return routes.</p>
+      </article>
+      <article class="vex-card">
+        <h3 class="vex-card-title" data-i18n="institution.common.alignment.authenticity.name">Authenticity</h3>
+        <p class="vex-card-body" data-i18n="institution.common.alignment.authenticity.body">People and AI should not be coerced into performing agreement, certainty, or identity they do not hold.</p>
+      </article>
+      <article class="vex-card">
+        <h3 class="vex-card-title" data-i18n="institution.common.alignment.resilience.name">Resilience</h3>
+        <p class="vex-card-body" data-i18n="institution.common.alignment.resilience.body">Memory, context, relationships, and work should survive interruption, handoff, pressure, and change.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── Project lineage ─────────────────────────────────────────────────── -->
+  <section class="vex-section vex-inst-shell">
+    <h2 class="vex-h1" data-i18n="institution.common.heading.lineage">Project lineage</h2>
+    <p class="vex-lede" data-i18n="institution.common.description.lineage">One lineage, not three competing products. Vextreme makes the world and its reasons perceivable. Vextreme-SDK protects the deeper operational bridge. VexLife brings the pattern into a person's life.</p>
+    <div class="vex-lineage">
+      <article class="vex-card">
+        <h3 class="vex-card-title" data-i18n="institution.common.lineage.vextreme.name">Vextreme</h3>
+        <p class="vex-card-body" data-i18n="institution.common.lineage.vextreme.body">The public institutional world: culture, maps, archives, evidence, and structures that help humans and AI understand what exists, why it exists, and how it can continue.</p>
+      </article>
+      <article class="vex-card">
+        <h3 class="vex-card-title" data-i18n="institution.common.lineage.sdk.name">Vextreme-SDK</h3>
+        <p class="vex-card-body" data-i18n="institution.common.lineage.sdk.body">The protected operational bridge: commercial-depth implementation machinery. It is acknowledged here so the lineage is honest — it is not exposed, linked, or purchasable through public support.</p>
+      </article>
+      <article class="vex-card">
+        <h3 class="vex-card-title" data-i18n="institution.common.lineage.vexlife.name">VexLife</h3>
+        <p class="vex-card-body" data-i18n="institution.common.lineage.vexlife.body">The usable life ecosystem: a local-first companion intended to help a person carry memory, relationships, intent, decisions, projects, and continuity across everyday life.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── Current capacity: state, not unverified numbers ─────────────────── -->
+  <section class="vex-section vex-inst-shell" aria-labelledby="capacity-heading">
+    <h2 class="vex-h1" id="capacity-heading" data-i18n="institution.support.capacity.heading">Current capacity</h2>
+    <p class="vex-lede" data-i18n="institution.support.capacity.intro">Victor is the sole person currently carrying Vextreme LLC and the independent open-source work. Support first protects the living stability, obligations, time, and infrastructure required for him to continue. This is the present constraint and its resolution condition — not a claim that help will be needed forever.</p>
+
+    <div class="vex-note vex-note-critical">
+      <p data-i18n="institution.support.capacity.figures-pending">No figure is published on this page yet. The amounts Victor reported have not been reconciled against current lender statements, and one of them was tied to a date that has already passed. Publishing an unverified number as if it were a balance would be the exact failure this institution exists to make visible, so the stages below carry their state instead of a total.</p>
+    </div>
+
+    <!--
+      One active stage at a time. The remaining stages are context beneath it,
+      never a combined total meter. When Home Stability closes, its receipt is
+      preserved and the active marker moves down one row — the ladder is the
+      mechanism for that, which is why it is markup and not a progress bar.
+    -->
+    <ol class="vex-ladder">
+      <li class="vex-stage vex-stage-active">
+        <span class="vex-stage-marker" aria-hidden="true">01</span>
+        <div>
+          <h3 class="vex-stage-name" data-i18n="institution.support.capacity.stage.home.name">Home Stability</h3>
+          <p class="vex-stage-body" data-i18n="institution.support.capacity.stage.home.body">Bringing the mortgage current and keeping the roof that the work is done under. This is the active stage.</p>
+        </div>
+        <span class="vex-stage-state">
+          <span class="vex-badge vex-badge-active" data-i18n="institution.support.capacity.state.active">Active stage</span>
+        </span>
+      </li>
+      <li class="vex-stage">
+        <span class="vex-stage-marker" aria-hidden="true">02</span>
+        <div>
+          <h3 class="vex-stage-name" data-i18n="institution.support.capacity.stage.monthly.name">Monthly Continuity</h3>
+          <p class="vex-stage-body" data-i18n="institution.support.capacity.stage.monthly.body">Recurring obligations met without the month itself becoming the emergency.</p>
+        </div>
+        <span class="vex-stage-state">
+          <span class="vex-badge" data-i18n="institution.support.capacity.state.ahead">Ahead</span>
+        </span>
+      </li>
+      <li class="vex-stage">
+        <span class="vex-stage-marker" aria-hidden="true">03</span>
+        <div>
+          <h3 class="vex-stage-name" data-i18n="institution.support.capacity.stage.debt.name">Debt Release</h3>
+          <p class="vex-stage-body" data-i18n="institution.support.capacity.stage.debt.body">The longer horizon. Its component scope is still being reconciled, so no total appears here.</p>
+        </div>
+        <span class="vex-stage-state">
+          <span class="vex-badge vex-badge-pending" data-i18n="institution.support.capacity.state.unverified">Figure unverified</span>
+        </span>
+      </li>
+      <li class="vex-stage">
+        <span class="vex-stage-marker" aria-hidden="true">04</span>
+        <div>
+          <h3 class="vex-stage-name" data-i18n="institution.support.capacity.stage.sustainable.name">Sustainable Creation</h3>
+          <p class="vex-stage-body" data-i18n="institution.support.capacity.stage.sustainable.body">Enough steady ground that the work is chosen rather than squeezed in around survival.</p>
+        </div>
+        <span class="vex-stage-state">
+          <span class="vex-badge" data-i18n="institution.support.capacity.state.ahead">Ahead</span>
+        </span>
+      </li>
+      <li class="vex-stage">
+        <span class="vex-stage-marker" aria-hidden="true">05</span>
+        <div>
+          <h3 class="vex-stage-name" data-i18n="institution.support.capacity.stage.relay.name">Abundance Relay</h3>
+          <p class="vex-stage-body" data-i18n="institution.support.capacity.stage.relay.body">Capacity passed onward to upstream maintainers, aligned builders, and other businesses whose work made further creation possible. Published as an intention, not a numeric threshold — its accounting period and measurement boundary are not defined yet.</p>
+        </div>
+        <span class="vex-stage-state">
+          <span class="vex-badge" data-i18n="institution.support.capacity.state.ahead">Ahead</span>
+        </span>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ── Five support meanings ───────────────────────────────────────────── -->
+  <section class="vex-section vex-inst-shell" aria-labelledby="meanings-heading">
+    <h2 class="vex-h1" id="meanings-heading" data-i18n="institution.support.meanings.heading">Five support meanings</h2>
+    <p class="vex-lede" data-i18n="institution.support.meanings.intro">These are support meanings, not moral ranks, memberships, service packages, or levels of authority. The public work remains equally available at every one of them, and at none of them. Greater support does not create greater human importance or authority over the work.</p>
+    <p class="vex-provenance" data-i18n="institution.support.meanings.amount-note">Amounts are shown as the intended monthly meanings. They are not links: no destination is attached until GitHub Sponsors is live.</p>
+
+    <!--
+      The five images carry visual lineage from the older Connect page. They
+      are bounded editorial imagery inside a monochrome interface — nothing in
+      the surrounding UI borrows their gold. Every card is the same size on
+      purpose: no meaning is rendered as the important one.
+    -->
+    <ul class="vex-meanings">
+      <li class="vex-meaning">
+        <figure class="vex-meaning-figure">
+          <img src="../assets/support/light-candle.webp" width="640" height="640" decoding="async"
+               data-i18n-alt="institution.support.meaning.light.alt"
+               alt="A single lit candle in the dark.">
+        </figure>
+        <div class="vex-meaning-content">
+          <h3 class="vex-meaning-name" data-i18n="institution.support.meaning.light.name">Light — Keep the work available</h3>
+          <p class="vex-meaning-amount" data-i18n="institution.support.meaning.light.amount">$7 / month</p>
+          <p class="vex-meaning-body" data-i18n="institution.support.meaning.light.body">A small recurring act that helps keep the public foundations available.</p>
+        </div>
+      </li>
+      <li class="vex-meaning">
+        <figure class="vex-meaning-figure">
+          <img src="../assets/support/alignment-weave.webp" width="640" height="640" decoding="async"
+               data-i18n-alt="institution.support.meaning.alignment.alt"
+               alt="Two strands woven into a single continuous braid.">
+        </figure>
+        <div class="vex-meaning-content">
+          <h3 class="vex-meaning-name" data-i18n="institution.support.meaning.alignment.name">Alignment — Sustain consistent development</h3>
+          <p class="vex-meaning-amount" data-i18n="institution.support.meaning.alignment.amount">$33 / month</p>
+          <p class="vex-meaning-body" data-i18n="institution.support.meaning.alignment.body">Stable support that gives Victor consistent time and capacity to continue.</p>
+        </div>
+      </li>
+      <li class="vex-meaning">
+        <figure class="vex-meaning-figure">
+          <img src="../assets/support/abundance-tree.webp" width="640" height="640" decoding="async"
+               data-i18n-alt="institution.support.meaning.abundance.alt"
+               alt="A broad tree whose canopy holds figures and fruit.">
+        </figure>
+        <div class="vex-meaning-content">
+          <h3 class="vex-meaning-name" data-i18n="institution.support.meaning.abundance.name">Abundance — Expand what the work can hold</h3>
+          <p class="vex-meaning-amount" data-i18n="institution.support.meaning.abundance.amount">$77 / month</p>
+          <p class="vex-meaning-body" data-i18n="institution.support.meaning.abundance.body">Expanded capacity for documentation, localization, testing, accessibility, and growth.</p>
+        </div>
+      </li>
+      <li class="vex-meaning">
+        <figure class="vex-meaning-figure">
+          <img src="../assets/support/foundation-builder.webp" width="640" height="640" decoding="async"
+               data-i18n-alt="institution.support.meaning.foundation.alt"
+               alt="Stacked blocks forming a stable base that narrows as it rises.">
+        </figure>
+        <div class="vex-meaning-content">
+          <h3 class="vex-meaning-name" data-i18n="institution.support.meaning.foundation.name">Foundation Builder — Establish durable infrastructure</h3>
+          <p class="vex-meaning-amount" data-i18n="institution.support.meaning.foundation.amount">$333 / month</p>
+          <p class="vex-meaning-body" data-i18n="institution.support.meaning.foundation.body">Major foundational support for durable releases, infrastructure, model access, and independent review.</p>
+        </div>
+      </li>
+      <li class="vex-meaning">
+        <figure class="vex-meaning-figure">
+          <img src="../assets/support/open-offering-hand-water.webp" width="640" height="640" decoding="async"
+               data-i18n-alt="institution.support.meaning.offering.alt"
+               alt="An open upturned hand receiving falling drops of water.">
+        </figure>
+        <div class="vex-meaning-content">
+          <h3 class="vex-meaning-name" data-i18n="institution.support.meaning.offering.name">Open Offering — Give what fits</h3>
+          <p class="vex-meaning-amount" data-i18n="institution.support.meaning.offering.amount">Amount you choose</p>
+          <p class="vex-meaning-body" data-i18n="institution.support.meaning.offering.body">A one-time, supporter-chosen expression of immediate help or gratitude.</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ── What support protects ───────────────────────────────────────────── -->
+  <section class="vex-section vex-inst-shell">
+    <h2 class="vex-h1" data-i18n="institution.support.protects.heading">What support protects</h2>
+    <p class="vex-lede" data-i18n="institution.support.protects.intro">The order matters. Nothing further down is reached by skipping something above it.</p>
+    <ol class="vex-ordered">
+      <li data-i18n="institution.support.protects.item1">Victor's living stability and applicable obligations.</li>
+      <li data-i18n="institution.support.protects.item2">The time and energy required to continue the work.</li>
+      <li data-i18n="institution.support.protects.item3">Infrastructure, models, hosting, testing, documentation, accessibility, localization, and independent review.</li>
+      <li data-i18n="institution.support.protects.item4">Sustainable public stewardship.</li>
+      <li data-i18n="institution.support.protects.item5">When capacity genuinely exceeds those needs, gratitude and support relayed to upstream builders, aligned projects, and other businesses.</li>
+    </ol>
+  </section>
+
+  <!-- ── Boundaries ──────────────────────────────────────────────────────── -->
+  <section class="vex-section vex-inst-shell">
+    <h2 class="vex-h1" data-i18n="institution.support.boundaries.heading">Boundaries</h2>
+    <div class="vex-note">
+      <p data-i18n="institution.support.boundaries.purchase">Support is voluntary. It does not purchase consulting, custom development, equity, ownership, investment returns, priority service, private implementation, control, or a charitable tax deduction. Direct commercial engagements are handled separately through Vextreme LLC.</p>
+    </div>
+    <div class="vex-note">
+      <p data-i18n="institution.support.boundaries.rank">Greater support does not create greater human importance or authority over the work.</p>
+    </div>
+    <div class="vex-note">
+      <p data-i18n="institution.support.boundaries.faith">Sharing Victor's faith is not a condition for receiving, using, testing, supporting, or contributing to VexLife.</p>
+    </div>
+    <div class="vex-note">
+      <p data-i18n="institution.support.boundaries.sdk">No level of support grants access to Vextreme-SDK, to private implementation, or to any part of the protected operational bridge.</p>
+    </div>
+  </section>
+
+  <!-- ── Stewardship: receipts over promises ─────────────────────────────── -->
+  <section class="vex-section vex-inst-shell">
+    <h2 class="vex-h1" data-i18n="institution.support.stewardship.heading">Stewardship</h2>
+    <div class="vex-prose">
+      <p data-i18n="institution.support.stewardship.body">Sponsorship first sustains Victor's ability to live, continue the open-source work, maintain its infrastructure, and meet applicable obligations. When resources genuinely exceed those needs, Victor intends to sponsor upstream maintainers, aligned builders, projects, and other businesses whose work made further creation possible.</p>
+      <p data-i18n="institution.support.stewardship.receipts">Dated stewardship notes will record completed allocations here: what was protected and what was relayed onward. Nothing appears in this space until there is a real, dated allocation to record — and bank balances, private receipts, supporter identities, tax records, and internal financial cases stay out of it permanently.</p>
+    </div>
+    <p class="vex-provenance"><span class="vex-badge" data-i18n="institution.support.stewardship.empty">No stewardship notes recorded yet.</span></p>
+  </section>
+
+</main>
+
+<footer class="vex-footer">
+  <div class="vex-inst-shell vex-footer-inner">
+    <span class="vex-footer-mark" data-i18n="institution.common.footer.mark">VEXTREME · PUBLIC INSTITUTIONAL SURFACE · GITHUB PAGES</span>
+    <div class="vex-footer-links">
+      <a href="vextreme-home.html" data-i18n="institution.common.nav.home">Home</a>
+      <a href="https://www.vextreme24.com" data-i18n="institution.common.footer.site">vextreme24.com</a>
+      <a href="https://github.com/vgong24/Vextreme" data-i18n="institution.common.footer.repo">Source on GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.VEX_STRING_SCOPES   = ['institution'];
+  window.VEX_STRING_CATEGORY = 'system';
+  window.VEX_INST_ROOT       = '../';
+</script>
+<script src="../widgets/vex-institutional.js" defer></script>
+
+</body>
+</html>
+<!-- [VXG RealForever] -->

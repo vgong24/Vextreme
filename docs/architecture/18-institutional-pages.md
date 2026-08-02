@@ -28,10 +28,11 @@ The registry has two states:
 | `reserved` | The slug, purpose, and intended contracts are held for a later bounded PR. | The page must not exist; the slug must also be absent from node, arc, generated-index, and God Script projections. |
 | `active` | A page has crossed the complete contract and evidence boundary. | `pages/{slug}.html`, every required locale bundle/key, and every declared screenshot cell must exist while archive/runtime exclusions continue to hold. |
 
-The initial reservations were `vextreme-home` and `vex-support`.
-`vextreme-home` is now active with its English standalone page, foundation
-runtime, and six-cell render matrix; `vex-support` remains reserved for its
-separate support-domain row. A reservation is not implementation status,
+The initial reservations were `vextreme-home` and `vex-support`. Both are now
+active English standalone pages with the foundation runtime and a complete
+six-cell render matrix per page. Support activation does not activate a payment
+destination: its separate route contract requires every URL to remain null and
+every page action inert in this row. A reservation is not implementation status,
 acceptance, payment activation, or a promise that all planned locales already
 exist. It prevents another page from silently claiming the same identity while
 the integration stack remains reviewable.
@@ -48,8 +49,12 @@ localization, and evidence.
 Each slug owns these exact dimensions:
 
 - semantic `purpose`, without user-facing copy in the registry;
+- a root-discovery label key whose English value remains owned by the compiled
+  institutional string bundle rather than duplicated in a generator;
 - archive and arc exclusions;
 - standalone runtime boundary plus the declared localization loader and control;
+- an explicit support-route data path for the support domain, and `null` for
+  surfaces that do not own routes;
 - canonical string category/scope plus required and planned locales;
 - theme family and variants, with evidence for every variant;
 - the viewport/theme evidence matrix;
@@ -83,6 +88,8 @@ active entry, proves these projections together:
    required locale. The compiled English bundle is the copy authority: every
    static English text, alt, and ARIA projection in the no-JavaScript page must
    equal it, so duplicated markup cannot drift while generation stays green.
+   The entry's root-discovery label key must also resolve in every required
+   locale bundle before the surface can be advertised.
 5. When a required locale is not English, the page loads the registry's
    declared standalone localization widget, projects matching
    `VEX_STRING_SCOPES` and `VEX_STRING_CATEGORY` globals, and exposes a native
@@ -95,17 +102,25 @@ active entry, proves these projections together:
    the expected visible text, image alt text, ARIA labels, `<html lang>`, and
    absence of runtime errors. A loader that hard-codes accepted values or only
    starts a request without consuming its response fails activation.
-6. Every required locale × declared theme × declared viewport cell exists as
+6. When `runtime.supportRoutes` names a route contract, it must belong to the
+   `open-source-support` purpose, use `vextreme.support-routes/v1`, and match
+   the page's `data-vex-route` identities exactly. This support-domain row
+   accepts only inactive statuses, null `url` fields, retained publication
+   prerequisites, no route-local anchors, and only ARIA-disabled projected
+   actions. A recorded `candidateUrl` is evidence for later verification, not
+   a renderable destination. Payment activation must change this contract in
+   its own reviewed row; renaming a held state to `ACTIVE` cannot bypass it.
+7. Every required locale × declared theme × declared viewport cell exists as
    `docs/screenshots/{slug}-{locale}-{theme}-{viewport}.png` with a PNG
    signature, valid chunk boundaries, positive dimensions, IDAT/IEND chunks,
    and valid chunk CRCs. Structural validity does not replace reviewer
    inspection of what the image actually shows.
-7. It does not load `shell.js` or a God Script.
-8. No `dist/vextreme-{slug}.js` artifact exists.
-9. The slug is absent from `data/nodes.json`, every arc in
+8. It does not load `shell.js` or a God Script.
+9. No `dist/vextreme-{slug}.js` artifact exists.
+10. The slug is absent from `data/nodes.json`, every arc in
    `data/arcs-v2.json`, and the generated content maps in `data/index.json`.
 
-The identity checks in items 8–9 also apply while a slug is reserved. A
+The identity checks in items 9–10 also apply while a slug is reserved. A
 reservation is an identity claim, not only a promise about a future filename.
 
 The static markers and English values are read-side projections, not competing
@@ -118,6 +133,13 @@ inventory from this registry. `lib/build-index.js`, `lib/build-archives.js`,
 `lib/check-key-alignment.js`, and the Terrain content projection consume that
 derived boundary. The static `SKIP_PAGES` list remains only for generated/dev
 pages; institutional slugs are not copied into it.
+
+`lib/build-index-page.js` advertises every active institutional page whose
+derived file exists. It reads each entry's `discovery.rootLabelKey` from the
+compiled English scope bundle, so the root page contains neither another slug
+list nor another authored copy of the label. A new active surface therefore
+becomes discoverable through the same registry and string authorities that
+admit its page.
 
 `lib/screenshot-evidence.js` owns both the legacy `{slug}-{locale}.png` name
 and the institutional locale/theme/viewport matrix name. Page Health, Terrain,
@@ -139,12 +161,14 @@ the rest of the repository.
 
 ## What this contract does not decide
 
-The registry contract by itself does not decide page copy, payment destination,
-funding amount, or financial state. The first implementation row now lands the
-foundation token family, shared progressive-enhancement widget, English home,
-and its complete English render evidence. The support page/domain and JA/ZH
-activation remain later integration rows with their own evidence; payment
-activation remains held until Victor verifies each destination.
+The registry contract by itself does not decide payment destination, verified
+financial balance, or commercial engagement endpoint. The accepted
+implementation rows now carry the foundation token family, shared
+progressive-enhancement widget, English home, English support domain, and their
+complete render evidence. JA/ZH activation remains a later row with its own
+reviewed strings, controls, runtime proof, and evidence. Payment activation
+remains held until Victor verifies each destination and the fail-closed route
+contract is deliberately advanced in a separate review.
 
 It also does not require separate GitHub accounts or separate operating systems
 to construct or review the work. Linux/Node CI is the deterministic build lane.

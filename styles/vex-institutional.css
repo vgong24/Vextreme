@@ -5,9 +5,8 @@
  * surfaces. It consumes the foundation token family from design-system.css
  * and declares no page-local color, type, or spacing values.
  *
- * This first accepted row includes only the foundation and home vocabulary.
- * Support-route, capacity, and payment components remain owned by the later
- * support-domain row rather than arriving here as unused CSS.
+ * The active component vocabulary covers the home and English support domain.
+ * Payment activation and JA/ZH controls remain owned by later reviewed rows.
  */
 
 body.vex-inst {
@@ -232,6 +231,15 @@ select.vex-control {
   color: var(--text-primary);
 }
 
+.vex-byline {
+  font: var(--text-mono-sm);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-tertiary);
+  margin: 0 0 var(--space-6);
+  padding-left: var(--space-4);
+  border-left: var(--border-w-strong) solid var(--border-strong);
+}
+
 .vex-actions {
   display: flex;
   flex-wrap: wrap;
@@ -357,11 +365,277 @@ select.vex-control {
   color: var(--status-caution);
 }
 
+.vex-badge-active {
+  color: var(--status-success);
+}
+
+.vex-badge-separate {
+  color: var(--status-info);
+}
+
 .vex-provenance {
   font: var(--text-mono-xs);
   letter-spacing: var(--tracking-mono);
   color: var(--text-tertiary);
   margin: var(--space-3) 0 0;
+}
+
+.vex-note {
+  border: var(--border-w) solid var(--border-subtle);
+  border-left: var(--border-w-strong) solid var(--border-strong);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: var(--bg-surface);
+  padding: var(--space-4) var(--space-5);
+  margin: 0 0 var(--space-5);
+  max-width: var(--measure);
+}
+
+.vex-note p {
+  margin: 0 0 var(--space-3);
+  color: var(--text-secondary);
+  font: var(--text-body-sm);
+}
+
+.vex-note p:last-child {
+  margin-bottom: 0;
+}
+
+.vex-note-critical {
+  border-left-color: var(--status-caution);
+}
+
+.vex-routes {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: 1fr;
+  margin: var(--space-6) 0 0;
+}
+
+.vex-route {
+  border: var(--border-w) solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.vex-route-primary {
+  border-color: var(--border-strong);
+  background: var(--bg-surface-raised);
+}
+
+.vex-route-head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.vex-route-title {
+  font: 500 1.125rem/1.3 var(--font-serif);
+  margin: 0;
+}
+
+.vex-route-body {
+  font: var(--text-body-sm);
+  color: var(--text-secondary);
+  margin: 0;
+  flex: 1;
+}
+
+.vex-route .vex-btn {
+  align-self: flex-start;
+}
+
+.vex-btn[aria-disabled="true"],
+.vex-btn-disabled {
+  background: transparent;
+  color: var(--text-tertiary);
+  border-color: var(--border-subtle);
+  border-style: dashed;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+.vex-btn[aria-disabled="true"]:hover {
+  opacity: 1;
+}
+
+.vex-meanings {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  margin-top: var(--space-6);
+  list-style: none;
+  padding: 0;
+}
+
+.vex-meaning {
+  border: var(--border-w) solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.vex-meaning-figure {
+  margin: 0;
+  aspect-ratio: 1 / 1;
+  background: var(--bg-overlay);
+  border-bottom: var(--border-w) solid var(--border-subtle);
+}
+
+.vex-meaning-figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.vex-meaning-content {
+  padding: var(--space-4) var(--space-5) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex: 1;
+}
+
+.vex-meaning-name {
+  font: 500 1.0625rem/1.3 var(--font-serif);
+  margin: 0;
+}
+
+.vex-meaning-amount {
+  font: var(--text-mono-sm);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-tertiary);
+  margin: 0;
+}
+
+.vex-meaning-body {
+  font: var(--text-body-sm);
+  color: var(--text-secondary);
+  margin: 0;
+  flex: 1;
+}
+
+.vex-ladder {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-6) 0 0;
+  border: var(--border-w) solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.vex-stage {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  border-top: var(--border-w) solid var(--border-subtle);
+  background: var(--bg-surface);
+}
+
+.vex-stage:first-child {
+  border-top: none;
+}
+
+.vex-stage-active {
+  background: var(--bg-surface-raised);
+}
+
+.vex-stage-marker {
+  font: var(--text-mono-xs);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-tertiary);
+  padding-top: 4px;
+  min-width: 3ch;
+}
+
+.vex-stage-active .vex-stage-marker {
+  color: var(--text-primary);
+}
+
+.vex-stage-name {
+  font: 500 1.0625rem/1.35 var(--font-serif);
+  margin: 0 0 var(--space-1);
+}
+
+.vex-stage-body {
+  font: var(--text-body-sm);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.vex-stage-state {
+  margin-left: auto;
+  padding-top: 2px;
+}
+
+.vex-ordered {
+  max-width: var(--measure);
+  margin: 0 0 var(--space-5);
+  padding-left: 0;
+  list-style: none;
+  counter-reset: protects;
+}
+
+.vex-ordered li {
+  counter-increment: protects;
+  position: relative;
+  padding-left: var(--space-7);
+  margin-bottom: var(--space-4);
+  color: var(--text-secondary);
+}
+
+.vex-ordered li::before {
+  content: counter(protects, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 2px;
+  font: var(--text-mono-sm);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-tertiary);
+}
+
+.vex-chronology {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-6);
+  border-left: var(--border-w) solid var(--border-subtle);
+}
+
+.vex-chronology li {
+  padding: 0 0 var(--space-4) var(--space-5);
+  position: relative;
+}
+
+.vex-chronology li::before {
+  content: "";
+  position: absolute;
+  left: -3px;
+  top: 9px;
+  width: 5px;
+  height: 5px;
+  border-radius: var(--radius-full);
+  background: var(--border-strong);
+}
+
+.vex-chronology-when {
+  display: block;
+  font: var(--text-mono-sm);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-tertiary);
+  margin-bottom: var(--space-1);
+}
+
+.vex-chronology-what {
+  font: var(--text-body-sm);
+  color: var(--text-secondary);
 }
 
 .vex-footer {
@@ -432,11 +706,38 @@ select.vex-control {
   .vex-grid-2 {
     grid-template-columns: 1fr;
   }
+
+  .vex-stage {
+    flex-wrap: wrap;
+  }
+
+  .vex-stage-state {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 840px) {
+  .vex-header-controls {
+    margin-left: auto;
+  }
+
+  .vex-nav {
+    order: 3;
+    width: 100%;
+    margin-left: 0;
+  }
 }
 
 @media (max-width: 380px) {
   .vex-display {
     font-size: 2.25rem;
+  }
+}
+
+@media (min-width: 960px) {
+  .vex-routes {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 

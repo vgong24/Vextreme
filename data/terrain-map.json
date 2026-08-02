@@ -106,7 +106,7 @@
       "stageName": "SOURCES",
       "x": 60,
       "y": 90,
-      "role": "authored registry for institutional surface identity, lifecycle, runtime exclusions, string scope, theme variants, and required evidence",
+      "role": "authored registry for institutional surface identity, lifecycle, root-discovery label key, runtime exclusions, optional support-route contract, string scope, theme variants, and required evidence",
       "reads": [],
       "writes": [],
       "loadedBy": [
@@ -645,12 +645,13 @@
       "stageName": "GENERATE",
       "x": 400,
       "y": 450,
-      "role": "generates index.html — the root archive landing page, active institutional-home route, Terrain/arc links, and 5 most recently added nodes",
+      "role": "generates index.html — the root archive landing page, all active institutional destinations, Terrain/arc links, and 5 most recently added nodes",
       "reads": [
         "data/nodes.json",
         "data/arcs-v2.json",
-        "config/institutional-surfaces.json (active institution-home discovery)",
+        "config/institutional-surfaces.json (all active institutional discovery)",
         "lib/check-institutional-surfaces.js (surfacesByState)",
+        "data/strings/compiled/scopes/{category}/{scope}.en.json (root discovery labels)",
         "pages/*.html (existence check, per slug)"
       ],
       "writes": [
@@ -1224,9 +1225,9 @@
       "stageName": "CHECK",
       "x": 1080,
       "y": 330,
-      "role": "fail-closed institutional-surface registry, identity-reservation, static-English, runtime-localization, and evidence validator",
+      "role": "fail-closed institutional-surface registry, identity-reservation, static-English, inactive-support-route, runtime-localization, and evidence validator",
       "reads": [
-        "config/institutional-surfaces.json",
+        "config/institutional-surfaces.json (surface lifecycle, discovery, and registry-declared runtime.supportRoutes target)",
         "lib/vex-config.js (valid compiled-string categories)",
         "lib/screenshot-evidence.js (canonical locale/theme/viewport evidence filename)",
         "lib/institutional-localization-runtime.js (bounded behavioral execution of the declared loader and control)",
@@ -1245,7 +1246,7 @@
         "manual run: node lib/check-institutional-surfaces.js",
         "package.json (pr-ready and institutional-surfaces:check scripts)",
         "lib/audit-pages.js (registeredSurfaceSlugs feeds the shared discovery exclusion)",
-        "lib/build-index-page.js (surfacesByState selects the active institutional-home route)",
+        "lib/build-index-page.js (surfacesByState selects every active institutional destination)",
         "lib/build-sitemap.js (surfacesByState selects publicly advertised institutional pages)",
         "scripts/screenshot-institutional.js (surfacesByState selects the evidence matrix writer's active pages)",
         "tests/54-institutional-surfaces.test.js"
@@ -2787,6 +2788,65 @@
         "en": "docs/screenshots/specimens-en.png",
         "ja": "docs/screenshots/specimens-ja.png"
       }
+    },
+    {
+      "slug": "vex-support",
+      "title": "vex-support",
+      "arcKeys": [],
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/vex-support.html",
+      "screenshots": {
+        "en": "docs/screenshots/vex-support-en-foundation-1440.png"
+      },
+      "screenshotEvidence": [
+        {
+          "slug": "vex-support",
+          "locale": "en",
+          "theme": "foundation",
+          "viewport": 1440,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-en-foundation-1440.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "en",
+          "theme": "foundation",
+          "viewport": 320,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-en-foundation-320.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "en",
+          "theme": "foundation",
+          "viewport": 768,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-en-foundation-768.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "en",
+          "theme": "foundation-light",
+          "viewport": 1440,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-en-foundation-light-1440.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "en",
+          "theme": "foundation-light",
+          "viewport": 320,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-en-foundation-light-320.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "en",
+          "theme": "foundation-light",
+          "viewport": 768,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-en-foundation-light-768.png"
+        }
+      ]
     },
     {
       "slug": "vextreme-demo",

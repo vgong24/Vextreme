@@ -948,6 +948,7 @@
     "institution.common.skip.content": {
       "key": "institution.common.skip.content",
       "usedIn": [
+        "pages/vex-support.html",
         "pages/vextreme-home.html"
       ],
       "inManifest": true,
@@ -962,6 +963,7 @@
     "institution.common.brand.wordmark": {
       "key": "institution.common.brand.wordmark",
       "usedIn": [
+        "pages/vex-support.html",
         "pages/vextreme-home.html"
       ],
       "inManifest": true,
@@ -988,6 +990,7 @@
     "institution.common.brand.descriptor": {
       "key": "institution.common.brand.descriptor",
       "usedIn": [
+        "pages/vex-support.html",
         "pages/vextreme-home.html"
       ],
       "inManifest": true,
@@ -1002,8 +1005,21 @@
     "institution.common.nav.archives": {
       "key": "institution.common.nav.archives",
       "usedIn": [
+        "pages/vex-support.html",
         "pages/vextreme-home.html"
       ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.common.nav.about": {
+      "key": "institution.common.nav.about",
+      "usedIn": [],
       "inManifest": true,
       "langs": [
         "en"
@@ -1016,6 +1032,7 @@
     "institution.common.nav.terrain": {
       "key": "institution.common.nav.terrain",
       "usedIn": [
+        "pages/vex-support.html",
         "pages/vextreme-home.html"
       ],
       "inManifest": true,
@@ -1030,6 +1047,7 @@
     "institution.common.button.theme": {
       "key": "institution.common.button.theme",
       "usedIn": [
+        "pages/vex-support.html",
         "pages/vextreme-home.html"
       ],
       "inManifest": true,
@@ -1044,6 +1062,7 @@
     "institution.common.footer.site": {
       "key": "institution.common.footer.site",
       "usedIn": [
+        "pages/vex-support.html",
         "pages/vextreme-home.html"
       ],
       "inManifest": true,
@@ -1058,6 +1077,7 @@
     "institution.common.footer.repo": {
       "key": "institution.common.footer.repo",
       "usedIn": [
+        "pages/vex-support.html",
         "pages/vextreme-home.html"
       ],
       "inManifest": true,
@@ -1072,6 +1092,7 @@
     "institution.common.footer.mark": {
       "key": "institution.common.footer.mark",
       "usedIn": [
+        "pages/vex-support.html",
         "pages/vextreme-home.html"
       ],
       "inManifest": true,
@@ -1086,6 +1107,7 @@
     "institution.common.heading.alignments": {
       "key": "institution.common.heading.alignments",
       "usedIn": [
+        "pages/vex-support.html",
         "pages/vextreme-home.html"
       ],
       "inManifest": true,
@@ -1100,6 +1122,7 @@
     "institution.common.description.alignments": {
       "key": "institution.common.description.alignments",
       "usedIn": [
+        "pages/vex-support.html",
         "pages/vextreme-home.html"
       ],
       "inManifest": true,
@@ -1114,6 +1137,7 @@
     "institution.common.alignment.integrity.name": {
       "key": "institution.common.alignment.integrity.name",
       "usedIn": [
+        "pages/vex-support.html",
         "pages/vextreme-home.html"
       ],
       "inManifest": true,
@@ -1128,6 +1152,7 @@
     "institution.common.alignment.integrity.body": {
       "key": "institution.common.alignment.integrity.body",
       "usedIn": [
+        "pages/vex-support.html",
         "pages/vextreme-home.html"
       ],
       "inManifest": true,
@@ -1142,6 +1167,7 @@
     "institution.common.alignment.accountability.name": {
       "key": "institution.common.alignment.accountability.name",
       "usedIn": [
+        "pages/vex-support.html",
         "pages/vextreme-home.html"
       ],
       "inManifest": true,
@@ -1156,6 +1182,7 @@
     "institution.common.alignment.accountability.body": {
       "key": "institution.common.alignment.accountability.body",
       "usedIn": [
+        "pages/vex-support.html",
         "pages/vextreme-home.html"
       ],
       "inManifest": true,
@@ -1170,6 +1197,7 @@
     "institution.common.alignment.authenticity.name": {
       "key": "institution.common.alignment.authenticity.name",
       "usedIn": [
+        "pages/vex-support.html",
         "pages/vextreme-home.html"
       ],
       "inManifest": true,
@@ -1184,6 +1212,7 @@
     "institution.common.alignment.authenticity.body": {
       "key": "institution.common.alignment.authenticity.body",
       "usedIn": [
+        "pages/vex-support.html",
         "pages/vextreme-home.html"
       ],
       "inManifest": true,
@@ -1198,6 +1227,7 @@
     "institution.common.alignment.resilience.name": {
       "key": "institution.common.alignment.resilience.name",
       "usedIn": [
+        "pages/vex-support.html",
         "pages/vextreme-home.html"
       ],
       "inManifest": true,
@@ -1212,6 +1242,7 @@
     "institution.common.alignment.resilience.body": {
       "key": "institution.common.alignment.resilience.body",
       "usedIn": [
+        "pages/vex-support.html",
         "pages/vextreme-home.html"
       ],
       "inManifest": true,
@@ -1226,6 +1257,7 @@
     "institution.common.heading.lineage": {
       "key": "institution.common.heading.lineage",
       "usedIn": [
+        "pages/vex-support.html",
         "pages/vextreme-home.html"
       ],
       "inManifest": true,
@@ -1240,6 +1272,7 @@
     "institution.common.description.lineage": {
       "key": "institution.common.description.lineage",
       "usedIn": [
+        "pages/vex-support.html",
         "pages/vextreme-home.html"
       ],
       "inManifest": true,
@@ -1254,6 +1287,7 @@
     "institution.common.lineage.vextreme.name": {
       "key": "institution.common.lineage.vextreme.name",
       "usedIn": [
+        "pages/vex-support.html",
         "pages/vextreme-home.html"
       ],
       "inManifest": true,
@@ -1268,6 +1302,7 @@
     "institution.common.lineage.vextreme.body": {
       "key": "institution.common.lineage.vextreme.body",
       "usedIn": [
+        "pages/vex-support.html",
         "pages/vextreme-home.html"
       ],
       "inManifest": true,
@@ -1282,6 +1317,7 @@
     "institution.common.lineage.sdk.name": {
       "key": "institution.common.lineage.sdk.name",
       "usedIn": [
+        "pages/vex-support.html",
         "pages/vextreme-home.html"
       ],
       "inManifest": true,
@@ -1296,6 +1332,7 @@
     "institution.common.lineage.sdk.body": {
       "key": "institution.common.lineage.sdk.body",
       "usedIn": [
+        "pages/vex-support.html",
         "pages/vextreme-home.html"
       ],
       "inManifest": true,
@@ -1310,6 +1347,7 @@
     "institution.common.lineage.vexlife.name": {
       "key": "institution.common.lineage.vexlife.name",
       "usedIn": [
+        "pages/vex-support.html",
         "pages/vextreme-home.html"
       ],
       "inManifest": true,
@@ -1324,6 +1362,7 @@
     "institution.common.lineage.vexlife.body": {
       "key": "institution.common.lineage.vexlife.body",
       "usedIn": [
+        "pages/vex-support.html",
         "pages/vextreme-home.html"
       ],
       "inManifest": true,
@@ -1559,20 +1598,6 @@
         "zh"
       ]
     },
-    "institution.home.entry.support-state": {
-      "key": "institution.home.entry.support-state",
-      "usedIn": [
-        "pages/vextreme-home.html"
-      ],
-      "inManifest": true,
-      "langs": [
-        "en"
-      ],
-      "missingLangs": [
-        "ja",
-        "zh"
-      ]
-    },
     "institution.home.entry.vexlife.name": {
       "key": "institution.home.entry.vexlife.name",
       "usedIn": [
@@ -1605,6 +1630,1396 @@
       "key": "institution.home.entry.vexlife-state",
       "usedIn": [
         "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.routes.intro": {
+      "key": "institution.support.routes.intro",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.route.zelle.body": {
+      "key": "institution.support.route.zelle.body",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.common.nav.home": {
+      "key": "institution.common.nav.home",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.hero.eyebrow": {
+      "key": "institution.support.hero.eyebrow",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.hero.heading": {
+      "key": "institution.support.hero.heading",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.hero.lede": {
+      "key": "institution.support.hero.lede",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.routes.heading": {
+      "key": "institution.support.routes.heading",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.route.zelle.title": {
+      "key": "institution.support.route.zelle.title",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.route.state.held": {
+      "key": "institution.support.route.state.held",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.route.zelle.pending": {
+      "key": "institution.support.route.zelle.pending",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.route.disabled-label": {
+      "key": "institution.support.route.disabled-label",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.route.github.title": {
+      "key": "institution.support.route.github.title",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.route.state.activating": {
+      "key": "institution.support.route.state.activating",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.route.github.body": {
+      "key": "institution.support.route.github.body",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.route.github.pending": {
+      "key": "institution.support.route.github.pending",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.route.llc.title": {
+      "key": "institution.support.route.llc.title",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.route.state.separate": {
+      "key": "institution.support.route.state.separate",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.route.llc.body": {
+      "key": "institution.support.route.llc.body",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.route.llc.pending": {
+      "key": "institution.support.route.llc.pending",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.story.heading": {
+      "key": "institution.support.story.heading",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.story.byline": {
+      "key": "institution.support.story.byline",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.common.label.translation-pending": {
+      "key": "institution.common.label.translation-pending",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.story.p1": {
+      "key": "institution.support.story.p1",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.story.p2": {
+      "key": "institution.support.story.p2",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.story.p3": {
+      "key": "institution.support.story.p3",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.story.p4": {
+      "key": "institution.support.story.p4",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.story.p5": {
+      "key": "institution.support.story.p5",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.story.p6": {
+      "key": "institution.support.story.p6",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.story.p7": {
+      "key": "institution.support.story.p7",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.story.p8": {
+      "key": "institution.support.story.p8",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.story.p9": {
+      "key": "institution.support.story.p9",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.story.p10": {
+      "key": "institution.support.story.p10",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.story.p11": {
+      "key": "institution.support.story.p11",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.story.p12": {
+      "key": "institution.support.story.p12",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.story.p13": {
+      "key": "institution.support.story.p13",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.story.p14": {
+      "key": "institution.support.story.p14",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.chronology.heading": {
+      "key": "institution.support.chronology.heading",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.chronology.2018.when": {
+      "key": "institution.support.chronology.2018.when",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.chronology.2018.what": {
+      "key": "institution.support.chronology.2018.what",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.chronology.2025.when": {
+      "key": "institution.support.chronology.2025.when",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.chronology.2025.what": {
+      "key": "institution.support.chronology.2025.what",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.chronology.formation.when": {
+      "key": "institution.support.chronology.formation.when",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.chronology.formation.what": {
+      "key": "institution.support.chronology.formation.what",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.chronology.vexlife.when": {
+      "key": "institution.support.chronology.vexlife.when",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.chronology.vexlife.what": {
+      "key": "institution.support.chronology.vexlife.what",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.capacity.heading": {
+      "key": "institution.support.capacity.heading",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.capacity.intro": {
+      "key": "institution.support.capacity.intro",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.capacity.figures-pending": {
+      "key": "institution.support.capacity.figures-pending",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.capacity.stage.home.name": {
+      "key": "institution.support.capacity.stage.home.name",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.capacity.stage.home.body": {
+      "key": "institution.support.capacity.stage.home.body",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.capacity.state.active": {
+      "key": "institution.support.capacity.state.active",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.capacity.stage.monthly.name": {
+      "key": "institution.support.capacity.stage.monthly.name",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.capacity.stage.monthly.body": {
+      "key": "institution.support.capacity.stage.monthly.body",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.capacity.state.ahead": {
+      "key": "institution.support.capacity.state.ahead",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.capacity.stage.debt.name": {
+      "key": "institution.support.capacity.stage.debt.name",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.capacity.stage.debt.body": {
+      "key": "institution.support.capacity.stage.debt.body",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.capacity.state.unverified": {
+      "key": "institution.support.capacity.state.unverified",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.capacity.stage.sustainable.name": {
+      "key": "institution.support.capacity.stage.sustainable.name",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.capacity.stage.sustainable.body": {
+      "key": "institution.support.capacity.stage.sustainable.body",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.capacity.stage.relay.name": {
+      "key": "institution.support.capacity.stage.relay.name",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.capacity.stage.relay.body": {
+      "key": "institution.support.capacity.stage.relay.body",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.meanings.heading": {
+      "key": "institution.support.meanings.heading",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.meanings.intro": {
+      "key": "institution.support.meanings.intro",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.meanings.amount-note": {
+      "key": "institution.support.meanings.amount-note",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.meaning.light.alt": {
+      "key": "institution.support.meaning.light.alt",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.meaning.light.name": {
+      "key": "institution.support.meaning.light.name",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.meaning.light.amount": {
+      "key": "institution.support.meaning.light.amount",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.meaning.light.body": {
+      "key": "institution.support.meaning.light.body",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.meaning.alignment.alt": {
+      "key": "institution.support.meaning.alignment.alt",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.meaning.alignment.name": {
+      "key": "institution.support.meaning.alignment.name",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.meaning.alignment.amount": {
+      "key": "institution.support.meaning.alignment.amount",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.meaning.alignment.body": {
+      "key": "institution.support.meaning.alignment.body",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.meaning.abundance.alt": {
+      "key": "institution.support.meaning.abundance.alt",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.meaning.abundance.name": {
+      "key": "institution.support.meaning.abundance.name",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.meaning.abundance.amount": {
+      "key": "institution.support.meaning.abundance.amount",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.meaning.abundance.body": {
+      "key": "institution.support.meaning.abundance.body",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.meaning.foundation.alt": {
+      "key": "institution.support.meaning.foundation.alt",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.meaning.foundation.name": {
+      "key": "institution.support.meaning.foundation.name",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.meaning.foundation.amount": {
+      "key": "institution.support.meaning.foundation.amount",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.meaning.foundation.body": {
+      "key": "institution.support.meaning.foundation.body",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.meaning.offering.alt": {
+      "key": "institution.support.meaning.offering.alt",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.meaning.offering.name": {
+      "key": "institution.support.meaning.offering.name",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.meaning.offering.amount": {
+      "key": "institution.support.meaning.offering.amount",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.meaning.offering.body": {
+      "key": "institution.support.meaning.offering.body",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.protects.heading": {
+      "key": "institution.support.protects.heading",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.protects.intro": {
+      "key": "institution.support.protects.intro",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.protects.item1": {
+      "key": "institution.support.protects.item1",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.protects.item2": {
+      "key": "institution.support.protects.item2",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.protects.item3": {
+      "key": "institution.support.protects.item3",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.protects.item4": {
+      "key": "institution.support.protects.item4",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.protects.item5": {
+      "key": "institution.support.protects.item5",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.boundaries.heading": {
+      "key": "institution.support.boundaries.heading",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.boundaries.purchase": {
+      "key": "institution.support.boundaries.purchase",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.boundaries.rank": {
+      "key": "institution.support.boundaries.rank",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.boundaries.faith": {
+      "key": "institution.support.boundaries.faith",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.boundaries.sdk": {
+      "key": "institution.support.boundaries.sdk",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.stewardship.heading": {
+      "key": "institution.support.stewardship.heading",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.stewardship.body": {
+      "key": "institution.support.stewardship.body",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.stewardship.receipts": {
+      "key": "institution.support.stewardship.receipts",
+      "usedIn": [
+        "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": [
+        "ja",
+        "zh"
+      ]
+    },
+    "institution.support.stewardship.empty": {
+      "key": "institution.support.stewardship.empty",
+      "usedIn": [
+        "pages/vex-support.html"
       ],
       "inManifest": true,
       "langs": [
@@ -4435,6 +5850,187 @@
       "orphanKeys": [],
       "screenshots": {}
     },
+    "vex-support": {
+      "slug": "vex-support",
+      "keys": [
+        "institution.common.alignment.accountability.body",
+        "institution.common.alignment.accountability.name",
+        "institution.common.alignment.authenticity.body",
+        "institution.common.alignment.authenticity.name",
+        "institution.common.alignment.integrity.body",
+        "institution.common.alignment.integrity.name",
+        "institution.common.alignment.resilience.body",
+        "institution.common.alignment.resilience.name",
+        "institution.common.brand.descriptor",
+        "institution.common.brand.wordmark",
+        "institution.common.button.theme",
+        "institution.common.description.alignments",
+        "institution.common.description.lineage",
+        "institution.common.footer.mark",
+        "institution.common.footer.repo",
+        "institution.common.footer.site",
+        "institution.common.heading.alignments",
+        "institution.common.heading.lineage",
+        "institution.common.label.translation-pending",
+        "institution.common.lineage.sdk.body",
+        "institution.common.lineage.sdk.name",
+        "institution.common.lineage.vexlife.body",
+        "institution.common.lineage.vexlife.name",
+        "institution.common.lineage.vextreme.body",
+        "institution.common.lineage.vextreme.name",
+        "institution.common.nav.archives",
+        "institution.common.nav.home",
+        "institution.common.nav.terrain",
+        "institution.common.skip.content",
+        "institution.support.boundaries.faith",
+        "institution.support.boundaries.heading",
+        "institution.support.boundaries.purchase",
+        "institution.support.boundaries.rank",
+        "institution.support.boundaries.sdk",
+        "institution.support.capacity.figures-pending",
+        "institution.support.capacity.heading",
+        "institution.support.capacity.intro",
+        "institution.support.capacity.stage.debt.body",
+        "institution.support.capacity.stage.debt.name",
+        "institution.support.capacity.stage.home.body",
+        "institution.support.capacity.stage.home.name",
+        "institution.support.capacity.stage.monthly.body",
+        "institution.support.capacity.stage.monthly.name",
+        "institution.support.capacity.stage.relay.body",
+        "institution.support.capacity.stage.relay.name",
+        "institution.support.capacity.stage.sustainable.body",
+        "institution.support.capacity.stage.sustainable.name",
+        "institution.support.capacity.state.active",
+        "institution.support.capacity.state.ahead",
+        "institution.support.capacity.state.unverified",
+        "institution.support.chronology.2018.what",
+        "institution.support.chronology.2018.when",
+        "institution.support.chronology.2025.what",
+        "institution.support.chronology.2025.when",
+        "institution.support.chronology.formation.what",
+        "institution.support.chronology.formation.when",
+        "institution.support.chronology.heading",
+        "institution.support.chronology.vexlife.what",
+        "institution.support.chronology.vexlife.when",
+        "institution.support.hero.eyebrow",
+        "institution.support.hero.heading",
+        "institution.support.hero.lede",
+        "institution.support.meaning.abundance.amount",
+        "institution.support.meaning.abundance.body",
+        "institution.support.meaning.abundance.name",
+        "institution.support.meaning.alignment.amount",
+        "institution.support.meaning.alignment.body",
+        "institution.support.meaning.alignment.name",
+        "institution.support.meaning.foundation.amount",
+        "institution.support.meaning.foundation.body",
+        "institution.support.meaning.foundation.name",
+        "institution.support.meaning.light.amount",
+        "institution.support.meaning.light.body",
+        "institution.support.meaning.light.name",
+        "institution.support.meaning.offering.amount",
+        "institution.support.meaning.offering.body",
+        "institution.support.meaning.offering.name",
+        "institution.support.meanings.amount-note",
+        "institution.support.meanings.heading",
+        "institution.support.meanings.intro",
+        "institution.support.protects.heading",
+        "institution.support.protects.intro",
+        "institution.support.protects.item1",
+        "institution.support.protects.item2",
+        "institution.support.protects.item3",
+        "institution.support.protects.item4",
+        "institution.support.protects.item5",
+        "institution.support.route.disabled-label",
+        "institution.support.route.github.body",
+        "institution.support.route.github.pending",
+        "institution.support.route.github.title",
+        "institution.support.route.llc.body",
+        "institution.support.route.llc.pending",
+        "institution.support.route.llc.title",
+        "institution.support.route.state.activating",
+        "institution.support.route.state.held",
+        "institution.support.route.state.separate",
+        "institution.support.route.zelle.body",
+        "institution.support.route.zelle.pending",
+        "institution.support.route.zelle.title",
+        "institution.support.routes.heading",
+        "institution.support.routes.intro",
+        "institution.support.stewardship.body",
+        "institution.support.stewardship.empty",
+        "institution.support.stewardship.heading",
+        "institution.support.stewardship.receipts",
+        "institution.support.story.byline",
+        "institution.support.story.heading",
+        "institution.support.story.p1",
+        "institution.support.story.p10",
+        "institution.support.story.p11",
+        "institution.support.story.p12",
+        "institution.support.story.p13",
+        "institution.support.story.p14",
+        "institution.support.story.p2",
+        "institution.support.story.p3",
+        "institution.support.story.p4",
+        "institution.support.story.p5",
+        "institution.support.story.p6",
+        "institution.support.story.p7",
+        "institution.support.story.p8",
+        "institution.support.story.p9"
+      ],
+      "orphanKeys": [],
+      "screenshots": {
+        "en": "docs/screenshots/vex-support-en-foundation-1440.png"
+      },
+      "screenshotEvidence": [
+        {
+          "slug": "vex-support",
+          "locale": "en",
+          "theme": "foundation",
+          "viewport": 1440,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-en-foundation-1440.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "en",
+          "theme": "foundation",
+          "viewport": 320,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-en-foundation-320.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "en",
+          "theme": "foundation",
+          "viewport": 768,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-en-foundation-768.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "en",
+          "theme": "foundation-light",
+          "viewport": 1440,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-en-foundation-light-1440.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "en",
+          "theme": "foundation-light",
+          "viewport": 320,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-en-foundation-light-320.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "en",
+          "theme": "foundation-light",
+          "viewport": 768,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-en-foundation-light-768.png"
+        }
+      ]
+    },
     "vextreme-demo": {
       "slug": "vextreme-demo",
       "keys": [
@@ -4509,7 +6105,6 @@
         "institution.home.entry.archives.body",
         "institution.home.entry.archives.name",
         "institution.home.entry.heading",
-        "institution.home.entry.support-state",
         "institution.home.entry.support.body",
         "institution.home.entry.support.name",
         "institution.home.entry.terrain.body",
@@ -4669,8 +6264,8 @@
     }
   },
   "summary": {
-    "totalKeysInManifest": 294,
-    "totalKeysUsed": 263,
+    "totalKeysInManifest": 394,
+    "totalKeysUsed": 357,
     "orphanUsages": [],
     "unusedKeys": [
       "ai-orientation.heading.title",
@@ -4699,6 +6294,12 @@
       "excavation.heading.title",
       "full-timeline.heading.title",
       "institution.common.brand.home-label",
+      "institution.common.nav.about",
+      "institution.support.meaning.abundance.alt",
+      "institution.support.meaning.alignment.alt",
+      "institution.support.meaning.foundation.alt",
+      "institution.support.meaning.light.alt",
+      "institution.support.meaning.offering.alt",
       "liberation.heading.title",
       "living-blueprint.heading.title",
       "march-23-2026.heading.title",

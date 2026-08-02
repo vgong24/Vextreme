@@ -81,6 +81,7 @@ function entry(overrides = {}) {
     state: 'reserved',
     kind: 'institutional',
     purpose: 'test-surface',
+    discovery: { rootLabelKey: 'institution.test' },
     archive: { indexed: false, arcMembership: false },
     runtime: {
       mode: 'standalone',
@@ -88,6 +89,7 @@ function entry(overrides = {}) {
       shell: false,
       localizationLoader: 'widgets/vex-institutional.js',
       localizationControl: 'data-vex-lang-select',
+      supportRoutes: null,
     },
     strings: { category: 'system', scope: 'institution', requiredLocales: ['en'], plannedLocales: ['ja'] },
     theme: { family: 'foundation', variants: ['foundation', 'foundation-light'] },
@@ -223,19 +225,69 @@ function writeActiveAcceptance(root, slug, surfaceEntry) {
   }
 }
 
-test('INSTITUTIONAL-SURFACES: the home is active while support remains reserved', () => {
+test('INSTITUTIONAL-SURFACES: the home and English support domain are active', () => {
   assert.deepEqual(validateRegistry(registry, ROOT), []);
-  assert.deepEqual(surfacesByState(registry, 'active').map(surface => surface.slug), ['vextreme-home']);
-  assert.deepEqual(surfacesByState(registry, 'reserved').map(surface => surface.slug), ['vex-support']);
+  assert.deepEqual(surfacesByState(registry, 'active').map(surface => surface.slug), ['vex-support', 'vextreme-home']);
+  assert.deepEqual(surfacesByState(registry, 'reserved').map(surface => surface.slug), []);
   assert.deepEqual(Object.keys(institutionalSurfaceExclusions()), ['vex-support', 'vextreme-home']);
   assert.ok(AUTO_DISCOVERY_EXCLUSIONS['vex-support']);
   assert.ok(AUTO_DISCOVERY_EXCLUSIONS['vextreme-home']);
   assert.ok(!getRecordPageSlugs().includes('vex-support'));
   assert.ok(!getRecordPageSlugs().includes('vextreme-home'));
-  assert.ok(!fs.existsSync(path.join(ROOT, 'pages', 'vex-support.html')));
+  assert.ok(fs.existsSync(path.join(ROOT, 'pages', 'vex-support.html')));
   const rootIndex = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
   assert.match(rootIndex, /href="https:\/\/vgong24\.github\.io\/Vextreme\/pages\/vextreme-home\.html">About Vextreme<\/a>/);
-  assert.doesNotMatch(rootIndex, /vex-support\.html/);
+  assert.match(rootIndex, /href="https:\/\/vgong24\.github\.io\/Vextreme\/pages\/vex-support\.html">Support Vextreme<\/a>/);
+});
+
+test('INSTITUTIONAL-SURFACES: inactive support routes fail closed in data and HTML', () => {
+  const root = makeRoot();
+  const activeEntry = entry({
+    state: 'active',
+    purpose: 'open-source-support',
+    runtime: {
+      mode: 'standalone', godScript: false, shell: false,
+      localizationLoader: 'widgets/vex-institutional.js',
+      localizationControl: 'data-vex-lang-select',
+      supportRoutes: 'data/support-routes.json',
+    },
+  });
+  fs.writeFileSync(
+    path.join(root, 'pages', 'vex-test.html'),
+    activeHtml().replace(
+      '</body>',
+      '<article data-vex-route="support.test"><span data-vex-route-action role="link" aria-disabled="true">Held</span></article></body>'
+    )
+  );
+  writeActiveAcceptance(root, 'vex-test', activeEntry);
+  const routePath = path.join(root, 'data', 'support-routes.json');
+  const routeConfig = {
+    schemaVersion: 'vextreme.support-routes/v1',
+    routes: [{
+      routeId: 'support.test', status: 'PENDING_PUBLICATION', url: null,
+      requiredBeforePublication: ['Verify destination'],
+    }],
+  };
+  fs.writeFileSync(routePath, `${JSON.stringify(routeConfig)}\n`);
+  const active = { schemaVersion: SCHEMA_VERSION, surfaces: { 'vex-test': activeEntry } };
+  assert.deepEqual(validateRegistry(active, root), []);
+
+  routeConfig.routes[0].status = 'ACTIVE';
+  routeConfig.routes[0].url = 'https://example.com/pay';
+  fs.writeFileSync(routePath, `${JSON.stringify(routeConfig)}\n`);
+  const activeChecks = new Set(validateRegistry(active, root).map(issue => issue.check));
+  assert.ok(activeChecks.has('support-route-status'));
+  assert.ok(activeChecks.has('support-route-activation-held'));
+  assert.ok(activeChecks.has('support-route-url-held'));
+
+  routeConfig.routes[0].status = 'PENDING_PUBLICATION';
+  routeConfig.routes[0].url = null;
+  fs.writeFileSync(routePath, `${JSON.stringify(routeConfig)}\n`);
+  fs.writeFileSync(
+    path.join(root, 'pages', 'vex-test.html'),
+    activeHtml().replace('</body>', '<article data-vex-route="support.test"><a href="https://example.com/pay">Pay</a></article></body>')
+  );
+  assert.ok(validateRegistry(active, root).some(issue => issue.check === 'support-route-link-held'));
 });
 
 test('INSTITUTIONAL-SURFACES: unsafe identity and permissive runtime fail closed', () => {
@@ -389,17 +441,39 @@ test('INSTITUTIONAL-SURFACES: static English text, alt, and ARIA must equal the 
   }
 });
 
-test('INSTITUTIONAL-SURFACES: pending status text meets WCAG AA contrast in both foundation themes', () => {
+test('INSTITUTIONAL-SURFACES: static alt equality is independent of attribute order', () => {
+  const root = makeRoot();
+  const activeEntry = entry({ state: 'active' });
+  writeActiveAcceptance(root, 'vex-test', activeEntry);
+  fs.writeFileSync(
+    path.join(root, 'pages', 'vex-test.html'),
+    activeHtml().replace(
+      '<img alt="Test image en" data-i18n-alt="institution.test.alt">',
+      '<img data-i18n-alt="institution.test.alt" alt="Test image en">'
+    )
+  );
+  const active = { schemaVersion: SCHEMA_VERSION, surfaces: { 'vex-test': activeEntry } };
+  assert.deepEqual(validateRegistry(active, root), []);
+});
+
+test('INSTITUTIONAL-SURFACES: status text meets WCAG AA contrast in both foundation themes', () => {
   const designCss = fs.readFileSync(path.join(ROOT, 'styles', 'design-system.css'), 'utf8');
   const componentCss = fs.readFileSync(path.join(ROOT, 'styles', 'vex-institutional.css'), 'utf8');
-  assert.match(componentCss, /\.vex-badge-pending\s*\{[^}]*color:\s*var\(--status-caution\)/s);
+  const statuses = {
+    pending: 'caution',
+    active: 'success',
+    separate: 'info',
+  };
 
   for (const theme of ['foundation', 'foundation-light']) {
     const variables = themeVariables(designCss, theme);
-    const foreground = cssColorToLinearRgb(resolveCssValue(variables['status-caution'], variables));
     const background = cssColorToLinearRgb(resolveCssValue(variables['bg-surface'], variables));
-    const ratio = contrastRatio(foreground, background);
-    assert.ok(ratio >= 4.5, `${theme} pending text contrast ${ratio.toFixed(3)}:1 is below 4.5:1`);
+    for (const [badge, status] of Object.entries(statuses)) {
+      assert.match(componentCss, new RegExp(`\\.vex-badge-${badge}\\s*\\{[^}]*color:\\s*var\\(--status-${status}\\)`, 's'));
+      const foreground = cssColorToLinearRgb(resolveCssValue(variables[`status-${status}`], variables));
+      const ratio = contrastRatio(foreground, background);
+      assert.ok(ratio >= 4.5, `${theme} ${badge} text contrast ${ratio.toFixed(3)}:1 is below 4.5:1`);
+    }
   }
 });
 

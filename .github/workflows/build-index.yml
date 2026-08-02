@@ -10,6 +10,7 @@ on:
       - 'data/viewmodels.json'
       - 'data/departments.json'
       - 'data/strings/**'
+      - 'data/support-routes.json'
       - 'data/status/**'
       - 'config/institutional-surfaces.json'
       - 'config/lessons/**'
