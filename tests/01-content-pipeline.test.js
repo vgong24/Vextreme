@@ -26,7 +26,7 @@ const assert   = require('node:assert/strict');
 const { execFileSync } = require('node:child_process');
 const fs       = require('fs');
 const path     = require('path');
-const { buildSlugMap, buildArcMap, buildArcMeta, parseDate, findDuplicateSlugs } = require('../lib/build-index');
+const { contentFingerprint, buildSlugMap, buildArcMap, buildArcMeta, parseDate, findDuplicateSlugs } = require('../lib/build-index');
 
 const nodes   = require('./fixtures/nodes.fixture.json');
 const arcsDef = require('./fixtures/arcs.fixture.json');
@@ -41,6 +41,15 @@ function buildFixtureIndex(customNodes, customArcs) {
   const arcMeta = buildArcMeta(a);
   return { slugMap, arcMap, arcMeta };
 }
+
+test('INVARIANT: index content fingerprint is stable for equal content and changes with content', () => {
+  const first = { nodeCount: 1, slugMap: { a: { slug: 'a' } } };
+  const equal = { nodeCount: 1, slugMap: { a: { slug: 'a' } } };
+  const changed = { nodeCount: 2, slugMap: { a: { slug: 'a' } } };
+  assert.equal(contentFingerprint(first), contentFingerprint(equal));
+  assert.notEqual(contentFingerprint(first), contentFingerprint(changed));
+  assert.match(contentFingerprint(first), /^[0-9a-f]{12}$/);
+});
 
 // ── 1. Full pipeline integration ──────────────────────────────────────────────
 

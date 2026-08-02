@@ -86,6 +86,35 @@ function activeLocalizedHtml({ category = 'system', scope = 'institution', local
   ].join('\n');
 }
 
+function workingLocalizationLoader() {
+  return [
+    '(function () {',
+    "  var select = document.querySelector('[data-vex-lang-select]');",
+    '  select.hidden = false;',
+    "  select.addEventListener('change', function () {",
+    '    var locale = select.value;',
+    "    var url = '../data/strings/compiled/scopes/system/institution.' + locale + '.json';",
+    '    document.documentElement.setAttribute(\'lang\', locale);',
+    '    fetch(url).then(function (response) { return response.json(); }).then(function (bundle) {',
+    "      Array.prototype.forEach.call(document.querySelectorAll('[data-i18n]'), function (element) {",
+    "        var entry = bundle[element.getAttribute('data-i18n')];",
+    '        if (entry && entry.text) element.textContent = entry.text;',
+    '      });',
+    "      Array.prototype.forEach.call(document.querySelectorAll('[data-i18n-alt]'), function (element) {",
+    "        var entry = bundle[element.getAttribute('data-i18n-alt')];",
+    "        if (entry && entry.text) element.setAttribute('alt', entry.text);",
+    '      });',
+    "      Array.prototype.forEach.call(document.querySelectorAll('[data-i18n-aria]'), function (element) {",
+    "        var entry = bundle[element.getAttribute('data-i18n-aria')];",
+    "        if (entry && entry.text) element.setAttribute('aria-label', entry.text);",
+    '      });',
+    '    });',
+    '  });',
+    '}());',
+    '',
+  ].join('\n');
+}
+
 function writeActiveAcceptance(root, slug, surfaceEntry) {
   for (const locale of surfaceEntry.strings.requiredLocales) {
     const bundlePath = path.join(
@@ -257,7 +286,7 @@ test('INSTITUTIONAL-SURFACES: accessibility bindings and string category are act
   ).some(issue => issue.check === 'unsupported-locale'));
 });
 
-test('INSTITUTIONAL-SURFACES: multi-locale activation requires a reachable runtime path', () => {
+test('INSTITUTIONAL-SURFACES: multi-locale activation executes the declared runtime path', () => {
   const root = makeRoot();
   const activeEntry = entry({
     state: 'active',
@@ -272,12 +301,19 @@ test('INSTITUTIONAL-SURFACES: multi-locale activation requires a reachable runti
     assert.ok(absentChecks.has(expected), `expected ${expected}`);
   }
 
-  fs.writeFileSync(path.join(root, 'widgets', 'vex-institutional.js'), '// fixture\n');
+  fs.writeFileSync(path.join(root, 'widgets', 'vex-institutional.js'), 'throw new Error("runtime is broken");\n');
+  fs.writeFileSync(path.join(root, 'pages', 'vex-test.html'), activeLocalizedHtml());
+  assert.ok(validateRegistry(active, root).some(issue => issue.check === 'locale-runtime-behavior'));
+
+  fs.writeFileSync(path.join(root, 'widgets', 'vex-institutional.js'), '// inert fixture\n');
+  assert.ok(validateRegistry(active, root).some(issue => issue.check === 'locale-runtime-behavior'));
+
   fs.writeFileSync(path.join(root, 'pages', 'vex-test.html'), activeLocalizedHtml({ category: 'production', locales: ['en'] }));
   const wrongChecks = new Set(validateRegistry(active, root).map(issue => issue.check));
   assert.ok(wrongChecks.has('locale-category-global'));
   assert.ok(wrongChecks.has('locale-control-option'));
 
+  fs.writeFileSync(path.join(root, 'widgets', 'vex-institutional.js'), workingLocalizationLoader());
   fs.writeFileSync(path.join(root, 'pages', 'vex-test.html'), activeLocalizedHtml());
   assert.deepEqual(validateRegistry(active, root), []);
 });

@@ -129,10 +129,10 @@
       "ja": { "text": "対応言語" }
     }
   },
-  "demo.live.label.built-at": {
+  "demo.live.label.content-fingerprint": {
     "strings": {
-      "en": { "text": "index.json last built" },
-      "ja": { "text": "index.json 最終ビルド日時" }
+      "en": { "text": "index.json content fingerprint" },
+      "ja": { "text": "index.json 内容フィンガープリント" }
     }
   },
   "demo.live.status.loading": {

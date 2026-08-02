@@ -51,17 +51,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          # For a pull_request event, checkout defaults to the synthetic merge
-          # ref (refs/pull/N/merge), which nothing can push back to. Check out
-          # the PR's actual head branch instead so the commit below lands
-          # somewhere real. github.head_ref is empty for push events, so this
-          # falls through to github.ref (refs/heads/main) unchanged there.
+          # Verify the PR's exact reviewed head rather than GitHub's synthetic
+          # merge ref. github.head_ref is empty for push events, so this falls
+          # through to github.ref (refs/heads/main) unchanged there.
           ref: ${{ github.head_ref || github.ref }}
           # Full history required: lib/bump-fab-version.js walks git log/show
           # against older commits to find the last VERSION-bump commit and
@@ -86,6 +84,12 @@ jobs:
 
       - name: Build index.json
         run: node lib/build-index.js
+
+      - name: Auto-increment fab-lang.js CDN version
+        # This must run before God Script assembly so the committed dist files
+        # inline the same VERSION the standalone widget carries. Running it at
+        # the end requires a second build to converge.
+        run: node lib/bump-fab-version.js
 
       - name: Build God Scripts
         run: node lib/build-vextreme.js
@@ -132,43 +136,17 @@ jobs:
       - name: Build terrain-map.json
         run: node lib/build-terrain-map.js
 
-      - name: Auto-increment fab-lang.js CDN version
-        # Replaces a hand-maintained bump (Session 025: it had never been
-        # bumped since introduction) with one computed from what actually
-        # changed since the last bump commit — see lib/compute-fab-version.js.
-        run: node lib/bump-fab-version.js
-
-      - name: Commit artifacts
-        # On push (to main): commit with [skip ci] as before — the same
-        # GITHUB_TOKEN push cannot retrigger a new workflow run anyway (GitHub
-        # blocks that to prevent recursive runs), so this is just a clear
-        # marker for anyone reading history, not what actually prevents a loop.
-        # On pull_request: push straight to the PR's own head branch. Note
-        # this corrective push will NOT automatically re-run the PR's other
-        # checks (same GITHUB_TOKEN limitation) — rerun the non-mutating Tests
-        # and Key Alignment workflows once against the fixed head. If Build is
-        # rerun too, the bot-head guard below makes that rerun non-mutating.
+      - name: Verify generated artifacts are committed
+        # Generated files are part of the reviewed tree. CI regenerates them
+        # and fails with the exact drift, but never commits or pushes into a PR
+        # branch. That keeps review heads immutable, avoids GH013 on protected
+        # feature branches, and makes one checkout/account sufficient to build.
         run: |
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git config user.name "github-actions[bot]"
-          # A PR artifact commit is necessarily built from its human-authored
-          # parent. Rebuilding commit-derived artifacts from the bot commit
-          # itself would move HEAD again and can never converge. A manual rerun
-          # on that already-corrected head therefore verifies the build steps
-          # above but must not create another artifact commit.
-          case "$(git log -1 --pretty=%s)" in
-            "Auto-rebuild artifacts for PR #"*)
-              echo "Current head is already a PR artifact correction; skipping a recursive artifact commit."
-              exit 0
-              ;;
-          esac
-          git add data/strings/compiled data/strings/reports data/index.json data/lessons.json data/roles.json data/status.json data/page-health.json data/terrain-map.json dist sw.js pages/archives.html pages/vextreme-demo.html pages/specimens.html pages/specimen-*.html pages/ecosystem-hub.html pages/roles-index.html sitemap.xml index.html widgets/fab-lang.js
+          git add data/strings/compiled data/strings/reports data/index.json data/analysis-index.json data/lessons.json data/roles.json data/status.json data/page-health.json data/terrain-map.json dist sw.js pages/archives.html pages/vextreme-demo.html pages/specimens.html pages/specimen-*.html pages/ecosystem-hub.html pages/roles-index.html sitemap.xml index.html widgets/fab-lang.js
           if git diff --staged --quiet; then
-            echo "No changes to commit"
-          elif [ "${{ github.event_name }}" = "pull_request" ]; then
-            git commit -m "Auto-rebuild artifacts for PR #${{ github.event.pull_request.number }}"
-            git push origin HEAD:${{ github.head_ref }}
+            echo "Generated artifacts match the reviewed source tree."
           else
-            git commit -m "Auto-rebuild artifacts [skip ci]"
-            git push
+            echo "Generated artifacts are stale. Run workflow steps 4–23 locally and commit the resulting files."
+            git diff --staged --stat
+            git diff --staged --exit-code
           fi

@@ -9,7 +9,7 @@
  *   1. collectDistUrls — reads dist/ and returns URL list
  *   2. generateSWContent — produces valid sw.js string
  *   3. CORE_ASSETS constant — required shared assets present
- *   4. getCommitHash — returns a non-empty string
+ *   4. computeAssetFingerprint — content-derived and commit-independent
  *   5. collectArcBundleUrls — arc-chunked bundling pilot (od-001/td-006)
  */
 
@@ -18,7 +18,13 @@ const assert   = require('node:assert/strict');
 const fs       = require('fs');
 const path     = require('path');
 
-const { collectDistUrls, collectArcBundleUrls, generateSWContent, getCommitHash, CORE_ASSETS } = require('../lib/build-sw');
+const {
+  collectDistUrls,
+  collectArcBundleUrls,
+  computeAssetFingerprint,
+  generateSWContent,
+  CORE_ASSETS,
+} = require('../lib/build-sw');
 
 const ROOT     = path.join(__dirname, '..');
 const DIST_DIR = path.join(ROOT, 'dist');
@@ -69,9 +75,9 @@ test('BUILD-SW: generateSWContent returns a non-empty string', () => {
   assert.ok(content.length > 0);
 });
 
-test('BUILD-SW: output contains the cache name with commit hash', () => {
+test('BUILD-SW: output contains the cache name with content fingerprint', () => {
   const content = generateSWContent(SAMPLE_URLS, SAMPLE_HASH);
-  assert.ok(content.includes(`vextreme-v1-${SAMPLE_HASH}`), 'cache name must include commit hash');
+  assert.ok(content.includes(`vextreme-v1-${SAMPLE_HASH}`), 'cache name must include content fingerprint');
 });
 
 test('BUILD-SW: output declares CACHE_NAME variable', () => {
@@ -149,9 +155,9 @@ test('BUILD-SW: widgets/sw-register.js forces an immediate update check on every
     'sw-register.js must call reg.update() after a successful registration to force an immediate check');
 });
 
-test('BUILD-SW: output uses dev hash when commitHash is empty', () => {
+test('BUILD-SW: output uses dev fingerprint when no fingerprint is supplied', () => {
   const content = generateSWContent([], '');
-  assert.ok(content.includes('vextreme-v1-dev'), 'must fall back to dev hash');
+  assert.ok(content.includes('vextreme-v1-dev'), 'must fall back to dev fingerprint');
 });
 
 // ── 3. CORE_ASSETS ───────────────────────────────────────────────────────────
@@ -168,19 +174,33 @@ test('BUILD-SW: CORE_ASSETS includes index.json', () => {
   assert.ok(CORE_ASSETS.some(a => a.includes('index.json')), 'must include index.json');
 });
 
-// ── 4. getCommitHash ─────────────────────────────────────────────────────────
+// ── 4. computeAssetFingerprint ───────────────────────────────────────────────
 
-test('BUILD-SW: getCommitHash returns a non-empty string', () => {
-  const hash = getCommitHash();
-  assert.equal(typeof hash, 'string');
-  assert.ok(hash.length > 0, 'must return non-empty string');
+test('BUILD-SW: asset fingerprint is stable for identical URL and bytes', () => {
+  const root = fs.mkdtempSync(path.join(require('os').tmpdir(), 'vxg-sw-fingerprint-'));
+  fs.mkdirSync(path.join(root, 'dist'), { recursive: true });
+  fs.writeFileSync(path.join(root, 'dist', 'vextreme-test.js'), 'same bytes\n');
+  const urls = ['/Vextreme/dist/vextreme-test.js'];
+  assert.equal(computeAssetFingerprint(urls, root), computeAssetFingerprint(urls, root));
 });
 
-test('BUILD-SW: getCommitHash returns a short git hash or dev', () => {
-  const hash = getCommitHash();
-  // Either a valid short hash (hex chars) or the fallback 'dev'
-  assert.ok(/^[0-9a-f]{4,12}$/.test(hash) || hash === 'dev',
-    `hash "${hash}" must be a short git hash or 'dev'`);
+test('BUILD-SW: asset fingerprint changes when a precached asset changes', () => {
+  const root = fs.mkdtempSync(path.join(require('os').tmpdir(), 'vxg-sw-fingerprint-'));
+  fs.mkdirSync(path.join(root, 'dist'), { recursive: true });
+  const file = path.join(root, 'dist', 'vextreme-test.js');
+  const urls = ['/Vextreme/dist/vextreme-test.js'];
+  fs.writeFileSync(file, 'before\n');
+  const before = computeAssetFingerprint(urls, root);
+  fs.writeFileSync(file, 'after\n');
+  assert.notEqual(computeAssetFingerprint(urls, root), before);
+});
+
+test('BUILD-SW: committed output equals a fresh content-derived build', () => {
+  const godScripts = collectDistUrls(DIST_DIR);
+  const arcBundles = collectArcBundleUrls(ARC_BUNDLES_INDEX);
+  const fingerprint = computeAssetFingerprint([...godScripts, ...arcBundles, ...CORE_ASSETS], ROOT);
+  const expected = generateSWContent([...godScripts, ...arcBundles], fingerprint);
+  assert.equal(fs.readFileSync(path.join(ROOT, 'sw.js'), 'utf8'), expected);
 });
 
 // ── 5. collectArcBundleUrls ──────────────────────────────────────────────────

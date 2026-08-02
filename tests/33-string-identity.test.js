@@ -17,6 +17,7 @@
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const { execFileSync } = require('child_process');
+const fs = require('fs');
 const path = require('path');
 
 const {
@@ -248,6 +249,11 @@ test('IDENTITY integration: the real pilot page (victor-methodology-presentation
   const report = JSON.parse(out);
   assert.equal(report.skipped, false);
   assert.deepEqual(report.issues, []);
+});
+
+test('IDENTITY integration: committed index metadata contains no wall-clock timestamp', () => {
+  const index = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'strings', 'compiled', 'identity-index.json'), 'utf8'));
+  assert.equal(Object.hasOwn(index._meta, 'generatedAt'), false);
 });
 
 test('IDENTITY integration: existing strings-check.js and strings-compile.js remain unaffected by identity blocks', () => {

@@ -135,6 +135,33 @@ test('PAGE-HEALTH: registry-owned institutional pages do not inherit record FAB 
   assert.deepEqual(page.health, { state: 'healthy', blockers: [], gaps: [] });
 });
 
+test('PAGE-HEALTH: institutional shell and God Script delivery fail closed', () => {
+  const slug = 'vex-test';
+  const result = buildPageHealth({
+    pageSlugs: [slug],
+    htmlBySlug: {
+      [slug]: '<html data-theme="foundation"><p data-i18n="institution.test">Test</p><script src="../lib/shell.js"></script></html>',
+    },
+    distBySlug: { [slug]: '/* feature: spiral-fab */' },
+    wiredBySlug: { [slug]: true },
+    navRows: [{ slug, navigable: true, staticHubLinks: 1, hasShellJs: true, hasFabNav: true }],
+    nodes: [],
+    manifest: { 'institution.test': { langs: ['en'] } },
+    analysisPages: {},
+    screenshotFiles: ['vex-test-en-foundation-320.png'],
+    institutionalSurfaces: {
+      [slug]: { state: 'active', evidence: { themes: ['foundation'] } },
+    },
+  });
+
+  assert.deepEqual(result.pages[slug].runtime, { shell: true, godScript: true });
+  assert.deepEqual(result.pages[slug].health, {
+    state: 'critical',
+    blockers: ['institutional-shell', 'institutional-god-script'],
+    gaps: [],
+  });
+});
+
 test('PAGE-HEALTH integration: committed projection equals fresh source computation', () => {
   const committed = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'page-health.json'), 'utf8'));
   assert.deepEqual(committed, buildPageHealth(loadInputs()));

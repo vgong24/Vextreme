@@ -28,12 +28,12 @@
       "key": 1.5,
       "name": "UTILITIES",
       "sub": "other lib/ helpers, config, tracing",
-      "count": 21,
+      "count": 22,
       "rect": {
         "x": 690,
         "y": 40,
         "width": 300,
-        "height": 1350
+        "height": 1410
       }
     },
     {
@@ -221,6 +221,7 @@
         "pages/vextreme-demo.html (live fetch to show nodeCount/arcCount/supportedLangs)"
       ],
       "testedBy": [
+        "tests/01-content-pipeline.test.js",
         "tests/08-build-vextreme.test.js (KEY-ALIGNMENT)",
         "tests/15-departments.test.js"
       ],
@@ -354,7 +355,7 @@
       "status": "warning",
       "engineerFocus": true,
       "auditorFocus": true,
-      "auditorRank": 4
+      "auditorRank": 3
     },
     {
       "id": "lib/arc-nav.js",
@@ -561,7 +562,7 @@
       "status": "warning",
       "engineerFocus": true,
       "auditorFocus": true,
-      "auditorRank": 6
+      "auditorRank": 5
     },
     {
       "id": "lib/build-archives.js",
@@ -599,7 +600,7 @@
       "status": "warning",
       "engineerFocus": true,
       "auditorFocus": true,
-      "auditorRank": 7
+      "auditorRank": 6
     },
     {
       "id": "lib/build-ecosystem-hub.js",
@@ -633,7 +634,7 @@
       "status": "warning",
       "engineerFocus": true,
       "auditorFocus": true,
-      "auditorRank": 8
+      "auditorRank": 7
     },
     {
       "id": "lib/build-index-page.js",
@@ -709,7 +710,7 @@
       "status": "warning",
       "engineerFocus": true,
       "auditorFocus": true,
-      "auditorRank": 2
+      "auditorRank": 1
     },
     {
       "id": "lib/build-lattice-headers.js",
@@ -739,7 +740,7 @@
       "status": "warning",
       "engineerFocus": true,
       "auditorFocus": true,
-      "auditorRank": 5
+      "auditorRank": 4
     },
     {
       "id": "lib/build-lessons.js",
@@ -880,23 +881,25 @@
       "role": "generates sitemap.xml — lists only pages that actually exist, so crawlers never hit a 404",
       "reads": [
         "data/nodes.json",
-        "pages/*.html (existence check only, per slug)",
-        "git log (per-file last-change date, via subprocess)"
+        "pages/*.html (existence check only, per slug)"
       ],
       "writes": [
         "sitemap.xml"
       ],
       "loadedBy": [
-        ".github/workflows/build-index.yml"
+        ".github/workflows/build-index.yml",
+        "tests/55-build-sitemap.test.js"
       ],
-      "testedBy": [],
+      "testedBy": [
+        "tests/55-build-sitemap.test.js"
+      ],
       "debts": [
         "pe-009"
       ],
-      "status": "critical",
+      "status": "warning",
       "engineerFocus": true,
       "auditorFocus": true,
-      "auditorRank": 1
+      "auditorRank": 8
     },
     {
       "id": "lib/build-status.js",
@@ -981,7 +984,7 @@
       "reads": [
         "dist/*.js (all God Script filenames)",
         "data/strings/compiled/arcs/index.json (opted-in arc bundles, if any)",
-        "git commit hash"
+        "bytes of every precached URL"
       ],
       "writes": [
         "sw.js"
@@ -1079,7 +1082,7 @@
       "status": "warning",
       "engineerFocus": true,
       "auditorFocus": true,
-      "auditorRank": 3
+      "auditorRank": 2
     },
     {
       "id": "lib/bump-fab-version.js",
@@ -1102,7 +1105,7 @@
         "widgets/fab-lang.js (rewrites the VERSION line in place, if a bump tier applies)"
       ],
       "loadedBy": [
-        ".github/workflows/build-index.yml ('Auto-increment fab-lang.js CDN version' step, before the artifact-commit step)"
+        ".github/workflows/build-index.yml ('Auto-increment fab-lang.js CDN version' step, before God Script and service-worker generation)"
       ],
       "testedBy": [],
       "debts": [],
@@ -1217,6 +1220,7 @@
         "config/institutional-surfaces.json",
         "lib/vex-config.js (valid compiled-string categories)",
         "lib/screenshot-evidence.js (canonical locale/theme/viewport evidence filename)",
+        "lib/institutional-localization-runtime.js (bounded behavioral execution of the declared loader and control)",
         "pages/*.html (existence, visible/accessibility i18n bindings, and active projection markers, per registered slug)",
         "data/nodes.json (every registered institutional slug must remain outside archive indexing)",
         "data/arcs-v2.json (every registered institutional slug must remain outside narrative arcs)",
@@ -1485,12 +1489,40 @@
       "auditorRank": 14
     },
     {
-      "id": "lib/logger-codes.js",
+      "id": "lib/institutional-localization-runtime.js",
       "cluster": "lib",
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
       "y": 630,
+      "role": "bounded behavioral probe for institutional localization loaders — operates the declared control and observes visible, alt, and ARIA translations",
+      "reads": [
+        "declared institutional localization widget source (provided by lib/check-institutional-surfaces.js)",
+        "required compiled locale bundles (provided by lib/check-institutional-surfaces.js)",
+        "active page binding keys and localization-control attribute (provided by lib/check-institutional-surfaces.js)"
+      ],
+      "writes": [
+        "stdout JSON only in --probe-child mode"
+      ],
+      "loadedBy": [
+        "lib/check-institutional-surfaces.js"
+      ],
+      "testedBy": [
+        "tests/54-institutional-surfaces.test.js"
+      ],
+      "debts": [],
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": false,
+      "auditorRank": 15
+    },
+    {
+      "id": "lib/logger-codes.js",
+      "cluster": "lib",
+      "stage": 1.5,
+      "stageName": "UTILITIES",
+      "x": 740,
+      "y": 690,
       "role": "event code registry — the CODES constant every logger.warn/error call references",
       "reads": [],
       "writes": [],
@@ -1516,7 +1548,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 690,
+      "y": 750,
       "role": "structured logger — every build script's warn/info/error call goes through here",
       "reads": [],
       "writes": [
@@ -1545,7 +1577,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 750,
+      "y": 810,
       "role": "runs the build scripts tests/helpers/prereqs.js declares as required before the test suite can read generated files — replaces a hardcoded run: line in .github/workflows/test.yml",
       "reads": [
         "tests/helpers/prereqs.js (PREREQUISITE_SCRIPTS)"
@@ -1561,7 +1593,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 15
+      "auditorRank": 16
     },
     {
       "id": "lib/screenshot-evidence.js",
@@ -1569,7 +1601,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 810,
+      "y": 870,
       "role": "shared screenshot-evidence filename parser and deterministic projection helper",
       "reads": [],
       "writes": [],
@@ -1590,7 +1622,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 16
+      "auditorRank": 17
     },
     {
       "id": "lib/session-bootstrap.js",
@@ -1598,7 +1630,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 870,
+      "y": 930,
       "role": "one-shot session-start state report — read-only, gathers what would otherwise be several manual checks into one command",
       "reads": [
         "docs/continuity/INDEX.md (last logged session, batch registry)",
@@ -1627,7 +1659,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 17
+      "auditorRank": 18
     },
     {
       "id": "lib/strings-check.js",
@@ -1635,7 +1667,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 930,
+      "y": 990,
       "role": "strings pipeline integrity check — runs before compile, catches missing EN text, stale translations, and orphaned keys",
       "reads": [
         "data/strings/source/**/*.json",
@@ -1666,7 +1698,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 990,
+      "y": 1050,
       "role": "strings pipeline compiler — reads source JSON, writes compiled bundles and manifest",
       "reads": [
         "data/strings/source/**/*.json",
@@ -1700,7 +1732,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1050,
+      "y": 1110,
       "role": "pure semantic-history state for Terrain Journey commits and browser Back/Forward restoration",
       "reads": [],
       "writes": [],
@@ -1715,7 +1747,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 18
+      "auditorRank": 19
     },
     {
       "id": "lib/trace-string-usage.js",
@@ -1723,7 +1755,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1110,
+      "y": 1170,
       "role": "string reverse-tracer — data-i18n usage in pages/wip HTML cross-referenced against the compiled manifest",
       "reads": [
         "pages/*.html (data-i18n attribute scan)",
@@ -1745,7 +1777,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 19
+      "auditorRank": 20
     },
     {
       "id": "lib/validate-blueprint.js",
@@ -1753,7 +1785,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1170,
+      "y": 1230,
       "role": "blueprint consistency validator — confirms every id in blueprint.json has a matching config file and vex-config constant",
       "reads": [
         "blueprint.json",
@@ -1785,7 +1817,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1230,
+      "y": 1290,
       "role": "constants hub — pure declarations, no I/O",
       "reads": [],
       "writes": [],
@@ -1825,7 +1857,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1290,
+      "y": 1350,
       "role": "browser arc nav runtime — reads index.json at load time, renders prev/next/position into #arcNavMount",
       "reads": [
         "data/index.json via CDN (slugMap, arcMap, arcMeta)",
@@ -1848,7 +1880,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 20
+      "auditorRank": 21
     },
     {
       "id": "pages/terrain-map.html",
@@ -2384,6 +2416,10 @@
       "lib/audit-pages.js"
     ],
     [
+      "lib/check-institutional-surfaces.js",
+      "lib/institutional-localization-runtime.js"
+    ],
+    [
       "lib/check-key-alignment.js",
       "data/arcs-v2.json"
     ],
@@ -2414,6 +2450,10 @@
     [
       "lib/compute-fab-version.js",
       "lib/bump-fab-version.js"
+    ],
+    [
+      "lib/institutional-localization-runtime.js",
+      "config/institutional-surfaces.json"
     ],
     [
       "lib/logger-codes.js",
@@ -5048,7 +5088,7 @@
           "control": "page-owned",
           "visibleStyles": false
         },
-        "identityKeys": 12,
+        "identityKeys": 11,
         "analysisIndexed": true,
         "analysisControl": false,
         "evidenceLanguages": [],

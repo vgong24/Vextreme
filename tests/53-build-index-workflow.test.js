@@ -7,27 +7,29 @@ const path = require('path');
 
 const WORKFLOW_PATH = path.join(__dirname, '..', '.github', 'workflows', 'build-index.yml');
 const workflow = fs.readFileSync(WORKFLOW_PATH, 'utf8');
-const commitStep = workflow.slice(workflow.indexOf('      - name: Commit artifacts'));
+const verifyStep = workflow.slice(workflow.indexOf('      - name: Verify generated artifacts are committed'));
 
-test('BUILD-INDEX-WORKFLOW: manual closeout names the non-mutating checks to rerun', () => {
-  assert.match(commitStep, /rerun the non-mutating Tests\s+\# and Key Alignment workflows once/);
+test('BUILD-INDEX-WORKFLOW: generated-artifact verification has read-only repository permission', () => {
+  assert.match(workflow, /permissions:\s*\n\s+contents: read/);
+  assert.doesNotMatch(workflow, /contents: write/);
 });
 
-test('BUILD-INDEX-WORKFLOW: a PR artifact bot head exits before staging another generated commit', () => {
-  const guard = commitStep.indexOf('case "$(git log -1 --pretty=%s)" in');
-  const botSubject = commitStep.indexOf('"Auto-rebuild artifacts for PR #"*');
-  const exit = commitStep.indexOf('exit 0', botSubject);
-  const stage = commitStep.indexOf('git add data/strings/compiled');
-
-  assert.ok(guard >= 0, 'artifact commit step is missing the bot-head guard');
-  assert.ok(botSubject > guard, 'guard does not recognize PR artifact commit subjects');
-  assert.ok(exit > botSubject, 'recognized bot heads do not exit cleanly');
-  assert.ok(stage > exit, 'recursive guard must run before generated files are staged');
+test('BUILD-INDEX-WORKFLOW: verification stages every generated output family before comparing', () => {
+  assert.match(verifyStep, /git add data\/strings\/compiled[\s\S]*data\/index\.json[\s\S]*data\/analysis-index\.json[\s\S]*dist sw\.js[\s\S]*sitemap\.xml[\s\S]*widgets\/fab-lang\.js/);
+  assert.match(verifyStep, /git diff --staged --quiet/);
+  assert.match(verifyStep, /git diff --staged --exit-code/);
 });
 
-test('BUILD-INDEX-WORKFLOW: normal PR and main artifact commit paths remain present', () => {
-  assert.match(commitStep, /git commit -m "Auto-rebuild artifacts for PR #\$\{\{ github\.event\.pull_request\.number \}\}"/);
-  assert.match(commitStep, /git commit -m "Auto-rebuild artifacts \[skip ci\]"/);
+test('BUILD-INDEX-WORKFLOW: FAB version is resolved before God Script and service-worker generation', () => {
+  const bump = workflow.indexOf('run: node lib/bump-fab-version.js');
+  const godScripts = workflow.indexOf('run: node lib/build-vextreme.js');
+  const serviceWorker = workflow.indexOf('run: node lib/build-sw.js');
+  assert.ok(bump >= 0 && bump < godScripts && godScripts < serviceWorker);
+});
+
+test('BUILD-INDEX-WORKFLOW: CI never mutates a PR or main branch', () => {
+  assert.doesNotMatch(verifyStep, /\bgit (?:commit|push)\b/);
+  assert.doesNotMatch(verifyStep, /github-actions\[bot\]/);
 });
 
 // [VXG RealForever]

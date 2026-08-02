@@ -83,6 +83,11 @@ active entry, proves these projections together:
    `VEX_STRING_SCOPES` and `VEX_STRING_CATEGORY` globals, and exposes a native
    language control with exactly the accepted required locales. Planned
    locales cannot appear as selectable published options before promotion.
+   Static wiring is not acceptance evidence by itself. The validator executes
+   the declared widget in a bounded child-process DOM, operates the real
+   control through every required non-English locale and back to English, and
+   observes the expected visible text, image alt text, ARIA labels, `<html
+   lang>`, and absence of runtime errors.
 6. Every required locale × declared theme × declared viewport cell exists as
    `docs/screenshots/{slug}-{locale}-{theme}-{viewport}.png` with a PNG
    signature, valid chunk boundaries, positive dimensions, IDAT/IEND chunks,
@@ -112,7 +117,10 @@ and Analysis retain their existing per-locale representative image while also
 preserving every exact matrix filename in their derived data. Page Health also
 consumes the institutional registry directly, so intentional absence from
 record placement and God-Script/FAB delivery is classified as an institutional
-invariant rather than reported as generic page debt.
+invariant rather than reported as generic page debt. The inverse is fail-closed:
+if an institutional page is ever delivered through `shell.js` or a generated
+God Script, Page Health marks it critical from the registry-derived surface
+classification even when every generic capability is otherwise present.
 
 `npm run pr-ready` includes the validator. A public page cannot silently appear
 outside the registry, inherit archive runtime, be auto-discovered back into the
