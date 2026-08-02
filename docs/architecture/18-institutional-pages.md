@@ -28,10 +28,13 @@ The registry has two states:
 | `reserved` | The slug, purpose, and intended contracts are held for a later bounded PR. | The page must not exist; the slug must also be absent from node, arc, generated-index, and God Script projections. |
 | `active` | A page has crossed the complete contract and evidence boundary. | `pages/{slug}.html`, every required locale bundle/key, and every declared screenshot cell must exist while archive/runtime exclusions continue to hold. |
 
-The initial reservations are `vextreme-home` and `vex-support`. A reservation
-is not implementation status, acceptance, payment activation, or a promise that
-all planned locales already exist. It prevents another page from silently
-claiming the same identity while the integration stack remains reviewable.
+The initial reservations were `vextreme-home` and `vex-support`.
+`vextreme-home` is now active with its English standalone page, foundation
+runtime, and six-cell render matrix; `vex-support` remains reserved for its
+separate support-domain row. A reservation is not implementation status,
+acceptance, payment activation, or a promise that all planned locales already
+exist. It prevents another page from silently claiming the same identity while
+the integration stack remains reviewable.
 
 Promote `state` from `reserved` to `active` in the same PR that adds the page.
 The validator rejects either half-state: a reserved entry with a page or any
@@ -77,7 +80,9 @@ active entry, proves these projections together:
 4. It contains at least one `data-i18n`, `data-i18n-alt`, or `data-i18n-aria`
    binding. Every visible and accessibility-bound key has non-empty text in
    `data/strings/compiled/scopes/{category}/{scope}.{locale}.json` for every
-   required locale.
+   required locale. The compiled English bundle is the copy authority: every
+   static English text, alt, and ARIA projection in the no-JavaScript page must
+   equal it, so duplicated markup cannot drift while generation stays green.
 5. When a required locale is not English, the page loads the registry's
    declared standalone localization widget, projects matching
    `VEX_STRING_SCOPES` and `VEX_STRING_CATEGORY` globals, and exposes a native
@@ -103,9 +108,10 @@ active entry, proves these projections together:
 The identity checks in items 8–9 also apply while a slug is reserved. A
 reservation is an identity claim, not only a promise about a future filename.
 
-The static markers are read-side projections, not competing sources. Their job
-is to make the page's contract perceivable from the file itself; the validator
-keeps them equal to the registry.
+The static markers and English values are read-side projections, not competing
+sources. Their job is to make the page complete without JavaScript and keep its
+contract perceivable from the file itself; the validator keeps the markers
+equal to the registry and the values equal to the compiled English bundle.
 
 `lib/audit-pages.js` derives the auto-discovery exclusions and record-page
 inventory from this registry. `lib/build-index.js`, `lib/build-archives.js`,
@@ -133,9 +139,12 @@ the rest of the repository.
 
 ## What this contract does not decide
 
-This chapter does not land a theme, runtime widget, home page, support page,
-translation, payment destination, funding amount, or financial state. Those are
-later integration rows with their own evidence.
+The registry contract by itself does not decide page copy, payment destination,
+funding amount, or financial state. The first implementation row now lands the
+foundation token family, shared progressive-enhancement widget, English home,
+and its complete English render evidence. The support page/domain and JA/ZH
+activation remain later integration rows with their own evidence; payment
+activation remains held until Victor verifies each destination.
 
 It also does not require separate GitHub accounts or separate operating systems
 to construct or review the work. Linux/Node CI is the deterministic build lane.

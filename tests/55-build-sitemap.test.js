@@ -17,10 +17,11 @@ test('BUILD-SITEMAP: output is content-deterministic and carries no build-clock 
   assert.doesNotMatch(first, /lastmod|generatedAt|builtAt/);
 });
 
-test('BUILD-SITEMAP: only existing content and utility pages are collected', () => {
+test('BUILD-SITEMAP: existing content, utility, and active institutional pages are collected', () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'vxg-sitemap-'));
   fs.mkdirSync(path.join(root, 'data'), { recursive: true });
   fs.mkdirSync(path.join(root, 'pages'), { recursive: true });
+  fs.mkdirSync(path.join(root, 'config'), { recursive: true });
   fs.writeFileSync(path.join(root, 'data', 'nodes.json'), JSON.stringify([
     { id: 2, slug: 'missing' },
     { id: 1, slug: 'present' },
@@ -28,10 +29,28 @@ test('BUILD-SITEMAP: only existing content and utility pages are collected', () 
   ]));
   fs.writeFileSync(path.join(root, 'pages', 'present.html'), '<html></html>');
   fs.writeFileSync(path.join(root, 'pages', 'archives.html'), '<html></html>');
+  fs.writeFileSync(path.join(root, 'pages', 'vextreme-home.html'), '<html></html>');
+  fs.writeFileSync(path.join(root, 'config', 'institutional-surfaces.json'), JSON.stringify({
+    surfaces: { 'vextreme-home': { state: 'active' }, 'vex-support': { state: 'reserved' } },
+  }));
   assert.deepEqual(collectLiveUrls(root), [
     'https://vgong24.github.io/Vextreme/pages/present.html',
     'https://vgong24.github.io/Vextreme/pages/archives.html',
+    'https://vgong24.github.io/Vextreme/pages/vextreme-home.html',
   ]);
+});
+
+test('BUILD-SITEMAP: a reserved institutional page is never advertised', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'vxg-sitemap-'));
+  fs.mkdirSync(path.join(root, 'data'), { recursive: true });
+  fs.mkdirSync(path.join(root, 'pages'), { recursive: true });
+  fs.mkdirSync(path.join(root, 'config'), { recursive: true });
+  fs.writeFileSync(path.join(root, 'data', 'nodes.json'), '[]\n');
+  fs.writeFileSync(path.join(root, 'pages', 'vex-support.html'), '<html></html>');
+  fs.writeFileSync(path.join(root, 'config', 'institutional-surfaces.json'), JSON.stringify({
+    surfaces: { 'vex-support': { state: 'reserved' } },
+  }));
+  assert.ok(!collectLiveUrls(root).some(url => url.endsWith('/vex-support.html')));
 });
 
 test('BUILD-SITEMAP integration: committed sitemap equals a fresh source projection', () => {

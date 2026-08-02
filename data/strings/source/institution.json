@@ -1,0 +1,253 @@
+{
+  "_meta": {
+    "scope": "institution",
+    "category": "system",
+    "description": "Accepted English strings for registry-owned institutional surfaces. Item 2/4 carries shared chrome and the Vextreme home only; support-domain strings and JA/ZH translations remain in their later integration rows.",
+    "keyConvention": "institution.{surface}.{element-type}.{semantic-name}; use common only for text shared by institutional surfaces.",
+    "translationPolicy": "English is the only required locale in this row. Planned JA/ZH values become selectable only after independently reviewed source strings, runtime behavior, and complete render evidence land together.",
+    "sourceCanon": "Adapted from PR #135's institutional source capsule and the accepted Vextreme culture/architecture record."
+  },
+  "institution.common.skip.content": {
+    "strings": {
+      "en": { "text": "Skip to main content" }
+    }
+  },
+  "institution.common.brand.wordmark": {
+    "strings": {
+      "en": { "text": "Vextreme" }
+    }
+  },
+  "institution.common.brand.home-label": {
+    "strings": {
+      "en": { "text": "Vextreme — return to the institutional home page" }
+    }
+  },
+  "institution.common.brand.descriptor": {
+    "strings": {
+      "en": { "text": "Institution" }
+    }
+  },
+  "institution.common.nav.archives": {
+    "strings": {
+      "en": { "text": "Archives" }
+    }
+  },
+  "institution.common.nav.terrain": {
+    "strings": {
+      "en": { "text": "Terrain" }
+    }
+  },
+  "institution.common.button.theme": {
+    "strings": {
+      "en": {
+        "text": "Theme",
+        "aria-label": "Switch between the dark and light institutional surface"
+      }
+    }
+  },
+  "institution.common.footer.site": {
+    "strings": {
+      "en": { "text": "vextreme24.com" }
+    }
+  },
+  "institution.common.footer.repo": {
+    "strings": {
+      "en": { "text": "Source on GitHub" }
+    }
+  },
+  "institution.common.footer.mark": {
+    "strings": {
+      "en": { "text": "VEXTREME · PUBLIC INSTITUTIONAL SURFACE · GITHUB PAGES" }
+    }
+  },
+  "institution.common.heading.alignments": {
+    "strings": {
+      "en": { "text": "Four alignments" }
+    }
+  },
+  "institution.common.description.alignments": {
+    "strings": {
+      "en": { "text": "These are equal anchors, not a maturity ladder. No one of them is reached by passing through the others." }
+    }
+  },
+  "institution.common.alignment.integrity.name": {
+    "strings": {
+      "en": { "text": "Integrity" }
+    }
+  },
+  "institution.common.alignment.integrity.body": {
+    "strings": {
+      "en": { "text": "What a system says and does should remain traceable to what is true." }
+    }
+  },
+  "institution.common.alignment.accountability.name": {
+    "strings": {
+      "en": { "text": "Accountability" }
+    }
+  },
+  "institution.common.alignment.accountability.body": {
+    "strings": {
+      "en": { "text": "Claims, decisions, effects, and obligations should have witnesses and return routes." }
+    }
+  },
+  "institution.common.alignment.authenticity.name": {
+    "strings": {
+      "en": { "text": "Authenticity" }
+    }
+  },
+  "institution.common.alignment.authenticity.body": {
+    "strings": {
+      "en": { "text": "People and AI should not be coerced into performing agreement, certainty, or identity they do not hold." }
+    }
+  },
+  "institution.common.alignment.resilience.name": {
+    "strings": {
+      "en": { "text": "Resilience" }
+    }
+  },
+  "institution.common.alignment.resilience.body": {
+    "strings": {
+      "en": { "text": "Memory, context, relationships, and work should survive interruption, handoff, pressure, and change." }
+    }
+  },
+  "institution.common.heading.lineage": {
+    "strings": {
+      "en": { "text": "Project lineage" }
+    }
+  },
+  "institution.common.description.lineage": {
+    "strings": {
+      "en": { "text": "One lineage, not three competing products. Vextreme makes the world and its reasons perceivable. Vextreme-SDK protects the deeper operational bridge. VexLife brings the pattern into a person's life." }
+    }
+  },
+  "institution.common.lineage.vextreme.name": {
+    "strings": {
+      "en": { "text": "Vextreme" }
+    }
+  },
+  "institution.common.lineage.vextreme.body": {
+    "strings": {
+      "en": { "text": "The public institutional world: culture, maps, archives, evidence, and structures that help humans and AI understand what exists, why it exists, and how it can continue." }
+    }
+  },
+  "institution.common.lineage.sdk.name": {
+    "strings": {
+      "en": { "text": "Vextreme-SDK" }
+    }
+  },
+  "institution.common.lineage.sdk.body": {
+    "strings": {
+      "en": { "text": "The protected operational bridge: commercial-depth implementation machinery. It is acknowledged here so the lineage is honest — it is not exposed, linked, or purchasable through public support." }
+    }
+  },
+  "institution.common.lineage.vexlife.name": {
+    "strings": {
+      "en": { "text": "VexLife" }
+    }
+  },
+  "institution.common.lineage.vexlife.body": {
+    "strings": {
+      "en": { "text": "The usable life ecosystem: a local-first companion intended to help a person carry memory, relationships, intent, decisions, projects, and continuity across everyday life." }
+    }
+  },
+  "institution.home.hero.eyebrow": {
+    "strings": {
+      "en": { "text": "The public institutional world" }
+    }
+  },
+  "institution.home.hero.heading": {
+    "strings": {
+      "en": { "text": "Hidden relationships, made perceivable." }
+    }
+  },
+  "institution.home.hero.lede": {
+    "strings": {
+      "en": { "text": "Vextreme turns the decisions, dependencies, and evidence behind complex work into interfaces people — and the AI working alongside them — can navigate, question, and continue safely." }
+    }
+  },
+  "institution.home.hero.archives-cta": {
+    "strings": {
+      "en": { "text": "Open the archive" }
+    }
+  },
+  "institution.home.hero.terrain-cta": {
+    "strings": {
+      "en": { "text": "Explore the terrain" }
+    }
+  },
+  "institution.home.what.heading": {
+    "strings": {
+      "en": { "text": "What Vextreme is" }
+    }
+  },
+  "institution.home.what.p1": {
+    "strings": {
+      "en": { "text": "Vextreme is not a website project. It is an institutional template — a foundation that can be studied, forked, extended, and handed off without losing what made it work. The goal is a system whose integrity is self-evident: a future reader, human or AI, should be able to answer \"why is this here?\" for every file they open, without needing a person to ask." }
+    }
+  },
+  "institution.home.what.p2": {
+    "strings": {
+      "en": { "text": "It prioritizes human value and the benefits of simplicity, play, and cost savings through process improvement — not through downsizing people or creating more dependency. What it holds is not a claim that its records are established fact. What it records is narrower and verifiable: that relationships, decisions, evidence, and processes can be made traceable, and that traceability survives handoff between people, tools, and AI." }
+    }
+  },
+  "institution.home.what.p3": {
+    "strings": {
+      "en": { "text": "This does not mean forcing people or AI into one approved identity. It means building conditions where truth can remain traceable, disagreement can remain visible, effects can return to accountable owners, and continuity does not require surrendering the self." }
+    }
+  },
+  "institution.home.entry.heading": {
+    "strings": {
+      "en": { "text": "Where to go from here" }
+    }
+  },
+  "institution.home.entry.archives.name": {
+    "strings": {
+      "en": { "text": "The archive" }
+    }
+  },
+  "institution.home.entry.archives.body": {
+    "strings": {
+      "en": { "text": "The preserved record, grouped into narrative arcs. This is the content the institution exists to keep perceivable." }
+    }
+  },
+  "institution.home.entry.terrain.name": {
+    "strings": {
+      "en": { "text": "The terrain map" }
+    }
+  },
+  "institution.home.entry.terrain.body": {
+    "strings": {
+      "en": { "text": "A navigable atlas of the system's own health, dependencies, and evidence — the institution reading itself." }
+    }
+  },
+  "institution.home.entry.support.name": {
+    "strings": {
+      "en": { "text": "Support Vextreme" }
+    }
+  },
+  "institution.home.entry.support.body": {
+    "strings": {
+      "en": { "text": "The public support surface is being prepared separately so its routes, boundaries, and stewardship claims can be reviewed without being smuggled into this home page." }
+    }
+  },
+  "institution.home.entry.support-state": {
+    "strings": {
+      "en": { "text": "Support page in preparation" }
+    }
+  },
+  "institution.home.entry.vexlife.name": {
+    "strings": {
+      "en": { "text": "VexLife" }
+    }
+  },
+  "institution.home.entry.vexlife.body": {
+    "strings": {
+      "en": { "text": "The life ecosystem growing out of this foundation. Its repository and working implementation are not a public destination yet, so this card deliberately links nowhere." }
+    }
+  },
+  "institution.home.entry.vexlife-state": {
+    "strings": {
+      "en": { "text": "Public home not released" }
+    }
+  }
+}

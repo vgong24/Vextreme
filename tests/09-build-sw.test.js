@@ -174,6 +174,16 @@ test('BUILD-SW: CORE_ASSETS includes index.json', () => {
   assert.ok(CORE_ASSETS.some(a => a.includes('index.json')), 'must include index.json');
 });
 
+test('BUILD-SW: CORE_ASSETS includes the shared institutional foundation', () => {
+  for (const asset of [
+    '/Vextreme/styles/vex-institutional.css',
+    '/Vextreme/widgets/vex-institutional.js',
+    '/Vextreme/data/strings/compiled/scopes/system/institution.en.json',
+  ]) {
+    assert.ok(CORE_ASSETS.includes(asset), `must include institutional asset: ${asset}`);
+  }
+});
+
 // ── 4. computeAssetFingerprint ───────────────────────────────────────────────
 
 test('BUILD-SW: asset fingerprint is stable for identical URL and bytes', () => {

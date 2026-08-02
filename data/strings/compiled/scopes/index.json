@@ -23,6 +23,11 @@
     "en": 32,
     "ja": 32
   },
+  "institution": {
+    "category": "system",
+    "path": "system/institution",
+    "en": 48
+  },
   "pages.claude-answers-the-doubt": {
     "category": "production",
     "path": "production/pages/claude-answers-the-doubt",

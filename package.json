@@ -10,7 +10,8 @@
     "branch-triage": "node lib/branch-triage.js",
     "current-work": "node lib/current-work.js",
     "work-coordination:check": "node lib/work-coordination.js --check-config",
-    "institutional-surfaces:check": "node lib/check-institutional-surfaces.js"
+    "institutional-surfaces:check": "node lib/check-institutional-surfaces.js",
+    "institutional-surfaces:screenshots": "node scripts/screenshot-institutional.js"
   },
   "engines": {
     "node": ">=18"

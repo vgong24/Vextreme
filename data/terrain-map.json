@@ -52,12 +52,12 @@
       "key": 3,
       "name": "OUTPUT",
       "sub": "generated artifacts: dist, pages, index, sw",
-      "count": 3,
+      "count": 4,
       "rect": {
         "x": 1370,
         "y": 40,
         "width": 300,
-        "height": 270
+        "height": 330
       }
     },
     {
@@ -113,6 +113,8 @@
         "lib/check-institutional-surfaces.js",
         "lib/audit-pages.js",
         "lib/build-page-health.js",
+        "lib/build-sitemap.js",
+        "scripts/screenshot-institutional.js",
         "tests/54-institutional-surfaces.test.js",
         "docs/architecture/18-institutional-pages.md"
       ],
@@ -643,10 +645,12 @@
       "stageName": "GENERATE",
       "x": 400,
       "y": 450,
-      "role": "generates index.html — the root landing page, arc hub links plus the 5 most recently added nodes",
+      "role": "generates index.html — the root archive landing page, active institutional-home route, Terrain/arc links, and 5 most recently added nodes",
       "reads": [
         "data/nodes.json",
         "data/arcs-v2.json",
+        "config/institutional-surfaces.json (active institution-home discovery)",
+        "lib/check-institutional-surfaces.js (surfacesByState)",
         "pages/*.html (existence check, per slug)"
       ],
       "writes": [
@@ -881,6 +885,8 @@
       "role": "generates sitemap.xml — lists only pages that actually exist, so crawlers never hit a 404",
       "reads": [
         "data/nodes.json",
+        "config/institutional-surfaces.json (active lifecycle projection)",
+        "lib/check-institutional-surfaces.js (surfacesByState)",
         "pages/*.html (existence check only, per slug)"
       ],
       "writes": [
@@ -1218,7 +1224,7 @@
       "stageName": "CHECK",
       "x": 1080,
       "y": 330,
-      "role": "fail-closed institutional-surface registry, identity-reservation, localization, and evidence validator",
+      "role": "fail-closed institutional-surface registry, identity-reservation, static-English, runtime-localization, and evidence validator",
       "reads": [
         "config/institutional-surfaces.json",
         "lib/vex-config.js (valid compiled-string categories)",
@@ -1239,6 +1245,9 @@
         "manual run: node lib/check-institutional-surfaces.js",
         "package.json (pr-ready and institutional-surfaces:check scripts)",
         "lib/audit-pages.js (registeredSurfaceSlugs feeds the shared discovery exclusion)",
+        "lib/build-index-page.js (surfacesByState selects the active institutional-home route)",
+        "lib/build-sitemap.js (surfacesByState selects publicly advertised institutional pages)",
+        "scripts/screenshot-institutional.js (surfacesByState selects the evidence matrix writer's active pages)",
         "tests/54-institutional-surfaces.test.js"
       ],
       "testedBy": [
@@ -1613,6 +1622,7 @@
         "lib/build-page-health.js",
         "lib/build-terrain-map.js",
         "lib/build-analysis-index.js",
+        "scripts/screenshot-institutional.js",
         "tests/36-build-analysis-index.test.js"
       ],
       "testedBy": [
@@ -1912,12 +1922,44 @@
       "auditorRank": 1
     },
     {
-      "id": "sw.js",
+      "id": "scripts/screenshot-institutional.js",
       "cluster": "root",
       "stage": 3,
       "stageName": "OUTPUT",
       "x": 1420,
       "y": 210,
+      "role": "registry-driven Playwright renderer for exact institutional locale/theme/viewport evidence cells",
+      "reads": [
+        "config/institutional-surfaces.json (active slugs and declared evidence matrix)",
+        "lib/check-institutional-surfaces.js (surfacesByState; no second lifecycle list)",
+        "lib/screenshot-evidence.js (canonical matrix filename)",
+        "pages/{active institutional slug}.html (rendered through a bounded local server)",
+        "styles and widgets loaded by each active page"
+      ],
+      "writes": [
+        "docs/screenshots/{slug}-{locale}-{theme}-{viewport}.png"
+      ],
+      "loadedBy": [
+        "package.json (institutional-surfaces:screenshots script)",
+        "manual visual-evidence regeneration before institutional review"
+      ],
+      "testedBy": [
+        "lib/check-institutional-surfaces.js (exact output-matrix completeness)",
+        "review-time browser execution and visual inspection"
+      ],
+      "debts": [],
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": false,
+      "auditorRank": 2
+    },
+    {
+      "id": "sw.js",
+      "cluster": "root",
+      "stage": 3,
+      "stageName": "OUTPUT",
+      "x": 1420,
+      "y": 270,
       "role": "Service Worker — pre-caches all God Scripts and core assets at install",
       "reads": [],
       "writes": [],
@@ -1931,7 +1973,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 2
+      "auditorRank": 3
     },
     {
       "id": "widgets/fab-analysis.js",
@@ -2116,6 +2158,10 @@
   "edges": [
     [
       "config/institutional-surfaces.json",
+      "lib/build-sitemap.js"
+    ],
+    [
+      "config/institutional-surfaces.json",
       "lib/check-institutional-surfaces.js"
     ],
     [
@@ -2249,6 +2295,10 @@
     [
       "lib/build-ecosystem-hub.js",
       "lib/build-index.js"
+    ],
+    [
+      "lib/build-index-page.js",
+      "config/institutional-surfaces.json"
     ],
     [
       "lib/build-index-page.js",
@@ -2420,6 +2470,18 @@
     ],
     [
       "lib/check-institutional-surfaces.js",
+      "lib/build-index-page.js"
+    ],
+    [
+      "lib/check-institutional-surfaces.js",
+      "lib/build-index.js"
+    ],
+    [
+      "lib/check-institutional-surfaces.js",
+      "lib/build-sitemap.js"
+    ],
+    [
+      "lib/check-institutional-surfaces.js",
       "lib/institutional-localization-runtime.js"
     ],
     [
@@ -2515,6 +2577,10 @@
       "lib/check-institutional-surfaces.js"
     ],
     [
+      "lib/screenshot-evidence.js",
+      "scripts/screenshot-institutional.js"
+    ],
+    [
       "lib/session-bootstrap.js",
       "lib/build-lattice-headers.js"
     ],
@@ -2593,6 +2659,14 @@
     [
       "lib/vex-config.js",
       "lib/validate-blueprint.js"
+    ],
+    [
+      "scripts/screenshot-institutional.js",
+      "config/institutional-surfaces.json"
+    ],
+    [
+      "scripts/screenshot-institutional.js",
+      "lib/check-institutional-surfaces.js"
     ],
     [
       "sw.js",
@@ -2723,6 +2797,65 @@
         "en": "docs/screenshots/vextreme-demo-en.png",
         "ja": "docs/screenshots/vextreme-demo-ja.png"
       }
+    },
+    {
+      "slug": "vextreme-home",
+      "title": "vextreme-home",
+      "arcKeys": [],
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/vextreme-home.html",
+      "screenshots": {
+        "en": "docs/screenshots/vextreme-home-en-foundation-1440.png"
+      },
+      "screenshotEvidence": [
+        {
+          "slug": "vextreme-home",
+          "locale": "en",
+          "theme": "foundation",
+          "viewport": 1440,
+          "kind": "matrix",
+          "path": "docs/screenshots/vextreme-home-en-foundation-1440.png"
+        },
+        {
+          "slug": "vextreme-home",
+          "locale": "en",
+          "theme": "foundation",
+          "viewport": 320,
+          "kind": "matrix",
+          "path": "docs/screenshots/vextreme-home-en-foundation-320.png"
+        },
+        {
+          "slug": "vextreme-home",
+          "locale": "en",
+          "theme": "foundation",
+          "viewport": 768,
+          "kind": "matrix",
+          "path": "docs/screenshots/vextreme-home-en-foundation-768.png"
+        },
+        {
+          "slug": "vextreme-home",
+          "locale": "en",
+          "theme": "foundation-light",
+          "viewport": 1440,
+          "kind": "matrix",
+          "path": "docs/screenshots/vextreme-home-en-foundation-light-1440.png"
+        },
+        {
+          "slug": "vextreme-home",
+          "locale": "en",
+          "theme": "foundation-light",
+          "viewport": 320,
+          "kind": "matrix",
+          "path": "docs/screenshots/vextreme-home-en-foundation-light-320.png"
+        },
+        {
+          "slug": "vextreme-home",
+          "locale": "en",
+          "theme": "foundation-light",
+          "viewport": 768,
+          "kind": "matrix",
+          "path": "docs/screenshots/vextreme-home-en-foundation-light-768.png"
+        }
+      ]
     },
     {
       "slug": "victor-methodology-presentation",

@@ -4,12 +4,14 @@ on:
   push:
     branches: [main]
     paths: &build_trigger_paths
+      - '.github/workflows/build-index.yml'
       - 'data/nodes.json'
       - 'data/arcs-v2.json'
       - 'data/viewmodels.json'
       - 'data/departments.json'
       - 'data/strings/**'
       - 'data/status/**'
+      - 'config/institutional-surfaces.json'
       - 'config/lessons/**'
       - 'lib/strings-compile.js'
       - 'lib/build-arc-bundles.js'
@@ -24,6 +26,8 @@ on:
       - 'lib/build-vextreme.js'
       - 'lib/build-sw.js'
       - 'lib/build-status.js'
+      - 'lib/check-institutional-surfaces.js'
+      - 'lib/screenshot-evidence.js'
       - 'lib/build-ecosystem-hub.js'
       - 'lib/build-lessons.js'
       - 'lib/build-roles.js'
@@ -38,6 +42,7 @@ on:
       - 'widgets/**'
       - 'data/specimens.json'
       - 'pages/**'
+      - 'styles/**'
   # Session 022 continued: also runs on the PR itself, not just after merge to
   # main. Without this, a raw file move (like wip/*.html -> pages/*.html) left
   # data/index.json / pages/archives.html / data/status.json stale until

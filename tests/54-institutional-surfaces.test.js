@@ -22,6 +22,60 @@ const { discoverOrphanNodes } = require('../lib/auto-discover-nodes');
 
 const ROOT = path.join(__dirname, '..');
 
+function themeVariables(css, theme) {
+  const variables = {};
+  for (const match of css.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
+    if (!match[1].includes(`[data-theme="${theme}"]`)) continue;
+    for (const declaration of match[2].matchAll(/--([a-z0-9-]+)\s*:\s*([^;]+);/gi)) {
+      variables[declaration[1]] = declaration[2].trim();
+    }
+  }
+  return variables;
+}
+
+function resolveCssValue(value, variables, seen = new Set()) {
+  const variable = String(value).match(/^var\(--([a-z0-9-]+)\)$/i);
+  if (!variable) return String(value).trim();
+  assert.ok(!seen.has(variable[1]), `circular CSS variable: ${variable[1]}`);
+  assert.ok(Object.hasOwn(variables, variable[1]), `missing CSS variable: ${variable[1]}`);
+  const nextSeen = new Set(seen);
+  nextSeen.add(variable[1]);
+  return resolveCssValue(variables[variable[1]], variables, nextSeen);
+}
+
+function cssColorToLinearRgb(value) {
+  const hex = value.match(/^#([0-9a-f]{6})$/i);
+  if (hex) {
+    return hex[1].match(/.{2}/g).map(channel => {
+      const srgb = Number.parseInt(channel, 16) / 255;
+      return srgb <= 0.04045 ? srgb / 12.92 : ((srgb + 0.055) / 1.055) ** 2.4;
+    });
+  }
+
+  const oklch = value.match(/^oklch\(([\d.]+)%\s+([\d.]+)\s+([\d.]+)\)$/i);
+  assert.ok(oklch, `unsupported test color: ${value}`);
+  const lightness = Number(oklch[1]) / 100;
+  const chroma = Number(oklch[2]);
+  const hue = Number(oklch[3]) * Math.PI / 180;
+  const a = chroma * Math.cos(hue);
+  const b = chroma * Math.sin(hue);
+  const l = (lightness + 0.3963377774 * a + 0.2158037573 * b) ** 3;
+  const m = (lightness - 0.1055613458 * a - 0.0638541728 * b) ** 3;
+  const s = (lightness - 0.0894841775 * a - 1.2914855480 * b) ** 3;
+  return [
+    4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s,
+    -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s,
+    -0.0041960863 * l - 0.7034186147 * m + 1.7076147010 * s,
+  ].map(channel => Math.max(0, Math.min(1, channel)));
+}
+
+function contrastRatio(foreground, background) {
+  const luminance = rgb => 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];
+  const lighter = Math.max(luminance(foreground), luminance(background));
+  const darker = Math.min(luminance(foreground), luminance(background));
+  return (lighter + 0.05) / (darker + 0.05);
+}
+
 function entry(overrides = {}) {
   return {
     state: 'reserved',
@@ -60,9 +114,9 @@ function activeHtml() {
     '<!doctype html>',
     '<html data-vex-surface="institutional" data-vex-string-category="system" data-vex-string-scope="institution" data-vex-theme-family="foundation" data-theme="foundation">',
     '<body>',
-    '<h1 data-i18n="institution.test">Test</h1>',
-    '<img alt="Test image" data-i18n-alt="institution.test.alt">',
-    '<button aria-label="Test action" data-i18n-aria="institution.test.aria">Test</button>',
+    '<h1 data-i18n="institution.test">Test en</h1>',
+    '<img alt="Test image en" data-i18n-alt="institution.test.alt">',
+    '<button aria-label="Test action en" data-i18n-aria="institution.test.aria">Test</button>',
     '</body>',
     '</html>',
     '',
@@ -74,9 +128,9 @@ function activeLocalizedHtml({ category = 'system', scope = 'institution', local
     '<!doctype html>',
     '<html data-vex-surface="institutional" data-vex-string-category="system" data-vex-string-scope="institution" data-vex-theme-family="foundation" data-theme="foundation">',
     '<body>',
-    '<h1 data-i18n="institution.test">Test</h1>',
-    '<img alt="Test image" data-i18n-alt="institution.test.alt">',
-    '<button aria-label="Test action" data-i18n-aria="institution.test.aria">Test</button>',
+    '<h1 data-i18n="institution.test">Test en</h1>',
+    '<img alt="Test image en" data-i18n-alt="institution.test.alt">',
+    '<button aria-label="Test action en" data-i18n-aria="institution.test.aria">Test</button>',
     `<select data-vex-lang-select>${locales.map(locale => `<option value="${locale}">${locale}</option>`).join('')}</select>`,
     `<script>window.VEX_STRING_SCOPES = ['${scope}']; window.VEX_STRING_CATEGORY = '${category}';</script>`,
     '<script src="../widgets/vex-institutional.js"></script>',
@@ -169,16 +223,19 @@ function writeActiveAcceptance(root, slug, surfaceEntry) {
   }
 }
 
-test('INSTITUTIONAL-SURFACES: real reservations are valid and deterministic', () => {
+test('INSTITUTIONAL-SURFACES: the home is active while support remains reserved', () => {
   assert.deepEqual(validateRegistry(registry, ROOT), []);
-  assert.deepEqual(surfacesByState(registry, 'reserved').map(surface => surface.slug), [
-    'vex-support',
-    'vextreme-home',
-  ]);
+  assert.deepEqual(surfacesByState(registry, 'active').map(surface => surface.slug), ['vextreme-home']);
+  assert.deepEqual(surfacesByState(registry, 'reserved').map(surface => surface.slug), ['vex-support']);
   assert.deepEqual(Object.keys(institutionalSurfaceExclusions()), ['vex-support', 'vextreme-home']);
   assert.ok(AUTO_DISCOVERY_EXCLUSIONS['vex-support']);
   assert.ok(AUTO_DISCOVERY_EXCLUSIONS['vextreme-home']);
   assert.ok(!getRecordPageSlugs().includes('vex-support'));
+  assert.ok(!getRecordPageSlugs().includes('vextreme-home'));
+  assert.ok(!fs.existsSync(path.join(ROOT, 'pages', 'vex-support.html')));
+  const rootIndex = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+  assert.match(rootIndex, /href="https:\/\/vgong24\.github\.io\/Vextreme\/pages\/vextreme-home\.html">About Vextreme<\/a>/);
+  assert.doesNotMatch(rootIndex, /vex-support\.html/);
 });
 
 test('INSTITUTIONAL-SURFACES: unsafe identity and permissive runtime fail closed', () => {
@@ -309,6 +366,41 @@ test('INSTITUTIONAL-SURFACES: accessibility bindings and string category are act
     { schemaVersion: SCHEMA_VERSION, surfaces: { 'vex-locale': badLocale } },
     makeRoot()
   ).some(issue => issue.check === 'unsupported-locale'));
+});
+
+test('INSTITUTIONAL-SURFACES: static English text, alt, and ARIA must equal the compiled bundle', () => {
+  const root = makeRoot();
+  const activeEntry = entry({ state: 'active' });
+  writeActiveAcceptance(root, 'vex-test', activeEntry);
+  fs.writeFileSync(
+    path.join(root, 'pages', 'vex-test.html'),
+    activeHtml()
+      .replace('Test en</h1>', 'Stale text</h1>')
+      .replace('alt="Test image en"', 'alt="Stale alt"')
+      .replace('aria-label="Test action en"', 'aria-label="Stale action"')
+  );
+  const projectionIssues = validateRegistry(
+    { schemaVersion: SCHEMA_VERSION, surfaces: { 'vex-test': activeEntry } },
+    root
+  ).filter(issue => issue.check === 'static-english-projection');
+  assert.equal(projectionIssues.length, 3);
+  for (const kind of ['text', 'alt', 'aria']) {
+    assert.ok(projectionIssues.some(issue => issue.message.includes(` ${kind} value`)), `expected ${kind} drift`);
+  }
+});
+
+test('INSTITUTIONAL-SURFACES: pending status text meets WCAG AA contrast in both foundation themes', () => {
+  const designCss = fs.readFileSync(path.join(ROOT, 'styles', 'design-system.css'), 'utf8');
+  const componentCss = fs.readFileSync(path.join(ROOT, 'styles', 'vex-institutional.css'), 'utf8');
+  assert.match(componentCss, /\.vex-badge-pending\s*\{[^}]*color:\s*var\(--status-caution\)/s);
+
+  for (const theme of ['foundation', 'foundation-light']) {
+    const variables = themeVariables(designCss, theme);
+    const foreground = cssColorToLinearRgb(resolveCssValue(variables['status-caution'], variables));
+    const background = cssColorToLinearRgb(resolveCssValue(variables['bg-surface'], variables));
+    const ratio = contrastRatio(foreground, background);
+    assert.ok(ratio >= 4.5, `${theme} pending text contrast ${ratio.toFixed(3)}:1 is below 4.5:1`);
+  }
 });
 
 test('INSTITUTIONAL-SURFACES: multi-locale activation executes the declared runtime path', () => {
