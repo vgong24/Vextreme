@@ -28,12 +28,12 @@
       "key": 1.5,
       "name": "UTILITIES",
       "sub": "other lib/ helpers, config, tracing",
-      "count": 20,
+      "count": 21,
       "rect": {
         "x": 690,
         "y": 40,
         "width": 300,
-        "height": 1290
+        "height": 1350
       }
     },
     {
@@ -112,6 +112,7 @@
       "loadedBy": [
         "lib/check-institutional-surfaces.js",
         "lib/audit-pages.js",
+        "lib/build-page-health.js",
         "tests/54-institutional-surfaces.test.js",
         "docs/architecture/18-institutional-pages.md"
       ],
@@ -500,14 +501,14 @@
       "stageName": "GENERATE",
       "x": 400,
       "y": 990,
-      "role": "Analysis Mode data-layer write side — composes trace-string-usage.js and build-terrain-map.js findScreenshots() into one browser-fetchable artifact",
+      "role": "Analysis Mode data-layer write side — composes trace-string usage and shared screenshot evidence into one browser-fetchable artifact",
       "reads": [
         "data/strings/compiled/manifest.json (per-key language coverage)",
         "data/index.json (supportedLangs — the language set to compare coverage against)",
         "pages/*.html, wip/*.html (data-i18n usage scan, via trace-string-usage.js scanUsages)",
-        "docs/screenshots/*.png (directory listing, via build-terrain-map.js findScreenshots)",
+        "docs/screenshots/*.png (directory listing, parsed through lib/screenshot-evidence.js)",
         "lib/trace-string-usage.js (scanUsages, traceKey, tracePage, findOrphanUsages, findUnusedKeys — reused directly, not duplicated)",
-        "lib/build-terrain-map.js (findScreenshots — reused directly)",
+        "lib/screenshot-evidence.js (representative screenshots plus exact matrix evidence records)",
         "lib/audit-pages.js (getPageSlugs — real page files, for the per-page index)"
       ],
       "writes": [
@@ -784,6 +785,8 @@
         "data/analysis-index.json (analysis indexing)",
         "dist/*.js (God Script FAB and analysis delivery)",
         "docs/screenshots/*.png (evidence presence)",
+        "config/institutional-surfaces.json (institutional page classification and intentional record-runtime exclusions)",
+        "lib/screenshot-evidence.js (shared legacy and locale/theme/viewport evidence discovery)",
         "lib/audit-pages.js (page inventory and God Script wiring)",
         "lib/audit-nav.js (navigation classification)",
         "lib/audit-fab.js (theme ownership and opt-out classification)"
@@ -1014,6 +1017,7 @@
         "data/nodes.json (real page titles/arcKeys, for both the screens layer and the arcs/pages content layer)",
         "data/arcs-v2.json (real arc priority/title, for the arcs/pages content layer's column order and labels)",
         "lib/audit-pages.js (getRecordPageSlugs — real record-page files excluding registry-owned institutional surfaces)",
+        "lib/screenshot-evidence.js (shared representative screenshots and exact matrix evidence records)",
         "data/page-health.json (shared page capability and health projection)",
         "docs/screenshots/*.png (directory listing — which pages have a real per-language screenshot)"
       ],
@@ -1024,8 +1028,7 @@
         "manual run: node lib/build-terrain-map.js",
         ".github/workflows/build-index.yml (CI)",
         "pages/terrain-map.html (live fetch of its output)",
-        "tests/28-build-terrain-map.test.js",
-        "lib/build-analysis-index.js (reuses findScreenshots)"
+        "tests/28-build-terrain-map.test.js"
       ],
       "testedBy": [
         "tests/28-build-terrain-map.test.js",
@@ -1213,6 +1216,7 @@
       "reads": [
         "config/institutional-surfaces.json",
         "lib/vex-config.js (valid compiled-string categories)",
+        "lib/screenshot-evidence.js (canonical locale/theme/viewport evidence filename)",
         "pages/*.html (existence, visible/accessibility i18n bindings, and active projection markers, per registered slug)",
         "data/nodes.json (every registered institutional slug must remain outside archive indexing)",
         "data/arcs-v2.json (every registered institutional slug must remain outside narrative arcs)",
@@ -1560,12 +1564,41 @@
       "auditorRank": 15
     },
     {
-      "id": "lib/session-bootstrap.js",
+      "id": "lib/screenshot-evidence.js",
       "cluster": "lib",
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
       "y": 810,
+      "role": "shared screenshot-evidence filename parser and deterministic projection helper",
+      "reads": [],
+      "writes": [],
+      "loadedBy": [
+        "lib/check-institutional-surfaces.js",
+        "lib/build-page-health.js",
+        "lib/build-terrain-map.js",
+        "lib/build-analysis-index.js",
+        "tests/36-build-analysis-index.test.js"
+      ],
+      "testedBy": [
+        "tests/28-build-terrain-map.test.js",
+        "tests/36-build-analysis-index.test.js",
+        "tests/44-page-health.test.js",
+        "tests/54-institutional-surfaces.test.js"
+      ],
+      "debts": [],
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": false,
+      "auditorRank": 16
+    },
+    {
+      "id": "lib/session-bootstrap.js",
+      "cluster": "lib",
+      "stage": 1.5,
+      "stageName": "UTILITIES",
+      "x": 740,
+      "y": 870,
       "role": "one-shot session-start state report — read-only, gathers what would otherwise be several manual checks into one command",
       "reads": [
         "docs/continuity/INDEX.md (last logged session, batch registry)",
@@ -1594,7 +1627,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 16
+      "auditorRank": 17
     },
     {
       "id": "lib/strings-check.js",
@@ -1602,7 +1635,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 870,
+      "y": 930,
       "role": "strings pipeline integrity check — runs before compile, catches missing EN text, stale translations, and orphaned keys",
       "reads": [
         "data/strings/source/**/*.json",
@@ -1633,7 +1666,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 930,
+      "y": 990,
       "role": "strings pipeline compiler — reads source JSON, writes compiled bundles and manifest",
       "reads": [
         "data/strings/source/**/*.json",
@@ -1667,7 +1700,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 990,
+      "y": 1050,
       "role": "pure semantic-history state for Terrain Journey commits and browser Back/Forward restoration",
       "reads": [],
       "writes": [],
@@ -1682,7 +1715,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 17
+      "auditorRank": 18
     },
     {
       "id": "lib/trace-string-usage.js",
@@ -1690,7 +1723,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1050,
+      "y": 1110,
       "role": "string reverse-tracer — data-i18n usage in pages/wip HTML cross-referenced against the compiled manifest",
       "reads": [
         "pages/*.html (data-i18n attribute scan)",
@@ -1712,7 +1745,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 18
+      "auditorRank": 19
     },
     {
       "id": "lib/validate-blueprint.js",
@@ -1720,7 +1753,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1110,
+      "y": 1170,
       "role": "blueprint consistency validator — confirms every id in blueprint.json has a matching config file and vex-config constant",
       "reads": [
         "blueprint.json",
@@ -1752,7 +1785,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1170,
+      "y": 1230,
       "role": "constants hub — pure declarations, no I/O",
       "reads": [],
       "writes": [],
@@ -1792,7 +1825,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1230,
+      "y": 1290,
       "role": "browser arc nav runtime — reads index.json at load time, renders prev/next/position into #arcNavMount",
       "reads": [
         "data/index.json via CDN (slugMap, arcMap, arcMeta)",
@@ -1815,7 +1848,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 19
+      "auditorRank": 20
     },
     {
       "id": "pages/terrain-map.html",
@@ -2135,6 +2168,10 @@
       "lib/build-index.js"
     ],
     [
+      "lib/build-analysis-index.js",
+      "lib/build-terrain-map.js"
+    ],
+    [
       "lib/build-arc-bundles.js",
       "data/arcs-v2.json"
     ],
@@ -2224,11 +2261,19 @@
     ],
     [
       "lib/build-page-health.js",
+      "config/institutional-surfaces.json"
+    ],
+    [
+      "lib/build-page-health.js",
       "lib/audit-nav.js"
     ],
     [
       "lib/build-page-health.js",
       "lib/build-index.js"
+    ],
+    [
+      "lib/build-page-health.js",
+      "lib/screenshot-evidence.js"
     ],
     [
       "lib/build-roles-page.js",
@@ -2269,10 +2314,6 @@
     [
       "lib/build-terrain-map.js",
       "data/arcs-v2.json"
-    ],
-    [
-      "lib/build-terrain-map.js",
-      "lib/build-analysis-index.js"
     ],
     [
       "lib/build-terrain-map.js",
@@ -2413,6 +2454,22 @@
     [
       "lib/logger.js",
       "lib/strings-compile.js"
+    ],
+    [
+      "lib/screenshot-evidence.js",
+      "config/institutional-surfaces.json"
+    ],
+    [
+      "lib/screenshot-evidence.js",
+      "lib/build-analysis-index.js"
+    ],
+    [
+      "lib/screenshot-evidence.js",
+      "lib/build-terrain-map.js"
+    ],
+    [
+      "lib/screenshot-evidence.js",
+      "lib/check-institutional-surfaces.js"
     ],
     [
       "lib/session-bootstrap.js",
@@ -5214,7 +5271,8 @@
           "gaps": [
             "fab",
             "uncurated",
-            "identity"
+            "identity",
+            "screenshot"
           ],
           "blockers": []
         },
@@ -5227,9 +5285,7 @@
         "identityKeys": 0,
         "analysisIndexed": true,
         "analysisControl": false,
-        "evidenceLanguages": [
-          "lenses"
-        ],
+        "evidenceLanguages": [],
         "metaDescription": ""
       },
       "curated": false
@@ -5938,7 +5994,8 @@
           "state": "attention",
           "gaps": [
             "uncurated",
-            "identity"
+            "identity",
+            "screenshot"
           ],
           "blockers": []
         },
@@ -5951,11 +6008,7 @@
         "identityKeys": 0,
         "analysisIndexed": true,
         "analysisControl": false,
-        "evidenceLanguages": [
-          "dark",
-          "overview",
-          "search"
-        ],
+        "evidenceLanguages": [],
         "metaDescription": "Organizational health map of the Vextreme repo — file lattice, page capability status, and content-node graph in one interactive view."
       },
       "curated": false

@@ -5,7 +5,7 @@
  *
  * Tests for lib/build-analysis-index.js — Analysis Mode's data-layer write
  * side (docs/architecture/15-analysis-mode.md, Phase A). Composes
- * lib/trace-string-usage.js and lib/build-terrain-map.js's findScreenshots()
+ * lib/trace-string-usage.js and lib/screenshot-evidence.js
  * rather than duplicating their logic, so most coverage here is about the
  * composition (missing-language computation, element/page assembly), not
  * re-testing usage-scanning or screenshot-discovery themselves.
@@ -30,6 +30,7 @@ const {
   buildPageIndex,
   buildAnalysisIndex,
 } = require('../lib/build-analysis-index');
+const { findScreenshots, findScreenshotEvidence } = require('../lib/screenshot-evidence');
 
 const ROOT = path.join(__dirname, '..');
 
@@ -79,14 +80,46 @@ test('buildPageIndex: attaches keys, orphans, and screenshots per real slug', ()
   const usages   = { 'pages.foo.title': ['pages/foo.html'], 'pages.foo.ghost': ['pages/foo.html'] };
   const manifest = { 'pages.foo.title': { enHash: 'x', langs: ['en'] } };
   const screenshotsBySlug = { foo: { en: 'docs/screenshots/foo-en.png' } };
-  const pages = buildPageIndex(usages, manifest, screenshotsBySlug, ['foo', 'bar']);
+  const screenshotEvidenceBySlug = {
+    foo: [{
+      slug: 'foo', locale: 'en', theme: 'foundation', viewport: 320,
+      kind: 'matrix', path: 'docs/screenshots/foo-en-foundation-320.png',
+    }],
+  };
+  const pages = buildPageIndex(usages, manifest, screenshotsBySlug, ['foo', 'bar'], screenshotEvidenceBySlug);
 
   assert.deepEqual(pages.foo.keys, ['pages.foo.ghost', 'pages.foo.title']);
   assert.deepEqual(pages.foo.orphanKeys, ['pages.foo.ghost']);
   assert.deepEqual(pages.foo.screenshots, { en: 'docs/screenshots/foo-en.png' });
+  assert.equal(pages.foo.screenshotEvidence[0].path, 'docs/screenshots/foo-en-foundation-320.png');
 
   assert.deepEqual(pages.bar.keys, []);
   assert.deepEqual(pages.bar.screenshots, {});
+  assert.equal(pages.bar.screenshotEvidence, undefined);
+});
+
+test('buildAnalysisIndex: matrix-only evidence remains reachable by representative and exact filename', () => {
+  const files = [
+    'vex-test-en-foundation-320.png',
+    'vex-test-en-foundation-1440.png',
+  ];
+  const result = buildAnalysisIndex(
+    {},
+    {},
+    findScreenshots(files),
+    ['vex-test'],
+    ['en'],
+    findScreenshotEvidence(files)
+  );
+
+  assert.equal(
+    result.pages['vex-test'].screenshots.en,
+    'docs/screenshots/vex-test-en-foundation-1440.png'
+  );
+  assert.deepEqual(
+    result.pages['vex-test'].screenshotEvidence.map(record => record.path),
+    files.slice().sort().map(file => `docs/screenshots/${file}`)
+  );
 });
 
 // ── 4. buildAnalysisIndex ─────────────────────────────────────────────────────

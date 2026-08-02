@@ -8,7 +8,7 @@
     "sorted": 4,
     "withFab": 30,
     "withIdentity": 9,
-    "withScreenshots": 10,
+    "withScreenshots": 8,
     "withMetaDescription": 5
   },
   "pages": {
@@ -674,9 +674,7 @@
         "control": false
       },
       "evidence": {
-        "screenshotLanguages": [
-          "lenses"
-        ]
+        "screenshotLanguages": []
       },
       "discovery": {
         "metaDescription": ""
@@ -687,7 +685,8 @@
         "gaps": [
           "fab",
           "uncurated",
-          "identity"
+          "identity",
+          "screenshot"
         ]
       }
     },
@@ -1808,11 +1807,7 @@
         "control": false
       },
       "evidence": {
-        "screenshotLanguages": [
-          "dark",
-          "overview",
-          "search"
-        ]
+        "screenshotLanguages": []
       },
       "discovery": {
         "metaDescription": "Organizational health map of the Vextreme repo — file lattice, page capability status, and content-node graph in one interactive view."
@@ -1822,7 +1817,8 @@
         "blockers": [],
         "gaps": [
           "uncurated",
-          "identity"
+          "identity",
+          "screenshot"
         ]
       }
     },

@@ -12,7 +12,9 @@
       "runtime": {
         "mode": "standalone",
         "godScript": false,
-        "shell": false
+        "shell": false,
+        "localizationLoader": "widgets/vex-institutional.js",
+        "localizationControl": "data-vex-lang-select"
       },
       "strings": {
         "category": "system",
@@ -58,7 +60,9 @@
       "runtime": {
         "mode": "standalone",
         "godScript": false,
-        "shell": false
+        "shell": false,
+        "localizationLoader": "widgets/vex-institutional.js",
+        "localizationControl": "data-vex-lang-select"
       },
       "strings": {
         "category": "system",

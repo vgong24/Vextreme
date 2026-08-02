@@ -36,9 +36,10 @@ This resolves the tension both lanes were circling without weakening either boun
 - `lib/trace-string-usage.js` already computes reverse usage (`scanUsages`, `traceKey`,
   `tracePage`, `findOrphanUsages`, `findUnusedKeys`) — real forward/reverse mapping,
   today, CLI/stdout-only.
-- `lib/build-terrain-map.js`'s `findScreenshots()` already indexes real per-slug,
-  per-language screenshots (`docs/screenshots/{slug}-{lang}.png`, written by
-  `scripts/screenshot-page.js`) — real screenshot-to-content mapping, today.
+- `lib/screenshot-evidence.js` indexes both real per-slug/per-locale screenshots
+  (`docs/screenshots/{slug}-{locale}.png`) and institutional
+  locale/theme/viewport evidence. It supplies one deterministic representative
+  per locale for the existing UI while preserving every exact matrix filename.
 - `lib/strings-export.js` already exports per-scope CSV batches — real export, today,
   CLI-only.
 
@@ -77,7 +78,7 @@ L1-L7 rounds. Each phase is independently mergeable and independently useful.
 
 `lib/build-analysis-index.js`: a new build script, pure-function-tested, that composes
 the outputs of `trace-string-usage.js` (reused, not duplicated — `scanUsages`, `traceKey`,
-`findOrphanUsages`, `findUnusedKeys`) and `build-terrain-map.js`'s `findScreenshots()` into
+`findOrphanUsages`, `findUnusedKeys`) and `screenshot-evidence.js`'s shared projections into
 one browser-fetchable artifact, `data/analysis-index.json`: every key's canonical id,
 present/missing languages, which page(s) reference it, and per-slug screenshot
 availability. Same CQRS shape as `data/terrain-map.json` (write-side script, deterministic,

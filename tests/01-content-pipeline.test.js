@@ -23,6 +23,7 @@
 
 const { test } = require('node:test');
 const assert   = require('node:assert/strict');
+const { execFileSync } = require('node:child_process');
 const fs       = require('fs');
 const path     = require('path');
 const { buildSlugMap, buildArcMap, buildArcMeta, parseDate, findDuplicateSlugs } = require('../lib/build-index');
@@ -109,6 +110,23 @@ test('INVARIANT: dateISO is derived at build time and stored in the index — th
   assert.equal(index.slugMap['alpha'].dateISO, '2026-01-01');
   assert.equal(index.slugMap['beta'].dateISO,  '2026-01-15');
   assert.equal(index.slugMap['explicit-first'].dateISO, null); // no date — expected null, not undefined or ''
+});
+
+test('INVARIANT: calendar-date projection is identical across UTC, Pacific, and Tokyo build machines', () => {
+  const script = [
+    "const { buildSlugMap } = require('./lib/build-index');",
+    "const nodes = [{ slug: 'alpha', date: 'Jan 1, 2026', arcKeys: [] }];",
+    "process.stdout.write(buildSlugMap(nodes, {}).alpha.dateISO);",
+  ].join(' ');
+
+  for (const timezone of ['UTC', 'America/Los_Angeles', 'Asia/Tokyo']) {
+    const output = execFileSync(process.execPath, ['-e', script], {
+      cwd: path.join(__dirname, '..'),
+      env: { ...process.env, TZ: timezone },
+      encoding: 'utf8',
+    });
+    assert.equal(output, '2026-01-01', `date projection drifted in ${timezone}`);
+  }
 });
 
 test('INVARIANT: _meta key in arcs-v2.json must not produce an arc entry — the browser would try to render a nav row for a schema object', () => {

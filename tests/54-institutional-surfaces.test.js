@@ -28,7 +28,13 @@ function entry(overrides = {}) {
     kind: 'institutional',
     purpose: 'test-surface',
     archive: { indexed: false, arcMembership: false },
-    runtime: { mode: 'standalone', godScript: false, shell: false },
+    runtime: {
+      mode: 'standalone',
+      godScript: false,
+      shell: false,
+      localizationLoader: 'widgets/vex-institutional.js',
+      localizationControl: 'data-vex-lang-select',
+    },
     strings: { category: 'system', scope: 'institution', requiredLocales: ['en'], plannedLocales: ['ja'] },
     theme: { family: 'foundation', variants: ['foundation', 'foundation-light'] },
     evidence: { viewports: [320, 768, 1440], themes: ['foundation', 'foundation-light'] },
@@ -40,7 +46,7 @@ function entry(overrides = {}) {
 function makeRoot() {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'vxg-institutional-'));
   for (const dir of [
-    'config', 'pages', 'data', 'dist',
+    'config', 'pages', 'data', 'dist', 'widgets',
     'data/strings/compiled/scopes/system', 'docs/screenshots',
   ]) fs.mkdirSync(path.join(root, dir), { recursive: true });
   fs.writeFileSync(path.join(root, 'data', 'nodes.json'), '[]\n');
@@ -57,6 +63,23 @@ function activeHtml() {
     '<h1 data-i18n="institution.test">Test</h1>',
     '<img alt="Test image" data-i18n-alt="institution.test.alt">',
     '<button aria-label="Test action" data-i18n-aria="institution.test.aria">Test</button>',
+    '</body>',
+    '</html>',
+    '',
+  ].join('\n');
+}
+
+function activeLocalizedHtml({ category = 'system', scope = 'institution', locales = ['en', 'ja'] } = {}) {
+  return [
+    '<!doctype html>',
+    '<html data-vex-surface="institutional" data-vex-string-category="system" data-vex-string-scope="institution" data-vex-theme-family="foundation" data-theme="foundation">',
+    '<body>',
+    '<h1 data-i18n="institution.test">Test</h1>',
+    '<img alt="Test image" data-i18n-alt="institution.test.alt">',
+    '<button aria-label="Test action" data-i18n-aria="institution.test.aria">Test</button>',
+    `<select data-vex-lang-select>${locales.map(locale => `<option value="${locale}">${locale}</option>`).join('')}</select>`,
+    `<script>window.VEX_STRING_SCOPES = ['${scope}']; window.VEX_STRING_CATEGORY = '${category}';</script>`,
+    '<script src="../widgets/vex-institutional.js"></script>',
     '</body>',
     '</html>',
     '',
@@ -226,6 +249,37 @@ test('INSTITUTIONAL-SURFACES: accessibility bindings and string category are act
     { schemaVersion: SCHEMA_VERSION, surfaces: { 'vex-category': badCategory } },
     makeRoot()
   ).some(issue => issue.check === 'string-category'));
+
+  const badLocale = entry({ strings: { ...activeEntry.strings, requiredLocales: ['en', 'xx'], plannedLocales: [] } });
+  assert.ok(validateRegistry(
+    { schemaVersion: SCHEMA_VERSION, surfaces: { 'vex-locale': badLocale } },
+    makeRoot()
+  ).some(issue => issue.check === 'unsupported-locale'));
+});
+
+test('INSTITUTIONAL-SURFACES: multi-locale activation requires a reachable runtime path', () => {
+  const root = makeRoot();
+  const activeEntry = entry({
+    state: 'active',
+    strings: { category: 'system', scope: 'institution', requiredLocales: ['en', 'ja'], plannedLocales: [] },
+  });
+  const active = { schemaVersion: SCHEMA_VERSION, surfaces: { 'vex-test': activeEntry } };
+  fs.writeFileSync(path.join(root, 'pages', 'vex-test.html'), activeHtml());
+  writeActiveAcceptance(root, 'vex-test', activeEntry);
+
+  const absentChecks = new Set(validateRegistry(active, root).map(issue => issue.check));
+  for (const expected of ['locale-loader', 'locale-loader-source', 'locale-scope-global', 'locale-category-global', 'locale-control']) {
+    assert.ok(absentChecks.has(expected), `expected ${expected}`);
+  }
+
+  fs.writeFileSync(path.join(root, 'widgets', 'vex-institutional.js'), '// fixture\n');
+  fs.writeFileSync(path.join(root, 'pages', 'vex-test.html'), activeLocalizedHtml({ category: 'production', locales: ['en'] }));
+  const wrongChecks = new Set(validateRegistry(active, root).map(issue => issue.check));
+  assert.ok(wrongChecks.has('locale-category-global'));
+  assert.ok(wrongChecks.has('locale-control-option'));
+
+  fs.writeFileSync(path.join(root, 'pages', 'vex-test.html'), activeLocalizedHtml());
+  assert.deepEqual(validateRegistry(active, root), []);
 });
 
 test('INSTITUTIONAL-SURFACES: evidence requires every variant and a complete PNG structure', () => {

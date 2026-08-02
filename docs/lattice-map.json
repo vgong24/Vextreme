@@ -1290,6 +1290,8 @@
         "data/analysis-index.json (analysis indexing)",
         "dist/*.js (God Script FAB and analysis delivery)",
         "docs/screenshots/*.png (evidence presence)",
+        "config/institutional-surfaces.json (institutional page classification and intentional record-runtime exclusions)",
+        "lib/screenshot-evidence.js (shared legacy and locale/theme/viewport evidence discovery)",
         "lib/audit-pages.js (page inventory and God Script wiring)",
         "lib/audit-nav.js (navigation classification)",
         "lib/audit-fab.js (theme ownership and opt-out classification)"
@@ -1322,6 +1324,34 @@
         ]
       }
     },
+    "lib/screenshot-evidence.js": {
+      "role": "shared screenshot-evidence filename parser and deterministic projection helper",
+      "context": "Institutional Surface Integration 1/4 review repair. Legacy visual evidence uses {slug}-{locale}.png while institutional activation requires {slug}-{locale}-{theme}-{viewport}.png. This pure utility owns both shapes so Page Health, Terrain, Analysis, and activation validation cannot accept a file that another projection silently drops. Representative per-locale paths preserve existing UI contracts; matrix records preserve every exact filename for review and reverse traversal.",
+      "reads": [],
+      "writes": [],
+      "loadedBy": [
+        "lib/check-institutional-surfaces.js",
+        "lib/build-page-health.js",
+        "lib/build-terrain-map.js",
+        "lib/build-analysis-index.js",
+        "tests/36-build-analysis-index.test.js"
+      ],
+      "testedBy": [
+        "tests/28-build-terrain-map.test.js",
+        "tests/36-build-analysis-index.test.js",
+        "tests/44-page-health.test.js",
+        "tests/54-institutional-surfaces.test.js"
+      ],
+      "changeMap": {
+        "legacy or matrix filename grammar changed": [
+          "lib/check-institutional-surfaces.js (activation evidence path)",
+          "lib/build-page-health.js (locale and exact-file health evidence)",
+          "lib/build-terrain-map.js (representative screen plus exact evidence records)",
+          "lib/build-analysis-index.js (per-page evidence projection)",
+          "tests/28, tests/44, and tests/54"
+        ]
+      }
+    },
     "lib/build-terrain-map.js": {
       "role": "terrain-map write side — computes layout, health, edges, and real screenshots into one deterministic JSON",
       "context": "Session 025 generalized the terrain-map pilot (an Artifact over 14 hand-picked nodes shown to Victor as a proof of concept) into a real, self-updating feature. Same CQRS split as data/status.json -> pages/ecosystem-hub.html: this script is the write side, pages/terrain-map.html is hand-authored once and live-fetches its output. Adding a lattice node, a page, or a screenshot never requires touching the HTML — only rerunning this generator, wired into CI the same as every other dashboard's data source. Session 025 (continued) replaced the folder-grid layout with a lifecycle-stage layout (source -> generate -> utilities -> check -> output -> runtime) and added two role-lens tags per node (engineerFocus / auditorFocus), after a round of Artifact POCs tested a fractal zoom-level UI (system -> stage -> node, each level snapping to its own full framing on entry, exiting always stepping back one level) against this exact shape. The stage/lens rules are naming-pattern heuristics over real fields, explicitly not a designed taxonomy — each node's lens tags render visibly in the UI so the heuristic can be challenged, not hidden behind a silent classification. Session 025 (continued) again: added computeExecutionOrder (real within-stage ordering sourced from .github/workflows/build-index.yml's literal step sequence and lib/session-bootstrap.js's own check order, not alphabetical) and per-node auditorRank (an alternate within-stage ordering by worst-status-first — the read side swaps to it, recomputing position, only while the auditor lens is active). Also added a second, parallel content layer (layoutArcs/buildContentPages -> the `arcs`/`pages` output fields): the same column-per-group technique applied to data/nodes.json grouped by arc instead of lifecycle stage, ordered within an arc by each node's own real `id` field (curation order) rather than alphabetically. A curated node with no matching pages/*.html file is marked live:false, status:'critical' rather than implied to be a real page — most of this repo's 91 curated nodes are unported v1 content, and that is real, common state to show, not an edge case to hide. A real pages/*.html file with no nodes.json entry lands in a distinct 'uncurated' arc column instead of being silently absent.",
@@ -1333,6 +1363,7 @@
         "data/nodes.json (real page titles/arcKeys, for both the screens layer and the arcs/pages content layer)",
         "data/arcs-v2.json (real arc priority/title, for the arcs/pages content layer's column order and labels)",
         "lib/audit-pages.js (getRecordPageSlugs — real record-page files excluding registry-owned institutional surfaces)",
+        "lib/screenshot-evidence.js (shared representative screenshots and exact matrix evidence records)",
         "data/page-health.json (shared page capability and health projection)",
         "docs/screenshots/*.png (directory listing — which pages have a real per-language screenshot)"
       ],
@@ -1343,8 +1374,7 @@
         "manual run: node lib/build-terrain-map.js",
         ".github/workflows/build-index.yml (CI)",
         "pages/terrain-map.html (live fetch of its output)",
-        "tests/28-build-terrain-map.test.js",
-        "lib/build-analysis-index.js (reuses findScreenshots)"
+        "tests/28-build-terrain-map.test.js"
       ],
       "testedBy": [
         "tests/28-build-terrain-map.test.js",
@@ -1361,9 +1391,9 @@
         "data/arcs-v2.json's priority field or key naming convention changed": [
           "layoutArcs() here sorts arc columns by priority then key — a differently-shaped priority value silently reorders or misgroups the content layer"
         ],
-        "screenshot filename convention ({slug}-{lang}.png) changed": [
-          "findScreenshots() here — the regex encodes that exact shape",
-          "scripts/screenshot-page.js (writes that exact shape)"
+        "screenshot filename convention changed": [
+          "lib/screenshot-evidence.js (canonical parser for legacy and institutional matrix names)",
+          "scripts/screenshot-page.js and the later institutional harness (writers must emit an accepted shape)"
         ]
       }
     },
@@ -1494,12 +1524,13 @@
     },
     "config/institutional-surfaces.json": {
       "role": "authored registry for institutional surface identity, lifecycle, runtime exclusions, string scope, theme variants, and required evidence",
-      "context": "Institutional Surface Integration 1/4. PR #135 proved that vextreme-home and vex-support are a real second page class, but encoded their identity across page-local exceptions, duplicated lists, runtime assumptions, and an oversized acceptance surface. This registry holds the two slugs as reservations before any public page exists. A reservation owns the slug across page, node, arc, generated-index, and God Script projections. Promotion to active additionally requires the bound production locale bundles and the declared locale/theme/viewport PNG evidence matrix. Planned locales remain distinct from required locales so future translation is visible without being misreported as accepted or published.",
+      "context": "Institutional Surface Integration 1/4. PR #135 proved that vextreme-home and vex-support are a real second page class, but encoded their identity across page-local exceptions, duplicated lists, runtime assumptions, and an oversized acceptance surface. This registry holds the two slugs as reservations before any public page exists. A reservation owns the slug across page, node, arc, generated-index, and God Script projections. Promotion to active additionally requires bound locale bundles at the entry's declared string category/scope, a reachable runtime path for every non-English required locale, and the declared locale/theme/viewport PNG evidence matrix. Planned locales remain distinct from required locales so future translation is visible without being misreported as accepted or published.",
       "reads": [],
       "writes": [],
       "loadedBy": [
         "lib/check-institutional-surfaces.js",
         "lib/audit-pages.js",
+        "lib/build-page-health.js",
         "tests/54-institutional-surfaces.test.js",
         "docs/architecture/18-institutional-pages.md"
       ],
@@ -1525,6 +1556,7 @@
       "reads": [
         "config/institutional-surfaces.json",
         "lib/vex-config.js (valid compiled-string categories)",
+        "lib/screenshot-evidence.js (canonical locale/theme/viewport evidence filename)",
         "pages/*.html (existence, visible/accessibility i18n bindings, and active projection markers, per registered slug)",
         "data/nodes.json (every registered institutional slug must remain outside archive indexing)",
         "data/arcs-v2.json (every registered institutional slug must remain outside narrative arcs)",
@@ -1927,15 +1959,15 @@
       }
     },
     "lib/build-analysis-index.js": {
-      "role": "Analysis Mode data-layer write side — composes trace-string-usage.js and build-terrain-map.js findScreenshots() into one browser-fetchable artifact",
-      "context": "docs/architecture/15-analysis-mode.md Phase A. Victor asked (2026-07-10) for a live, searchable, exportable interface over real canonical IDs, real forward/reverse mapping, and real screenshot evidence, surfaced through a FAB panel — not a synthetic demo fixture. This resolves that by reusing three already-real, already-built pieces of this repo (compiled string bundles as a canonical-ID system, trace-string-usage.js as the reverse index, build-terrain-map.js findScreenshots() as the screenshot index) instead of duplicating their logic, and writing one deterministic JSON artifact Phase B (widgets/fab-analysis.js, not yet built) will fetch. Same CQRS shape as data/terrain-map.json: write-side script, deterministic, no live compute, nothing renders yet.",
+      "role": "Analysis Mode data-layer write side — composes trace-string usage and shared screenshot evidence into one browser-fetchable artifact",
+      "context": "docs/architecture/15-analysis-mode.md Phase A. Victor asked (2026-07-10) for a live, searchable, exportable interface over real canonical IDs, real forward/reverse mapping, and real screenshot evidence, surfaced through a FAB panel — not a synthetic demo fixture. This resolves that by reusing the compiled string registry, trace-string-usage.js, and the shared screenshot-evidence parser instead of duplicating their logic, and writing one deterministic JSON artifact the FAB panel fetches. Legacy screenshots remain one representative path per locale for the existing UI; institutional matrix evidence also preserves every exact filename.",
       "reads": [
         "data/strings/compiled/manifest.json (per-key language coverage)",
         "data/index.json (supportedLangs — the language set to compare coverage against)",
         "pages/*.html, wip/*.html (data-i18n usage scan, via trace-string-usage.js scanUsages)",
-        "docs/screenshots/*.png (directory listing, via build-terrain-map.js findScreenshots)",
+        "docs/screenshots/*.png (directory listing, parsed through lib/screenshot-evidence.js)",
         "lib/trace-string-usage.js (scanUsages, traceKey, tracePage, findOrphanUsages, findUnusedKeys — reused directly, not duplicated)",
-        "lib/build-terrain-map.js (findScreenshots — reused directly)",
+        "lib/screenshot-evidence.js (representative screenshots plus exact matrix evidence records)",
         "lib/audit-pages.js (getPageSlugs — real page files, for the per-page index)"
       ],
       "writes": [
@@ -1953,8 +1985,8 @@
         "lib/trace-string-usage.js exported function signatures changed (scanUsages/traceKey/tracePage/findOrphanUsages/findUnusedKeys)": [
           "buildElementIndex()/buildPageIndex() here call these directly"
         ],
-        "lib/build-terrain-map.js findScreenshots() shape changed": [
-          "the I/O section here passes its output straight into buildPageIndex()"
+        "lib/screenshot-evidence.js projection shape changed": [
+          "buildPageIndex() preserves representative per-locale paths and exact matrix records"
         ],
         "data/analysis-index.json schema changed (supportedLangs/elements/pages/summary shape)": [
           "widgets/fab-analysis.js (Phase B, not yet built — will be the first live consumer)",

@@ -46,7 +46,7 @@ Each slug owns these exact dimensions:
 
 - semantic `purpose`, without user-facing copy in the registry;
 - archive and arc exclusions;
-- standalone runtime boundary;
+- standalone runtime boundary plus the declared localization loader and control;
 - canonical string category/scope plus required and planned locales;
 - theme family and variants, with evidence for every variant;
 - the viewport/theme evidence matrix;
@@ -59,7 +59,9 @@ The registry deliberately distinguishes `requiredLocales` from
 `plannedLocales`. English can be required for the first accepted surface while
 JA/ZH remain visible future projections. This prevents “planned” from being
 misreported as “published,” and lets translation arrive through its own review
-boundary.
+boundary. Every required or planned locale must already exist in
+`lib/vex-config.js`'s `Language` registry; inventing a bundle filename is not
+enough to make a locale reachable.
 
 ---
 
@@ -76,17 +78,22 @@ active entry, proves these projections together:
    binding. Every visible and accessibility-bound key has non-empty text in
    `data/strings/compiled/scopes/{category}/{scope}.{locale}.json` for every
    required locale.
-5. Every required locale × declared theme × declared viewport cell exists as
+5. When a required locale is not English, the page loads the registry's
+   declared standalone localization widget, projects matching
+   `VEX_STRING_SCOPES` and `VEX_STRING_CATEGORY` globals, and exposes a native
+   language control with exactly the accepted required locales. Planned
+   locales cannot appear as selectable published options before promotion.
+6. Every required locale × declared theme × declared viewport cell exists as
    `docs/screenshots/{slug}-{locale}-{theme}-{viewport}.png` with a PNG
    signature, valid chunk boundaries, positive dimensions, IDAT/IEND chunks,
    and valid chunk CRCs. Structural validity does not replace reviewer
    inspection of what the image actually shows.
-6. It does not load `shell.js` or a God Script.
-7. No `dist/vextreme-{slug}.js` artifact exists.
-8. The slug is absent from `data/nodes.json`, every arc in
+7. It does not load `shell.js` or a God Script.
+8. No `dist/vextreme-{slug}.js` artifact exists.
+9. The slug is absent from `data/nodes.json`, every arc in
    `data/arcs-v2.json`, and the generated content maps in `data/index.json`.
 
-The identity checks in items 7–8 also apply while a slug is reserved. A
+The identity checks in items 8–9 also apply while a slug is reserved. A
 reservation is an identity claim, not only a promise about a future filename.
 
 The static markers are read-side projections, not competing sources. Their job
@@ -98,6 +105,14 @@ inventory from this registry. `lib/build-index.js`, `lib/build-archives.js`,
 `lib/check-key-alignment.js`, and the Terrain content projection consume that
 derived boundary. The static `SKIP_PAGES` list remains only for generated/dev
 pages; institutional slugs are not copied into it.
+
+`lib/screenshot-evidence.js` owns both the legacy `{slug}-{locale}.png` name
+and the institutional locale/theme/viewport matrix name. Page Health, Terrain,
+and Analysis retain their existing per-locale representative image while also
+preserving every exact matrix filename in their derived data. Page Health also
+consumes the institutional registry directly, so intentional absence from
+record placement and God-Script/FAB delivery is classified as an institutional
+invariant rather than reported as generic page debt.
 
 `npm run pr-ready` includes the validator. A public page cannot silently appear
 outside the registry, inherit archive runtime, be auto-discovered back into the
