@@ -351,6 +351,31 @@ test('INSTITUTIONAL-SURFACES: comment-shaped attribute data cannot hide the GitH
   assert.ok(validateRegistry(active, root).some(issue => issue.check === 'support-route-candidate-held'));
 });
 
+test('INSTITUTIONAL-SURFACES: route-root attribute cannot hide the GitHub Sponsors candidateUrl', () => {
+  const candidateUrl = 'https://github.com/sponsors/vgong24';
+  const hostileProjection = [
+    '<article',
+    '  data-vex-route="support.test"',
+    '  data-candidate="https&colon;//github.com/sponsors/vgong24">',
+    '  <span data-vex-route-action aria-disabled="true">Held</span>',
+    '</article>',
+  ].join('\n');
+  const { root, active } = supportRouteFixture(hostileProjection, { candidateUrl });
+  assert.ok(validateRegistry(active, root).some(issue => issue.check === 'support-route-candidate-held'));
+});
+
+test('INSTITUTIONAL-SURFACES: quoted closing tag cannot truncate the GitHub Sponsors candidateUrl', () => {
+  const candidateUrl = 'https://github.com/sponsors/vgong24';
+  const hostileProjection = [
+    '<article data-vex-route="support.test">',
+    '  <span data-vex-route-action aria-disabled="true">Held</span>',
+    '  <span data-candidate="</article><!--https&colon;//github.com/sponsors/vgong24-->"></span>',
+    '</article>',
+  ].join('\n');
+  const { root, active } = supportRouteFixture(hostileProjection, { candidateUrl });
+  assert.ok(validateRegistry(active, root).some(issue => issue.check === 'support-route-candidate-held'));
+});
+
 test('INSTITUTIONAL-SURFACES: unsafe identity and permissive runtime fail closed', () => {
   const broken = {
     schemaVersion: SCHEMA_VERSION,
