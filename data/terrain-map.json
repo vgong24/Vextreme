@@ -1508,7 +1508,7 @@
       "stageName": "UTILITIES",
       "x": 740,
       "y": 630,
-      "role": "bounded behavioral probe for institutional localization loaders — operates the declared control and observes visible, alt, and ARIA translations",
+      "role": "bounded behavioral probe for transactional institutional localization — exercises precedence, hostile failures, rapid intent changes, and atomic visible/alt/ARIA application",
       "reads": [
         "declared institutional localization widget source (provided by lib/check-institutional-surfaces.js)",
         "required compiled locale bundles (provided by lib/check-institutional-surfaces.js)",
@@ -1518,7 +1518,8 @@
         "stdout JSON only in --probe-child mode"
       ],
       "loadedBy": [
-        "lib/check-institutional-surfaces.js"
+        "lib/check-institutional-surfaces.js",
+        "tests/54-institutional-surfaces.test.js"
       ],
       "testedBy": [
         "tests/54-institutional-surfaces.test.js"
@@ -2795,7 +2796,9 @@
       "arcKeys": [],
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/vex-support.html",
       "screenshots": {
-        "en": "docs/screenshots/vex-support-en-foundation-1440.png"
+        "en": "docs/screenshots/vex-support-en-foundation-1440.png",
+        "ja": "docs/screenshots/vex-support-ja-foundation-1440.png",
+        "zh": "docs/screenshots/vex-support-zh-foundation-1440.png"
       },
       "screenshotEvidence": [
         {
@@ -2845,6 +2848,102 @@
           "viewport": 768,
           "kind": "matrix",
           "path": "docs/screenshots/vex-support-en-foundation-light-768.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "ja",
+          "theme": "foundation",
+          "viewport": 1440,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-ja-foundation-1440.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "ja",
+          "theme": "foundation",
+          "viewport": 320,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-ja-foundation-320.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "ja",
+          "theme": "foundation",
+          "viewport": 768,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-ja-foundation-768.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "ja",
+          "theme": "foundation-light",
+          "viewport": 1440,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-ja-foundation-light-1440.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "ja",
+          "theme": "foundation-light",
+          "viewport": 320,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-ja-foundation-light-320.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "ja",
+          "theme": "foundation-light",
+          "viewport": 768,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-ja-foundation-light-768.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "zh",
+          "theme": "foundation",
+          "viewport": 1440,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-zh-foundation-1440.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "zh",
+          "theme": "foundation",
+          "viewport": 320,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-zh-foundation-320.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "zh",
+          "theme": "foundation",
+          "viewport": 768,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-zh-foundation-768.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "zh",
+          "theme": "foundation-light",
+          "viewport": 1440,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-zh-foundation-light-1440.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "zh",
+          "theme": "foundation-light",
+          "viewport": 320,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-zh-foundation-light-320.png"
+        },
+        {
+          "slug": "vex-support",
+          "locale": "zh",
+          "theme": "foundation-light",
+          "viewport": 768,
+          "kind": "matrix",
+          "path": "docs/screenshots/vex-support-zh-foundation-light-768.png"
         }
       ]
     },
@@ -2864,7 +2963,9 @@
       "arcKeys": [],
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/vextreme-home.html",
       "screenshots": {
-        "en": "docs/screenshots/vextreme-home-en-foundation-1440.png"
+        "en": "docs/screenshots/vextreme-home-en-foundation-1440.png",
+        "ja": "docs/screenshots/vextreme-home-ja-foundation-1440.png",
+        "zh": "docs/screenshots/vextreme-home-zh-foundation-1440.png"
       },
       "screenshotEvidence": [
         {
@@ -2914,6 +3015,102 @@
           "viewport": 768,
           "kind": "matrix",
           "path": "docs/screenshots/vextreme-home-en-foundation-light-768.png"
+        },
+        {
+          "slug": "vextreme-home",
+          "locale": "ja",
+          "theme": "foundation",
+          "viewport": 1440,
+          "kind": "matrix",
+          "path": "docs/screenshots/vextreme-home-ja-foundation-1440.png"
+        },
+        {
+          "slug": "vextreme-home",
+          "locale": "ja",
+          "theme": "foundation",
+          "viewport": 320,
+          "kind": "matrix",
+          "path": "docs/screenshots/vextreme-home-ja-foundation-320.png"
+        },
+        {
+          "slug": "vextreme-home",
+          "locale": "ja",
+          "theme": "foundation",
+          "viewport": 768,
+          "kind": "matrix",
+          "path": "docs/screenshots/vextreme-home-ja-foundation-768.png"
+        },
+        {
+          "slug": "vextreme-home",
+          "locale": "ja",
+          "theme": "foundation-light",
+          "viewport": 1440,
+          "kind": "matrix",
+          "path": "docs/screenshots/vextreme-home-ja-foundation-light-1440.png"
+        },
+        {
+          "slug": "vextreme-home",
+          "locale": "ja",
+          "theme": "foundation-light",
+          "viewport": 320,
+          "kind": "matrix",
+          "path": "docs/screenshots/vextreme-home-ja-foundation-light-320.png"
+        },
+        {
+          "slug": "vextreme-home",
+          "locale": "ja",
+          "theme": "foundation-light",
+          "viewport": 768,
+          "kind": "matrix",
+          "path": "docs/screenshots/vextreme-home-ja-foundation-light-768.png"
+        },
+        {
+          "slug": "vextreme-home",
+          "locale": "zh",
+          "theme": "foundation",
+          "viewport": 1440,
+          "kind": "matrix",
+          "path": "docs/screenshots/vextreme-home-zh-foundation-1440.png"
+        },
+        {
+          "slug": "vextreme-home",
+          "locale": "zh",
+          "theme": "foundation",
+          "viewport": 320,
+          "kind": "matrix",
+          "path": "docs/screenshots/vextreme-home-zh-foundation-320.png"
+        },
+        {
+          "slug": "vextreme-home",
+          "locale": "zh",
+          "theme": "foundation",
+          "viewport": 768,
+          "kind": "matrix",
+          "path": "docs/screenshots/vextreme-home-zh-foundation-768.png"
+        },
+        {
+          "slug": "vextreme-home",
+          "locale": "zh",
+          "theme": "foundation-light",
+          "viewport": 1440,
+          "kind": "matrix",
+          "path": "docs/screenshots/vextreme-home-zh-foundation-light-1440.png"
+        },
+        {
+          "slug": "vextreme-home",
+          "locale": "zh",
+          "theme": "foundation-light",
+          "viewport": 320,
+          "kind": "matrix",
+          "path": "docs/screenshots/vextreme-home-zh-foundation-light-320.png"
+        },
+        {
+          "slug": "vextreme-home",
+          "locale": "zh",
+          "theme": "foundation-light",
+          "viewport": 768,
+          "kind": "matrix",
+          "path": "docs/screenshots/vextreme-home-zh-foundation-light-768.png"
         }
       ]
     },

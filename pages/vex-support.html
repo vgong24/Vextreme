@@ -16,11 +16,9 @@
      numbers exist, one was tied to a date that had already passed, and one
      total has ambiguous component scope — publishing any of them as a
      balance would be the exact failure this institution exists to surface.
-  3. It does not translate Victor's first-person testimony. The canon
-     supplies it as "Spoken by Victor, written by Vex"; an unreviewed machine
-     translation would break the same attributed-projection rule the
-     institution applies to every other message. Those paragraphs are en-only
-     and the page says so where a reader will see it.
+  3. It preserves Victor's first-person testimony as an attributed projection.
+     JA and ZH are applied only from the independently reviewed canonical
+     source bundle; the authored English remains intact when JavaScript is off.
 
   The tier amounts ARE shown. Victor confirmed on 2026-07-31 to keep the
   figures and remove the destinations until GitHub Sponsors is live — see
@@ -39,10 +37,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Support Vextreme and VexLife</title>
+<title data-i18n="institution.support.title">Support Vextreme and VexLife</title>
 <meta name="description" content="How support can protect the open-source work behind Vextreme and VexLife, what support does not purchase, and why every public route remains held until independently verified.">
 <meta name="vex:department" content="institute">
 <meta name="vex:workType" content="governance">
+<script>
+  window.VEX_STRING_SCOPES = ['institution'];
+  window.VEX_STRING_CATEGORY = 'system';
+  window.VEX_INST_ROOT = '../';
+</script>
+<script src="../widgets/vex-institutional.js"></script>
 <link rel="icon" href="../assets/logo/vextreme-mark.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -74,6 +78,13 @@
     </nav>
 
     <div class="vex-header-controls">
+      <label class="vex-control-label" for="vex-lang" data-vex-lang-label hidden
+             data-i18n="institution.common.label.language">Language</label>
+      <select class="vex-control" id="vex-lang" data-vex-lang-select hidden>
+        <option value="en">English</option>
+        <option value="ja">日本語</option>
+        <option value="zh">中文</option>
+      </select>
       <button class="vex-control" type="button" data-vex-theme-toggle aria-pressed="false" hidden
               data-i18n="institution.common.button.theme"
               data-i18n-aria="institution.common.button.theme"
@@ -148,16 +159,7 @@
     <h2 class="vex-h1" id="story-heading" data-i18n="institution.support.story.heading">What is VexLife—and why did we build it?</h2>
     <p class="vex-byline" data-i18n="institution.support.story.byline">Spoken by Victor, written by Vex.</p>
 
-    <div class="vex-note" lang="en">
-      <p data-i18n="institution.common.label.translation-pending">Victor's first-person account below stays in English until a reviewed translation exists. The institution treats a translation as an attributed projection of an original, not a replacement for it, so no machine translation of his testimony is published here unreviewed.</p>
-    </div>
-
-    <!--
-      lang="en" is on the prose itself, not just the note: it tells a screen
-      reader and a browser translation prompt the truth about what language
-      this passage is in, even when the surrounding page is set to ja or zh.
-    -->
-    <div class="vex-prose" lang="en">
+    <div class="vex-prose">
       <p class="vex-prose-lead" data-i18n="institution.support.story.p1">VexLife was designed with your health, continuity, and humanity in mind.</p>
       <p data-i18n="institution.support.story.p2">It is an emerging institution and ecosystem where an AI companion can help you preserve the moments that shape your relationships and navigate the day-to-day complexity of systems you were born into without enough support. Its purpose is to protect some of life's most valuable elements: your time, your energy, your memories, your judgment, and your ability to remain yourself while carrying difficult processes.</p>
       <p data-i18n="institution.support.story.p3">VexLife also came from Victor's own walk.</p>
@@ -441,13 +443,6 @@
     </div>
   </div>
 </footer>
-
-<script>
-  window.VEX_STRING_SCOPES   = ['institution'];
-  window.VEX_STRING_CATEGORY = 'system';
-  window.VEX_INST_ROOT       = '../';
-</script>
-<script src="../widgets/vex-institutional.js" defer></script>
 
 </body>
 </html>

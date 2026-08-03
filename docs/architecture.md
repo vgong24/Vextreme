@@ -2458,13 +2458,14 @@ The registry has two states:
 | `active` | A page has crossed the complete contract and evidence boundary. | `pages/{slug}.html`, every required locale bundle/key, and every declared screenshot cell must exist while archive/runtime exclusions continue to hold. |
 
 The initial reservations were `vextreme-home` and `vex-support`. Both are now
-active English standalone pages with the foundation runtime and a complete
-six-cell render matrix per page. Support activation does not activate a payment
-destination: its separate route contract requires every URL to remain null and
-every page action inert in this row. A reservation is not implementation status,
-acceptance, payment activation, or a promise that all planned locales already
-exist. It prevents another page from silently claiming the same identity while
-the integration stack remains reviewable.
+active English/Japanese/Simplified-Chinese standalone pages with the foundation
+runtime and a complete eighteen-cell locale/theme/viewport matrix per page.
+Support activation does not activate a payment destination: its separate route
+contract requires every URL to remain null and every page action inert in this
+row. A reservation is not implementation status, acceptance, payment
+activation, or a promise that planned locales already exist. It prevents
+another page from silently claiming the same identity while the integration
+stack remains reviewable.
 
 Promote `state` from `reserved` to `active` in the same PR that adds the page.
 The validator rejects either half-state: a reserved entry with a page or any
@@ -2493,10 +2494,13 @@ The page path is not stored. It remains derived from the slug as
 `pages/{slug}.html`, preserving the repository's canonical addressing model.
 
 The registry deliberately distinguishes `requiredLocales` from
-`plannedLocales`. English can be required for the first accepted surface while
-JA/ZH remain visible future projections. This prevents “planned” from being
-misreported as “published,” and lets translation arrive through its own review
-boundary. Every required or planned locale must already exist in
+`plannedLocales`. Earlier rows required English while JA/ZH remained visible
+future projections. Item 4/4 promoted both locales only after separate
+`TRANSLATION_CLEAR_JA` and `TRANSLATION_CLEAR_ZH` receipts bound every value to
+the same exact source blob and SHA-256; both surfaces now require `en`, `ja`,
+and `zh`, with no planned remainder. This prevents “planned” from being
+misreported as “published,” and keeps later translation changes behind their
+own exact-source review boundary. Every required or planned locale must exist in
 `lib/vex-config.js`'s `Language` registry; inventing a bundle filename is not
 enough to make a locale reachable.
 
@@ -2520,17 +2524,32 @@ active entry, proves these projections together:
    The entry's root-discovery label key must also resolve in every required
    locale bundle before the surface can be advertised.
 5. When a required locale is not English, the page loads the registry's
-   declared standalone localization widget, projects matching
-   `VEX_STRING_SCOPES` and `VEX_STRING_CATEGORY` globals, and exposes a native
-   language control with exactly the accepted required locales. Planned
-   locales cannot appear as selectable published options before promotion.
+   declared standalone localization widget synchronously in `<head>` before
+   the first stylesheet, projects matching `VEX_STRING_SCOPES` and
+   `VEX_STRING_CATEGORY` globals, and exposes exactly one labelled native
+   selector with the autonyms `English`, `日本語`, and `中文`. Planned locales
+   cannot appear as selectable published options before promotion. URL choice
+   has precedence over valid storage, which has precedence over English; an
+   invalid URL value resolves to English and is never persisted.
+
    Static wiring is not acceptance evidence by itself. The validator executes
    the declared widget in a bounded child-process DOM, operates the real
    control through every required non-English locale and back to English, and
    observes one successfully completed bundle parse for every required locale,
    the expected visible text, image alt text, ARIA labels, `<html lang>`, and
-   absence of runtime errors. A loader that hard-codes accepted values or only
-   starts a request without consuming its response fails activation.
+   absence of runtime errors. Hostile probes also require fetch, parse,
+   timeout, and missing-key failures to preserve the last fully applied locale;
+   a rapid `ja → zh → en` sequence must keep the latest intent. A loader that
+   hard-codes accepted values, only starts a request without consuming its
+   response, partially applies a bundle, or permits a stale response to win
+   fails activation.
+
+   The authored English page remains the no-JavaScript state. A valid stored or
+   URL locale may add a pre-paint hold, but the widget removes it only after one
+   full bundle transaction or releases it to intact English within 2,000 ms.
+   Content, `<html lang>`, selector state, cross-page locale links, URL, and
+   storage change together only after validation, preventing mixed-language
+   rendering and wrong-locale first paint.
 6. When `runtime.supportRoutes` names a route contract, it must belong to the
    `open-source-support` purpose, use `vextreme.support-routes/v1`, and match
    the page's `data-vex-route` identities exactly. This support-domain row
@@ -2593,13 +2612,12 @@ the rest of the repository.
 ## What this contract does not decide
 
 The registry contract by itself does not decide payment destination, verified
-financial balance, or commercial engagement endpoint. The accepted
-implementation rows now carry the foundation token family, shared
-progressive-enhancement widget, English home, English support domain, and their
-complete render evidence. JA/ZH activation remains a later row with its own
-reviewed strings, controls, runtime proof, and evidence. Payment activation
-remains held until Victor verifies each destination and the fail-closed route
-contract is deliberately advanced in a separate review.
+financial balance, or commercial engagement endpoint. The implementation
+stack carries the foundation token family, the shared
+progressive-enhancement widget, localized home and support domains, and their
+complete 36-cell render evidence. Payment activation remains held until Victor
+verifies each destination and the fail-closed route contract is deliberately
+advanced in a separate review.
 
 It also does not require separate GitHub accounts or separate operating systems
 to construct or review the work. Linux/Node CI is the deterministic build lane.

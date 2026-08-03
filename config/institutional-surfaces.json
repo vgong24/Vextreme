@@ -24,12 +24,11 @@
         "category": "system",
         "scope": "institution",
         "requiredLocales": [
-          "en"
-        ],
-        "plannedLocales": [
+          "en",
           "ja",
           "zh"
-        ]
+        ],
+        "plannedLocales": []
       },
       "theme": {
         "family": "foundation",
@@ -76,12 +75,11 @@
         "category": "system",
         "scope": "institution",
         "requiredLocales": [
-          "en"
-        ],
-        "plannedLocales": [
+          "en",
           "ja",
           "zh"
-        ]
+        ],
+        "plannedLocales": []
       },
       "theme": {
         "family": "foundation",

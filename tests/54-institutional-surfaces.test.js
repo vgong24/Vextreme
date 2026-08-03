@@ -19,6 +19,7 @@ const {
   getRecordPageSlugs,
 } = require('../lib/audit-pages');
 const { discoverOrphanNodes } = require('../lib/auto-discover-nodes');
+const { probeLocalizationRuntime } = require('../lib/institutional-localization-runtime');
 
 const ROOT = path.join(__dirname, '..');
 
@@ -126,16 +127,20 @@ function activeHtml() {
 }
 
 function activeLocalizedHtml({ category = 'system', scope = 'institution', locales = ['en', 'ja'] } = {}) {
+  const names = { en: 'English', ja: '日本語', zh: '中文' };
   return [
     '<!doctype html>',
     '<html data-vex-surface="institutional" data-vex-string-category="system" data-vex-string-scope="institution" data-vex-theme-family="foundation" data-theme="foundation">',
+    '<head>',
+    `<script>window.VEX_STRING_SCOPES = ['${scope}']; window.VEX_STRING_CATEGORY = '${category}';</script>`,
+    '<script src="../widgets/vex-institutional.js"></script>',
+    '</head>',
     '<body>',
     '<h1 data-i18n="institution.test">Test en</h1>',
     '<img alt="Test image en" data-i18n-alt="institution.test.alt">',
     '<button aria-label="Test action en" data-i18n-aria="institution.test.aria">Test</button>',
-    `<select data-vex-lang-select>${locales.map(locale => `<option value="${locale}">${locale}</option>`).join('')}</select>`,
-    `<script>window.VEX_STRING_SCOPES = ['${scope}']; window.VEX_STRING_CATEGORY = '${category}';</script>`,
-    '<script src="../widgets/vex-institutional.js"></script>',
+    '<label for="vex-lang" data-vex-lang-label>Language</label>',
+    `<select id="vex-lang" data-vex-lang-select>${locales.map(locale => `<option value="${locale}">${names[locale]}</option>`).join('')}</select>`,
     '</body>',
     '</html>',
     '',
@@ -574,7 +579,10 @@ test('INSTITUTIONAL-SURFACES: multi-locale activation executes the declared runt
   writeActiveAcceptance(root, 'vex-test', activeEntry);
 
   const absentChecks = new Set(validateRegistry(active, root).map(issue => issue.check));
-  for (const expected of ['locale-loader', 'locale-loader-source', 'locale-scope-global', 'locale-category-global', 'locale-control']) {
+  for (const expected of [
+    'locale-loader', 'locale-loader-source', 'locale-scope-global', 'locale-category-global',
+    'locale-control', 'locale-control-count', 'locale-prepaint-loader',
+  ]) {
     assert.ok(absentChecks.has(expected), `expected ${expected}`);
   }
 
@@ -607,6 +615,62 @@ test('INSTITUTIONAL-SURFACES: multi-locale activation executes the declared runt
   fs.writeFileSync(path.join(root, 'widgets', 'vex-institutional.js'), workingLocalizationLoader());
   fs.writeFileSync(path.join(root, 'pages', 'vex-test.html'), activeLocalizedHtml());
   assert.deepEqual(validateRegistry(active, root), []);
+
+  fs.writeFileSync(
+    path.join(root, 'pages', 'vex-test.html'),
+    activeLocalizedHtml().replace('</select>', '</select><select data-vex-lang-select></select>')
+  );
+  assert.ok(validateRegistry(active, root).some(issue => issue.check === 'locale-control-count'));
+
+  fs.writeFileSync(
+    path.join(root, 'pages', 'vex-test.html'),
+    activeLocalizedHtml().replace('>日本語</option>', '>Japanese</option>')
+  );
+  assert.ok(validateRegistry(active, root).some(issue => issue.check === 'locale-control-autonym'));
+
+  fs.writeFileSync(
+    path.join(root, 'pages', 'vex-test.html'),
+    activeLocalizedHtml().replace('<label for="vex-lang" data-vex-lang-label>Language</label>', '')
+  );
+  assert.ok(validateRegistry(active, root).some(issue => issue.check === 'locale-control-name'));
+
+  fs.writeFileSync(
+    path.join(root, 'pages', 'vex-test.html'),
+    activeLocalizedHtml().replace(
+      '<script src="../widgets/vex-institutional.js"></script>',
+      '<script src="../widgets/vex-institutional.js" defer></script>'
+    )
+  );
+  assert.ok(validateRegistry(active, root).some(issue => issue.check === 'locale-prepaint-loader'));
+});
+
+test('INSTITUTIONAL-SURFACES: institutional loader is transactional under hostile locale delivery', async () => {
+  const bundles = {};
+  for (const locale of ['en', 'ja', 'zh']) {
+    bundles[locale] = {
+      'institution.test': { text: `Test ${locale}` },
+      'institution.test.alt': { text: `Test image ${locale}` },
+      'institution.test.aria': { text: `Test action ${locale}` },
+    };
+  }
+  const result = await probeLocalizationRuntime({
+    slug: 'vex-test',
+    loaderPath: 'widgets/vex-institutional.js',
+    loaderSource: fs.readFileSync(path.join(ROOT, 'widgets', 'vex-institutional.js'), 'utf8'),
+    controlAttribute: 'data-vex-lang-select',
+    requiredLocales: ['en', 'ja', 'zh'],
+    defaultLocale: 'en',
+    category: 'system',
+    scope: 'institution',
+    bindings: {
+      text: ['institution.test'],
+      alt: ['institution.test.alt'],
+      aria: ['institution.test.aria'],
+    },
+    bundles,
+    runtimeTimeoutMs: 40,
+  });
+  assert.deepEqual(result.issues, []);
 });
 
 test('INSTITUTIONAL-SURFACES: evidence requires every variant and a complete PNG structure', () => {
