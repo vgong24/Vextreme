@@ -114,6 +114,19 @@
       }
     }
   },
+  "institution.common.label.language": {
+    "strings": {
+      "en": {
+        "text": "Language"
+      },
+      "ja": {
+        "text": "言語"
+      },
+      "zh": {
+        "text": "语言"
+      }
+    }
+  },
   "institution.common.footer.site": {
     "strings": {
       "en": {
@@ -384,6 +397,19 @@
       },
       "zh": {
         "text": "可实际使用的生活生态：一个以本地为先的伙伴，帮助一个人在日常生活中承载记忆、关系、意图、决定、项目与延续性。"
+      }
+    }
+  },
+  "institution.home.title": {
+    "strings": {
+      "en": {
+        "text": "Vextreme — What this institution is"
+      },
+      "ja": {
+        "text": "Vextreme — この機関について"
+      },
+      "zh": {
+        "text": "Vextreme — 这个机构是什么"
       }
     }
   },
@@ -670,6 +696,19 @@
       },
       "zh": {
         "text": "主页"
+      }
+    }
+  },
+  "institution.support.title": {
+    "strings": {
+      "en": {
+        "text": "Support Vextreme and VexLife"
+      },
+      "ja": {
+        "text": "Vextreme と VexLife を支援する"
+      },
+      "zh": {
+        "text": "支持 Vextreme 与 VexLife"
       }
     }
   },
