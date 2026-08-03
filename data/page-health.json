@@ -2076,11 +2076,21 @@
         "visibleStyles": true
       },
       "identity": {
-        "keyCount": 128,
+        "keyCount": 129,
         "languages": {
           "en": {
-            "translated": 128,
-            "total": 128,
+            "translated": 129,
+            "total": 129,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 129,
+            "total": 129,
+            "state": "full"
+          },
+          "zh": {
+            "translated": 129,
+            "total": 129,
             "state": "full"
           }
         }
@@ -2091,7 +2101,9 @@
       },
       "evidence": {
         "screenshotLanguages": [
-          "en"
+          "en",
+          "ja",
+          "zh"
         ],
         "screenshotFiles": [
           "docs/screenshots/vex-support-en-foundation-1440.png",
@@ -2099,7 +2111,19 @@
           "docs/screenshots/vex-support-en-foundation-768.png",
           "docs/screenshots/vex-support-en-foundation-light-1440.png",
           "docs/screenshots/vex-support-en-foundation-light-320.png",
-          "docs/screenshots/vex-support-en-foundation-light-768.png"
+          "docs/screenshots/vex-support-en-foundation-light-768.png",
+          "docs/screenshots/vex-support-ja-foundation-1440.png",
+          "docs/screenshots/vex-support-ja-foundation-320.png",
+          "docs/screenshots/vex-support-ja-foundation-768.png",
+          "docs/screenshots/vex-support-ja-foundation-light-1440.png",
+          "docs/screenshots/vex-support-ja-foundation-light-320.png",
+          "docs/screenshots/vex-support-ja-foundation-light-768.png",
+          "docs/screenshots/vex-support-zh-foundation-1440.png",
+          "docs/screenshots/vex-support-zh-foundation-320.png",
+          "docs/screenshots/vex-support-zh-foundation-768.png",
+          "docs/screenshots/vex-support-zh-foundation-light-1440.png",
+          "docs/screenshots/vex-support-zh-foundation-light-320.png",
+          "docs/screenshots/vex-support-zh-foundation-light-768.png"
         ]
       },
       "discovery": {
@@ -2201,11 +2225,21 @@
         "visibleStyles": true
       },
       "identity": {
-        "keyCount": 47,
+        "keyCount": 49,
         "languages": {
           "en": {
-            "translated": 47,
-            "total": 47,
+            "translated": 49,
+            "total": 49,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 49,
+            "total": 49,
+            "state": "full"
+          },
+          "zh": {
+            "translated": 49,
+            "total": 49,
             "state": "full"
           }
         }
@@ -2216,7 +2250,9 @@
       },
       "evidence": {
         "screenshotLanguages": [
-          "en"
+          "en",
+          "ja",
+          "zh"
         ],
         "screenshotFiles": [
           "docs/screenshots/vextreme-home-en-foundation-1440.png",
@@ -2224,7 +2260,19 @@
           "docs/screenshots/vextreme-home-en-foundation-768.png",
           "docs/screenshots/vextreme-home-en-foundation-light-1440.png",
           "docs/screenshots/vextreme-home-en-foundation-light-320.png",
-          "docs/screenshots/vextreme-home-en-foundation-light-768.png"
+          "docs/screenshots/vextreme-home-en-foundation-light-768.png",
+          "docs/screenshots/vextreme-home-ja-foundation-1440.png",
+          "docs/screenshots/vextreme-home-ja-foundation-320.png",
+          "docs/screenshots/vextreme-home-ja-foundation-768.png",
+          "docs/screenshots/vextreme-home-ja-foundation-light-1440.png",
+          "docs/screenshots/vextreme-home-ja-foundation-light-320.png",
+          "docs/screenshots/vextreme-home-ja-foundation-light-768.png",
+          "docs/screenshots/vextreme-home-zh-foundation-1440.png",
+          "docs/screenshots/vextreme-home-zh-foundation-320.png",
+          "docs/screenshots/vextreme-home-zh-foundation-768.png",
+          "docs/screenshots/vextreme-home-zh-foundation-light-1440.png",
+          "docs/screenshots/vextreme-home-zh-foundation-light-320.png",
+          "docs/screenshots/vextreme-home-zh-foundation-light-768.png"
         ]
       },
       "discovery": {

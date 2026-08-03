@@ -28,13 +28,14 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 036 — August 1, 2026. The architecture paragraph's core remains
+*As of Session 037 — August 2, 2026. The architecture paragraph's core remains
 Session 025's; Sessions 029–033 added nav/FAB rollout, authored-style protection,
 runtime-chrome composition, generated page-capability health, capability-aware
 work coordination, Terrain semantic Journey history, and a bounded public-safe
-feedback Issue Form; Sessions 034 and 036 added live work coordination and the
-first registry-owned institutional home without changing the v1/v2,
-God Script, or department/arc architecture described below.*
+feedback Issue Form; Sessions 034, 036, and 037 added live work coordination and
+the registry-owned institutional surfaces with reviewed transactional EN/JA/ZH
+localization, without changing the v1/v2, God Script, or department/arc
+architecture described below.*
 
 The v2 GitHub Pages architecture is the active system. v1 (`data/arcs.json`, `data/pages.json`,
 `lib/vextreme.js`/`archive-renderer.js`/`arc-nav.js`) still serves the live Squarespace site
@@ -153,15 +154,16 @@ actor/instance references, numeric epic position, dependencies, paths, leases, a
 overlaps, and fails visibly when live state is unavailable. Claims coordinate work;
 they do not prove identity or grant authority.
 
-Session 036 records the accepted institutional-surface contract lineage through
-PR #143 and prepares integration item 2/4: `vextreme-home` is the first active
-registry-owned institutional surface, with an English authored baseline,
-foundation/foundation-light runtime, six exact render-evidence cells, and
-registry-derived root/sitemap discovery. It remains outside archive placement,
-auto-discovery, FAB/God Script delivery, nodes, and arcs. `vex-support` remains
-reserved; support routes, JA/ZH activation, payments, and private VexLife links
-are not part of this row. PR #135 remains provenance only, including its
-unaccepted Session 035 record; the accepted sequence therefore advances to 036.
+Sessions 036 and 037 record the four-row institutional-surface stack through
+merged PR #147 and draft PR #148. `vextreme-home` and `vex-support` are active
+registry-owned surfaces with complete static English plus independently reviewed
+Japanese and Chinese bundles, one native selector on each page, transactional
+URL-over-storage-over-English application, hostile-failure preservation, and a
+36-cell locale/theme/viewport evidence matrix. They remain outside archive
+placement, auto-discovery, FAB/God Script delivery, nodes, and arcs. Every
+support route, payment destination, candidate URL, and private VexLife
+destination remains unpublished. PR #135 remains provenance only; PR #148
+remains draft and requires exact-head integration review before acceptance.
 
 The continuity system itself changed shape in Session 024: batches are now **directories of
 per-session files** (`docs/continuity/batch-003/`, filenames `YYYY-MM-DD-session-0NN.md`)
@@ -171,56 +173,14 @@ The change repairs Session 023 (Codex's July 6 context-note and perceivable-cont
 entries had been injected mid-file into Session 021's record.
 
 **Recent sessions** (one line each — open the session files below for full reasoning):
+- **Session 037** — Added independently reviewed JA/ZH institutional bundles,
+  transactional native selection on both pages, hostile-failure coverage, and
+  the complete 36-cell evidence matrix on draft PR #148.
 - **Session 036** — Integrated the English institutional home and foundation
-  runtime from the #135 source capsule onto the accepted #143 contract, with
-  registry-derived discovery, deterministic projections, and six-cell evidence.
+  plus the English support row through the accepted contract lineage, keeping
+  routes, payment, VexLife, nodes, arcs, and God Scripts held.
 - **Session 034** — Added public-safe live PR ownership claims, participant policy,
   overlap/lease health, PR-template routing, and cold-start visibility in `current-work`.
-- **Session 033** — Added the first public feedback Issue Form with explicit
-  public/no-sensitive/no-commitment acknowledgements, disabled blank issues, and
-  routed private/security/business matters to the existing Direct Contact path.
-- **Session 031** — Replaced model-dependent sequencing with the active
-  Victor/Vex/Codex loop, kept Claude as an optional second lens, mirrored epic
-  PR positioning into the public PR template, and opened Batch 004 at the first
-  real session after Batch 003 filled.
-- **Session 027** — Cold-start review (a fresh instance working through the full boot sequence
-  plus an uploaded "Meta Project" doc proposing process/role/source-truth-map vocabulary) found
-  two real gaps and built the fix for one. First: Session 025's own text describes PR #69's
-  registry-graph docs (`docs/architecture/15–17`, `data/registry/`, `lib/check-registry-docs.js`)
-  as built and reviewed, but PR #69 was closed unmerged the same day — none of that content is in
-  the working tree; corrected here and in Session 025's one-liner above. Second: PRs `#76`–`#92`
-  (15 merged, including the six-PR caching-layers bug chain) landed with no session file and no
-  refresh to this file, invisible to all five existing drift detectors because none compare
-  merged-PR count against narrative freshness. Built `lib/check-continuity-lag.js` (a sixth,
-  informational detector closing that blind spot going forward), added a "Continuity & lesson
-  check" section to the PR template, and surfaced two already-decided-but-invisible items
-  (the queue's reverse-traversal-map enhancement, the translation-debt categorization) into Open
-  Work — which surfaced a third finding: that its ID, `pe-012`, was a reused one, clashing with
-  the already-shipped `lib/check-lattice-edges.js`'s own long-standing `pe-012` identity. Also
-  fixed `lib/build-sitemap.js`'s `lastmod`, which stamped every URL with the build date regardless
-  of whether that page's content changed — now computed per file from real git history. **PR #93
-  continuation, same day:** the `pe-012` collision is resolved — the queue item is renamed to
-  `pe-014` (the shipped lattice-edge checker keeps `pe-012`; renaming the still-open item was
-  cheaper than muddying shipped history), per Victor's and Vex's direct recommendation. The Meta
-  Project doc itself was treated as pattern input, not adopted architecture — its
-  `sourceTruth.process.*` framing matched the queue's (now `pe-014`) reverse-traversal-map idea
-  closely enough to fold into it rather than invent a parallel concept, and the collision-then-
-  rename is itself a live worked example of the doc's own Section 3.9 lesson: source-truth IDs
-  are stable coordinates, not labels reused after semantic commitment. Whether to reconstruct a
-  Session 026 for the PR #76–#92 gap is still
-  Victor's open call (see Open Work). **Continued again, same day:** built a localization
-  identity pilot per Victor+Vex's narrowed approval of a separate "Global Localization
-  Source-of-Truth" north-star document — explicitly *not* `pe-014` (a different domain: UI/string
-  identity, not code/build symbols) and explicitly *not* the north-star doc's full 18-script
-  system, just a canonical/observed identity overlay on the existing `data/strings/` pipeline for
-  `victor-methodology-presentation`. Found the canonical/observed split already existed unindexed
-  in the page's own HTML (`data-legacy-id` next to `data-i18n`, unused); `lib/discover-string-identity.js`
-  (proposal-only), `lib/build-string-identity-index.js` (pointer index + report generator), and
-  `lib/check-string-identity.js` (informational validator) activate it. Confirmed by test that
-  identity metadata never leaks into compiled runtime bundles. Caught and fixed a real regex bug
-  in the discover script (a bare `\b` also matched inside `data-legacy-id`) by cross-checking
-  output against the real HTML before trusting it. Full context in the Meta Project doc's context
-  note (§ wrapper) and this session's own file.
 **This section is a snapshot, not a log.** Full session-by-session reasoning — mistakes tried,
 assumptions made, why a decision went one way over another — lives in the batch files (see
 **Batch Registry** below), not here. Rewrite the paragraph above at the start of each session to
@@ -242,7 +202,7 @@ architecture docs, or lessons only through a PR decision record.
 
 ## Open Work
 
-*Updated Session 036 — August 1, 2026*
+*Updated Session 037 — August 2, 2026*
 
 This list holds only genuinely open items — things nobody has done yet, not a running log of
 what shipped. A completed item is removed here the same session it ships, not kept and checked
@@ -251,12 +211,9 @@ off forever; its record already lives in the batch file and (for od-/td-/pe- ite
 not this list.
 
 **Genuinely open:**
-- [ ] Institutional Surface Integration item 2/4 — independent exact-head review
-  and acceptance of the English Vextreme home/foundation row.
-- [ ] Institutional Surface Integration item 3/4 — support domain and English
-  support page; keep payment routes inert until their destinations are verified.
-- [ ] Institutional Surface Integration item 4/4 — reviewed JA/ZH strings,
-  reachable runtime selection, and complete two-page render evidence.
+- [ ] Institutional Surface Integration item 4/4 — independent exact-head
+  integration review and acceptance of draft PR #148; merge is not authorized
+  by the implementation or translation-review receipts.
 - [ ] Payment activation — only after Victor verifies every destination; never
   infer readiness from page implementation or provider-shaped configuration.
 - [ ] Terrain Relational Projection Phase 2 — add a visible semantic threshold rail that exposes prior/current/next level and transition proximity while preserving the Phase 1 Journey contract; do not add user-editable threshold controls yet.
@@ -480,6 +437,6 @@ Create as `docs/continuity/batch-00N/YYYY-MM-DD-session-0NN.md`:
 
 ---
 
-*Last updated: Session 036 — August 1, 2026*
+*Last updated: Session 037 — August 2, 2026*
 
 <!-- [VXG RealForever] -->

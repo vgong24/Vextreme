@@ -5,9 +5,13 @@
  * surfaces. It consumes the foundation token family from design-system.css
  * and declares no page-local color, type, or spacing values.
  *
- * The active component vocabulary covers the home and English support domain.
- * Payment activation and JA/ZH controls remain owned by later reviewed rows.
+ * The active component vocabulary covers the localized home and support
+ * domain. Payment activation remains outside this stylesheet and row.
  */
+
+html[data-vex-locale-hold] body {
+  visibility: hidden;
+}
 
 body.vex-inst {
   background: var(--bg-canvas);
@@ -123,6 +127,18 @@ body.vex-inst {
   display: flex;
   gap: var(--space-2);
   align-items: center;
+}
+
+.vex-control-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .vex-control {

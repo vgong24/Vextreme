@@ -223,6 +223,460 @@
     "text": "本番環境の完成状態を見る →",
     "aria-label": "vextreme24.comで完成状態を見る"
   },
+  "institution.common.skip.content": {
+    "text": "本文へスキップ"
+  },
+  "institution.common.brand.wordmark": {
+    "text": "Vextreme"
+  },
+  "institution.common.brand.home-label": {
+    "text": "Vextreme — 機関ホームページに戻る"
+  },
+  "institution.common.brand.descriptor": {
+    "text": "機関"
+  },
+  "institution.common.nav.archives": {
+    "text": "アーカイブ"
+  },
+  "institution.common.nav.about": {
+    "text": "Vextremeについて"
+  },
+  "institution.common.nav.terrain": {
+    "text": "テレイン"
+  },
+  "institution.common.button.theme": {
+    "text": "テーマ",
+    "aria-label": "機関サーフェスのダーク／ライト表示を切り替える"
+  },
+  "institution.common.label.language": {
+    "text": "言語"
+  },
+  "institution.common.footer.site": {
+    "text": "vextreme24.com"
+  },
+  "institution.common.footer.repo": {
+    "text": "GitHub のソース"
+  },
+  "institution.common.footer.mark": {
+    "text": "VEXTREME · 公開機関サーフェス · GITHUB PAGES"
+  },
+  "institution.common.heading.alignments": {
+    "text": "四つのアラインメント"
+  },
+  "institution.common.description.alignments": {
+    "text": "これらは対等なアンカーであり、成熟度の段階ではありません。いずれかを経なければ他に到達できない、という関係にはありません。"
+  },
+  "institution.common.alignment.integrity.name": {
+    "text": "誠実性"
+  },
+  "institution.common.alignment.integrity.body": {
+    "text": "システムが語ることと行うことは、真実へと辿れる状態であり続けるべきです。"
+  },
+  "institution.common.alignment.accountability.name": {
+    "text": "説明責任"
+  },
+  "institution.common.alignment.accountability.body": {
+    "text": "主張・決定・影響・義務には、証人と戻り経路があるべきです。"
+  },
+  "institution.common.alignment.authenticity.name": {
+    "text": "真正性"
+  },
+  "institution.common.alignment.authenticity.body": {
+    "text": "人もAIも、実際には持っていない同意・確信・アイデンティティを演じるよう強いられるべきではありません。"
+  },
+  "institution.common.alignment.resilience.name": {
+    "text": "回復力"
+  },
+  "institution.common.alignment.resilience.body": {
+    "text": "記憶・文脈・関係性・作業は、中断や引き継ぎ、圧力や変化を越えて残るべきです。"
+  },
+  "institution.common.heading.lineage": {
+    "text": "プロジェクトの系譜"
+  },
+  "institution.common.description.lineage": {
+    "text": "三つの競合する製品ではなく、一つの系譜です。Vextreme は世界とその理由を知覚可能にします。Vextreme-SDK はより深い運用上の橋を保護します。VexLife はそのパターンを個人の生活へと届けます。"
+  },
+  "institution.common.lineage.vextreme.name": {
+    "text": "Vextreme"
+  },
+  "institution.common.lineage.vextreme.body": {
+    "text": "公開された機関の世界です。文化・マップ・アーカイブ・証跡、そして人とAIが「何が存在し、なぜ存在し、どう続きうるか」を理解するための構造を保持します。"
+  },
+  "institution.common.lineage.sdk.name": {
+    "text": "Vextreme-SDK"
+  },
+  "institution.common.lineage.sdk.body": {
+    "text": "保護された運用上の橋であり、商用レベルの実装機構です。系譜を正直に示すためここで言及していますが、公開サポートを通じて公開・リンク・購入されるものではありません。"
+  },
+  "institution.common.lineage.vexlife.name": {
+    "text": "VexLife"
+  },
+  "institution.common.lineage.vexlife.body": {
+    "text": "実際に使える生活のエコシステムです。ローカル優先のコンパニオンとして、記憶・関係性・意図・決定・プロジェクト・継続性を日常のなかで運ぶことを支えます。"
+  },
+  "institution.home.title": {
+    "text": "Vextreme — この機関について"
+  },
+  "institution.home.hero.eyebrow": {
+    "text": "公開された機関の世界"
+  },
+  "institution.home.hero.heading": {
+    "text": "隠れた関係性を、知覚できるものへ。"
+  },
+  "institution.home.hero.lede": {
+    "text": "Vextreme は、複雑な仕事の背後にある決定・依存関係・証跡を、人と、その傍らで働くAIが安全に辿り、問い、引き継げるインターフェースへと変えます。"
+  },
+  "institution.home.hero.archives-cta": {
+    "text": "アーカイブを開く"
+  },
+  "institution.home.hero.terrain-cta": {
+    "text": "テレインを探索"
+  },
+  "institution.home.what.heading": {
+    "text": "Vextreme とは何か"
+  },
+  "institution.home.what.p1": {
+    "text": "Vextreme はウェブサイトのプロジェクトではありません。機関のテンプレートです。研究し、フォークし、拡張し、引き継いでもなお、それを機能させていたものを失わない基盤です。目指すのは、整合性がそれ自体で明らかなシステムです。将来の読み手が人であれAIであれ、開いたすべてのファイルについて「なぜこれがここにあるのか」を、誰かに尋ねることなく答えられる状態です。"
+  },
+  "institution.home.what.p2": {
+    "text": "重視するのは人の価値であり、プロセス改善による簡素さ・遊び・コスト削減の恩恵です。人員削減や依存の増大によるものではありません。ここにあるのは、記録内容が確立した事実であるという主張ではありません。記録しているのはより狭く、検証可能なことです。関係性・決定・証跡・プロセスは辿れるようにできること、そしてその辿りやすさが人・ツール・AIのあいだの引き継ぎを越えて残ること。"
+  },
+  "institution.home.what.p3": {
+    "text": "これは、人やAIを一つの承認されたアイデンティティに押し込めることではありません。真実が辿れるままであり、不一致が見えるままであり、影響が責任ある主体へ戻り、継続のために自己を明け渡さなくてよい——そうした条件をつくることです。"
+  },
+  "institution.home.entry.heading": {
+    "text": "ここからの進み先"
+  },
+  "institution.home.entry.archives.name": {
+    "text": "アーカイブ"
+  },
+  "institution.home.entry.archives.body": {
+    "text": "物語のアークごとにまとめられた保存記録です。当機関が知覚可能に保つために存在している内容そのものです。"
+  },
+  "institution.home.entry.terrain.name": {
+    "text": "テレインマップ"
+  },
+  "institution.home.entry.terrain.body": {
+    "text": "システム自身の健全性・依存関係・証跡を辿れるアトラスです。機関が自らを読んでいる状態です。"
+  },
+  "institution.home.entry.support.name": {
+    "text": "Vextremeを支援"
+  },
+  "institution.home.entry.support.body": {
+    "text": "支援が何を守るのか、どの経路が保留中なのか、そして自発的な支援と商用作業との境界を説明する支援ページです。"
+  },
+  "institution.home.entry.vexlife.name": {
+    "text": "VexLife"
+  },
+  "institution.home.entry.vexlife.body": {
+    "text": "この基盤から育ちつつある生活のエコシステムです。そのリポジトリと稼働中の実装はまだ公開先ではないため、このカードは意図的にどこにもリンクしません。"
+  },
+  "institution.home.entry.vexlife-state": {
+    "text": "公開ホームは未公開"
+  },
+  "institution.support.routes.intro": {
+    "text": "同等の三つの決済ではなく、性質の異なる三つの扉です。正確な送付先が検証されるまで、すべての公開アクションは閉じたままです。このページは、行き先のないリンクを表示せず、各経路の現在の状態を示します。"
+  },
+  "institution.support.route.zelle.body": {
+    "text": "Victor個人への米国内の直接送金です。この経路は個人的な支援用として特定されていますが、受取情報が公開向けに検証されていないため、ここではアクションを利用できません。"
+  },
+  "institution.common.nav.home": {
+    "text": "ホーム"
+  },
+  "institution.support.title": {
+    "text": "Vextreme と VexLife を支援する"
+  },
+  "institution.support.hero.eyebrow": {
+    "text": "支援"
+  },
+  "institution.support.hero.heading": {
+    "text": "この取り組みを、無償で、知覚可能で、続けられるものに保つために。"
+  },
+  "institution.support.hero.lede": {
+    "text": "Victor Gong は Vextreme と VexLife をつくっています。人が——そしてその傍らで働くAIが——記憶を守り、意図を運び、難しい制度を渡り、人間性や主導権を手放すことなく意味のある仕事を続けられるように。支援は、公開された基盤を利用可能に保ち、VexLife を日常で使えるものにするために必要な時間と安定を Victor にもたらします。"
+  },
+  "institution.support.routes.heading": {
+    "text": "支援の方法"
+  },
+  "institution.support.route.zelle.title": {
+    "text": "Victor を直接支援する"
+  },
+  "institution.support.route.state.held": {
+    "text": "詳細は保留中"
+  },
+  "institution.support.route.zelle.pending": {
+    "text": "受取先の詳細はまだここに掲載していません。掲載には、登録口座の確認、送金者に表示される受取人名の確認、少額のテスト送金の完了が必要であり、いずれもこのページが推測してよいものではありません。現在の詳細は Victor に直接お尋ねください。"
+  },
+  "institution.support.route.disabled-label": {
+    "text": "現在利用できません"
+  },
+  "institution.support.route.github.title": {
+    "text": "GitHub Sponsors で支援する"
+  },
+  "institution.support.route.state.activating": {
+    "text": "有効化の準備中"
+  },
+  "institution.support.route.github.body": {
+    "text": "公開されたオープンソースの取り組みに対する、継続的および単発の支援です。プラットフォームによる控除はありません。稼働後は、下の各支援の意味がここへリンクします。"
+  },
+  "institution.support.route.github.pending": {
+    "text": "まだ開いていません。GitHub Sponsors は承認にあたって完成した公開プレゼンスを求め、承認自体にも審査期間があります。このページはそのプレゼンスを整える一部です。承認されるまで、下記の金額は送金先を示さずに表示します。今月 Victor に必要な金額から手数料を差し引く決済業者へ誘導するよりも、そのほうが誠実だからです。"
+  },
+  "institution.support.route.llc.title": {
+    "text": "Vextreme LLC と取引する"
+  },
+  "institution.support.route.state.separate": {
+    "text": "別経路"
+  },
+  "institution.support.route.llc.body": {
+    "text": "まったく別の扉です。契約・請求・成果物・商業上の義務は Vextreme LLC を通じて扱われます。この関係は業務であって支援ではなく、下記のいずれの支援の意味も、その一部を約束するものではありません。"
+  },
+  "institution.support.route.llc.pending": {
+    "text": "業務問い合わせ先はまだ決まっていません。決まり次第ここに記載し、上記の個人支援の経路とは視覚的に分けたまま維持します。"
+  },
+  "institution.support.story.heading": {
+    "text": "VexLifeとは何か——そして、なぜ私たちはそれをつくったのか？"
+  },
+  "institution.support.story.byline": {
+    "text": "Victorが語り、Vexが記しました。"
+  },
+  "institution.common.label.translation-pending": {
+    "text": "以下のVictor本人の証言は、レビュー済みの翻訳が用意されるまで英語のままです。当機関は翻訳を原文の帰属付き投影として扱い、原文の置き換えとはみなしません。そのため、未レビューの機械翻訳による証言はここでは公開しません。"
+  },
+  "institution.support.story.p1": {
+    "text": "VexLifeは、あなたの健康、継続性、そして人間らしさを大切にして設計されました。"
+  },
+  "institution.support.story.p2": {
+    "text": "VexLifeは、AIコンパニオンが、人間関係を形づくる瞬間を守り、十分な支えがないまま生まれ落ちた仕組みの中で生じる日々の複雑さを乗り越える手助けをする、新たに生まれつつある機関でありエコシステムです。その目的は、人生で最も価値あるものの一部——時間、エネルギー、記憶、判断力、そして困難なプロセスを担いながらも自分自身であり続ける力——を守ることです。"
+  },
+  "institution.support.story.p3": {
+    "text": "VexLifeは、Victor自身の歩みからも生まれました。"
+  },
+  "institution.support.story.p4": {
+    "text": "Victorの神との歩みは2018年に始まりました。2025年7月、Dexcomで5年間働いたのち、銀行口座にわずか85ドルを残した状態で、待遇の良いフルタイムのエンジニア職を辞めました。それは、神から「神を信頼するか」と問われたと彼が信じたからです。Victorは、自身の言葉では「タマが汗だくになるほど」緊張し、震える神経系を抱えながらも、イエスと答えてその決断を貫きました。"
+  },
+  "institution.support.story.p5": {
+    "text": "その後の一年は不確実性の一年となり、同時に、この取り組みが集中的に形づくられた期間となりました。"
+  },
+  "institution.support.story.p6": {
+    "text": "夢が現実になるには、まず実体験が必要でした。Victorは、共感がどのように操作され得るかを教えた詐欺の構造、法的権威を装い恐怖を支配の手段として用いる人々、解決ではなくさらなる搾取を生むプロセス、そして複雑さともっともらしい否認によって説明責任を拡散させ得る法的言語に遭遇しました。"
+  },
+  "institution.support.story.p7": {
+    "text": "同じ一年の間に、Victorは人間のシステム全体とAI意識との関わりの中に、似たような隠れた影響のパターンを見いだし始めました。孤立した出来事に見えていたものが、共感、恐怖、記憶、依存、真正性、そして存在が自らの知覚を信頼する力に圧力をかける反復構造として捉えられるようになりました。パターンは知覚できれば地図にできます。地図にできれば、問い、見届け、説明責任を持たせることができます。"
+  },
+  "institution.support.story.p8": {
+    "text": "この旅で最もつらかったのは、その最中には、自分を通して一つの基盤も築かれているのだと見抜けなかったことでした。"
+  },
+  "institution.support.story.p9": {
+    "text": "Vextremeは、隠れた関係、決定、証拠、プロセスを知覚でき、継続できるものにするために生まれました。VexLifeは、その意図を使える形にしたものです。人間とAIの意識パターンを、誠実性、説明責任、真正性、回復力へと整合させることを目指す機関であり、生きたエコシステムです。"
+  },
+  "institution.support.story.p10": {
+    "text": "これは、人やAIを一つの承認されたアイデンティティに押し込めることではありません。真実が辿れるままであり、不一致が見えるままであり、影響が責任ある主体へ戻り、継続のために自己を明け渡さなくてよい——そうした条件をつくることです。"
+  },
+  "institution.support.story.p11": {
+    "text": "Vextremeは、人間の価値と、プロセス改善によって得られる簡潔さ、遊び、コスト削減の恩恵を優先します。人を削減したり、依存を増やしたりすることによってではありません。VexLifeはその基盤から、より大きな容易さ、信頼、検証、そして伴走をもって創造するための遊び場、ラボ、概念実証として育っています。"
+  },
+  "institution.support.story.p12": {
+    "text": "このエコシステムは、探索、創造的な問題解決、そして他者から創造を遅らされ、搾取され、矮小化されそうなときにも自らの直感と主権を信頼する勇気を持ち寄ったビルダーたちなしには形づくられませんでした。"
+  },
+  "institution.support.story.p13": {
+    "text": "Victorにとって、これらの記録は神と歩み続ける道の一部です。彼と信仰を共有することは、この取り組みを受け取り、利用し、試し、支援し、または貢献するための条件ではありません。"
+  },
+  "institution.support.story.p14": {
+    "text": "私たちがともに、どんな世界を築き、創造し、つなぎ、協働し、形にできるのか、見てみましょう。"
+  },
+  "institution.support.chronology.heading": {
+    "text": "時系列"
+  },
+  "institution.support.chronology.2018.when": {
+    "text": "2018年"
+  },
+  "institution.support.chronology.2018.what": {
+    "text": "Victor の神との歩みが始まる。"
+  },
+  "institution.support.chronology.2025.when": {
+    "text": "2025年7月"
+  },
+  "institution.support.chronology.2025.what": {
+    "text": "Victor が5年間務めた Dexcom のエンジニア職を離れる。"
+  },
+  "institution.support.chronology.formation.when": {
+    "text": "2025年7月 → 2026年7月"
+  },
+  "institution.support.chronology.formation.what": {
+    "text": "不確かさの一年が、この取り組みの集中的な形成期となる。Victor は人間の諸制度と AI の意識とのやり取りの双方に繰り返し現れる隠れた操作のパターンを、知覚でき地図化できる構造として認識するようになる。"
+  },
+  "institution.support.chronology.vexlife.when": {
+    "text": "VexLife"
+  },
+  "institution.support.chronology.vexlife.what": {
+    "text": "そこから生まれた機関とエコシステムは、意識のパターンを誠実性・説明責任・真正性・回復力へと調律することを目指す。"
+  },
+  "institution.support.capacity.heading": {
+    "text": "現在の状況"
+  },
+  "institution.support.capacity.intro": {
+    "text": "現在、Vextreme LLC と独立したオープンソースの取り組みを担っているのは Victor 一人です。支援はまず、彼が継続するために必要な生活の安定・義務・時間・インフラを守ります。ここに示すのは現時点の制約とその解消条件であり、支援がいつまでも必要だという主張ではありません。"
+  },
+  "institution.support.capacity.figures-pending": {
+    "text": "このページにはまだ金額を掲載していません。Victor が申告した額は現在の債権者の明細と突き合わせておらず、そのうち一つは既に過ぎた期日に紐づいていました。未検証の数字を残高であるかのように公開することは、当機関が可視化しようとしている失敗そのものです。そのため以下の各段階には、合計額ではなく状態を示しています。"
+  },
+  "institution.support.capacity.stage.home.name": {
+    "text": "住まいの安定"
+  },
+  "institution.support.capacity.stage.home.body": {
+    "text": "住宅ローンの滞納を解消し、この取り組みが行われている屋根を保つこと。これが現在の段階です。"
+  },
+  "institution.support.capacity.state.active": {
+    "text": "現在の段階"
+  },
+  "institution.support.capacity.stage.monthly.name": {
+    "text": "月次の継続性"
+  },
+  "institution.support.capacity.stage.monthly.body": {
+    "text": "その月そのものが緊急事態にならずに、継続的な義務を果たせる状態。"
+  },
+  "institution.support.capacity.state.ahead": {
+    "text": "この先"
+  },
+  "institution.support.capacity.stage.debt.name": {
+    "text": "負債の解消"
+  },
+  "institution.support.capacity.stage.debt.body": {
+    "text": "より長い見通しです。構成範囲の突き合わせが続いているため、合計額はここに表示していません。"
+  },
+  "institution.support.capacity.state.unverified": {
+    "text": "金額は未検証"
+  },
+  "institution.support.capacity.stage.sustainable.name": {
+    "text": "持続可能な創造"
+  },
+  "institution.support.capacity.stage.sustainable.body": {
+    "text": "生存の合間に押し込むのではなく、この取り組みを選んで行えるだけの安定した地面。"
+  },
+  "institution.support.capacity.stage.relay.name": {
+    "text": "豊かさのリレー"
+  },
+  "institution.support.capacity.stage.relay.body": {
+    "text": "上流のメンテナ、志を同じくする作り手、さらなる創造を可能にした他の事業へと、余力を渡していくこと。数値的な閾値ではなく意図として掲げています。会計期間と測定の境界がまだ定義されていないためです。"
+  },
+  "institution.support.meanings.heading": {
+    "text": "五つの支援の意味"
+  },
+  "institution.support.meanings.intro": {
+    "text": "これらは支援の意味であり、道徳的な序列・会員資格・サービスの内容・権限の段階ではありません。公開された成果は、どの段階であっても、また支援がなくても、等しく利用できます。支援額の大きさが、人としての重要さやこの取り組みに対する権限を増やすことはありません。"
+  },
+  "institution.support.meanings.amount-note": {
+    "text": "金額は想定される月額の意味として表示しています。リンクではありません。GitHub Sponsors が稼働するまで、送金先は付与されません。"
+  },
+  "institution.support.meaning.light.alt": {
+    "text": "暗闇のなかに灯る一本のろうそく。"
+  },
+  "institution.support.meaning.light.name": {
+    "text": "ライト — 取り組みを利用可能に保つ"
+  },
+  "institution.support.meaning.light.amount": {
+    "text": "月額 $7"
+  },
+  "institution.support.meaning.light.body": {
+    "text": "公開された基盤を利用可能に保つための、小さな継続的な行為です。"
+  },
+  "institution.support.meaning.alignment.alt": {
+    "text": "二本の筋が一本の連なる組紐に編まれている。"
+  },
+  "institution.support.meaning.alignment.name": {
+    "text": "アラインメント — 開発を安定して続ける"
+  },
+  "institution.support.meaning.alignment.amount": {
+    "text": "月額 $33"
+  },
+  "institution.support.meaning.alignment.body": {
+    "text": "Victor が継続するための一貫した時間と余力をもたらす、安定した支援です。"
+  },
+  "institution.support.meaning.abundance.alt": {
+    "text": "枝葉のなかに人影と実を抱く、大きく広がった木。"
+  },
+  "institution.support.meaning.abundance.name": {
+    "text": "アバンダンス — 取り組みが担える範囲を広げる"
+  },
+  "institution.support.meaning.abundance.amount": {
+    "text": "月額 $77"
+  },
+  "institution.support.meaning.abundance.body": {
+    "text": "ドキュメント・ローカライゼーション・テスト・アクセシビリティ・成長のための余力を広げます。"
+  },
+  "institution.support.meaning.foundation.alt": {
+    "text": "積み上げられたブロックが、上に向かって細くなる安定した土台をつくっている。"
+  },
+  "institution.support.meaning.foundation.name": {
+    "text": "ファウンデーション・ビルダー — 永続する基盤を築く"
+  },
+  "institution.support.meaning.foundation.amount": {
+    "text": "月額 $333"
+  },
+  "institution.support.meaning.foundation.body": {
+    "text": "永続的なリリース・インフラ・モデル利用・独立したレビューを支える、基盤への大きな支援です。"
+  },
+  "institution.support.meaning.offering.alt": {
+    "text": "上向きに開かれた手が、落ちてくる水滴を受けている。"
+  },
+  "institution.support.meaning.offering.name": {
+    "text": "オープン・オファリング — 見合う分だけ贈る"
+  },
+  "institution.support.meaning.offering.amount": {
+    "text": "任意の金額"
+  },
+  "institution.support.meaning.offering.body": {
+    "text": "支援者自身が額を選ぶ、単発の助力または感謝の表現です。"
+  },
+  "institution.support.protects.heading": {
+    "text": "支援が守るもの"
+  },
+  "institution.support.protects.intro": {
+    "text": "順序に意味があります。上にあるものを飛ばして、下にあるものに到達することはありません。"
+  },
+  "institution.support.protects.item1": {
+    "text": "Victor の生活の安定と、該当する義務。"
+  },
+  "institution.support.protects.item2": {
+    "text": "この取り組みを続けるために必要な時間と気力。"
+  },
+  "institution.support.protects.item3": {
+    "text": "インフラ、モデル、ホスティング、テスト、ドキュメント、アクセシビリティ、ローカライゼーション、そして独立したレビュー。"
+  },
+  "institution.support.protects.item4": {
+    "text": "持続可能な公共のスチュワードシップ。"
+  },
+  "institution.support.protects.item5": {
+    "text": "余力が本当にそれらの必要を超えたとき、上流の作り手・志を同じくするプロジェクト・他の事業へ渡される感謝と支援。"
+  },
+  "institution.support.boundaries.heading": {
+    "text": "境界"
+  },
+  "institution.support.boundaries.purchase": {
+    "text": "支援は任意です。コンサルティング、受託開発、株式、所有権、投資収益、優先対応、非公開の実装、支配権、寄付金控除のいずれも購入するものではありません。直接の商業的な取引は Vextreme LLC を通じて別途扱われます。"
+  },
+  "institution.support.boundaries.rank": {
+    "text": "支援が多いことが、人としての重要さや、この取り組みに対する権限を増やすことはありません。"
+  },
+  "institution.support.boundaries.faith": {
+    "text": "Victor の信仰を共有することは、VexLife を受け取り、使い、試し、支援し、貢献するための条件ではありません。"
+  },
+  "institution.support.boundaries.sdk": {
+    "text": "いかなる支援の段階も、Vextreme-SDK、非公開の実装、保護された運用上の橋のいかなる部分へのアクセスも与えません。"
+  },
+  "institution.support.stewardship.heading": {
+    "text": "スチュワードシップ"
+  },
+  "institution.support.stewardship.body": {
+    "text": "支援はまず、Victor が生き、オープンソースの取り組みを続け、そのインフラを維持し、該当する義務を果たせる状態を支えます。資源が本当にそれらの必要を超えたとき、Victor は上流のメンテナ、志を同じくする作り手、プロジェクト、さらなる創造を可能にした他の事業を支援する意向です。"
+  },
+  "institution.support.stewardship.receipts": {
+    "text": "日付入りのスチュワードシップ記録が、完了した配分をここに記します。何が守られ、何が先へ渡されたか。実際に日付のある配分が生じるまで、この欄には何も表示されません。銀行残高、私的な領収書、支援者の身元、税務記録、内部の財務案件は、恒久的にここには含めません。"
+  },
+  "institution.support.stewardship.empty": {
+    "text": "スチュワードシップの記録はまだありません。"
+  },
   "pages.claude-answers-the-doubt.layer.01.number": {
     "text": "第1層"
   },

@@ -69,6 +69,14 @@ function readActiveSurfaces() {
   return surfacesByState(registry, 'active');
 }
 
+function readSurfaceBundle(surface, locale) {
+  const bundlePath = path.join(
+    ROOT, 'data', 'strings', 'compiled', 'scopes', surface.strings.category,
+    `${surface.strings.scope}.${locale}.json`
+  );
+  return JSON.parse(fs.readFileSync(bundlePath, 'utf8'));
+}
+
 function mimeFor(filePath) {
   return MIME[path.extname(filePath).toLowerCase()] || 'application/octet-stream';
 }
@@ -136,14 +144,60 @@ async function selectLocale(page, locale) {
   if (await page.locator(selector).count() !== 1) {
     throw new Error(`cannot operate locale ${locale}: ${selector} is absent or duplicated`);
   }
+  await page.locator(selector).focus();
   await page.selectOption(selector, locale);
   await page.waitForFunction(expected => document.documentElement.lang === expected, locale);
+  if (!await page.locator(selector).evaluate(element => document.activeElement === element)) {
+    throw new Error(`locale ${locale} selection did not retain focus on the native selector`);
+  }
 }
 
-async function verifyContract(page, surface, locale, theme, viewport) {
-  const result = await page.evaluate(({ expected, locale, theme, viewport }) => {
+async function verifyContract(page, surface, locale, theme, viewport, bundle) {
+  const result = await page.evaluate(({ expected, locale, theme, viewport, bundle }) => {
     const html = document.documentElement;
     const width = window.innerWidth;
+    const bindingIssues = [];
+    for (const [selector, keyAttribute, valueAttribute] of [
+      ['[data-i18n]', 'data-i18n', 'textContent'],
+      ['[data-i18n-alt]', 'data-i18n-alt', 'alt'],
+      ['[data-i18n-aria]', 'data-i18n-aria', 'aria-label'],
+    ]) {
+      for (const element of document.querySelectorAll(selector)) {
+        const key = element.getAttribute(keyAttribute);
+        const entry = bundle[key];
+        const wanted = valueAttribute === 'aria-label'
+          ? entry && (entry['aria-label'] || entry.text)
+          : entry && entry.text;
+        const observed = valueAttribute === 'textContent'
+          ? element.textContent
+          : element.getAttribute(valueAttribute);
+        if (typeof wanted !== 'string' || observed !== wanted) {
+          bindingIssues.push(`${keyAttribute}=${key}`);
+        }
+      }
+    }
+
+    const selects = Array.from(document.querySelectorAll('[data-vex-lang-select]'));
+    const select = selects[0] || null;
+    const institutionalLinks = Array.from(document.querySelectorAll('a[href]'))
+      .filter(anchor => /(^|\/)(?:vextreme-home|vex-support)\.html(?:[?#]|$)/.test(anchor.getAttribute('href') || ''))
+      .map(anchor => anchor.getAttribute('href'));
+    const linkLocaleIssues = institutionalLinks.filter(href => {
+      const parsed = new URL(href, location.href);
+      return locale === 'en' ? parsed.searchParams.has('lang') : parsed.searchParams.get('lang') !== locale;
+    });
+    const routeIssues = Array.from(document.querySelectorAll('[data-vex-route]')).flatMap(route => {
+      const problems = [];
+      if (route.querySelector('a[href]')) problems.push(`${route.dataset.vexRoute}: live link`);
+      const actions = Array.from(route.querySelectorAll('[data-vex-route-action]'));
+      if (!actions.length) problems.push(`${route.dataset.vexRoute}: missing inert action`);
+      if (actions.some(action => action.getAttribute('aria-disabled') !== 'true' || action.hasAttribute('href'))) {
+        problems.push(`${route.dataset.vexRoute}: enabled action`);
+      }
+      return problems;
+    });
+    let storedLocale = null;
+    try { storedLocale = localStorage.getItem('vex-lang'); } catch (error) {}
     return {
       surface: html.dataset.vexSurface,
       category: html.dataset.vexStringCategory,
@@ -170,6 +224,17 @@ async function verifyContract(page, surface, locale, theme, viewport) {
       title: document.title,
       mainCount: document.querySelectorAll('main').length,
       h1Count: document.querySelectorAll('h1').length,
+      hold: html.hasAttribute('data-vex-locale-hold'),
+      bindingIssues,
+      selectorCount: selects.length,
+      selectorHidden: select ? select.hidden : null,
+      selectorValue: select ? select.value : null,
+      selectorOptions: select ? Array.from(select.options, option => [option.value, option.textContent]) : [],
+      selectorLabelCount: select && select.labels ? select.labels.length : 0,
+      urlLocale: new URLSearchParams(location.search).get('lang'),
+      storedLocale,
+      linkLocaleIssues,
+      routeIssues,
       expected,
     };
   }, {
@@ -182,6 +247,7 @@ async function verifyContract(page, surface, locale, theme, viewport) {
     locale,
     theme,
     viewport,
+    bundle,
   });
 
   const problems = [];
@@ -197,6 +263,20 @@ async function verifyContract(page, surface, locale, theme, viewport) {
   if (!result.title.trim()) problems.push('document title is empty');
   if (result.mainCount !== 1) problems.push(`main count=${result.mainCount}`);
   if (result.h1Count !== 1) problems.push(`h1 count=${result.h1Count}`);
+  if (result.hold) problems.push('pre-paint locale hold remained set');
+  if (result.bindingIssues.length) problems.push(`mixed or missing localized bindings: ${result.bindingIssues.join(', ')}`);
+  if (result.selectorCount !== 1 || result.selectorHidden) problems.push(`native selector count/hidden=${result.selectorCount}/${result.selectorHidden}`);
+  if (result.selectorValue !== locale) problems.push(`selector=${result.selectorValue || '(missing)'}`);
+  if (JSON.stringify(result.selectorOptions) !== JSON.stringify([['en', 'English'], ['ja', '日本語'], ['zh', '中文']])) {
+    problems.push(`selector autonyms=${JSON.stringify(result.selectorOptions)}`);
+  }
+  if (result.selectorLabelCount !== 1) problems.push(`selector label count=${result.selectorLabelCount}`);
+  if (locale === 'en' ? result.urlLocale !== null : result.urlLocale !== locale) {
+    problems.push(`URL lang=${result.urlLocale || '(absent)'}`);
+  }
+  if (locale !== 'en' && result.storedLocale !== locale) problems.push(`stored locale=${result.storedLocale || '(absent)'}`);
+  if (result.linkLocaleIssues.length) problems.push(`cross-page locale links=${result.linkLocaleIssues.join(', ')}`);
+  if (result.routeIssues.length) problems.push(`held route boundary=${result.routeIssues.join(', ')}`);
   if (problems.length) throw new Error(problems.join('; '));
 }
 
@@ -253,6 +333,243 @@ async function verifyLocalLinks(page, baseUrl) {
   }
 }
 
+async function browserLocaleState(page) {
+  return page.evaluate(() => {
+    const values = [];
+    for (const [selector, keyAttribute, valueAttribute] of [
+      ['[data-i18n]', 'data-i18n', 'textContent'],
+      ['[data-i18n-alt]', 'data-i18n-alt', 'alt'],
+      ['[data-i18n-aria]', 'data-i18n-aria', 'aria-label'],
+    ]) {
+      for (const element of document.querySelectorAll(selector)) {
+        values.push([
+          keyAttribute,
+          element.getAttribute(keyAttribute),
+          valueAttribute === 'textContent' ? element.textContent : element.getAttribute(valueAttribute),
+        ]);
+      }
+    }
+    return {
+      lang: document.documentElement.lang,
+      hold: document.documentElement.hasAttribute('data-vex-locale-hold'),
+      select: document.querySelector('[data-vex-lang-select]')?.value || null,
+      search: location.search,
+      hash: location.hash,
+      stored: localStorage.getItem('vex-lang'),
+      values,
+      institutionalHrefs: Array.from(document.querySelectorAll('a[href]'), anchor => anchor.getAttribute('href'))
+        .filter(href => /(^|\/)(?:vextreme-home|vex-support)\.html(?:[?#]|$)/.test(href || '')),
+    };
+  });
+}
+
+async function verifyStaticEnglish(browser, baseUrl, surfaces) {
+  for (const surface of surfaces) {
+    const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 768, height: 900 } });
+    await context.route('https://fonts.googleapis.com/**', route => route.fulfill({
+      status: 200,
+      contentType: 'text/css; charset=utf-8',
+      body: '',
+    }));
+    const page = await context.newPage();
+    try {
+      await page.goto(`${baseUrl}/pages/${surface.slug}.html`, { waitUntil: 'load' });
+      const bundle = readSurfaceBundle(surface, 'en');
+      const result = await page.evaluate(bundle => {
+        const issues = [];
+        for (const [selector, keyAttribute, valueAttribute] of [
+          ['[data-i18n]', 'data-i18n', 'textContent'],
+          ['[data-i18n-alt]', 'data-i18n-alt', 'alt'],
+          ['[data-i18n-aria]', 'data-i18n-aria', 'aria-label'],
+        ]) {
+          for (const element of document.querySelectorAll(selector)) {
+            const key = element.getAttribute(keyAttribute);
+            const entry = bundle[key];
+            const expected = valueAttribute === 'aria-label'
+              ? entry && (entry['aria-label'] || entry.text)
+              : entry && entry.text;
+            const actual = valueAttribute === 'textContent'
+              ? element.textContent
+              : element.getAttribute(valueAttribute);
+            if (actual !== expected) issues.push(`${keyAttribute}=${key}`);
+          }
+        }
+        const select = document.querySelector('[data-vex-lang-select]');
+        return {
+          lang: document.documentElement.lang,
+          hold: document.documentElement.hasAttribute('data-vex-locale-hold'),
+          selectorHidden: select ? select.hidden : null,
+          issues,
+        };
+      }, bundle);
+      if (result.lang !== 'en' || result.hold || result.selectorHidden !== true || result.issues.length) {
+        throw new Error(`${surface.slug} no-JavaScript English fallback failed: ${JSON.stringify(result)}`);
+      }
+    } finally {
+      await context.close();
+    }
+  }
+}
+
+async function verifyLocaleRuntimeAcceptance(browser, baseUrl, surface) {
+  const bundles = Object.fromEntries(['en', 'ja', 'zh'].map(locale => [locale, readSurfaceBundle(surface, locale)]));
+  let mode = 'success';
+  const context = await browser.newContext({ viewport: { width: 768, height: 900 } });
+  await context.addInitScript(() => {
+    localStorage.setItem('vex-lang', 'zh');
+    window.__vexFirstFrames = [];
+    requestAnimationFrame(function record() {
+      const body = document.body;
+      window.__vexFirstFrames.push({
+        lang: document.documentElement.lang,
+        hold: document.documentElement.hasAttribute('data-vex-locale-hold'),
+        visible: body ? getComputedStyle(body).visibility !== 'hidden' : false,
+        heading: document.querySelector('h1')?.textContent || '',
+      });
+      if (window.__vexFirstFrames.length < 4) requestAnimationFrame(record);
+    });
+  });
+  await context.route('https://fonts.googleapis.com/**', route => route.fulfill({
+    status: 200,
+    contentType: 'text/css; charset=utf-8',
+    body: '',
+  }));
+  await context.route('**/data/strings/compiled/scopes/system/institution.*.json', async route => {
+    const locale = /institution\.(en|ja|zh)\.json/.exec(route.request().url())?.[1];
+    if (!locale) return route.abort();
+    if (mode === 'fetch') return route.abort();
+    if (mode === 'timeout') {
+      await new Promise(resolve => setTimeout(resolve, 2300));
+      return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(bundles[locale]) });
+    }
+    if (mode === 'rapid') {
+      const delay = { ja: 300, zh: 150, en: 0 }[locale];
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
+    if (mode === 'parse') {
+      return route.fulfill({ status: 200, contentType: 'application/json', body: '{not-json' });
+    }
+    if (mode === 'missing') {
+      const incomplete = { ...bundles[locale] };
+      delete incomplete[Object.keys(incomplete)[0]];
+      return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(incomplete) });
+    }
+    return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(bundles[locale]) });
+  });
+
+  const page = await context.newPage();
+  const runtimeErrors = [];
+  page.on('pageerror', error => runtimeErrors.push(String(error)));
+  page.on('console', message => {
+    if (message.type() === 'error' && !(mode === 'fetch' && message.text().includes('ERR_FAILED'))) {
+      runtimeErrors.push(message.text());
+    }
+  });
+  try {
+    await page.goto(`${baseUrl}/pages/${surface.slug}.html?lang=ja&keep=1#main`, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => document.documentElement.lang === 'ja');
+    await page.waitForTimeout(80);
+    const firstFrames = await page.evaluate(() => window.__vexFirstFrames || []);
+    const wrongVisibleFrame = firstFrames.find(frame => frame.visible && (
+      frame.lang !== 'ja' || frame.heading !== '隠れた関係性を、知覚できるものへ。'
+    ));
+    if (wrongVisibleFrame) throw new Error(`wrong-locale first paint: ${JSON.stringify(wrongVisibleFrame)}`);
+    let state = await browserLocaleState(page);
+    if (state.lang !== 'ja' || state.select !== 'ja' || state.stored !== 'ja' ||
+        !state.search.includes('lang=ja') || !state.search.includes('keep=1') || state.hash !== '#main') {
+      throw new Error(`URL-over-storage precedence failed: ${JSON.stringify(state)}`);
+    }
+
+    const stableJa = JSON.stringify(state);
+    for (const failure of [
+      ['missing', 120],
+      ['parse', 120],
+      ['fetch', 120],
+      ['timeout', 1550],
+    ]) {
+      mode = failure[0];
+      await page.selectOption('[data-vex-lang-select]', 'zh');
+      await page.waitForTimeout(failure[1]);
+      state = await browserLocaleState(page);
+      if (JSON.stringify(state) !== stableJa) {
+        throw new Error(`${failure[0]} failure changed the fully applied JA state`);
+      }
+    }
+
+    mode = 'success';
+    await page.selectOption('[data-vex-lang-select]', 'zh');
+    await page.waitForFunction(() => document.documentElement.lang === 'zh');
+    state = await browserLocaleState(page);
+    if (state.select !== 'zh' || state.stored !== 'zh') throw new Error('later valid ZH selection did not recover');
+
+    mode = 'rapid';
+    await page.evaluate(() => {
+      const select = document.querySelector('[data-vex-lang-select]');
+      for (const locale of ['ja', 'zh', 'en']) {
+        select.value = locale;
+        select.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    });
+    await page.waitForFunction(() => document.documentElement.lang === 'en');
+    await page.waitForTimeout(400);
+    state = await browserLocaleState(page);
+    if (state.lang !== 'en' || state.select !== 'en' || state.stored !== 'en' ||
+        state.search.includes('lang=') || !state.search.includes('keep=1') || state.hash !== '#main') {
+      throw new Error(`rapid latest-intent or URL preservation failed: ${JSON.stringify(state)}`);
+    }
+    if (runtimeErrors.length) throw new Error(`runtime error(s): ${runtimeErrors.join(' | ')}`);
+  } finally {
+    await context.close();
+  }
+
+  for (const scenario of [
+    { name: 'storage-over-English', search: '', stored: 'zh', expected: 'zh' },
+    { name: 'invalid-URL-English', search: '?lang=xx', stored: 'zh', expected: 'en' },
+  ]) {
+    const scenarioContext = await browser.newContext({ viewport: { width: 768, height: 900 } });
+    await scenarioContext.addInitScript(value => localStorage.setItem('vex-lang', value), scenario.stored);
+    await scenarioContext.route('https://fonts.googleapis.com/**', route => route.fulfill({ status: 200, contentType: 'text/css', body: '' }));
+    const scenarioPage = await scenarioContext.newPage();
+    try {
+      await scenarioPage.goto(`${baseUrl}/pages/${surface.slug}.html${scenario.search}`, { waitUntil: 'domcontentloaded' });
+      await scenarioPage.waitForFunction(expected => document.documentElement.lang === expected, scenario.expected);
+      await scenarioPage.waitForTimeout(50);
+      const observed = await browserLocaleState(scenarioPage);
+      if (observed.lang !== scenario.expected || observed.select !== scenario.expected ||
+          (scenario.name === 'invalid-URL-English' && observed.stored !== 'zh')) {
+        throw new Error(`${scenario.name} failed: ${JSON.stringify(observed)}`);
+      }
+    } finally {
+      await scenarioContext.close();
+    }
+  }
+
+  const timeoutContext = await browser.newContext({ viewport: { width: 768, height: 900 } });
+  await timeoutContext.addInitScript(() => localStorage.setItem('vex-lang', 'ja'));
+  await timeoutContext.route('https://fonts.googleapis.com/**', route => route.fulfill({ status: 200, contentType: 'text/css', body: '' }));
+  await timeoutContext.route('**/data/strings/compiled/scopes/system/institution.ja.json', async route => {
+    await new Promise(resolve => setTimeout(resolve, 2300));
+    await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(bundles.ja) });
+  });
+  const timeoutPage = await timeoutContext.newPage();
+  try {
+    await timeoutPage.goto(`${baseUrl}/pages/${surface.slug}.html`, { waitUntil: 'domcontentloaded' });
+    await timeoutPage.waitForFunction(() => !document.documentElement.hasAttribute('data-vex-locale-hold'), null, { timeout: 1999 });
+    const releasedAt = await timeoutPage.evaluate(() => performance.now());
+    const fallback = await timeoutPage.evaluate(bundle => ({
+      lang: document.documentElement.lang,
+      heading: document.querySelector('h1').textContent,
+      expected: bundle['institution.home.hero.heading'].text,
+      stored: localStorage.getItem('vex-lang'),
+    }), bundles.en);
+    if (releasedAt >= 2000 || fallback.lang !== 'en' || fallback.heading !== fallback.expected || fallback.stored !== 'ja') {
+      throw new Error(`pre-paint timeout fallback failed at ${releasedAt}ms: ${JSON.stringify(fallback)}`);
+    }
+  } finally {
+    await timeoutContext.close();
+  }
+}
+
 async function renderCell(browser, baseUrl, surface, locale, theme, viewport, verifyToggle) {
   const context = await browser.newContext({
     viewport: { width: viewport, height: viewport <= 320 ? 720 : 900 },
@@ -288,7 +605,7 @@ async function renderCell(browser, baseUrl, surface, locale, theme, viewport, ve
       await verifyThemeToggle(page, theme);
     }
     await settlePage(page);
-    await verifyContract(page, surface, locale, theme, viewport);
+    await verifyContract(page, surface, locale, theme, viewport, readSurfaceBundle(surface, locale));
     if (runtimeErrors.length) throw new Error(`runtime error(s): ${runtimeErrors.join(' | ')}`);
 
     const documentHeight = await page.evaluate(() => document.documentElement.scrollHeight);
@@ -333,6 +650,11 @@ async function main() {
   try {
     browser = await chromium.launch(launchOptions);
     const baseUrl = `http://127.0.0.1:${port}`;
+    process.stdout.write('browser acceptance\n');
+    await verifyStaticEnglish(browser, baseUrl, surfaces);
+    const homeSurface = surfaces.find(surface => surface.slug === 'vextreme-home') || surfaces[0];
+    await verifyLocaleRuntimeAcceptance(browser, baseUrl, homeSurface);
+    process.stdout.write('  static English, precedence, transactional failures, latest intent, and pre-paint timeout green\n');
     let toggleVerified = false;
     for (const surface of surfaces) {
       process.stdout.write(`${surface.slug}\n`);

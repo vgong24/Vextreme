@@ -1369,7 +1369,7 @@
     },
     "scripts/screenshot-institutional.js": {
       "role": "registry-driven Playwright renderer for exact institutional locale/theme/viewport evidence cells",
-      "context": "Institutional Surface Integration 2/4. The source capsule carried a hard-coded two-page renderer and emitted both a private width/theme vocabulary and legacy locale aliases. This harness reads only active registry entries and writes the exact matrix filename accepted by activation, Page Health, Terrain, and Analysis. It operates the real page runtime, asserts the declared markers and selected state, rejects runtime errors and horizontal overflow, and exercises the theme control before preserving evidence.",
+      "context": "Institutional Surface Integration 4/4. This harness reads only active registry entries and writes the exact matrix filename accepted by activation, Page Health, Terrain, and Analysis. Before rendering, it performs browser acceptance for JavaScript-disabled static English, wrong-locale first-paint prevention, exact URL-over-storage-over-English precedence, invalid URL handling, fetch/parse/timeout/missing-key preservation, later recovery, latest-intent wins, and sub-2,000 ms pre-paint hold release. For every locale/theme/viewport cell it validates the complete visible, alt, and ARIA bundle projection; native selector label/options/state; URL, storage, and cross-page locale propagation; held support routes; focus retention; runtime errors; and horizontal overflow before preserving evidence.",
       "reads": [
         "config/institutional-surfaces.json (active slugs and declared evidence matrix)",
         "lib/check-institutional-surfaces.js (surfacesByState; no second lifecycle list)",
@@ -1573,7 +1573,7 @@
     },
     "config/institutional-surfaces.json": {
       "role": "authored registry for institutional surface identity, lifecycle, root-discovery label key, runtime exclusions, optional support-route contract, string scope, theme variants, and required evidence",
-      "context": "Institutional Surface Integration. PR #135 proved that vextreme-home and vex-support are a real second page class, but encoded their identity across page-local exceptions, duplicated lists, runtime assumptions, and an oversized acceptance surface. Item 1/4 reserved both identities; item 2/4 promoted the English home; item 3/4 promotes the English support domain with an explicit support-route data path while every payment URL remains null and inert. Each root-discovery label is a key into the canonical compiled institutional bundle, not user-facing copy duplicated in the registry or index generator. Planned locales remain distinct from required locales so future translation is visible without being misreported as accepted or published. A reservation still owns its slug across page, node, arc, generated-index, and God Script projections.",
+      "context": "Institutional Surface Integration. PR #135 proved that vextreme-home and vex-support are a real second page class, but encoded their identity across page-local exceptions, duplicated lists, runtime assumptions, and an oversized acceptance surface. Item 1/4 reserved both identities; item 2/4 promoted the English home; item 3/4 promoted the English support domain with an explicit support-route data path while every payment URL remained null and inert; item 4/4 requires independently reviewed English, Japanese, and Chinese bundles on both active surfaces with no planned locale remainder. Each root-discovery label is a key into the canonical compiled institutional bundle, not user-facing copy duplicated in the registry or index generator. A reservation still owns its slug across page, node, arc, generated-index, and God Script projections.",
       "reads": [],
       "writes": [],
       "loadedBy": [
@@ -1603,7 +1603,7 @@
     },
     "lib/check-institutional-surfaces.js": {
       "role": "fail-closed institutional-surface registry, identity-reservation, static-English, inactive-support-route, runtime-localization, and evidence validator",
-      "context": "Institutional Surface Integration 3/4. Reserved entries own identity across page, node, arc, generated-index, and God Script projections. Active entries provide one standalone page with explicit surface/string-category/string-scope/theme markers, static English text/alt/ARIA values equal to the compiled English bundle, complete visible and accessibility locale bindings, behavioral execution of any declared multi-locale loader/control, and structurally valid PNG evidence for every declared locale/theme/viewport cell. The English support domain additionally binds its data-vex-route identities to data/support-routes.json and fails closed unless every route remains inactive, null-backed, prerequisite-bearing, action-bearing, ARIA-disabled, link-free, and candidate-free; payment activation and JA/ZH stay in later review rows.",
+      "context": "Institutional Surface Integration 4/4. Reserved entries own identity across page, node, arc, generated-index, and God Script projections. Active entries provide one standalone page with explicit surface/string-category/string-scope/theme markers, static English text/alt/ARIA values equal to the compiled English bundle, complete visible and accessibility locale bindings, exactly one labelled native-language selector, synchronous pre-paint localization wiring, hostile-failure-safe behavioral execution of the declared multi-locale loader/control, and structurally valid PNG evidence for every declared locale/theme/viewport cell. The support domain additionally binds its data-vex-route identities to data/support-routes.json and fails closed unless every route remains inactive, null-backed, prerequisite-bearing, action-bearing, ARIA-disabled, link-free, and candidate-free; payment activation remains outside this row.",
       "reads": [
         "config/institutional-surfaces.json (surface lifecycle, discovery, and registry-declared runtime.supportRoutes target)",
         "lib/vex-config.js (valid compiled-string categories)",
@@ -1644,8 +1644,8 @@
       }
     },
     "lib/institutional-localization-runtime.js": {
-      "role": "bounded behavioral probe for institutional localization loaders — operates the declared control and observes visible, alt, and ARIA translations",
-      "context": "Institutional Surface Integration 1/4 exact-head review closure. Static script tags, globals, bundle files, and select options can all exist while the declared widget throws, does nothing, or hard-codes accepted values without consuming the repository bundles. This probe runs the actual loader source in an isolated child-process VM with a minimal browser contract, operates every required non-English option and then returns to English, records bundle requests and completed JSON bodies, requires one successful completion per required locale, and compares visible text, alt text, ARIA labels, and `<html lang>` against the compiled bundles. The child-process timeout bounds hostile or accidental nontermination; no repository code receives Node require/process access inside the VM.",
+      "role": "bounded behavioral probe for transactional institutional localization — exercises precedence, hostile failures, rapid intent changes, and atomic visible/alt/ARIA application",
+      "context": "Institutional Surface Integration 4/4. Static script tags, globals, bundle files, and select options can all exist while the declared widget throws, does nothing, hard-codes accepted values, partially applies a bundle, or permits stale asynchronous work to overwrite a newer choice. This probe runs the actual loader source in an isolated child-process VM with a minimal browser contract; verifies exact URL-over-storage-over-English precedence; operates every required non-English option and returns to English; records completed bundle bodies; compares visible text, alt text, ARIA labels, `<html lang>`, selector state, URL, storage, and cross-page links against the compiled bundles; and proves fetch, parse, timeout, and missing-key failures preserve the last fully applied locale. It also drives a rapid `ja → zh → en` sequence and bounds pre-paint hold release. The child-process timeout bounds hostile or accidental nontermination; no repository code receives Node require/process access inside the VM.",
       "reads": [
         "declared institutional localization widget source (provided by lib/check-institutional-surfaces.js)",
         "required compiled locale bundles (provided by lib/check-institutional-surfaces.js)",
@@ -1655,15 +1655,16 @@
         "stdout JSON only in --probe-child mode"
       ],
       "loadedBy": [
-        "lib/check-institutional-surfaces.js"
+        "lib/check-institutional-surfaces.js",
+        "tests/54-institutional-surfaces.test.js"
       ],
       "testedBy": [
         "tests/54-institutional-surfaces.test.js"
       ],
       "changeMap": {
-        "DOM or fetch harness contract changes": [
-          "widgets/vex-institutional.js (the later runtime implementation must pass this behavior, not target harness internals)",
-          "tests/54-institutional-surfaces.test.js throwing, no-op, and working loader probes"
+        "DOM, fetch, timer, history, or storage harness contract changes": [
+          "widgets/vex-institutional.js (the runtime implementation must pass behavior, not target harness internals)",
+          "tests/54-institutional-surfaces.test.js hostile-failure, atomicity, precedence, and latest-intent probes"
         ],
         "required observed bindings change": [
           "lib/check-institutional-surfaces.js pageI18nBindings() and activeLocalizationIssues()",

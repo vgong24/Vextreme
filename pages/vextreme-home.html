@@ -8,9 +8,8 @@
   config/institutional-surfaces.json and docs/architecture/18-institutional-pages.md.
 
   English is authored directly into the markup, so the page remains complete
-  with JavaScript disabled. The shared widget only adds the optional light
-  theme now; later reviewed locales can use the same string bindings without
-  changing the page-kind boundary.
+  with JavaScript disabled. The shared widget adds the optional light theme
+  and applies only complete, reviewed institutional locale bundles.
 -->
 <html lang="en"
       data-vex-surface="institutional"
@@ -21,10 +20,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vextreme — What this institution is</title>
+<title data-i18n="institution.home.title">Vextreme — What this institution is</title>
 <meta name="description" content="Vextreme is an institutional template: culture, maps, archives, evidence, and structures that make complex work perceivable, accountable, and continuable across people, tools, and AI.">
 <meta name="vex:department" content="institute">
 <meta name="vex:workType" content="org-design">
+<script>
+  window.VEX_STRING_SCOPES = ['institution'];
+  window.VEX_STRING_CATEGORY = 'system';
+  window.VEX_INST_ROOT = '../';
+</script>
+<script src="../widgets/vex-institutional.js"></script>
 <link rel="icon" href="../assets/logo/vextreme-mark.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -56,6 +61,13 @@
     </nav>
 
     <div class="vex-header-controls">
+      <label class="vex-control-label" for="vex-lang" data-vex-lang-label hidden
+             data-i18n="institution.common.label.language">Language</label>
+      <select class="vex-control" id="vex-lang" data-vex-lang-select hidden>
+        <option value="en">English</option>
+        <option value="ja">日本語</option>
+        <option value="zh">中文</option>
+      </select>
       <button class="vex-control" type="button" data-vex-theme-toggle aria-pressed="false" hidden
               data-i18n="institution.common.button.theme"
               data-i18n-aria="institution.common.button.theme"
@@ -161,13 +173,6 @@
     </div>
   </div>
 </footer>
-
-<script>
-  window.VEX_STRING_SCOPES = ['institution'];
-  window.VEX_STRING_CATEGORY = 'system';
-  window.VEX_INST_ROOT = '../';
-</script>
-<script src="../widgets/vex-institutional.js" defer></script>
 
 </body>
 </html>
