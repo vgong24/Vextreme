@@ -75,6 +75,62 @@ test('WORK COORDINATION: claims bind actor, branch, repository, and authority fl
   assert.equal(checkClaim(claim({ stackedOn: 'work.parent', dependsOn: [] }), policy).valid, false);
 });
 
+test('WORK COORDINATION: stable ChatGPT actor and open-ended epic items are explicit', () => {
+  const terrain = claim({
+    workRef: 'work.vextreme.terrain-relational-projection.row-a.threshold-rail-scale-contract.003',
+    actorRef: 'chatgpt-github-collaborator',
+    instanceRef: 'instance.coder.terrain.synthetic',
+    branch: 'VXG-080226-chatgpt-terrain-threshold-scale-contract',
+    epic: { name: 'Terrain Relational Projection', item: '3/N' },
+    status: 'waiting',
+    paths: ['pages/terrain-map.html'],
+    dependsOn: ['github.issue.vextreme.149'],
+    lease: { renewBy: '2099-01-01' },
+  });
+  assert.equal(checkClaim(terrain, policy, { headRefName: terrain.branch }).valid, true);
+  assert.equal(checkClaim(claim({ actorRef: 'chatgpt-vextreme-terrain-coder' }), policy).valid, false);
+  assert.equal(checkClaim(claim({ epic: { name: 'Public Synthetic', item: '3/4' } }), policy).valid, true);
+  for (const item of ['N/3', '3/?', '3/*', '0/N', '0/3', '-1/N', '1.5/N', '3/0', '3/-1', '3/1.5']) {
+    assert.equal(checkClaim(claim({ epic: { name: 'Public Synthetic', item } }), policy).valid, false, item);
+  }
+});
+
+test('WORK COORDINATION: unsafe legacy wildcard and empty path claims remain rejected', () => {
+  const wildcard = checkClaim(claim({
+    workRef: 'work.institutional-surface',
+    actorRef: 'chatgpt-github-collaborator',
+    instanceRef: 'instance.chatgpt.synthetic',
+    branch: 'claude/financial-landings-page-wb22hp',
+    epic: { name: 'none', item: '1/1' },
+    status: 'waiting',
+    paths: ['assets/**'],
+  }), policy);
+  assert.equal(wildcard.valid, false);
+  assert.match(wildcard.errors.join(' '), /claim path is unsafe/);
+  assert.equal(checkClaim(claim({ paths: [] }), policy).valid, false);
+  assert.equal(checkClaim(claim({ paths: ['../private'] }), policy).valid, false);
+});
+
+test('WORK COORDINATION: open-ended rolling-window ordering uses the numeric numerator', () => {
+  const older = Array.from({ length: 3 }, (_, index) => claim({
+    workRef: `work.open-ended-older-${index}`,
+    branch: `VXG-open-ended-older-${index}`,
+    epic: { name: 'Public Synthetic', item: `${index + 1}/N` },
+    windowRef: 'window.open-ended-1',
+    paths: [`docs/process/open-ended-older-${index}.md`],
+  }));
+  const newer = claim({
+    workRef: 'work.open-ended-newer',
+    branch: 'VXG-open-ended-newer',
+    epic: { name: 'Public Synthetic', item: '4/N' },
+    windowRef: 'window.open-ended-2',
+    paths: ['docs/process/open-ended-newer.md'],
+  });
+  const result = inspectPullRequests([...older, newer].map((value, index) => pr(index + 1, value)), policy, '2026-08-07');
+  assert.equal(result.valid, false);
+  assert.match(result.errors.join(' '), /new window window\.open-ended-2 opened while older window window\.open-ended-1 still has 3 claims/);
+});
+
 test('WORK COORDINATION: path comparison catches parent-child overlap', () => {
   assert.equal(pathOverlap('pages/', 'pages/terrain-map.html'), true);
   assert.equal(pathOverlap('pages/one.html', 'pages/two.html'), false);
@@ -185,7 +241,7 @@ test('WORK COORDINATION: one window is bounded to five open claims', () => {
   const claims = Array.from({ length: 6 }, (_, index) => claim({
     workRef: `work.public-${index}`,
     branch: `VXG-071226-codex-public-${index}`,
-    epic: { name: 'Public Synthetic', item: `${index}/5` },
+    epic: { name: 'Public Synthetic', item: `${index + 1}/6` },
     windowRef: 'window.public-1',
     paths: [`docs/process/window-${index}.md`],
   }));
@@ -198,7 +254,7 @@ test('WORK COORDINATION: one actor/instance/epic may roll into at most two windo
   const claims = Array.from({ length: 8 }, (_, index) => claim({
     workRef: `work.rolling-${index}`,
     branch: `VXG-071226-codex-rolling-${index}`,
-    epic: { name: 'Public Synthetic', item: `${index}/7` },
+    epic: { name: 'Public Synthetic', item: `${index + 1}/8` },
     windowRef: index < 4 ? 'window.public-1' : 'window.public-2',
     paths: [`docs/process/rolling-${index}.md`],
   }));
@@ -218,14 +274,14 @@ test('WORK COORDINATION: a rolling window opens only after the older window reac
     ...Array.from({ length: olderCount }, (_, index) => claim({
       workRef: `work.older-${index}`,
       branch: `VXG-071226-codex-older-${index}`,
-      epic: { name: 'Public Synthetic', item: `${index}/6` },
+      epic: { name: 'Public Synthetic', item: `${index + 1}/7` },
       windowRef: 'window.public-1',
       paths: [`docs/process/older-${index}.md`],
     })),
     ...Array.from({ length: newerCount }, (_, index) => claim({
       workRef: `work.newer-${index}`,
       branch: `VXG-071226-codex-newer-${index}`,
-      epic: { name: 'Public Synthetic', item: `${olderCount + index}/6` },
+      epic: { name: 'Public Synthetic', item: `${olderCount + index + 1}/7` },
       windowRef: 'window.public-2',
       paths: [`docs/process/newer-${index}.md`],
     })),
