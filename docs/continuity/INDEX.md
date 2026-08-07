@@ -149,13 +149,22 @@ as the natural next increment and still deliberately not built — it touches th
 registry in `lib/build-vextreme.js`, real production surface, and needs Victor's explicit
 go-ahead rather than a leisure-pilot default.
 
+Reserved Session 038 completes Terrain Relational Projection Row A without changing that
+held Feature.MAP boundary: `pages/terrain-map.html` now projects the existing system → stage →
+node thresholds as a visible, non-editable rail with transition proximity, contains the narrow
+390px composition without horizontal overflow, honors reduced motion, and preserves Journey
+semantics. Large synthetic Code/Content fixtures exercise existing layout functions without
+changing canonical Terrain data or generator source; six exact screenshot cells carry final
+desktop/narrow/CJK/long-label acceptance evidence.
+
 Session 034 adds live multi-agent work coordination without changing product runtime:
 `npm run current-work` reads bounded ownership claims from open PR bodies, reports
 actor/instance references, epic position, dependencies, paths, leases, and overlaps,
 and fails visibly when live state is unavailable. Session 039 keeps that claim model
 non-authoritative while registering the truthful ChatGPT/GitHub participant and
 admitting positive open-ended epic positions such as `3/N` without inventing a
-roadmap total. Claims coordinate work; they do not prove identity or grant authority.
+roadmap total, now accepted through merged PR #152. Claims coordinate work; they
+do not prove identity or grant authority.
 
 Sessions 036 and 037 record the four-row institutional-surface stack now accepted
 through merged PR #148. `vextreme-home` and `vex-support` are active registry-owned
@@ -164,7 +173,7 @@ bundles, one native selector on each page, transactional URL-over-storage-over-E
 application, hostile-failure preservation, and a 36-cell locale/theme/viewport evidence
 matrix. They remain outside archive placement, auto-discovery, FAB/God Script delivery,
 nodes, and arcs. Every support route, payment destination, candidate URL, and private
-VexLife destination remains unpublished. PR #135 remains provenance only.
+VexLife destination remains unpublished. PR #135 is closed as superseded provenance only.
 
 The continuity system itself changed shape in Session 024: batches are now **directories of
 per-session files** (`docs/continuity/batch-003/`, filenames `YYYY-MM-DD-session-0NN.md`)
@@ -174,9 +183,9 @@ The change repairs Session 023 (Codex's July 6 context-note and perceivable-cont
 entries had been injected mid-file into Session 021's record.
 
 **Recent sessions** (one line each — open the session files below for full reasoning):
-- **Session 039** — Registered the truthful ChatGPT/GitHub collaborator, admitted positive open-ended epic items such as `3/N`, preserved exact-path safety, and regenerated the deterministic orientation worker + integrity-evaluation projections using their existing source-owned builder/evaluator under a bounded correction claim.
+- **Session 039** — Registered the truthful ChatGPT/GitHub collaborator and open-ended `3/N` coordination semantics, accepted through PR #152.
+- **Session 038** — Completed Terrain Row A with a non-editable semantic threshold rail, narrow containment, deterministic large-scale fixtures, and six exact visual evidence cells while preserving Journey and Row B boundaries.
 - **Session 037** — Added independently reviewed JA/ZH institutional bundles, transactional native selection on both pages, hostile-failure coverage, and the complete 36-cell evidence matrix later accepted through PR #148.
-- **Session 036** — Integrated the English institutional home and foundation plus the English support row through the accepted contract lineage, keeping routes, payment, VexLife, nodes, arcs, and God Scripts held.
 **This section is a snapshot, not a log.** Full session-by-session reasoning — mistakes tried,
 assumptions made, why a decision went one way over another — lives in the batch files (see
 **Batch Registry** below), not here. Rewrite the paragraph above at the start of each session to
@@ -207,10 +216,8 @@ off forever; its record already lives in the batch file and (for od-/td-/pe- ite
 not this list.
 
 **Genuinely open:**
-- [ ] Public Work Coordination correction — complete hosted validation and fresh exact-head Assurance for draft PR #152; after acceptance resolve PR #135's stale invalid claim and require authenticated `npm run current-work` health before waking Terrain Row A Coder.
 - [ ] Payment activation — only after Victor verifies every destination; never
   infer readiness from page implementation or provider-shaped configuration.
-- [ ] Terrain Relational Projection Phase 2 — add a visible semantic threshold rail that exposes prior/current/next level and transition proximity while preserving the Phase 1 Journey contract; do not add user-editable threshold controls yet.
 - [ ] Terrain Relational Projection later phases — context-bearing stage portals, projection/profile grammar, alternate spatial POCs, public-safe organization/process views, and accessibility stabilization remain ordered horizon work, not bundled into Phase 1.
 - [ ] Global FAB coverage after the v8 action-rail contract: 10 of 39 `pages/*.html` surfaces still have neither `shell.js` nor a God-Script FAB path. Add them in a bounded PR, updating generators for generated pages and visually checking each authored surface.
 - [ ] Re-render one default-body-margin legacy page after Session 029's nav inset normalization; localhost browser access was blocked after source/test verification, so this final pixel check remains explicit.

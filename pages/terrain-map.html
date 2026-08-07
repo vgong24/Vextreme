@@ -81,8 +81,24 @@
   .map-wrap{ position:absolute; inset:0; overflow:hidden; background: radial-gradient(ellipse at 30% 15%, var(--accent-soft), transparent 55%), var(--ground); cursor:grab; }
   .map-wrap.grabbing{ cursor:grabbing; }
   .map-hint{ position:absolute; left:16px; bottom:14px; z-index:2; font-family:var(--mono); font-size:10.5px; color:var(--ink-faint); pointer-events:none; max-width:60%; }
-  .level-readout{ position:absolute; left:16px; top:14px; z-index:2; font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-muted); background:var(--panel); border:1px solid var(--line); padding:6px 10px; border-radius:20px; }
-  .level-readout b{ color:var(--accent); }
+  .level-readout{
+    position:absolute; left:16px; top:14px; z-index:2; width:min(560px, calc(100% - 32px)); min-width:0;
+    font-family:var(--mono); color:var(--ink-muted); background:var(--panel); border:1px solid var(--line);
+    padding:8px 12px 7px; border-radius:12px; pointer-events:none;
+  }
+  .threshold-progress{ position:relative; min-width:0; padding-top:10px; }
+  .threshold-track{ position:absolute; left:0; right:0; top:8px; height:2px; border-radius:2px; background:var(--line-strong); }
+  .threshold-marker{ position:absolute; top:4px; width:10px; height:10px; border-radius:50%; background:var(--accent); border:2px solid var(--panel); transform:translateX(-50%); transition:left .12s ease; box-shadow:0 0 0 1px var(--accent-soft); }
+  .threshold-rail{ list-style:none; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin:0; padding:9px 0 0; }
+  .threshold-step{ min-width:0; font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint); text-align:center; }
+  .threshold-step:first-child{ text-align:left; }
+  .threshold-step:last-child{ text-align:right; }
+  .threshold-step span{ display:block; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .threshold-step[data-relation="previous"]{ color:var(--ink-muted); }
+  .threshold-step[data-relation="current"]{ color:var(--accent); font-weight:800; }
+  .threshold-step[data-relation="next"]{ color:var(--ink); }
+  .threshold-meter{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); clip-path:inset(50%); white-space:nowrap; }
+  .level-order{ margin-top:5px; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:9.5px; letter-spacing:.02em; text-transform:none; color:var(--ink-faint); }
   /* offset by the drawer's own width so it's never covered once the panel slides in —
      the drawer is an overlay over the map, not a reserved column, so this can't be
      solved by measuring map-wrap's width (it's always the full window now) */
@@ -188,10 +204,26 @@
   .visit-btn:hover{ filter:brightness(1.08); }
 
   @media (max-width:760px){
+    .topbar{ padding:10px 12px; gap:9px; }
+    .topbar > *{ min-width:0; }
+    .brand{ width:100%; min-width:0; margin-right:0; }
+    .brand .sub{ overflow-wrap:anywhere; }
+    .search{ width:100%; min-width:0; }
+    .search input{ width:100%; min-width:0; }
+    .lens, .legend{ max-width:100%; min-width:0; }
+    .lens-toggle{ max-width:100%; flex-wrap:wrap; }
     .body{ flex-direction:column; }
     .panel{ width:100%; border-left:none; border-top:1px solid var(--line); max-height:44vh; }
-    .zoom-controls{ right:14px; }
-    .map-hint{ max-width:calc(100% - 76px); }
+    .level-readout{ left:12px; right:12px; width:auto; max-width:none; padding:7px 9px 6px; }
+    .threshold-rail{ gap:5px; }
+    .threshold-step{ font-size:9.5px; letter-spacing:.04em; }
+    .level-order{ font-size:9px; }
+    .zoom-controls{ right:12px; bottom:12px; }
+    .map-hint{ left:12px; right:52px; max-width:none; overflow-wrap:anywhere; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    #world.snapping, .panel, .threshold-marker{ transition:none !important; }
+    .pop-in{ animation:none !important; }
   }
 </style>
 </head>
@@ -270,7 +302,7 @@
   var pinnedId = null, focusId = null, currentLens = 'all';
   var view = { x: 0, y: 0, scale: 1 };
   var levelIndex = 0, levelBaseScale = 1, levelCtx = {};
-  var ENTER_RATIO = 3.0, EXIT_RATIO = 0.55;
+  var ENTER_RATIO = 3.0, EXIT_RATIO = 0.55, MAX_NODE_RATIO = 7;
   var FULL_RECT = null, COL_W = 340;
   var panelLang = 'en';
   var Journey = window.VextremeTerrainJourney;
@@ -882,11 +914,42 @@
     window.__vexUnpin = function () { togglePin(s.id); };
   }
 
+  function clamp01(value) { return Math.max(0, Math.min(1, value)); }
+
+  // Project the existing semantic zoom thresholds onto one stable 0..100 rail.
+  // The rail does not own navigation: it only makes the already-authoritative
+  // levelIndex / levelBaseScale / ENTER_RATIO / EXIT_RATIO relationship visible.
+  function thresholdRailPosition(ratio) {
+    var lastIndex = OVERVIEW_LEVELS.length - 1;
+    var base = lastIndex ? (levelIndex / lastIndex) * 100 : 0;
+    var segment = lastIndex ? 100 / lastIndex : 0;
+    if (ratio >= 1 && levelIndex < lastIndex) {
+      return base + clamp01((ratio - 1) / (ENTER_RATIO - 1)) * segment;
+    }
+    if (ratio < 1 && levelIndex > 0) {
+      return base - clamp01((1 - ratio) / (1 - EXIT_RATIO)) * segment;
+    }
+    return base;
+  }
+
   function updateReadout() {
     var notes = (WORLDS[currentWorld] && WORLDS[currentWorld].orderNote) || {};
     var orderNote = notes[currentLens] || notes.all || 'ordered by real sequence';
+    var ratio = view.scale / levelBaseScale;
+    var position = thresholdRailPosition(ratio);
+    var steps = OVERVIEW_LEVELS.map(function (level, index) {
+      var relation = index < levelIndex ? 'previous' : (index > levelIndex ? 'next' : 'current');
+      return '<li class="threshold-step" data-relation="' + relation + '"' +
+        (index === levelIndex ? ' aria-current="step"' : '') + '><span>' + esc(level.id) + '</span></li>';
+    }).join('');
     document.getElementById('levelReadout').innerHTML =
-      'level: <b>' + OVERVIEW_LEVELS[levelIndex].id + '</b> · zoom ' + (view.scale / levelBaseScale).toFixed(2) + '× · <b>' + orderNote + '</b>';
+      '<div class="threshold-progress">' +
+        '<div class="threshold-track" aria-hidden="true"></div>' +
+        '<span class="threshold-marker" aria-hidden="true" style="left:' + position.toFixed(2) + '%"></span>' +
+        '<span class="threshold-meter" role="progressbar" aria-label="' + esc(currentLevelName()) + '" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + Math.round(position) + '"></span>' +
+        '<ol class="threshold-rail">' + steps + '</ol>' +
+      '</div>' +
+      '<div class="level-order">' + ratio.toFixed(2) + '× · ' + esc(orderNote) + '</div>';
   }
 
   // ── the navigation fix: exiting always steps to the level directly above,
@@ -920,8 +983,8 @@
       return;
     }
     if (levelIndex === 0 && ratio < 1) return; // floor: never zoom out past "see everything with margin"
-    var MAX_NODE_RATIO = 7; // ceiling at the deepest level: past this there's nowhere left to go, and off-node
-                             // cursor positions would otherwise zoom into empty space with nothing to show
+    // MAX_NODE_RATIO is shared with the visible semantic threshold rail so
+    // the deepest-level ceiling and its proximity projection cannot drift.
     if (levelIndex === OVERVIEW_LEVELS.length - 1 && ratio > MAX_NODE_RATIO) {
       newScale = levelBaseScale * MAX_NODE_RATIO;
       if (Math.abs(newScale - view.scale) < 0.001) return;

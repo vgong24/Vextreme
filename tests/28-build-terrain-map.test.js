@@ -335,6 +335,44 @@ test('BUILD-TERRAIN-MAP: buildContentPages marks a live page with a real capture
   assert.equal(result.pages.find(p => p.slug === 'no-shot').status, 'warning');
 });
 
+
+test('BUILD-TERRAIN-MAP: materially larger code fields keep deterministic stage geometry without changing production data', () => {
+  const input = [
+    ...Array.from({ length: 160 }, (_, i) => `lib/build-scale-${String(i).padStart(3, '0')}.js`),
+    ...Array.from({ length: 120 }, (_, i) => `lib/check-scale-${String(i).padStart(3, '0')}.js`),
+    ...Array.from({ length: 80 }, (_, i) => `widgets/scale-${String(i).padStart(3, '0')}.js`),
+  ];
+  const first = layoutStages(input);
+  const second = layoutStages(input.slice().reverse());
+  assert.deepEqual(first, second, 'layout must be content-deterministic even at materially larger counts');
+  assert.equal(Object.keys(first.positions).length, input.length);
+  const tallest = Math.max(...first.stageMeta.filter(stage => stage.count).map(stage => stage.rect.height));
+  assert.ok(tallest > 9000, 'fixture must materially exceed the current production column height');
+  const coords = Object.values(first.positions).map(p => `${p.x},${p.y}`);
+  assert.equal(new Set(coords).size, coords.length, 'large fixture must not overlap nodes');
+});
+
+test('BUILD-TERRAIN-MAP: materially larger content fields keep deterministic arc geometry without changing production data', () => {
+  const arcsDef = {
+    alpha: { priority: 1, parent: { title: 'Alpha' } },
+    beta: { priority: 2, parent: { title: 'Beta' } },
+    gamma: { priority: 3, parent: { title: 'Gamma' } },
+  };
+  const nodes = Array.from({ length: 240 }, (_, i) => ({
+    id: i + 1,
+    slug: `scale-page-${String(i + 1).padStart(3, '0')}`,
+    title: `Scale Page ${i + 1}`,
+    arcKeys: [['alpha', 'beta', 'gamma'][i % 3]],
+  }));
+  const slugs = nodes.map(node => node.slug);
+  const first = layoutArcs(nodes, arcsDef, slugs);
+  const second = layoutArcs(nodes.slice().reverse(), arcsDef, slugs.slice().reverse());
+  assert.deepEqual(first.positions, second.positions, 'content layout must remain deterministic when source order changes');
+  assert.equal(Object.keys(first.positions).length, nodes.length);
+  const tallest = Math.max(...first.arcMeta.filter(arc => arc.count).map(arc => arc.rect.height));
+  assert.ok(tallest > 4000, 'fixture must materially exceed a small content column');
+});
+
 // ── 9. Integration ───────────────────────────────────────────────────────────
 
 test('BUILD-TERRAIN-MAP integration: the real generator produces byte-identical output on repeated runs', () => {
