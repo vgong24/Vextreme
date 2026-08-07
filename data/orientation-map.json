@@ -1002,6 +1002,14 @@
   },
   "workers": [
     {
+      "actorRef": "chatgpt-github-collaborator",
+      "agentType": "other",
+      "environmentRef": "chatgpt-connected-github",
+      "availability": "unknown",
+      "claimObservation": "not-observed",
+      "claims": []
+    },
+    {
       "actorRef": "claude-code-collaborator",
       "agentType": "claude-code",
       "environmentRef": "declared-per-session",
