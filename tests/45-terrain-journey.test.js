@@ -83,4 +83,24 @@ test('TERRAIN-JOURNEY: page wires semantic history without storing camera noise'
   assert.doesNotMatch(source, /semantic\s*=\s*\{[^}]*\b(?:x|y|scale)\s*:/s);
 });
 
+
+test('TERRAIN-JOURNEY: threshold rail projects the existing semantic ladder without becoming an editable control', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
+  const start = source.indexOf('function thresholdRailPosition');
+  const end = source.indexOf('// ── the navigation fix', start);
+  assert.ok(start > 0 && end > start, 'threshold rail implementation must be present before zoom navigation');
+  const railSource = source.slice(start, end);
+
+  assert.match(railSource, /levelIndex/);
+  assert.match(railSource, /levelBaseScale/);
+  assert.match(railSource, /ENTER_RATIO/);
+  assert.match(railSource, /EXIT_RATIO/);
+  assert.match(railSource, /aria-current="step"/);
+  assert.match(railSource, /role="progressbar"/);
+  assert.doesNotMatch(railSource, /<button|<input|tabindex=/, 'the rail is a projection, not another navigation control');
+  assert.match(source, /\.level-readout\{[\s\S]*pointer-events:none;/);
+  assert.match(source, /@media \(prefers-reduced-motion:reduce\)/);
+  assert.match(source, /\.topbar > \*\{ min-width:0; \}/);
+});
+
 // [VXG RealForever]
