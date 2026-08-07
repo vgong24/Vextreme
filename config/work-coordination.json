@@ -18,6 +18,11 @@
       "environmentRef": "declared-per-session"
     },
     {
+      "actorRef": "chatgpt-github-collaborator",
+      "agentType": "other",
+      "environmentRef": "chatgpt-connected-github"
+    },
+    {
       "actorRef": "victor-human-operator",
       "agentType": "human",
       "environmentRef": "declared-per-session"
