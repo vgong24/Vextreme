@@ -126,4 +126,19 @@ test('TERRAIN-JOURNEY: Row B uses existing stage semantics for adaptive focus an
   assert.deepEqual(roundTrip.semantic, stage, 'existing Journey v1 carries focused stageKey without a schema bump');
 });
 
+
+test('TERRAIN-JOURNEY: Row B correction keeps zero stages perceivable and selected-node framing bounded', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
+  assert.match(source, /var worst = members\.length \? 'good' : null/);
+  assert.doesNotMatch(source, /if \(!summary\.members\.length\) return/);
+  assert.match(source, /data-member-count/);
+  assert.match(source, /if \(!stageMembers\(STAGES\[index\]\)\.length\) return/);
+  assert.match(source, /function nodeNeighborhoodRect/);
+  assert.match(source, /function focusNodeNeighborhood/);
+  assert.match(source, /pad = pinnedId \? 24 : 160/);
+  assert.match(source, /nodeId: semantic\.pinnedId \|\| null/);
+  assert.match(source, /ctx\.nodeId/);
+  assert.doesNotMatch(source, /semantic\s*=\s*\{[^}]*\b(?:x|y|scale)\s*:/s);
+});
+
 // [VXG RealForever]
