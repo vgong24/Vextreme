@@ -87,6 +87,13 @@
       "healthCheck": "node lib/evaluate-orientation-integrity.js --check"
     },
     {
+      "path": "docs/process/public-orientation-provider.md",
+      "category": "public-orientation-provider-contract",
+      "authority": "accepted",
+      "routeOwner": "docs/process/task-aware-orientation-packets.md",
+      "healthCheck": "node --test tests/57-public-orientation-provider.test.js"
+    },
+    {
       "path": "docs/process/public-private-boundary.md",
       "category": "visibility-boundary",
       "authority": "accepted",
