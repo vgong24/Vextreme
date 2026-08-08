@@ -275,7 +275,8 @@ anything. Batches 001–002 predate this form and remain single legacy files.
 | 001 | `docs/continuity/Batch 001.md` | 001–010 | closed (legacy single file) |
 | 002 | `docs/continuity/Batch 002.md` | 011–020 | closed (legacy single file) |
 | 003 | `docs/continuity/batch-003/` | 021–030 | closed |
-| 004 | `docs/continuity/batch-004/` | 031–040 | closed |\n| 005 | `docs/continuity/batch-005/` | 041–050 | active |
+| 004 | `docs/continuity/batch-004/` | 031–040 | closed |
+| 005 | `docs/continuity/batch-005/` | 041–050 | active |
 
 **Active batch:** `docs/continuity/batch-005/`
 
