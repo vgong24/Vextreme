@@ -103,4 +103,42 @@ test('TERRAIN-JOURNEY: threshold rail projects the existing semantic ladder with
   assert.match(source, /\.topbar > \*\{ min-width:0; \}/);
 });
 
+
+test('TERRAIN-JOURNEY: Row B uses existing stage semantics for adaptive focus and bounded neighborhood materialization', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
+  assert.match(source, /function stageCompositionLayout/);
+  assert.match(source, /stageCompositionRect\(ctx\)/);
+  assert.match(source, /data-stage-index/);
+  assert.match(source, /role:'button'/);
+  assert.match(source, /tabindex:'0'/);
+  assert.match(source, /targetLevel === 1 && stageIdx >= 0/);
+  assert.match(source, /levelIndex === 1 && typeof levelCtx\.stageIdx !== 'number' && ratio > ENTER_RATIO/);
+  assert.match(source, /levelIndex === 1 && typeof levelCtx\.stageIdx === 'number' && ratio < EXIT_RATIO/);
+  assert.match(source, /NODE_NEIGHBORHOOD_LIMIT = 12/);
+  assert.match(source, /function neighborhoodIdsFor/);
+  assert.match(source, /neighborhoodIdsFor\(pinnedId, NODE_NEIGHBORHOOD_LIMIT\)/);
+  assert.doesNotMatch(source, /semantic\s*=\s*\{[^}]*\b(?:x|y|scale)\s*:/s);
+
+  const stage = { world: 'code', lens: 'all', level: 'stage', stageKey: 'generate', pinnedId: null };
+  const snapshot = Journey.create(stage, { label: 'GENERATE', world: 'code', level: 'stage' });
+  const roundTrip = Journey.unwrap(Journey.wrap(snapshot, {}));
+  assert.equal(roundTrip.version, Journey.VERSION);
+  assert.deepEqual(roundTrip.semantic, stage, 'existing Journey v1 carries focused stageKey without a schema bump');
+});
+
+
+test('TERRAIN-JOURNEY: Row B correction keeps zero stages perceivable and selected-node framing bounded', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
+  assert.match(source, /var worst = members\.length \? 'good' : null/);
+  assert.doesNotMatch(source, /if \(!summary\.members\.length\) return/);
+  assert.match(source, /data-member-count/);
+  assert.match(source, /if \(!stageMembers\(STAGES\[index\]\)\.length\) return/);
+  assert.match(source, /function nodeNeighborhoodRect/);
+  assert.match(source, /function focusNodeNeighborhood/);
+  assert.match(source, /pad = pinnedId \? 24 : 160/);
+  assert.match(source, /nodeId: semantic\.pinnedId \|\| null/);
+  assert.match(source, /ctx\.nodeId/);
+  assert.doesNotMatch(source, /semantic\s*=\s*\{[^}]*\b(?:x|y|scale)\s*:/s);
+});
+
 // [VXG RealForever]

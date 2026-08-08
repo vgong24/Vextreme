@@ -121,6 +121,16 @@
   .stage-sub{ font-family:var(--mono); font-size:9.5px; fill:var(--ink-muted); }
   .stage-arrow{ stroke:var(--line-strong); stroke-width:2; marker-end:url(#arrowhead); }
   .stage-hint{ font-family:var(--mono); font-size:9px; fill:var(--ink-faint); font-style:italic; }
+  .stage-card{ cursor:pointer; outline:none; }
+  .stage-card .stage-halo{ transition:stroke .12s ease, fill .12s ease; }
+  .stage-card:hover .stage-halo, .stage-card:focus .stage-halo{ stroke:var(--accent); stroke-width:2; }
+  .stage-card[data-focused="true"] .stage-halo{ stroke:var(--accent); stroke-width:2.5; fill:var(--accent-soft); }
+  .stage-card[data-context="true"]{ opacity:.92; }
+  .stage-card .stage-label{ font-size:18px; }
+  .stage-card[data-focused="true"] .stage-label{ font-size:22px; }
+  .stage-card[data-context="true"] .stage-label{ font-size:17px; }
+  .stage-density-track{ fill:var(--line); }
+  .stage-density-fill{ fill:var(--accent); opacity:.72; }
 
   .edge{ stroke:var(--line-strong); stroke-width:1; opacity:.55; }
   .edge.cross{ stroke:var(--accent); opacity:.35; }
@@ -428,10 +438,80 @@
   }
   function toScreen(n) { return { x: view.x + n.x * view.scale, y: view.y + effY(n) * view.scale }; }
 
+  var NODE_NEIGHBORHOOD_LIMIT = 12;
+
+  function stageMembers(stage) { return ALL.filter(function (n) { return n.stage === stage.key; }); }
+  function stageSummary(stage) {
+    var members = stageMembers(stage);
+    var worst = members.length ? 'good' : null;
+    members.forEach(function (n) { if (worst == null || rank(n.status) < rank(worst)) worst = n.status; });
+    var lensCount = members.filter(inLens).length;
+    var maxCount = Math.max.apply(null, STAGES.map(function (candidate) { return stageMembers(candidate).length; }).concat([1]));
+    return { members: members, worst: worst, lensCount: lensCount, density: members.length / maxCount };
+  }
+  function stageLabelText(value, limit) {
+    var chars = Array.from(String(value || ''));
+    return chars.length > limit ? chars.slice(0, Math.max(1, limit - 1)).join('') + '…' : chars.join('');
+  }
+  function stageCompositionLayout(ctx) {
+    var focusedIdx = ctx && typeof ctx.stageIdx === 'number' && STAGES[ctx.stageIdx] ? ctx.stageIdx : -1;
+    var items = [];
+    if (focusedIdx < 0) {
+      var cols = Math.min(3, Math.max(1, STAGES.length));
+      var cardW = 240, cardH = 140, gap = 24;
+      STAGES.forEach(function (stage, index) {
+        var row = Math.floor(index / cols), col = index % cols;
+        items.push({ stage:stage, index:index, kind:'overview', rect:{ x:col * (cardW + gap), y:row * (cardH + gap), width:cardW, height:cardH } });
+      });
+      var rows = Math.max(1, Math.ceil(STAGES.length / cols));
+      return { focusedIdx:-1, items:items, bounds:{ x:-18, y:-18, width:cols * cardW + (cols - 1) * gap + 36, height:rows * cardH + (rows - 1) * gap + 36 } };
+    }
+    var canvasW = 820;
+    var siblings = STAGES.map(function (stage,index) { return {stage:stage,index:index}; }).filter(function (item) { return item.index !== focusedIdx; });
+    var split = Math.ceil(siblings.length / 2), left = siblings.slice(0, split), right = siblings.slice(split);
+    var railRows = Math.max(left.length, right.length), railH = 64, railGap = 16;
+    var railTotal = railRows ? railRows * railH + (railRows - 1) * railGap : 0;
+    var canvasH = Math.max(660, railTotal + 40);
+    var focusRect = { x:165, y:(canvasH - 520) / 2, width:490, height:520 };
+    items.push({ stage:STAGES[focusedIdx], index:focusedIdx, kind:'focus', rect:focusRect });
+    function rail(list, x) {
+      var h=64, gap=16, total=list.length ? list.length*h + (list.length-1)*gap : 0;
+      var y=(canvasH-total)/2;
+      list.forEach(function (item,offset) { items.push({ stage:item.stage, index:item.index, kind:'context', rect:{x:x,y:y+offset*(h+gap),width:145,height:h} }); });
+    }
+    rail(left, 0); rail(right, 675);
+    return { focusedIdx:focusedIdx, items:items, bounds:{x:-20,y:-20,width:canvasW+40,height:canvasH+40} };
+  }
+  function stageCompositionRect(ctx) { return stageCompositionLayout(ctx || {}).bounds; }
+  function nodeNeighborhoodRect(ctx) {
+    var fallback = STAGES[ctx && ctx.stageIdx] ? STAGES[ctx.stageIdx].rect : FULL_RECT;
+    var origin = ctx && ctx.nodeId ? byId[ctx.nodeId] : null;
+    if (!origin) return fallback;
+    var ids = neighborhoodIdsFor(origin.id, NODE_NEIGHBORHOOD_LIMIT);
+    var nodes = ids.map(function (id) { return byId[id]; }).filter(Boolean);
+    var xs = nodes.map(function (n) { return n.x; }), ys = nodes.map(function (n) { return effY(n); });
+    var minX = xs.length ? Math.min.apply(null, xs) : origin.x, maxX = xs.length ? Math.max.apply(null, xs) : origin.x;
+    var minY = ys.length ? Math.min.apply(null, ys) : effY(origin), maxY = ys.length ? Math.max.apply(null, ys) : effY(origin);
+    var width = Math.min(300, Math.max(240, maxX - minX + 80));
+    var height = Math.min(420, Math.max(300, maxY - minY + 100));
+    return { x: origin.x - width / 2, y: effY(origin) - height / 2, width: width, height: height };
+  }
+  function stageIndexAtWorld(x, y) {
+    var layout = stageCompositionLayout(levelCtx || {}), best = null, bestDistance = Infinity;
+    layout.items.forEach(function (item) {
+      var r=item.rect;
+      if (x>=r.x && x<=r.x+r.width && y>=r.y && y<=r.y+r.height) { best=item.index; bestDistance=-1; return; }
+      if (bestDistance < 0) return;
+      var cx=r.x+r.width/2, cy=r.y+r.height/2, d=Math.hypot(x-cx,y-cy);
+      if (d<bestDistance) { bestDistance=d; best=item.index; }
+    });
+    return best == null ? 0 : best;
+  }
+
   var OVERVIEW_LEVELS = [
     { id: 'system', fill: 0.60, rect: function () { return FULL_RECT; }, render: renderSystemBand },
-    { id: 'stage',  fill: 0.92, rect: function () { return FULL_RECT; }, render: renderStageBand },
-    { id: 'node',   fill: 0.62, rect: function (ctx) { return STAGES[ctx.stageIdx].rect; }, render: renderNodeLevel },
+    { id: 'stage',  fill: 0.92, rect: function (ctx) { return stageCompositionRect(ctx); }, render: renderStageBand },
+    { id: 'node',   fill: 0.68, rect: function (ctx) { return nodeNeighborhoodRect(ctx || {}); }, render: renderNodeLevel },
   ];
 
   function snapTo(target) {
@@ -521,7 +601,10 @@
     var targetLevel = OVERVIEW_LEVELS.findIndex(function (level) { return level.id === semantic.level; });
     if (targetLevel > 0) {
       var stageIdx = STAGES.findIndex(function (stage) { return stage.key === semantic.stageKey; });
-      enterLevel(targetLevel, targetLevel === 2 ? { stageIdx: Math.max(0, stageIdx) } : {});
+      var targetCtx = targetLevel === 2
+        ? { stageIdx: Math.max(0, stageIdx), nodeId: semantic.pinnedId || null }
+        : (targetLevel === 1 && stageIdx >= 0 ? { stageIdx: stageIdx } : {});
+      enterLevel(targetLevel, targetCtx);
     }
     if (semantic.pinnedId && byId[semantic.pinnedId]) travelTo(semantic.pinnedId, { record: false });
     else renderPanel(null);
@@ -544,30 +627,52 @@
   }
   function rank(status) { return status === 'critical' ? 0 : status === 'warning' ? 1 : 2; }
 
+  function activateStage(index) {
+    if (levelIndex !== 1 || !STAGES[index]) return;
+    if (levelCtx.stageIdx === index) {
+      if (!stageMembers(STAGES[index]).length) return;
+      enterLevel(2, { stageIdx:index });
+      commitSemanticState({ label:STAGES[index].name, relationship:'zoomed into', reason:'semantic level transition' });
+      return;
+    }
+    enterLevel(1, { stageIdx:index });
+    commitSemanticState({ label:STAGES[index].name, relationship:'selected', reason:'stage focus transition' });
+  }
+
   function renderStageBand() {
     clearWorld();
-    STAGES.forEach(function (stage, i) {
-      var members = ALL.filter(function (n) { return n.stage === stage.key; });
-      if (!members.length) return;
-      var r = stage.rect;
-      var worst = 'good';
-      members.forEach(function (n) { if (rank(n.status) < rank(worst)) worst = n.status; });
-      var lensCount = members.filter(inLens).length;
+    var layout = stageCompositionLayout(levelCtx || {});
+    layout.items.sort(function (a,b) { return a.index - b.index; }).forEach(function (item) {
+      var stage=item.stage, i=item.index, r=item.rect, summary=stageSummary(stage);
       var unit = currentWorld === 'content' ? 'page' : (stage.key === SCREENS_KEY ? 'screen' : 'file');
-      world.appendChild(el('rect', { x: r.x, y: r.y, width: r.width, height: r.height, rx: 16, class: 'stage-halo pop-in' }));
-      var label = el('text', { x: r.x + 14, y: r.y + 26, class: 'stage-label pop-in' }); label.textContent = stage.name; world.appendChild(label);
-      var sub = el('text', { x: r.x + 14, y: r.y + 42, class: 'stage-sub pop-in' }); sub.textContent = stage.sub; world.appendChild(sub);
-      var stat = el('text', { x: r.x + 14, y: r.y + 58, class: 'stage-sub pop-in', fill: 'var(--' + worst + ')' });
-      stat.textContent = ICON[worst] + ' worst · ' + members.length + ' ' + unit + (members.length === 1 ? '' : 's')
-        + (WORLDS[currentWorld].hasLenses ? (' · ' + lensCount + ' in lens') : '');
-      world.appendChild(stat);
-      var hint = el('text', { x: r.x + 14, y: r.y + r.height - 14, class: 'stage-hint pop-in' });
-      hint.textContent = 'scroll to zoom into this column'; world.appendChild(hint);
-      var next = STAGES[i + 1];
-      if (next && ALL.some(function (n) { return n.stage === next.key; })) {
-        world.appendChild(el('line', { x1: r.x + r.width, y1: r.y + r.height / 2, x2: next.rect.x, y2: r.y + r.height / 2, class: 'stage-arrow pop-in' }));
+      var focused = item.kind === 'focus', context = item.kind === 'context';
+      var aria=stage.name + ', ' + summary.members.length + ' ' + unit + (summary.members.length === 1 ? '' : 's') + (summary.worst ? ', worst ' + summary.worst : '');
+      var g=el('g',{ class:'stage-card pop-in', tabindex:'0', role:'button', 'data-stage-index':String(i), 'data-stage-key':String(stage.key), 'data-member-count':String(summary.members.length), 'data-focused':String(focused), 'data-context':String(context), 'aria-pressed':String(focused), 'aria-label':aria });
+      var halo=el('rect',{x:r.x,y:r.y,width:r.width,height:r.height,rx:focused?22:14,class:'stage-halo'}); g.appendChild(halo);
+      var label=el('text',{x:r.x+14,y:r.y+(context?25:31),class:'stage-label'}); label.textContent=stageLabelText(stage.name, context?15:(focused?30:22)); g.appendChild(label);
+      if (!context) {
+        var sub=el('text',{x:r.x+14,y:r.y+(focused?57:52),class:'stage-sub'}); sub.textContent=stageLabelText(stage.sub, focused?48:34); g.appendChild(sub);
       }
+      var stat=el('text',{x:r.x+14,y:r.y+(context?48:(focused?84:78)),class:'stage-sub',fill:summary.worst ? ('var(--'+summary.worst+')') : 'var(--ink-muted)'});
+      stat.textContent=summary.worst
+        ? (ICON[summary.worst] + ' ' + (context ? summary.members.length : ('worst · ' + summary.members.length + ' ' + unit + (summary.members.length===1?'':'s') + (WORLDS[currentWorld].hasLenses ? (' · ' + summary.lensCount + ' in lens') : ''))))
+        : (context ? '0' : ('0 ' + unit + 's'));
+      g.appendChild(stat);
+      var barX=r.x+14, barY=r.y+r.height-(context?12:20), barW=Math.max(12,r.width-28);
+      g.appendChild(el('rect',{x:barX,y:barY,width:barW,height:context?4:6,rx:3,class:'stage-density-track'}));
+      g.appendChild(el('rect',{x:barX,y:barY,width:barW*summary.density,height:context?4:6,rx:3,class:'stage-density-fill','data-density':summary.density.toFixed(4)}));
+      if (focused && summary.members.length) { var hint=el('text',{x:r.x+14,y:r.y+r.height-34,class:'stage-hint'}); hint.textContent='scroll to zoom into this column'; g.appendChild(hint); }
+      g.addEventListener('click',function(ev){ ev.stopPropagation(); activateStage(i); });
+      g.addEventListener('keydown',function(ev){ if(ev.key==='Enter'||ev.key===' '){ ev.preventDefault(); ev.stopPropagation(); activateStage(i); } });
+      world.appendChild(g);
     });
+    if (layout.focusedIdx < 0) {
+      for (var i=0;i<layout.items.length-1;i++) {
+        var a=layout.items.find(function(item){return item.index===i;}); var b=layout.items.find(function(item){return item.index===i+1;});
+        if (!a || !b) continue;
+        world.insertBefore(el('line',{x1:a.rect.x+a.rect.width,y1:a.rect.y+a.rect.height/2,x2:b.rect.x,y2:b.rect.y+b.rect.height/2,class:'stage-arrow pop-in'}),world.firstChild);
+      }
+    }
   }
 
   function clearWorld() { while (world.firstChild) world.removeChild(world.firstChild); renderedNodes = {}; renderedEdges = {}; }
@@ -581,8 +686,8 @@
   }
 
   function viewportWorldBounds() {
-    var vp = viewportSize(), margin = 160 / view.scale;
-    var tl = screenToWorld(-160, -160), br = screenToWorld(vp.w + 160, vp.h + 160);
+    var vp = viewportSize(), pad = pinnedId ? 24 : 160, margin = pinnedId ? 0 : 160 / view.scale;
+    var tl = screenToWorld(-pad, -pad), br = screenToWorld(vp.w + pad, vp.h + pad);
     return { minX: tl.x - margin, minY: tl.y - margin, maxX: br.x + margin, maxY: br.y + margin };
   }
 
@@ -592,6 +697,7 @@
     var b = viewportWorldBounds();
     var visible = {};
     ALL.forEach(function (n) { var ey = effY(n); if (n.x >= b.minX && n.x <= b.maxX && ey >= b.minY && ey <= b.maxY) visible[n.id] = true; });
+    if (pinnedId) neighborhoodIdsFor(pinnedId, NODE_NEIGHBORHOOD_LIMIT).forEach(function (id) { visible[id] = true; });
     Object.keys(renderedNodes).forEach(function (id) { if (!visible[id]) { renderedNodes[id].g.remove(); delete renderedNodes[id]; } });
     Object.keys(visible).forEach(function (id) {
       if (renderedNodes[id]) return;
@@ -639,7 +745,7 @@
     var newFocus = (ratio > 2.0 && closestId && closestDist < radius) ? closestId : null;
     if (newFocus !== focusId) { focusId = newFocus; if (!pinnedId) renderPanel(focusId ? byId[focusId] : null); }
 
-    var pinnedSet = pinnedId ? new Set((neighborsOf[pinnedId] || []).concat([pinnedId])) : null;
+    var pinnedSet = pinnedId ? new Set(neighborhoodIdsFor(pinnedId, NODE_NEIGHBORHOOD_LIMIT)) : null;
     var searchQuery = (document.getElementById('searchInput').value || '').trim().toLowerCase();
 
     Object.keys(renderedNodes).forEach(function (id) {
@@ -665,11 +771,30 @@
     });
   }
 
+  function neighborhoodIdsFor(id, limit) {
+    var origin = byId[id]; if (!origin) return [];
+    var seen = new Set([id]), result = [id];
+    function add(candidate) { if (!candidate || seen.has(candidate) || !byId[candidate] || result.length >= limit + 1) return; seen.add(candidate); result.push(candidate); }
+    (neighborsOf[id] || []).slice().sort().forEach(add);
+    ALL.filter(function (n) { return n.id !== id && n.stage === origin.stage; })
+      .sort(function (a,b) { var dy=Math.abs(effY(a)-effY(origin))-Math.abs(effY(b)-effY(origin)); return dy || String(a.id).localeCompare(String(b.id)); })
+      .forEach(function (n) { add(n.id); });
+    return result.slice(0, limit + 1);
+  }
+
+  function focusNodeNeighborhood(id) {
+    var n=byId[id]; if (!n) return;
+    var stageIdx=STAGES.findIndex(function (stage) { return stage.key === n.stage; });
+    levelIndex=2; levelCtx={ stageIdx:stageIdx, nodeId:id };
+    var fit=fitRectToView(nodeNeighborhoodRect(levelCtx), OVERVIEW_LEVELS[2].fill);
+    levelBaseScale=fit.scale; snapTo(fit); clearWorld(); syncTiles(); updateReadout();
+  }
+
   function togglePin(id, details) {
     var previousId = pinnedId;
     pinnedId = (pinnedId === id) ? null : id;
+    if (pinnedId) focusNodeNeighborhood(pinnedId); else applyLOD();
     renderPanel(pinnedId ? byId[pinnedId] : (focusId ? byId[focusId] : null));
-    applyLOD();
     details = details || {};
     commitSemanticState({
       label: pinnedId ? labelForNode(pinnedId) : currentLevelName().toUpperCase(),
@@ -699,13 +824,10 @@
     var n = byId[id]; if (!n) return;
     var stageIdx = STAGES.findIndex(function (s) { return s.key === n.stage; });
     if (OVERVIEW_LEVELS[levelIndex].id !== 'node' || levelCtx.stageIdx !== stageIdx) {
-      enterLevel(2, { stageIdx: stageIdx });
+      enterLevel(2, { stageIdx: stageIdx, nodeId: id });
     }
     pinnedId = id;
-    var vp = viewportSize();
-    var target = { scale: view.scale, x: vp.w / 2 - n.x * view.scale, y: vp.h / 2 - effY(n) * view.scale };
-    snapTo(target);
-    syncTiles();
+    focusNodeNeighborhood(id);
     renderPanel(n);
     if (details.record !== false) {
       commitSemanticState({
@@ -959,37 +1081,38 @@
     var world0 = screenToWorld(mx, my);
     var ratio = newScale / levelBaseScale;
 
+    if (levelIndex === 1 && typeof levelCtx.stageIdx !== 'number' && ratio > ENTER_RATIO) {
+      var focusedStageIdx = stageIndexAtWorld(world0.x, world0.y);
+      enterLevel(1, { stageIdx:focusedStageIdx });
+      commitSemanticState({ label:STAGES[focusedStageIdx].name, relationship:'zoomed into', reason:'stage focus transition' });
+      return;
+    }
     if (levelIndex < OVERVIEW_LEVELS.length - 1 && ratio > ENTER_RATIO) {
       var ctx = {};
       if (OVERVIEW_LEVELS[levelIndex + 1].id === 'node') {
-        ctx.stageIdx = Math.min(STAGES.length - 1, Math.max(0, Math.round(world0.x / COL_W)));
+        ctx.stageIdx = typeof levelCtx.stageIdx === 'number' ? levelCtx.stageIdx : stageIndexAtWorld(world0.x, world0.y);
+        if (!stageMembers(STAGES[ctx.stageIdx]).length) return;
       }
       enterLevel(levelIndex + 1, ctx);
       var enteredStage = typeof levelCtx.stageIdx === 'number' ? STAGES[levelCtx.stageIdx] : null;
-      commitSemanticState({
-        label: enteredStage ? enteredStage.name : currentLevelName().toUpperCase(),
-        relationship: 'zoomed into',
-        reason: 'semantic level transition',
-      });
+      commitSemanticState({ label:enteredStage ? enteredStage.name : currentLevelName().toUpperCase(), relationship:'zoomed into', reason:'semantic level transition' });
+      return;
+    }
+    if (levelIndex === 1 && typeof levelCtx.stageIdx === 'number' && ratio < EXIT_RATIO) {
+      enterLevel(1, {});
+      commitSemanticState({ label:currentLevelName().toUpperCase(), relationship:'zoomed out to', reason:'stage overview transition' });
       return;
     }
     if (levelIndex > 0 && ratio < EXIT_RATIO) {
-      enterLevel(levelIndex - 1, levelIndex - 1 === 0 ? {} : { stageIdx: levelCtx.stageIdx });
-      commitSemanticState({
-        label: currentLevelName().toUpperCase(),
-        relationship: 'zoomed out to',
-        reason: 'semantic level transition',
-      });
+      enterLevel(levelIndex - 1, levelIndex - 1 === 0 ? {} : { stageIdx:levelCtx.stageIdx });
+      commitSemanticState({ label:currentLevelName().toUpperCase(), relationship:'zoomed out to', reason:'semantic level transition' });
       return;
     }
-    if (levelIndex === 0 && ratio < 1) return; // floor: never zoom out past "see everything with margin"
-    // MAX_NODE_RATIO is shared with the visible semantic threshold rail so
-    // the deepest-level ceiling and its proximity projection cannot drift.
+    if (levelIndex === 0 && ratio < 1) return;
     if (levelIndex === OVERVIEW_LEVELS.length - 1 && ratio > MAX_NODE_RATIO) {
       newScale = levelBaseScale * MAX_NODE_RATIO;
       if (Math.abs(newScale - view.scale) < 0.001) return;
     }
-
     view.scale = newScale; view.x = mx - world0.x * newScale; view.y = my - world0.y * newScale;
     applyTransform();
     if (OVERVIEW_LEVELS[levelIndex].id === 'node') syncTiles();
