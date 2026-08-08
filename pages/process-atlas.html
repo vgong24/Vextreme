@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A wholly synthetic, read-only public Process Atlas proof.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:,">
+<title>Process Atlas — Synthetic Public Proof</title>
+<style>
+  :root {
+    color-scheme: light;
+    --ground: #f7f7f5;
+    --panel: #ffffff;
+    --panel-2: #eef1f4;
+    --ink: #17191c;
+    --muted: #525866;
+    --line: #cbd1d8;
+    --accent: #0b5cad;
+    --accent-soft: #e7f1fb;
+    --focus: #004f9e;
+    --good: #12643a;
+    --warning: #8a4c00;
+    --shadow: 0 12px 34px rgba(20, 28, 38, 0.08);
+    --sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --ground: #11151a;
+    --panel: #171d24;
+    --panel-2: #202833;
+    --ink: #f3f5f7;
+    --muted: #aab2bd;
+    --line: #46515f;
+    --accent: #74b7ff;
+    --accent-soft: #173a5f;
+    --focus: #a8d2ff;
+    --good: #77d9a0;
+    --warning: #ffc36c;
+    --shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--ground); }
+  body {
+    margin: 0;
+    min-width: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font: 16px/1.55 var(--sans);
+  }
+  a { color: var(--accent); }
+  button, input, select { font: inherit; }
+  button, input, select, a {
+    outline-offset: 3px;
+  }
+  :focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+  }
+  .skip-link {
+    position: fixed;
+    left: 12px;
+    top: 10px;
+    transform: translateY(-180%);
+    z-index: 100;
+    padding: 9px 12px;
+    border-radius: 8px;
+    background: var(--ink);
+    color: var(--ground);
+    font-weight: 700;
+  }
+  .skip-link:focus { transform: translateY(0); }
+  .shell {
+    width: min(1260px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 26px 0 56px;
+  }
+  .topbar {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .nav {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-family: var(--mono);
+    font-size: 0.83rem;
+  }
+  .nav a { text-decoration: none; }
+  .theme-toggle {
+    min-height: 44px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--panel);
+    color: var(--ink);
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+  header {
+    max-width: 850px;
+    margin-bottom: 26px;
+  }
+  .eyebrow {
+    margin: 0 0 8px;
+    color: var(--accent);
+    font: 700 0.75rem/1.3 var(--mono);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  h1 {
+    margin: 0 0 12px;
+    font-size: clamp(2rem, 5vw, 3.7rem);
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+  }
+  .lede {
+    margin: 0;
+    max-width: 72ch;
+    color: var(--muted);
+  }
+  .proof-note {
+    margin: 18px 0 0;
+    padding: 12px 14px;
+    border-left: 4px solid var(--accent);
+    border-radius: 6px;
+    background: var(--accent-soft);
+    max-width: 72ch;
+  }
+  .controls {
+    display: grid;
+    grid-template-columns: minmax(220px, 1.25fr) minmax(180px, .75fr);
+    gap: 16px;
+    align-items: end;
+    margin: 30px 0 18px;
+  }
+  .field {
+    display: grid;
+    gap: 7px;
+  }
+  label, legend {
+    font-weight: 700;
+    font-size: 0.88rem;
+  }
+  input[type="search"], select {
+    width: 100%;
+    min-height: 44px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--panel);
+    color: var(--ink);
+    padding: 10px 12px;
+  }
+  .depth-filter {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+  .depth-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 7px;
+  }
+  .depth-btn {
+    min-height: 44px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--panel);
+    color: var(--ink);
+    padding: 8px 14px;
+    cursor: pointer;
+  }
+  .depth-btn[aria-pressed="true"] {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    color: var(--ink);
+    font-weight: 800;
+  }
+  .status-line {
+    min-height: 1.6em;
+    margin: 4px 0 18px;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 0.82rem;
+  }
+  .atlas-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+    gap: 20px;
+    align-items: start;
+  }
+  .atlas-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
+    min-width: 0;
+  }
+  .depth-column {
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--panel);
+    box-shadow: var(--shadow);
+  }
+  .depth-column h2 {
+    margin: 0 0 10px;
+    color: var(--muted);
+    font: 800 0.72rem/1.3 var(--mono);
+    letter-spacing: 0.08em;
+  }
+  .node-list {
+    display: grid;
+    gap: 9px;
+  }
+  .node-card {
+    width: 100%;
+    min-height: 44px;
+    display: grid;
+    gap: 5px;
+    text-align: left;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--panel-2);
+    color: var(--ink);
+    padding: 10px;
+    cursor: pointer;
+  }
+  .node-card[data-selected="true"] {
+    border-color: var(--accent);
+    box-shadow: inset 0 0 0 2px var(--accent);
+  }
+  .node-title { font-weight: 800; }
+  .node-meta {
+    color: var(--muted);
+    font: 0.74rem/1.35 var(--mono);
+    overflow-wrap: anywhere;
+  }
+  .connection-count {
+    color: var(--accent);
+    font: 700 0.72rem/1.3 var(--mono);
+  }
+  .detail {
+    position: sticky;
+    top: 18px;
+    min-width: 0;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--panel);
+    box-shadow: var(--shadow);
+    padding: 18px;
+  }
+  .detail h2 {
+    margin: 0 0 6px;
+    font-size: 1.2rem;
+  }
+  .detail-ref {
+    margin: 0 0 14px;
+    color: var(--muted);
+    font: 0.76rem/1.4 var(--mono);
+    overflow-wrap: anywhere;
+  }
+  .detail-grid {
+    display: grid;
+    gap: 12px;
+  }
+  .detail-block {
+    padding-top: 10px;
+    border-top: 1px solid var(--line);
+  }
+  .detail-label {
+    margin-bottom: 4px;
+    color: var(--muted);
+    font: 700 0.72rem/1.3 var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .ref-list {
+    margin: 0;
+    padding-left: 18px;
+    overflow-wrap: anywhere;
+  }
+  .connection-list {
+    display: grid;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .connection-btn {
+    width: 100%;
+    min-height: 44px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: var(--panel-2);
+    color: var(--ink);
+    text-align: left;
+    padding: 9px 10px;
+    cursor: pointer;
+  }
+  .empty {
+    color: var(--muted);
+    font-style: italic;
+  }
+  footer {
+    margin-top: 32px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+  [hidden] { display: none !important; }
+  @media (max-width: 980px) {
+    .atlas-layout { grid-template-columns: 1fr; }
+    .detail { position: static; }
+    .atlas-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 620px) {
+    .shell { width: min(100% - 20px, 1260px); padding-top: 18px; }
+    .controls { grid-template-columns: 1fr; }
+    .depth-filter { grid-column: auto; }
+    .depth-buttons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .depth-btn { width: 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      scroll-behavior: auto !important;
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to Process Atlas</a>
+<div class="shell">
+  <div class="topbar">
+    <nav class="nav" aria-label="Process Atlas navigation">
+      <a href="archives.html">Archives</a>
+      <a href="terrain-map.html">Terrain Map</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false" aria-label="Switch to dark theme">Dark theme</button>
+  </div>
+
+  <header>
+    <p class="eyebrow">Public Process Atlas · Synthetic proof</p>
+    <h1>See a process without exposing a private process.</h1>
+    <p class="lede">
+      This page reads one checked-in, wholly synthetic public-safe fixture. It demonstrates depth,
+      state, provenance, freshness, lenses, priorities, and connections without importing a private
+      repository or exposing real operational, personal, financial, credential, or provider data.
+    </p>
+    <p class="proof-note">
+      <strong>Read-only boundary:</strong> this viewer has no upload, write, publish, deployment,
+      payment, provider, or persistence control. The fixture is already a public-safe projection.
+    </p>
+  </header>
+
+  <main id="main">
+    <section class="controls" aria-label="Process Atlas controls">
+      <div class="field">
+        <label for="search">Search synthetic nodes</label>
+        <input id="search" type="search" autocomplete="off" placeholder="Search title, state, depth, or ref">
+      </div>
+      <div class="field">
+        <label for="lens">Public lens</label>
+        <select id="lens">
+          <option value="all">All synthetic nodes</option>
+        </select>
+      </div>
+      <fieldset class="depth-filter">
+        <legend>Depth</legend>
+        <div class="depth-buttons" id="depthButtons">
+          <button class="depth-btn" type="button" data-depth="ALL" aria-pressed="true">All</button>
+          <button class="depth-btn" type="button" data-depth="L0_WHOLE_JOURNEY" aria-pressed="false">L0 · Journey</button>
+          <button class="depth-btn" type="button" data-depth="L1_CURRENT_PRIORITIES" aria-pressed="false">L1 · Priorities</button>
+          <button class="depth-btn" type="button" data-depth="L2_PROCESS_FAMILY" aria-pressed="false">L2 · Family</button>
+          <button class="depth-btn" type="button" data-depth="L3_PROCESS_STEP" aria-pressed="false">L3 · Step</button>
+          <button class="depth-btn" type="button" data-depth="L4_TRACEABILITY" aria-pressed="false">L4 · Traceability</button>
+        </div>
+      </fieldset>
+    </section>
+
+    <p class="status-line" id="statusLine" role="status">Loading synthetic fixture…</p>
+
+    <div class="atlas-layout">
+      <section class="atlas-grid" id="atlasGrid" aria-label="Synthetic Process Atlas depth map"></section>
+      <aside class="detail" id="detailRegion" aria-live="polite" aria-label="Selected synthetic node detail">
+        <h2 id="detailTitle">No node selected</h2>
+        <p class="detail-ref" id="detailRef">Choose a synthetic node to inspect its public-safe references and connections.</p>
+        <div class="detail-grid" id="detailBody"></div>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    Synthetic public proof only. No private source is fetched by this page. Use Archives or Terrain Map to return to the existing public repository views.
+  </footer>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var FIXTURE_URL = '../data/process-atlas/pat-01-public-synthetic.json';
+  var DEPTHS = [
+    'L0_WHOLE_JOURNEY',
+    'L1_CURRENT_PRIORITIES',
+    'L2_PROCESS_FAMILY',
+    'L3_PROCESS_STEP',
+    'L4_TRACEABILITY'
+  ];
+  var state = {
+    atlas: null,
+    search: '',
+    depth: 'ALL',
+    lens: 'all',
+    selectedRef: null
+  };
+
+  var grid = document.getElementById('atlasGrid');
+  var statusLine = document.getElementById('statusLine');
+  var search = document.getElementById('search');
+  var lens = document.getElementById('lens');
+  var detailTitle = document.getElementById('detailTitle');
+  var detailRef = document.getElementById('detailRef');
+  var detailBody = document.getElementById('detailBody');
+  var themeToggle = document.getElementById('themeToggle');
+
+  function esc(value) {
+    return String(value == null ? '' : value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  function depthLabel(depth) {
+    return {
+      L0_WHOLE_JOURNEY: 'L0 · Whole journey',
+      L1_CURRENT_PRIORITIES: 'L1 · Current priorities',
+      L2_PROCESS_FAMILY: 'L2 · Process family',
+      L3_PROCESS_STEP: 'L3 · Process step',
+      L4_TRACEABILITY: 'L4 · Traceability'
+    }[depth] || depth;
+  }
+
+  function nodeByRef(ref) {
+    return state.atlas.nodes.find(function (node) { return node.nodeRef === ref; }) || null;
+  }
+
+  function connectionsFor(ref) {
+    var incoming = [];
+    var outgoing = [];
+    state.atlas.edges.forEach(function (edge) {
+      if (edge.fromRef === ref) outgoing.push(edge);
+      if (edge.toRef === ref) incoming.push(edge);
+    });
+    incoming.sort(function (a, b) { return a.edgeRef.localeCompare(b.edgeRef); });
+    outgoing.sort(function (a, b) { return a.edgeRef.localeCompare(b.edgeRef); });
+    return { incoming: incoming, outgoing: outgoing };
+  }
+
+  function lensMembers() {
+    if (state.lens === 'all') return null;
+    var found = state.atlas.lenses.find(function (item) { return item.lensRef === state.lens; });
+    return found ? new Set(found.memberRefs) : new Set();
+  }
+
+  function visibleNodes() {
+    var term = state.search.trim().toLowerCase();
+    var members = lensMembers();
+    return state.atlas.nodes.filter(function (node) {
+      if (state.depth !== 'ALL' && node.depthClass !== state.depth) return false;
+      if (members && !members.has(node.nodeRef)) return false;
+      if (!term) return true;
+      return [
+        node.title, node.nodeRef, node.depthClass, node.state,
+        (node.sourceRefs || []).join(' '), node.freshnessRef
+      ].join(' ').toLowerCase().indexOf(term) !== -1;
+    });
+  }
+
+  function selectNode(ref, focusDetail) {
+    state.selectedRef = ref;
+    render();
+    if (focusDetail) {
+      document.getElementById('detailRegion').focus && document.getElementById('detailRegion').focus();
+    }
+  }
+
+  function detailBlock(label, html) {
+    return '<div class="detail-block"><div class="detail-label">' + esc(label) + '</div>' + html + '</div>';
+  }
+
+  function refList(refs) {
+    if (!refs || !refs.length) return '<div class="empty">None</div>';
+    return '<ul class="ref-list">' + refs.map(function (ref) { return '<li>' + esc(ref) + '</li>'; }).join('') + '</ul>';
+  }
+
+  function connectionButtons(edges, direction) {
+    if (!edges.length) return '<div class="empty">None</div>';
+    return '<div class="connection-list">' + edges.map(function (edge) {
+      var target = direction === 'outgoing' ? edge.toRef : edge.fromRef;
+      var node = nodeByRef(target);
+      var label = (node ? node.title : target) + ' · ' + edge.edgeClass;
+      return '<button type="button" class="connection-btn" data-connection-ref="' + esc(target) + '">' +
+        esc(label) + '</button>';
+    }).join('') + '</div>';
+  }
+
+  function renderDetail() {
+    var node = nodeByRef(state.selectedRef);
+    if (!node) {
+      detailTitle.textContent = 'No node selected';
+      detailRef.textContent = 'Choose a synthetic node to inspect its public-safe references and connections.';
+      detailBody.innerHTML = '';
+      return;
+    }
+    var links = connectionsFor(node.nodeRef);
+    detailTitle.textContent = node.title;
+    detailRef.textContent = node.nodeRef;
+    detailBody.innerHTML =
+      detailBlock('Depth', '<strong>' + esc(depthLabel(node.depthClass)) + '</strong>') +
+      detailBlock('State', '<strong>' + esc(node.state) + '</strong>') +
+      detailBlock('Source refs', refList(node.sourceRefs)) +
+      detailBlock('Freshness', '<code>' + esc(node.freshnessRef) + '</code>') +
+      detailBlock('Incoming connections', connectionButtons(links.incoming, 'incoming')) +
+      detailBlock('Outgoing connections', connectionButtons(links.outgoing, 'outgoing'));
+    Array.prototype.forEach.call(detailBody.querySelectorAll('[data-connection-ref]'), function (button) {
+      button.addEventListener('click', function () {
+        selectNode(button.getAttribute('data-connection-ref'), false);
+      });
+    });
+  }
+
+  function render() {
+    if (!state.atlas) return;
+    var nodes = visibleNodes();
+    var visibleRefs = new Set(nodes.map(function (node) { return node.nodeRef; }));
+    grid.innerHTML = DEPTHS.map(function (depth) {
+      var members = nodes.filter(function (node) { return node.depthClass === depth; });
+      return '<section class="depth-column" data-depth-column="' + esc(depth) + '">' +
+        '<h2>' + esc(depthLabel(depth)) + '</h2>' +
+        '<div class="node-list">' +
+        (members.length ? members.map(function (node) {
+          var c = connectionsFor(node.nodeRef);
+          var count = c.incoming.length + c.outgoing.length;
+          return '<button type="button" class="node-card" data-node-ref="' + esc(node.nodeRef) + '"' +
+            ' data-selected="' + (state.selectedRef === node.nodeRef ? 'true' : 'false') + '"' +
+            ' aria-label="' + esc(node.title + ', ' + depthLabel(node.depthClass) + ', ' + node.state) + '">' +
+            '<span class="node-title">' + esc(node.title) + '</span>' +
+            '<span class="node-meta">' + esc(node.state) + '</span>' +
+            '<span class="connection-count">' + count + ' connection' + (count === 1 ? '' : 's') + '</span>' +
+          '</button>';
+        }).join('') : '<div class="empty">No matching nodes</div>') +
+        '</div></section>';
+    }).join('');
+
+    Array.prototype.forEach.call(grid.querySelectorAll('[data-node-ref]'), function (button) {
+      button.addEventListener('click', function () {
+        selectNode(button.getAttribute('data-node-ref'), false);
+      });
+    });
+
+    if (state.selectedRef && !visibleRefs.has(state.selectedRef)) {
+      state.selectedRef = null;
+    }
+    statusLine.textContent = nodes.length + ' of ' + state.atlas.nodes.length + ' synthetic nodes visible';
+    renderDetail();
+    document.documentElement.setAttribute('data-atlas-ready', 'true');
+  }
+
+  function populateLenses() {
+    state.atlas.lenses.slice().sort(function (a, b) {
+      return a.lensRef.localeCompare(b.lensRef);
+    }).forEach(function (item) {
+      var option = document.createElement('option');
+      option.value = item.lensRef;
+      option.textContent = item.label;
+      lens.appendChild(option);
+    });
+  }
+
+  search.addEventListener('input', function () {
+    state.search = search.value;
+    render();
+  });
+
+  lens.addEventListener('change', function () {
+    state.lens = lens.value;
+    render();
+  });
+
+  document.getElementById('depthButtons').addEventListener('click', function (event) {
+    var button = event.target.closest('[data-depth]');
+    if (!button) return;
+    state.depth = button.getAttribute('data-depth');
+    Array.prototype.forEach.call(document.querySelectorAll('[data-depth]'), function (item) {
+      item.setAttribute('aria-pressed', item === button ? 'true' : 'false');
+    });
+    render();
+  });
+
+  themeToggle.addEventListener('click', function () {
+    var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    var next = dark ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    themeToggle.setAttribute('aria-pressed', next === 'dark' ? 'true' : 'false');
+    themeToggle.setAttribute('aria-label', next === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+    themeToggle.textContent = next === 'dark' ? 'Light theme' : 'Dark theme';
+  });
+
+  fetch(FIXTURE_URL, { cache: 'no-store', credentials: 'same-origin' })
+    .then(function (response) {
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+      return response.json();
+    })
+    .then(function (atlas) {
+      if (atlas.schemaVersion !== 'vextreme.process-atlas.public-safe/v1') {
+        throw new Error('Unsupported public-safe Process Atlas schema');
+      }
+      state.atlas = atlas;
+      state.atlas.nodes = state.atlas.nodes.slice().sort(function (a, b) {
+        var depth = DEPTHS.indexOf(a.depthClass) - DEPTHS.indexOf(b.depthClass);
+        return depth || a.nodeRef.localeCompare(b.nodeRef);
+      });
+      state.atlas.edges = state.atlas.edges.slice().sort(function (a, b) {
+        return a.edgeRef.localeCompare(b.edgeRef);
+      });
+      populateLenses();
+      state.selectedRef = state.atlas.nodes[0] ? state.atlas.nodes[0].nodeRef : null;
+      render();
+    })
+    .catch(function () {
+      statusLine.textContent = 'Synthetic fixture could not be loaded.';
+      statusLine.setAttribute('data-load-error', 'true');
+    });
+}());
+</script>
+<!-- [VXG RealForever] -->
+</body>
+</html>

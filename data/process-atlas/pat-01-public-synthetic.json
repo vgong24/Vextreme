@@ -1,0 +1,289 @@
+{
+  "atlasRef": "synthetic.atlas.public-process-proof",
+  "atlasVersion": "1.0.0",
+  "authorities": [
+    {
+      "authorityRef": "synthetic.authority.readonly",
+      "effectClass": "READ_ONLY",
+      "freshnessRef": "synthetic.freshness.current",
+      "sourceRefs": [
+        "synthetic.source.process-atlas-demo"
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "decisionRef": "synthetic.decision.readonly",
+      "freshnessRef": "synthetic.freshness.current",
+      "sourceRefs": [
+        "synthetic.source.process-atlas-demo"
+      ],
+      "summary": "This fixture is read-only and has no publication or mutation control."
+    }
+  ],
+  "edges": [
+    {
+      "edgeClass": "DEPENDENCY",
+      "edgeRef": "synthetic.edge.00-01",
+      "freshnessRef": "synthetic.freshness.current",
+      "fromRef": "synthetic.node.00-journey-question",
+      "sourceRefs": [
+        "synthetic.source.process-atlas-demo"
+      ],
+      "toRef": "synthetic.node.01-current-priority"
+    },
+    {
+      "edgeClass": "DEPENDENCY",
+      "edgeRef": "synthetic.edge.01-02",
+      "freshnessRef": "synthetic.freshness.current",
+      "fromRef": "synthetic.node.01-current-priority",
+      "sourceRefs": [
+        "synthetic.source.process-atlas-demo"
+      ],
+      "toRef": "synthetic.node.02-process-family"
+    },
+    {
+      "edgeClass": "DEPENDENCY",
+      "edgeRef": "synthetic.edge.02-03",
+      "freshnessRef": "synthetic.freshness.current",
+      "fromRef": "synthetic.node.02-process-family",
+      "sourceRefs": [
+        "synthetic.source.process-atlas-demo"
+      ],
+      "toRef": "synthetic.node.03-process-step"
+    },
+    {
+      "edgeClass": "DECISION",
+      "edgeRef": "synthetic.edge.02-branch",
+      "freshnessRef": "synthetic.freshness.current",
+      "fromRef": "synthetic.node.02-process-family",
+      "sourceRefs": [
+        "synthetic.source.process-atlas-demo"
+      ],
+      "toRef": "synthetic.node.02-decision-branch"
+    },
+    {
+      "edgeClass": "VALIDATION",
+      "edgeRef": "synthetic.edge.03-04",
+      "freshnessRef": "synthetic.freshness.current",
+      "fromRef": "synthetic.node.03-process-step",
+      "sourceRefs": [
+        "synthetic.source.process-atlas-demo"
+      ],
+      "toRef": "synthetic.node.04-traceability"
+    },
+    {
+      "edgeClass": "CONVERGENCE",
+      "edgeRef": "synthetic.edge.branch-03",
+      "freshnessRef": "synthetic.freshness.current",
+      "fromRef": "synthetic.node.02-decision-branch",
+      "sourceRefs": [
+        "synthetic.source.process-atlas-demo"
+      ],
+      "toRef": "synthetic.node.03-process-step"
+    }
+  ],
+  "evidence": [
+    {
+      "evidenceRef": "synthetic.evidence.determinism",
+      "freshnessRef": "synthetic.freshness.current",
+      "sourceRefs": [
+        "synthetic.source.process-atlas-demo"
+      ],
+      "summary": "The checked-in fixture is deterministic and public-safe."
+    }
+  ],
+  "freshnessAndInvalidation": [
+    {
+      "freshnessRef": "synthetic.freshness.current",
+      "invalidatesOnRefs": [
+        "synthetic.event.fixture-change"
+      ],
+      "sourceRefs": [
+        "synthetic.source.process-atlas-demo"
+      ],
+      "state": "CURRENT"
+    }
+  ],
+  "lenses": [
+    {
+      "freshnessRef": "synthetic.freshness.current",
+      "label": "Current synthetic path",
+      "lensRef": "synthetic.lens.current-path",
+      "memberRefs": [
+        "synthetic.node.01-current-priority",
+        "synthetic.node.03-process-step",
+        "synthetic.node.04-traceability"
+      ],
+      "sourceRefs": [
+        "synthetic.source.process-atlas-demo"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "depthClass": "L0_WHOLE_JOURNEY",
+      "freshnessRef": "synthetic.freshness.current",
+      "nodeRef": "synthetic.node.00-journey-question",
+      "sourceRefs": [
+        "synthetic.source.process-atlas-demo"
+      ],
+      "state": "QUESTION_GENERATED",
+      "title": "Synthetic journey question"
+    },
+    {
+      "depthClass": "L1_CURRENT_PRIORITIES",
+      "freshnessRef": "synthetic.freshness.current",
+      "nodeRef": "synthetic.node.01-current-priority",
+      "sourceRefs": [
+        "synthetic.source.process-atlas-demo"
+      ],
+      "state": "SOURCE_FOUND",
+      "title": "Synthetic current priority"
+    },
+    {
+      "depthClass": "L2_PROCESS_FAMILY",
+      "freshnessRef": "synthetic.freshness.current",
+      "nodeRef": "synthetic.node.02-decision-branch",
+      "sourceRefs": [
+        "synthetic.source.process-atlas-demo"
+      ],
+      "state": "DECISION_REQUIRED",
+      "title": "Synthetic decision branch"
+    },
+    {
+      "depthClass": "L2_PROCESS_FAMILY",
+      "freshnessRef": "synthetic.freshness.current",
+      "nodeRef": "synthetic.node.02-process-family",
+      "sourceRefs": [
+        "synthetic.source.process-atlas-demo"
+      ],
+      "state": "ANSWER_PARTIAL",
+      "title": "Synthetic process family"
+    },
+    {
+      "depthClass": "L3_PROCESS_STEP",
+      "freshnessRef": "synthetic.freshness.current",
+      "nodeRef": "synthetic.node.03-process-step",
+      "sourceRefs": [
+        "synthetic.source.process-atlas-demo"
+      ],
+      "state": "IMPLEMENTATION_ACTIVE",
+      "title": "Synthetic process step"
+    },
+    {
+      "depthClass": "L4_TRACEABILITY",
+      "freshnessRef": "synthetic.freshness.current",
+      "nodeRef": "synthetic.node.04-traceability",
+      "sourceRefs": [
+        "synthetic.source.process-atlas-demo"
+      ],
+      "state": "OUTCOME_VERIFIED",
+      "title": "Synthetic traceability receipt"
+    }
+  ],
+  "opportunities": [
+    {
+      "freshnessRef": "synthetic.freshness.current",
+      "opportunityRef": "synthetic.opportunity.01",
+      "sourceRefs": [
+        "synthetic.source.process-atlas-demo"
+      ],
+      "summary": "Compare the synthetic decision branch before continuing.",
+      "targetRef": "synthetic.node.02-decision-branch"
+    }
+  ],
+  "owners": [
+    {
+      "freshnessRef": "synthetic.freshness.current",
+      "label": "Synthetic Operations",
+      "ownerRef": "synthetic.owner.operations",
+      "sourceRefs": [
+        "synthetic.source.process-atlas-demo"
+      ]
+    }
+  ],
+  "parallelizableRefs": [
+    "synthetic.node.02-decision-branch",
+    "synthetic.node.04-traceability"
+  ],
+  "priorities": [
+    {
+      "freshnessRef": "synthetic.freshness.current",
+      "priorityRef": "synthetic.priority.01",
+      "rank": 1,
+      "sourceRefs": [
+        "synthetic.source.process-atlas-demo"
+      ],
+      "targetRef": "synthetic.node.03-process-step"
+    }
+  ],
+  "projectionReceipt": {
+    "atlasRef": "synthetic.atlas.public-process-proof",
+    "contentSha256": "1097960b00a82e94afa36b41f470420f836cbaf4cd98496e38eaf395fd0b825b",
+    "omittedPrivateEdgeCount": 0,
+    "omittedPrivateNodeCount": 0,
+    "projectionReceiptRef": "synthetic.projection-receipt.public-process-proof",
+    "publicEdgeCount": 6,
+    "publicNodeCount": 6,
+    "schemaVersion": "vextreme.process-atlas.projection-receipt/v1",
+    "sourceRefs": [
+      "synthetic.source.process-atlas-demo"
+    ],
+    "transformedAliasCount": 0,
+    "visibilityProfileRefs": [
+      "synthetic.visibility.public-safe"
+    ]
+  },
+  "questions": [
+    {
+      "freshnessRef": "synthetic.freshness.current",
+      "question": "Which synthetic source should be inspected next?",
+      "questionRef": "synthetic.question.01",
+      "sourceRefs": [
+        "synthetic.source.process-atlas-demo"
+      ],
+      "targetRef": "synthetic.node.00-journey-question"
+    }
+  ],
+  "schemaVersion": "vextreme.process-atlas.public-safe/v1",
+  "scopeRefs": [
+    "synthetic.scope.public-process-proof"
+  ],
+  "serialDependencies": [
+    {
+      "afterRef": "synthetic.node.01-current-priority",
+      "beforeRef": "synthetic.node.00-journey-question",
+      "freshnessRef": "synthetic.freshness.current",
+      "serialDependencyRef": "synthetic.serial.00",
+      "sourceRefs": [
+        "synthetic.source.process-atlas-demo"
+      ]
+    },
+    {
+      "afterRef": "synthetic.node.02-process-family",
+      "beforeRef": "synthetic.node.01-current-priority",
+      "freshnessRef": "synthetic.freshness.current",
+      "serialDependencyRef": "synthetic.serial.01",
+      "sourceRefs": [
+        "synthetic.source.process-atlas-demo"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "sourceClass": "SOURCE_MANAGED_SYNTHETIC",
+      "sourceRef": "synthetic.source.process-atlas-demo"
+    }
+  ],
+  "visibilityProfiles": [
+    {
+      "freshnessRef": "synthetic.freshness.current",
+      "label": "Public-safe synthetic fixture",
+      "sourceRefs": [
+        "synthetic.source.process-atlas-demo"
+      ],
+      "visibilityProfileRef": "synthetic.visibility.public-safe"
+    }
+  ]
+}
