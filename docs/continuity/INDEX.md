@@ -28,15 +28,16 @@ intent, the continuity log documents reality.
 
 ## Current State
 
-*As of Session 039 — August 7, 2026. The architecture paragraph's core remains
+*As of Session 040 — August 7, 2026. The architecture paragraph's core remains
 Session 025's; Sessions 029–034 added nav/FAB rollout, authored-style protection,
 runtime-chrome composition, page-capability health, Terrain Journey history,
-feedback routing, and public live-work coordination. Sessions 036–037 added the
-registry-owned institutional surfaces and reviewed EN/JA/ZH localization, later
-accepted through merged PR #148. Session 039 extends public work coordination with
-a truthful ChatGPT/GitHub participant and positive open-ended epic positions such
-as 3/N while preserving exact-path safety. None of those changes alter the v1/v2,
-God Script, or department/arc architecture described below.*
+feedback routing, and public live-work coordination. Sessions 036–039 added the
+registry-owned institutional surfaces, reviewed EN/JA/ZH localization, the accepted
+truthful ChatGPT/GitHub work-coordination grammar, and Terrain Row A's visible semantic
+threshold rail. Session 040 carries the active Row B candidate: bounded Stage summaries,
+focused-stage context, and neighborhood-first Node materialization while preserving
+Journey v1 and the accepted Terrain data/generator boundary. None of those changes alter
+the v1/v2, God Script, or department/arc architecture described below.*
 
 The v2 GitHub Pages architecture is the active system. v1 (`data/arcs.json`, `data/pages.json`,
 `lib/vextreme.js`/`archive-renderer.js`/`arc-nav.js`) still serves the live Squarespace site
@@ -183,9 +184,9 @@ The change repairs Session 023 (Codex's July 6 context-note and perceivable-cont
 entries had been injected mid-file into Session 021's record.
 
 **Recent sessions** (one line each — open the session files below for full reasoning):
+- **Session 040** — Carries the active Terrain Row B candidate: bounded Stage overview/focus composition plus neighborhood-first Node materialization on existing Journey/Data contracts.
 - **Session 039** — Registered the truthful ChatGPT/GitHub collaborator and open-ended `3/N` coordination semantics, accepted through PR #152.
 - **Session 038** — Completed Terrain Row A with a non-editable semantic threshold rail, narrow containment, deterministic large-scale fixtures, and six exact visual evidence cells while preserving Journey and Row B boundaries.
-- **Session 037** — Added independently reviewed JA/ZH institutional bundles, transactional native selection on both pages, hostile-failure coverage, and the complete 36-cell evidence matrix later accepted through PR #148.
 **This section is a snapshot, not a log.** Full session-by-session reasoning — mistakes tried,
 assumptions made, why a decision went one way over another — lives in the batch files (see
 **Batch Registry** below), not here. Rewrite the paragraph above at the start of each session to
@@ -207,7 +208,7 @@ architecture docs, or lessons only through a PR decision record.
 
 ## Open Work
 
-*Updated Session 039 — August 7, 2026*
+*Updated Session 040 — August 7, 2026*
 
 This list holds only genuinely open items — things nobody has done yet, not a running log of
 what shipped. A completed item is removed here the same session it ships, not kept and checked
@@ -438,6 +439,6 @@ Create as `docs/continuity/batch-00N/YYYY-MM-DD-session-0NN.md`:
 
 ---
 
-*Last updated: Session 039 — August 7, 2026*
+*Last updated: Session 040 — August 7, 2026*
 
 <!-- [VXG RealForever] -->
