@@ -195,10 +195,12 @@ test('PUBLIC-ORIENTATION-PROVIDER: current evidence changes remain visible witho
   const rightEvidence = publicEvidence();
   rightEvidence.currentWorkRef = 'work.vextreme.public-example.001';
   rightEvidence.currentClaimRefs = ['claim.vextreme.public-example.001'];
+  rightEvidence.liveSourceRefOrNull = 'github.pr.vextreme.155';
   const left = buildPublicOrientationProviderReceipt({ atlas: publicAtlas, repositoryEvidence: leftEvidence });
   const right = buildPublicOrientationProviderReceipt({ atlas: publicAtlas, repositoryEvidence: rightEvidence });
   assert.notDeepEqual(left.current, right.current);
   assert.notDeepEqual(left.currentClaimRefs, right.currentClaimRefs);
+  assert.ok(right.sourceRefs.includes('github.pr.vextreme.155'));
   assert.equal(left.publicationState.publicationAuthority, false);
   assert.equal(right.publicationState.publicationAuthority, false);
   assert.equal(left.authorityEnvelope.state, 'HELD');
@@ -235,6 +237,20 @@ test('PUBLIC-ORIENTATION-PROVIDER: malformed PAT boundary and unsupported curren
     atlas: structuredClone(publicAtlas),
     repositoryEvidence: missingLive,
   }), /CURRENT public evidence requires liveSourceRefOrNull/);
+
+  const invalidDate = publicEvidence();
+  invalidDate.observedAt = '2026-02-30T11:30:00Z';
+  assert.throws(() => buildPublicOrientationProviderReceipt({
+    atlas: structuredClone(publicAtlas),
+    repositoryEvidence: invalidDate,
+  }), /explicit valid UTC timestamp/);
+
+  const oversizedRef = publicEvidence();
+  oversizedRef.currentWorkRef = `work.${'x'.repeat(1025)}`;
+  assert.throws(() => buildPublicOrientationProviderReceipt({
+    atlas: structuredClone(publicAtlas),
+    repositoryEvidence: oversizedRef,
+  }), /reference-safe string/);
 
   const extraField = publicEvidence();
   extraField.publicationAuthority = true;
