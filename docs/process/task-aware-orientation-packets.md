@@ -8,6 +8,11 @@
 smallest deterministic packet supported by `data/orientation-map.json`. It is a
 router, not a search engine and not an authority engine.
 
+The repository-owned PUBLIC_VEXTREME provider is a sibling contract, not an
+extension of that router. See `docs/process/public-orientation-provider.md` for
+the pure provider-receipt adapter that composes already-collected public
+current-work evidence with the accepted public-safe synthetic Process Atlas.
+
 ```bash
 node lib/select-orientation-context.js \
   --task "fix a public page whose shared navigation is missing" \
