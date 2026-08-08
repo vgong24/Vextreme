@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 41,
+    "total": 42,
     "healthy": 3,
-    "attention": 32,
+    "attention": 33,
     "critical": 6,
     "sorted": 4,
     "withFab": 30,
     "withIdentity": 11,
-    "withScreenshots": 10,
-    "withMetaDescription": 7
+    "withScreenshots": 11,
+    "withMetaDescription": 8
   },
   "pages": {
     "about-me": {
@@ -1238,6 +1238,68 @@
           "unsorted",
           "identity",
           "screenshot"
+        ]
+      }
+    },
+    "process-atlas": {
+      "slug": "process-atlas",
+      "title": "process-atlas",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 2,
+        "shell": false,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "missing"
+      },
+      "theme": {
+        "control": "page-owned",
+        "visibleStyles": true
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": [
+          "en"
+        ],
+        "screenshotFiles": [
+          "docs/screenshots/process-atlas-en-dark-1440.png",
+          "docs/screenshots/process-atlas-en-dark-390.png",
+          "docs/screenshots/process-atlas-en-light-1440.png",
+          "docs/screenshots/process-atlas-en-light-390.png"
+        ]
+      },
+      "discovery": {
+        "metaDescription": "A wholly synthetic, read-only public Process Atlas proof."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "fab",
+          "uncurated",
+          "identity"
         ]
       }
     },
