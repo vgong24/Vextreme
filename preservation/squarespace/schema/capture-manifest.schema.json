@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vextreme.local/schemas/squarespace-capture-manifest.schema.json",
+  "title": "Squarespace preservation capture manifest",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "captureId",
+    "source",
+    "pages",
+    "dependencies"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "0.1.0" },
+    "captureId": { "type": "string", "minLength": 1 },
+    "observedAt": { "type": "string", "format": "date-time" },
+    "source": {
+      "type": "object",
+      "required": ["kind"],
+      "properties": {
+        "kind": { "enum": ["saved-html-directory", "zip", "live-crawl", "mixed"] },
+        "siteOrigin": { "type": ["string", "null"] },
+        "authenticatedCaptureDetected": { "type": "boolean" },
+        "rawPublicationAllowed": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    },
+    "pages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["pageId", "inputSha256", "disposition"],
+        "properties": {
+          "pageId": { "type": "string" },
+          "route": { "type": ["string", "null"] },
+          "canonicalUrl": { "type": ["string", "null"] },
+          "inputPath": { "type": ["string", "null"] },
+          "inputSha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+          "classification": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "STATIC_SELF_CONTAINED",
+                "STATIC_REMOTE_ASSETS",
+                "LOCAL_DYNAMIC",
+                "DYNAMIC_REMOTE_DOCUMENTS",
+                "REMOTE_SERVICE_DEPENDENT",
+                "SOURCE_BACKED_TEMPLATE",
+                "DEPLOYED_HOST_WRAPPER"
+              ]
+            },
+            "uniqueItems": true
+          },
+          "repositorySourceRefs": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "disposition": {
+            "enum": [
+              "CAPTURED_RAW",
+              "STATIC_INVENTORY_COMPLETE",
+              "LOCALIZED_PARTIAL",
+              "LOCALIZED_COMPLETE",
+              "RUNTIME_QUALIFIED",
+              "OFFLINE_QUALIFIED",
+              "BLOCKED_REMOTE_SERVICE",
+              "UNRESOLVED_DEPENDENCY"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["dependencyId", "kind", "originalReference"],
+        "properties": {
+          "dependencyId": { "type": "string" },
+          "kind": {
+            "enum": [
+              "INLINE_CONTENT",
+              "INTERNAL_ROUTE",
+              "REMOTE_ASSET",
+              "REMOTE_STYLESHEET",
+              "REMOTE_SCRIPT",
+              "REMOTE_FONT",
+              "REMOTE_DOCUMENT",
+              "REMOTE_MEDIA",
+              "DYNAMIC_REMOTE_DEPENDENCY",
+              "REPOSITORY_OWNED_DEPENDENCY",
+              "EXTERNAL_NAVIGATION",
+              "SQUARESPACE_RUNTIME",
+              "UNKNOWN_REMOTE"
+            ]
+          },
+          "originalReference": { "type": "string" },
+          "resolvedUrl": { "type": ["string", "null"] },
+          "localPath": { "type": ["string", "null"] },
+          "sha256": {
+            "type": ["string", "null"],
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "discoveredBy": {
+            "enum": ["html", "css", "javascript-static", "runtime", "manual"]
+          },
+          "referringPages": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "status": {
+            "enum": ["inline", "route", "downloaded", "external-only", "failed", "deferred"]
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "runtime": {
+      "type": "object",
+      "properties": {
+        "scenarios": { "type": "array", "items": { "type": "object" } },
+        "requiredExternalRequestsRemaining": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}
