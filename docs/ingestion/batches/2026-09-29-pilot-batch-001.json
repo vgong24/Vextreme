@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "vex-content-forge.intake-receipt/v0.1",
+  "workRef": "work.vextreme.content-forge.ingestion-pilot.20260929",
+  "issueRef": "github.issue.vextreme.159",
+  "toolingPrRef": "github.pull.vextreme.160",
+  "branchBase": {
+    "branch": "VXG-092926-vex-content-forge-tooling-pilot",
+    "sha": "b9dd692e7dbad6c785092ad1c865a0eac2872354"
+  },
+  "sourceCapture": {
+    "toolVersion": "3.4.0",
+    "inputZipSha256": "964d7cb80bfb709ee42ae9b3b5f77a63d767e9404baba67e85e3005f80e6d6a4",
+    "captureManifestSha256": "82f5a872ef4df6a3914038162dfb27e2522765be7c43c9a45d66f4ce79a5244b",
+    "rawPublicationAllowed": false,
+    "networkClosed": true,
+    "contentComplete": false
+  },
+  "intake": [
+    {
+      "slug": "clarity-on-christianity",
+      "wipPath": "wip/clarity-on-christianity.json",
+      "bundleRef": "batch-001-clarity-existing-node",
+      "bundleSha256": "f101b602fa8ad660783bc2eb37eb8a68382d08ff2fbe3e91fd870eb713991ed5",
+      "disposition": "WIP_THEN_PROMOTE_EXISTING_NODE",
+      "directCopyAllowed": false
+    },
+    {
+      "slug": "testimonies",
+      "wipPath": "wip/testimonies.json",
+      "bundleRef": "batch-002-testimonies-new-collection",
+      "bundleSha256": "3fd74ee86301deebc127a2ccded85671703b0125f89212cf7e3e614a66a140c1",
+      "disposition": "WIP_HOLD_FOR_PLACEMENT",
+      "directCopyAllowed": false
+    }
+  ],
+  "effects": {
+    "rawCapturePublished": false,
+    "productionPagesChanged": false,
+    "canonicalNodesChanged": false,
+    "arcDefinitionsChanged": false,
+    "localizationSourceChanged": false,
+    "generatedReadSideChanged": false
+  },
+  "learnedRule": "A formed integration bundle is evidence plus routing intent. Repository-native projection is a separate stage; never teach direct sovereign-capture HTML copying as canonical ingestion."
+}

@@ -190,6 +190,15 @@
       "routeOwner": "lib/build-page-health.js",
       "healthCheck": "node --test tests/44-page-health.test.js",
       "placementRule": "Direct-child PNG evidence only; nested uploads or arbitrary assets require a different mapped home."
+    },
+    {
+      "id": "content-forge-pilot-batches",
+      "pattern": "^docs/ingestion/batches/[0-9]{4}-[0-9]{2}-[0-9]{2}-pilot-batch-[0-9]{3}\\.json$",
+      "category": "ingestion-batch-receipt",
+      "authority": "generated-evidence",
+      "routeOwner": "docs/ingestion/VEX-CONTENT-FORGE-PILOT.md",
+      "healthCheck": "node lib/check-document-routes.js",
+      "placementRule": "Direct-child JSON batch receipts only; filename binds date + pilot batch number. Payload ZIPs, raw captures, arbitrary notes, or nested bundles require a different mapped home."
     }
   ]
 }
