@@ -3,13 +3,6 @@
   "root": "docs",
   "exactDocuments": [
     {
-      "path": "docs/Readme.md",
-      "category": "historical-architecture",
-      "authority": "historical",
-      "routeOwner": "CLAUDE.md",
-      "healthCheck": "node lib/check-document-routes.js"
-    },
-    {
       "path": "docs/architecture.md",
       "category": "generated-architecture",
       "authority": "generated",
@@ -35,6 +28,13 @@
       "category": "doctrine",
       "authority": "accepted",
       "routeOwner": "CLAUDE.md",
+      "healthCheck": "node lib/check-document-routes.js"
+    },
+    {
+      "path": "docs/ingestion/VEX-CONTENT-FORGE-PILOT.md",
+      "category": "ingestion-pilot-process",
+      "authority": "proposed",
+      "routeOwner": "docs/process/document-routing.md",
       "healthCheck": "node lib/check-document-routes.js"
     },
     {
@@ -106,6 +106,13 @@
       "authority": "accepted",
       "routeOwner": "CLAUDE.md",
       "healthCheck": "node --test tests/50-orientation-packets.test.js"
+    },
+    {
+      "path": "docs/Readme.md",
+      "category": "historical-architecture",
+      "authority": "historical",
+      "routeOwner": "CLAUDE.md",
+      "healthCheck": "node lib/check-document-routes.js"
     },
     {
       "path": "docs/squarespace-injection.html",
