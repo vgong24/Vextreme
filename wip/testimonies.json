@@ -1,0 +1,55 @@
+{
+  "_meta": {
+    "slug": "testimonies",
+    "title": "Testimonies",
+    "wipType": "vex-content-forge-intake/v0.1",
+    "state": "WIP_HOLD_FOR_PLACEMENT"
+  },
+  "source": {
+    "captureToolVersion": "3.4.0",
+    "captureInputZipSha256": "964d7cb80bfb709ee42ae9b3b5f77a63d767e9404baba67e85e3005f80e6d6a4",
+    "captureManifestSha256": "82f5a872ef4df6a3914038162dfb27e2522765be7c43c9a45d66f4ce79a5244b",
+    "networkClosed": true,
+    "contentComplete": false,
+    "rawPublicationAllowed": false,
+    "bundleRef": "batch-002-testimonies-new-collection",
+    "bundleZipSha256": "3fd74ee86301deebc127a2ccded85671703b0125f89212cf7e3e614a66a140c1",
+    "derivedPageSha256": "108a8f8cceacc64de9718d505dafc20c51cb00cbf21265e5288aee2a7fb685cf",
+    "derivedLocalizationSha256": "1de97ae79d053d116de4fcf75a238350413e17f5bd506156057a8a9009696d47",
+    "derivedContentRecordSha256": "05af0d1bd8432b3c034b09648cc5cf2938a3cf20497201617217481f655b6582",
+    "blogItemsProjected": 20
+  },
+  "repositoryObservation": {
+    "existingCanonicalNode": null,
+    "productionPageObserved": false,
+    "registryMutationExpected": true,
+    "narrativeCurationMutationExpected": "UNRESOLVED"
+  },
+  "projectionDirective": {
+    "directCopyOfVexSiteSovereignPageAllowed": false,
+    "reason": "The preserved page combines a custom-authored hero/footer with provider-rendered blog collection records plus rescue-local shell. Vextreme import must preserve the authored composition and collection semantics without importing the rescue navigation/runtime as canonical page source.",
+    "preserve": [
+      "custom-authored page presentation",
+      "20 observed blog collection records as collection evidence",
+      "stable page/string identities pending localization review",
+      "collection relationships to article slugs"
+    ],
+    "projectAway": [
+      "__rescue source bridge scripts",
+      "VexSite sovereign navigation",
+      "VexSite localize.js/sovereign.js transport runtime",
+      "provider runtime shell"
+    ]
+  },
+  "placementQuestions": [
+    "Is Testimonies a canonical collection/hub node, a page under an existing arc, or a new arc-facing surface?",
+    "Which of its 20 observed child article slugs already have canonical nodes and which remain source gaps?",
+    "Should collection membership be represented as an arc, a collection registry, or a projection derived from existing node metadata?"
+  ],
+  "localization": {
+    "sourceLanguage": "en",
+    "canonicalImportState": "REVIEW_REQUIRED",
+    "rule": "generated VexSite string identities are evidence/candidates, not automatically canonical Vextreme string keys"
+  },
+  "nextGate": "RESOLVE_COLLECTION_PLACEMENT_AND_CHILD_NODE_OVERLAP_BEFORE_PROMOTION"
+}
