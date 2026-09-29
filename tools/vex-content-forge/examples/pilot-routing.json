@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "vex-content-forge.routing/v0.1",
+  "workRef": "work.vextreme.content-forge.ingestion-pilot.20260929",
+  "destinationRepository": "vgong24/Vextreme",
+  "destinationBaseSha": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+  "bundles": [
+    {
+      "bundleRef": "batch-001-clarity-existing-node",
+      "groupingReason": "Single page already has canonical Vextreme identity and authored narrative placement; isolate it so the pilot can distinguish page-byte insertion from semantic registry creation.",
+      "item": {
+        "slug": "clarity-on-christianity",
+        "route": "/clarity-on-christianity",
+        "source": {
+          "pageScope": "clarity-on-christianity",
+          "sitePath": "clarity-on-christianity/index.html"
+        },
+        "privacy": {
+          "rawSourceAllowed": false,
+          "derivedSanitizedRequired": true
+        },
+        "destination": {
+          "disposition": "WIP_THEN_PROMOTE_EXISTING_NODE",
+          "intakePath": "wip/clarity-on-christianity.html",
+          "promotionPath": "pages/clarity-on-christianity.html",
+          "existingCanonicalNode": {
+            "id": 4,
+            "title": "Clarity on Christianity",
+            "arcKeys": [
+              "convos_with_god",
+              "full_timeline"
+            ]
+          },
+          "registryMutationExpected": false,
+          "curationMutationExpected": false
+        },
+        "localization": {
+          "sourceLanguage": "en",
+          "generatedIdentityCandidatesRequireReview": true
+        },
+        "assetPolicy": "REFERENCES_AND_GAPS_ONLY_IN_PILOT"
+      }
+    },
+    {
+      "bundleRef": "batch-002-testimonies-new-collection",
+      "groupingReason": "Custom-authored collection page plus projected blog records forms one coherent collection surface, but there is no current Vextreme canonical node; keep separate from already-mapped timeline content.",
+      "item": {
+        "slug": "testimonies",
+        "route": "/testimonies",
+        "source": {
+          "pageScope": "testimonies",
+          "sitePath": "testimonies/index.html"
+        },
+        "privacy": {
+          "rawSourceAllowed": false,
+          "derivedSanitizedRequired": true
+        },
+        "destination": {
+          "disposition": "WIP_HOLD_FOR_PLACEMENT",
+          "intakePath": "wip/testimonies.html",
+          "promotionPath": "pages/testimonies.html",
+          "existingCanonicalNode": null,
+          "registryMutationExpected": true,
+          "curationMutationExpected": "UNRESOLVED"
+        },
+        "localization": {
+          "sourceLanguage": "en",
+          "generatedIdentityCandidatesRequireReview": true
+        },
+        "assetPolicy": "REFERENCES_AND_GAPS_ONLY_IN_PILOT"
+      }
+    }
+  ]
+}
