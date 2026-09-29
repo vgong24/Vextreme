@@ -19,3 +19,19 @@
 - `testimonies`: VexSite preserves a custom-authored collection page and projects 20 blog rows, but current Vextreme has no canonical `testimonies` node. This exercises **new content requiring placement judgment**.
 
 The pair deliberately prevents the importer from learning the false rule that every preserved page should be treated the same way.
+
+
+## Batch receipt route
+
+Pilot intake receipts live only at:
+
+```text
+docs/ingestion/batches/YYYY-MM-DD-pilot-batch-NNN.json
+```
+
+That strict collection is registered as `content-forge-pilot-batches` in
+`config/document-routing.json` and is owned by this pilot process document.
+The receipt records source bindings, routing decisions and repository effects;
+it is not the payload ZIP, not raw provider source, and not a substitute for an
+accepted page/node/arc/localization mutation.
+
