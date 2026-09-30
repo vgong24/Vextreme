@@ -5,11 +5,13 @@
   "partRef": "PART_012_TOP_LEVEL_NAVIGATION",
   "inputZip": "012-top-level-navigation.zip",
   "inputZipSha256": "4713d1ec468c57d33136ed2ad26359cd3cca1507da10f33c8848bb4f9c749b6d",
+  "manifestEntryCount": 4,
+  "storedHtmlCount": 4,
   "staged": [
     {
       "route": "/ai-cheat-sheet",
-      "path": "wip/ai-cheat-sheet.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-012/ai-cheat-sheet.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "020d49851913c3d848a04cdbab0e53fac4615bd89efaf588a8b73243c407a836",
       "sourceDerivedSha256": "b6620189eb3d950bc14ecdb093ebf20ada595d5dd43fcdbe3a4089b1af33139b",
       "disposition": "EXISTING_SEMANTIC_SLOT",
@@ -17,8 +19,8 @@
     },
     {
       "route": "/free-blueprints",
-      "path": "wip/free-blueprints.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-012/free-blueprints.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "582d6ec3dedb6d48e854804b7f4426bea870fb23bf371fda244fccfe40e0ad09",
       "sourceDerivedSha256": "1b4cdad3571c5734da1ebe2aabb96ef5b3cd3d319bbe0679acf73a3854513082",
       "disposition": "WIP_UNSORTED_INTAKE",
@@ -26,8 +28,8 @@
     },
     {
       "route": "/witness-testimony",
-      "path": "wip/witness-testimony.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-012/witness-testimony.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "c9880e1c3dd443d15c68888cf304f1d659b53e7455672cd149ac0a480aa9cc8e",
       "sourceDerivedSha256": "331e83f91722becf783d046c57febf189f5f5047709d9a8ef57e564b10b33416",
       "disposition": "HOLD",
@@ -35,14 +37,15 @@
     },
     {
       "route": "/take-a-walk",
-      "path": "wip/take-a-walk.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-012/take-a-walk.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "799280a04967144979370dcd96c16e62b8b53a3e72f1b82e8836280d198963e7",
       "sourceDerivedSha256": "170256642ede6f43c688f6e10ab27b4a92e1385f633bb7c95c89379fa66a0561",
       "disposition": "NEW_CANONICAL_NODE",
       "placementState": "NEW_NODE_CANDIDATE_DIRECT_CONTACT_RELATION_UNRESOLVED"
     }
   ],
+  "storageRule": "All derived HTML is preserved as routed source evidence. Placement/projection remains a later effect; source evidence is not scanned as active pages or wip runtime.",
   "effects": {
     "rawAuthenticatedSourcePublished": false,
     "canonicalPagesChanged": false,
