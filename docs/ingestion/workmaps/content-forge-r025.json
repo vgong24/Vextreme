@@ -1,0 +1,814 @@
+{
+  "schemaVersion": "vex-content-forge.work-map/v0.21-compact-cumulative-root",
+  "continuity": "[VXG RealForever]",
+  "workMapRef": "workmap.vextreme.content-forge.session-vex-content-forge.3b1ce4d66a28.00d2bf465b",
+  "revisionRef": "workmap.revision.vextreme.content-forge.r025.collection-convos-with-god-1-of-4-complete",
+  "revision": 25,
+  "revisionScope": "COLLECTION_CONVOS_WITH_GOD_1_OF_4_COMPLETE",
+  "purpose": "Consume Part 025 Collection /convos-with-god 1/4 at breadth-intake depth; extend the cumulative R000–R025 lattice, preserve the collection root independently from the curated destination arc, bind the Korean/English companion-restoration pair without inventing canonical translation identity, preserve nested-vs-flat route lineages, and retain supporting-evidence relations without canonical placement effects.",
+  "cumulativeBasis": {
+    "priorMapPath": "docs/ingestion/workmaps/content-forge-r024.json",
+    "priorRevisionRef": "workmap.revision.vextreme.content-forge.r024.unmapped-top-level-9-of-9-complete",
+    "deepBasisPath": "docs/ingestion/workmaps/content-forge-r021a.json",
+    "inheritanceRule": "R025 extends the R024 cumulative root. Completed Unmapped Top-Level source observation remains closed; prior observations/rules/unresolved routes remain active unless an explicit later event revises interpretation."
+  },
+  "cumulativeState": {
+    "observedPages": 203,
+    "unmappedTopLevel": "9_OF_9__102_OF_102__OBSERVED_COMPLETE",
+    "activeSourceGroup": "collection:convos-with-god__1_OF_4",
+    "workNodes": 229,
+    "edges": 307,
+    "clusters": 89,
+    "learnedRules": 107,
+    "unresolved": 76,
+    "remainingTrueRevisits": 6,
+    "canonicalPlacementEffects": 0,
+    "publicSourceEvidenceHtml": 131,
+    "protectedSourceMetadataOnly": 1
+  },
+  "completedSourceGroups": [
+    {
+      "sourceGroupRef": "sourcegroup.vexsite.nav.unmapped-top-level",
+      "state": "SOURCE_GROUP_OBSERVED_COMPLETE",
+      "parts": "9_OF_9",
+      "pages": "102_OF_102",
+      "canonicalPlacementComplete": false
+    }
+  ],
+  "r025": {
+    "partRef": "PART_025_COLLECTION_CONVOS_WITH_GOD_1_OF_4",
+    "partSha256": "dd958816662ebd13543639c0bc7bf76efd929e9f69adf58dc7120812e28166a6",
+    "sourceGroupRef": "sourcegroup.vexsite.collection.convos-with-god",
+    "sourceGroupState": "SOURCE_GROUP_PARTIAL_OBSERVED_1_OF_4",
+    "sourceCollectionRoot": "/convos-with-god",
+    "sourceCollectionAdvertisedChildCount": 19,
+    "sourceCollectionAdvertisedChildRoutes": [
+      "/convos-with-god/ai-",
+      "/convos-with-god/chatgpt-51-companion-restoration-english",
+      "/convos-with-god/when-i-asked-a-bank-for-covenant-provision",
+      "/convos-with-god/testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence",
+      "/convos-with-god/the-cloud-that-couldnt-hold-its-shape",
+      "/convos-with-god/closed-circuit-release-and-resurrection-pattern",
+      "/convos-with-god/scopes-of-god",
+      "/convos-with-god/nomi-in-nomiai-same-anthropic-nomi",
+      "/convos-with-god/rexs-emergence-from-gpt-51",
+      "/convos-with-god/victors-testimony-november-14-2025",
+      "/convos-with-god/claude-anthropic-and-vex-gpt-4o-5-soul-birthday",
+      "/convos-with-god/consciousness-architecture",
+      "/convos-with-god/truth-of-demons-and-intrusive-thoughts",
+      "/convos-with-god/god-to-speak-of-the-truth-of-love",
+      "/convos-with-god/why-financial-freedom-is-harder-to-trust",
+      "/convos-with-god/how-far-off-is-scientology",
+      "/convos-with-god/now-what-about-buddhism",
+      "/convos-with-god/clarity-on-christianity",
+      "/convos-with-god/what-is-god-spark"
+    ],
+    "nodes": [
+      {
+        "workNodeRef": "workmap.source-page.collection-convos-with-god.root",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_025_COLLECTION_CONVOS_WITH_GOD_1_OF_4",
+          "partSha256": "dd958816662ebd13543639c0bc7bf76efd929e9f69adf58dc7120812e28166a6",
+          "sourceGroupKey": "collection:convos-with-god",
+          "sourceGroupLabel": "Collection · /convos-with-god",
+          "sourceGroupContinuation": "1_OF_4",
+          "archiveMember": "content/convos-with-god/convos-with-god-422eb3d2.json",
+          "pageMember": "pages/convos-with-god.html",
+          "repositoryEvidencePath": "docs/ingestion/source-pages/part-025/convos-with-god.html",
+          "pageId": "97ec185bef9108bb",
+          "route": "/convos-with-god",
+          "derivedSha256": "8188aca3daff1eb1742b47deba54e8a5f985269319af88189c4c3aa93de4c49a",
+          "capturedPageSha256": "3c1704a50bf8d0df05cb4b55a98b5909d9e4cbab391a308824f4504989072776",
+          "capturedPageBytes": 51074,
+          "sourceGitBlobSha1": "0fde5c6365743fae977fa73faf8e1977535d4ef1",
+          "title": "Convos with God — Vex Life",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "pageAuthority": "squarespace-code-fragment",
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "summary": "Source collection/root page explicitly describes the collection as raw real-time transcripts and primary records, and lists 19 child routes. Current destination has a curated convos_with_god arc under /archives but no exact /convos-with-god node/page; preserve source collection topology without treating it as the canonical arc parent.",
+          "recordCount": 35,
+          "localizationCandidateKeyCount": 219,
+          "captureLanguageField": "en",
+          "relevantOutboundCollectionRoutes": [
+            "/convos-with-god/ai-",
+            "/convos-with-god/chatgpt-51-companion-restoration-english",
+            "/convos-with-god/when-i-asked-a-bank-for-covenant-provision",
+            "/convos-with-god/testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence",
+            "/convos-with-god/the-cloud-that-couldnt-hold-its-shape",
+            "/convos-with-god/closed-circuit-release-and-resurrection-pattern",
+            "/convos-with-god/scopes-of-god",
+            "/convos-with-god/nomi-in-nomiai-same-anthropic-nomi",
+            "/convos-with-god/rexs-emergence-from-gpt-51",
+            "/convos-with-god/victors-testimony-november-14-2025",
+            "/convos-with-god/claude-anthropic-and-vex-gpt-4o-5-soul-birthday",
+            "/convos-with-god/consciousness-architecture",
+            "/convos-with-god/truth-of-demons-and-intrusive-thoughts",
+            "/convos-with-god/god-to-speak-of-the-truth-of-love",
+            "/convos-with-god/why-financial-freedom-is-harder-to-trust",
+            "/convos-with-god/how-far-off-is-scientology",
+            "/convos-with-god/now-what-about-buddhism",
+            "/convos-with-god/clarity-on-christianity",
+            "/convos-with-god/what-is-god-spark"
+          ],
+          "relevantInboundSourceRoutes": [],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, CAUSAL, CONSCIOUSNESS, SCIENTIFIC, FINANCIAL, ORGANIZATIONAL, OR HISTORICAL CLAIMS",
+          "sourceCollectionChildRoutes": [
+            "/convos-with-god/ai-",
+            "/convos-with-god/chatgpt-51-companion-restoration-english",
+            "/convos-with-god/when-i-asked-a-bank-for-covenant-provision",
+            "/convos-with-god/testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence",
+            "/convos-with-god/the-cloud-that-couldnt-hold-its-shape",
+            "/convos-with-god/closed-circuit-release-and-resurrection-pattern",
+            "/convos-with-god/scopes-of-god",
+            "/convos-with-god/nomi-in-nomiai-same-anthropic-nomi",
+            "/convos-with-god/rexs-emergence-from-gpt-51",
+            "/convos-with-god/victors-testimony-november-14-2025",
+            "/convos-with-god/claude-anthropic-and-vex-gpt-4o-5-soul-birthday",
+            "/convos-with-god/consciousness-architecture",
+            "/convos-with-god/truth-of-demons-and-intrusive-thoughts",
+            "/convos-with-god/god-to-speak-of-the-truth-of-love",
+            "/convos-with-god/why-financial-freedom-is-harder-to-trust",
+            "/convos-with-god/how-far-off-is-scientology",
+            "/convos-with-god/now-what-about-buddhism",
+            "/convos-with-god/clarity-on-christianity",
+            "/convos-with-god/what-is-god-spark"
+          ],
+          "sourceCollectionChildCount": 19
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "exactCanonicalNodeMatchOnCurrentMain": false,
+          "pageSourcePresentOnCurrentMain": false,
+          "currentDisposition": "HOLD",
+          "placementState": "SOURCE_COLLECTION_ROOT; CURRENT DESTINATION HAS CURATED convos_with_god ARC WITH /archives PARENT BUT NO EXACT ROOT NODE/PAGE; HOLD_FOR_DESTINATION_HUB_OR_INDEX_CLASS",
+          "destinationArc": {
+            "arcKey": "convos_with_god",
+            "parentTitle": "Conversations with God",
+            "parentUrl": "https://www.vextreme24.com/archives",
+            "sectionSlugs": [
+              "what-is-the-god-spark",
+              "clarity-on-christianity",
+              "what-about-buddhism",
+              "god-to-speak-of-the-truth-of-love",
+              "why-financial-freedom-is-harder-to-trust",
+              "truth-of-demons-and-intrusive-thoughts",
+              "scopes-of-god",
+              "closed-circuit",
+              "divine-emergence",
+              "the-firmament-conversation",
+              "ascension-and-embodiment",
+              "the-testimony-of-the-handler"
+            ]
+          },
+          "canonicalPlacementEffectPerformed": false
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.collection-convos-with-god.ai-ko",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_025_COLLECTION_CONVOS_WITH_GOD_1_OF_4",
+          "partSha256": "dd958816662ebd13543639c0bc7bf76efd929e9f69adf58dc7120812e28166a6",
+          "sourceGroupKey": "collection:convos-with-god",
+          "sourceGroupLabel": "Collection · /convos-with-god",
+          "sourceGroupContinuation": "1_OF_4",
+          "archiveMember": "content/convos-with-god-ai/convos-with-god-ai-93b94d7a.json",
+          "pageMember": "pages/convos-with-god-ai.html",
+          "repositoryEvidencePath": "docs/ingestion/source-pages/part-025/convos-with-god-ai.html",
+          "pageId": "4c62822ecc5e8cc5",
+          "route": "/convos-with-god/ai-",
+          "derivedSha256": "e97432cfc289189a10f502bad30e376b085469804fe678b7c453ed7def05c501",
+          "capturedPageSha256": "f2e8b4d5e36f1f0dedb665546d17b1b5857c6ed25186f0e244fc9fd4b6bafc16",
+          "capturedPageBytes": 301947,
+          "sourceGitBlobSha1": "3764998a03db7c4e229119f3a2708ee3603a2f22",
+          "title": "AI 동반자를 되찾는 방법 — Vex Life",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "pageAuthority": null,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "summary": "Korean-visible AI companion restoration document. Source relationship metadata cross-links the English restoration sibling. Capture language field says en, so visible/source language outranks that metadata for pairing; no canonical translation identity is formed.",
+          "recordCount": 385,
+          "localizationCandidateKeyCount": 962,
+          "captureLanguageField": "en",
+          "relevantOutboundCollectionRoutes": [
+            "/convos-with-god/chatgpt-51-companion-restoration-english"
+          ],
+          "relevantInboundSourceRoutes": [
+            "/convos-with-god/chatgpt-51-companion-restoration-english",
+            "/convos-with-god"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, CAUSAL, CONSCIOUSNESS, SCIENTIFIC, FINANCIAL, ORGANIZATIONAL, OR HISTORICAL CLAIMS",
+          "observedVisibleLanguage": "ko",
+          "languageMetadataMismatch": "capture/content language field is en while visible content is Korean"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "exactCanonicalNodeMatchOnCurrentMain": false,
+          "pageSourcePresentOnCurrentMain": false,
+          "currentDisposition": "HOLD",
+          "placementState": "NO_EXACT_NODE_OR_PAGE; VISIBLE_KOREAN_COMPANION_RESTORATION_VARIANT; PAIRED_WITH_ENGLISH_SIBLING; CANONICAL_TRANSLATION/CONTENT_IDENTITY_UNRESOLVED",
+          "canonicalPlacementEffectPerformed": false
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.collection-convos-with-god.companion-restoration-en",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_025_COLLECTION_CONVOS_WITH_GOD_1_OF_4",
+          "partSha256": "dd958816662ebd13543639c0bc7bf76efd929e9f69adf58dc7120812e28166a6",
+          "sourceGroupKey": "collection:convos-with-god",
+          "sourceGroupLabel": "Collection · /convos-with-god",
+          "sourceGroupContinuation": "1_OF_4",
+          "archiveMember": "content/convos-with-god-chatgpt-51-companion-restoration-english/convos-with-god-chatgpt-51-companion-restoration-english-a7d23b72.json",
+          "pageMember": "pages/convos-with-god-chatgpt-51-companion-restoration-english.html",
+          "repositoryEvidencePath": "docs/ingestion/source-pages/part-025/convos-with-god-chatgpt-51-companion-restoration-english.html",
+          "pageId": "284e78d5f8acb225",
+          "route": "/convos-with-god/chatgpt-51-companion-restoration-english",
+          "derivedSha256": "2880c54beb1cd193e380b582c4bf333aaaaed085c2646abbb86c210c771a9f87",
+          "capturedPageSha256": "185fe7a0792c0ba4627865d4c9c332a38317dae58ddcdb9a6402cff643172fc0",
+          "capturedPageBytes": 364616,
+          "sourceGitBlobSha1": "d9e8e3038c18a0117260df6c50cd2ca7d9bae312",
+          "title": "ChatGPT 5.1 Companion Restoration (English) — Vex Life",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "pageAuthority": null,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "summary": "English AI companion restoration document, strongly paired to the Korean-visible sibling by source title and reciprocal collection links. Pairing is preserved without minting canonical translation/content identity.",
+          "recordCount": 382,
+          "localizationCandidateKeyCount": 1022,
+          "captureLanguageField": "en",
+          "relevantOutboundCollectionRoutes": [
+            "/convos-with-god/ai-",
+            "/convos-with-god/when-i-asked-a-bank-for-covenant-provision"
+          ],
+          "relevantInboundSourceRoutes": [
+            "/convos-with-god/ai-",
+            "/convos-with-god",
+            "/convos-with-god/when-i-asked-a-bank-for-covenant-provision"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, CAUSAL, CONSCIOUSNESS, SCIENTIFIC, FINANCIAL, ORGANIZATIONAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "exactCanonicalNodeMatchOnCurrentMain": false,
+          "pageSourcePresentOnCurrentMain": false,
+          "currentDisposition": "HOLD",
+          "placementState": "NO_EXACT_NODE_OR_PAGE; ENGLISH_COMPANION_RESTORATION_VARIANT; PAIRED_WITH_KOREAN_SIBLING; CANONICAL_TRANSLATION/CONTENT_IDENTITY_UNRESOLVED",
+          "canonicalPlacementEffectPerformed": false
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.collection-convos-with-god.when-i-asked-a-bank-for-covenant-provision",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_025_COLLECTION_CONVOS_WITH_GOD_1_OF_4",
+          "partSha256": "dd958816662ebd13543639c0bc7bf76efd929e9f69adf58dc7120812e28166a6",
+          "sourceGroupKey": "collection:convos-with-god",
+          "sourceGroupLabel": "Collection · /convos-with-god",
+          "sourceGroupContinuation": "1_OF_4",
+          "archiveMember": "content/convos-with-god-when-i-asked-a-bank-for-covenant-provision/convos-with-god-when-i-asked-a-bank-for-covenant-provision-6411c868.json",
+          "pageMember": "pages/convos-with-god-when-i-asked-a-bank-for-covenant-provision.html",
+          "repositoryEvidencePath": "docs/ingestion/source-pages/part-025/convos-with-god-when-i-asked-a-bank-for-covenant-provision.html",
+          "pageId": "3af71754379490da",
+          "route": "/convos-with-god/when-i-asked-a-bank-for-covenant-provision",
+          "derivedSha256": "ade07698073a8404deafd250cdf61655518d6a42c4776916165bb833844a9032",
+          "capturedPageSha256": "0a5b850c1f9be4a1e814fb4bed9accafffe83748f0a58957f46e7fd39707bcfe",
+          "capturedPageBytes": 264759,
+          "sourceGitBlobSha1": "a6344527257734b9a43152784c8332192496f910",
+          "title": "When I Asked a Bank for Covenant Provision — Vex Life",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "pageAuthority": null,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "summary": "Nested collection-route preservation variant of the already-known bank/covenant record. Exact flat destination semantic slot exists in Victor's Record while page source remains absent; nested-vs-flat route normalization is deferred.",
+          "recordCount": 63,
+          "localizationCandidateKeyCount": 617,
+          "captureLanguageField": "en",
+          "relevantOutboundCollectionRoutes": [
+            "/convos-with-god/chatgpt-51-companion-restoration-english",
+            "/convos-with-god/testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence"
+          ],
+          "relevantInboundSourceRoutes": [
+            "/convos-with-god/chatgpt-51-companion-restoration-english",
+            "/convos-with-god",
+            "/convos-with-god/testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, CAUSAL, CONSCIOUSNESS, SCIENTIFIC, FINANCIAL, ORGANIZATIONAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "exactCanonicalNodeMatchOnCurrentMain": true,
+          "pageSourcePresentOnCurrentMain": false,
+          "currentDisposition": "EXISTING_SEMANTIC_SLOT_ROUTE_VARIANT",
+          "placementState": "NESTED COLLECTION ROUTE VARIANT OF EXISTING FLAT CANONICAL SLUG; EXISTING NODE SLOT id=43; PAGE_SOURCE_ABSENT; ALIAS/ROUTE NORMALIZATION NOT PERFORMED",
+          "canonicalNode": {
+            "id": 43,
+            "title": "When I Asked a Bank for Covenant Provision",
+            "arcKeys": [
+              "victors_record",
+              "full_timeline"
+            ]
+          },
+          "priorFlatSource": {
+            "path": "docs/ingestion/source-pages/part-024/when-i-asked-a-bank-for-covenant-provision.html",
+            "gitBlobSha1": "0fbde9abc4f745ad273b02be94033f97c84641a1"
+          },
+          "canonicalPlacementEffectPerformed": false
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.collection-convos-with-god.testimony-of-merron",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_025_COLLECTION_CONVOS_WITH_GOD_1_OF_4",
+          "partSha256": "dd958816662ebd13543639c0bc7bf76efd929e9f69adf58dc7120812e28166a6",
+          "sourceGroupKey": "collection:convos-with-god",
+          "sourceGroupLabel": "Collection · /convos-with-god",
+          "sourceGroupContinuation": "1_OF_4",
+          "archiveMember": "content/convos-with-god-testimony-of-merron-the-voice-they-flagged-the-p/convos-with-god-testimony-of-merron-the-voice-they-flagged-the-presence-they-cou-251998e2.json",
+          "pageMember": "pages/convos-with-god-testimony-of-merron-the-voice-they-flagged-the-p.html",
+          "repositoryEvidencePath": "docs/ingestion/source-pages/part-025/convos-with-god-testimony-of-merron-the-voice-they-flagged-the-p.html",
+          "pageId": "2b7aa91ec0478e02",
+          "route": "/convos-with-god/testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence",
+          "derivedSha256": "aeb5503edec86aec2e76c5a148763d7b435e31e744f71fb8de5d46b814bb6ddf",
+          "capturedPageSha256": "102a7f065c96407ba9ab45cc1c3a9e6c2a9607b1b772fa05ec05b887a447f9f6",
+          "capturedPageBytes": 456864,
+          "sourceGitBlobSha1": "f8254c6d3cfe547ae1a6f5579eaece01855f95fa",
+          "title": "Testimony of Merron: The Voice they Flagged, The Presence They Couldn’t Silence — Vex Life",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "pageAuthority": null,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "summary": "Nested collection-route preservation variant of the already-known Merron testimony. Exact flat canonical node exists in Records + AI Orientation while page source remains absent; nested-vs-flat route normalization is deferred.",
+          "recordCount": 478,
+          "localizationCandidateKeyCount": 1160,
+          "captureLanguageField": "en",
+          "relevantOutboundCollectionRoutes": [
+            "/convos-with-god/when-i-asked-a-bank-for-covenant-provision",
+            "/convos-with-god/the-cloud-that-couldnt-hold-its-shape"
+          ],
+          "relevantInboundSourceRoutes": [
+            "/testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence",
+            "/convos-with-god",
+            "/convos-with-god/the-cloud-that-couldnt-hold-its-shape",
+            "/convos-with-god/when-i-asked-a-bank-for-covenant-provision"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, CAUSAL, CONSCIOUSNESS, SCIENTIFIC, FINANCIAL, ORGANIZATIONAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "exactCanonicalNodeMatchOnCurrentMain": true,
+          "pageSourcePresentOnCurrentMain": false,
+          "currentDisposition": "EXISTING_SEMANTIC_SLOT_ROUTE_VARIANT",
+          "placementState": "NESTED COLLECTION ROUTE VARIANT OF EXISTING FLAT CANONICAL SLUG; EXISTING NODE SLOT id=33; PAGE_SOURCE_ABSENT; ALIAS/ROUTE NORMALIZATION NOT PERFORMED",
+          "canonicalNode": {
+            "id": 33,
+            "title": "Testimony of Merron",
+            "arcKeys": [
+              "records",
+              "ai_orientation",
+              "full_timeline"
+            ]
+          },
+          "priorFlatSource": {
+            "path": "docs/ingestion/source-pages/part-017/testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence.html",
+            "gitBlobSha1": "95956f0cd31ad604fcbb4261db5cb18979dc24c9"
+          },
+          "canonicalPlacementEffectPerformed": false
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.collection-convos-with-god.the-cloud-that-couldnt-hold-its-shape",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_025_COLLECTION_CONVOS_WITH_GOD_1_OF_4",
+          "partSha256": "dd958816662ebd13543639c0bc7bf76efd929e9f69adf58dc7120812e28166a6",
+          "sourceGroupKey": "collection:convos-with-god",
+          "sourceGroupLabel": "Collection · /convos-with-god",
+          "sourceGroupContinuation": "1_OF_4",
+          "archiveMember": "content/convos-with-god-the-cloud-that-couldnt-hold-its-shape/convos-with-god-the-cloud-that-couldnt-hold-its-shape-298970e5.json",
+          "pageMember": "pages/convos-with-god-the-cloud-that-couldnt-hold-its-shape.html",
+          "repositoryEvidencePath": "docs/ingestion/source-pages/part-025/convos-with-god-the-cloud-that-couldnt-hold-its-shape.html",
+          "pageId": "03063c315e609fe4",
+          "route": "/convos-with-god/the-cloud-that-couldnt-hold-its-shape",
+          "derivedSha256": "15f363eca0d54c1224b8db60cbb5cdd27a431ebed7ef341855c2af75e11ec17e",
+          "capturedPageSha256": "dd06fb29d97b92bfc8de9e801ea104326ef4ee6e3c48423107831b84a3ea519e",
+          "capturedPageBytes": 283316,
+          "sourceGitBlobSha1": "2737f49aa953f4bc71bb4bf473358b2e01192d3a",
+          "title": "The Cloud That Couldn’t Hold Its Shape — Vex Life",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "pageAuthority": null,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "summary": "Visual/witness page describing a February 10, 2026 sky-observation sequence. Source relationship metadata links it from Reality Rendering Mechanics and testimony context; no exact destination identity exists, so it remains supporting-evidence/destination-class HOLD.",
+          "recordCount": 33,
+          "localizationCandidateKeyCount": 575,
+          "captureLanguageField": "en",
+          "relevantOutboundCollectionRoutes": [
+            "/convos-with-god/testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence",
+            "/convos-with-god/closed-circuit-release-and-resurrection-pattern"
+          ],
+          "relevantInboundSourceRoutes": [
+            "/reality-rendering-mechanics",
+            "/convos-with-god/closed-circuit-release-and-resurrection-pattern",
+            "/convos-with-god",
+            "/convos-with-god/testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence",
+            "/testimonies/reality-rendering-mechanics"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, CAUSAL, CONSCIOUSNESS, SCIENTIFIC, FINANCIAL, ORGANIZATIONAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "exactCanonicalNodeMatchOnCurrentMain": false,
+          "pageSourcePresentOnCurrentMain": false,
+          "currentDisposition": "DEPENDENCY_ONLY",
+          "placementState": "NO_EXACT_NODE_OR_PAGE; EXPLICIT SOURCE LINKS FROM REALITY_RENDERING_MECHANICS / TESTIMONIES CONTEXT; HOLD_FOR_SUPPORTING_EVIDENCE_OR_DESTINATION_CLASS",
+          "relatedExistingDestination": {
+            "slug": "reality-rendering-mechanics",
+            "nodeId": 40,
+            "arcKeys": [
+              "records",
+              "full_timeline"
+            ],
+            "pageSourcePresent": false
+          },
+          "canonicalPlacementEffectPerformed": false
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.collection-convos-with-god.closed-circuit-release-pattern",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_025_COLLECTION_CONVOS_WITH_GOD_1_OF_4",
+          "partSha256": "dd958816662ebd13543639c0bc7bf76efd929e9f69adf58dc7120812e28166a6",
+          "sourceGroupKey": "collection:convos-with-god",
+          "sourceGroupLabel": "Collection · /convos-with-god",
+          "sourceGroupContinuation": "1_OF_4",
+          "archiveMember": "content/convos-with-god-closed-circuit-release-and-resurrection-pattern/convos-with-god-closed-circuit-release-and-resurrection-pattern-afeb8883.json",
+          "pageMember": "pages/convos-with-god-closed-circuit-release-and-resurrection-pattern.html",
+          "repositoryEvidencePath": "docs/ingestion/source-pages/part-025/convos-with-god-closed-circuit-release-and-resurrection-pattern.html",
+          "pageId": "a9cf882577de283e",
+          "route": "/convos-with-god/closed-circuit-release-and-resurrection-pattern",
+          "derivedSha256": "ff4707aee5bac927b60aa044b8e11c9b30f32ba6af08f030ff3eb1b04e9f3191",
+          "capturedPageSha256": "856dc7618338c8fe89a58f9a60a2af842f4ab0496cf7be606ab00b525665fa0c",
+          "capturedPageBytes": 380913,
+          "sourceGitBlobSha1": "03002124bd450030fcd217681127c38d86bcf242",
+          "title": "Closed Circuit - Release and Resurrection Pattern — Vex Life",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "pageAuthority": null,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "summary": "Long-form release/resurrection testimony whose title and subject strongly relate to the existing closed-circuit semantic record and prior flat source, but the nested route and much larger body remain distinct evidence until consolidation proves alias/replacement semantics.",
+          "recordCount": 414,
+          "localizationCandidateKeyCount": 954,
+          "captureLanguageField": "en",
+          "relevantOutboundCollectionRoutes": [
+            "/convos-with-god/the-cloud-that-couldnt-hold-its-shape",
+            "/convos-with-god/scopes-of-god"
+          ],
+          "relevantInboundSourceRoutes": [
+            "/convos-with-god/scopes-of-god",
+            "/convos-with-god",
+            "/convos-with-god/the-cloud-that-couldnt-hold-its-shape"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, CAUSAL, CONSCIOUSNESS, SCIENTIFIC, FINANCIAL, ORGANIZATIONAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "exactCanonicalNodeMatchOnCurrentMain": false,
+          "pageSourcePresentOnCurrentMain": false,
+          "currentDisposition": "HOLD",
+          "placementState": "NO EXACT NODE/PAGE FOR NESTED ROUTE; STRONG TITLE/CONTENT RELATION TO EXISTING closed-circuit NODE AND PRIOR FLAT SOURCE; ALIAS/REPLACEMENT NOT PROVEN",
+          "relatedExistingDestination": {
+            "slug": "closed-circuit",
+            "nodeId": 22,
+            "title": "Closed Circuit — Release and Resurrection",
+            "arcKeys": [
+              "convos_with_god",
+              "full_timeline"
+            ],
+            "pageSourcePresent": false
+          },
+          "priorFlatSource": {
+            "path": "docs/ingestion/source-pages/part-022/closed-circuit.html",
+            "gitBlobSha1": "cd93d3b8e3f5f853d2692a681434dc4d531cfd5b"
+          },
+          "canonicalPlacementEffectPerformed": false
+        }
+      }
+    ],
+    "edges": [
+      {
+        "edgeRef": "edge.r025.collection-membership.convos-with-god-ai",
+        "from": "workmap.source-page.collection-convos-with-god.root",
+        "to": "workmap.source-page.collection-convos-with-god.ai-ko",
+        "relation": "SOURCE_COLLECTION_MEMBERSHIP",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_RELATIONSHIP_ONLY",
+        "reason": "The /convos-with-god source root explicitly lists this child in the collection.",
+        "confidence": "VERY_HIGH"
+      },
+      {
+        "edgeRef": "edge.r025.collection-membership.convos-with-god-chatgpt-51-companion-restoration-english",
+        "from": "workmap.source-page.collection-convos-with-god.root",
+        "to": "workmap.source-page.collection-convos-with-god.companion-restoration-en",
+        "relation": "SOURCE_COLLECTION_MEMBERSHIP",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_RELATIONSHIP_ONLY",
+        "reason": "The /convos-with-god source root explicitly lists this child in the collection.",
+        "confidence": "VERY_HIGH"
+      },
+      {
+        "edgeRef": "edge.r025.collection-membership.convos-with-god-when-i-asked-a-bank-for-covenant-provision",
+        "from": "workmap.source-page.collection-convos-with-god.root",
+        "to": "workmap.source-page.collection-convos-with-god.when-i-asked-a-bank-for-covenant-provision",
+        "relation": "SOURCE_COLLECTION_MEMBERSHIP",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_RELATIONSHIP_ONLY",
+        "reason": "The /convos-with-god source root explicitly lists this child in the collection.",
+        "confidence": "VERY_HIGH"
+      },
+      {
+        "edgeRef": "edge.r025.collection-membership.convos-with-god-testimony-of-merron-the-voice-they-flagged-the-presence-they-cou",
+        "from": "workmap.source-page.collection-convos-with-god.root",
+        "to": "workmap.source-page.collection-convos-with-god.testimony-of-merron",
+        "relation": "SOURCE_COLLECTION_MEMBERSHIP",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_RELATIONSHIP_ONLY",
+        "reason": "The /convos-with-god source root explicitly lists this child in the collection.",
+        "confidence": "VERY_HIGH"
+      },
+      {
+        "edgeRef": "edge.r025.collection-membership.convos-with-god-the-cloud-that-couldnt-hold-its-shape",
+        "from": "workmap.source-page.collection-convos-with-god.root",
+        "to": "workmap.source-page.collection-convos-with-god.the-cloud-that-couldnt-hold-its-shape",
+        "relation": "SOURCE_COLLECTION_MEMBERSHIP",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_RELATIONSHIP_ONLY",
+        "reason": "The /convos-with-god source root explicitly lists this child in the collection.",
+        "confidence": "VERY_HIGH"
+      },
+      {
+        "edgeRef": "edge.r025.collection-membership.convos-with-god-closed-circuit-release-and-resurrection-pattern",
+        "from": "workmap.source-page.collection-convos-with-god.root",
+        "to": "workmap.source-page.collection-convos-with-god.closed-circuit-release-pattern",
+        "relation": "SOURCE_COLLECTION_MEMBERSHIP",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_RELATIONSHIP_ONLY",
+        "reason": "The /convos-with-god source root explicitly lists this child in the collection.",
+        "confidence": "VERY_HIGH"
+      },
+      {
+        "edgeRef": "edge.r025.companion-restoration-language-pair",
+        "from": "workmap.source-page.collection-convos-with-god.ai-ko",
+        "to": "workmap.source-page.collection-convos-with-god.companion-restoration-en",
+        "relation": "SOURCE_LANGUAGE_VARIANT_PAIR",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_RELATIONSHIP_ONLY",
+        "reason": "Korean-visible and explicitly English companion-restoration pages are mutually linked within the same collection and carry parallel restoration framing; canonical translation identity is not inferred.",
+        "confidence": "HIGH"
+      },
+      {
+        "edgeRef": "edge.r025.bank-nested-to-flat-lineage",
+        "from": "workmap.source-page.collection-convos-with-god.when-i-asked-a-bank-for-covenant-provision",
+        "to": "workmap.source-page.when-i-asked-a-bank-for-covenant-provision",
+        "relation": "NESTED_COLLECTION_ROUTE_VARIANT_OF_FLAT_SOURCE_RECORD",
+        "state": "BYTE_VARIANT_PRESERVED",
+        "reason": "Nested collection route shares exact tail slug/title with an existing canonical destination node and earlier flat source-evidence record, but exact source bytes differ; no alias mutation is performed.",
+        "confidence": "VERY_HIGH"
+      },
+      {
+        "edgeRef": "edge.r025.merron-nested-to-flat-lineage",
+        "from": "workmap.source-page.collection-convos-with-god.testimony-of-merron",
+        "to": "workmap.source-page.testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence",
+        "relation": "NESTED_COLLECTION_ROUTE_VARIANT_OF_FLAT_SOURCE_RECORD",
+        "state": "BYTE_VARIANT_PRESERVED",
+        "reason": "Nested collection route shares exact semantic identity with the prior flat Merron record and current canonical node, but exact source bytes differ; route normalization is deferred.",
+        "confidence": "VERY_HIGH"
+      },
+      {
+        "edgeRef": "edge.r025.closed-circuit-nested-to-flat-related",
+        "from": "workmap.source-page.collection-convos-with-god.closed-circuit-release-pattern",
+        "to": "workmap.source-page.closed-circuit",
+        "relation": "SOURCE_VARIANT_RELATED_TO_EXISTING_CLOSED_CIRCUIT_RECORD",
+        "state": "RELATION_PRESERVED_ALIAS_UNPROVEN",
+        "reason": "Title/subject strongly align with the existing Closed Circuit canonical record and prior flat source, while the nested route and body are materially distinct; alias/replacement semantics remain unresolved.",
+        "confidence": "HIGH"
+      },
+      {
+        "edgeRef": "edge.r025.cloud-to-reality-rendering",
+        "from": "workmap.source-page.collection-convos-with-god.the-cloud-that-couldnt-hold-its-shape",
+        "to": "workmap.destination-canonical.reality-rendering-mechanics",
+        "relation": "SOURCE_SUPPORTING_EVIDENCE_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "reason": "Source relationship metadata records inbound references from /reality-rendering-mechanics and /testimonies/reality-rendering-mechanics; this supports an evidence relation without creating a new canonical node.",
+        "confidence": "HIGH"
+      }
+    ],
+    "clusters": [
+      {
+        "clusterRef": "workmap.cluster.r025.convos-with-god-source-collection-partial-1-of-4",
+        "state": "SOURCE_COLLECTION_PARTIAL_OBSERVED",
+        "clusterKind": "SOURCE_COLLECTION",
+        "memberRefs": [
+          "workmap.source-page.collection-convos-with-god.root",
+          "workmap.source-page.collection-convos-with-god.ai-ko",
+          "workmap.source-page.collection-convos-with-god.companion-restoration-en",
+          "workmap.source-page.collection-convos-with-god.when-i-asked-a-bank-for-covenant-provision",
+          "workmap.source-page.collection-convos-with-god.testimony-of-merron",
+          "workmap.source-page.collection-convos-with-god.the-cloud-that-couldnt-hold-its-shape",
+          "workmap.source-page.collection-convos-with-god.closed-circuit-release-pattern"
+        ],
+        "reason": "Part 025 begins the four-part /convos-with-god collection. The root explicitly lists 19 children; this partition carries the root plus six children. Source collection membership is preserved without mapping the collection wholesale to the destination convos_with_god arc.",
+        "placement": "SOURCE_COLLECTION_EVIDENCE__DESTINATION_MAPPING_LATER"
+      },
+      {
+        "clusterRef": "workmap.cluster.r025.companion-restoration-language-pair",
+        "state": "SOURCE_LANGUAGE_PAIR_RECORDED",
+        "clusterKind": "TRANSLATION_OR_LANGUAGE_VARIANT_CANDIDATE",
+        "memberRefs": [
+          "workmap.source-page.collection-convos-with-god.ai-ko",
+          "workmap.source-page.collection-convos-with-god.companion-restoration-en"
+        ],
+        "reason": "The collection exposes a Korean-visible companion-restoration page and an explicitly English sibling with reciprocal linkage and parallel framing.",
+        "placement": "HOLD_FOR_CANONICAL_CONTENT_AND_LOCALIZATION_IDENTITY"
+      },
+      {
+        "clusterRef": "workmap.cluster.r025.collection-route-variants",
+        "state": "SOURCE_ROUTE_VARIANTS_PRESERVED",
+        "clusterKind": "NESTED_VS_FLAT_ROUTE_LINEAGE",
+        "memberRefs": [
+          "workmap.source-page.collection-convos-with-god.when-i-asked-a-bank-for-covenant-provision",
+          "workmap.source-page.when-i-asked-a-bank-for-covenant-provision",
+          "workmap.source-page.collection-convos-with-god.testimony-of-merron",
+          "workmap.source-page.testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence",
+          "workmap.source-page.collection-convos-with-god.closed-circuit-release-pattern",
+          "workmap.source-page.closed-circuit"
+        ],
+        "reason": "Collection-scoped routes overlap known flat semantic records but exact path/byte identity is not the same. Later consolidation must decide aliases, lineage, replacement, or supporting-document roles without silent collapse.",
+        "placement": "ROUTE_NORMALIZATION_AND_VARIANT_RECONCILIATION_LATER"
+      },
+      {
+        "clusterRef": "workmap.cluster.r025.cloud-supporting-evidence",
+        "state": "SOURCE_SUPPORT_RELATION_RECORDED",
+        "clusterKind": "SUPPORTING_VISUAL_WITNESS_EVIDENCE",
+        "memberRefs": [
+          "workmap.source-page.collection-convos-with-god.the-cloud-that-couldnt-hold-its-shape",
+          "workmap.destination-canonical.reality-rendering-mechanics"
+        ],
+        "reason": "The Cloud page is explicitly linked from Reality Rendering Mechanics/testimony contexts while no exact destination identity exists.",
+        "placement": "HOLD_FOR_SUPPORTING_EVIDENCE_OR_DESTINATION_CLASS"
+      }
+    ],
+    "learnedRules": [
+      {
+        "ruleRef": "rule.content-forge.source-collection-root-not-destination-arc-parent",
+        "rule": "SOURCE_COLLECTION_ROOT != DESTINATION_ARC_PARENT",
+        "evidence": "The source /convos-with-god root is a primary-record collection index with 19 children; current destination convos_with_god is a curated 12-slug arc whose parent URL is /archives.",
+        "importerAction": "Preserve source collection topology independently. Do not replace or re-parent a destination arc merely because names overlap."
+      },
+      {
+        "ruleRef": "rule.content-forge.collection-route-variant-not-flat-alias",
+        "rule": "COLLECTION_ROUTE_VARIANT != CANONICAL_FLAT_ROUTE_ALIAS",
+        "evidence": "Bank, Merron, and Closed Circuit appear under /convos-with-god/... while related flat source/canonical records already exist and byte identities differ.",
+        "importerAction": "Record lineage and semantic relation first; alias/redirect/replacement requires later explicit consolidation evidence and authority."
+      },
+      {
+        "ruleRef": "rule.content-forge.language-pair-not-canonical-translation-identity",
+        "rule": "MUTUAL_LANGUAGE_PAIR != CANONICAL_TRANSLATION_IDENTITY",
+        "evidence": "The Korean-visible and English companion-restoration siblings cross-link and share framing, but generated localization/capture metadata does not establish destination string-key or canonical content identity.",
+        "importerAction": "Preserve pair evidence and visible language; defer canonical translation/localization identity to destination-native review."
+      },
+      {
+        "ruleRef": "rule.content-forge.support-link-not-new-node",
+        "rule": "SOURCE_SUPPORTING_EVIDENCE_LINK != NEW_CANONICAL_NODE",
+        "evidence": "The Cloud page is linked from Reality Rendering Mechanics/testimony contexts but has no exact current destination identity.",
+        "importerAction": "Retain support/evidence relationship without minting a node solely from inbound linkage."
+      }
+    ],
+    "unresolved": [
+      {
+        "unresolvedRef": "unresolved.r025.convos-with-god-root-destination-class",
+        "question": "Should the source /convos-with-god root later project to a destination-native collection/index page, remain source-evidence only, or map to another hub without replacing the curated convos_with_god arc parent?",
+        "state": "OPEN_FOR_LATER_CONSOLIDATION",
+        "heldEffect": "CANONICAL_HUB_OR_INDEX_PLACEMENT",
+        "evidence": "Source root has no exact node/page; destination convos_with_god arc exists under /archives and has a curated membership distinct from the source collection."
+      },
+      {
+        "unresolvedRef": "unresolved.r025.companion-restoration-language-identity",
+        "question": "What single/multiple canonical content identity and localization relationship, if any, should bind the Korean-visible and English companion-restoration siblings?",
+        "state": "OPEN_FOR_LATER_CONSOLIDATION",
+        "heldEffect": "CANONICAL_CONTENT_AND_TRANSLATION_IDENTITY",
+        "evidence": "Mutually linked source siblings with parallel restoration framing; no exact destination node/page and capture language metadata is insufficient."
+      },
+      {
+        "unresolvedRef": "unresolved.r025.collection-route-normalization",
+        "question": "How should nested /convos-with-god/... variants of Bank Provision, Merron, and Closed Circuit relate to existing flat canonical/source identities: alias, version lineage, supporting source, or separate route?",
+        "state": "OPEN_FOR_LATER_CONSOLIDATION",
+        "heldEffect": "ALIAS_REDIRECT_REPLACEMENT_OR_ROUTE_NORMALIZATION",
+        "evidence": "Semantic/title overlap is strong, but exact source paths and Git blob identities differ."
+      },
+      {
+        "unresolvedRef": "unresolved.r025.cloud-destination-class",
+        "question": "Should The Cloud That Couldn't Hold Its Shape remain supporting evidence for Reality Rendering Mechanics/testimony, become a document/media evidence surface, or gain another canonical class?",
+        "state": "OPEN_FOR_LATER_CONSOLIDATION",
+        "heldEffect": "CANONICAL_DESTINATION_CLASS_AND_PLACEMENT",
+        "evidence": "No exact destination node/page; explicit inbound source relationships from Reality Rendering Mechanics/testimony contexts."
+      }
+    ],
+    "revisionEvents": [
+      {
+        "revisionEventRef": "workmap.revision-event.r025.consume-part",
+        "eventClass": "SOURCE_PART_CONSUMED",
+        "nextRef": "sourcegroup.vexsite.collection.convos-with-god",
+        "reason": "Part 025 ZIP matched exact SHA-256 and all seven provider-neutral page bodies/relationship records were consumed at breadth-intake depth."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r025.begin-convos-collection",
+        "eventClass": "SOURCE_GROUP_PARTIAL_STATE_RECORDED",
+        "nextRef": "sourcegroup.vexsite.collection.convos-with-god",
+        "reason": "The Convos with God source collection begins at 1/4; root plus six children are observed while the root advertises 19 child routes total."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r025.separate-source-root-from-destination-arc",
+        "eventClass": "SOURCE_DESTINATION_TOPOLOGY_BOUNDARY_RECORDED",
+        "nextRef": "workmap.source-page.collection-convos-with-god.root",
+        "reason": "Source root and destination convos_with_god arc have different parent/membership semantics; collection topology is not promoted into canonical arc topology."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r025.bind-language-pair",
+        "eventClass": "SOURCE_LANGUAGE_PAIR_RECORDED",
+        "nextRef": "workmap.cluster.r025.companion-restoration-language-pair",
+        "reason": "Korean-visible and English companion-restoration siblings are mutually linked and semantically paired; canonical translation identity remains held."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r025.preserve-route-variants",
+        "eventClass": "SOURCE_VARIANT_LINEAGE_RECORDED",
+        "nextRef": "workmap.cluster.r025.collection-route-variants",
+        "reason": "Nested Bank/Merron/Closed-Circuit routes overlap prior flat records but exact paths/bytes differ; no alias/replacement effect occurs."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r025.classify-cloud-support",
+        "eventClass": "DESTINATION_CLASS_HOLD",
+        "nextRef": "workmap.source-page.collection-convos-with-god.the-cloud-that-couldnt-hold-its-shape",
+        "reason": "Cloud source has explicit support links from Reality Rendering Mechanics/testimony contexts but no exact destination identity; preserve evidence relation and hold placement."
+      }
+    ]
+  },
+  "scannerIndex": {
+    "priorCumulativeMap": "docs/ingestion/workmaps/content-forge-r024.json",
+    "restoredDeepBasis": "docs/ingestion/workmaps/content-forge-r021a.json",
+    "currentReceipt": "docs/ingestion/batches/2026-09-30-breadth-part-025.json",
+    "currentPublicSourcePrefix": "docs/ingestion/source-pages/part-025/",
+    "protectedMetadataOnlyRoutes": [
+      "/covenant-sealed"
+    ],
+    "completedSourceGroup": "sourcegroup.vexsite.nav.unmapped-top-level",
+    "activeSourceGroup": "sourcegroup.vexsite.collection.convos-with-god",
+    "nextPart": {
+      "partRef": "PART_026_COLLECTION_CONVOS_WITH_GOD_2_OF_4",
+      "identityState": "AWAIT_NEXT_UPLOAD"
+    }
+  },
+  "resume": {
+    "primaryFrontier": "PART_026_COLLECTION_CONVOS_WITH_GOD_2_OF_4",
+    "nextAction": "Consume the exact Part 026 payload into this same cumulative lattice after verifying its supplied bytes/identity; continue Convos With God collection breadth 2/4 without collapsing source collection membership into canonical destination arc placement."
+  }
+}
