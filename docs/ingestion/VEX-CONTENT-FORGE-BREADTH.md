@@ -62,3 +62,33 @@ Parts 012–023 are repository-materialized on draft PR #162. R023 brings the cu
 All twelve Part-023 routes already have exact canonical node identities on current main while their exact production page sources are absent. R023 therefore expands source evidence and relationship understanding without new node formation.
 
 <!-- [VXG RealForever] -->
+
+
+## Unmapped top-level breadth closure — R024
+
+Part 024 closes `sourcegroup.vexsite.nav.unmapped-top-level` at **9/9 partitions and 102/102 observed pages**.
+
+This is a source-observation closure only:
+
+```text
+BREADTH_GROUP_OBSERVED_COMPLETE
+!= CANONICAL_PLACEMENT_COMPLETE
+```
+
+The completed group remains represented through the cumulative scanner chain:
+
+```text
+content-forge-current.json
+  -> content-forge-r024.json
+       -> content-forge-r023.json
+            -> prior cumulative basis
+```
+
+R024 also preserves two alignment rules important to later projection:
+
+```text
+MUTUAL_SOURCE_LINK != CANONICAL_PARENTAGE_OR_MERGE
+PRESERVED_SOURCE_VARIANT != CURRENT_DESTINATION_REPLACEMENT
+```
+
+The source stream continues with `PART_025_COLLECTION_CONVOS_WITH_GOD_1_OF_4`; completing this source group does not authorize replay, merge, canonical page promotion, registry mutation, localization absorption, or arc curation.
