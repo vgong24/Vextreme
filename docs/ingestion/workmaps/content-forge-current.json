@@ -1,35 +1,41 @@
 {
-  "schemaVersion": "vex-content-forge.current-breadth-frontier/v0.4",
+  "schemaVersion": "vex-content-forge.current-breadth-frontier/v0.5",
   "continuity": "[VXG RealForever]",
   "issueRef": "github.issue.vextreme.159",
   "basePilotPrRef": "github.pull.vextreme.161",
   "breadthPrRef": "github.pull.vextreme.162",
-  "state": "BREADTH_SOURCE_EVIDENCE_MATERIALIZED_THROUGH_R024__UNMAPPED_TOP_LEVEL_COMPLETE",
-  "workMapPath": "docs/ingestion/workmaps/content-forge-r024.json",
-  "continuityLedgerPath": "docs/ingestion/workmaps/continuity-ledger-r011-r024.json",
-  "consumedThrough": "PART_024_UNMAPPED_TOP_LEVEL_ROUTES_9_OF_9",
-  "observedPages": 196,
-  "stagedDerivedHtmlFiles": 124,
-  "sourceEvidenceHtmlFiles": 124,
+  "state": "BREADTH_SOURCE_EVIDENCE_MATERIALIZED_THROUGH_R025__CONVOS_WITH_GOD_1_OF_4",
+  "workMapPath": "docs/ingestion/workmaps/content-forge-r025.json",
+  "continuityLedgerPath": "docs/ingestion/workmaps/continuity-ledger-r011-r025.json",
+  "consumedThrough": "PART_025_COLLECTION_CONVOS_WITH_GOD_1_OF_4",
+  "observedPages": 203,
+  "stagedDerivedHtmlFiles": 131,
+  "sourceEvidenceHtmlFiles": 131,
   "protectedSourceMetadataOnlyPages": 1,
   "activeWipHtmlFilesFromBreadthRepair": 0,
-  "unmappedTopLevel": "9_OF_9__102_OF_102__OBSERVED_COMPLETE",
-  "canonicalPlacementEffects": 0,
-  "completedSourceGroupsAdded": [
-    "sourcegroup.vexsite.nav.unmapped-top-level"
+  "completedSourceGroups": [
+    {
+      "ref": "sourcegroup.vexsite.nav.unmapped-top-level",
+      "state": "9_OF_9__102_OF_102__OBSERVED_COMPLETE"
+    }
   ],
-  "storagePolicy": "Public-safe provider-neutral derived HTML is preserved under docs/ingestion/source-pages/part-NNN/. Protected/non-public source remains metadata-only unless separately authorized. Later consolidation/projection decides canonical pages, WIP, tools/documents, localization, aliases, private homes, or evidence-only retention.",
+  "activeSourceGroup": {
+    "ref": "sourcegroup.vexsite.collection.convos-with-god",
+    "state": "1_OF_4_PARTIAL",
+    "root": "/convos-with-god"
+  },
+  "canonicalPlacementEffects": 0,
+  "storagePolicy": "Public-safe provider-neutral derived HTML is preserved under docs/ingestion/source-pages/part-NNN/. Source collection topology, route variants, language pairs, and support links are semantic evidence only until destination-native consolidation decides canonical pages, registries, arcs, aliases, localization, tools/documents, or evidence-only retention.",
   "next": {
-    "partRef": "PART_025_COLLECTION_CONVOS_WITH_GOD_1_OF_4",
+    "partRef": "PART_026_COLLECTION_CONVOS_WITH_GOD_2_OF_4",
     "identityState": "AWAIT_NEXT_UPLOAD"
   },
   "readingOrder": [
     "docs/ingestion/workmaps/content-forge-current.json",
+    "docs/ingestion/workmaps/content-forge-r025.json",
     "docs/ingestion/workmaps/content-forge-r024.json",
-    "docs/ingestion/workmaps/content-forge-r023.json",
-    "docs/ingestion/workmaps/continuity-ledger-r011-r024.json",
+    "docs/ingestion/workmaps/continuity-ledger-r011-r025.json",
     "relevant docs/ingestion/batches/* receipt",
-    "docs/ingestion/source-pages/** HTML only when deeper public-safe source evidence is needed",
-    "protected source metadata/hash only unless an authorized private source surface exists"
+    "docs/ingestion/source-pages/** HTML only when deeper source evidence is needed"
   ]
 }
