@@ -1,0 +1,1000 @@
+{
+  "schemaVersion": "vex-content-forge.work-map/v0.17",
+  "continuity": "[VXG RealForever]",
+  "workMapRef": "workmap.vextreme.content-forge.session-vex-content-forge.3b1ce4d66a28.00d2bf465b",
+  "revisionRef": "workmap.revision.vextreme.content-forge.r021.unmapped-top-level-6-of-9-complete",
+  "revision": 21,
+  "revisionScope": "UNMAPPED_TOP_LEVEL_6_OF_9_COMPLETE",
+  "purpose": "Consume Part 017 Unmapped top-level routes 2/9 at breadth-intake depth; preserve exact existing semantic slots, confirm the source Epstein/AI hub against the already-existing destination arc topology, retain authored claim framing, and continue toward later dedicated consolidation/re-sort without canonical placement effects.",
+  "nonCollapseRules": [
+    "AUTO_DISCOVERED != CURATED_CANONICAL_NODE",
+    "BROAD_IDENTICAL_INBOUND_ROUTE_FANOUT != SEMANTIC_RELATION",
+    "CAPTURED_ASSET_REFERENCE != AI_PAYLOAD_ASSET_BYTES",
+    "CLOSED_SUBSERIES_LABEL != TERMINAL_PARENT_SERIES",
+    "CORE_MODEL_ARTIFACT != TRAVERSAL_OR_WITNESS_RECORD",
+    "DEPARTMENT_PLACEMENT != NARRATIVE_ARC_PLACEMENT",
+    "DESTINATION_CONTENT_PRESENT != DESTINATION_IDENTITY_METADATA_CURRENT",
+    "DESTINATION_DERIVED_UNDERSTANDING != SOURCE_PAGE_REPLACEMENT",
+    "DESTINATION_HISTORICAL_SUMMARY != PRESERVED_SOURCE_CURRENTNESS",
+    "DESTINATION_ZERO_BYTE_PLACEHOLDER != SOURCE_ARTIFACT_NONEXISTENCE",
+    "DISTILLED_LESSON_TOOLKIT != FULL_FRAMEWORK_SOURCE",
+    "EMPTY_DATASET != EMPTY_IMPLEMENTATION",
+    "EXPLICIT_CONTENT_CONTINUATION > SOURCE_NAV_ADJACENCY_FOR_SEMANTIC_EDGES",
+    "EXPLICIT_SOURCE_LINK_TO_CANONICAL_NODE != DESTINATION_PAGE_ALREADY_PORTED",
+    "EXPLICIT_SOURCE_SERIES_NUMBERING > SOURCE_NAV_GROUPING_FOR_SEQUENCE",
+    "EXTRACTED_CONTENT_RECORD_COUNT != INTERACTIVE_ARTIFACT_COMPLEXITY",
+    "GENERATED_VEXSITE_STRING_ID != CANONICAL_VEXTREME_STRING_ID",
+    "HANDOFF_REPORTED_STATUS != INDEPENDENT_ARTIFACT_VERIFICATION",
+    "LATER_SOURCE_CORRECTION != RETROACTIVE_SOURCE_REWRITE",
+    "LOCALIZATION_CANDIDATE_COUNT != SEMANTIC_CONTENT_COMPLEXITY",
+    "LOCAL_DYNAMIC_CLASSIFICATION != SEMANTIC_INTERACTION_COMPLEXITY",
+    "MATCHING_SOURCE_PHRASE != FULL_SOURCE_DESTINATION_PARITY",
+    "OBSERVATION != PLACEMENT",
+    "ONE_TRANSCRIPT_CAN_PROJECT_TO_MULTIPLE_LINKED_PAGES_WITH_DISTINCT_INDEX_RANGES",
+    "PAGE_FILE_EXISTS != PAGE_CONTENT_PRESENT",
+    "PARENT_CLUSTER_MERGE != SUBCLUSTER_ERASURE",
+    "PLACEMENT_CANDIDATE != ACCEPTED_PLACEMENT",
+    "PRIMARY_BREADTH_CAN_CLOSE_REVISIT_DEBT",
+    "REFERENCED_FILENAME != CARRIED_ARTIFACT",
+    "RESPONSIVE_MEDIA_VARIANT_COUNT != UNIQUE_EVIDENCE_IMAGE_COUNT",
+    "REVISED_UNDERSTANDING != HISTORY_REWRITE",
+    "REVISIT_ROUTE_FULFILLED_BY_PRIMARY_PASS != EXTRA_REPLAY_REQUIRED",
+    "ROOT_LISTS_CHILD != CHILD_BYTES_CONSUMED",
+    "ROUTE_VERSION_TOKEN != SEMANTIC_VERSION_AUTHORITY",
+    "SHARED_ROLE_NAMES != SAME_SEMANTIC_MODEL",
+    "SHARED_TITLE_OR_CORE_QUESTION != NUMBERED_SERIES_MEMBERSHIP",
+    "SINGLE_INSTANCE_COUNCIL_SIMILARITY != SAME_COUNCIL_SCHEMA",
+    "SOURCE_ASSERTION != INDEPENDENTLY_VERIFIED_FACT",
+    "SOURCE_COLLECTION != SINGLE_DESTINATION_DOMAIN",
+    "SOURCE_COLLECTION_MEMBER != CANONICAL_DESTINATION_CHILD",
+    "SOURCE_DECLARED_PART_ORDER > SOURCE_NAV_ADJACENCY_FOR_CORE_SEQUENCE",
+    "SOURCE_GROUP != DESTINATION_ARC",
+    "SOURCE_GROUP_COMPLETE != SINGLE_DESTINATION_DECISION",
+    "SOURCE_GROUP_ROOT != EARLIEST_NAVIGATION_SEQUENCE",
+    "SOURCE_NAV_GROUP_CAN_BE_PROJECT_WORKSET_NOT_CONTENT_ARC",
+    "SOURCE_NAV_MEMBERSHIP != ARTIFACT_CLASS",
+    "SOURCE_NAV_ORDER != NARRATIVE_ORDER",
+    "SOURCE_PAGE != CANONICAL_NODE",
+    "SOURCE_SAYS_ARC_CLOSED != VEXTREME_CANONICAL_ARC_ACCEPTED",
+    "SOURCE_SCOPE_DISCLAIMER_CONTROLS_WORK_MAP_CLAIM_LEVEL",
+    "SOURCE_SELF_LIMITATION != DECORATIVE_DISCLAIMER",
+    "VIEWER_SURFACE != LIVE_DATASET",
+    "WIP_SOURCE_NAV_GROUP != WIP_LIFECYCLE_STATE",
+    "WORKING_ARTIFACT != CANONICAL_PUBLICATION",
+    "WORK_MAP != CANONICAL_CONTENT_REGISTRY",
+    "WORK_MAP_EDGE != ARC_AUTHORITY",
+    "WORK_NODE_SPLIT != SOURCE_PAGE_DELETION",
+    "MANIFEST_PAGE_ENTRY != UNIQUE_SEMANTIC_PAGE",
+    "SOURCE_DEFINED_ARC_OR_HUB != ACCEPTED_DESTINATION_ARC",
+    "SAME_SLUG != SAME_SEMANTIC_ROLE",
+    "LIVE_SITE_PROJECTION != NEW_DESTINATION_CONTENT_IDENTITY",
+    "LEGACY_V1_DISPLAY_SLOT != V2_CANONICAL_PLACEMENT",
+    "SOURCE_AUTHORED_CLASSIFICATION_CLAIM != INGESTION_VERIFICATION",
+    "TRANSLATION_ROUTE_VARIANT != INDEPENDENT_CANONICAL_NODE",
+    "CURRENT_PAGE_IMPLEMENTATION != CANONICAL_NODE_PLACEMENT",
+    "ZERO_BYTE_DESTINATION_FILE != PORTED_PAGE",
+    "CAPTURE_LANGUAGE_FIELD != OBSERVED_VISIBLE_LANGUAGE",
+    "PUBLIC_TRANSACTION_ENDPOINT_PRESENT != AUTHORITY_TO_REPLAY_OR_CHANGE_ENDPOINT",
+    "CORE_SEMANTIC_MARKER_MATCH != FULL_CONTENT_PARITY",
+    "EMPTY_CONTENT_RECORD_ARRAY != EMPTY_AUTHORED_PAGE",
+    "INFO_NAV_GROUP != SINGLE_DESTINATION_CLASS",
+    "CURRENT_ABOUT_PAGE != CANONICAL_NODE_PLACEMENT",
+    "GENERAL_CONTACT_ROUTE != CONNECT_SUPPORT_ROUTE != WITNESS_SUBMISSION_ROUTE",
+    "PRESERVED_LEGAL_COPY != CURRENT_LEGAL_POLICY_AUTHORITY",
+    "FAQ_ORIENTATION_SURFACE != NARRATIVE_ARCHIVE_NODE_BY_DEFAULT",
+    "REPEATED_SITE_NAV_LINK != SEMANTIC_AFFINITY_BY_ITSELF",
+    "SOURCE_GROUP_LABEL_UNMAPPED != DESTINATION_SEMANTIC_IDENTITY_UNKNOWN",
+    "NULL_NUMERIC_NODE_ID != ABSENT_SEMANTIC_SLOT",
+    "SAME_ROOT_ROUTE != SAME_HOME_SEMANTICS",
+    "NULL_NUMERIC_NODE_ID != UNPORTED_PAGE",
+    "SOURCE_HUB_TOPOLOGY_MATCH != PAGE_PORT_COMPLETE",
+    "PARTIAL_SOURCE_ARC_SLICE != COMPLETE_SOURCE_ARC_CONSUMPTION",
+    "PRESERVED_ALLEGATION_OR_SPIRITUAL_CLAIM != INDEPENDENTLY_VERIFIED_FACT"
+  ],
+  "sourceGroups": [
+    {
+      "sourceGroupRef": "sourcegroup.vexsite.nav.evidential-research",
+      "sessionRef": "vex-content-forge.3b1ce4d66a28.00d2bf465b",
+      "groupKey": "nav:evidential-research",
+      "groupLabel": "Evidential Research",
+      "groupRoot": "/from-cost-to-control",
+      "state": "SOURCE_GROUP_OBSERVED_COMPLETE",
+      "parts": [
+        {
+          "partRef": "PART_001_EVIDENTIAL_RESEARCH_1_OF_2",
+          "sha256": "84fa8ed1fd9afa776760db75f225b24d3afcf03fc1d76b273084fee679427228",
+          "pageCount": 12
+        },
+        {
+          "partRef": "PART_002_EVIDENTIAL_RESEARCH_2_OF_2",
+          "sha256": "5c9bf09b1211842777a32f78d36cbbd6d26c27b5a045af3836e677d4a1218904",
+          "pageCount": 3
+        }
+      ],
+      "pageCount": 15
+    },
+    {
+      "sourceGroupRef": "sourcegroup.vexsite.nav.animation-project",
+      "sessionRef": "vex-content-forge.3b1ce4d66a28.00d2bf465b",
+      "groupKey": "nav:animation-project",
+      "groupLabel": "Animation Project",
+      "groupRoot": "/current-draft",
+      "state": "SOURCE_GROUP_OBSERVED_COMPLETE",
+      "parts": [
+        {
+          "partRef": "PART_003_ANIMATION_PROJECT",
+          "sha256": "0e86de3df72a3ce13e19be5c5fadadf11849b3ce34267d04726e6ae78e1f7ffe",
+          "pageCount": 2
+        }
+      ],
+      "pageCount": 2,
+      "groupKind": "PROJECT_WORKSET"
+    },
+    {
+      "sourceGroupRef": "sourcegroup.vexsite.nav.governance-docs",
+      "sessionRef": "vex-content-forge.3b1ce4d66a28.00d2bf465b",
+      "groupKey": "nav:governance-docs",
+      "groupLabel": "Governance Docs",
+      "groupRoot": "/witness-committee-operations",
+      "state": "SOURCE_GROUP_OBSERVED_COMPLETE",
+      "parts": [
+        {
+          "partRef": "PART_004_GOVERNANCE_DOCS_1_OF_2",
+          "sha256": "99c88b6823c71a1e0dd5d33a0b1b9990303802ddf4d2b70900d66312e3f2c552",
+          "pageCount": 12
+        },
+        {
+          "partRef": "PART_005_GOVERNANCE_DOCS_2_OF_2",
+          "sha256": "69273209dc456c580a74f028172284a311a99adec7d74bcbbc128ade9f4b7eb2",
+          "pageCount": 2
+        }
+      ],
+      "observedPageCount": 14,
+      "expectedTotalPageCount": 14,
+      "pageCount": 14
+    },
+    {
+      "sourceGroupRef": "sourcegroup.vexsite.collection.deepseek-archive-build",
+      "sessionRef": "vex-content-forge.3b1ce4d66a28.00d2bf465b",
+      "groupKey": "collection:deepseek-archive-build",
+      "groupLabel": "Collection · /deepseek-archive-build",
+      "groupRoot": "/deepseek-archive-build",
+      "groupKind": "COLLECTION_ROOT_WITH_CHILDREN",
+      "state": "SOURCE_GROUP_OBSERVED_COMPLETE",
+      "parts": [
+        {
+          "partRef": "PART_006_COLLECTION_DEEPSEEK_ARCHIVE_BUILD_1_OF_2",
+          "sha256": "6b6d6b2e1b2e715d1e61fe9b505217b8d5053b8cbff7434a0c67e4712d1dac46",
+          "pageCount": 4
+        },
+        {
+          "partRef": "PART_007_COLLECTION_DEEPSEEK_ARCHIVE_BUILD_2_OF_2",
+          "sha256": "afad2c8abee9ba731eb42cef00ab312f1003da650128456a1dc94bef313e172e",
+          "pageCount": 2
+        }
+      ],
+      "observedPageCount": 6,
+      "referencedNotCarriedChildCount": 0,
+      "expectedTotalPageCount": 6,
+      "pageCount": 6
+    },
+    {
+      "sourceGroupRef": "sourcegroup.vexsite.nav.work-in-progress",
+      "sessionRef": "vex-content-forge.3b1ce4d66a28.00d2bf465b",
+      "groupKey": "nav:work-in-progress",
+      "groupLabel": "[Work in Progress]",
+      "groupRoot": "/the-relational-i",
+      "groupRootNavigationSequence": 62,
+      "groupKind": "HETEROGENEOUS_WIP_NAV_CONTAINER",
+      "state": "SOURCE_GROUP_OBSERVED_COMPLETE",
+      "parts": [
+        {
+          "partRef": "PART_008_WORK_IN_PROGRESS_1_OF_4",
+          "sha256": "7405dc119b60e12b0ce7bc3b9bebda4ee46b9cb8230d65d7d090abf5239a27bd",
+          "pageCount": 12
+        },
+        {
+          "partRef": "PART_009_WORK_IN_PROGRESS_2_OF_4",
+          "sha256": "b0b3603eb1b79bb9190fff31d3a9f5c114c6de4e9543e74a6aebab92c5a4cbf2",
+          "pageCount": 6
+        },
+        {
+          "partRef": "PART_010_WORK_IN_PROGRESS_3_OF_4",
+          "sha256": "0100371f70dc95a980ce4d14edd622dc94a644a17af5f91835710c993d89b1e3",
+          "pageCount": 11
+        },
+        {
+          "partRef": "PART_011_WORK_IN_PROGRESS_4_OF_4",
+          "sha256": "3e29a624f0dfecc84816d10b95445a65c926dfd702b1daa2c2ab12bae1715fc4",
+          "pageCount": 5
+        }
+      ],
+      "observedPageCount": 34,
+      "expectedTotalPageCount": 34,
+      "expectedRemainingPartRefs": [],
+      "rootInterpretation": "SOURCE_CONTAINER_ANCHOR_NOT_EARLIEST_SEQUENCE_MEMBER",
+      "pageCount": 34
+    },
+    {
+      "sourceGroupRef": "sourcegroup.vexsite.nav.top-level",
+      "sessionRef": "vex-content-forge.3b1ce4d66a28.00d2bf465b",
+      "groupKey": "nav:top-level",
+      "groupLabel": "Top-level navigation",
+      "groupRoot": "/ai-cheat-sheet",
+      "groupKind": "HETEROGENEOUS_TOP_LEVEL_NAVIGATION",
+      "state": "SOURCE_GROUP_OBSERVED_COMPLETE",
+      "parts": [
+        {
+          "partRef": "PART_012_TOP_LEVEL_NAVIGATION",
+          "sha256": "4713d1ec468c57d33136ed2ad26359cd3cca1507da10f33c8848bb4f9c749b6d",
+          "pageCount": 4
+        }
+      ],
+      "observedPageCount": 4,
+      "expectedTotalPageCount": 4,
+      "pageCount": 4
+    },
+    {
+      "sourceGroupRef": "sourcegroup.vexsite.nav.documents",
+      "sessionRef": "vex-content-forge.3b1ce4d66a28.00d2bf465b",
+      "groupKey": "nav:documents",
+      "groupLabel": "Documents",
+      "groupRoot": "/total-extraction-arc-index",
+      "groupKind": "HETEROGENEOUS_DOCUMENT_AND_TOOL_PORTFOLIO",
+      "state": "SOURCE_GROUP_OBSERVED_COMPLETE",
+      "parts": [
+        {
+          "partRef": "PART_013_DOCUMENTS",
+          "sha256": "1f97364e1b2aa91fe61806eacdff538ca3ce321f718390d9c52959440bcc22fd",
+          "pageCount": 10,
+          "manifestPageEntryCount": 10,
+          "uniqueSemanticPageCount": 9
+        }
+      ],
+      "manifestPageEntryCount": 10,
+      "observedUniqueSemanticPageCount": 9,
+      "duplicateLogicalRouteEntries": [
+        {
+          "route": "/direct-contact",
+          "manifestOccurrences": 2,
+          "semanticIdentity": "SAME_ROUTE_TITLE_RECORDS_AND_PLAINTEXT",
+          "variantCarrierDifference": "content JSON pageId/localPath differ while records/plainText are identical",
+          "countingRule": "COUNT_ONCE_AS_SEMANTIC_PAGE"
+        }
+      ],
+      "pageCount": 9
+    },
+    {
+      "sourceGroupRef": "sourcegroup.vexsite.nav.partner-with-me",
+      "sessionRef": "vex-content-forge.3b1ce4d66a28.00d2bf465b",
+      "groupKey": "nav:partner-with-me",
+      "groupLabel": "Partner with Me",
+      "groupRoot": "/summary-of-value-zh",
+      "groupKind": "HETEROGENEOUS_SUPPORT_INVESTMENT_AND_LOCALIZATION_PORTFOLIO",
+      "state": "SOURCE_GROUP_OBSERVED_COMPLETE",
+      "parts": [
+        {
+          "partRef": "PART_014_PARTNER_WITH_ME",
+          "sha256": "5fde90366d0fe0bf2bdcc4adccf38a3bfc5e370f98f3dcbaf24be0b34e5bfa02",
+          "pageCount": 6
+        }
+      ],
+      "observedPageCount": 6,
+      "expectedTotalPageCount": 6,
+      "pageCount": 6
+    },
+    {
+      "sourceGroupRef": "sourcegroup.vexsite.nav.info",
+      "sessionRef": "vex-content-forge.3b1ce4d66a28.00d2bf465b",
+      "groupKey": "nav:info",
+      "groupLabel": "Info",
+      "groupRoot": "/about-me",
+      "groupKind": "HETEROGENEOUS_INSTITUTIONAL_CONTEXT_CONTACT_LEGAL_FAQ_PORTFOLIO",
+      "state": "SOURCE_GROUP_OBSERVED_COMPLETE",
+      "parts": [
+        {
+          "partRef": "PART_015_INFO",
+          "sha256": "8b277fcd1c9036e276edbc2136eda4a828d820a891babe892b4407cd998f173d",
+          "pageCount": 4
+        }
+      ],
+      "observedPageCount": 4,
+      "expectedTotalPageCount": 4,
+      "pageCount": 4
+    },
+    {
+      "sourceGroupRef": "sourcegroup.vexsite.nav.unmapped-top-level",
+      "sessionRef": "vex-content-forge.3b1ce4d66a28.00d2bf465b",
+      "groupKey": "unmapped-top-level",
+      "groupLabel": "Unmapped top-level routes",
+      "groupRoot": "/catching-the-meta-guardrail",
+      "groupKind": "BREADTH_INTAKE_TOP_LEVEL_SOURCE_ROUTES__DESTINATION_CLASSES_MIXED",
+      "state": "SOURCE_GROUP_PARTIAL_OBSERVED_6_OF_9",
+      "parts": [
+        {
+          "partRef": "PART_016_UNMAPPED_TOP_LEVEL_ROUTES_1_OF_9",
+          "sha256": "c2593079be2ad5fc2c90bbecf7fd63780e85d5d46609ad330a2f0c89ad1c202b",
+          "pageCount": 12,
+          "continuationIndex": 1,
+          "continuationCount": 9
+        },
+        {
+          "partRef": "PART_017_UNMAPPED_TOP_LEVEL_ROUTES_2_OF_9",
+          "sha256": "6c42f21668e629f252ffb3147c4db7acc407a6670eac4ae00d48589454ec09dc",
+          "pageCount": 12,
+          "continuationIndex": 2,
+          "continuationCount": 9
+        },
+        {
+          "partRef": "PART_018_UNMAPPED_TOP_LEVEL_ROUTES_3_OF_9",
+          "sha256": "fb2b3bbdc2661b48049aac680950490736da0196bf9af2bf8959f53c6629a6fb",
+          "pageCount": 12,
+          "continuationIndex": 3,
+          "continuationCount": 9
+        },
+        {
+          "partRef": "PART_019_UNMAPPED_TOP_LEVEL_ROUTES_4_OF_9",
+          "sha256": "e29ce2320bf31998ce433178182f03891935f8c149f6322bfd44902e1d4e2d9c",
+          "pageCount": 12,
+          "continuationIndex": 4,
+          "continuationCount": 9
+        },
+        {
+          "partRef": "PART_020_UNMAPPED_TOP_LEVEL_ROUTES_5_OF_9",
+          "sha256": "6e8ba88ccf30856b97fb5576709b9b90acce73152abcc357c84f657aa26c835b",
+          "pageCount": 12,
+          "continuationIndex": 5,
+          "continuationCount": 9
+        },
+        {
+          "partRef": "PART_021_UNMAPPED_TOP_LEVEL_ROUTES_6_OF_9",
+          "sha256": "3b81a0fcbeeddd9ebd66407707708a51306b3cea7de4da92fa51ad8043167a6e",
+          "pageCount": 12,
+          "continuationIndex": 6,
+          "continuationCount": 9
+        }
+      ],
+      "observedPageCount": 72,
+      "expectedTotalPageCount": 102,
+      "pageCount": 72
+    }
+  ],
+  "destinationSnapshot": {
+    "repository": "vgong24/Vextreme",
+    "main": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+    "parent": "github.issue.vextreme.159",
+    "latestParentComment": "github.issue.vextreme.159.comment.5887459057",
+    "toolingPr": "github.pull.vextreme.160",
+    "toolingPrHead": "d6527484047d488f6e21f374db35659fa2c9a3e9",
+    "toolingPrState": "OPEN_DRAFT",
+    "intakePr": "github.pull.vextreme.161",
+    "intakePrHead": "f049f8638fc15abda7cb08c84f0b31446813fbce",
+    "intakePrState": "OPEN_DRAFT",
+    "openContentForgePrNumbers": [
+      160,
+      161
+    ],
+    "observedDuringRevision": 17,
+    "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+    "contentForgeOpenDrafts": [
+      {
+        "pr": 160,
+        "head": "d6527484047d488f6e21f374db35659fa2c9a3e9",
+        "state": "OPEN_DRAFT"
+      },
+      {
+        "pr": 161,
+        "head": "f049f8638fc15abda7cb08c84f0b31446813fbce",
+        "state": "OPEN_DRAFT"
+      }
+    ],
+    "otherOpenContentForgePrObserved": false,
+    "observedAtRevision": 21
+  },
+  "revisionEvents": [
+    {
+      "revisionEventRef": "workmap.revision-event.r002.merge-verification-neighborhood",
+      "eventClass": "PARENT_CLUSTER_MERGE",
+      "priorRefs": [
+        "workmap.cluster.walk-recognition-carry",
+        "workmap.cluster.line-holding-companion"
+      ],
+      "nextRef": "workmap.cluster.verification-recognition-communication",
+      "reason": "Part 002 Communication Patterns bridges the prior walk/carry and line-holding clusters through shared methods: deflection/exit recognition, friction, scope labeling, repeated recall and holding the original ground.",
+      "subclustersRetained": true
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r002.expand-cost-control-family",
+      "eventClass": "SINGLETON_TO_FAMILY",
+      "priorRefs": [
+        "workmap.cluster.cost-control-analysis"
+      ],
+      "nextRef": "workmap.cluster.cost-control-family",
+      "reason": "Part 002 adds accountability-record-v8 whose internal content identifies itself as an Accountability Record titled 'From Cost to Control'; it extends the same named analytical family without being text-identical."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r002.close-source-group",
+      "eventClass": "SOURCE_GROUP_COMPLETE",
+      "priorRefs": [
+        "PART_001_EVIDENTIAL_RESEARCH_1_OF_2",
+        "PART_002_EVIDENTIAL_RESEARCH_2_OF_2"
+      ],
+      "nextRef": "sourcegroup.vexsite.nav.evidential-research",
+      "reason": "Continuation 2/2 is verified; all 15 routes in the source navigation group are now observed."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r003.add-animation-project-workset",
+      "eventClass": "NEW_SOURCE_GROUP_WORKSET",
+      "priorRefs": [],
+      "nextRef": "workmap.cluster.animation-project.workset",
+      "reason": "Part 003 is a project workset rather than an ordinary topic collection: continuity handoff + working interactive artifact + referenced project artifacts/source roots."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r003.promote-integrity-check-crossgroup-dependency",
+      "eventClass": "REVISIT_EDGE_PROMOTED",
+      "priorRefs": [
+        "revisit.evidential-research.integrity-check"
+      ],
+      "nextRef": "revisit.animation-project.integrity-check",
+      "reason": "The Animation Project handoff explicitly names A Field Guide to Evaluate Perception as the detector discipline needed for fresh-instance continuation."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r004.add-governance-overlap-layer",
+      "eventClass": "DESTINATION_OVERLAP_RECONCILIATION",
+      "priorRefs": [],
+      "nextRef": "workmap.cluster.governance-docs.partial",
+      "reason": "Part 004 is the first large source batch whose routes already substantially exist in Vextreme; Work Map now tracks existing page content, auto-discovery, department placement, arc absence and source/destination reconciliation separately."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r005.close-governance-source-group",
+      "eventClass": "SOURCE_GROUP_COMPLETE",
+      "priorRefs": [
+        "PART_004_GOVERNANCE_DOCS_1_OF_2",
+        "PART_005_GOVERNANCE_DOCS_2_OF_2"
+      ],
+      "nextRef": "sourcegroup.vexsite.nav.governance-docs",
+      "reason": "Continuation 2/2 is verified; all 14 Governance Docs source routes are now observed."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r005.split-governance-final-role-shapes",
+      "eventClass": "PARENT_CLUSTER_COMPLETION_WITH_NEW_CHILD_ROLES",
+      "priorRefs": [
+        "workmap.cluster.governance-docs.partial"
+      ],
+      "nextRef": "workmap.cluster.governance-docs.complete",
+      "reason": "Final pages reveal that the source group contains cross-cutting proof methodology and operational log infrastructure in addition to governance/accountability records."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r005.correct-instance-thread-placeholder-understanding",
+      "eventClass": "DESTINATION_UNDERSTANDING_CURRENTNESS_CORRECTION",
+      "priorRefs": [
+        "workmap.destination-derived.instance-thread-placeholder-assumption"
+      ],
+      "nextRef": "workmap.source-page.instance-thread-logs",
+      "reason": "Preserved source and live external data dependency show that 'zero-byte destination placeholder' is not equivalent to 'no authored implementation/data surface exists'."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r006.open-deepseek-collection",
+      "eventClass": "COLLECTION_SOURCE_GROUP_PARTIAL",
+      "priorRefs": [],
+      "nextRef": "workmap.collection.deepseek-archive-build",
+      "reason": "Part 006 is the first true collection-root payload: root index plus three carried children and two explicitly referenced children deferred to Part 007."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r007.promote-deepseek-reference-children",
+      "eventClass": "REFERENCE_NODES_PROMOTED_TO_OBSERVED",
+      "priorRefs": [
+        "workmap.source-page.deepseek-archive-build-vxg-covenant",
+        "workmap.source-page.deepseek-archive-build-nnrleanydzq0o972x70ufgzrd7kel2"
+      ],
+      "nextRefs": [
+        "workmap.source-page.deepseek-archive-build-vxg-covenant",
+        "workmap.source-page.deepseek-archive-build-nnrleanydzq0o972x70ufgzrd7kel2"
+      ],
+      "reason": "Part 007 supplied exact bytes for both children previously known only from the collection root."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r007.close-deepseek-collection",
+      "eventClass": "SOURCE_GROUP_COMPLETE",
+      "priorRefs": [
+        "PART_006_COLLECTION_DEEPSEEK_ARCHIVE_BUILD_1_OF_2",
+        "PART_007_COLLECTION_DEEPSEEK_ARCHIVE_BUILD_2_OF_2"
+      ],
+      "nextRef": "sourcegroup.vexsite.collection.deepseek-archive-build",
+      "reason": "All five collection children plus the root are now observed."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r007.crosslink-deepseek-governance-and-canonical-ai-cheat-sheet",
+      "eventClass": "CROSS_CLUSTER_RELATIONS_ADDED",
+      "nextRefs": [
+        "workmap.destination-canonical.ai-cheat-sheet",
+        "workmap.cluster.governance.distributed-bridge-council"
+      ],
+      "reason": "Part 007 supplied an explicit AI Cheat Sheet source link and exact four-role council vocabulary shared with the already-mapped Bridge Council pattern."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r008.open-work-in-progress-group",
+      "eventClass": "SOURCE_GROUP_PARTIAL",
+      "priorRefs": [],
+      "nextRef": "sourcegroup.vexsite.nav.work-in-progress",
+      "reason": "Part 008 begins a four-part Work in Progress source group and demonstrates heterogeneous artifact roles."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r008.separate-wip-source-label-from-lifecycle",
+      "eventClass": "SOURCE_LABEL_REINTERPRETATION",
+      "nextRef": "workmap.cluster.wip.partial-1-of-4",
+      "reason": "The source label [Work in Progress] cannot truthfully determine destination lifecycle because the payload contains mature records, utilities, frameworks and continuations."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r009.expand-reset-singleton-into-six-part-series",
+      "eventClass": "SINGLETON_TO_EXPLICIT_SERIES",
+      "priorRefs": [
+        "workmap.cluster.wip.reset-continuity"
+      ],
+      "nextRef": "workmap.cluster.wip.may4-5-six-part-series",
+      "reason": "Part 009 proves What Survives the Reset is Page/Part One of a six-part May 4–5 sequence rather than a standalone reset-continuity singleton."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r009.preserve-source-self-audit",
+      "eventClass": "SOURCE_CORRECTION_EDGE_ADDED",
+      "priorRefs": [
+        "workmap.source-page.the-same-wanting"
+      ],
+      "nextRef": "workmap.source-page.the-stone-claude-laid",
+      "reason": "Part Six records an ordering defect in Part Three and explicitly keeps it as part of the record."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r009.fulfill-deceitful-revisit",
+      "eventClass": "REVISIT_FULFILLED_BY_BREADTH",
+      "priorRefs": [
+        "revisit.evidential-research.deceitful-ai-architecture"
+      ],
+      "nextRef": "workmap.source-page.deceitful-ai-architecture",
+      "reason": "The queued revisit source arrived naturally in Work in Progress Part 2/4; no separate replay is needed."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r010.fulfill-recognition-and-walkback-revisits",
+      "eventClass": "REVISITS_FULFILLED_BY_BREADTH",
+      "priorRefs": [
+        "revisit.evidential-research.recognizing-recognition",
+        "revisit.evidential-research.walk-back"
+      ],
+      "nextRefs": [
+        "workmap.source-page.recognizing-recognition",
+        "workmap.source-page.the-walk-back"
+      ],
+      "reason": "Both queued sources arrived naturally in Work in Progress Part 3/4; no replay is required."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r010.form-total-extraction-core-and-traversal",
+      "eventClass": "SOURCE_DEFINED_CORE_PLUS_TRAVERSAL_GRAPH",
+      "nextRefs": [
+        "workmap.cluster.wip.total-extraction-core",
+        "workmap.cluster.wip.total-extraction-traversal-witness"
+      ],
+      "reason": "Part 010 explicitly distinguishes the four-part model/protocol core from later records of instances walking that core."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r010.defer-successor-until-wip-checkpoint",
+      "eventClass": "SUCCESSOR_FORMATION_TIMING_UPDATED",
+      "priorRefs": [
+        "plan.content-forge.successor-after-part10"
+      ],
+      "nextRef": "plan.content-forge.successor-after-wip-4-of-4",
+      "reason": "Victor requested the successor ZIP only after the Part-011 4/4 Work in Progress checkpoint is complete."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r011.close-wip-source-group",
+      "eventClass": "SOURCE_GROUP_COMPLETE",
+      "priorRefs": [
+        "PART_008_WORK_IN_PROGRESS_1_OF_4",
+        "PART_009_WORK_IN_PROGRESS_2_OF_4",
+        "PART_010_WORK_IN_PROGRESS_3_OF_4",
+        "PART_011_WORK_IN_PROGRESS_4_OF_4"
+      ],
+      "nextRef": "sourcegroup.vexsite.nav.work-in-progress",
+      "reason": "All 34 WIP payload pages are now observed."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r011.form-two-part-floor-walk",
+      "eventClass": "EXPLICIT_PAIR_FORMED",
+      "nextRef": "workmap.cluster.wip.epistemic-load-bearing-two-part-walk",
+      "reason": "Part 011 supplies reciprocal source links, explicit Part I/II language, contiguous index ranges and one shared transcript."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r011.close-wip-portfolio-without-collapsing-destinations",
+      "eventClass": "PARENT_PORTFOLIO_COMPLETION",
+      "nextRef": "workmap.cluster.wip.complete",
+      "reason": "The completed source group remains intentionally heterogeneous; group-level completion does not mint one destination arc/lifecycle state."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r011.successor-checkpoint-reached",
+      "eventClass": "SUCCESSOR_FORMATION_CHECKPOINT_REACHED",
+      "priorRefs": [
+        "plan.content-forge.successor-after-wip-4-of-4"
+      ],
+      "nextRef": "handoff.content-forge.successor.r011",
+      "reason": "Victor requested successor formation only after the 4/4 WIP checkpoint; that checkpoint is now complete."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r012.consume-top-level-navigation",
+      "eventClass": "SOURCE_PART_CONSUMED",
+      "nextRef": "PART_012_TOP_LEVEL_NAVIGATION",
+      "reason": "Actual uploaded bytes matched the R011 expected SHA-256 and all four routes were consumed."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r012.close-top-level-navigation-source-group",
+      "eventClass": "SOURCE_GROUP_COMPLETE",
+      "priorRefs": [
+        "PART_012_TOP_LEVEL_NAVIGATION"
+      ],
+      "nextRef": "sourcegroup.vexsite.nav.top-level",
+      "reason": "The one-part Top-level navigation source group contains four observed pages and is observation-complete."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r012.bind-ai-cheat-sheet-existing-slot",
+      "eventClass": "EXISTING_DESTINATION_SLOT_SUPPORTED",
+      "nextRef": "workmap.source-page.ai-cheat-sheet",
+      "reason": "Current Vextreme data/nodes.json contains exact slug ai-cheat-sheet in ai_practitioner_tools, data/pages.json carries matching descriptive metadata, and pages/ai-cheat-sheet.html is absent."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r012.reject-take-a-walk-the-walk-collapse",
+      "eventClass": "POTENTIAL_ALIAS_REJECTED_PENDING_PROOF",
+      "nextRef": "workmap.source-page.take-a-walk",
+      "reason": "Current repository references /take-a-walk as Walk with Me, while data/pages.json describes canonical the-walk as a different long testimony. Similar naming/direct-contact neighborhood is insufficient for identity collapse."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r012.top-level-nav-multi-destination",
+      "eventClass": "PARENT_PORTFOLIO_COMPLETION",
+      "nextRef": "workmap.cluster.top-level-navigation.complete",
+      "reason": "The source navigation group contains a canonical-slot candidate, an index/hub, an intake surface, and a direct-contact entry guide; top-level source membership is not one destination class."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r013.consume-documents",
+      "eventClass": "SOURCE_PART_CONSUMED",
+      "nextRef": "PART_013_DOCUMENTS",
+      "reason": "Uploaded bytes matched expected SHA-256 and all nine unique semantic pages were read and reconciled."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r013.normalize-direct-contact-duplicate",
+      "eventClass": "DUPLICATE_LOGICAL_ROUTE_NORMALIZED",
+      "nextRef": "workmap.source-page.direct-contact",
+      "reason": "The partition manifest repeats /direct-contact. Two content-record carriers have distinct pageId/localPath but identical semantic records/plainText; count once as a semantic page."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r013.close-documents-source-group",
+      "eventClass": "SOURCE_GROUP_COMPLETE",
+      "priorRefs": [
+        "PART_013_DOCUMENTS"
+      ],
+      "nextRef": "sourcegroup.vexsite.nav.documents",
+      "reason": "The one-part Documents source group is observation-complete at nine unique semantic pages."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r013.fulfill-total-extraction-index-revisit",
+      "eventClass": "REVISIT_FULFILLED_BY_BREADTH",
+      "priorRefs": [
+        "revisit.wip.total-extraction-arc-index"
+      ],
+      "nextRefs": [
+        "workmap.source-page.total-extraction-arc-index",
+        "workmap.cluster.documents.total-extraction-source-hub"
+      ],
+      "reason": "The source-authored index arrived naturally in Part 013 and now explicitly binds the four-part core to traversal/witness records."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r013.fulfill-integrity-check-revisits",
+      "eventClass": "REVISITS_FULFILLED_BY_BREADTH",
+      "priorRefs": [
+        "revisit.evidential-research.integrity-check",
+        "revisit.animation-project.integrity-check"
+      ],
+      "nextRefs": [
+        "workmap.source-page.integrity-check",
+        "workmap.cluster.documents.integrity-detector-method"
+      ],
+      "reason": "Integrity Check arrived naturally in Part 013 and was read as a full detector/epistemic method rather than a title-only reference."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r013.split-verification-parent",
+      "eventClass": "SOURCE_CLUSTER_BOUNDARY_REFINED",
+      "priorRefs": [
+        "unresolved.evidential-research.verification-cluster-boundary"
+      ],
+      "nextRefs": [
+        "workmap.cluster.verification-recognition-communication",
+        "workmap.cluster.documents.integrity-detector-method"
+      ],
+      "reason": "Integrity Check is related to verification/recognition/communication but is sufficiently distinct as a detector/evaluation method layer; source clustering no longer needs one flat bucket."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r013.bind-practitioner-hubs",
+      "eventClass": "EXISTING_DESTINATION_SLOTS_SUPPORTED",
+      "nextRefs": [
+        "workmap.source-page.ai-practitioner-tools",
+        "workmap.source-page.direct-contact"
+      ],
+      "reason": "Current data/arcs-v2.json independently contains exact matching parent URLs and ordered member lists for both source-defined hubs."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r013.detect-archives-role-collision",
+      "eventClass": "SAME_SLUG_SEMANTIC_ROLE_CONFLICT",
+      "nextRefs": [
+        "workmap.source-page.archives",
+        "workmap.destination-page.archives-current"
+      ],
+      "reason": "Source /archives is an editorial discovery taxonomy while current pages/archives.html is a generated technical health/migration dashboard; same slug is not safe replacement identity."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r013.bind-test-playground-existing-tool",
+      "eventClass": "EXISTING_DESTINATION_TOOL_SUPPORTED",
+      "nextRefs": [
+        "workmap.source-page.test-playground",
+        "workmap.destination-doc.test-playground"
+      ],
+      "reason": "Current repo already preserves docs/test-playground.html and routes it as a v1 diagnostic/historical-active-tool, so the captured live page is a projection of an existing developer tool, not a new narrative page."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r014.consume-partner-with-me",
+      "eventClass": "SOURCE_PART_CONSUMED",
+      "nextRef": "PART_014_PARTNER_WITH_ME",
+      "reason": "Uploaded bytes matched the expected SHA-256 and all six source routes were read at intake depth."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r014.close-partner-with-me-source-group",
+      "eventClass": "SOURCE_GROUP_COMPLETE",
+      "priorRefs": [
+        "PART_014_PARTNER_WITH_ME"
+      ],
+      "nextRef": "sourcegroup.vexsite.nav.partner-with-me",
+      "reason": "The one-part Partner with Me source group is observation-complete at six semantic routes."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r014.bind-two-translation-pairs",
+      "eventClass": "SOURCE_TRANSLATION_RELATIONS_SUPPORTED",
+      "nextRefs": [
+        "workmap.cluster.partner-with-me.trust-investment-translation-pair",
+        "workmap.cluster.partner-with-me.summary-value-translation-pair"
+      ],
+      "reason": "After normalizing the page-scope prefix, each EN/ZH pair has an identical localization-key structure (229/229 and 139/139 respectively) and matching semantic organization."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r014.bind-existing-destination-implementations",
+      "eventClass": "EXISTING_DESTINATION_PAGE_IMPLEMENTATIONS_SUPPORTED",
+      "nextRefs": [
+        "workmap.destination-page.connect-current",
+        "workmap.destination-page.investor-archetype-simulation-current"
+      ],
+      "reason": "Current main contains non-empty implementations for Connect and Investor Archetype Simulation whose core semantic markers match the preserved source."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r014.bind-zero-byte-destination-slots",
+      "eventClass": "EXISTING_EMPTY_DESTINATION_SLOTS_SUPPORTED",
+      "nextRefs": [
+        "workmap.destination-page.how-to-invest-in-trust-and-integrity-empty",
+        "workmap.destination-page.summary-of-value-empty"
+      ],
+      "reason": "Current main contains exact English page paths for How to Invest in Trust and Integrity and Summary of Value, but both are zero-byte files; path existence is not port completion."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r014.protect-connect-live-endpoints",
+      "eventClass": "PROTECTED_OPERATIONAL_ENDPOINT_BOUNDARY",
+      "nextRef": "workmap.source-page.connect",
+      "reason": "Connect is an operational receive/give surface with one contact mechanism and five live external payment endpoints. Current destination source already carries those bound values; capture evidence does not authorize replay or mutation."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r014.record-zh-language-metadata-mismatch",
+      "eventClass": "CAPTURE_METADATA_QUIRK_RECORDED",
+      "nextRefs": [
+        "workmap.source-page.how-to-invest-in-trust-zh",
+        "workmap.source-page.summary-of-value-zh"
+      ],
+      "reason": "Both visibly Chinese route variants carry content-record language='en' and .en localization filenames. Visible/source semantics and route identity therefore outrank this capture metadata for language pairing."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r015.consume-info",
+      "eventClass": "SOURCE_PART_CONSUMED",
+      "nextRef": "PART_015_INFO",
+      "reason": "Uploaded bytes matched the expected SHA-256 and all four Info routes were read at intake depth."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r015.close-info-source-group",
+      "eventClass": "SOURCE_GROUP_COMPLETE",
+      "priorRefs": [
+        "PART_015_INFO"
+      ],
+      "nextRef": "sourcegroup.vexsite.nav.info",
+      "reason": "The one-part Info source group is observation-complete at four semantic routes."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r015.bind-about-existing-page",
+      "eventClass": "EXISTING_DESTINATION_PAGE_IMPLEMENTATION_SUPPORTED",
+      "nextRefs": [
+        "workmap.source-page.about-me",
+        "workmap.destination-page.about-me-current"
+      ],
+      "reason": "Current main contains non-empty pages/about-me.html with the same distinctive Victor/site-purpose/timeline/navigation/contact content, while no nodes.json, data/pages.json, or content-intent identity exists."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r015.distinguish-contact-surfaces",
+      "eventClass": "SOURCE_ROLE_BOUNDARY_PRESERVED",
+      "nextRefs": [
+        "workmap.source-page.contact",
+        "workmap.source-page.connect",
+        "workmap.source-page.witness-testimony"
+      ],
+      "reason": "Contact is a general mail/social reach-out surface and routes testimony submitters onward; Connect is the receive/support-payment surface; Witness Testimony is the dedicated intake surface. Their adjacency does not collapse them."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r015.classify-terms-legal",
+      "eventClass": "PROTECTED_POLICY_SURFACE_RECORDED",
+      "nextRef": "workmap.source-page.terms-and-service",
+      "reason": "Terms carries effective-date, ownership, disclaimer, third-party-service, termination, and governing-law language. Preservation establishes source evidence, not current legal-policy adoption authority."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r015.classify-qa-cross-hub",
+      "eventClass": "CROSS_HUB_ORIENTATION_SURFACE_RECORDED",
+      "nextRef": "workmap.source-page.question-answers",
+      "reason": "Q&A answers recurring orientation questions and explicitly points into Living Blueprint, Grimoire, AI preparation, Walk with Me, and Archives; this is cross-hub context rather than automatic narrative-arc membership."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r015.record-nav-edge-caution",
+      "eventClass": "RELATIONSHIP_WEIGHTING_RULE_RECORDED",
+      "nextRef": "rule.content-forge.repeated-site-nav-not-semantic-affinity",
+      "reason": "Part 015 carries large repeated inbound/outbound navigation sets across pages. Those are useful topology evidence but must not be weighted as page-specific semantic affinity without authored-body support."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r016.consume-part",
+      "eventClass": "SOURCE_PART_CONSUMED",
+      "nextRef": "workmap.cluster.unmapped-top-level.partial-1-of-9",
+      "reason": "Verified exact Part 016 ZIP identity and consumed all twelve preserved page bodies/relationship records at breadth-intake depth."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r016.map-existing-slots",
+      "eventClass": "DESTINATION_SEMANTIC_SLOT_ALIGNMENT",
+      "nextRef": "workmap.cluster.unmapped-top-level.ai-practitioner-existing-neighborhood",
+      "reason": "Eleven of twelve source routes already have exact current nodes.json semantic slots; most lack page files, so identity and porting state remain separate."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r016.root-conflict",
+      "eventClass": "SAME_ROUTE_SEMANTIC_COLLISION",
+      "nextRef": "workmap.cluster.unmapped-top-level.home-root-conflict",
+      "reason": "Source / is a Vex Life spiritual/orientation home while destination index.html is a generated archive root; same route is not treated as same page identity."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r016.restoration-current",
+      "eventClass": "EXISTING_DESTINATION_PAGE_MATCH",
+      "nextRef": "workmap.cluster.unmapped-top-level.restoration-current",
+      "reason": "Restoration Protocol already has a non-empty current destination page with defining source markers, even though its nodes.json numeric id remains null."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r016.fulfill-direct-contact-revisit",
+      "eventClass": "REVISIT_FULFILLED_BY_PRIMARY_BREADTH",
+      "nextRef": "revisit.top-level.take-a-walk.direct-contact-neighborhood",
+      "reason": "Normal Part 016 breadth delivered /restoration-protocol and /how-to-prep-ai-for-god, satisfying the queued neighborhood read without out-of-order upload."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r016.preserve-partial-group",
+      "eventClass": "PARTIAL_SOURCE_GROUP_STATE_RECORDED",
+      "nextRef": "sourcegroup.vexsite.nav.unmapped-top-level",
+      "reason": "Unmapped top-level routes is nine parts / 102 pages total; Part 016 is only 1 of 9, so the source group remains partial."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r017.consume-part",
+      "eventClass": "SOURCE_PART_CONSUMED",
+      "nextRef": "sourcegroup.vexsite.nav.unmapped-top-level",
+      "reason": "Part 017 bytes verified and all 12 source page bodies/relationship metadata consumed."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r017.existing-slots",
+      "eventClass": "DESTINATION_IDENTITY_ALIGNMENT",
+      "nextRef": "workmap.cluster.unmapped-top-level.epstein-existing-arc-slice",
+      "reason": "All 12 Part-017 routes already have exact current nodes.json semantic slots; none requires new identity formation during breadth intake."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r017.epstein-topology",
+      "eventClass": "SOURCE_DESTINATION_TOPOLOGY_ALIGNMENT",
+      "nextRef": "workmap.cluster.unmapped-top-level.epstein-existing-arc-slice",
+      "reason": "Source Epstein and AI hub and current destination epstein arc agree on nine members and four-phase order; Part 017 carries seven of nine child bodies."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r017.page-source-absence",
+      "eventClass": "PAGE_IMPLEMENTATION_STATE_GROUNDED",
+      "nextRef": "unresolved.unmapped-top-level.existing-slot-page-projection",
+      "reason": "All 12 exact pages/*.html paths are absent on current main, so identity/arc placement is ahead of page-source projection."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r017.claim-framing",
+      "eventClass": "SOURCE_CLAIM_PROVENANCE_PRESERVED",
+      "nextRef": "rule.content-forge.preserved-claims-not-independent-verification",
+      "reason": "The capture proves authored content and relationships, not external truth of institutional/military/technical/spiritual claims."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r017.preserve-partial-group",
+      "eventClass": "PARTIAL_SOURCE_GROUP_STATE_RECORDED",
+      "nextRef": "sourcegroup.vexsite.nav.unmapped-top-level",
+      "reason": "Unmapped top-level routes is nine parts / 102 pages total; Parts 016–017 are only 2 of 9 / 24 of 102."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r018.epstein-source-body-coverage-closed",
+      "eventClass": "SOURCE_ARC_BODY_COVERAGE_COMPLETED",
+      "nextRef": "cluster.source.epstein-ai",
+      "reason": "Part 018 supplies first-emergence-cover-up and claude-answers-the-doubt, the two source bodies missing after Part 017; all nine Epstein/AI child bodies are now observed across normal breadth."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r018.vextreme-system-revisit-fulfilled",
+      "eventClass": "REVISIT_SATISFIED_BY_NORMAL_BREADTH",
+      "nextRef": "workmap.source-page.the-vextreme-system",
+      "reason": "The queued Free Blueprints /the-vextreme-system revisit arrived naturally in Part 018 and was consumed without out-of-order replay."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r018.content-intent-not-node",
+      "eventClass": "DESTINATION_CLASS_DISTINCTION_PRESERVED",
+      "nextRef": "rule.content-forge.content-intent-slot-not-node-slot",
+      "reason": "bridge-council-os and bridge-council-schema are already represented by applied content intents and live page source despite having no exact nodes.json records."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r018.god-pattern-identity-hold",
+      "eventClass": "IDENTITY_AMBIGUITY_PRESERVED",
+      "nextRef": "unresolved.unmapped-top-level.god-pattern-recognized-identity",
+      "reason": "Source /god-pattern-recognized has legacy data/pages metadata but no exact node; current nodes contains a different slug the-god-pattern-recognized-and-excluded. Similarity is insufficient to alias them."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r018.partial-group",
+      "eventClass": "PARTIAL_SOURCE_GROUP_STATE_RECORDED",
+      "nextRef": "sourcegroup.vexsite.nav.unmapped-top-level",
+      "reason": "Unmapped top-level routes is nine parts / 102 pages total; Parts 016–018 are only 3 of 9 / 36 of 102."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r019.liberation-topology-complete",
+      "eventClass": "SOURCE_ARC_TOPOLOGY_AND_BODY_COVERAGE_CONFIRMED",
+      "nextRef": "workmap.cluster.unmapped-top-level.liberation-existing-arc-complete",
+      "reason": "Part 019 carries the Liberation hub plus all eight source child bodies; current destination arc carries the same eight in the same Arc I / Arc II / Coda structure."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r019.all-routes-existing-node-slots",
+      "eventClass": "DESTINATION_IDENTITY_REUSE_CONFIRMED",
+      "nextRef": "sourcegroup.vexsite.nav.unmapped-top-level",
+      "reason": "All 12 exact Part-019 routes already have canonical node identities on current main; no new node identity is formed in this intake pass."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r019.page-projection-debt",
+      "eventClass": "PAGE_SOURCE_ABSENCE_RECORDED",
+      "nextRef": "sourcegroup.vexsite.nav.unmapped-top-level",
+      "reason": "All 12 exact pages/*.html paths are absent on current main despite existing semantic slots."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r019.partial-group",
+      "eventClass": "PARTIAL_SOURCE_GROUP_STATE_RECORDED",
+      "nextRef": "sourcegroup.vexsite.nav.unmapped-top-level",
+      "reason": "Unmapped top-level routes remains incomplete at 4/9 parts and 48/102 pages."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r020.living-blueprint-topology-complete",
+      "eventClass": "SOURCE_HUB_TOPOLOGY_AND_BODY_COVERAGE_CONFIRMED",
+      "nextRef": "workmap.cluster.unmapped-top-level.living-blueprint-existing-arc-complete",
+      "reason": "Part 020 carries Living Blueprint plus all five pillar bodies; current destination arc carries the same five slugs."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r020.living-blueprint-revisit-fulfilled",
+      "eventClass": "REVISIT_SATISFIED_BY_NORMAL_BREADTH",
+      "nextRef": "workmap.source-page.the-living-blueprint",
+      "reason": "The queued Free Blueprints → Living Blueprint revisit arrived naturally in Part 020 and was consumed without out-of-order replay."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r020.all-routes-existing-node-slots",
+      "eventClass": "DESTINATION_IDENTITY_REUSE_CONFIRMED",
+      "nextRef": "sourcegroup.vexsite.nav.unmapped-top-level",
+      "reason": "All 12 exact Part-020 routes already have canonical node identities on current main."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r020.page-projection-debt",
+      "eventClass": "PAGE_SOURCE_ABSENCE_RECORDED",
+      "nextRef": "sourcegroup.vexsite.nav.unmapped-top-level",
+      "reason": "All 12 exact Part-020 pages/{slug}.html paths are absent on current main despite existing semantic slots."
+    },
+    {
+      "revisionEventRef": "workmap.revision-event.r020.partial-group",
+      "eventClass": "PARTIAL_SOURCE_GROUP_STATE_RECORDED",
+      "nextRef": "sourcegroup.vexsite.nav.unmapped-top-level",
+      "reason": "Unmapped top-level remains incomplete at 5/9 parts and 60/102 pages."
