@@ -134,6 +134,13 @@
       "authority": "historical",
       "routeOwner": "docs/continuity/Batch 001.md",
       "healthCheck": "node lib/check-document-routes.js"
+    },
+    {
+      "path": "docs/ingestion/VEX-CONTENT-FORGE-BREADTH.md",
+      "category": "ingestion-breadth-process",
+      "authority": "proposed",
+      "routeOwner": "docs/ingestion/VEX-CONTENT-FORGE-PILOT.md",
+      "healthCheck": "node lib/check-document-routes.js"
     }
   ],
   "collections": [
@@ -199,6 +206,33 @@
       "routeOwner": "docs/ingestion/VEX-CONTENT-FORGE-PILOT.md",
       "healthCheck": "node lib/check-document-routes.js",
       "placementRule": "Direct-child JSON batch receipts only; filename binds date + pilot batch number. Payload ZIPs, raw captures, arbitrary notes, or nested bundles require a different mapped home."
+    },
+    {
+      "id": "content-forge-breadth-batches",
+      "pattern": "^docs/ingestion/batches/[0-9]{4}-[0-9]{2}-[0-9]{2}-breadth-part-[0-9]{3}\\.json$",
+      "category": "ingestion-batch-receipt",
+      "authority": "generated-evidence",
+      "routeOwner": "docs/ingestion/VEX-CONTENT-FORGE-BREADTH.md",
+      "healthCheck": "node lib/check-document-routes.js",
+      "placementRule": "Direct-child JSON breadth receipts only; each receipt binds one consumed source partition to its staged HTML paths and effects."
+    },
+    {
+      "id": "content-forge-source-page-evidence",
+      "pattern": "^docs/ingestion/source-pages/part-[0-9]{3}/[a-z0-9][a-z0-9-]*\\.html$",
+      "category": "ingestion-source-page-evidence",
+      "authority": "generated-evidence",
+      "routeOwner": "docs/ingestion/VEX-CONTENT-FORGE-BREADTH.md",
+      "healthCheck": "node lib/check-document-routes.js",
+      "placementRule": "Provider-neutral derived HTML evidence only when the source slug cannot safely occupy wip/ because a current page/tool/root already exists. Never raw authenticated provider captures; never canonical pages/** promotion."
+    },
+    {
+      "id": "content-forge-workmaps",
+      "pattern": "^docs/ingestion/workmaps/[a-z0-9][a-z0-9-]*\\.json$",
+      "category": "ingestion-work-map",
+      "authority": "generated-evidence",
+      "routeOwner": "docs/ingestion/VEX-CONTENT-FORGE-BREADTH.md",
+      "healthCheck": "node lib/check-document-routes.js",
+      "placementRule": "Cumulative scanner-first Content Forge work maps and continuity ledgers only; these summarize intake state and do not themselves authorize canonical placement."
     }
   ]
 }
