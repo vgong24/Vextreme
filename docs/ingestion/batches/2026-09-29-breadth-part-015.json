@@ -19,8 +19,8 @@
     },
     {
       "route": "/contact",
-      "path": "wip/contact.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-015/contact.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "4231e9ca35bb86954646e546dbaa71e8000759aef6693e6023a45ff1c1558ea8",
       "sourceDerivedSha256": "fceb509dc465fe576413eda3a79299ad8c790f8c94a95fda0aacc0e4af76396e",
       "disposition": "WIP_UNSORTED_INTAKE",
@@ -28,8 +28,8 @@
     },
     {
       "route": "/terms-and-service",
-      "path": "wip/terms-and-service.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-015/terms-and-service.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "081d1b37146a42d8561ceaeb4b758e963d89ae43534be3c7563469df8346f4d0",
       "sourceDerivedSha256": "d03331f58cd677a25ae5c4a8024082b9eef318d373b46d71526609fd559fed99",
       "disposition": "HOLD",
@@ -37,14 +37,15 @@
     },
     {
       "route": "/question-answers",
-      "path": "wip/question-answers.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-015/question-answers.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "0abc6da4d5c8e5eaaab1e1bfa59a402c3a4b4c40b73b71198d0de6f8ab27dfa3",
       "sourceDerivedSha256": "2fd555aa83a72dc4c5be0a572d43834f3db0740489b42aae97b7da2158c934f7",
       "disposition": "WIP_UNSORTED_INTAKE",
       "placementState": "NO_EXACT_DESTINATION_PAGE; CROSS_HUB_CONTEXT_CLASS_DEFERRED"
     }
   ],
+  "storageRule": "All derived HTML is preserved as routed source evidence. Placement/projection remains a later effect; source evidence is not scanned as active pages or wip runtime.",
   "effects": {
     "rawAuthenticatedSourcePublished": false,
     "canonicalPagesChanged": false,
