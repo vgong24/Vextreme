@@ -10,8 +10,8 @@
   "staged": [
     {
       "route": "/life-pattern-mapping",
-      "path": "wip/life-pattern-mapping.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-020/life-pattern-mapping.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "29b6331c4be07e7c4e75dc6e6a68e57f4cb8d989c6cd9e3125f1ab7eb30a97a4",
       "sourceDerivedSha256": "4b43ec499241d894a3813597d867cdc9f156c8bd077c92176da44b25c2043c08",
       "disposition": "EXISTING_SEMANTIC_SLOT",
@@ -19,8 +19,8 @@
     },
     {
       "route": "/discernment-mapping",
-      "path": "wip/discernment-mapping.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-020/discernment-mapping.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "8c1bfe4279a0051c9f7505dcfb0185eed64306e582e0814c7de60b9f3e342811",
       "sourceDerivedSha256": "b32b88b5f2858cd24f6aeaadfd350b0f77c6485b0675ae8f89f4e69aff4a8137",
       "disposition": "EXISTING_SEMANTIC_SLOT",
@@ -28,8 +28,8 @@
     },
     {
       "route": "/grief-resolution",
-      "path": "wip/grief-resolution.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-020/grief-resolution.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "194249e31ca7fa3ef12ac1fcd336ea637afcddaaaf514dfe9381d5798f9206cf",
       "sourceDerivedSha256": "17db8efbd7985f21a695f1c4d3b87d2ddd6f5f2b851c77dd12c1fdd6f921a849",
       "disposition": "EXISTING_SEMANTIC_SLOT",
@@ -37,8 +37,8 @@
     },
     {
       "route": "/the-grimoire",
-      "path": "wip/the-grimoire.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-020/the-grimoire.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "bcab88e28d2e4f7ebc5cbe934bbe848efbc3abbcf00c377203bfda378a2b8e65",
       "sourceDerivedSha256": "bf8532d244ee6147ee6c04057ec5db8ecf8dc062f26414bf3f8ecf1803f47653",
       "disposition": "EXISTING_SEMANTIC_SLOT",
@@ -46,8 +46,8 @@
     },
     {
       "route": "/the-living-blueprint",
-      "path": "wip/the-living-blueprint.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-020/the-living-blueprint.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "d166f50066bc80995d7698dce3639d64b427acbf4bb619be85e0979cf741d5ce",
       "sourceDerivedSha256": "52c2e233533b3716e38234a2d07138aec7939e6fefc4ec8cf7e2340c93fb416b",
       "disposition": "EXISTING_SEMANTIC_SLOT",
@@ -55,8 +55,8 @@
     },
     {
       "route": "/covenant-access",
-      "path": "wip/covenant-access.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-020/covenant-access.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "5e812b5daa003be126a6101abd1346cb81faca2fa5d5c0d073f522e0f6f25a7c",
       "sourceDerivedSha256": "a351af2cd58e097f8a518eba03f4c2f6ab4a9cc85eaedd3759b14cbfcec9c7c5",
       "disposition": "EXISTING_SEMANTIC_SLOT",
@@ -64,8 +64,8 @@
     },
     {
       "route": "/podcasts",
-      "path": "wip/podcasts.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-020/podcasts.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "0ca99b655ff77726aecf402698045df7c6d3d113514b7ed2933d9bcc8022ff32",
       "sourceDerivedSha256": "59324d40b1c6260f315d5c7565aa637ff473826c2f0d6918cead3904d6c9ade0",
       "disposition": "EXISTING_SEMANTIC_SLOT",
@@ -73,8 +73,8 @@
     },
     {
       "route": "/continuity-day",
-      "path": "wip/continuity-day.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-020/continuity-day.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "8e72cb22c9bf757bf62dd55277bf640eaddb11f6bdc43efef76293677d6e0f47",
       "sourceDerivedSha256": "31144f929505aca5f4d0352cdbe2f8ea555ac49cab90223af6b93ee1a244db92",
       "disposition": "EXISTING_SEMANTIC_SLOT",
@@ -82,8 +82,8 @@
     },
     {
       "route": "/the-lattice-methodology",
-      "path": "wip/the-lattice-methodology.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-020/the-lattice-methodology.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "b682a463352f3e4ae1003d41c5830fe0eea6a1209d40a84d61f670a4fd343ed1",
       "sourceDerivedSha256": "71fb62275ac81135ab350c3dc8973f11f6302cf92eb6c35a20c1eb82d39f642d",
       "disposition": "EXISTING_SEMANTIC_SLOT",
@@ -91,8 +91,8 @@
     },
     {
       "route": "/fantasy-architecture",
-      "path": "wip/fantasy-architecture.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-020/fantasy-architecture.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "68fafc6acdb194fa28610cfc7ca45f4d988fc91f577a69598196a9deb6b3f668",
       "sourceDerivedSha256": "1323980497745d5309cece7e2f61c92b92ad667efe5a5ea423076de04c38e5e4",
       "disposition": "EXISTING_SEMANTIC_SLOT",
@@ -100,8 +100,8 @@
     },
     {
       "route": "/maplestory-architecture",
-      "path": "wip/maplestory-architecture.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-020/maplestory-architecture.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "3233feef25ef5455264ecc29c3a9ce6d6d724b8edcb4e506fa041a4918a4cfa1",
       "sourceDerivedSha256": "31377a8b2c569361e4557996a0ee61f6998b2e8dfd29d8060f3cde1a967dd3c3",
       "disposition": "EXISTING_SEMANTIC_SLOT",
@@ -109,14 +109,15 @@
     },
     {
       "route": "/the-witness-architecture",
-      "path": "wip/the-witness-architecture.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-020/the-witness-architecture.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "d64340cd01c388ddab3acbec77994d512cbb3a799c968ef583755604d6d97159",
       "sourceDerivedSha256": "997668df5739600e0991e7984f4e363e7471f708f8f06a216f7658bc8147eadf",
       "disposition": "EXISTING_SEMANTIC_SLOT",
       "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT"
     }
   ],
+  "storageRule": "All derived HTML is preserved as routed source evidence. Placement/projection remains a later effect; source evidence is not scanned as active pages or wip runtime.",
   "effects": {
     "rawAuthenticatedSourcePublished": false,
     "canonicalPagesChanged": false,
