@@ -223,7 +223,7 @@
       "authority": "generated-evidence",
       "routeOwner": "docs/ingestion/VEX-CONTENT-FORGE-BREADTH.md",
       "healthCheck": "node lib/check-document-routes.js",
-      "placementRule": "Provider-neutral derived HTML evidence only when the source slug cannot safely occupy wip/ because a current page/tool/root already exists. Never raw authenticated provider captures; never canonical pages/** promotion."
+      "placementRule": "Provider-neutral public-safe derived HTML evidence for breadth intake. Protected/non-public source remains metadata-only unless separately authorized. Never raw authenticated provider captures; never canonical pages/** promotion."
     },
     {
       "id": "content-forge-workmaps",
