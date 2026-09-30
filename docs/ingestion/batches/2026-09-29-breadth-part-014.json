@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "vex-content-forge.breadth-intake-receipt/v0.1",
+  "issueRef": "github.issue.vextreme.159",
+  "basePrRef": "github.pull.vextreme.161",
+  "partRef": "PART_014_PARTNER_WITH_ME",
+  "inputZip": "014-partner-with-me.zip",
+  "inputZipSha256": "5fde90366d0fe0bf2bdcc4adccf38a3bfc5e370f98f3dcbaf24be0b34e5bfa02",
+  "manifestEntryCount": 6,
+  "storedHtmlCount": 6,
+  "staged": [
+    {
+      "route": "/summary-of-value-zh",
+      "path": "wip/summary-of-value-zh.html",
+      "stagingClass": "WIP_HTML_DRAFT",
+      "sourceHtmlSha256": "79d137f0ffe032425e0823170235479e8c0db9213285529725a06aa2e97d3afc",
+      "sourceDerivedSha256": "49de6409a66e7644d23e6840429ccf3b0ffefd92639c78c8631a5aabb1e96223",
+      "disposition": "DEPENDENCY_ONLY",
+      "placementState": "TRANSLATION_VARIANT_REQUIRES_CANONICAL_LOCALIZATION_AND_ROUTE_POLICY"
+    },
+    {
+      "route": "/investor-archetype-simulation",
+      "path": "docs/ingestion/source-pages/part-014/investor-archetype-simulation.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "cfca9654760a590b39d984d67a9e077012c8051f6507bc983fcb6944c60fbac7",
+      "sourceDerivedSha256": "c4b2e84cbc90a9de60289637fe2abbd7ff8a7c3d216da5405ec2f2eba3279ca0",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NONEMPTY_UNCURATED_PAGE_CORE_SEMANTIC_MATCH_CANONICAL_CLASS_UNRESOLVED"
+    },
+    {
+      "route": "/how-to-invest-in-trust-and-integrity",
+      "path": "docs/ingestion/source-pages/part-014/how-to-invest-in-trust-and-integrity.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "5454d4ab1159e7febc584db92907fba37eb8e2cf8dafa66b92d9817b72adb768",
+      "sourceDerivedSha256": "d8f190b1b8a8e15d9dab09f565ff9397232f7d798f52c11037157d6e91808941",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_ZERO_BYTE_PAGE_SLOT_SOURCE_CONTENT_AVAILABLE_CANONICAL_CLASS_UNRESOLVED"
+    },
+    {
+      "route": "/how-to-invest-in-trust-zh",
+      "path": "wip/how-to-invest-in-trust-zh.html",
+      "stagingClass": "WIP_HTML_DRAFT",
+      "sourceHtmlSha256": "d5966d9e7c406b76e15975b5d8817aae3ba2dc5105402c661e68d380358389fc",
+      "sourceDerivedSha256": "b4f88d3edc6f66be79b316f410ddc332d6f33f73d7404827fb1afdf66aa6b4c1",
+      "disposition": "DEPENDENCY_ONLY",
+      "placementState": "TRANSLATION_VARIANT_REQUIRES_CANONICAL_LOCALIZATION_AND_ROUTE_POLICY"
+    },
+    {
+      "route": "/connect",
+      "path": "docs/ingestion/source-pages/part-014/connect.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "4ed5feaa38346889ad95a1e9e498ac37da46c783fea7de5e012539f122c06954",
+      "sourceDerivedSha256": "8d5965528d18ad1a16d7a37a6727595e710a746758ab541ea1d0b05d968c695a",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NONEMPTY_OPERATIONAL_PAGE_PROTECTED_ENDPOINTS_CURRENTLY_BOUND"
+    },
+    {
+      "route": "/summary-of-value",
+      "path": "docs/ingestion/source-pages/part-014/summary-of-value.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "94b88ef2d5aef9e23c7974ce26c9c537f71d951d239b539f8ac99db2315128fa",
+      "sourceDerivedSha256": "403417038d066da6768b737036adf092e4af0fbdf2b7b3040d0da302cc232136",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_ZERO_BYTE_PAGE_SLOT_SOURCE_CONTENT_AVAILABLE_CANONICAL_CLASS_UNRESOLVED"
+    }
+  ],
+  "carrierNotes": [],
+  "effects": {
+    "rawAuthenticatedSourcePublished": false,
+    "canonicalPagesChanged": false,
+    "canonicalNodesChanged": false,
+    "arcDefinitionsChanged": false,
+    "localizationSourceChanged": false
+  },
+  "cumulativeObservedPages": 90
+}
