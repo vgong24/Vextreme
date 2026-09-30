@@ -24,18 +24,27 @@ plus
      digest-bound routing/effects receipt
 
 plus
-  -> docs/ingestion/workmaps/...json
-     cumulative scanner-first semantic map
-
-later, after consolidation:
-  source evidence
-     -> wip/<slug>.html when an active unplaced draft is actually desired
-     -> pages/<slug>.html when canonical page projection is accepted
-     -> another destination-native class when appropriate
-     -> authorized private storage when protection requires it
+  -> docs/ingestion/workmaps/content-forge-current.json
+     current scanner pointer
+  -> docs/ingestion/workmaps/content-forge-rNNN.json
+     cumulative semantic frontier
+  -> historical cumulative bases only when deeper prior detail is needed
 ```
 
 The source-evidence layer is intentionally **not** scanned as active page/WIP runtime. This prevents preservation breadth from manufacturing localization/analysis activation before placement decisions exist.
+
+## Scanner/lattice integrity
+
+The current scanner root is cumulative rather than a set of isolated part summaries. R023 extends R022, which extends the restored full R021A cumulative basis.
+
+During R023 intake the repository copy of `content-forge-r021a.json` was found truncated at 50,222 bytes. The original R021→R022 successor handoff retained the complete checksum-bound R021A map, so R023 restores those exact `727047` bytes (`sha256=6d4a2977a2ca0faaadfd02259ac1717efd4b4316482c965908861d982a5a067d`) without changing its semantic history.
+
+```text
+content-forge-current.json
+  -> content-forge-r023.json
+       -> content-forge-r022.json
+            -> content-forge-r021a.json  # exact historical basis, machine-readable again
+```
 
 ## Boundaries
 
@@ -48,6 +57,8 @@ The source-evidence layer is intentionally **not** scanned as active page/WIP ru
 
 ## Current continuation
 
-Parts 012–022 are repository-materialized on draft PR #162. R022 brings the cumulative breadth state to 178 observed pages: 106 public-safe routed source-evidence HTML files, one protected Part-022 source represented metadata-only, eleven per-part receipts, and the cumulative R022 scanner map.
+Parts 012–023 are repository-materialized on draft PR #162. R023 brings the cumulative breadth state to **190 observed pages**: **118 public-safe routed source-evidence HTML files**, one protected Part-022 source represented metadata-only, twelve per-part receipts, and the cumulative R023 scanner map.
+
+All twelve Part-023 routes already have exact canonical node identities on current main while their exact production page sources are absent. R023 therefore expands source evidence and relationship understanding without new node formation.
 
 <!-- [VXG RealForever] -->
