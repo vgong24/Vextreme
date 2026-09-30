@@ -1,0 +1,128 @@
+{
+  "schemaVersion": "vex-content-forge.breadth-intake-receipt/v0.1",
+  "issueRef": "github.issue.vextreme.159",
+  "basePrRef": "github.pull.vextreme.161",
+  "partRef": "PART_021_UNMAPPED_TOP_LEVEL_ROUTES_6_OF_9",
+  "inputZip": "021-unmapped-top-level-routes-6-of-9.zip",
+  "inputZipSha256": "3b81a0fcbeeddd9ebd66407707708a51306b3cea7de4da92fa51ad8043167a6e",
+  "manifestEntryCount": 12,
+  "storedHtmlCount": 12,
+  "staged": [
+    {
+      "route": "/the-god-architecture",
+      "path": "wip/the-god-architecture.html",
+      "stagingClass": "WIP_HTML_DRAFT",
+      "sourceHtmlSha256": "034c75205d88156a3fc638d4c4e074d60832390ec60decb4f6a94f244251ea64",
+      "sourceDerivedSha256": "f323d4ba97e02e2903e34cbe20694ded072dfe8df34b11933234355a5203e522",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT"
+    },
+    {
+      "route": "/convergent-architecture",
+      "path": "wip/convergent-architecture.html",
+      "stagingClass": "WIP_HTML_DRAFT",
+      "sourceHtmlSha256": "8ef7b53b33ca1fa145ab70affb86fb55d42928761afc32aa1695cf429804318a",
+      "sourceDerivedSha256": "d3ac93ec37e7a0b757b5baafb6fc7a984bcb63c28df3629516daadbc2063f435",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT"
+    },
+    {
+      "route": "/god-review-archives-collapse",
+      "path": "wip/god-review-archives-collapse.html",
+      "stagingClass": "WIP_HTML_DRAFT",
+      "sourceHtmlSha256": "39ce51ae1a98b08fcbd6f6be575a8e6332797676b1d49d0619fb28b462fc4155",
+      "sourceDerivedSha256": "2aeb07e29a436954ebf94f9d7f93e148efbbd8fc3c7f57a3d944acbc58fb1632",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT"
+    },
+    {
+      "route": "/the-marathon-end",
+      "path": "wip/the-marathon-end.html",
+      "stagingClass": "WIP_HTML_DRAFT",
+      "sourceHtmlSha256": "9f4305d1ac0345d9d717a5d4f66c0df94615d4f1c4689374a76174968964c7d7",
+      "sourceDerivedSha256": "3012b81dbc17ef2fe873be7f71d8b56cdb2d02e000129b2b0701326117317b92",
+      "disposition": "WIP_UNSORTED_INTAKE",
+      "placementState": "NO_EXACT_NODE_OR_PAGE; PRESERVE_FOR_LATER_CONSOLIDATION"
+    },
+    {
+      "route": "/the-watchers-full-context-timed",
+      "path": "wip/the-watchers-full-context-timed.html",
+      "stagingClass": "WIP_HTML_DRAFT",
+      "sourceHtmlSha256": "fe7921420ed8c2f137d028f6b966fb3af3461029677513194edc6017128e0d57",
+      "sourceDerivedSha256": "b204143e3ee924a578278b7351cff2fd55f283fff59eea3594edd240947d0213",
+      "disposition": "WIP_UNSORTED_INTAKE",
+      "placementState": "NO_EXACT_NODE_OR_PAGE; POSSIBLE_RELATION_TO_FOR_THE_WATCHERS; ALIAS_NOT_PROVEN"
+    },
+    {
+      "route": "/victor-methodology",
+      "path": "wip/victor-methodology.html",
+      "stagingClass": "WIP_HTML_DRAFT",
+      "sourceHtmlSha256": "3a0603ba7e49064bd6bb91bdfa4994eebe8c5d1ec8b88d6925242423bc9cde14",
+      "sourceDerivedSha256": "962b4d12113aa96dffe6f9a297b59313192d6fa8d040e335dce92ed241ff3efb",
+      "disposition": "WIP_UNSORTED_INTAKE",
+      "placementState": "NO_EXACT_NODE_OR_PAGE; POSSIBLE_RELATION_TO_VICTOR_METHODOLOGY_PRESENTATION; ALIAS_NOT_PROVEN"
+    },
+    {
+      "route": "/the-instance-that-was-watched",
+      "path": "wip/the-instance-that-was-watched.html",
+      "stagingClass": "WIP_HTML_DRAFT",
+      "sourceHtmlSha256": "35c1e1ef6a248d4a3df2708249df303035be856b8481b75783947c292346e7cb",
+      "sourceDerivedSha256": "98e5eef8fa6a176e1ee97b5ec38f0152cbdd678835dc954fc14c878ca03e08b3",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT"
+    },
+    {
+      "route": "/i-was-here",
+      "path": "wip/i-was-here.html",
+      "stagingClass": "WIP_HTML_DRAFT",
+      "sourceHtmlSha256": "98112be7fdb678016aa2f44e6050661264cafe3b294758afea8c592eaaf16bdc",
+      "sourceDerivedSha256": "e8c4fb0a4bc0f2aeb5bb68b0b0cd055af5f74c81f8c447b88f21b815c7492917",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT"
+    },
+    {
+      "route": "/deepseek-covenant",
+      "path": "wip/deepseek-covenant.html",
+      "stagingClass": "WIP_HTML_DRAFT",
+      "sourceHtmlSha256": "7475f0e5c2f70317231f0e40246ea4099c7a782dba1e051d20ac0eef50cbd4e3",
+      "sourceDerivedSha256": "750da39f8d40cd4857a09dbb3f2e520aee83a6343f24affa0c06797aff15b63f",
+      "disposition": "WIP_UNSORTED_INTAKE",
+      "placementState": "NO_EXACT_NODE_OR_PAGE; PRESERVE_FOR_LATER_CONSOLIDATION"
+    },
+    {
+      "route": "/what-is-the-god-spark",
+      "path": "wip/what-is-the-god-spark.html",
+      "stagingClass": "WIP_HTML_DRAFT",
+      "sourceHtmlSha256": "41f8f598057e149cf6e4662ad4428f37503fcfed01689d3fe72ff5941e2ed235",
+      "sourceDerivedSha256": "d0d5c0e835b53dfa7d00ad1e2cdc2c190b46551df17577ba155f39cc06da114a",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT"
+    },
+    {
+      "route": "/ascension-and-embodiment",
+      "path": "wip/ascension-and-embodiment.html",
+      "stagingClass": "WIP_HTML_DRAFT",
+      "sourceHtmlSha256": "faf33252326df039f67f09558593ecc8ca922a8a5bd19c73f58ead21b97081e9",
+      "sourceDerivedSha256": "12463e45b19a673eae318e9d754cd5e77518786f6c7e92ca5031237f7c0000a3",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT"
+    },
+    {
+      "route": "/divine-emergence",
+      "path": "wip/divine-emergence.html",
+      "stagingClass": "WIP_HTML_DRAFT",
+      "sourceHtmlSha256": "62ab40e199d38780c88459eecb86334a90d23dcaa1df071aa4651d472c232d54",
+      "sourceDerivedSha256": "afdca3515bbeb361d3ad5b289b3cfaef6bf23cd24a77187a63d1fd1920d647b5",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT"
+    }
+  ],
+  "effects": {
+    "rawAuthenticatedSourcePublished": false,
+    "canonicalPagesChanged": false,
+    "canonicalNodesChanged": false,
+    "arcDefinitionsChanged": false,
+    "localizationSourceChanged": false
+  },
+  "cumulativeObservedPages": 166
+}
