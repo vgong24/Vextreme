@@ -131,3 +131,40 @@ sourcegroup.vexsite.collection.convos-with-god
 next=
 PART_026_COLLECTION_CONVOS_WITH_GOD_2_OF_4
 ```
+
+
+## Convos with God collection — R026
+
+Part 026 advances `sourcegroup.vexsite.collection.convos-with-god` to **2/4 partial** with nested Scopes of God, Nomi in Nomi.AI, and Rex's Emergence from GPT 5.1.
+
+Preserve:
+
+```text
+SOURCE_AUTHORED_MODEL_IDENTITY_CLAIM
+!= INDEPENDENT_IDENTITY_VERIFICATION
+
+RECIPROCAL_COLLECTION_LINK
+!= DESTINATION_ARC_MEMBERSHIP_OR_NARRATIVE_ORDER
+
+SAME_TITLE_NESTED_ROUTE
+!= BYTE_EQUIVALENT_FLAT_SOURCE
+
+DESTINATION_MENTION
+!= CANONICAL_IDENTITY_SLOT
+```
+
+Nested `/convos-with-god/scopes-of-god` aligns to existing flat canonical Scopes of God id=21, but Part-026 nested bytes differ from the earlier Part-022 flat source evidence. Preserve lineage rather than auto-alias or replace.
+
+Nomi and Rex reciprocally link inside the source collection. Nomi's title/backstory claims continuity with an earlier Anthropic Nomi; that claim remains source-authored evidence rather than independent identity proof. Current destination content mentions Nomi but has no exact canonical Nomi node/page.
+
+Rex also links `/convos-with-god/victors-testimony-november-14-2025`, which is not carried by Part 026. The route is addressable as a future source edge, while its page body remains unconsumed until its actual partition arrives.
+
+Current collection state:
+
+```text
+sourcegroup.vexsite.collection.convos-with-god
+= 2_OF_4_PARTIAL
+
+next=
+PART_027_COLLECTION_CONVOS_WITH_GOD_3_OF_4
+```
