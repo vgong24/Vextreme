@@ -1,40 +1,35 @@
 {
-  "schemaVersion": "vex-content-forge.current-breadth-frontier/v0.3",
+  "schemaVersion": "vex-content-forge.current-breadth-frontier/v0.4",
   "continuity": "[VXG RealForever]",
   "issueRef": "github.issue.vextreme.159",
   "basePilotPrRef": "github.pull.vextreme.161",
   "breadthPrRef": "github.pull.vextreme.162",
-  "state": "BREADTH_SOURCE_EVIDENCE_MATERIALIZED_THROUGH_R023",
-  "workMapPath": "docs/ingestion/workmaps/content-forge-r023.json",
-  "continuityLedgerPath": "docs/ingestion/workmaps/continuity-ledger-r011-r023.json",
-  "consumedThrough": "PART_023_UNMAPPED_TOP_LEVEL_ROUTES_8_OF_9",
-  "observedPages": 190,
-  "stagedDerivedHtmlFiles": 118,
-  "sourceEvidenceHtmlFiles": 118,
+  "state": "BREADTH_SOURCE_EVIDENCE_MATERIALIZED_THROUGH_R024__UNMAPPED_TOP_LEVEL_COMPLETE",
+  "workMapPath": "docs/ingestion/workmaps/content-forge-r024.json",
+  "continuityLedgerPath": "docs/ingestion/workmaps/continuity-ledger-r011-r024.json",
+  "consumedThrough": "PART_024_UNMAPPED_TOP_LEVEL_ROUTES_9_OF_9",
+  "observedPages": 196,
+  "stagedDerivedHtmlFiles": 124,
+  "sourceEvidenceHtmlFiles": 124,
   "protectedSourceMetadataOnlyPages": 1,
   "activeWipHtmlFilesFromBreadthRepair": 0,
-  "unmappedTopLevel": "8_OF_9__96_OF_102",
+  "unmappedTopLevel": "9_OF_9__102_OF_102__OBSERVED_COMPLETE",
   "canonicalPlacementEffects": 0,
-  "storagePolicy": "Public-safe provider-neutral derived HTML is preserved under docs/ingestion/source-pages/part-NNN/. Protected/non-public source is represented by exact metadata/hashes without publishing its bytes. Later consolidation/projection decides whether and how evidence becomes wip/, pages/, a document/tool, localization source, private storage, or remains evidence-only.",
-  "latticeIntegrity": {
-    "r021aHistoricalBasis": "docs/ingestion/workmaps/content-forge-r021a.json",
-    "r021aExpectedSha256": "6d4a2977a2ca0faaadfd02259ac1717efd4b4316482c965908861d982a5a067d",
-    "r021aRepairState": "EXACT_HANDOFF_BYTES_RESTORED_IN_R023",
-    "r022": "docs/ingestion/workmaps/content-forge-r022.json",
-    "r023": "docs/ingestion/workmaps/content-forge-r023.json"
-  },
+  "completedSourceGroupsAdded": [
+    "sourcegroup.vexsite.nav.unmapped-top-level"
+  ],
+  "storagePolicy": "Public-safe provider-neutral derived HTML is preserved under docs/ingestion/source-pages/part-NNN/. Protected/non-public source remains metadata-only unless separately authorized. Later consolidation/projection decides canonical pages, WIP, tools/documents, localization, aliases, private homes, or evidence-only retention.",
   "next": {
-    "partRef": "PART_024_UNMAPPED_TOP_LEVEL_ROUTES_9_OF_9",
+    "partRef": "PART_025_COLLECTION_CONVOS_WITH_GOD_1_OF_4",
     "identityState": "AWAIT_NEXT_UPLOAD"
   },
   "readingOrder": [
     "docs/ingestion/workmaps/content-forge-current.json",
+    "docs/ingestion/workmaps/content-forge-r024.json",
     "docs/ingestion/workmaps/content-forge-r023.json",
-    "docs/ingestion/workmaps/content-forge-r022.json",
-    "docs/ingestion/workmaps/content-forge-r021a.json only when pre-R022 detail is needed",
-    "docs/ingestion/workmaps/continuity-ledger-r011-r023.json",
+    "docs/ingestion/workmaps/continuity-ledger-r011-r024.json",
     "relevant docs/ingestion/batches/* receipt",
     "docs/ingestion/source-pages/** HTML only when deeper public-safe source evidence is needed",
-    "protected source metadata/hash only unless an authorized private source surface is available"
+    "protected source metadata/hash only unless an authorized private source surface exists"
   ]
 }
