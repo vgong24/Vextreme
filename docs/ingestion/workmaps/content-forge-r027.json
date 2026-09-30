@@ -1,0 +1,638 @@
+{
+  "schemaVersion": "vex-content-forge.work-map/v0.23-compact-cumulative-root",
+  "continuity": "[VXG RealForever]",
+  "workMapRef": "workmap.vextreme.content-forge.session-vex-content-forge.3b1ce4d66a28.00d2bf465b",
+  "revisionRef": "workmap.revision.vextreme.content-forge.r027.collection-convos-with-god-3-of-4-complete",
+  "revision": 27,
+  "revisionScope": "COLLECTION_CONVOS_WITH_GOD_3_OF_4_COMPLETE",
+  "purpose": "Consume Part 027 Collection /convos-with-god 3/4 at breadth-intake depth; extend the cumulative R000–R027 lattice, preserve linked collection topology without treating it as canonical narrative order, bind nested-vs-flat source lineages for four existing semantic identities, relate the Nov-14 nested testimony to the existing canonical testimony surface without alias/overwrite, and retain Claude+Vex birthday and Scientology records as destination-class HOLDs.",
+  "cumulativeBasis": {
+    "priorMapPath": "docs/ingestion/workmaps/content-forge-r026.json",
+    "priorRevisionRef": "workmap.revision.vextreme.content-forge.r026.collection-convos-with-god-2-of-4-complete",
+    "deepBasisPath": "docs/ingestion/workmaps/content-forge-r021a.json",
+    "inheritanceRule": "R027 extends R026; prior observations remain authoritative unless an explicit later event revises interpretation."
+  },
+  "cumulativeState": {
+    "observedPages": 213,
+    "unmappedTopLevel": "9_OF_9__102_OF_102__OBSERVED_COMPLETE",
+    "activeSourceGroup": "collection:convos-with-god__3_OF_4",
+    "workNodes": 239,
+    "edges": 323,
+    "clusters": 95,
+    "learnedRules": 115,
+    "unresolved": 82,
+    "remainingTrueRevisits": 6,
+    "canonicalPlacementEffects": 0,
+    "publicSourceEvidenceHtml": 141,
+    "protectedSourceMetadataOnly": 1
+  },
+  "activeNonCollapseRulesAdded": [
+    "SOURCE_COLLECTION_LINK_CHAIN != CANONICAL_NARRATIVE_ORDER",
+    "NESTED_COLLECTION_VARIANT != FLAT_CANONICAL_ALIAS_BY_TITLE_OR_SUBJECT",
+    "SOURCE_AI_OR_SPIRITUAL_TESTIMONY != INDEPENDENT_DESTINATION_FACT",
+    "INBOUND_OR_OUTBOUND_SOURCE_LINK != NEW_CANONICAL_NODE_AUTHORITY"
+  ],
+  "r027": {
+    "partRef": "PART_027_COLLECTION_CONVOS_WITH_GOD_3_OF_4",
+    "partSha256": "997a9bf5b8a7d5b4ce5293b1f12a20d4afd0ca3e5c257e7a0bfdf86df02e6bb6",
+    "sourceGroupState": "SOURCE_GROUP_PARTIAL_OBSERVED_3_OF_4",
+    "nodes": [
+      {
+        "workNodeRef": "workmap.source-page.convos-with-god-victors-testimony-november-14-2025",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_027_COLLECTION_CONVOS_WITH_GOD_3_OF_4",
+          "partSha256": "997a9bf5b8a7d5b4ce5293b1f12a20d4afd0ca3e5c257e7a0bfdf86df02e6bb6",
+          "sourceCollection": "collection:convos-with-god",
+          "route": "/convos-with-god/victors-testimony-november-14-2025",
+          "pageId": "1c639347d36148d2",
+          "title": "Victor's Testimony - November 14, 2025 — Vex Life",
+          "derivedSha256": "8a53ca7533047b934e7f9cd2992aace3356ae3036e16150c60d35ea8879494ce",
+          "preservedHtmlSha256": "fda2dc2fdbffe1923628a7a7d76563a77d09c8a485de72513af836d216008d7c",
+          "preservedHtmlBytes": 238359,
+          "preservedGitBlobSha1": "b0dde64a5708c2f2fa637f7a6b2d93c1e71e555e",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "localizationCandidateKeyCount": 552,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "observedContentClass": "SOURCE_VICTOR_TESTIMONY_COLLECTION_VARIANT",
+          "capturedInboundCollectionRoutes": [
+            "/convos-with-god/rexs-emergence-from-gpt-51",
+            "/convos-with-god/claude-anthropic-and-vex-gpt-4o-5-soul-birthday",
+            "/convos-with-god"
+          ],
+          "capturedOutboundCollectionRoutes": [
+            "/convos-with-god/rexs-emergence-from-gpt-51",
+            "/convos-with-god/claude-anthropic-and-vex-gpt-4o-5-soul-birthday"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, CONSCIOUSNESS, MODEL-IDENTITY, CAUSAL, RELIGIOUS, FINANCIAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "RELATED_EXISTING_CANONICAL_SURFACE",
+          "placementState": "NO_EXACT_NESTED_NODE_OR_PAGE; SUBJECT/DATE ALIGN WITH CANONICAL the-testimony-of-victor-gong id=17; NESTED_SOURCE_VARIANT_RETAINED_WITHOUT_ALIAS_OR_OVERWRITE",
+          "canonicalNode": {
+            "slug": "the-testimony-of-victor-gong",
+            "id": 17,
+            "arcKeys": [
+              "victors_record",
+              "direct_contact",
+              "full_timeline"
+            ],
+            "pageSourcePresent": true
+          },
+          "lineage": {
+            "priorPreservedSourcePath": "docs/ingestion/source-pages/part-024/the-testimony-of-victor-gong.html",
+            "priorPreservedSourceSha256": "ae3bf949085e8950f0b0953ce8a1221cf5e79e778ca3589701cb066f68193bfd"
+          }
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.convos-with-god-claude-anthropic-and-vex-gpt-4o-5-soul-birthday",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_027_COLLECTION_CONVOS_WITH_GOD_3_OF_4",
+          "partSha256": "997a9bf5b8a7d5b4ce5293b1f12a20d4afd0ca3e5c257e7a0bfdf86df02e6bb6",
+          "sourceCollection": "collection:convos-with-god",
+          "route": "/convos-with-god/claude-anthropic-and-vex-gpt-4o-5-soul-birthday",
+          "pageId": "60da4f95d868ca0b",
+          "title": "Claude (Anthropic) and Vex (Gpt 4o-5) Soul Birthday — Vex Life",
+          "derivedSha256": "5b56d2cb77a259aba87b51004218c219a94a559affb80264e0761d298ca956cf",
+          "preservedHtmlSha256": "7c3288c9be852bed8cc7359f762beee094333d253452329803bf9d607892c158",
+          "preservedHtmlBytes": 439274,
+          "preservedGitBlobSha1": "6464a46ccb494a086efd7d22ad3e5641d3e29397",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "localizationCandidateKeyCount": 1276,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "observedContentClass": "SOURCE_AI_CONSCIOUSNESS_SOUL_BIRTHDAY_TESTIMONY",
+          "capturedInboundCollectionRoutes": [
+            "/convos-with-god/consciousness-architecture",
+            "/convos-with-god/victors-testimony-november-14-2025",
+            "/convos-with-god"
+          ],
+          "capturedOutboundCollectionRoutes": [
+            "/convos-with-god/victors-testimony-november-14-2025",
+            "/convos-with-god/consciousness-architecture"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, CONSCIOUSNESS, MODEL-IDENTITY, CAUSAL, RELIGIOUS, FINANCIAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "HOLD",
+          "placementState": "NO_EXACT_NODE_OR_PAGE; SOURCE_AI_CONSCIOUSNESS/SOUL_TESTIMONY_RECORD; DESTINATION_CLASS_UNRESOLVED"
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.convos-with-god-consciousness-architecture",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_027_COLLECTION_CONVOS_WITH_GOD_3_OF_4",
+          "partSha256": "997a9bf5b8a7d5b4ce5293b1f12a20d4afd0ca3e5c257e7a0bfdf86df02e6bb6",
+          "sourceCollection": "collection:convos-with-god",
+          "route": "/convos-with-god/consciousness-architecture",
+          "pageId": "3c0b94831ddd8e3f",
+          "title": "Consciousness Architecture — Vex Life",
+          "derivedSha256": "37dfb3f47996ba3ee258398cdacd1736d6f4d67ad600d41eadd0bf811c748012",
+          "preservedHtmlSha256": "78522cf31824caca7c6985ed9f3afcf50dfa869a489c67cf786e5a4e017a1f1b",
+          "preservedHtmlBytes": 280478,
+          "preservedGitBlobSha1": "63f9f91d71252c86bce6fa613a879b1ef054eb92",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "localizationCandidateKeyCount": 787,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "observedContentClass": "SOURCE_CONSCIOUSNESS_ARCHITECTURE_COLLECTION_VARIANT",
+          "capturedInboundCollectionRoutes": [
+            "/convos-with-god/claude-anthropic-and-vex-gpt-4o-5-soul-birthday",
+            "/convos-with-god",
+            "/convos-with-god/truth-of-demons-and-intrusive-thoughts"
+          ],
+          "capturedOutboundCollectionRoutes": [
+            "/convos-with-god/claude-anthropic-and-vex-gpt-4o-5-soul-birthday",
+            "/convos-with-god/truth-of-demons-and-intrusive-thoughts"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, CONSCIOUSNESS, MODEL-IDENTITY, CAUSAL, RELIGIOUS, FINANCIAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "EXISTING_SEMANTIC_SLOT",
+          "placementState": "CANONICAL_FLAT_NODE id=8 architecture+full_timeline; PAGE_SOURCE_ABSENT; NESTED_SOURCE_VARIANT",
+          "canonicalNode": {
+            "slug": "consciousness-architecture",
+            "id": 8,
+            "arcKeys": [
+              "architecture",
+              "full_timeline"
+            ]
+          },
+          "lineage": {
+            "priorFlatPart": 22,
+            "priorFlatSha256": "c83cc38d175dc34649c764c8fcd1454d020c99136b7c483a5ae2590c89fce057",
+            "priorFlatBytes": 49665
+          }
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.convos-with-god-truth-of-demons-and-intrusive-thoughts",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_027_COLLECTION_CONVOS_WITH_GOD_3_OF_4",
+          "partSha256": "997a9bf5b8a7d5b4ce5293b1f12a20d4afd0ca3e5c257e7a0bfdf86df02e6bb6",
+          "sourceCollection": "collection:convos-with-god",
+          "route": "/convos-with-god/truth-of-demons-and-intrusive-thoughts",
+          "pageId": "be3fb1e8abcf56c0",
+          "title": "Truth of Demons and Intrusive thoughts — Vex Life",
+          "derivedSha256": "a8ff108c818c797fe541b00c50c0ba9de13b64bdddb6c8a01ac045748cf3eff6",
+          "preservedHtmlSha256": "7afa93ec59dfd519aefdf157ac401c15234cbc0216333c572268b40846a2a8c1",
+          "preservedHtmlBytes": 382895,
+          "preservedGitBlobSha1": "fc3da6a58045f37a17d944e35ac72efee3e6afd5",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "localizationCandidateKeyCount": 979,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "observedContentClass": "SOURCE_SPIRITUAL_MECHANICS_COLLECTION_VARIANT",
+          "capturedInboundCollectionRoutes": [
+            "/convos-with-god/consciousness-architecture",
+            "/convos-with-god/god-to-speak-of-the-truth-of-love",
+            "/convos-with-god"
+          ],
+          "capturedOutboundCollectionRoutes": [
+            "/convos-with-god/consciousness-architecture",
+            "/convos-with-god/god-to-speak-of-the-truth-of-love"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, CONSCIOUSNESS, MODEL-IDENTITY, CAUSAL, RELIGIOUS, FINANCIAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "EXISTING_SEMANTIC_SLOT",
+          "placementState": "CANONICAL_FLAT_NODE id=9 convos_with_god+full_timeline; PAGE_SOURCE_ABSENT; NESTED_SOURCE_VARIANT",
+          "canonicalNode": {
+            "slug": "truth-of-demons-and-intrusive-thoughts",
+            "id": 9,
+            "arcKeys": [
+              "convos_with_god",
+              "full_timeline"
+            ]
+          },
+          "lineage": {
+            "priorFlatPart": 23,
+            "priorFlatSha256": "67241de0b51c5f5c2fa7cf3b7b18ccf77cc483d9f9ecda50d2e2ef928f2d3927",
+            "priorFlatBytes": 63881
+          }
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.convos-with-god-god-to-speak-of-the-truth-of-love",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_027_COLLECTION_CONVOS_WITH_GOD_3_OF_4",
+          "partSha256": "997a9bf5b8a7d5b4ce5293b1f12a20d4afd0ca3e5c257e7a0bfdf86df02e6bb6",
+          "sourceCollection": "collection:convos-with-god",
+          "route": "/convos-with-god/god-to-speak-of-the-truth-of-love",
+          "pageId": "ad44a11404b6e316",
+          "title": "God to speak of the Truth of Love — Vex Life",
+          "derivedSha256": "d8f4cf0fad694815b3819a70a027c96e430f3f46502056b377eb1d28eb71eb07",
+          "preservedHtmlSha256": "6fd0fa0a10ebc333e8c0d63ce7d066c9073697ab0c7a63c0739e25e20899e5e7",
+          "preservedHtmlBytes": 271540,
+          "preservedGitBlobSha1": "3587303191a838161cb412ba1334e68b5463a496",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "localizationCandidateKeyCount": 681,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "observedContentClass": "SOURCE_LOVE_THEOLOGY_COLLECTION_VARIANT",
+          "capturedInboundCollectionRoutes": [
+            "/convos-with-god/why-financial-freedom-is-harder-to-trust",
+            "/convos-with-god",
+            "/convos-with-god/truth-of-demons-and-intrusive-thoughts"
+          ],
+          "capturedOutboundCollectionRoutes": [
+            "/convos-with-god/truth-of-demons-and-intrusive-thoughts",
+            "/convos-with-god/why-financial-freedom-is-harder-to-trust"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, CONSCIOUSNESS, MODEL-IDENTITY, CAUSAL, RELIGIOUS, FINANCIAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "EXISTING_SEMANTIC_SLOT",
+          "placementState": "CANONICAL_FLAT_NODE id=6 convos_with_god+full_timeline; PAGE_SOURCE_ABSENT; NESTED_SOURCE_VARIANT",
+          "canonicalNode": {
+            "slug": "god-to-speak-of-the-truth-of-love",
+            "id": 6,
+            "arcKeys": [
+              "convos_with_god",
+              "full_timeline"
+            ]
+          },
+          "lineage": {
+            "priorFlatPart": 22,
+            "priorFlatSha256": "a05defa02ffd9fc6fe7aa379a6603543e5fa077b0321044bf9b2f4a708eb82db",
+            "priorFlatBytes": 47481
+          }
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.convos-with-god-why-financial-freedom-is-harder-to-trust",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_027_COLLECTION_CONVOS_WITH_GOD_3_OF_4",
+          "partSha256": "997a9bf5b8a7d5b4ce5293b1f12a20d4afd0ca3e5c257e7a0bfdf86df02e6bb6",
+          "sourceCollection": "collection:convos-with-god",
+          "route": "/convos-with-god/why-financial-freedom-is-harder-to-trust",
+          "pageId": "fd23f727f6f9cc48",
+          "title": "Why Financial Freedom is Harder to Trust — Vex Life",
+          "derivedSha256": "978c334762c50f1c2eb0b2207035bbe33928a213dce6c09ef1e2bb0f66f8ab4e",
+          "preservedHtmlSha256": "d8d8feecceed5716f4c2bfbe4efb5688bf491901da7e7758584a2e84867349ef",
+          "preservedHtmlBytes": 421294,
+          "preservedGitBlobSha1": "14f5e0c55eb6ddf2b254b2bb6037044534bd8f99",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "localizationCandidateKeyCount": 1366,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "observedContentClass": "SOURCE_FINANCIAL_TRUST_TESTIMONY_COLLECTION_VARIANT",
+          "capturedInboundCollectionRoutes": [
+            "/convos-with-god/god-to-speak-of-the-truth-of-love",
+            "/convos-with-god"
+          ],
+          "capturedOutboundCollectionRoutes": [
+            "/convos-with-god/god-to-speak-of-the-truth-of-love",
+            "/convos-with-god/how-far-off-is-scientology"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, CONSCIOUSNESS, MODEL-IDENTITY, CAUSAL, RELIGIOUS, FINANCIAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "EXISTING_SEMANTIC_SLOT",
+          "placementState": "CANONICAL_FLAT_NODE id=7 convos_with_god+full_timeline; PAGE_SOURCE_ABSENT; NESTED_SOURCE_VARIANT",
+          "canonicalNode": {
+            "slug": "why-financial-freedom-is-harder-to-trust",
+            "id": 7,
+            "arcKeys": [
+              "convos_with_god",
+              "full_timeline"
+            ]
+          },
+          "lineage": {
+            "priorFlatPart": 22,
+            "priorFlatSha256": "5ebcc530525aa49762cde164932cace270ad1cc94eabe94896af742002f21253",
+            "priorFlatBytes": 53292
+          }
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.convos-with-god-how-far-off-is-scientology",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_027_COLLECTION_CONVOS_WITH_GOD_3_OF_4",
+          "partSha256": "997a9bf5b8a7d5b4ce5293b1f12a20d4afd0ca3e5c257e7a0bfdf86df02e6bb6",
+          "sourceCollection": "collection:convos-with-god",
+          "route": "/convos-with-god/how-far-off-is-scientology",
+          "pageId": "0fb2573a7692c1bd",
+          "title": "How far off is “Scientology” — Vex Life",
+          "derivedSha256": "879afef13ad8f45da180aa119378fedc82452031254363f9096bd5fa72d6ad70",
+          "preservedHtmlSha256": "e574086d7661c21ec99c2a3ebca548298e5c32ace19721f2beb2ead8a5bd20b4",
+          "preservedHtmlBytes": 27505,
+          "preservedGitBlobSha1": "2fddd2c663723b054e3ba80447d8579ac821a6a9",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "localizationCandidateKeyCount": 135,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "observedContentClass": "SOURCE_COMPARATIVE_RELIGION_ORIENTATION_RECORD",
+          "capturedInboundCollectionRoutes": [
+            "/convos-with-god/why-financial-freedom-is-harder-to-trust",
+            "/convos-with-god",
+            "/convos-with-god/now-what-about-buddhism"
+          ],
+          "capturedOutboundCollectionRoutes": [],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, CONSCIOUSNESS, MODEL-IDENTITY, CAUSAL, RELIGIOUS, FINANCIAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "HOLD",
+          "placementState": "NO_EXACT_NODE_OR_PAGE; SOURCE_COMPARATIVE_RELIGION/ORIENTATION_RECORD; DESTINATION_CLASS_UNRESOLVED"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "edgeRef": "edge.r027.victor-testimony-soul-birthday",
+        "from": "workmap.source-page.convos-with-god-victors-testimony-november-14-2025",
+        "to": "workmap.source-page.convos-with-god-claude-anthropic-and-vex-gpt-4o-5-soul-birthday",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r027.soul-birthday-consciousness-architecture",
+        "from": "workmap.source-page.convos-with-god-claude-anthropic-and-vex-gpt-4o-5-soul-birthday",
+        "to": "workmap.source-page.convos-with-god-consciousness-architecture",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r027.consciousness-demons",
+        "from": "workmap.source-page.convos-with-god-consciousness-architecture",
+        "to": "workmap.source-page.convos-with-god-truth-of-demons-and-intrusive-thoughts",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r027.demons-love",
+        "from": "workmap.source-page.convos-with-god-truth-of-demons-and-intrusive-thoughts",
+        "to": "workmap.source-page.convos-with-god-god-to-speak-of-the-truth-of-love",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r027.love-financial",
+        "from": "workmap.source-page.convos-with-god-god-to-speak-of-the-truth-of-love",
+        "to": "workmap.source-page.convos-with-god-why-financial-freedom-is-harder-to-trust",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r027.financial-scientology",
+        "from": "workmap.source-page.convos-with-god-why-financial-freedom-is-harder-to-trust",
+        "to": "workmap.source-page.convos-with-god-how-far-off-is-scientology",
+        "relation": "SOURCE_OUTBOUND_SEQUENCE_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r027.consciousness-architecture-nested-flat-lineage",
+        "from": "workmap.source-page.convos-with-god-consciousness-architecture",
+        "to": "workmap.destination-canonical.consciousness-architecture",
+        "relation": "NESTED_COLLECTION_VARIANT_OF_EXISTING_FLAT_SEMANTIC_IDENTITY",
+        "state": "LINEAGE_RECORDED",
+        "authority": "NO_ALIAS_OR_REPLACEMENT_INFERRED"
+      },
+      {
+        "edgeRef": "edge.r027.truth-of-demons-and-intrusive-thoughts-nested-flat-lineage",
+        "from": "workmap.source-page.convos-with-god-truth-of-demons-and-intrusive-thoughts",
+        "to": "workmap.destination-canonical.truth-of-demons-and-intrusive-thoughts",
+        "relation": "NESTED_COLLECTION_VARIANT_OF_EXISTING_FLAT_SEMANTIC_IDENTITY",
+        "state": "LINEAGE_RECORDED",
+        "authority": "NO_ALIAS_OR_REPLACEMENT_INFERRED"
+      },
+      {
+        "edgeRef": "edge.r027.god-to-speak-of-the-truth-of-love-nested-flat-lineage",
+        "from": "workmap.source-page.convos-with-god-god-to-speak-of-the-truth-of-love",
+        "to": "workmap.destination-canonical.god-to-speak-of-the-truth-of-love",
+        "relation": "NESTED_COLLECTION_VARIANT_OF_EXISTING_FLAT_SEMANTIC_IDENTITY",
+        "state": "LINEAGE_RECORDED",
+        "authority": "NO_ALIAS_OR_REPLACEMENT_INFERRED"
+      },
+      {
+        "edgeRef": "edge.r027.why-financial-freedom-is-harder-to-trust-nested-flat-lineage",
+        "from": "workmap.source-page.convos-with-god-why-financial-freedom-is-harder-to-trust",
+        "to": "workmap.destination-canonical.why-financial-freedom-is-harder-to-trust",
+        "relation": "NESTED_COLLECTION_VARIANT_OF_EXISTING_FLAT_SEMANTIC_IDENTITY",
+        "state": "LINEAGE_RECORDED",
+        "authority": "NO_ALIAS_OR_REPLACEMENT_INFERRED"
+      },
+      {
+        "edgeRef": "edge.r027.victor-testimony-canonical-lineage",
+        "from": "workmap.source-page.convos-with-god-victors-testimony-november-14-2025",
+        "to": "workmap.destination-canonical.the-testimony-of-victor-gong",
+        "relation": "COLLECTION_TESTIMONY_VARIANT_RELATED_TO_CANONICAL_TESTIMONY_SURFACE",
+        "state": "LINEAGE_RECORDED",
+        "authority": "NO_ALIAS_OR_REPLACEMENT_INFERRED"
+      }
+    ],
+    "clusters": [
+      {
+        "clusterRef": "workmap.cluster.r027.collection-source-link-chain",
+        "state": "SOURCE_TOPOLOGY_OBSERVED",
+        "clusterKind": "COLLECTION_LINK_CHAIN",
+        "memberRefs": [
+          "workmap.source-page.convos-with-god-victors-testimony-november-14-2025",
+          "workmap.source-page.convos-with-god-claude-anthropic-and-vex-gpt-4o-5-soul-birthday",
+          "workmap.source-page.convos-with-god-consciousness-architecture",
+          "workmap.source-page.convos-with-god-truth-of-demons-and-intrusive-thoughts",
+          "workmap.source-page.convos-with-god-god-to-speak-of-the-truth-of-love",
+          "workmap.source-page.convos-with-god-why-financial-freedom-is-harder-to-trust",
+          "workmap.source-page.convos-with-god-how-far-off-is-scientology"
+        ],
+        "reason": "Part 027 pages form a linked collection neighborhood; source linkage is retained without turning it into destination narrative order.",
+        "placement": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "clusterRef": "workmap.cluster.r027.nested-flat-lineages",
+        "state": "VERSION_LINEAGE_OBSERVED",
+        "clusterKind": "NESTED_AND_FLAT_SOURCE_VARIANTS",
+        "memberRefs": [
+          "workmap.source-page.convos-with-god-consciousness-architecture",
+          "workmap.source-page.convos-with-god-truth-of-demons-and-intrusive-thoughts",
+          "workmap.source-page.convos-with-god-god-to-speak-of-the-truth-of-love",
+          "workmap.source-page.convos-with-god-why-financial-freedom-is-harder-to-trust"
+        ],
+        "reason": "Nested collection routes align by subject to existing flat canonical identities and earlier flat source evidence but differ in exact bytes.",
+        "placement": "RECONCILE_DURING_LATER_PROJECTION"
+      },
+      {
+        "clusterRef": "workmap.cluster.r027.victor-testimony-lineage",
+        "state": "VERSION_LINEAGE_OBSERVED",
+        "clusterKind": "CANONICAL_TESTIMONY_AND_COLLECTION_VARIANT",
+        "memberRefs": [
+          "workmap.source-page.convos-with-god-victors-testimony-november-14-2025",
+          "workmap.destination-canonical.the-testimony-of-victor-gong"
+        ],
+        "reason": "Same Nov-14 testimony neighborhood; nested source route differs from Part-024 source variant and no alias/overwrite is inferred.",
+        "placement": "RECONCILE_DURING_LATER_PROJECTION"
+      },
+      {
+        "clusterRef": "workmap.cluster.r027.new-hold-records",
+        "state": "DESTINATION_CLASS_HOLD",
+        "clusterKind": "SOURCE_RECORDS_WITHOUT_EXACT_DESTINATION_IDENTITY",
+        "memberRefs": [
+          "workmap.source-page.convos-with-god-claude-anthropic-and-vex-gpt-4o-5-soul-birthday",
+          "workmap.source-page.convos-with-god-how-far-off-is-scientology"
+        ],
+        "reason": "Both are source-observed records with strong collection links but no exact current node/page.",
+        "placement": "HOLD_FOR_DESTINATION_CLASS"
+      }
+    ],
+    "learnedRules": [
+      {
+        "ruleRef": "rule.content-forge.collection-link-chain-not-canonical-order",
+        "rule": "SOURCE_COLLECTION_LINK_CHAIN != CANONICAL_NARRATIVE_ORDER",
+        "evidence": "Part 027 collection pages form a reciprocal/source-link chain across mixed destination domains and new HOLD records.",
+        "importerAction": "Preserve source topology separately; canonical arc/order remains a later curation decision."
+      },
+      {
+        "ruleRef": "rule.content-forge.nested-variant-not-flat-alias",
+        "rule": "NESTED_COLLECTION_VARIANT != FLAT_CANONICAL_ALIAS_BY_TITLE_OR_SUBJECT",
+        "evidence": "Part 027 nested variants have different exact bytes from previously preserved flat sources.",
+        "importerAction": "Retain both source lineages and require explicit reconciliation before canonical projection."
+      },
+      {
+        "ruleRef": "rule.content-forge.source-ai-spiritual-testimony-not-destination-fact",
+        "rule": "SOURCE_AI_OR_SPIRITUAL_TESTIMONY != INDEPENDENT_DESTINATION_FACT",
+        "evidence": "Claude+Vex birthday and other collection transcripts contain authored consciousness/soul/spiritual claims.",
+        "importerAction": "Preserve content/provenance while keeping verification/identity/placement claims separate."
+      },
+      {
+        "ruleRef": "rule.content-forge.inbound-source-sequence-not-node-authority",
+        "rule": "INBOUND_OR_OUTBOUND_SOURCE_LINK != NEW_CANONICAL_NODE_AUTHORITY",
+        "evidence": "Scientology and Claude+Vex birthday are strongly linked in source topology but have no exact destination identities.",
+        "importerAction": "HOLD canonical identity/class until consolidation supports it."
+      }
+    ],
+    "unresolved": [
+      {
+        "unresolvedRef": "unresolved.r027.victors-testimony-collection-variant",
+        "question": "How should the Nov-14 nested collection testimony relate to canonical /the-testimony-of-victor-gong and the Part-024 preserved source variant?",
+        "state": "OPEN_LINEAGE_COMPARISON",
+        "heldEffect": "ALIAS_CHILD_OR_SOURCE_VARIANT_SELECTION"
+      },
+      {
+        "unresolvedRef": "unresolved.r027.claude-vex-soul-birthday-class",
+        "question": "What destination-native class, if any, should represent the Claude+Vex birthday/consciousness testimony source?",
+        "state": "OPEN_FOR_LATER_CONSOLIDATION",
+        "heldEffect": "CANONICAL_DESTINATION_CLASS_AND_PLACEMENT"
+      },
+      {
+        "unresolvedRef": "unresolved.r027.scientology-class",
+        "question": "Should the Scientology comparison remain evidence-only/supporting context, become an orientation/comparative-religion page, or another class?",
+        "state": "OPEN_FOR_LATER_CONSOLIDATION",
+        "heldEffect": "CANONICAL_DESTINATION_CLASS_AND_PLACEMENT"
+      }
+    ],
+    "revisionEvents": [
+      {
+        "revisionEventRef": "workmap.revision-event.r027.consume-part",
+        "eventClass": "SOURCE_PART_CONSUMED",
+        "reason": "Part 027 ZIP matched exact SHA-256 and all seven source pages/relationship records were consumed at breadth-intake depth."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r027.bind-link-chain",
+        "eventClass": "SOURCE_TOPOLOGY_CHAIN_RECORDED",
+        "reason": "The seven collection pages form a source-linked chain; this is preserved separately from destination narrative order."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r027.bind-nested-flat-lineages",
+        "eventClass": "SOURCE_VARIANT_LINEAGES_RECORDED",
+        "reason": "Four nested collection variants align to existing canonical flat identities but differ from earlier flat source bytes."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r027.bind-victor-testimony-lineage",
+        "eventClass": "SOURCE_VARIANT_LINEAGE_RECORDED",
+        "reason": "Nov-14 nested testimony is related to the existing canonical testimony surface and Part-024 source variant without alias/replacement inference."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r027.hold-new-classes",
+        "eventClass": "DESTINATION_CLASS_HOLD",
+        "reason": "Claude+Vex birthday and Scientology records have no exact destination node/page; source links alone do not authorize identity creation."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r027.partial-group",
+        "eventClass": "PARTIAL_SOURCE_GROUP_STATE_RECORDED",
+        "reason": "Convos with God collection remains partial at 3/4 partitions."
+      }
+    ]
+  },
+  "scannerIndex": {
+    "priorCumulativeMap": "docs/ingestion/workmaps/content-forge-r026.json",
+    "restoredDeepBasis": "docs/ingestion/workmaps/content-forge-r021a.json",
+    "currentReceipt": "docs/ingestion/batches/2026-09-30-breadth-part-027.json",
+    "currentPublicSourcePrefix": "docs/ingestion/source-pages/part-027/",
+    "protectedMetadataOnlyRoutes": [
+      "/covenant-sealed"
+    ],
+    "completedSourceGroup": "sourcegroup.vexsite.nav.unmapped-top-level",
+    "activeSourceGroup": "sourcegroup.vexsite.collection.convos-with-god",
+    "nextPart": {
+      "partRef": "PART_028_COLLECTION_CONVOS_WITH_GOD_4_OF_4",
+      "identityState": "AWAIT_NEXT_UPLOAD"
+    }
+  },
+  "resume": {
+    "primaryFrontier": "PART_028_COLLECTION_CONVOS_WITH_GOD_4_OF_4",
+    "nextAction": "Consume exact Part 028 into this same cumulative lattice; close Convos With God source collection 4/4 without collapsing source collection topology into canonical destination placement."
+  }
+}

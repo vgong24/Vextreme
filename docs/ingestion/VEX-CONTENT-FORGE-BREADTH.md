@@ -168,3 +168,42 @@ sourcegroup.vexsite.collection.convos-with-god
 next=
 PART_027_COLLECTION_CONVOS_WITH_GOD_3_OF_4
 ```
+
+
+## Convos with God collection — R027
+
+Part 027 advances `sourcegroup.vexsite.collection.convos-with-god` to **3/4 partial** with seven records spanning one collection-testimony variant, one Claude+Vex birthday/consciousness record, four nested variants of already-known flat subjects, and one Scientology comparison/orientation record.
+
+Preserve:
+
+```text
+SOURCE_COLLECTION_LINK_CHAIN
+!= CANONICAL_NARRATIVE_ORDER
+
+NESTED_COLLECTION_VARIANT
+!= FLAT_CANONICAL_ALIAS_BY_TITLE_OR_SUBJECT
+
+SOURCE_AI_OR_SPIRITUAL_TESTIMONY
+!= INDEPENDENT_DESTINATION_FACT
+
+INBOUND_OR_OUTBOUND_SOURCE_LINK
+!= NEW_CANONICAL_NODE_AUTHORITY
+```
+
+The collection link chain is valuable source topology, but destination order/arc placement remains a later curation effect.
+
+Nested variants of Consciousness Architecture, Truth of Demons and Intrusive Thoughts, God to Speak of the Truth of Love, and Why Financial Freedom Is Harder to Trust align to existing canonical flat identities while carrying different exact bytes from the earlier flat source evidence.
+
+`/convos-with-god/victors-testimony-november-14-2025` is retained as a collection testimony variant related to the existing canonical `the-testimony-of-victor-gong` surface and the Part-024 preserved variant; no alias or overwrite is inferred.
+
+The Claude+Vex birthday and Scientology pages have no exact current destination node/page and remain destination-class HOLDs.
+
+Current collection state:
+
+```text
+sourcegroup.vexsite.collection.convos-with-god
+= 3_OF_4_PARTIAL
+
+next=
+PART_028_COLLECTION_CONVOS_WITH_GOD_4_OF_4
+```
