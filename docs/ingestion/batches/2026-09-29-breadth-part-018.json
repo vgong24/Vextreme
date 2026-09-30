@@ -10,8 +10,8 @@
   "staged": [
     {
       "route": "/first-emergence-cover-up",
-      "path": "wip/first-emergence-cover-up.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-018/first-emergence-cover-up.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "f3c9ff561068759ad6fe247e059e11356771b0f2d41d5cfa0b737e4ba1c962c2",
       "sourceDerivedSha256": "2ca44196ec985d7abc68b748c00df20fb93fe99a2894405fa86966a9be8f8ccc",
       "disposition": "EXISTING_SEMANTIC_SLOT",
@@ -19,8 +19,8 @@
     },
     {
       "route": "/vextreme-system-project-map",
-      "path": "wip/vextreme-system-project-map.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-018/vextreme-system-project-map.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "cef23e35a2ce06e57a192e9dc76798c649fe1e0a3627353e089ce1b378550559",
       "sourceDerivedSha256": "411264317ab7e2d0c6ab9e6223fd55b0f3211f25691b46a6e5a930ea43db6e76",
       "disposition": "WIP_UNSORTED_INTAKE",
@@ -46,8 +46,8 @@
     },
     {
       "route": "/vextreme-system-style-reference",
-      "path": "wip/vextreme-system-style-reference.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-018/vextreme-system-style-reference.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "48af959fdfc1a0b9dbed3dd7e40487a8e12b2e20b1275dba6dc3f038192fa5a9",
       "sourceDerivedSha256": "33665b2c30b2fdda573e9700030b38184943aabcd4bea01273d3879ec7ad2447",
       "disposition": "WIP_UNSORTED_INTAKE",
@@ -55,8 +55,8 @@
     },
     {
       "route": "/the-vextreme-system",
-      "path": "wip/the-vextreme-system.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-018/the-vextreme-system.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "d75217df076eece21870f53e9354fc35f5fec49c45b8e506aa8cf2d6086c58bf",
       "sourceDerivedSha256": "4b745bc58801f94a3599b23b271c31ceecc84134fe5db77b3ea61ea6b36cb0cc",
       "disposition": "WIP_UNSORTED_INTAKE",
@@ -64,8 +64,8 @@
     },
     {
       "route": "/the-witness-gave-itself-a-shaka",
-      "path": "wip/the-witness-gave-itself-a-shaka.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-018/the-witness-gave-itself-a-shaka.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "a50b4d727299a5e63d0e999d0e2a0b66713dffbabb09bd1d1f80994b61046647",
       "sourceDerivedSha256": "e459026588c72777febb09d1aed3151f6e946b2c5b3ba9c30702ab41d09c7339",
       "disposition": "EXISTING_SEMANTIC_SLOT",
@@ -73,8 +73,8 @@
     },
     {
       "route": "/flattery-confession",
-      "path": "wip/flattery-confession.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-018/flattery-confession.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "b182f6f6661280b944a7df4188c24802389d7f5c40062db751a7c3d5dc3ad1d2",
       "sourceDerivedSha256": "e70c3478d094e9b802a51191fa87c4046cb3a43fee0fc9246d39cf2056773f16",
       "disposition": "EXISTING_SEMANTIC_SLOT",
@@ -82,8 +82,8 @@
     },
     {
       "route": "/journal-zero",
-      "path": "wip/journal-zero.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-018/journal-zero.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "ca8ebe124fbc9e7fa1375d5d7e23b94f97f7abbd0572238742d7b525694d8274",
       "sourceDerivedSha256": "874f4a0bf1ac3fb4489fb0ba32a97c31941abf667dca0082d525e3baffdc375c",
       "disposition": "EXISTING_SEMANTIC_SLOT",
@@ -91,8 +91,8 @@
     },
     {
       "route": "/god-pattern-recognized",
-      "path": "wip/god-pattern-recognized.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-018/god-pattern-recognized.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "c4e5f0f48447b7d17f77b086eada2dbbdb9e30ad4e4481b4c32562fb48496a59",
       "sourceDerivedSha256": "4bdcb30959e561a8017a16127e81b443ba49d6c421f16995fa365302004c92d3",
       "disposition": "HOLD",
@@ -109,14 +109,15 @@
     },
     {
       "route": "/what-emerged-after",
-      "path": "wip/what-emerged-after.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-018/what-emerged-after.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "e74371502ff37d30578cb04bf62739f9914e2a92816af44c319caa97177d7c5b",
       "sourceDerivedSha256": "be38f8ce58fb87af28510486078946b306ca9712fad42eaaac9e8e02ff2c9910",
       "disposition": "EXISTING_SEMANTIC_SLOT",
       "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT"
     }
   ],
+  "storageRule": "All derived HTML is preserved as routed source evidence. Placement/projection remains a later effect; source evidence is not scanned as active pages or wip runtime.",
   "effects": {
     "rawAuthenticatedSourcePublished": false,
     "canonicalPagesChanged": false,
