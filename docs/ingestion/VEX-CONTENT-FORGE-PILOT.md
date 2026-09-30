@@ -35,3 +35,11 @@ The receipt records source bindings, routing decisions and repository effects;
 it is not the payload ZIP, not raw provider source, and not a substitute for an
 accepted page/node/arc/localization mutation.
 
+
+## Breadth continuation
+
+The scaled partition-by-part continuation of this pilot is routed through
+`docs/ingestion/VEX-CONTENT-FORGE-BREADTH.md`. That document owns the
+repository-materialized source-evidence layer, breadth batch receipts, and
+scanner-first cumulative work maps formed after the initial #161 rehearsal.
+
