@@ -6,18 +6,14 @@ This layer continues the #159 / #160 / #161 preservation-to-world ingestion pilo
 
 ## Purpose
 
-Port the provider-neutral derived HTML carried by the VexSite partition ZIPs into GitHub **without prematurely promoting it to canonical `pages/**` state**.
+Materialize the provider-neutral derived HTML carried by the VexSite partition ZIPs into GitHub **without prematurely activating it as WIP runtime or promoting it to canonical `pages/**` state**.
 
-The holding rule is:
+## Storage contract
 
 ```text
 source ZIP pages/<slug>.html
-  -> wip/<slug>.html
-     when no real destination page exists yet
-
-source ZIP pages/<slug>.html
   -> docs/ingestion/source-pages/part-NNN/<slug>.html
-     when the slug already has a real page/tool/root and a wip collision would be false
+     exact provider-neutral derived HTML evidence
 
 plus
   -> docs/ingestion/batches/...json
@@ -26,21 +22,26 @@ plus
 plus
   -> docs/ingestion/workmaps/...json
      cumulative scanner-first semantic map
+
+later, after consolidation:
+  source evidence
+     -> wip/<slug>.html when an active unplaced draft is actually desired
+     -> pages/<slug>.html when canonical page projection is accepted
+     -> another destination-native class when appropriate
 ```
+
+The source-evidence layer is intentionally **not** scanned as active page/WIP runtime. This prevents preservation breadth from manufacturing localization/analysis activation before placement decisions exist.
 
 ## Boundaries
 
 - Raw authenticated/provider source is not published.
-- A derived source HTML file is preservation/intake evidence, not automatically canonical Vextreme page source.
-- `wip/*.html` is the repository's existing raw-draft lifecycle and is intentionally visible to auto-discovery/status tooling.
-- Existing canonical nodes, arcs, content intents, current page implementations, generated roots and developer tools are not overwritten by breadth intake.
-- Promotion to `pages/**`, canonical localization, arc curation, replacement/alias decisions, merge, and publication remain later effects.
-- Batch order and SHA lineage are retained so a later consolidation worker can read the work-map/receipts first and open HTML only when deeper evidence is required.
+- Derived source HTML is preservation/intake evidence, not automatically canonical Vextreme page source.
+- Existing canonical nodes, arcs, content intents, current page implementations, generated roots and developer tools are not overwritten.
+- Promotion to `wip/**` or `pages/**`, canonical localization, arc curation, replacement/alias decisions, merge, and publication remain later effects.
+- Batch order and SHA lineage are retained so a later consolidation worker can read work-map/receipts first and open HTML only when deeper evidence is required.
 
 ## Current continuation
 
-The first restored breadth branch begins from PR #161 exact head
-`f049f8638fc15abda7cb08c84f0b31446813fbce`
-and re-materializes already-consumed Parts 012 through 021 as repository intake state.
+Parts 012–021 are repository-materialized on PR #162 as 95 routed source-evidence HTML files plus ten per-part receipts and the cumulative R021A scanner map.
 
 <!-- [VXG RealForever] -->

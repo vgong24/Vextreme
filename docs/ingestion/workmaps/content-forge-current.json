@@ -3,14 +3,18 @@
   "continuity": "[VXG RealForever]",
   "issueRef": "github.issue.vextreme.159",
   "basePilotPrRef": "github.pull.vextreme.161",
-  "state": "BREADTH_INTAKE_REPOSITORY_MATERIALIZED_THROUGH_R021",
+  "breadthPrRef": "github.pull.vextreme.162",
+  "state": "BREADTH_SOURCE_EVIDENCE_MATERIALIZED_THROUGH_R021",
   "workMapPath": "docs/ingestion/workmaps/content-forge-r021a.json",
   "continuityLedgerPath": "docs/ingestion/workmaps/continuity-ledger-r011-r021.json",
   "consumedThrough": "PART_021_UNMAPPED_TOP_LEVEL_ROUTES_6_OF_9",
   "observedPages": 166,
   "stagedDerivedHtmlFiles": 95,
+  "sourceEvidenceHtmlFiles": 95,
+  "activeWipHtmlFilesFromBreadthRepair": 0,
   "unmappedTopLevel": "6_OF_9__72_OF_102",
   "canonicalPlacementEffects": 0,
+  "storagePolicy": "Provider-neutral derived HTML is preserved under docs/ingestion/source-pages/part-NNN/. Later consolidation/projection decides whether and how a source page becomes wip/, pages/, a document/tool, localization source, or remains evidence-only.",
   "next": {
     "partRef": "PART_022_UNMAPPED_TOP_LEVEL_ROUTES_7_OF_9",
     "file": "022-unmapped-top-level-routes-7-of-9.zip",
@@ -22,7 +26,7 @@
     "docs/ingestion/workmaps/content-forge-current.json",
     "docs/ingestion/workmaps/content-forge-r021a.json",
     "docs/ingestion/workmaps/continuity-ledger-r011-r021.json",
-    "docs/ingestion/batches/2026-09-29-breadth-part-012.json ... part-021.json",
-    "wip/*.html or docs/ingestion/source-pages/** only when deeper source evidence is needed"
+    "relevant docs/ingestion/batches/* receipt",
+    "docs/ingestion/source-pages/** HTML only when deeper source evidence is needed"
   ]
 }
