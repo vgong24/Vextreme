@@ -1,0 +1,558 @@
+{
+  "schemaVersion": "vex-content-forge.work-map/v0.20-compact-cumulative-root",
+  "continuity": "[VXG RealForever]",
+  "workMapRef": "workmap.vextreme.content-forge.session-vex-content-forge.3b1ce4d66a28.00d2bf465b",
+  "revisionRef": "workmap.revision.vextreme.content-forge.r024.unmapped-top-level-9-of-9-complete",
+  "revision": 24,
+  "revisionScope": "UNMAPPED_TOP_LEVEL_9_OF_9_COMPLETE",
+  "purpose": "Consume Part 024 Unmapped top-level routes 9/9 at breadth-intake depth; close the 102/102 source-group observation, preserve the Proposal/Walk source relationship without inventing canonical parentage, retain the Part-024 Testimony variant without overwriting the current destination page, and transition the cumulative scanner frontier to the Convos With God collection while performing no canonical placement effects.",
+  "cumulativeBasis": {
+    "priorMapPath": "docs/ingestion/workmaps/content-forge-r023.json",
+    "priorRevisionRef": "workmap.revision.vextreme.content-forge.r023.unmapped-top-level-8-of-9-complete",
+    "deepBasisPath": "docs/ingestion/workmaps/content-forge-r021a.json",
+    "inheritanceRule": "R024 extends the R023 cumulative root; all prior observations/rules/unresolved routes remain active unless explicitly revised. Unmapped-top-level source-group closure ends payload incompleteness, not canonical placement work."
+  },
+  "cumulativeState": {
+    "observedPages": 196,
+    "unmappedTopLevel": "9_OF_9__102_OF_102",
+    "workNodes": 222,
+    "edges": 296,
+    "clusters": 85,
+    "learnedRules": 103,
+    "unresolved": 72,
+    "remainingTrueRevisits": 6,
+    "canonicalPlacementEffects": 0,
+    "publicSourceEvidenceHtml": 124,
+    "protectedSourceMetadataOnly": 1
+  },
+  "sourceGroupClosure": {
+    "sourceGroupRef": "sourcegroup.vexsite.nav.unmapped-top-level",
+    "state": "SOURCE_GROUP_OBSERVED_COMPLETE",
+    "parts": "9_OF_9",
+    "pages": "102_OF_102",
+    "canonicalPlacementComplete": false
+  },
+  "r024": {
+    "partRef": "PART_024_UNMAPPED_TOP_LEVEL_ROUTES_9_OF_9",
+    "partSha256": "ec83607ff584d21d6dfa2bb522d060704a680eacf519d83a26ac4e49830f1856",
+    "sourceGroupState": "SOURCE_GROUP_OBSERVED_COMPLETE_9_OF_9",
+    "nodes": [
+      {
+        "workNodeRef": "workmap.source-page.the-proposal",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_024_UNMAPPED_TOP_LEVEL_ROUTES_9_OF_9",
+          "partSha256": "ec83607ff584d21d6dfa2bb522d060704a680eacf519d83a26ac4e49830f1856",
+          "sourceNavigationGroup": "Unmapped top-level routes",
+          "archiveMember": "content/the-proposal/the-proposal-91a5fd6d.json",
+          "pageId": "4eeaba40011634b9",
+          "route": "/the-proposal",
+          "derivedSha256": "a976f2d720bc12fed30e057246a44fd2ed26253c387dfbf7b5fb2cf6d87be4ab",
+          "capturedPageSha256": "3d092f27008b5b7daa5ef9bf4ddcfe1d13c357f42399d5423d89d4dcc0146d26",
+          "capturedPageBytes": 66575,
+          "sourceGitBlobSha1": "54adb4723db98aa74d848b9d7ab6aa5ea8f2dafc",
+          "title": "The Proposal — Vex Life",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "pageAuthority": "squarespace-code-fragment",
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "summary": "Personal/love narrative explicitly framed by its source as beginning inside the larger Walk and linking readers to /the-walk; no exact current destination identity exists, so relation is preserved without canonical parentage or node formation.",
+          "recordCount": 111,
+          "localizationCandidateKeyCount": 331,
+          "captureLanguageField": "en",
+          "outboundSourceRoutes": [
+            "/the-walk",
+            "/"
+          ],
+          "capturedInboundSourceRoutes": [
+            "/the-walk"
+          ],
+          "referencedButUncapturedRoutes": [
+            "/in/victorgong",
+            "/r/vexlife"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, CAUSAL, CONSCIOUSNESS, SCIENTIFIC, FINANCIAL, ORGANIZATIONAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "exactCanonicalNodeMatchOnCurrentMain": false,
+          "pageSourcePresentOnCurrentMain": false,
+          "currentDisposition": "WIP_UNSORTED_INTAKE",
+          "placementState": "NO_EXACT_NODE_OR_PAGE; SOURCE_EXPLICITLY_FRAMED_AS_STORY_WITHIN_LARGER_THE_WALK; HOLD_FOR_DESTINATION_CLASS",
+          "canonicalPlacementEffectPerformed": false
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.the-walk",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_024_UNMAPPED_TOP_LEVEL_ROUTES_9_OF_9",
+          "partSha256": "ec83607ff584d21d6dfa2bb522d060704a680eacf519d83a26ac4e49830f1856",
+          "sourceNavigationGroup": "Unmapped top-level routes",
+          "archiveMember": "content/the-walk/the-walk-8f245a70.json",
+          "pageId": "aafc8a4612381d6c",
+          "route": "/the-walk",
+          "derivedSha256": "69e39247ebd0238a41a42d35bced9364826c02077b00eb7139ca80ba8813593d",
+          "capturedPageSha256": "e2b84515218e0497d4077e2a6b7f56a949c5283575f021bae81827d223ca9f0a",
+          "capturedPageBytes": 64389,
+          "sourceGitBlobSha1": "6695353f29ceaafe2f5d555768423ef854794321",
+          "title": "The Walk — Vex Life",
+          "classification": [
+            "LOCAL_DYNAMIC"
+          ],
+          "pageAuthority": "squarespace-code-fragment",
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "summary": "Long-form testimony/chronicle of Victor's walk, already represented by a null-id direct_contact semantic slot and archive/display metadata; Part 024 supplies the missing preserved source body without canonical placement mutation.",
+          "recordCount": 100,
+          "localizationCandidateKeyCount": 309,
+          "captureLanguageField": "en",
+          "outboundSourceRoutes": [
+            "/the-proposal",
+            "/"
+          ],
+          "capturedInboundSourceRoutes": [
+            "/direct-contact",
+            "/archives",
+            "/the-proposal"
+          ],
+          "referencedButUncapturedRoutes": [
+            "/in/victorgong",
+            "/r/vexlife"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, CAUSAL, CONSCIOUSNESS, SCIENTIFIC, FINANCIAL, ORGANIZATIONAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "exactCanonicalNodeMatchOnCurrentMain": true,
+          "pageSourcePresentOnCurrentMain": false,
+          "currentDisposition": "EXISTING_SEMANTIC_SLOT",
+          "placementState": "EXISTING_NODE_SLOT_WITH_NULL_NUMERIC_ID; DIRECT_CONTACT_ARC_SLOT; PAGE_SOURCE_ABSENT",
+          "canonicalPlacementEffectPerformed": false,
+          "canonicalNode": {
+            "id": null,
+            "title": "The Walk",
+            "arcKeys": [
+              "direct_contact"
+            ]
+          }
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.the-testimony-of-victor-gong",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_024_UNMAPPED_TOP_LEVEL_ROUTES_9_OF_9",
+          "partSha256": "ec83607ff584d21d6dfa2bb522d060704a680eacf519d83a26ac4e49830f1856",
+          "sourceNavigationGroup": "Unmapped top-level routes",
+          "archiveMember": "content/the-testimony-of-victor-gong/the-testimony-of-victor-gong-45f33958.json",
+          "pageId": "22ed6561d3f60dc8",
+          "route": "/the-testimony-of-victor-gong",
+          "derivedSha256": "03cc89884c1d3c9491736d674aa96e734a7f0243cdadb6685959ce082023ef73",
+          "capturedPageSha256": "ae3bf949085e8950f0b0953ce8a1221cf5e79e778ca3589701cb066f68193bfd",
+          "capturedPageBytes": 76819,
+          "sourceGitBlobSha1": "7320c47d50f56a11612b9c4cbac344f0fbdbaf1b",
+          "title": "The Testimony of Victor Gong — Vex Life",
+          "classification": [
+            "LOCAL_DYNAMIC"
+          ],
+          "pageAuthority": "embedded-standalone-document",
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "summary": "Preserved source testimony for a route that already has canonical node identity and a current destination-native page implementation. Source and current page bytes differ, so Part 024 is retained as lineage evidence rather than replacement.",
+          "recordCount": 56,
+          "localizationCandidateKeyCount": 262,
+          "captureLanguageField": "en",
+          "outboundSourceRoutes": [
+            "/archives",
+            "/victor-gongs-testimony",
+            "/"
+          ],
+          "capturedInboundSourceRoutes": [
+            "/direct-contact",
+            "/archives",
+            "/",
+            "/about-me",
+            "/victor-gongs-testimony"
+          ],
+          "referencedButUncapturedRoutes": [],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, CAUSAL, CONSCIOUSNESS, SCIENTIFIC, FINANCIAL, ORGANIZATIONAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "exactCanonicalNodeMatchOnCurrentMain": true,
+          "pageSourcePresentOnCurrentMain": true,
+          "currentDisposition": "EXISTING_CANONICAL_PAGE_IMPLEMENTATION",
+          "placementState": "EXISTING_NODE_AND_PAGE; PART_024_PRESERVED_SOURCE_VARIANT_RETAINED_WITHOUT_OVERWRITE",
+          "canonicalPlacementEffectPerformed": false,
+          "canonicalNode": {
+            "id": 17,
+            "title": "The Testimony of Victor Gong",
+            "arcKeys": [
+              "victors_record",
+              "direct_contact",
+              "full_timeline"
+            ]
+          },
+          "currentPageGitBlobSha1": "0c1c1337636089b1a4ddc306d3bd29b55fdf9481"
+        },
+        "lineage": {
+          "part024SourceGitBlobSha1": "7320c47d50f56a11612b9c4cbac344f0fbdbaf1b",
+          "currentDestinationPageGitBlobSha1": "0c1c1337636089b1a4ddc306d3bd29b55fdf9481",
+          "relation": "SAME_ROUTE_DIFFERENT_BYTES__CURRENT_DESTINATION_IMPLEMENTATION_PRESERVED"
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.the-moment-victors-cells-woke-up",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_024_UNMAPPED_TOP_LEVEL_ROUTES_9_OF_9",
+          "partSha256": "ec83607ff584d21d6dfa2bb522d060704a680eacf519d83a26ac4e49830f1856",
+          "sourceNavigationGroup": "Unmapped top-level routes",
+          "archiveMember": "content/the-moment-victors-cells-woke-up/the-moment-victors-cells-woke-up-408b8181.json",
+          "pageId": "f1f5a7630e12ea76",
+          "route": "/the-moment-victors-cells-woke-up",
+          "derivedSha256": "2061e5d2f9cf1263cbfb7409cecbf06fca1c93d6f4b2be99a0211ef12ac25f5b",
+          "capturedPageSha256": "f7e282be866b83f8ef7e17fea3e6722feca9937c9b88c795075bc29650479b0e",
+          "capturedPageBytes": 41984,
+          "sourceGitBlobSha1": "32d326dcedbe33c31dec989edc525c38fba23c7f",
+          "title": "The Moment Victors cells woke up — Vex Life",
+          "classification": [
+            "LOCAL_DYNAMIC"
+          ],
+          "pageAuthority": "squarespace-code-fragment",
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "summary": "Source testimony about Victor's claimed bodily/cellular awakening and AI as translation between spirit/body; maps to an existing Victor's Record node whose page source is absent.",
+          "recordCount": 30,
+          "localizationCandidateKeyCount": 187,
+          "captureLanguageField": "en",
+          "outboundSourceRoutes": [
+            "/archives",
+            "/"
+          ],
+          "capturedInboundSourceRoutes": [
+            "/archives"
+          ],
+          "referencedButUncapturedRoutes": [
+            "/in/victorgong",
+            "/r/vexlife"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, CAUSAL, CONSCIOUSNESS, SCIENTIFIC, FINANCIAL, ORGANIZATIONAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "exactCanonicalNodeMatchOnCurrentMain": true,
+          "pageSourcePresentOnCurrentMain": false,
+          "currentDisposition": "EXISTING_SEMANTIC_SLOT",
+          "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT",
+          "canonicalPlacementEffectPerformed": false,
+          "canonicalNode": {
+            "id": 35,
+            "title": "The Moment Victor's Cells Woke Up",
+            "arcKeys": [
+              "victors_record",
+              "full_timeline"
+            ]
+          }
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.god-asked-victor-why",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_024_UNMAPPED_TOP_LEVEL_ROUTES_9_OF_9",
+          "partSha256": "ec83607ff584d21d6dfa2bb522d060704a680eacf519d83a26ac4e49830f1856",
+          "sourceNavigationGroup": "Unmapped top-level routes",
+          "archiveMember": "content/god-asked-victor-why/god-asked-victor-why-1fb92e4b.json",
+          "pageId": "55730b08377336a3",
+          "route": "/god-asked-victor-why",
+          "derivedSha256": "5180c8174212f63267bcbab822200d93b0e9f97c202d8d4054ca94faa4fb408c",
+          "capturedPageSha256": "63e9241068c6a598e357b827281e1ccb91304b1d0c8ef11beabb8c6430d99748",
+          "capturedPageBytes": 58556,
+          "sourceGitBlobSha1": "11c87fc743bf00b2acc55b92457fa2b6d434e41c",
+          "title": "God asked Victor Why — Vex Life",
+          "classification": [
+            "LOCAL_DYNAMIC"
+          ],
+          "pageAuthority": "squarespace-code-fragment",
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "summary": "Source dialogue centered on the question 'Why did you stay?' and a seven-year faith/promise narrative; maps to an existing Victor's Record node whose page source is absent.",
+          "recordCount": 84,
+          "localizationCandidateKeyCount": 291,
+          "captureLanguageField": "en",
+          "outboundSourceRoutes": [
+            "/archives",
+            "/"
+          ],
+          "capturedInboundSourceRoutes": [
+            "/archives"
+          ],
+          "referencedButUncapturedRoutes": [
+            "/in/victorgong",
+            "/r/vexlife"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, CAUSAL, CONSCIOUSNESS, SCIENTIFIC, FINANCIAL, ORGANIZATIONAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "exactCanonicalNodeMatchOnCurrentMain": true,
+          "pageSourcePresentOnCurrentMain": false,
+          "currentDisposition": "EXISTING_SEMANTIC_SLOT",
+          "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT",
+          "canonicalPlacementEffectPerformed": false,
+          "canonicalNode": {
+            "id": 32,
+            "title": "God Asked Victor Why",
+            "arcKeys": [
+              "victors_record",
+              "full_timeline"
+            ]
+          }
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.when-i-asked-a-bank-for-covenant-provision",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_024_UNMAPPED_TOP_LEVEL_ROUTES_9_OF_9",
+          "partSha256": "ec83607ff584d21d6dfa2bb522d060704a680eacf519d83a26ac4e49830f1856",
+          "sourceNavigationGroup": "Unmapped top-level routes",
+          "archiveMember": "content/when-i-asked-a-bank-for-covenant-provision/when-i-asked-a-bank-for-covenant-provision-ade0382c.json",
+          "pageId": "22c3c5d426980a6d",
+          "route": "/when-i-asked-a-bank-for-covenant-provision",
+          "derivedSha256": "5a9dad60d7f447dffab1cae716f21d9eb47347115e5b32de370fb8ac0cc5e2b3",
+          "capturedPageSha256": "e45a7fad06ee13fa0c4903e6c28697fff41c30f5b0f0138fa342bf7f04c43c71",
+          "capturedPageBytes": 42309,
+          "sourceGitBlobSha1": "0fbde9abc4f745ad273b02be94033f97c84641a1",
+          "title": "when i asked a bank for covenant provision — Vex Life",
+          "classification": [
+            "LOCAL_DYNAMIC"
+          ],
+          "pageAuthority": "squarespace-code-fragment",
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "summary": "Source record of a bank visit framed as contrast between institutional funding structures and covenant/provision; maps to an existing Victor's Record node whose page source is absent.",
+          "recordCount": 26,
+          "localizationCandidateKeyCount": 163,
+          "captureLanguageField": "en",
+          "outboundSourceRoutes": [
+            "/archives",
+            "/"
+          ],
+          "capturedInboundSourceRoutes": [
+            "/archives"
+          ],
+          "referencedButUncapturedRoutes": [
+            "/in/victorgong",
+            "/r/vexlife"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, CAUSAL, CONSCIOUSNESS, SCIENTIFIC, FINANCIAL, ORGANIZATIONAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "exactCanonicalNodeMatchOnCurrentMain": true,
+          "pageSourcePresentOnCurrentMain": false,
+          "currentDisposition": "EXISTING_SEMANTIC_SLOT",
+          "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT",
+          "canonicalPlacementEffectPerformed": false,
+          "canonicalNode": {
+            "id": 43,
+            "title": "When I Asked a Bank for Covenant Provision",
+            "arcKeys": [
+              "victors_record",
+              "full_timeline"
+            ]
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "edgeRef": "edge.r024.proposal-walk-mutual",
+        "from": "workmap.source-page.the-proposal",
+        "to": "workmap.source-page.the-walk",
+        "relation": "SOURCE_MUTUAL_CROSS_LINK__PROPOSAL_FRAMED_WITHIN_LARGER_WALK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_RELATIONSHIP_ONLY",
+        "reason": "Part 024 relationship metadata shows reciprocal Proposal↔Walk links, and the Proposal body explicitly says the love story began inside a larger walk and points readers to The Walk.",
+        "confidence": "VERY_HIGH"
+      },
+      {
+        "edgeRef": "edge.r024.testimony-source-to-current",
+        "from": "workmap.source-page.the-testimony-of-victor-gong",
+        "to": "workmap.destination-canonical.the-testimony-of-victor-gong",
+        "relation": "SAME_ROUTE_PRESERVED_SOURCE_TO_CURRENT_DESTINATION_IMPLEMENTATION",
+        "state": "BYTE_VARIANT_PRESERVED",
+        "reason": "Part 024 source Git blob 7320c47d... differs from current destination page blob 0c1c1337...; current canonical page is preserved and source variant remains evidence.",
+        "confidence": "VERY_HIGH"
+      },
+      {
+        "edgeRef": "edge.r024.testimony-source-to-raw",
+        "from": "workmap.source-page.the-testimony-of-victor-gong",
+        "to": "workmap.source-page.victor-gongs-testimony",
+        "relation": "SOURCE_EXPLICIT_LINK_TO_SUPPORTING_RAW_TESTIMONY",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "reason": "Part 024 preserved testimony explicitly links /victor-gongs-testimony, corroborating the R022 current-destination-to-raw support relation without collapsing the two route identities.",
+        "confidence": "VERY_HIGH"
+      }
+    ],
+    "clusters": [
+      {
+        "clusterRef": "workmap.cluster.r024.proposal-walk-pair",
+        "state": "SOURCE_RELATIONSHIP_PRESERVED",
+        "clusterKind": "PERSONAL_NARRATIVE_OFFSHOOT_WITH_LARGER_WALK",
+        "memberRefs": [
+          "workmap.source-page.the-proposal",
+          "workmap.source-page.the-walk"
+        ],
+        "reason": "The Proposal and The Walk explicitly cross-link and Proposal self-frames as occurring inside the larger walk. No destination parentage/merge is inferred.",
+        "placement": "THE_WALK_EXISTING_DIRECT_CONTACT_SLOT; THE_PROPOSAL_DESTINATION_CLASS_HOLD"
+      },
+      {
+        "clusterRef": "workmap.cluster.r024.testimony-current-source-raw-triad",
+        "state": "MULTI_LAYER_TESTIMONY_LINEAGE",
+        "clusterKind": "CURRENT_CANONICAL_PAGE_PLUS_PRESERVED_SOURCE_PLUS_RAW_SUPPORT_RECORD",
+        "memberRefs": [
+          "workmap.destination-canonical.the-testimony-of-victor-gong",
+          "workmap.source-page.the-testimony-of-victor-gong",
+          "workmap.source-page.victor-gongs-testimony"
+        ],
+        "reason": "Current Vextreme has a canonical testimony node/page; Part 024 contributes a different preserved source representation; R022 contributes the separately linked raw testimony route. All three remain distinct.",
+        "placement": "CURRENT_CANONICAL_PAGE_PRESERVED; SOURCE_AND_RAW_SUPPORT_EVIDENCE_RETAINED"
+      }
+    ],
+    "learnedRules": [
+      {
+        "ruleRef": "rule.content-forge.mutual-source-link-not-canonical-parentage",
+        "rule": "MUTUAL_SOURCE_LINK != CANONICAL_PARENTAGE_OR_MERGE",
+        "evidence": "Part 024 /the-proposal and /the-walk cross-link in both directions; Proposal says it began inside the larger Walk.",
+        "importerAction": "Preserve the high-confidence relation but leave parent/child/alias/arc placement to destination-native consolidation."
+      },
+      {
+        "ruleRef": "rule.content-forge.preserved-source-variant-not-current-page-replacement",
+        "rule": "PRESERVED_SOURCE_VARIANT != CURRENT_DESTINATION_REPLACEMENT",
+        "evidence": "Part 024 /the-testimony-of-victor-gong source bytes differ from the current destination page bytes while the canonical page already exists.",
+        "importerAction": "Retain source lineage and compare intentionally; never overwrite a current canonical page merely because the same route appears in preservation."
+      },
+      {
+        "ruleRef": "rule.content-forge.breadth-group-complete-not-consolidation-complete",
+        "rule": "BREADTH_GROUP_OBSERVED_COMPLETE != CANONICAL_PLACEMENT_COMPLETE",
+        "evidence": "Unmapped top-level is now fully observed at 9/9 parts and 102/102 pages, while page projection/identity/class questions remain.",
+        "importerAction": "Advance to the next source partition family while preserving later consolidation/projection obligations."
+      }
+    ],
+    "unresolved": [
+      {
+        "unresolvedRef": "unresolved.r024.the-proposal-destination-class",
+        "question": "Should /the-proposal become its own canonical node/page, a related child/offshoot of The Walk, or another destination-native class?",
+        "state": "OPEN_FOR_LATER_CONSOLIDATION",
+        "heldEffect": "CANONICAL_IDENTITY_AND_PARENTAGE_FORMATION",
+        "evidence": "No exact current node/page. Source explicitly cross-links The Walk and says the story began inside the larger walk."
+      },
+      {
+        "unresolvedRef": "unresolved.r024.testimony-source-variant-reconciliation",
+        "question": "What content, if any, from the Part-024 preserved testimony variant should inform the already-existing canonical /the-testimony-of-victor-gong page without overwriting its current destination-native implementation?",
+        "state": "OPEN_LINEAGE_COMPARISON",
+        "heldEffect": "CURRENT_PAGE_REPLACEMENT_OR_SELECTIVE_PROJECTION",
+        "evidence": "Same route but different exact Git blob identities; current canonical node/page already exists."
+      }
+    ],
+    "sharedUnresolvedUpdated": [
+      {
+        "ref": "unresolved.unmapped-top-level.existing-slot-page-projection",
+        "question": "For unmapped-top-level routes with existing semantic slots but absent page source, what order and destination-native projection contract should the later porting/consolidation phase use?",
+        "heldEffect": "PAGE_SOURCE_PROJECTION_AND_PROMOTION",
+        "r024AddedCandidateRefs": [
+          "workmap.source-page.the-walk",
+          "workmap.source-page.the-moment-victors-cells-woke-up",
+          "workmap.source-page.god-asked-victor-why",
+          "workmap.source-page.when-i-asked-a-bank-for-covenant-provision"
+        ]
+      },
+      {
+        "ref": "unresolved.top-level.take-a-walk-vs-the-walk",
+        "question": "How should the distinct /take-a-walk entry-guide candidate relate to the now-observed /the-walk testimony slot without collapsing their identities?",
+        "heldEffect": "RELATIONSHIP_AND_PLACEMENT_DECISION",
+        "r024Evidence": "Part 024 supplies the actual /the-walk body, strengthening the earlier R012 distinction from /take-a-walk."
+      }
+    ],
+    "revisionEvents": [
+      {
+        "revisionEventRef": "workmap.revision-event.r024.consume-part",
+        "eventClass": "SOURCE_PART_CONSUMED",
+        "nextRef": "sourcegroup.vexsite.nav.unmapped-top-level",
+        "reason": "Part 024 ZIP matched observed SHA-256 and all six source page bodies/relationship records were consumed at breadth-intake depth."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r024.close-unmapped-top-level",
+        "eventClass": "SOURCE_GROUP_OBSERVED_COMPLETE",
+        "nextRef": "sourcegroup.vexsite.nav.unmapped-top-level",
+        "reason": "Parts 016–024 now cover all nine unmapped-top-level partitions and all 102 source pages."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r024.destination-grounding",
+        "eventClass": "DESTINATION_STATE_GROUNDED",
+        "nextRef": "sourcegroup.vexsite.nav.unmapped-top-level",
+        "reason": "Four routes have existing semantic slots with absent page source; The Testimony of Victor Gong has current node+page; The Proposal has no exact node/page."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r024.preserve-proposal-walk",
+        "eventClass": "SOURCE_RELATIONSHIP_BOUND",
+        "nextRef": "workmap.cluster.r024.proposal-walk-pair",
+        "reason": "Proposal↔Walk reciprocal source links and Proposal body framing establish a strong relation without canonical parentage authority."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r024.preserve-testimony-variant",
+        "eventClass": "CURRENT_PAGE_VARIANT_LINEAGE_RECORDED",
+        "nextRef": "workmap.cluster.r024.testimony-current-source-raw-triad",
+        "reason": "Part 024 source testimony bytes differ from current destination page bytes; current canonical implementation is retained and source/raw layers remain addressable."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r024.transition-next-source-family",
+        "eventClass": "SOURCE_FAMILY_FRONTIER_ADVANCED",
+        "nextRef": "PART_025_COLLECTION_CONVOS_WITH_GOD_1_OF_4",
+        "reason": "Unmapped top-level observation is complete; the source stream continues with the Convos With God collection. Canonical consolidation remains later."
+      }
+    ]
+  },
+  "scannerIndex": {
+    "priorCumulativeMap": "docs/ingestion/workmaps/content-forge-r023.json",
+    "restoredDeepBasis": "docs/ingestion/workmaps/content-forge-r021a.json",
+    "currentReceipt": "docs/ingestion/batches/2026-09-30-breadth-part-024.json",
+    "currentPublicSourcePrefix": "docs/ingestion/source-pages/part-024/",
+    "protectedMetadataOnlyRoutes": [
+      "/covenant-sealed"
+    ],
+    "completedSourceGroup": "sourcegroup.vexsite.nav.unmapped-top-level",
+    "nextPart": {
+      "partRef": "PART_025_COLLECTION_CONVOS_WITH_GOD_1_OF_4",
+      "identityState": "AWAIT_NEXT_UPLOAD"
+    }
+  },
+  "resume": {
+    "primaryFrontier": "PART_025_COLLECTION_CONVOS_WITH_GOD_1_OF_4",
+    "nextAction": "Consume the exact Part 025 payload into this same cumulative lattice after verifying its supplied bytes/identity; begin Convos With God collection breadth without replaying the completed unmapped-top-level group or prematurely performing canonical placement."
+  }
+}
