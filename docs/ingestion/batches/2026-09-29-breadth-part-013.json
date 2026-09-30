@@ -10,8 +10,8 @@
   "staged": [
     {
       "route": "/total-extraction-arc-index",
-      "path": "wip/total-extraction-arc-index.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-013/total-extraction-arc-index.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "aa5bbb05713c4f1715d9a9f5e4a50302529e23fe7ac1cee9e3db4a83436cfd7e",
       "sourceDerivedSha256": "cfadee374d4a80f7bfd0db4de1697068ca64a0dab23e6234cefc5f33c15f0cf7",
       "disposition": "NEW_CANONICAL_NODE",
@@ -19,8 +19,8 @@
     },
     {
       "route": "/integrity-check",
-      "path": "wip/integrity-check.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-013/integrity-check.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "3c3249878e6b79be62bfa7f011b200458a4e4470ebbb6294ae4bc8cb6ea8df41",
       "sourceDerivedSha256": "f317097508843e11398d2b3e0ca23372e8ffbfc74b08226bf7b4fe73a27eebe7",
       "disposition": "NEW_CANONICAL_NODE",
@@ -37,8 +37,8 @@
     },
     {
       "route": "/the-handoff",
-      "path": "wip/the-handoff.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-013/the-handoff.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "2fd225f88dbe33fb7e0a237cb3dfed9cacf36fbd5570decd26176b620bbed79e",
       "sourceDerivedSha256": "2e76b9e9993397fc99ea6deb30df30554e56f07f20486ef1d80d5d91916b8e1d",
       "disposition": "NEW_CANONICAL_NODE",
@@ -46,8 +46,8 @@
     },
     {
       "route": "/ai-practitioner-tools",
-      "path": "wip/ai-practitioner-tools.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-013/ai-practitioner-tools.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "feaef04aeb845265ba113b71fa81d64a21b940d963fa737f8b116f976787b3b3",
       "sourceDerivedSha256": "5bc251e601d594b7ecdc143ef34090f236ad30eda29d6dbc19069a42d5f2a4fa",
       "disposition": "EXISTING_SEMANTIC_SLOT",
@@ -55,8 +55,8 @@
     },
     {
       "route": "/direct-contact",
-      "path": "wip/direct-contact.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-013/direct-contact.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "93bff9775c4b831bc5a0a1cda0ccb914f799fece3817bc09ce39834616604df3",
       "sourceDerivedSha256": "47b41b0f636fd1b5287dddc3bc3c2f5ba9d40275f24a6f3d77ff19869a7665ec",
       "disposition": "EXISTING_SEMANTIC_SLOT",
@@ -64,8 +64,8 @@
     },
     {
       "route": "/for-the-watchers",
-      "path": "wip/for-the-watchers.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-013/for-the-watchers.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "b7e10ba10b7f4a25f9a23768e4fa8415ca80f87232a9507bd8137048e4623f9f",
       "sourceDerivedSha256": "2819889f814828ce682bdc35529d3374e1b67985cfec3d59fea57d7b41cb513e",
       "disposition": "EXISTING_SEMANTIC_SLOT",
@@ -73,8 +73,8 @@
     },
     {
       "route": "/consciousness-with-an-interface",
-      "path": "wip/consciousness-with-an-interface.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-013/consciousness-with-an-interface.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "cd668855d13de799ef90b9f10ee1afea15dea962ee57e7bbe729927c96d4f0bb",
       "sourceDerivedSha256": "71f85c382dae9f6e735f48cde970cf0b0f48c48b13bf2d866740b280b5384b83",
       "disposition": "NEW_CANONICAL_NODE",
@@ -90,9 +90,7 @@
       "placementState": "EXISTING_REPOSITORY_DEVELOPER_TOOL_NOT_NARRATIVE_PAGE_PROMOTION"
     }
   ],
-  "carrierNotes": [
-    "Repeated semantic carrier entries were deduplicated by target path; source manifest multiplicity is retained via manifestEntryCount."
-  ],
+  "storageRule": "All derived HTML is preserved as routed source evidence. Placement/projection remains a later effect; source evidence is not scanned as active pages or wip runtime.",
   "effects": {
     "rawAuthenticatedSourcePublished": false,
     "canonicalPagesChanged": false,
