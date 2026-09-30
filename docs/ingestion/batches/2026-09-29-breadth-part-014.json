@@ -10,8 +10,8 @@
   "staged": [
     {
       "route": "/summary-of-value-zh",
-      "path": "wip/summary-of-value-zh.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-014/summary-of-value-zh.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "79d137f0ffe032425e0823170235479e8c0db9213285529725a06aa2e97d3afc",
       "sourceDerivedSha256": "49de6409a66e7644d23e6840429ccf3b0ffefd92639c78c8631a5aabb1e96223",
       "disposition": "DEPENDENCY_ONLY",
@@ -37,8 +37,8 @@
     },
     {
       "route": "/how-to-invest-in-trust-zh",
-      "path": "wip/how-to-invest-in-trust-zh.html",
-      "stagingClass": "WIP_HTML_DRAFT",
+      "path": "docs/ingestion/source-pages/part-014/how-to-invest-in-trust-zh.html",
+      "stagingClass": "SOURCE_EVIDENCE",
       "sourceHtmlSha256": "d5966d9e7c406b76e15975b5d8817aae3ba2dc5105402c661e68d380358389fc",
       "sourceDerivedSha256": "b4f88d3edc6f66be79b316f410ddc332d6f33f73d7404827fb1afdf66aa6b4c1",
       "disposition": "DEPENDENCY_ONLY",
@@ -63,7 +63,7 @@
       "placementState": "EXISTING_ZERO_BYTE_PAGE_SLOT_SOURCE_CONTENT_AVAILABLE_CANONICAL_CLASS_UNRESOLVED"
     }
   ],
-  "carrierNotes": [],
+  "storageRule": "All derived HTML is preserved as routed source evidence. Placement/projection remains a later effect; source evidence is not scanned as active pages or wip runtime.",
   "effects": {
     "rawAuthenticatedSourcePublished": false,
     "canonicalPagesChanged": false,
