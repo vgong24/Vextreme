@@ -1,0 +1,135 @@
+{
+  "schemaVersion": "vex-content-forge.continuity-ledger/v0.2",
+  "continuity": "[VXG RealForever]",
+  "predecessorLedgerPath": "docs/ingestion/workmaps/continuity-ledger-r011-r021.json",
+  "predecessorRepairRef": "continuity-repair.vextreme.content-forge.r021a",
+  "continuedParts": [
+    {
+      "r": 12,
+      "partRef": "PART_012_TOP_LEVEL_NAVIGATION",
+      "inputSha256": "4713d1ec468c57d33136ed2ad26359cd3cca1507da10f33c8848bb4f9c749b6d",
+      "receiptZipSha256": "cb2fe66868132550ca9ab5c1f86e7aae313de23e389f3c2674fa3cc6d252642f",
+      "cumulativeObservedPages": 75
+    },
+    {
+      "r": 13,
+      "partRef": "PART_013_DOCUMENTS",
+      "inputSha256": "1f97364e1b2aa91fe61806eacdff538ca3ce321f718390d9c52959440bcc22fd",
+      "receiptZipSha256": "7c71b2b8ac9490176ef191611084775a9eb1eba416b2aa03458e9c7def04ec61",
+      "cumulativeObservedPages": 84
+    },
+    {
+      "r": 14,
+      "partRef": "PART_014_PARTNER_WITH_ME",
+      "inputSha256": "5fde90366d0fe0bf2bdcc4adccf38a3bfc5e370f98f3dcbaf24be0b34e5bfa02",
+      "receiptZipSha256": "006299293420787d4b3e6ff923c1d1bf94882b147da7e9df3bb4f262bb02fc3f",
+      "cumulativeObservedPages": 90
+    },
+    {
+      "r": 15,
+      "partRef": "PART_015_INFO",
+      "inputSha256": "8b277fcd1c9036e276edbc2136eda4a828d820a891babe892b4407cd998f173d",
+      "receiptZipSha256": "f92384b05535737cb4b4e4e2f1c272cbdd0719239a6b3b9e340351a3ae1b9f27",
+      "cumulativeObservedPages": 94
+    },
+    {
+      "r": 16,
+      "partRef": "PART_016_UNMAPPED_TOP_LEVEL_ROUTES_1_OF_9",
+      "inputSha256": "c2593079be2ad5fc2c90bbecf7fd63780e85d5d46609ad330a2f0c89ad1c202b",
+      "receiptZipSha256": "7d7a9688fc2ace645193cec802aba05dbe36ee8f4f940698f9c14a2e5f9450e0",
+      "cumulativeObservedPages": 106
+    },
+    {
+      "r": 17,
+      "partRef": "PART_017_UNMAPPED_TOP_LEVEL_ROUTES_2_OF_9",
+      "inputSha256": "6c42f21668e629f252ffb3147c4db7acc407a6670eac4ae00d48589454ec09dc",
+      "receiptZipSha256": "14abf9d85ce991de4cefc88f25835455d41f473851eb32ae815ea0aa903c434f",
+      "cumulativeObservedPages": 118
+    },
+    {
+      "r": 18,
+      "partRef": "PART_018_UNMAPPED_TOP_LEVEL_ROUTES_3_OF_9",
+      "inputSha256": "fb2b3bbdc2661b48049aac680950490736da0196bf9af2bf8959f53c6629a6fb",
+      "receiptZipSha256": "d2eb7bb1a3f7b1b32d010f40e0472518fa639a053fb14e31c945f3a546614786",
+      "cumulativeObservedPages": 130
+    },
+    {
+      "r": 19,
+      "partRef": "PART_019_UNMAPPED_TOP_LEVEL_ROUTES_4_OF_9",
+      "inputSha256": "e29ce2320bf31998ce433178182f03891935f8c149f6322bfd44902e1d4e2d9c",
+      "receiptZipSha256": "eee062a414faf5b850f4fc2cdd730b9798e0c4d9b7b3b7a046aaa4d739ac3eea",
+      "cumulativeObservedPages": 142
+    },
+    {
+      "r": 20,
+      "partRef": "PART_020_UNMAPPED_TOP_LEVEL_ROUTES_5_OF_9",
+      "inputSha256": "6e8ba88ccf30856b97fb5576709b9b90acce73152abcc357c84f657aa26c835b",
+      "receiptZipSha256": "e4ec9792efb7051c842644e8b317b5483712c68a4016a8cb9ce015a653defce0",
+      "cumulativeObservedPages": 154
+    },
+    {
+      "r": 21,
+      "partRef": "PART_021_UNMAPPED_TOP_LEVEL_ROUTES_6_OF_9",
+      "inputSha256": "3b81a0fcbeeddd9ebd66407707708a51306b3cea7de4da92fa51ad8043167a6e",
+      "receiptZipSha256": "9aace763f05d59167cef8de67e0a76fefd38dee08ce072bbbef619b58bbb2dc3",
+      "cumulativeObservedPages": 166
+    },
+    {
+      "r": 22,
+      "partRef": "PART_022_UNMAPPED_TOP_LEVEL_ROUTES_7_OF_9",
+      "inputSha256": "38cd1475d5558290ba90c4868ad504755a1f5453486938c0a6b1ca35b5c11d69",
+      "repositoryReceiptPath": "docs/ingestion/batches/2026-09-30-breadth-part-022.json",
+      "repositoryReceiptSha256": "ed4a88ae0827da1647e551210bed59871bcbfa1bf4ca1e0aa9898ad35736a840",
+      "cumulativeObservedPages": 178,
+      "cumulativePublicSourceEvidenceHtmlFiles": 106,
+      "protectedSourceHoldsInPart": 1
+    }
+  ],
+  "latest": {
+    "workMapRevisionRef": "workmap.revision.vextreme.content-forge.r022.unmapped-top-level-7-of-9-complete",
+    "workMapPath": "docs/ingestion/workmaps/content-forge-r022.json",
+    "workMapSha256": "606d6990b235e335819b70299d28b76a6af85867fb7dcffcf9a9f76d19a4b30c",
+    "receiptRef": "receipt.vextreme.content-forge.r022.unmapped-top-level-7-of-9-complete",
+    "repositoryReceiptPath": "docs/ingestion/batches/2026-09-30-breadth-part-022.json",
+    "repositoryReceiptSha256": "ed4a88ae0827da1647e551210bed59871bcbfa1bf4ca1e0aa9898ad35736a840",
+    "consumedThrough": "PART_022_UNMAPPED_TOP_LEVEL_ROUTES_7_OF_9",
+    "cumulativeObservedPages": 178,
+    "unmappedTopLevel": "7_OF_9__84_OF_102",
+    "publicSourceEvidenceHtmlFiles": 106,
+    "protectedSourceHolds": 1,
+    "workMapCounts": {
+      "workNodes": 205,
+      "edges": 297,
+      "clusters": 78,
+      "learnedRules": 96,
+      "unresolved": 68,
+      "remainingRevisits": 6
+    }
+  },
+  "destination": {
+    "repository": "vgong24/Vextreme",
+    "main": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+    "parent": "github.issue.vextreme.159",
+    "toolingPr": "github.pull.vextreme.160",
+    "pilotIntakePr": "github.pull.vextreme.161",
+    "breadthParentPr": "github.pull.vextreme.162",
+    "breadthParentPrHead": "63313f490295ddef26289030df403a952a8909ec",
+    "r022Branch": "VXG-093026-vex-content-forge-breadth-r022-intake",
+    "r022Pr": "PENDING_PR_FORMATION"
+  },
+  "effects": {
+    "canonicalPlacementEffects": 0,
+    "sourceMutation": true,
+    "publicSourceEvidenceFilesAdded": 11,
+    "protectedSourceBodiesPublished": 0,
+    "merge": false,
+    "publication": false
+  },
+  "next": {
+    "partRef": "PART_023_UNMAPPED_TOP_LEVEL_ROUTES_8_OF_9",
+    "file": "023-unmapped-top-level-routes-8-of-9.zip",
+    "sha256": "eb11140fde6c9b844b639f1cbb497938b99980b13eea79182dcd6bcfdc2f196d",
+    "bytes": 577813,
+    "pageCount": 12
+  }
+}

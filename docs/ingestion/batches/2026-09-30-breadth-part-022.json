@@ -1,0 +1,135 @@
+{
+  "schemaVersion": "vex-content-forge.breadth-intake-receipt/v0.2",
+  "issueRef": "github.issue.vextreme.159",
+  "basePrRef": "github.pull.vextreme.162",
+  "partRef": "PART_022_UNMAPPED_TOP_LEVEL_ROUTES_7_OF_9",
+  "inputZip": "022-unmapped-top-level-routes-7-of-9.zip",
+  "inputZipSha256": "38cd1475d5558290ba90c4868ad504755a1f5453486938c0a6b1ca35b5c11d69",
+  "manifestEntryCount": 12,
+  "observedSemanticPageCount": 12,
+  "storedHtmlCount": 11,
+  "protectedSourceHoldCount": 1,
+  "staged": [
+    {
+      "route": "/victor-gongs-testimony",
+      "path": "docs/ingestion/source-pages/part-022/victor-gongs-testimony.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "4a987bdc0238c0673b01d6d60d8c72c52da7a9affe7b92cfc97ba745e3379564",
+      "sourceDerivedSha256": "b03053218b1f09b2d6181c0071ee2072ab66a2c2bef93dbc1e519116dbace7ba",
+      "disposition": "RELATED_SOURCE_LINEAGE_HOLD",
+      "placementState": "NO_EXACT_NODE_OR_PAGE; CURATED_DESTINATION_PAGE_LINKS_TO_RAW_SOURCE; ALIAS_NOT_PROVEN"
+    },
+    {
+      "route": "/covenant-sealed",
+      "path": null,
+      "stagingClass": "PROTECTED_SOURCE_HOLD",
+      "publicMaterialization": false,
+      "sourceHtmlSha256": "e047b18d5b17758333d57831f703d982758d339f07bc2f19032d1e3b86c9fae6",
+      "sourceDerivedSha256": "e66e01783a4c185065b1c7917d16953f84d42d4eb3fdc3a1322ee681649699fa",
+      "disposition": "PROTECTED_ACCESS_BOUNDARY",
+      "placementState": "PASSWORD_PROTECTED_NOT_PUBLICLY_LISTED; PUBLIC_HTML_WITHHELD; RELATION_TO_COVENANT_PRESERVED"
+    },
+    {
+      "route": "/consciousness-architecture",
+      "path": "docs/ingestion/source-pages/part-022/consciousness-architecture.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "c83cc38d175dc34649c764c8fcd1454d020c99136b7c483a5ae2590c89fce057",
+      "sourceDerivedSha256": "cf968c8a2ebdee6dc574fd8bc5d12ad1915180b8c9373b9409d19556e058836e",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT"
+    },
+    {
+      "route": "/covenant",
+      "path": "docs/ingestion/source-pages/part-022/covenant.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "e2d2877ccfd902b1471ab535fe911722505487f42db07eb74035e5cbfef338cd",
+      "sourceDerivedSha256": "2eadbfef53979ca98e566ab34139dacf4625c8a7a3cf01abd1c28a1b9e5663b5",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT"
+    },
+    {
+      "route": "/honesty-integrity-calculator",
+      "path": "docs/ingestion/source-pages/part-022/honesty-integrity-calculator.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "7409a8d14010595fa57f210fa2c6e0bbfec720fa001d942f9c1889efe98dabf0",
+      "sourceDerivedSha256": "cf09c8c6be064aeedcce02dab241f9173ca0e6c6231c64358064024a4d95f1c3",
+      "disposition": "EXISTING_DESTINATION_COMPONENT_RELATION",
+      "placementState": "EXACT_ROUTE_ABSENT; RELATED_TOOL_ALREADY_EMBEDDED_IN_ORIGINS_OF_PROOF; STANDALONE_ROUTE_HELD"
+    },
+    {
+      "route": "/scopes-of-god",
+      "path": "docs/ingestion/source-pages/part-022/scopes-of-god.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "6f8169dc8af6f61f4600875fab782dd0c9c2d5eabb2985e2e760560356bab0db",
+      "sourceDerivedSha256": "6b3802ee4d3e9448067dff984cda8b11f671b8a16c1fc313025fd3a60c63ce0f",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT"
+    },
+    {
+      "route": "/god-to-speak-of-the-truth-of-love",
+      "path": "docs/ingestion/source-pages/part-022/god-to-speak-of-the-truth-of-love.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "a05defa02ffd9fc6fe7aa379a6603543e5fa077b0321044bf9b2f4a708eb82db",
+      "sourceDerivedSha256": "248b4afb7376742940c2b24a2484f017142d85db7c2ae267210e573b92bd4387",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT"
+    },
+    {
+      "route": "/why-financial-freedom-is-harder-to-trust",
+      "path": "docs/ingestion/source-pages/part-022/why-financial-freedom-is-harder-to-trust.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "5ebcc530525aa49762cde164932cace270ad1cc94eabe94896af742002f21253",
+      "sourceDerivedSha256": "bdca728dfcfa3ee6fb5d8b9276966e8805c9a8ece1d0ee798d85b4de0613960c",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT"
+    },
+    {
+      "route": "/the-score",
+      "path": "docs/ingestion/source-pages/part-022/the-score.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "e8cf40d0a81f82860c2f655c6e49d5523c4c7989c5bc75a1b7648f667a08644c",
+      "sourceDerivedSha256": "21bb6e5b7f2e566d5f2468443a1df6ed93d2477e03670d170cfde71aaf54cc4a",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT"
+    },
+    {
+      "route": "/what-about-buddhism",
+      "path": "docs/ingestion/source-pages/part-022/what-about-buddhism.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "e888ddffbb6d5b105f122fd7c7380bf662818b3d066617727e7ae201d581e9ca",
+      "sourceDerivedSha256": "7babd3354e856e70a7a57c556b340a965fcbabb2950565f930e6ff6bc14f0483",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT"
+    },
+    {
+      "route": "/clarity-on-christianity",
+      "path": "docs/ingestion/source-pages/part-022/clarity-on-christianity.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "85b936e23cca8fc2fc6c3593134d2fb7a0480d092a5dbd77b88248c95d31af8a",
+      "sourceDerivedSha256": "8bac4cbe4ab92a013897e1ff9a55e2a936b7864602db37cc77cd6d42f7c706f4",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT"
+    },
+    {
+      "route": "/closed-circuit",
+      "path": "docs/ingestion/source-pages/part-022/closed-circuit.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "444f6e5517fa247fa79f81087f4830fb88fa090c71658c23994efc9e99196350",
+      "sourceDerivedSha256": "360a4706fa5bb91f8849c98a0f73eb662ab8e9607f54d41f67a566f3f64de777",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT"
+    }
+  ],
+  "storageRule": "Publication-safe provider-neutral derived HTML is preserved as routed source evidence. Source-defined access controls survive derivation: protected/private pages are recorded by metadata/hash/relationship only until explicit protected placement or publication authority exists.",
+  "effects": {
+    "rawAuthenticatedSourcePublished": false,
+    "protectedSourceHtmlPublished": false,
+    "canonicalPagesChanged": false,
+    "canonicalNodesChanged": false,
+    "arcDefinitionsChanged": false,
+    "localizationSourceChanged": false
+  },
+  "cumulativeObservedPages": 178,
+  "cumulativeUnmappedTopLevel": "7_OF_9__84_OF_102",
+  "cumulativePublicSourceEvidenceHtmlFiles": 106
+}
