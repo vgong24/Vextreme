@@ -92,3 +92,42 @@ PRESERVED_SOURCE_VARIANT != CURRENT_DESTINATION_REPLACEMENT
 ```
 
 The source stream continues with `PART_025_COLLECTION_CONVOS_WITH_GOD_1_OF_4`; completing this source group does not authorize replay, merge, canonical page promotion, registry mutation, localization absorption, or arc curation.
+
+
+## Convos with God collection — R025
+
+Part 025 begins the four-part source collection `/convos-with-god` after Unmapped Top-Level closed at 9/9.
+
+The source collection root and the destination arc remain distinct:
+
+```text
+SOURCE_COLLECTION_ROOT
+!= DESTINATION_ARC_PARENT
+
+SOURCE_COLLECTION_MEMBERSHIP
+!= DESTINATION_ARC_MEMBERSHIP
+```
+
+The source root describes raw real-time transcripts as primary records and advertises 19 child routes. Current destination `convos_with_god` is a curated arc under `/archives` with a different membership set. Collection ingestion therefore preserves source topology first and defers hub/arc/page reconciliation to consolidation.
+
+Part 025 also establishes:
+
+```text
+COLLECTION_ROUTE_VARIANT != CANONICAL_FLAT_ROUTE_ALIAS
+
+MUTUAL_LANGUAGE_PAIR != CANONICAL_TRANSLATION_IDENTITY
+
+SOURCE_SUPPORTING_EVIDENCE_LINK != NEW_CANONICAL_NODE
+```
+
+The Korean-visible and English companion-restoration siblings remain a source language pair, not a canonical translation registration. Nested Bank/Merron/Closed-Circuit collection routes remain route/version lineage evidence, not automatic aliases. The Cloud source remains supporting evidence linked from Reality Rendering Mechanics/testimony context until a destination-native class is decided.
+
+Current collection state:
+
+```text
+sourcegroup.vexsite.collection.convos-with-god
+= 1_OF_4_PARTIAL
+
+next=
+PART_026_COLLECTION_CONVOS_WITH_GOD_2_OF_4
+```
