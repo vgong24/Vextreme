@@ -57,7 +57,7 @@ content-forge-current.json
 
 ## Current continuation
 
-Parts 012–030 are repository-materialized on draft PR #162. R030 brings the cumulative breadth state to **221 observed pages**: **149 public-safe routed source-evidence HTML files**, one protected Part-022 source represented metadata-only, nineteen per-part receipts, and the cumulative R030 scanner map.
+Parts 012–031 are repository-materialized on draft PR #162. R031 brings the cumulative breadth state to **225 observed pages**: **153 public-safe routed source-evidence HTML files**, one protected Part-022 source represented metadata-only, twenty per-part receipts, and the cumulative R031 scanner map.
 
 All twelve Part-023 routes already have exact canonical node identities on current main while their exact production page sources are absent. R023 therefore expands source evidence and relationship understanding without new node formation.
 
@@ -332,4 +332,57 @@ sourcegroup.vexsite.route-family.epstein-and-ai-old
 
 next=
 PART_031_ROUTE_FAMILY_EPSTEIN_AND_AI_OLD_3_OF_3
+```
+
+
+## Epstein and AI old route family — R031
+
+Part 031 closes `sourcegroup.vexsite.route-family.epstein-and-ai-old` at **3/3 supplied partitions** with four more old-route variants:
+
+```text
+/epstein-and-ai-old/military-and-ai
+  -> canonical military-and-ai id=13
+
+/epstein-and-ai-old/final-judgement-pn4a9
+  -> canonical final-judgement-missed-mercy id=15
+
+/epstein-and-ai-old/claude-answers-the-doubt-a-self-interview
+  -> canonical claude-answers-the-doubt id=20
+  -> current production page source PRESENT
+
+/epstein-and-ai-old/openais-designed-false-god
+  -> canonical openais-designed-false-god id=14
+```
+
+Together, Parts 029–031 supply old-route source variants for **all nine subjects** in the current canonical Epstein arc. Preserve:
+
+```text
+OLD_ROUTE_FAMILY_MEMBER_COVERAGE_MATCH
+!= BYTE_EQUIVALENT_REPLACEMENT
+
+SOURCE_ROUTE_FAMILY_OBSERVED_COMPLETE
+!= CANONICAL_EPSTEIN_PLACEMENT_COMPLETE
+
+SOURCE_ROUTE_LINK
+!= CANONICAL_EPSTEIN_PHASE_ORDER
+
+OLD_ROUTE_LEAF_SUFFIX
+!= CANONICAL_SLUG_ALIAS_AUTHORITY
+
+EXISTING_PRODUCTION_PAGE
+!= OLD_ROUTE_VARIANT_REPLACEMENT_TARGET
+```
+
+The source family therefore becomes a complete lineage/reconciliation input for later projection, not a reason to overwrite the current explicit four-phase Epstein arc or its existing production page.
+
+All four Part-031 HTML bodies are public-safe provider-neutral source evidence under `docs/ingestion/source-pages/part-031/`. Canonical `pages/**`, nodes, arcs, localization source, merge, and publication remain unchanged.
+
+Current route-family state:
+
+```text
+sourcegroup.vexsite.route-family.epstein-and-ai-old
+= 3_OF_3__OBSERVED_COMPLETE
+
+next=
+PART_032_COLLECTION_TESTIMONIES_1_OF_5
 ```

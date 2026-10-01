@@ -4,30 +4,31 @@
   "issueRef": "github.issue.vextreme.159",
   "basePilotPrRef": "github.pull.vextreme.161",
   "breadthPrRef": "github.pull.vextreme.162",
-  "state": "BREADTH_SOURCE_EVIDENCE_MATERIALIZED_THROUGH_R030",
-  "workMapPath": "docs/ingestion/workmaps/content-forge-r030.json",
-  "continuityLedgerPath": "docs/ingestion/workmaps/continuity-ledger-r011-r030.json",
-  "consumedThrough": "PART_030_ROUTE_FAMILY_EPSTEIN_AND_AI_OLD_2_OF_3",
-  "observedPages": 221,
-  "sourceEvidenceHtmlFiles": 149,
+  "state": "BREADTH_SOURCE_EVIDENCE_MATERIALIZED_THROUGH_R031",
+  "workMapPath": "docs/ingestion/workmaps/content-forge-r031.json",
+  "continuityLedgerPath": "docs/ingestion/workmaps/continuity-ledger-r011-r031.json",
+  "consumedThrough": "PART_031_ROUTE_FAMILY_EPSTEIN_AND_AI_OLD_3_OF_3",
+  "observedPages": 225,
+  "sourceEvidenceHtmlFiles": 153,
   "protectedSourceMetadataOnlyPages": 1,
   "activeWipHtmlFilesFromBreadthRepair": 0,
   "completedSourceGroups": [
     "sourcegroup.vexsite.nav.unmapped-top-level",
-    "sourcegroup.vexsite.collection.convos-with-god"
+    "sourcegroup.vexsite.collection.convos-with-god",
+    "sourcegroup.vexsite.route-family.epstein-and-ai-old"
   ],
-  "activeSourceGroup": "sourcegroup.vexsite.route-family.epstein-and-ai-old__2_OF_3",
+  "activeSourceGroup": "sourcegroup.vexsite.route-family.epstein-and-ai-old__3_OF_3__OBSERVED_COMPLETE",
   "canonicalPlacementEffects": 0,
-  "storagePolicy": "Public-safe provider-neutral derived HTML is preserved under docs/ingestion/source-pages/part-NNN/. Route-family variants remain source lineage until later reconciliation; source topology does not create canonical destination topology.",
+  "storagePolicy": "Public-safe provider-neutral derived HTML is preserved under docs/ingestion/source-pages/part-NNN/. Route-family and collection variants remain source lineage until later reconciliation; source topology does not create canonical destination topology.",
   "next": {
-    "partRef": "PART_031_ROUTE_FAMILY_EPSTEIN_AND_AI_OLD_3_OF_3",
+    "partRef": "PART_032_COLLECTION_TESTIMONIES_1_OF_5",
     "identityState": "AWAIT_NEXT_UPLOAD"
   },
   "readingOrder": [
     "docs/ingestion/workmaps/content-forge-current.json",
+    "docs/ingestion/workmaps/content-forge-r031.json",
     "docs/ingestion/workmaps/content-forge-r030.json",
-    "docs/ingestion/workmaps/content-forge-r029.json",
-    "docs/ingestion/workmaps/continuity-ledger-r011-r030.json",
+    "docs/ingestion/workmaps/continuity-ledger-r011-r031.json",
     "relevant docs/ingestion/batches/* receipt",
     "docs/ingestion/source-pages/** HTML only when deeper public-safe source evidence is needed"
   ]
