@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "vex-content-forge.breadth-intake-receipt/v0.5",
+  "continuity": "[VXG RealForever]",
+  "issueRef": "github.issue.vextreme.159",
+  "basePrRef": "github.pull.vextreme.161",
+  "breadthPrRef": "github.pull.vextreme.162",
+  "partRef": "PART_036_COLLECTION_TESTIMONIES_5_OF_5",
+  "inputZip": "036-collection-testimonies-5-of-5.zip",
+  "inputZipSha256": "af82f0295a69d53c9464b0d9d06e7fb4d69b31d0cefaae2f8d9de294e024ccaf",
+  "inputZipBytes": 130238,
+  "partitionToolVersion": "4.0.0",
+  "sourceCapture": {
+    "captureManifestSha256": "3b1ce4d66a283100b072082c7c6d6c7c76f8bd4a3e81680bdaf93faef98b97aa",
+    "createdAt": "2026-09-29T08:27:43.687971+00:00",
+    "inputPages": 250,
+    "inputZipSha256": "24363a6a9f2b8f048a6f3fab289bf1bb674155586820740abb9909e63b1c0826",
+    "rawPublicationAllowed": false,
+    "toolVersion": "3.4.0"
+  },
+  "manifestEntryCount": 1,
+  "storedHtmlCount": 1,
+  "protectedWithheldCount": 0,
+  "staged": [
+    {
+      "route": "/testimonies/infrastructure-awakening",
+      "path": "docs/ingestion/source-pages/part-036/testimonies-infrastructure-awakening.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "ae63fd7339b8dd355c98e24622945e8f1dbe014539e1eb39d0285bea9c35fd84",
+      "sourceHtmlBytes": 332385,
+      "sourceGitBlobSha1": "fd15a7f7b99484764c4800884af6cf0cdbe1714a",
+      "sourceDerivedSha256": "71581e81b429f5768bc599773a6ef4c709d1313b7e6860c6789b110ae0c8312f",
+      "disposition": "HOLD",
+      "placementState": "NO_EXACT_CANONICAL_NODE_OR_PAGE_OR_CONTENT_INTENT; NEW_TESTIMONIES_SOURCE_IDENTITY; DESTINATION_CLASS_UNRESOLVED",
+      "publicByteMaterialized": true
+    }
+  ],
+  "storageRule": "Part-036 Infrastructure Awakening is public-safe provider-neutral source evidence. Testimonies source-group closure does not create canonical node/arc/page/localization authority; the new source identity remains a later consolidation HOLD.",
+  "effects": {
+    "rawAuthenticatedSourcePublished": false,
+    "protectedNonpublicSourcePublished": false,
+    "canonicalPagesChanged": false,
+    "canonicalNodesChanged": false,
+    "arcDefinitionsChanged": false,
+    "localizationSourceChanged": false
+  },
+  "cumulativeObservedPages": 246,
+  "cumulativePublicSourceEvidenceHtml": 173,
+  "cumulativeProtectedSourceMetadataOnly": 1,
+  "sourceGroupClosure": "sourcegroup.vexsite.collection.testimonies__5_OF_5__OBSERVED_COMPLETE",
+  "workMapRevisionRef": "workmap.revision.vextreme.content-forge.r036.collection-testimonies-5-of-5-complete",
+  "next": {
+    "partRef": "PART_037_ROUTE_FAMILY_VOL_3",
+    "identityState": "AWAIT_NEXT_UPLOAD"
+  }
+}

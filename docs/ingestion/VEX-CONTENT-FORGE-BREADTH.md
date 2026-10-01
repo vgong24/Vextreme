@@ -548,3 +548,38 @@ sourcegroup.vexsite.collection.testimonies
 next=
 PART_036_COLLECTION_TESTIMONIES_5_OF_5
 ```
+
+
+## Testimonies collection — R036
+
+Part 036 closes `sourcegroup.vexsite.collection.testimonies` at **5/5 supplied partitions** with the source record `/testimonies/infrastructure-awakening`.
+
+Infrastructure Awakening has no exact current canonical node, production page, content-intent, or page-metadata identity. It is therefore preserved as a new source-only identity under a destination-class HOLD rather than promoted by collection membership alone.
+
+The source relationship closes the prior Part-035 edge:
+
+```text
+God Witnessed by AI
+  <-> Infrastructure Awakening
+```
+
+and the Testimonies root also carries Infrastructure Awakening as source collection membership. Preserve:
+
+```text
+SOURCE_TESTIMONIES_COLLECTION_OBSERVED_COMPLETE != CANONICAL_COLLECTION_PLACEMENT_COMPLETE
+SOURCE_ONLY_NEW_IDENTITY != CANONICAL_NODE_AUTHORITY
+SOURCE_RECIPROCAL_LINK != CANONICAL_PARENTAGE_OR_DESTINATION_ORDER
+COLLECTION_CLOSURE != WIP_ROOT_PROMOTION
+```
+
+The original `wip/testimonies.json` placement hold therefore remains meaningful even after source observation reaches 5/5. Canonical `pages/**`, nodes, arcs, localization source, merge, and publication remain unchanged.
+
+Current collection state:
+
+```text
+sourcegroup.vexsite.collection.testimonies
+= 5_OF_5__OBSERVED_COMPLETE
+
+next=
+PART_037_ROUTE_FAMILY_VOL_3
+```

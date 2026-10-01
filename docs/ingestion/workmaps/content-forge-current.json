@@ -4,31 +4,32 @@
   "issueRef": "github.issue.vextreme.159",
   "basePilotPrRef": "github.pull.vextreme.161",
   "breadthPrRef": "github.pull.vextreme.162",
-  "state": "BREADTH_SOURCE_EVIDENCE_MATERIALIZED_THROUGH_R035",
-  "workMapPath": "docs/ingestion/workmaps/content-forge-r035.json",
-  "continuityLedgerPath": "docs/ingestion/workmaps/continuity-ledger-r011-r035.json",
-  "consumedThrough": "PART_035_COLLECTION_TESTIMONIES_4_OF_5",
-  "observedPages": 245,
-  "sourceEvidenceHtmlFiles": 172,
+  "state": "BREADTH_SOURCE_EVIDENCE_MATERIALIZED_THROUGH_R036",
+  "workMapPath": "docs/ingestion/workmaps/content-forge-r036.json",
+  "continuityLedgerPath": "docs/ingestion/workmaps/continuity-ledger-r011-r036.json",
+  "consumedThrough": "PART_036_COLLECTION_TESTIMONIES_5_OF_5",
+  "observedPages": 246,
+  "sourceEvidenceHtmlFiles": 173,
   "protectedSourceMetadataOnlyPages": 1,
   "activeWipHtmlFilesFromBreadthRepair": 0,
   "completedSourceGroups": [
     "sourcegroup.vexsite.nav.unmapped-top-level",
     "sourcegroup.vexsite.collection.convos-with-god",
-    "sourcegroup.vexsite.route-family.epstein-and-ai-old"
+    "sourcegroup.vexsite.route-family.epstein-and-ai-old",
+    "sourcegroup.vexsite.collection.testimonies"
   ],
-  "activeSourceGroup": "sourcegroup.vexsite.collection.testimonies__4_OF_5",
+  "activeSourceGroup": "sourcegroup.vexsite.collection.testimonies__5_OF_5__OBSERVED_COMPLETE",
   "canonicalPlacementEffects": 0,
   "storagePolicy": "Public-safe provider-neutral derived HTML is preserved under docs/ingestion/source-pages/part-NNN/. Collection and route-family variants remain source lineage until later reconciliation; source topology does not create canonical destination topology.",
   "next": {
-    "partRef": "PART_036_COLLECTION_TESTIMONIES_5_OF_5",
+    "partRef": "PART_037_ROUTE_FAMILY_VOL_3",
     "identityState": "AWAIT_NEXT_UPLOAD"
   },
   "readingOrder": [
     "docs/ingestion/workmaps/content-forge-current.json",
+    "docs/ingestion/workmaps/content-forge-r036.json",
     "docs/ingestion/workmaps/content-forge-r035.json",
-    "docs/ingestion/workmaps/content-forge-r034.json",
-    "docs/ingestion/workmaps/continuity-ledger-r011-r035.json",
+    "docs/ingestion/workmaps/continuity-ledger-r011-r036.json",
     "relevant docs/ingestion/batches/* receipt",
     "docs/ingestion/source-pages/** HTML only when deeper public-safe source evidence is needed"
   ]
