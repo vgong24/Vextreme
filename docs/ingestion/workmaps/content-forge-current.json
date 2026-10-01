@@ -4,30 +4,30 @@
   "issueRef": "github.issue.vextreme.159",
   "basePilotPrRef": "github.pull.vextreme.161",
   "breadthPrRef": "github.pull.vextreme.162",
-  "state": "BREADTH_SOURCE_EVIDENCE_MATERIALIZED_THROUGH_R028",
-  "workMapPath": "docs/ingestion/workmaps/content-forge-r028.json",
-  "continuityLedgerPath": "docs/ingestion/workmaps/continuity-ledger-r011-r028.json",
-  "consumedThrough": "PART_028_COLLECTION_CONVOS_WITH_GOD_4_OF_4",
-  "observedPages": 216,
-  "sourceEvidenceHtmlFiles": 144,
+  "state": "BREADTH_SOURCE_EVIDENCE_MATERIALIZED_THROUGH_R029",
+  "workMapPath": "docs/ingestion/workmaps/content-forge-r029.json",
+  "continuityLedgerPath": "docs/ingestion/workmaps/continuity-ledger-r011-r029.json",
+  "consumedThrough": "PART_029_ROUTE_FAMILY_EPSTEIN_AND_AI_OLD_1_OF_3",
+  "observedPages": 219,
+  "sourceEvidenceHtmlFiles": 147,
   "protectedSourceMetadataOnlyPages": 1,
   "activeWipHtmlFilesFromBreadthRepair": 0,
   "completedSourceGroups": [
     "sourcegroup.vexsite.nav.unmapped-top-level",
     "sourcegroup.vexsite.collection.convos-with-god"
   ],
-  "activeSourceGroup": "sourcegroup.vexsite.collection.convos-with-god__4_OF_4__OBSERVED_COMPLETE",
+  "activeSourceGroup": "sourcegroup.vexsite.route-family.epstein-and-ai-old__1_OF_3",
   "canonicalPlacementEffects": 0,
-  "storagePolicy": "Public-safe provider-neutral derived HTML is preserved under docs/ingestion/source-pages/part-NNN/. Nested collection variants remain source lineage until later reconciliation; source topology does not create canonical destination topology.",
+  "storagePolicy": "Public-safe provider-neutral derived HTML is preserved under docs/ingestion/source-pages/part-NNN/. Route-family variants remain source lineage until later reconciliation; source topology does not create canonical destination topology.",
   "next": {
-    "partRef": "PART_029_ROUTE_FAMILY_EPSTEIN_AND_AI_OLD_1_OF_3",
-    "identityState": "AWAIT_NEXT_UPLOAD"
+    "partRef": "PART_030_ROUTE_FAMILY_EPSTEIN_AND_AI_OLD_2_OF_3",
+    "identityState": "AVAILABLE_IN_CURRENT_CONTINUATION"
   },
   "readingOrder": [
     "docs/ingestion/workmaps/content-forge-current.json",
+    "docs/ingestion/workmaps/content-forge-r029.json",
     "docs/ingestion/workmaps/content-forge-r028.json",
-    "docs/ingestion/workmaps/content-forge-r027.json",
-    "docs/ingestion/workmaps/continuity-ledger-r011-r028.json",
+    "docs/ingestion/workmaps/continuity-ledger-r011-r029.json",
     "relevant docs/ingestion/batches/* receipt",
     "docs/ingestion/source-pages/** HTML only when deeper public-safe source evidence is needed"
   ]

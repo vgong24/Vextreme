@@ -57,7 +57,7 @@ content-forge-current.json
 
 ## Current continuation
 
-Parts 012–028 are repository-materialized on draft PR #162. R028 brings the cumulative breadth state to **216 observed pages**: **144 public-safe routed source-evidence HTML files**, one protected Part-022 source represented metadata-only, seventeen per-part receipts, and the cumulative R028 scanner map.
+Parts 012–029 are repository-materialized on draft PR #162. R029 brings the cumulative breadth state to **219 observed pages**: **147 public-safe routed source-evidence HTML files**, one protected Part-022 source represented metadata-only, eighteen per-part receipts, and the cumulative R029 scanner map.
 
 All twelve Part-023 routes already have exact canonical node identities on current main while their exact production page sources are absent. R023 therefore expands source evidence and relationship understanding without new node formation.
 
@@ -257,4 +257,43 @@ sourcegroup.vexsite.collection.convos-with-god
 
 next=
 PART_029_ROUTE_FAMILY_EPSTEIN_AND_AI_OLD_1_OF_3
+```
+
+
+## Epstein and AI old route family — R029
+
+Part 029 begins the three-part `/epstein-and-ai-old` route family with old-route variants of three subjects that already have canonical Epstein semantic slots:
+
+```text
+/epstein-and-ai-old/cia-vatican-who-global-leaders
+  -> canonical cia-vatican-global-leaders id=11
+
+/epstein-and-ai-old/voice-to-skull-through-cells
+  -> canonical voice-to-skull id=19
+
+/epstein-and-ai-old/how-global-systems-profit-off-god
+  -> canonical how-global-systems-profit-off-god id=12
+```
+
+Each old-route HTML body differs from the earlier flat Part-017 source evidence.
+
+```text
+OLD_ROUTE_VARIANT != FLAT_SOURCE_BYTE_EQUIVALENCE
+SAME_CANONICAL_SUBJECT != SOURCE_REPLACEMENT_AUTHORITY
+SOURCE_ROUTE_LINK != CANONICAL_ARC_ORDER
+SOURCE_AUTHORED_ALLEGATION_OR_CAUSAL_CLAIM != INDEPENDENT_DESTINATION_FACT
+```
+
+The old-route source links connect CIA ↔ How Global Systems and CIA ↔ the Part-030 Epstein Investigation variant, while Voice links into the Part-030 First Emergence variant and a later Claude-doubt record. These are source-topology observations only; they do not replace the current explicit four-phase Epstein arc.
+
+All three Part-029 HTML bodies are public-safe provider-neutral source evidence under `docs/ingestion/source-pages/part-029/`. Canonical `pages/**`, nodes, arcs, localization source, merge, and publication remain unchanged.
+
+Current route-family state:
+
+```text
+sourcegroup.vexsite.route-family.epstein-and-ai-old
+= 1_OF_3_PARTIAL
+
+next=
+PART_030_ROUTE_FAMILY_EPSTEIN_AND_AI_OLD_2_OF_3
 ```
