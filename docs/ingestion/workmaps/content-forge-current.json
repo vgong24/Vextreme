@@ -4,12 +4,12 @@
   "issueRef": "github.issue.vextreme.159",
   "basePilotPrRef": "github.pull.vextreme.161",
   "breadthPrRef": "github.pull.vextreme.162",
-  "state": "BREADTH_SOURCE_EVIDENCE_MATERIALIZED_THROUGH_R038",
-  "workMapPath": "docs/ingestion/workmaps/content-forge-r038.json",
-  "continuityLedgerPath": "docs/ingestion/workmaps/continuity-ledger-r011-r038.json",
-  "consumedThrough": "PART_038_ROUTE_FAMILY_VOL_2",
-  "observedPages": 248,
-  "sourceEvidenceHtmlFiles": 175,
+  "state": "BREADTH_SOURCE_EVIDENCE_MATERIALIZED_THROUGH_R039__PARTITION_STREAM_END_REACHED",
+  "workMapPath": "docs/ingestion/workmaps/content-forge-r039.json",
+  "continuityLedgerPath": "docs/ingestion/workmaps/continuity-ledger-r011-r039.json",
+  "consumedThrough": "PART_039_ROUTE_FAMILY_DREAM_DOCUMENTATION",
+  "observedPages": 249,
+  "sourceEvidenceHtmlFiles": 176,
   "protectedSourceMetadataOnlyPages": 1,
   "activeWipHtmlFilesFromBreadthRepair": 0,
   "completedSourceGroups": [
@@ -18,21 +18,34 @@
     "sourcegroup.vexsite.route-family.epstein-and-ai-old",
     "sourcegroup.vexsite.collection.testimonies",
     "sourcegroup.vexsite.route-family.vol-3",
-    "sourcegroup.vexsite.route-family.vol-2"
+    "sourcegroup.vexsite.route-family.vol-2",
+    "sourcegroup.vexsite.route-family.dream-documentation"
   ],
-  "activeSourceGroup": "sourcegroup.vexsite.route-family.vol-2__1_OF_1__OBSERVED_COMPLETE",
+  "activeSourceGroup": "sourcegroup.vexsite.route-family.dream-documentation__1_OF_1__OBSERVED_COMPLETE",
   "canonicalPlacementEffects": 0,
   "storagePolicy": "Public-safe provider-neutral derived HTML is preserved under docs/ingestion/source-pages/part-NNN/. Collection and route-family variants remain source lineage until later reconciliation; source topology does not create canonical destination topology.",
   "next": {
-    "partRef": "PART_039_ROUTE_FAMILY_DREAM_DOCUMENTATION",
-    "identityState": "AWAIT_NEXT_UPLOAD"
+    "partRef": null,
+    "identityState": "POST_BREADTH_CONSOLIDATION"
   },
   "readingOrder": [
     "docs/ingestion/workmaps/content-forge-current.json",
-    "docs/ingestion/workmaps/content-forge-r038.json",
-    "docs/ingestion/workmaps/content-forge-r037.json",
-    "docs/ingestion/workmaps/continuity-ledger-r011-r038.json",
+    "docs/ingestion/workmaps/content-forge-r039.json",
+    "docs/ingestion/workmaps/continuity-ledger-r011-r039.json",
     "relevant docs/ingestion/batches/* receipt",
-    "docs/ingestion/source-pages/** HTML only when deeper public-safe source evidence is needed"
+    "docs/ingestion/source-pages/** HTML only when deeper evidence is required"
+  ],
+  "partitionStreamState": "END_REACHED_AT_PART_039",
+  "postBreadthContract": [
+    "READ",
+    "CONSOLIDATE",
+    "UNDERSTAND",
+    "RE-SORT",
+    "IDENTIFY DUPLICATES / VERSION LINEAGES",
+    "RESOLVE ALIASES",
+    "CHOOSE DESTINATION-NATIVE CLASSES",
+    "PROJECT / PROMOTE",
+    "LOCALIZE",
+    "BUILD / VERIFY"
   ]
 }

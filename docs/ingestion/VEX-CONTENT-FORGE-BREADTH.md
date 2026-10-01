@@ -649,3 +649,18 @@ sourcegroup.vexsite.route-family.vol-2
 next=
 PART_039_ROUTE_FAMILY_DREAM_DOCUMENTATION
 ```
+
+
+## Dream Documentation / R039 — breadth terminal part
+
+`/dream-documentation/leaving-the-classroom` is preserved as source evidence with no exact canonical destination identity. Its broad captured route fanout is predominantly global navigation and is not a semantic graph by default.
+
+```text
+SOURCE_ROUTE_FAMILY_OBSERVED_COMPLETE != CANONICAL_PLACEMENT_COMPLETE
+BROAD_CAPTURED_NAVIGATION_FANOUT != SEMANTIC_RELATIONSHIP_GRAPH
+SOURCE_CHILD_ROUTE != CANONICAL_PARENT_NODE_AUTHORITY
+SOURCE_AUTHORED_CLAIMS != INDEPENDENT_DESTINATION_FACT
+PARTITION_STREAM_END_REACHED != CONSOLIDATION_OR_PROJECTION_COMPLETE
+```
+
+Part 039 is the terminal supplied partition. The next phase is: `READ -> CONSOLIDATE -> UNDERSTAND -> RE-SORT -> IDENTIFY DUPLICATES / VERSION LINEAGES -> RESOLVE ALIASES -> CHOOSE DESTINATION-NATIVE CLASSES -> PROJECT / PROMOTE -> LOCALIZE -> BUILD / VERIFY`.

@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "vex-content-forge.work-map/v0.35-compact-cumulative-root",
+  "continuity": "[VXG RealForever]",
+  "workMapRef": "workmap.vextreme.content-forge.session-vex-content-forge.3b1ce4d66a28.00d2bf465b",
+  "revisionRef": "workmap.revision.vextreme.content-forge.r039.route-family-dream-documentation-complete",
+  "revision": 39,
+  "revisionScope": "ROUTE_FAMILY_DREAM_DOCUMENTATION_COMPLETE__PARTITION_STREAM_END_REACHED",
+  "cumulativeBasis": {
+    "priorMapPath": "docs/ingestion/workmaps/content-forge-r038.json",
+    "deepBasisPath": "docs/ingestion/workmaps/content-forge-r021a.json"
+  },
+  "cumulativeState": {
+    "observedPages": 249,
+    "workNodes": 275,
+    "edges": 399,
+    "clusters": 123,
+    "learnedRules": 165,
+    "unresolved": 119,
+    "remainingTrueRevisits": 6,
+    "publicSourceEvidenceHtml": 176,
+    "protectedSourceMetadataOnly": 1,
+    "canonicalPlacementEffects": 0,
+    "partitionStreamState": "END_REACHED_AT_PART_039"
+  },
+  "rules": [
+    "SOURCE_ROUTE_FAMILY_OBSERVED_COMPLETE != CANONICAL_PLACEMENT_COMPLETE",
+    "BROAD_CAPTURED_NAVIGATION_FANOUT != SEMANTIC_RELATIONSHIP_GRAPH",
+    "SOURCE_CHILD_ROUTE != CANONICAL_PARENT_NODE_AUTHORITY",
+    "SOURCE_AUTHORED_CLAIMS != INDEPENDENT_DESTINATION_FACT",
+    "PARTITION_STREAM_END_REACHED != CONSOLIDATION_OR_PROJECTION_COMPLETE"
+  ],
+  "r039": {
+    "partRef": "PART_039_ROUTE_FAMILY_DREAM_DOCUMENTATION",
+    "partSha256": "19674106b174b83d32442a86411124c3b71b6eed400dc13d38d7b74092b0c942",
+    "sourceGroupState": "SOURCE_GROUP_OBSERVED_COMPLETE_1_OF_1",
+    "nextPartRef": null,
+    "node": {
+      "route": "/dream-documentation/leaving-the-classroom",
+      "pageId": "3310062eb9a1ea52",
+      "title": "Leaving the classroom — Vex Life",
+      "derivedSha256": "cd969fcb966fe7d617764c608270a419d0f962b9456f089ff9765324a62a80a9",
+      "preservedHtmlSha256": "68f7c12787e563e0fd16a62cafad4bc270cea3262e14d5aa3d766d4b83005b76",
+      "preservedHtmlBytes": 275924,
+      "preservedGitBlobSha1": "cdee53b844114c49030d2c7675f6b1e2026b31bd",
+      "placementState": "HOLD__NO_EXACT_CANONICAL_NODE_PAGE_OR_CONTENT_INTENT",
+      "sourceParentRef": "/dream-documentation",
+      "capturedOutboundRouteCount": 89,
+      "outboundInterpretation": "GLOBAL_NAVIGATION_HEAVY__DO_NOT_TREAT_AS_SEMANTIC_EDGES_BY_DEFAULT"
+    },
+    "unresolved": [
+      "destination-native class for Leaving the Classroom",
+      "whether /dream-documentation becomes a hub/collection or remains source-only lineage"
+    ]
+  },
+  "scannerIndex": {
+    "priorCumulativeMap": "docs/ingestion/workmaps/content-forge-r038.json",
+    "currentReceipt": "docs/ingestion/batches/2026-09-30-breadth-part-039.json",
+    "currentPublicSourcePrefix": "docs/ingestion/source-pages/part-039/",
+    "nextPart": null
+  },
+  "resume": {
+    "primaryFrontier": "POST_BREADTH_CONSOLIDATION",
+    "contract": [
+      "READ",
+      "CONSOLIDATE",
+      "UNDERSTAND",
+      "RE-SORT",
+      "IDENTIFY DUPLICATES / VERSION LINEAGES",
+      "RESOLVE ALIASES",
+      "CHOOSE DESTINATION-NATIVE CLASSES",
+      "PROJECT / PROMOTE",
+      "LOCALIZE",
+      "BUILD / VERIFY"
+    ]
+  }
+}
