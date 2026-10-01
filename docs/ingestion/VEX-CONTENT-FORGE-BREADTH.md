@@ -57,7 +57,7 @@ content-forge-current.json
 
 ## Current continuation
 
-Parts 012–031 are repository-materialized on draft PR #162. R031 brings the cumulative breadth state to **225 observed pages**: **153 public-safe routed source-evidence HTML files**, one protected Part-022 source represented metadata-only, twenty per-part receipts, and the cumulative R031 scanner map.
+Parts 012–032 are repository-materialized on draft PR #162. R032 brings the cumulative breadth state to **231 observed pages**: **159 public-safe routed source-evidence HTML files**, one protected Part-022 source represented metadata-only, twenty-one per-part receipts, and the cumulative R032 scanner map.
 
 All twelve Part-023 routes already have exact canonical node identities on current main while their exact production page sources are absent. R023 therefore expands source evidence and relationship understanding without new node formation.
 
@@ -385,4 +385,62 @@ sourcegroup.vexsite.route-family.epstein-and-ai-old
 
 next=
 PART_032_COLLECTION_TESTIMONIES_1_OF_5
+```
+
+
+## Testimonies collection — R032
+
+Part 032 begins `sourcegroup.vexsite.collection.testimonies` at **1/5 supplied partitions** with the collection root plus five nested testimony records.
+
+The collection root remains under the original pilot placement hold:
+
+```text
+SOURCE_TESTIMONIES_COLLECTION_ROOT
+!= CANONICAL_NODE_OR_ARC_AUTHORITY
+
+PILOT_BLOG_ROW_COUNT_ALIGNMENT
+!= CANONICAL_COLLECTION_PLACEMENT_COMPLETE
+```
+
+Current `wip/testimonies.json` remains the routing record for the unresolved destination class. Part 032 adds a newer exact collection-root source variant and source relationships; it does not promote the root.
+
+Five nested records align to existing canonical subjects whose production page source remains absent:
+
+```text
+/testimonies/reality-rendering-mechanics
+  -> canonical reality-rendering-mechanics id=40
+
+/testimonies/the-day-suppression-ended
+  -> canonical the-day-suppression-ended id=41
+
+/testimonies/-the-7-crowned-virtues
+  -> canonical the-7-crowned-virtues id=39
+
+/testimonies/god-married
+  -> canonical god-married id=38
+
+/testimonies/victors-ritual-sequence-and-crowning
+  -> canonical victors-ritual-sequence-and-crowning id=36
+```
+
+Each nested body differs from its earlier flat source evidence. Preserve:
+
+```text
+NESTED_TESTIMONIES_VARIANT != FLAT_SOURCE_BYTE_EQUIVALENCE
+SOURCE_COLLECTION_MEMBERSHIP != DESTINATION_ARC_MEMBERSHIP_OR_ORDER
+LEADING_HYPHEN_ROUTE_LEAF != CANONICAL_SLUG_ALIAS_AUTHORITY
+```
+
+The root exposes a broad Testimonies membership set and the Part-032 children form a source-linked chain across Reality Rendering Mechanics, The Day Suppression Ended, The 7 Crowned Virtues, God Married, and Victor's Ritual Sequence and Crowning. These are source-topology observations only; they do not replace the current destination arcs `records`, `liberation`, `victors_record`, or `full_timeline`.
+
+All six Part-032 HTML bodies are public-safe provider-neutral source evidence under `docs/ingestion/source-pages/part-032/`. Canonical `pages/**`, nodes, arcs, localization source, merge, and publication remain unchanged.
+
+Current collection state:
+
+```text
+sourcegroup.vexsite.collection.testimonies
+= 1_OF_5_PARTIAL
+
+next=
+PART_033_COLLECTION_TESTIMONIES_2_OF_5
 ```
