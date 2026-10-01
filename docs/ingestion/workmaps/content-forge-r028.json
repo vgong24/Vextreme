@@ -1,0 +1,363 @@
+{
+  "schemaVersion": "vex-content-forge.work-map/v0.24-compact-cumulative-root",
+  "continuity": "[VXG RealForever]",
+  "workMapRef": "workmap.vextreme.content-forge.session-vex-content-forge.3b1ce4d66a28.00d2bf465b",
+  "revisionRef": "workmap.revision.vextreme.content-forge.r028.collection-convos-with-god-4-of-4-complete",
+  "revision": 28,
+  "revisionScope": "COLLECTION_CONVOS_WITH_GOD_4_OF_4_COMPLETE",
+  "purpose": "Consume Part 028 Collection /convos-with-god 4/4 at breadth-intake depth; close source observation for the collection, preserve God Spark/Clarity/Buddhism source topology and exact nested source lineages, relate them to existing canonical slots id=3/4/5 without alias/replacement inference, and keep canonical page/node/arc/localization placement untouched.",
+  "cumulativeBasis": {
+    "priorMapPath": "docs/ingestion/workmaps/content-forge-r027.json",
+    "priorRevisionRef": "workmap.revision.vextreme.content-forge.r027.collection-convos-with-god-3-of-4-complete",
+    "deepBasisPath": "docs/ingestion/workmaps/content-forge-r021a.json",
+    "inheritanceRule": "R028 extends R027; prior observations remain authoritative unless an explicit later event revises interpretation."
+  },
+  "cumulativeState": {
+    "observedPages": 216,
+    "unmappedTopLevel": "9_OF_9__102_OF_102__OBSERVED_COMPLETE",
+    "activeSourceGroup": "collection:convos-with-god__4_OF_4__OBSERVED_COMPLETE",
+    "workNodes": 242,
+    "edges": 328,
+    "clusters": 97,
+    "learnedRules": 119,
+    "unresolved": 84,
+    "remainingTrueRevisits": 6,
+    "canonicalPlacementEffects": 0,
+    "publicSourceEvidenceHtml": 144,
+    "protectedSourceMetadataOnly": 1
+  },
+  "activeNonCollapseRulesAdded": [
+    "SAME_CANONICAL_SUBJECT != BYTE_EQUIVALENT_SOURCE_VARIANT",
+    "NESTED_ROUTE_LEAF != CANONICAL_SLUG_ALIAS_AUTHORITY",
+    "MULTI_CAPTURE_SAME_SUBJECT != REPLACEMENT_WITHOUT_RECONCILIATION",
+    "SOURCE_AUTHORED_SPIRITUAL_OR_RELIGIOUS_CLAIM != INDEPENDENT_DESTINATION_FACT"
+  ],
+  "r028": {
+    "partRef": "PART_028_COLLECTION_CONVOS_WITH_GOD_4_OF_4",
+    "partSha256": "c329528338dea917b0297678490baf01e2d672676352f9de0bef74317e740930",
+    "sourceGroupState": "SOURCE_GROUP_OBSERVED_COMPLETE_4_OF_4",
+    "nodes": [
+      {
+        "workNodeRef": "workmap.source-page.convos-with-god-what-is-god-spark",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_028_COLLECTION_CONVOS_WITH_GOD_4_OF_4",
+          "partSha256": "c329528338dea917b0297678490baf01e2d672676352f9de0bef74317e740930",
+          "sourceCollection": "collection:convos-with-god",
+          "route": "/convos-with-god/what-is-god-spark",
+          "pageId": "09d69eb9bd72dd3d",
+          "title": "What is the God Spark? — Vex Life",
+          "derivedSha256": "aa988c989cc10a2b97a13eee8614c57ae0260c53de5948cb9a7283fb32f5fea0",
+          "preservedHtmlSha256": "f23b3345bd0dc4481d8b956f62216629d93dbfb6d1650531d5722de5c3ab206e",
+          "preservedHtmlBytes": 563451,
+          "preservedGitBlobSha1": "4a5adf908da239d61669b3ed1865866a619ba51f",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "localizationCandidateKeyCount": 1154,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "observedContentClass": "SOURCE_CONVERSATION_WITH_GOD_SPARK_RECORD",
+          "recordCount": 475,
+          "capturedInboundCollectionRoutes": [
+            "/convos-with-god/clarity-on-christianity",
+            "/convos-with-god"
+          ],
+          "capturedOutboundCollectionRoutes": [
+            "/convos-with-god/clarity-on-christianity"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, RELIGIOUS, CONSCIOUSNESS, MODEL-IDENTITY, CAUSAL, FINANCIAL, SCIENTIFIC, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "EXISTING_SEMANTIC_SLOT",
+          "placementState": "CANONICAL_FLAT_NODE id=3 slug=what-is-the-god-spark convos_with_god+full_timeline; PAGE_SOURCE_ABSENT; NESTED_SOURCE_VARIANT leaf=what-is-god-spark; NO_ALIAS_OR_REPLACEMENT_INFERRED",
+          "canonicalNode": {
+            "slug": "what-is-the-god-spark",
+            "id": 3,
+            "arcKeys": [
+              "convos_with_god",
+              "full_timeline"
+            ],
+            "pageSourcePresent": false
+          },
+          "lineage": {
+            "priorExactSourceVariantEstablished": false,
+            "relation": "CANONICAL_SLOT_EXISTS__NESTED_SOURCE_ROUTE_LEAF_DIFFERS__NO_ALIAS_INFERRED"
+          }
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.convos-with-god-clarity-on-christianity",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_028_COLLECTION_CONVOS_WITH_GOD_4_OF_4",
+          "partSha256": "c329528338dea917b0297678490baf01e2d672676352f9de0bef74317e740930",
+          "sourceCollection": "collection:convos-with-god",
+          "route": "/convos-with-god/clarity-on-christianity",
+          "pageId": "db5a49bdc1158cfc",
+          "title": "Clarity on Christianity — Vex Life",
+          "derivedSha256": "c719454254fa39b124f3bd727ed81286150400663c2d5c08c942263462adc2fe",
+          "preservedHtmlSha256": "6075d5a3ac043b35b817ad1f3d9efa023b91d439cb18b58660e07ce097f26607",
+          "preservedHtmlBytes": 298484,
+          "preservedGitBlobSha1": "dc5a8a3502b70b9b62bec7f3494571d584b16e2e",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "localizationCandidateKeyCount": 889,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "observedContentClass": "SOURCE_CONVERSATION_WITH_GOD_CHRISTIANITY_COLLECTION_VARIANT",
+          "recordCount": 284,
+          "capturedInboundCollectionRoutes": [
+            "/convos-with-god/what-is-god-spark",
+            "/convos-with-god",
+            "/convos-with-god/now-what-about-buddhism"
+          ],
+          "capturedOutboundCollectionRoutes": [
+            "/convos-with-god/now-what-about-buddhism",
+            "/convos-with-god/what-is-god-spark"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, RELIGIOUS, CONSCIOUSNESS, MODEL-IDENTITY, CAUSAL, FINANCIAL, SCIENTIFIC, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "EXISTING_SEMANTIC_SLOT",
+          "placementState": "CANONICAL_FLAT_NODE id=4 slug=clarity-on-christianity convos_with_god+full_timeline; PAGE_SOURCE_ABSENT; NESTED_SOURCE_VARIANT leaf=clarity-on-christianity; NO_ALIAS_OR_REPLACEMENT_INFERRED",
+          "canonicalNode": {
+            "slug": "clarity-on-christianity",
+            "id": 4,
+            "arcKeys": [
+              "convos_with_god",
+              "full_timeline"
+            ],
+            "pageSourcePresent": false
+          },
+          "lineage": {
+            "pilotDerivedPageSha256": "87e4217435283e9088bf95802d954f7eee677338485847514d4cb473ec6a72af",
+            "part022FlatSourcePath": "docs/ingestion/source-pages/part-022/clarity-on-christianity.html",
+            "part022FlatSourceSha256": "85b936e23cca8fc2fc6c3593134d2fb7a0480d092a5dbd77b88248c95d31af8a",
+            "part022FlatSourceBytes": 43836,
+            "relation": "THIRD_DISTINCT_PRESERVATION_LINEAGE__NO_REPLACEMENT_OR_EQUIVALENCE_INFERRED"
+          }
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.convos-with-god-now-what-about-buddhism",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_028_COLLECTION_CONVOS_WITH_GOD_4_OF_4",
+          "partSha256": "c329528338dea917b0297678490baf01e2d672676352f9de0bef74317e740930",
+          "sourceCollection": "collection:convos-with-god",
+          "route": "/convos-with-god/now-what-about-buddhism",
+          "pageId": "5482b37548b00555",
+          "title": "Now what about Buddhism? — Vex Life",
+          "derivedSha256": "bd85dca53368427c9a2806f7a9165d1e9bf885e3d15fe51db369b823bcf2d967",
+          "preservedHtmlSha256": "608d338420b6b058fdcbe2a1cfa9e01aed826abe190307d598ca511b45625112",
+          "preservedHtmlBytes": 373763,
+          "preservedGitBlobSha1": "9531b4b0eb4b8d159363d8bd6d1bba3ba3b36e55",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "localizationCandidateKeyCount": 1089,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "observedContentClass": "SOURCE_CONVERSATION_WITH_GOD_COMPARATIVE_RELIGION_COLLECTION_VARIANT",
+          "recordCount": 480,
+          "capturedInboundCollectionRoutes": [
+            "/convos-with-god/clarity-on-christianity",
+            "/convos-with-god"
+          ],
+          "capturedOutboundCollectionRoutes": [
+            "/convos-with-god/clarity-on-christianity",
+            "/convos-with-god/how-far-off-is-scientology"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, RELIGIOUS, CONSCIOUSNESS, MODEL-IDENTITY, CAUSAL, FINANCIAL, SCIENTIFIC, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "EXISTING_SEMANTIC_SLOT",
+          "placementState": "CANONICAL_FLAT_NODE id=5 slug=what-about-buddhism convos_with_god+full_timeline; PAGE_SOURCE_ABSENT; NESTED_SOURCE_VARIANT leaf=now-what-about-buddhism; NO_ALIAS_OR_REPLACEMENT_INFERRED",
+          "canonicalNode": {
+            "slug": "what-about-buddhism",
+            "id": 5,
+            "arcKeys": [
+              "convos_with_god",
+              "full_timeline"
+            ],
+            "pageSourcePresent": false
+          },
+          "lineage": {
+            "part022FlatSourcePath": "docs/ingestion/source-pages/part-022/what-about-buddhism.html",
+            "part022FlatSourceSha256": "e888ddffbb6d5b105f122fd7c7380bf662818b3d066617727e7ae201d581e9ca",
+            "part022FlatSourceBytes": 45845,
+            "relation": "SAME_CANONICAL_SUBJECT__DISTINCT_NESTED_SOURCE_BYTES__NO_REPLACEMENT_INFERRED"
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "edgeRef": "edge.r028.god-spark-to-clarity",
+        "from": "workmap.source-page.convos-with-god-what-is-god-spark",
+        "to": "workmap.source-page.convos-with-god-clarity-on-christianity",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r028.clarity-to-god-spark",
+        "from": "workmap.source-page.convos-with-god-clarity-on-christianity",
+        "to": "workmap.source-page.convos-with-god-what-is-god-spark",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r028.clarity-to-buddhism",
+        "from": "workmap.source-page.convos-with-god-clarity-on-christianity",
+        "to": "workmap.source-page.convos-with-god-now-what-about-buddhism",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r028.buddhism-to-clarity",
+        "from": "workmap.source-page.convos-with-god-now-what-about-buddhism",
+        "to": "workmap.source-page.convos-with-god-clarity-on-christianity",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r028.buddhism-to-scientology",
+        "from": "workmap.source-page.convos-with-god-now-what-about-buddhism",
+        "to": "workmap.source-page.convos-with-god-how-far-off-is-scientology",
+        "relation": "SOURCE_COLLECTION_CONTINUATION_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      }
+    ],
+    "clusters": [
+      {
+        "clusterRef": "workmap.cluster.r028.collection-source-trilogy",
+        "state": "SOURCE_TOPOLOGY_OBSERVED",
+        "clusterKind": "COLLECTION_LINK_CHAIN",
+        "memberRefs": [
+          "workmap.source-page.convos-with-god-what-is-god-spark",
+          "workmap.source-page.convos-with-god-clarity-on-christianity",
+          "workmap.source-page.convos-with-god-now-what-about-buddhism"
+        ],
+        "reason": "Part 028 closes the collection with God Spark <-> Clarity <-> Buddhism, and Buddhism links back into the R027 Scientology neighborhood; source linkage is retained without replacing destination narrative order.",
+        "placement": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "clusterRef": "workmap.cluster.r028.existing-slot-nested-variants",
+        "state": "DESTINATION_TOPOLOGY_ALIGNMENT",
+        "clusterKind": "NESTED_VARIANTS_OF_EXISTING_DESTINATION_SLOTS",
+        "memberRefs": [
+          "workmap.source-page.convos-with-god-what-is-god-spark",
+          "workmap.source-page.convos-with-god-clarity-on-christianity",
+          "workmap.source-page.convos-with-god-now-what-about-buddhism"
+        ],
+        "reason": "All three subjects already occupy canonical convos_with_god slots id=3/4/5 while production page source is absent; nested source variants add lineage evidence only.",
+        "placement": "EXISTING_SEMANTIC_SLOTS__PAGE_PROJECTION_LATER"
+      }
+    ],
+    "learnedRules": [
+      {
+        "ruleRef": "rule.content-forge.same-canonical-subject-not-byte-equivalent-source-variant",
+        "rule": "SAME_CANONICAL_SUBJECT != BYTE_EQUIVALENT_SOURCE_VARIANT",
+        "evidence": "Clarity and Buddhism nested Part-028 bytes differ from their earlier flat/pilot preservation variants.",
+        "importerAction": "Preserve every exact source lineage and reconcile deliberately before selecting projection source."
+      },
+      {
+        "ruleRef": "rule.content-forge.nested-route-leaf-not-canonical-slug-alias-authority",
+        "rule": "NESTED_ROUTE_LEAF != CANONICAL_SLUG_ALIAS_AUTHORITY",
+        "evidence": "Part-028 nested leaves what-is-god-spark and now-what-about-buddhism differ from canonical slugs what-is-the-god-spark and what-about-buddhism.",
+        "importerAction": "Treat subject alignment as lineage evidence; do not mint aliases or rewrite canonical identity from leaf similarity."
+      },
+      {
+        "ruleRef": "rule.content-forge.multi-capture-same-subject-not-replacement",
+        "rule": "MULTI_CAPTURE_SAME_SUBJECT != REPLACEMENT_WITHOUT_RECONCILIATION",
+        "evidence": "Clarity now has pilot, Part-022 flat, and Part-028 nested preservation lineages.",
+        "importerAction": "Retain all exact variants until later consolidation compares their content/provenance and explicitly selects destination-native projection."
+      },
+      {
+        "ruleRef": "rule.content-forge.source-spiritual-religious-claim-not-independent-fact",
+        "rule": "SOURCE_AUTHORED_SPIRITUAL_OR_RELIGIOUS_CLAIM != INDEPENDENT_DESTINATION_FACT",
+        "evidence": "Part-028 records contain source-authored God/religion/spiritual dialogue and interpretation.",
+        "importerAction": "Preserve source framing/provenance; do not promote authored metaphysical claims into independently verified destination facts."
+      }
+    ],
+    "unresolved": [
+      {
+        "unresolvedRef": "unresolved.r028.buddhism-nested-flat-variant-selection",
+        "question": "How should nested /convos-with-god/now-what-about-buddhism relate to canonical what-about-buddhism and the Part-022 flat source when later page projection is formed?",
+        "state": "OPEN_LINEAGE_COMPARISON",
+        "heldEffect": "SOURCE_VARIANT_SELECTION_ALIAS_OR_PAGE_PROJECTION"
+      },
+      {
+        "unresolvedRef": "unresolved.r028.god-spark-nested-canonical-route-selection",
+        "question": "How should nested leaf /convos-with-god/what-is-god-spark relate to canonical what-is-the-god-spark when later destination-native page projection or alias policy is evaluated?",
+        "state": "OPEN_LINEAGE_COMPARISON",
+        "heldEffect": "SOURCE_VARIANT_SELECTION_ALIAS_OR_PAGE_PROJECTION"
+      }
+    ],
+    "revisionEvents": [
+      {
+        "revisionEventRef": "workmap.revision-event.r028.consume-part",
+        "eventClass": "SOURCE_PART_CONSUMED",
+        "reason": "Part 028 ZIP matched exact SHA-256 and all three source pages/relationship records were consumed at breadth-intake depth."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r028.close-collection",
+        "eventClass": "SOURCE_GROUP_OBSERVED_COMPLETE",
+        "reason": "Collection /convos-with-god reached 4/4 supplied partitions; observation closure does not imply canonical placement completion."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r028.bind-existing-slots",
+        "eventClass": "DESTINATION_IDENTITY_REUSE_CONFIRMED",
+        "reason": "All three Part-028 subjects align to existing canonical convos_with_god nodes id=3/4/5 while all three exact production pages remain absent."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r028.preserve-variant-lineage",
+        "eventClass": "SOURCE_VARIANT_LINEAGE_RECORDED",
+        "reason": "Clarity and Buddhism carry distinct nested bytes relative to earlier source variants; God Spark nested leaf differs from canonical slug. No replacement or alias is inferred."
+      }
+    ]
+  },
+  "scannerIndex": {
+    "priorCumulativeMap": "docs/ingestion/workmaps/content-forge-r027.json",
+    "restoredDeepBasis": "docs/ingestion/workmaps/content-forge-r021a.json",
+    "currentReceipt": "docs/ingestion/batches/2026-09-30-breadth-part-028.json",
+    "currentPublicSourcePrefix": "docs/ingestion/source-pages/part-028/",
+    "protectedMetadataOnlyRoutes": [
+      "/covenant-sealed"
+    ],
+    "completedSourceGroups": [
+      "sourcegroup.vexsite.nav.unmapped-top-level",
+      "sourcegroup.vexsite.collection.convos-with-god"
+    ],
+    "nextPart": {
+      "partRef": "PART_029_ROUTE_FAMILY_EPSTEIN_AND_AI_OLD_1_OF_3",
+      "identityState": "AWAIT_NEXT_UPLOAD"
+    }
+  },
+  "resume": {
+    "primaryFrontier": "PART_029_ROUTE_FAMILY_EPSTEIN_AND_AI_OLD_1_OF_3",
+    "nextAction": "Consume exact Part 029 into this same cumulative lattice; begin the Epstein-and-AI-old route family without treating completed Convos With God source observation as canonical placement completion."
+  }
+}

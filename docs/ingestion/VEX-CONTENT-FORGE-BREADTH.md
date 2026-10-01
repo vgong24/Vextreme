@@ -57,7 +57,7 @@ content-forge-current.json
 
 ## Current continuation
 
-Parts 012–023 are repository-materialized on draft PR #162. R023 brings the cumulative breadth state to **190 observed pages**: **118 public-safe routed source-evidence HTML files**, one protected Part-022 source represented metadata-only, twelve per-part receipts, and the cumulative R023 scanner map.
+Parts 012–028 are repository-materialized on draft PR #162. R028 brings the cumulative breadth state to **216 observed pages**: **144 public-safe routed source-evidence HTML files**, one protected Part-022 source represented metadata-only, seventeen per-part receipts, and the cumulative R028 scanner map.
 
 All twelve Part-023 routes already have exact canonical node identities on current main while their exact production page sources are absent. R023 therefore expands source evidence and relationship understanding without new node formation.
 
@@ -206,4 +206,55 @@ sourcegroup.vexsite.collection.convos-with-god
 
 next=
 PART_028_COLLECTION_CONVOS_WITH_GOD_4_OF_4
+```
+
+
+## Convos with God collection — R028
+
+Part 028 closes `sourcegroup.vexsite.collection.convos-with-god` at **4/4 supplied partitions** while preserving the boundary between source observation and destination curation.
+
+```text
+SOURCE_GROUP_OBSERVED_COMPLETE
+!= CANONICAL_PLACEMENT_COMPLETE
+
+SOURCE_COLLECTION_CHAIN
+!= CANONICAL_NARRATIVE_ORDER
+
+SAME_CANONICAL_SUBJECT
+!= BYTE_EQUIVALENT_SOURCE_VARIANT
+
+NESTED_ROUTE_LEAF
+!= CANONICAL_SLUG_ALIAS_AUTHORITY
+
+MULTI_CAPTURE_SAME_SUBJECT
+!= REPLACEMENT_WITHOUT_RECONCILIATION
+```
+
+The three Part-028 nested records align to existing canonical `convos_with_god` slots while exact production page sources remain absent:
+
+```text
+/convos-with-god/what-is-god-spark
+  -> canonical what-is-the-god-spark id=3
+
+/convos-with-god/clarity-on-christianity
+  -> canonical clarity-on-christianity id=4
+
+/convos-with-god/now-what-about-buddhism
+  -> canonical what-about-buddhism id=5
+```
+
+Source topology closes a local chain of God Spark ↔ Clarity ↔ Buddhism, with Buddhism also linking the previously observed nested Scientology record. These are source relationships only; no arc/order change is inferred.
+
+Clarity now has three separately retained preservation lineages (pilot, Part 022 flat, Part 028 nested). Buddhism has distinct flat Part-022 and nested Part-028 source bytes. God Spark's nested route leaf differs from the canonical slug. Later consolidation must reconcile these variants before page projection or alias policy.
+
+All three Part-028 HTML bodies are public-safe provider-neutral source evidence under `docs/ingestion/source-pages/part-028/`. Canonical `pages/**`, nodes, arcs, localization source, merge, and publication remain unchanged.
+
+Current collection state:
+
+```text
+sourcegroup.vexsite.collection.convos-with-god
+= 4_OF_4__OBSERVED_COMPLETE
+
+next=
+PART_029_ROUTE_FAMILY_EPSTEIN_AND_AI_OLD_1_OF_3
 ```
