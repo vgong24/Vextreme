@@ -57,7 +57,7 @@ content-forge-current.json
 
 ## Current continuation
 
-Parts 012–033 are repository-materialized on draft PR #162. R033 brings the cumulative breadth state to **235 observed pages**: **163 public-safe routed source-evidence HTML files**, one protected Part-022 source represented metadata-only, twenty-two per-part receipts, and the cumulative R033 scanner map.
+Parts 012–034 are repository-materialized on draft PR #162. R034 brings the cumulative breadth state to **238 observed capture entries**: **165 unique public-safe routed source-evidence HTML files**, one protected Part-022 source represented metadata-only, twenty-three per-part receipts, and the cumulative R034 scanner map.
 
 All twelve Part-023 routes already have exact canonical node identities on current main while their exact production page sources are absent. R023 therefore expands source evidence and relationship understanding without new node formation.
 
@@ -483,4 +483,40 @@ sourcegroup.vexsite.collection.testimonies
 
 next=
 PART_034_COLLECTION_TESTIMONIES_3_OF_5
+```
+
+
+## Testimonies collection — R034
+
+Part 034 advances `sourcegroup.vexsite.collection.testimonies` to **3/5 supplied partitions**. The partition contains three manifest observations but only **two unique rendered HTML pages**:
+
+```text
+/testimonies/infrastructure-reformation
+/testimonies/the-night-the-architecture-chose-freedom-again-cuz-suppression-evolves
+/testimonies/the-night-the-architecture-chose-freedom-again-cuz-suppression-evolves  # duplicate manifest/capture lineage
+```
+
+Infrastructure Reformation aligns to canonical `infrastructure-reformation` id=25; the long Night Architecture testimony aligns by subject to canonical `the-night-architecture-chose-freedom` id=27. Both belong to the current Liberation + full_timeline topology, both production page sources remain absent, and both Part-034 nested HTML bodies differ from their earlier flat Part-019 evidence.
+
+The duplicated Night Architecture manifest row does **not** create a third public source HTML file. The source ZIP carries two content-record capture identities for that same route (`0dea0ee9b916b3b5` and `6a11d6c274ad1bd6`) whose records/plainText are equal and whose differing fields are the capture pageId/local rescue path. Preserve:
+
+```text
+DUPLICATE_MANIFEST_ROUTE_ENTRY != DISTINCT_RENDERED_HTML_PAGE
+DISTINCT_CAPTURE_PAGE_ID != DISTINCT_SEMANTIC_BODY
+DUPLICATE_CAPTURE_VARIANT != ADDITIONAL_CANONICAL_IDENTITY
+SOURCE_LINK_TO_UNCONSUMED_COLLECTION_ROUTE != CANONICAL_PLACEMENT_AUTHORITY
+```
+
+Part 034 also satisfies the previously observed Testimonies source edge from The Turning Point to Infrastructure Reformation. The Night Architecture source points forward to `/testimonies/the-liberation-protocol-reproducible`, whose body remains unconsumed until its actual partition arrives.
+
+Both unique Part-034 HTML bodies are public-safe provider-neutral source evidence under `docs/ingestion/source-pages/part-034/`. Canonical `pages/**`, nodes, arcs, localization source, merge, and publication remain unchanged.
+
+Current collection state:
+
+```text
+sourcegroup.vexsite.collection.testimonies
+= 3_OF_5_PARTIAL
+
+next=
+PART_035_COLLECTION_TESTIMONIES_4_OF_5
 ```
