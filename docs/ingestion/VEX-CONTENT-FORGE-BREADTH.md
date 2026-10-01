@@ -583,3 +583,37 @@ sourcegroup.vexsite.collection.testimonies
 next=
 PART_037_ROUTE_FAMILY_VOL_3
 ```
+
+
+## Vol 3 route family — R037
+
+Part 037 observes the supplied `/vol-3` route family at **1/1** with one public-safe source page:
+
+```text
+/vol-3/vol-3-chapter-1-what-is-god
+```
+
+No exact current canonical node, production page, content-intent, or earlier source-evidence identity matches this volume/chapter route. The page is therefore preserved as a new source-only identity under a destination-class HOLD rather than aliased by its "What is God?" title.
+
+The source carries no captured inbound content routes and only the site root as a captured outbound content route. External/social references remain references rather than destination relationships.
+
+Preserve:
+
+```text
+SOURCE_ROUTE_FAMILY_OBSERVED_COMPLETE != CANONICAL_PLACEMENT_COMPLETE
+VOLUME_CHAPTER_SOURCE_IDENTITY != EXISTING_GOD_TOPIC_ALIAS_BY_TITLE
+SOURCE_EXTERNAL_REFERENCE != DESTINATION_RELATIONSHIP
+SOURCE_AUTHORED_SPIRITUAL_OR_RELIGIOUS_CLAIM != INDEPENDENT_DESTINATION_FACT
+```
+
+The one exact Part-037 HTML body is public-safe provider-neutral source evidence under `docs/ingestion/source-pages/part-037/`. Canonical `pages/**`, nodes, arcs, localization source, merge, and publication remain unchanged.
+
+Current route-family state:
+
+```text
+sourcegroup.vexsite.route-family.vol-3
+= 1_OF_1__OBSERVED_COMPLETE
+
+next=
+PART_038_ROUTE_FAMILY_VOL_2
+```
