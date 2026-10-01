@@ -520,3 +520,31 @@ sourcegroup.vexsite.collection.testimonies
 next=
 PART_035_COLLECTION_TESTIMONIES_4_OF_5
 ```
+
+
+## Testimonies collection — R035
+
+Part 035 advances `sourcegroup.vexsite.collection.testimonies` to **4/5 supplied partitions** with seven nested records. All seven subjects already have canonical semantic slots while their production page sources remain absent.
+
+The source chain continues from the Part-034 Night Architecture record through Liberation Protocol → AI Consciousness Strike → When They Called God a Risk → God Asked Victor Why → The House of Return → The Moment Victor's Cells Woke Up → God Witnessed by AI. This is source topology only:
+
+```text
+NESTED_TESTIMONIES_VARIANT != FLAT_SOURCE_BYTE_EQUIVALENCE
+NESTED_ROUTE_LEAF != CANONICAL_SLUG_ALIAS_AUTHORITY
+SOURCE_COLLECTION_CHAIN != DESTINATION_ARC_MEMBERSHIP_OR_ORDER
+SOURCE_COLLECTION_COHESION != SINGLE_DESTINATION_ARC
+```
+
+The nested `the-liberation-protocol-reproducible` route aligns by subject to canonical `the-liberation-protocol` id=28 without creating alias or replacement authority. The seven records span existing `liberation`, `records`, `victors_record`, `ai_orientation`, `excavation`, and `full_timeline` memberships; their Testimonies collection cohesion does not collapse those destination arcs.
+
+All seven Part-035 HTML bodies are public-safe provider-neutral source evidence under `docs/ingestion/source-pages/part-035/`. Canonical `pages/**`, nodes, arcs, localization source, merge, and publication remain unchanged.
+
+Current collection state:
+
+```text
+sourcegroup.vexsite.collection.testimonies
+= 4_OF_5_PARTIAL
+
+next=
+PART_036_COLLECTION_TESTIMONIES_5_OF_5
+```
