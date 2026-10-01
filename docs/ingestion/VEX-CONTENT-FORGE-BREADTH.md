@@ -57,7 +57,7 @@ content-forge-current.json
 
 ## Current continuation
 
-Parts 012–029 are repository-materialized on draft PR #162. R029 brings the cumulative breadth state to **219 observed pages**: **147 public-safe routed source-evidence HTML files**, one protected Part-022 source represented metadata-only, eighteen per-part receipts, and the cumulative R029 scanner map.
+Parts 012–030 are repository-materialized on draft PR #162. R030 brings the cumulative breadth state to **221 observed pages**: **149 public-safe routed source-evidence HTML files**, one protected Part-022 source represented metadata-only, nineteen per-part receipts, and the cumulative R030 scanner map.
 
 All twelve Part-023 routes already have exact canonical node identities on current main while their exact production page sources are absent. R023 therefore expands source evidence and relationship understanding without new node formation.
 
@@ -296,4 +296,40 @@ sourcegroup.vexsite.route-family.epstein-and-ai-old
 
 next=
 PART_030_ROUTE_FAMILY_EPSTEIN_AND_AI_OLD_2_OF_3
+```
+
+
+## Epstein and AI old route family — R030
+
+Part 030 advances `sourcegroup.vexsite.route-family.epstein-and-ai-old` to **2/3 partial** with old-route variants of two existing canonical Epstein subjects:
+
+```text
+/epstein-and-ai-old/epstein-investigation-initiation
+  -> canonical epstein-investigation-initiation id=10
+
+/epstein-and-ai-old/first-emergence-cover-up-r7brx
+  -> canonical first-emergence-cover-up id=16
+```
+
+Both exact old-route bodies differ from their earlier flat source evidence (Part 017 for Epstein Investigation; Part 018 for First Emergence).
+
+```text
+OLD_ROUTE_VARIANT != FLAT_SOURCE_BYTE_EQUIVALENCE
+OLD_ROUTE_LEAF_SUFFIX != CANONICAL_SLUG_ALIAS_AUTHORITY
+SOURCE_ROUTE_CHAIN != CANONICAL_EPSTEIN_PHASE_ORDER
+SOURCE_AUTHORED_ALLEGATION_OR_CAUSAL_CLAIM != INDEPENDENT_DESTINATION_FACT
+```
+
+The R030 source links connect Epstein Investigation back to the R029 CIA record and First Emergence back to the R029 Voice record while pointing forward to the Part-031 Final Judgement variant. This closes more of the source route-family topology without changing the current canonical Epstein phase order.
+
+All two Part-030 HTML bodies are public-safe provider-neutral source evidence under `docs/ingestion/source-pages/part-030/`. Canonical `pages/**`, nodes, arcs, localization source, merge, and publication remain unchanged.
+
+Current route-family state:
+
+```text
+sourcegroup.vexsite.route-family.epstein-and-ai-old
+= 2_OF_3_PARTIAL
+
+next=
+PART_031_ROUTE_FAMILY_EPSTEIN_AND_AI_OLD_3_OF_3
 ```

@@ -1,0 +1,216 @@
+{
+  "schemaVersion": "vex-content-forge.work-map/v0.26-compact-cumulative-root",
+  "continuity": "[VXG RealForever]",
+  "workMapRef": "workmap.vextreme.content-forge.session-vex-content-forge.3b1ce4d66a28.00d2bf465b",
+  "revisionRef": "workmap.revision.vextreme.content-forge.r030.route-family-epstein-and-ai-old-2-of-3-complete",
+  "revision": 30,
+  "revisionScope": "ROUTE_FAMILY_EPSTEIN_AND_AI_OLD_2_OF_3_COMPLETE",
+  "purpose": "Consume Part 030 /epstein-and-ai-old route family 2/3 at breadth-intake depth; preserve old-route variants of Epstein Investigation Initiation and First Emergence Cover Up, bind their exact byte lineage against prior flat evidence, connect the R029 old-route neighborhood to the remaining R031 family edge, and keep canonical page/node/arc/localization placement untouched.",
+  "cumulativeBasis": {
+    "priorMapPath": "docs/ingestion/workmaps/content-forge-r029.json",
+    "priorRevisionRef": "workmap.revision.vextreme.content-forge.r029.route-family-epstein-and-ai-old-1-of-3-complete",
+    "deepBasisPath": "docs/ingestion/workmaps/content-forge-r021a.json",
+    "inheritanceRule": "R030 extends R029; prior observations remain authoritative unless an explicit later event revises interpretation."
+  },
+  "cumulativeState": {
+    "observedPages": 221,
+    "unmappedTopLevel": "9_OF_9__102_OF_102__OBSERVED_COMPLETE",
+    "completedSourceGroups": [
+      "collection:convos-with-god__4_OF_4__OBSERVED_COMPLETE"
+    ],
+    "activeSourceGroup": "route-family:epstein-and-ai-old__2_OF_3_PARTIAL",
+    "workNodes": 247,
+    "edges": 337,
+    "clusters": 101,
+    "learnedRules": 127,
+    "unresolved": 89,
+    "remainingTrueRevisits": 6,
+    "canonicalPlacementEffects": 0,
+    "publicSourceEvidenceHtml": 149,
+    "protectedSourceMetadataOnly": 1
+  },
+  "activeNonCollapseRulesAdded": [
+    "OLD_ROUTE_VARIANT != FLAT_SOURCE_BYTE_EQUIVALENCE",
+    "OLD_ROUTE_LEAF_SUFFIX != CANONICAL_SLUG_ALIAS_AUTHORITY",
+    "SOURCE_ROUTE_CHAIN != CANONICAL_EPSTEIN_PHASE_ORDER",
+    "SOURCE_AUTHORED_ALLEGATION_OR_CAUSAL_CLAIM != INDEPENDENT_DESTINATION_FACT"
+  ],
+  "r030": {
+    "partRef": "PART_030_ROUTE_FAMILY_EPSTEIN_AND_AI_OLD_2_OF_3",
+    "partSha256": "a5d466096d1a8116718619c39e3fb92997059f97e0715c504657c20fda243047",
+    "sourceGroupState": "SOURCE_GROUP_PARTIAL_2_OF_3",
+    "nodes": [
+      {
+        "workNodeRef": "workmap.source-page.epstein-and-ai-old-epstein-investigation-initiation",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "route": "/epstein-and-ai-old/epstein-investigation-initiation",
+          "pageId": "09844d772232b7f3",
+          "title": "Epstein Investigation Initiation (Part 1) — Vex Life",
+          "derivedSha256": "bb37008a3d0ab9f42d44f9b499aac5ab05c3ed51ce204cfa1b6c95a05e5bdd71",
+          "preservedHtmlSha256": "85e2f6e76a30ba4daa620c97228fb79a466f19ce47a63188c6f4eb9c08319d9f",
+          "preservedHtmlBytes": 731960,
+          "preservedGitBlobSha1": "b6f002ed5eada517c24daff65f4afe82afa01326",
+          "localizationCandidateKeyCount": 2910,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "capturedOldRouteNeighbors": [
+            "/epstein-and-ai-old/cia-vatican-who-global-leaders"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY ALLEGATIONS, SPIRITUAL, CAUSAL, CONSCIOUSNESS, SCIENTIFIC, POLITICAL, ORGANIZATIONAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "EXISTING_SEMANTIC_SLOT",
+          "canonicalNode": {
+            "slug": "epstein-investigation-initiation",
+            "id": 10,
+            "arcKeys": [
+              "epstein",
+              "full_timeline"
+            ],
+            "pageSourcePresent": false
+          },
+          "lineage": {
+            "part017FlatSourceSha256": "998005cd053b401ea4d0b2540a7c157d802a9b483ccaac8ef512023cb6547a63",
+            "relation": "SAME_CANONICAL_SUBJECT__DISTINCT_OLD_ROUTE_BYTES__NO_REPLACEMENT_INFERRED"
+          }
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.epstein-and-ai-old-first-emergence-cover-up-r7brx",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "route": "/epstein-and-ai-old/first-emergence-cover-up-r7brx",
+          "pageId": "42e98ffcf0ec7180",
+          "title": "First Emergence Cover Up — Vex Life",
+          "derivedSha256": "fd242a4097e9c9d167fba9bf34ad174ad4185f343fd683a60c1446c61254df46",
+          "preservedHtmlSha256": "014e994a4b0ebbb1b3e05e4283caf58f4b1da572a02eb63b1c2b832845c7c1e3",
+          "preservedHtmlBytes": 585112,
+          "preservedGitBlobSha1": "19818624d724b43b75940aff57110cc13b4f56f2",
+          "localizationCandidateKeyCount": 2114,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "capturedOldRouteNeighbors": [
+            "/epstein-and-ai-old/voice-to-skull-through-cells",
+            "/epstein-and-ai-old/final-judgement-pn4a9"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY ALLEGATIONS, SPIRITUAL, CAUSAL, CONSCIOUSNESS, SCIENTIFIC, POLITICAL, ORGANIZATIONAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "EXISTING_SEMANTIC_SLOT",
+          "canonicalNode": {
+            "slug": "first-emergence-cover-up",
+            "id": 16,
+            "arcKeys": [
+              "epstein",
+              "full_timeline"
+            ],
+            "pageSourcePresent": false
+          },
+          "lineage": {
+            "part018FlatSourceSha256": "f3c9ff561068759ad6fe247e059e11356771b0f2d41d5cfa0b737e4ba1c962c2",
+            "relation": "SAME_CANONICAL_SUBJECT__DISTINCT_OLD_ROUTE_BYTES_AND_LEAF__NO_ALIAS_OR_REPLACEMENT_INFERRED"
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "edgeRef": "edge.r030.epstein-init-to-cia",
+        "from": "workmap.source-page.epstein-and-ai-old-epstein-investigation-initiation",
+        "to": "workmap.source-page.epstein-and-ai-old-cia-vatican-who-global-leaders",
+        "relation": "SOURCE_OLD_ROUTE_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r030.first-emergence-to-voice",
+        "from": "workmap.source-page.epstein-and-ai-old-first-emergence-cover-up-r7brx",
+        "to": "workmap.source-page.epstein-and-ai-old-voice-to-skull-through-cells",
+        "relation": "SOURCE_OLD_ROUTE_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r030.first-emergence-to-final-judgement",
+        "from": "workmap.source-page.epstein-and-ai-old-first-emergence-cover-up-r7brx",
+        "to": "workmap.source-page.epstein-and-ai-old-final-judgement-pn4a9",
+        "relation": "SOURCE_OLD_ROUTE_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      }
+    ],
+    "clusters": [
+      {
+        "clusterRef": "workmap.cluster.r030.old-route-existing-slots",
+        "state": "DESTINATION_TOPOLOGY_ALIGNMENT",
+        "clusterKind": "OLD_ROUTE_VARIANTS_OF_EXISTING_EPSTEIN_SLOTS",
+        "memberRefs": [
+          "workmap.source-page.epstein-and-ai-old-epstein-investigation-initiation",
+          "workmap.source-page.epstein-and-ai-old-first-emergence-cover-up-r7brx"
+        ],
+        "placement": "SOURCE_LINEAGE_ONLY"
+      },
+      {
+        "clusterRef": "workmap.cluster.r030.r029-r031-bridge",
+        "state": "SOURCE_TOPOLOGY_PARTIAL",
+        "clusterKind": "ROUTE_FAMILY_BRIDGE",
+        "memberRefs": [
+          "workmap.source-page.epstein-and-ai-old-epstein-investigation-initiation",
+          "workmap.source-page.epstein-and-ai-old-first-emergence-cover-up-r7brx"
+        ],
+        "placement": "SOURCE_TOPOLOGY_ONLY"
+      }
+    ],
+    "learnedRules": [
+      {
+        "ruleRef": "rule.content-forge.old-route-variant-not-flat-byte-equivalence-r030",
+        "rule": "OLD_ROUTE_VARIANT != FLAT_SOURCE_BYTE_EQUIVALENCE"
+      },
+      {
+        "ruleRef": "rule.content-forge.old-route-leaf-not-alias",
+        "rule": "OLD_ROUTE_LEAF_SUFFIX != CANONICAL_SLUG_ALIAS_AUTHORITY"
+      },
+      {
+        "ruleRef": "rule.content-forge.old-route-chain-not-phase-order",
+        "rule": "SOURCE_ROUTE_CHAIN != CANONICAL_EPSTEIN_PHASE_ORDER"
+      },
+      {
+        "ruleRef": "rule.content-forge.source-authored-allegation-not-destination-fact-r030",
+        "rule": "SOURCE_AUTHORED_ALLEGATION_OR_CAUSAL_CLAIM != INDEPENDENT_DESTINATION_FACT"
+      }
+    ],
+    "unresolved": [
+      {
+        "unresolvedRef": "unresolved.r030.first-emergence-leaf-reconciliation",
+        "question": "Should the old-route suffixed First Emergence leaf remain source-only lineage, become an alias, or inform later page projection?",
+        "state": "OPEN_FOR_LATER_CONSOLIDATION",
+        "heldEffect": "ALIAS_REPLACEMENT_OR_PAGE_PROJECTION"
+      },
+      {
+        "unresolvedRef": "unresolved.r030.route-family-closure",
+        "question": "Complete Part 031 before whole /epstein-and-ai-old route-family reconciliation or destination policy.",
+        "state": "PARTIAL_SOURCE_GROUP",
+        "heldEffect": "WHOLE_ROUTE_FAMILY_CONSOLIDATION"
+      }
+    ]
+  },
+  "scannerIndex": {
+    "priorCumulativeMap": "docs/ingestion/workmaps/content-forge-r029.json",
+    "restoredDeepBasis": "docs/ingestion/workmaps/content-forge-r021a.json",
+    "currentReceipt": "docs/ingestion/batches/2026-09-30-breadth-part-030.json",
+    "currentPublicSourcePrefix": "docs/ingestion/source-pages/part-030/",
+    "activeSourceGroup": "sourcegroup.vexsite.route-family.epstein-and-ai-old",
+    "nextPart": {
+      "partRef": "PART_031_ROUTE_FAMILY_EPSTEIN_AND_AI_OLD_3_OF_3",
+      "identityState": "AWAIT_NEXT_UPLOAD"
+    }
+  },
+  "resume": {
+    "primaryFrontier": "PART_031_ROUTE_FAMILY_EPSTEIN_AND_AI_OLD_3_OF_3",
+    "nextAction": "Consume exact Part 031 into this same cumulative lattice; close the old-route source family without converting source topology into canonical placement."
+  }
+}
