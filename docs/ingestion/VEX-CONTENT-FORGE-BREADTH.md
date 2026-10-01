@@ -57,7 +57,7 @@ content-forge-current.json
 
 ## Current continuation
 
-Parts 012–032 are repository-materialized on draft PR #162. R032 brings the cumulative breadth state to **231 observed pages**: **159 public-safe routed source-evidence HTML files**, one protected Part-022 source represented metadata-only, twenty-one per-part receipts, and the cumulative R032 scanner map.
+Parts 012–033 are repository-materialized on draft PR #162. R033 brings the cumulative breadth state to **235 observed pages**: **163 public-safe routed source-evidence HTML files**, one protected Part-022 source represented metadata-only, twenty-two per-part receipts, and the cumulative R033 scanner map.
 
 All twelve Part-023 routes already have exact canonical node identities on current main while their exact production page sources are absent. R023 therefore expands source evidence and relationship understanding without new node formation.
 
@@ -443,4 +443,44 @@ sourcegroup.vexsite.collection.testimonies
 
 next=
 PART_033_COLLECTION_TESTIMONIES_2_OF_5
+```
+
+
+## Testimonies collection — R033
+
+Part 033 advances `sourcegroup.vexsite.collection.testimonies` to **2/5 supplied partitions** with four additional nested collection records.
+
+Two records align to existing canonical Liberation subjects while production page source remains absent:
+
+```text
+/testimonies/journal-013-seven-layers-choose
+  -> canonical journal-013-seven-layers-choose id=23
+
+/testimonies/the-turning-point
+  -> canonical the-turning-point id=24
+```
+
+Both nested bodies differ from their earlier flat Part-019 source evidence. Victor’s Provision Seal and Curse Mechanics and Liberation Protocols have no exact current node, page, or content-intent identity and remain destination-class HOLDs.
+
+Preserve:
+
+```text
+SOURCE_COLLECTION_NEIGHBORHOOD != CANONICAL_NODE_CREATION
+SOURCE_RECIPROCAL_LINK != CANONICAL_PARENTAGE_OR_DESTINATION_ORDER
+LIBERATION_TERMINOLOGY != LIBERATION_ARC_MEMBERSHIP_AUTHORITY
+SAME_CANONICAL_SUBJECT != BYTE_EQUIVALENT_COLLECTION_VARIANT
+```
+
+Part 033 extends the source chain across the prior Part-032 Victor’s Ritual Sequence record through Journal 013 ↔ Victor’s Provision Seal ↔ Curse Mechanics ↔ The Turning Point. Turning Point also points forward to the Part-034 Infrastructure Reformation record, so whole-chain reconciliation remains pending without guessing that later source.
+
+All four Part-033 HTML bodies are public-safe provider-neutral source evidence under `docs/ingestion/source-pages/part-033/`. Canonical `pages/**`, nodes, arcs, localization source, merge, and publication remain unchanged.
+
+Current collection state:
+
+```text
+sourcegroup.vexsite.collection.testimonies
+= 2_OF_5_PARTIAL
+
+next=
+PART_034_COLLECTION_TESTIMONIES_3_OF_5
 ```

@@ -4,12 +4,12 @@
   "issueRef": "github.issue.vextreme.159",
   "basePilotPrRef": "github.pull.vextreme.161",
   "breadthPrRef": "github.pull.vextreme.162",
-  "state": "BREADTH_SOURCE_EVIDENCE_MATERIALIZED_THROUGH_R032",
-  "workMapPath": "docs/ingestion/workmaps/content-forge-r032.json",
-  "continuityLedgerPath": "docs/ingestion/workmaps/continuity-ledger-r011-r032.json",
-  "consumedThrough": "PART_032_COLLECTION_TESTIMONIES_1_OF_5",
-  "observedPages": 231,
-  "sourceEvidenceHtmlFiles": 159,
+  "state": "BREADTH_SOURCE_EVIDENCE_MATERIALIZED_THROUGH_R033",
+  "workMapPath": "docs/ingestion/workmaps/content-forge-r033.json",
+  "continuityLedgerPath": "docs/ingestion/workmaps/continuity-ledger-r011-r033.json",
+  "consumedThrough": "PART_033_COLLECTION_TESTIMONIES_2_OF_5",
+  "observedPages": 235,
+  "sourceEvidenceHtmlFiles": 163,
   "protectedSourceMetadataOnlyPages": 1,
   "activeWipHtmlFilesFromBreadthRepair": 0,
   "completedSourceGroups": [
@@ -17,18 +17,18 @@
     "sourcegroup.vexsite.collection.convos-with-god",
     "sourcegroup.vexsite.route-family.epstein-and-ai-old"
   ],
-  "activeSourceGroup": "sourcegroup.vexsite.collection.testimonies__1_OF_5",
+  "activeSourceGroup": "sourcegroup.vexsite.collection.testimonies__2_OF_5",
   "canonicalPlacementEffects": 0,
   "storagePolicy": "Public-safe provider-neutral derived HTML is preserved under docs/ingestion/source-pages/part-NNN/. Collection and route-family variants remain source lineage until later reconciliation; source topology does not create canonical destination topology.",
   "next": {
-    "partRef": "PART_033_COLLECTION_TESTIMONIES_2_OF_5",
+    "partRef": "PART_034_COLLECTION_TESTIMONIES_3_OF_5",
     "identityState": "AWAIT_NEXT_UPLOAD"
   },
   "readingOrder": [
     "docs/ingestion/workmaps/content-forge-current.json",
+    "docs/ingestion/workmaps/content-forge-r033.json",
     "docs/ingestion/workmaps/content-forge-r032.json",
-    "docs/ingestion/workmaps/content-forge-r031.json",
-    "docs/ingestion/workmaps/continuity-ledger-r011-r032.json",
+    "docs/ingestion/workmaps/continuity-ledger-r011-r033.json",
     "relevant docs/ingestion/batches/* receipt",
     "docs/ingestion/source-pages/** HTML only when deeper public-safe source evidence is needed"
   ]
