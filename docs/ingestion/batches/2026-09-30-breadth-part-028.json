@@ -1,0 +1,78 @@
+{
+  "schemaVersion": "vex-content-forge.breadth-intake-receipt/v0.5",
+  "continuity": "[VXG RealForever]",
+  "issueRef": "github.issue.vextreme.159",
+  "basePrRef": "github.pull.vextreme.161",
+  "breadthPrRef": "github.pull.vextreme.162",
+  "partRef": "PART_028_COLLECTION_CONVOS_WITH_GOD_4_OF_4",
+  "inputZip": "028-collection-convos-with-god-4-of-4.zip",
+  "inputZipSha256": "c329528338dea917b0297678490baf01e2d672676352f9de0bef74317e740930",
+  "partitionToolVersion": "4.0.0",
+  "sourceCapture": {
+    "captureManifestSha256": "3b1ce4d66a283100b072082c7c6d6c7c76f8bd4a3e81680bdaf93faef98b97aa",
+    "createdAt": "2026-09-29T08:27:43.687971+00:00",
+    "inputPages": 250,
+    "inputZipSha256": "24363a6a9f2b8f048a6f3fab289bf1bb674155586820740abb9909e63b1c0826",
+    "rawPublicationAllowed": false,
+    "toolVersion": "3.4.0"
+  },
+  "manifestEntryCount": 3,
+  "storedHtmlCount": 3,
+  "protectedWithheldCount": 0,
+  "staged": [
+    {
+      "route": "/convos-with-god/now-what-about-buddhism",
+      "path": "docs/ingestion/source-pages/part-028/convos-with-god-now-what-about-buddhism.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "608d338420b6b058fdcbe2a1cfa9e01aed826abe190307d598ca511b45625112",
+      "sourceHtmlBytes": 373763,
+      "sourceGitBlobSha1": "9531b4b0eb4b8d159363d8bd6d1bba3ba3b36e55",
+      "sourceDerivedSha256": "bd85dca53368427c9a2806f7a9165d1e9bf885e3d15fe51db369b823bcf2d967",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "CANONICAL_FLAT_NODE id=5 slug=what-about-buddhism convos_with_god+full_timeline; PAGE_SOURCE_ABSENT; NESTED_SOURCE_VARIANT leaf=now-what-about-buddhism; NO_ALIAS_OR_REPLACEMENT_INFERRED",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/convos-with-god/clarity-on-christianity",
+      "path": "docs/ingestion/source-pages/part-028/convos-with-god-clarity-on-christianity.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "6075d5a3ac043b35b817ad1f3d9efa023b91d439cb18b58660e07ce097f26607",
+      "sourceHtmlBytes": 298484,
+      "sourceGitBlobSha1": "dc5a8a3502b70b9b62bec7f3494571d584b16e2e",
+      "sourceDerivedSha256": "c719454254fa39b124f3bd727ed81286150400663c2d5c08c942263462adc2fe",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "CANONICAL_FLAT_NODE id=4 slug=clarity-on-christianity convos_with_god+full_timeline; PAGE_SOURCE_ABSENT; THIRD DISTINCT PRESERVATION LINEAGE; NO_REPLACEMENT_INFERRED",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/convos-with-god/what-is-god-spark",
+      "path": "docs/ingestion/source-pages/part-028/convos-with-god-what-is-god-spark.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "f23b3345bd0dc4481d8b956f62216629d93dbfb6d1650531d5722de5c3ab206e",
+      "sourceHtmlBytes": 563451,
+      "sourceGitBlobSha1": "4a5adf908da239d61669b3ed1865866a619ba51f",
+      "sourceDerivedSha256": "aa988c989cc10a2b97a13eee8614c57ae0260c53de5948cb9a7283fb32f5fea0",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "CANONICAL_FLAT_NODE id=3 slug=what-is-the-god-spark convos_with_god+full_timeline; PAGE_SOURCE_ABSENT; NESTED_SOURCE_VARIANT leaf=what-is-god-spark; NO_ALIAS_OR_REPLACEMENT_INFERRED",
+      "publicByteMaterialized": true
+    }
+  ],
+  "storageRule": "All three Part-028 pages are public-safe provider-neutral source evidence. They close source observation for /convos-with-god at 4/4 while remaining nested source variants of existing semantic slots; no canonical alias, page promotion, node/arc/localization registration, source replacement, or narrative-order mutation is inferred.",
+  "effects": {
+    "rawAuthenticatedSourcePublished": false,
+    "protectedNonpublicSourcePublished": false,
+    "canonicalPagesChanged": false,
+    "canonicalNodesChanged": false,
+    "arcDefinitionsChanged": false,
+    "localizationSourceChanged": false
+  },
+  "cumulativeObservedPages": 216,
+  "cumulativePublicSourceEvidenceHtml": 144,
+  "cumulativeProtectedSourceMetadataOnly": 1,
+  "sourceGroupClosure": "sourcegroup.vexsite.collection.convos-with-god__4_OF_4__OBSERVED_COMPLETE",
+  "workMapRevisionRef": "workmap.revision.vextreme.content-forge.r028.collection-convos-with-god-4-of-4-complete",
+  "next": {
+    "partRef": "PART_029_ROUTE_FAMILY_EPSTEIN_AND_AI_OLD_1_OF_3",
+    "identityState": "AWAIT_NEXT_UPLOAD"
+  }
+}

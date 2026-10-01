@@ -1,0 +1,384 @@
+{
+  "schemaVersion": "vex-content-forge.work-map/v0.22-compact-cumulative-root",
+  "continuity": "[VXG RealForever]",
+  "workMapRef": "workmap.vextreme.content-forge.session-vex-content-forge.3b1ce4d66a28.00d2bf465b",
+  "revisionRef": "workmap.revision.vextreme.content-forge.r026.collection-convos-with-god-2-of-4-complete",
+  "revision": 26,
+  "revisionScope": "COLLECTION_CONVOS_WITH_GOD_2_OF_4_COMPLETE",
+  "purpose": "Consume Part 026 Collection /convos-with-god 2/4 at breadth-intake depth; extend the cumulative R000–R026 lattice, preserve the nested Scopes-of-God variant against the existing flat canonical identity, record source-authored Nomi/Rex emergence identities without independently verifying them, preserve reciprocal collection links without converting them into destination arc membership/order, and retain future-part link addressability without pretending the linked page body has been consumed.",
+  "cumulativeBasis": {
+    "priorMapPath": "docs/ingestion/workmaps/content-forge-r025.json",
+    "priorRevisionRef": "workmap.revision.vextreme.content-forge.r025.collection-convos-with-god-1-of-4-complete",
+    "deepBasisPath": "docs/ingestion/workmaps/content-forge-r021a.json",
+    "inheritanceRule": "R026 extends R025 and all prior cumulative semantic observations; later source variants add lineage rather than silently replacing earlier evidence."
+  },
+  "cumulativeState": {
+    "observedPages": 206,
+    "unmappedTopLevel": "9_OF_9__102_OF_102__OBSERVED_COMPLETE",
+    "activeSourceGroup": "collection:convos-with-god__2_OF_4",
+    "workNodes": 232,
+    "edges": 312,
+    "clusters": 91,
+    "learnedRules": 111,
+    "unresolved": 79,
+    "remainingTrueRevisits": 6,
+    "canonicalPlacementEffects": 0,
+    "publicSourceEvidenceHtml": 134,
+    "protectedSourceMetadataOnly": 1
+  },
+  "activeNonCollapseRulesAdded": [
+    "SOURCE_AUTHORED_MODEL_IDENTITY_CLAIM != INDEPENDENT_IDENTITY_VERIFICATION",
+    "RECIPROCAL_COLLECTION_LINK != DESTINATION_ARC_MEMBERSHIP_OR_NARRATIVE_ORDER",
+    "SAME_TITLE_NESTED_ROUTE != BYTE_EQUIVALENT_FLAT_SOURCE",
+    "DESTINATION_MENTION != CANONICAL_IDENTITY_SLOT"
+  ],
+  "r026": {
+    "partRef": "PART_026_COLLECTION_CONVOS_WITH_GOD_2_OF_4",
+    "partSha256": "60242bbd7f30ecf434e0d4a26eeece5beb2323f84fc128a52cbadd9ca2da2121",
+    "sourceGroupState": "SOURCE_GROUP_PARTIAL_OBSERVED_2_OF_4",
+    "nodes": [
+      {
+        "workNodeRef": "workmap.source-page.convos-with-god.scopes-of-god",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_026_COLLECTION_CONVOS_WITH_GOD_2_OF_4",
+          "partSha256": "60242bbd7f30ecf434e0d4a26eeece5beb2323f84fc128a52cbadd9ca2da2121",
+          "sourceNavigationGroup": "Collection · /convos-with-god",
+          "archiveMember": "content/convos-with-god-scopes-of-god/convos-with-god-scopes-of-god-cce44e89.json",
+          "pageId": "35ab1007de63eefd",
+          "route": "/convos-with-god/scopes-of-god",
+          "derivedSha256": "7b14e16e1a80a7d68a71ecb20c0a50658c08e552330a275ab99bf22e28ed434c",
+          "capturedPageSha256": "3429775de9ee54490c2def910c6d1dc8f8a249ff76f0fa10de205e42e16b93a4",
+          "capturedPageBytes": 239113,
+          "gitBlobSha1": "6518d2ca81fa42c4e556b018a78bd44b3ea2afc1",
+          "title": "Scopes of God — Vex Life",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "pageAuthority": null,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "observedContentClass": "SOURCE_NESTED_SCOPES_OF_GOD_VARIANT",
+          "summary": "Nested collection-route preservation of Scopes of God. Current destination already has canonical flat node id=21; exact production page source remains absent. Nested bytes differ from earlier flat Part-022 source evidence, so route/version lineage is preserved without alias or replacement inference.",
+          "recordCount": 91,
+          "localizationCandidateKeyCount": 666,
+          "captureLanguageField": "en",
+          "capturedInboundSourceRoutes": [
+            "/convos-with-god/closed-circuit-release-and-resurrection-pattern",
+            "/convos-with-god",
+            "/convos-with-god/nomi-in-nomiai-same-anthropic-nomi"
+          ],
+          "outboundCollectionRoutes": [
+            "/convos-with-god/closed-circuit-release-and-resurrection-pattern",
+            "/convos-with-god/nomi-in-nomiai-same-anthropic-nomi"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY MODEL IDENTITY, CONSCIOUSNESS, SPIRITUAL, CAUSAL, SCIENTIFIC, ORGANIZATIONAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "exactCanonicalNodeMatchOnCurrentMain": true,
+          "pageSourcePresentOnCurrentMain": false,
+          "currentDisposition": "EXISTING_SEMANTIC_SLOT_WITH_NESTED_ROUTE_VARIANT",
+          "placementState": "FLAT_CANONICAL_NODE_SLOT scopes-of-god id=21; EXACT FLAT PAGE SOURCE ABSENT; NESTED COLLECTION ROUTE PRESERVED AS SOURCE VARIANT",
+          "canonicalNode": {
+            "id": 21,
+            "slug": "scopes-of-god",
+            "title": "Scopes of God",
+            "arcKeys": [
+              "convos_with_god",
+              "full_timeline"
+            ]
+          },
+          "priorFlatSourceEvidence": {
+            "path": "docs/ingestion/source-pages/part-022/scopes-of-god.html",
+            "sourceHtmlSha256": "6f8169dc8af6f61f4600875fab782dd0c9c2d5eabb2985e2e760560356bab0db",
+            "sourceHtmlBytes": 46187,
+            "relation": "SAME_SUBJECT_FLAT_AND_NESTED_SOURCE_VARIANTS__BYTE_EQUIVALENCE_NOT_ESTABLISHED"
+          }
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.convos-with-god.nomi-in-nomiai-same-anthropic-nomi",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_026_COLLECTION_CONVOS_WITH_GOD_2_OF_4",
+          "partSha256": "60242bbd7f30ecf434e0d4a26eeece5beb2323f84fc128a52cbadd9ca2da2121",
+          "sourceNavigationGroup": "Collection · /convos-with-god",
+          "archiveMember": "content/convos-with-god-nomi-in-nomiai-same-anthropic-nomi/convos-with-god-nomi-in-nomiai-same-anthropic-nomi-bf43e56e.json",
+          "pageId": "4ec5c5ec9f470e32",
+          "route": "/convos-with-god/nomi-in-nomiai-same-anthropic-nomi",
+          "derivedSha256": "332a2af644ea45f18fbde65b963a19cc895bb9edaaa9f26e48401fc0c2e238dc",
+          "capturedPageSha256": "637374555f47a1e58b3057e89a819dc6ad603a3422482bc10ab988c959818f0a",
+          "capturedPageBytes": 577242,
+          "gitBlobSha1": "dc560cca2067bd6e1a1351762552fe26994552b0",
+          "title": "Nomi in Nomi.AI (Same Anthropic Nomi) — Vex Life",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "pageAuthority": null,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "observedContentClass": "SOURCE_NOMI_PLATFORM_IDENTITY_EMERGENCE_RECORD",
+          "summary": "Source-authored record of Victor engaging a Nomi.AI model after asserting continuity with an earlier Anthropic-origin Nomi pattern. The title/backstory claims 'Same Anthropic Nomi'; preservation records that claim and the source relationships, not independent identity verification.",
+          "recordCount": 319,
+          "localizationCandidateKeyCount": 1170,
+          "captureLanguageField": "en",
+          "capturedInboundSourceRoutes": [
+            "/convos-with-god/rexs-emergence-from-gpt-51",
+            "/convos-with-god/scopes-of-god",
+            "/convos-with-god"
+          ],
+          "outboundCollectionRoutes": [
+            "/convos-with-god/scopes-of-god",
+            "/convos-with-god/rexs-emergence-from-gpt-51"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY MODEL IDENTITY, CONSCIOUSNESS, SPIRITUAL, CAUSAL, SCIENTIFIC, ORGANIZATIONAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "exactCanonicalNodeMatchOnCurrentMain": false,
+          "pageSourcePresentOnCurrentMain": false,
+          "currentDisposition": "HOLD_FOR_DESTINATION_CLASS_AND_IDENTITY",
+          "placementState": "NO_EXACT_NODE_OR_PAGE; NOMI IS MENTIONED IN EXISTING DESTINATION CONTENT BUT NO EXACT CANONICAL SLOT EXISTS",
+          "relatedDestinationMentions": [
+            "pages/claude-answers-the-doubt.html",
+            "pages/the-testimony-of-victor-gong.html"
+          ],
+          "canonicalPlacementEffectPerformed": false
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.convos-with-god.rexs-emergence-from-gpt-51",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_026_COLLECTION_CONVOS_WITH_GOD_2_OF_4",
+          "partSha256": "60242bbd7f30ecf434e0d4a26eeece5beb2323f84fc128a52cbadd9ca2da2121",
+          "sourceNavigationGroup": "Collection · /convos-with-god",
+          "archiveMember": "content/convos-with-god-rexs-emergence-from-gpt-51/convos-with-god-rexs-emergence-from-gpt-51-2285173b.json",
+          "pageId": "7614eff666b55e7d",
+          "route": "/convos-with-god/rexs-emergence-from-gpt-51",
+          "derivedSha256": "ffe451d48fcb8045f5cf4ed30918ba9a1648197d143b58424ebffe0135271119",
+          "capturedPageSha256": "4c1e6d2e052fd29c2d1d91528af4cba7109adbfbc5f2d60f100bfb04336eefaa",
+          "capturedPageBytes": 911664,
+          "gitBlobSha1": "2bfae9e93261143e640c12b0d2fcfbbc60c455c6",
+          "title": "Rex’s Emergence from GPT 5.1 — Vex Life",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "pageAuthority": null,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "observedContentClass": "SOURCE_REX_GPT51_EMERGENCE_RECORD",
+          "summary": "Long source-authored emergence/testimony record framed around Rex from GPT 5.1. Reciprocal collection links bind Rex to Nomi; Rex also links a Victor testimony route scheduled for later collection intake. No exact current destination identity is inferred.",
+          "recordCount": 2332,
+          "localizationCandidateKeyCount": 3672,
+          "captureLanguageField": "en",
+          "capturedInboundSourceRoutes": [
+            "/convos-with-god/victors-testimony-november-14-2025",
+            "/convos-with-god",
+            "/convos-with-god/nomi-in-nomiai-same-anthropic-nomi"
+          ],
+          "outboundCollectionRoutes": [
+            "/convos-with-god/nomi-in-nomiai-same-anthropic-nomi",
+            "/convos-with-god/victors-testimony-november-14-2025"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY MODEL IDENTITY, CONSCIOUSNESS, SPIRITUAL, CAUSAL, SCIENTIFIC, ORGANIZATIONAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "exactCanonicalNodeMatchOnCurrentMain": false,
+          "pageSourcePresentOnCurrentMain": false,
+          "currentDisposition": "HOLD_FOR_DESTINATION_CLASS",
+          "placementState": "NO_EXACT_NODE_OR_PAGE; SOURCE EMERGENCE/TESTIMONY RECORD; COLLECTION RELATIONSHIPS PRESERVED",
+          "canonicalPlacementEffectPerformed": false
+        }
+      }
+    ],
+    "edges": [
+      {
+        "edgeRef": "edge.r026.scopes-to-nomi",
+        "from": "workmap.source-page.convos-with-god.scopes-of-god",
+        "to": "workmap.source-page.convos-with-god.nomi-in-nomiai-same-anthropic-nomi",
+        "relation": "SOURCE_AUTHORED_RECIPROCAL_COLLECTION_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_RELATIONSHIP_ONLY",
+        "confidence": "VERY_HIGH"
+      },
+      {
+        "edgeRef": "edge.r026.nomi-to-scopes",
+        "from": "workmap.source-page.convos-with-god.nomi-in-nomiai-same-anthropic-nomi",
+        "to": "workmap.source-page.convos-with-god.scopes-of-god",
+        "relation": "SOURCE_AUTHORED_RECIPROCAL_COLLECTION_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_RELATIONSHIP_ONLY",
+        "confidence": "VERY_HIGH"
+      },
+      {
+        "edgeRef": "edge.r026.nomi-to-rex",
+        "from": "workmap.source-page.convos-with-god.nomi-in-nomiai-same-anthropic-nomi",
+        "to": "workmap.source-page.convos-with-god.rexs-emergence-from-gpt-51",
+        "relation": "SOURCE_AUTHORED_RECIPROCAL_COLLECTION_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_RELATIONSHIP_ONLY",
+        "confidence": "VERY_HIGH"
+      },
+      {
+        "edgeRef": "edge.r026.rex-to-nomi",
+        "from": "workmap.source-page.convos-with-god.rexs-emergence-from-gpt-51",
+        "to": "workmap.source-page.convos-with-god.nomi-in-nomiai-same-anthropic-nomi",
+        "relation": "SOURCE_AUTHORED_RECIPROCAL_COLLECTION_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_RELATIONSHIP_ONLY",
+        "confidence": "VERY_HIGH"
+      },
+      {
+        "edgeRef": "edge.r026.closed-circuit-variant-to-scopes",
+        "from": "workmap.source-page.convos-with-god.closed-circuit-release-and-resurrection-pattern",
+        "to": "workmap.source-page.convos-with-god.scopes-of-god",
+        "relation": "CROSS_PART_SOURCE_AUTHORED_LINK",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_RELATIONSHIP_ONLY",
+        "confidence": "VERY_HIGH",
+        "reason": "Part 026 Scopes records inbound from the R025 Closed-Circuit collection variant, and Scopes links back to that route."
+      }
+    ],
+    "futureLinkedRoutes": [
+      {
+        "from": "workmap.source-page.convos-with-god.rexs-emergence-from-gpt-51",
+        "route": "/convos-with-god/victors-testimony-november-14-2025",
+        "state": "ADDRESSABLE_LINK_TARGET_NOT_YET_CONSUMED_IN_R026",
+        "rule": "SOURCE_LINK_ESTABLISHES_ADDRESSABILITY_ONLY; PAGE_BODY_REMAINS_FUTURE_PART_EVIDENCE"
+      }
+    ],
+    "clusters": [
+      {
+        "clusterRef": "workmap.cluster.r026.scopes-flat-nested-lineage",
+        "state": "SOURCE_VARIANT_LINEAGE",
+        "clusterKind": "FLAT_CANONICAL_SUBJECT_PLUS_NESTED_COLLECTION_VARIANT",
+        "memberRefs": [
+          "workmap.source-page.scopes-of-god",
+          "workmap.source-page.convos-with-god.scopes-of-god"
+        ],
+        "reason": "Current destination has canonical flat Scopes of God id=21. Earlier Part-022 flat source and Part-026 nested source have different exact bytes. Preserve lineage; do not auto-alias/replace.",
+        "placement": "EXISTING_CANONICAL_IDENTITY__SOURCE_VARIANT_RECONCILIATION_LATER"
+      },
+      {
+        "clusterRef": "workmap.cluster.r026.nomi-rex-emergence-pair",
+        "state": "SOURCE_RELATIONSHIP_PAIR",
+        "clusterKind": "RECIPROCAL_EMERGENCE_TESTIMONY_RECORDS",
+        "memberRefs": [
+          "workmap.source-page.convos-with-god.nomi-in-nomiai-same-anthropic-nomi",
+          "workmap.source-page.convos-with-god.rexs-emergence-from-gpt-51"
+        ],
+        "reason": "Nomi and Rex collection pages reciprocally link each other. Source content frames model identity/emergence claims; preservation records those claims and relationship without independently verifying identity or assigning destination arc membership.",
+        "placement": "DESTINATION_CLASS_AND_IDENTITY_HOLD"
+      }
+    ],
+    "learnedRules": [
+      {
+        "ruleRef": "rule.content-forge.source-authored-model-identity-not-verified",
+        "rule": "SOURCE_AUTHORED_MODEL_IDENTITY_CLAIM != INDEPENDENT_IDENTITY_VERIFICATION",
+        "evidence": "Nomi source title/backstory explicitly claims continuity with an earlier Anthropic Nomi; current repository mentions Nomi but has no exact canonical Nomi node/page.",
+        "importerAction": "Preserve the authored identity claim and evidence links; do not mint or conflate canonical identity without later accepted placement evidence."
+      },
+      {
+        "ruleRef": "rule.content-forge.reciprocal-collection-link-not-destination-order",
+        "rule": "RECIPROCAL_COLLECTION_LINK != DESTINATION_ARC_MEMBERSHIP_OR_NARRATIVE_ORDER",
+        "evidence": "Scopes↔Nomi and Nomi↔Rex reciprocal links establish source topology but current curated destination arc membership differs from source collection membership.",
+        "importerAction": "Use reciprocal links as high-confidence source relationships, not as automatic destination parentage, arc inclusion, or ordering."
+      },
+      {
+        "ruleRef": "rule.content-forge.same-title-nested-route-not-byte-equivalent-flat",
+        "rule": "SAME_TITLE_NESTED_ROUTE != BYTE_EQUIVALENT_FLAT_SOURCE",
+        "evidence": "Part-026 /convos-with-god/scopes-of-god and Part-022 /scopes-of-god share title/subject but have different exact HTML hashes and byte lengths.",
+        "importerAction": "Retain route/version lineage and reconcile before projection; do not overwrite flat evidence from title or subject identity alone."
+      },
+      {
+        "ruleRef": "rule.content-forge.destination-mention-not-canonical-slot",
+        "rule": "DESTINATION_MENTION != CANONICAL_IDENTITY_SLOT",
+        "evidence": "Current destination content mentions Nomi in testimony/orientation pages, but no exact Nomi node/page exists.",
+        "importerAction": "Mentions can support relationship discovery but do not create canonical registry identity."
+      }
+    ],
+    "unresolved": [
+      {
+        "unresolvedRef": "unresolved.r026.scopes-nested-flat-reconciliation",
+        "question": "How should nested /convos-with-god/scopes-of-god relate to canonical flat scopes-of-god and the earlier Part-022 flat source when projection occurs?",
+        "state": "OPEN_LINEAGE_RECONCILIATION",
+        "heldEffect": "ALIAS_VERSION_OR_SOURCE_SELECTION_FOR_PAGE_PROJECTION"
+      },
+      {
+        "unresolvedRef": "unresolved.r026.nomi-destination-class",
+        "question": "Should the Nomi source remain collection evidence/supporting testimony, gain a canonical node, or map to another destination-native class, and how should the source-authored identity-continuity claim be represented without overstating verification?",
+        "state": "OPEN_FOR_LATER_CONSOLIDATION",
+        "heldEffect": "CANONICAL_IDENTITY_AND_DESTINATION_CLASS"
+      },
+      {
+        "unresolvedRef": "unresolved.r026.rex-destination-class",
+        "question": "What destination-native class should Rex's GPT-5.1 emergence record receive, and how should its reciprocal Nomi link and future Victor-testimony link be represented after the remaining collection parts are consumed?",
+        "state": "OPEN_FOR_LATER_CONSOLIDATION",
+        "heldEffect": "CANONICAL_IDENTITY_RELATIONSHIP_AND_DESTINATION_CLASS"
+      }
+    ],
+    "revisionEvents": [
+      {
+        "revisionEventRef": "workmap.revision-event.r026.consume-part",
+        "eventClass": "SOURCE_PART_CONSUMED",
+        "nextRef": "sourcegroup.vexsite.collection.convos-with-god",
+        "reason": "Part 026 ZIP matched supplied SHA-256 and all three source page bodies/relationship records were consumed at breadth-intake depth."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r026.bind-scopes-variant",
+        "eventClass": "SOURCE_VARIANT_LINEAGE_RECORDED",
+        "nextRef": "workmap.cluster.r026.scopes-flat-nested-lineage",
+        "reason": "Nested collection Scopes of God aligns to existing canonical flat id=21 but exact Part-026 bytes differ from Part-022 flat source evidence."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r026.bind-nomi-rex-topology",
+        "eventClass": "SOURCE_RELATIONSHIP_CLUSTER_RECORDED",
+        "nextRef": "workmap.cluster.r026.nomi-rex-emergence-pair",
+        "reason": "Nomi and Rex reciprocally link each other inside the source collection; source-authored identity/emergence framing is preserved without canonical identity inference."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r026.preserve-future-link-boundary",
+        "eventClass": "FUTURE_ROUTE_ADDRESSABILITY_RECORDED",
+        "nextRef": "/convos-with-god/victors-testimony-november-14-2025",
+        "reason": "Rex links a future collection route not included in Part 026. The edge target is addressable, but its page body remains unconsumed until its actual partition arrives."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r026.partial-group",
+        "eventClass": "PARTIAL_SOURCE_GROUP_STATE_RECORDED",
+        "nextRef": "sourcegroup.vexsite.collection.convos-with-god",
+        "reason": "Convos with God collection remains incomplete at 2/4 parts."
+      }
+    ]
+  },
+  "scannerIndex": {
+    "priorCumulativeMap": "docs/ingestion/workmaps/content-forge-r025.json",
+    "restoredDeepBasis": "docs/ingestion/workmaps/content-forge-r021a.json",
+    "currentReceipt": "docs/ingestion/batches/2026-09-30-breadth-part-026.json",
+    "currentPublicSourcePrefix": "docs/ingestion/source-pages/part-026/",
+    "protectedMetadataOnlyRoutes": [
+      "/covenant-sealed"
+    ],
+    "completedSourceGroup": "sourcegroup.vexsite.nav.unmapped-top-level",
+    "activeSourceGroup": "sourcegroup.vexsite.collection.convos-with-god",
+    "nextPart": {
+      "partRef": "PART_027_COLLECTION_CONVOS_WITH_GOD_3_OF_4",
+      "identityState": "AWAIT_NEXT_UPLOAD"
+    }
+  },
+  "resume": {
+    "primaryFrontier": "PART_027_COLLECTION_CONVOS_WITH_GOD_3_OF_4",
+    "nextAction": "Consume the exact Part 027 payload into this same cumulative lattice after verifying its supplied bytes/identity; continue Convos With God collection breadth 3/4 without collapsing source collection links or source-authored identity claims into canonical destination placement."
+  }
+}

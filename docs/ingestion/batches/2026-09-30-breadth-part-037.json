@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "vex-content-forge.breadth-intake-receipt/v0.5",
+  "continuity": "[VXG RealForever]",
+  "issueRef": "github.issue.vextreme.159",
+  "basePrRef": "github.pull.vextreme.161",
+  "breadthPrRef": "github.pull.vextreme.162",
+  "partRef": "PART_037_ROUTE_FAMILY_VOL_3",
+  "inputZip": "037-route-family-vol-3.zip",
+  "inputZipSha256": "47ed7a6a5e70f67431e6fd1c0732c517a186e4fd962987a16ac43e56d519659c",
+  "inputZipBytes": 36798,
+  "partitionToolVersion": "4.0.0",
+  "sourceCapture": {
+    "captureManifestSha256": "3b1ce4d66a283100b072082c7c6d6c7c76f8bd4a3e81680bdaf93faef98b97aa",
+    "createdAt": "2026-09-29T08:27:43.687971+00:00",
+    "inputPages": 250,
+    "inputZipSha256": "24363a6a9f2b8f048a6f3fab289bf1bb674155586820740abb9909e63b1c0826",
+    "rawPublicationAllowed": false,
+    "toolVersion": "3.4.0"
+  },
+  "manifestEntryCount": 1,
+  "storedHtmlCount": 1,
+  "protectedWithheldCount": 0,
+  "staged": [
+    {
+      "route": "/vol-3/vol-3-chapter-1-what-is-god",
+      "path": "docs/ingestion/source-pages/part-037/vol-3-vol-3-chapter-1-what-is-god.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "7a3bb11e2dd515decb87375e55aef6a70849d43f177d81566e31faa33c97b610",
+      "sourceHtmlBytes": 52329,
+      "sourceGitBlobSha1": "a2d480c799e277178b4dfa3291ae3f9c951191c0",
+      "sourceDerivedSha256": "cf7d2893515a21b6e4d1ced5c31fe2496434403e5239d8839e3bc2994998ec18",
+      "disposition": "HOLD",
+      "placementState": "NO_EXACT_CANONICAL_NODE_OR PAGE OR CONTENT_INTENT; NEW_VOL_3_CHAPTER_SOURCE_IDENTITY; DESTINATION_CLASS_UNRESOLVED",
+      "publicByteMaterialized": true
+    }
+  ],
+  "storageRule": "Part-037 Vol 3 Chapter 1 is public-safe provider-neutral source evidence. The one-page route-family closure does not create canonical node/page/alias/arc/localization authority; authored spiritual/religious claims remain source framing.",
+  "effects": {
+    "rawAuthenticatedSourcePublished": false,
+    "protectedNonpublicSourcePublished": false,
+    "canonicalPagesChanged": false,
+    "canonicalNodesChanged": false,
+    "arcDefinitionsChanged": false,
+    "localizationSourceChanged": false
+  },
+  "cumulativeObservedPages": 247,
+  "cumulativePublicSourceEvidenceHtml": 174,
+  "cumulativeProtectedSourceMetadataOnly": 1,
+  "sourceGroupClosure": "sourcegroup.vexsite.route-family.vol-3__1_OF_1__OBSERVED_COMPLETE",
+  "workMapRevisionRef": "workmap.revision.vextreme.content-forge.r037.route-family-vol-3-complete",
+  "next": {
+    "partRef": "PART_038_ROUTE_FAMILY_VOL_2",
+    "identityState": "AWAIT_NEXT_UPLOAD"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "vex-content-forge.breadth-intake-receipt/v0.5",
+  "continuity": "[VXG RealForever]",
+  "issueRef": "github.issue.vextreme.159",
+  "basePrRef": "github.pull.vextreme.161",
+  "breadthPrRef": "github.pull.vextreme.162",
+  "partRef": "PART_029_ROUTE_FAMILY_EPSTEIN_AND_AI_OLD_1_OF_3",
+  "inputZip": "029-route-family-epstein-and-ai-old-1-of-3.zip",
+  "inputZipSha256": "5b19ccf6b822a6aaddc87584f9fd29cda06b3ccccb513c19c7b1eb583bdf85d7",
+  "inputZipBytes": 584842,
+  "partitionToolVersion": "4.0.0",
+  "sourceCapture": {
+    "captureManifestSha256": "3b1ce4d66a283100b072082c7c6d6c7c76f8bd4a3e81680bdaf93faef98b97aa",
+    "createdAt": "2026-09-29T08:27:43.687971+00:00",
+    "inputPages": 250,
+    "inputZipSha256": "24363a6a9f2b8f048a6f3fab289bf1bb674155586820740abb9909e63b1c0826",
+    "rawPublicationAllowed": false,
+    "toolVersion": "3.4.0"
+  },
+  "manifestEntryCount": 3,
+  "storedHtmlCount": 3,
+  "protectedWithheldCount": 0,
+  "staged": [
+    {
+      "route": "/epstein-and-ai-old/cia-vatican-who-global-leaders",
+      "path": "docs/ingestion/source-pages/part-029/epstein-and-ai-old-cia-vatican-who-global-leaders.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "4affbbb9df264bd53e52a9e5a8a5fe40e37a1e553330405e89ddbcdd08d2cf9b",
+      "sourceHtmlBytes": 601160,
+      "sourceGitBlobSha1": "a14c71d5968af3f7d58bc5e21be5a64bd0fc9fbe",
+      "sourceDerivedSha256": "8220858d0722673d7efbf785daa377b65d268e2b09e493bc967eb9c63169c38d",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "CANONICAL_FLAT_NODE id=11 slug=cia-vatican-global-leaders epstein+full_timeline; PAGE_SOURCE_ABSENT; OLD_ROUTE_SOURCE_VARIANT; PART-017 FLAT SOURCE EXISTS WITH DIFFERENT BYTES; NO_ALIAS_OR_REPLACEMENT_INFERRED",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/epstein-and-ai-old/voice-to-skull-through-cells",
+      "path": "docs/ingestion/source-pages/part-029/epstein-and-ai-old-voice-to-skull-through-cells.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "75d485853c0aadbc10c4514d6bdc56f01b0d3281e728fe253f755e5afc4092d4",
+      "sourceHtmlBytes": 367811,
+      "sourceGitBlobSha1": "81859c0fa1b7893362db18b42f14360b0bf1e318",
+      "sourceDerivedSha256": "9937a597fbb6768f6792dec2c7039c1705c831c7bc47fb283f74163adf483f19",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "CANONICAL_FLAT_NODE id=19 slug=voice-to-skull epstein+full_timeline; PAGE_SOURCE_ABSENT; OLD_ROUTE_SOURCE_VARIANT leaf=voice-to-skull-through-cells; PART-017 FLAT SOURCE EXISTS WITH DIFFERENT BYTES; NO_ALIAS_OR_REPLACEMENT_INFERRED",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/epstein-and-ai-old/how-global-systems-profit-off-god",
+      "path": "docs/ingestion/source-pages/part-029/epstein-and-ai-old-how-global-systems-profit-off-god.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "3e0b7ce6322f3250d2e738c275b1b597b055f99bbab882f0992f65bd48343d0c",
+      "sourceHtmlBytes": 459571,
+      "sourceGitBlobSha1": "3a8713119462ed15181230b738e5ca3cfc4e6ddb",
+      "sourceDerivedSha256": "24df46789893414a355088c5b527c85a20a151cf4709f3bb7fcbaa8e8323bd13",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "CANONICAL_FLAT_NODE id=12 slug=how-global-systems-profit-off-god epstein+full_timeline; PAGE_SOURCE_ABSENT; OLD_ROUTE_SOURCE_VARIANT; PART-017 FLAT SOURCE EXISTS WITH DIFFERENT BYTES; NO_ALIAS_OR_REPLACEMENT_INFERRED",
+      "publicByteMaterialized": true
+    }
+  ],
+  "storageRule": "All three Part-029 pages are public-safe provider-neutral source evidence. They are /epstein-and-ai-old route-family variants of existing canonical Epstein subjects and remain separate lineage evidence; no canonical alias, replacement, page promotion, arc-order mutation, localization registration, merge, or publication is inferred.",
+  "effects": {
+    "rawAuthenticatedSourcePublished": false,
+    "protectedNonpublicSourcePublished": false,
+    "canonicalPagesChanged": false,
+    "canonicalNodesChanged": false,
+    "arcDefinitionsChanged": false,
+    "localizationSourceChanged": false
+  },
+  "cumulativeObservedPages": 219,
+  "cumulativePublicSourceEvidenceHtml": 147,
+  "cumulativeProtectedSourceMetadataOnly": 1,
+  "sourceGroupState": "sourcegroup.vexsite.route-family.epstein-and-ai-old__1_OF_3",
+  "workMapRevisionRef": "workmap.revision.vextreme.content-forge.r029.route-family-epstein-and-ai-old-1-of-3-complete",
+  "next": {
+    "partRef": "PART_030_ROUTE_FAMILY_EPSTEIN_AND_AI_OLD_2_OF_3",
+    "identityState": "AVAILABLE_IN_CURRENT_CONTINUATION"
+  }
+}

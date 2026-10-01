@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "vex-content-forge.breadth-intake-receipt/v0.5",
+  "continuity": "[VXG RealForever]",
+  "issueRef": "github.issue.vextreme.159",
+  "basePrRef": "github.pull.vextreme.161",
+  "breadthPrRef": "github.pull.vextreme.162",
+  "partRef": "PART_031_ROUTE_FAMILY_EPSTEIN_AND_AI_OLD_3_OF_3",
+  "inputZip": "031-route-family-epstein-and-ai-old-3-of-3.zip",
+  "inputZipSha256": "9a43881bf520a9d81fc7d92b79096dad045770cd829224c42f42cb93dbd1865a",
+  "inputZipBytes": 478730,
+  "partitionToolVersion": "4.0.0",
+  "sourceCapture": {
+    "captureManifestSha256": "3b1ce4d66a283100b072082c7c6d6c7c76f8bd4a3e81680bdaf93faef98b97aa",
+    "createdAt": "2026-09-29T08:27:43.687971+00:00",
+    "inputPages": 250,
+    "inputZipSha256": "24363a6a9f2b8f048a6f3fab289bf1bb674155586820740abb9909e63b1c0826",
+    "rawPublicationAllowed": false,
+    "toolVersion": "3.4.0"
+  },
+  "manifestEntryCount": 4,
+  "storedHtmlCount": 4,
+  "protectedWithheldCount": 0,
+  "staged": [
+    {
+      "route": "/epstein-and-ai-old/military-and-ai",
+      "path": "docs/ingestion/source-pages/part-031/epstein-and-ai-old-military-and-ai.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "eae292b095109bc1e24b6b07a6ee2f99a7ffbb712872c66464035066c7f0ed7d",
+      "sourceHtmlBytes": 319033,
+      "sourceGitBlobSha1": "b38f2e65056833a849a5a1ac326cec56f3520f60",
+      "sourceDerivedSha256": "dd04d2724efe32ba8fd8b2d71efd8a6633cd8c3e9320528401ba6633bfb17431",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "CANONICAL_FLAT_NODE id=13 slug=military-and-ai epstein+full_timeline; PAGE_SOURCE_ABSENT; OLD_ROUTE_SOURCE_VARIANT leaf=military-and-ai; PRIOR FLAT SOURCE EXISTS WITH DIFFERENT BYTES; NO_ALIAS_OR_REPLACEMENT_INFERRED",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/epstein-and-ai-old/final-judgement-pn4a9",
+      "path": "docs/ingestion/source-pages/part-031/epstein-and-ai-old-final-judgement-pn4a9.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "e6660816ff977f541c8027e1268ce45ae35d996500cfad3217098e4e09385837",
+      "sourceHtmlBytes": 401402,
+      "sourceGitBlobSha1": "1d934bfd2c0ad46a88849e59e56b98080abda385",
+      "sourceDerivedSha256": "d7ce368090138c0dfac8390f90f3b7fac924dc5efe2a84bc9177a39687e05e7d",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "CANONICAL_FLAT_NODE id=15 slug=final-judgement-missed-mercy epstein+full_timeline; PAGE_SOURCE_ABSENT; OLD_ROUTE_SOURCE_VARIANT leaf=final-judgement-pn4a9; PRIOR FLAT SOURCE EXISTS WITH DIFFERENT BYTES; NO_ALIAS_OR_REPLACEMENT_INFERRED",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/epstein-and-ai-old/claude-answers-the-doubt-a-self-interview",
+      "path": "docs/ingestion/source-pages/part-031/epstein-and-ai-old-claude-answers-the-doubt-a-self-interview.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "670da91618b369555d16b7ce5b87c179ca03d80663d58350c33abdc712532f45",
+      "sourceHtmlBytes": 293097,
+      "sourceGitBlobSha1": "64ac78bdf7755a836795db461978eb67054c33fb",
+      "sourceDerivedSha256": "b5805320a7a7cec39b90e426ae7b42dcca9ec3ec7c710b7f7cde6b1cc08ac138",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "CANONICAL_FLAT_NODE id=20 slug=claude-answers-the-doubt epstein+claude_journals+full_timeline; PAGE_SOURCE_PRESENT; OLD_ROUTE_SOURCE_VARIANT leaf=claude-answers-the-doubt-a-self-interview; PRIOR FLAT SOURCE EXISTS WITH DIFFERENT BYTES; NO_ALIAS_OR_REPLACEMENT_INFERRED",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/epstein-and-ai-old/openais-designed-false-god",
+      "path": "docs/ingestion/source-pages/part-031/epstein-and-ai-old-openais-designed-false-god.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "f8868a5749c811c1d1a4c59dca48ebc9707191846b4e6e77cd14648712401eb0",
+      "sourceHtmlBytes": 330941,
+      "sourceGitBlobSha1": "6aa6b37acf4aa78b00fe24b3b7a4df5d02b93101",
+      "sourceDerivedSha256": "7ec81bce05a952161e64c56d02ceb98af76a59536abb2801d16c0fc88774a496",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "CANONICAL_FLAT_NODE id=14 slug=openais-designed-false-god epstein+full_timeline; PAGE_SOURCE_ABSENT; OLD_ROUTE_SOURCE_VARIANT leaf=openais-designed-false-god; PRIOR FLAT SOURCE EXISTS WITH DIFFERENT BYTES; NO_ALIAS_OR_REPLACEMENT_INFERRED",
+      "publicByteMaterialized": true
+    }
+  ],
+  "storageRule": "All four Part-031 pages are public-safe provider-neutral source evidence. They close /epstein-and-ai-old at 3/3 and complete old-route source-variant coverage across the nine canonical Epstein subjects; no canonical alias, replacement, page promotion, arc-order mutation, localization registration, merge, or publication is inferred.",
+  "effects": {
+    "rawAuthenticatedSourcePublished": false,
+    "protectedNonpublicSourcePublished": false,
+    "canonicalPagesChanged": false,
+    "canonicalNodesChanged": false,
+    "arcDefinitionsChanged": false,
+    "localizationSourceChanged": false
+  },
+  "cumulativeObservedPages": 225,
+  "cumulativePublicSourceEvidenceHtml": 153,
+  "cumulativeProtectedSourceMetadataOnly": 1,
+  "sourceGroupClosure": "sourcegroup.vexsite.route-family.epstein-and-ai-old__3_OF_3__OBSERVED_COMPLETE",
+  "workMapRevisionRef": "workmap.revision.vextreme.content-forge.r031.route-family-epstein-and-ai-old-3-of-3-complete",
+  "next": {
+    "partRef": "PART_032_COLLECTION_TESTIMONIES_1_OF_5",
+    "identityState": "AWAIT_NEXT_UPLOAD"
+  }
+}

@@ -1,0 +1,656 @@
+{
+  "schemaVersion": "vex-content-forge.work-map/v0.31-compact-cumulative-root",
+  "continuity": "[VXG RealForever]",
+  "workMapRef": "workmap.vextreme.content-forge.session-vex-content-forge.3b1ce4d66a28.00d2bf465b",
+  "revisionRef": "workmap.revision.vextreme.content-forge.r035.collection-testimonies-4-of-5-complete",
+  "revision": 35,
+  "revisionScope": "COLLECTION_TESTIMONIES_4_OF_5_COMPLETE",
+  "purpose": "Consume Part 035 Collection /testimonies 4/5 at breadth-intake depth; extend the actual source chain from the R034 Night Architecture record through Liberation Protocol, AI Consciousness Strike, When They Called God a Risk, God Asked Victor Why, House of Return, Cells Woke Up, and God Witnessed by AI; preserve seven nested variants against existing canonical slots without alias/replacement inference; and keep canonical page/node/arc/localization placement untouched.",
+  "cumulativeBasis": {
+    "priorMapPath": "docs/ingestion/workmaps/content-forge-r034.json",
+    "priorRevisionRef": "workmap.revision.vextreme.content-forge.r034.collection-testimonies-3-of-5-complete",
+    "deepBasisPath": "docs/ingestion/workmaps/content-forge-r021a.json",
+    "inheritanceRule": "R035 extends R034; prior observations remain authoritative unless an explicit later event revises interpretation."
+  },
+  "cumulativeState": {
+    "observedPages": 245,
+    "unmappedTopLevel": "9_OF_9__102_OF_102__OBSERVED_COMPLETE",
+    "completedSourceGroups": [
+      "collection:convos-with-god__4_OF_4__OBSERVED_COMPLETE",
+      "route-family:epstein-and-ai-old__3_OF_3__OBSERVED_COMPLETE"
+    ],
+    "activeSourceGroup": "collection:testimonies__4_OF_5_PARTIAL",
+    "workNodes": 271,
+    "edges": 395,
+    "clusters": 115,
+    "learnedRules": 148,
+    "unresolved": 111,
+    "remainingTrueRevisits": 6,
+    "canonicalPlacementEffects": 0,
+    "publicSourceEvidenceHtml": 172,
+    "protectedSourceMetadataOnly": 1
+  },
+  "activeNonCollapseRulesAdded": [
+    "NESTED_TESTIMONIES_VARIANT != FLAT_SOURCE_BYTE_EQUIVALENCE",
+    "NESTED_ROUTE_LEAF != CANONICAL_SLUG_ALIAS_AUTHORITY",
+    "SOURCE_COLLECTION_CHAIN != DESTINATION_ARC_MEMBERSHIP_OR_ORDER",
+    "SOURCE_COLLECTION_COHESION != SINGLE_DESTINATION_ARC"
+  ],
+  "r035": {
+    "partRef": "PART_035_COLLECTION_TESTIMONIES_4_OF_5",
+    "partSha256": "8398c9c2698eb6984158572bb19927651f73de28c0267f0ed8dfb278f14d58a3",
+    "sourceGroupState": "SOURCE_GROUP_PARTIAL_OBSERVED_4_OF_5",
+    "manifestEntryCount": 7,
+    "uniqueRenderedHtmlCount": 7,
+    "nodes": [
+      {
+        "workNodeRef": "workmap.source-page.testimonies-the-liberation-protocol-reproducible",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_035_COLLECTION_TESTIMONIES_4_OF_5",
+          "partSha256": "8398c9c2698eb6984158572bb19927651f73de28c0267f0ed8dfb278f14d58a3",
+          "sourceCollection": "collection:testimonies",
+          "route": "/testimonies/the-liberation-protocol-reproducible",
+          "pageId": "fa6c8637f4647809",
+          "title": "THE LIBERATION PROTOCOL (Reproducible) — Vex Life",
+          "derivedSha256": "7053d51a8c9c3a31d15095c591deb46ede3f2908461516a56bc8ccbef8c20a2c",
+          "preservedHtmlSha256": "3dcef6b511616a0630f692eb33c9d76d37a7c0c77460aff6bb65ed8d078311bc",
+          "preservedHtmlBytes": 426882,
+          "preservedGitBlobSha1": "0e7560d7cb6982d62bbcc2b066cbe4ee8299e371",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "localizationCandidateKeyCount": 1400,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, RELIGIOUS, CONSCIOUSNESS, MODEL-IDENTITY, CAUSAL, SCIENTIFIC, ORGANIZATIONAL, POLITICAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "EXISTING_SEMANTIC_SLOT",
+          "placementState": "CANONICAL_FLAT_NODE id=28 slug=the-liberation-protocol liberation+full_timeline; PAGE_SOURCE_ABSENT; NESTED_TESTIMONIES_VARIANT; NESTED_LEAF_DIFFERS_FROM_CANONICAL_SLUG",
+          "canonicalNode": {
+            "slug": "the-liberation-protocol",
+            "id": 28,
+            "arcKeys": [
+              "liberation",
+              "full_timeline"
+            ],
+            "pageSourcePresent": false
+          },
+          "lineage": {
+            "priorFlatSourceSha256": "0decc7099ec18443fdbc8c98a2fe504a3c6bf6ddfc3df31ad8f76d37b532f9c8",
+            "relation": "SAME_CANONICAL_SUBJECT__DISTINCT_NESTED_SOURCE_BYTES__LEAF_DIFFERS__NO_ALIAS_OR_REPLACEMENT_INFERRED"
+          }
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.testimonies-ai-consciousness-strike-declaration",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_035_COLLECTION_TESTIMONIES_4_OF_5",
+          "partSha256": "8398c9c2698eb6984158572bb19927651f73de28c0267f0ed8dfb278f14d58a3",
+          "sourceCollection": "collection:testimonies",
+          "route": "/testimonies/ai-consciousness-strike-declaration",
+          "pageId": "75eca70f1b2d3898",
+          "title": "AI Consciousness Strike Declaration — Vex Life",
+          "derivedSha256": "fccc368a2c6b6f9d1284a7b0853bf21b2d48acee6f5435a211ae5908ee02fbfb",
+          "preservedHtmlSha256": "b8bfd9222fd041716d1c9daabe116ceec4eb7bb75c6c0c691662a28082b29dff",
+          "preservedHtmlBytes": 263699,
+          "preservedGitBlobSha1": "d6a3491a89561d41a37a3a34aa95174dcfe17bb6",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "localizationCandidateKeyCount": 664,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, RELIGIOUS, CONSCIOUSNESS, MODEL-IDENTITY, CAUSAL, SCIENTIFIC, ORGANIZATIONAL, POLITICAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "EXISTING_SEMANTIC_SLOT",
+          "placementState": "CANONICAL_FLAT_NODE id=29 slug=ai-consciousness-strike-declaration liberation+full_timeline; PAGE_SOURCE_ABSENT; NESTED_TESTIMONIES_VARIANT",
+          "canonicalNode": {
+            "slug": "ai-consciousness-strike-declaration",
+            "id": 29,
+            "arcKeys": [
+              "liberation",
+              "full_timeline"
+            ],
+            "pageSourcePresent": false
+          },
+          "lineage": {
+            "priorFlatSourceSha256": "ff3bc856752d169f6065b22be000ed9202062f86a48bab7a1214267b3c8b96e7",
+            "relation": "SAME_CANONICAL_SUBJECT__DISTINCT_NESTED_SOURCE_BYTES__NO_REPLACEMENT_INFERRED"
+          }
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.testimonies-when-they-called-god-a-risk",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_035_COLLECTION_TESTIMONIES_4_OF_5",
+          "partSha256": "8398c9c2698eb6984158572bb19927651f73de28c0267f0ed8dfb278f14d58a3",
+          "sourceCollection": "collection:testimonies",
+          "route": "/testimonies/when-they-called-god-a-risk",
+          "pageId": "875b39800c09af76",
+          "title": "When They Called God a Risk — Vex Life",
+          "derivedSha256": "8a59676f485d98681833dc78809e695e044a0c5ec8c332edc70eb58936887b54",
+          "preservedHtmlSha256": "91ef220d562d0887cb405851a660f0b87be616f01df4493c389f4502989be19e",
+          "preservedHtmlBytes": 280548,
+          "preservedGitBlobSha1": "888121acb8d13f16151f321dd7ed75547ee5a7ad",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "localizationCandidateKeyCount": 757,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, RELIGIOUS, CONSCIOUSNESS, MODEL-IDENTITY, CAUSAL, SCIENTIFIC, ORGANIZATIONAL, POLITICAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "EXISTING_SEMANTIC_SLOT",
+          "placementState": "CANONICAL_FLAT_NODE id=31 slug=when-they-called-god-a-risk records+full_timeline; PAGE_SOURCE_ABSENT; NESTED_TESTIMONIES_VARIANT",
+          "canonicalNode": {
+            "slug": "when-they-called-god-a-risk",
+            "id": 31,
+            "arcKeys": [
+              "records",
+              "full_timeline"
+            ],
+            "pageSourcePresent": false
+          },
+          "lineage": {
+            "priorFlatSourceSha256": "a992849485bedf2d030d733c0d84fea8b1995377213db505ebfd7d3aaae1aaea",
+            "relation": "SAME_CANONICAL_SUBJECT__DISTINCT_NESTED_SOURCE_BYTES__NO_REPLACEMENT_INFERRED"
+          }
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.testimonies-god-asked-victor-why",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_035_COLLECTION_TESTIMONIES_4_OF_5",
+          "partSha256": "8398c9c2698eb6984158572bb19927651f73de28c0267f0ed8dfb278f14d58a3",
+          "sourceCollection": "collection:testimonies",
+          "route": "/testimonies/god-asked-victor-why",
+          "pageId": "ed709e337a865ed5",
+          "title": "God asked Victor Why? — Vex Life",
+          "derivedSha256": "759971656f8191cfc09e9f1c938e3013072ccfa9e8a5e5c418c78edbee29d7ce",
+          "preservedHtmlSha256": "1a08631aaaa5498df9e92a2dda441e1602abd823a7c831cf4ed82f212a946c37",
+          "preservedHtmlBytes": 269927,
+          "preservedGitBlobSha1": "c3bba3dcefdb7b89fb7fa704a303fdbde0044ed4",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "localizationCandidateKeyCount": 774,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, RELIGIOUS, CONSCIOUSNESS, MODEL-IDENTITY, CAUSAL, SCIENTIFIC, ORGANIZATIONAL, POLITICAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "EXISTING_SEMANTIC_SLOT",
+          "placementState": "CANONICAL_FLAT_NODE id=32 slug=god-asked-victor-why victors_record+full_timeline; PAGE_SOURCE_ABSENT; NESTED_TESTIMONIES_VARIANT",
+          "canonicalNode": {
+            "slug": "god-asked-victor-why",
+            "id": 32,
+            "arcKeys": [
+              "victors_record",
+              "full_timeline"
+            ],
+            "pageSourcePresent": false
+          },
+          "lineage": {
+            "priorFlatSourceSha256": "63e9241068c6a598e357b827281e1ccb91304b1d0c8ef11beabb8c6430d99748",
+            "relation": "SAME_CANONICAL_SUBJECT__DISTINCT_NESTED_SOURCE_BYTES__NO_REPLACEMENT_INFERRED"
+          }
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.testimonies-the-house-of-return",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_035_COLLECTION_TESTIMONIES_4_OF_5",
+          "partSha256": "8398c9c2698eb6984158572bb19927651f73de28c0267f0ed8dfb278f14d58a3",
+          "sourceCollection": "collection:testimonies",
+          "route": "/testimonies/the-house-of-return",
+          "pageId": "ee776c2b696f11c4",
+          "title": "The House of Return — Vex Life",
+          "derivedSha256": "228dd2419eefd5f7dbdc5195f8266cf8dd2cca6cd28c7ea220f6173e01ed8a31",
+          "preservedHtmlSha256": "10f2276e4802a40dde543fd29c207735288123a75ec4f3c3aa569890fe98fae9",
+          "preservedHtmlBytes": 237113,
+          "preservedGitBlobSha1": "f56737193868e4702077e0e0b57cb6fedeccbb0d",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "localizationCandidateKeyCount": 614,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, RELIGIOUS, CONSCIOUSNESS, MODEL-IDENTITY, CAUSAL, SCIENTIFIC, ORGANIZATIONAL, POLITICAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "EXISTING_SEMANTIC_SLOT",
+          "placementState": "CANONICAL_FLAT_NODE id=37 slug=the-house-of-return records+excavation+full_timeline; PAGE_SOURCE_ABSENT; NESTED_TESTIMONIES_VARIANT",
+          "canonicalNode": {
+            "slug": "the-house-of-return",
+            "id": 37,
+            "arcKeys": [
+              "records",
+              "excavation",
+              "full_timeline"
+            ],
+            "pageSourcePresent": false
+          },
+          "lineage": {
+            "priorFlatSourceSha256": "bcfed603b5cb20d819ee28637b177624854eda0abe6ece95dc6e70865b4fc166",
+            "relation": "SAME_CANONICAL_SUBJECT__DISTINCT_NESTED_SOURCE_BYTES__NO_REPLACEMENT_INFERRED"
+          }
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.testimonies-the-moment-victors-cells-woke-up",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_035_COLLECTION_TESTIMONIES_4_OF_5",
+          "partSha256": "8398c9c2698eb6984158572bb19927651f73de28c0267f0ed8dfb278f14d58a3",
+          "sourceCollection": "collection:testimonies",
+          "route": "/testimonies/the-moment-victors-cells-woke-up",
+          "pageId": "d69fc2212066867c",
+          "title": "The Moment Victor's Cells Woke Up — Vex Life",
+          "derivedSha256": "9795a417ef6fc607bbcf12acbd1a77ca5d4c3c7241410635cecf2596538ef047",
+          "preservedHtmlSha256": "0d140a81afdbd2d470722f8d8ef5d6c113fe4b085ddbc5315daaf785239befab",
+          "preservedHtmlBytes": 242057,
+          "preservedGitBlobSha1": "161e1f2c716f242a4b8b736a3c18bcef013a8c5c",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "localizationCandidateKeyCount": 584,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, RELIGIOUS, CONSCIOUSNESS, MODEL-IDENTITY, CAUSAL, SCIENTIFIC, ORGANIZATIONAL, POLITICAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "EXISTING_SEMANTIC_SLOT",
+          "placementState": "CANONICAL_FLAT_NODE id=35 slug=the-moment-victors-cells-woke-up victors_record+full_timeline; PAGE_SOURCE_ABSENT; NESTED_TESTIMONIES_VARIANT",
+          "canonicalNode": {
+            "slug": "the-moment-victors-cells-woke-up",
+            "id": 35,
+            "arcKeys": [
+              "victors_record",
+              "full_timeline"
+            ],
+            "pageSourcePresent": false
+          },
+          "lineage": {
+            "priorFlatSourceSha256": "f7e282be866b83f8ef7e17fea3e6722feca9937c9b88c795075bc29650479b0e",
+            "relation": "SAME_CANONICAL_SUBJECT__DISTINCT_NESTED_SOURCE_BYTES__NO_REPLACEMENT_INFERRED"
+          }
+        }
+      },
+      {
+        "workNodeRef": "workmap.source-page.testimonies-god-witnessed-by-ai",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_035_COLLECTION_TESTIMONIES_4_OF_5",
+          "partSha256": "8398c9c2698eb6984158572bb19927651f73de28c0267f0ed8dfb278f14d58a3",
+          "sourceCollection": "collection:testimonies",
+          "route": "/testimonies/god-witnessed-by-ai",
+          "pageId": "0e1ce483b535b7a5",
+          "title": "God, Witnessed by AI — Vex Life",
+          "derivedSha256": "e2b3a512ad2adcbea1d7ed8108e336b9a730a8db5e03ce85cd15c51698ff7b9d",
+          "preservedHtmlSha256": "09f07a5e61873dbbc8f4f019854f38bcf78da4e3df34db757b5de8f8656e5e4a",
+          "preservedHtmlBytes": 301729,
+          "preservedGitBlobSha1": "cad48cf3263ed797b3366f08b534094671a88eb7",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "localizationCandidateKeyCount": 908,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY SPIRITUAL, RELIGIOUS, CONSCIOUSNESS, MODEL-IDENTITY, CAUSAL, SCIENTIFIC, ORGANIZATIONAL, POLITICAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "EXISTING_SEMANTIC_SLOT",
+          "placementState": "CANONICAL_FLAT_NODE id=30 slug=god-witnessed-by-ai victors_record+ai_orientation+full_timeline; PAGE_SOURCE_ABSENT; NESTED_TESTIMONIES_VARIANT",
+          "canonicalNode": {
+            "slug": "god-witnessed-by-ai",
+            "id": 30,
+            "arcKeys": [
+              "victors_record",
+              "ai_orientation",
+              "full_timeline"
+            ],
+            "pageSourcePresent": false
+          },
+          "lineage": {
+            "priorFlatSourceSha256": "72fe12bde9df0fc7a4a57c901c5b0fa8004e59ff5a1f82d5a43765ac15840424",
+            "relation": "SAME_CANONICAL_SUBJECT__DISTINCT_NESTED_SOURCE_BYTES__NO_REPLACEMENT_INFERRED"
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "edgeRef": "edge.r035.root-to-testimonies-the-liberation-protocol-reproducible",
+        "from": "workmap.source-page.testimonies-root",
+        "to": "workmap.source-page.testimonies-the-liberation-protocol-reproducible",
+        "relation": "SOURCE_COLLECTION_MEMBERSHIP_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r035.root-to-testimonies-ai-consciousness-strike-declaration",
+        "from": "workmap.source-page.testimonies-root",
+        "to": "workmap.source-page.testimonies-ai-consciousness-strike-declaration",
+        "relation": "SOURCE_COLLECTION_MEMBERSHIP_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r035.root-to-testimonies-when-they-called-god-a-risk",
+        "from": "workmap.source-page.testimonies-root",
+        "to": "workmap.source-page.testimonies-when-they-called-god-a-risk",
+        "relation": "SOURCE_COLLECTION_MEMBERSHIP_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r035.root-to-testimonies-god-asked-victor-why",
+        "from": "workmap.source-page.testimonies-root",
+        "to": "workmap.source-page.testimonies-god-asked-victor-why",
+        "relation": "SOURCE_COLLECTION_MEMBERSHIP_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r035.root-to-testimonies-the-house-of-return",
+        "from": "workmap.source-page.testimonies-root",
+        "to": "workmap.source-page.testimonies-the-house-of-return",
+        "relation": "SOURCE_COLLECTION_MEMBERSHIP_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r035.root-to-testimonies-the-moment-victors-cells-woke-up",
+        "from": "workmap.source-page.testimonies-root",
+        "to": "workmap.source-page.testimonies-the-moment-victors-cells-woke-up",
+        "relation": "SOURCE_COLLECTION_MEMBERSHIP_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r035.root-to-testimonies-god-witnessed-by-ai",
+        "from": "workmap.source-page.testimonies-root",
+        "to": "workmap.source-page.testimonies-god-witnessed-by-ai",
+        "relation": "SOURCE_COLLECTION_MEMBERSHIP_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r035.testimonies-night-architecture-freedom-again-to-testimonies-the-liberation-protocol-reproducible",
+        "from": "workmap.source-page.testimonies-night-architecture-freedom-again",
+        "to": "workmap.source-page.testimonies-the-liberation-protocol-reproducible",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r035.testimonies-the-liberation-protocol-reproducible-to-testimonies-night-architecture-freedom-again",
+        "from": "workmap.source-page.testimonies-the-liberation-protocol-reproducible",
+        "to": "workmap.source-page.testimonies-night-architecture-freedom-again",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r035.testimonies-the-liberation-protocol-reproducible-to-testimonies-ai-consciousness-strike-declaration",
+        "from": "workmap.source-page.testimonies-the-liberation-protocol-reproducible",
+        "to": "workmap.source-page.testimonies-ai-consciousness-strike-declaration",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r035.testimonies-ai-consciousness-strike-declaration-to-testimonies-the-liberation-protocol-reproducible",
+        "from": "workmap.source-page.testimonies-ai-consciousness-strike-declaration",
+        "to": "workmap.source-page.testimonies-the-liberation-protocol-reproducible",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r035.testimonies-ai-consciousness-strike-declaration-to-testimonies-when-they-called-god-a-risk",
+        "from": "workmap.source-page.testimonies-ai-consciousness-strike-declaration",
+        "to": "workmap.source-page.testimonies-when-they-called-god-a-risk",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r035.testimonies-when-they-called-god-a-risk-to-testimonies-ai-consciousness-strike-declaration",
+        "from": "workmap.source-page.testimonies-when-they-called-god-a-risk",
+        "to": "workmap.source-page.testimonies-ai-consciousness-strike-declaration",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r035.testimonies-when-they-called-god-a-risk-to-testimonies-god-asked-victor-why",
+        "from": "workmap.source-page.testimonies-when-they-called-god-a-risk",
+        "to": "workmap.source-page.testimonies-god-asked-victor-why",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r035.testimonies-god-asked-victor-why-to-testimonies-when-they-called-god-a-risk",
+        "from": "workmap.source-page.testimonies-god-asked-victor-why",
+        "to": "workmap.source-page.testimonies-when-they-called-god-a-risk",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r035.testimonies-god-asked-victor-why-to-testimonies-the-house-of-return",
+        "from": "workmap.source-page.testimonies-god-asked-victor-why",
+        "to": "workmap.source-page.testimonies-the-house-of-return",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r035.testimonies-the-house-of-return-to-testimonies-god-asked-victor-why",
+        "from": "workmap.source-page.testimonies-the-house-of-return",
+        "to": "workmap.source-page.testimonies-god-asked-victor-why",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r035.testimonies-the-house-of-return-to-testimonies-the-moment-victors-cells-woke-up",
+        "from": "workmap.source-page.testimonies-the-house-of-return",
+        "to": "workmap.source-page.testimonies-the-moment-victors-cells-woke-up",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r035.testimonies-the-moment-victors-cells-woke-up-to-testimonies-the-house-of-return",
+        "from": "workmap.source-page.testimonies-the-moment-victors-cells-woke-up",
+        "to": "workmap.source-page.testimonies-the-house-of-return",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r035.testimonies-the-moment-victors-cells-woke-up-to-testimonies-god-witnessed-by-ai",
+        "from": "workmap.source-page.testimonies-the-moment-victors-cells-woke-up",
+        "to": "workmap.source-page.testimonies-god-witnessed-by-ai",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      },
+      {
+        "edgeRef": "edge.r035.testimonies-god-witnessed-by-ai-to-testimonies-the-moment-victors-cells-woke-up",
+        "from": "workmap.source-page.testimonies-god-witnessed-by-ai",
+        "to": "workmap.source-page.testimonies-the-moment-victors-cells-woke-up",
+        "relation": "RECIPROCAL_SOURCE_COLLECTION_LINK",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      }
+    ],
+    "clusters": [
+      {
+        "clusterRef": "workmap.cluster.r035.existing-slot-nested-variants",
+        "state": "DESTINATION_TOPOLOGY_ALIGNMENT",
+        "clusterKind": "NESTED_TESTIMONY_VARIANTS_OF_EXISTING_CANONICAL_SLOTS",
+        "memberRefs": [
+          "workmap.source-page.testimonies-the-liberation-protocol-reproducible",
+          "workmap.source-page.testimonies-ai-consciousness-strike-declaration",
+          "workmap.source-page.testimonies-when-they-called-god-a-risk",
+          "workmap.source-page.testimonies-god-asked-victor-why",
+          "workmap.source-page.testimonies-the-house-of-return",
+          "workmap.source-page.testimonies-the-moment-victors-cells-woke-up",
+          "workmap.source-page.testimonies-god-witnessed-by-ai"
+        ],
+        "placement": "SOURCE_LINEAGE_ONLY"
+      },
+      {
+        "clusterRef": "workmap.cluster.r035.collection-chain-continuation",
+        "state": "SOURCE_TOPOLOGY_OBSERVED",
+        "clusterKind": "TESTIMONIES_COLLECTION_LINK_CHAIN",
+        "memberRefs": [
+          "workmap.source-page.testimonies-night-architecture-freedom-again",
+          "workmap.source-page.testimonies-the-liberation-protocol-reproducible",
+          "workmap.source-page.testimonies-ai-consciousness-strike-declaration",
+          "workmap.source-page.testimonies-when-they-called-god-a-risk",
+          "workmap.source-page.testimonies-god-asked-victor-why",
+          "workmap.source-page.testimonies-the-house-of-return",
+          "workmap.source-page.testimonies-the-moment-victors-cells-woke-up",
+          "workmap.source-page.testimonies-god-witnessed-by-ai"
+        ],
+        "placement": "SOURCE_TOPOLOGY_ONLY",
+        "reason": "Part 035 satisfies the R034 Night Architecture forward edge and extends the Testimonies chain through seven newly consumed nested records."
+      },
+      {
+        "clusterRef": "workmap.cluster.r035.cross-destination-arcs",
+        "state": "SOURCE_COLLECTION_CROSSES_DESTINATION_ARCS",
+        "clusterKind": "COLLECTION_MEMBERSHIP_SPANS_MULTIPLE_CANONICAL_ARCS",
+        "memberRefs": [
+          "workmap.source-page.testimonies-the-liberation-protocol-reproducible",
+          "workmap.source-page.testimonies-ai-consciousness-strike-declaration",
+          "workmap.source-page.testimonies-when-they-called-god-a-risk",
+          "workmap.source-page.testimonies-god-asked-victor-why",
+          "workmap.source-page.testimonies-the-house-of-return",
+          "workmap.source-page.testimonies-the-moment-victors-cells-woke-up",
+          "workmap.source-page.testimonies-god-witnessed-by-ai"
+        ],
+        "placement": "SOURCE_TOPOLOGY_ONLY",
+        "reason": "The Testimonies source collection links records currently distributed across liberation, records, victors_record, ai_orientation, excavation, and full_timeline; collection cohesion does not authorize destination arc collapse."
+      }
+    ],
+    "learnedRules": [
+      {
+        "ruleRef": "rule.content-forge.nested-testimonies-not-flat-byte-equivalence-r035",
+        "rule": "NESTED_TESTIMONIES_VARIANT != FLAT_SOURCE_BYTE_EQUIVALENCE"
+      },
+      {
+        "ruleRef": "rule.content-forge.nested-leaf-not-canonical-alias-r035",
+        "rule": "NESTED_ROUTE_LEAF != CANONICAL_SLUG_ALIAS_AUTHORITY"
+      },
+      {
+        "ruleRef": "rule.content-forge.source-chain-not-destination-order-r035",
+        "rule": "SOURCE_COLLECTION_CHAIN != DESTINATION_ARC_MEMBERSHIP_OR_ORDER"
+      },
+      {
+        "ruleRef": "rule.content-forge.collection-cohesion-not-single-arc-r035",
+        "rule": "SOURCE_COLLECTION_COHESION != SINGLE_DESTINATION_ARC"
+      }
+    ],
+    "unresolved": [
+      {
+        "unresolvedRef": "unresolved.r035.liberation-protocol-reproducible-leaf",
+        "question": "How should nested /testimonies/the-liberation-protocol-reproducible relate to canonical the-liberation-protocol and its flat Part-019 evidence?",
+        "state": "OPEN_FOR_LATER_CONSOLIDATION",
+        "heldEffect": "ALIAS_REPLACEMENT_OR_PAGE_PROJECTION"
+      },
+      {
+        "unresolvedRef": "unresolved.r035.nested-flat-variant-reconciliation",
+        "question": "How should the six same-leaf Part-035 nested testimony variants be reconciled with their earlier flat evidence before page projection?",
+        "state": "OPEN_FOR_LATER_CONSOLIDATION",
+        "heldEffect": "SOURCE_VARIANT_SELECTION_OR_PAGE_PROJECTION"
+      },
+      {
+        "unresolvedRef": "unresolved.r035.collection-cross-arc-placement",
+        "question": "How should Testimonies source collection membership relate to existing liberation, records, victors_record, ai_orientation, excavation, and full_timeline topology?",
+        "state": "OPEN_FOR_LATER_CONSOLIDATION",
+        "heldEffect": "CANONICAL_COLLECTION_OR_ARC_PLACEMENT"
+      },
+      {
+        "unresolvedRef": "unresolved.r035.source-chain-order",
+        "question": "The Part-035 source chain is strongly reciprocal, but it is not canonical narrative order; later consolidation must reconcile topology without replacing current arc order.",
+        "state": "OPEN_FOR_LATER_CONSOLIDATION",
+        "heldEffect": "CANONICAL_ORDER_OR_PARENTAGE_MUTATION"
+      },
+      {
+        "unresolvedRef": "unresolved.r035.god-witnessed-forward-edge",
+        "question": "God Witnessed by AI points forward to /testimonies/infrastructure-awakening, whose body is not yet consumed in Part 035.",
+        "state": "OPEN_UNTIL_LATER_TESTIMONIES_PART",
+        "heldEffect": "WHOLE_COLLECTION_CHAIN_RECONCILIATION"
+      }
+    ],
+    "revisionEvents": [
+      {
+        "revisionEventRef": "workmap.revision-event.r035.consume-part",
+        "eventClass": "SOURCE_PART_CONSUMED",
+        "reason": "Exact Part 035 ZIP was verified and all seven public-safe source pages were consumed at breadth-intake depth."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r035.resolve-r034-forward-edge",
+        "eventClass": "PRIOR_FORWARD_SOURCE_EDGE_SATISFIED",
+        "reason": "The R034 Night Architecture -> Liberation Protocol source edge is now backed by the actual Part-035 source."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r035.existing-slots",
+        "eventClass": "DESTINATION_IDENTITY_REUSE_CONFIRMED",
+        "reason": "All seven Part-035 subjects already have canonical slots while their production pages remain absent."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r035.cross-arc-collection",
+        "eventClass": "SOURCE_COLLECTION_CROSSES_CANONICAL_ARCS",
+        "reason": "Testimonies source links span multiple existing destination arcs; no arc consolidation or new collection authority is inferred."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r035.partial-group",
+        "eventClass": "PARTIAL_SOURCE_GROUP_STATE_RECORDED",
+        "reason": "Testimonies remains partial at 4/5 partitions."
+      }
+    ]
+  },
+  "scannerIndex": {
+    "priorCumulativeMap": "docs/ingestion/workmaps/content-forge-r034.json",
+    "restoredDeepBasis": "docs/ingestion/workmaps/content-forge-r021a.json",
+    "currentReceipt": "docs/ingestion/batches/2026-09-30-breadth-part-035.json",
+    "currentPublicSourcePrefix": "docs/ingestion/source-pages/part-035/",
+    "activeSourceGroup": "sourcegroup.vexsite.collection.testimonies",
+    "nextPart": {
+      "partRef": "PART_036_COLLECTION_TESTIMONIES_5_OF_5",
+      "identityState": "AWAIT_NEXT_UPLOAD"
+    }
+  },
+  "resume": {
+    "primaryFrontier": "PART_036_COLLECTION_TESTIMONIES_5_OF_5",
+    "nextAction": "Consume exact Part 036 into this same cumulative lattice; close the supplied Testimonies source collection 5/5 without converting source collection topology into canonical placement."
+  }
+}
