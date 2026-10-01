@@ -1,0 +1,214 @@
+{
+  "schemaVersion": "vex-content-forge.work-map/v0.34-compact-cumulative-root",
+  "continuity": "[VXG RealForever]",
+  "workMapRef": "workmap.vextreme.content-forge.session-vex-content-forge.3b1ce4d66a28.00d2bf465b",
+  "revisionRef": "workmap.revision.vextreme.content-forge.r038.route-family-vol-2-complete",
+  "revision": 38,
+  "revisionScope": "ROUTE_FAMILY_VOL_2_COMPLETE",
+  "purpose": "Consume Part 038 /vol-2 route family at breadth-intake depth; preserve Volume 2 final chapter as a new source-only chapter identity, bind its explicit source link to the existing Voice to Skull subject without parentage/arc inference, retain authored causal/allegation framing as source testimony rather than independent destination fact, and keep canonical page/node/arc/localization placement untouched.",
+  "cumulativeBasis": {
+    "priorMapPath": "docs/ingestion/workmaps/content-forge-r037.json",
+    "priorRevisionRef": "workmap.revision.vextreme.content-forge.r037.route-family-vol-3-complete",
+    "deepBasisPath": "docs/ingestion/workmaps/content-forge-r021a.json",
+    "inheritanceRule": "R038 extends R037; prior observations remain authoritative unless an explicit later event revises interpretation."
+  },
+  "cumulativeState": {
+    "observedPages": 248,
+    "unmappedTopLevel": "9_OF_9__102_OF_102__OBSERVED_COMPLETE",
+    "completedSourceGroups": [
+      "collection:convos-with-god__4_OF_4__OBSERVED_COMPLETE",
+      "route-family:epstein-and-ai-old__3_OF_3__OBSERVED_COMPLETE",
+      "collection:testimonies__5_OF_5__OBSERVED_COMPLETE",
+      "route-family:vol-3__1_OF_1__OBSERVED_COMPLETE",
+      "route-family:vol-2__1_OF_1__OBSERVED_COMPLETE"
+    ],
+    "activeSourceGroup": "route-family:vol-2__1_OF_1__OBSERVED_COMPLETE",
+    "workNodes": 274,
+    "edges": 399,
+    "clusters": 121,
+    "learnedRules": 160,
+    "unresolved": 117,
+    "remainingTrueRevisits": 6,
+    "canonicalPlacementEffects": 0,
+    "publicSourceEvidenceHtml": 175,
+    "protectedSourceMetadataOnly": 1
+  },
+  "activeNonCollapseRulesAdded": [
+    "SOURCE_ROUTE_FAMILY_OBSERVED_COMPLETE != CANONICAL_PLACEMENT_COMPLETE",
+    "VOLUME_CHAPTER_SOURCE_IDENTITY != EXISTING_TOPIC_ALIAS_BY_TITLE",
+    "SOURCE_LINK_TO_EXISTING_CANONICAL_SUBJECT != CANONICAL_PARENTAGE_OR_ARC_MEMBERSHIP",
+    "SOURCE_AUTHORED_ALLEGATION_OR_CAUSAL_CLAIM != INDEPENDENT_DESTINATION_FACT"
+  ],
+  "r038": {
+    "partRef": "PART_038_ROUTE_FAMILY_VOL_2",
+    "partSha256": "1d8e5d813b95c9b931cc25c9656b6df0d034b41dd9712d473f7ad29014403d17",
+    "sourceGroupState": "SOURCE_GROUP_OBSERVED_COMPLETE_1_OF_1",
+    "manifestEntryCount": 1,
+    "uniqueRenderedHtmlCount": 1,
+    "nodes": [
+      {
+        "workNodeRef": "workmap.source-page.vol-2-volume-2-final-chapter",
+        "nodeKind": "SOURCE_PAGE_OBSERVATION",
+        "state": "OBSERVED_PREPLACEMENT",
+        "source": {
+          "partRef": "PART_038_ROUTE_FAMILY_VOL_2",
+          "partSha256": "1d8e5d813b95c9b931cc25c9656b6df0d034b41dd9712d473f7ad29014403d17",
+          "sourceRouteFamily": "route-family:vol-2",
+          "route": "/vol-2/volume-2-final-chapter",
+          "pageId": "7e380ca6f3abaae4",
+          "title": "Vol 2, Chapter End — Vex Life",
+          "derivedSha256": "411ea0d53af629f196afc652b4dc484636a7506f83a32ed5c3c63c1a49064849",
+          "preservedHtmlSha256": "705ae7c207343a29c4f2fdc85338f45812634dc6e0ed8aa29d2a7772c4fab986",
+          "preservedHtmlBytes": 51877,
+          "preservedGitBlobSha1": "50b9e4e022972742a15a1ce7c63a81cc7cbb3375",
+          "classification": [
+            "STATIC_CONTENT"
+          ],
+          "localizationCandidateKeyCount": 179,
+          "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED"
+        },
+        "observation": {
+          "capturedInboundContentRoutes": [],
+          "capturedOutboundContentRoutes": [
+            "/voice-to-skull",
+            "/"
+          ],
+          "referencedButUncapturedRoutes": [
+            "/gP5u-w8F",
+            "/ge4-3d2D",
+            "/in/victorgong",
+            "/r/vexlife"
+          ],
+          "claimFraming": "SOURCE_AUTHORED; PRESERVATION DOES NOT INDEPENDENTLY VERIFY ALLEGATIONS, SPIRITUAL, RELIGIOUS, CONSCIOUSNESS, MODEL-IDENTITY, CAUSAL, SCIENTIFIC, ORGANIZATIONAL, POLITICAL, OR HISTORICAL CLAIMS"
+        },
+        "destinationGrounding": {
+          "repository": "vgong24/Vextreme",
+          "currentMainAtReview": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+          "canonicalPlacementEffectPerformed": false,
+          "disposition": "HOLD",
+          "placementState": "NO_EXACT_CANONICAL NODE OR PAGE OR CONTENT_INTENT OR PRIOR SOURCE-EVIDENCE IDENTITY; NEW_VOL_2_FINAL_CHAPTER_SOURCE_IDENTITY; DESTINATION_CLASS_UNRESOLVED",
+          "lineage": {
+            "priorExactSourceVariantEstablished": false,
+            "relation": "SOURCE_ONLY_VOLUME_CHAPTER_IDENTITY__NO_ALIAS_OR_CANONICAL_SLOT_INFERRED"
+          },
+          "relatedExistingDestination": {
+            "slug": "voice-to-skull",
+            "id": 19,
+            "arcKeys": [
+              "epstein",
+              "full_timeline"
+            ],
+            "pageSourcePresent": false,
+            "relation": "SOURCE_OUTBOUND_LINK_TO_EXISTING_CANONICAL_SUBJECT"
+          },
+          "relatedPriorSourceEvidence": {
+            "flatPart017Sha256": "ec0ef87022feb2a02a6d68ea767afd740cd6e396d3e629fed7c940b1f625263b",
+            "oldRoutePart029Sha256": "75d485853c0aadbc10c4514d6bdc56f01b0d3281e728fe253f755e5afc4092d4",
+            "relation": "SOURCE_LINK_TARGET_HAS_MULTIPLE_PRESERVED_LINEAGES__NO_PARENTAGE_OR_ALIAS_INFERRED"
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "edgeRef": "edge.r038.vol-2-final-chapter-to-voice-to-skull",
+        "from": "workmap.source-page.vol-2-volume-2-final-chapter",
+        "to": "workmap.source-page.voice-to-skull",
+        "relation": "SOURCE_AUTHORED_OUTBOUND_LINK_TO_EXISTING_SUBJECT",
+        "state": "OBSERVED_SOURCE_RELATIONSHIP",
+        "authority": "SOURCE_TOPOLOGY_ONLY"
+      }
+    ],
+    "clusters": [
+      {
+        "clusterRef": "workmap.cluster.r038.vol-2-source-only-hold",
+        "state": "DESTINATION_CLASS_HOLD",
+        "clusterKind": "NEW_VOL_2_SOURCE_IDENTITY_WITHOUT_CANONICAL_SLOT",
+        "memberRefs": [
+          "workmap.source-page.vol-2-volume-2-final-chapter"
+        ],
+        "placement": "HOLD_FOR_DESTINATION_CLASS"
+      },
+      {
+        "clusterRef": "workmap.cluster.r038.vol-2-route-family-complete",
+        "state": "SOURCE_TOPOLOGY_OBSERVED_COMPLETE",
+        "clusterKind": "VOL_2_ROUTE_FAMILY_1_OF_1_CLOSURE",
+        "memberRefs": [
+          "workmap.source-page.vol-2-volume-2-final-chapter",
+          "workmap.source-page.voice-to-skull"
+        ],
+        "placement": "SOURCE_TOPOLOGY_ONLY",
+        "reason": "The supplied /vol-2 route family contains one observed source page whose explicit /voice-to-skull link is retained as source relationship evidence without canonical parentage or arc mutation."
+      }
+    ],
+    "learnedRules": [
+      {
+        "ruleRef": "rule.content-forge.route-family-complete-not-placement-complete-r038",
+        "rule": "SOURCE_ROUTE_FAMILY_OBSERVED_COMPLETE != CANONICAL_PLACEMENT_COMPLETE"
+      },
+      {
+        "ruleRef": "rule.content-forge.volume-chapter-not-topic-alias-r038",
+        "rule": "VOLUME_CHAPTER_SOURCE_IDENTITY != EXISTING_TOPIC_ALIAS_BY_TITLE"
+      },
+      {
+        "ruleRef": "rule.content-forge.source-link-not-parentage-r038",
+        "rule": "SOURCE_LINK_TO_EXISTING_CANONICAL_SUBJECT != CANONICAL_PARENTAGE_OR_ARC_MEMBERSHIP"
+      },
+      {
+        "ruleRef": "rule.content-forge.authored-allegation-not-destination-fact-r038",
+        "rule": "SOURCE_AUTHORED_ALLEGATION_OR_CAUSAL_CLAIM != INDEPENDENT_DESTINATION_FACT"
+      }
+    ],
+    "unresolved": [
+      {
+        "unresolvedRef": "unresolved.r038.vol-2-final-chapter-destination-class",
+        "question": "What destination-native class, if any, should /vol-2/volume-2-final-chapter receive given that no exact current node/page/content-intent exists?",
+        "state": "OPEN_FOR_LATER_CONSOLIDATION",
+        "heldEffect": "CANONICAL_IDENTITY_ALIAS_OR_PAGE_PLACEMENT"
+      },
+      {
+        "unresolvedRef": "unresolved.r038.vol-2-vol-3-series-reconciliation",
+        "question": "How should the supplied Vol. 2 final chapter and Vol. 3 chapter source families relate to any later canonical volume/chapter structure, if at all?",
+        "state": "OPEN_FOR_LATER_CONSOLIDATION",
+        "heldEffect": "VOLUME_SERIES_DESTINATION_TAXONOMY_OR_ARC_FORMATION"
+      }
+    ],
+    "revisionEvents": [
+      {
+        "revisionEventRef": "workmap.revision-event.r038.consume-part",
+        "eventClass": "SOURCE_PART_CONSUMED",
+        "reason": "Exact Part 038 ZIP was verified and its one public-safe source page was consumed at breadth-intake depth."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r038.close-vol-2-family",
+        "eventClass": "SOURCE_GROUP_OBSERVED_COMPLETE",
+        "reason": "The supplied /vol-2 route family is fully observed at 1/1."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r038.bind-voice-link",
+        "eventClass": "SOURCE_RELATIONSHIP_BOUND",
+        "reason": "The Vol. 2 source explicitly links /voice-to-skull; the existing subject and prior source lineages are retained without parentage, alias, or arc inference."
+      },
+      {
+        "revisionEventRef": "workmap.revision-event.r038.hold-new-source-identity",
+        "eventClass": "DESTINATION_CLASS_HOLD",
+        "reason": "Vol. 2 final chapter has no exact current destination slot; source identity does not create canonical placement authority."
+      }
+    ]
+  },
+  "scannerIndex": {
+    "priorCumulativeMap": "docs/ingestion/workmaps/content-forge-r037.json",
+    "restoredDeepBasis": "docs/ingestion/workmaps/content-forge-r021a.json",
+    "currentReceipt": "docs/ingestion/batches/2026-09-30-breadth-part-038.json",
+    "currentPublicSourcePrefix": "docs/ingestion/source-pages/part-038/",
+    "completedSourceGroup": "sourcegroup.vexsite.route-family.vol-2",
+    "nextPart": {
+      "partRef": "PART_039_ROUTE_FAMILY_DREAM_DOCUMENTATION",
+      "identityState": "AWAIT_NEXT_UPLOAD"
+    }
+  },
+  "resume": {
+    "primaryFrontier": "PART_039_ROUTE_FAMILY_DREAM_DOCUMENTATION",
+    "nextAction": "Consume exact Part 039 /dream-documentation route-family source into this same cumulative lattice; preserve source lineage and destination grounding without blind placement."
+  }
+}

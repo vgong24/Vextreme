@@ -617,3 +617,35 @@ sourcegroup.vexsite.route-family.vol-3
 next=
 PART_038_ROUTE_FAMILY_VOL_2
 ```
+
+
+## Vol. 2 route family — R038
+
+Part 038 observes the supplied `/vol-2` route family at **1/1** with one public-safe source page:
+
+```text
+/vol-2/volume-2-final-chapter
+```
+
+No exact current canonical node, production page, content intent, or earlier source-evidence identity matches this volume/chapter route. The source explicitly links `/voice-to-skull`, which is already a canonical Epstein subject with prior flat and old-route source lineages. That link is retained as relationship evidence rather than parentage, alias, or arc authority.
+
+Preserve:
+
+```text
+SOURCE_ROUTE_FAMILY_OBSERVED_COMPLETE != CANONICAL_PLACEMENT_COMPLETE
+VOLUME_CHAPTER_SOURCE_IDENTITY != EXISTING_TOPIC_ALIAS_BY_TITLE
+SOURCE_LINK_TO_EXISTING_CANONICAL_SUBJECT != CANONICAL_PARENTAGE_OR_ARC_MEMBERSHIP
+SOURCE_AUTHORED_ALLEGATION_OR_CAUSAL_CLAIM != INDEPENDENT_DESTINATION_FACT
+```
+
+The exact Part-038 HTML body is public-safe provider-neutral source evidence under `docs/ingestion/source-pages/part-038/`. Canonical `pages/**`, nodes, arcs, localization source, merge, and publication remain unchanged.
+
+Current route-family state:
+
+```text
+sourcegroup.vexsite.route-family.vol-2
+= 1_OF_1__OBSERVED_COMPLETE
+
+next=
+PART_039_ROUTE_FAMILY_DREAM_DOCUMENTATION
+```
