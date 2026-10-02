@@ -9,20 +9,22 @@ function isSourcePageObservation(node) {
   const route = firstString(source.route, node.route, node.sourceRoute);
   const pageId = firstString(source.pageId, node.pageId);
   const kind = firstString(node.nodeKind, node.kind, node.type) || '';
-  const ref = firstString(node.workNodeRef, node.nodeRef, node.ref);
   const hasDigest = Boolean(firstString(
     source.sourceHtmlSha256, source.preservedHtmlSha256, source.capturedPageSha256,
     source.derivedSha256, node.sourceHtmlSha256, node.preservedHtmlSha256,
     node.capturedPageSha256, node.derivedSha256,
   ));
+  const captureRecordDigest = firstString(source.contentRecordSha256, node.contentRecordSha256);
   const destinationSignal = Boolean(
     firstString(node.placementState, node.currentDisposition, node.disposition, node.state) ||
     node.exactCanonicalNodeMatchOnCurrentMain === true ||
     node.pageSourcePresentOnCurrentMain === true || isObject(node.canonicalNode)
   );
-  if (!route && !pageId) return false;
-  return Boolean(ref || /SOURCE_PAGE|PAGE_OBSERVATION/i.test(kind) ||
-    (route && pageId && hasDigest && destinationSignal));
+  if (!route || !pageId) return false;
+  if (/REFERENCED|FUTURE_SOURCE|SOURCE_REFERENCE/i.test(kind)) return false;
+  if (/SOURCE_CAPTURE_VARIANT_OBSERVATION/i.test(kind)) return Boolean(captureRecordDigest);
+  if (/SOURCE_PAGE_OBSERVATION|PAGE_OBSERVATION/i.test(kind)) return Boolean(hasDigest || destinationSignal);
+  return Boolean(!kind && hasDigest && destinationSignal);
 }
 
 function collectCandidateNodes(mapRecords) {
@@ -37,16 +39,13 @@ function collectCandidateNodes(mapRecords) {
 }
 
 function isProtectedRecord(node, source, destination) {
-  const text = allStrings({
+  const sourceProtectionText = allStrings({
     materialization: source.publicMaterializationState,
-    protection: destination.protection,
     sourceProtection: source.protection,
-    disposition: destination.currentDisposition,
-    placement: destination.placementState,
   }).join(' ').toUpperCase();
   return Boolean(source.protected === true || source.publicationAllowed === false ||
-    isObject(destination.protection) ||
-    /PROTECTED|PASSWORD|NONPUBLIC|NON-PUBLIC|WITHHELD|METADATA_ONLY/.test(text));
+    isObject(source.protection) || isObject(destination.protection) ||
+    /PROTECTED|PASSWORD|NONPUBLIC|NON-PUBLIC|WITHHELD|METADATA_ONLY/.test(sourceProtectionText));
 }
 
 function explicitCanonicalIdentity(destination) {

@@ -28,9 +28,20 @@ function normalizeRecord({ mapRecord, node, context = {} }) {
   const digestKey = firstString(digests.sourceHtmlSha256, digests.preservedHtmlSha256,
     digests.capturedPageSha256, digests.derivedSha256, digests.gitBlobSha1);
   const identitySeed = [partRef, pageId, route, digestKey, workNodeRef].filter(Boolean).join('|');
+  const observationKind = firstString(node.nodeKind, node.kind, node.type);
+  const isCaptureVariant = /SOURCE_CAPTURE_VARIANT_OBSERVATION/i.test(observationKind || '');
+  const captureVariant = isCaptureVariant ? {
+    contentRecordSha256: firstString(source.contentRecordSha256, node.contentRecordSha256),
+    localPath: firstString(source.localPath, node.localPath),
+    renderedHtmlMaterializedSeparately: source.renderedHtmlMaterializedSeparately === true ||
+      node.renderedHtmlMaterializedSeparately === true,
+    primaryCapturePageId: firstString(node.observation && node.observation.primaryCapturePageId),
+    primaryContentRecordSha256: firstString(node.observation && node.observation.primaryContentRecordSha256),
+  } : null;
   return {
     recordRef: `content-forge.source-record.${sha256Text(identitySeed).slice(0, 20)}`,
     workNodeRef,
+    observationKind,
     map: { path: mapRecord.repoPath, revision: mapRecord.revision, revisionRef: mapRecord.revisionRef },
     source: {
       partRef, route, pageId,
@@ -58,7 +69,9 @@ function normalizeRecord({ mapRecord, node, context = {} }) {
       canonicalPlacementEffectPerformed: destination.canonicalPlacementEffectPerformed === true,
     },
     classification: classifyDestination(node),
-    explicitLineage: isObject(node.lineage) ? node.lineage : null,
+    explicitLineage: isObject(node.lineage) ? node.lineage :
+      (isCaptureVariant && isObject(node.observation) ? node.observation : null),
+    captureVariant,
     observationClass: firstString(node.observation && node.observation.observedContentClass),
   };
 }
@@ -66,9 +79,11 @@ function normalizeRecord({ mapRecord, node, context = {} }) {
 function recordDedupeKey(record) {
   return stableJson({
     workNodeRef: record.workNodeRef,
+    observationKind: record.observationKind,
     source: record.source,
     destination: record.destination,
     explicitLineage: record.explicitLineage,
+    captureVariant: record.captureVariant,
   });
 }
 

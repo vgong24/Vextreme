@@ -45,6 +45,19 @@ function fixtureRepo(root) {
     continuity: '[VXG RealForever]', issueRef: 'github.issue.vextreme.159',
     breadthPrRef: 'github.pull.vextreme.162', state: 'BREADTH_TERMINAL',
     workMapPath: 'docs/ingestion/workmaps/content-forge-r003.json', observedPages: 5,
+    protectedSourceMetadataOnlyPages: 1,
+  });
+  writeJson(root, 'docs/ingestion/workmaps/content-forge-post-breadth-consolidation-formation.json', {
+    schemaVersion: 'vex-content-forge.consolidation-formation/v0.test',
+    stageRef: 'work.vextreme.content-forge.test',
+    knownHolds: {
+      countReconciliation: {
+        sourceCaptureInputPages: 5,
+        terminalScannerObservedPages: 5,
+        state: 'MATCHED_FOR_FIXTURE',
+      },
+      referencedNotCarried: [],
+    },
   });
   writeJson(root, 'docs/ingestion/workmaps/content-forge-r001.json', {
     schemaVersion: 'vex-content-forge.work-map/v0.test-deep', revision: 1,
@@ -91,7 +104,7 @@ function fixtureRepo(root) {
       priorMapPath: 'docs/ingestion/workmaps/content-forge-r002.json',
       deepBasisPath: 'docs/ingestion/workmaps/content-forge-r001.json',
     },
-    cumulativeState: { observedPages: 5, canonicalPlacementEffects: 0 },
+    cumulativeState: { observedPages: 5, protectedSourceMetadataOnly: 1, canonicalPlacementEffects: 0 },
     r003: { partRef: 'PART_003', node: {
       route: '/current', pageId: 'page-current', title: 'Current',
       preservedHtmlSha256: 'e'.repeat(64), preservedHtmlBytes: 1234,

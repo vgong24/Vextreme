@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "vex-content-forge.consolidation-formation/v0.2",
+  "schemaVersion": "vex-content-forge.consolidation-formation/v0.3",
   "continuity": "[VXG RealForever]",
   "stageRef": "work.vextreme.content-forge.post-breadth-consolidation.proposal-compiler.20260930",
   "stage": "POST_BREADTH_CONSOLIDATION_PROPOSAL_COMPILER_FORMATION",
@@ -54,7 +54,7 @@
       "PROPOSAL_TO_ACCEPTED_PLACEMENT"
     ],
     "snapshotPath": "docs/ingestion/workmaps/content-forge-consolidation-proposal.json",
-    "snapshotState": "NOT_MATERIALIZED_UNTIL_EXACT_CORPUS_EXECUTION"
+    "snapshotState": "MATERIALIZED_IN_CANDIDATE__HOSTED_EXACT_HEAD_PROOF_PENDING"
   },
   "knownHolds": {
     "countReconciliation": {
@@ -85,7 +85,8 @@
       "tools/vex-content-forge/consolidation/cli.js",
       "tests/fixtures/content-forge-consolidation-fixture.js",
       "tests/58-content-forge-consolidation.test.js",
-      "docs/ingestion/workmaps/content-forge-post-breadth-consolidation-formation.json"
+      "docs/ingestion/workmaps/content-forge-post-breadth-consolidation-formation.json",
+      "docs/ingestion/workmaps/content-forge-consolidation-proposal.json"
     ],
     "canonicalPageMutationAuthority": false,
     "canonicalNodeMutationAuthority": false,
@@ -105,13 +106,31 @@
     ],
     "localResult": "5_PASS__0_FAIL",
     "evidenceSurface": "LOCAL_SYNTHETIC_SCHEMA_FIXTURE_PROOF",
-    "fullCorpusExecutionState": "PENDING_ACCEPTED_EXECUTION_SURFACE",
-    "hostedEvidenceInferredFromLocal": false
+    "fullCorpusExecutionState": "MATERIALIZED_IN_CANDIDATE__HOSTED_EXACT_HEAD_PROOF_PENDING",
+    "hostedEvidenceInferredFromLocal": false,
+    "fullCorpusPreCorrectionFinding": {
+      "exactHead": "83e14f9611a5dcdf1deb138d867db6a7470b3256",
+      "normalizedRecords": 250,
+      "terminalScannerObservedPages": 249,
+      "protectedMetadataClassified": 3,
+      "terminalProtectedMetadataOnlyPages": 1,
+      "exactRouteLineageFamilies": 2,
+      "finding": "COMPILER_FALSE_POSITIVE_REFERENCE_NODE_PLUS_DESTINATION_PROTECTION_OVERMATCH"
+    },
+    "correctedCandidateExpected": {
+      "normalizedRecords": 249,
+      "sourceCaptureInputPages": 250,
+      "terminalScannerObservedPages": 249,
+      "protectedMetadataOnlyPages": 1,
+      "exactRouteLineageFamilies": 1,
+      "invariantErrors": 0,
+      "invariantHolds": 1,
+      "note": "R034 duplicate manifest capture remains lineage evidence; 250-vs-249 capture/scanner difference remains an explicit HOLD."
+    }
   },
   "nextFrontier": [
-    "RUN_COMPILER_AGAINST_EXACT_STACKED_BRANCH_CORPUS",
-    "MATERIALIZE_AND_REVIEW_DETERMINISTIC_PROPOSAL_SNAPSHOT",
-    "SELECT_SMALLEST_AMBIGUITY_FAMILIES_REQUIRING_HTML",
+    "VERIFY_MATERIALIZED_PROPOSAL_ON_EXACT_CANDIDATE_HEAD",
+    "REVIEW_SMALLEST_AMBIGUITY_FAMILIES_REQUIRING_HTML",
     "FORM_DISTINCT_OWNER_BOUND_PLACEMENT_STAGES",
     "DO_NOT_BATCH_CANONICAL_EFFECTS_FROM_PROPOSAL"
   ]

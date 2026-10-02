@@ -6,6 +6,7 @@ const path = require('path');
 
 const WORKMAP_ROOT = 'docs/ingestion/workmaps';
 const DEFAULT_POINTER = `${WORKMAP_ROOT}/content-forge-current.json`;
+const DEFAULT_FORMATION = `${WORKMAP_ROOT}/content-forge-post-breadth-consolidation-formation.json`;
 
 function sha256Text(text) {
   return crypto.createHash('sha256').update(text).digest('hex');
@@ -86,6 +87,7 @@ function allStrings(value, output = []) {
 }
 
 module.exports = {
+  DEFAULT_FORMATION,
   DEFAULT_POINTER,
   WORKMAP_ROOT,
   allStrings,

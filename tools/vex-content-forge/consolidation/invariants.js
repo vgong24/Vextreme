@@ -2,7 +2,7 @@
 
 const { isObject } = require('./lib');
 
-function invariantFindings(chain, records) {
+function invariantFindings(chain, records, knownHolds = {}) {
   const findings = [];
   const state = isObject(chain.root.value.cumulativeState) ? chain.root.value.cumulativeState : {};
   const pointerObserved = Number.isInteger(chain.pointer.observedPages) ? chain.pointer.observedPages : null;
@@ -21,6 +21,43 @@ function invariantFindings(chain, records) {
       rule: 'COUNT_DIFFERENCE_REQUIRES_EXPLANATION_NOT_COSMETIC_RECONCILIATION',
     });
   }
+
+  const reconciliation = isObject(knownHolds.countReconciliation) ? knownHolds.countReconciliation : {};
+  const sourceCaptureInputPages = Number.isInteger(reconciliation.sourceCaptureInputPages)
+    ? reconciliation.sourceCaptureInputPages : null;
+  const formationScannerObservedPages = Number.isInteger(reconciliation.terminalScannerObservedPages)
+    ? reconciliation.terminalScannerObservedPages : null;
+  if (formationScannerObservedPages !== null && expectedObserved !== null &&
+      formationScannerObservedPages !== expectedObserved) {
+    findings.push({
+      severity: 'ERROR', code: 'FORMATION_SCANNER_OBSERVED_PAGE_COUNT_MISMATCH',
+      formationScannerObservedPages, scannerObservedPages: expectedObserved,
+    });
+  }
+  if (sourceCaptureInputPages !== null && formationScannerObservedPages !== null &&
+      sourceCaptureInputPages !== formationScannerObservedPages) {
+    findings.push({
+      severity: 'HOLD', code: 'SOURCE_CAPTURE_INPUT_COUNT_DIFFERS_FROM_SCANNER_OBSERVED_PAGES',
+      sourceCaptureInputPages, scannerObservedPages: formationScannerObservedPages,
+      state: reconciliation.state || null,
+      rule: 'COUNT_DIFFERENCE_REQUIRES_EXPLANATION_NOT_COSMETIC_RECONCILIATION',
+    });
+  }
+
+  const expectedProtected = Number.isInteger(state.protectedSourceMetadataOnly)
+    ? state.protectedSourceMetadataOnly
+    : (Number.isInteger(chain.pointer.protectedSourceMetadataOnlyPages)
+      ? chain.pointer.protectedSourceMetadataOnlyPages : null);
+  const actualProtected = records.filter(record =>
+    record.classification.destinationClass === 'PROTECTED_METADATA_ONLY').length;
+  if (expectedProtected !== null && actualProtected !== expectedProtected) {
+    findings.push({
+      severity: 'ERROR', code: 'PROTECTED_SOURCE_METADATA_ONLY_COUNT_MISMATCH',
+      scannerProtectedSourceMetadataOnly: expectedProtected,
+      normalizedProtectedSourceMetadataOnly: actualProtected,
+    });
+  }
+
   if (state.canonicalPlacementEffects !== undefined && state.canonicalPlacementEffects !== 0) {
     findings.push({ severity: 'ERROR', code: 'NONZERO_CANONICAL_PLACEMENT_EFFECTS_IN_BREADTH_ROOT', value: state.canonicalPlacementEffects });
   }
