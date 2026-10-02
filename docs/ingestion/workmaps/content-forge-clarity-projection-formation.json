@@ -20,8 +20,15 @@
     "path": "docs/ingestion/source-pages/part-028/convos-with-god-clarity-on-christianity.html",
     "gitBlob": "dc5a8a3502b70b9b62bec7f3494571d584b16e2e",
     "sourceRoute": "/convos-with-god/clarity-on-christianity",
-    "preservedHtmlSha256": "6075d5a3f5a1f0b84a06431f2f70119439868fb79b802717520a83d3400554f6",
-    "rule": "SOURCE_LINEAGES_PRESERVED__DIRECT_COPY_FORBIDDEN"
+    "preservedHtmlSha256": "6075d5a3ac043b35b817ad1f3d9efa023b91d439cb18b58660e07ce097f26607",
+    "rule": "SOURCE_LINEAGES_PRESERVED__DIRECT_COPY_FORBIDDEN",
+    "sourceOracle": {
+      "workMap": "docs/ingestion/workmaps/content-forge-r028.json",
+      "pageId": "db5a49bdc1158cfc",
+      "gitBlob": "dc5a8a3502b70b9b62bec7f3494571d584b16e2e",
+      "preservedHtmlBytes": 298484,
+      "status": "MATCHED"
+    }
   },
   "destination": {
     "slug": "clarity-on-christianity",
@@ -80,5 +87,13 @@
     "mergeAuthority": false,
     "rawProviderPublicationAuthority": false,
     "independentAssuranceRequired": true
-  }
+  },
+  "formationCorrections": [
+    {
+      "correction": "PRESERVED_HTML_SHA256_REBOUND_FROM_R028_SOURCE_ORACLE",
+      "priorIncorrectValue": "6075d5a3f5a1f0b84a06431f2f70119439868fb79b802717520a83d3400554f6",
+      "correctedValue": "6075d5a3ac043b35b817ad1f3d9efa023b91d439cb18b58660e07ce097f26607",
+      "candidateProductMutationStarted": false
+    }
+  ]
 }
