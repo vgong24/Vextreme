@@ -1,0 +1,84 @@
+{
+  "schemaVersion": "vex-content-forge.clarity-projection-formation/v0.1",
+  "continuity": "[VXG RealForever]",
+  "stageRef": "work.vextreme.content-forge.clarity.repository-native-projection.20261002",
+  "ownerRef": "github.issue.vextreme.159",
+  "parent": {
+    "consolidationPr": "github.pull.vextreme.164",
+    "head": "7ce74686baef5b16352958daedc5010769fb10c8",
+    "tree": "3b9307e03e4651688f0f25ec5e77281ac065e89c",
+    "proposalPath": "docs/ingestion/workmaps/content-forge-consolidation-proposal.json",
+    "proposalSha256": "7469935697910020a260375ca067a70b3fa523839182e415c6526b3529809f8d"
+  },
+  "authorityBasis": [
+    "github.issue.vextreme.159",
+    "github.issue.vextreme.159.comment.5887459057"
+  ],
+  "stageDisposition": "FORM_CLARITY_REPOSITORY_NATIVE_PROJECTION_AS_SEPARATE_STACKED_DRAFT",
+  "sourceSelection": {
+    "disposition": "PART_028_NESTED_STATIC_CAPTURE__STRONGEST_COMPLETE_PROJECTION_INPUT",
+    "path": "docs/ingestion/source-pages/part-028/convos-with-god-clarity-on-christianity.html",
+    "gitBlob": "dc5a8a3502b70b9b62bec7f3494571d584b16e2e",
+    "sourceRoute": "/convos-with-god/clarity-on-christianity",
+    "preservedHtmlSha256": "6075d5a3f5a1f0b84a06431f2f70119439868fb79b802717520a83d3400554f6",
+    "rule": "SOURCE_LINEAGES_PRESERVED__DIRECT_COPY_FORBIDDEN"
+  },
+  "destination": {
+    "slug": "clarity-on-christianity",
+    "canonicalNode": {
+      "id": 4,
+      "date": "October 8, 2025",
+      "arcKeys": [
+        "convos_with_god",
+        "full_timeline"
+      ]
+    },
+    "nodeRegistryMutationExpected": false,
+    "arcRegistryMutationExpected": false,
+    "contentIntentMutationExpected": false,
+    "authoredPaths": {
+      "create": [
+        "pages/clarity-on-christianity.html",
+        "data/strings/source/pages/clarity-on-christianity.json",
+        "tests/59-content-forge-clarity-projection.test.js"
+      ],
+      "modify": [
+        "data/viewmodels.json"
+      ],
+      "formation": [
+        "docs/ingestion/workmaps/content-forge-clarity-projection-formation.json"
+      ]
+    },
+    "preimages": {
+      "pages/clarity-on-christianity.html": "ABSENT",
+      "data/strings/source/pages/clarity-on-christianity.json": "ABSENT",
+      "tests/59-content-forge-clarity-projection.test.js": "ABSENT",
+      "data/viewmodels.json": "gitblob:0671d17a0d734dab67ac394278648fd3976a5840"
+    }
+  },
+  "projectionRules": [
+    "PRESERVE_AUTHORED_ARTICLE_CONTENT_AND_ORDER",
+    "PRESERVE_LIST_STRUCTURE_AND_COMPATIBLE_SEMANTIC_HOOKS",
+    "PROJECT_AWAY_SQUARESPACE_CHROME_PROVIDER_ASSETS_RESCUE_RUNTIME_AND_RELATED_COLLECTION_SHELL",
+    "SOURCE_GENERATED_LOCALIZATION_IDS_ARE_PROVENANCE_NOT_DESTINATION_KEYS",
+    "ENABLE_EXISTING_V2_ARC_NAV_THROUGH_VIEWMODEL",
+    "USE_STRING_SOURCE_AND_BUILDERS_FOR_LOCALIZATION_AND_GENERATED_OUTPUTS",
+    "DO_NOT_REWRITE_EXISTING_NODE_OR_ARC_PLACEMENT"
+  ],
+  "generatedConsequences": [
+    "data/strings/compiled/**",
+    "data/index.json",
+    "pages/archives.html",
+    "sitemap.xml",
+    "index.html",
+    "dist/vextreme-clarity-on-christianity.js",
+    "sw.js"
+  ],
+  "generatedPolicy": "BUILDER_OWNED__DO_NOT_HAND_PATCH",
+  "lifecycle": {
+    "draftOnly": true,
+    "mergeAuthority": false,
+    "rawProviderPublicationAuthority": false,
+    "independentAssuranceRequired": true
+  }
+}
