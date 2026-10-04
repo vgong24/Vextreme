@@ -36,7 +36,7 @@ test('countStaticHubLinks: zero for a page with no hub links', () => {
 });
 
 test('countStaticHubLinks: counts distinct hub destinations, not occurrences', () => {
-  const html = '<a href="index.html">Home</a><a href="index.html">Home again</a><a href="archives.html">Archives</a>';
+  const html = '<a href="index.html">Home</a><a href="index.html">Home again</a><a href="build-health.html">Build Health</a>';
   assert.equal(countStaticHubLinks(html), 2);
 });
 
@@ -46,7 +46,7 @@ test('countStaticHubLinks: matches regardless of absolute/relative URL form', ()
 });
 
 test('HUB_DESTINATIONS: is the real, current set of hub pages', () => {
-  assert.deepEqual(HUB_DESTINATIONS, ['index.html', 'archives.html', 'ecosystem-hub.html', 'terrain-map.html']);
+  assert.deepEqual(HUB_DESTINATIONS, ['index.html', 'build-health.html', 'ecosystem-hub.html', 'terrain-map.html']);
 });
 
 // ── 2. hasShellJs ──────────────────────────────────────────────────────────────
@@ -74,7 +74,7 @@ test('godScriptHasSpiralFab: false for empty/missing dist output', () => {
 // ── 4. classifyNav ─────────────────────────────────────────────────────────────
 
 test('classifyNav: navigable via a static hub link alone', () => {
-  const result = classifyNav('foo', '<a href="archives.html">Archives</a>', false, '');
+  const result = classifyNav('foo', '<a href="build-health.html">Build Health</a>', false, '');
   assert.equal(result.navigable, true);
   assert.equal(result.staticHubLinks, 1);
   assert.equal(result.hasFabNav, false);

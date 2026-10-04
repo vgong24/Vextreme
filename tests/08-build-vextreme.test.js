@@ -321,7 +321,7 @@ test('KEY-ALIGNMENT: all arcs-v2.json keys appear in index.json', () => {
 test('KEY-ALIGNMENT: every real arc is wired into build-archives.js\'s ARC_ORDER and ARC_KEY_MAP, and priority-1 arcs into build-index-page.js\'s ARC_ORDER — existing in arcs-v2.json/index.json is not sufficient for a human to actually reach the page (real regression: victor_dossier)', () => {
   const report = checkKeyAlignment();
   assert.deepEqual(report.arcs.missingFromArcOrder, [],
-    `Arc(s) missing from build-archives.js's ARC_ORDER (unreachable from Archives): ${report.arcs.missingFromArcOrder.join(', ')}`);
+    `Arc(s) missing from build-archives.js's ARC_ORDER (unreachable from Build Health): ${report.arcs.missingFromArcOrder.join(', ')}`);
   assert.deepEqual(report.arcs.missingFromArcKeyMap, [],
     `Arc(s) missing from build-archives.js's ARC_KEY_MAP (heading i18n lookup falls back silently): ${report.arcs.missingFromArcKeyMap.join(', ')}`);
   assert.deepEqual(report.arcs.missingFromHomepageOrder, [],

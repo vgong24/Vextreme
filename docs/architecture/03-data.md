@@ -6,7 +6,7 @@ The system uses a Command Query Responsibility Segregation pattern:
 WRITE SIDE (source of truth — edit these)        READ SIDE (artifacts — never edit directly)
 ─────────────────────────────────────────        ─────────────────────────────────────────
 data/nodes.json        ──┐                       data/index.json        (slugMap + arcMap + arcMeta)
-data/arcs-v2.json      ──┼── build pipeline ──▶  pages/archives.html   (build dashboard)
+data/arcs-v2.json      ──┼── build pipeline ──▶  pages/build-health.html   (Build Health dashboard)
 data/strings/source/** ──┘                       sitemap.xml            (crawler index)
                                                  index.html             (root nav page)
                                                  dist/vextreme-{slug}.js (God Scripts, one per page)
@@ -85,7 +85,7 @@ the lens/stage split is generic, not terrain-map-specific.
 ```
 lib/strings-compile.js   → data/strings/compiled/strings.{lang}.json
 lib/build-index.js       → data/index.json
-lib/build-archives.js    → pages/archives.html
+lib/build-archives.js    → pages/build-health.html
 lib/build-sitemap.js     → sitemap.xml
 lib/build-index-page.js  → index.html
 ```

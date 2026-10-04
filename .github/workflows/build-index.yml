@@ -109,7 +109,7 @@ jobs:
       - name: Build page capability health
         run: node lib/build-page-health.js
 
-      - name: Build archives.html
+      - name: Build Build Health + Archives compatibility shim
         run: node lib/build-archives.js
 
       - name: Build vextreme-demo.html
@@ -148,7 +148,7 @@ jobs:
         # branch. That keeps review heads immutable, avoids GH013 on protected
         # feature branches, and makes one checkout/account sufficient to build.
         run: |
-          git add data/strings/compiled data/strings/reports data/index.json data/analysis-index.json data/lessons.json data/roles.json data/status.json data/page-health.json data/terrain-map.json dist sw.js pages/archives.html pages/vextreme-demo.html pages/specimens.html pages/specimen-*.html pages/ecosystem-hub.html pages/roles-index.html sitemap.xml index.html widgets/fab-lang.js
+          git add data/strings/compiled data/strings/reports data/index.json data/analysis-index.json data/lessons.json data/roles.json data/status.json data/page-health.json data/terrain-map.json dist sw.js pages/build-health.html pages/archives.html pages/vextreme-demo.html pages/specimens.html pages/specimen-*.html pages/ecosystem-hub.html pages/roles-index.html sitemap.xml index.html widgets/fab-lang.js
           if git diff --staged --quiet; then
             echo "Generated artifacts match the reviewed source tree."
           else

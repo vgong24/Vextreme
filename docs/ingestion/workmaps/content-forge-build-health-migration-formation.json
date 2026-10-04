@@ -72,7 +72,16 @@
     "docs/architecture/16-nav-coverage.md",
     "tests/04-build-output.test.js",
     "tests/08-build-vextreme.test.js",
-    "tests/55-build-sitemap.test.js"
+    "tests/55-build-sitemap.test.js",
+    "pages/process-atlas.html",
+    "data/status/assumptions.json",
+    "tests/38-audit-nav.test.js",
+    "tests/44-page-health.test.js",
+    "tests/37-fab-analysis.test.js",
+    "tests/16-auto-discover-nodes.test.js",
+    "lib/run-test-prereqs.js",
+    "tests/helpers/prereqs.js",
+    "docs/culture.md"
   ],
   "generatedPaths": [
     "pages/build-health.html",
@@ -109,5 +118,10 @@
     "npm run pr-ready",
     "generated-artifact exact currentness",
     "fresh Independent Assurance"
-  ]
+  ],
+  "scopeAmendment": {
+    "observedDuringImplementation": true,
+    "reason": "Current-route sweep found additional direct consumers of archives.html and Build Health hub semantics.",
+    "protectedIntentUnchanged": true
+  }
 }

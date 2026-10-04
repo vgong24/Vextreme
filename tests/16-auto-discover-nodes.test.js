@@ -6,7 +6,7 @@
  * Tests for lib/auto-discover-nodes.js — synthesizes a node-shaped object
  * for any pages/*.html file with no data/nodes.json entry, so adding a page
  * alone (no manual nodes.json edit) is enough to make it show up in
- * data/index.json / archives.html the next time the build runs.
+ * data/index.json / build-health.html the next time the build runs.
  *
  * Test order:
  *   1. titleCaseFromSlug — the no-<title>-tag fallback

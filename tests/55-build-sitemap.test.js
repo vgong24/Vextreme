@@ -35,7 +35,7 @@ test('BUILD-SITEMAP: existing content, utility, and active institutional pages a
   }));
   assert.deepEqual(collectLiveUrls(root), [
     'https://vgong24.github.io/Vextreme/pages/present.html',
-    'https://vgong24.github.io/Vextreme/pages/archives.html',
+    'https://vgong24.github.io/Vextreme/pages/build-health.html',
     'https://vgong24.github.io/Vextreme/pages/vextreme-home.html',
   ]);
 });

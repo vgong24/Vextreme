@@ -3,7 +3,7 @@
 /**
  * BUILD OUTPUT INTEGRITY — tests/04-build-output.test.js
  *
- * Tests generated files (pages/archives.html) as the contract surface.
+ * Tests generated files (pages/build-health.html plus the pages/archives.html compatibility shim) as the contract surface.
  *
  * Why this file exists separately from the pipeline tests:
  * build-archives.js uses string interpolation to produce HTML. A bug in
@@ -27,14 +27,25 @@ const assert   = require('node:assert/strict');
 const fs       = require('fs');
 const path     = require('path');
 
-const ARCHIVES_PATH = path.join(__dirname, '../pages/archives.html');
+const BUILD_HEALTH_PATH = path.join(__dirname, '../pages/build-health.html');
+const ARCHIVES_COMPAT_PATH = path.join(__dirname, '../pages/archives.html');
 
 let html = '';
 
-test('SETUP: archives.html exists and is readable — run node lib/build-archives.js first', () => {
-  assert.ok(fs.existsSync(ARCHIVES_PATH), `archives.html not found at ${ARCHIVES_PATH}`);
-  html = fs.readFileSync(ARCHIVES_PATH, 'utf8');
-  assert.ok(html.length > 1000, 'archives.html appears empty or truncated');
+test('SETUP: build-health.html exists and is readable — run node lib/build-archives.js first', () => {
+  assert.ok(fs.existsSync(BUILD_HEALTH_PATH), `build-health.html not found at ${BUILD_HEALTH_PATH}`);
+  html = fs.readFileSync(BUILD_HEALTH_PATH, 'utf8');
+  assert.ok(html.length > 1000, 'build-health.html appears empty or truncated');
+});
+
+test('COMPATIBILITY: archives.html forwards query + hash to Build Health without becoming a second dashboard', () => {
+  assert.ok(fs.existsSync(ARCHIVES_COMPAT_PATH), `archives.html compatibility shim not found at ${ARCHIVES_COMPAT_PATH}`);
+  const compat = fs.readFileSync(ARCHIVES_COMPAT_PATH, 'utf8');
+  assert.ok(compat.includes('name="robots" content="noindex"'), 'archives compatibility shim must be noindex');
+  assert.ok(compat.includes('rel="canonical"') && compat.includes('/build-health.html'), 'archives shim canonical target must be Build Health');
+  assert.ok(compat.includes("window.location.search") && compat.includes("window.location.hash"), 'archives shim must preserve query and hash');
+  assert.ok(compat.includes('window.location.replace(target)'), 'archives shim must replace history, not create a redirect loop');
+  assert.ok(!compat.includes('class="arc-section"'), 'archives compatibility shim must not duplicate the Build Health dashboard');
 });
 
 // ── Copy button correctness ───────────────────────────────────────────────────
@@ -103,10 +114,10 @@ test('STRUCTURE: slug popover starts hidden — visible by default would overlay
   assert.ok(html.includes('style="display:none"'),'slugPopover is not hidden by default');
 });
 
-test('STRUCTURE: system pages skipped by the God Script audit are still visible in Archives', () => {
+test('STRUCTURE: system pages skipped by the God Script audit are still visible in Build Health', () => {
   assert.ok(html.includes('id="arc-system-pages"'), 'system pages section missing');
   assert.ok(html.includes('terrain-map.html'), 'terrain-map.html missing from system pages section');
-  assert.ok(html.includes('Terrain Map'), 'Terrain Map title missing from Archives');
+  assert.ok(html.includes('Terrain Map'), 'Terrain Map title missing from Build Health');
 });
 
 test('STRUCTURE: every real arc in data/arcs-v2.json has a rendered section — a new arc left out of build-archives.js\'s hardcoded ARC_ORDER silently orphans every page in it (real regression: victor_dossier shipped in Session 025 but never added to ARC_ORDER)', () => {
@@ -114,7 +125,7 @@ test('STRUCTURE: every real arc in data/arcs-v2.json has a rendered section — 
   for (const key of Object.keys(arcs)) {
     if (key.startsWith('_')) continue; // e.g. "_meta" — not a real arc
     const sectionId = 'id="arc-' + key.replace(/_/g, '-') + '"';
-    assert.ok(html.includes(sectionId), `arc "${key}" has no rendered section in archives.html (${sectionId} missing) — add it to ARC_ORDER in lib/build-archives.js`);
+    assert.ok(html.includes(sectionId), `arc "${key}" has no rendered section in build-health.html (${sectionId} missing) — add it to ARC_ORDER in lib/build-archives.js`);
   }
 });
 
