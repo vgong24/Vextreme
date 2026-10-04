@@ -1,5 +1,5 @@
 {
-  "contentFingerprint": "4bb2a9bfefa7",
+  "contentFingerprint": "23b0c59685c1",
   "nodeCount": 114,
   "curatedNodeCount": 91,
   "autoDiscoveredCount": 23,
@@ -110,7 +110,8 @@
           "spiral-fab",
           "theme",
           "map",
-          "analysis"
+          "analysis",
+          "arc-nav"
         ]
       }
     },
@@ -3465,7 +3466,7 @@
         {
           "slug": "clarity-on-christianity",
           "title": "Clarity on Christianity",
-          "ported": false
+          "ported": true
         },
         {
           "slug": "what-about-buddhism",

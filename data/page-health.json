@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 42,
+    "total": 43,
     "healthy": 3,
-    "attention": 33,
+    "attention": 34,
     "critical": 6,
-    "sorted": 4,
-    "withFab": 30,
-    "withIdentity": 11,
+    "sorted": 5,
+    "withFab": 31,
+    "withIdentity": 12,
     "withScreenshots": 11,
-    "withMetaDescription": 8
+    "withMetaDescription": 9
   },
   "pages": {
     "about-me": {
@@ -458,6 +458,61 @@
           "identity",
           "screenshot",
           "theme-effect"
+        ]
+      }
+    },
+    "clarity-on-christianity": {
+      "slug": "clarity-on-christianity",
+      "title": "Clarity on Christianity",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "convos_with_god",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 157,
+        "languages": {
+          "en": {
+            "translated": 157,
+            "total": 157,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Clarity on Christianity — preserved conversation and reflection, projected into the Vextreme repository-native page system."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
         ]
       }
     },
