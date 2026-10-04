@@ -13,7 +13,7 @@ jobs:
   materialize:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -94,3 +94,15 @@ jobs:
           path: /tmp/materialized
           if-no-files-found: error
           retention-days: 1
+      - name: Commit exact materialized bytes
+        shell: bash
+        run: |
+          git config user.name "VexGPT"
+          git config user.email "victor.gong@vextreme24.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No materialized delta to commit."
+          else
+            git commit -s -m "[Vex Content Forge] Materialize Claude Journals arc batch"
+            git push origin HEAD:VXG-100426-vex-content-forge-claude-journals-arc-batch
+          fi
