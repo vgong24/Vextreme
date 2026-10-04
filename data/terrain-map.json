@@ -3473,12 +3473,31 @@
       "arcName": "Conversations with God",
       "x": 1420,
       "y": 150,
-      "live": false,
-      "liveUrl": null,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/clarity-on-christianity.html",
       "screenshots": {},
       "hasScreenshot": false,
-      "status": "critical",
-      "capability": null,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 157,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "Clarity on Christianity — preserved conversation and reflection, projected into the Vextreme repository-native page system."
+      },
       "curated": true
     },
     {
