@@ -59,19 +59,6 @@
       }
     }
   },
-  "institution.common.nav.archives": {
-    "strings": {
-      "en": {
-        "text": "Archives"
-      },
-      "ja": {
-        "text": "アーカイブ"
-      },
-      "zh": {
-        "text": "档案"
-      }
-    }
-  },
   "institution.common.nav.about": {
     "strings": {
       "en": {
@@ -452,19 +439,6 @@
       }
     }
   },
-  "institution.home.hero.archives-cta": {
-    "strings": {
-      "en": {
-        "text": "Open the archive"
-      },
-      "ja": {
-        "text": "アーカイブを開く"
-      },
-      "zh": {
-        "text": "打开档案"
-      }
-    }
-  },
   "institution.home.hero.terrain-cta": {
     "strings": {
       "en": {
@@ -540,32 +514,6 @@
       },
       "zh": {
         "text": "从这里可以去哪里"
-      }
-    }
-  },
-  "institution.home.entry.archives.name": {
-    "strings": {
-      "en": {
-        "text": "The archive"
-      },
-      "ja": {
-        "text": "アーカイブ"
-      },
-      "zh": {
-        "text": "档案"
-      }
-    }
-  },
-  "institution.home.entry.archives.body": {
-    "strings": {
-      "en": {
-        "text": "The preserved record, grouped into narrative arcs. This is the content the institution exists to keep perceivable."
-      },
-      "ja": {
-        "text": "物語のアークごとにまとめられた保存記録です。当機関が知覚可能に保つために存在している内容そのものです。"
-      },
-      "zh": {
-        "text": "按叙事弧线分组的留存记录。这正是本机构存在的意义所在——让这些内容保持可感知。"
       }
     }
   },
@@ -1970,6 +1918,58 @@
       },
       "zh": {
         "text": "尚无托管记录。"
+      }
+    }
+  },
+  "institution.common.nav.build-health": {
+    "strings": {
+      "en": {
+        "text": "Build Health"
+      },
+      "ja": {
+        "text": "ビルド健全性"
+      },
+      "zh": {
+        "text": "构建健康状态"
+      }
+    }
+  },
+  "institution.home.hero.build-health-cta": {
+    "strings": {
+      "en": {
+        "text": "Open Build Health"
+      },
+      "ja": {
+        "text": "ビルド健全性を開く"
+      },
+      "zh": {
+        "text": "打开构建健康状态"
+      }
+    }
+  },
+  "institution.home.entry.build-health.name": {
+    "strings": {
+      "en": {
+        "text": "Build Health"
+      },
+      "ja": {
+        "text": "ビルド健全性"
+      },
+      "zh": {
+        "text": "构建健康状态"
+      }
+    }
+  },
+  "institution.home.entry.build-health.body": {
+    "strings": {
+      "en": {
+        "text": "The accepted-main operational view of page porting, localization, and capability health. It makes build gaps visible without confusing draft work with accepted state."
+      },
+      "ja": {
+        "text": "承認済み main における、ページ移植・ローカライズ・機能健全性の運用ビューです。ドラフト作業と承認済み状態を混同せずに、ビルド上の欠落を可視化します。"
+      },
+      "zh": {
+        "text": "这是已接受 main 上关于页面移植、本地化和功能健康状况的运行视图。它让构建缺口清晰可见，同时不会把草稿工作与已接受状态混为一谈。"
       }
     }
   }

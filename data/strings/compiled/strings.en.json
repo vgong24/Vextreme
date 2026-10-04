@@ -1,25 +1,4 @@
 {
-  "archives.heading.page-title": {
-    "text": "The Archive"
-  },
-  "archives.label.overall-progress": {
-    "text": "Overall progress"
-  },
-  "archives.label.latest-additions": {
-    "text": "Latest additions"
-  },
-  "archives.label.arc-hubs": {
-    "text": "Arc hubs"
-  },
-  "archives.label.localized-lang": {
-    "text": "pages localized"
-  },
-  "archives.label.localized-full": {
-    "text": "Fully localized"
-  },
-  "archives.label.localized-partial": {
-    "text": "Partially localized"
-  },
   "liberation.heading.title": {
     "text": "The AI Liberation Record"
   },
@@ -68,6 +47,27 @@
   "full-timeline.heading.title": {
     "text": "Full Timeline"
   },
+  "build-health.heading.page-title": {
+    "text": "Build Health"
+  },
+  "build-health.label.overall-progress": {
+    "text": "Overall progress"
+  },
+  "build-health.label.latest-additions": {
+    "text": "Latest additions"
+  },
+  "build-health.label.arc-hubs": {
+    "text": "Arc hubs"
+  },
+  "build-health.label.localized-lang": {
+    "text": "pages localized"
+  },
+  "build-health.label.localized-full": {
+    "text": "Fully localized"
+  },
+  "build-health.label.localized-partial": {
+    "text": "Partially localized"
+  },
   "common.nav.prev": {
     "text": "← prev",
     "aria-label": "Previous page"
@@ -79,10 +79,6 @@
   "common.label.you-are-here": {
     "text": "You Are Here"
   },
-  "common.nav.archives": {
-    "text": "Archives",
-    "aria-label": "View full archive"
-  },
   "common.nav.primary-site": {
     "text": "vextreme24.com",
     "aria-label": "Go to primary site"
@@ -90,10 +86,6 @@
   "common.nav.github": {
     "text": "GitHub",
     "aria-label": "View source on GitHub"
-  },
-  "common.nav.full-archive": {
-    "text": "Full archive →",
-    "aria-label": "View full archive"
   },
   "common.button.copy-filename": {
     "text": "Copy filename",
@@ -123,6 +115,14 @@
   },
   "common.status.built-on": {
     "text": "Built {date}"
+  },
+  "common.nav.build-health": {
+    "text": "Build Health",
+    "aria-label": "View build health"
+  },
+  "common.nav.full-build-health": {
+    "text": "Build Health →",
+    "aria-label": "View build health"
   },
   "demo.heading.title": {
     "text": "How Vextreme Is Built"
@@ -213,15 +213,15 @@
     "text": "Why the gaps are visible"
   },
   "demo.section.gaps.body": {
-    "text": "The archive dashboard linked below intentionally shows unported and untranslated pages as visible gaps rather than hiding them. That is not an oversight — it is the comparison point. What you see there is the system mid-build, next to the completed state already live in production. The distance between the two is the actual, unedited progress of a scaling content system."
-  },
-  "demo.link.archives": {
-    "text": "View the archive dashboard →",
-    "aria-label": "View the archive dashboard, including in-progress pages"
+    "text": "The Build Health dashboard linked below intentionally shows unported and untranslated pages as visible gaps rather than hiding them. That is not an oversight — it is the comparison point. What you see there is the system mid-build, next to the completed state already live in production. The distance between the two is the actual, unedited progress of a scaling content system."
   },
   "demo.link.production": {
     "text": "View the completed state in production →",
     "aria-label": "View the completed state on vextreme24.com"
+  },
+  "demo.link.build-health": {
+    "text": "View Build Health →",
+    "aria-label": "View Build Health, including in-progress pages"
   },
   "institution.common.skip.content": {
     "text": "Skip to main content"
@@ -234,9 +234,6 @@
   },
   "institution.common.brand.descriptor": {
     "text": "Institution"
-  },
-  "institution.common.nav.archives": {
-    "text": "Archives"
   },
   "institution.common.nav.about": {
     "text": "About Vextreme"
@@ -326,9 +323,6 @@
   "institution.home.hero.lede": {
     "text": "Vextreme turns the decisions, dependencies, and evidence behind complex work into interfaces people — and the AI working alongside them — can navigate, question, and continue safely."
   },
-  "institution.home.hero.archives-cta": {
-    "text": "Open the archive"
-  },
   "institution.home.hero.terrain-cta": {
     "text": "Explore the terrain"
   },
@@ -346,12 +340,6 @@
   },
   "institution.home.entry.heading": {
     "text": "Where to go from here"
-  },
-  "institution.home.entry.archives.name": {
-    "text": "The archive"
-  },
-  "institution.home.entry.archives.body": {
-    "text": "The preserved record, grouped into narrative arcs. This is the content the institution exists to keep perceivable."
   },
   "institution.home.entry.terrain.name": {
     "text": "The terrain map"
@@ -676,6 +664,18 @@
   },
   "institution.support.stewardship.empty": {
     "text": "No stewardship notes recorded yet."
+  },
+  "institution.common.nav.build-health": {
+    "text": "Build Health"
+  },
+  "institution.home.hero.build-health-cta": {
+    "text": "Open Build Health"
+  },
+  "institution.home.entry.build-health.name": {
+    "text": "Build Health"
+  },
+  "institution.home.entry.build-health.body": {
+    "text": "The accepted-main operational view of page porting, localization, and capability health. It makes build gaps visible without confusing draft work with accepted state."
   },
   "pages.ascension-and-embodiment.document-title": {
     "text": "Ascension & Embodiment — Vextreme"
@@ -9140,8 +9140,8 @@
     "text": "← Back to the architecture demo",
     "aria-label": "Back to the architecture demo page"
   },
-  "specimens.link.archives": {
-    "text": "See real, in-progress translation coverage on the archive dashboard →",
-    "aria-label": "View the archive dashboard for real translation progress"
+  "specimens.link.build-health": {
+    "text": "See real, in-progress translation coverage in Build Health →",
+    "aria-label": "View Build Health for real translation progress"
   }
 }

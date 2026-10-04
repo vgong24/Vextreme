@@ -234,7 +234,7 @@ not a one-time cleanup of this particular chain.
 ### Generated-file merge conflicts
 
 Several files are pure build output — `data/index.json`, `sw.js`, `data/status.json`,
-`data/lessons.json`, the compiled string bundles, `pages/archives.html`, `sitemap.xml`,
+`data/lessons.json`, the compiled string bundles, `pages/build-health.html`, the `pages/archives.html` compatibility shim, `sitemap.xml`,
 `index.html`, `docs/architecture.md` (full list in `.gitattributes`). They historically
 conflicted on unrelated PRs because some generators stamped wall-clock time, commit SHA,
 or generated-file git history into their outputs. The exact-head review of Institutional

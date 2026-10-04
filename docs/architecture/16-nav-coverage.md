@@ -19,9 +19,9 @@ Three independent navigation mechanisms exist in this repo, each real and workin
 reaching most pages:
 
 1. **Static hub links** — a page's own raw HTML links directly to a hub destination
-   (`index.html`, `archives.html`, `ecosystem-hub.html`, `terrain-map.html`). Only the
+   (`index.html`, `build-health.html`, `ecosystem-hub.html`, `terrain-map.html`). Only the
    generated hub pages themselves have this baked into their own renderer output —
-   `archives`, `ecosystem-hub`, `roles-index`, and the two "demo" pages that happen to
+   `build-health`, `ecosystem-hub`, `roles-index`, and the two "demo" pages that happen to
    link to one hub each (`specimens`, `vextreme-demo`). No hand-authored content page has
    any of it.
 2. **`shell.js` (v1)** — a real, working loader that injects a genuine site-nav bar

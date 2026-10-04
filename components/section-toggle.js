@@ -1,8 +1,8 @@
 /**
  * components/section-toggle.js
  *
- * Section expand/collapse toggle for the archives page.
- * Previously inlined at the bottom of archives.html.
+ * Section expand/collapse toggle for the Build Health page.
+ * Previously inlined at the bottom of build-health.html.
  *
  * RESPONSIBILITY:
  *   Toggle .collapsed state on .section-body elements,

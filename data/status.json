@@ -14,55 +14,6 @@
       "count": 5457,
       "items": [
         {
-          "key": "archives.heading.page-title",
-          "lang": "zh",
-          "reason": "missing_translation",
-          "intentional": false,
-          "en": "The Archive"
-        },
-        {
-          "key": "archives.label.overall-progress",
-          "lang": "zh",
-          "reason": "missing_translation",
-          "intentional": false,
-          "en": "Overall progress"
-        },
-        {
-          "key": "archives.label.latest-additions",
-          "lang": "zh",
-          "reason": "missing_translation",
-          "intentional": false,
-          "en": "Latest additions"
-        },
-        {
-          "key": "archives.label.arc-hubs",
-          "lang": "zh",
-          "reason": "missing_translation",
-          "intentional": false,
-          "en": "Arc hubs"
-        },
-        {
-          "key": "archives.label.localized-lang",
-          "lang": "zh",
-          "reason": "missing_translation",
-          "intentional": false,
-          "en": "pages localized"
-        },
-        {
-          "key": "archives.label.localized-full",
-          "lang": "zh",
-          "reason": "missing_translation",
-          "intentional": false,
-          "en": "Fully localized"
-        },
-        {
-          "key": "archives.label.localized-partial",
-          "lang": "zh",
-          "reason": "missing_translation",
-          "intentional": false,
-          "en": "Partially localized"
-        },
-        {
           "key": "liberation.heading.title",
           "lang": "zh",
           "reason": "missing_translation",
@@ -175,6 +126,55 @@
           "en": "Full Timeline"
         },
         {
+          "key": "build-health.heading.page-title",
+          "lang": "zh",
+          "reason": "missing_translation",
+          "intentional": false,
+          "en": "Build Health"
+        },
+        {
+          "key": "build-health.label.overall-progress",
+          "lang": "zh",
+          "reason": "missing_translation",
+          "intentional": false,
+          "en": "Overall progress"
+        },
+        {
+          "key": "build-health.label.latest-additions",
+          "lang": "zh",
+          "reason": "missing_translation",
+          "intentional": false,
+          "en": "Latest additions"
+        },
+        {
+          "key": "build-health.label.arc-hubs",
+          "lang": "zh",
+          "reason": "missing_translation",
+          "intentional": false,
+          "en": "Arc hubs"
+        },
+        {
+          "key": "build-health.label.localized-lang",
+          "lang": "zh",
+          "reason": "missing_translation",
+          "intentional": false,
+          "en": "pages localized"
+        },
+        {
+          "key": "build-health.label.localized-full",
+          "lang": "zh",
+          "reason": "missing_translation",
+          "intentional": false,
+          "en": "Fully localized"
+        },
+        {
+          "key": "build-health.label.localized-partial",
+          "lang": "zh",
+          "reason": "missing_translation",
+          "intentional": false,
+          "en": "Partially localized"
+        },
+        {
           "key": "common.nav.prev",
           "lang": "zh",
           "reason": "missing_translation",
@@ -196,13 +196,6 @@
           "en": "You Are Here"
         },
         {
-          "key": "common.nav.archives",
-          "lang": "zh",
-          "reason": "missing_translation",
-          "intentional": false,
-          "en": "Archives"
-        },
-        {
           "key": "common.nav.primary-site",
           "lang": "zh",
           "reason": "missing_translation",
@@ -215,13 +208,6 @@
           "reason": "missing_translation",
           "intentional": false,
           "en": "GitHub"
-        },
-        {
-          "key": "common.nav.full-archive",
-          "lang": "zh",
-          "reason": "missing_translation",
-          "intentional": false,
-          "en": "Full archive →"
         },
         {
           "key": "common.button.copy-filename",
@@ -285,6 +271,20 @@
           "reason": "missing_translation",
           "intentional": false,
           "en": "Built {date}"
+        },
+        {
+          "key": "common.nav.build-health",
+          "lang": "zh",
+          "reason": "missing_translation",
+          "intentional": false,
+          "en": "Build Health"
+        },
+        {
+          "key": "common.nav.full-build-health",
+          "lang": "zh",
+          "reason": "missing_translation",
+          "intentional": false,
+          "en": "Build Health →"
         },
         {
           "key": "pages.ascension-and-embodiment.document-title",
@@ -38419,17 +38419,17 @@
         },
         {
           "key": "demo.section.gaps.body",
-          "lang": "zh",
+          "lang": "ja",
           "reason": "missing_translation",
           "intentional": true,
-          "en": "The archive dashboard linked below intentionally shows unported and untranslated pages as visible gaps rather than hiding them. That is not an oversight — it is the comparison point. What you see there is the system mid-build, next to the completed state already live in production. The distance between the two is the actual, unedited progress of a scaling content system."
+          "en": "The Build Health dashboard linked below intentionally shows unported and untranslated pages as visible gaps rather than hiding them. That is not an oversight — it is the comparison point. What you see there is the system mid-build, next to the completed state already live in production. The distance between the two is the actual, unedited progress of a scaling content system."
         },
         {
-          "key": "demo.link.archives",
+          "key": "demo.section.gaps.body",
           "lang": "zh",
           "reason": "missing_translation",
           "intentional": true,
-          "en": "View the archive dashboard →"
+          "en": "The Build Health dashboard linked below intentionally shows unported and untranslated pages as visible gaps rather than hiding them. That is not an oversight — it is the comparison point. What you see there is the system mid-build, next to the completed state already live in production. The distance between the two is the actual, unedited progress of a scaling content system."
         },
         {
           "key": "demo.link.production",
@@ -38437,6 +38437,13 @@
           "reason": "missing_translation",
           "intentional": true,
           "en": "View the completed state in production →"
+        },
+        {
+          "key": "demo.link.build-health",
+          "lang": "zh",
+          "reason": "missing_translation",
+          "intentional": true,
+          "en": "View Build Health →"
         },
         {
           "key": "pages.specimen-full-translation.heading.title",
@@ -38789,11 +38796,11 @@
           "en": "← Back to the architecture demo"
         },
         {
-          "key": "specimens.link.archives",
+          "key": "specimens.link.build-health",
           "lang": "zh",
           "reason": "missing_translation",
           "intentional": true,
-          "en": "See real, in-progress translation coverage on the archive dashboard →"
+          "en": "See real, in-progress translation coverage in Build Health →"
         }
       ]
     },
@@ -39010,7 +39017,7 @@
         },
         {
           "id": "as-003",
-          "claim": "archives.html GitHub Actions auto-rebuild fires correctly on push to main",
+          "claim": "build-health.html + archives compatibility shim GitHub Actions auto-rebuild fires correctly on push to main",
           "addedSession": "005",
           "priority": "low"
         },

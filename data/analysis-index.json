@@ -5,100 +5,6 @@
     "zh"
   ],
   "elements": {
-    "archives.heading.page-title": {
-      "key": "archives.heading.page-title",
-      "usedIn": [
-        "pages/archives.html"
-      ],
-      "inManifest": true,
-      "langs": [
-        "en",
-        "ja"
-      ],
-      "missingLangs": [
-        "zh"
-      ]
-    },
-    "archives.label.overall-progress": {
-      "key": "archives.label.overall-progress",
-      "usedIn": [
-        "pages/archives.html"
-      ],
-      "inManifest": true,
-      "langs": [
-        "en",
-        "ja"
-      ],
-      "missingLangs": [
-        "zh"
-      ]
-    },
-    "archives.label.latest-additions": {
-      "key": "archives.label.latest-additions",
-      "usedIn": [],
-      "inManifest": true,
-      "langs": [
-        "en",
-        "ja"
-      ],
-      "missingLangs": [
-        "zh"
-      ]
-    },
-    "archives.label.arc-hubs": {
-      "key": "archives.label.arc-hubs",
-      "usedIn": [],
-      "inManifest": true,
-      "langs": [
-        "en",
-        "ja"
-      ],
-      "missingLangs": [
-        "zh"
-      ]
-    },
-    "archives.label.localized-lang": {
-      "key": "archives.label.localized-lang",
-      "usedIn": [
-        "pages/archives.html"
-      ],
-      "inManifest": true,
-      "langs": [
-        "en",
-        "ja"
-      ],
-      "missingLangs": [
-        "zh"
-      ]
-    },
-    "archives.label.localized-full": {
-      "key": "archives.label.localized-full",
-      "usedIn": [
-        "pages/archives.html"
-      ],
-      "inManifest": true,
-      "langs": [
-        "en",
-        "ja"
-      ],
-      "missingLangs": [
-        "zh"
-      ]
-    },
-    "archives.label.localized-partial": {
-      "key": "archives.label.localized-partial",
-      "usedIn": [
-        "pages/archives.html"
-      ],
-      "inManifest": true,
-      "langs": [
-        "en",
-        "ja"
-      ],
-      "missingLangs": [
-        "zh"
-      ]
-    },
     "liberation.heading.title": {
       "key": "liberation.heading.title",
       "usedIn": [],
@@ -291,6 +197,100 @@
         "zh"
       ]
     },
+    "build-health.heading.page-title": {
+      "key": "build-health.heading.page-title",
+      "usedIn": [
+        "pages/build-health.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "build-health.label.overall-progress": {
+      "key": "build-health.label.overall-progress",
+      "usedIn": [
+        "pages/build-health.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "build-health.label.latest-additions": {
+      "key": "build-health.label.latest-additions",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "build-health.label.arc-hubs": {
+      "key": "build-health.label.arc-hubs",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "build-health.label.localized-lang": {
+      "key": "build-health.label.localized-lang",
+      "usedIn": [
+        "pages/build-health.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "build-health.label.localized-full": {
+      "key": "build-health.label.localized-full",
+      "usedIn": [
+        "pages/build-health.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "build-health.label.localized-partial": {
+      "key": "build-health.label.localized-partial",
+      "usedIn": [
+        "pages/build-health.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
     "common.nav.prev": {
       "key": "common.nav.prev",
       "usedIn": [],
@@ -327,18 +327,6 @@
         "zh"
       ]
     },
-    "common.nav.archives": {
-      "key": "common.nav.archives",
-      "usedIn": [],
-      "inManifest": true,
-      "langs": [
-        "en",
-        "ja"
-      ],
-      "missingLangs": [
-        "zh"
-      ]
-    },
     "common.nav.primary-site": {
       "key": "common.nav.primary-site",
       "usedIn": [],
@@ -353,18 +341,6 @@
     },
     "common.nav.github": {
       "key": "common.nav.github",
-      "usedIn": [],
-      "inManifest": true,
-      "langs": [
-        "en",
-        "ja"
-      ],
-      "missingLangs": [
-        "zh"
-      ]
-    },
-    "common.nav.full-archive": {
-      "key": "common.nav.full-archive",
       "usedIn": [],
       "inManifest": true,
       "langs": [
@@ -402,7 +378,7 @@
     "common.label.site-title": {
       "key": "common.label.site-title",
       "usedIn": [
-        "pages/archives.html",
+        "pages/build-health.html",
         "pages/specimen-architectural-wisdoms.html",
         "pages/specimen-full-translation.html",
         "pages/specimen-partial-translation.html",
@@ -422,7 +398,7 @@
     "common.label.page-live": {
       "key": "common.label.page-live",
       "usedIn": [
-        "pages/archives.html"
+        "pages/build-health.html"
       ],
       "inManifest": true,
       "langs": [
@@ -436,7 +412,7 @@
     "common.label.not-yet-ported": {
       "key": "common.label.not-yet-ported",
       "usedIn": [
-        "pages/archives.html"
+        "pages/build-health.html"
       ],
       "inManifest": true,
       "langs": [
@@ -450,7 +426,7 @@
     "common.label.slug": {
       "key": "common.label.slug",
       "usedIn": [
-        "pages/archives.html"
+        "pages/build-health.html"
       ],
       "inManifest": true,
       "langs": [
@@ -464,7 +440,7 @@
     "common.status.pages-live": {
       "key": "common.status.pages-live",
       "usedIn": [
-        "pages/archives.html"
+        "pages/build-health.html"
       ],
       "inManifest": true,
       "langs": [
@@ -478,7 +454,7 @@
     "common.status.remaining": {
       "key": "common.status.remaining",
       "usedIn": [
-        "pages/archives.html"
+        "pages/build-health.html"
       ],
       "inManifest": true,
       "langs": [
@@ -491,6 +467,32 @@
     },
     "common.status.built-on": {
       "key": "common.status.built-on",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "common.nav.build-health": {
+      "key": "common.nav.build-health",
+      "usedIn": [
+        "pages/build-health.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja"
+      ],
+      "missingLangs": [
+        "zh"
+      ]
+    },
+    "common.nav.full-build-health": {
+      "key": "common.nav.full-build-health",
       "usedIn": [],
       "inManifest": true,
       "langs": [
@@ -910,15 +912,15 @@
       ],
       "inManifest": true,
       "langs": [
-        "en",
-        "ja"
+        "en"
       ],
       "missingLangs": [
+        "ja",
         "zh"
       ]
     },
-    "demo.link.archives": {
-      "key": "demo.link.archives",
+    "demo.link.production": {
+      "key": "demo.link.production",
       "usedIn": [
         "pages/vextreme-demo.html"
       ],
@@ -931,8 +933,8 @@
         "zh"
       ]
     },
-    "demo.link.production": {
-      "key": "demo.link.production",
+    "demo.link.build-health": {
+      "key": "demo.link.build-health",
       "usedIn": [
         "pages/vextreme-demo.html"
       ],
@@ -986,20 +988,6 @@
     },
     "institution.common.brand.descriptor": {
       "key": "institution.common.brand.descriptor",
-      "usedIn": [
-        "pages/vex-support.html",
-        "pages/vextreme-home.html"
-      ],
-      "inManifest": true,
-      "langs": [
-        "en",
-        "ja",
-        "zh"
-      ],
-      "missingLangs": []
-    },
-    "institution.common.nav.archives": {
-      "key": "institution.common.nav.archives",
       "usedIn": [
         "pages/vex-support.html",
         "pages/vextreme-home.html"
@@ -1411,19 +1399,6 @@
       ],
       "missingLangs": []
     },
-    "institution.home.hero.archives-cta": {
-      "key": "institution.home.hero.archives-cta",
-      "usedIn": [
-        "pages/vextreme-home.html"
-      ],
-      "inManifest": true,
-      "langs": [
-        "en",
-        "ja",
-        "zh"
-      ],
-      "missingLangs": []
-    },
     "institution.home.hero.terrain-cta": {
       "key": "institution.home.hero.terrain-cta",
       "usedIn": [
@@ -1491,32 +1466,6 @@
     },
     "institution.home.entry.heading": {
       "key": "institution.home.entry.heading",
-      "usedIn": [
-        "pages/vextreme-home.html"
-      ],
-      "inManifest": true,
-      "langs": [
-        "en",
-        "ja",
-        "zh"
-      ],
-      "missingLangs": []
-    },
-    "institution.home.entry.archives.name": {
-      "key": "institution.home.entry.archives.name",
-      "usedIn": [
-        "pages/vextreme-home.html"
-      ],
-      "inManifest": true,
-      "langs": [
-        "en",
-        "ja",
-        "zh"
-      ],
-      "missingLangs": []
-    },
-    "institution.home.entry.archives.body": {
-      "key": "institution.home.entry.archives.body",
       "usedIn": [
         "pages/vextreme-home.html"
       ],
@@ -2911,6 +2860,59 @@
       "key": "institution.support.stewardship.empty",
       "usedIn": [
         "pages/vex-support.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja",
+        "zh"
+      ],
+      "missingLangs": []
+    },
+    "institution.common.nav.build-health": {
+      "key": "institution.common.nav.build-health",
+      "usedIn": [
+        "pages/vex-support.html",
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja",
+        "zh"
+      ],
+      "missingLangs": []
+    },
+    "institution.home.hero.build-health-cta": {
+      "key": "institution.home.hero.build-health-cta",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja",
+        "zh"
+      ],
+      "missingLangs": []
+    },
+    "institution.home.entry.build-health.name": {
+      "key": "institution.home.entry.build-health.name",
+      "usedIn": [
+        "pages/vextreme-home.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en",
+        "ja",
+        "zh"
+      ],
+      "missingLangs": []
+    },
+    "institution.home.entry.build-health.body": {
+      "key": "institution.home.entry.build-health.body",
+      "usedIn": [
+        "pages/vextreme-home.html"
       ],
       "inManifest": true,
       "langs": [
@@ -42403,8 +42405,8 @@
         "zh"
       ]
     },
-    "specimens.link.archives": {
-      "key": "specimens.link.archives",
+    "specimens.link.build-health": {
+      "key": "specimens.link.build-health",
       "usedIn": [
         "pages/specimens.html"
       ],
@@ -42445,19 +42447,7 @@
     },
     "archives": {
       "slug": "archives",
-      "keys": [
-        "archives.heading.page-title",
-        "archives.label.localized-full",
-        "archives.label.localized-lang",
-        "archives.label.localized-partial",
-        "archives.label.overall-progress",
-        "common.label.not-yet-ported",
-        "common.label.page-live",
-        "common.label.site-title",
-        "common.label.slug",
-        "common.status.pages-live",
-        "common.status.remaining"
-      ],
+      "keys": [],
       "orphanKeys": [],
       "screenshots": {}
     },
@@ -42555,6 +42545,25 @@
     "bridge-council-schema": {
       "slug": "bridge-council-schema",
       "keys": [],
+      "orphanKeys": [],
+      "screenshots": {}
+    },
+    "build-health": {
+      "slug": "build-health",
+      "keys": [
+        "build-health.heading.page-title",
+        "build-health.label.localized-full",
+        "build-health.label.localized-lang",
+        "build-health.label.localized-partial",
+        "build-health.label.overall-progress",
+        "common.label.not-yet-ported",
+        "common.label.page-live",
+        "common.label.site-title",
+        "common.label.slug",
+        "common.nav.build-health",
+        "common.status.pages-live",
+        "common.status.remaining"
+      ],
       "orphanKeys": [],
       "screenshots": {}
     },
@@ -43598,7 +43607,7 @@
         "specimens.card.stale.label",
         "specimens.heading.subtitle",
         "specimens.heading.title",
-        "specimens.link.archives",
+        "specimens.link.build-health",
         "specimens.link.demo",
         "specimens.link.view"
       ],
@@ -44617,7 +44626,7 @@
         "institution.common.lineage.vexlife.name",
         "institution.common.lineage.vextreme.body",
         "institution.common.lineage.vextreme.name",
-        "institution.common.nav.archives",
+        "institution.common.nav.build-health",
         "institution.common.nav.home",
         "institution.common.nav.terrain",
         "institution.common.skip.content",
@@ -44885,7 +44894,7 @@
         "demo.comparison.slug.approach",
         "demo.heading.subtitle",
         "demo.heading.title",
-        "demo.link.archives",
+        "demo.link.build-health",
         "demo.link.production",
         "demo.link.specimens",
         "demo.live.label.arcs",
@@ -44938,11 +44947,11 @@
         "institution.common.lineage.vexlife.name",
         "institution.common.lineage.vextreme.body",
         "institution.common.lineage.vextreme.name",
-        "institution.common.nav.archives",
+        "institution.common.nav.build-health",
         "institution.common.nav.terrain",
         "institution.common.skip.content",
-        "institution.home.entry.archives.body",
-        "institution.home.entry.archives.name",
+        "institution.home.entry.build-health.body",
+        "institution.home.entry.build-health.name",
         "institution.home.entry.heading",
         "institution.home.entry.support.body",
         "institution.home.entry.support.name",
@@ -44951,7 +44960,7 @@
         "institution.home.entry.vexlife-state",
         "institution.home.entry.vexlife.body",
         "institution.home.entry.vexlife.name",
-        "institution.home.hero.archives-cta",
+        "institution.home.hero.build-health-cta",
         "institution.home.hero.eyebrow",
         "institution.home.hero.heading",
         "institution.home.hero.lede",
@@ -46170,20 +46179,19 @@
   },
   "summary": {
     "totalKeysInManifest": 3043,
-    "totalKeysUsed": 3005,
+    "totalKeysUsed": 3006,
     "orphanUsages": [],
     "unusedKeys": [
       "ai-orientation.heading.title",
       "ai-practitioner-tools.heading.title",
       "architecture.heading.title",
-      "archives.label.arc-hubs",
-      "archives.label.latest-additions",
+      "build-health.label.arc-hubs",
+      "build-health.label.latest-additions",
       "claude-journals.heading.title",
       "common.button.copied",
       "common.button.copy-filename",
       "common.label.you-are-here",
-      "common.nav.archives",
-      "common.nav.full-archive",
+      "common.nav.full-build-health",
       "common.nav.github",
       "common.nav.next",
       "common.nav.prev",

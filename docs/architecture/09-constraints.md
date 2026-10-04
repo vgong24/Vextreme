@@ -15,7 +15,7 @@ No subdirectories. The slug system breaks if pages are nested. A file at
 build script and browser lookup.
 
 **3. Never edit generated files.**
-`data/index.json`, `pages/archives.html`, `sitemap.xml`, `index.html`,
+`data/index.json`, `pages/build-health.html`, `pages/archives.html` (compatibility shim), `sitemap.xml`, `index.html`,
 `data/strings/compiled/*`, and `docs/architecture.md` are all generated.
 Edit the write-side sources and push.
 
@@ -42,7 +42,7 @@ messages, and error text. There are no exceptions based on string length
 or perceived insignificance.
 
 **8. Generated files are not mergeable — `.gitattributes` owns conflict resolution.**
-All generated artifacts (`data/index.json`, compiled strings, `pages/archives.html`,
+All generated artifacts (`data/index.json`, compiled strings, `pages/build-health.html`, `pages/archives.html`,
 `sitemap.xml`, `index.html`, `docs/architecture.md`) are declared with `merge=ours`
 in `.gitattributes`. When a feature branch rebases onto main, git automatically
 keeps main's built version of those files rather than producing a conflict.
@@ -74,7 +74,7 @@ widgets/
 
 lib/
   build-index.js        — builds data/index.json
-  build-archives.js     — builds pages/archives.html
+  build-archives.js     — builds pages/build-health.html + pages/archives.html compatibility shim
   build-sitemap.js      — builds sitemap.xml
   build-index-page.js   — builds index.html
   build-architecture.js — builds docs/architecture.md
@@ -91,7 +91,8 @@ docs/
   Readme.md           — v1 Squarespace system (historical, not active)
 
 pages/
-  archives.html       — build dashboard (generated)
+  build-health.html   — canonical build dashboard (generated)
+  archives.html       — compatibility shim to Build Health (generated)
   <slug>.html         — content pages (hand-authored, flat, no subdirs)
 
 .github/

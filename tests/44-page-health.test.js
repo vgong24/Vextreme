@@ -61,7 +61,7 @@ test('PAGE-HEALTH: FAB delivery preserves shell, God Script, disabled, and missi
 
 test('PAGE-HEALTH: analysis indexing and an exposed analysis control remain separate facts', () => {
   const result = buildPageHealth({
-    pageSlugs: ['indexed-only'], htmlBySlug: { 'indexed-only': '<a href="archives.html">out</a>' },
+    pageSlugs: ['indexed-only'], htmlBySlug: { 'indexed-only': '<a href="build-health.html">out</a>' },
     distBySlug: { 'indexed-only': '' }, wiredBySlug: {},
     navRows: [{ slug: 'indexed-only', navigable: true, staticHubLinks: 1, hasShellJs: false, hasFabNav: false }],
     nodes: [], manifest: {}, analysisPages: { 'indexed-only': { keys: [] } }, screenshotFiles: [],
@@ -167,10 +167,10 @@ test('PAGE-HEALTH integration: committed projection equals fresh source computat
   assert.deepEqual(committed, buildPageHealth(loadInputs()));
 });
 
-test('PAGE-HEALTH integration: Archives and Terrain consume the shared projection', () => {
-  const archives = fs.readFileSync(path.join(ROOT, 'pages', 'archives.html'), 'utf8');
+test('PAGE-HEALTH integration: Build Health and Terrain consume the shared projection', () => {
+  const buildHealth = fs.readFileSync(path.join(ROOT, 'pages', 'build-health.html'), 'utf8');
   const terrain = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'terrain-map.json'), 'utf8'));
-  assert.match(archives, /Page capability health/);
+  assert.match(buildHealth, /Page capability health/);
   for (const page of terrain.pages.filter((entry) => entry.live)) {
     assert.ok(page.capability, `${page.slug} missing capability projection`);
     assert.equal(page.capability.identity, undefined, `${page.slug} should carry the compact Terrain digest, not full language coverage`);

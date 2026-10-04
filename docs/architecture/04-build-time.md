@@ -9,7 +9,7 @@ The build step does work so the browser doesn't have to:
 | `arcMeta` (title + URL + renderMode per arc) | `arcs-v2.json` parent + renderMode | `index.json` arcMeta |
 | `arcMap` (sections → ordered slugs) | `arcs-v2.json` sections | `index.json` arcMap |
 | compiled string bundles | `data/strings/source/**` | `strings/compiled/strings.{lang}.json` |
-| baked display text | `strings/compiled/strings.en.json` | generated HTML (archives.html, index.html) |
+| baked display text | `strings/compiled/strings.en.json` | generated HTML (build-health.html, index.html) |
 
 The browser library (`lib/vextreme-index-v2.js`) has **no hard-coded arc data
 and no hard-coded display strings**. It reads structure from `index.json` and

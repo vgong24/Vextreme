@@ -1,53 +1,4 @@
 {
-  "archives.heading.page-title": {
-    "enHash": "0e3f8f55224e",
-    "langs": [
-      "en",
-      "ja"
-    ]
-  },
-  "archives.label.overall-progress": {
-    "enHash": "ce70b22382e3",
-    "langs": [
-      "en",
-      "ja"
-    ]
-  },
-  "archives.label.latest-additions": {
-    "enHash": "2c7a4ad1ce19",
-    "langs": [
-      "en",
-      "ja"
-    ]
-  },
-  "archives.label.arc-hubs": {
-    "enHash": "a680b0d4c906",
-    "langs": [
-      "en",
-      "ja"
-    ]
-  },
-  "archives.label.localized-lang": {
-    "enHash": "4a464e7ef5cd",
-    "langs": [
-      "en",
-      "ja"
-    ]
-  },
-  "archives.label.localized-full": {
-    "enHash": "68aa764e40fe",
-    "langs": [
-      "en",
-      "ja"
-    ]
-  },
-  "archives.label.localized-partial": {
-    "enHash": "a74e9caefc1c",
-    "langs": [
-      "en",
-      "ja"
-    ]
-  },
   "liberation.heading.title": {
     "enHash": "ae1068859de3",
     "langs": [
@@ -160,6 +111,55 @@
       "ja"
     ]
   },
+  "build-health.heading.page-title": {
+    "enHash": "7450606be5eb",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "build-health.label.overall-progress": {
+    "enHash": "ce70b22382e3",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "build-health.label.latest-additions": {
+    "enHash": "2c7a4ad1ce19",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "build-health.label.arc-hubs": {
+    "enHash": "a680b0d4c906",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "build-health.label.localized-lang": {
+    "enHash": "4a464e7ef5cd",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "build-health.label.localized-full": {
+    "enHash": "68aa764e40fe",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "build-health.label.localized-partial": {
+    "enHash": "a74e9caefc1c",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
   "common.nav.prev": {
     "enHash": "de2231b29819",
     "langs": [
@@ -181,13 +181,6 @@
       "ja"
     ]
   },
-  "common.nav.archives": {
-    "enHash": "001c5c9bf79b",
-    "langs": [
-      "en",
-      "ja"
-    ]
-  },
   "common.nav.primary-site": {
     "enHash": "7f8db8c8607c",
     "langs": [
@@ -197,13 +190,6 @@
   },
   "common.nav.github": {
     "enHash": "6521e038c2a6",
-    "langs": [
-      "en",
-      "ja"
-    ]
-  },
-  "common.nav.full-archive": {
-    "enHash": "a996299603df",
     "langs": [
       "en",
       "ja"
@@ -267,6 +253,20 @@
   },
   "common.status.built-on": {
     "enHash": "69335db6a9ec",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "common.nav.build-health": {
+    "enHash": "83c7bb496eac",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "common.nav.full-build-health": {
+    "enHash": "0a9325c1d8f2",
     "langs": [
       "en",
       "ja"
@@ -476,21 +476,20 @@
     ]
   },
   "demo.section.gaps.body": {
-    "enHash": "3a97dbb865fb",
+    "enHash": "8e951644bca2",
     "langs": [
-      "en",
-      "ja"
-    ]
-  },
-  "demo.link.archives": {
-    "enHash": "93fe052b0d86",
-    "langs": [
-      "en",
-      "ja"
+      "en"
     ]
   },
   "demo.link.production": {
     "enHash": "d70e08a897de",
+    "langs": [
+      "en",
+      "ja"
+    ]
+  },
+  "demo.link.build-health": {
+    "enHash": "57daffd09ded",
     "langs": [
       "en",
       "ja"
@@ -522,14 +521,6 @@
   },
   "institution.common.brand.descriptor": {
     "enHash": "ea97399400e0",
-    "langs": [
-      "en",
-      "ja",
-      "zh"
-    ]
-  },
-  "institution.common.nav.archives": {
-    "enHash": "f10883db416e",
     "langs": [
       "en",
       "ja",
@@ -768,14 +759,6 @@
       "zh"
     ]
   },
-  "institution.home.hero.archives-cta": {
-    "enHash": "6cebc231dbdb",
-    "langs": [
-      "en",
-      "ja",
-      "zh"
-    ]
-  },
   "institution.home.hero.terrain-cta": {
     "enHash": "5527cebd2583",
     "langs": [
@@ -818,22 +801,6 @@
   },
   "institution.home.entry.heading": {
     "enHash": "a01401eaa20a",
-    "langs": [
-      "en",
-      "ja",
-      "zh"
-    ]
-  },
-  "institution.home.entry.archives.name": {
-    "enHash": "4ae48b452412",
-    "langs": [
-      "en",
-      "ja",
-      "zh"
-    ]
-  },
-  "institution.home.entry.archives.body": {
-    "enHash": "9dd030d9442d",
     "langs": [
       "en",
       "ja",
@@ -1698,6 +1665,38 @@
   },
   "institution.support.stewardship.empty": {
     "enHash": "4aa980d720dd",
+    "langs": [
+      "en",
+      "ja",
+      "zh"
+    ]
+  },
+  "institution.common.nav.build-health": {
+    "enHash": "7450606be5eb",
+    "langs": [
+      "en",
+      "ja",
+      "zh"
+    ]
+  },
+  "institution.home.hero.build-health-cta": {
+    "enHash": "9db13fbfb557",
+    "langs": [
+      "en",
+      "ja",
+      "zh"
+    ]
+  },
+  "institution.home.entry.build-health.name": {
+    "enHash": "7450606be5eb",
+    "langs": [
+      "en",
+      "ja",
+      "zh"
+    ]
+  },
+  "institution.home.entry.build-health.body": {
+    "enHash": "278fe1e49c29",
     "langs": [
       "en",
       "ja",
@@ -18796,8 +18795,8 @@
       "ja"
     ]
   },
-  "specimens.link.archives": {
-    "enHash": "ebf907478421",
+  "specimens.link.build-health": {
+    "enHash": "9271106a17a1",
     "langs": [
       "en",
       "ja"

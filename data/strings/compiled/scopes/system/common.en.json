@@ -10,10 +10,6 @@
   "common.label.you-are-here": {
     "text": "You Are Here"
   },
-  "common.nav.archives": {
-    "text": "Archives",
-    "aria-label": "View full archive"
-  },
   "common.nav.primary-site": {
     "text": "vextreme24.com",
     "aria-label": "Go to primary site"
@@ -21,10 +17,6 @@
   "common.nav.github": {
     "text": "GitHub",
     "aria-label": "View source on GitHub"
-  },
-  "common.nav.full-archive": {
-    "text": "Full archive →",
-    "aria-label": "View full archive"
   },
   "common.button.copy-filename": {
     "text": "Copy filename",
@@ -54,5 +46,13 @@
   },
   "common.status.built-on": {
     "text": "Built {date}"
+  },
+  "common.nav.build-health": {
+    "text": "Build Health",
+    "aria-label": "View build health"
+  },
+  "common.nav.full-build-health": {
+    "text": "Build Health →",
+    "aria-label": "View build health"
   }
 }

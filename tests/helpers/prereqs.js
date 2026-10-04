@@ -18,7 +18,7 @@
  * own prerequisite is actually covered read from here.
  *
  * Order matters: later scripts may read output written by earlier ones
- * (e.g. build-archives.js reads compiled strings from strings-compile.js).
+ * (e.g. build-archives.js reads compiled strings and emits Build Health + the Archives compatibility shim from strings-compile.js).
  */
 
 const PREREQUISITE_SCRIPTS = [

@@ -15,112 +15,261 @@
       "to": "common.label.site-title",
       "date": "2026-07-01",
       "reason": "Migrated from flat strings.json to structured source files. Key renamed to follow element-type convention.",
-      "translationsCarried": ["ja"]
+      "translationsCarried": [
+        "ja"
+      ]
     },
     {
       "from": "ui.archives.pageTitle",
       "to": "archives.heading.page-title",
       "date": "2026-07-01",
       "reason": "Migrated to scoped source file. Key renamed to follow {scope}.{element-type}.{semantic-name} convention.",
-      "translationsCarried": ["ja"]
+      "translationsCarried": [
+        "ja"
+      ]
     },
     {
       "from": "ui.archives.overallProgress",
       "to": "archives.label.overall-progress",
       "date": "2026-07-01",
       "reason": "Migrated to scoped source file. Key renamed to follow convention.",
-      "translationsCarried": ["ja"]
+      "translationsCarried": [
+        "ja"
+      ]
     },
     {
       "from": "ui.cell.pageLive",
       "to": "common.label.page-live",
       "date": "2026-07-01",
       "reason": "Promoted to common — appears across multiple page contexts.",
-      "translationsCarried": ["ja"]
+      "translationsCarried": [
+        "ja"
+      ]
     },
     {
       "from": "ui.cell.notYetPorted",
       "to": "common.label.not-yet-ported",
       "date": "2026-07-01",
       "reason": "Promoted to common — appears across multiple page contexts.",
-      "translationsCarried": ["ja"]
+      "translationsCarried": [
+        "ja"
+      ]
     },
     {
       "from": "ui.cell.slug",
       "to": "common.label.slug",
       "date": "2026-07-01",
       "reason": "Promoted to common.",
-      "translationsCarried": ["ja"]
+      "translationsCarried": [
+        "ja"
+      ]
     },
     {
       "from": "ui.cell.copyFilename",
       "to": "common.button.copy-filename",
       "date": "2026-07-01",
       "reason": "Promoted to common. Renamed to follow element-type convention.",
-      "translationsCarried": ["ja"]
+      "translationsCarried": [
+        "ja"
+      ]
     },
     {
       "from": "ui.cell.copied",
       "to": "common.button.copied",
       "date": "2026-07-01",
       "reason": "Promoted to common.",
-      "translationsCarried": ["ja"]
+      "translationsCarried": [
+        "ja"
+      ]
     },
     {
       "from": "ui.archives.pagesLive",
       "to": "common.status.pages-live",
       "date": "2026-07-01",
       "reason": "Promoted to common. Updated to ICU plural format.",
-      "translationsCarried": ["ja"]
+      "translationsCarried": [
+        "ja"
+      ]
     },
     {
       "from": "ui.archives.remaining",
       "to": "common.status.remaining",
       "date": "2026-07-01",
       "reason": "Promoted to common. Updated to ICU plural format.",
-      "translationsCarried": ["ja"]
+      "translationsCarried": [
+        "ja"
+      ]
     },
     {
       "from": "ui.archives.builtOn",
       "to": "common.status.built-on",
       "date": "2026-07-01",
       "reason": "Promoted to common.",
-      "translationsCarried": ["ja"]
+      "translationsCarried": [
+        "ja"
+      ]
     },
     {
       "from": "ui.nav.archives",
       "to": "common.nav.archives",
       "date": "2026-07-01",
       "reason": "Promoted to common.",
-      "translationsCarried": ["ja"]
+      "translationsCarried": [
+        "ja"
+      ]
     },
     {
       "from": "ui.nav.primarySite",
       "to": "common.nav.primary-site",
       "date": "2026-07-01",
       "reason": "Promoted to common. Key renamed to kebab-case convention.",
-      "translationsCarried": ["ja"]
+      "translationsCarried": [
+        "ja"
+      ]
     },
     {
       "from": "ui.nav.github",
       "to": "common.nav.github",
       "date": "2026-07-01",
       "reason": "Promoted to common.",
-      "translationsCarried": ["ja"]
+      "translationsCarried": [
+        "ja"
+      ]
     },
     {
       "from": "ui.index.fullArchive",
       "to": "common.nav.full-archive",
       "date": "2026-07-01",
       "reason": "Promoted to common — same string used in index.html and archives.html.",
-      "translationsCarried": ["ja"]
+      "translationsCarried": [
+        "ja"
+      ]
     },
     {
       "from": "arc.liberation.title",
       "to": "liberation.heading.title",
       "date": "2026-07-01",
       "reason": "Moved to arcs.json source file. Key convention changed: arc key as scope prefix, not nested under 'arc.'",
-      "translationsCarried": ["ja"]
+      "translationsCarried": [
+        "ja"
+      ]
+    },
+    {
+      "from": "archives.heading.page-title",
+      "to": "build-health.heading.page-title",
+      "date": "2026-10-04",
+      "reason": "Operational dashboard renamed from Archives to Build Health; meaning changed, so prior translations are not carried automatically.",
+      "translationsCarried": []
+    },
+    {
+      "from": "archives.label.overall-progress",
+      "to": "build-health.label.overall-progress",
+      "date": "2026-10-04",
+      "reason": "Page-local scope renamed to Build Health; label meaning unchanged.",
+      "translationsCarried": [
+        "ja"
+      ]
+    },
+    {
+      "from": "archives.label.latest-additions",
+      "to": "build-health.label.latest-additions",
+      "date": "2026-10-04",
+      "reason": "Page-local scope renamed to Build Health; label meaning unchanged.",
+      "translationsCarried": [
+        "ja"
+      ]
+    },
+    {
+      "from": "archives.label.arc-hubs",
+      "to": "build-health.label.arc-hubs",
+      "date": "2026-10-04",
+      "reason": "Page-local scope renamed to Build Health; label meaning unchanged.",
+      "translationsCarried": [
+        "ja"
+      ]
+    },
+    {
+      "from": "archives.label.localized-lang",
+      "to": "build-health.label.localized-lang",
+      "date": "2026-10-04",
+      "reason": "Page-local scope renamed to Build Health; label meaning unchanged.",
+      "translationsCarried": [
+        "ja"
+      ]
+    },
+    {
+      "from": "archives.label.localized-full",
+      "to": "build-health.label.localized-full",
+      "date": "2026-10-04",
+      "reason": "Page-local scope renamed to Build Health; label meaning unchanged.",
+      "translationsCarried": [
+        "ja"
+      ]
+    },
+    {
+      "from": "archives.label.localized-partial",
+      "to": "build-health.label.localized-partial",
+      "date": "2026-10-04",
+      "reason": "Page-local scope renamed to Build Health; label meaning unchanged.",
+      "translationsCarried": [
+        "ja"
+      ]
+    },
+    {
+      "from": "common.nav.archives",
+      "to": "common.nav.build-health",
+      "date": "2026-10-04",
+      "reason": "Operational route meaning changed from Archives to Build Health.",
+      "translationsCarried": []
+    },
+    {
+      "from": "common.nav.full-archive",
+      "to": "common.nav.full-build-health",
+      "date": "2026-10-04",
+      "reason": "Operational route meaning changed from archive to Build Health.",
+      "translationsCarried": []
+    },
+    {
+      "from": "institution.common.nav.archives",
+      "to": "institution.common.nav.build-health",
+      "date": "2026-10-04",
+      "reason": "Institutional navigation now names the operational Build Health surface.",
+      "translationsCarried": []
+    },
+    {
+      "from": "institution.home.hero.archives-cta",
+      "to": "institution.home.hero.build-health-cta",
+      "date": "2026-10-04",
+      "reason": "Hero CTA now names Build Health; prior Archive translations require fresh review.",
+      "translationsCarried": []
+    },
+    {
+      "from": "institution.home.entry.archives.name",
+      "to": "institution.home.entry.build-health.name",
+      "date": "2026-10-04",
+      "reason": "Institutional entry is reclassified from narrative archive wording to operational Build Health.",
+      "translationsCarried": []
+    },
+    {
+      "from": "institution.home.entry.archives.body",
+      "to": "institution.home.entry.build-health.body",
+      "date": "2026-10-04",
+      "reason": "Institutional entry body now describes accepted-main operational health; prior narrative-archive translations do not carry.",
+      "translationsCarried": []
+    },
+    {
+      "from": "demo.link.archives",
+      "to": "demo.link.build-health",
+      "date": "2026-10-04",
+      "reason": "Demo link now names Build Health; prior Archive translations require fresh review.",
+      "translationsCarried": []
+    },
+    {
+      "from": "specimens.link.archives",
+      "to": "specimens.link.build-health",
+      "date": "2026-10-04",
+      "reason": "Specimen link now names Build Health; prior Archive translations require fresh review.",
+      "translationsCarried": []
     }
   ]
 }

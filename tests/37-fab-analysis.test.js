@@ -70,8 +70,8 @@ test('filterElements: matches by key substring, case-insensitive', () => {
 
 test('filterElements: matches by referencing page slug even when the key itself does not match', () => {
   const filterElements = loadFn('filterElements');
-  const elements = { 'common.label.foo': { usedIn: ['pages/archives.html'] } };
-  assert.deepEqual(filterElements(elements, 'archives'), ['common.label.foo']);
+  const elements = { 'common.label.foo': { usedIn: ['pages/build-health.html'] } };
+  assert.deepEqual(filterElements(elements, 'build-health'), ['common.label.foo']);
 });
 
 test('filterElements: no match returns empty array, not all keys', () => {

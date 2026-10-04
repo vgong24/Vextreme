@@ -11,9 +11,6 @@
   "institution.common.brand.descriptor": {
     "text": "机构"
   },
-  "institution.common.nav.archives": {
-    "text": "档案"
-  },
   "institution.common.nav.about": {
     "text": "关于 Vextreme"
   },
@@ -102,9 +99,6 @@
   "institution.home.hero.lede": {
     "text": "Vextreme 把复杂工作背后的决定、依赖与证据，转化为人以及与人协作的 AI 都能安全浏览、质询并延续的界面。"
   },
-  "institution.home.hero.archives-cta": {
-    "text": "打开档案"
-  },
   "institution.home.hero.terrain-cta": {
     "text": "探索地形图"
   },
@@ -122,12 +116,6 @@
   },
   "institution.home.entry.heading": {
     "text": "从这里可以去哪里"
-  },
-  "institution.home.entry.archives.name": {
-    "text": "档案"
-  },
-  "institution.home.entry.archives.body": {
-    "text": "按叙事弧线分组的留存记录。这正是本机构存在的意义所在——让这些内容保持可感知。"
   },
   "institution.home.entry.terrain.name": {
     "text": "地形图"
@@ -452,6 +440,18 @@
   },
   "institution.support.stewardship.empty": {
     "text": "尚无托管记录。"
+  },
+  "institution.common.nav.build-health": {
+    "text": "构建健康状态"
+  },
+  "institution.home.hero.build-health-cta": {
+    "text": "打开构建健康状态"
+  },
+  "institution.home.entry.build-health.name": {
+    "text": "构建健康状态"
+  },
+  "institution.home.entry.build-health.body": {
+    "text": "这是已接受 main 上关于页面移植、本地化和功能健康状况的运行视图。它让构建缺口清晰可见，同时不会把草稿工作与已接受状态混为一谈。"
   },
   "pages.victor-methodology-presentation.header.eyebrow": {
     "text": "工程档案 · 2021–2026 · 档案编号: VG-DOSSIER-v2.1"

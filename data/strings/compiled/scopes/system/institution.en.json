@@ -11,9 +11,6 @@
   "institution.common.brand.descriptor": {
     "text": "Institution"
   },
-  "institution.common.nav.archives": {
-    "text": "Archives"
-  },
   "institution.common.nav.about": {
     "text": "About Vextreme"
   },
@@ -102,9 +99,6 @@
   "institution.home.hero.lede": {
     "text": "Vextreme turns the decisions, dependencies, and evidence behind complex work into interfaces people — and the AI working alongside them — can navigate, question, and continue safely."
   },
-  "institution.home.hero.archives-cta": {
-    "text": "Open the archive"
-  },
   "institution.home.hero.terrain-cta": {
     "text": "Explore the terrain"
   },
@@ -122,12 +116,6 @@
   },
   "institution.home.entry.heading": {
     "text": "Where to go from here"
-  },
-  "institution.home.entry.archives.name": {
-    "text": "The archive"
-  },
-  "institution.home.entry.archives.body": {
-    "text": "The preserved record, grouped into narrative arcs. This is the content the institution exists to keep perceivable."
   },
   "institution.home.entry.terrain.name": {
     "text": "The terrain map"
@@ -452,5 +440,17 @@
   },
   "institution.support.stewardship.empty": {
     "text": "No stewardship notes recorded yet."
+  },
+  "institution.common.nav.build-health": {
+    "text": "Build Health"
+  },
+  "institution.home.hero.build-health-cta": {
+    "text": "Open Build Health"
+  },
+  "institution.home.entry.build-health.name": {
+    "text": "Build Health"
+  },
+  "institution.home.entry.build-health.body": {
+    "text": "The accepted-main operational view of page porting, localization, and capability health. It makes build gaps visible without confusing draft work with accepted state."
   }
 }

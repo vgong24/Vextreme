@@ -32,8 +32,8 @@ asserts as objective fact) is stated directly in
   translation gaps, and content-integrity flags. Fetches its data at page-load
   time, so it reflects whatever was last built on `main` without needing to be
   regenerated itself.
-- **[Archives](https://vgong24.github.io/Vextreme/pages/archives.html)** —
-  the complete page registry: every arc's works as live or not-yet-ported
+- **[Build Health](https://vgong24.github.io/Vextreme/pages/build-health.html)** —
+  the operational build-health registry: every arc's works as live or not-yet-ported
   cells, plus an "Unsorted" section for anything not yet in an arc. This page
   *is* rebuilt from source at build time (not live-fetched), so it reflects
   the state as of the last CI run on `main`.
@@ -48,7 +48,7 @@ This is the real, currently-working flow — not an aspiration.
    `data/departments.json`). No page file is required yet.
 2. **Push to `main`** (directly or via a reviewed PR). CI
    (`.github/workflows/build-index.yml`) rebuilds `data/index.json`,
-   `pages/archives.html`, `data/status.json`, and the rest of the pipeline
+   `pages/build-health.html`, the `pages/archives.html` compatibility shim, `data/status.json`, and the rest of the pipeline
    automatically — nobody has to remember to run the build scripts by hand.
 3. **The dashboards update.** The Ecosystem Hub live-fetches the freshly
    rebuilt `data/index.json`/`data/status.json` on next page load — no
