@@ -1925,6 +1925,12 @@
     "strings": {
       "en": {
         "text": "Build Health"
+      },
+      "ja": {
+        "text": "ビルド健全性"
+      },
+      "zh": {
+        "text": "构建健康状态"
       }
     }
   },
@@ -1932,6 +1938,12 @@
     "strings": {
       "en": {
         "text": "Open Build Health"
+      },
+      "ja": {
+        "text": "ビルド健全性を開く"
+      },
+      "zh": {
+        "text": "打开构建健康状态"
       }
     }
   },
@@ -1939,6 +1951,12 @@
     "strings": {
       "en": {
         "text": "Build Health"
+      },
+      "ja": {
+        "text": "ビルド健全性"
+      },
+      "zh": {
+        "text": "构建健康状态"
       }
     }
   },
@@ -1946,6 +1964,12 @@
     "strings": {
       "en": {
         "text": "The accepted-main operational view of page porting, localization, and capability health. It makes build gaps visible without confusing draft work with accepted state."
+      },
+      "ja": {
+        "text": "承認済み main における、ページ移植・ローカライズ・機能健全性の運用ビューです。ドラフト作業と承認済み状態を混同せずに、ビルド上の欠落を可視化します。"
+      },
+      "zh": {
+        "text": "这是已接受 main 上关于页面移植、本地化和功能健康状况的运行视图。它让构建缺口清晰可见，同时不会把草稿工作与已接受状态混为一谈。"
       }
     }
   }
