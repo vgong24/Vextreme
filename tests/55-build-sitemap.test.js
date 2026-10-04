@@ -28,7 +28,7 @@ test('BUILD-SITEMAP: existing content, utility, and active institutional pages a
     { id: null, slug: 'undated' },
   ]));
   fs.writeFileSync(path.join(root, 'pages', 'present.html'), '<html></html>');
-  fs.writeFileSync(path.join(root, 'pages', 'archives.html'), '<html></html>');
+  fs.writeFileSync(path.join(root, 'pages', 'build-health.html'), '<html></html>');
   fs.writeFileSync(path.join(root, 'pages', 'vextreme-home.html'), '<html></html>');
   fs.writeFileSync(path.join(root, 'config', 'institutional-surfaces.json'), JSON.stringify({
     surfaces: { 'vextreme-home': { state: 'active' }, 'vex-support': { state: 'reserved' } },
