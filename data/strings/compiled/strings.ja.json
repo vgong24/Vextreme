@@ -47,6 +47,9 @@
   "full-timeline.heading.title": {
     "text": "完全タイムライン"
   },
+  "build-health.heading.page-title": {
+    "text": "ビルド健全性"
+  },
   "build-health.label.overall-progress": {
     "text": "全体の進捗"
   },
@@ -112,6 +115,14 @@
   },
   "common.status.built-on": {
     "text": "{date}生成"
+  },
+  "common.nav.build-health": {
+    "text": "ビルド健全性",
+    "aria-label": "ビルド健全性を表示"
+  },
+  "common.nav.full-build-health": {
+    "text": "ビルド健全性 →",
+    "aria-label": "ビルド健全性を表示"
   },
   "demo.heading.title": {
     "text": "Vextremeの構築方法"
@@ -204,6 +215,10 @@
   "demo.link.production": {
     "text": "本番環境の完成状態を見る →",
     "aria-label": "vextreme24.comで完成状態を見る"
+  },
+  "demo.link.build-health": {
+    "text": "ビルド健全性を見る →",
+    "aria-label": "進行中のページを含むビルド健全性を表示"
   },
   "institution.common.skip.content": {
     "text": "本文へスキップ"
@@ -647,6 +662,18 @@
   "institution.support.stewardship.empty": {
     "text": "スチュワードシップの記録はまだありません。"
   },
+  "institution.common.nav.build-health": {
+    "text": "ビルド健全性"
+  },
+  "institution.home.hero.build-health-cta": {
+    "text": "ビルド健全性を開く"
+  },
+  "institution.home.entry.build-health.name": {
+    "text": "ビルド健全性"
+  },
+  "institution.home.entry.build-health.body": {
+    "text": "承認済み main における、ページ移植・ローカライズ・機能健全性の運用ビューです。ドラフト作業と承認済み状態を混同せずに、ビルド上の欠落を可視化します。"
+  },
   "pages.claude-answers-the-doubt.layer.01.number": {
     "text": "第1層"
   },
@@ -959,5 +986,9 @@
   "specimens.link.demo": {
     "text": "← アーキテクチャデモに戻る",
     "aria-label": "アーキテクチャデモページに戻る"
+  },
+  "specimens.link.build-health": {
+    "text": "ビルド健全性で実際の進行中の翻訳カバレッジを見る →",
+    "aria-label": "実際の翻訳進捗を見るためにビルド健全性を表示"
   }
 }

@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 54,
+    "total": 55,
     "healthy": 3,
-    "attention": 44,
-    "critical": 7,
+    "attention": 46,
+    "critical": 6,
     "sorted": 16,
     "withFab": 42,
     "withIdentity": 23,
@@ -249,7 +249,7 @@
       },
       "navigation": {
         "navigable": true,
-        "staticHubLinks": 3,
+        "staticHubLinks": 1,
         "shell": false,
         "fab": false
       },
@@ -257,21 +257,16 @@
         "delivery": "missing"
       },
       "theme": {
-        "control": "page-owned",
+        "control": "none",
         "visibleStyles": false
       },
       "identity": {
-        "keyCount": 11,
+        "keyCount": 0,
         "languages": {
           "en": {
-            "translated": 6,
-            "total": 11,
-            "state": "partial"
-          },
-          "ja": {
-            "translated": 6,
-            "total": 11,
-            "state": "partial"
+            "translated": 0,
+            "total": 0,
+            "state": "none"
           }
         }
       },
@@ -283,7 +278,7 @@
         "screenshotLanguages": []
       },
       "discovery": {
-        "metaDescription": "Complete page map across all arcs and dev tools. Shows which pages are live and which are still being ported."
+        "metaDescription": ""
       },
       "health": {
         "state": "attention",
@@ -291,8 +286,8 @@
         "gaps": [
           "fab",
           "uncurated",
-          "screenshot",
-          "theme-effect"
+          "identity",
+          "screenshot"
         ]
       }
     },
@@ -512,6 +507,66 @@
         "gaps": [
           "uncurated",
           "identity",
+          "screenshot",
+          "theme-effect"
+        ]
+      }
+    },
+    "build-health": {
+      "slug": "build-health",
+      "title": "build-health",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 3,
+        "shell": false,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "missing"
+      },
+      "theme": {
+        "control": "page-owned",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 12,
+        "languages": {
+          "en": {
+            "translated": 12,
+            "total": 12,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 12,
+            "total": 12,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Build health across page porting, localization, and runtime capabilities. Shows what is live, what needs attention, and what remains."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "fab",
+          "uncurated",
           "screenshot",
           "theme-effect"
         ]
@@ -869,7 +924,7 @@
       },
       "navigation": {
         "navigable": true,
-        "staticHubLinks": 2,
+        "staticHubLinks": 3,
         "shell": false,
         "fab": false
       },
@@ -1648,7 +1703,7 @@
       },
       "navigation": {
         "navigable": true,
-        "staticHubLinks": 2,
+        "staticHubLinks": 3,
         "shell": false,
         "fab": false
       },
@@ -2056,7 +2111,7 @@
       },
       "navigation": {
         "navigable": true,
-        "staticHubLinks": 0,
+        "staticHubLinks": 1,
         "shell": true,
         "fab": false
       },
@@ -2071,14 +2126,14 @@
         "keyCount": 12,
         "languages": {
           "en": {
-            "translated": 11,
+            "translated": 12,
             "total": 12,
-            "state": "partial"
+            "state": "full"
           },
           "ja": {
-            "translated": 11,
+            "translated": 12,
             "total": 12,
-            "state": "partial"
+            "state": "full"
           }
         }
       },
@@ -2644,14 +2699,14 @@
             "state": "full"
           },
           "ja": {
-            "translated": 128,
+            "translated": 129,
             "total": 129,
-            "state": "partial"
+            "state": "full"
           },
           "zh": {
-            "translated": 128,
+            "translated": 129,
             "total": 129,
-            "state": "partial"
+            "state": "full"
           }
         }
       },
@@ -2707,8 +2762,8 @@
         "godScript": false
       },
       "navigation": {
-        "navigable": false,
-        "staticHubLinks": 0,
+        "navigable": true,
+        "staticHubLinks": 1,
         "shell": false,
         "fab": false
       },
@@ -2723,12 +2778,12 @@
         "keyCount": 31,
         "languages": {
           "en": {
-            "translated": 30,
+            "translated": 31,
             "total": 31,
-            "state": "partial"
+            "state": "full"
           },
           "ja": {
-            "translated": 29,
+            "translated": 30,
             "total": 31,
             "state": "partial"
           }
@@ -2748,10 +2803,8 @@
         "metaDescription": "A live demonstration of the architecture, tests, and process behind Vextreme."
       },
       "health": {
-        "state": "critical",
-        "blockers": [
-          "isolated"
-        ],
+        "state": "attention",
+        "blockers": [],
         "gaps": [
           "uncurated",
           "theme-effect"
@@ -2795,14 +2848,14 @@
             "state": "full"
           },
           "ja": {
-            "translated": 45,
+            "translated": 49,
             "total": 49,
-            "state": "partial"
+            "state": "full"
           },
           "zh": {
-            "translated": 45,
+            "translated": 49,
             "total": 49,
-            "state": "partial"
+            "state": "full"
           }
         }
       },

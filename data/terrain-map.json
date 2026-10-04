@@ -5742,22 +5742,22 @@
           "gaps": [
             "fab",
             "uncurated",
-            "screenshot",
-            "theme-effect"
+            "identity",
+            "screenshot"
           ],
           "blockers": []
         },
         "placement": "uncurated",
         "fab": "missing",
         "theme": {
-          "control": "page-owned",
+          "control": "none",
           "visibleStyles": false
         },
-        "identityKeys": 11,
+        "identityKeys": 0,
         "analysisIndexed": true,
         "analysisControl": false,
         "evidenceLanguages": [],
-        "metaDescription": "Complete page map across all arcs and dev tools. Shows which pages are live and which are still being ported."
+        "metaDescription": ""
       },
       "curated": false
     },
@@ -5892,7 +5892,29 @@
       "screenshots": {},
       "hasScreenshot": false,
       "status": "warning",
-      "capability": null,
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "fab",
+            "uncurated",
+            "screenshot",
+            "theme-effect"
+          ],
+          "blockers": []
+        },
+        "placement": "uncurated",
+        "fab": "missing",
+        "theme": {
+          "control": "page-owned",
+          "visibleStyles": false
+        },
+        "identityKeys": 12,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": [],
+        "metaDescription": "Build health across page porting, localization, and runtime capabilities. Shows what is live, what needs attention, and what remains."
+      },
       "curated": false
     },
     {
@@ -6946,17 +6968,15 @@
         "ja": "docs/screenshots/vextreme-demo-ja.png"
       },
       "hasScreenshot": true,
-      "status": "critical",
+      "status": "warning",
       "capability": {
         "health": {
-          "state": "critical",
+          "state": "attention",
           "gaps": [
             "uncurated",
             "theme-effect"
           ],
-          "blockers": [
-            "isolated"
-          ]
+          "blockers": []
         },
         "placement": "uncurated",
         "fab": "page-owned",

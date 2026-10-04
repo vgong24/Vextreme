@@ -46,5 +46,13 @@
   },
   "common.status.built-on": {
     "text": "{date}生成"
+  },
+  "common.nav.build-health": {
+    "text": "ビルド健全性",
+    "aria-label": "ビルド健全性を表示"
+  },
+  "common.nav.full-build-health": {
+    "text": "ビルド健全性 →",
+    "aria-label": "ビルド健全性を表示"
   }
 }

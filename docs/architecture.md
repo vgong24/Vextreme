@@ -134,7 +134,7 @@ The system uses a Command Query Responsibility Segregation pattern:
 WRITE SIDE (source of truth — edit these)        READ SIDE (artifacts — never edit directly)
 ─────────────────────────────────────────        ─────────────────────────────────────────
 data/nodes.json        ──┐                       data/index.json        (slugMap + arcMap + arcMeta)
-data/arcs-v2.json      ──┼── build pipeline ──▶  pages/archives.html   (build dashboard)
+data/arcs-v2.json      ──┼── build pipeline ──▶  pages/build-health.html   (Build Health dashboard)
 data/strings/source/** ──┘                       sitemap.xml            (crawler index)
                                                  index.html             (root nav page)
                                                  dist/vextreme-{slug}.js (God Scripts, one per page)
@@ -213,7 +213,7 @@ the lens/stage split is generic, not terrain-map-specific.
 ```
 lib/strings-compile.js   → data/strings/compiled/strings.{lang}.json
 lib/build-index.js       → data/index.json
-lib/build-archives.js    → pages/archives.html
+lib/build-archives.js    → pages/build-health.html
 lib/build-sitemap.js     → sitemap.xml
 lib/build-index-page.js  → index.html
 ```
@@ -285,7 +285,7 @@ The build step does work so the browser doesn't have to:
 | `arcMeta` (title + URL + renderMode per arc) | `arcs-v2.json` parent + renderMode | `index.json` arcMeta |
 | `arcMap` (sections → ordered slugs) | `arcs-v2.json` sections | `index.json` arcMap |
 | compiled string bundles | `data/strings/source/**` | `strings/compiled/strings.{lang}.json` |
-| baked display text | `strings/compiled/strings.en.json` | generated HTML (archives.html, index.html) |
+| baked display text | `strings/compiled/strings.en.json` | generated HTML (build-health.html, index.html) |
 
 The browser library (`lib/vextreme-index-v2.js`) has **no hard-coded arc data
 and no hard-coded display strings**. It reads structure from `index.json` and
@@ -463,8 +463,8 @@ Ask these questions in order:
 **3. Is it specific to one page only?**
 → `{slug}.{element-type}.{semantic-name}` in `source/pages/{slug}.json`
 
-**4. Is it a generated page's chrome (archives.html, index.html)?**
-→ Scope is the page name: `archives.{element-type}.{semantic-name}` in
+**4. Is it a generated page's chrome (build-health.html, index.html)?**
+→ Scope is the page name: `build-health.{element-type}.{semantic-name}` in
    `source/archives.json`
 
 **The `common` scope is semantic, not just organizational.** It signals
@@ -475,7 +475,7 @@ only appears in one place is a false signal — scope it to where it lives.
 
 ## Delivery mechanism by context
 
-**Build scripts generating static HTML** (archives.html, index.html):
+**Build scripts generating static HTML** (build-health.html, index.html):
 - Read `data/strings/compiled/strings.en.json` at build time
 - Call `t(key)` in the template — text is baked into the output HTML
 - No runtime resolver; no string JSON embedded in the page
@@ -494,7 +494,7 @@ only appears in one place is a false signal — scope it to where it lives.
 data/strings/source/          — scoped source files (write side; edit these)
   common.json                 — globally reusable UI strings
   arcs.json                   — arc title strings (16 arcs; display authority)
-  archives.json               — archives.html-specific strings
+  archives.json               — build-health.html-specific strings
   pages/{slug}.json           — per-page strings (created as pages are ported)
 
 lib/strings-check.js          — integrity pass (run before compile)
@@ -854,7 +854,7 @@ No subdirectories. The slug system breaks if pages are nested. A file at
 build script and browser lookup.
 
 **3. Never edit generated files.**
-`data/index.json`, `pages/archives.html`, `sitemap.xml`, `index.html`,
+`data/index.json`, `pages/build-health.html`, `pages/archives.html` (compatibility shim), `sitemap.xml`, `index.html`,
 `data/strings/compiled/*`, and `docs/architecture.md` are all generated.
 Edit the write-side sources and push.
 
@@ -881,7 +881,7 @@ messages, and error text. There are no exceptions based on string length
 or perceived insignificance.
 
 **8. Generated files are not mergeable — `.gitattributes` owns conflict resolution.**
-All generated artifacts (`data/index.json`, compiled strings, `pages/archives.html`,
+All generated artifacts (`data/index.json`, compiled strings, `pages/build-health.html`, `pages/archives.html`,
 `sitemap.xml`, `index.html`, `docs/architecture.md`) are declared with `merge=ours`
 in `.gitattributes`. When a feature branch rebases onto main, git automatically
 keeps main's built version of those files rather than producing a conflict.
@@ -913,7 +913,7 @@ widgets/
 
 lib/
   build-index.js        — builds data/index.json
-  build-archives.js     — builds pages/archives.html
+  build-archives.js     — builds pages/build-health.html + pages/archives.html compatibility shim
   build-sitemap.js      — builds sitemap.xml
   build-index-page.js   — builds index.html
   build-architecture.js — builds docs/architecture.md
@@ -930,7 +930,8 @@ docs/
   Readme.md           — v1 Squarespace system (historical, not active)
 
 pages/
-  archives.html       — build dashboard (generated)
+  build-health.html   — canonical build dashboard (generated)
+  archives.html       — compatibility shim to Build Health (generated)
   <slug>.html         — content pages (hand-authored, flat, no subdirs)
 
 .github/
@@ -1957,9 +1958,9 @@ Three independent navigation mechanisms exist in this repo, each real and workin
 reaching most pages:
 
 1. **Static hub links** — a page's own raw HTML links directly to a hub destination
-   (`index.html`, `archives.html`, `ecosystem-hub.html`, `terrain-map.html`). Only the
+   (`index.html`, `build-health.html`, `ecosystem-hub.html`, `terrain-map.html`). Only the
    generated hub pages themselves have this baked into their own renderer output —
-   `archives`, `ecosystem-hub`, `roles-index`, and the two "demo" pages that happen to
+   `build-health`, `ecosystem-hub`, `roles-index`, and the two "demo" pages that happen to
    link to one hub each (`specimens`, `vextreme-demo`). No hand-authored content page has
    any of it.
 2. **`shell.js` (v1)** — a real, working loader that injects a genuine site-nav bar

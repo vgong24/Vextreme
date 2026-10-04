@@ -90,5 +90,9 @@
   "demo.link.production": {
     "text": "本番環境の完成状態を見る →",
     "aria-label": "vextreme24.comで完成状態を見る"
+  },
+  "demo.link.build-health": {
+    "text": "ビルド健全性を見る →",
+    "aria-label": "進行中のページを含むビルド健全性を表示"
   }
 }
