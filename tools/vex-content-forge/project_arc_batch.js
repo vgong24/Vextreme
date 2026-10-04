@@ -260,18 +260,23 @@ function writeAtomic(file, content) {
 }
 function validateFormation(value) {
   invariant(value.schemaVersion === 'vex-content-forge.arc-batch-formation/v0.1', 'FORMATION_SCHEMA', value.schemaVersion);
-  invariant(value.ownerRef === 'github.issue.vextreme.159' && value.arc?.arcKey === 'convos_with_god', 'FORMATION_OWNER_ARC', 'owner/arc');
-  invariant(value.arc?.canonicalMemberCount === 12 && value.arc?.alreadyCompleteCount === 2 && value.arc?.remainingCount === 10 && value.members?.length === 10, 'FORMATION_ACCOUNTING', '2+10');
-  invariant(value.plannedSourceManagedProjector === GENERATOR_REF && value.plannedBatchTest === 'tests/61-content-forge-convos-with-god-arc-batch.test.js', 'FORMATION_PATHS', 'projector/test');
+  invariant(value.ownerRef === 'github.issue.vextreme.159', 'FORMATION_OWNER', value.ownerRef);
+  const arc = value.arc || {};
+  invariant(typeof arc.arcKey === 'string' && arc.arcKey.length > 0, 'FORMATION_ARC', arc.arcKey);
+  invariant(Number.isInteger(arc.canonicalMemberCount) && Number.isInteger(arc.alreadyCompleteCount) && Number.isInteger(arc.remainingCount), 'FORMATION_ACCOUNTING_TYPES', arc.arcKey);
+  invariant(Array.isArray(value.alreadyComplete) && Array.isArray(value.members), 'FORMATION_MEMBER_LISTS', arc.arcKey);
+  invariant(value.alreadyComplete.length === arc.alreadyCompleteCount && value.members.length === arc.remainingCount && arc.alreadyCompleteCount + arc.remainingCount === arc.canonicalMemberCount, 'FORMATION_ACCOUNTING', arc.arcKey);
+  invariant(value.plannedSourceManagedProjector === GENERATOR_REF && typeof value.plannedBatchTest === 'string' && value.plannedBatchTest.length > 0, 'FORMATION_PATHS', 'projector/test');
   const boundary = value.destinationMutationBoundary;
-  invariant(boundary?.createPages === 10 && boundary?.createStringSources === 10 && boundary?.modifyViewmodels === true, 'FORMATION_WRITES', 'write membrane');
+  invariant(boundary?.createPages === arc.remainingCount && boundary?.createStringSources === arc.remainingCount && boundary?.modifyViewmodels === true, 'FORMATION_WRITES', 'write membrane');
   invariant(boundary?.nodeRegistryMutation === false && boundary?.arcRegistryMutation === false && boundary?.contentIntentMutation === false && boundary?.aliasMutation === false, 'FORMATION_HELD', 'held membrane');
   invariant(value.lifecycle?.draftOnly === true && value.lifecycle?.mergeAuthority === false && value.lifecycle?.rawProviderPublicationAuthority === false, 'FORMATION_LIFECYCLE', 'draft only');
 }
 
 function main(options = {}) {
   const root = path.resolve(options.root || DEFAULT_ROOT);
-  const formation = readJson(path.join(root, FORMATION_REL));
+  const formationRel = options.formationRel || FORMATION_REL;
+  const formation = readJson(path.join(root, formationRel));
   validateFormation(formation);
   const nodes = readJson(path.join(root, NODES_REL));
   const nodesBySlug = new Map(nodes.map(node => [node.slug, node]));
@@ -294,7 +299,7 @@ function main(options = {}) {
       members.push({ slug: member.slug, canonicalNodeId: member.canonicalNodeId, adapterClass: member.adapterClass, disposition: 'HOLD_WITH_EXACT_REASON', reason: `${error.code || 'UNEXPECTED_PROJECTION_ERROR'}: ${error.message}` });
     }
   }
-  invariant(members.length === 12 && new Set(members.map(item => item.slug)).size === 12, 'BATCH_ACCOUNTING', 'all 12 members');
+  invariant(members.length === formation.arc.canonicalMemberCount && new Set(members.map(item => item.slug)).size === formation.arc.canonicalMemberCount, 'BATCH_ACCOUNTING', 'all canonical members');
 
   const changedPaths = [];
   if (!options.dryRun) {
@@ -312,15 +317,29 @@ function main(options = {}) {
   invariant(JSON.stringify(immutableAfter) === JSON.stringify(immutableBefore), 'HELD_REGISTRY_MUTATION', 'nodes/arcs/intents');
   const result = {
     schemaVersion: 'vex-content-forge.arc-batch-result/v0.1', arcKey: formation.arc.arcKey, generator: GENERATOR_REF,
-    accounting: { canonicalMembers: 12, alreadyComplete: members.filter(item => item.disposition === 'ALREADY_COMPLETE').length, projected: members.filter(item => item.disposition === 'PROJECTED').length, held: members.filter(item => item.disposition === 'HOLD_WITH_EXACT_REASON').length, complete: members.length === 12 },
+    accounting: { canonicalMembers: formation.arc.canonicalMemberCount, alreadyComplete: members.filter(item => item.disposition === 'ALREADY_COMPLETE').length, projected: members.filter(item => item.disposition === 'PROJECTED').length, held: members.filter(item => item.disposition === 'HOLD_WITH_EXACT_REASON').length, complete: members.length === formation.arc.canonicalMemberCount },
     members, changedPaths: [...new Set(changedPaths)].sort(), immutableRegistrySha256: immutableAfter,
   };
   if (!options.silent) process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
   return result;
 }
 
+function cliOptions(argv = process.argv.slice(2)) {
+  const options = {};
+  for (let index = 0; index < argv.length; index += 1) {
+    if (argv[index] === '--formation') {
+      const value = argv[++index];
+      invariant(typeof value === 'string' && value.length > 0, 'CLI_FORMATION', '--formation requires a repository-relative path');
+      options.formationRel = value;
+    } else {
+      throw new ProjectionInvariantError('CLI_ARGUMENT', `unknown argument: ${argv[index]}`);
+    }
+  }
+  return options;
+}
+
 if (require.main === module) {
-  try { process.exitCode = main().accounting.complete ? 0 : 1; }
+  try { process.exitCode = main(cliOptions()).accounting.complete ? 0 : 1; }
   catch (error) { process.stderr.write(`${error.stack || error.message}\n`); process.exitCode = 1; }
 }
-module.exports = { DEFAULT_ROOT, FORMATION_REL, GENERATOR_REF, ProjectionInvariantError, attrs, findAll, findFirst, gitBlobSha, main, rawText, selectAuthoredMain, selectSqsBody, sha256, textLeaves };
+module.exports = { DEFAULT_ROOT, FORMATION_REL, GENERATOR_REF, ProjectionInvariantError, attrs, cliOptions, findAll, findFirst, gitBlobSha, main, rawText, selectAuthoredMain, selectSqsBody, sha256, textLeaves, validateFormation };
