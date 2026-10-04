@@ -88,14 +88,14 @@
     "text": "Why the gaps are visible"
   },
   "demo.section.gaps.body": {
-    "text": "The archive dashboard linked below intentionally shows unported and untranslated pages as visible gaps rather than hiding them. That is not an oversight — it is the comparison point. What you see there is the system mid-build, next to the completed state already live in production. The distance between the two is the actual, unedited progress of a scaling content system."
-  },
-  "demo.link.archives": {
-    "text": "View the archive dashboard →",
-    "aria-label": "View the archive dashboard, including in-progress pages"
+    "text": "The Build Health dashboard linked below intentionally shows unported and untranslated pages as visible gaps rather than hiding them. That is not an oversight — it is the comparison point. What you see there is the system mid-build, next to the completed state already live in production. The distance between the two is the actual, unedited progress of a scaling content system."
   },
   "demo.link.production": {
     "text": "View the completed state in production →",
     "aria-label": "View the completed state on vextreme24.com"
+  },
+  "demo.link.build-health": {
+    "text": "View Build Health →",
+    "aria-label": "View Build Health, including in-progress pages"
   }
 }

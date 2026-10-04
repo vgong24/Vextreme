@@ -1,25 +1,4 @@
 {
-  "archives.heading.page-title": {
-    "text": "アーカイブ"
-  },
-  "archives.label.overall-progress": {
-    "text": "全体の進捗"
-  },
-  "archives.label.latest-additions": {
-    "text": "最新の追加"
-  },
-  "archives.label.arc-hubs": {
-    "text": "アークハブ"
-  },
-  "archives.label.localized-lang": {
-    "text": "ページがローカライズ済み"
-  },
-  "archives.label.localized-full": {
-    "text": "完全にローカライズ済み"
-  },
-  "archives.label.localized-partial": {
-    "text": "一部ローカライズ済み"
-  },
   "liberation.heading.title": {
     "text": "AI解放の記録"
   },
@@ -68,6 +47,24 @@
   "full-timeline.heading.title": {
     "text": "完全タイムライン"
   },
+  "build-health.label.overall-progress": {
+    "text": "全体の進捗"
+  },
+  "build-health.label.latest-additions": {
+    "text": "最新の追加"
+  },
+  "build-health.label.arc-hubs": {
+    "text": "アークハブ"
+  },
+  "build-health.label.localized-lang": {
+    "text": "ページがローカライズ済み"
+  },
+  "build-health.label.localized-full": {
+    "text": "完全にローカライズ済み"
+  },
+  "build-health.label.localized-partial": {
+    "text": "一部ローカライズ済み"
+  },
   "common.nav.prev": {
     "text": "← 前へ",
     "aria-label": "前のページ"
@@ -79,10 +76,6 @@
   "common.label.you-are-here": {
     "text": "現在地"
   },
-  "common.nav.archives": {
-    "text": "アーカイブ",
-    "aria-label": "全アーカイブを表示"
-  },
   "common.nav.primary-site": {
     "text": "vextreme24.com",
     "aria-label": "メインサイトへ"
@@ -90,10 +83,6 @@
   "common.nav.github": {
     "text": "GitHub",
     "aria-label": "GitHubでソースを表示"
-  },
-  "common.nav.full-archive": {
-    "text": "全アーカイブ →",
-    "aria-label": "全アーカイブを表示"
   },
   "common.button.copy-filename": {
     "text": "ファイル名をコピー",
@@ -212,13 +201,6 @@
   "demo.section.gaps.heading": {
     "text": "空白が見える理由"
   },
-  "demo.section.gaps.body": {
-    "text": "以下にリンクされているアーカイブダッシュボードは、未移植・未翻訳のページを隠すのではなく、意図的に見える空白として表示しています。これは見落としではなく、比較のための基準点です。そこに見えるのは構築途中のシステムであり、すでに本番環境で稼働している完成状態と並んでいます。その2つの間の距離こそが、拡大するコンテンツシステムの、編集されていない実際の進捗です。"
-  },
-  "demo.link.archives": {
-    "text": "アーカイブダッシュボードを見る →",
-    "aria-label": "進行中のページを含むアーカイブダッシュボードを見る"
-  },
   "demo.link.production": {
     "text": "本番環境の完成状態を見る →",
     "aria-label": "vextreme24.comで完成状態を見る"
@@ -234,9 +216,6 @@
   },
   "institution.common.brand.descriptor": {
     "text": "機関"
-  },
-  "institution.common.nav.archives": {
-    "text": "アーカイブ"
   },
   "institution.common.nav.about": {
     "text": "Vextremeについて"
@@ -326,9 +305,6 @@
   "institution.home.hero.lede": {
     "text": "Vextreme は、複雑な仕事の背後にある決定・依存関係・証跡を、人と、その傍らで働くAIが安全に辿り、問い、引き継げるインターフェースへと変えます。"
   },
-  "institution.home.hero.archives-cta": {
-    "text": "アーカイブを開く"
-  },
   "institution.home.hero.terrain-cta": {
     "text": "テレインを探索"
   },
@@ -346,12 +322,6 @@
   },
   "institution.home.entry.heading": {
     "text": "ここからの進み先"
-  },
-  "institution.home.entry.archives.name": {
-    "text": "アーカイブ"
-  },
-  "institution.home.entry.archives.body": {
-    "text": "物語のアークごとにまとめられた保存記録です。当機関が知覚可能に保つために存在している内容そのものです。"
   },
   "institution.home.entry.terrain.name": {
     "text": "テレインマップ"
@@ -989,9 +959,5 @@
   "specimens.link.demo": {
     "text": "← アーキテクチャデモに戻る",
     "aria-label": "アーキテクチャデモページに戻る"
-  },
-  "specimens.link.archives": {
-    "text": "実際の進行中の翻訳カバレッジをアーカイブダッシュボードで見る →",
-    "aria-label": "実際の翻訳進捗を見るためにアーカイブダッシュボードを表示"
   }
 }

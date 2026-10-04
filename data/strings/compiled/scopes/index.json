@@ -1,34 +1,34 @@
 {
-  "archives": {
-    "category": "production",
-    "path": "production/archives",
-    "en": 7,
-    "ja": 7
-  },
   "arcs": {
     "category": "production",
     "path": "production/arcs",
     "en": 16,
     "ja": 16
   },
+  "build-health": {
+    "category": "production",
+    "path": "production/build-health",
+    "en": 7,
+    "ja": 6
+  },
   "common": {
     "category": "system",
     "path": "system/common",
     "en": 16,
-    "ja": 16
+    "ja": 14
   },
   "demo": {
     "category": "demo",
     "path": "demo/demo",
     "en": 32,
-    "ja": 32
+    "ja": 30
   },
   "institution": {
     "category": "system",
     "path": "system/institution",
     "en": 151,
-    "ja": 151,
-    "zh": 151
+    "ja": 147,
+    "zh": 147
   },
   "pages.ascension-and-embodiment": {
     "category": "production",
@@ -124,6 +124,6 @@
     "category": "demo",
     "path": "demo/specimens",
     "en": 12,
-    "ja": 12
+    "ja": 11
   }
 }

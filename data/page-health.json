@@ -3,8 +3,8 @@
   "summary": {
     "total": 54,
     "healthy": 3,
-    "attention": 45,
-    "critical": 6,
+    "attention": 44,
+    "critical": 7,
     "sorted": 16,
     "withFab": 42,
     "withIdentity": 23,
@@ -264,14 +264,14 @@
         "keyCount": 11,
         "languages": {
           "en": {
-            "translated": 11,
+            "translated": 6,
             "total": 11,
-            "state": "full"
+            "state": "partial"
           },
           "ja": {
-            "translated": 11,
+            "translated": 6,
             "total": 11,
-            "state": "full"
+            "state": "partial"
           }
         }
       },
@@ -869,7 +869,7 @@
       },
       "navigation": {
         "navigable": true,
-        "staticHubLinks": 3,
+        "staticHubLinks": 2,
         "shell": false,
         "fab": false
       },
@@ -1648,7 +1648,7 @@
       },
       "navigation": {
         "navigable": true,
-        "staticHubLinks": 3,
+        "staticHubLinks": 2,
         "shell": false,
         "fab": false
       },
@@ -2056,7 +2056,7 @@
       },
       "navigation": {
         "navigable": true,
-        "staticHubLinks": 1,
+        "staticHubLinks": 0,
         "shell": true,
         "fab": false
       },
@@ -2071,14 +2071,14 @@
         "keyCount": 12,
         "languages": {
           "en": {
-            "translated": 12,
+            "translated": 11,
             "total": 12,
-            "state": "full"
+            "state": "partial"
           },
           "ja": {
-            "translated": 12,
+            "translated": 11,
             "total": 12,
-            "state": "full"
+            "state": "partial"
           }
         }
       },
@@ -2644,14 +2644,14 @@
             "state": "full"
           },
           "ja": {
-            "translated": 129,
+            "translated": 128,
             "total": 129,
-            "state": "full"
+            "state": "partial"
           },
           "zh": {
-            "translated": 129,
+            "translated": 128,
             "total": 129,
-            "state": "full"
+            "state": "partial"
           }
         }
       },
@@ -2707,8 +2707,8 @@
         "godScript": false
       },
       "navigation": {
-        "navigable": true,
-        "staticHubLinks": 1,
+        "navigable": false,
+        "staticHubLinks": 0,
         "shell": false,
         "fab": false
       },
@@ -2723,14 +2723,14 @@
         "keyCount": 31,
         "languages": {
           "en": {
-            "translated": 31,
+            "translated": 30,
             "total": 31,
-            "state": "full"
+            "state": "partial"
           },
           "ja": {
-            "translated": 31,
+            "translated": 29,
             "total": 31,
-            "state": "full"
+            "state": "partial"
           }
         }
       },
@@ -2748,8 +2748,10 @@
         "metaDescription": "A live demonstration of the architecture, tests, and process behind Vextreme."
       },
       "health": {
-        "state": "attention",
-        "blockers": [],
+        "state": "critical",
+        "blockers": [
+          "isolated"
+        ],
         "gaps": [
           "uncurated",
           "theme-effect"
@@ -2793,14 +2795,14 @@
             "state": "full"
           },
           "ja": {
-            "translated": 49,
+            "translated": 45,
             "total": 49,
-            "state": "full"
+            "state": "partial"
           },
           "zh": {
-            "translated": 49,
+            "translated": 45,
             "total": 49,
-            "state": "full"
+            "state": "partial"
           }
         }
       },
