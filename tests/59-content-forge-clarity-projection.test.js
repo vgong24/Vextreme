@@ -13,6 +13,7 @@ const STRINGS_PATH = path.join(ROOT, 'data', 'strings', 'source', 'pages', 'clar
 const VIEWMODELS_PATH = path.join(ROOT, 'data', 'viewmodels.json');
 const NODES_PATH = path.join(ROOT, 'data', 'nodes.json');
 const ARCS_PATH = path.join(ROOT, 'data', 'arcs-v2.json');
+const WIP_PATH = path.join(ROOT, 'wip', 'clarity-on-christianity.json');
 
 function attrs(node) {
   return Object.fromEntries((node.attrs || []).map(a => [a.name, a.value]));
@@ -41,8 +42,10 @@ function textOf(node) {
   return (node.childNodes || []).map(textOf).join('');
 }
 
-function normalizedText(node) {
-  return textOf(node).replace(/\s+/g, ' ').trim();
+function orderedTextLeaves(node) {
+  return findAll(node, n => n.nodeName === '#text')
+    .map(n => (n.value || '').replace(/\s+/g, ' ').trim())
+    .filter(Boolean);
 }
 
 function countTag(node, tagName) {
@@ -70,7 +73,8 @@ test('CONTENT FORGE CLARITY: destination projection preserves the complete Part-
 
   assert.ok(src, 'Part-028 source article body must be discoverable');
   assert.ok(dst, 'destination transcript article must exist');
-  assert.equal(normalizedText(dst), normalizedText(src), 'projected authored text/order must match Part-028');
+  assert.deepEqual(orderedTextLeaves(dst), orderedTextLeaves(src),
+    'projected authored text leaves and order must match Part-028 independently of inter-tag whitespace');
 
   for (const tag of ['ul', 'ol', 'li', 'strong', 'em']) {
     assert.equal(countTag(dst, tag), countTag(src, tag), `${tag} structure count must be preserved`);
@@ -134,4 +138,8 @@ test('CONTENT FORGE CLARITY: existing node and arc placement are consumed withou
   });
   assert.ok(arcs.convos_with_god.sections.some(section => (section.slugs || []).includes('clarity-on-christianity')));
   assert.equal(arcs.full_timeline.renderMode, 'position');
+});
+
+test('CONTENT FORGE CLARITY: promoted page consumes the predecessor WIP intent instead of colliding with pages/', () => {
+  assert.equal(fs.existsSync(WIP_PATH), false, 'promoted Clarity page must not retain a colliding WIP intent record');
 });
