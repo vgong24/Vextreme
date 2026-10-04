@@ -1,0 +1,357 @@
+{
+  "schemaVersion": "vex.relay.source-inventory/v2",
+  "version": "v0.2.0-RC1",
+  "continuity": "[VXG RealForever]",
+  "inventoryExcludesSelf": true,
+  "ownedPathScopes": [
+    {
+      "path": "docs/private-continuity/CONTINUITY-OPERATIONS-INDEX.md",
+      "kind": "EXACT_FILE"
+    },
+    {
+      "path": "docs/private-continuity/checkpoints/coding-continuity-operations-health.json",
+      "kind": "EXACT_FILE"
+    },
+    {
+      "path": "docs/private-continuity/continuity-operations/envelopes/vexrelay-provider-independent-repository-operations.json",
+      "kind": "EXACT_FILE"
+    },
+    {
+      "path": "docs/private-continuity/multivex/process-factory/foundations/provider-independent-repository-operations.json",
+      "kind": "EXACT_FILE"
+    },
+    {
+      "path": "docs/private-continuity/multivex/process-factory/processes/execute-provider-independent-repository-task.json",
+      "kind": "EXACT_FILE"
+    },
+    {
+      "path": "docs/private-continuity/multivex/process-factory/processes/compile-vexrelay-stage-recipe.json",
+      "kind": "EXACT_FILE"
+    },
+    {
+      "path": "docs/private-continuity/multivex/process-factory/registries/provider-independent-repository-operations-registry.json",
+      "kind": "EXACT_FILE"
+    },
+    {
+      "path": "docs/private-continuity/multivex/process-factory/schemas/vexrelay-forward-state.schema.json",
+      "kind": "EXACT_FILE"
+    },
+    {
+      "path": "docs/private-continuity/vexrelay",
+      "kind": "DIRECTORY_COMPLETE"
+    },
+    {
+      "path": "docs/process/vexrelay-provider-independent-repository-operations.md",
+      "kind": "EXACT_FILE"
+    },
+    {
+      "path": "lib/vexrelay",
+      "kind": "DIRECTORY_COMPLETE"
+    },
+    {
+      "path": "tests/continuity-operations/continuity-operations.test.js",
+      "kind": "EXACT_FILE"
+    },
+    {
+      "path": "tests/vexrelay",
+      "kind": "DIRECTORY_COMPLETE"
+    }
+  ],
+  "fileCountExcludingInventory": 53,
+  "contentSetSha256ExcludingInventory": "ceb9d9dd58a20a704b869e7f58097a5d123a48dcac78730fad82a20a8db00d83",
+  "members": [
+    {
+      "path": "docs/private-continuity/CONTINUITY-OPERATIONS-INDEX.md",
+      "sha256": "dcab7a3dc34c8cda24e70094d4946c6ac7cf7a1439dcee8b7b39df1f3f37b6c8",
+      "bytes": 7837
+    },
+    {
+      "path": "docs/private-continuity/checkpoints/coding-continuity-operations-health.json",
+      "sha256": "affd4bbbf6c238d6c7f6da24e4b45d96e35c9270bdfce864d64996b19aceba20",
+      "bytes": 524
+    },
+    {
+      "path": "docs/private-continuity/continuity-operations/envelopes/vexrelay-provider-independent-repository-operations.json",
+      "sha256": "2c3cb1e2b1e9e1f0bba6c97e215a4fff6396c3ce15d6733b89aeaa49ed5fbfae",
+      "bytes": 19905
+    },
+    {
+      "path": "docs/private-continuity/multivex/process-factory/foundations/provider-independent-repository-operations.json",
+      "sha256": "0ed8b2b2d29987739b29a94bd452ed4898e914e4d10cf9cb11d8872bd79238f8",
+      "bytes": 5306
+    },
+    {
+      "path": "docs/private-continuity/multivex/process-factory/processes/compile-vexrelay-stage-recipe.json",
+      "sha256": "d1f67b39afd56e022ba097512f622201e341298a7aa11e78ac3c5b5be5fa3e40",
+      "bytes": 5427
+    },
+    {
+      "path": "docs/private-continuity/multivex/process-factory/processes/execute-provider-independent-repository-task.json",
+      "sha256": "c18df038540c3c6956957cdbc9e199f041458bb8d3b115548afec63857a22710",
+      "bytes": 4553
+    },
+    {
+      "path": "docs/private-continuity/multivex/process-factory/registries/provider-independent-repository-operations-registry.json",
+      "sha256": "84bf2e0bb78f2e6dbb3211a8bc5bbb89cc164a9b1a6870367952e6f7771cce80",
+      "bytes": 5570
+    },
+    {
+      "path": "docs/private-continuity/multivex/process-factory/schemas/vexrelay-forward-state.schema.json",
+      "sha256": "2e9ada07eadea559c2fe7c11ce6887f0bd6f2797a6b57803a7616a33735e6e9e",
+      "bytes": 12052
+    },
+    {
+      "path": "docs/private-continuity/vexrelay/README.md",
+      "sha256": "20c9cd5caec3f3dac127b8091b20522e904fea5db03cd38f7ac9ea3efc448642",
+      "bytes": 10532
+    },
+    {
+      "path": "docs/private-continuity/vexrelay/assurance/pr1270-a002-changes-required.json",
+      "sha256": "ddb3d5ce897ccbbfd64a9cc2d06dbf194c6647697ea64b974173afa65f3f223c",
+      "bytes": 3580
+    },
+    {
+      "path": "docs/private-continuity/vexrelay/assurance/pr1270-a006-changes-required.json",
+      "sha256": "f2de61b28aaa29c161fe8577a30f07f7f5045237f8a0be073c8372a29a8b98ee",
+      "bytes": 2940
+    },
+    {
+      "path": "docs/private-continuity/vexrelay/atlas/lifecycle-router.json",
+      "sha256": "b56e836983e33252fb593e7984564efd4a709397a3cb7bdbace8de448aa65154",
+      "bytes": 7785
+    },
+    {
+      "path": "docs/private-continuity/vexrelay/atlas/protocol-atlas.json",
+      "sha256": "5bee5fb875bdf6f485cc1bb4ba9b42a1f5e446236bf33c65b661a7efd05d247f",
+      "bytes": 18954
+    },
+    {
+      "path": "docs/private-continuity/vexrelay/comparison-convergence-2026-09-03.md",
+      "sha256": "0cd728df923626d9aa4f79417d7e7a00e756dbb2ecbfe93ceb858835e0fe1db1",
+      "bytes": 2740
+    },
+    {
+      "path": "docs/private-continuity/vexrelay/current-contract.json",
+      "sha256": "1a5a8371ad797e34ce2661a9635cae3aeb098edc72fadd42db442ce0e2b40de2",
+      "bytes": 11113
+    },
+    {
+      "path": "docs/private-continuity/vexrelay/qualification-v0.2.0-rc1.json",
+      "sha256": "195821ba43219f92099f2287fa958c54af00d48e21afa66ca8219a10cfc3903f",
+      "bytes": 20051
+    },
+    {
+      "path": "docs/private-continuity/vexrelay/templates/IMPLEMENT-PR.task.jsonc",
+      "sha256": "c013b4b62450a7d9b3b946979e5d9a4d2073265b0610814c500e352c58aced53",
+      "bytes": 8788
+    },
+    {
+      "path": "docs/private-continuity/vexrelay/templates/PLAN-CATALOG.jsonc",
+      "sha256": "ea05cd16b4c40ce271c3a86238ca7bc771a098fb87bbab725767cc9f9468f499",
+      "bytes": 3298
+    },
+    {
+      "path": "docs/private-continuity/vexrelay/templates/REVIEW-QUERY.task.jsonc",
+      "sha256": "45a8521a83e1733be8c1974238c12e6ee8b303efa510edcc7c47131d5122a47c",
+      "bytes": 5235
+    },
+    {
+      "path": "docs/private-continuity/vexrelay/templates/SUCCESSOR-HANDOFF.jsonc",
+      "sha256": "5ef61a13750e16e6a9cc77869afd37c42bdf9fd0d6e8d11da8f811d105292e4e",
+      "bytes": 2187
+    },
+    {
+      "path": "docs/process/vexrelay-provider-independent-repository-operations.md",
+      "sha256": "2546bcb7ea59f9bd03b0e188dfa6d1038b7c60f57b3f03189ca678065c1020c2",
+      "bytes": 19356
+    },
+    {
+      "path": "lib/vexrelay/cli.mjs",
+      "sha256": "f5b8a63145d3a83182d90c25afd5bf1101df82a2985e38f52071650199a20932",
+      "bytes": 2730
+    },
+    {
+      "path": "lib/vexrelay/constants.mjs",
+      "sha256": "8413ce13208291dec8e6e4fcd6b6b146ddadeb16866875e5aec448f85a6b29b8",
+      "bytes": 5547
+    },
+    {
+      "path": "lib/vexrelay/errors.mjs",
+      "sha256": "16b0b9ea5ce1171d561ac42f63b87bd17593fd5f5bcb302bdd41ee9e640dbfb5",
+      "bytes": 989
+    },
+    {
+      "path": "lib/vexrelay/executor.mjs",
+      "sha256": "b3c9957be93958e873c4e612677beaef8abcbb6d7957d2dfdd7ab480c4900d52",
+      "bytes": 56033
+    },
+    {
+      "path": "lib/vexrelay/git.mjs",
+      "sha256": "71640fb1137bfb753a121f1d46cf74f59aa45294f4cd5e168ef4f5d4d9356851",
+      "bytes": 13889
+    },
+    {
+      "path": "lib/vexrelay/github.mjs",
+      "sha256": "d2b52d14ae5a2bf8b728ccfd3d4797aaac1c69bfbcf326afed57928c5061d543",
+      "bytes": 13781
+    },
+    {
+      "path": "lib/vexrelay/hash.mjs",
+      "sha256": "f103f1bef8e00ee3c9e3bccf44391e0549aa47d72f96032d882b08ae560f8476",
+      "bytes": 910
+    },
+    {
+      "path": "lib/vexrelay/index.mjs",
+      "sha256": "bbff4102f32ef1e610e93159dfd57ff4f9856eea1fec1bbfea4cb373db78dc8f",
+      "bytes": 306
+    },
+    {
+      "path": "lib/vexrelay/manifest.mjs",
+      "sha256": "c289088538cea9bc3f809cbcfd298ab9e3534e7b5895ab897c2719a91e7c86bf",
+      "bytes": 39884
+    },
+    {
+      "path": "lib/vexrelay/package.mjs",
+      "sha256": "f7bdba03bb816f6fa329303f93fa5fee18c75f8d6e9d9253402ee720368c1c84",
+      "bytes": 7762
+    },
+    {
+      "path": "lib/vexrelay/paths.mjs",
+      "sha256": "147bd1c739d146d4e65186556e0955f4fffab0f3c39af4bc7b8b2ea9b9240551",
+      "bytes": 6539
+    },
+    {
+      "path": "lib/vexrelay/process.mjs",
+      "sha256": "c572a4947725d2d443b2c3abd3f47f1dd013ced8a1844baabf73d818ba1483e4",
+      "bytes": 11744
+    },
+    {
+      "path": "lib/vexrelay/recipe-compiler.mjs",
+      "sha256": "8b614d6b29160faf71abbfe1efbda82f5054184f49f8f402d5c4474f05db4733",
+      "bytes": 14103
+    },
+    {
+      "path": "lib/vexrelay/result.mjs",
+      "sha256": "2ab3b84cfe616b4567cfd247d3b2374d95865a7c034328d99996e07a81c7753f",
+      "bytes": 11026
+    },
+    {
+      "path": "lib/vexrelay/return-consumer.mjs",
+      "sha256": "de914ea47058513c1b5205b74514b6996c652c7af50f25489a562ebd77f888f5",
+      "bytes": 21435
+    },
+    {
+      "path": "lib/vexrelay/state-machine.mjs",
+      "sha256": "e8a7e18b1680973beeed89826dda4b71e888558ea9d204996a34dbafaeece4c3",
+      "bytes": 14973
+    },
+    {
+      "path": "lib/vexrelay/workspace.mjs",
+      "sha256": "144129c89d378fa1334d6744fbc8ca79d9ba1c431458447a5b79ce69cd0f6957",
+      "bytes": 7447
+    },
+    {
+      "path": "lib/vexrelay/zip.mjs",
+      "sha256": "e98f8ee3b6869566a830c483b46cad7848c593e4702572edea0f48e2b10f5a29",
+      "bytes": 9576
+    },
+    {
+      "path": "tests/continuity-operations/continuity-operations.test.js",
+      "sha256": "d1a987abf04a8e8b34a4eaf61dab3d87cc4b45174afcbe7b555e4f9939f9bf75",
+      "bytes": 32991
+    },
+    {
+      "path": "tests/vexrelay/current-contract.test.mjs",
+      "sha256": "c27c3da271fc93d2beff77888a55706f43c10a2b2d10aa05e1276e427b72c718",
+      "bytes": 19732
+    },
+    {
+      "path": "tests/vexrelay/executor-local.test.mjs",
+      "sha256": "c24c83b9d6b59fc0275eb9466ad12642a2b72b0bede1ebaf15dc4ac9dc488fdd",
+      "bytes": 9913
+    },
+    {
+      "path": "tests/vexrelay/github-fallback.test.mjs",
+      "sha256": "669d6abf9bf50770d1d8b3ab83cead09368f9d0769f7562433a9f30c13d5c488",
+      "bytes": 17412
+    },
+    {
+      "path": "tests/vexrelay/hardening.test.mjs",
+      "sha256": "868eeb73636665ee160a18c0f14c98659f51375b72528429540b48a768bfecb0",
+      "bytes": 14692
+    },
+    {
+      "path": "tests/vexrelay/helpers.mjs",
+      "sha256": "833cef9653b6a969499307b3150b3b14ab6566ad29f56bfb215e0e9ffe8f8ea3",
+      "bytes": 11221
+    },
+    {
+      "path": "tests/vexrelay/manifest.test.mjs",
+      "sha256": "92c7e30f2cc6361b706b783822b0148f9a91c534975743c001d63485e88e01c1",
+      "bytes": 10743
+    },
+    {
+      "path": "tests/vexrelay/package-return.test.mjs",
+      "sha256": "c8ee6aef5c0fa0227810c9531af61baff4230c8c87d0de7ab4c3970c65dcedb5",
+      "bytes": 5755
+    },
+    {
+      "path": "tests/vexrelay/process.test.mjs",
+      "sha256": "2b383d1f074fb761ab42ca02a229d89bc21045df3151a7414f1e4e1a43407dd2",
+      "bytes": 5117
+    },
+    {
+      "path": "tests/vexrelay/recipe-compiler.test.mjs",
+      "sha256": "4614e7a89996f5f78bdf060d346326c8f902fc3e7bcff8f1a5981a2caad64fc1",
+      "bytes": 14196
+    },
+    {
+      "path": "tests/vexrelay/return-hostile.test.mjs",
+      "sha256": "9dc78148e074015a766d9b170170d709652480205d822b07349d3a445e10871b",
+      "bytes": 14322
+    },
+    {
+      "path": "tests/vexrelay/source-shape.test.mjs",
+      "sha256": "9d083ccda64127551dece2f3a5a1ecf97adb9933e5c4b93225c137895566406b",
+      "bytes": 9503
+    },
+    {
+      "path": "tests/vexrelay/state-machine.test.mjs",
+      "sha256": "7bbcd10eed6f570033eb0526c56d712b9137996f506e5d0092beb01fe597a6d0",
+      "bytes": 5074
+    },
+    {
+      "path": "tests/vexrelay/workspace.test.mjs",
+      "sha256": "761fdac9d134da79ee4d8d3aa84ba3d6950b0462330befe17fc074b9a20aac67",
+      "bytes": 2377
+    }
+  ],
+  "repositoryIntegrationBindings": [
+    {
+      "path": "lib/sdk-ready.js",
+      "kind": "EXACT_TEXT_TRANSFORM",
+      "baseHead": "2e7d5c485c4ccea37ef63c485639c67983577429",
+      "baseTree": "4fa18bdd2f74044b71b179875fb73ddb9b7c1d67",
+      "baseGitBlobSha1": "8713bb764642bb20c1441896157ed0def46a8676",
+      "expectedBeforeState": "PRESENT",
+      "findSha256": "375f85472f32a890b09a926d01474ea04902cc3de3dc0de44f961193a2feaded",
+      "replacementSha256": "f4ca02bb73413d7fef3707a60de18c9af18f3fd4d2349d5a0bf779ac82b18a92",
+      "expectedCount": 1,
+      "reason": "Admit only lib/vexrelay/ and tests/vexrelay/ through the existing SDK readiness boundary before lifecycle review."
+    }
+  ],
+  "generatedAt": "2026-09-27T05:23:12Z",
+  "continuityIntegrationBindings": [
+    {
+      "sourceEnvelopePath": "docs/private-continuity/continuity-operations/envelopes/vexrelay-provider-independent-repository-operations.json",
+      "targetPath": "docs/process/vexrelay-provider-independent-repository-operations.md",
+      "indexPath": "docs/private-continuity/CONTINUITY-OPERATIONS-INDEX.md",
+      "healthPath": "docs/private-continuity/checkpoints/coding-continuity-operations-health.json",
+      "focusedTestPath": "tests/continuity-operations/continuity-operations.test.js",
+      "expectedManagedArtifactCount": 18,
+      "expectedSourceEnvelopeCount": 18
+    }
+  ],
+  "currentContractRef": "source.vexrelay.current-contract/v1",
+  "currentContractPath": "docs/private-continuity/vexrelay/current-contract.json"
+}

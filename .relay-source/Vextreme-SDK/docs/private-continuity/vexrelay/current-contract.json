@@ -1,0 +1,248 @@
+{
+  "schemaVersion": "vex.relay.current-contract/v1",
+  "contractRef": "source.vexrelay.current-contract/v1",
+  "protocolFamily": "VEX_RELAY",
+  "currentRuntimeVersion": "v0.2.0-RC1",
+  "currentAcceptedMain": {
+    "bindingMode": "MINIMUM_ACCEPTED_ANCESTOR",
+    "sha": "6cdd5c69535a138baeb6dd87d6a6d74bb9d0d2c6"
+  },
+  "currentAcceptedTreeOrSourceBinding": {
+    "bindingMode": "SOURCE_MANAGED_CONTRACT",
+    "acceptedBaseTree": "846227217b3d4a23a9a5593713b7e0641ca334e6",
+    "runtimeConstantsPath": "lib/vexrelay/constants.mjs",
+    "recipeCompilerPath": "lib/vexrelay/recipe-compiler.mjs",
+    "recipeCompilerVersion": "vex.relay.recipe-compiler/v2",
+    "sourceInventoryPath": "docs/private-continuity/vexrelay/source-inventory.json"
+  },
+  "taskSchema": "vex.relay.task/v2",
+  "returnContract": {
+    "resultSchema": "vex.relay.result/v2",
+    "memberCount": 10,
+    "files": [
+      "RESULT-SUMMARY.txt",
+      "result.json",
+      "execution.log",
+      "before-state.json",
+      "after-state.json",
+      "inventory.json",
+      "evidence.json",
+      "forward-state.json",
+      "candidate.diff",
+      "selected-source-files.json"
+    ]
+  },
+  "operationVocabulary": [
+    "AUTH",
+    "READ",
+    "QUERY",
+    "WRITE",
+    "RUN",
+    "CHECK",
+    "PUBLISH",
+    "LISTEN",
+    "RESPOND",
+    "LOOP"
+  ],
+  "hostProfiles": [
+    "windows-victor",
+    "macos-victor",
+    "test-host"
+  ],
+  "acceptedAdapters": [
+    {
+      "adapterRef": "adapter.vexrelay.repository/v2",
+      "effectClass": "REPOSITORY_OPERATIONS",
+      "state": "CURRENT",
+      "taskSchema": "vex.relay.task/v2",
+      "routeLockedRequired": true
+    },
+    {
+      "adapterRef": "adapter.vexlocalbridge.native-vexrelay-task-archive/v1",
+      "effectClass": "REPOSITORY_OPERATIONS_HOST_CARRIER",
+      "state": "TERMINAL_ACCEPTED_CURRENT",
+      "ownerRef": "github.issue.vextreme-sdk.636",
+      "acceptedReplacementRef": "github.issue.vextreme-sdk.636.comment.5810997545",
+      "hardeningRef": "github.issue.vextreme-sdk.636.comment.5826652421",
+      "hardeningMerge": "dfabcf5db4a8fad38e347b186c31b9f19116c58c"
+    },
+    {
+      "adapterRef": "adapter.vexlocalbridge.direct-host-effect",
+      "effectClass": "HOST_SEMANTIC_MODEL_RUNTIME",
+      "state": "TERMINAL_ACCEPTED_CURRENT",
+      "ownerRef": "github.issue.vextreme-sdk.636",
+      "hardeningRef": "github.issue.vextreme-sdk.636.comment.5827285254",
+      "hardeningMerge": "ac0f444cf8a63d559a517da9d9d4d28dc7f6b96b",
+      "carriageSourcePath": "lib/vexlocalbridge/pre-admission-carriage.js"
+    },
+    {
+      "adapterRef": "adapter.direct-provider",
+      "effectClass": "DIRECT_PROVIDER_EFFECT",
+      "state": "CAPABILITY_DEPENDENT",
+      "selection": "CONNECTOR_DIRECT"
+    }
+  ],
+  "acceptedRecipeFamilies": [
+    "CurrentMainCompositionProof",
+    "ExactHeadSourceOwnerProof",
+    "IndependentAssurance",
+    "LifecycleCurrentness",
+    "OwnerMergeDuty",
+    "PostMergeVerification"
+  ],
+  "currentFirstUseRoute": [
+    "READ_MATCHED_OPERATING_POLICY",
+    "READ_CURRENT_RELAY_CONTRACT",
+    "CLASSIFY_STAGE",
+    "CLASSIFY_EFFECT_CLASS",
+    "LOCK_ROUTE",
+    "SELECT_CURRENT_TYPED_ADAPTER",
+    "FORM_VALIDATED_TASK_OR_DIRECT_EFFECT",
+    "EXECUTE",
+    "RETAIN_AND_CONSUME_EVIDENCE",
+    "CONTINUE_FXX"
+  ],
+  "routeSelection": {
+    "routeLockedRequired": true,
+    "fallbackAllowedByDefault": false,
+    "effectClassRoutes": {
+      "REPOSITORY_OPERATIONS": "adapter.vexrelay.repository/v2",
+      "REPOSITORY_OPERATIONS_HOST_CARRIER": "adapter.vexlocalbridge.native-vexrelay-task-archive/v1",
+      "HOST_SEMANTIC_MODEL_RUNTIME": "adapter.vexlocalbridge.direct-host-effect",
+      "DIRECT_PROVIDER_EFFECT": "adapter.direct-provider"
+    }
+  },
+  "currentSourceRefs": [
+    "lib/vexrelay/constants.mjs",
+    "lib/vexrelay/recipe-compiler.mjs",
+    "lib/vexrelay/result.mjs",
+    "lib/vexrelay/return-consumer.mjs",
+    "docs/private-continuity/vexrelay/current-contract.json",
+    "docs/private-continuity/vexrelay/source-inventory.json",
+    "lib/vexlocalbridge/vexrelay-task-archive.js",
+    "lib/vexlocalbridge/pre-admission-carriage.js",
+    "lib/vexlocalbridge/package-builder.js",
+    "docs/process/vexlocalbridge-task-package-formation.md",
+    "lib/vexlocalbridge/mac-source-bootstrap-command.js",
+    "docs/process/vexlocalbridge-mac-runner.md"
+  ],
+  "terminalAcceptanceRefs": [
+    "github.issue.vextreme-sdk.636.comment.5810997545",
+    "github.issue.vextreme-sdk.1269.comment.5812013131",
+    "github.issue.vextreme-sdk.636.comment.5826652421",
+    "github.issue.vextreme-sdk.636.comment.5827285254",
+    "github.issue.vextreme-sdk.636.comment.5827625605",
+    "github.issue.vextreme-sdk.1614.comment.5852849536"
+  ],
+  "deprecatedCapabilities": [
+    {
+      "deprecatedIdentity": "manual.R14.compatibility-snapshot-as-live-currentness",
+      "replacementIdentity": "source.vexrelay.current-contract/v1",
+      "deprecationClass": "DEPRECATED_FOR_LIVE_CURRENTNESS",
+      "newFormationAllowed": false,
+      "existingSealedAttemptsStillValid": true,
+      "existingExecutedEvidenceStillValid": true,
+      "compatibilityPredicate": "HISTORICAL_SNAPSHOT_REMAINS_COMPATIBILITY_CONTEXT_ONLY",
+      "migrationRule": "Fresh formation consumes the current Relay contract; historical evidence remains bound to its producing runtime/schema.",
+      "acceptedReplacementRef": "source.vexrelay.current-contract/v1"
+    },
+    {
+      "deprecatedIdentity": "vexrelay.discovery.p1-candidate-era-currentness",
+      "replacementIdentity": "github.issue.vextreme-sdk.1269.comment.5812013131",
+      "deprecationClass": "SUPERSEDED_DISCOVERABILITY_STATE",
+      "newFormationAllowed": false,
+      "existingSealedAttemptsStillValid": true,
+      "existingExecutedEvidenceStillValid": true,
+      "compatibilityPredicate": "P1_TERMINAL_ACCEPTED_CURRENT",
+      "migrationRule": "Discovery surfaces project terminal P1/current contract state; no historical proof replay is required.",
+      "acceptedReplacementRef": "github.issue.vextreme-sdk.1269.comment.5812013131"
+    }
+  ],
+  "supersededRoutes": [
+    {
+      "supersededIdentity": "PER_LANE_PROTOCOL_ARCHAEOLOGY_FOR_CURRENTNESS",
+      "replacementIdentity": "READ_CURRENT_RELAY_CONTRACT",
+      "newFormationAllowed": false,
+      "existingSealedAttemptsStillValid": true,
+      "migrationRule": "Use durable historical refs only when a concrete unresolved predicate requires them."
+    }
+  ],
+  "compatibilityRules": [
+    "DEPRECATED_FOR_NEW_FORMATION != HISTORICAL_EVIDENCE_INVALID",
+    "NEW_RUNTIME_AVAILABLE != REPLAY_EXISTING_VALID_ATTEMPT",
+    "task/v2 remains compatible across this hardening",
+    "ten-member canonical inner RETURN remains unchanged",
+    "recipe compiler v2 adds compile-time predicate classification without adding task operation fields",
+    "PACKAGE_IDENTITY = TRUSTED_EXPECTED_SHA256 + VERIFIED_BYTES; LOCAL_FILE_MULTIPLICITY != TASK_REPLAY_PROTECTION",
+    "TASK_WINDOW_VALIDATION != TASK_WINDOW_AUTHORING; formedAt is sampled by source-managed final formation and expiresAt is derived relatively",
+    "Exact-candidate NOT_REACHED SAFE_FAILURE consumption requires explicit expectedCandidateHead; generic unbound carrier consumption remains fail-closed after retaining the exact RETURN",
+    "CurrentMainCompositionProof PASS with review projection NOT_REACHED is consumable only when the canonical result proves the accepted CURRENT_MAIN_COMPOSITION_PROOF stage, exact candidate/source binding, and the complete current-main recipe operation set passed; arbitrary PASS + NOT_REACHED remains fail-closed",
+    "candidate.diff is unavailable only when it begins with the canonical synthetic projection header; matching sentinel text inside a real unified diff is ordinary source evidence, not an unavailable projection",
+    "ExactHeadSourceOwnerProof compiled for CLONE_IN_WORKSPACE + GITHUB_GH emits typed AUTH GITHUB_GH before private clone acquisition while CHECK_AUTH remains caller-authorized; non-GITHUB_GH repository routes receive no spurious auth operation."
+  ],
+  "consumerUpgradeRules": [
+    {
+      "condition": "ALREADY_FORMED_VALID_ATTEMPT",
+      "action": "PRESERVE"
+    },
+    {
+      "condition": "NEW_OR_UNFORMED_ATTEMPT_AFTER_HARDENING_ACCEPTANCE",
+      "action": "BIND_CURRENT_RELAY_CONTRACT"
+    },
+    {
+      "condition": "CHANGED_IMMUTABLE_PRODUCT_CANDIDATE_AFTER_HARDENING_ACCEPTANCE",
+      "action": "FORM_FRESH_PROOF_USING_CURRENT_RELAY_CONTRACT"
+    },
+    {
+      "condition": "RETAINED_CURRENT_MAIN_COMPOSITION_PROOF_PASS_REJECTED_ONLY_BY_PRE_REPAIR_NOT_REACHED_RULE",
+      "action": "RECONSUME_EXACT_RETAINED_RETURN_WITH_CURRENT_CONSUMER_NO_BUSINESS_REPLAY"
+    }
+  ],
+  "formedPreHardeningAttemptInvalidation": [],
+  "mechanicalHardening": {
+    "canonicalReturnRetention": {
+      "state": "TERMINAL_ACCEPTED_CURRENT",
+      "ownerRef": "github.issue.vextreme-sdk.636",
+      "acceptedRef": "github.issue.vextreme-sdk.636.comment.5826652421",
+      "sourcePath": "lib/vexlocalbridge/vexrelay-task-archive.js",
+      "rule": "FORMED_RETURN_RETAINED_UNCHANGED_BEFORE_INDEPENDENT_CONSUMPTION"
+    },
+    "carrierIdentity": {
+      "state": "TERMINAL_ACCEPTED_CURRENT",
+      "ownerRef": "github.issue.vextreme-sdk.636",
+      "acceptedRef": "github.issue.vextreme-sdk.636.comment.5827285254",
+      "sourcePath": "lib/vexlocalbridge/pre-admission-carriage.js",
+      "packageIdentity": "TRUSTED_EXPECTED_SHA256_PLUS_VERIFIED_BYTES",
+      "localMultiplicityPolicy": "BYTE_IDENTICAL_LOCAL_COPIES_ARE_CARRIER_LOCATIONS_NOT_REPLAY_IDENTITY"
+    },
+    "taskWindowFormation": {
+      "state": "TERMINAL_ACCEPTED_CURRENT",
+      "ownerRef": "github.issue.vextreme-sdk.636",
+      "acceptedRef": "github.issue.vextreme-sdk.636.comment.5827625605",
+      "sourcePath": "lib/vexlocalbridge/package-builder.js",
+      "producerExport": "createCanonicalTaskZip",
+      "formationClock": "ACTUAL_CLOCK_SAMPLE_AT_FINAL_PACKAGE_FORMATION",
+      "expiryRule": "FORMED_AT_PLUS_BOUNDED_TTL",
+      "callerAbsoluteWindowAllowed": false,
+      "finalByteQualification": "formedAt <= qualificationNow < expiresAt"
+    },
+    "checkoutFreeMacSourceBootstrap": {
+      "state": "TERMINAL_ACCEPTED_CURRENT",
+      "ownerRef": "github.issue.vextreme-sdk.636",
+      "sourceSuccessorRef": "github.issue.vextreme-sdk.1614",
+      "acceptedRef": "github.issue.vextreme-sdk.1614.comment.5852849536",
+      "merge": "d06929e8631d89d266e12cec97a36d9e61f0685a",
+      "hostProfileRef": "macos-victor",
+      "sourcePath": "lib/vexlocalbridge/mac-source-bootstrap-command.js",
+      "testPath": "tests/vexlocalbridge/mac-source-bootstrap-command.test.js",
+      "documentationPath": "docs/process/vexlocalbridge-mac-runner.md",
+      "rendererExport": "renderMacSourceBootstrapCommand",
+      "packageIdentity": "TRUSTED_EXPECTED_SHA256_PLUS_VERIFIED_BYTES",
+      "sourceAcquisition": "GITHUB_GH_PLUS_GIT_NO_CHECKOUT_EXACT_HEAD_TREE",
+      "preexistingSdkCheckoutRequired": false,
+      "taskAttemptIdentityMutationAllowed": false,
+      "businessPayloadReplayAllowed": false,
+      "hostQualificationRequiredBeforeBusinessHandoff": true
+    }
+  }
+}
