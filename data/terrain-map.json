@@ -3453,12 +3453,31 @@
       "arcName": "Conversations with God",
       "x": 1420,
       "y": 90,
-      "live": false,
-      "liveUrl": null,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/what-is-the-god-spark.html",
       "screenshots": {},
       "hasScreenshot": false,
-      "status": "critical",
-      "capability": null,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 412,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "What is the God Spark? — preserved conversation and reflection, projected into the Vextreme repository-native page system."
+      },
       "curated": true
     },
     {
