@@ -57,7 +57,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
 
     steps:
       - name: Checkout
@@ -141,41 +141,6 @@ jobs:
 
       - name: Build terrain-map.json
         run: node lib/build-terrain-map.js
-
-      - name: TEMP — materialize Build Health fixed-point consequences
-        if: github.event_name == 'pull_request' && github.head_ref == 'VXG-100426-vex-content-forge-build-health'
-        run: |
-          node lib/build-lattice-headers.js
-          node lib/build-architecture.js
-          node lib/strings-compile.js
-          node lib/build-string-identity-index.js
-          node lib/build-arc-bundles.js
-          node lib/build-index.js
-          node lib/bump-fab-version.js
-          node lib/build-vextreme.js
-          node lib/build-sw.js
-          node lib/build-analysis-index.js
-          node lib/build-page-health.js
-          node lib/build-archives.js
-          node lib/build-demo.js
-          node lib/build-specimens.js
-          node lib/build-sitemap.js
-          node lib/build-index-page.js
-          node lib/build-lessons.js
-          node lib/build-status.js
-          node lib/build-roles.js
-          node lib/build-ecosystem-hub.js
-          node lib/build-roles-page.js
-          node lib/build-terrain-map.js
-          git add -A
-          if git diff --staged --quiet; then
-            echo "Fixed-point materialization already current."
-          else
-            git config user.name "VexGPT"
-            git config user.email "victor.gong@vextreme24.com"
-            git commit -s -m "[Vex Content Forge] Converge Build Health generated state"
-            git push origin HEAD:VXG-100426-vex-content-forge-build-health
-          fi
 
       - name: Verify generated artifacts are committed
         # Generated files are part of the reviewed tree. CI regenerates them
