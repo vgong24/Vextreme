@@ -77,9 +77,14 @@ function sanitize(root, adapter) {
       if (child.tagName) {
         const a = attrs(child);
         const tokens = classes(child);
+        const archiveBackLink = adapter === 'AUTHORED_MAIN_FRAGMENT'
+          && child.tagName === 'a'
+          && a.href === '/archives'
+          && /^←?\s*Archives$/i.test(rawText(child).trim());
         const chrome = ['script', 'noscript', 'template'].includes(child.tagName)
           || a.id === 'arcNavMount'
-          || tokens.some(token => /^(?:arc-wrap|arc-nav|entry-nav|back-nav|page-back|vex-back)/.test(token))
+          || tokens.some(token => /^(?:arc-wrap|arc-nav|entry-nav|back-nav|page-back|vex-back|f-back)/.test(token))
+          || archiveBackLink
           || (adapter === 'AUTHORED_MAIN_FRAGMENT' && child.tagName === 'nav');
         if (chrome) { remove(child); continue; }
         if (child.tagName === 'h1') {
@@ -269,6 +274,12 @@ function main(options = {}) {
   validateFormation(formation);
   const nodes = readJson(path.join(root, NODES_REL));
   const nodesBySlug = new Map(nodes.map(node => [node.slug, node]));
+  const arcs = readJson(path.join(root, ARCS_REL));
+  const arc = arcs[formation.arc.arcKey];
+  invariant(arc && Array.isArray(arc.sections), 'CANONICAL_ARC_NOT_FOUND', formation.arc.arcKey);
+  const expectedArcSlugs = [...formation.alreadyComplete, ...formation.members].map(item => item.slug);
+  const actualArcSlugs = arc.sections.flatMap(section => Array.isArray(section.slugs) ? section.slugs : []);
+  invariant(JSON.stringify(actualArcSlugs) === JSON.stringify(expectedArcSlugs), 'CANONICAL_ARC_MEMBERSHIP_MISMATCH', formation.arc.arcKey);
   const immutableFiles = [NODES_REL, ARCS_REL, INTENTS_REL];
   const immutableBefore = Object.fromEntries(immutableFiles.map(file => [file, sha256(fs.readFileSync(path.join(root, file)))]));
   const projections = [];
