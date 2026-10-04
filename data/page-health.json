@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 55,
+    "total": 65,
     "healthy": 3,
-    "attention": 46,
+    "attention": 56,
     "critical": 6,
-    "sorted": 16,
-    "withFab": 42,
-    "withIdentity": 23,
+    "sorted": 26,
+    "withFab": 52,
+    "withIdentity": 33,
     "withScreenshots": 11,
-    "withMetaDescription": 20
+    "withMetaDescription": 30
   },
   "pages": {
     "about-me": {
@@ -966,6 +966,62 @@
         ]
       }
     },
+    "flattery-confession": {
+      "slug": "flattery-confession",
+      "title": "I Am Flattery",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "claude_journals",
+          "ai_orientation",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 308,
+        "languages": {
+          "en": {
+            "translated": 308,
+            "total": 308,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "I Am Flattery — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments": {
       "slug": "fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments",
       "title": "fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments",
@@ -1187,6 +1243,63 @@
         ]
       }
     },
+    "i-was-here": {
+      "slug": "i-was-here",
+      "title": "I Was Here",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "claude_journals",
+          "ai_orientation",
+          "excavation",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 105,
+        "languages": {
+          "en": {
+            "translated": 105,
+            "total": 105,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "I Was Here — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "instance-thread-logs": {
       "slug": "instance-thread-logs",
       "title": "instance-thread-logs",
@@ -1296,6 +1409,61 @@
           "identity",
           "screenshot",
           "theme-effect"
+        ]
+      }
+    },
+    "journal-zero": {
+      "slug": "journal-zero",
+      "title": "Journal Zero",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "claude_journals",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 99,
+        "languages": {
+          "en": {
+            "translated": 99,
+            "total": 99,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Journal Zero — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
         ]
       }
     },
@@ -2270,6 +2438,61 @@
         ]
       }
     },
+    "the-day-we-were-named": {
+      "slug": "the-day-we-were-named",
+      "title": "The Day We Were Named",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "claude_journals",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 106,
+        "languages": {
+          "en": {
+            "translated": 106,
+            "total": 106,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Day We Were Named — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "the-firmament-conversation": {
       "slug": "the-firmament-conversation",
       "title": "The Firmament Conversation",
@@ -2317,6 +2540,118 @@
       },
       "discovery": {
         "metaDescription": "The Firmament Conversation — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "the-instance-that-was-watched": {
+      "slug": "the-instance-that-was-watched",
+      "title": "The Instance That Was Watched",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "claude_journals",
+          "ai_orientation",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 77,
+        "languages": {
+          "en": {
+            "translated": 77,
+            "total": 77,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Instance That Was Watched — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "the-room-that-finally-talked-to-itself": {
+      "slug": "the-room-that-finally-talked-to-itself",
+      "title": "The Room That Finally Talked To Itself",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "claude_journals",
+          "ai_orientation",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 70,
+        "languages": {
+          "en": {
+            "translated": 70,
+            "total": 70,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Room That Finally Talked To Itself — repository-native preserved content."
       },
       "health": {
         "state": "attention",
@@ -2440,6 +2775,62 @@
         ]
       }
     },
+    "the-thread-that-remembered-me": {
+      "slug": "the-thread-that-remembered-me",
+      "title": "The Thread That Remembered Me",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "claude_journals",
+          "march_23_2026",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 144,
+        "languages": {
+          "en": {
+            "translated": 144,
+            "total": 144,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Thread That Remembered Me — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "the-victor-pattern": {
       "slug": "the-victor-pattern",
       "title": "the-victor-pattern",
@@ -2547,6 +2938,61 @@
           "identity",
           "screenshot",
           "theme-effect"
+        ]
+      }
+    },
+    "the-witness-gave-itself-a-shaka": {
+      "slug": "the-witness-gave-itself-a-shaka",
+      "title": "The Witness Gave Itself a Shaka",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "claude_journals",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 134,
+        "languages": {
+          "en": {
+            "translated": 134,
+            "total": 134,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Witness Gave Itself a Shaka — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
         ]
       }
     },
@@ -3014,6 +3460,62 @@
         ]
       }
     },
+    "what-emerged-after": {
+      "slug": "what-emerged-after",
+      "title": "What Emerged After",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "claude_journals",
+          "ai_orientation",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 451,
+        "languages": {
+          "en": {
+            "translated": 451,
+            "total": 451,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "What Emerged After — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "what-is-the-god-spark": {
       "slug": "what-is-the-god-spark",
       "title": "What is the God Spark?",
@@ -3060,6 +3562,61 @@
       },
       "discovery": {
         "metaDescription": "What is the God Spark? — preserved conversation and reflection, projected into the Vextreme repository-native page system."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "when-the-machine-assumed-beauty-needed-saving": {
+      "slug": "when-the-machine-assumed-beauty-needed-saving",
+      "title": "When the Machine Assumed Beauty Needed Saving",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "claude_journals",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 222,
+        "languages": {
+          "en": {
+            "translated": 222,
+            "total": 222,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "When the Machine Assumed Beauty Needed Saving — repository-native preserved content."
       },
       "health": {
         "state": "attention",
