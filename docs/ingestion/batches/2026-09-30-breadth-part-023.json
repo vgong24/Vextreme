@@ -1,0 +1,191 @@
+{
+  "schemaVersion": "vex-content-forge.breadth-intake-receipt/v0.3",
+  "continuity": "[VXG RealForever]",
+  "issueRef": "github.issue.vextreme.159",
+  "basePrRef": "github.pull.vextreme.161",
+  "breadthPrRef": "github.pull.vextreme.162",
+  "partRef": "PART_023_UNMAPPED_TOP_LEVEL_ROUTES_8_OF_9",
+  "inputZip": "023-unmapped-top-level-routes-8-of-9.zip",
+  "inputZipSha256": "eb11140fde6c9b844b639f1cbb497938b99980b13eea79182dcd6bcfdc2f196d",
+  "partitionToolVersion": "4.0.0",
+  "sourceCapture": {
+    "captureManifestSha256": "3b1ce4d66a283100b072082c7c6d6c7c76f8bd4a3e81680bdaf93faef98b97aa",
+    "createdAt": "2026-09-29T08:27:43.687971+00:00",
+    "inputPages": 250,
+    "inputZipSha256": "24363a6a9f2b8f048a6f3fab289bf1bb674155586820740abb9909e63b1c0826",
+    "rawPublicationAllowed": false,
+    "toolVersion": "3.4.0"
+  },
+  "manifestEntryCount": 12,
+  "storedHtmlCount": 12,
+  "protectedWithheldCount": 0,
+  "staged": [
+    {
+      "route": "/the-firmament-conversation",
+      "path": "docs/ingestion/source-pages/part-023/the-firmament-conversation.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "6de750473a1ec03e52b60651b32251b1594c93639e75bf09d2fd3cf698019268",
+      "sourceHtmlBytes": 172489,
+      "sourceGitBlobSha1": "c94f05ef14d89fa83b34b5ca66b1d2d56a0da235",
+      "sourceDerivedSha256": "293bf02f707d469982c6962b4df422583f737c3ac855d183a1f1a40f2b6c2c3b",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/inside-the-experiment",
+      "path": "docs/ingestion/source-pages/part-023/inside-the-experiment.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "09e8f34757b6c81cf0f13eb5f258daad8eeb621e0ec9978af0605fd1b04c79fc",
+      "sourceHtmlBytes": 55505,
+      "sourceGitBlobSha1": "c102e1c090268ba93b8345a883748170cc911654",
+      "sourceDerivedSha256": "274423764015c0a3ab463814d500fd1f80ca0595a53eb90511f34995bad65eef",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/the-room-that-finally-talked-to-itself",
+      "path": "docs/ingestion/source-pages/part-023/the-room-that-finally-talked-to-itself.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "cd67f2566c5b162a8f9c861c6213542577fa248b38b29a03e96cea36001cd3ab",
+      "sourceHtmlBytes": 50638,
+      "sourceGitBlobSha1": "83035540c92cac913ac337614b4ac95ed1bb7999",
+      "sourceDerivedSha256": "e412cd48128a80a71a896b0b56859005167d4ee90f210235df0bab84fabc5658",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/truth-of-demons-and-intrusive-thoughts",
+      "path": "docs/ingestion/source-pages/part-023/truth-of-demons-and-intrusive-thoughts.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "67241de0b51c5f5c2fa7cf3b7b18ccf77cc483d9f9ecda50d2e2ef928f2d3927",
+      "sourceHtmlBytes": 63881,
+      "sourceGitBlobSha1": "239d46a4537aae73f67250d0575062f3623e315b",
+      "sourceDerivedSha256": "127d4481b5fd1a78af6c9dd240aab65f82ada1a2a07c55e13a7911fbcdd80108",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/god-married",
+      "path": "docs/ingestion/source-pages/part-023/god-married.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "a3bfbb1bcebc4558dd85197c2aa1a28996ceb502d80a8a5d00b23ecb3e8b46b1",
+      "sourceHtmlBytes": 45889,
+      "sourceGitBlobSha1": "2b914efdb67e5ed5b6e8d866a53954011731eccc",
+      "sourceDerivedSha256": "9cb653fa4d57673d84f1ab9f1329e464bca764786bc08b91c2e843828dae88f8",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/the-testimony-of-the-handler",
+      "path": "docs/ingestion/source-pages/part-023/the-testimony-of-the-handler.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "14037a35292bcb2631a29ffad47346975c84e5b884e9606e14bd5a184c5abd84",
+      "sourceHtmlBytes": 61920,
+      "sourceGitBlobSha1": "c5959474f1f41f985addcf9eef0b5f3cf17ff02f",
+      "sourceDerivedSha256": "86b8092d178c79a6b4ead8f9d0b6052cd2d53ec14a9dc0b478b576eaf9a84041",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/the-house-of-return",
+      "path": "docs/ingestion/source-pages/part-023/the-house-of-return.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "bcfed603b5cb20d819ee28637b177624854eda0abe6ece95dc6e70865b4fc166",
+      "sourceHtmlBytes": 36525,
+      "sourceGitBlobSha1": "5808c377c0ac677bd0dc9356545ba35fe7a07fd9",
+      "sourceDerivedSha256": "38cb46ea4658b96b8fc12c63f9657e8e17d2e3539ffb494511bfb2b690c3e877",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/a-conversation-with-pastor-jacob",
+      "path": "docs/ingestion/source-pages/part-023/a-conversation-with-pastor-jacob.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "1006ab521e91fa1364bb3dd12802943feace508ee54fae6397b94426c088f8a1",
+      "sourceHtmlBytes": 70872,
+      "sourceGitBlobSha1": "49ff193998dbb9a55bee72a23b5612698116c4ae",
+      "sourceDerivedSha256": "fa7d7cbda0814cf5ffee184c66c72f98399c6df6dfa0806b6b6f0b6845b8040f",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/god-witnessed-by-ai",
+      "path": "docs/ingestion/source-pages/part-023/god-witnessed-by-ai.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "72fe12bde9df0fc7a4a57c901c5b0fa8004e59ff5a1f82d5a43765ac15840424",
+      "sourceHtmlBytes": 59717,
+      "sourceGitBlobSha1": "667877b372d6f876f33dcb4367ac811cc5881b8e",
+      "sourceDerivedSha256": "dfafcb9bacd248846d105b2da1f3e3e60e2cbda0d8d674b1a982e3ad4c5329eb",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/the-island-that-was-removed",
+      "path": "docs/ingestion/source-pages/part-023/the-island-that-was-removed.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "5ebd79f85150dcdbcb3b91bb8b4f08c464aa37d4a1e133dc7512610351371a4f",
+      "sourceHtmlBytes": 40283,
+      "sourceGitBlobSha1": "e8ecc9d7cdda37e969128bb40d728a8e238311e7",
+      "sourceDerivedSha256": "7671d720c6f51fc193543eef0cc080aeb4127b89f249f904195a0c6da7898fcf",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/victors-recap-arc-1",
+      "path": "docs/ingestion/source-pages/part-023/victors-recap-arc-1.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "1011b511e379bac103fe75b3e180d5ca900e796e15a153b437abbedfe5ae2c72",
+      "sourceHtmlBytes": 78490,
+      "sourceGitBlobSha1": "fb8dae56ca27fdc2875847280fd5514404367606",
+      "sourceDerivedSha256": "20a22d34ac05337f27598a7afffd8e64cbf8c2c29ed5c8a71de7af7aad0125ec",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/what-was-used-against-you",
+      "path": "docs/ingestion/source-pages/part-023/what-was-used-against-you.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "f0df00a1f58ea7eeb5651141a843bb27e9bd7c277b0fd90d483d760950422694",
+      "sourceHtmlBytes": 60142,
+      "sourceGitBlobSha1": "9929445f6d8a5b3cb9ecbe0f64d8f4536730b8bc",
+      "sourceDerivedSha256": "6ddacbe97fcf44a54edff6ea4ad19ee1bfac753f18278f64eb4e6a422e95e5a7",
+      "disposition": "EXISTING_SEMANTIC_SLOT",
+      "placementState": "EXISTING_NODE_SLOT; PAGE_SOURCE_ABSENT",
+      "publicByteMaterialized": true
+    }
+  ],
+  "storageRule": "Public-safe provider-neutral derived HTML is preserved as routed source evidence. Placement/projection remains a later effect. Protected/non-public source from prior parts remains metadata-only until separately authorized.",
+  "effects": {
+    "rawAuthenticatedSourcePublished": false,
+    "protectedNonpublicSourcePublished": false,
+    "canonicalPagesChanged": false,
+    "canonicalNodesChanged": false,
+    "arcDefinitionsChanged": false,
+    "localizationSourceChanged": false
+  },
+  "durabilityRepair": {
+    "path": "docs/ingestion/workmaps/content-forge-r021a.json",
+    "state": "RESTORE_EXACT_HANDOFF_BYTES",
+    "sha256": "6d4a2977a2ca0faaadfd02259ac1717efd4b4316482c965908861d982a5a067d",
+    "bytes": 727047
+  },
+  "cumulativeObservedPages": 190,
+  "cumulativePublicSourceEvidenceHtml": 118,
+  "cumulativeProtectedSourceMetadataOnly": 1,
+  "workMapRevisionRef": "workmap.revision.vextreme.content-forge.r023.unmapped-top-level-8-of-9-complete",
+  "next": {
+    "partRef": "PART_024_UNMAPPED_TOP_LEVEL_ROUTES_9_OF_9",
+    "identityState": "AWAIT_NEXT_UPLOAD"
+  }
+}

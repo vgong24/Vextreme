@@ -57,3 +57,19 @@ one declared structural home. It does not promote context to architecture,
 prove freshness, grant implementation authority, or record human acceptance.
 
 <!-- [VXG RealForever] -->
+
+
+## Mapped ingestion pilot
+
+The current preservation-to-world ingestion rehearsal is deliberately routed as
+an exact proposed-process document rather than broadening any existing
+collection:
+
+- `docs/ingestion/VEX-CONTENT-FORGE-PILOT.md` — Vex Content Forge pilot
+  process for turning a completed VexSite capture into bounded repository
+  intake bundles and staged placement decisions.
+
+Its route is registered in `config/document-routing.json`; this document owns
+that placement until the pilot either graduates into a permanent process layer
+or is retired.
+

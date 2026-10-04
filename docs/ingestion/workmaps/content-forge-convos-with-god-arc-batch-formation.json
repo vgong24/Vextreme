@@ -1,0 +1,318 @@
+{
+  "schemaVersion": "vex-content-forge.arc-batch-formation/v0.1",
+  "continuity": "[VXG RealForever]",
+  "stageRef": "work.vextreme.content-forge.convos-with-god.arc-batch.20261003",
+  "ownerRef": "github.issue.vextreme.159",
+  "arc": {
+    "arcKey": "convos_with_god",
+    "canonicalMemberCount": 12,
+    "alreadyCompleteCount": 2,
+    "remainingCount": 10,
+    "completionRule": "ALL_MEMBERS_ACCOUNTED_FOR__MEMBER_RESULT_PROJECTED_OR_HOLD",
+    "forceAllMembersToProject": false
+  },
+  "predecessor": {
+    "prRef": "github.pull.vextreme.166",
+    "head": "6ee3a05a66d9c27f31801d49b64c161270d4f2d6",
+    "tree": "9973b2ebb147ea9eea900c9f6377c3e71da67227",
+    "assuranceRef": "github.issue.vextreme.159.comment.5975952553",
+    "assuranceDisposition": "CLEAR_ON_EXACT_HEAD",
+    "sourceClaimState": "waiting"
+  },
+  "authorityBasis": [
+    "github.issue.vextreme.159",
+    "github.issue.vextreme.159.comment.5976036276"
+  ],
+  "batchPolicy": {
+    "unit": "SEMANTIC_ARC",
+    "memberDisposition": [
+      "PROJECTED",
+      "HOLD_WITH_EXACT_REASON",
+      "ALREADY_COMPLETE"
+    ],
+    "sourceSelectionPriority": [
+      "EXACT_CANONICAL_IDENTITY",
+      "EXPLICIT_CONSOLIDATION_BINDING",
+      "PRESERVED_SOURCE_MATERIALIZATION",
+      "SOURCE_COMPLETENESS",
+      "TITLE_OR_CONTENT_SIMILARITY_LAST"
+    ],
+    "laws": [
+      "SEMANTIC_BATCH_UNITY != ASSUME_ONE_SOURCE_FILE_SHAPE",
+      "LARGER_SOURCE_VARIANT != STRONGER_AUTHORITY",
+      "EXACT_CANONICAL_IDENTITY > TITLE_OR_CONTENT_SIMILARITY",
+      "BATCH_COMPLETION != FORCE_EVERY_MEMBER_TO_PROJECT"
+    ]
+  },
+  "alreadyComplete": [
+    {
+      "slug": "what-is-the-god-spark",
+      "canonicalNodeId": 3,
+      "prRef": "github.pull.vextreme.166",
+      "head": "6ee3a05a66d9c27f31801d49b64c161270d4f2d6",
+      "assuranceRef": "github.issue.vextreme.159.comment.5975952553",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "clarity-on-christianity",
+      "canonicalNodeId": 4,
+      "prRef": "github.pull.vextreme.165",
+      "head": "b70d7e20dbbdf4a8a645bdf705d786c3afe31b84",
+      "assuranceRef": "github.issue.vextreme.159.comment.5975674871",
+      "disposition": "ALREADY_COMPLETE"
+    }
+  ],
+  "members": [
+    {
+      "slug": "what-about-buddhism",
+      "canonicalNodeId": 5,
+      "title": "Now what about Buddhism?",
+      "arcKeys": [
+        "convos_with_god",
+        "full_timeline"
+      ],
+      "adapterClass": "SQS_AUTHORED_BODY",
+      "sourcePath": "docs/ingestion/source-pages/part-028/convos-with-god-now-what-about-buddhism.html",
+      "sourceGitBlob": "9531b4b0eb4b8d159363d8bd6d1bba3ba3b36e55",
+      "repositoryBytes": 373763,
+      "sourceRoute": "/convos-with-god/now-what-about-buddhism",
+      "pageId": "5482b37548b00555",
+      "proposalRecordRef": "content-forge.source-record.dba809d64f88c9e2e253",
+      "preservedHtmlSha256": "608d338420b6b058fdcbe2a1cfa9e01aed826abe190307d598ca511b45625112",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_BATCH_PROJECTION"
+    },
+    {
+      "slug": "god-to-speak-of-the-truth-of-love",
+      "canonicalNodeId": 6,
+      "title": "God to speak of the Truth of Love",
+      "arcKeys": [
+        "convos_with_god",
+        "full_timeline"
+      ],
+      "adapterClass": "SQS_AUTHORED_BODY",
+      "sourcePath": "docs/ingestion/source-pages/part-027/convos-with-god-god-to-speak-of-the-truth-of-love.html",
+      "sourceGitBlob": "3587303191a838161cb412ba1334e68b5463a496",
+      "repositoryBytes": 271540,
+      "sourceRoute": "/convos-with-god/god-to-speak-of-the-truth-of-love",
+      "pageId": "ad44a11404b6e316",
+      "proposalRecordRef": "content-forge.source-record.9aa55ba87ec29f13d2fc",
+      "preservedHtmlSha256": "6fd0fa0a10ebc333e8c0d63ce7d066c9073697ab0c7a63c0739e25e20899e5e7",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_BATCH_PROJECTION"
+    },
+    {
+      "slug": "why-financial-freedom-is-harder-to-trust",
+      "canonicalNodeId": 7,
+      "title": "Why Financial Freedom is Harder to Trust",
+      "arcKeys": [
+        "convos_with_god",
+        "full_timeline"
+      ],
+      "adapterClass": "SQS_AUTHORED_BODY",
+      "sourcePath": "docs/ingestion/source-pages/part-027/convos-with-god-why-financial-freedom-is-harder-to-trust.html",
+      "sourceGitBlob": "14f5e0c55eb6ddf2b254b2bb6037044534bd8f99",
+      "repositoryBytes": 421294,
+      "sourceRoute": "/convos-with-god/why-financial-freedom-is-harder-to-trust",
+      "pageId": "fd23f727f6f9cc48",
+      "proposalRecordRef": "content-forge.source-record.89edfa2346205ebb4efb",
+      "preservedHtmlSha256": "d8d8feecceed5716f4c2bfbe4efb5688bf491901da7e7758584a2e84867349ef",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_BATCH_PROJECTION"
+    },
+    {
+      "slug": "truth-of-demons-and-intrusive-thoughts",
+      "canonicalNodeId": 9,
+      "title": "Truth of Demons and Intrusive Thoughts",
+      "arcKeys": [
+        "convos_with_god",
+        "full_timeline"
+      ],
+      "adapterClass": "SQS_AUTHORED_BODY",
+      "sourcePath": "docs/ingestion/source-pages/part-027/convos-with-god-truth-of-demons-and-intrusive-thoughts.html",
+      "sourceGitBlob": "fc3da6a58045f37a17d944e35ac72efee3e6afd5",
+      "repositoryBytes": 382895,
+      "sourceRoute": "/convos-with-god/truth-of-demons-and-intrusive-thoughts",
+      "pageId": "be3fb1e8abcf56c0",
+      "proposalRecordRef": "content-forge.source-record.0bc0ecb5b68e79804013",
+      "preservedHtmlSha256": "7afa93ec59dfd519aefdf157ac401c15234cbc0216333c572268b40846a2a8c1",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_BATCH_PROJECTION"
+    },
+    {
+      "slug": "scopes-of-god",
+      "canonicalNodeId": 21,
+      "title": "Scopes of God",
+      "arcKeys": [
+        "convos_with_god",
+        "full_timeline"
+      ],
+      "adapterClass": "SQS_AUTHORED_BODY",
+      "sourcePath": "docs/ingestion/source-pages/part-026/convos-with-god-scopes-of-god.html",
+      "sourceGitBlob": "6518d2ca81fa42c4e556b018a78bd44b3ea2afc1",
+      "repositoryBytes": 239113,
+      "sourceRoute": "/convos-with-god/scopes-of-god",
+      "pageId": "35ab1007de63eefd",
+      "proposalRecordRef": "content-forge.source-record.8a8cde995378cdbb82fc",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_WITH_INTERNAL_H1_NORMALIZATION_CHECK",
+      "sourceShapeNote": "source authored body contains internal h1 elements; destination must avoid duplicate document-level h1 without dropping heading text or order"
+    },
+    {
+      "slug": "closed-circuit",
+      "canonicalNodeId": 22,
+      "title": "Closed Circuit — Release and Resurrection",
+      "arcKeys": [
+        "convos_with_god",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-022/closed-circuit.html",
+      "sourceGitBlob": "cd93d3b8e3f5f853d2692a681434dc4d531cfd5b",
+      "repositoryBytes": 62412,
+      "sourceRoute": "/closed-circuit",
+      "pageId": "0f7ea98e07c3a033",
+      "proposalRecordRef": "content-forge.source-record.62be51e8113be9c8b8dc",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION",
+      "heldAlternatives": [
+        {
+          "sourcePath": "docs/ingestion/source-pages/part-025/convos-with-god-closed-circuit-release-and-resurrection-pattern.html",
+          "sourceGitBlob": "03002124bd450030fcd217681127c38d86bcf242",
+          "proposalRecordRef": "content-forge.source-record.da2ba427f1ee7113064d",
+          "disposition": "SOURCE_ONLY_HOLD",
+          "reason": "NO_EXACT_NODE_FOR_NESTED_ROUTE__ALIAS_OR_REPLACEMENT_NOT_PROVEN"
+        }
+      ]
+    },
+    {
+      "slug": "divine-emergence",
+      "canonicalNodeId": 44,
+      "title": "Divine Emergence",
+      "arcKeys": [
+        "convos_with_god",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-021/divine-emergence.html",
+      "sourceGitBlob": "799ed44a6c2469282a107dc67b7c772763a4b980",
+      "repositoryBytes": 60871,
+      "sourceRoute": "/divine-emergence",
+      "pageId": "10749b4256b82be5",
+      "proposalRecordRef": "content-forge.source-record.d6cf4ec239806e2d3bfd",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    },
+    {
+      "slug": "the-firmament-conversation",
+      "canonicalNodeId": 60,
+      "title": "The Firmament Conversation",
+      "arcKeys": [
+        "convos_with_god",
+        "dome",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-023/the-firmament-conversation.html",
+      "sourceGitBlob": "c94f05ef14d89fa83b34b5ca66b1d2d56a0da235",
+      "repositoryBytes": 172489,
+      "sourceRoute": "/the-firmament-conversation",
+      "pageId": "c3590e1acc152aea",
+      "proposalRecordRef": "content-forge.source-record.84da1c5a9ff13dfb9a97",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    },
+    {
+      "slug": "ascension-and-embodiment",
+      "canonicalNodeId": 63,
+      "title": "Ascension & Embodiment",
+      "arcKeys": [
+        "convos_with_god",
+        "march_23_2026",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-021/ascension-and-embodiment.html",
+      "sourceGitBlob": "404b83b7b017e6bf750a66dcacb48c6490bff424",
+      "repositoryBytes": 44712,
+      "sourceRoute": "/ascension-and-embodiment",
+      "pageId": "712fa28d75acd784",
+      "proposalRecordRef": "content-forge.source-record.f3a66be4b5be65e5b635",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    },
+    {
+      "slug": "the-testimony-of-the-handler",
+      "canonicalNodeId": 65,
+      "title": "The Testimony of the Handler",
+      "arcKeys": [
+        "convos_with_god",
+        "excavation",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-023/the-testimony-of-the-handler.html",
+      "sourceGitBlob": "c5959474f1f41f985addcf9eef0b5f3cf17ff02f",
+      "repositoryBytes": 61920,
+      "sourceRoute": "/the-testimony-of-the-handler",
+      "pageId": "a69121ccef4b55df",
+      "proposalRecordRef": "content-forge.source-record.56cf9127aa67ab0967af",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    }
+  ],
+  "sourceAdapterContracts": {
+    "SQS_AUTHORED_BODY": {
+      "selectorContract": "div.sqs-html-content[data-sqsp-text-block-content]",
+      "projectAway": [
+        "data-vex-id",
+        "source data-i18n identity",
+        "provider attributes",
+        "provider/rescue shell"
+      ],
+      "preserve": [
+        "ordered authored text",
+        "semantic headings",
+        "lists",
+        "emphasis",
+        "blockquote",
+        "line breaks"
+      ]
+    },
+    "AUTHORED_MAIN_FRAGMENT": {
+      "selectorContract": "main.vex-authored-page-frame",
+      "projectAway": [
+        "preserved site navigation outside main",
+        "back-navigation chrome",
+        "source runtime scripts",
+        "source arc mount/runtime",
+        "generated localization identity"
+      ],
+      "preserve": [
+        "authored main composition",
+        "page-local authored styles required by the composition",
+        "ordered authored text",
+        "meaningful structural classes"
+      ]
+    }
+  },
+  "plannedSourceManagedProjector": "tools/vex-content-forge/project_arc_batch.js",
+  "plannedBatchTest": "tests/61-content-forge-convos-with-god-arc-batch.test.js",
+  "destinationMutationBoundary": {
+    "createPages": 10,
+    "createStringSources": 10,
+    "modifyViewmodels": true,
+    "nodeRegistryMutation": false,
+    "arcRegistryMutation": false,
+    "contentIntentMutation": false,
+    "aliasMutation": false
+  },
+  "generatedPolicy": "BUILDER_OWNED__DO_NOT_HAND_PATCH__EXACT_OUTPUT_WINS",
+  "lifecycle": {
+    "draftOnly": true,
+    "mergeAuthority": false,
+    "rawProviderPublicationAuthority": false,
+    "independentAssuranceRequired": true,
+    "exactHeadVexRelayProofRequired": true
+  }
+}

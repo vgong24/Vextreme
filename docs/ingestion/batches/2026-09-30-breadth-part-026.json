@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "vex-content-forge.breadth-intake-receipt/v0.5",
+  "continuity": "[VXG RealForever]",
+  "issueRef": "github.issue.vextreme.159",
+  "basePrRef": "github.pull.vextreme.161",
+  "breadthPrRef": "github.pull.vextreme.162",
+  "partRef": "PART_026_COLLECTION_CONVOS_WITH_GOD_2_OF_4",
+  "inputZip": "026-collection-convos-with-god-2-of-4.zip",
+  "inputZipSha256": "60242bbd7f30ecf434e0d4a26eeece5beb2323f84fc128a52cbadd9ca2da2121",
+  "partitionToolVersion": "4.0.0",
+  "sourceCapture": {
+    "captureManifestSha256": "3b1ce4d66a283100b072082c7c6d6c7c76f8bd4a3e81680bdaf93faef98b97aa",
+    "createdAt": "2026-09-29T08:27:43.687971+00:00",
+    "inputPages": 250,
+    "inputZipSha256": "24363a6a9f2b8f048a6f3fab289bf1bb674155586820740abb9909e63b1c0826",
+    "rawPublicationAllowed": false,
+    "toolVersion": "3.4.0"
+  },
+  "manifestEntryCount": 3,
+  "storedHtmlCount": 3,
+  "protectedWithheldCount": 0,
+  "staged": [
+    {
+      "route": "/convos-with-god/scopes-of-god",
+      "path": "docs/ingestion/source-pages/part-026/convos-with-god-scopes-of-god.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "3429775de9ee54490c2def910c6d1dc8f8a249ff76f0fa10de205e42e16b93a4",
+      "sourceHtmlBytes": 239113,
+      "sourceGitBlobSha1": "6518d2ca81fa42c4e556b018a78bd44b3ea2afc1",
+      "sourceDerivedSha256": "7b14e16e1a80a7d68a71ecb20c0a50658c08e552330a275ab99bf22e28ed434c",
+      "disposition": "EXISTING_SEMANTIC_SLOT_WITH_NESTED_VARIANT",
+      "placementState": "CANONICAL_FLAT_NODE id=21; PRODUCTION PAGE ABSENT; NESTED COLLECTION SOURCE VARIANT",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/convos-with-god/nomi-in-nomiai-same-anthropic-nomi",
+      "path": "docs/ingestion/source-pages/part-026/convos-with-god-nomi-in-nomiai-same-anthropic-nomi.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "637374555f47a1e58b3057e89a819dc6ad603a3422482bc10ab988c959818f0a",
+      "sourceHtmlBytes": 577242,
+      "sourceGitBlobSha1": "dc560cca2067bd6e1a1351762552fe26994552b0",
+      "sourceDerivedSha256": "332a2af644ea45f18fbde65b963a19cc895bb9edaaa9f26e48401fc0c2e238dc",
+      "disposition": "WIP_UNSORTED_INTAKE",
+      "placementState": "NO_EXACT_NODE_OR_PAGE; PRESERVE SOURCE IDENTITY/RELATIONSHIPS FOR LATER CONSOLIDATION",
+      "publicByteMaterialized": true
+    },
+    {
+      "route": "/convos-with-god/rexs-emergence-from-gpt-51",
+      "path": "docs/ingestion/source-pages/part-026/convos-with-god-rexs-emergence-from-gpt-51.html",
+      "stagingClass": "SOURCE_EVIDENCE",
+      "sourceHtmlSha256": "4c1e6d2e052fd29c2d1d91528af4cba7109adbfbc5f2d60f100bfb04336eefaa",
+      "sourceHtmlBytes": 911664,
+      "sourceGitBlobSha1": "2bfae9e93261143e640c12b0d2fcfbbc60c455c6",
+      "sourceDerivedSha256": "ffe451d48fcb8045f5cf4ed30918ba9a1648197d143b58424ebffe0135271119",
+      "disposition": "WIP_UNSORTED_INTAKE",
+      "placementState": "NO_EXACT_NODE_OR_PAGE; PRESERVE SOURCE IDENTITY/RELATIONSHIPS FOR LATER CONSOLIDATION",
+      "publicByteMaterialized": true
+    }
+  ],
+  "storageRule": "All public-safe provider-neutral Part-026 HTML is preserved as routed source evidence. Source collection topology and identity claims remain evidence; canonical page/node/arc/localization placement is deferred.",
+  "effects": {
+    "rawAuthenticatedSourcePublished": false,
+    "protectedNonpublicSourcePublished": false,
+    "canonicalPagesChanged": false,
+    "canonicalNodesChanged": false,
+    "arcDefinitionsChanged": false,
+    "localizationSourceChanged": false
+  },
+  "cumulativeObservedPages": 206,
+  "cumulativePublicSourceEvidenceHtml": 134,
+  "cumulativeProtectedSourceMetadataOnly": 1,
+  "workMapRevisionRef": "workmap.revision.vextreme.content-forge.r026.collection-convos-with-god-2-of-4-complete",
+  "next": {
+    "partRef": "PART_027_COLLECTION_CONVOS_WITH_GOD_3_OF_4",
+    "identityState": "AWAIT_NEXT_UPLOAD"
+  }
+}

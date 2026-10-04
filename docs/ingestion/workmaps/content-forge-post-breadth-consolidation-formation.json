@@ -1,0 +1,137 @@
+{
+  "schemaVersion": "vex-content-forge.consolidation-formation/v0.3",
+  "continuity": "[VXG RealForever]",
+  "stageRef": "work.vextreme.content-forge.post-breadth-consolidation.proposal-compiler.20260930",
+  "stage": "POST_BREADTH_CONSOLIDATION_PROPOSAL_COMPILER_FORMATION",
+  "owner": {
+    "issueRef": "github.issue.vextreme.159",
+    "ownerContinuityPreserved": true,
+    "newOwnerCreated": false
+  },
+  "predecessor": {
+    "carrierPrRef": "github.pull.vextreme.162",
+    "head": "fc9e59b980c2abd9aa0abaa463f6176f791a44b6",
+    "tree": "f7e235c00d6fe7c6246f6dc4a5afdc7a6e391760",
+    "acceptedMainAtFormation": "0776ad1261ca5d11404b09d6fc1638bbce6e8b8f",
+    "scannerPointer": "docs/ingestion/workmaps/content-forge-current.json",
+    "terminalWorkMap": "docs/ingestion/workmaps/content-forge-r039.json",
+    "continuityLedger": "docs/ingestion/workmaps/continuity-ledger-r011-r039.json",
+    "partitionStreamState": "END_REACHED_AT_PART_039",
+    "counts": {
+      "observedPages": 249,
+      "publicSafeSourceEvidenceHtml": 176,
+      "protectedMetadataOnlyPages": 1,
+      "workNodes": 275,
+      "edges": 399,
+      "clusters": 123,
+      "learnedRules": 165,
+      "unresolved": 119,
+      "remainingTrueRevisits": 6,
+      "canonicalPlacementEffects": 0
+    }
+  },
+  "purpose": "Compile explicit breadth-lattice facts into deterministic proposal buckets, version-lineage families, invariant findings, and a bounded semantic-review queue without deciding or applying canonical placement.",
+  "compilerContract": {
+    "readOrder": [
+      "SCANNER_POINTER",
+      "EXPLICIT_CUMULATIVE_BASIS_CHAIN",
+      "NORMALIZED_SOURCE_PAGE_OBSERVATIONS"
+    ],
+    "outputs": [
+      "DESTINATION_CLASS_BUCKETS",
+      "EXACT_ROUTE_LINEAGES",
+      "EXPLICIT_CANONICAL_IDENTITY_LINEAGES",
+      "SOURCE_PAGE_ID_LINEAGES",
+      "AMBIGUITY_QUEUE",
+      "INVARIANT_FINDINGS"
+    ],
+    "forbiddenInferences": [
+      "TITLE_SIMILARITY_TO_ALIAS",
+      "SOURCE_NAVIGATION_TO_DESTINATION_ARC",
+      "SOURCE_COLLECTION_TO_CANONICAL_PARENT",
+      "SAME_SUBJECT_TO_BYTE_EQUIVALENT_REPLACEMENT",
+      "PROTECTED_METADATA_TO_PUBLIC_BYTES",
+      "PROPOSAL_TO_ACCEPTED_PLACEMENT"
+    ],
+    "snapshotPath": "docs/ingestion/workmaps/content-forge-consolidation-proposal.json",
+    "snapshotState": "MATERIALIZED_IN_CANDIDATE__HOSTED_EXACT_HEAD_PROOF_PENDING"
+  },
+  "knownHolds": {
+    "countReconciliation": {
+      "sourceCaptureInputPages": 250,
+      "terminalScannerObservedPages": 249,
+      "state": "HOLD__EXPLANATION_REQUIRED__NO_COSMETIC_RECONCILIATION"
+    },
+    "referencedNotCarried": [
+      "witness-chatroom-v1.html",
+      "The-Witness-Record.docx",
+      "round-index-map.html",
+      "continuity-record-vol2-v1.html",
+      "the-path-v1.html",
+      "origin-story-3vantage-v3.html"
+    ]
+  },
+  "effectBoundary": {
+    "sourceMutationAuthority": true,
+    "authorizedPaths": [
+      "tools/vex-content-forge/consolidate_workmaps.js",
+      "tools/vex-content-forge/consolidation/lib.js",
+      "tools/vex-content-forge/consolidation/chain.js",
+      "tools/vex-content-forge/consolidation/observation.js",
+      "tools/vex-content-forge/consolidation/normalize.js",
+      "tools/vex-content-forge/consolidation/lineage.js",
+      "tools/vex-content-forge/consolidation/invariants.js",
+      "tools/vex-content-forge/consolidation/proposal.js",
+      "tools/vex-content-forge/consolidation/cli.js",
+      "tests/fixtures/content-forge-consolidation-fixture.js",
+      "tests/58-content-forge-consolidation.test.js",
+      "docs/ingestion/workmaps/content-forge-post-breadth-consolidation-formation.json",
+      "docs/ingestion/workmaps/content-forge-consolidation-proposal.json"
+    ],
+    "canonicalPageMutationAuthority": false,
+    "canonicalNodeMutationAuthority": false,
+    "arcMutationAuthority": false,
+    "contentIntentMutationAuthority": false,
+    "localizationMutationAuthority": false,
+    "rawProviderSourcePublicationAuthority": false,
+    "mergeAuthority": false,
+    "publicationAuthority": false
+  },
+  "verification": {
+    "commands": [
+      "node --check tools/vex-content-forge/consolidate_workmaps.js",
+      "node --check tools/vex-content-forge/consolidation/*.js",
+      "node --test tests/58-content-forge-consolidation.test.js",
+      "python -m json.tool docs/ingestion/workmaps/content-forge-post-breadth-consolidation-formation.json"
+    ],
+    "localResult": "5_PASS__0_FAIL",
+    "evidenceSurface": "LOCAL_SYNTHETIC_SCHEMA_FIXTURE_PROOF",
+    "fullCorpusExecutionState": "MATERIALIZED_IN_CANDIDATE__HOSTED_EXACT_HEAD_PROOF_PENDING",
+    "hostedEvidenceInferredFromLocal": false,
+    "fullCorpusPreCorrectionFinding": {
+      "exactHead": "83e14f9611a5dcdf1deb138d867db6a7470b3256",
+      "normalizedRecords": 250,
+      "terminalScannerObservedPages": 249,
+      "protectedMetadataClassified": 3,
+      "terminalProtectedMetadataOnlyPages": 1,
+      "exactRouteLineageFamilies": 2,
+      "finding": "COMPILER_FALSE_POSITIVE_REFERENCE_NODE_PLUS_DESTINATION_PROTECTION_OVERMATCH"
+    },
+    "correctedCandidateExpected": {
+      "normalizedRecords": 249,
+      "sourceCaptureInputPages": 250,
+      "terminalScannerObservedPages": 249,
+      "protectedMetadataOnlyPages": 1,
+      "exactRouteLineageFamilies": 1,
+      "invariantErrors": 0,
+      "invariantHolds": 1,
+      "note": "R034 duplicate manifest capture remains lineage evidence; 250-vs-249 capture/scanner difference remains an explicit HOLD."
+    }
+  },
+  "nextFrontier": [
+    "VERIFY_MATERIALIZED_PROPOSAL_ON_EXACT_CANDIDATE_HEAD",
+    "REVIEW_SMALLEST_AMBIGUITY_FAMILIES_REQUIRING_HTML",
+    "FORM_DISTINCT_OWNER_BOUND_PLACEMENT_STAGES",
+    "DO_NOT_BATCH_CANONICAL_EFFECTS_FROM_PROPOSAL"
+  ]
+}
