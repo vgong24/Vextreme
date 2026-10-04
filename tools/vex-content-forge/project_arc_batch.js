@@ -152,6 +152,7 @@ function localize(root, scope) {
         replace(parent, child, span);
         strings[key] = value;
       } else if (child.tagName) {
+        if (child.tagName === 'style') continue;
         const tag = child.tagName.toLowerCase().replace(/[^a-z0-9-]/g, '') || 'node';
         const count = (counts.get(tag) || 0) + 1;
         counts.set(tag, count);

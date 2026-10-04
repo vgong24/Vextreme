@@ -211,6 +211,9 @@ test('Content Forge convos_with_god arc batch is exact, deterministic, and fully
     const actual = textLeaves(actualBody);
     assert.deepEqual(actual, expected, `${member.slug}: authored text order`);
     assert.deepEqual(semanticShape(actualBody), semanticShape(expectedBody), `${member.slug}: authored semantic structure`);
+    for (const style of findAll(actualBody, current => current.tagName === 'style')) {
+      assert.equal(textLeaves(style).join(' ').includes('data-i18n='), false, `${member.slug}: authored style raw text must not be localized`);
+    }
     assert.equal(strings._meta.projectionStats.authoredTextLeafCount, expected.length);
   }
 
