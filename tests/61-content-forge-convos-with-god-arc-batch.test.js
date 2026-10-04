@@ -42,6 +42,11 @@ function textLeaves(node) {
     .filter(Boolean);
 }
 
+function semanticShape(node) {
+  const tags = ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'li', 'strong', 'em', 'blockquote', 'a', 'img', 'figure', 'figcaption', 'pre', 'code', 'hr', 'br'];
+  return Object.fromEntries(tags.map(tag => [tag, findAll(node, current => current.tagName === tag).length]));
+}
+
 function remove(node) {
   const parent = node.parentNode;
   if (!parent?.childNodes) return;
@@ -61,6 +66,7 @@ function sourceBody(document, member) {
     body = candidates[0];
   }
   assert.ok(body, `${member.slug}: source body`);
+  let h1Seen = false;
   for (const node of [...findAll(body, current => Boolean(current.tagName))]) {
     const a = attributes(node);
     const tokens = classes(node);
@@ -73,7 +79,14 @@ function sourceBody(document, member) {
       || tokens.some(token => /^(?:arc-wrap|arc-nav|entry-nav|back-nav|page-back|vex-back|f-back)/.test(token))
       || archiveBackLink
       || (member.adapterClass === 'AUTHORED_MAIN_FRAGMENT' && node.tagName === 'nav');
-    if (chrome) remove(node);
+    if (chrome) {
+      remove(node);
+      continue;
+    }
+    if (node.tagName === 'h1') {
+      if (member.adapterClass === 'SQS_AUTHORED_BODY' || h1Seen) node.nodeName = node.tagName = 'h2';
+      else h1Seen = true;
+    }
   }
   return body;
 }
@@ -192,9 +205,12 @@ test('Content Forge convos_with_god arc batch is exact, deterministic, and fully
 
     const sourceDocument = parse5.parse(source.toString('utf8'));
     const outputDocument = parse5.parse(page);
-    const expected = textLeaves(sourceBody(sourceDocument, member));
-    const actual = textLeaves(outputBody(outputDocument, member.slug));
+    const expectedBody = sourceBody(sourceDocument, member);
+    const actualBody = outputBody(outputDocument, member.slug);
+    const expected = textLeaves(expectedBody);
+    const actual = textLeaves(actualBody);
     assert.deepEqual(actual, expected, `${member.slug}: authored text order`);
+    assert.deepEqual(semanticShape(actualBody), semanticShape(expectedBody), `${member.slug}: authored semantic structure`);
     assert.equal(strings._meta.projectionStats.authoredTextLeafCount, expected.length);
   }
 
