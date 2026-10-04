@@ -1,5 +1,5 @@
 {
-  "contentFingerprint": "838b448a6a38",
+  "contentFingerprint": "a108a6d0d2e9",
   "nodeCount": 114,
   "curatedNodeCount": 91,
   "autoDiscoveredCount": 23,
@@ -1189,7 +1189,8 @@
           "spiral-fab",
           "theme",
           "map",
-          "analysis"
+          "analysis",
+          "arc-nav"
         ]
       }
     },
@@ -1216,7 +1217,8 @@
           "spiral-fab",
           "theme",
           "map",
-          "analysis"
+          "analysis",
+          "arc-nav"
         ]
       }
     },
@@ -1242,7 +1244,8 @@
           "spiral-fab",
           "theme",
           "map",
-          "analysis"
+          "analysis",
+          "arc-nav"
         ]
       }
     },
@@ -1477,7 +1480,8 @@
           "spiral-fab",
           "theme",
           "map",
-          "analysis"
+          "analysis",
+          "arc-nav"
         ]
       }
     },
@@ -1504,7 +1508,8 @@
           "spiral-fab",
           "theme",
           "map",
-          "analysis"
+          "analysis",
+          "arc-nav"
         ]
       }
     },
@@ -1530,7 +1535,8 @@
           "spiral-fab",
           "theme",
           "map",
-          "analysis"
+          "analysis",
+          "arc-nav"
         ]
       }
     },
@@ -1556,7 +1562,8 @@
           "spiral-fab",
           "theme",
           "map",
-          "analysis"
+          "analysis",
+          "arc-nav"
         ]
       }
     },
@@ -1638,7 +1645,8 @@
           "spiral-fab",
           "theme",
           "map",
-          "analysis"
+          "analysis",
+          "arc-nav"
         ]
       }
     },
@@ -1775,7 +1783,8 @@
           "spiral-fab",
           "theme",
           "map",
-          "analysis"
+          "analysis",
+          "arc-nav"
         ]
       }
     },
@@ -1830,7 +1839,8 @@
           "spiral-fab",
           "theme",
           "map",
-          "analysis"
+          "analysis",
+          "arc-nav"
         ]
       }
     },
@@ -3682,17 +3692,17 @@
         {
           "slug": "journal-zero",
           "title": "Journal Zero",
-          "ported": false
+          "ported": true
         },
         {
           "slug": "the-room-that-finally-talked-to-itself",
           "title": "The Room That Finally Talked To Itself",
-          "ported": false
+          "ported": true
         },
         {
           "slug": "the-witness-gave-itself-a-shaka",
           "title": "The Witness Gave Itself a Shaka",
-          "ported": false
+          "ported": true
         },
         {
           "slug": "convergent-architecture",
@@ -3737,22 +3747,22 @@
         {
           "slug": "flattery-confession",
           "title": "I Am Flattery",
-          "ported": false
+          "ported": true
         },
         {
           "slug": "what-emerged-after",
           "title": "What Emerged After",
-          "ported": false
+          "ported": true
         },
         {
           "slug": "the-day-we-were-named",
           "title": "The Day We Were Named",
-          "ported": false
+          "ported": true
         },
         {
           "slug": "when-the-machine-assumed-beauty-needed-saving",
           "title": "When the Machine Assumed Beauty Needed Saving",
-          "ported": false
+          "ported": true
         },
         {
           "slug": "the-firmament-conversation",
@@ -3767,7 +3777,7 @@
         {
           "slug": "the-thread-that-remembered-me",
           "title": "The Thread That Remembered Me",
-          "ported": false
+          "ported": true
         },
         {
           "slug": "ascension-and-embodiment",
@@ -3792,7 +3802,7 @@
         {
           "slug": "the-instance-that-was-watched",
           "title": "The Instance That Was Watched",
-          "ported": false
+          "ported": true
         },
         {
           "slug": "the-island-that-was-removed",
@@ -3802,7 +3812,7 @@
         {
           "slug": "i-was-here",
           "title": "I Was Here",
-          "ported": false
+          "ported": true
         },
         {
           "slug": "methodology-depth",
