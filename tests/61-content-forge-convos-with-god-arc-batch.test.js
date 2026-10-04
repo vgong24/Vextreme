@@ -64,9 +64,14 @@ function sourceBody(document, member) {
   for (const node of [...findAll(body, current => Boolean(current.tagName))]) {
     const a = attributes(node);
     const tokens = classes(node);
+    const archiveBackLink = member.adapterClass === 'AUTHORED_MAIN_FRAGMENT'
+      && node.tagName === 'a'
+      && a.href === '/archives'
+      && /^←?\s*Archives$/i.test(textLeaves(node).join(' ').trim());
     const chrome = ['script', 'noscript', 'template'].includes(node.tagName)
       || a.id === 'arcNavMount'
-      || tokens.some(token => /^(?:arc-wrap|arc-nav|entry-nav|back-nav|page-back|vex-back)/.test(token))
+      || tokens.some(token => /^(?:arc-wrap|arc-nav|entry-nav|back-nav|page-back|vex-back|f-back)/.test(token))
+      || archiveBackLink
       || (member.adapterClass === 'AUTHORED_MAIN_FRAGMENT' && node.tagName === 'nav');
     if (chrome) remove(node);
   }
@@ -82,6 +87,7 @@ test('Content Forge convos_with_god arc batch is exact, deterministic, and fully
   const formation = json(FORMATION);
   const nodes = json(NODES);
   const nodesBySlug = new Map(nodes.map(node => [node.slug, node]));
+  const arcs = json(ARCS);
   const heldBefore = { nodes: hash(NODES), arcs: hash(ARCS), intents: hash(INTENTS) };
 
   assert.equal(formation.ownerRef, 'github.issue.vextreme.159');
@@ -99,6 +105,12 @@ test('Content Forge convos_with_god arc batch is exact, deterministic, and fully
   assert.equal(formation.lifecycle.draftOnly, true);
   assert.equal(formation.lifecycle.mergeAuthority, false);
   assert.equal(formation.lifecycle.rawProviderPublicationAuthority, false);
+  const expectedArcSlugs = [...formation.alreadyComplete, ...formation.members].map(item => item.slug);
+  assert.deepEqual(
+    arcs[formation.arc.arcKey].sections.flatMap(section => section.slugs || []),
+    expectedArcSlugs,
+    'canonical arc registry membership/order',
+  );
 
   const first = projector.main({ root: ROOT, silent: true });
   assert.deepEqual(first.accounting, {
@@ -146,6 +158,7 @@ test('Content Forge convos_with_god arc batch is exact, deterministic, and fully
     assert.ok(page.includes(`data-content-forge-body="${member.slug}"`));
     assert.ok(page.includes('id="arcNavMount"'));
     assert.ok(page.includes(`../dist/vextreme-${member.slug}.js`));
+    assert.equal(page.includes('href="/archives"'), false, `${member.slug}: source back-navigation removed`);
     assert.equal((page.match(/<h1(?:\s|>)/g) || []).length, 1);
     for (const marker of ['window.__RESCUE_SOURCE', '/__rescue/', 'data-sqsp-', 'data-vex-id=', 'vex-generated:', 'vexsite-provider-shell', 'common.nav.']) {
       assert.equal(page.includes(marker), false, `${member.slug}: forbidden ${marker}`);
