@@ -1,0 +1,111 @@
+{
+  "schemaVersion": "vex-content-forge.buddhism-projection-formation/v0.1",
+  "continuity": "[VXG RealForever]",
+  "stageRef": "work.vextreme.content-forge.buddhism.repository-native-projection.20261003",
+  "ownerRef": "github.issue.vextreme.159",
+  "predecessor": {
+    "prRef": "github.pull.vextreme.166",
+    "head": "6ee3a05a66d9c27f31801d49b64c161270d4f2d6",
+    "tree": "9973b2ebb147ea9eea900c9f6377c3e71da67227",
+    "assuranceRef": "github.issue.vextreme.159.comment.5975952553",
+    "assuranceDisposition": "CLEAR_ON_EXACT_HEAD",
+    "sourceClaimState": "waiting",
+    "lifecycleEffectsHeld": [
+      "MARK_READY",
+      "ORDINARY_MERGE"
+    ]
+  },
+  "authorityBasis": [
+    "github.issue.vextreme.159",
+    "github.issue.vextreme.159.comment.5975957532"
+  ],
+  "stageDisposition": "FORM_WHAT_ABOUT_BUDDHISM_REPOSITORY_NATIVE_PROJECTION_AS_SEPARATE_STACKED_DRAFT",
+  "sourceSelection": {
+    "disposition": "PART_028_NESTED_SOURCE_VARIANT__EXACT_CANONICAL_SLOT_PAGE_ABSENT",
+    "path": "docs/ingestion/source-pages/part-028/convos-with-god-now-what-about-buddhism.html",
+    "gitBlob": "9531b4b0eb4b8d159363d8bd6d1bba3ba3b36e55",
+    "repositoryBytes": 373763,
+    "sourceRoute": "/convos-with-god/now-what-about-buddhism",
+    "preservedHtmlSha256": "608d338420b6b058fdcbe2a1cfa9e01aed826abe190307d598ca511b45625112",
+    "preservedHtmlSha256Basis": "content-forge-consolidation-proposal record; not independently recomputed during successor formation",
+    "sourceOracle": {
+      "proposalPath": "docs/ingestion/workmaps/content-forge-consolidation-proposal.json",
+      "proposalRecordRef": "content-forge.source-record.dba809d64f88c9e2e253",
+      "workMap": "docs/ingestion/workmaps/content-forge-r028.json",
+      "revisionRef": "workmap.revision.vextreme.content-forge.r028.collection-convos-with-god-4-of-4-complete",
+      "pageId": "5482b37548b00555",
+      "publicMaterializationState": "PUBLIC_SAFE_SOURCE_EVIDENCE_MATERIALIZED",
+      "sourceGroup": "SOURCE_GROUP_OBSERVED_COMPLETE_4_OF_4",
+      "repositoryFilePresenceAtPredecessorHead": "VERIFIED",
+      "status": "BOUND"
+    },
+    "rule": "SOURCE_LINEAGES_PRESERVED__DIRECT_COPY_FORBIDDEN"
+  },
+  "destination": {
+    "slug": "what-about-buddhism",
+    "canonicalNode": {
+      "id": 5,
+      "title": "Now what about Buddhism?",
+      "date": "October 8, 2025",
+      "arcKeys": [
+        "convos_with_god",
+        "full_timeline"
+      ]
+    },
+    "destinationClass": "EXISTING_CANONICAL_SLOT_PAGE_ABSENT",
+    "requiresJudgment": false,
+    "nodeRegistryMutationExpected": false,
+    "arcRegistryMutationExpected": false,
+    "contentIntentMutationExpected": false,
+    "predecessorWipIntentObserved": false,
+    "authoredPaths": {
+      "create": [
+        "pages/what-about-buddhism.html",
+        "data/strings/source/pages/what-about-buddhism.json",
+        "tests/61-content-forge-buddhism-projection.test.js"
+      ],
+      "modify": [
+        "data/viewmodels.json"
+      ],
+      "formation": [
+        "docs/ingestion/workmaps/content-forge-buddhism-projection-formation.json"
+      ]
+    },
+    "preimages": {
+      "pages/what-about-buddhism.html": "ABSENT",
+      "data/strings/source/pages/what-about-buddhism.json": "ABSENT",
+      "tests/61-content-forge-buddhism-projection.test.js": "ABSENT",
+      "data/viewmodels.json": "gitblob:686c9c51cc7b3ac3efadf20f155029afa2473aa2"
+    }
+  },
+  "projectionRules": [
+    "PRESERVE_AUTHORED_ARTICLE_CONTENT_AND_ORDER",
+    "PRESERVE_HEADING_LIST_EMPHASIS_STRUCTURE_AND_COMPATIBLE_SEMANTIC_HOOKS",
+    "PROJECT_AWAY_SQUARESPACE_CHROME_PROVIDER_ASSETS_RESCUE_RUNTIME_AND_RELATED_COLLECTION_SHELL",
+    "SOURCE_GENERATED_LOCALIZATION_IDS_ARE_PROVENANCE_NOT_DESTINATION_KEYS",
+    "ENABLE_EXISTING_V2_ARC_NAV_THROUGH_VIEWMODEL",
+    "USE_STRING_SOURCE_AND_BUILDERS_FOR_LOCALIZATION_AND_GENERATED_OUTPUTS",
+    "DO_NOT_REWRITE_EXISTING_NODE_OR_ARC_PLACEMENT"
+  ],
+  "generatedConsequences": [
+    "data/strings/compiled/**",
+    "data/index.json",
+    "data/analysis-index.json",
+    "data/page-health.json",
+    "data/status.json",
+    "data/terrain-map.json",
+    "dist/*.js",
+    "widgets/fab-lang.js",
+    "pages/archives.html",
+    "sitemap.xml",
+    "index.html",
+    "sw.js"
+  ],
+  "generatedPolicy": "BUILDER_OWNED__DO_NOT_HAND_PATCH__EXACT_OUTPUT_WINS",
+  "lifecycle": {
+    "draftOnly": true,
+    "mergeAuthority": false,
+    "rawProviderPublicationAuthority": false,
+    "independentAssuranceRequired": true
+  }
+}
