@@ -1,0 +1,288 @@
+name: Form PR171 VexRelay Exact Head Proof
+
+on:
+  push:
+    branches: [VXG-100426-vexrelay-pr171-proof-formation]
+    paths:
+      - '.github/workflows/form-pr171-vexrelay-proof.yml'
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  form:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PR_NUMBER: '171'
+      BASE_SHA: 'c1d1ed3bde90ae7d145ec50429be3e7775c6d262'
+      HEAD_SHA: '58c268ae98b5eda6032b0eef37cec2f20624a1bb'
+      TREE_SHA: 'e2e6cd4349f60bcdf07dec7c62b50eaa2c9c9a9c'
+      CANDIDATE_BRANCH: 'VXG-100426-vex-content-forge-claude-journals-arc-batch'
+      SDK_HEAD: 'd4be291b5fb583483ea52c62f3e6ad9a364944cf'
+      SDK_TREE: '5e21e6d6d3cba7e0bb9a72f9a348a218989d2f8d'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Acquire exact current SDK source
+        shell: bash
+        run: |
+          git clone --no-checkout https://github.com/vgong24/Vextreme-SDK.git Vextreme-SDK
+          git -C Vextreme-SDK checkout --detach "$SDK_HEAD"
+          test "$(git -C Vextreme-SDK rev-parse HEAD)" = "$SDK_HEAD"
+          test "$(git -C Vextreme-SDK rev-parse 'HEAD^{tree}')" = "$SDK_TREE"
+          test -z "$(git -C Vextreme-SDK status --porcelain=v1 -uall)"
+          node -e "const fs=require('fs');const x=JSON.parse(fs.readFileSync('Vextreme-SDK/docs/private-continuity/vexrelay/current-contract.json','utf8'));if(x.contractRef!=='source.vexrelay.current-contract/v1')process.exit(2)"
+      - name: Form current named-gate package
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs=require('node:fs');
+          const path=require('node:path');
+          const crypto=require('node:crypto');
+          const cp=require('node:child_process');
+          const {pathToFileURL}=require('node:url');
+          const sdk=path.resolve('Vextreme-SDK');
+          const out=path.resolve('formed');
+          const innerRoot=path.join(out,'inner');
+          const outerContent=path.join(out,'outer-content');
+          fs.mkdirSync(innerRoot,{recursive:true});
+          fs.mkdirSync(outerContent,{recursive:true});
+          const sha256=(b)=>crypto.createHash('sha256').update(b).digest('hex');
+          const now=new Date();
+          const expiry=new Date(now.getTime()+23*60*60*1000);
+          const api=cp.spawnSync('gh',['api',`repos/vgong24/Vextreme/pulls/${process.env.PR_NUMBER}/files?per_page=100`],{encoding:'utf8',env:process.env});
+          if(api.status!==0)throw new Error('PR_FILES_QUERY_FAILED:'+api.stderr);
+          const changed=JSON.parse(api.stdout).map(x=>x.filename).sort();
+          if(changed.length!==77)throw new Error('PR_CHANGED_PATH_COUNT:'+changed.length);
+
+          (async()=>{
+            const {compileRelayRecipe}=await import(pathToFileURL(path.join(sdk,'lib/vexrelay/recipe-compiler.mjs')).href);
+            const {buildTaskPackage}=await import(pathToFileURL(path.join(sdk,'lib/vexrelay/package.mjs')).href);
+            const {createCanonicalTaskZip}=require(path.join(sdk,'lib/vexlocalbridge/package-builder.js'));
+            const {renderMacSourceBootstrapCommand}=require(path.join(sdk,'lib/vexlocalbridge/mac-source-bootstrap-command.js'));
+
+            const taskRef='task.vextreme.content-forge.claude-journals.pr171.exact-head-source-owner-proof';
+            const attemptRef='attempt.vextreme.content-forge.claude-journals.pr171.58c268ae.20261004A';
+            const packageRef='package.vextreme.content-forge.claude-journals.pr171.58c268ae.20261004A';
+            const requestRef='request.vextreme.content-forge.claude-journals.pr171.58c268ae.20261004A';
+            const correlationRef='correlation.vextreme.content-forge.claude-journals.pr171.58c268ae.20261004A';
+
+            const effects=['CHECK_AUTH','READ_REPOSITORY','CHECK_STATE','QUERY_PROVIDER','RUN_LOCAL_COMMAND','FORM_RESULT'];
+            const seed={
+              schemaVersion:'vex.relay.task/v2',
+              continuity:'[VXG RealForever]',
+              taskRef,attemptRef,requestRef,correlationRef,packageRef,
+              original:{
+                originalIntent:'Prove the exact PR171 Claude Journals Content Forge source-owner candidate without importing Assurance or lifecycle predicates.',
+                originalGoal:'Execute exact focused/full repository proof and form one canonical ExactHeadSourceOwnerProof RETURN.',
+                userProtectedIntent:'Preserve source bytes, exact candidate identity, role separation, and lifecycle isolation.',
+                sourceRefs:['github.issue.vextreme.159','github.pull.vextreme.171','github.issue.vextreme.159.comment.5985209827']
+              },
+              lane:{
+                entryClass:'SAME_LANE_ROLE_TRANSITION',scopeMode:'STAGE_BOUNDED',
+                laneRef:'lane.vextreme.content-forge.claude-journals.20261004',
+                parentRootRef:'github.issue.vextreme.159',
+                workRef:'work.vextreme.content-forge.claude-journals.arc-batch.20261004',
+                claimRef:'claim.vextreme.content-forge.claude-journals.pr171',
+                returnRouteRef:'github.issue.vextreme.159',
+                ownerRef:'github.issue.vextreme.159',
+                rootHubRef:'github.issue.vextreme.159'
+              },
+              role:{
+                activeRole:'CODER',
+                roleRef:'role.coder.vextreme.content-forge.claude-journals.pr171.20261004A',
+                instanceRef:'instance.coder.vextreme.content-forge.claude-journals.pr171.20261004A',
+                occupancyRef:'occupancy.coder.vextreme.content-forge.claude-journals.pr171.58c268ae.20261004A',
+                providerBindingRef:'provider.macos-victor.vexrelay.pr171.20261004A',
+                threadRef:'thread.vextreme.content-forge.convergence.20261004',
+                authorityEnvelopeRef:'authority-envelope.vextreme.content-forge.pr171.source-proof.20261004A'
+              },
+              capabilities:{platformGitHubRead:'AVAILABLE',platformGitHubWrite:'UNAVAILABLE'},
+              execution:{
+                hostProfile:'macos-victor',executionSurface:'MAC_ZIP_RUN_COMMAND',
+                singleUseNonce:'nonce-'+crypto.randomUUID().replaceAll('-',''),
+                duplicateAttemptMarker:'marker.vextreme.content-forge.pr171.58c268ae.20261004A',
+                duplicateProtectionMode:'OUTER_RELAY_BOUND',
+                formedAt:now.toISOString(),expiresAtOrNull:expiry.toISOString()
+              },
+              workspace:{
+                mode:'RUN_ROOT',
+                projectRef:'project.vextreme.content-forge.pr171.source-proof',
+                projectPath:'workspace',createRoot:false,createProjectPath:false
+              },
+              repositories:[{
+                repositoryRef:'primary',mode:'CLONE_IN_WORKSPACE',nameWithOwner:'vgong24/Vextreme',
+                localPath:'repo',remote:'origin',baseBranch:'main',
+                acceptedBase:process.env.BASE_SHA,expectedHead:process.env.HEAD_SHA,
+                branch:process.env.CANDIDATE_BRANCH,expectedRemoteUrl:null,
+                cloneTransport:'GITHUB_GH',githubHostname:'github.com'
+              }],
+              authority:{
+                authorityRef:'authority.vextreme.content-forge.pr171.source-proof.20261004A',
+                authorityMode:'EXACT_STAGE_EFFECTS',
+                grantedEffects:[...effects],conditionalEffects:[],consumedEffects:[],remainingEffects:[...effects],
+                heldEffects:['WRITE_SOURCE','CREATE_BRANCH','CREATE_COMMIT','PUSH_BRANCH','CREATE_PULL_REQUEST','UPDATE_COORDINATION_METADATA','APPROVE_EXACT_HEAD','MARK_READY','ORDINARY_MERGE'],
+                repositoryMembranes:[{repositoryRef:'primary',allowedPaths:changed}],
+                allowedExecutables:['node','npm','git','gh'],
+                allowedEnvironment:[],remoteObservationOwner:'LocalRelay',allowMutationLoop:false,
+                stopConditions:['STOP_ON_UNKNOWN','STOP_ON_PATH_ESCAPE','STOP_ON_AUTH_BLOCK','STOP_ON_TEST_FAILURE']
+              },
+              source:{
+                sourceSetRef:'source-set.vextreme.content-forge.claude-journals.pr171',
+                sourceVersionRef:'source-version.vextreme.content-forge.claude-journals.58c268ae',
+                overlapEvidenceRef:'overlap.vextreme.content-forge.claude-journals.pr171.none',
+                activeConflictState:'NONE',candidateState:'EXACT',
+                candidateHead:process.env.HEAD_SHA,candidateTree:process.env.TREE_SHA,
+                expectedChangedPaths:changed.map(p=>({repositoryRef:'primary',path:p})),
+                intentionallyUnchangedAuthorizedPaths:[]
+              },
+              authorityRef:'authority.vextreme.content-forge.pr171.source-proof.20261004A',
+              policy:{
+                maxOuterReturnFiles:10,maxSelectedSourceEntries:10,maxSelectedSourceBytes:250000,maxDiffBytes:20000000,
+                requireRacePreflightBeforeMutation:false,requireLocalValidationBeforePublish:false,
+                requireInputPackageManifest:true,signoffCommit:true,draftPullRequest:true
+              }
+            };
+            const proof=(predicateRef,command,args,predicateClass='SOURCE_OWNER_BEHAVIOR')=>({
+              command,args,proofClass:'TEST',candidateEvidence:true,predicateClass,predicateRef,timeoutMs:600000
+            });
+            const stage={
+              repositoryRef:'primary',
+              expectedBase:process.env.BASE_SHA,
+              expectedHead:process.env.HEAD_SHA,
+              expectedTree:process.env.TREE_SHA,
+              branch:process.env.CANDIDATE_BRANCH,
+              maxFiles:10,
+              proofCommands:[
+                proof('predicate.source-owner.pr171.dependencies','npm',['ci'],'SOURCE_OWNER_REPOSITORY'),
+                proof('predicate.source-owner.pr171.focused','node',['--test','tests/61-content-forge-convos-with-god-arc-batch.test.js','tests/62-content-forge-claude-journals-arc-batch.test.js']),
+                proof('predicate.source-owner.pr171.full-suite','npm',['test']),
+                proof('predicate.source-owner.pr171.pr-ready','npm',['run','pr-ready'],'SOURCE_OWNER_REPOSITORY'),
+                proof('predicate.source-owner.pr171.clean-generated','git',['diff','--exit-code','--','.'],'SOURCE_OWNER_REPOSITORY')
+              ],
+              stateRef:'state.vextreme.content-forge.pr171.source-proof',
+              currentLifecycleState:'SOURCE_READY',
+              currentGoal:'Prove only the exact PR171 source-owner gate.',
+              remainingGoals:['Fresh Independent Assurance remains separate.','Lifecycle currentness/READY/merge remain separate.'],
+              onPass:{
+                lifecycleState:'ASSURANCE_PENDING',nextFunction:'F13.RUN_FRESH_ASSURANCE',nextOwner:'Operations',
+                whyThisIsNext:'Exact-head source-owner proof completed without importing later lifecycle predicates.'
+              },
+              resultFilename:'RETURN-VCF-CLAUDE-JOURNALS-PR171-58C268AE.zip'
+            };
+            const manifest=compileRelayRecipe({recipe:'ExactHeadSourceOwnerProof',seed,stage});
+            const taskPath=path.join(innerRoot,'task.manifest.json');
+            fs.writeFileSync(taskPath,JSON.stringify(manifest,null,2)+'\n');
+            const inner=await buildTaskPackage({
+              manifestPath:taskPath,outputDirectory:innerRoot,
+              outputStem:'VCF-CLAUDE-JOURNALS-PR171-58C268AE-INNER'
+            });
+
+            const outerAuthority={
+              authoritySchemaRef:'vextreme.effect-transaction/v1',
+              semanticAdmissionRef:'github.issue.vextreme.159.comment.5985132494',
+              transactionRef:'transaction.vextreme.content-forge.pr171.source-proof.20261004A',
+              transactionVersion:1,
+              allowedEffectRefs:['effect.vexrelay.exact-head-source-owner-proof'],
+              heldEffectRefs:['effect.source.mutation','effect.approval','effect.ready','effect.merge']
+            };
+            const binding={
+              schemaVersion:'vextreme.vexlocalbridge-vexrelay-task-archive-binding/v1',
+              expectedInnerTaskRef:taskRef,expectedInnerAttemptRef:attemptRef,
+              expectedInnerPackageRef:packageRef,expectedInnerArchiveSha256:inner.sha256,
+              retainCanonicalReturn:true
+            };
+            fs.mkdirSync(path.join(outerContent,'authority'),{recursive:true});
+            fs.mkdirSync(path.join(outerContent,'payload'),{recursive:true});
+            fs.mkdirSync(path.join(outerContent,'inputs'),{recursive:true});
+            const authorityBytes=Buffer.from(JSON.stringify(outerAuthority,null,2)+'\n');
+            const bindingBytes=Buffer.from(JSON.stringify(binding,null,2)+'\n');
+            const innerBytes=fs.readFileSync(inner.outputPath);
+            fs.writeFileSync(path.join(outerContent,'authority/effect.json'),authorityBytes);
+            fs.writeFileSync(path.join(outerContent,'payload/inner-vexrelay.zip'),innerBytes);
+            fs.writeFileSync(path.join(outerContent,'inputs/vexrelay-binding.json'),bindingBytes);
+
+            const outerTaskRef='task.vlb.vexrelay.vcf-claude-journals-pr171-58c268ae';
+            const outerAttemptRef='attempt.vlb.vexrelay.vcf-claude-journals-pr171-58c268ae.20261004A';
+            const outerPackageRef='package.vlb.vexrelay.vcf-claude-journals-pr171-58c268ae.20261004A';
+            const outerTask={
+              schemaVersion:'vextreme.vexlocalbridge-task-manifest/v1',
+              artifactClass:'EXECUTABLE_RELAY',
+              taskRef:outerTaskRef,attemptRef:outerAttemptRef,packageRef:outerPackageRef,
+              requestRef:'request.vlb.vexrelay.vcf-claude-journals-pr171-58c268ae.20261004A',
+              correlationRef:'correlation.vlb.vexrelay.vcf-claude-journals-pr171-58c268ae.20261004A',
+              taskStorageKey:'vcf-claude-journals-pr171-58c268ae',
+              attemptStorageKey:'attempt-20261004a',
+              requestingRoleRef:'Coder[Vex Content Forge]',
+              requestingInstanceRef:'instance.vex-content-forge.pr171.source-proof.20261004A',
+              parentOperationsRef:'github.issue.vextreme.159',
+              returnRouteRef:'github.issue.vextreme.159',
+              hostProfileRef:'macos-victor',
+              repositoryExecutionProfileRefOrNull:'profile.repository.vextreme-sdk.macos-v1',
+              repositoryRefOrNull:'vgong24/Vextreme',
+              baseRefOrNull:process.env.BASE_SHA,headRefOrNull:process.env.HEAD_SHA,treeRefOrNull:process.env.TREE_SHA,
+              branchRefOrNull:process.env.CANDIDATE_BRANCH,
+              claimRefOrNull:'work.vextreme.content-forge.claude-journals.arc-batch.20261004',
+              exactPathRefs:changed,
+              authorityBinding:{
+                authoritySchemaRef:outerAuthority.authoritySchemaRef,
+                authorityEnvelopePath:'authority/effect.json',authorityEnvelopeSha256:sha256(authorityBytes),
+                semanticAdmissionRef:outerAuthority.semanticAdmissionRef,
+                transactionRef:outerAuthority.transactionRef,transactionVersion:outerAuthority.transactionVersion,
+                allowedEffectRefs:outerAuthority.allowedEffectRefs,heldEffectRefs:outerAuthority.heldEffectRefs
+              },
+              payload:{
+                payloadClass:'VEXRELAY_TASK_ARCHIVE',payloadRuntime:'NATIVE_VEXRELAY',
+                payloadPath:'payload/inner-vexrelay.zip',payloadSha256:sha256(innerBytes),typedArgv:[],
+                immutableInputs:[{path:'inputs/vexrelay-binding.json',sha256:sha256(bindingBytes)}]
+              },
+              executionStateAtFormation:'TASK_PREPARED',
+              singleUseNonce:'nonce-'+crypto.randomUUID().replaceAll('-',''),
+              stopConditions:['stop.on.identity.drift','stop.on.inner-safe-failure','stop.on.unadmitted.effect'],
+              archiveDigestBinding:'FILENAME_SHA256'
+            };
+            const zipAdapter={
+              create({bundleRoot,outputZip}){
+                const r=cp.spawnSync('zip',['-q','-r',outputZip,'.'],{cwd:bundleRoot,encoding:'utf8'});
+                return {exitCode:r.status??1,stdout:r.stdout||'',stderr:r.stderr||''};
+              },
+              extract(){throw new Error('FORMATION_EXTRACT_NOT_EXPECTED');}
+            };
+            const outer=createCanonicalTaskZip({
+              taskTemplate:outerTask,contentRoot:outerContent,outputDirectory:out,
+              outputStem:'VCF-CLAUDE-JOURNALS-PR171-58C268AE-VLB-OUTER-A',
+              ttlMs:23*60*60*1000,archiveAdapter:zipAdapter
+            });
+            const command=renderMacSourceBootstrapCommand({
+              packageSha256:outer.digest,sdkHead:process.env.SDK_HEAD,sdkTree:process.env.SDK_TREE
+            });
+            fs.writeFileSync(path.join(out,'RUN_COMMAND.txt'),command+'\n');
+            fs.writeFileSync(path.join(out,'FORMATION-RECEIPT.json'),JSON.stringify({
+              schemaVersion:'vex-content-forge.vexrelay-proof-formation/v0.1',
+              currentContractRef:'source.vexrelay.current-contract/v1',
+              recipe:'ExactHeadSourceOwnerProof',
+              sdkHead:process.env.SDK_HEAD,sdkTree:process.env.SDK_TREE,
+              candidate:{pr:171,base:process.env.BASE_SHA,head:process.env.HEAD_SHA,tree:process.env.TREE_SHA,branch:process.env.CANDIDATE_BRANCH,changedPaths:changed.length},
+              inner:{taskRef,attemptRef,packageRef,zip:path.basename(inner.outputPath),sha256:inner.sha256,manifestDigest:inner.manifestDigest,contentSetDigest:inner.contentSetDigest},
+              outer:{taskRef:outerTaskRef,attemptRef:outerAttemptRef,packageRef:outerPackageRef,zip:path.basename(outer.finalZip),sha256:outer.digest,formedAt:outer.task.formedAt,expiresAt:outer.task.expiresAt,formationEvidence:outer.formationEvidence},
+              humanContract:'ONE_DIGEST_BOUND_ZIP_PLUS_ONE_EXACT_BASH_COMMAND_TO_ONE_CANONICAL_RETURN_ZIP'
+            },null,2)+'\n');
+          })().catch(error=>{console.error(error.stack||error);process.exit(1)});
+          NODE
+      - name: Verify output set
+        shell: bash
+        run: |
+          test "$(find formed -maxdepth 1 -type f -name 'VCF-CLAUDE-JOURNALS-PR171-58C268AE-VLB-OUTER-A--sha256-*.zip' | wc -l)" -eq 1
+          test -s formed/RUN_COMMAND.txt
+          test -s formed/FORMATION-RECEIPT.json
+          cat formed/FORMATION-RECEIPT.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr171-vexrelay-proof-package
+          path: |
+            formed/VCF-CLAUDE-JOURNALS-PR171-58C268AE-VLB-OUTER-A--sha256-*.zip
+            formed/RUN_COMMAND.txt
+            formed/FORMATION-RECEIPT.json
+          if-no-files-found: error
+          retention-days: 1
