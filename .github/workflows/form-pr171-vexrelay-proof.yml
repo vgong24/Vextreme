@@ -162,7 +162,7 @@ jobs:
               },
               authorityRef:'authority.vextreme.content-forge.pr171.source-proof.20261004A',
               policy:{
-                maxOuterReturnFiles:10,maxSelectedSourceEntries:10,maxSelectedSourceBytes:250000,maxDiffBytes:20000000,
+                maxOuterReturnFiles:10,maxSelectedSourceEntries:10,maxSelectedSourceBytes:250000,maxDiffBytes:5000000,
                 requireRacePreflightBeforeMutation:false,requireLocalValidationBeforePublish:false,
                 requireInputPackageManifest:true,signoffCommit:true,draftPullRequest:true
               }
