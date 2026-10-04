@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 43,
+    "total": 44,
     "healthy": 3,
-    "attention": 34,
+    "attention": 35,
     "critical": 6,
-    "sorted": 5,
-    "withFab": 31,
-    "withIdentity": 12,
+    "sorted": 6,
+    "withFab": 32,
+    "withIdentity": 13,
     "withScreenshots": 11,
-    "withMetaDescription": 9
+    "withMetaDescription": 10
   },
   "pages": {
     "about-me": {
@@ -2459,6 +2459,61 @@
         "state": "healthy",
         "blockers": [],
         "gaps": []
+      }
+    },
+    "what-is-the-god-spark": {
+      "slug": "what-is-the-god-spark",
+      "title": "What is the God Spark?",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "convos_with_god",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 412,
+        "languages": {
+          "en": {
+            "translated": 412,
+            "total": 412,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "What is the God Spark? — preserved conversation and reflection, projected into the Vextreme repository-native page system."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
       }
     },
     "witness-committee-operations": {
