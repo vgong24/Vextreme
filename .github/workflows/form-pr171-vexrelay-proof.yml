@@ -24,15 +24,38 @@ jobs:
       SDK_TREE: '5e21e6d6d3cba7e0bb9a72f9a348a218989d2f8d'
     steps:
       - uses: actions/checkout@v4
-      - name: Acquire exact current SDK source
+      - name: Verify exact current SDK source projection
         shell: bash
         run: |
-          git clone --no-checkout https://github.com/vgong24/Vextreme-SDK.git Vextreme-SDK
-          git -C Vextreme-SDK checkout --detach "$SDK_HEAD"
-          test "$(git -C Vextreme-SDK rev-parse HEAD)" = "$SDK_HEAD"
-          test "$(git -C Vextreme-SDK rev-parse 'HEAD^{tree}')" = "$SDK_TREE"
-          test -z "$(git -C Vextreme-SDK status --porcelain=v1 -uall)"
-          node -e "const fs=require('fs');const x=JSON.parse(fs.readFileSync('Vextreme-SDK/docs/private-continuity/vexrelay/current-contract.json','utf8'));if(x.contractRef!=='source.vexrelay.current-contract/v1')process.exit(2)"
+          node <<'NODE'
+          const fs=require('node:fs');
+          const path=require('node:path');
+          const crypto=require('node:crypto');
+          const root=path.resolve('.relay-source/Vextreme-SDK');
+          const contract=JSON.parse(fs.readFileSync(path.join(root,'docs/private-continuity/vexrelay/current-contract.json'),'utf8'));
+          if(contract.contractRef!=='source.vexrelay.current-contract/v1')throw new Error('CURRENT_CONTRACT_REF_MISMATCH');
+          if(contract.currentRuntimeVersion!=='v0.2.0-RC1')throw new Error('CURRENT_RUNTIME_MISMATCH');
+          const inventory=JSON.parse(fs.readFileSync(path.join(root,'docs/private-continuity/vexrelay/source-inventory.json'),'utf8'));
+          const byPath=new Map(inventory.members.map(x=>[x.path,x]));
+          const verify=[
+            'lib/vexrelay/recipe-compiler.mjs','lib/vexrelay/package.mjs','lib/vexrelay/manifest.mjs',
+            'lib/vexrelay/constants.mjs','lib/vexrelay/hash.mjs','lib/vexrelay/paths.mjs',
+            'lib/vexrelay/zip.mjs','lib/vexrelay/process.mjs',
+            'docs/private-continuity/vexrelay/current-contract.json'
+          ];
+          for(const rel of verify){
+            const bytes=fs.readFileSync(path.join(root,rel));
+            const observed=crypto.createHash('sha256').update(bytes).digest('hex');
+            const expected=byPath.get(rel)?.sha256;
+            if(!expected||observed!==expected)throw new Error('SDK_SOURCE_INVENTORY_MISMATCH:'+rel+':'+observed+':'+expected);
+          }
+          for(const rel of [
+            'lib/vexlocalbridge/package-builder.js','lib/vexlocalbridge/runner-core.js',
+            'lib/vexlocalbridge/mac-source-bootstrap-command.js',
+            'lib/continuity-operations/vexlocalbridge-manifest-contract.js'
+          ]) if(!fs.existsSync(path.join(root,rel))) throw new Error('SDK_REQUIRED_SOURCE_MISSING:'+rel);
+          console.log(JSON.stringify({contractRef:contract.contractRef,currentRuntimeVersion:contract.currentRuntimeVersion,sourceInventory:inventory.contentSetSha256ExcludingInventory}));
+          NODE
       - name: Form current named-gate package
         shell: bash
         run: |
@@ -42,7 +65,7 @@ jobs:
           const crypto=require('node:crypto');
           const cp=require('node:child_process');
           const {pathToFileURL}=require('node:url');
-          const sdk=path.resolve('Vextreme-SDK');
+          const sdk=path.resolve('.relay-source/Vextreme-SDK');
           const out=path.resolve('formed');
           const innerRoot=path.join(out,'inner');
           const outerContent=path.join(out,'outer-content');
