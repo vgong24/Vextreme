@@ -1,5 +1,5 @@
 {
-  "contentFingerprint": "23b0c59685c1",
+  "contentFingerprint": "2058c337611f",
   "nodeCount": 114,
   "curatedNodeCount": 91,
   "autoDiscoveredCount": 23,
@@ -84,7 +84,8 @@
           "spiral-fab",
           "theme",
           "map",
-          "analysis"
+          "analysis",
+          "arc-nav"
         ]
       }
     },
@@ -3461,7 +3462,7 @@
         {
           "slug": "what-is-the-god-spark",
           "title": "What is the God Spark?",
-          "ported": false
+          "ported": true
         },
         {
           "slug": "clarity-on-christianity",
