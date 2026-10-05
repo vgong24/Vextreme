@@ -1,5 +1,5 @@
 {
-  "contentFingerprint": "6aeece985fe2",
+  "contentFingerprint": "344bfc319f75",
   "nodeCount": 114,
   "curatedNodeCount": 91,
   "autoDiscoveredCount": 23,
@@ -32,7 +32,8 @@
           "spiral-fab",
           "theme",
           "map",
-          "analysis"
+          "analysis",
+          "arc-nav"
         ]
       }
     },
@@ -912,7 +913,8 @@
           "spiral-fab",
           "theme",
           "map",
-          "analysis"
+          "analysis",
+          "arc-nav"
         ]
       }
     },
@@ -3489,7 +3491,7 @@
         {
           "slug": "victors-recap-arc-1",
           "title": "Victor's Recap — Arc 1",
-          "ported": false
+          "ported": true
         },
         {
           "slug": "covenant",
@@ -3654,7 +3656,7 @@
         {
           "slug": "a-conversation-with-pastor-jacob",
           "title": "A Conversation with Pastor Jacob",
-          "ported": false
+          "ported": true
         },
         {
           "slug": "the-moment-victors-cells-woke-up",

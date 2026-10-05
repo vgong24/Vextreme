@@ -718,5 +718,37 @@
       "analysis",
       "arc-nav"
     ]
+  },
+  "victors-recap-arc-1": {
+    "title": "Victor's Recap — Arc 1",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.victors-recap-arc-1"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "a-conversation-with-pastor-jacob": {
+    "title": "A Conversation with Pastor Jacob",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.a-conversation-with-pastor-jacob"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
   }
 }

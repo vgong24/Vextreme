@@ -3414,12 +3414,31 @@
       "arcName": "Victor's Record",
       "x": 3800,
       "y": 90,
-      "live": false,
-      "liveUrl": null,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/victors-recap-arc-1.html",
       "screenshots": {},
       "hasScreenshot": false,
-      "status": "critical",
-      "capability": null,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 143,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "Victor"
+      },
       "curated": true
     },
     {
@@ -4484,12 +4503,31 @@
       "arcName": "Victor's Record",
       "x": 3800,
       "y": 330,
-      "live": false,
-      "liveUrl": null,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/a-conversation-with-pastor-jacob.html",
       "screenshots": {},
       "hasScreenshot": false,
-      "status": "critical",
-      "capability": null,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 172,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "A Conversation with Pastor Jacob — repository-native preserved content."
+      },
       "curated": true
     },
     {
