@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 70,
+    "total": 71,
     "healthy": 3,
-    "attention": 61,
+    "attention": 62,
     "critical": 6,
-    "sorted": 31,
-    "withFab": 57,
-    "withIdentity": 38,
+    "sorted": 32,
+    "withFab": 58,
+    "withIdentity": 39,
     "withScreenshots": 11,
-    "withMetaDescription": 35
+    "withMetaDescription": 36
   },
   "pages": {
     "about-me": {
@@ -1129,6 +1129,62 @@
           "identity",
           "screenshot",
           "theme-effect"
+        ]
+      }
+    },
+    "god-review-archives-collapse": {
+      "slug": "god-review-archives-collapse",
+      "title": "When God Did the Code Review",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "ai_practitioner_tools",
+          "march_23_2026",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 126,
+        "languages": {
+          "en": {
+            "translated": 126,
+            "total": 126,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "When God Did the Code Review — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
         ]
       }
     },
