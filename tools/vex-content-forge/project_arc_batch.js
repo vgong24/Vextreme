@@ -221,13 +221,14 @@ function projectMember(root, member, nodesBySlug) {
   const selected = member.adapterClass === 'SQS_AUTHORED_BODY' ? selectSqsBody(document) : selectAuthoredMain(document);
   const styles = member.adapterClass === 'AUTHORED_MAIN_FRAGMENT' ? authoredStyles(document) : [];
   const h1Seen = sanitize(selected, member.adapterClass);
-  if (member.adapterClass === 'AUTHORED_MAIN_FRAGMENT') invariant(h1Seen, 'AUTHORED_MAIN_H1_MISSING', member.slug);
+  const synthesizeCanonicalHeading = member.adapterClass === 'AUTHORED_MAIN_FRAGMENT' && !h1Seen;
   const leaves = textLeaves(selected);
   invariant(leaves.length, 'AUTHORED_TEXT_EMPTY', member.slug);
   const scope = `pages.${member.slug}`;
   const bodyStrings = localize(selected, scope);
   const bodyHtml = parse5.serialize(selected).trim();
   const fixed = { [`${scope}.document-title`]: `${node.title} — Vextreme` };
+  if (synthesizeCanonicalHeading) fixed[`${scope}.canonical-title`] = node.title;
   let body;
   if (member.adapterClass === 'SQS_AUTHORED_BODY') {
     Object.assign(fixed, {
@@ -238,9 +239,13 @@ function projectMember(root, member, nodesBySlug) {
   } else {
     const sourceClass = classes(selected).filter(token => !/^vex-(?:native|generated)/.test(token));
     if (!sourceClass.includes('vex-authored-page-frame')) sourceClass.unshift('vex-authored-page-frame');
-    body = `<main class="${escapeHtml([...new Set(sourceClass)].join(' '))}" data-content-forge-body="${member.slug}" data-content-forge-source="${sourcePart(member.sourcePath)}">${bodyHtml}<section class="arc-wrap" aria-label="Arc navigation"><div id="arcNavMount"></div></section></main>`;
+    const canonicalHeading = synthesizeCanonicalHeading
+      ? `<h1 class="vex-content-forge-canonical-heading" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;" data-i18n="${scope}.canonical-title">${escapeHtml(node.title)}</h1>`
+      : '';
+    body = `${canonicalHeading}<main class="${escapeHtml([...new Set(sourceClass)].join(' '))}" data-content-forge-body="${member.slug}" data-content-forge-source="${sourcePart(member.sourcePath)}">${bodyHtml}<section class="arc-wrap" aria-label="Arc navigation"><div id="arcNavMount"></div></section></main>`;
   }
   const stats = { adapterClass: member.adapterClass, authoredTextLeafCount: leaves.length };
+  if (synthesizeCanonicalHeading) stats.canonicalHeadingSynthesized = true;
   const strings = sourceStrings(member, node, sha256(source), bodyStrings, fixed, stats);
   const style = member.adapterClass === 'SQS_AUTHORED_BODY' ? GENERIC_STYLE : `${AUTHORED_STYLE}\n${styles.join('\n')}`;
   const page = `${pageHead(node.title, scope, `${node.title} — repository-native preserved content.`, style)}<body data-content-forge-generator="${GENERATOR_REF}"><!-- Source-managed ${member.adapterClass} projection of ${member.sourcePath}. -->${body}<script src="../dist/vextreme-${member.slug}.js"></script></body></html>`;
@@ -283,9 +288,15 @@ function main(options = {}) {
   const arcs = readJson(path.join(root, ARCS_REL));
   const arc = arcs[formation.arc.arcKey];
   invariant(arc && Array.isArray(arc.sections), 'CANONICAL_ARC_NOT_FOUND', formation.arc.arcKey);
-  const expectedArcSlugs = [...formation.alreadyComplete, ...formation.members].map(item => item.slug);
+  const formedArcSlugs = [...formation.alreadyComplete, ...formation.members].map(item => item.slug);
   const actualArcSlugs = arc.sections.flatMap(section => Array.isArray(section.slugs) ? section.slugs : []);
-  invariant(JSON.stringify(actualArcSlugs) === JSON.stringify(expectedArcSlugs), 'CANONICAL_ARC_MEMBERSHIP_MISMATCH', formation.arc.arcKey);
+  invariant(
+    formedArcSlugs.length === actualArcSlugs.length &&
+      new Set(formedArcSlugs).size === formedArcSlugs.length &&
+      actualArcSlugs.every(slug => formedArcSlugs.includes(slug)),
+    'CANONICAL_ARC_MEMBERSHIP_MISMATCH',
+    formation.arc.arcKey
+  );
   const immutableFiles = [NODES_REL, ARCS_REL, INTENTS_REL];
   const immutableBefore = Object.fromEntries(immutableFiles.map(file => [file, sha256(fs.readFileSync(path.join(root, file)))]));
   const projections = [];
@@ -300,6 +311,8 @@ function main(options = {}) {
     }
   }
   invariant(members.length === formation.arc.canonicalMemberCount && new Set(members.map(item => item.slug)).size === formation.arc.canonicalMemberCount, 'BATCH_ACCOUNTING', 'all canonical members');
+  const canonicalOrder = new Map(actualArcSlugs.map((slug, index) => [slug, index]));
+  members.sort((left, right) => canonicalOrder.get(left.slug) - canonicalOrder.get(right.slug));
 
   const changedPaths = [];
   if (!options.dryRun) {
