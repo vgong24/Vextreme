@@ -273,7 +273,15 @@ function validateFormation(value) {
   invariant(value.alreadyComplete.length === arc.alreadyCompleteCount && value.members.length === arc.remainingCount && arc.alreadyCompleteCount + arc.remainingCount === arc.canonicalMemberCount, 'FORMATION_ACCOUNTING', arc.arcKey);
   invariant(value.plannedSourceManagedProjector === GENERATOR_REF && typeof value.plannedBatchTest === 'string' && value.plannedBatchTest.length > 0, 'FORMATION_PATHS', 'projector/test');
   const boundary = value.destinationMutationBoundary;
-  invariant(boundary?.createPages === arc.remainingCount && boundary?.createStringSources === arc.remainingCount && boundary?.modifyViewmodels === true, 'FORMATION_WRITES', 'write membrane');
+  const projectableMemberCount = value.members.filter(item => !item.preclassifiedHoldReason).length;
+  invariant(boundary?.createPages === projectableMemberCount && boundary?.createStringSources === projectableMemberCount && boundary?.modifyViewmodels === true, 'FORMATION_WRITES', 'write membrane');
+  for (const member of value.members) {
+    if (!member.preclassifiedHoldReason) continue;
+    invariant(typeof member.preclassifiedHoldReason === 'string' && member.preclassifiedHoldReason.length > 0, 'FORMATION_PRECLASSIFIED_HOLD_REASON', member.slug);
+    for (const field of ['adapterClass','sourcePath','sourceGitBlob','preservedHtmlSha256','repositoryBytes','sourceRoute','pageId','proposalRecordRef','sourceReceiptRef']) {
+      invariant(member[field] === undefined, 'FORMATION_PRECLASSIFIED_HOLD_SOURCE_SELECTION', `${member.slug}:${field}`);
+    }
+  }
   invariant(boundary?.nodeRegistryMutation === false && boundary?.arcRegistryMutation === false && boundary?.contentIntentMutation === false && boundary?.aliasMutation === false, 'FORMATION_HELD', 'held membrane');
   invariant(value.lifecycle?.draftOnly === true && value.lifecycle?.mergeAuthority === false && value.lifecycle?.rawProviderPublicationAuthority === false, 'FORMATION_LIFECYCLE', 'draft only');
 }
@@ -302,6 +310,12 @@ function main(options = {}) {
   const projections = [];
   const members = formation.alreadyComplete.map(item => ({ slug: item.slug, canonicalNodeId: item.canonicalNodeId, disposition: 'ALREADY_COMPLETE', prRef: item.prRef, head: item.head }));
   for (const member of formation.members) {
+    if (member.preclassifiedHoldReason) {
+      const node = nodesBySlug.get(member.slug);
+      invariant(node && node.id === member.canonicalNodeId && node.title === member.title && JSON.stringify(node.arcKeys) === JSON.stringify(member.arcKeys), 'CANONICAL_NODE_MISMATCH', member.slug);
+      members.push({ slug: member.slug, canonicalNodeId: member.canonicalNodeId, disposition: 'HOLD_WITH_EXACT_REASON', reason: `PRECLASSIFIED_HOLD: ${member.preclassifiedHoldReason}` });
+      continue;
+    }
     try {
       const projection = projectMember(root, member, nodesBySlug);
       projections.push({ member, projection });
