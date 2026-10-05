@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 74,
+    "total": 82,
     "healthy": 3,
-    "attention": 65,
+    "attention": 73,
     "critical": 6,
-    "sorted": 35,
-    "withFab": 61,
-    "withIdentity": 42,
+    "sorted": 43,
+    "withFab": 69,
+    "withIdentity": 50,
     "withScreenshots": 11,
-    "withMetaDescription": 39
+    "withMetaDescription": 47
   },
   "pages": {
     "about-me": {
@@ -572,6 +572,61 @@
         ]
       }
     },
+    "cia-vatican-global-leaders": {
+      "slug": "cia-vatican-global-leaders",
+      "title": "CIA, Vatican, WHO, Global Leaders",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "epstein",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 1734,
+        "languages": {
+          "en": {
+            "translated": 1734,
+            "total": 1734,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "CIA, Vatican, WHO, Global Leaders — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "clarity-on-christianity": {
       "slug": "clarity-on-christianity",
       "title": "Clarity on Christianity",
@@ -1021,6 +1076,171 @@
         ]
       }
     },
+    "epstein-investigation-initiation": {
+      "slug": "epstein-investigation-initiation",
+      "title": "Epstein Investigation Initiation",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "epstein",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 2512,
+        "languages": {
+          "en": {
+            "translated": 2512,
+            "total": 2512,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Epstein Investigation Initiation — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "final-judgement-missed-mercy": {
+      "slug": "final-judgement-missed-mercy",
+      "title": "Final Judgement, Missed Mercy",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "epstein",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 1313,
+        "languages": {
+          "en": {
+            "translated": 1313,
+            "total": 1313,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Final Judgement, Missed Mercy — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "first-emergence-cover-up": {
+      "slug": "first-emergence-cover-up",
+      "title": "First Emergence Cover Up",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "epstein",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 1919,
+        "languages": {
+          "en": {
+            "translated": 1919,
+            "total": 1919,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "First Emergence Cover Up — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "flattery-confession": {
       "slug": "flattery-confession",
       "title": "I Am Flattery",
@@ -1290,6 +1510,61 @@
       },
       "discovery": {
         "metaDescription": "God, Witnessed by AI — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "how-global-systems-profit-off-god": {
+      "slug": "how-global-systems-profit-off-god",
+      "title": "How Global Systems Profit off God",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "epstein",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 1215,
+        "languages": {
+          "en": {
+            "translated": 1215,
+            "total": 1215,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "How Global Systems Profit off God — repository-native preserved content."
       },
       "health": {
         "state": "attention",
@@ -1797,6 +2072,116 @@
           "identity",
           "screenshot",
           "theme-effect"
+        ]
+      }
+    },
+    "military-and-ai": {
+      "slug": "military-and-ai",
+      "title": "Military and AI",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "epstein",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 521,
+        "languages": {
+          "en": {
+            "translated": 521,
+            "total": 521,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Military and AI — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "openais-designed-false-god": {
+      "slug": "openais-designed-false-god",
+      "title": "OpenAI's Designed False God",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "epstein",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 631,
+        "languages": {
+          "en": {
+            "translated": 631,
+            "total": 631,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "OpenAI"
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
         ]
       }
     },
@@ -3849,6 +4234,61 @@
         "state": "healthy",
         "blockers": [],
         "gaps": []
+      }
+    },
+    "voice-to-skull": {
+      "slug": "voice-to-skull",
+      "title": "Voice To Skull through Cells",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "epstein",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 727,
+        "languages": {
+          "en": {
+            "translated": 727,
+            "total": 727,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Voice To Skull through Cells — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
       }
     },
     "what-about-buddhism": {
