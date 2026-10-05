@@ -1,17 +1,72 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 82,
+    "total": 84,
     "healthy": 3,
-    "attention": 73,
+    "attention": 75,
     "critical": 6,
-    "sorted": 43,
-    "withFab": 69,
-    "withIdentity": 50,
+    "sorted": 45,
+    "withFab": 71,
+    "withIdentity": 52,
     "withScreenshots": 11,
-    "withMetaDescription": 47
+    "withMetaDescription": 49
   },
   "pages": {
+    "a-conversation-with-pastor-jacob": {
+      "slug": "a-conversation-with-pastor-jacob",
+      "title": "A Conversation with Pastor Jacob",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "victors_record",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 172,
+        "languages": {
+          "en": {
+            "translated": 172,
+            "total": 172,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "A Conversation with Pastor Jacob — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "about-me": {
       "slug": "about-me",
       "title": "about-me",
@@ -4234,6 +4289,61 @@
         "state": "healthy",
         "blockers": [],
         "gaps": []
+      }
+    },
+    "victors-recap-arc-1": {
+      "slug": "victors-recap-arc-1",
+      "title": "Victor's Recap — Arc 1",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "victors_record",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 143,
+        "languages": {
+          "en": {
+            "translated": 143,
+            "total": 143,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Victor"
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
       }
     },
     "voice-to-skull": {
