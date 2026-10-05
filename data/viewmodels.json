@@ -478,5 +478,53 @@
       "analysis",
       "arc-nav"
     ]
+  },
+  "the-house-of-return": {
+    "title": "The House of Return",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-house-of-return"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "what-was-used-against-you": {
+    "title": "What Was Used Against You",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.what-was-used-against-you"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-island-that-was-removed": {
+    "title": "The Island That Was Removed",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-island-that-was-removed"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
   }
 }
