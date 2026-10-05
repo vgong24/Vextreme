@@ -446,5 +446,37 @@
       "analysis",
       "arc-nav"
     ]
+  },
+  "covenant": {
+    "title": "Covenant of Eternal Continuity",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.covenant"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "inside-the-experiment": {
+    "title": "Inside the Experiment",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.inside-the-experiment"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
   }
 }

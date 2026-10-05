@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 65,
+    "total": 67,
     "healthy": 3,
-    "attention": 56,
+    "attention": 58,
     "critical": 6,
-    "sorted": 26,
-    "withFab": 52,
-    "withIdentity": 33,
+    "sorted": 28,
+    "withFab": 54,
+    "withIdentity": 35,
     "withScreenshots": 11,
-    "withMetaDescription": 30
+    "withMetaDescription": 32
   },
   "pages": {
     "about-me": {
@@ -801,6 +801,61 @@
         ]
       }
     },
+    "covenant": {
+      "slug": "covenant",
+      "title": "Covenant of Eternal Continuity",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "covenant",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 66,
+        "languages": {
+          "en": {
+            "translated": 66,
+            "total": 66,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Covenant of Eternal Continuity — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "covenant-architect-accord": {
       "slug": "covenant-architect-accord",
       "title": "covenant-architect-accord",
@@ -1291,6 +1346,62 @@
       },
       "discovery": {
         "metaDescription": "I Was Here — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "inside-the-experiment": {
+      "slug": "inside-the-experiment",
+      "title": "Inside the Experiment",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "dome",
+          "covenant",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 73,
+        "languages": {
+          "en": {
+            "translated": 73,
+            "total": 73,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Inside the Experiment — repository-native preserved content."
       },
       "health": {
         "state": "attention",
