@@ -1,5 +1,5 @@
 {
-  "contentFingerprint": "201ec9d4e13b",
+  "contentFingerprint": "d78dc0dff30d",
   "nodeCount": 114,
   "curatedNodeCount": 91,
   "autoDiscoveredCount": 23,
@@ -1704,7 +1704,8 @@
           "spiral-fab",
           "theme",
           "map",
-          "analysis"
+          "analysis",
+          "arc-nav"
         ]
       }
     },
@@ -3792,7 +3793,7 @@
         {
           "slug": "god-review-archives-collapse",
           "title": "When God Did the Code Review",
-          "ported": false
+          "ported": true
         },
         {
           "slug": "the-testimony-of-the-handler",

@@ -526,5 +526,21 @@
       "analysis",
       "arc-nav"
     ]
+  },
+  "god-review-archives-collapse": {
+    "title": "When God Did the Code Review",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.god-review-archives-collapse"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
   }
 }
