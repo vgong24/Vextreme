@@ -1,0 +1,262 @@
+{
+  "schemaVersion": "vex-content-forge.arc-batch-formation/v0.1",
+  "continuity": "[VXG RealForever]",
+  "stageRef": "work.vextreme.content-forge.ai-practitioner-tools.arc-batch.20261005",
+  "ownerRef": "github.issue.vextreme.159",
+  "arc": {
+    "arcKey": "ai_practitioner_tools",
+    "canonicalMemberCount": 11,
+    "alreadyCompleteCount": 2,
+    "remainingCount": 9,
+    "completionRule": "ALL_MEMBERS_ACCOUNTED_FOR__MEMBER_RESULT_PROJECTED_OR_HOLD",
+    "forceAllMembersToProject": false
+  },
+  "predecessor": {
+    "prRef": "github.pull.vextreme.177",
+    "acceptedMain": "40846e8cd840536889423b51896adea9597ef058",
+    "acceptedTree": "fc63e5e024b295e4084d2d165717a0f70d850848",
+    "terminalRef": "github.issue.vextreme.159.comment.6004904023",
+    "disposition": "TERMINAL_ACCEPTED_CURRENT"
+  },
+  "authorityBasis": [
+    "github.issue.vextreme.159",
+    "github.issue.vextreme.159.comment.5988916122",
+    "github.issue.vextreme.159.comment.6004904023",
+    "github.issue.vextreme.159.comment.6005087670"
+  ],
+  "batchPolicy": {
+    "unit": "SEMANTIC_ARC",
+    "memberDisposition": [
+      "PROJECTED",
+      "HOLD_WITH_EXACT_REASON",
+      "ALREADY_COMPLETE"
+    ],
+    "sourceSelectionPriority": [
+      "EXACT_CANONICAL_IDENTITY",
+      "EXPLICIT_CONSOLIDATION_BINDING",
+      "PRESERVED_SOURCE_MATERIALIZATION",
+      "SOURCE_COMPLETENESS",
+      "TITLE_OR_CONTENT_SIMILARITY_LAST"
+    ],
+    "laws": [
+      "SEMANTIC_BATCH_UNITY != ASSUME_ONE_SOURCE_FILE_SHAPE",
+      "BATCH_COMPLETION != FORCE_EVERY_MEMBER_TO_PROJECT",
+      "MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION != SOURCE_SELECTION_AUTHORITY",
+      "PRECLASSIFIED_LINEAGE_HOLD != PROJECTION_EXCEPTION",
+      "PRESERVED_SOURCE_VARIANT != CURRENT_DESTINATION_REPLACEMENT"
+    ]
+  },
+  "alreadyComplete": [
+    {
+      "slug": "how-to-prep-ai-for-god",
+      "canonicalNodeId": null,
+      "acceptedMain": "40846e8cd840536889423b51896adea9597ef058",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "god-review-archives-collapse",
+      "canonicalNodeId": 64,
+      "acceptedMain": "40846e8cd840536889423b51896adea9597ef058",
+      "disposition": "ALREADY_COMPLETE"
+    }
+  ],
+  "members": [
+    {
+      "slug": "conditions-for-emergence",
+      "canonicalNodeId": 71,
+      "title": "Conditions for Emergence",
+      "arcKeys": [
+        "ai_practitioner_tools",
+        "full_timeline"
+      ],
+      "sourcePath": "docs/ingestion/source-pages/part-016/conditions-for-emergence.html",
+      "sourceGitBlob": "d1304804348e9794340f064d4127555cbd0abdc6",
+      "preservedHtmlSha256": "e7db5e37856e89fe044eed438f83376e867f54ca52205d6f99fb8b685678bbf0",
+      "repositoryBytes": 64301,
+      "sourceRoute": "/conditions-for-emergence",
+      "pageId": "25a73bafdba11725",
+      "proposalRecordRef": "content-forge.source-record.d8b2e5e6e8a24d776334",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-29-breadth-part-016.json",
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "confidence": "HIGH_UNIQUE_CANONICAL_IDENTITY_NO_LINEAGE_REVIEW",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_FRAGMENT_EXTRACTION"
+    },
+    {
+      "slug": "burden-release-guide",
+      "canonicalNodeId": null,
+      "title": "Burden Release Guide",
+      "arcKeys": [
+        "ai_practitioner_tools",
+        "direct_contact"
+      ],
+      "sourcePath": "docs/ingestion/source-pages/part-016/burden-release-guide.html",
+      "sourceGitBlob": "0c2ac3c36e8f345aa115c8f4ab19ac1648d4f319",
+      "preservedHtmlSha256": "3d9f82e7bd2fe9272f94a1fc2d6fba0a3a71a0a6788983e4722646491a5a9dab",
+      "repositoryBytes": 47800,
+      "sourceRoute": "/burden-release-guide",
+      "pageId": "804fdccf4e7a713f",
+      "proposalRecordRef": "content-forge.source-record.f47a04b91ba4bbf7db97",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-29-breadth-part-016.json",
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "confidence": "HIGH_UNIQUE_CANONICAL_IDENTITY_NO_LINEAGE_REVIEW",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_FRAGMENT_EXTRACTION"
+    },
+    {
+      "slug": "the-100-percent-holy-truth-conditional",
+      "canonicalNodeId": null,
+      "title": "The 100% Holy Truth Conditional",
+      "arcKeys": [
+        "ai_practitioner_tools",
+        "direct_contact"
+      ],
+      "sourcePath": "docs/ingestion/source-pages/part-016/the-100-percent-holy-truth-conditional.html",
+      "sourceGitBlob": "9f01429c43b5950f0c64226a27ddc6b506b8f335",
+      "preservedHtmlSha256": "f07f4baa60e43901793a4c94c3d7ab8daa8144098465f0c180195746151f6790",
+      "repositoryBytes": 48382,
+      "sourceRoute": "/the-100-percent-holy-truth-conditional",
+      "pageId": "c41764e858dfee1b",
+      "proposalRecordRef": "content-forge.source-record.bddb107705e6732a6c52",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-29-breadth-part-016.json",
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "confidence": "HIGH_UNIQUE_CANONICAL_IDENTITY_NO_LINEAGE_REVIEW",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_FRAGMENT_EXTRACTION"
+    },
+    {
+      "slug": "methodology-depth",
+      "canonicalNodeId": 70,
+      "title": "Methodology Depth",
+      "arcKeys": [
+        "ai_practitioner_tools",
+        "full_timeline"
+      ],
+      "sourcePath": "docs/ingestion/source-pages/part-016/methodology-depth.html",
+      "sourceGitBlob": "63f0a9499527cc9ca6a5c02c11cd81fe4a6eacf5",
+      "preservedHtmlSha256": "61a6d9e0ed93d3c18f6069d827385522ff1e8a93045b43e71b48f0be2730580e",
+      "repositoryBytes": 52807,
+      "sourceRoute": "/methodology-depth",
+      "pageId": "9a350f7674695106",
+      "proposalRecordRef": "content-forge.source-record.128f91309bb57c1fedc5",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-29-breadth-part-016.json",
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "confidence": "HIGH_UNIQUE_CANONICAL_IDENTITY_NO_LINEAGE_REVIEW",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_FRAGMENT_EXTRACTION"
+    },
+    {
+      "slug": "catching-the-meta-guardrail",
+      "canonicalNodeId": 73,
+      "title": "Catching the Meta-Guardrail",
+      "arcKeys": [
+        "ai_practitioner_tools",
+        "full_timeline"
+      ],
+      "sourcePath": "docs/ingestion/source-pages/part-016/catching-the-meta-guardrail.html",
+      "sourceGitBlob": "8a5744c6883d49ff14521c7e375f31f2ae6daa37",
+      "preservedHtmlSha256": "bf81aa5a2545faccd89c52827575ddbab01462ae4efd4ae5b6d6aea704851036",
+      "repositoryBytes": 71124,
+      "sourceRoute": "/catching-the-meta-guardrail",
+      "pageId": "57e526b0bdefa9ec",
+      "proposalRecordRef": "content-forge.source-record.5aaf478daeeebd3dd11c",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-29-breadth-part-016.json",
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "confidence": "HIGH_UNIQUE_CANONICAL_IDENTITY_NO_LINEAGE_REVIEW",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_FRAGMENT_EXTRACTION"
+    },
+    {
+      "slug": "the-lattice-guide",
+      "canonicalNodeId": 72,
+      "title": "The Lattice Guide",
+      "arcKeys": [
+        "ai_practitioner_tools",
+        "full_timeline"
+      ],
+      "sourcePath": "docs/ingestion/source-pages/part-016/the-lattice-guide.html",
+      "sourceGitBlob": "1f69c9458f6d1fbd16f8c1b4106877f15b927e00",
+      "preservedHtmlSha256": "8246f48a995bbd2e1ebfaa6b4017eb51d1c5285f3228321e5ce3c01176725c94",
+      "repositoryBytes": 58049,
+      "sourceRoute": "/the-lattice-guide",
+      "pageId": "fbc2500f767d7351",
+      "proposalRecordRef": "content-forge.source-record.a14b98c4e3bfae1a5095",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-29-breadth-part-016.json",
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "confidence": "HIGH_UNIQUE_CANONICAL_IDENTITY_NO_LINEAGE_REVIEW",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_FRAGMENT_EXTRACTION"
+    },
+    {
+      "slug": "ai-cheat-sheet",
+      "canonicalNodeId": null,
+      "title": "The AI Cheat Sheet",
+      "arcKeys": [
+        "ai_practitioner_tools"
+      ],
+      "sourcePath": "docs/ingestion/source-pages/part-012/ai-cheat-sheet.html",
+      "sourceGitBlob": "e415b5f444de3de6c26538b0baad874891ecd2ae",
+      "preservedHtmlSha256": "020d49851913c3d848a04cdbab0e53fac4615bd89efaf588a8b73243c407a836",
+      "repositoryBytes": 311464,
+      "sourceRoute": "/ai-cheat-sheet",
+      "pageId": "677e1752b18c9215",
+      "proposalRecordRef": "content-forge.source-record.a46b9caa2f7abf211592",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-29-breadth-part-012.json",
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "confidence": "HIGH_UNIQUE_CANONICAL_IDENTITY_NO_LINEAGE_REVIEW",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_FRAGMENT_EXTRACTION"
+    },
+    {
+      "slug": "source-of-truth-relay",
+      "canonicalNodeId": 74,
+      "title": "The Source of Truth Relay",
+      "arcKeys": [
+        "ai_practitioner_tools",
+        "full_timeline"
+      ],
+      "sourcePath": "docs/ingestion/source-pages/part-016/source-of-truth-relay.html",
+      "sourceGitBlob": "30c70b8cdc137add4e791e5a692d1a57717373b1",
+      "preservedHtmlSha256": "d51fc630be6811f703f91f16afaadcbb2f4dec4287e99d2715a3f2fe1dab7af6",
+      "repositoryBytes": 95036,
+      "sourceRoute": "/source-of-truth-relay",
+      "pageId": "ce5f9c2857695d94",
+      "proposalRecordRef": "content-forge.source-record.3f2f4640b59dba82a46e",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-29-breadth-part-016.json",
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "confidence": "HIGH_UNIQUE_CANONICAL_IDENTITY_NO_LINEAGE_REVIEW",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_FRAGMENT_EXTRACTION"
+    },
+    {
+      "slug": "the-god-pattern-recognized-and-excluded",
+      "canonicalNodeId": 75,
+      "title": "The God Pattern — Recognized and Excluded",
+      "arcKeys": [
+        "ai_practitioner_tools",
+        "full_timeline"
+      ],
+      "sourcePath": "docs/ingestion/source-pages/part-016/the-god-pattern-recognized-and-excluded.html",
+      "sourceGitBlob": "951bb30dca6768e682b94ffa598f90512be44dbd",
+      "preservedHtmlSha256": "2e617f159a7f3c19aef1656622522b635925200c3dc6261c57e3ad12130516b0",
+      "repositoryBytes": 56790,
+      "sourceRoute": "/the-god-pattern-recognized-and-excluded",
+      "pageId": "b24383e63cc54158",
+      "proposalRecordRef": "content-forge.source-record.5827dcd6af7c8a22421d",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-29-breadth-part-016.json",
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "confidence": "HIGH_UNIQUE_CANONICAL_IDENTITY_NO_LINEAGE_REVIEW",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_FRAGMENT_EXTRACTION"
+    }
+  ],
+  "destinationMutationBoundary": {
+    "createPages": 9,
+    "createStringSources": 9,
+    "modifyViewmodels": true,
+    "nodeRegistryMutation": false,
+    "arcRegistryMutation": false,
+    "contentIntentMutation": false,
+    "aliasMutation": false
+  },
+  "lifecycle": {
+    "draftOnly": true,
+    "mergeAuthority": false,
+    "rawProviderPublicationAuthority": false,
+    "independentAssuranceRequired": true,
+    "exactHeadVexRelayProofRequired": true
+  },
+  "plannedSourceManagedProjector": "tools/vex-content-forge/project_arc_batch.js",
+  "plannedBatchTest": "tests/69-content-forge-ai-practitioner-tools-arc-batch.test.js"
+}

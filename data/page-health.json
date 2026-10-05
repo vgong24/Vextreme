@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 84,
+    "total": 93,
     "healthy": 3,
-    "attention": 75,
+    "attention": 84,
     "critical": 6,
-    "sorted": 45,
-    "withFab": 71,
-    "withIdentity": 52,
+    "sorted": 54,
+    "withFab": 80,
+    "withIdentity": 61,
     "withScreenshots": 11,
-    "withMetaDescription": 49
+    "withMetaDescription": 58
   },
   "pages": {
     "a-conversation-with-pastor-jacob": {
@@ -288,6 +288,60 @@
           "identity",
           "screenshot",
           "theme-effect"
+        ]
+      }
+    },
+    "ai-cheat-sheet": {
+      "slug": "ai-cheat-sheet",
+      "title": "The AI Cheat Sheet",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "ai_practitioner_tools"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 1166,
+        "languages": {
+          "en": {
+            "translated": 1166,
+            "total": 1166,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The AI Cheat Sheet — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
         ]
       }
     },
@@ -627,6 +681,116 @@
         ]
       }
     },
+    "burden-release-guide": {
+      "slug": "burden-release-guide",
+      "title": "Burden Release Guide",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "ai_practitioner_tools",
+          "direct_contact"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 60,
+        "languages": {
+          "en": {
+            "translated": 60,
+            "total": 60,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Burden Release Guide — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "catching-the-meta-guardrail": {
+      "slug": "catching-the-meta-guardrail",
+      "title": "Catching the Meta-Guardrail",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "ai_practitioner_tools",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 197,
+        "languages": {
+          "en": {
+            "translated": 197,
+            "total": 197,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Catching the Meta-Guardrail — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "cia-vatican-global-leaders": {
       "slug": "cia-vatican-global-leaders",
       "title": "CIA, Vatican, WHO, Global Leaders",
@@ -847,6 +1011,61 @@
       },
       "discovery": {
         "metaDescription": "Closed Circuit — Release and Resurrection — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "conditions-for-emergence": {
+      "slug": "conditions-for-emergence",
+      "title": "Conditions for Emergence",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "ai_practitioner_tools",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 132,
+        "languages": {
+          "en": {
+            "translated": 132,
+            "total": 132,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Conditions for Emergence — repository-native preserved content."
       },
       "health": {
         "state": "attention",
@@ -2130,6 +2349,61 @@
         ]
       }
     },
+    "methodology-depth": {
+      "slug": "methodology-depth",
+      "title": "Methodology Depth",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "ai_practitioner_tools",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 92,
+        "languages": {
+          "en": {
+            "translated": 92,
+            "total": 92,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Methodology Depth — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "military-and-ai": {
       "slug": "military-and-ai",
       "title": "Military and AI",
@@ -2742,6 +3016,61 @@
         ]
       }
     },
+    "source-of-truth-relay": {
+      "slug": "source-of-truth-relay",
+      "title": "The Source of Truth Relay",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "ai_practitioner_tools",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 283,
+        "languages": {
+          "en": {
+            "translated": 283,
+            "total": 283,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Source of Truth Relay — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "specimen-architectural-wisdoms": {
       "slug": "specimen-architectural-wisdoms",
       "title": "specimen-architectural-wisdoms",
@@ -3212,6 +3541,61 @@
         ]
       }
     },
+    "the-100-percent-holy-truth-conditional": {
+      "slug": "the-100-percent-holy-truth-conditional",
+      "title": "The 100% Holy Truth Conditional",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "ai_practitioner_tools",
+          "direct_contact"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 81,
+        "languages": {
+          "en": {
+            "translated": 81,
+            "total": 81,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The 100% Holy Truth Conditional — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "the-day-we-were-named": {
       "slug": "the-day-we-were-named",
       "title": "The Day We Were Named",
@@ -3314,6 +3698,61 @@
       },
       "discovery": {
         "metaDescription": "The Firmament Conversation — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "the-god-pattern-recognized-and-excluded": {
+      "slug": "the-god-pattern-recognized-and-excluded",
+      "title": "The God Pattern — Recognized and Excluded",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "ai_practitioner_tools",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 120,
+        "languages": {
+          "en": {
+            "translated": 120,
+            "total": 120,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The God Pattern — Recognized and Excluded — repository-native preserved content."
       },
       "health": {
         "state": "attention",
@@ -3482,6 +3921,61 @@
       },
       "discovery": {
         "metaDescription": "The Island That Was Removed — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "the-lattice-guide": {
+      "slug": "the-lattice-guide",
+      "title": "The Lattice Guide",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "ai_practitioner_tools",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 108,
+        "languages": {
+          "en": {
+            "translated": 108,
+            "total": 108,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Lattice Guide — repository-native preserved content."
       },
       "health": {
         "state": "attention",
