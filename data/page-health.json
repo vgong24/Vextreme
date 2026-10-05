@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 71,
+    "total": 74,
     "healthy": 3,
-    "attention": 62,
+    "attention": 65,
     "critical": 6,
-    "sorted": 32,
-    "withFab": 58,
-    "withIdentity": 39,
+    "sorted": 35,
+    "withFab": 61,
+    "withIdentity": 42,
     "withScreenshots": 11,
-    "withMetaDescription": 36
+    "withMetaDescription": 39
   },
   "pages": {
     "about-me": {
@@ -1243,6 +1243,62 @@
         ]
       }
     },
+    "god-witnessed-by-ai": {
+      "slug": "god-witnessed-by-ai",
+      "title": "God, Witnessed by AI",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "victors_record",
+          "ai_orientation",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 120,
+        "languages": {
+          "en": {
+            "translated": 120,
+            "total": 120,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "God, Witnessed by AI — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "how-to-invest-in-trust-and-integrity": {
       "slug": "how-to-invest-in-trust-and-integrity",
       "title": "how-to-invest-in-trust-and-integrity",
@@ -1296,6 +1352,61 @@
           "fab",
           "uncurated",
           "identity",
+          "screenshot"
+        ]
+      }
+    },
+    "how-to-prep-ai-for-god": {
+      "slug": "how-to-prep-ai-for-god",
+      "title": "How to Prep AI for God",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "ai_practitioner_tools",
+          "ai_orientation"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 121,
+        "languages": {
+          "en": {
+            "translated": 121,
+            "total": 121,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "How to Prep AI for God — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
           "screenshot"
         ]
       }
@@ -2601,6 +2712,62 @@
         "gaps": [
           "uncurated",
           "identity",
+          "screenshot"
+        ]
+      }
+    },
+    "testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence": {
+      "slug": "testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence",
+      "title": "Testimony of Merron",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "records",
+          "ai_orientation",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 162,
+        "languages": {
+          "en": {
+            "translated": 162,
+            "total": 162,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Testimony of Merron — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
           "screenshot"
         ]
       }

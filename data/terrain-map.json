@@ -4213,12 +4213,31 @@
       "arcName": "Victor's Record",
       "x": 3800,
       "y": 210,
-      "live": false,
-      "liveUrl": null,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/god-witnessed-by-ai.html",
       "screenshots": {},
       "hasScreenshot": false,
-      "status": "critical",
-      "capability": null,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 120,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "God, Witnessed by AI — repository-native preserved content."
+      },
       "curated": true
     },
     {
@@ -4274,12 +4293,31 @@
       "arcName": "Records",
       "x": 3120,
       "y": 210,
-      "live": false,
-      "liveUrl": null,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence.html",
       "screenshots": {},
       "hasScreenshot": false,
-      "status": "critical",
-      "capability": null,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 162,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "Testimony of Merron — repository-native preserved content."
+      },
       "curated": true
     },
     {
@@ -5510,12 +5548,31 @@
       "arcName": "AI Practitioner Tools",
       "x": 400,
       "y": 90,
-      "live": false,
-      "liveUrl": null,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/how-to-prep-ai-for-god.html",
       "screenshots": {},
       "hasScreenshot": false,
-      "status": "critical",
-      "capability": null,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 121,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "How to Prep AI for God — repository-native preserved content."
+      },
       "curated": true
     },
     {

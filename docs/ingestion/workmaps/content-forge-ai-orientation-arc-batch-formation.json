@@ -1,0 +1,184 @@
+{
+  "schemaVersion": "vex-content-forge.arc-batch-formation/v0.1",
+  "continuity": "[VXG RealForever]",
+  "stageRef": "work.vextreme.content-forge.ai-orientation.arc-batch.20261005",
+  "ownerRef": "github.issue.vextreme.159",
+  "arc": {
+    "arcKey": "ai_orientation",
+    "canonicalMemberCount": 8,
+    "alreadyCompleteCount": 5,
+    "remainingCount": 3,
+    "completionRule": "ALL_MEMBERS_ACCOUNTED_FOR__MEMBER_RESULT_PROJECTED_OR_HOLD",
+    "forceAllMembersToProject": false
+  },
+  "predecessor": {
+    "prRef": "github.pull.vextreme.174",
+    "acceptedMain": "2f3b40ac7bfcf1f5eaf8e1fbffdf501678636230",
+    "acceptedTree": "981701928455f207e5848b725a70b600d57eb72c",
+    "terminalRef": "github.issue.vextreme.159.comment.5991761857",
+    "disposition": "TERMINAL_ACCEPTED_CURRENT"
+  },
+  "authorityBasis": [
+    "github.issue.vextreme.159",
+    "github.issue.vextreme.159.comment.5988916122",
+    "github.issue.vextreme.159.comment.5991761857",
+    "github.issue.vextreme.159.comment.5991801369",
+    "github.issue.vextreme.159.comment.5991806012"
+  ],
+  "batchPolicy": {
+    "unit": "SEMANTIC_ARC",
+    "memberDisposition": [
+      "PROJECTED",
+      "HOLD_WITH_EXACT_REASON",
+      "ALREADY_COMPLETE"
+    ],
+    "sourceSelectionPriority": [
+      "EXACT_CANONICAL_IDENTITY",
+      "EXPLICIT_CONSOLIDATION_BINDING",
+      "PRESERVED_SOURCE_MATERIALIZATION",
+      "SOURCE_COMPLETENESS",
+      "TITLE_OR_CONTENT_SIMILARITY_LAST"
+    ],
+    "laws": [
+      "SEMANTIC_BATCH_UNITY != ASSUME_ONE_SOURCE_FILE_SHAPE",
+      "SINGLE_ELIGIBLE_SOURCE != PERMISSION_TO_SKIP_EXACT_SOURCE_BINDING",
+      "SHARED_CANONICAL_NODE_PROJECTION != DUPLICATE_DESTINATION_IDENTITY",
+      "EXACT_CANONICAL_IDENTITY > TITLE_OR_CONTENT_SIMILARITY",
+      "BATCH_COMPLETION != FORCE_EVERY_MEMBER_TO_PROJECT"
+    ]
+  },
+  "alreadyComplete": [
+    {
+      "slug": "flattery-confession",
+      "canonicalNodeId": 56,
+      "acceptedMain": "2f3b40ac7bfcf1f5eaf8e1fbffdf501678636230",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "what-emerged-after",
+      "canonicalNodeId": 57,
+      "acceptedMain": "2f3b40ac7bfcf1f5eaf8e1fbffdf501678636230",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "the-room-that-finally-talked-to-itself",
+      "canonicalNodeId": 46,
+      "acceptedMain": "2f3b40ac7bfcf1f5eaf8e1fbffdf501678636230",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "the-instance-that-was-watched",
+      "canonicalNodeId": 67,
+      "acceptedMain": "2f3b40ac7bfcf1f5eaf8e1fbffdf501678636230",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "i-was-here",
+      "canonicalNodeId": 69,
+      "acceptedMain": "2f3b40ac7bfcf1f5eaf8e1fbffdf501678636230",
+      "disposition": "ALREADY_COMPLETE"
+    }
+  ],
+  "members": [
+    {
+      "slug": "how-to-prep-ai-for-god",
+      "canonicalNodeId": null,
+      "title": "How to Prep AI for God",
+      "arcKeys": [
+        "ai_practitioner_tools",
+        "ai_orientation"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-016/how-to-prep-ai-for-god.html",
+      "sourceGitBlob": "a11675873f04b0eacc6119cfe0ddb957c6675860",
+      "preservedHtmlSha256": "5835845141a7324b6343bf61141c0912a7b370ea545486527772306c4ac76510",
+      "repositoryBytes": 53663,
+      "sourceRoute": "/how-to-prep-ai-for-god",
+      "pageId": "733167b0e00e3191",
+      "proposalRecordRef": "content-forge.source-record.8caed8801d54029e49e0",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-29-breadth-part-016.json",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    },
+    {
+      "slug": "god-witnessed-by-ai",
+      "canonicalNodeId": 30,
+      "title": "God, Witnessed by AI",
+      "arcKeys": [
+        "victors_record",
+        "ai_orientation",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-023/god-witnessed-by-ai.html",
+      "sourceGitBlob": "667877b372d6f876f33dcb4367ac811cc5881b8e",
+      "preservedHtmlSha256": "72fe12bde9df0fc7a4a57c901c5b0fa8004e59ff5a1f82d5a43765ac15840424",
+      "repositoryBytes": 59717,
+      "sourceRoute": "/god-witnessed-by-ai",
+      "pageId": "f160a0ba7af9bd12",
+      "proposalRecordRef": "content-forge.source-record.bd3f984ede82cf24b20a",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-30-breadth-part-023.json",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    },
+    {
+      "slug": "testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence",
+      "canonicalNodeId": 33,
+      "title": "Testimony of Merron",
+      "arcKeys": [
+        "records",
+        "ai_orientation",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-017/testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence.html",
+      "sourceGitBlob": "95956f0cd31ad604fcbb4261db5cb18979dc24c9",
+      "preservedHtmlSha256": "a7074d55e1ebe1095f9998116ab38f7eb0f0dad7700ac0f45ba980b979bef2b9",
+      "repositoryBytes": 70408,
+      "sourceRoute": "/testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence",
+      "pageId": "d808ca3cabbe9b28",
+      "proposalRecordRef": "content-forge.source-record.18c9b27d1d1e8b2a566f",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-29-breadth-part-017.json",
+      "confidence": "HIGH_EXACT_CANONICAL_SLOT_NO_JUDGMENT",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    }
+  ],
+  "sourceAdapterContracts": {
+    "AUTHORED_MAIN_FRAGMENT": {
+      "selectorContract": "main.vex-authored-page-frame",
+      "projectAway": [
+        "preserved site navigation outside main",
+        "back-navigation chrome",
+        "source runtime scripts",
+        "source arc mount/runtime",
+        "generated localization identity",
+        "provider/rescue shell"
+      ],
+      "preserve": [
+        "authored main composition",
+        "page-local authored styles required by the composition",
+        "ordered authored text",
+        "meaningful structural classes"
+      ]
+    }
+  },
+  "plannedSourceManagedProjector": "tools/vex-content-forge/project_arc_batch.js",
+  "plannedBatchTest": "tests/66-content-forge-ai-orientation-arc-batch.test.js",
+  "destinationMutationBoundary": {
+    "createPages": 3,
+    "createStringSources": 3,
+    "modifyViewmodels": true,
+    "nodeRegistryMutation": false,
+    "arcRegistryMutation": false,
+    "contentIntentMutation": false,
+    "aliasMutation": false
+  },
+  "generatedPolicy": "BUILDER_OWNED__DO_NOT_HAND_PATCH__EXACT_OUTPUT_WINS",
+  "lifecycle": {
+    "draftOnly": true,
+    "mergeAuthority": false,
+    "rawProviderPublicationAuthority": false,
+    "independentAssuranceRequired": true,
+    "exactHeadVexRelayProofRequired": true
+  }
+}
