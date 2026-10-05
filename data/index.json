@@ -1,5 +1,5 @@
 {
-  "contentFingerprint": "a108a6d0d2e9",
+  "contentFingerprint": "2d19727e15f2",
   "nodeCount": 114,
   "curatedNodeCount": 91,
   "autoDiscoveredCount": 23,
@@ -58,7 +58,8 @@
           "spiral-fab",
           "theme",
           "map",
-          "analysis"
+          "analysis",
+          "arc-nav"
         ]
       }
     },
@@ -1618,7 +1619,8 @@
           "spiral-fab",
           "theme",
           "map",
-          "analysis"
+          "analysis",
+          "arc-nav"
         ]
       }
     },
@@ -3477,7 +3479,7 @@
         {
           "slug": "covenant",
           "title": "Covenant of Eternal Continuity",
-          "ported": false
+          "ported": true
         },
         {
           "slug": "what-is-the-god-spark",
@@ -3772,7 +3774,7 @@
         {
           "slug": "inside-the-experiment",
           "title": "Inside the Experiment",
-          "ported": false
+          "ported": true
         },
         {
           "slug": "the-thread-that-remembered-me",
