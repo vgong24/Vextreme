@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 98,
+    "total": 100,
     "healthy": 3,
-    "attention": 89,
+    "attention": 91,
     "critical": 6,
-    "sorted": 59,
-    "withFab": 85,
-    "withIdentity": 66,
+    "sorted": 61,
+    "withFab": 87,
+    "withIdentity": 68,
     "withScreenshots": 11,
-    "withMetaDescription": 63
+    "withMetaDescription": 65
   },
   "pages": {
     "a-conversation-with-pastor-jacob": {
@@ -4255,6 +4255,60 @@
         ]
       }
     },
+    "the-living-blueprint": {
+      "slug": "the-living-blueprint",
+      "title": "The Living Blueprint",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "direct_contact"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 81,
+        "languages": {
+          "en": {
+            "translated": 81,
+            "total": 81,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Living Blueprint — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "the-room-that-finally-talked-to-itself": {
       "slug": "the-room-that-finally-talked-to-itself",
       "title": "The Room That Finally Talked To Itself",
@@ -4588,6 +4642,60 @@
           "identity",
           "screenshot",
           "theme-effect"
+        ]
+      }
+    },
+    "the-walk": {
+      "slug": "the-walk",
+      "title": "The Walk",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "direct_contact"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 126,
+        "languages": {
+          "en": {
+            "translated": 126,
+            "total": 126,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Walk — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
         ]
       }
     },

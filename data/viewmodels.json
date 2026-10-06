@@ -974,5 +974,37 @@
       "analysis",
       "arc-nav"
     ]
+  },
+  "the-walk": {
+    "title": "The Walk",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-walk"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "the-living-blueprint": {
+    "title": "The Living Blueprint",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-living-blueprint"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
   }
 }

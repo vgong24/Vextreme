@@ -1,5 +1,5 @@
 {
-  "contentFingerprint": "90edfa241c6b",
+  "contentFingerprint": "b2ab95dcf039",
   "nodeCount": 114,
   "curatedNodeCount": 91,
   "autoDiscoveredCount": 23,
@@ -2177,7 +2177,8 @@
           "spiral-fab",
           "theme",
           "map",
-          "analysis"
+          "analysis",
+          "arc-nav"
         ]
       }
     },
@@ -2202,7 +2203,8 @@
           "spiral-fab",
           "theme",
           "map",
-          "analysis"
+          "analysis",
+          "arc-nav"
         ]
       }
     },
@@ -3905,12 +3907,12 @@
         {
           "slug": "the-walk",
           "title": "The Walk",
-          "ported": false
+          "ported": true
         },
         {
           "slug": "the-living-blueprint",
           "title": "The Living Blueprint",
-          "ported": false
+          "ported": true
         },
         {
           "slug": "the-grimoire",
