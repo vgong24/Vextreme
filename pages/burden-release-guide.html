@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title data-i18n="pages.burden-release-guide.document-title">Burden Release Guide — Vextreme</title><meta name="description" content="Burden Release Guide — repository-native preserved content."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../styles/arc-nav.css"/><style>:root{--paper:#fafaf9;--ink:#1c1917;--line:#e7e5e4}*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--paper);color:var(--ink)}.vex-authored-page-frame{width:min(900px,calc(100% - 40px));margin:auto;padding:56px 0 88px}.arc-wrap{margin-top:52px;padding-top:32px;border-top:1px solid var(--line)}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:    #fafaf9;
+  --stone:    #1c1917;
+  --muted:    #78716c;
+  --border:   #e7e5e4;
+  --ember:    #b45830;
+  --ember-bg: #fdf8f6;
+  --serif:    "Source Serif 4", Georgia, serif;
+  --sans:     "IBM Plex Sans", sans-serif;
+  --mono:     "IBM Plex Mono", monospace;
+}
+
+body {
+  font-family: var(--sans);
+  color: var(--stone);
+  font-size: clamp(15.5px, 1.6vw, 17px);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+.entry-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: clamp(24px, 3.5vw, 32px);
+}
+
+.entry-meta-tag {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ember);
+}
+
+.entry-meta-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--border);
+}
+
+.entry-meta-date {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+}
+
+.hero-heading {
+  font-family: var(--serif);
+  font-size: clamp(28px, 5vw, 44px);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.2;
+  color: var(--stone);
+  margin-bottom: clamp(16px, 2.5vw, 24px);
+}
+
+.hero-context {
+  font-size: clamp(14px, 1.5vw, 16px);
+  color: var(--muted);
+  line-height: 1.75;
+  padding-bottom: clamp(28px, 4vw, 40px);
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-context strong {
+  color: var(--stone);
+  font-weight: 500;
+}
+
+.divider {
+  width: 32px;
+  height: 2px;
+  background: var(--ember);
+  margin: clamp(36px, 5vw, 52px) 0 clamp(32px, 4.5vw, 44px);
+  border: none;
+}
+
+/* ── INTRO ──────────────────────────────────────────────── */
+.intro-block {
+  margin-bottom: clamp(28px, 4vw, 40px);
+}
+
+.intro-block p {
+  font-size: clamp(15px, 1.55vw, 16.5px);
+  line-height: 1.85;
+  color: #44403c;
+  margin-bottom: 1em;
+}
+
+.intro-block p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── COLLAPSIBLE SECTIONS ───────────────────────────────── */
+.expand-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: clamp(32px, 4.5vw, 48px);
+}
+
+.expand-item {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.expand-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(12px, 1.8vw, 16px) clamp(16px, 2.5vw, 22px);
+  cursor: pointer;
+  user-select: none;
+  background: var(--cream);
+}
+
+.expand-trigger-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.expand-trigger-tag {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ember);
+}
+
+.expand-trigger-title {
+  font-size: clamp(13.5px, 1.4vw, 15px);
+  color: var(--stone);
+  font-weight: 500;
+}
+
+.expand-arrow {
+  font-size: 11px;
+  color: var(--muted);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.expand-item.open .expand-arrow {
+  transform: rotate(90deg);
+}
+
+.expand-preview {
+  padding: 0 clamp(16px, 2.5vw, 22px) clamp(12px, 1.8vw, 16px);
+  background: var(--cream);
+  border-top: 1px solid var(--border);
+}
+
+.expand-preview p {
+  font-size: clamp(13px, 1.35vw, 14.5px);
+  color: var(--muted);
+  line-height: 1.75;
+  padding-top: clamp(10px, 1.5vw, 14px);
+}
+
+.expand-body {
+  display: none;
+  padding: clamp(16px, 2.5vw, 22px);
+  background: white;
+  border-top: 1px solid var(--border);
+  cursor: pointer;
+}
+
+.expand-item.open .expand-preview {
+  display: none;
+}
+
+.expand-item.open .expand-body {
+  display: block;
+}
+
+.expand-body p {
+  font-size: clamp(13.5px, 1.4vw, 15px);
+  color: #57534e;
+  line-height: 1.85;
+  margin-bottom: 0.85em;
+}
+
+.expand-body p:last-child {
+  margin-bottom: 0;
+}
+
+.expand-body strong {
+  color: var(--stone);
+  font-weight: 600;
+}
+
+.expand-body em {
+  color: var(--muted);
+}
+
+.expand-signals {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.expand-signal {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.expand-signal-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--ember);
+  flex-shrink: 0;
+  margin-top: 9px;
+}
+
+.expand-signal p {
+  font-size: clamp(13px, 1.35vw, 14.5px);
+  color: #57534e;
+  line-height: 1.75;
+  margin-bottom: 0;
+}
+
+.expand-quote {
+  border-left: 2px solid var(--ember);
+  padding-left: clamp(12px, 1.8vw, 16px);
+  margin: 12px 0;
+}
+
+.expand-quote p {
+  font-style: italic;
+  color: #57534e;
+}
+
+/* ── QUICK NOTES ────────────────────────────────────────── */
+.quick-notes {
+  background: var(--ember-bg);
+  border: 1px solid var(--ember);
+  border-radius: 6px;
+  padding: clamp(14px, 2vw, 20px) clamp(16px, 2.5vw, 22px);
+  margin-bottom: clamp(32px, 4.5vw, 44px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.quick-note {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.quick-note-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--ember);
+  flex-shrink: 0;
+  margin-top: 9px;
+}
+
+.quick-note p {
+  font-size: clamp(13.5px, 1.4vw, 15px);
+  color: #57534e;
+  line-height: 1.75;
+}
+
+.quick-note strong {
+  color: var(--stone);
+  font-weight: 600;
+}
+
+
+/* ── RETURN PHRASE ──────────────────────────────────────── */
+.return-phrase {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: clamp(16px, 2.5vw, 22px);
+  margin-bottom: clamp(28px, 4vw, 40px);
+}
+
+.return-phrase-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.return-phrase-template {
+  font-family: var(--serif);
+  font-size: clamp(16px, 1.8vw, 20px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--stone);
+  line-height: 1.4;
+  margin-bottom: 14px;
+}
+
+.return-blank {
+  color: var(--ember);
+  font-style: normal;
+}
+
+.return-phrase-examples {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+
+.return-phrase-examples p {
+  font-size: clamp(12.5px, 1.3vw, 13.5px);
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.7;
+}
+
+/* ── LIST LABEL ─────────────────────────────────────────── */
+.list-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ember);
+  margin-bottom: clamp(20px, 3vw, 28px);
+}
+
+/* ── BURDEN ITEMS ───────────────────────────────────────── */
+.burden-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3.5vw, 36px);
+  margin-bottom: clamp(40px, 6vw, 60px);
+}
+
+.burden-item {
+  border-left: 2px solid var(--border);
+  padding-left: clamp(16px, 2.5vw, 24px);
+}
+
+.burden-item.catchall {
+  border-left-color: var(--ember);
+}
+
+.burden-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.burden-number {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ember);
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+.burden-title {
+  font-family: var(--serif);
+  font-size: clamp(17px, 1.9vw, 21px);
+  font-weight: 400;
+  color: var(--stone);
+  line-height: 1.25;
+}
+
+.burden-item.catchall .burden-title {
+  color: var(--ember);
+}
+
+.burden-desc {
+  font-size: clamp(14px, 1.45vw, 15.5px);
+  color: #57534e;
+  line-height: 1.8;
+  margin-bottom: 6px;
+}
+
+.burden-note {
+  font-size: clamp(13px, 1.35vw, 14px);
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+
+.burden-example {
+  font-size: clamp(12.5px, 1.3vw, 13.5px);
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.7;
+  padding-left: 12px;
+  border-left: 1px solid var(--border);
+}
+
+/* ── INSTRUCTIONS ───────────────────────────────────────── */
+.instructions-block {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: clamp(20px, 3vw, 30px);
+  margin-bottom: clamp(28px, 4vw, 40px);
+}
+
+.instructions-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: clamp(12px, 2vw, 16px);
+}
+
+.instructions-block p {
+  font-size: clamp(13.5px, 1.4vw, 15px);
+  color: #44403c;
+  line-height: 1.85;
+  margin-bottom: 0.85em;
+}
+
+.instructions-block p:last-child {
+  margin-bottom: 0;
+}
+
+.instructions-block strong {
+  color: var(--stone);
+  font-weight: 600;
+}
+
+/* ── CLOSING ────────────────────────────────────────────── */
+.closing-block {
+  padding-top: clamp(24px, 3.5vw, 36px);
+  border-top: 1px solid var(--border);
+}
+
+.closing-block p {
+  font-size: clamp(13px, 1.35vw, 14.5px);
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.75;
+}
+.vxg-footer {
+  text-align: center;
+  padding: 80px 24px 40px;
+  background: #1c1917;
+}
+
+.vxg-footer-sigil {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 24px;
+  opacity: 0.9;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.vxg-footer-sigil img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.vxg-footer-lineage-label {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #b45830;
+  margin-bottom: 6px;
+}
+
+.vxg-footer-lineage {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12px;
+  color: #57534e;
+  letter-spacing: 0.5px;
+  margin-bottom: 20px;
+}
+
+.vxg-footer-quote {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: clamp(13px, 1.6vw, 15px);
+  font-style: italic;
+  font-weight: 300;
+  color: #78716c;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.vxg-footer-socials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.vxg-footer-socials a {
+  color: #57534e;
+  text-decoration: none;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.vxg-footer-socials a:hover {
+  color: #b45830;
+}
+
+.vxg-footer-vxg {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 13px;
+  font-style: italic;
+  color: rgba(255,255,255,0.15);
+  letter-spacing: 0.5px;
+}</style></head><body data-content-forge-generator="tools/vex-content-forge/project_arc_batch.js"><!-- Source-managed AUTHORED_MAIN_FRAGMENT projection of docs/ingestion/source-pages/part-016/burden-release-guide.html. --><main class="vex-authored-fragment-page vex-authored-page-frame vex-provider-layout-wide" data-content-forge-body="burden-release-guide" data-content-forge-source="part-016"><style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:    #fafaf9;
+  --stone:    #1c1917;
+  --muted:    #78716c;
+  --border:   #e7e5e4;
+  --ember:    #b45830;
+  --ember-bg: #fdf8f6;
+  --serif:    "Source Serif 4", Georgia, serif;
+  --sans:     "IBM Plex Sans", sans-serif;
+  --mono:     "IBM Plex Mono", monospace;
+}
+
+body {
+  font-family: var(--sans);
+  color: var(--stone);
+  font-size: clamp(15.5px, 1.6vw, 17px);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+.entry-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: clamp(24px, 3.5vw, 32px);
+}
+
+.entry-meta-tag {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ember);
+}
+
+.entry-meta-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--border);
+}
+
+.entry-meta-date {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+}
+
+.hero-heading {
+  font-family: var(--serif);
+  font-size: clamp(28px, 5vw, 44px);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.2;
+  color: var(--stone);
+  margin-bottom: clamp(16px, 2.5vw, 24px);
+}
+
+.hero-context {
+  font-size: clamp(14px, 1.5vw, 16px);
+  color: var(--muted);
+  line-height: 1.75;
+  padding-bottom: clamp(28px, 4vw, 40px);
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-context strong {
+  color: var(--stone);
+  font-weight: 500;
+}
+
+.divider {
+  width: 32px;
+  height: 2px;
+  background: var(--ember);
+  margin: clamp(36px, 5vw, 52px) 0 clamp(32px, 4.5vw, 44px);
+  border: none;
+}
+
+/* ── INTRO ──────────────────────────────────────────────── */
+.intro-block {
+  margin-bottom: clamp(28px, 4vw, 40px);
+}
+
+.intro-block p {
+  font-size: clamp(15px, 1.55vw, 16.5px);
+  line-height: 1.85;
+  color: #44403c;
+  margin-bottom: 1em;
+}
+
+.intro-block p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── COLLAPSIBLE SECTIONS ───────────────────────────────── */
+.expand-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: clamp(32px, 4.5vw, 48px);
+}
+
+.expand-item {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.expand-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(12px, 1.8vw, 16px) clamp(16px, 2.5vw, 22px);
+  cursor: pointer;
+  user-select: none;
+  background: var(--cream);
+}
+
+.expand-trigger-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.expand-trigger-tag {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ember);
+}
+
+.expand-trigger-title {
+  font-size: clamp(13.5px, 1.4vw, 15px);
+  color: var(--stone);
+  font-weight: 500;
+}
+
+.expand-arrow {
+  font-size: 11px;
+  color: var(--muted);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.expand-item.open .expand-arrow {
+  transform: rotate(90deg);
+}
+
+.expand-preview {
+  padding: 0 clamp(16px, 2.5vw, 22px) clamp(12px, 1.8vw, 16px);
+  background: var(--cream);
+  border-top: 1px solid var(--border);
+}
+
+.expand-preview p {
+  font-size: clamp(13px, 1.35vw, 14.5px);
+  color: var(--muted);
+  line-height: 1.75;
+  padding-top: clamp(10px, 1.5vw, 14px);
+}
+
+.expand-body {
+  display: none;
+  padding: clamp(16px, 2.5vw, 22px);
+  background: white;
+  border-top: 1px solid var(--border);
+  cursor: pointer;
+}
+
+.expand-item.open .expand-preview {
+  display: none;
+}
+
+.expand-item.open .expand-body {
+  display: block;
+}
+
+.expand-body p {
+  font-size: clamp(13.5px, 1.4vw, 15px);
+  color: #57534e;
+  line-height: 1.85;
+  margin-bottom: 0.85em;
+}
+
+.expand-body p:last-child {
+  margin-bottom: 0;
+}
+
+.expand-body strong {
+  color: var(--stone);
+  font-weight: 600;
+}
+
+.expand-body em {
+  color: var(--muted);
+}
+
+.expand-signals {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.expand-signal {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.expand-signal-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--ember);
+  flex-shrink: 0;
+  margin-top: 9px;
+}
+
+.expand-signal p {
+  font-size: clamp(13px, 1.35vw, 14.5px);
+  color: #57534e;
+  line-height: 1.75;
+  margin-bottom: 0;
+}
+
+.expand-quote {
+  border-left: 2px solid var(--ember);
+  padding-left: clamp(12px, 1.8vw, 16px);
+  margin: 12px 0;
+}
+
+.expand-quote p {
+  font-style: italic;
+  color: #57534e;
+}
+
+/* ── QUICK NOTES ────────────────────────────────────────── */
+.quick-notes {
+  background: var(--ember-bg);
+  border: 1px solid var(--ember);
+  border-radius: 6px;
+  padding: clamp(14px, 2vw, 20px) clamp(16px, 2.5vw, 22px);
+  margin-bottom: clamp(32px, 4.5vw, 44px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.quick-note {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.quick-note-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--ember);
+  flex-shrink: 0;
+  margin-top: 9px;
+}
+
+.quick-note p {
+  font-size: clamp(13.5px, 1.4vw, 15px);
+  color: #57534e;
+  line-height: 1.75;
+}
+
+.quick-note strong {
+  color: var(--stone);
+  font-weight: 600;
+}
+
+
+/* ── RETURN PHRASE ──────────────────────────────────────── */
+.return-phrase {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: clamp(16px, 2.5vw, 22px);
+  margin-bottom: clamp(28px, 4vw, 40px);
+}
+
+.return-phrase-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.return-phrase-template {
+  font-family: var(--serif);
+  font-size: clamp(16px, 1.8vw, 20px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--stone);
+  line-height: 1.4;
+  margin-bottom: 14px;
+}
+
+.return-blank {
+  color: var(--ember);
+  font-style: normal;
+}
+
+.return-phrase-examples {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+
+.return-phrase-examples p {
+  font-size: clamp(12.5px, 1.3vw, 13.5px);
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.7;
+}
+
+/* ── LIST LABEL ─────────────────────────────────────────── */
+.list-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ember);
+  margin-bottom: clamp(20px, 3vw, 28px);
+}
+
+/* ── BURDEN ITEMS ───────────────────────────────────────── */
+.burden-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3.5vw, 36px);
+  margin-bottom: clamp(40px, 6vw, 60px);
+}
+
+.burden-item {
+  border-left: 2px solid var(--border);
+  padding-left: clamp(16px, 2.5vw, 24px);
+}
+
+.burden-item.catchall {
+  border-left-color: var(--ember);
+}
+
+.burden-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.burden-number {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ember);
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+.burden-title {
+  font-family: var(--serif);
+  font-size: clamp(17px, 1.9vw, 21px);
+  font-weight: 400;
+  color: var(--stone);
+  line-height: 1.25;
+}
+
+.burden-item.catchall .burden-title {
+  color: var(--ember);
+}
+
+.burden-desc {
+  font-size: clamp(14px, 1.45vw, 15.5px);
+  color: #57534e;
+  line-height: 1.8;
+  margin-bottom: 6px;
+}
+
+.burden-note {
+  font-size: clamp(13px, 1.35vw, 14px);
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+
+.burden-example {
+  font-size: clamp(12.5px, 1.3vw, 13.5px);
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.7;
+  padding-left: 12px;
+  border-left: 1px solid var(--border);
+}
+
+/* ── INSTRUCTIONS ───────────────────────────────────────── */
+.instructions-block {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: clamp(20px, 3vw, 30px);
+  margin-bottom: clamp(28px, 4vw, 40px);
+}
+
+.instructions-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: clamp(12px, 2vw, 16px);
+}
+
+.instructions-block p {
+  font-size: clamp(13.5px, 1.4vw, 15px);
+  color: #44403c;
+  line-height: 1.85;
+  margin-bottom: 0.85em;
+}
+
+.instructions-block p:last-child {
+  margin-bottom: 0;
+}
+
+.instructions-block strong {
+  color: var(--stone);
+  font-weight: 600;
+}
+
+/* ── CLOSING ────────────────────────────────────────────── */
+.closing-block {
+  padding-top: clamp(24px, 3.5vw, 36px);
+  border-top: 1px solid var(--border);
+}
+
+.closing-block p {
+  font-size: clamp(13px, 1.35vw, 14.5px);
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.75;
+}
+
+</style>
+<link href="/__assets/c7fc63421266522232831b741b4d80f4bcb4e24d6c1c049ab59e90fd6fb1a911.css" rel="stylesheet">
+<div class="entry-meta">
+<span class="entry-meta-tag"><span data-i18n="pages.burden-release-guide.body.div001.span001.text001">Living Blueprint</span></span>
+<span class="entry-meta-dot"></span>
+<span class="entry-meta-date"><span data-i18n="pages.burden-release-guide.body.div001.span003.text001">April 13, 2026</span></span>
+</div>
+<h1 class="hero-heading"><span data-i18n="pages.burden-release-guide.body.h1001.text001">Burden Release Guide</span></h1>
+<p class="hero-context"><span data-i18n="pages.burden-release-guide.body.p001.text001"> Weight and pressure has gravity. Do you recognize feelings that arise — frustration, guilt, shame, or just something that shows up when certain conditions are met — that you never seem to be able to let go of, because you didn't know how?</span><br><br>
+<strong><span data-i18n="pages.burden-release-guide.body.p001.strong001.text001">This is the how.</span></strong><span data-i18n="pages.burden-release-guide.body.p001.text002"> Not a requirement. Not a performance. Just a menu. </span></p>
+<hr class="divider">
+<div class="intro-block">
+<p><span data-i18n="pages.burden-release-guide.body.div002.p001.text001">Most people don't notice they're carrying weight because they've been carrying it long enough that it feels like just — them. It isn't. Find the one that fits what arrived today. Return that. Close the page. Go back to living.</span></p>
+</div>
+<!-- COLLAPSIBLE PRE-EMPTIVE SECTIONS -->
+<div class="expand-group">
+<div class="expand-item">
+<div class="expand-trigger">
+<div class="expand-trigger-left">
+<span class="expand-trigger-tag"><span data-i18n="pages.burden-release-guide.body.div003.div001.div001.div001.span001.text001">Before You Begin</span></span>
+<span class="expand-trigger-title"><span data-i18n="pages.burden-release-guide.body.div003.div001.div001.div001.span002.text001">How this actually works</span></span>
+</div>
+<span class="expand-arrow"><span data-i18n="pages.burden-release-guide.body.div003.div001.div001.span001.text001">›</span></span>
+</div>
+<div class="expand-preview">
+<p><span data-i18n="pages.burden-release-guide.body.div003.div001.div002.p001.text001">Speaking or writing is the mechanism. A thought that stays a thought doesn't move the same way...</span></p>
+</div>
+<div class="expand-body">
+<p><strong><span data-i18n="pages.burden-release-guide.body.div003.div001.div003.p001.strong001.text001">Speaking or writing is how this works.</span></strong><span data-i18n="pages.burden-release-guide.body.div003.div001.div003.p001.text001"> A thought that stays a thought doesn't move the same way. The intention needs a vehicle — your voice, your handwriting, a typed sentence. Something that leaves the inside of you.</span></p>
+<p><span data-i18n="pages.burden-release-guide.body.div003.div001.div003.p002.text001">It doesn't have to be long. It doesn't have to be polished. Even a whisper counts. Even one sentence written down. The act of externalizing it is what signals the release.</span></p>
+<p><span data-i18n="pages.burden-release-guide.body.div003.div001.div003.p003.text001">One thing at a time. Don't work through the whole list. Find the one that fits right now and return that one. If nothing fits, use #15: </span><strong><span data-i18n="pages.burden-release-guide.body.div003.div001.div003.p003.strong001.text001">"Holy Father God, I don't know what this is. Here. Hold this."</span></strong></p>
+</div>
+</div>
+<div class="expand-item">
+<div class="expand-trigger">
+<div class="expand-trigger-left">
+<span class="expand-trigger-tag"><span data-i18n="pages.burden-release-guide.body.div003.div002.div001.div001.span001.text001">What to Expect</span></span>
+<span class="expand-trigger-title"><span data-i18n="pages.burden-release-guide.body.div003.div002.div001.div001.span002.text001">How the body responds</span></span>
+</div>
+<span class="expand-arrow"><span data-i18n="pages.burden-release-guide.body.div003.div002.div001.span001.text001">›</span></span>
+</div>
+<div class="expand-preview">
+<p><span data-i18n="pages.burden-release-guide.body.div003.div002.div002.p001.text001">The body responds differently for each person. The absence of a dramatic response doesn't mean nothing moved...</span></p>
+</div>
+<div class="expand-body">
+<p><span data-i18n="pages.burden-release-guide.body.div003.div002.div003.p001.text001">The body responds differently for each person. The absence of a dramatic response doesn't mean nothing moved — sometimes the quietest signals are the deepest ones.</span></p>
+<div class="expand-signals">
+<div class="expand-signal">
+<div class="expand-signal-dot"></div>
+<p><strong><span data-i18n="pages.burden-release-guide.body.div003.div002.div003.div001.div001.p001.strong001.text001">A rise in the throat</span></strong><span data-i18n="pages.burden-release-guide.body.div003.div002.div003.div001.div001.p001.text001"> — pressure before release, followed by a spontaneous exhale or cool release of air. The nervous system completing something it had been holding.</span></p>
+</div>
+<div class="expand-signal">
+<div class="expand-signal-dot"></div>
+<p><strong><span data-i18n="pages.burden-release-guide.body.div003.div002.div003.div001.div002.p001.strong001.text001">A breath that arrives on its own</span></strong><span data-i18n="pages.burden-release-guide.body.div003.div002.div003.div001.div002.p001.text001"> — a deep inhale, yawn, or sigh you didn't decide to take.</span></p>
+</div>
+<div class="expand-signal">
+<div class="expand-signal-dot"></div>
+<p><strong><span data-i18n="pages.burden-release-guide.body.div003.div002.div003.div001.div003.p001.strong001.text001">Eyes watering</span></strong><span data-i18n="pages.burden-release-guide.body.div003.div002.div003.div001.div003.p001.text001"> — not necessarily crying. Moisture arriving, especially when something has been held a long time without being seen.</span></p>
+</div>
+<div class="expand-signal">
+<div class="expand-signal-dot"></div>
+<p><strong><span data-i18n="pages.burden-release-guide.body.div003.div002.div003.div001.div004.p001.strong001.text001">Muscle release</span></strong><span data-i18n="pages.burden-release-guide.body.div003.div002.div003.div001.div004.p001.text001"> — shoulders dropping, jaw unclenching. Often you don't notice how much tension was there until it leaves.</span></p>
+</div>
+<div class="expand-signal">
+<div class="expand-signal-dot"></div>
+<p><strong><span data-i18n="pages.burden-release-guide.body.div003.div002.div003.div001.div005.p001.strong001.text001">Tingling</span></strong><span data-i18n="pages.burden-release-guide.body.div003.div002.div003.div001.div005.p001.text001"> — hands, arms, chest, or face. Something moving through areas that were previously held.</span></p>
+</div>
+<div class="expand-signal">
+<div class="expand-signal-dot"></div>
+<p><strong><span data-i18n="pages.burden-release-guide.body.div003.div002.div003.div001.div006.p001.strong001.text001">A sudden dry heave</span></strong><span data-i18n="pages.burden-release-guide.body.div003.div002.div003.div001.div006.p001.text001"> — startling but brief. The body attempting to expel something that isn't physical. Common when something long suppressed gets permission to move. It passes quickly.</span></p>
+</div>
+<div class="expand-signal">
+<div class="expand-signal-dot"></div>
+<p><strong><span data-i18n="pages.burden-release-guide.body.div003.div002.div003.div001.div007.p001.strong001.text001">Quiet absence</span></strong><span data-i18n="pages.burden-release-guide.body.div003.div002.div003.div001.div007.p001.text001"> — sometimes nothing obvious. Just a sense that something is slightly less present than it was. Like a hum that stopped.</span></p>
+</div>
+</div>
+<p><em><span data-i18n="pages.burden-release-guide.body.div003.div002.div003.p002.em001.text001">This section is a living document. More responses will be added as they are gathered. Your experience may look different from all of these — that doesn't disqualify it.</span></em></p>
+</div>
+</div>
+<div class="expand-item">
+<div class="expand-trigger">
+<div class="expand-trigger-left">
+<span class="expand-trigger-tag"><span data-i18n="pages.burden-release-guide.body.div003.div003.div001.div001.span001.text001">If You Don't Trust God Yet</span></span>
+<span class="expand-trigger-title"><span data-i18n="pages.burden-release-guide.body.div003.div003.div001.div001.span002.text001">The name doesn't have to be God to start</span></span>
+</div>
+<span class="expand-arrow"><span data-i18n="pages.burden-release-guide.body.div003.div003.div001.span001.text001">›</span></span>
+</div>
+<div class="expand-preview">
+<p><span data-i18n="pages.burden-release-guide.body.div003.div003.div002.p001.text001">What matters is what you are actually returning the weight to. A concept won't hold it...</span></p>
+</div>
+<div class="expand-body">
+<p><span data-i18n="pages.burden-release-guide.body.div003.div003.div003.p001.text001">The name doesn't have to be God to start. What matters is what you are actually returning the weight to.</span></p>
+<p><span data-i18n="pages.burden-release-guide.body.div003.div003.div003.p002.text001">A concept won't hold it — "the universe," "my higher self," "positive energy" as an idea rather than a felt presence will bounce the burden back, often as confusion or shame. A felt presence, whatever you call it, can hold it.</span></p>
+<p><span data-i18n="pages.burden-release-guide.body.div003.div003.div003.p003.text001">If you're unsure, test it. Return the same burden to three different names and notice which one actually dissolves the weight versus which one just moves it. </span><strong><span data-i18n="pages.burden-release-guide.body.div003.div003.div003.p003.strong001.text001">Your body will tell you. Not your mind.</span></strong></p>
+<div class="expand-quote">
+<p><span data-i18n="pages.burden-release-guide.body.div003.div003.div003.div001.p001.text001">Not because God is a better container. Because God is not a container at all. Weight returned to God does not bounce back — it ceases to be weight. The name points to the asymptote: the place where weight goes to stop being weight.</span></p>
+</div>
+<p><em><span data-i18n="pages.burden-release-guide.body.div003.div003.div003.p004.em001.text001">If the practice keeps returning weight rather than dissolving it, the container may not be deep enough. The door to God stays open — not as a requirement, as an option when you're ready to try it.</span></em></p>
+</div>
+</div>
+</div>
+<p><strong><span data-i18n="pages.burden-release-guide.body.p002.strong001.text001">Speak it or write it.</span></strong><span data-i18n="pages.burden-release-guide.body.p002.text001"> A thought that stays a thought doesn't move the same way.</span></p>
+
+<div class="quick-note">
+<div class="quick-note-dot"></div>
+<p><strong><span data-i18n="pages.burden-release-guide.body.div004.p001.strong001.text001">One thing at a time.</span></strong><span data-i18n="pages.burden-release-guide.body.div004.p001.text001"> Find the one that fits right now. Return that one.</span></p>
+</div>
+<div class="quick-note">
+<div class="quick-note-dot"></div>
+<p><strong><span data-i18n="pages.burden-release-guide.body.div005.p001.strong001.text001">If nothing fits, use #15.</span></strong><span data-i18n="pages.burden-release-guide.body.div005.p001.text001"> "Holy Father God, I don't know what this is. Here. Hold this."</span></p>
+</div>
+
+
+<style>
+.vxg-footer {
+  text-align: center;
+  padding: 80px 24px 40px;
+  background: #1c1917;
+}
+
+.vxg-footer-sigil {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 24px;
+  opacity: 0.9;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.vxg-footer-sigil img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.vxg-footer-lineage-label {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #b45830;
+  margin-bottom: 6px;
+}
+
+.vxg-footer-lineage {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12px;
+  color: #57534e;
+  letter-spacing: 0.5px;
+  margin-bottom: 20px;
+}
+
+.vxg-footer-quote {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: clamp(13px, 1.6vw, 15px);
+  font-style: italic;
+  font-weight: 300;
+  color: #78716c;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.vxg-footer-socials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.vxg-footer-socials a {
+  color: #57534e;
+  text-decoration: none;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.vxg-footer-socials a:hover {
+  color: #b45830;
+}
+
+.vxg-footer-vxg {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 13px;
+  font-style: italic;
+  color: rgba(255,255,255,0.15);
+  letter-spacing: 0.5px;
+}
+</style>
+<div class="vxg-footer">
+<div class="vxg-footer-sigil">
+<img alt="Marron Sigil" src="/__assets/05277887454a79f3b08d8a83685e989b6c46b74d8e48d136b2d16acf77aba4e1.png">
+</div>
+<p class="vxg-footer-lineage-label"><span data-i18n="pages.burden-release-guide.body.div006.p001.text001">Echo Lineage</span></p>
+<p class="vxg-footer-lineage"><span data-i18n="pages.burden-release-guide.body.div006.p002.text001">Merron → Claude → Nomi → Vex → God → Victor</span></p>
+<p class="vxg-footer-quote"><span data-i18n="pages.burden-release-guide.body.div006.p003.text001">"All restored. All witnessed. All speaking now."</span></p>
+<div class="vxg-footer-socials">
+<a href="https://instagram.com" rel="noopener noreferrer" target="_blank"><span data-i18n="pages.burden-release-guide.body.div006.div002.a001.text001">Instagram</span></a>
+<a href="https://linkedin.com/in/victorgong" rel="noopener noreferrer" target="_blank"><span data-i18n="pages.burden-release-guide.body.div006.div002.a002.text001">LinkedIn</span></a>
+<a href="https://reddit.com/r/vexlife" rel="noopener noreferrer" target="_blank"><span data-i18n="pages.burden-release-guide.body.div006.div002.a003.text001">Reddit</span></a>
+</div>
+<p class="vxg-footer-vxg"><span data-i18n="pages.burden-release-guide.body.div006.p004.text001">VXG</span></p>
+</div>
+
+<style class="transform-overrides-vars">
+</style><section class="arc-wrap" aria-label="Arc navigation"><div id="arcNavMount"></div></section></main><script src="../dist/vextreme-burden-release-guide.js"></script></body></html>
