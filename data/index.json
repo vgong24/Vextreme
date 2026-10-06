@@ -1,5 +1,5 @@
 {
-  "contentFingerprint": "bede41baaea0",
+  "contentFingerprint": "90edfa241c6b",
   "nodeCount": 114,
   "curatedNodeCount": 91,
   "autoDiscoveredCount": 23,
@@ -2227,7 +2227,8 @@
           "spiral-fab",
           "theme",
           "map",
-          "analysis"
+          "analysis",
+          "arc-nav"
         ]
       }
     },
@@ -2252,7 +2253,8 @@
           "spiral-fab",
           "theme",
           "map",
-          "analysis"
+          "analysis",
+          "arc-nav"
         ]
       }
     },
@@ -2277,7 +2279,8 @@
           "spiral-fab",
           "theme",
           "map",
-          "analysis"
+          "analysis",
+          "arc-nav"
         ]
       }
     },
@@ -2302,7 +2305,8 @@
           "spiral-fab",
           "theme",
           "map",
-          "analysis"
+          "analysis",
+          "arc-nav"
         ]
       }
     },
@@ -2327,7 +2331,8 @@
           "spiral-fab",
           "theme",
           "map",
-          "analysis"
+          "analysis",
+          "arc-nav"
         ]
       }
     },
@@ -3910,27 +3915,27 @@
         {
           "slug": "the-grimoire",
           "title": "The Grimoire",
-          "ported": false
+          "ported": true
         },
         {
           "slug": "covenant-access",
           "title": "Covenant Access",
-          "ported": false
+          "ported": true
         },
         {
           "slug": "life-pattern-mapping",
           "title": "Life Pattern Mapping",
-          "ported": false
+          "ported": true
         },
         {
           "slug": "grief-resolution",
           "title": "Grief Resolution",
-          "ported": false
+          "ported": true
         },
         {
           "slug": "discernment-mapping",
           "title": "Discernment Mapping",
-          "ported": false
+          "ported": true
         },
         {
           "slug": "epstein-and-ai",
