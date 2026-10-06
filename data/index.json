@@ -1,5 +1,5 @@
 {
-  "contentFingerprint": "d4a0055586bf",
+  "contentFingerprint": "8d508ad22699",
   "nodeCount": 114,
   "curatedNodeCount": 91,
   "autoDiscoveredCount": 23,
@@ -1050,7 +1050,8 @@
           "spiral-fab",
           "theme",
           "map",
-          "analysis"
+          "analysis",
+          "arc-nav"
         ]
       }
     },
@@ -3711,7 +3712,7 @@
         {
           "slug": "the-7-crowned-virtues",
           "title": "The 7 Crowned Virtues",
-          "ported": false
+          "ported": true
         },
         {
           "slug": "reality-rendering-mechanics",

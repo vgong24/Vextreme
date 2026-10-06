@@ -59,7 +59,7 @@ test('Content Forge Records projects two exact members, preserves three exact li
   const held=formation.members.filter(item=>item.preclassifiedHoldReason); const projectable=formation.members.filter(item=>!item.preclassifiedHoldReason);
   assert.deepEqual(held.map(item=>item.slug),['when-they-called-god-a-risk','the-7-crowned-virtues','reality-rendering-mechanics']);
   assert.deepEqual(projectable.map(item=>item.slug),['epstein-and-ai','liberation-arc-index']);
-  const successorResolved=new Set(['when-they-called-god-a-risk']);
+  const successorResolved=new Set(['when-they-called-god-a-risk','the-7-crowned-virtues']);
   assert.deepEqual(formation.alreadyComplete.map(item=>item.slug),['testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence','the-house-of-return','what-was-used-against-you']);
 
   const proposalByRef=new Map(proposal.records.map(record=>[record.recordRef,record])); const lineageById=new Map((proposal.lineages?.canonicalIdentity||[]).map(item=>[item.canonicalIdentity,item]));
