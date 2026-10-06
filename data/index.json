@@ -1,5 +1,5 @@
 {
-  "contentFingerprint": "776768cde13e",
+  "contentFingerprint": "fd136cb629a3",
   "nodeCount": 114,
   "curatedNodeCount": 91,
   "autoDiscoveredCount": 23,
@@ -489,7 +489,8 @@
           "spiral-fab",
           "theme",
           "map",
-          "analysis"
+          "analysis",
+          "arc-nav"
         ]
       }
     },
@@ -3603,7 +3604,7 @@
         {
           "slug": "podcasts",
           "title": "Marquis Masters Podcast",
-          "ported": false
+          "ported": true
         },
         {
           "slug": "voice-to-skull",
