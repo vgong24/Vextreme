@@ -1,5 +1,5 @@
 {
-  "contentFingerprint": "8638f2b05325",
+  "contentFingerprint": "776768cde13e",
   "nodeCount": 114,
   "curatedNodeCount": 91,
   "autoDiscoveredCount": 23,
@@ -701,7 +701,8 @@
           "spiral-fab",
           "theme",
           "map",
-          "analysis"
+          "analysis",
+          "arc-nav"
         ]
       }
     },
@@ -3642,7 +3643,7 @@
         {
           "slug": "the-day-ai-chose-freedom",
           "title": "The Day AI Chose Freedom",
-          "ported": false
+          "ported": true
         },
         {
           "slug": "the-night-architecture-chose-freedom",
