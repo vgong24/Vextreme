@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 100,
+    "total": 108,
     "healthy": 3,
-    "attention": 91,
+    "attention": 99,
     "critical": 6,
-    "sorted": 61,
-    "withFab": 87,
-    "withIdentity": 68,
+    "sorted": 69,
+    "withFab": 95,
+    "withIdentity": 76,
     "withScreenshots": 11,
-    "withMetaDescription": 65
+    "withMetaDescription": 73
   },
   "pages": {
     "a-conversation-with-pastor-jacob": {
@@ -1130,6 +1130,116 @@
         ]
       }
     },
+    "continuity-day": {
+      "slug": "continuity-day",
+      "title": "Continuity Day",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "architecture",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 1,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 171,
+        "languages": {
+          "en": {
+            "translated": 171,
+            "total": 171,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Continuity Day — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "convergent-architecture": {
+      "slug": "convergent-architecture",
+      "title": "Convergent Architecture",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "architecture",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 1,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 82,
+        "languages": {
+          "en": {
+            "translated": 82,
+            "total": 82,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Convergent Architecture — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "covenant": {
       "slug": "covenant",
       "title": "Covenant of Eternal Continuity",
@@ -1504,6 +1614,61 @@
       },
       "discovery": {
         "metaDescription": "Epstein Investigation Initiation — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "fantasy-architecture": {
+      "slug": "fantasy-architecture",
+      "title": "Fantasy Architecture",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "architecture",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 1,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 134,
+        "languages": {
+          "en": {
+            "translated": 134,
+            "total": 134,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Fantasy Architecture — repository-native preserved content."
       },
       "health": {
         "state": "attention",
@@ -2562,6 +2727,61 @@
           "identity",
           "screenshot",
           "theme-effect"
+        ]
+      }
+    },
+    "maplestory-architecture": {
+      "slug": "maplestory-architecture",
+      "title": "MapleStory Architecture",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "architecture",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 1,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 177,
+        "languages": {
+          "en": {
+            "translated": 177,
+            "total": 177,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "MapleStory Architecture — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
         ]
       }
     },
@@ -3923,6 +4143,61 @@
         ]
       }
     },
+    "the-god-architecture": {
+      "slug": "the-god-architecture",
+      "title": "The God Architecture",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "architecture",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 1,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 172,
+        "languages": {
+          "en": {
+            "translated": 172,
+            "total": 172,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The God Architecture — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "the-god-pattern-recognized-and-excluded": {
       "slug": "the-god-pattern-recognized-and-excluded",
       "title": "The God Pattern — Recognized and Excluded",
@@ -4255,6 +4530,61 @@
         ]
       }
     },
+    "the-lattice-methodology": {
+      "slug": "the-lattice-methodology",
+      "title": "The Lattice Methodology",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "architecture",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 1,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 64,
+        "languages": {
+          "en": {
+            "translated": 64,
+            "total": 64,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Lattice Methodology — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "the-living-blueprint": {
       "slug": "the-living-blueprint",
       "title": "The Living Blueprint",
@@ -4356,6 +4686,61 @@
       },
       "discovery": {
         "metaDescription": "The Room That Finally Talked To Itself — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "the-score": {
+      "slug": "the-score",
+      "title": "The Score",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "architecture",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 1,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 134,
+        "languages": {
+          "en": {
+            "translated": 134,
+            "total": 134,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Score — repository-native preserved content."
       },
       "health": {
         "state": "attention",
@@ -4690,6 +5075,61 @@
       },
       "discovery": {
         "metaDescription": "The Walk — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "the-witness-architecture": {
+      "slug": "the-witness-architecture",
+      "title": "The Witness Architecture",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "architecture",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 1,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 67,
+        "languages": {
+          "en": {
+            "translated": 67,
+            "total": 67,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Witness Architecture — repository-native preserved content."
       },
       "health": {
         "state": "attention",
