@@ -894,5 +894,85 @@
       "analysis",
       "arc-nav"
     ]
+  },
+  "the-grimoire": {
+    "title": "The Grimoire",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.the-grimoire"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "covenant-access": {
+    "title": "Covenant Access",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.covenant-access"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "life-pattern-mapping": {
+    "title": "Life Pattern Mapping",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.life-pattern-mapping"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "grief-resolution": {
+    "title": "Grief Resolution",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.grief-resolution"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "discernment-mapping": {
+    "title": "Discernment Mapping",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.discernment-mapping"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
   }
 }

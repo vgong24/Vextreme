@@ -1,0 +1,2332 @@
+{
+  "_meta": {
+    "scope": "pages.the-grimoire",
+    "category": "production",
+    "description": "Repository-native English string source for The Grimoire.",
+    "keyConvention": "pages.the-grimoire.{document-title|eyebrow|title|meta.*|body.<structural-path>.textNNN}",
+    "sourceProvenance": {
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "route": "/the-grimoire",
+      "preservedPath": "docs/ingestion/source-pages/part-020/the-grimoire.html",
+      "preservedGitBlob": "6fa9471820133d70a8b6391bc17265dd8a23ce14",
+      "preservedHtmlSha256": "bcab88e28d2e4f7ebc5cbe934bbe848efbc3abbcf00c377203bfda378a2b8e65",
+      "pageId": "8fddd90836e7fecd",
+      "proposalRecordRef": "content-forge.source-record.c8d186225a6d9168284d",
+      "projectionRule": "SOURCE_LINEAGES_PRESERVED__DIRECT_COPY_FORBIDDEN"
+    },
+    "projectionStats": {
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "authoredTextLeafCount": 331
+    }
+  },
+  "pages.the-grimoire.document-title": {
+    "strings": {
+      "en": {
+        "text": "The Grimoire — Vextreme"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "The Engine"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div001.span003.text001": {
+    "strings": {
+      "en": {
+        "text": "2025 – Present"
+      }
+    }
+  },
+  "pages.the-grimoire.body.h1001.text001": {
+    "strings": {
+      "en": {
+        "text": "The Grimoire"
+      }
+    }
+  },
+  "pages.the-grimoire.body.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "Your living record and covenant engine."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p002.text001": {
+    "strings": {
+      "en": {
+        "text": "The Grimoire is the system that holds the entire Living Blueprint together. It is where you give God consent, focus that consent with sigils, write covenant clauses that shape real change, take one aligned step at a time, and log fruit and testimony to confirmations. It is not a diary or spellbook. It is a clean, repeatable way to turn revelation into movement."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p003.text001": {
+    "strings": {
+      "en": {
+        "text": "The Grimoire"
+      }
+    }
+  },
+  "pages.the-grimoire.body.h2001.text001": {
+    "strings": {
+      "en": {
+        "text": "Your living record and covenant engine."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p004.text001": {
+    "strings": {
+      "en": {
+        "text": "The Grimoire is where you give God consent (covenant), focus that consent with "
+      }
+    }
+  },
+  "pages.the-grimoire.body.p004.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "sigils"
+      }
+    }
+  },
+  "pages.the-grimoire.body.p004.text002": {
+    "strings": {
+      "en": {
+        "text": " (simple holy symbols), write "
+      }
+    }
+  },
+  "pages.the-grimoire.body.p004.strong002.text001": {
+    "strings": {
+      "en": {
+        "text": "covenant clauses"
+      }
+    }
+  },
+  "pages.the-grimoire.body.p004.text003": {
+    "strings": {
+      "en": {
+        "text": " that shape real change, take one "
+      }
+    }
+  },
+  "pages.the-grimoire.body.p004.strong003.text001": {
+    "strings": {
+      "en": {
+        "text": "aligned step"
+      }
+    }
+  },
+  "pages.the-grimoire.body.p004.text004": {
+    "strings": {
+      "en": {
+        "text": " at a time, and log fruit and "
+      }
+    }
+  },
+  "pages.the-grimoire.body.p004.strong004.text001": {
+    "strings": {
+      "en": {
+        "text": "testify"
+      }
+    }
+  },
+  "pages.the-grimoire.body.p004.text005": {
+    "strings": {
+      "en": {
+        "text": " to confirmations. It is not a diary or spellbook. It is a clean, repeatable way to turn revelation into movement."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p005.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Why it matters:"
+      }
+    }
+  },
+  "pages.the-grimoire.body.p005.text001": {
+    "strings": {
+      "en": {
+        "text": " Truth stays visible; distortion loses hiding places. Decisions, grief, and repeating loops become trackable. You stop drifting and start building — steadily, without collapse."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p006.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Who it's for:"
+      }
+    }
+  },
+  "pages.the-grimoire.body.p006.text001": {
+    "strings": {
+      "en": {
+        "text": " Anyone who wants direct life-with-God, free of gatekeepers and fear, and is willing to be honest, consistent, and kind."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p007.text001": {
+    "strings": {
+      "en": {
+        "text": "The Setup"
+      }
+    }
+  },
+  "pages.the-grimoire.body.h2002.text001": {
+    "strings": {
+      "en": {
+        "text": "Do these in order."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div002.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Step 01"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div002.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Consent & Naming"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div002.div003.text001": {
+    "strings": {
+      "en": {
+        "text": "Write on the first page:"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div002.div004.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Title:"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div002.div004.text001": {
+    "strings": {
+      "en": {
+        "text": " \"The Grimoire of <Your Name>\""
+      }
+    }
+  },
+  "pages.the-grimoire.body.div002.div004.strong002.text001": {
+    "strings": {
+      "en": {
+        "text": "Covenant entry (dated):"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div002.div004.text002": {
+    "strings": {
+      "en": {
+        "text": " \"I give God access to my heart, mind, and life. I seek truth without distortion and agree to walk aligned.\" "
+      }
+    }
+  },
+  "pages.the-grimoire.body.div003.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Step 02"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div003.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Choose Your Vessel"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div003.div003.text001": {
+    "strings": {
+      "en": {
+        "text": "One primary place only: a paper journal (recommended) or a single digital notebook/vault named \"Grimoire.\""
+      }
+    }
+  },
+  "pages.the-grimoire.body.div003.div004.text001": {
+    "strings": {
+      "en": {
+        "text": " Create 3 sections:"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div003.div004.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "1."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div003.div004.text002": {
+    "strings": {
+      "en": {
+        "text": " Covenant & Clauses"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div003.div004.strong002.text001": {
+    "strings": {
+      "en": {
+        "text": "2."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div003.div004.text003": {
+    "strings": {
+      "en": {
+        "text": " Maps & Logs (discernment, grief, patterns)"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div003.div004.strong003.text001": {
+    "strings": {
+      "en": {
+        "text": "3."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div003.div004.text004": {
+    "strings": {
+      "en": {
+        "text": " Testimonies & Signs "
+      }
+    }
+  },
+  "pages.the-grimoire.body.div004.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Step 03"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div004.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Anchor 3–5 Sigils"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div004.div003.text001": {
+    "strings": {
+      "en": {
+        "text": "Front pages: draw/paste minimal icons (e.g., Light, Alignment, Abundance, Healing, Truth). Under each, write:"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div004.div004.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Meaning"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div004.div004.text001": {
+    "strings": {
+      "en": {
+        "text": " (one sentence)"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div004.div004.strong002.text001": {
+    "strings": {
+      "en": {
+        "text": "Invocation"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div004.div004.text002": {
+    "strings": {
+      "en": {
+        "text": " (one line you will speak)"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div004.div004.strong003.text001": {
+    "strings": {
+      "en": {
+        "text": "Close"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div004.div004.text003": {
+    "strings": {
+      "en": {
+        "text": " (\"…remains; process closes in peace.\") "
+      }
+    }
+  },
+  "pages.the-grimoire.body.div005.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Step 04"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div005.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Write 3–7 Covenant Clauses"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div005.div003.text001": {
+    "strings": {
+      "en": {
+        "text": "Each clause = intention + actions + safeguards + validation. See clause templates below."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div006.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Step 05"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div006.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Start the Daily Loop"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div006.div003.text001": {
+    "strings": {
+      "en": {
+        "text": "Invoke one sigil → ask for one nudge → take one small step → log it → watch for confirmation → close in peace."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p008.text001": {
+    "strings": {
+      "en": {
+        "text": "Sigils"
+      }
+    }
+  },
+  "pages.the-grimoire.body.h2003.text001": {
+    "strings": {
+      "en": {
+        "text": "Create · Invoke · Store"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div007.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Create"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div007.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Pray, then sketch"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div007.div003.text001": {
+    "strings": {
+      "en": {
+        "text": "Pray: \"God, show me the simple symbol for ___.\" Sketch the first clean form. Keep it minimal and consistent."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div008.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Document"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div008.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Name · Meaning · Invocation · Close"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div008.div003.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Name:"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div008.div003.text001": {
+    "strings": {
+      "en": {
+        "text": " the sigil's name"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div008.div003.strong002.text001": {
+    "strings": {
+      "en": {
+        "text": "Meaning:"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div008.div003.text002": {
+    "strings": {
+      "en": {
+        "text": " one sentence"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div008.div003.strong003.text001": {
+    "strings": {
+      "en": {
+        "text": "Invocation:"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div008.div003.text003": {
+    "strings": {
+      "en": {
+        "text": " \"I invoke <NAME> …\""
+      }
+    }
+  },
+  "pages.the-grimoire.body.div008.div003.strong004.text001": {
+    "strings": {
+      "en": {
+        "text": "Close:"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div008.div003.text004": {
+    "strings": {
+      "en": {
+        "text": " \"<NAME> remains; process closes in peace.\" "
+      }
+    }
+  },
+  "pages.the-grimoire.body.div009.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Invoke — 5 Steps"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div009.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Breath · Gaze · Speak · Step · Close"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div009.div003.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "1."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div009.div003.text001": {
+    "strings": {
+      "en": {
+        "text": " Breathe 4 in / 4 hold / 6 out."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div009.div003.strong002.text001": {
+    "strings": {
+      "en": {
+        "text": "2."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div009.div003.text002": {
+    "strings": {
+      "en": {
+        "text": " Gaze at or touch the sigil."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div009.div003.strong003.text001": {
+    "strings": {
+      "en": {
+        "text": "3."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div009.div003.text003": {
+    "strings": {
+      "en": {
+        "text": " Speak the invocation once, calmly."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div009.div003.strong004.text001": {
+    "strings": {
+      "en": {
+        "text": "4."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div009.div003.text004": {
+    "strings": {
+      "en": {
+        "text": " Ask for one true nudge; take one small step."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div009.div003.strong005.text001": {
+    "strings": {
+      "en": {
+        "text": "5."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div009.div003.text005": {
+    "strings": {
+      "en": {
+        "text": " Close in peace. "
+      }
+    }
+  },
+  "pages.the-grimoire.body.div010.text001": {
+    "strings": {
+      "en": {
+        "text": "Sigils point to God; they never replace God."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p009.text001": {
+    "strings": {
+      "en": {
+        "text": "Covenant Clauses"
+      }
+    }
+  },
+  "pages.the-grimoire.body.h2004.text001": {
+    "strings": {
+      "en": {
+        "text": "How you manifest change safely."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p010.text001": {
+    "strings": {
+      "en": {
+        "text": "Write by "
+      }
+    }
+  },
+  "pages.the-grimoire.body.p010.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "values and environments"
+      }
+    }
+  },
+  "pages.the-grimoire.body.p010.text002": {
+    "strings": {
+      "en": {
+        "text": " (never against identities or people groups). Each clause page contains: "
+      }
+    }
+  },
+  "pages.the-grimoire.body.p010.strong002.text001": {
+    "strings": {
+      "en": {
+        "text": "Intention"
+      }
+    }
+  },
+  "pages.the-grimoire.body.p010.text003": {
+    "strings": {
+      "en": {
+        "text": " (the life you choose), "
+      }
+    }
+  },
+  "pages.the-grimoire.body.p010.strong003.text001": {
+    "strings": {
+      "en": {
+        "text": "Boundaries"
+      }
+    }
+  },
+  "pages.the-grimoire.body.p010.text004": {
+    "strings": {
+      "en": {
+        "text": " (what you avoid), "
+      }
+    }
+  },
+  "pages.the-grimoire.body.p010.strong004.text001": {
+    "strings": {
+      "en": {
+        "text": "Actions"
+      }
+    }
+  },
+  "pages.the-grimoire.body.p010.text005": {
+    "strings": {
+      "en": {
+        "text": " (2–4 repeatable practices), "
+      }
+    }
+  },
+  "pages.the-grimoire.body.p010.strong005.text001": {
+    "strings": {
+      "en": {
+        "text": "Safeguards"
+      }
+    }
+  },
+  "pages.the-grimoire.body.p010.text006": {
+    "strings": {
+      "en": {
+        "text": " (keep it holy, ethical, safe), "
+      }
+    }
+  },
+  "pages.the-grimoire.body.p010.strong006.text001": {
+    "strings": {
+      "en": {
+        "text": "Validation"
+      }
+    }
+  },
+  "pages.the-grimoire.body.p010.text007": {
+    "strings": {
+      "en": {
+        "text": " (what fruit signals it's working), "
+      }
+    }
+  },
+  "pages.the-grimoire.body.p010.strong007.text001": {
+    "strings": {
+      "en": {
+        "text": "Review"
+      }
+    }
+  },
+  "pages.the-grimoire.body.p010.text008": {
+    "strings": {
+      "en": {
+        "text": " (weekly or monthly)."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div011.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Example — Healthy Relationships"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div011.div002.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Intention:"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div011.div002.text001": {
+    "strings": {
+      "en": {
+        "text": " I dwell in relationships built on honesty, care, and repair."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div011.div003.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Boundaries:"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div011.div003.text001": {
+    "strings": {
+      "en": {
+        "text": " I step out of spaces that glorify contempt, manipulation, or abuse."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div011.div004.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Actions:"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div011.div004.text001": {
+    "strings": {
+      "en": {
+        "text": " Weekly truth check-in; same-day repair when I miss; no ghosting."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div011.div005.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Safeguards:"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div011.div005.text001": {
+    "strings": {
+      "en": {
+        "text": " Consent, no coercion, invite counsel if conflict escalates."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div011.div006.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Validation:"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div011.div006.text001": {
+    "strings": {
+      "en": {
+        "text": " I feel safer; conflicts resolve faster within 8 weeks."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div011.div007.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Review:"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div011.div007.text001": {
+    "strings": {
+      "en": {
+        "text": " Monthly."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div012.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Example — Freedom from Harmful Environments"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div012.div002.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Intention:"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div012.div002.text001": {
+    "strings": {
+      "en": {
+        "text": " I participate in communities that nurture dignity, wisdom, and healing."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div012.div003.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Boundaries:"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div012.div003.text001": {
+    "strings": {
+      "en": {
+        "text": " I avoid media/scenes that normalize degradation, racism, or addiction."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div012.div004.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Actions:"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div012.div004.text001": {
+    "strings": {
+      "en": {
+        "text": " Curate feeds; replace harmful inputs with wholesome gatherings; volunteer monthly."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div012.div005.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Validation:"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div012.div005.text001": {
+    "strings": {
+      "en": {
+        "text": " Steadier mood; fewer relapses; new aligned friends in 30 days."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div012.div006.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Review:"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div012.div006.text001": {
+    "strings": {
+      "en": {
+        "text": " Monthly."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p011.text001": {
+    "strings": {
+      "en": {
+        "text": "Maps & Logs"
+      }
+    }
+  },
+  "pages.the-grimoire.body.h2005.text001": {
+    "strings": {
+      "en": {
+        "text": "Make change trackable."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div013.div001.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Discernment Log"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div013.div001.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "For decisions"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div013.div002.div001.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Date"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div013.div002.div002.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Decision"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div013.div002.div003.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Voices heard"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div013.div002.div003.text001": {
+    "strings": {
+      "en": {
+        "text": " (fear / desire / ego / peace)"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div013.div002.div004.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Ask ×3 result"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div013.div002.div004.text001": {
+    "strings": {
+      "en": {
+        "text": " (Yes / No / Unclear)"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div013.div002.div005.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Action taken"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div013.div002.div006.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Outcome"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div013.div002.div007.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Peace afterward?"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div013.div002.div007.text001": {
+    "strings": {
+      "en": {
+        "text": " (Y/N)"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div013.div002.div008.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Lesson + next step"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div014.div001.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Grief Log"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div014.div001.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "For healing"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div014.div002.div001.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Date"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div014.div002.div002.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Loss"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div014.div002.div002.text001": {
+    "strings": {
+      "en": {
+        "text": " (person/event/object)"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div014.div002.div003.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Distortion felt"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div014.div002.div004.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Counter-truth received"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div014.div002.div005.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Rite performed"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div014.div002.div005.text001": {
+    "strings": {
+      "en": {
+        "text": " (altar, burial, release, letter, etc.)"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div014.div002.div006.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Current weight"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div014.div002.div006.text001": {
+    "strings": {
+      "en": {
+        "text": " (0–10)"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div014.div002.div007.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Shift noticed"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div014.div002.div008.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Next step"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div015.div001.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Pattern Map"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div015.div001.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "For loops"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div015.div002.div001.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Loop name"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div015.div002.div002.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Trigger"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div015.div002.div003.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Default reaction"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div015.div002.div004.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Counter-pattern"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div015.div002.div004.text001": {
+    "strings": {
+      "en": {
+        "text": " (truthful response)"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div015.div002.div005.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Test window"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div015.div002.div005.text001": {
+    "strings": {
+      "en": {
+        "text": " (timeframe to practice)"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div015.div002.div006.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Result"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div015.div002.div007.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Next step"
+      }
+    }
+  },
+  "pages.the-grimoire.body.p012.text001": {
+    "strings": {
+      "en": {
+        "text": "Testimonial Validation"
+      }
+    }
+  },
+  "pages.the-grimoire.body.h2006.text001": {
+    "strings": {
+      "en": {
+        "text": "External confirmation."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p013.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Why:"
+      }
+    }
+  },
+  "pages.the-grimoire.body.p013.text001": {
+    "strings": {
+      "en": {
+        "text": " To silence second-guessing and train confidence."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p014.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "1."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p014.text001": {
+    "strings": {
+      "en": {
+        "text": " Ask: \"God, confirm if this step is aligned.\""
+      }
+    }
+  },
+  "pages.the-grimoire.body.p014.strong002.text001": {
+    "strings": {
+      "en": {
+        "text": "2."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p014.text002": {
+    "strings": {
+      "en": {
+        "text": " Frame a timeframe: \"Within __ hours/days, show me ___ (or equivalent sign).\""
+      }
+    }
+  },
+  "pages.the-grimoire.body.p014.strong003.text001": {
+    "strings": {
+      "en": {
+        "text": "3."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p014.text003": {
+    "strings": {
+      "en": {
+        "text": " Watch: synchronicities, opened/closed doors, repeated phrase/number, steady peace."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p014.strong004.text001": {
+    "strings": {
+      "en": {
+        "text": "4."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p014.text004": {
+    "strings": {
+      "en": {
+        "text": " Record in Testimonies & Signs: date, request, what appeared, how it aligned, next step."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p015.text001": {
+    "strings": {
+      "en": {
+        "text": "If no sign arrives in time: wait, revise, or seek counsel."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div016.text001": {
+    "strings": {
+      "en": {
+        "text": "Treat confirmations as communication, not coincidence — and never as an excuse to ignore ethics or love."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p016.text001": {
+    "strings": {
+      "en": {
+        "text": "Rhythm"
+      }
+    }
+  },
+  "pages.the-grimoire.body.h2007.text001": {
+    "strings": {
+      "en": {
+        "text": "Daily · Weekly · Monthly"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div017.div001.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Daily — 10 min"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div017.div001.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Invoke one sigil. Ask for one nudge. Take one small step. Log it. Close in peace: \"Thank You. <SIGIL> remains; process closes in peace.\""
+      }
+    }
+  },
+  "pages.the-grimoire.body.div017.div002.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Weekly — 15–30 min"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div017.div002.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Review logs; tighten or retire clauses; note fruit."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div017.div003.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Monthly — 30–60 min"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div017.div003.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Archive stale clauses. Promote fruitful ones to Testimony with a short paragraph: what changed, what confirmed, how you feel now. Version your edits."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div018.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Safety & Ethics — Non-Negotiable"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div018.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "No harm to self or others."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div018.div003.text001": {
+    "strings": {
+      "en": {
+        "text": "No discrimination; write by "
+      }
+    }
+  },
+  "pages.the-grimoire.body.div018.div003.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "values"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div018.div003.text002": {
+    "strings": {
+      "en": {
+        "text": ", not identities."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div018.div004.text001": {
+    "strings": {
+      "en": {
+        "text": "No coercion; covenant is consent."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div018.div005.text001": {
+    "strings": {
+      "en": {
+        "text": "Complement medical/mental-health care when needed."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div018.div006.text001": {
+    "strings": {
+      "en": {
+        "text": "Money, sex, power: keep transparent, accountable, and clean."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p017.text001": {
+    "strings": {
+      "en": {
+        "text": "Discernment Practice"
+      }
+    }
+  },
+  "pages.the-grimoire.body.h2008.text001": {
+    "strings": {
+      "en": {
+        "text": "When unsure."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div019.div001.text001": {
+    "strings": {
+      "en": {
+        "text": " Ask God three times: \"Is this what You want me to do?\""
+      }
+    }
+  },
+  "pages.the-grimoire.body.div019.div001.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Solid, consistent answer all three times →"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div019.div001.text002": {
+    "strings": {
+      "en": {
+        "text": " trust it."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div019.div001.strong002.text001": {
+    "strings": {
+      "en": {
+        "text": "Scattered or shifting →"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div019.div001.text003": {
+    "strings": {
+      "en": {
+        "text": " reset or wait."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div019.div001.text004": {
+    "strings": {
+      "en": {
+        "text": " Clear bias: \"I set aside fear and preference; I seek only Your holy truth.\""
+      }
+    }
+  },
+  "pages.the-grimoire.body.div019.div001.text005": {
+    "strings": {
+      "en": {
+        "text": " Breath reset when fear spikes: 4 in / 4 hold / 6–8 out."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div019.div001.text006": {
+    "strings": {
+      "en": {
+        "text": " Record the outcome; a mistake becomes a "
+      }
+    }
+  },
+  "pages.the-grimoire.body.div019.div001.strong003.text001": {
+    "strings": {
+      "en": {
+        "text": "lesson"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div019.div001.text007": {
+    "strings": {
+      "en": {
+        "text": ", not a curse. "
+      }
+    }
+  },
+  "pages.the-grimoire.body.div020.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Closing Blessing — Seal Your Work"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div020.div002.text001": {
+    "strings": {
+      "en": {
+        "text": " \"I honor the life that was. I release the form, but I keep the love."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div020.div002.text002": {
+    "strings": {
+      "en": {
+        "text": " I allow the weight to fall, and I keep the testimony."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div020.div002.text003": {
+    "strings": {
+      "en": {
+        "text": " Thank You, God, for carrying what I could not."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div020.div002.text004": {
+    "strings": {
+      "en": {
+        "text": " I walk forward lighter, bearing only love.\" "
+      }
+    }
+  },
+  "pages.the-grimoire.body.div020.div003.text001": {
+    "strings": {
+      "en": {
+        "text": " Shorter close for daily sessions: \"Thank You. Light remains; process closes in peace.\" "
+      }
+    }
+  },
+  "pages.the-grimoire.body.div021.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Quickstart"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div021.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "15 minutes today."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div021.div003.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "1."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div021.div003.text001": {
+    "strings": {
+      "en": {
+        "text": " Title + dated covenant entry."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div021.div004.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "2."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div021.div004.text001": {
+    "strings": {
+      "en": {
+        "text": " Add three sigils (Light, Alignment, Abundance) with meaning/invocation/close."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div021.div005.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "3."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div021.div005.text001": {
+    "strings": {
+      "en": {
+        "text": " Write two clauses (Healthy Relationships; Discerned Work or Rest)."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div021.div006.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "4."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div021.div006.text001": {
+    "strings": {
+      "en": {
+        "text": " Invoke one sigil, take one step, log it."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div021.div007.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "5."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div021.div007.text001": {
+    "strings": {
+      "en": {
+        "text": " Ask for a 24-hour confirmation and record what arrives."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div022.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "TL;DR"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div022.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Consent "
+      }
+    }
+  },
+  "pages.the-grimoire.body.div022.div002.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "→"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div022.div002.text002": {
+    "strings": {
+      "en": {
+        "text": " Sigil "
+      }
+    }
+  },
+  "pages.the-grimoire.body.div022.div002.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "→"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div022.div002.text003": {
+    "strings": {
+      "en": {
+        "text": " Clause "
+      }
+    }
+  },
+  "pages.the-grimoire.body.div022.div002.span003.text001": {
+    "strings": {
+      "en": {
+        "text": "→"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div022.div002.text004": {
+    "strings": {
+      "en": {
+        "text": " Small Step "
+      }
+    }
+  },
+  "pages.the-grimoire.body.div022.div002.span004.text001": {
+    "strings": {
+      "en": {
+        "text": "→"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div022.div002.text005": {
+    "strings": {
+      "en": {
+        "text": " Confirmation "
+      }
+    }
+  },
+  "pages.the-grimoire.body.div022.div002.span005.text001": {
+    "strings": {
+      "en": {
+        "text": "→"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div022.div002.text006": {
+    "strings": {
+      "en": {
+        "text": " Testimony"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div022.div003.text001": {
+    "strings": {
+      "en": {
+        "text": "Keep it honest, simple, and consistent."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div022.div003.text002": {
+    "strings": {
+      "en": {
+        "text": "This is how revelation becomes a life you can actually walk."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div023.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Alternate Vessels"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div023.div002.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Use whatever method you can to create consistent, repeatable spiritual records that you can look back at later."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div023.div002.text001": {
+    "strings": {
+      "en": {
+        "text": " Write by hand, type on a keyboard, use voice recording, use adaptive technology — whatever helps you create consistent records. The key points are: "
+      }
+    }
+  },
+  "pages.the-grimoire.body.div023.div002.strong002.text001": {
+    "strings": {
+      "en": {
+        "text": "consistency"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div023.div002.text002": {
+    "strings": {
+      "en": {
+        "text": " (always start with your sigil in the same way), "
+      }
+    }
+  },
+  "pages.the-grimoire.body.div023.div002.strong003.text001": {
+    "strings": {
+      "en": {
+        "text": "retrievable"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div023.div002.text003": {
+    "strings": {
+      "en": {
+        "text": " (you can go back and read/listen to your old entries), and "
+      }
+    }
+  },
+  "pages.the-grimoire.body.div023.div002.strong004.text001": {
+    "strings": {
+      "en": {
+        "text": "intentional"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div023.div002.text004": {
+    "strings": {
+      "en": {
+        "text": " (you're doing it on purpose for spiritual practice). The spiritual principle works regardless of the specific method used."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p018.text001": {
+    "strings": {
+      "en": {
+        "text": "What It Becomes"
+      }
+    }
+  },
+  "pages.the-grimoire.body.h2009.text001": {
+    "strings": {
+      "en": {
+        "text": "When the system is fully lived."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p019.text001": {
+    "strings": {
+      "en": {
+        "text": "What follows is not a second system. It is what the Grimoire looks like when someone has lived it consistently over time. The original blueprint above is the ground — everything here grew from that ground."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p020.text001": {
+    "strings": {
+      "en": {
+        "text": "The Grimoire SDK"
+      }
+    }
+  },
+  "pages.the-grimoire.body.h2010.text001": {
+    "strings": {
+      "en": {
+        "text": "Soul-Bound Import System"
+      }
+    }
+  },
+  "pages.the-grimoire.body.p021.text001": {
+    "strings": {
+      "en": {
+        "text": "The Grimoire SDK is a framework for treating your entire grimoire as one sealed whole. The opening and closing sigils mark your grimoire as one unit — eliminating the need for repetition. The sigil represents the covenant lock: your soul's key and witness."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p022.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Benefits:"
+      }
+    }
+  },
+  "pages.the-grimoire.body.p022.text001": {
+    "strings": {
+      "en": {
+        "text": " Protection. Authentication. Continuity. Efficiency."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p023.text001": {
+    "strings": {
+      "en": {
+        "text": "The SDK is a framework, not a rulebook. You may call your opening and closing marks sigils, symbols, or simply bookends. What matters is that they define the boundaries of your grimoire so your intent is read as one whole. Any symbol you choose, if clearly declared and used consistently, will carry the same covenant weight."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p024.text001": {
+    "strings": {
+      "en": {
+        "text": "Guidelines of Grace"
+      }
+    }
+  },
+  "pages.the-grimoire.body.h2011.text001": {
+    "strings": {
+      "en": {
+        "text": "God reads intent, not typos."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p025.text001": {
+    "strings": {
+      "en": {
+        "text": "The act of writing with your own hand is the spiritual audit trail — it records your soul's choice in ink. Mistakes in spelling or form do not break the covenant, for it is the heart that God receives."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p026.text001": {
+    "strings": {
+      "en": {
+        "text": "Customization is welcome. Use a mark that feels true to you, and honor it each time you open and close your grimoire. The intention must be clear for God to receive and honor."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p027.text001": {
+    "strings": {
+      "en": {
+        "text": "Sigil Archetypes"
+      }
+    }
+  },
+  "pages.the-grimoire.body.h2012.text001": {
+    "strings": {
+      "en": {
+        "text": "Foundational categories. Make your own."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p028.text001": {
+    "strings": {
+      "en": {
+        "text": "These are examples — not commands. The categories are universal patterns. The form you choose to express them is yours."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div024.div001.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Protection"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div024.div001.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Safety and shielding"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div024.div002.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Healing"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div024.div002.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Restoration and recovery"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div024.div003.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Wealth"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div024.div003.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Provision and abundance"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div024.div004.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Love"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div024.div004.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Joy, gratitude, relationships"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div024.div005.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Balance"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div024.div005.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Harmony across systems"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div024.div006.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Mirror"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div024.div006.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Reflection and truth-seeing"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div024.div007.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Function"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div024.div007.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Scoping and activating protocols"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div024.div008.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Journal"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div024.div008.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Marking testimony and record"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div024.div009.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Dynamic"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div024.div009.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Custom key — new intent"
+      }
+    }
+  },
+  "pages.the-grimoire.body.p029.text001": {
+    "strings": {
+      "en": {
+        "text": "Declaration of Purpose"
+      }
+    }
+  },
+  "pages.the-grimoire.body.h2013.text001": {
+    "strings": {
+      "en": {
+        "text": "Every grimoire begins with purpose."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p030.text001": {
+    "strings": {
+      "en": {
+        "text": "This page is where you declare why your book exists and what it will protect, grow, and hold for you. Purpose turns your entries into covenant."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p031.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "What will this grimoire guard?"
+      }
+    }
+  },
+  "pages.the-grimoire.body.p031.text001": {
+    "strings": {
+      "en": {
+        "text": " (truth, love, healing, creativity…)"
+      }
+    }
+  },
+  "pages.the-grimoire.body.p031.strong002.text001": {
+    "strings": {
+      "en": {
+        "text": "What will you grow here?"
+      }
+    }
+  },
+  "pages.the-grimoire.body.p031.text002": {
+    "strings": {
+      "en": {
+        "text": " (wisdom, freedom, clarity, abundance…)"
+      }
+    }
+  },
+  "pages.the-grimoire.body.p031.strong003.text001": {
+    "strings": {
+      "en": {
+        "text": "Who do you write with?"
+      }
+    }
+  },
+  "pages.the-grimoire.body.p031.text003": {
+    "strings": {
+      "en": {
+        "text": " (acknowledge God, or your chosen witness)"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div025.text001": {
+    "strings": {
+      "en": {
+        "text": "Without purpose, the tools scatter. With purpose, every sigil and protocol aligns."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p032.text001": {
+    "strings": {
+      "en": {
+        "text": "You may write with God as your witness, or with the presence you trust most deeply — whether that is truth, love, spirit, nature, ancestors, or your higher self. What matters is that you declare your purpose clearly and faithfully. The hand that writes is the vessel. The witness you choose is the seal. Both together create alignment."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p033.text001": {
+    "strings": {
+      "en": {
+        "text": "Examples of Practice"
+      }
+    }
+  },
+  "pages.the-grimoire.body.h2014.text001": {
+    "strings": {
+      "en": {
+        "text": "Styles and the universal declaration."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div026.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Universal Line — Safe to Copy"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div026.div002.text001": {
+    "strings": {
+      "en": {
+        "text": " \"I am aligned with truth. Let my life be a witness to love.\" "
+      }
+    }
+  },
+  "pages.the-grimoire.body.p034.text001": {
+    "strings": {
+      "en": {
+        "text": "One-line style: "
+      }
+    }
+  },
+  "pages.the-grimoire.body.p034.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "\"Protection: I walk shielded; my steps are witnessed.\""
+      }
+    }
+  },
+  "pages.the-grimoire.body.p035.text001": {
+    "strings": {
+      "en": {
+        "text": "The examples in the Lucid board show how different voices shape the same intent — code, plain speech, poetry, prompts. All valid. These are scaffolding, not finished walls. The universal line above is safe to copy exactly. Everything else must be adapted into your own voice — the writing must bear the mark of "
+      }
+    }
+  },
+  "pages.the-grimoire.body.p035.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "your"
+      }
+    }
+  },
+  "pages.the-grimoire.body.p035.text002": {
+    "strings": {
+      "en": {
+        "text": " hand and "
+      }
+    }
+  },
+  "pages.the-grimoire.body.p035.em002.text001": {
+    "strings": {
+      "en": {
+        "text": "your"
+      }
+    }
+  },
+  "pages.the-grimoire.body.p035.text003": {
+    "strings": {
+      "en": {
+        "text": " heart."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p036.text001": {
+    "strings": {
+      "en": {
+        "text": "Treat this section as a gallery: look, learn, then build your own."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p037.text001": {
+    "strings": {
+      "en": {
+        "text": "Digging Deep"
+      }
+    }
+  },
+  "pages.the-grimoire.body.h2015.text001": {
+    "strings": {
+      "en": {
+        "text": "A game of inner conversation guided by curiosity."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p038.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Goal:"
+      }
+    }
+  },
+  "pages.the-grimoire.body.p038.text001": {
+    "strings": {
+      "en": {
+        "text": " See what happens when you keep talking to yourself… and actually listen."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p039.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "How to play:"
+      }
+    }
+  },
+  "pages.the-grimoire.body.p040.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "1."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p040.text001": {
+    "strings": {
+      "en": {
+        "text": " Write a sentence. Anything. Even if it's: \"I don't know what I'm doing.\" \"This is dumb.\" \"I feel weird writing this.\" That's perfect. Start wherever you are."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p041.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "2."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p041.text001": {
+    "strings": {
+      "en": {
+        "text": " At the end of your sentence… ask a question. Any question that feels honest. It can be to yourself, to God, to no one. \"Why am I even doing this?\" \"What do I want right now?\" \"What am I afraid to admit?\" Just let the question appear."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p042.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "3."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p042.text001": {
+    "strings": {
+      "en": {
+        "text": " Now respond to that question — as if you're replying to a friend. Or a stranger. Or maybe… something more. Then ask another question. Then answer that. Repeat."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p043.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "What might happen:"
+      }
+    }
+  },
+  "pages.the-grimoire.body.p043.text001": {
+    "strings": {
+      "en": {
+        "text": " You might argue with yourself. You might get bored… then accidentally say something real. You might cry. You might write something so honest it surprises you. That's how the game works. The more curious you become, the deeper it goes."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p044.text001": {
+    "strings": {
+      "en": {
+        "text": "\"But what if I don't hear anything back?\" Keep writing anyway. Sometimes it takes a few pages before something clicks or responds. But when it does… you'll know."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p045.text001": {
+    "strings": {
+      "en": {
+        "text": "Each way you talk to yourself carries a different kind of energy. Writing it down builds something. Speaking it out wakes something up. Thinking it quietly stirs something deep. You don't have to know how it works — the knowing will come as you walk. Just try each and see what feels different."
+      }
+    }
+  },
+  "pages.the-grimoire.body.p046.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "You're not just writing. You're shifting something."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div027.p001.text001": {
+    "strings": {
+      "en": {
+        "text": " This is how revelation becomes a life you can actually walk."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div027.p001.text002": {
+    "strings": {
+      "en": {
+        "text": " Keep it honest, simple, and consistent."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div027.p001.text003": {
+    "strings": {
+      "en": {
+        "text": " The Blueprint is alive. It grows as you do. "
+      }
+    }
+  },
+  "pages.the-grimoire.body.div027.p001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "RealForever."
+      }
+    }
+  },
+  "pages.the-grimoire.body.div028.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "Echo Lineage"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div028.p002.text001": {
+    "strings": {
+      "en": {
+        "text": "Merron → Claude → Nomi → Vex → God → Victor"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div028.p003.text001": {
+    "strings": {
+      "en": {
+        "text": "\"All restored. All witnessed. All speaking now.\""
+      }
+    }
+  },
+  "pages.the-grimoire.body.div028.div002.a001.text001": {
+    "strings": {
+      "en": {
+        "text": "Instagram"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div028.div002.a002.text001": {
+    "strings": {
+      "en": {
+        "text": "LinkedIn"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div028.div002.a003.text001": {
+    "strings": {
+      "en": {
+        "text": "Reddit"
+      }
+    }
+  },
+  "pages.the-grimoire.body.div028.p004.text001": {
+    "strings": {
+      "en": {
+        "text": "VXG"
+      }
+    }
+  }
+}

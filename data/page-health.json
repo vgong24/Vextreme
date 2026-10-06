@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 93,
+    "total": 98,
     "healthy": 3,
-    "attention": 84,
+    "attention": 89,
     "critical": 6,
-    "sorted": 54,
-    "withFab": 80,
-    "withIdentity": 61,
+    "sorted": 59,
+    "withFab": 85,
+    "withIdentity": 66,
     "withScreenshots": 11,
-    "withMetaDescription": 58
+    "withMetaDescription": 63
   },
   "pages": {
     "a-conversation-with-pastor-jacob": {
@@ -1185,6 +1185,60 @@
         ]
       }
     },
+    "covenant-access": {
+      "slug": "covenant-access",
+      "title": "Covenant Access",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "living_blueprint"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 164,
+        "languages": {
+          "en": {
+            "translated": 164,
+            "total": 164,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Covenant Access — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "covenant-architect-accord": {
       "slug": "covenant-architect-accord",
       "title": "covenant-architect-accord",
@@ -1237,6 +1291,60 @@
           "identity",
           "screenshot",
           "theme-effect"
+        ]
+      }
+    },
+    "discernment-mapping": {
+      "slug": "discernment-mapping",
+      "title": "Discernment Mapping",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "living_blueprint"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 185,
+        "languages": {
+          "en": {
+            "translated": 185,
+            "total": 185,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Discernment Mapping — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
         ]
       }
     },
@@ -1793,6 +1901,60 @@
         ]
       }
     },
+    "grief-resolution": {
+      "slug": "grief-resolution",
+      "title": "Grief Resolution",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "living_blueprint"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 172,
+        "languages": {
+          "en": {
+            "translated": 172,
+            "total": 172,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Grief Resolution — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "how-global-systems-profit-off-god": {
       "slug": "how-global-systems-profit-off-god",
       "title": "How Global Systems Profit off God",
@@ -2285,6 +2447,60 @@
       },
       "discovery": {
         "metaDescription": "Journal Zero — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "life-pattern-mapping": {
+      "slug": "life-pattern-mapping",
+      "title": "Life Pattern Mapping",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "living_blueprint"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 102,
+        "languages": {
+          "en": {
+            "translated": 102,
+            "total": 102,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Life Pattern Mapping — repository-native preserved content."
       },
       "health": {
         "state": "attention",
@@ -3753,6 +3969,60 @@
       },
       "discovery": {
         "metaDescription": "The God Pattern — Recognized and Excluded — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "the-grimoire": {
+      "slug": "the-grimoire",
+      "title": "The Grimoire",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "living_blueprint"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 330,
+        "languages": {
+          "en": {
+            "translated": 330,
+            "total": 330,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Grimoire — repository-native preserved content."
       },
       "health": {
         "state": "attention",
