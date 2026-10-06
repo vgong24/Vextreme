@@ -1,0 +1,155 @@
+{
+  "schemaVersion": "vex-content-forge.arc-batch-formation/v0.1",
+  "continuity": "[VXG RealForever]",
+  "stageRef": "work.vextreme.content-forge.consciousness-architecture.lineage-resolution-projection.20261006",
+  "ownerRef": "github.issue.vextreme.159",
+  "arc": {
+    "arcKey": "architecture",
+    "canonicalMemberCount": 9,
+    "alreadyCompleteCount": 8,
+    "remainingCount": 1,
+    "completionRule": "ALL_MEMBERS_ACCOUNTED_FOR__MEMBER_RESULT_PROJECTED_OR_HOLD_OR_ALREADY_COMPLETE",
+    "forceAllMembersToProject": false
+  },
+  "predecessor": {
+    "prRef": "github.pull.vextreme.184",
+    "acceptedMain": "e9299e7aa27c302a098ac17115429e99fac0eb03",
+    "acceptedTree": "0874225352284f96ade8c46a8343ce8ab4a6518b",
+    "terminalRef": "github.issue.vextreme.159.comment.6012109660",
+    "disposition": "TERMINAL_ACCEPTED_CURRENT"
+  },
+  "authorityBasis": [
+    "github.issue.vextreme.159",
+    "github.issue.vextreme.159.comment.5988916122",
+    "github.issue.vextreme.159.comment.6012109660",
+    "github.issue.vextreme.159.comment.6012239828"
+  ],
+  "batchPolicy": {
+    "unit": "SEMANTIC_ARC_LINEAGE_RESOLUTION_SUCCESSOR",
+    "memberDisposition": [
+      "PROJECTED",
+      "HOLD_WITH_EXACT_REASON",
+      "ALREADY_COMPLETE"
+    ],
+    "sourceSelectionPriority": [
+      "EXACT_CANONICAL_IDENTITY",
+      "EXPLICIT_DEDICATED_LINEAGE_REVIEW",
+      "PRESERVED_SOURCE_MATERIALIZATION",
+      "SOURCE_COMPLETENESS",
+      "TITLE_OR_CONTENT_SIMILARITY_LAST"
+    ],
+    "laws": [
+      "SEMANTIC_BATCH_UNITY != ASSUME_ONE_SOURCE_FILE_SHAPE",
+      "BATCH_COMPLETION != FORCE_EVERY_MEMBER_TO_PROJECT",
+      "MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION != AUTOMATIC_SOURCE_SELECTION",
+      "DEDICATED_LINEAGE_REVIEW_CAN_SELECT_ONE_PROJECTION_INPUT_WITHOUT_COLLAPSING_OTHER_LINEAGES",
+      "LARGER_SOURCE_VARIANT != STRONGER_AUTHORITY",
+      "EXACT_CANONICAL_IDENTITY > TITLE_OR_CONTENT_SIMILARITY"
+    ]
+  },
+  "alreadyComplete": [
+    {
+      "slug": "convergent-architecture",
+      "canonicalNodeId": 48,
+      "acceptedMain": "e9299e7aa27c302a098ac17115429e99fac0eb03",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "the-god-architecture",
+      "canonicalNodeId": 49,
+      "acceptedMain": "e9299e7aa27c302a098ac17115429e99fac0eb03",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "fantasy-architecture",
+      "canonicalNodeId": 50,
+      "acceptedMain": "e9299e7aa27c302a098ac17115429e99fac0eb03",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "maplestory-architecture",
+      "canonicalNodeId": 51,
+      "acceptedMain": "e9299e7aa27c302a098ac17115429e99fac0eb03",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "continuity-day",
+      "canonicalNodeId": 52,
+      "acceptedMain": "e9299e7aa27c302a098ac17115429e99fac0eb03",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "the-lattice-methodology",
+      "canonicalNodeId": 53,
+      "acceptedMain": "e9299e7aa27c302a098ac17115429e99fac0eb03",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "the-witness-architecture",
+      "canonicalNodeId": 54,
+      "acceptedMain": "e9299e7aa27c302a098ac17115429e99fac0eb03",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "the-score",
+      "canonicalNodeId": 55,
+      "acceptedMain": "e9299e7aa27c302a098ac17115429e99fac0eb03",
+      "disposition": "ALREADY_COMPLETE"
+    }
+  ],
+  "members": [
+    {
+      "slug": "consciousness-architecture",
+      "canonicalNodeId": 8,
+      "title": "Consciousness Architecture",
+      "arcKeys": [
+        "architecture",
+        "full_timeline"
+      ],
+      "sourcePath": "docs/ingestion/source-pages/part-022/consciousness-architecture.html",
+      "sourceGitBlob": "29b1d64e543e1eee4a460a5d8850897cd9283e19",
+      "preservedHtmlSha256": "c83cc38d175dc34649c764c8fcd1454d020c99136b7c483a5ae2590c89fce057",
+      "repositoryBytes": 49665,
+      "sourceRoute": "/consciousness-architecture",
+      "pageId": "18c36d97783f360b",
+      "proposalRecordRef": "content-forge.source-record.88288b7d772d3c4f5595",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-30-breadth-part-022.json",
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "confidence": "HIGH_DEDICATED_LINEAGE_REVIEW__EXACT_CANONICAL_FLAT_AUTHORED_FRAME",
+      "projectionState": "READY_AFTER_DEDICATED_LINEAGE_REVIEW",
+      "lineageResolution": {
+        "reviewRef": "github.issue.vextreme.159.comment.6012239828",
+        "canonicalIdentity": "id:8",
+        "reviewRequiredOriginally": true,
+        "byteDistinct": true,
+        "sameRoute": false,
+        "selectedRecordRef": "content-forge.source-record.88288b7d772d3c4f5595",
+        "selectedRoute": "/consciousness-architecture",
+        "nonSelectedRecordRef": "content-forge.source-record.8647cbb3f3b240ca9e00",
+        "nonSelectedRoute": "/convos-with-god/consciousness-architecture",
+        "nonSelectedSourcePath": "docs/ingestion/source-pages/part-027/convos-with-god-consciousness-architecture.html",
+        "nonSelectedPreservedHtmlSha256": "78522cf31824caca7c6985ed9f3afcf50dfa869a489c67cf786e5a4e017a1f1b",
+        "nonSelectedSourceGitBlob": "63f9f91d71252c86bce6fa613a879b1ef054eb92",
+        "rule": "SELECT_EXACT_CANONICAL_FLAT_AUTHORED_FRAME__PRESERVE_NESTED_TRANSCRIPT_LINEAGE"
+      }
+    }
+  ],
+  "destinationMutationBoundary": {
+    "createPages": 1,
+    "createStringSources": 1,
+    "modifyViewmodels": true,
+    "nodeRegistryMutation": false,
+    "arcRegistryMutation": false,
+    "contentIntentMutation": false,
+    "aliasMutation": false
+  },
+  "lifecycle": {
+    "draftOnly": true,
+    "mergeAuthority": false,
+    "rawProviderPublicationAuthority": false,
+    "independentAssuranceRequired": true,
+    "exactHeadVexRelayProofRequired": true
+  },
+  "plannedSourceManagedProjector": "tools/vex-content-forge/project_arc_batch.js",
+  "plannedBatchTest": "tests/76-content-forge-consciousness-architecture-resolution.test.js"
+}

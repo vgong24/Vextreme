@@ -1,5 +1,5 @@
 {
-  "contentFingerprint": "fd136cb629a3",
+  "contentFingerprint": "b805d57b9f55",
   "nodeCount": 114,
   "curatedNodeCount": 91,
   "autoDiscoveredCount": 23,
@@ -221,7 +221,8 @@
           "spiral-fab",
           "theme",
           "map",
-          "analysis"
+          "analysis",
+          "arc-nav"
         ]
       }
     },
@@ -3554,7 +3555,7 @@
         {
           "slug": "consciousness-architecture",
           "title": "Consciousness Architecture",
-          "ported": false
+          "ported": true
         },
         {
           "slug": "truth-of-demons-and-intrusive-thoughts",

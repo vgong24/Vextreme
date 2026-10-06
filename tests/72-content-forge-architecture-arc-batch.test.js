@@ -46,7 +46,7 @@ function outputMain(document,slug){
   return main;
 }
 
-test('Content Forge Architecture completes eight exact members while preserving the byte-distinct consciousness-architecture lineage HOLD',()=>{
+test('Content Forge Architecture historical batch preserves its id:8 HOLD contract without mutating successor-resolved state',()=>{
   const formation=json(FORMATION); const nodes=json(NODES); const nodesBySlug=new Map(nodes.map(node=>[node.slug,node])); const arcs=json(ARCS); const proposal=json(PROPOSAL);
   const protectedBefore={nodes:hash(NODES),arcs:hash(ARCS),intents:hash(INTENTS),projector:hash(path.join(ROOT,'tools','vex-content-forge','project_arc_batch.js'))};
   assert.equal(formation.ownerRef,'github.issue.vextreme.159');
@@ -73,8 +73,8 @@ test('Content Forge Architecture completes eight exact members while preserving 
   assert.deepEqual(new Set(family.sourceDigests),new Set(heldMember.holdEvidence.sourceDigests));
   const heldPage=path.join(ROOT,'pages','consciousness-architecture.html');
   const heldStrings=path.join(ROOT,'data','strings','source','pages','consciousness-architecture.json');
-  assert.equal(fs.existsSync(heldPage),false,'held destination page remains absent before projector');
-  assert.equal(fs.existsSync(heldStrings),false,'held destination strings remain absent before projector');
+  const heldPageBefore=pathState(heldPage);
+  const heldStringsBefore=pathState(heldStrings);
   const heldViewmodelBefore=json(VIEWMODELS)['consciousness-architecture'];
 
   const proposalByRef=new Map(proposal.records.map(record=>[record.recordRef,record]));
@@ -93,7 +93,7 @@ test('Content Forge Architecture completes eight exact members while preserving 
   assert.deepEqual(first.members.map(item=>item.slug),canonical);
   assert.deepEqual(first.members.map(item=>item.disposition),['HOLD_WITH_EXACT_REASON','PROJECTED','PROJECTED','PROJECTED','PROJECTED','PROJECTED','PROJECTED','PROJECTED','PROJECTED']);
   assert.match(first.members[0].reason,/^PRECLASSIFIED_HOLD: MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION__/);
-  assert.equal(fs.existsSync(heldPage),false); assert.equal(fs.existsSync(heldStrings),false);
+  assert.deepEqual(pathState(heldPage),heldPageBefore); assert.deepEqual(pathState(heldStrings),heldStringsBefore);
   assert.deepEqual(json(VIEWMODELS)['consciousness-architecture'],heldViewmodelBefore);
 
   const generated=projectable.flatMap(member=>[path.join(ROOT,'pages',member.slug+'.html'),path.join(ROOT,'data','strings','source','pages',member.slug+'.json')]);
@@ -101,7 +101,7 @@ test('Content Forge Architecture completes eight exact members while preserving 
   const second=projector.main({root:ROOT,silent:true,formationRel:FORMATION_REL});
   const secondHashes=Object.fromEntries([...generated,VIEWMODELS].map(file=>[file,hash(file)]));
   assert.deepEqual(second.accounting,first.accounting); assert.deepEqual(second.members.map(item=>item.slug),canonical); assert.deepEqual(second.changedPaths,[]); assert.deepEqual(secondHashes,firstHashes);
-  assert.equal(fs.existsSync(heldPage),false); assert.equal(fs.existsSync(heldStrings),false); assert.deepEqual(json(VIEWMODELS)['consciousness-architecture'],heldViewmodelBefore);
+  assert.deepEqual(pathState(heldPage),heldPageBefore); assert.deepEqual(pathState(heldStrings),heldStringsBefore); assert.deepEqual(json(VIEWMODELS)['consciousness-architecture'],heldViewmodelBefore);
 
   const viewmodels=json(VIEWMODELS);
   for(const member of projectable){
