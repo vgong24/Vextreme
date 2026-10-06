@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 111,
+    "total": 112,
     "healthy": 3,
-    "attention": 102,
+    "attention": 103,
     "critical": 6,
-    "sorted": 72,
-    "withFab": 98,
-    "withIdentity": 79,
+    "sorted": 73,
+    "withFab": 99,
+    "withIdentity": 80,
     "withScreenshots": 11,
-    "withMetaDescription": 76
+    "withMetaDescription": 77
   },
   "pages": {
     "a-conversation-with-pastor-jacob": {
@@ -3273,6 +3273,60 @@
         "gaps": [
           "unsorted",
           "identity",
+          "screenshot"
+        ]
+      }
+    },
+    "podcasts": {
+      "slug": "podcasts",
+      "title": "Marquis Masters Podcast",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 46,
+        "languages": {
+          "en": {
+            "translated": 46,
+            "total": 46,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Marquis Masters Podcast — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
           "screenshot"
         ]
       }

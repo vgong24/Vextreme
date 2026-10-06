@@ -1182,5 +1182,21 @@
       "analysis",
       "arc-nav"
     ]
+  },
+  "podcasts": {
+    "title": "Marquis Masters Podcast",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.podcasts"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
   }
 }
