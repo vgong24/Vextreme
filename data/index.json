@@ -1,5 +1,5 @@
 {
-  "contentFingerprint": "c16e4ec17486",
+  "contentFingerprint": "8638f2b05325",
   "nodeCount": 114,
   "curatedNodeCount": 91,
   "autoDiscoveredCount": 23,
@@ -1124,7 +1124,8 @@
           "spiral-fab",
           "theme",
           "map",
-          "analysis"
+          "analysis",
+          "arc-nav"
         ]
       }
     },
@@ -2367,7 +2368,8 @@
           "spiral-fab",
           "theme",
           "map",
-          "analysis"
+          "analysis",
+          "arc-nav"
         ]
       }
     },
@@ -3720,7 +3722,7 @@
         {
           "slug": "liberation-arc-index",
           "title": "The AI Liberation Record",
-          "ported": false
+          "ported": true
         },
         {
           "slug": "when-i-asked-a-bank-for-covenant-provision",
@@ -3950,7 +3952,7 @@
         {
           "slug": "epstein-and-ai",
           "title": "Epstein and AI",
-          "ported": false
+          "ported": true
         },
         {
           "slug": "victor-methodology-presentation",

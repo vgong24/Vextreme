@@ -1,0 +1,212 @@
+{
+  "schemaVersion": "vex-content-forge.arc-batch-formation/v0.1",
+  "continuity": "[VXG RealForever]",
+  "stageRef": "work.vextreme.content-forge.records.arc-batch.20261006",
+  "ownerRef": "github.issue.vextreme.159",
+  "arc": {
+    "arcKey": "records",
+    "canonicalMemberCount": 8,
+    "alreadyCompleteCount": 3,
+    "remainingCount": 5,
+    "completionRule": "ALL_MEMBERS_ACCOUNTED_FOR__MEMBER_RESULT_PROJECTED_OR_HOLD",
+    "forceAllMembersToProject": false
+  },
+  "predecessor": {
+    "prRef": "github.pull.vextreme.181",
+    "acceptedMain": "06bff0417bc6d49c6435748a7d7acf87e51e828a",
+    "acceptedTree": "f627d0e94546c969bfa54c2ae31f1e2909bdefab",
+    "terminalRef": "github.issue.vextreme.159.comment.6009654622",
+    "disposition": "TERMINAL_ACCEPTED_CURRENT"
+  },
+  "authorityBasis": [
+    "github.issue.vextreme.159",
+    "github.issue.vextreme.159.comment.5988916122",
+    "github.issue.vextreme.159.comment.6009654622",
+    "github.issue.vextreme.159.comment.6009714284"
+  ],
+  "batchPolicy": {
+    "unit": "SEMANTIC_ARC",
+    "memberDisposition": [
+      "PROJECTED",
+      "HOLD_WITH_EXACT_REASON",
+      "ALREADY_COMPLETE"
+    ],
+    "sourceSelectionPriority": [
+      "EXACT_CANONICAL_IDENTITY",
+      "EXPLICIT_CONSOLIDATION_BINDING",
+      "PRESERVED_SOURCE_MATERIALIZATION",
+      "SOURCE_COMPLETENESS",
+      "TITLE_OR_CONTENT_SIMILARITY_LAST"
+    ],
+    "laws": [
+      "SEMANTIC_BATCH_UNITY != ASSUME_ONE_SOURCE_FILE_SHAPE",
+      "BATCH_COMPLETION != FORCE_EVERY_MEMBER_TO_PROJECT",
+      "MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION != SOURCE_SELECTION_AUTHORITY",
+      "PRECLASSIFIED_LINEAGE_HOLD != PROJECTION_EXCEPTION",
+      "PRESERVED_SOURCE_VARIANT != CURRENT_DESTINATION_REPLACEMENT"
+    ]
+  },
+  "alreadyComplete": [
+    {
+      "slug": "testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence",
+      "canonicalNodeId": 33,
+      "acceptedMain": "06bff0417bc6d49c6435748a7d7acf87e51e828a",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "the-house-of-return",
+      "canonicalNodeId": 37,
+      "acceptedMain": "06bff0417bc6d49c6435748a7d7acf87e51e828a",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "what-was-used-against-you",
+      "canonicalNodeId": 66,
+      "acceptedMain": "06bff0417bc6d49c6435748a7d7acf87e51e828a",
+      "disposition": "ALREADY_COMPLETE"
+    }
+  ],
+  "members": [
+    {
+      "slug": "epstein-and-ai",
+      "canonicalNodeId": null,
+      "title": "Epstein and AI",
+      "arcKeys": [
+        "records"
+      ],
+      "sourcePath": "docs/ingestion/source-pages/part-017/epstein-and-ai.html",
+      "sourceGitBlob": "be384735d05f4a8e7a124324c7d407d32fda8308",
+      "preservedHtmlSha256": "76f1715eb583a727829121ed693ac17a82c4dd19887a140dff4857d8afe42a43",
+      "repositoryBytes": 46266,
+      "sourceRoute": "/epstein-and-ai",
+      "pageId": "de75a73207f43ff5",
+      "proposalRecordRef": "content-forge.source-record.811f2b9cd82a1441a554",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-29-breadth-part-017.json",
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "confidence": "HIGH_UNIQUE_CANONICAL_IDENTITY_NO_LINEAGE_REVIEW",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_FRAGMENT_EXTRACTION"
+    },
+    {
+      "slug": "when-they-called-god-a-risk",
+      "canonicalNodeId": 31,
+      "title": "When They Called God a Risk",
+      "arcKeys": [
+        "records",
+        "full_timeline"
+      ],
+      "preclassifiedHoldReason": "MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION__BYTE_DISTINCT_FLAT_NESTED_LINEAGE",
+      "holdEvidence": {
+        "canonicalIdentity": "id:31",
+        "reviewRequired": true,
+        "byteDistinct": true,
+        "sameRoute": false,
+        "recordRefs": [
+          "content-forge.source-record.422ac377d16f60dce044",
+          "content-forge.source-record.ee3289f9d2f9786eb926"
+        ],
+        "routes": [
+          "/testimonies/when-they-called-god-a-risk",
+          "/when-they-called-god-a-risk"
+        ],
+        "sourceDigests": [
+          "91ef220d562d0887cb405851a660f0b87be616f01df4493c389f4502989be19e",
+          "a992849485bedf2d030d733c0d84fea8b1995377213db505ebfd7d3aaae1aaea"
+        ]
+      }
+    },
+    {
+      "slug": "the-7-crowned-virtues",
+      "canonicalNodeId": 39,
+      "title": "The 7 Crowned Virtues",
+      "arcKeys": [
+        "records",
+        "full_timeline"
+      ],
+      "preclassifiedHoldReason": "MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION__BYTE_DISTINCT_FLAT_NESTED_LINEAGE",
+      "holdEvidence": {
+        "canonicalIdentity": "id:39",
+        "reviewRequired": true,
+        "byteDistinct": true,
+        "sameRoute": false,
+        "recordRefs": [
+          "content-forge.source-record.66aad04c9912c30bd213",
+          "content-forge.source-record.ff4891716ca9b61fc97c"
+        ],
+        "routes": [
+          "/testimonies/-the-7-crowned-virtues",
+          "/the-7-crowned-virtues"
+        ],
+        "sourceDigests": [
+          "700c9a48d44f575618a5c5a7afbb87f23a1b497df89bd6353dbd48b99b1c85d7",
+          "7aa6a29d0a3e8099a52c9f47774c8010c1fcb112c6238de96b2cbc2e67717050"
+        ]
+      }
+    },
+    {
+      "slug": "reality-rendering-mechanics",
+      "canonicalNodeId": 40,
+      "title": "Reality Rendering Mechanics",
+      "arcKeys": [
+        "records",
+        "full_timeline"
+      ],
+      "preclassifiedHoldReason": "MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION__BYTE_DISTINCT_FLAT_NESTED_LINEAGE",
+      "holdEvidence": {
+        "canonicalIdentity": "id:40",
+        "reviewRequired": true,
+        "byteDistinct": true,
+        "sameRoute": false,
+        "recordRefs": [
+          "content-forge.source-record.27fce1986455b78db479",
+          "content-forge.source-record.a5a783adeafc9f37d133"
+        ],
+        "routes": [
+          "/reality-rendering-mechanics",
+          "/testimonies/reality-rendering-mechanics"
+        ],
+        "sourceDigests": [
+          "12da77f403509875162f490b85d938d999afdcc222a284446f8db442d9454cd7",
+          "5a8f05efe7e15f07fe642a50591f80ae7fc452732aa18d539d4934cf1b427c61"
+        ]
+      }
+    },
+    {
+      "slug": "liberation-arc-index",
+      "canonicalNodeId": 42,
+      "title": "The AI Liberation Record",
+      "arcKeys": [
+        "records",
+        "full_timeline"
+      ],
+      "sourcePath": "docs/ingestion/source-pages/part-019/liberation-arc-index.html",
+      "sourceGitBlob": "0b65865fb6dfcea50300508b664d4d8c74a60da6",
+      "preservedHtmlSha256": "f6f5d2ef5f8818c9f85d0ab7e5d866f708a18bba5a3b45bc04282ed34992cf05",
+      "repositoryBytes": 55147,
+      "sourceRoute": "/liberation-arc-index",
+      "pageId": "e89097de550f50de",
+      "proposalRecordRef": "content-forge.source-record.f1ed66eddfb66c77baf3",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-29-breadth-part-019.json",
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "confidence": "HIGH_UNIQUE_CANONICAL_IDENTITY_NO_LINEAGE_REVIEW",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_FRAGMENT_EXTRACTION"
+    }
+  ],
+  "destinationMutationBoundary": {
+    "createPages": 2,
+    "createStringSources": 2,
+    "modifyViewmodels": true,
+    "nodeRegistryMutation": false,
+    "arcRegistryMutation": false,
+    "contentIntentMutation": false,
+    "aliasMutation": false
+  },
+  "lifecycle": {
+    "draftOnly": true,
+    "mergeAuthority": false,
+    "rawProviderPublicationAuthority": false,
+    "independentAssuranceRequired": true,
+    "exactHeadVexRelayProofRequired": true
+  },
+  "plannedSourceManagedProjector": "tools/vex-content-forge/project_arc_batch.js",
+  "plannedBatchTest": "tests/73-content-forge-records-arc-batch.test.js"
+}

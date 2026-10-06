@@ -1134,5 +1134,37 @@
       "analysis",
       "arc-nav"
     ]
+  },
+  "epstein-and-ai": {
+    "title": "Epstein and AI",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.epstein-and-ai"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
+  },
+  "liberation-arc-index": {
+    "title": "The AI Liberation Record",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.liberation-arc-index"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
   }
 }
