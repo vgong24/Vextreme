@@ -1,5 +1,5 @@
 {
-  "contentFingerprint": "b805d57b9f55",
+  "contentFingerprint": "d4a0055586bf",
   "nodeCount": 114,
   "curatedNodeCount": 91,
   "autoDiscoveredCount": 23,
@@ -836,7 +836,8 @@
           "spiral-fab",
           "theme",
           "map",
-          "analysis"
+          "analysis",
+          "arc-nav"
         ]
       }
     },
@@ -3670,7 +3671,7 @@
         {
           "slug": "when-they-called-god-a-risk",
           "title": "When They Called God a Risk",
-          "ported": false
+          "ported": true
         },
         {
           "slug": "god-asked-victor-why",
