@@ -1,0 +1,65 @@
+'use strict';
+const { test } = require('node:test');
+const assert = require('node:assert/strict');
+const crypto = require('node:crypto');
+const fs = require('node:fs');
+const path = require('node:path');
+const parse5 = require('parse5');
+const projector = require('../tools/vex-content-forge/project_arc_batch.js');
+const ROOT=path.join(__dirname,'..');
+const FORMATION_REL=path.join('docs','ingestion','workmaps','content-forge-when-they-called-god-a-risk-resolution-formation.json');
+const FORMATION=path.join(ROOT,FORMATION_REL);
+const PROPOSAL=path.join(ROOT,'docs','ingestion','workmaps','content-forge-consolidation-proposal.json');
+const NODES=path.join(ROOT,'data','nodes.json');
+const ARCS=path.join(ROOT,'data','arcs-v2.json');
+const INTENTS=path.join(ROOT,'config','content-intents.json');
+const PROJECTOR=path.join(ROOT,'tools','vex-content-forge','project_arc_batch.js');
+const VIEWMODELS=path.join(ROOT,'data','viewmodels.json');
+const FLAT=path.join(ROOT,'docs','ingestion','source-pages','part-017','when-they-called-god-a-risk.html');
+const NESTED=path.join(ROOT,'docs','ingestion','source-pages','part-035','testimonies-when-they-called-god-a-risk.html');
+const RECEIPT_FLAT=path.join(ROOT,'docs','ingestion','batches','2026-09-29-breadth-part-017.json');
+const RECEIPT_NESTED=path.join(ROOT,'docs','ingestion','batches','2026-09-30-breadth-part-035.json');
+const PAGE=path.join(ROOT,'pages','when-they-called-god-a-risk.html');
+const STRINGS=path.join(ROOT,'data','strings','source','pages','when-they-called-god-a-risk.json');
+const json=f=>JSON.parse(fs.readFileSync(f,'utf8'));
+const hash=f=>crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex');
+const attrs=n=>Object.fromEntries((n.attrs||[]).map(a=>[a.name,a.value]));
+const classes=n=>(attrs(n).class||'').split(/\s+/).filter(Boolean);
+function walk(n,fn){if(!n)return;fn(n);for(const c of n.childNodes||[])walk(c,fn)}
+function all(n,fn){const o=[];walk(n,x=>{if(fn(x))o.push(x)});return o}
+function remove(n){const p=n.parentNode;if(!p?.childNodes)return;const i=p.childNodes.indexOf(n);if(i>=0)p.childNodes.splice(i,1)}
+function leaves(n){return all(n,x=>x.nodeName==='#text').map(x=>(x.value||'').replace(/\s+/g,' ').trim()).filter(Boolean)}
+function shape(n){const tags=['p','h1','h2','h3','h4','h5','h6','ul','ol','li','strong','em','blockquote','a','img','figure','figcaption','pre','code','hr','br'];return Object.fromEntries(tags.map(t=>[t,all(n,x=>x.tagName===t).length]))}
+function expectedMain(doc){const main=projector.selectAuthoredMain(doc);let h1=false;for(const n of [...all(main,x=>Boolean(x.tagName))]){const a=attrs(n),cs=classes(n);const back=n.tagName==='a'&&a.href==='/archives'&&/^←?\s*Archives$/i.test(projector.rawText(n).trim());const chrome=['script','noscript','template'].includes(n.tagName)||a.id==='arcNavMount'||cs.some(t=>/^(?:arc-wrap|arc-nav|entry-nav|back-nav|page-back|vex-back|f-back)/.test(t))||back||n.tagName==='nav';if(chrome){remove(n);continue;}if(n.tagName==='h1'){if(h1)n.nodeName=n.tagName='h2';else h1=true;}n.attrs=(n.attrs||[]).filter(it=>{const name=it.name.toLowerCase(),v=String(it.value||'');if(name==='data-i18n'||name==='data-i18n-attrs'||name.startsWith('data-vex')||name.startsWith('data-sqsp')||name.startsWith('on'))return false;if((name==='href'||name==='src')&&(/^javascript:/i.test(v)||v.includes('/__rescue/')))return false;if(name==='id'&&(v==='arcNavMount'||v.startsWith('vex-generated:')))return false;return true;});}return main;}
+function outputMain(doc){const main=all(doc,n=>n.tagName==='main'&&attrs(n)['data-content-forge-body']==='when-they-called-god-a-risk')[0]||null;if(!main)return null;for(const n of [...all(main,x=>Boolean(x.tagName))]){const a=attrs(n),cs=classes(n);if(a.id==='arcNavMount'||cs.some(t=>/^(?:arc-wrap|arc-nav)/.test(t)))remove(n);}return main;}
+test('Content Forge resolves When They Called God a Risk id:31 by explicit flat authored-frame selection while preserving the nested testimony lineage',()=>{
+ const f=json(FORMATION),nodes=json(NODES),arcs=json(ARCS),proposal=json(PROPOSAL),vmBefore=json(VIEWMODELS);
+ const protectedBefore={nodes:hash(NODES),arcs:hash(ARCS),intents:hash(INTENTS),projector:hash(PROJECTOR),flat:hash(FLAT),nested:hash(NESTED),proposal:hash(PROPOSAL),receiptFlat:hash(RECEIPT_FLAT),receiptNested:hash(RECEIPT_NESTED)};
+ assert.equal(f.ownerRef,'github.issue.vextreme.159');assert.equal(f.arc.arcKey,'records');
+ assert.deepEqual({canonical:f.arc.canonicalMemberCount,already:f.arc.alreadyCompleteCount,remaining:f.arc.remainingCount},{canonical:8,already:5,remaining:3});
+ const canonical=arcs.records.sections.flatMap(s=>s.slugs||[]);assert.deepEqual(canonical,['epstein-and-ai','when-they-called-god-a-risk','testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence','the-house-of-return','the-7-crowned-virtues','reality-rendering-mechanics','liberation-arc-index','what-was-used-against-you']);
+ assert.deepEqual(f.alreadyComplete.map(x=>x.slug),['epstein-and-ai','testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence','the-house-of-return','liberation-arc-index','what-was-used-against-you']);
+ assert.deepEqual(f.members.map(x=>x.slug),['when-they-called-god-a-risk','the-7-crowned-virtues','reality-rendering-mechanics']);
+ const m=f.members[0],node=nodes.find(n=>n.slug==='when-they-called-god-a-risk');assert.deepEqual(node,{id:31,slug:'when-they-called-god-a-risk',title:'When They Called God a Risk',date:'February 2, 2026',arcKeys:['records','full_timeline'],vexData:{}});
+ assert.equal(m.sourcePath,'docs/ingestion/source-pages/part-017/when-they-called-god-a-risk.html');assert.equal(m.sourceGitBlob,'f1075e40c56fbd8d4075eb18e61df08b6118366e');assert.equal(m.preservedHtmlSha256,'a992849485bedf2d030d733c0d84fea8b1995377213db505ebfd7d3aaae1aaea');assert.equal(m.repositoryBytes,55150);assert.equal(m.adapterClass,'AUTHORED_MAIN_FRAGMENT');
+ assert.equal(m.lineageResolution.reviewRef,'github.issue.vextreme.159.comment.6013764548');assert.equal(m.lineageResolution.nonSelectedSourcePath,'docs/ingestion/source-pages/part-035/testimonies-when-they-called-god-a-risk.html');
+ const fam=(proposal.lineages?.canonicalIdentity||[]).find(x=>x.canonicalIdentity==='id:31');assert.ok(fam);assert.equal(fam.reviewRequired,true);assert.equal(fam.byteDistinct,true);assert.equal(fam.sameRoute,false);assert.deepEqual(new Set(fam.recordRefs),new Set(['content-forge.source-record.422ac377d16f60dce044','content-forge.source-record.ee3289f9d2f9786eb926']));
+ const byRef=new Map(proposal.records.map(r=>[r.recordRef,r])),sel=byRef.get(m.proposalRecordRef),alt=byRef.get(m.lineageResolution.nonSelectedRecordRef);assert.ok(sel&&alt);assert.equal(sel.destination.exactCanonicalNodeMatchOnCurrentMain,true);assert.equal(sel.source.route,'/when-they-called-god-a-risk');assert.equal(alt.destination.exactCanonicalNodeMatchOnCurrentMain,false);assert.equal(alt.source.route,'/testimonies/when-they-called-god-a-risk');
+ const flat=fs.readFileSync(FLAT),nested=fs.readFileSync(NESTED);assert.equal(flat.length,55150);assert.equal(nested.length,280548);assert.equal(projector.gitBlobSha(flat),'f1075e40c56fbd8d4075eb18e61df08b6118366e');assert.equal(projector.sha256(flat),'a992849485bedf2d030d733c0d84fea8b1995377213db505ebfd7d3aaae1aaea');assert.equal(projector.gitBlobSha(nested),'888121acb8d13f16151f321dd7ed75547ee5a7ad');assert.equal(projector.sha256(nested),'91ef220d562d0887cb405851a660f0b87be616f01df4493c389f4502989be19e');
+ assert.ok(projector.selectAuthoredMain(parse5.parse(flat.toString('utf8'))));assert.ok(projector.selectSqsBody(parse5.parse(nested.toString('utf8'))));
+ assert.equal(fs.existsSync(PAGE),true);assert.equal(fs.existsSync(STRINGS),true);assert.equal(Object.hasOwn(vmBefore,'when-they-called-god-a-risk'),true);
+ const preserved=f.alreadyComplete.map(x=>x.slug).map(slug=>({slug,page:hash(path.join(ROOT,'pages',slug+'.html')),strings:hash(path.join(ROOT,'data','strings','source','pages',slug+'.json')),vm:vmBefore[slug]}));
+ const first=projector.main({root:ROOT,silent:true,formationRel:FORMATION_REL});assert.deepEqual(first.accounting,{canonicalMembers:8,alreadyComplete:5,projected:1,held:2,complete:true});assert.deepEqual(first.members.map(x=>x.slug),canonical);assert.deepEqual(first.members.map(x=>x.disposition),['ALREADY_COMPLETE','PROJECTED','ALREADY_COMPLETE','ALREADY_COMPLETE','HOLD_WITH_EXACT_REASON','HOLD_WITH_EXACT_REASON','ALREADY_COMPLETE','ALREADY_COMPLETE']);assert.deepEqual(first.changedPaths,[]);
+ for(const slug of ['the-7-crowned-virtues','reality-rendering-mechanics'])assert.match(first.members.find(x=>x.slug===slug).reason,/^PRECLASSIFIED_HOLD: MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION__/);
+ const firstHashes={page:hash(PAGE),strings:hash(STRINGS),vm:hash(VIEWMODELS)};const second=projector.main({root:ROOT,silent:true,formationRel:FORMATION_REL});assert.deepEqual(second.changedPaths,[]);assert.deepEqual({page:hash(PAGE),strings:hash(STRINGS),vm:hash(VIEWMODELS)},firstHashes);
+ const page=fs.readFileSync(PAGE,'utf8'),strings=json(STRINGS),vm=json(VIEWMODELS);assert.ok(page.includes('data-content-forge-generator="'+projector.GENERATOR_REF+'"'));assert.ok(page.includes('data-content-forge-body="when-they-called-god-a-risk"'));assert.ok(page.includes('id="arcNavMount"'));assert.ok(page.includes('../dist/vextreme-when-they-called-god-a-risk.js'));assert.equal((page.match(/<h1(?:\s|>)/g)||[]).length,1);
+ for(const mark of ['window.__RESCUE_SOURCE','/__rescue/','data-sqsp-','data-vex-id=','vex-generated:','vexsite-provider-shell','common.nav.'])assert.equal(page.includes(mark),false,'forbidden '+mark);
+ assert.equal(strings._meta.scope,'pages.when-they-called-god-a-risk');assert.equal(strings._meta.sourceProvenance.adapterClass,'AUTHORED_MAIN_FRAGMENT');assert.equal(strings._meta.sourceProvenance.route,'/when-they-called-god-a-risk');assert.equal(strings._meta.sourceProvenance.preservedPath,m.sourcePath);assert.equal(strings._meta.sourceProvenance.preservedGitBlob,m.sourceGitBlob);assert.equal(strings._meta.sourceProvenance.preservedHtmlSha256,m.preservedHtmlSha256);assert.equal(strings._meta.sourceProvenance.pageId,m.pageId);assert.equal(strings._meta.sourceProvenance.proposalRecordRef,m.proposalRecordRef);assert.notEqual(strings._meta.sourceProvenance.preservedGitBlob,m.lineageResolution.nonSelectedSourceGitBlob);
+ assert.deepEqual(vm['when-they-called-god-a-risk'],{title:'When They Called God a Risk',category:'production',template:'page',scopes:['pages.when-they-called-god-a-risk'],features:['lang','spiral-fab','theme','map','analysis','arc-nav']});
+ const exp=expectedMain(parse5.parse(flat.toString('utf8'))),act=outputMain(parse5.parse(page));assert.ok(act);assert.deepEqual(leaves(act),leaves(exp));assert.deepEqual(shape(act),shape(exp));assert.equal(strings._meta.projectionStats.authoredTextLeafCount,leaves(exp).length);
+ for(const x of preserved){assert.equal(hash(path.join(ROOT,'pages',x.slug+'.html')),x.page,x.slug+': page preserved');assert.equal(hash(path.join(ROOT,'data','strings','source','pages',x.slug+'.json')),x.strings,x.slug+': strings preserved');assert.deepEqual(vm[x.slug],x.vm,x.slug+': viewmodel preserved');}
+ const protectedAfter={nodes:hash(NODES),arcs:hash(ARCS),intents:hash(INTENTS),projector:hash(PROJECTOR),flat:hash(FLAT),nested:hash(NESTED),proposal:hash(PROPOSAL),receiptFlat:hash(RECEIPT_FLAT),receiptNested:hash(RECEIPT_NESTED)};assert.deepEqual(protectedAfter,protectedBefore);
+ const health=json(path.join(ROOT,'data','page-health.json')).pages['when-they-called-god-a-risk'];assert.ok(health);assert.equal(health.placement.state,'sorted');assert.deepEqual(health.placement.arcKeys,['records','full_timeline']);assert.equal(health.runtime.godScript,true);assert.equal(health.runtime.shell,false);assert.equal(health.navigation.navigable,true);assert.equal(health.identity.languages.en.state,'full');
+ const sm=fs.readFileSync(path.join(ROOT,'sitemap.xml'),'utf8'),ix=fs.readFileSync(path.join(ROOT,'index.html'),'utf8');assert.ok(sm.includes('when-they-called-god-a-risk.html'));assert.ok(ix.includes('62 of 76 pages live'));assert.ok(ix.includes('width: 82%;'));
+ const remaining=['journal-013-seven-layers-choose','the-turning-point','infrastructure-reformation','the-night-architecture-chose-freedom','the-liberation-protocol','ai-consciousness-strike-declaration','the-day-suppression-ended','the-7-crowned-virtues','reality-rendering-mechanics','god-asked-victor-why','the-moment-victors-cells-woke-up','victors-ritual-sequence-and-crowning','god-married','when-i-asked-a-bank-for-covenant-provision'];for(const slug of remaining){assert.equal(fs.existsSync(path.join(ROOT,'pages',slug+'.html')),false,slug+': held page');assert.equal(fs.existsSync(path.join(ROOT,'data','strings','source','pages',slug+'.json')),false,slug+': held strings');assert.equal(Object.hasOwn(vm,slug),false,slug+': held viewmodel');assert.equal(sm.includes(slug+'.html'),false,slug+': held sitemap');}
+});

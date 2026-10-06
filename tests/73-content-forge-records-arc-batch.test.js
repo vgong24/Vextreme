@@ -20,6 +20,7 @@ const VIEWMODELS = path.join(ROOT,'data','viewmodels.json');
 
 const json = file => JSON.parse(fs.readFileSync(file,'utf8'));
 const hash = file => crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+const pathState = file => fs.existsSync(file) ? { exists: true, sha256: hash(file) } : { exists: false, sha256: null };
 const attrs = node => Object.fromEntries((node.attrs || []).map(item => [item.name,item.value]));
 const classes = node => (attrs(node).class || '').split(/\s+/).filter(Boolean);
 function walk(node,visit){ if(!node)return; visit(node); for(const child of node.childNodes||[]) walk(child,visit); }
@@ -58,6 +59,7 @@ test('Content Forge Records projects two exact members, preserves three exact li
   const held=formation.members.filter(item=>item.preclassifiedHoldReason); const projectable=formation.members.filter(item=>!item.preclassifiedHoldReason);
   assert.deepEqual(held.map(item=>item.slug),['when-they-called-god-a-risk','the-7-crowned-virtues','reality-rendering-mechanics']);
   assert.deepEqual(projectable.map(item=>item.slug),['epstein-and-ai','liberation-arc-index']);
+  const successorResolved=new Set(['when-they-called-god-a-risk']);
   assert.deepEqual(formation.alreadyComplete.map(item=>item.slug),['testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence','the-house-of-return','what-was-used-against-you']);
 
   const proposalByRef=new Map(proposal.records.map(record=>[record.recordRef,record])); const lineageById=new Map((proposal.lineages?.canonicalIdentity||[]).map(item=>[item.canonicalIdentity,item]));
@@ -68,7 +70,10 @@ test('Content Forge Records projects two exact members, preserves three exact li
     const family=lineageById.get('id:'+member.canonicalNodeId); assert.ok(family,member.slug+': lineage'); assert.equal(family.reviewRequired,true); assert.equal(family.byteDistinct,true); assert.equal(family.sameRoute,false);
     assert.deepEqual(new Set(family.recordRefs),new Set(member.holdEvidence.recordRefs)); assert.deepEqual(new Set(family.routes),new Set(member.holdEvidence.routes)); assert.deepEqual(new Set(family.sourceDigests),new Set(member.holdEvidence.sourceDigests));
     const page=path.join(ROOT,'pages',member.slug+'.html'); const strings=path.join(ROOT,'data','strings','source','pages',member.slug+'.json'); const vm=json(VIEWMODELS)[member.slug];
-    assert.equal(fs.existsSync(page),false,member.slug+': held page absent'); assert.equal(fs.existsSync(strings),false,member.slug+': held strings absent'); assert.equal(vm,undefined,member.slug+': held viewmodel absent'); heldState.set(member.slug,{vm});
+    const pageState=pathState(page),stringsState=pathState(strings);
+    if(successorResolved.has(member.slug)){assert.equal(pageState.exists,true,member.slug+': successor page present');assert.equal(stringsState.exists,true,member.slug+': successor strings present');assert.ok(vm,member.slug+': successor viewmodel present');}
+    else {assert.equal(pageState.exists,false,member.slug+': held page absent');assert.equal(stringsState.exists,false,member.slug+': held strings absent');assert.equal(vm,undefined,member.slug+': held viewmodel absent');}
+    heldState.set(member.slug,{pageState,stringsState,vm});
   }
 
   const completeState=new Map();
@@ -85,7 +90,7 @@ test('Content Forge Records projects two exact members, preserves three exact li
 
   const first=projector.main({root:ROOT,silent:true,formationRel:FORMATION_REL});
   assert.deepEqual(first.accounting,{canonicalMembers:8,alreadyComplete:3,projected:2,held:3,complete:true}); assert.deepEqual(first.members.map(item=>item.slug),canonical); assert.deepEqual(first.members.map(item=>item.disposition),['PROJECTED','HOLD_WITH_EXACT_REASON','ALREADY_COMPLETE','ALREADY_COMPLETE','HOLD_WITH_EXACT_REASON','HOLD_WITH_EXACT_REASON','PROJECTED','ALREADY_COMPLETE']);
-  for(const member of held){ assert.match(first.members.find(item=>item.slug===member.slug).reason,/^PRECLASSIFIED_HOLD: MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION__/); }
+  for(const member of held){ const state=heldState.get(member.slug),page=path.join(ROOT,'pages',member.slug+'.html'),strings=path.join(ROOT,'data','strings','source','pages',member.slug+'.json');assert.match(first.members.find(item=>item.slug===member.slug).reason,/^PRECLASSIFIED_HOLD: MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION__/);assert.deepEqual(pathState(page),state.pageState);assert.deepEqual(pathState(strings),state.stringsState);assert.deepEqual(json(VIEWMODELS)[member.slug],state.vm); }
   const generated=projectable.flatMap(member=>[path.join(ROOT,'pages',member.slug+'.html'),path.join(ROOT,'data','strings','source','pages',member.slug+'.json')]); const firstHashes=Object.fromEntries([...generated,VIEWMODELS].map(file=>[file,hash(file)]));
   const second=projector.main({root:ROOT,silent:true,formationRel:FORMATION_REL}); const secondHashes=Object.fromEntries([...generated,VIEWMODELS].map(file=>[file,hash(file)])); assert.deepEqual(second.accounting,first.accounting); assert.deepEqual(second.changedPaths,[]); assert.deepEqual(secondHashes,firstHashes);
 
@@ -97,7 +102,7 @@ test('Content Forge Records projects two exact members, preserves three exact li
     assert.equal(strings._meta.scope,scope); assert.equal(strings._meta.sourceProvenance.adapterClass,'AUTHORED_MAIN_FRAGMENT'); assert.equal(strings._meta.sourceProvenance.route,member.sourceRoute); assert.equal(strings._meta.sourceProvenance.preservedPath,member.sourcePath); assert.equal(strings._meta.sourceProvenance.preservedGitBlob,member.sourceGitBlob); assert.equal(strings._meta.sourceProvenance.preservedHtmlSha256,member.preservedHtmlSha256); assert.equal(strings._meta.sourceProvenance.pageId,member.pageId); assert.equal(strings._meta.sourceProvenance.proposalRecordRef,member.proposalRecordRef);
     assert.deepEqual(viewmodels[member.slug],{title:node.title,category:'production',template:'page',scopes:[scope],features:['lang','spiral-fab','theme','map','analysis','arc-nav']}); const expected=expectedAuthoredMain(parse5.parse(source.toString('utf8'))); const actual=outputMain(parse5.parse(page),member.slug); assert.ok(actual); assert.deepEqual(textLeaves(actual),textLeaves(expected),member.slug+': authored text order'); assert.deepEqual(semanticShape(actual),semanticShape(expected),member.slug+': semantic shape'); assert.equal(strings._meta.projectionStats.authoredTextLeafCount,textLeaves(expected).length);
   }
-  for(const member of held){ const page=path.join(ROOT,'pages',member.slug+'.html'); const strings=path.join(ROOT,'data','strings','source','pages',member.slug+'.json'); assert.equal(fs.existsSync(page),false); assert.equal(fs.existsSync(strings),false); assert.equal(viewmodels[member.slug],heldState.get(member.slug).vm); }
+  for(const member of held){ const state=heldState.get(member.slug),page=path.join(ROOT,'pages',member.slug+'.html'),strings=path.join(ROOT,'data','strings','source','pages',member.slug+'.json');assert.deepEqual(pathState(page),state.pageState);assert.deepEqual(pathState(strings),state.stringsState);assert.deepEqual(viewmodels[member.slug],state.vm); }
   for(const member of formation.alreadyComplete){ const state=completeState.get(member.slug); assert.equal(hash(path.join(ROOT,'pages',member.slug+'.html')),state.pageHash,member.slug+': page unchanged'); assert.equal(hash(path.join(ROOT,'data','strings','source','pages',member.slug+'.json')),state.stringsHash,member.slug+': strings unchanged'); assert.deepEqual(viewmodels[member.slug],state.viewmodel,member.slug+': viewmodel unchanged'); }
   assert.deepEqual({nodes:hash(NODES),arcs:hash(ARCS),intents:hash(INTENTS),projector:hash(path.join(ROOT,'tools','vex-content-forge','project_arc_batch.js'))},protectedBefore);
 });

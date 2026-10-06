@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 113,
+    "total": 114,
     "healthy": 3,
-    "attention": 104,
+    "attention": 105,
     "critical": 6,
-    "sorted": 74,
-    "withFab": 100,
-    "withIdentity": 81,
+    "sorted": 75,
+    "withFab": 101,
+    "withIdentity": 82,
     "withScreenshots": 11,
-    "withMetaDescription": 78
+    "withMetaDescription": 79
   },
   "pages": {
     "a-conversation-with-pastor-jacob": {
@@ -6254,6 +6254,61 @@
       },
       "discovery": {
         "metaDescription": "When the Machine Assumed Beauty Needed Saving — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "when-they-called-god-a-risk": {
+      "slug": "when-they-called-god-a-risk",
+      "title": "When They Called God a Risk",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "records",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 102,
+        "languages": {
+          "en": {
+            "translated": 102,
+            "total": 102,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "When They Called God a Risk — repository-native preserved content."
       },
       "health": {
         "state": "attention",
