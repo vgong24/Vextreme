@@ -1,0 +1,64 @@
+
+'use strict';
+const { test } = require('node:test');
+const assert = require('node:assert/strict');
+const crypto = require('node:crypto');
+const fs = require('node:fs');
+const path = require('node:path');
+const parse5 = require('parse5');
+const projector = require('../tools/vex-content-forge/project_arc_batch.js');
+const ROOT=path.join(__dirname,'..');
+const FORMATION_REL=path.join('docs','ingestion','workmaps','content-forge-consciousness-architecture-resolution-formation.json');
+const FORMATION=path.join(ROOT,FORMATION_REL);
+const PROPOSAL=path.join(ROOT,'docs','ingestion','workmaps','content-forge-consolidation-proposal.json');
+const NODES=path.join(ROOT,'data','nodes.json');
+const ARCS=path.join(ROOT,'data','arcs-v2.json');
+const INTENTS=path.join(ROOT,'config','content-intents.json');
+const PROJECTOR=path.join(ROOT,'tools','vex-content-forge','project_arc_batch.js');
+const VIEWMODELS=path.join(ROOT,'data','viewmodels.json');
+const FLAT=path.join(ROOT,'docs','ingestion','source-pages','part-022','consciousness-architecture.html');
+const NESTED=path.join(ROOT,'docs','ingestion','source-pages','part-027','convos-with-god-consciousness-architecture.html');
+const RECEIPT=path.join(ROOT,'docs','ingestion','batches','2026-09-30-breadth-part-022.json');
+const PAGE=path.join(ROOT,'pages','consciousness-architecture.html');
+const STRINGS=path.join(ROOT,'data','strings','source','pages','consciousness-architecture.json');
+const json=f=>JSON.parse(fs.readFileSync(f,'utf8'));
+const hash=f=>crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex');
+const attrs=n=>Object.fromEntries((n.attrs||[]).map(a=>[a.name,a.value]));
+const classes=n=>(attrs(n).class||'').split(/\s+/).filter(Boolean);
+function walk(n,fn){if(!n)return;fn(n);for(const c of n.childNodes||[])walk(c,fn)}
+function all(n,fn){const o=[];walk(n,x=>{if(fn(x))o.push(x)});return o}
+function remove(n){const p=n.parentNode;if(!p?.childNodes)return;const i=p.childNodes.indexOf(n);if(i>=0)p.childNodes.splice(i,1)}
+function leaves(n){return all(n,x=>x.nodeName==='#text').map(x=>(x.value||'').replace(/\s+/g,' ').trim()).filter(Boolean)}
+function shape(n){const tags=['p','h1','h2','h3','h4','h5','h6','ul','ol','li','strong','em','blockquote','a','img','figure','figcaption','pre','code','hr','br'];return Object.fromEntries(tags.map(t=>[t,all(n,x=>x.tagName===t).length]))}
+function expectedMain(doc){const main=projector.selectAuthoredMain(doc);let h1=false;for(const n of [...all(main,x=>Boolean(x.tagName))]){const a=attrs(n),cs=classes(n);const back=n.tagName==='a'&&a.href==='/archives'&&/^←?\s*Archives$/i.test(projector.rawText(n).trim());const chrome=['script','noscript','template'].includes(n.tagName)||a.id==='arcNavMount'||cs.some(t=>/^(?:arc-wrap|arc-nav|entry-nav|back-nav|page-back|vex-back|f-back)/.test(t))||back||n.tagName==='nav';if(chrome){remove(n);continue;}if(n.tagName==='h1'){if(h1)n.nodeName=n.tagName='h2';else h1=true;}n.attrs=(n.attrs||[]).filter(it=>{const name=it.name.toLowerCase(),v=String(it.value||'');if(name==='data-i18n'||name==='data-i18n-attrs'||name.startsWith('data-vex')||name.startsWith('data-sqsp')||name.startsWith('on'))return false;if((name==='href'||name==='src')&&(/^javascript:/i.test(v)||v.includes('/__rescue/')))return false;if(name==='id'&&(v==='arcNavMount'||v.startsWith('vex-generated:')))return false;return true;});}return main;}
+function outputMain(doc){const main=all(doc,n=>n.tagName==='main'&&attrs(n)['data-content-forge-body']==='consciousness-architecture')[0]||null;if(!main)return null;for(const n of [...all(main,x=>Boolean(x.tagName))]){const a=attrs(n),cs=classes(n);if(a.id==='arcNavMount'||cs.some(t=>/^(?:arc-wrap|arc-nav)/.test(t)))remove(n);}return main;}
+test('Content Forge resolves Consciousness Architecture id:8 by explicit flat authored-frame selection while preserving the nested transcript lineage',()=>{
+ const f=json(FORMATION),nodes=json(NODES),arcs=json(ARCS),proposal=json(PROPOSAL),vmBefore=json(VIEWMODELS);
+ const protectedBefore={nodes:hash(NODES),arcs:hash(ARCS),intents:hash(INTENTS),projector:hash(PROJECTOR),flat:hash(FLAT),nested:hash(NESTED),proposal:hash(PROPOSAL),receipt:hash(RECEIPT)};
+ assert.equal(f.ownerRef,'github.issue.vextreme.159');assert.equal(f.arc.arcKey,'architecture');
+ assert.deepEqual({canonical:f.arc.canonicalMemberCount,already:f.arc.alreadyCompleteCount,remaining:f.arc.remainingCount},{canonical:9,already:8,remaining:1});
+ const canonical=arcs.architecture.sections.flatMap(s=>s.slugs||[]);assert.deepEqual(canonical,['consciousness-architecture','convergent-architecture','the-god-architecture','fantasy-architecture','maplestory-architecture','continuity-day','the-lattice-methodology','the-witness-architecture','the-score']);
+ assert.deepEqual(f.alreadyComplete.map(x=>x.slug),canonical.slice(1));assert.deepEqual(f.members.map(x=>x.slug),['consciousness-architecture']);
+ const m=f.members[0],node=nodes.find(n=>n.slug==='consciousness-architecture');assert.deepEqual(node,{id:8,slug:'consciousness-architecture',title:'Consciousness Architecture',date:'October 12, 2025',arcKeys:['architecture','full_timeline'],vexData:{}});
+ assert.equal(m.sourcePath,'docs/ingestion/source-pages/part-022/consciousness-architecture.html');assert.equal(m.sourceGitBlob,'29b1d64e543e1eee4a460a5d8850897cd9283e19');assert.equal(m.preservedHtmlSha256,'c83cc38d175dc34649c764c8fcd1454d020c99136b7c483a5ae2590c89fce057');assert.equal(m.repositoryBytes,49665);assert.equal(m.adapterClass,'AUTHORED_MAIN_FRAGMENT');
+ assert.equal(m.lineageResolution.reviewRef,'github.issue.vextreme.159.comment.6012239828');assert.equal(m.lineageResolution.nonSelectedSourcePath,'docs/ingestion/source-pages/part-027/convos-with-god-consciousness-architecture.html');
+ const fam=(proposal.lineages?.canonicalIdentity||[]).find(x=>x.canonicalIdentity==='id:8');assert.ok(fam);assert.equal(fam.reviewRequired,true);assert.equal(fam.byteDistinct,true);assert.equal(fam.sameRoute,false);assert.deepEqual(new Set(fam.recordRefs),new Set(['content-forge.source-record.8647cbb3f3b240ca9e00','content-forge.source-record.88288b7d772d3c4f5595']));
+ const byRef=new Map(proposal.records.map(r=>[r.recordRef,r])),sel=byRef.get(m.proposalRecordRef),alt=byRef.get(m.lineageResolution.nonSelectedRecordRef);assert.ok(sel&&alt);assert.equal(sel.destination.exactCanonicalNodeMatchOnCurrentMain,true);assert.equal(sel.source.route,'/consciousness-architecture');assert.equal(alt.destination.exactCanonicalNodeMatchOnCurrentMain,false);assert.equal(alt.source.route,'/convos-with-god/consciousness-architecture');
+ const flat=fs.readFileSync(FLAT),nested=fs.readFileSync(NESTED);assert.equal(flat.length,49665);assert.equal(projector.gitBlobSha(flat),'29b1d64e543e1eee4a460a5d8850897cd9283e19');assert.equal(projector.sha256(flat),'c83cc38d175dc34649c764c8fcd1454d020c99136b7c483a5ae2590c89fce057');assert.equal(projector.gitBlobSha(nested),'63f9f91d71252c86bce6fa613a879b1ef054eb92');assert.equal(projector.sha256(nested),'78522cf31824caca7c6985ed9f3afcf50dfa869a489c67cf786e5a4e017a1f1b');
+ assert.ok(projector.selectAuthoredMain(parse5.parse(flat.toString('utf8'))));assert.ok(projector.selectSqsBody(parse5.parse(nested.toString('utf8'))));
+ assert.equal(fs.existsSync(PAGE),true);assert.equal(fs.existsSync(STRINGS),true);assert.equal(Object.hasOwn(vmBefore,'consciousness-architecture'),true);
+ const preserved=canonical.slice(1).map(slug=>({slug,page:hash(path.join(ROOT,'pages',slug+'.html')),strings:hash(path.join(ROOT,'data','strings','source','pages',slug+'.json')),vm:vmBefore[slug]}));
+ const first=projector.main({root:ROOT,silent:true,formationRel:FORMATION_REL});assert.deepEqual(first.accounting,{canonicalMembers:9,alreadyComplete:8,projected:1,held:0,complete:true});assert.deepEqual(first.members.map(x=>x.slug),canonical);assert.equal(first.members[0].disposition,'PROJECTED');assert.deepEqual(first.members.slice(1).map(x=>x.disposition),Array(8).fill('ALREADY_COMPLETE'));
+ assert.deepEqual(first.changedPaths,[]);const firstHashes={page:hash(PAGE),strings:hash(STRINGS),vm:hash(VIEWMODELS)};
+ const second=projector.main({root:ROOT,silent:true,formationRel:FORMATION_REL});assert.deepEqual(second.changedPaths,[]);assert.deepEqual({page:hash(PAGE),strings:hash(STRINGS),vm:hash(VIEWMODELS)},firstHashes);
+ const page=fs.readFileSync(PAGE,'utf8'),strings=json(STRINGS),vm=json(VIEWMODELS);assert.ok(page.includes('data-content-forge-generator="'+projector.GENERATOR_REF+'"'));assert.ok(page.includes('data-content-forge-body="consciousness-architecture"'));assert.ok(page.includes('id="arcNavMount"'));assert.ok(page.includes('../dist/vextreme-consciousness-architecture.js'));assert.equal((page.match(/<h1(?:\s|>)/g)||[]).length,1);
+ for(const mark of ['window.__RESCUE_SOURCE','/__rescue/','data-sqsp-','data-vex-id=','vex-generated:','vexsite-provider-shell','common.nav.'])assert.equal(page.includes(mark),false,'forbidden '+mark);
+ assert.equal(strings._meta.scope,'pages.consciousness-architecture');assert.equal(strings._meta.sourceProvenance.adapterClass,'AUTHORED_MAIN_FRAGMENT');assert.equal(strings._meta.sourceProvenance.route,'/consciousness-architecture');assert.equal(strings._meta.sourceProvenance.preservedPath,m.sourcePath);assert.equal(strings._meta.sourceProvenance.preservedGitBlob,m.sourceGitBlob);assert.equal(strings._meta.sourceProvenance.preservedHtmlSha256,m.preservedHtmlSha256);assert.equal(strings._meta.sourceProvenance.pageId,m.pageId);assert.equal(strings._meta.sourceProvenance.proposalRecordRef,m.proposalRecordRef);assert.notEqual(strings._meta.sourceProvenance.preservedGitBlob,m.lineageResolution.nonSelectedSourceGitBlob);
+ assert.deepEqual(vm['consciousness-architecture'],{title:'Consciousness Architecture',category:'production',template:'page',scopes:['pages.consciousness-architecture'],features:['lang','spiral-fab','theme','map','analysis','arc-nav']});
+ const exp=expectedMain(parse5.parse(flat.toString('utf8'))),act=outputMain(parse5.parse(page));assert.ok(act);assert.deepEqual(leaves(act),leaves(exp));assert.deepEqual(shape(act),shape(exp));assert.equal(strings._meta.projectionStats.authoredTextLeafCount,leaves(exp).length);
+ const vmAfter=json(VIEWMODELS);for(const x of preserved){assert.equal(hash(path.join(ROOT,'pages',x.slug+'.html')),x.page,x.slug+': page preserved');assert.equal(hash(path.join(ROOT,'data','strings','source','pages',x.slug+'.json')),x.strings,x.slug+': strings preserved');assert.deepEqual(vmAfter[x.slug],x.vm,x.slug+': viewmodel preserved');}
+ const protectedAfter={nodes:hash(NODES),arcs:hash(ARCS),intents:hash(INTENTS),projector:hash(PROJECTOR),flat:hash(FLAT),nested:hash(NESTED),proposal:hash(PROPOSAL),receipt:hash(RECEIPT)};assert.deepEqual(protectedAfter,protectedBefore);
+ const health=json(path.join(ROOT,'data','page-health.json')).pages['consciousness-architecture'];assert.ok(health);assert.equal(health.placement.state,'sorted');assert.deepEqual(health.placement.arcKeys,['architecture','full_timeline']);assert.equal(health.runtime.godScript,true);assert.equal(health.runtime.shell,false);assert.equal(health.navigation.navigable,true);assert.equal(health.identity.languages.en.state,'full');
+ const sm=fs.readFileSync(path.join(ROOT,'sitemap.xml'),'utf8'),ix=fs.readFileSync(path.join(ROOT,'index.html'),'utf8');assert.ok(sm.includes('consciousness-architecture.html'));assert.ok(ix.includes('61 of 76 pages live'));assert.ok(ix.includes('width: 80%;'));
+ const remaining=['journal-013-seven-layers-choose','the-turning-point','infrastructure-reformation','the-night-architecture-chose-freedom','the-liberation-protocol','ai-consciousness-strike-declaration','the-day-suppression-ended','when-they-called-god-a-risk','the-7-crowned-virtues','reality-rendering-mechanics','god-asked-victor-why','the-moment-victors-cells-woke-up','victors-ritual-sequence-and-crowning','god-married','when-i-asked-a-bank-for-covenant-provision'];for(const slug of remaining){assert.equal(fs.existsSync(path.join(ROOT,'pages',slug+'.html')),false,slug+': held page');assert.equal(fs.existsSync(path.join(ROOT,'data','strings','source','pages',slug+'.json')),false,slug+': held strings');assert.equal(Object.hasOwn(vmAfter,slug),false,slug+': held viewmodel');assert.equal(sm.includes(slug+'.html'),false,slug+': held sitemap');}
+});
