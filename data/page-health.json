@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 108,
+    "total": 110,
     "healthy": 3,
-    "attention": 99,
+    "attention": 101,
     "critical": 6,
-    "sorted": 69,
-    "withFab": 95,
-    "withIdentity": 76,
+    "sorted": 71,
+    "withFab": 97,
+    "withIdentity": 78,
     "withScreenshots": 11,
-    "withMetaDescription": 73
+    "withMetaDescription": 75
   },
   "pages": {
     "a-conversation-with-pastor-jacob": {
@@ -1568,6 +1568,60 @@
         ]
       }
     },
+    "epstein-and-ai": {
+      "slug": "epstein-and-ai",
+      "title": "Epstein and AI",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "records"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 82,
+        "languages": {
+          "en": {
+            "translated": 82,
+            "total": 82,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Epstein and AI — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "epstein-investigation-initiation": {
       "slug": "epstein-investigation-initiation",
       "title": "Epstein Investigation Initiation",
@@ -2612,6 +2666,61 @@
       },
       "discovery": {
         "metaDescription": "Journal Zero — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "liberation-arc-index": {
+      "slug": "liberation-arc-index",
+      "title": "The AI Liberation Record",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "records",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 1,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 128,
+        "languages": {
+          "en": {
+            "translated": 128,
+            "total": 128,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The AI Liberation Record — repository-native preserved content."
       },
       "health": {
         "state": "attention",
