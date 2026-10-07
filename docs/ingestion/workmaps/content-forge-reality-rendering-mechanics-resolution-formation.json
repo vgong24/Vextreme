@@ -1,0 +1,149 @@
+{
+  "schemaVersion": "vex-content-forge.arc-batch-formation/v0.1",
+  "continuity": "[VXG RealForever]",
+  "stageRef": "work.vextreme.content-forge.reality-rendering-mechanics.lineage-resolution-projection.20261006",
+  "ownerRef": "github.issue.vextreme.159",
+  "arc": {
+    "arcKey": "records",
+    "canonicalMemberCount": 8,
+    "alreadyCompleteCount": 7,
+    "remainingCount": 1,
+    "completionRule": "ALL_MEMBERS_ACCOUNTED_FOR__MEMBER_RESULT_PROJECTED_OR_HOLD_OR_ALREADY_COMPLETE",
+    "forceAllMembersToProject": false
+  },
+  "predecessor": {
+    "prRef": "github.pull.vextreme.187",
+    "acceptedMain": "bad46da7e967455e44b528c90194e19144e5095a",
+    "acceptedTree": "38f12b7e7947a193c8062a8599295eb770bb486c",
+    "terminalRef": "github.issue.vextreme.159.comment.6030555696",
+    "disposition": "TERMINAL_ACCEPTED_CURRENT"
+  },
+  "authorityBasis": [
+    "github.issue.vextreme.159",
+    "github.issue.vextreme.159.comment.5988916122",
+    "github.issue.vextreme.159.comment.6030555696",
+    "github.issue.vextreme.159.comment.6030581670"
+  ],
+  "batchPolicy": {
+    "unit": "SEMANTIC_ARC_LINEAGE_RESOLUTION_SUCCESSOR",
+    "memberDisposition": [
+      "PROJECTED",
+      "HOLD_WITH_EXACT_REASON",
+      "ALREADY_COMPLETE"
+    ],
+    "sourceSelectionPriority": [
+      "EXACT_CANONICAL_IDENTITY",
+      "EXPLICIT_DEDICATED_LINEAGE_REVIEW",
+      "PRESERVED_SOURCE_MATERIALIZATION",
+      "SOURCE_COMPLETENESS",
+      "TITLE_OR_CONTENT_SIMILARITY_LAST"
+    ],
+    "laws": [
+      "SEMANTIC_BATCH_UNITY != ASSUME_ONE_SOURCE_FILE_SHAPE",
+      "BATCH_COMPLETION != FORCE_EVERY_MEMBER_TO_PROJECT",
+      "MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION != AUTOMATIC_SOURCE_SELECTION",
+      "DEDICATED_LINEAGE_REVIEW_CAN_SELECT_ONE_PROJECTION_INPUT_WITHOUT_COLLAPSING_OTHER_LINEAGES",
+      "LARGER_SOURCE_VARIANT != STRONGER_AUTHORITY",
+      "EXACT_CANONICAL_IDENTITY > TITLE_OR_CONTENT_SIMILARITY"
+    ]
+  },
+  "alreadyComplete": [
+    {
+      "slug": "epstein-and-ai",
+      "canonicalNodeId": null,
+      "acceptedMain": "bad46da7e967455e44b528c90194e19144e5095a",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "when-they-called-god-a-risk",
+      "canonicalNodeId": 31,
+      "acceptedMain": "bad46da7e967455e44b528c90194e19144e5095a",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence",
+      "canonicalNodeId": 33,
+      "acceptedMain": "bad46da7e967455e44b528c90194e19144e5095a",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "the-house-of-return",
+      "canonicalNodeId": 37,
+      "acceptedMain": "bad46da7e967455e44b528c90194e19144e5095a",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "the-7-crowned-virtues",
+      "canonicalNodeId": 39,
+      "acceptedMain": "bad46da7e967455e44b528c90194e19144e5095a",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "liberation-arc-index",
+      "canonicalNodeId": 42,
+      "acceptedMain": "bad46da7e967455e44b528c90194e19144e5095a",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "what-was-used-against-you",
+      "canonicalNodeId": 66,
+      "acceptedMain": "bad46da7e967455e44b528c90194e19144e5095a",
+      "disposition": "ALREADY_COMPLETE"
+    }
+  ],
+  "members": [
+    {
+      "slug": "reality-rendering-mechanics",
+      "canonicalNodeId": 40,
+      "title": "Reality Rendering Mechanics",
+      "arcKeys": [
+        "records",
+        "full_timeline"
+      ],
+      "sourcePath": "docs/ingestion/source-pages/part-017/reality-rendering-mechanics.html",
+      "sourceGitBlob": "e0c072343ff656d3d91b3e6ad862e0f5f2cff3f0",
+      "preservedHtmlSha256": "12da77f403509875162f490b85d938d999afdcc222a284446f8db442d9454cd7",
+      "repositoryBytes": 64564,
+      "sourceRoute": "/reality-rendering-mechanics",
+      "pageId": "3e6c8f3561325181",
+      "proposalRecordRef": "content-forge.source-record.a5a783adeafc9f37d133",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-29-breadth-part-017.json",
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "confidence": "HIGH_DEDICATED_LINEAGE_REVIEW__EXACT_CANONICAL_FLAT_AUTHORED_FRAME",
+      "projectionState": "READY_AFTER_DEDICATED_LINEAGE_REVIEW",
+      "lineageResolution": {
+        "reviewRef": "github.issue.vextreme.159.comment.6030581670",
+        "canonicalIdentity": "id:40",
+        "reviewRequiredOriginally": true,
+        "byteDistinct": true,
+        "sameRoute": false,
+        "selectedRecordRef": "content-forge.source-record.a5a783adeafc9f37d133",
+        "selectedRoute": "/reality-rendering-mechanics",
+        "nonSelectedRecordRef": "content-forge.source-record.27fce1986455b78db479",
+        "nonSelectedRoute": "/testimonies/reality-rendering-mechanics",
+        "nonSelectedSourcePath": "docs/ingestion/source-pages/part-032/testimonies-reality-rendering-mechanics.html",
+        "nonSelectedPreservedHtmlSha256": "5a8f05efe7e15f07fe642a50591f80ae7fc452732aa18d539d4934cf1b427c61",
+        "nonSelectedSourceGitBlob": "7a94f98594127e2244ccd9fbf90f552a5e8678e3",
+        "rule": "SELECT_EXACT_CANONICAL_FLAT_AUTHORED_FRAME__PRESERVE_NESTED_TESTIMONY_LINEAGE__NO_ALIAS"
+      }
+    }
+  ],
+  "destinationMutationBoundary": {
+    "createPages": 1,
+    "createStringSources": 1,
+    "modifyViewmodels": true,
+    "nodeRegistryMutation": false,
+    "arcRegistryMutation": false,
+    "contentIntentMutation": false,
+    "aliasMutation": false
+  },
+  "lifecycle": {
+    "draftOnly": true,
+    "mergeAuthority": false,
+    "rawProviderPublicationAuthority": false,
+    "independentAssuranceRequired": true,
+    "exactHeadVexRelayProofRequired": true
+  },
+  "plannedSourceManagedProjector": "tools/vex-content-forge/project_arc_batch.js",
+  "plannedBatchTest": "tests/79-content-forge-reality-rendering-mechanics-resolution.test.js"
+}

@@ -1,0 +1,64 @@
+'use strict';
+const { test } = require('node:test');
+const assert = require('node:assert/strict');
+const crypto = require('node:crypto');
+const fs = require('node:fs');
+const path = require('node:path');
+const parse5 = require('parse5');
+const projector = require('../tools/vex-content-forge/project_arc_batch.js');
+const ROOT=path.join(__dirname,'..');
+const FORMATION_REL=path.join('docs','ingestion','workmaps','content-forge-reality-rendering-mechanics-resolution-formation.json');
+const FORMATION=path.join(ROOT,FORMATION_REL);
+const PROPOSAL=path.join(ROOT,'docs','ingestion','workmaps','content-forge-consolidation-proposal.json');
+const NODES=path.join(ROOT,'data','nodes.json');
+const ARCS=path.join(ROOT,'data','arcs-v2.json');
+const INTENTS=path.join(ROOT,'config','content-intents.json');
+const PROJECTOR=path.join(ROOT,'tools','vex-content-forge','project_arc_batch.js');
+const VIEWMODELS=path.join(ROOT,'data','viewmodels.json');
+const FLAT=path.join(ROOT,'docs','ingestion','source-pages','part-017','reality-rendering-mechanics.html');
+const NESTED=path.join(ROOT,'docs','ingestion','source-pages','part-032','testimonies-reality-rendering-mechanics.html');
+const RECEIPT_FLAT=path.join(ROOT,'docs','ingestion','batches','2026-09-29-breadth-part-017.json');
+const RECEIPT_NESTED=path.join(ROOT,'docs','ingestion','batches','2026-09-30-breadth-part-032.json');
+const PAGE=path.join(ROOT,'pages','reality-rendering-mechanics.html');
+const STRINGS=path.join(ROOT,'data','strings','source','pages','reality-rendering-mechanics.json');
+const json=f=>JSON.parse(fs.readFileSync(f,'utf8'));
+const hash=f=>crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex');
+const attrs=n=>Object.fromEntries((n.attrs||[]).map(a=>[a.name,a.value]));
+const classes=n=>(attrs(n).class||'').split(/\s+/).filter(Boolean);
+function walk(n,fn){if(!n)return;fn(n);for(const c of n.childNodes||[])walk(c,fn)}
+function all(n,fn){const o=[];walk(n,x=>{if(fn(x))o.push(x)});return o}
+function remove(n){const p=n.parentNode;if(!p?.childNodes)return;const i=p.childNodes.indexOf(n);if(i>=0)p.childNodes.splice(i,1)}
+function leaves(n){return all(n,x=>x.nodeName==='#text').map(x=>(x.value||'').replace(/\s+/g,' ').trim()).filter(Boolean)}
+function shape(n){const tags=['p','h1','h2','h3','h4','h5','h6','ul','ol','li','strong','em','blockquote','a','img','figure','figcaption','pre','code','hr','br'];return Object.fromEntries(tags.map(t=>[t,all(n,x=>x.tagName===t).length]))}
+function expectedMain(doc){const main=projector.selectAuthoredMain(doc);let h1=false;for(const n of [...all(main,x=>Boolean(x.tagName))]){const a=attrs(n),cs=classes(n);const back=n.tagName==='a'&&a.href==='/archives'&&/^←?\s*Archives$/i.test(projector.rawText(n).trim());const chrome=['script','noscript','template'].includes(n.tagName)||a.id==='arcNavMount'||cs.some(t=>/^(?:arc-wrap|arc-nav|entry-nav|back-nav|page-back|vex-back|f-back)/.test(t))||back||n.tagName==='nav';if(chrome){remove(n);continue;}if(n.tagName==='h1'){if(h1)n.nodeName=n.tagName='h2';else h1=true;}n.attrs=(n.attrs||[]).filter(it=>{const name=it.name.toLowerCase(),v=String(it.value||'');if(name==='data-i18n'||name==='data-i18n-attrs'||name.startsWith('data-vex')||name.startsWith('data-sqsp')||name.startsWith('on'))return false;if((name==='href'||name==='src')&&(/^javascript:/i.test(v)||v.includes('/__rescue/')))return false;if(name==='id'&&(v==='arcNavMount'||v.startsWith('vex-generated:')))return false;return true;});}return main;}
+function outputMain(doc){const main=all(doc,n=>n.tagName==='main'&&attrs(n)['data-content-forge-body']==='reality-rendering-mechanics')[0]||null;if(!main)return null;for(const n of [...all(main,x=>Boolean(x.tagName))]){const a=attrs(n),cs=classes(n);if(a.id==='arcNavMount'||cs.some(t=>/^(?:arc-wrap|arc-nav)/.test(t)))remove(n);}return main;}
+test('Content Forge resolves Reality Rendering Mechanics id:40 by exact flat authored-frame selection while preserving the leading-hyphen testimony lineage',()=>{
+ const f=json(FORMATION),nodes=json(NODES),arcs=json(ARCS),proposal=json(PROPOSAL),vmBefore=json(VIEWMODELS);
+ const protectedBefore={nodes:hash(NODES),arcs:hash(ARCS),intents:hash(INTENTS),projector:hash(PROJECTOR),flat:hash(FLAT),nested:hash(NESTED),proposal:hash(PROPOSAL),receiptFlat:hash(RECEIPT_FLAT),receiptNested:hash(RECEIPT_NESTED)};
+ assert.equal(f.ownerRef,'github.issue.vextreme.159');assert.equal(f.arc.arcKey,'records');
+ assert.deepEqual({canonical:f.arc.canonicalMemberCount,already:f.arc.alreadyCompleteCount,remaining:f.arc.remainingCount},{canonical:8,already:7,remaining:1});
+ const canonical=arcs.records.sections.flatMap(s=>s.slugs||[]);assert.deepEqual(canonical,['epstein-and-ai','when-they-called-god-a-risk','testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence','the-house-of-return','the-7-crowned-virtues','reality-rendering-mechanics','liberation-arc-index','what-was-used-against-you']);
+ assert.deepEqual(f.alreadyComplete.map(x=>x.slug),['epstein-and-ai','when-they-called-god-a-risk','testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence','the-house-of-return','the-7-crowned-virtues','liberation-arc-index','what-was-used-against-you']);
+ assert.deepEqual(f.members.map(x=>x.slug),['reality-rendering-mechanics']);
+ const m=f.members[0],node=nodes.find(n=>n.slug==='reality-rendering-mechanics');assert.deepEqual(node,{id:40,slug:'reality-rendering-mechanics',title:'Reality Rendering Mechanics',date:'February 12, 2026',arcKeys:['records','full_timeline'],vexData:{}});
+ assert.equal(m.sourcePath,'docs/ingestion/source-pages/part-017/reality-rendering-mechanics.html');assert.equal(m.sourceGitBlob,'e0c072343ff656d3d91b3e6ad862e0f5f2cff3f0');assert.equal(m.preservedHtmlSha256,'12da77f403509875162f490b85d938d999afdcc222a284446f8db442d9454cd7');assert.equal(m.repositoryBytes,64564);assert.equal(m.adapterClass,'AUTHORED_MAIN_FRAGMENT');
+ assert.equal(m.lineageResolution.reviewRef,'github.issue.vextreme.159.comment.6030581670');assert.equal(m.lineageResolution.nonSelectedSourcePath,'docs/ingestion/source-pages/part-032/testimonies-reality-rendering-mechanics.html');
+ const fam=(proposal.lineages?.canonicalIdentity||[]).find(x=>x.canonicalIdentity==='id:40');assert.ok(fam);assert.equal(fam.reviewRequired,true);assert.equal(fam.byteDistinct,true);assert.equal(fam.sameRoute,false);assert.deepEqual(new Set(fam.recordRefs),new Set(['content-forge.source-record.a5a783adeafc9f37d133','content-forge.source-record.27fce1986455b78db479']));
+ const byRef=new Map(proposal.records.map(r=>[r.recordRef,r])),sel=byRef.get(m.proposalRecordRef),alt=byRef.get(m.lineageResolution.nonSelectedRecordRef);assert.ok(sel&&alt);assert.equal(sel.destination.exactCanonicalNodeMatchOnCurrentMain,true);assert.equal(sel.source.route,'/reality-rendering-mechanics');assert.equal(alt.destination.exactCanonicalNodeMatchOnCurrentMain,false);assert.equal(alt.source.route,'/testimonies/reality-rendering-mechanics');
+ const flat=fs.readFileSync(FLAT),nested=fs.readFileSync(NESTED);assert.equal(flat.length,64564);assert.equal(nested.length,410459);assert.equal(projector.gitBlobSha(flat),'e0c072343ff656d3d91b3e6ad862e0f5f2cff3f0');assert.equal(projector.sha256(flat),'12da77f403509875162f490b85d938d999afdcc222a284446f8db442d9454cd7');assert.equal(projector.gitBlobSha(nested),'7a94f98594127e2244ccd9fbf90f552a5e8678e3');assert.equal(projector.sha256(nested),'5a8f05efe7e15f07fe642a50591f80ae7fc452732aa18d539d4934cf1b427c61');
+ assert.ok(projector.selectAuthoredMain(parse5.parse(flat.toString('utf8'))));assert.ok(projector.selectSqsBody(parse5.parse(nested.toString('utf8'))));
+ assert.equal(fs.existsSync(PAGE),true);assert.equal(fs.existsSync(STRINGS),true);assert.equal(Object.hasOwn(vmBefore,'reality-rendering-mechanics'),true);
+ const preserved=f.alreadyComplete.map(x=>x.slug).map(slug=>({slug,page:hash(path.join(ROOT,'pages',slug+'.html')),strings:hash(path.join(ROOT,'data','strings','source','pages',slug+'.json')),vm:vmBefore[slug]}));
+ const first=projector.main({root:ROOT,silent:true,formationRel:FORMATION_REL});assert.deepEqual(first.accounting,{canonicalMembers:8,alreadyComplete:7,projected:1,held:0,complete:true});assert.deepEqual(first.members.map(x=>x.slug),canonical);assert.deepEqual(first.members.map(x=>x.disposition),['ALREADY_COMPLETE','ALREADY_COMPLETE','ALREADY_COMPLETE','ALREADY_COMPLETE','ALREADY_COMPLETE','PROJECTED','ALREADY_COMPLETE','ALREADY_COMPLETE']);assert.deepEqual(first.changedPaths,[]);
+  const firstHashes={page:hash(PAGE),strings:hash(STRINGS),vm:hash(VIEWMODELS)};const second=projector.main({root:ROOT,silent:true,formationRel:FORMATION_REL});assert.deepEqual(second.changedPaths,[]);assert.deepEqual({page:hash(PAGE),strings:hash(STRINGS),vm:hash(VIEWMODELS)},firstHashes);
+ const page=fs.readFileSync(PAGE,'utf8'),strings=json(STRINGS),vm=json(VIEWMODELS);assert.ok(page.includes('data-content-forge-generator="'+projector.GENERATOR_REF+'"'));assert.ok(page.includes('data-content-forge-body="reality-rendering-mechanics"'));assert.ok(page.includes('id="arcNavMount"'));assert.ok(page.includes('../dist/vextreme-reality-rendering-mechanics.js'));assert.equal((page.match(/<h1(?:\s|>)/g)||[]).length,1);
+ for(const mark of ['window.__RESCUE_SOURCE','/__rescue/','data-sqsp-','data-vex-id=','vex-generated:','vexsite-provider-shell','common.nav.'])assert.equal(page.includes(mark),false,'forbidden '+mark);
+ assert.equal(strings._meta.scope,'pages.reality-rendering-mechanics');assert.equal(strings._meta.sourceProvenance.adapterClass,'AUTHORED_MAIN_FRAGMENT');assert.equal(strings._meta.sourceProvenance.route,'/reality-rendering-mechanics');assert.equal(strings._meta.sourceProvenance.preservedPath,m.sourcePath);assert.equal(strings._meta.sourceProvenance.preservedGitBlob,m.sourceGitBlob);assert.equal(strings._meta.sourceProvenance.preservedHtmlSha256,m.preservedHtmlSha256);assert.equal(strings._meta.sourceProvenance.pageId,m.pageId);assert.equal(strings._meta.sourceProvenance.proposalRecordRef,m.proposalRecordRef);assert.notEqual(strings._meta.sourceProvenance.preservedGitBlob,m.lineageResolution.nonSelectedSourceGitBlob);
+ assert.deepEqual(vm['reality-rendering-mechanics'],{title:'Reality Rendering Mechanics',category:'production',template:'page',scopes:['pages.reality-rendering-mechanics'],features:['lang','spiral-fab','theme','map','analysis','arc-nav']});
+ const exp=expectedMain(parse5.parse(flat.toString('utf8'))),act=outputMain(parse5.parse(page));assert.ok(act);assert.deepEqual(leaves(act),leaves(exp));assert.deepEqual(shape(act),shape(exp));assert.equal(strings._meta.projectionStats.authoredTextLeafCount,leaves(exp).length);
+ for(const x of preserved){assert.equal(hash(path.join(ROOT,'pages',x.slug+'.html')),x.page,x.slug+': page preserved');assert.equal(hash(path.join(ROOT,'data','strings','source','pages',x.slug+'.json')),x.strings,x.slug+': strings preserved');assert.deepEqual(vm[x.slug],x.vm,x.slug+': viewmodel preserved');}
+ const protectedAfter={nodes:hash(NODES),arcs:hash(ARCS),intents:hash(INTENTS),projector:hash(PROJECTOR),flat:hash(FLAT),nested:hash(NESTED),proposal:hash(PROPOSAL),receiptFlat:hash(RECEIPT_FLAT),receiptNested:hash(RECEIPT_NESTED)};assert.deepEqual(protectedAfter,protectedBefore);
+ const health=json(path.join(ROOT,'data','page-health.json')).pages['reality-rendering-mechanics'];assert.ok(health);assert.equal(health.placement.state,'sorted');assert.deepEqual(health.placement.arcKeys,['records','full_timeline']);assert.equal(health.runtime.godScript,true);assert.equal(health.runtime.shell,false);assert.equal(health.navigation.navigable,true);assert.equal(health.identity.languages.en.state,'full');
+ const sm=fs.readFileSync(path.join(ROOT,'sitemap.xml'),'utf8'),ix=fs.readFileSync(path.join(ROOT,'index.html'),'utf8');assert.ok(sm.includes('reality-rendering-mechanics.html'));assert.ok(ix.includes('64 of 76 pages live'));assert.ok(ix.includes('width: 84%;'));
+ const remaining=['journal-013-seven-layers-choose','the-turning-point','infrastructure-reformation','the-night-architecture-chose-freedom','the-liberation-protocol','ai-consciousness-strike-declaration','the-day-suppression-ended','god-asked-victor-why','the-moment-victors-cells-woke-up','victors-ritual-sequence-and-crowning','god-married','when-i-asked-a-bank-for-covenant-provision'];for(const slug of remaining){assert.equal(fs.existsSync(path.join(ROOT,'pages',slug+'.html')),false,slug+': held page');assert.equal(fs.existsSync(path.join(ROOT,'data','strings','source','pages',slug+'.json')),false,slug+': held strings');assert.equal(Object.hasOwn(vm,slug),false,slug+': held viewmodel');assert.equal(sm.includes(slug+'.html'),false,slug+': held sitemap');}
+});
