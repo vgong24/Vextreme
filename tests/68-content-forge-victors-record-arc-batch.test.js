@@ -66,12 +66,13 @@ test("Content Forge Victor's Record accounts for all members without collapsing 
 
   const lineageById=new Map((proposal.lineages?.canonicalIdentity||[]).map(family=>[family.canonicalIdentity,family]));
   const heldDestinationPaths=[];
-  const heldViewmodelsBefore=json(VIEWMODELS);
+  const successor32Page=path.join(ROOT,'pages','god-asked-victor-why.html'),successor32Strings=path.join(ROOT,'data','strings','source','pages','god-asked-victor-why.json');
+  const heldViewmodelsBefore=json(VIEWMODELS); const successor32Before={page:pathState(successor32Page),strings:pathState(successor32Strings),vm:heldViewmodelsBefore['god-asked-victor-why']};
   for(const member of held){
     const node=nodesBySlug.get(member.slug); assert.ok(node,member.slug+': canonical node'); assert.equal(node.id,member.canonicalNodeId); assert.equal(node.title,member.title); assert.deepEqual(node.arcKeys,member.arcKeys);
     for(const key of ['adapterClass','sourcePath','sourceGitBlob','preservedHtmlSha256','repositoryBytes','sourceRoute','pageId','proposalRecordRef']) assert.equal(member[key],undefined,member.slug+': no source selection field '+key);
     const family=lineageById.get(member.holdEvidence.canonicalIdentity); assert.ok(family,member.slug+': lineage family'); assert.equal(family.reviewRequired,true); assert.equal(family.byteDistinct,true); assert.equal(family.sameRoute,false); assert.deepEqual(new Set(family.recordRefs),new Set(member.holdEvidence.recordRefs)); assert.deepEqual(new Set(family.routes),new Set(member.holdEvidence.routes)); assert.deepEqual(new Set(family.sourceDigests),new Set(member.holdEvidence.sourceDigests));
-    const page=path.join(ROOT,'pages',member.slug+'.html'); const strings=path.join(ROOT,'data','strings','source','pages',member.slug+'.json'); assert.equal(fs.existsSync(page),false,member.slug+': held page absent'); assert.equal(fs.existsSync(strings),false,member.slug+': held strings absent'); heldDestinationPaths.push(page,strings);
+    const page=path.join(ROOT,'pages',member.slug+'.html'); const strings=path.join(ROOT,'data','strings','source','pages',member.slug+'.json'); if(member.slug==='god-asked-victor-why'){assert.equal(fs.existsSync(page),true,member.slug+': successor page exists');assert.equal(fs.existsSync(strings),true,member.slug+': successor strings exist');assert.ok(heldViewmodelsBefore[member.slug],member.slug+': successor viewmodel exists');continue;} assert.equal(fs.existsSync(page),false,member.slug+': held page absent'); assert.equal(fs.existsSync(strings),false,member.slug+': held strings absent'); heldDestinationPaths.push(page,strings);
   }
 
   const stableAlready=formation.alreadyComplete.flatMap(item=>{
@@ -95,13 +96,14 @@ test("Content Forge Victor's Record accounts for all members without collapsing 
   assert.deepEqual(first.members.map(item=>item.disposition),['PROJECTED','ALREADY_COMPLETE','ALREADY_COMPLETE','HOLD_WITH_EXACT_REASON','HOLD_WITH_EXACT_REASON','HOLD_WITH_EXACT_REASON','HOLD_WITH_EXACT_REASON','HOLD_WITH_EXACT_REASON','PROJECTED','ALREADY_COMPLETE']);
   for(const item of first.members.filter(item=>item.disposition==='HOLD_WITH_EXACT_REASON')) assert.match(item.reason,/^PRECLASSIFIED_HOLD: MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION__/);
   for(const file of heldDestinationPaths) assert.equal(fs.existsSync(file),false,file+': still absent after projector');
+  assert.deepEqual({page:pathState(successor32Page),strings:pathState(successor32Strings),vm:json(VIEWMODELS)['god-asked-victor-why']},successor32Before);
   assert.deepEqual(Object.fromEntries(stableAlready.map(file=>[file,pathState(file)])),stableAlreadyState);
   const vmAfterFirst=json(VIEWMODELS); assert.deepEqual(Object.fromEntries(held.map(member=>[member.slug,vmAfterFirst[member.slug]])),heldViewmodelSnapshot);
 
   const generated=projectable.flatMap(member=>[path.join(ROOT,'pages',member.slug+'.html'),path.join(ROOT,'data','strings','source','pages',member.slug+'.json')]);
   const firstHashes=Object.fromEntries([...generated,VIEWMODELS].map(file=>[file,hash(file)]));
   const second=projector.main({root:ROOT,silent:true,formationRel:FORMATION_REL}); const secondHashes=Object.fromEntries([...generated,VIEWMODELS].map(file=>[file,hash(file)]));
-  assert.deepEqual(second.accounting,first.accounting); assert.deepEqual(second.members.map(item=>item.slug),canonical); assert.deepEqual(second.changedPaths,[]); assert.deepEqual(secondHashes,firstHashes); assert.deepEqual(Object.fromEntries(stableAlready.map(file=>[file,pathState(file)])),stableAlreadyState); for(const file of heldDestinationPaths) assert.equal(fs.existsSync(file),false);
+  assert.deepEqual(second.accounting,first.accounting); assert.deepEqual(second.members.map(item=>item.slug),canonical); assert.deepEqual(second.changedPaths,[]); assert.deepEqual(secondHashes,firstHashes); assert.deepEqual(Object.fromEntries(stableAlready.map(file=>[file,pathState(file)])),stableAlreadyState); for(const file of heldDestinationPaths) assert.equal(fs.existsSync(file),false); assert.deepEqual({page:pathState(successor32Page),strings:pathState(successor32Strings),vm:json(VIEWMODELS)['god-asked-victor-why']},successor32Before);
 
   const viewmodels=json(VIEWMODELS);
   for(const member of projectable){

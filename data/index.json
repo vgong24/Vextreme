@@ -1,5 +1,5 @@
 {
-  "contentFingerprint": "ea02c52b17fe",
+  "contentFingerprint": "b7feff3429e6",
   "nodeCount": 114,
   "curatedNodeCount": 91,
   "autoDiscoveredCount": 23,
@@ -863,7 +863,8 @@
           "spiral-fab",
           "theme",
           "map",
-          "analysis"
+          "analysis",
+          "arc-nav"
         ]
       }
     },
@@ -3678,7 +3679,7 @@
         {
           "slug": "god-asked-victor-why",
           "title": "God Asked Victor Why",
-          "ported": false
+          "ported": true
         },
         {
           "slug": "testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence",
