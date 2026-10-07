@@ -4519,12 +4519,31 @@
       "arcName": "Victor's Record",
       "x": 3800,
       "y": 270,
-      "live": false,
-      "liveUrl": null,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/god-asked-victor-why.html",
       "screenshots": {},
       "hasScreenshot": false,
-      "status": "critical",
-      "capability": null,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 109,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "God Asked Victor Why — repository-native preserved content."
+      },
       "curated": true
     },
     {

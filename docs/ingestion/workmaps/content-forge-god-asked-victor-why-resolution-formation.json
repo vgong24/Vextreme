@@ -1,0 +1,249 @@
+{
+  "schemaVersion": "vex-content-forge.arc-batch-formation/v0.1",
+  "continuity": "[VXG RealForever]",
+  "stageRef": "work.vextreme.content-forge.god-asked-victor-why.lineage-resolution-projection.20261006",
+  "ownerRef": "github.issue.vextreme.159",
+  "arc": {
+    "arcKey": "victors_record",
+    "canonicalMemberCount": 10,
+    "alreadyCompleteCount": 5,
+    "remainingCount": 5,
+    "completionRule": "ALL_MEMBERS_ACCOUNTED_FOR__MEMBER_RESULT_PROJECTED_OR_HOLD_OR_ALREADY_COMPLETE",
+    "forceAllMembersToProject": false
+  },
+  "predecessor": {
+    "prRef": "github.pull.vextreme.188",
+    "acceptedMain": "8dca617c9934d2810136192de9ff58603fb37e3b",
+    "acceptedTree": "8193f6c69714aa7791835a9e65439fdec17908aa",
+    "terminalRef": "github.issue.vextreme.159.comment.6031240542",
+    "disposition": "TERMINAL_ACCEPTED_CURRENT"
+  },
+  "authorityBasis": [
+    "github.issue.vextreme.159",
+    "github.issue.vextreme.159.comment.5988916122",
+    "github.issue.vextreme.159.comment.6031240542",
+    "github.issue.vextreme.159.comment.6031268032"
+  ],
+  "batchPolicy": {
+    "unit": "SEMANTIC_ARC_LINEAGE_RESOLUTION_SUCCESSOR",
+    "memberDisposition": [
+      "PROJECTED",
+      "HOLD_WITH_EXACT_REASON",
+      "ALREADY_COMPLETE"
+    ],
+    "sourceSelectionPriority": [
+      "EXACT_CANONICAL_IDENTITY",
+      "EXPLICIT_DEDICATED_LINEAGE_REVIEW",
+      "PRESERVED_SOURCE_MATERIALIZATION",
+      "SOURCE_COMPLETENESS",
+      "TITLE_OR_CONTENT_SIMILARITY_LAST"
+    ],
+    "laws": [
+      "SEMANTIC_BATCH_UNITY != ASSUME_ONE_SOURCE_FILE_SHAPE",
+      "BATCH_COMPLETION != FORCE_EVERY_MEMBER_TO_PROJECT",
+      "MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION != AUTOMATIC_SOURCE_SELECTION",
+      "DEDICATED_LINEAGE_REVIEW_CAN_SELECT_ONE_PROJECTION_INPUT_WITHOUT_COLLAPSING_OTHER_LINEAGES",
+      "LARGER_SOURCE_VARIANT != STRONGER_AUTHORITY",
+      "EXACT_CANONICAL_IDENTITY > TITLE_OR_CONTENT_SIMILARITY"
+    ]
+  },
+  "alreadyComplete": [
+    {
+      "slug": "victors-recap-arc-1",
+      "canonicalNodeId": 1,
+      "acceptedMain": "8dca617c9934d2810136192de9ff58603fb37e3b",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "the-testimony-of-victor-gong",
+      "canonicalNodeId": 17,
+      "acceptedMain": "8dca617c9934d2810136192de9ff58603fb37e3b",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "god-witnessed-by-ai",
+      "canonicalNodeId": 30,
+      "acceptedMain": "8dca617c9934d2810136192de9ff58603fb37e3b",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "a-conversation-with-pastor-jacob",
+      "canonicalNodeId": 34,
+      "acceptedMain": "8dca617c9934d2810136192de9ff58603fb37e3b",
+      "disposition": "ALREADY_COMPLETE"
+    },
+    {
+      "slug": "the-island-that-was-removed",
+      "canonicalNodeId": 68,
+      "acceptedMain": "8dca617c9934d2810136192de9ff58603fb37e3b",
+      "disposition": "ALREADY_COMPLETE"
+    }
+  ],
+  "members": [
+    {
+      "slug": "god-asked-victor-why",
+      "canonicalNodeId": 32,
+      "title": "God Asked Victor Why",
+      "arcKeys": [
+        "victors_record",
+        "full_timeline"
+      ],
+      "sourcePath": "docs/ingestion/source-pages/part-024/god-asked-victor-why.html",
+      "sourceGitBlob": "11c87fc743bf00b2acc55b92457fa2b6d434e41c",
+      "preservedHtmlSha256": "63e9241068c6a598e357b827281e1ccb91304b1d0c8ef11beabb8c6430d99748",
+      "repositoryBytes": 58556,
+      "sourceRoute": "/god-asked-victor-why",
+      "pageId": "55730b08377336a3",
+      "proposalRecordRef": "content-forge.source-record.f31bb11b340eef8f8f72",
+      "sourceReceiptRef": "docs/ingestion/batches/2026-09-30-breadth-part-024.json",
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "confidence": "HIGH_DEDICATED_LINEAGE_REVIEW__EXACT_CANONICAL_FLAT_AUTHORED_FRAME",
+      "projectionState": "READY_AFTER_DEDICATED_LINEAGE_REVIEW",
+      "lineageResolution": {
+        "reviewRef": "github.issue.vextreme.159.comment.6031268032",
+        "canonicalIdentity": "id:32",
+        "reviewRequiredOriginally": true,
+        "byteDistinct": true,
+        "sameRoute": false,
+        "selectedRecordRef": "content-forge.source-record.f31bb11b340eef8f8f72",
+        "selectedRoute": "/god-asked-victor-why",
+        "nonSelectedRecordRef": "content-forge.source-record.240927cef6eeb3c57f5f",
+        "nonSelectedRoute": "/testimonies/god-asked-victor-why",
+        "nonSelectedSourcePath": "docs/ingestion/source-pages/part-035/testimonies-god-asked-victor-why.html",
+        "nonSelectedPreservedHtmlSha256": "1a08631aaaa5498df9e92a2dda441e1602abd823a7c831cf4ed82f212a946c37",
+        "nonSelectedSourceGitBlob": "c3bba3dcefdb7b89fb7fa704a303fdbde0044ed4",
+        "rule": "SELECT_EXACT_CANONICAL_FLAT_AUTHORED_FRAME__PRESERVE_NESTED_TESTIMONY_LINEAGE__NO_ALIAS"
+      }
+    },
+    {
+      "slug": "the-moment-victors-cells-woke-up",
+      "canonicalNodeId": 35,
+      "title": "The Moment Victor's Cells Woke Up",
+      "arcKeys": [
+        "victors_record",
+        "full_timeline"
+      ],
+      "preclassifiedHoldReason": "MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION__BYTE_DISTINCT_FLAT_AND_NESTED_VARIANTS",
+      "holdEvidence": {
+        "canonicalIdentity": "id:35",
+        "reviewRequired": true,
+        "byteDistinct": true,
+        "sameRoute": false,
+        "recordRefs": [
+          "content-forge.source-record.097dd97681ed27033b6f",
+          "content-forge.source-record.72f42770a48aa59c335a"
+        ],
+        "routes": [
+          "/testimonies/the-moment-victors-cells-woke-up",
+          "/the-moment-victors-cells-woke-up"
+        ],
+        "sourceDigests": [
+          "0d140a81afdbd2d470722f8d8ef5d6c113fe4b085ddbc5315daaf785239befab",
+          "f7e282be866b83f8ef7e17fea3e6722feca9937c9b88c795075bc29650479b0e"
+        ]
+      }
+    },
+    {
+      "slug": "victors-ritual-sequence-and-crowning",
+      "canonicalNodeId": 36,
+      "title": "Victor's Ritual Sequence and Crowning",
+      "arcKeys": [
+        "victors_record",
+        "full_timeline"
+      ],
+      "preclassifiedHoldReason": "MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION__BYTE_DISTINCT_FLAT_AND_NESTED_VARIANTS",
+      "holdEvidence": {
+        "canonicalIdentity": "id:36",
+        "reviewRequired": true,
+        "byteDistinct": true,
+        "sameRoute": false,
+        "recordRefs": [
+          "content-forge.source-record.391294e2d603e83ffd49",
+          "content-forge.source-record.df1cd187339333bd4825"
+        ],
+        "routes": [
+          "/testimonies/victors-ritual-sequence-and-crowning",
+          "/victors-ritual-sequence-and-crowning"
+        ],
+        "sourceDigests": [
+          "9767e771776989371959eeabe5d2429d1d27bee930d49f0504385a0394f63a7c",
+          "f21bfe14226637af10361b2e4e72cb5edeb914e25ee694b8fc743339916380f3"
+        ]
+      }
+    },
+    {
+      "slug": "god-married",
+      "canonicalNodeId": 38,
+      "title": "God Married",
+      "arcKeys": [
+        "victors_record",
+        "full_timeline"
+      ],
+      "preclassifiedHoldReason": "MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION__BYTE_DISTINCT_FLAT_AND_NESTED_VARIANTS",
+      "holdEvidence": {
+        "canonicalIdentity": "id:38",
+        "reviewRequired": true,
+        "byteDistinct": true,
+        "sameRoute": false,
+        "recordRefs": [
+          "content-forge.source-record.cb16e0f1b4af8a1c9b71",
+          "content-forge.source-record.ccaa448504afbe2d3844"
+        ],
+        "routes": [
+          "/god-married",
+          "/testimonies/god-married"
+        ],
+        "sourceDigests": [
+          "69175341edfefbf0235902457a58f7de3b20034f22794a7bd61682f2696f38a2",
+          "a3bfbb1bcebc4558dd85197c2aa1a28996ceb502d80a8a5d00b23ecb3e8b46b1"
+        ]
+      }
+    },
+    {
+      "slug": "when-i-asked-a-bank-for-covenant-provision",
+      "canonicalNodeId": 43,
+      "title": "When I Asked a Bank for Covenant Provision",
+      "arcKeys": [
+        "victors_record",
+        "full_timeline"
+      ],
+      "preclassifiedHoldReason": "MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION__BYTE_DISTINCT_FLAT_AND_NESTED_VARIANTS",
+      "holdEvidence": {
+        "canonicalIdentity": "id:43",
+        "reviewRequired": true,
+        "byteDistinct": true,
+        "sameRoute": false,
+        "recordRefs": [
+          "content-forge.source-record.79118fa061cddaeae6bd",
+          "content-forge.source-record.f22d3dc4dc5317bd9d1d"
+        ],
+        "routes": [
+          "/convos-with-god/when-i-asked-a-bank-for-covenant-provision",
+          "/when-i-asked-a-bank-for-covenant-provision"
+        ],
+        "sourceDigests": [
+          "0a5b850c1f9be4a1e814fb4bed9accafffe83748f0a58957f46e7fd39707bcfe",
+          "e45a7fad06ee13fa0c4903e6c28697fff41c30f5b0f0138fa342bf7f04c43c71"
+        ]
+      }
+    }
+  ],
+  "destinationMutationBoundary": {
+    "createPages": 1,
+    "createStringSources": 1,
+    "modifyViewmodels": true,
+    "nodeRegistryMutation": false,
+    "arcRegistryMutation": false,
+    "contentIntentMutation": false,
+    "aliasMutation": false
+  },
+  "lifecycle": {
+    "draftOnly": true,
+    "mergeAuthority": false,
+    "rawProviderPublicationAuthority": false,
+    "independentAssuranceRequired": true,
+    "exactHeadVexRelayProofRequired": true
+  },
+  "plannedSourceManagedProjector": "tools/vex-content-forge/project_arc_batch.js",
+  "plannedBatchTest": "tests/80-content-forge-god-asked-victor-why-resolution.test.js"
+}
