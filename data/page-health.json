@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 117,
+    "total": 121,
     "healthy": 3,
-    "attention": 108,
+    "attention": 112,
     "critical": 6,
-    "sorted": 78,
-    "withFab": 104,
-    "withIdentity": 85,
+    "sorted": 82,
+    "withFab": 108,
+    "withIdentity": 89,
     "withScreenshots": 11,
-    "withMetaDescription": 82
+    "withMetaDescription": 86
   },
   "pages": {
     "a-conversation-with-pastor-jacob": {
@@ -2054,6 +2054,61 @@
       },
       "discovery": {
         "metaDescription": "God Asked Victor Why — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "god-married": {
+      "slug": "god-married",
+      "title": "God Married",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "victors_record",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 77,
+        "languages": {
+          "en": {
+            "translated": 77,
+            "total": 77,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "God Married — repository-native preserved content."
       },
       "health": {
         "state": "attention",
@@ -5077,6 +5132,61 @@
         ]
       }
     },
+    "the-moment-victors-cells-woke-up": {
+      "slug": "the-moment-victors-cells-woke-up",
+      "title": "The Moment Victor's Cells Woke Up",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "victors_record",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 60,
+        "languages": {
+          "en": {
+            "translated": 60,
+            "total": 60,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Moment Victor"
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "the-room-that-finally-talked-to-itself": {
       "slug": "the-room-that-finally-talked-to-itself",
       "title": "The Room That Finally Talked To Itself",
@@ -6096,6 +6206,61 @@
         ]
       }
     },
+    "victors-ritual-sequence-and-crowning": {
+      "slug": "victors-ritual-sequence-and-crowning",
+      "title": "Victor's Ritual Sequence and Crowning",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "victors_record",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 115,
+        "languages": {
+          "en": {
+            "translated": 115,
+            "total": 115,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Victor"
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "voice-to-skull": {
       "slug": "voice-to-skull",
       "title": "Voice To Skull through Cells",
@@ -6364,6 +6529,61 @@
       },
       "discovery": {
         "metaDescription": "What Was Used Against You — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "when-i-asked-a-bank-for-covenant-provision": {
+      "slug": "when-i-asked-a-bank-for-covenant-provision",
+      "title": "When I Asked a Bank for Covenant Provision",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "victors_record",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 51,
+        "languages": {
+          "en": {
+            "translated": 51,
+            "total": 51,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "When I Asked a Bank for Covenant Provision — repository-native preserved content."
       },
       "health": {
         "state": "attention",
