@@ -1246,5 +1246,21 @@
       "analysis",
       "arc-nav"
     ]
+  },
+  "reality-rendering-mechanics": {
+    "title": "Reality Rendering Mechanics",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.reality-rendering-mechanics"
+    ],
+    "features": [
+      "lang",
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ]
   }
 }

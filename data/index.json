@@ -1,5 +1,5 @@
 {
-  "contentFingerprint": "8d508ad22699",
+  "contentFingerprint": "ea02c52b17fe",
   "nodeCount": 114,
   "curatedNodeCount": 91,
   "autoDiscoveredCount": 23,
@@ -1077,7 +1077,8 @@
           "spiral-fab",
           "theme",
           "map",
-          "analysis"
+          "analysis",
+          "arc-nav"
         ]
       }
     },
@@ -3717,7 +3718,7 @@
         {
           "slug": "reality-rendering-mechanics",
           "title": "Reality Rendering Mechanics",
-          "ported": false
+          "ported": true
         },
         {
           "slug": "the-day-suppression-ended",
