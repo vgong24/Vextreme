@@ -45,24 +45,32 @@ function loadAssetCatalog(root) {
   invariant(typeof value.baseUrl === 'string' && /^https:\/\/[^/]+(?:\/[^/]+)*$/.test(value.baseUrl), 'ASSET_CATALOG_BASE_URL', value.baseUrl);
   invariant(value.logicalReference?.prefix === '/__assets/', 'ASSET_CATALOG_LOGICAL_PREFIX', value.logicalReference?.prefix);
   invariant(value.logicalReference?.assetIdFormat === '64_HEX_EXPORTED_ID', 'ASSET_CATALOG_ID_FORMAT', value.logicalReference?.assetIdFormat);
-  invariant(value.assets && typeof value.assets === 'object' && !Array.isArray(value.assets), 'ASSET_CATALOG_ASSETS', 'assets');
-  invariant(value.assetCount === Object.keys(value.assets).length, 'ASSET_CATALOG_COUNT', String(value.assetCount));
-  for (const [assetId, entry] of Object.entries(value.assets)) {
-    invariant(/^[0-9a-f]{64}$/.test(assetId), 'ASSET_CATALOG_ID', assetId);
-    invariant(typeof entry?.extension === 'string' && /^[A-Za-z0-9]+$/.test(entry.extension), 'ASSET_CATALOG_EXTENSION', assetId);
-    invariant(typeof entry?.path === 'string' && entry.path.length > 0 && !entry.path.startsWith('/') && !entry.path.split('/').includes('..'), 'ASSET_CATALOG_PATH', assetId);
+  invariant(typeof value.location?.defaultPathTemplate === 'string'
+    && value.location.defaultPathTemplate.includes('{assetId}')
+    && value.location.defaultPathTemplate.includes('{extension}'),
+    'ASSET_CATALOG_TEMPLATE', value.location?.defaultPathTemplate);
+  invariant(value.location?.overrides && typeof value.location.overrides === 'object' && !Array.isArray(value.location.overrides), 'ASSET_CATALOG_OVERRIDES', 'overrides');
+  for (const [assetId, mappedPath] of Object.entries(value.location.overrides)) {
+    invariant(/^[0-9a-f]{64}$/.test(assetId), 'ASSET_CATALOG_OVERRIDE_ID', assetId);
+    invariant(typeof mappedPath === 'string' && mappedPath.length > 0 && !mappedPath.startsWith('/') && !mappedPath.split('/').includes('..'), 'ASSET_CATALOG_OVERRIDE_PATH', assetId);
   }
-  return { baseUrl: value.baseUrl.replace(/\/+$/, ''), logicalPrefix: value.logicalReference.prefix, assets: value.assets, provider: value.provider };
+  return {
+    baseUrl: value.baseUrl.replace(/\/+$/, ''),
+    logicalPrefix: value.logicalReference.prefix,
+    defaultPathTemplate: value.location.defaultPathTemplate,
+    overrides: value.location.overrides,
+    provider: value.provider,
+  };
 }
 function resolveAssetReference(filename, catalog) {
   const match = ASSET_FILENAME.exec(String(filename));
   invariant(match, 'ASSET_REFERENCE_FORMAT', String(filename));
   const assetId = match[1].toLowerCase();
   const extension = match[2].toLowerCase();
-  const entry = catalog.assets[assetId];
-  invariant(entry, 'ASSET_ID_UNMAPPED', assetId);
-  invariant(String(entry.extension).toLowerCase() === extension, 'ASSET_EXTENSION_MISMATCH', assetId);
-  return `${catalog.baseUrl}/${entry.path.replace(/^\/+/, '')}`;
+  const mappedPath = catalog.overrides[assetId]
+    || catalog.defaultPathTemplate.replaceAll('{assetId}', assetId).replaceAll('{extension}', extension);
+  invariant(typeof mappedPath === 'string' && mappedPath.length > 0 && !mappedPath.startsWith('/') && !mappedPath.split('/').includes('..'), 'ASSET_RESOLVED_PATH', assetId);
+  return `${catalog.baseUrl}/${mappedPath}`;
 }
 function rewriteAssetText(value, catalog) {
   return String(value).replace(ROOT_RELATIVE_ASSET_REF_GLOBAL, (_match, lead, filename) => lead + resolveAssetReference(filename, catalog));
