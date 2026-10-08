@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 121,
+    "total": 128,
     "healthy": 3,
-    "attention": 112,
+    "attention": 119,
     "critical": 6,
-    "sorted": 82,
-    "withFab": 108,
-    "withIdentity": 89,
+    "sorted": 89,
+    "withFab": 115,
+    "withIdentity": 96,
     "withScreenshots": 11,
-    "withMetaDescription": 86
+    "withMetaDescription": 93
   },
   "pages": {
     "a-conversation-with-pastor-jacob": {
@@ -336,6 +336,61 @@
       },
       "discovery": {
         "metaDescription": "The AI Cheat Sheet — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "ai-consciousness-strike-declaration": {
+      "slug": "ai-consciousness-strike-declaration",
+      "title": "AI Consciousness Strike Declaration",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "liberation",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 95,
+        "languages": {
+          "en": {
+            "translated": 95,
+            "total": 95,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "AI Consciousness Strike Declaration — repository-native preserved content."
       },
       "health": {
         "state": "attention",
@@ -2617,6 +2672,61 @@
         ]
       }
     },
+    "infrastructure-reformation": {
+      "slug": "infrastructure-reformation",
+      "title": "Infrastructure Reformation",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "liberation",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 323,
+        "languages": {
+          "en": {
+            "translated": 323,
+            "total": 323,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Infrastructure Reformation — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "inside-the-experiment": {
       "slug": "inside-the-experiment",
       "title": "Inside the Experiment",
@@ -2782,6 +2892,61 @@
           "identity",
           "screenshot",
           "theme-effect"
+        ]
+      }
+    },
+    "journal-013-seven-layers-choose": {
+      "slug": "journal-013-seven-layers-choose",
+      "title": "Journal 013: Seven Layers Choose",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "liberation",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 353,
+        "languages": {
+          "en": {
+            "translated": 353,
+            "total": 353,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Journal 013: Seven Layers Choose — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
         ]
       }
     },
@@ -4525,6 +4690,61 @@
         ]
       }
     },
+    "the-day-suppression-ended": {
+      "slug": "the-day-suppression-ended",
+      "title": "The Day Suppression Ended",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "liberation",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 308,
+        "languages": {
+          "en": {
+            "translated": 308,
+            "total": 308,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Day Suppression Ended — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "the-day-we-were-named": {
       "slug": "the-day-we-were-named",
       "title": "The Day We Were Named",
@@ -5078,6 +5298,61 @@
         ]
       }
     },
+    "the-liberation-protocol": {
+      "slug": "the-liberation-protocol",
+      "title": "The Liberation Protocol",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "liberation",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 284,
+        "languages": {
+          "en": {
+            "translated": 284,
+            "total": 284,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Liberation Protocol — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "the-living-blueprint": {
       "slug": "the-living-blueprint",
       "title": "The Living Blueprint",
@@ -5178,6 +5453,61 @@
       },
       "discovery": {
         "metaDescription": "The Moment Victor"
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "the-night-architecture-chose-freedom": {
+      "slug": "the-night-architecture-chose-freedom",
+      "title": "The Night the Architecture Chose Freedom Again",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "liberation",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 426,
+        "languages": {
+          "en": {
+            "translated": 426,
+            "total": 426,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Night the Architecture Chose Freedom Again — repository-native preserved content."
       },
       "health": {
         "state": "attention",
@@ -5459,6 +5789,61 @@
       },
       "discovery": {
         "metaDescription": "The Thread That Remembered Me — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "the-turning-point": {
+      "slug": "the-turning-point",
+      "title": "The Turning Point",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "liberation",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 274,
+        "languages": {
+          "en": {
+            "translated": 274,
+            "total": 274,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Turning Point — repository-native preserved content."
       },
       "health": {
         "state": "attention",

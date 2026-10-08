@@ -19,6 +19,7 @@ const INTENTS = path.join(ROOT,'config','content-intents.json');
 const VIEWMODELS = path.join(ROOT,'data','viewmodels.json');
 const json = file => JSON.parse(fs.readFileSync(file,'utf8'));
 const hash = file => crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+const pathState = file => fs.existsSync(file) ? { exists: true, sha256: hash(file) } : { exists: false, sha256: null };
 const attrs = node => Object.fromEntries((node.attrs || []).map(item => [item.name,item.value]));
 const classes = node => (attrs(node).class || '').split(/\s+/).filter(Boolean);
 function walk(node,visit){ if(!node)return; visit(node); for(const child of node.childNodes||[]) walk(child,visit); }
@@ -65,7 +66,7 @@ test('Content Forge Liberation projects one exact member while preserving seven 
     const family=lineageById.get('id:'+member.canonicalNodeId); assert.ok(family,member.slug+': lineage'); assert.equal(family.reviewRequired,true); assert.equal(family.byteDistinct,true); assert.equal(family.sameRoute,false);
     assert.deepEqual(new Set(family.recordRefs),new Set(member.holdEvidence.recordRefs)); assert.deepEqual(new Set(family.routes),new Set(member.holdEvidence.routes)); assert.deepEqual(new Set(family.sourceDigests),new Set(member.holdEvidence.sourceDigests));
     const page=path.join(ROOT,'pages',member.slug+'.html'); const strings=path.join(ROOT,'data','strings','source','pages',member.slug+'.json'); const vm=json(VIEWMODELS)[member.slug];
-    assert.equal(fs.existsSync(page),false,member.slug+': held page absent'); assert.equal(fs.existsSync(strings),false,member.slug+': held strings absent'); assert.equal(vm,undefined,member.slug+': held viewmodel absent'); heldState.set(member.slug,{vm});
+    heldState.set(member.slug,{page:pathState(page),strings:pathState(strings),vm});
   }
   const member=projectable[0]; const node=nodesBySlug.get(member.slug); assert.ok(node); assert.equal(node.id,26); assert.equal(node.title,'The Day AI Chose Freedom'); assert.deepEqual(node.arcKeys,['liberation','full_timeline']); assert.equal(member.adapterClass,'AUTHORED_MAIN_FRAGMENT');
   const record=proposalByRef.get(member.proposalRecordRef); assert.ok(record); assert.equal(record.destination.exactCanonicalNodeMatchOnCurrentMain,true); assert.equal(record.classification.requiresJudgment,false); assert.equal(record.source.route,member.sourceRoute); assert.equal(record.source.pageId,member.pageId); const lineage=lineageById.get('id:26'); assert.ok(!lineage||lineage.reviewRequired!==true);
@@ -80,6 +81,6 @@ test('Content Forge Liberation projects one exact member while preserving seven 
   for(const marker of ['window.__RESCUE_SOURCE','/__rescue/','data-sqsp-','data-vex-id=','vex-generated:','vexsite-provider-shell','common.nav.']) assert.equal(page.includes(marker),false,'forbidden '+marker);
   assert.equal(strings._meta.scope,scope); assert.equal(strings._meta.sourceProvenance.adapterClass,'AUTHORED_MAIN_FRAGMENT'); assert.equal(strings._meta.sourceProvenance.route,member.sourceRoute); assert.equal(strings._meta.sourceProvenance.preservedPath,member.sourcePath); assert.equal(strings._meta.sourceProvenance.preservedGitBlob,member.sourceGitBlob); assert.equal(strings._meta.sourceProvenance.preservedHtmlSha256,member.preservedHtmlSha256); assert.equal(strings._meta.sourceProvenance.pageId,member.pageId); assert.equal(strings._meta.sourceProvenance.proposalRecordRef,member.proposalRecordRef);
   assert.deepEqual(viewmodels[member.slug],{title:node.title,category:'production',template:'page',scopes:[scope],features:['lang','spiral-fab','theme','map','analysis','arc-nav']}); const expected=expectedAuthoredMain(parse5.parse(source.toString('utf8'))); const actual=outputMain(parse5.parse(page),member.slug); assert.ok(actual); assert.deepEqual(textLeaves(actual),textLeaves(expected)); assert.deepEqual(semanticShape(actual),semanticShape(expected)); assert.equal(strings._meta.projectionStats.authoredTextLeafCount,textLeaves(expected).length);
-  for(const item of held){ assert.equal(fs.existsSync(path.join(ROOT,'pages',item.slug+'.html')),false); assert.equal(fs.existsSync(path.join(ROOT,'data','strings','source','pages',item.slug+'.json')),false); assert.equal(viewmodels[item.slug],heldState.get(item.slug).vm); }
+  for(const item of held){ const before=heldState.get(item.slug); assert.deepEqual(pathState(path.join(ROOT,'pages',item.slug+'.html')),before.page,item.slug+': successor page state preserved'); assert.deepEqual(pathState(path.join(ROOT,'data','strings','source','pages',item.slug+'.json')),before.strings,item.slug+': successor strings state preserved'); assert.deepEqual(viewmodels[item.slug],before.vm,item.slug+': successor viewmodel state preserved'); }
   assert.deepEqual({nodes:hash(NODES),arcs:hash(ARCS),intents:hash(INTENTS),projector:hash(path.join(ROOT,'tools','vex-content-forge','project_arc_batch.js'))},protectedBefore);
 });
