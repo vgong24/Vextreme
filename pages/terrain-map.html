@@ -337,18 +337,19 @@
   }
 
   function fieldScore(field, query, tokens, fieldIndex) {
-    if (field === query) return fieldIndex;
-    if (field.indexOf(query) === 0) return 20 + fieldIndex;
-    if (field.indexOf(query) !== -1) return 40 + fieldIndex;
+    var fieldPenalty = fieldIndex < 3 ? 0 : 100; // identity (id/title/slug) outranks descriptive metadata
+    if (field === query) return fieldPenalty + fieldIndex;
+    if (field.indexOf(query) === 0) return fieldPenalty + 20 + fieldIndex;
+    if (field.indexOf(query) !== -1) return fieldPenalty + 40 + fieldIndex;
 
     var words = field.split(' ');
     var everyWordPrefix = tokens.every(function (token) {
       return words.some(function (word) { return word.indexOf(token) === 0; });
     });
-    if (everyWordPrefix) return 60 + fieldIndex;
+    if (everyWordPrefix) return fieldPenalty + 60 + fieldIndex;
 
     var everySubstring = tokens.every(function (token) { return field.indexOf(token) !== -1; });
-    if (everySubstring) return 80 + fieldIndex;
+    if (everySubstring) return fieldPenalty + 80 + fieldIndex;
     return null;
   }
 
