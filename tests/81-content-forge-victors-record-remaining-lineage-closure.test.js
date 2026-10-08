@@ -113,6 +113,6 @@ test("Content Forge closes Victor's Record remaining four lineages as one source
   const sitemap=fs.readFileSync(path.join(ROOT,'sitemap.xml'),'utf8'),index=fs.readFileSync(path.join(ROOT,'index.html'),'utf8');
   for(const member of formation.members) assert.ok(sitemap.includes(member.slug+'.html'),member.slug+': sitemap');
   assert.ok(index.includes('69 of 76 pages live')); assert.ok(index.includes('width: 91%;'));
-  const remaining=['journal-013-seven-layers-choose','the-turning-point','infrastructure-reformation','the-night-architecture-chose-freedom','the-liberation-protocol','ai-consciousness-strike-declaration','the-day-suppression-ended'];
-  for(const slug of remaining){ assert.equal(fs.existsSync(path.join(ROOT,'pages',slug+'.html')),false,slug+': held page'); assert.equal(fs.existsSync(path.join(ROOT,'data','strings','source','pages',slug+'.json')),false,slug+': held strings'); assert.equal(Object.hasOwn(viewmodels,slug),false,slug+': held viewmodel'); assert.equal(sitemap.includes(slug+'.html'),false,slug+': held sitemap'); }
+  const resolved=['journal-013-seven-layers-choose','the-turning-point','infrastructure-reformation','the-night-architecture-chose-freedom','the-liberation-protocol','ai-consciousness-strike-declaration','the-day-suppression-ended'];
+  for(const slug of resolved){ assert.equal(fs.existsSync(path.join(ROOT,'pages',slug+'.html')),true,slug+': resolved page'); assert.equal(fs.existsSync(path.join(ROOT,'data','strings','source','pages',slug+'.json')),true,slug+': resolved strings'); assert.equal(Object.hasOwn(viewmodels,slug),true,slug+': resolved viewmodel'); }
 });
