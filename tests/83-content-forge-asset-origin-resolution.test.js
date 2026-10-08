@@ -8,7 +8,7 @@ const parse5 = require('parse5');
 const projector = require('../tools/vex-content-forge/project_arc_batch.js');
 
 const ROOT = path.join(__dirname, '..');
-const BINDING = JSON.parse(fs.readFileSync(path.join(ROOT, 'config', 'content-asset-origin.json'), 'utf8'));
+const CATALOG = JSON.parse(fs.readFileSync(path.join(ROOT, 'config', 'content-assets.json'), 'utf8'));
 const TEXT_EXT = new Set(['.html','.htm','.css','.js','.mjs','.cjs','.json','.xml','.txt','.svg']);
 const PUBLIC_ROOT_FILES = new Set(['index.html','sw.js']);
 const PUBLIC_DIRS = ['pages','styles','widgets','dist','data'];
@@ -27,51 +27,63 @@ function publicTextFiles() {
   ].filter(file => TEXT_EXT.has(path.extname(file).toLowerCase()) && fs.statSync(file).size <= 10 * 1024 * 1024);
 }
 
-test('Content Forge public asset references bind to the canonical Vextreme-Assets origin', () => {
-  assert.deepEqual(BINDING, {
-    schemaVersion: 'vextreme.content-assets/v1',
-    repository: 'vgong24/Vextreme-Assets',
-    origin: 'https://vgong24.github.io/Vextreme-Assets',
-    canonicalPrefix: '/__assets/',
-    assetIdentity: 'PRESERVE_EXPORTED_64_HEX_FILENAME_AND_EXTENSION'
-  });
+test('Content Forge public asset references resolve through the build-time asset catalog', () => {
+  const catalog = projector.loadAssetCatalog(ROOT);
+  assert.equal(CATALOG.schemaVersion, 'vextreme.content-assets/v2');
+  assert.equal(CATALOG.resolution, 'BUILD_TIME');
+  assert.equal(CATALOG.baseUrl, 'https://vgong24.github.io/Vextreme-Assets');
+  assert.equal(CATALOG.provider.repository, 'vgong24/Vextreme-Assets');
+  assert.equal(CATALOG.provider.manifestPath, 'asset-manifest.json');
+  assert.equal(CATALOG.provider.manifestGitBlob, 'a299b974bc0e24edfe4af0a75ac6b9c392ef7b47');
+  assert.equal(CATALOG.logicalReference.prefix, '/__assets/');
+  assert.equal(CATALOG.logicalReference.assetIdFormat, '64_HEX_EXPORTED_ID');
+  assert.equal(CATALOG.assetCount, Object.keys(CATALOG.assets).length);
 
-  const assetRef = /\/__assets\/([0-9a-f]{64}\.[A-Za-z0-9]+)/g;
   let referencingFiles = 0;
   let references = 0;
-  const unique = new Set();
-
+  const resolvedPattern = /https:\/\/vgong24\.github\.io\/Vextreme-Assets\/([^"'\\s)>]+)/g;
   for (const file of publicTextFiles()) {
     const text = fs.readFileSync(file, 'utf8');
-    const matches = [...text.matchAll(assetRef)];
-    if (!matches.length) continue;
+    assert.equal(projector.ROOT_RELATIVE_ASSET_REF.test(text), false, path.relative(ROOT, file) + ': unresolved logical asset reference');
+    const resolved = [...text.matchAll(resolvedPattern)];
+    if (!resolved.length) continue;
     referencingFiles += 1;
-    assert.equal(projector.ROOT_RELATIVE_ASSET_REF.test(text), false, path.relative(ROOT, file) + ': root-relative asset reference');
-    for (const match of matches) {
+    for (const match of resolved) {
       references += 1;
-      unique.add(match[1].toLowerCase());
-      const originStart = match.index - BINDING.origin.length;
-      assert.ok(originStart >= 0, path.relative(ROOT, file) + ': missing asset origin');
-      assert.equal(text.slice(originStart, match.index), BINDING.origin, path.relative(ROOT, file) + ': non-canonical asset origin');
+      assert.ok(Object.values(CATALOG.assets).some(entry => entry.path === match[1]), path.relative(ROOT, file) + ': resolved URL is not catalog-backed: ' + match[1]);
     }
   }
-
   assert.ok(referencingFiles > 0);
   assert.ok(references > 0);
-  assert.ok(unique.size > 0);
+  assert.equal(catalog.baseUrl, CATALOG.baseUrl);
+});
+
+test('Content Forge asset resolver separates stable identity from provider location', () => {
+  const catalog = projector.loadAssetCatalog(ROOT);
+  const id = 'b867417e358bc99a0c0c04f81ce68ef0ecbb0060810067ba918f6e654089a468';
+  assert.equal(projector.resolveAssetReference(id + '.png', catalog), catalog.baseUrl + '/' + catalog.assets[id].path);
+  const moved = { ...catalog, baseUrl: 'https://assets.example.test', assets: { ...catalog.assets, [id]: { extension: 'png', path: 'media/witness/' + id + '.png' } } };
+  assert.equal(projector.resolveAssetReference(id + '.png', moved), 'https://assets.example.test/media/witness/' + id + '.png');
 });
 
 test('Content Forge asset externalization covers attributes, srcset, CSS, and is idempotent', () => {
-  const document = parse5.parse('<!doctype html><html><head><style>.a{background:url("/__assets/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.png")}</style></head><body><img src="/__assets/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.jpg" srcset="/__assets/cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc.webp 1x, /__assets/dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd.webp 2x" style="mask:url(/__assets/eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee.svg)"><img src="https://vgong24.github.io/Vextreme-Assets/__assets/ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff.png"></body></html>');
-  const binding = projector.loadAssetBinding(ROOT);
-  projector.externalizeAssetReferences(document, binding);
+  const ids = ['297c8def391af561d445c75a946b36d399e208211c115fa6effdf1085c5595a0','05277887454a79f3b08d8a83685e989b6c46b74d8e48d136b2d16acf77aba4e1','3c4792858b8c3d40dcc2831e7d27cfe30e71e109cccd25c2de3d5eff3938f09d','579763762b55119408c8a6471fe25f29bf47ad0079db4f693b5cc4a47317ed68','de12452f813b1173393db58ea3b6def38681821706bce5622bb2bcf6619a0be2'];
+  const catalog = projector.loadAssetCatalog(ROOT);
+  const document = parse5.parse('<!doctype html><html><head><style>.a{background:url("/__assets/' + ids[0] + '.png")}</style></head><body><img src="/__assets/' + ids[1] + '.png" srcset="/__assets/' + ids[2] + '.png 1x, /__assets/' + ids[3] + '.png 2x" style="mask:url(/__assets/' + ids[4] + '.png)"><img src="' + catalog.baseUrl + '/' + catalog.assets[ids[0]].path + '"></body></html>');
+  projector.externalizeAssetReferences(document, catalog);
   const once = parse5.serialize(document);
-  projector.externalizeAssetReferences(document, binding);
+  projector.externalizeAssetReferences(document, catalog);
   const twice = parse5.serialize(document);
-
   assert.equal(once, twice);
   assert.equal(projector.ROOT_RELATIVE_ASSET_REF.test(once), false);
-  assert.equal((once.match(/https:\/\/vgong24\.github\.io\/Vextreme-Assets\/__assets\//g) || []).length, 6);
+  for (const id of ids) assert.ok(once.includes(catalog.baseUrl + '/' + catalog.assets[id].path), id);
+});
+
+test('Content Forge asset resolver fails closed for unmapped identity or extension drift', () => {
+  const catalog = projector.loadAssetCatalog(ROOT);
+  assert.throws(() => projector.resolveAssetReference('ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff.png', catalog), error => error && error.code === 'ASSET_ID_UNMAPPED');
+  const id = 'b867417e358bc99a0c0c04f81ce68ef0ecbb0060810067ba918f6e654089a468';
+  assert.throws(() => projector.resolveAssetReference(id + '.jpg', catalog), error => error && error.code === 'ASSET_EXTENSION_MISMATCH');
 });
 
 // [VXG RealForever]
