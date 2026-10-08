@@ -29,6 +29,7 @@ function textLeaves(node){ return findAll(node,current=>current.nodeName==='#tex
 function remove(node){ const parent=node.parentNode; if(!parent?.childNodes)return; const i=parent.childNodes.indexOf(node); if(i>=0)parent.childNodes.splice(i,1); }
 function semanticShape(node){ const tags=['p','h1','h2','h3','h4','h5','h6','ul','ol','li','strong','em','blockquote','a','img','figure','figcaption','pre','code','hr','br']; return Object.fromEntries(tags.map(tag=>[tag,findAll(node,current=>current.tagName===tag).length])); }
 function expectedAuthoredMain(document){
+  projector.externalizeAssetReferences(document, projector.loadAssetCatalog(ROOT));
   const main=projector.selectAuthoredMain(document); let h1Seen=false;
   for(const node of [...findAll(main,current=>Boolean(current.tagName))]){
     const a=attrs(node); const tokens=classes(node);

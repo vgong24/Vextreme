@@ -47,6 +47,7 @@ function semanticShape(node) {
   return Object.fromEntries(tags.map(tag => [tag, findAll(node, current => current.tagName === tag).length]));
 }
 function sourceBody(document) {
+  projector.externalizeAssetReferences(document, projector.loadAssetCatalog(ROOT));
   const body = findFirst(document, node => node.tagName === 'main' && classes(node).includes('vex-authored-page-frame'));
   assert.ok(body, 'source authored main');
   let h1Seen = false;

@@ -11,8 +11,12 @@ const NODES_REL = path.join('data', 'nodes.json');
 const ARCS_REL = path.join('data', 'arcs-v2.json');
 const INTENTS_REL = path.join('config', 'content-intents.json');
 const VIEWMODELS_REL = path.join('data', 'viewmodels.json');
+const ASSET_CATALOG_REL = path.join('config', 'content-assets.json');
 const GENERATOR_REF = 'tools/vex-content-forge/project_arc_batch.js';
 const HTML_NS = 'http://www.w3.org/1999/xhtml';
+const ASSET_FILENAME = /^([0-9a-f]{64})\.([A-Za-z0-9]+)$/i;
+const ROOT_RELATIVE_ASSET_REF = /(^|["'(\s,=])\/__assets\/([0-9a-f]{64}\.[A-Za-z0-9]+)/m;
+const ROOT_RELATIVE_ASSET_REF_GLOBAL = /(^|["'(\s,=])\/__assets\/([0-9a-f]{64}\.[A-Za-z0-9]+)/gm;
 
 const GENERIC_STYLE = `
 :root{--paper:#fafaf9;--ink:#1c1917;--muted:#78716c;--line:#e7e5e4;--accent:#b45830}
@@ -33,6 +37,50 @@ const attrs = node => Object.fromEntries((node.attrs || []).map(item => [item.na
 const classes = node => (attrs(node).class || '').split(/\s+/).filter(Boolean);
 const escapeHtml = value => String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const pad = value => String(value).padStart(3, '0');
+
+function loadAssetCatalog(root) {
+  const value = readJson(path.join(root, ASSET_CATALOG_REL));
+  invariant(value?.schemaVersion === 'vextreme.content-assets/v2', 'ASSET_CATALOG_SCHEMA', value?.schemaVersion || 'missing');
+  invariant(value.resolution === 'BUILD_TIME', 'ASSET_CATALOG_RESOLUTION', value.resolution);
+  invariant(typeof value.baseUrl === 'string' && /^https:\/\/[^/]+(?:\/[^/]+)*$/.test(value.baseUrl), 'ASSET_CATALOG_BASE_URL', value.baseUrl);
+  invariant(value.logicalReference?.prefix === '/__assets/', 'ASSET_CATALOG_LOGICAL_PREFIX', value.logicalReference?.prefix);
+  invariant(value.logicalReference?.assetIdFormat === '64_HEX_EXPORTED_ID', 'ASSET_CATALOG_ID_FORMAT', value.logicalReference?.assetIdFormat);
+  invariant(typeof value.location?.defaultPathTemplate === 'string'
+    && value.location.defaultPathTemplate.includes('{assetId}')
+    && value.location.defaultPathTemplate.includes('{extension}'),
+    'ASSET_CATALOG_TEMPLATE', value.location?.defaultPathTemplate);
+  invariant(value.location?.overrides && typeof value.location.overrides === 'object' && !Array.isArray(value.location.overrides), 'ASSET_CATALOG_OVERRIDES', 'overrides');
+  for (const [assetId, mappedPath] of Object.entries(value.location.overrides)) {
+    invariant(/^[0-9a-f]{64}$/.test(assetId), 'ASSET_CATALOG_OVERRIDE_ID', assetId);
+    invariant(typeof mappedPath === 'string' && mappedPath.length > 0 && !mappedPath.startsWith('/') && !mappedPath.split('/').includes('..'), 'ASSET_CATALOG_OVERRIDE_PATH', assetId);
+  }
+  return {
+    baseUrl: value.baseUrl.replace(/\/+$/, ''),
+    logicalPrefix: value.logicalReference.prefix,
+    defaultPathTemplate: value.location.defaultPathTemplate,
+    overrides: value.location.overrides,
+    provider: value.provider,
+  };
+}
+function resolveAssetReference(filename, catalog) {
+  const match = ASSET_FILENAME.exec(String(filename));
+  invariant(match, 'ASSET_REFERENCE_FORMAT', String(filename));
+  const assetId = match[1].toLowerCase();
+  const extension = match[2].toLowerCase();
+  const mappedPath = catalog.overrides[assetId]
+    || catalog.defaultPathTemplate.replaceAll('{assetId}', assetId).replaceAll('{extension}', extension);
+  invariant(typeof mappedPath === 'string' && mappedPath.length > 0 && !mappedPath.startsWith('/') && !mappedPath.split('/').includes('..'), 'ASSET_RESOLVED_PATH', assetId);
+  return `${catalog.baseUrl}/${mappedPath}`;
+}
+function rewriteAssetText(value, catalog) {
+  return String(value).replace(ROOT_RELATIVE_ASSET_REF_GLOBAL, (_match, lead, filename) => lead + resolveAssetReference(filename, catalog));
+}
+function externalizeAssetReferences(root, catalog) {
+  walk(root, current => {
+    if (current.tagName) current.attrs = (current.attrs || []).map(item => ({ ...item, value: rewriteAssetText(item.value, catalog) }));
+    if (current.nodeName === '#text' && current.parentNode?.tagName === 'style') current.value = rewriteAssetText(current.value || '', catalog);
+  });
+}
 
 function walk(node, visit) {
   if (!node) return;
@@ -202,11 +250,12 @@ function validatePage(page, strings, member) {
     invariant(key.startsWith(`pages.${member.slug}.`), 'LOCALIZATION_SCOPE_LEAK', key);
     invariant(strings[key]?.strings?.en?.text !== undefined, 'LOCALIZATION_SOURCE_MISSING', key);
   }
+  invariant(!ROOT_RELATIVE_ASSET_REF.test(page), 'ROOT_RELATIVE_ASSET_REFERENCE', member.slug);
   invariant((page.match(/<h1(?:\s|>)/g) || []).length === 1, 'DOCUMENT_H1_COUNT_INVALID', member.slug);
   invariant(page.includes('id="arcNavMount"') && page.includes(`../dist/vextreme-${member.slug}.js`), 'RUNTIME_BINDING_MISSING', member.slug);
 }
 
-function projectMember(root, member, nodesBySlug) {
+function projectMember(root, member, nodesBySlug, assetCatalog) {
   const node = nodesBySlug.get(member.slug);
   invariant(node && node.id === member.canonicalNodeId && node.title === member.title && JSON.stringify(node.arcKeys) === JSON.stringify(member.arcKeys), 'CANONICAL_NODE_MISMATCH', member.slug);
   invariant(['SQS_AUTHORED_BODY','AUTHORED_MAIN_FRAGMENT'].includes(member.adapterClass), 'ADAPTER_UNSUPPORTED', member.slug);
@@ -218,6 +267,7 @@ function projectMember(root, member, nodesBySlug) {
   if (member.preservedHtmlSha256) invariant(sha256(source) === member.preservedHtmlSha256, 'SOURCE_SHA256_MISMATCH', member.slug);
 
   const document = parse5.parse(source.toString('utf8'));
+  externalizeAssetReferences(document, assetCatalog);
   const selected = member.adapterClass === 'SQS_AUTHORED_BODY' ? selectSqsBody(document) : selectAuthoredMain(document);
   const styles = member.adapterClass === 'AUTHORED_MAIN_FRAGMENT' ? authoredStyles(document) : [];
   const h1Seen = sanitize(selected, member.adapterClass);
@@ -291,6 +341,7 @@ function main(options = {}) {
   const formationRel = options.formationRel || FORMATION_REL;
   const formation = readJson(path.join(root, formationRel));
   validateFormation(formation);
+  const assetCatalog = loadAssetCatalog(root);
   const nodes = readJson(path.join(root, NODES_REL));
   const nodesBySlug = new Map(nodes.map(node => [node.slug, node]));
   const arcs = readJson(path.join(root, ARCS_REL));
@@ -317,7 +368,7 @@ function main(options = {}) {
       continue;
     }
     try {
-      const projection = projectMember(root, member, nodesBySlug);
+      const projection = projectMember(root, member, nodesBySlug, assetCatalog);
       projections.push({ member, projection });
       members.push({ slug: member.slug, canonicalNodeId: member.canonicalNodeId, adapterClass: member.adapterClass, disposition: 'PROJECTED', sourceGitBlob: member.sourceGitBlob, sourceSha256: projection.strings._meta.sourceProvenance.preservedHtmlSha256 });
     } catch (error) {
@@ -369,4 +420,4 @@ if (require.main === module) {
   try { process.exitCode = main(cliOptions()).accounting.complete ? 0 : 1; }
   catch (error) { process.stderr.write(`${error.stack || error.message}\n`); process.exitCode = 1; }
 }
-module.exports = { DEFAULT_ROOT, FORMATION_REL, GENERATOR_REF, ProjectionInvariantError, attrs, cliOptions, findAll, findFirst, gitBlobSha, main, rawText, selectAuthoredMain, selectSqsBody, sha256, textLeaves, validateFormation };
+module.exports = { ASSET_CATALOG_REL, ASSET_FILENAME, DEFAULT_ROOT, FORMATION_REL, GENERATOR_REF, ROOT_RELATIVE_ASSET_REF, ProjectionInvariantError, attrs, cliOptions, externalizeAssetReferences, findAll, findFirst, gitBlobSha, loadAssetCatalog, main, rawText, resolveAssetReference, rewriteAssetText, selectAuthoredMain, selectSqsBody, sha256, textLeaves, validateFormation };

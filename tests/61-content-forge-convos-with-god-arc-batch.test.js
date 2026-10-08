@@ -55,6 +55,7 @@ function remove(node) {
 }
 
 function sourceBody(document, member) {
+  projector.externalizeAssetReferences(document, projector.loadAssetCatalog(ROOT));
   let body;
   if (member.adapterClass === 'AUTHORED_MAIN_FRAGMENT') {
     body = findFirst(document, node => node.tagName === 'main' && classes(node).includes('vex-authored-page-frame'));
