@@ -325,30 +325,30 @@
   }
 
   function fieldsFor(node) {
-    var seen = {};
     var fields = [];
-    FIELD_KEYS.forEach(function (key) {
+    FIELD_KEYS.forEach(function (key, fieldIndex) {
       var value = normalize(node && node[key]);
-      if (!value || seen[value]) return;
-      seen[value] = true;
-      fields.push(value);
+      if (!value) return;
+      fields.push({ value: value, fieldIndex: fieldIndex, identity: fieldIndex < 3 });
     });
     return fields;
   }
 
-  function fieldScore(field, query, tokens, fieldIndex) {
-    var fieldPenalty = fieldIndex < 3 ? 0 : 100; // identity (id/title/slug) outranks descriptive metadata
-    if (field === query) return fieldPenalty + fieldIndex;
-    if (field.indexOf(query) === 0) return fieldPenalty + 20 + fieldIndex;
-    if (field.indexOf(query) !== -1) return fieldPenalty + 40 + fieldIndex;
+  function fieldScore(field, query, tokens) {
+    var fieldPenalty = field.identity ? 0 : 100; // id/title/slug always outrank descriptive metadata
+    var fieldIndex = field.fieldIndex;
+    var value = field.value;
+    if (value === query) return fieldPenalty + fieldIndex;
+    if (value.indexOf(query) === 0) return fieldPenalty + 20 + fieldIndex;
+    if (value.indexOf(query) !== -1) return fieldPenalty + 40 + fieldIndex;
 
-    var words = field.split(' ');
+    var words = value.split(' ');
     var everyWordPrefix = tokens.every(function (token) {
       return words.some(function (word) { return word.indexOf(token) === 0; });
     });
     if (everyWordPrefix) return fieldPenalty + 60 + fieldIndex;
 
-    var everySubstring = tokens.every(function (token) { return field.indexOf(token) !== -1; });
+    var everySubstring = tokens.every(function (token) { return value.indexOf(token) !== -1; });
     if (everySubstring) return fieldPenalty + 80 + fieldIndex;
     return null;
   }
@@ -359,8 +359,8 @@
     var tokens = normalizedQuery.split(' ').filter(Boolean);
     var fields = fieldsFor(node);
     var best = null;
-    fields.forEach(function (field, fieldIndex) {
-      var score = fieldScore(field, normalizedQuery, tokens, fieldIndex);
+    fields.forEach(function (field) {
+      var score = fieldScore(field, normalizedQuery, tokens);
       if (score != null && (best == null || score < best)) best = score;
     });
     if (best == null) return null;
