@@ -35,12 +35,12 @@ test('TERRAIN-SEARCH: repository separators and human spaces normalize to the sa
 test('TERRAIN-SEARCH: Victor Pattern query finds both real content nodes in useful order', () => {
   const Search = loadSearchApi();
   const data = JSON.parse(fs.readFileSync(TERRAIN_DATA, 'utf8'));
-  const matches = Search.findMatches(data.pages, 'victor pattern').map(node => node.id);
+  const matches = Array.from(Search.findMatches(data.pages, 'victor pattern'), node => node.id);
   assert.deepEqual(matches, ['the-victor-pattern', 'the-victor-pattern-transcript']);
 
   for (const query of ['victor-pattern', 'victor_pattern', 'pattern victor', 'victor patt']) {
     assert.deepEqual(
-      Search.findMatches(data.pages, query).map(node => node.id),
+      Array.from(Search.findMatches(data.pages, query), node => node.id),
       ['the-victor-pattern', 'the-victor-pattern-transcript'],
       query
     );
@@ -56,11 +56,11 @@ test('TERRAIN-SEARCH: relevance prefers exact identity, then shorter phrase matc
     { id: 'other', title: 'Other', role: 'Victor pattern research helper' },
   ];
   assert.deepEqual(
-    Search.findMatches(nodes, 'the victor pattern').map(node => node.id),
+    Array.from(Search.findMatches(nodes, 'the victor pattern'), node => node.id),
     ['the-victor-pattern', 'the-victor-pattern-transcript']
   );
   assert.deepEqual(
-    Search.findMatches(nodes, 'victor pattern').map(node => node.id),
+    Array.from(Search.findMatches(nodes, 'victor pattern'), node => node.id),
     ['the-victor-pattern', 'the-victor-pattern-transcript', 'other']
   );
   assert.ok(!Search.findMatches(nodes, 'victor pattern').some(node => node.id === 'the-god-pattern-recognized'),
