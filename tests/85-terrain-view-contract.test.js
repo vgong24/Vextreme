@@ -53,7 +53,7 @@ test('TERRAIN-VIEW: component contract keeps Live accepted while forming one bou
   assert.equal(value.profiles['evolution-v1'].levels.node.readerRenderer, 'embedded-page');
   assert.equal(
     value.profiles['evolution-v1'].levels.node.inputPriority,
-    'scrollable-content > armed-boundary-transition > terrain-zoom'
+    'scrollable-content > explicit-click-entry; reader-bottom > armed-return; no wheel-to-enter'
   );
   assert.equal(value.profiles['evolution-v2'].status, 'reserved-unformed');
   assert.deepEqual(value.profiles['evolution-v2'].declaredDeltas, []);
@@ -128,7 +128,7 @@ test('TERRAIN-VIEW: dated content has one known timeline-only assortment excepti
   ]);
 });
 
-test('TERRAIN-VIEW: Evolution A is a URL-addressable presentation state over shared Content truth', () => {
+test('TERRAIN-VIEW: Evolution A is a URL-addressable presentation with explicit arrival and click-entry depth', () => {
   const source = pageSource();
 
   assert.match(source, /id="contentProfile"/);
@@ -143,6 +143,11 @@ test('TERRAIN-VIEW: Evolution A is a URL-addressable presentation state over sha
   assert.match(source, /url\.searchParams\.set\('group', String\(stage\.key\)\)/);
   assert.match(source, /url\.searchParams\.set\('page', String\(readerNode\.slug \|\| readerNode\.id\)\)/);
   assert.match(source, /function setPresentationProfile\(profile, writeUrl\)/);
+  assert.match(source, /function renderEvolutionAArrival\(\)/);
+  assert.match(source, /How do you want to enter\?/);
+  assert.match(source, /Enter the Walk/);
+  assert.match(source, /Explore the Archives/);
+  assert.match(source, /data-evo-explore-archives/);
   assert.match(source, /function renderEvolutionAGroup\(\)/);
   assert.match(source, /stageMembers\(stage\)/);
   assert.match(source, /node\.screenshots \|\| \{\}/);
@@ -159,11 +164,10 @@ test('TERRAIN-VIEW: Evolution A is a URL-addressable presentation state over sha
   assert.match(source, /function boundaryGestureReady\(key, direction\)/);
   assert.match(source, /function handleEvolutionShelfWheel\(ev\)/);
   assert.match(source, /function handleEvolutionReaderWheel\(ev\)/);
-  assert.match(source, /BOUNDARY_GESTURE_IDLE_MS = 220/);
-  assert.match(source, /scrollPathCanMove\(ev\.target, doc, direction\)/);
   assert.match(source, /evolutionLayer\.addEventListener\('wheel', handleEvolutionShelfWheel/);
   assert.match(source, /evolutionReaderFrame\.addEventListener\('load', wireEvolutionReaderDocument\)/);
   assert.match(source, /if \(isEvolutionAGroup\(\) \|\| activeReaderId\) return;/);
+  assert.doesNotMatch(source, /collection-enter:|reader-next:|reader-back:|reader-end:/);
 
   const profileFunction = source.match(/function setPresentationProfile\(profile, writeUrl\) \{([\s\S]*?)\n  \}/);
   assert.ok(profileFunction, 'presentation-profile function should be present');
