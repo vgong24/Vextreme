@@ -145,19 +145,16 @@ test('TERRAIN-JOURNEY: Row B correction keeps zero stages perceivable and select
   assert.doesNotMatch(source, /semantic\s*=\s*\{[^}]*\b(?:x|y|scale)\s*:/s);
 });
 
-test('TERRAIN-JOURNEY: Evolution A gives scrollable content priority and requires a fresh boundary gesture', () => {
+test('TERRAIN-JOURNEY: Evolution A keeps collection scrolling inert and uses only a confirmed reader-bottom return', () => {
   const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
 
   const shelfStart = source.indexOf('function handleEvolutionShelfWheel');
   const shelfEnd = source.indexOf('function handleEvolutionReaderWheel', shelfStart);
   assert.ok(shelfStart > 0 && shelfEnd > shelfStart, 'Evolution A shelf wheel handler must be present');
   const shelf = source.slice(shelfStart, shelfEnd);
-  assert.ok(
-    shelf.indexOf('canScrollElement(evolutionLayer, direction)') < shelf.indexOf('ev.preventDefault()'),
-    'ordinary collection scrolling must be checked before a boundary transition consumes the wheel event'
-  );
-  assert.match(shelf, /boundaryGestureReady\('collection-exit', -1\)/);
-  assert.match(shelf, /boundaryGestureReady\('collection-enter:' \+ node\.id, 1\)/);
+  assert.match(shelf, /ev\.stopPropagation\(\)/);
+  assert.doesNotMatch(shelf, /ev\.preventDefault\(\)/, 'collection wheel input must remain ordinary scrolling');
+  assert.doesNotMatch(shelf, /boundaryGestureReady|openEvolutionReader|enterLevel/, 'collection wheel input must have no semantic side effect');
 
   const readerStart = source.indexOf('function handleEvolutionReaderWheel');
   const readerEnd = source.indexOf('function wireEvolutionReaderDocument', readerStart);
@@ -165,11 +162,12 @@ test('TERRAIN-JOURNEY: Evolution A gives scrollable content priority and require
   const reader = source.slice(readerStart, readerEnd);
   assert.ok(
     reader.indexOf('scrollPathCanMove(ev.target, doc, direction)') < reader.indexOf('ev.preventDefault()'),
-    'page and nested page scrolling must be exhausted before reader navigation consumes the wheel event'
+    'page and nested page scrolling must be exhausted before reader return consumes the wheel event'
   );
-  assert.match(reader, /boundaryGestureReady\('reader-back:' \+ activeReaderId, -1\)/);
-  assert.match(reader, /boundaryGestureReady\('reader-next:' \+ activeReaderId, 1\)/);
-  assert.match(reader, /boundaryGestureReady\('reader-end:' \+ activeReaderId, 1\)/);
+  assert.match(reader, /if \(direction < 0\) \{/);
+  assert.match(reader, /boundaryGestureReady\('reader-return:' \+ activeReaderId, 1\)/);
+  assert.match(reader, /closeEvolutionReader\(\)/);
+  assert.doesNotMatch(reader, /reader-next|reader-back|reader-end/);
 
   assert.match(source, /BOUNDARY_GESTURE_IDLE_MS = 220/);
   assert.match(source, /BOUNDARY_GESTURE_RESET_MS = 3000/);
@@ -177,6 +175,21 @@ test('TERRAIN-JOURNEY: Evolution A gives scrollable content priority and require
   assert.match(source, /currentProfile === 'evolution-v1' && levelIndex === 2/);
   assert.match(source, /enterLevel\(1, \{ stageIdx:stageIdx \}\)/);
   assert.match(source, /if \(isEvolutionAGroup\(\) \|\| activeReaderId\) return;/);
+});
+
+test('TERRAIN-JOURNEY: compact Terrain chrome keeps one local row and lets the Spiral FAB swap controls for routes', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
+  assert.match(source, /id="terrainTopbar"/);
+  assert.match(source, /id="terrainControlStrip"/);
+  assert.match(source, /id="readerHeaderControls"/);
+  assert.match(source, /id="terrainRouteStrip"/);
+  assert.match(source, /function wireSpiralChromeSwap\(\)/);
+  assert.match(source, /getElementById\('vex-spiral-trigger'\)/);
+  assert.match(source, /aria-expanded/);
+  assert.match(source, /routes\.hidden = !spiralOpen/);
+  assert.match(source, /readerControls\.hidden = spiralOpen \|\| !activeReaderId/);
+  assert.match(source, /controls\.hidden = spiralOpen \|\| !!activeReaderId/);
+  assert.match(source, /VEXTREME_OVERRIDE = \{ bodyWrap: false, nav: false, fabWidgets: \{ map: false \} \}/);
 });
 
 // [VXG RealForever]
