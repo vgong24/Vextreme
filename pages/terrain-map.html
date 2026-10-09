@@ -53,51 +53,68 @@
     height:calc(100dvh - var(--vex-site-nav-height, 61px));
   }
 
-  .topbar{ display:flex; align-items:center; gap:20px; flex-wrap:wrap; padding:14px 20px; border-bottom:1px solid var(--line); background:var(--panel); flex:none; z-index:5; }
-  .brand{ display:flex; flex-direction:column; gap:2px; margin-right:auto; min-width:220px; }
-  .brand .eyebrow{ margin:0; font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); }
-  .brand h1{ margin:0; font-size:18px; font-weight:650; letter-spacing:-.01em; }
-  .brand .sub{ font-size:12px; color:var(--ink-muted); }
+  .topbar{
+    display:flex; align-items:center; gap:12px; flex-wrap:nowrap; min-height:54px;
+    padding:8px 76px 8px 14px; border-bottom:1px solid var(--line); background:var(--panel); flex:none; z-index:11;
+  }
+  .terrain-brand{ display:inline-flex; align-items:baseline; gap:8px; flex:none; min-width:0; color:var(--ink); text-decoration:none; white-space:nowrap; }
+  .terrain-brand-word{ font:700 17px/1 var(--sans); letter-spacing:-.01em; }
+  .terrain-brand-context{ color:var(--ink-faint); font:10px/1 var(--mono); letter-spacing:.12em; text-transform:uppercase; }
+  .terrain-sr-only{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); clip-path:inset(50%); white-space:nowrap; }
+  .terrain-control-strip{ display:flex; align-items:center; justify-content:flex-end; gap:9px; min-width:0; flex:1; }
+  .terrain-route-strip{ display:flex; align-items:center; justify-content:flex-end; gap:7px; min-width:0; flex:1; overflow-x:auto; }
+  .terrain-route-strip[hidden], .reader-header-controls[hidden], .terrain-control-strip[hidden]{ display:none; }
+  .terrain-route{ flex:none; display:inline-flex; align-items:center; gap:6px; padding:7px 10px; border:1px solid var(--line-strong); border-radius:999px; background:var(--panel-2); color:var(--ink); text-decoration:none; font:600 11px/1 var(--sans); }
+  .terrain-route:hover{ border-color:var(--accent); color:var(--accent); }
+  .terrain-route-icon{ font-size:15px; line-height:1; }
+  .reader-header-controls{ display:flex; align-items:center; gap:9px; min-width:0; flex:1; }
+  .reader-header-identity{ min-width:0; flex:1; text-align:center; }
+  .reader-header-title{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font:600 13px/1.15 var(--sans); }
+  .reader-header-meta{ margin-top:2px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--ink-faint); font:9px/1.15 var(--mono); }
 
-  .lens{ display:flex; align-items:center; gap:8px; }
-  .lens-label{ font-size:11px; color:var(--ink-muted); font-family:var(--mono); text-transform:uppercase; letter-spacing:.08em; }
-  .lens-toggle{ display:flex; background:var(--panel-2); border-radius:8px; padding:3px; gap:2px; border:1px solid var(--line); }
-  .lens-btn{ appearance:none; border:none; background:transparent; color:var(--ink-muted); font-family:var(--sans); font-size:13px; font-weight:600; padding:7px 14px; border-radius:6px; cursor:pointer; }
+  .lens{ display:flex; align-items:center; gap:5px; min-width:0; }
+  .lens-label{ font-size:9px; color:var(--ink-faint); font-family:var(--mono); text-transform:uppercase; letter-spacing:.07em; }
+  .lens-toggle{ display:flex; background:var(--panel-2); border-radius:8px; padding:2px; gap:1px; border:1px solid var(--line); }
+  .lens-btn{ appearance:none; border:none; background:transparent; color:var(--ink-muted); font-family:var(--sans); font-size:12px; font-weight:600; padding:6px 10px; border-radius:6px; cursor:pointer; }
   .lens-btn[aria-pressed="true"]{ background:var(--accent); color:#fff; }
   .lens-btn:not([aria-pressed="true"]):hover{ background:var(--line); color:var(--ink); }
   .content-view-split{ display:inline-flex; align-items:stretch; gap:0; }
   .content-view-split .world-btn{ border-radius:6px 0 0 6px; }
   .content-profile-wrap{ display:inline-flex; align-items:center; }
   .content-profile-wrap[hidden]{ display:none; }
-  .content-profile{
-    height:100%; min-height:34px; border:1px solid var(--line-strong); border-left:0;
-    border-radius:0 6px 6px 0; background:var(--panel); color:var(--ink); padding:0 24px 0 8px;
-    font:600 11px/1 var(--sans); cursor:pointer;
-  }
+  .content-profile{ height:100%; min-height:30px; border:1px solid var(--line-strong); border-left:0; border-radius:0 6px 6px 0; background:var(--panel); color:var(--ink); padding:0 22px 0 7px; font:600 10px/1 var(--sans); cursor:pointer; }
   .content-profile:focus-visible{ outline:1.5px solid var(--accent); outline-offset:1px; }
 
-  .legend{ display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
-  .legend-item{ display:flex; align-items:center; gap:6px; font-size:12px; color:var(--ink-muted); }
-  .legend-dot{ width:9px; height:9px; border-radius:50%; flex:none; }
+  .legend{ display:flex; gap:4px; align-items:center; flex:none; }
+  .legend-item{ display:flex; align-items:center; gap:0; font-size:0; color:var(--ink-muted); }
+  .legend-dot{ width:8px; height:8px; border-radius:50%; flex:none; }
 
-  .search{ position:relative; width:190px; min-width:0; }
-  .search input{
-    background:var(--panel-2); border:1px solid var(--line); color:var(--ink); border-radius:8px;
-    padding:8px 12px; font-size:13px; font-family:var(--sans); width:100%; min-width:0;
-  }
+  .search{ position:relative; width:min(180px,18vw); min-width:120px; }
+  .search input{ background:var(--panel-2); border:1px solid var(--line); color:var(--ink); border-radius:8px; padding:7px 9px; font-size:12px; font-family:var(--sans); width:100%; min-width:0; }
   .search input:focus{ outline:1.5px solid var(--accent); }
-  .search-meta{ display:flex; align-items:center; gap:6px; min-height:20px; margin-top:4px; }
-  .search-status{ flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--ink-faint); font:10px/1.3 var(--mono); }
+  .search-meta{ position:absolute; top:100%; right:0; display:flex; align-items:center; gap:4px; min-height:18px; margin-top:2px; z-index:15; }
+  .search-status{ min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--ink-faint); font:9px/1.2 var(--mono); }
   .search-status.active{ color:var(--ink-muted); }
-  .search-nav{ display:flex; gap:3px; flex:none; }
-  .search-nav-btn{
-    width:24px; height:20px; display:inline-flex; align-items:center; justify-content:center;
-    border:1px solid var(--line-strong); border-radius:5px; background:var(--panel-2); color:var(--ink-muted);
-    font:700 11px/1 var(--mono); cursor:pointer; padding:0;
-  }
+  .search-nav{ display:flex; gap:2px; flex:none; }
+  .search-nav-btn{ width:20px; height:18px; display:inline-flex; align-items:center; justify-content:center; border:1px solid var(--line-strong); border-radius:5px; background:var(--panel-2); color:var(--ink-muted); font:700 10px/1 var(--mono); cursor:pointer; padding:0; }
   .search-nav-btn:hover:not(:disabled){ border-color:var(--accent); color:var(--accent); }
   .search-nav-btn:focus-visible{ outline:1.5px solid var(--accent); outline-offset:1px; }
-  .search-nav-btn:disabled{ opacity:.35; cursor:default; }
+  .search-nav-btn:disabled{ opacity:.3; cursor:default; }
+
+  .level-readout{ position:relative; inset:auto; z-index:auto; width:150px; min-width:120px; flex:none; font-family:var(--mono); color:var(--ink-muted); background:transparent; border:0; padding:0; border-radius:0; pointer-events:none; }
+  .threshold-progress{ position:relative; min-width:0; padding-top:7px; }
+  .threshold-track{ position:absolute; left:0; right:0; top:5px; height:2px; border-radius:2px; background:var(--line-strong); }
+  .threshold-marker{ position:absolute; top:1px; width:9px; height:9px; border-radius:50%; background:var(--accent); border:2px solid var(--panel); transform:translateX(-50%); transition:left .12s ease; box-shadow:0 0 0 1px var(--accent-soft); }
+  .threshold-rail{ list-style:none; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:3px; margin:0; padding:7px 0 0; }
+  .threshold-step{ min-width:0; font-size:8px; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-faint); text-align:center; }
+  .threshold-step:first-child{ text-align:left; }
+  .threshold-step:last-child{ text-align:right; }
+  .threshold-step span{ display:block; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .threshold-step[data-relation="previous"]{ color:var(--ink-muted); }
+  .threshold-step[data-relation="current"]{ color:var(--accent); font-weight:800; }
+  .threshold-step[data-relation="next"]{ color:var(--ink); }
+  .threshold-meter{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); clip-path:inset(50%); white-space:nowrap; }
+  .level-order{ display:none; }
 
   .body{ position:relative; flex:1; min-height:0; overflow:hidden; }
   .map-wrap{ position:absolute; inset:0; overflow:hidden; background: radial-gradient(ellipse at 30% 15%, var(--accent-soft), transparent 55%), var(--ground); cursor:grab; }
@@ -130,7 +147,7 @@
   .load-state{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:var(--ink-muted); font-family:var(--mono); font-size:13px; z-index:3; background:var(--ground); }
 
   .evolution-layer{
-    position:absolute; inset:82px 16px 22px; z-index:4; overflow:auto; padding:0 0 28px;
+    position:absolute; inset:12px; z-index:4; overflow:auto; padding:0 0 20px;
     cursor:default; scrollbar-gutter:stable; color:var(--ink);
   }
   .evolution-layer[hidden]{ display:none; }
@@ -186,6 +203,18 @@
   }
   .evo-card:hover .evo-url, .evo-card:focus-within .evo-url{ opacity:1; }
   .evo-empty{ padding:30px 4px; color:var(--ink-muted); font:13px/1.6 var(--sans); }
+  .evo-arrival{ min-height:100%; display:grid; place-items:center; padding:clamp(18px,4vw,48px); }
+  .evo-arrival-inner{ width:min(880px,100%); }
+  .evo-arrival-kicker{ color:var(--accent); font:10px/1.3 var(--mono); letter-spacing:.15em; text-transform:uppercase; text-align:center; }
+  .evo-arrival-title{ margin:10px auto 8px; max-width:680px; text-align:center; font:500 clamp(27px,4vw,46px)/1.08 var(--sans); letter-spacing:-.035em; }
+  .evo-arrival-sub{ margin:0 auto 26px; max-width:620px; color:var(--ink-muted); text-align:center; font:14px/1.6 var(--sans); }
+  .evo-arrival-choices{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+  .evo-arrival-card{ appearance:none; display:block; min-height:180px; padding:22px; border:1px solid var(--line-strong); border-radius:16px; background:var(--panel); color:var(--ink); text-decoration:none; text-align:left; cursor:pointer; transition:border-color .12s ease, transform .12s ease, background .12s ease; }
+  .evo-arrival-card:hover, .evo-arrival-card:focus-visible{ border-color:var(--accent); background:var(--accent-soft); transform:translateY(-2px); outline:none; }
+  .evo-arrival-icon{ display:block; font-size:24px; margin-bottom:24px; }
+  .evo-arrival-card strong{ display:block; font:650 21px/1.15 var(--sans); margin-bottom:8px; }
+  .evo-arrival-card span:last-child{ display:block; color:var(--ink-muted); font:12px/1.55 var(--sans); }
+  @media (max-width:680px){ .evo-arrival-choices{ grid-template-columns:1fr; } }
   .evo-gesture-hint{
     position:absolute; left:50%; bottom:18px; z-index:12; transform:translateX(-50%);
     max-width:min(620px,calc(100% - 32px)); padding:8px 12px; border:1px solid var(--line-strong);
@@ -195,7 +224,7 @@
   }
   .evo-gesture-hint[hidden]{ display:none; }
   .evolution-reader{
-    position:absolute; inset:0; z-index:10; display:grid; grid-template-rows:auto minmax(0,1fr);
+    position:absolute; inset:0; z-index:10; display:grid; grid-template-rows:minmax(0,1fr);
     background:var(--ground); color:var(--ink);
   }
   .evolution-reader[hidden]{ display:none; }
@@ -347,23 +376,24 @@
   .visit-btn{ display:flex; align-items:center; justify-content:center; gap:6px; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; font-size:13px; padding:11px; border-radius:8px; margin:14px 0 6px; }
   .visit-btn:hover{ filter:brightness(1.08); }
 
-  @media (max-width:760px){
-    .topbar{ padding:10px 12px; gap:9px; }
-    .topbar > *{ min-width:0; }
-    .brand{ width:100%; min-width:0; margin-right:0; }
-    .brand .sub{ overflow-wrap:anywhere; }
-    .search{ width:100%; min-width:0; }
-    .search input{ width:100%; min-width:0; }
-    .lens, .legend{ max-width:100%; min-width:0; }
-    .lens-toggle{ max-width:100%; flex-wrap:wrap; }
-    .body{ flex-direction:column; }
-    .panel{ width:100%; border-left:none; border-top:1px solid var(--line); max-height:44vh; }
-    .level-readout{ left:12px; right:12px; width:auto; max-width:none; padding:7px 9px 6px; }
-    .threshold-rail{ gap:5px; }
-    .threshold-step{ font-size:9.5px; letter-spacing:.04em; }
-    .level-order{ font-size:9px; }
+  @media (max-width:900px){
+    .topbar{ padding:7px 68px 7px 10px; gap:8px; }
+    .terrain-brand-context{ display:none; }
+    .terrain-brand-word{ font-size:15px; }
+    .terrain-control-strip{ gap:6px; overflow-x:auto; justify-content:flex-start; }
+    .lens-label, .legend{ display:none; }
+    .level-readout{ width:120px; min-width:120px; }
+    .search{ min-width:130px; width:150px; }
+    .reader-header-meta{ display:none; }
+    .terrain-route-label{ display:none; }
+    .terrain-route{ padding:7px; }
+    .panel{ width:min(340px,100%); }
     .zoom-controls{ right:12px; bottom:12px; }
     .map-hint{ left:12px; right:52px; max-width:none; overflow-wrap:anywhere; }
+    .reader-stage{ padding:8px 38px 10px; }
+    .reader-side{ width:32px; }
+    .reader-side.reader-prev{ left:2px; }
+    .reader-side.reader-next{ right:2px; }
   }
   @media (prefers-reduced-motion:reduce){
     #world.snapping, .panel, .threshold-marker{ transition:none !important; }
@@ -373,63 +403,72 @@
 </head>
 <body>
 <div class="app">
-  <div class="topbar">
-    <div class="brand">
-      <div class="eyebrow">Living map · self-updating</div>
-      <h1>Terrain Map</h1>
-      <div class="sub" id="subline">Loading…</div>
-    </div>
-    <div class="lens">
-      <span class="lens-label">View</span>
-      <div class="lens-toggle" role="group" aria-label="Code or content" id="worldBar">
-        <button class="lens-btn world-btn" data-world="code" aria-pressed="true">Code</button>
-        <span class="content-view-split">
-          <button class="lens-btn world-btn" data-world="content" aria-pressed="false">Content</button>
-          <span class="content-profile-wrap" id="contentProfileWrap" hidden>
-            <select class="content-profile" id="contentProfile" aria-label="Content presentation">
-              <option value="live">Live</option>
-              <option value="evolution-v1">Evolution A</option>
-            </select>
+  <div class="topbar" id="terrainTopbar">
+    <a class="terrain-brand" href="?view=content&amp;profile=evolution-v1" aria-label="Vex Life — return to Terrain arrival">
+      <span class="terrain-brand-word">Vex Life</span>
+      <span class="terrain-brand-context">Terrain</span>
+    </a>
+    <span class="terrain-sr-only" id="subline">Loading…</span>
+
+    <div class="terrain-control-strip" id="terrainControlStrip">
+      <div class="lens">
+        <span class="lens-label">View</span>
+        <div class="lens-toggle" role="group" aria-label="Code or content" id="worldBar">
+          <button class="lens-btn world-btn" data-world="code" aria-pressed="true">Code</button>
+          <span class="content-view-split">
+            <button class="lens-btn world-btn" data-world="content" aria-pressed="false">Content</button>
+            <span class="content-profile-wrap" id="contentProfileWrap" hidden>
+              <select class="content-profile" id="contentProfile" aria-label="Content presentation">
+                <option value="live">Live</option>
+                <option value="evolution-v1">Evolution A</option>
+              </select>
+            </span>
           </span>
-        </span>
-      </div>
-    </div>
-    <div class="search" role="search">
-      <input type="search" id="searchInput" placeholder="Find a file or page…" autocomplete="off"
-        aria-label="Search Terrain files or pages" aria-describedby="searchStatus" aria-keyshortcuts="Enter Shift+Enter Escape">
-      <div class="search-meta">
-        <span class="search-status" id="searchStatus" role="status" aria-live="polite"></span>
-        <div class="search-nav" aria-label="Search result navigation">
-          <button class="search-nav-btn" id="searchPrev" type="button" aria-label="Previous search result" title="Previous result (Shift+Enter)" disabled>&uarr;</button>
-          <button class="search-nav-btn" id="searchNext" type="button" aria-label="Next search result" title="Next result (Enter)" disabled>&darr;</button>
         </div>
       </div>
-    </div>
-    <div class="lens" id="lensGroup">
-      <span class="lens-label">Lens</span>
-      <div class="lens-toggle" role="group" aria-label="Viewing lens" id="lensBar">
-        <button class="lens-btn" data-lens="all" aria-pressed="true">All</button>
-        <button class="lens-btn" data-lens="engineer" aria-pressed="false">Engineer</button>
-        <button class="lens-btn" data-lens="auditor" aria-pressed="false">Auditor</button>
+      <div class="level-readout" id="levelReadout">Loading…</div>
+      <div class="search" role="search">
+        <input type="search" id="searchInput" placeholder="Find…" autocomplete="off"
+          aria-label="Search Terrain files or pages" aria-describedby="searchStatus" aria-keyshortcuts="Enter Shift+Enter Escape">
+        <div class="search-meta">
+          <span class="search-status" id="searchStatus" role="status" aria-live="polite"></span>
+          <div class="search-nav" aria-label="Search result navigation">
+            <button class="search-nav-btn" id="searchPrev" type="button" aria-label="Previous search result" title="Previous result (Shift+Enter)" disabled>&uarr;</button>
+            <button class="search-nav-btn" id="searchNext" type="button" aria-label="Next search result" title="Next result (Enter)" disabled>&darr;</button>
+          </div>
+        </div>
       </div>
+      <div class="lens" id="lensGroup">
+        <span class="lens-label">Lens</span>
+        <div class="lens-toggle" role="group" aria-label="Viewing lens" id="lensBar">
+          <button class="lens-btn" data-lens="all" aria-pressed="true">All</button>
+          <button class="lens-btn" data-lens="engineer" aria-pressed="false">Engineer</button>
+          <button class="lens-btn" data-lens="auditor" aria-pressed="false">Auditor</button>
+        </div>
+      </div>
+      <div class="legend" id="legend"></div>
     </div>
-    <div class="legend" id="legend"></div>
-  </div>
 
+    <div class="reader-header-controls" id="readerHeaderControls" hidden>
+      <button class="reader-back" id="readerBack" type="button">← Collection</button>
+      <div class="reader-header-identity">
+        <div class="reader-header-title" id="readerTitle">Page</div>
+        <div class="reader-header-meta" id="readerMeta"></div>
+      </div>
+      <a class="reader-standalone" id="readerStandalone" href="#" target="_blank" rel="noopener">Standalone ↗</a>
+    </div>
+
+    <nav class="terrain-route-strip" id="terrainRouteStrip" aria-label="Vex Life routes" hidden>
+      <a class="terrain-route" href="https://www.vextreme24.com/" title="Original Vex Life home"><span class="terrain-route-icon">🧭</span><span class="terrain-route-label">Origin</span></a>
+      <a class="terrain-route" href="https://www.vextreme24.com/contact" title="Contact Victor"><span class="terrain-route-icon">✉️</span><span class="terrain-route-label">Contact</span></a>
+      <a class="terrain-route" href="/Vextreme/pages/vex-support.html" title="Support Vextreme"><span class="terrain-route-icon">🪙</span><span class="terrain-route-label">Support</span></a>
+    </nav>
+  </div>
   <div class="body">
     <div class="map-wrap" id="mapWrap">
-      <div class="level-readout" id="levelReadout">Loading…</div>
       <svg id="svg"><defs><marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="currentColor" style="color:var(--line-strong)"/></marker></defs><g id="world"></g></svg>
       <div class="evolution-layer" id="evolutionLayer" data-terrain-component="terrain.group-card" data-terrain-variant="evolution-a" hidden></div>
       <div class="evolution-reader" id="evolutionReader" data-terrain-profile="evolution-v1" hidden>
-        <div class="reader-toolbar">
-          <button class="reader-back" id="readerBack" type="button">← Collection</button>
-          <div class="reader-identity">
-            <div class="reader-title" id="readerTitle">Page</div>
-            <div class="reader-meta" id="readerMeta"></div>
-          </div>
-          <a class="reader-standalone" id="readerStandalone" href="#" target="_blank" rel="noopener">Open standalone ↗</a>
-        </div>
         <div class="reader-stage">
           <button class="reader-side reader-prev" id="readerPrev" type="button" aria-label="Previous page">
             <span class="reader-side-arrow">‹</span><span class="reader-side-label">Previous</span>
@@ -582,8 +621,10 @@
         "Content group selection renders immediate membership destinations instead of a large confirmation rectangle.",
         "Selected-group identity becomes compact persistent context with sibling groups in a condensed rail.",
         "Content pages render as preview cards using real screenshot evidence when present and a deliberate fallback cover when absent.",
-        "The legacy dot-node depth is not used inside Evolution A; page depth is an embedded same-origin reader inside Terrain.",
-        "Scrollable content has input priority over layer transitions; a boundary only arms a transition and a distinct follow-up wheel gesture confirms it.",
+        "The legacy dot-node depth is not used inside Evolution A; clicking a page preview is the explicit entry action for the embedded same-origin reader.",
+        "Collection scrolling has no semantic side effect; inside the final reader depth, only a confirmed extra downward gesture at page end returns to the collection.",
+        "Evolution A system arrival offers a gentle human choice between entering the Walk and exploring the Archives.",
+        "Terrain may use compact surface-owned chrome while keeping the shared Spiral FAB as the expandable page-tools trigger.",
         "Renderer choice is presentation state and is directly addressable by URL; semantic Journey state is unchanged."
       ],
       "levels": {
@@ -595,7 +636,7 @@
           "component": "terrain.node-marker",
           "renderer": "preview-card",
           "readerRenderer": "embedded-page",
-          "inputPriority": "scrollable-content > armed-boundary-transition > terrain-zoom"
+          "inputPriority": "scrollable-content > explicit-click-entry; reader-bottom > armed-return; no wheel-to-enter"
         }
       }
     },
@@ -740,7 +781,7 @@
   var searchMatchIds = new Set();
   var journeySnapshot = null, historyReady = false, restoringHistory = false;
   var currentProfile = 'live';
-  var activeReaderId = null, hoveredEvolutionNodeId = null;
+  var activeReaderId = null;
   var boundaryGesture = { key:null, direction:0, lastAt:0 };
   var BOUNDARY_GESTURE_IDLE_MS = 220, BOUNDARY_GESTURE_RESET_MS = 3000;
   var gestureHintTimer = null;
@@ -807,6 +848,8 @@
     ['good', 'warning', 'critical'].forEach(function (s) {
       var d = document.createElement('div');
       d.className = 'legend-item';
+      d.setAttribute('aria-label', STATUS_TEXT[s]);
+      d.setAttribute('title', STATUS_TEXT[s]);
       d.innerHTML = '<span class="legend-dot" style="background:var(--' + s + ')"></span>' + STATUS_TEXT[s];
       legend.appendChild(d);
     });
@@ -815,6 +858,7 @@
     WORLDS.content = buildContentWorld(data);
 
     wireControls();
+    wireSpiralChromeSwap();
     switchWorld(initialRoute.world === 'content' ? 'content' : 'code');
     setPresentationProfile(initialRoute.profile, false);
     if (currentWorld === 'content' && initialRoute.group) {
@@ -827,6 +871,37 @@
       if (initialPage && initialPage.live) openEvolutionReader(initialPage.id, { writeUrl:false });
     }
     syncPresentationUrl();
+  }
+
+  var spiralOpen = false;
+
+  function syncTopbarMode() {
+    var controls = document.getElementById('terrainControlStrip');
+    var readerControls = document.getElementById('readerHeaderControls');
+    var routes = document.getElementById('terrainRouteStrip');
+    if (!controls || !readerControls || !routes) return;
+    routes.hidden = !spiralOpen;
+    readerControls.hidden = spiralOpen || !activeReaderId;
+    controls.hidden = spiralOpen || !!activeReaderId;
+  }
+
+  function wireSpiralChromeSwap() {
+    var attempts = 0;
+    function bind() {
+      var trigger = document.getElementById('vex-spiral-trigger');
+      if (!trigger) {
+        attempts += 1;
+        if (attempts < 80) window.setTimeout(bind, 100);
+        return;
+      }
+      function sync() {
+        spiralOpen = trigger.getAttribute('aria-expanded') === 'true';
+        syncTopbarMode();
+      }
+      new MutationObserver(sync).observe(trigger, { attributes:true, attributeFilter:['aria-expanded'] });
+      sync();
+    }
+    bind();
   }
 
   function readInitialRoute() {
@@ -986,13 +1061,13 @@
     if (!evolutionReaderMembers().some(function (member) { return member.id === node.id; })) return;
 
     activeReaderId = node.id;
-    hoveredEvolutionNodeId = node.id;
     resetBoundaryGesture();
     hideGestureHint();
     evolutionLayer.hidden = true;
     evolutionReader.hidden = false;
     svg.style.visibility = 'hidden';
     mapWrap.classList.add('evolution-a-active', 'evolution-reader-active');
+    syncTopbarMode();
     updateReaderChrome(node);
     evolutionReaderFrame.title = 'Reading ' + (node.title || node.slug) + ' inside Terrain';
     evolutionReaderFrame.src = node.liveUrl;
@@ -1007,6 +1082,7 @@
     evolutionReader.hidden = true;
     evolutionReaderFrame.src = 'about:blank';
     mapWrap.classList.remove('evolution-reader-active');
+    syncTopbarMode();
     if (options.renderGroup !== false && isEvolutionAGroup()) {
       evolutionLayer.hidden = false;
       svg.style.visibility = 'hidden';
@@ -1017,41 +1093,8 @@
   function handleEvolutionShelfWheel(ev) {
     if (!isEvolutionAGroup() || activeReaderId) return;
     ev.stopPropagation();
-    if (!ev.deltaY || Math.abs(ev.deltaY) < Math.abs(ev.deltaX)) return;
-    var direction = ev.deltaY > 0 ? 1 : -1;
-
-    if (canScrollElement(evolutionLayer, direction)) {
-      resetBoundaryGesture();
-      hideGestureHint();
-      return;
-    }
-
-    ev.preventDefault();
-    if (direction < 0) {
-      if (boundaryGestureReady('collection-exit', -1)) {
-        hoveredEvolutionNodeId = null;
-        enterLevel(1, {});
-        syncPresentationUrl();
-        commitSemanticState({ label:'GROUPS', relationship:'returned to', reason:'Evolution A boundary scroll' });
-      } else {
-        showGestureHint('Top reached · pause, then scroll up again to return to groups');
-      }
-      return;
-    }
-
-    var card = ev.target && ev.target.closest ? ev.target.closest('.evo-card') : null;
-    var candidateId = card ? card.getAttribute('data-node-id') : hoveredEvolutionNodeId;
-    var node = candidateId && byId[candidateId];
-    if (!node || !node.live) {
-      resetBoundaryGesture();
-      showGestureHint('End reached · hover or focus a live page card, then scroll down again to read it');
-      return;
-    }
-    if (boundaryGestureReady('collection-enter:' + node.id, 1)) {
-      openEvolutionReader(node.id);
-    } else {
-      showGestureHint('End reached · pause, then scroll down again to read “' + (node.title || node.slug) + '”');
-    }
+    resetBoundaryGesture();
+    hideGestureHint();
   }
 
   function handleEvolutionReaderWheel(ev) {
@@ -1067,29 +1110,17 @@
       return;
     }
 
-    ev.preventDefault();
     if (direction < 0) {
-      if (boundaryGestureReady('reader-back:' + activeReaderId, -1)) {
-        closeEvolutionReader();
-      } else {
-        showGestureHint('Top reached · pause, then scroll up again to return to the collection');
-      }
+      resetBoundaryGesture();
+      hideGestureHint();
       return;
     }
 
-    var next = readerNeighbor(1);
-    if (!next) {
-      if (boundaryGestureReady('reader-end:' + activeReaderId, 1)) {
-        closeEvolutionReader();
-      } else {
-        showGestureHint('End of collection · pause, then scroll down again to return');
-      }
-      return;
-    }
-    if (boundaryGestureReady('reader-next:' + activeReaderId, 1)) {
-      openEvolutionReader(next.id);
+    ev.preventDefault();
+    if (boundaryGestureReady('reader-return:' + activeReaderId, 1)) {
+      closeEvolutionReader();
     } else {
-      showGestureHint('Page end reached · pause, then scroll down again for “' + (next.title || next.slug) + '”');
+      showGestureHint('End reached · pause, then scroll down again to return to the collection');
     }
   }
 
@@ -1107,7 +1138,6 @@
     evolutionLayer.hidden = true;
     evolutionLayer.innerHTML = '';
     activeReaderId = null;
-    hoveredEvolutionNodeId = null;
     evolutionReader.hidden = true;
     evolutionReaderFrame.src = 'about:blank';
     resetBoundaryGesture();
@@ -1132,6 +1162,7 @@
     mapWrap.classList.add('evolution-a-active');
     mapWrap.classList.remove('evolution-reader-active');
     activeReaderId = null;
+    syncTopbarMode();
     evolutionReader.hidden = true;
     evolutionReaderFrame.src = 'about:blank';
     evolutionLayer.hidden = false;
@@ -1178,12 +1209,6 @@
       + (cards ? '<section class="evo-grid" aria-label="' + escAttr(stage.name) + ' pages">' + cards + '</section>' : '<div class="evo-empty">No destinations are currently projected in this group.</div>')
       + '</div>';
 
-    evolutionLayer.querySelectorAll('.evo-card').forEach(function (card) {
-      var nodeId = card.getAttribute('data-node-id');
-      card.addEventListener('mouseenter', function () { hoveredEvolutionNodeId = nodeId; resetBoundaryGesture(); hideGestureHint(); });
-      card.addEventListener('mouseleave', function () { if (hoveredEvolutionNodeId === nodeId) hoveredEvolutionNodeId = null; resetBoundaryGesture(); });
-      card.addEventListener('focusin', function () { hoveredEvolutionNodeId = nodeId; });
-    });
     evolutionLayer.querySelectorAll('[data-evo-reader]').forEach(function (control) {
       control.addEventListener('click', function () { openEvolutionReader(control.getAttribute('data-evo-reader')); });
     });
@@ -1519,7 +1544,38 @@
     restoringHistory = false;
   }
 
+  function renderEvolutionAArrival() {
+    clearWorld();
+    hideEvolutionLayer();
+    svg.style.visibility = 'hidden';
+    mapWrap.classList.add('evolution-a-active');
+    evolutionLayer.hidden = false;
+    evolutionLayer.innerHTML =
+      '<section class="evo-arrival"><div class="evo-arrival-inner">' +
+        '<div class="evo-arrival-kicker">Vex Life · Terrain</div>' +
+        '<h1 class="evo-arrival-title">How do you want to enter?</h1>' +
+        '<p class="evo-arrival-sub">You do not need to understand the archive before you begin. Follow a guided entry, or open the record and explore it yourself.</p>' +
+        '<div class="evo-arrival-choices">' +
+          '<a class="evo-arrival-card" href="https://www.vextreme24.com/take-a-walk">' +
+            '<span class="evo-arrival-icon">🚶</span><strong>Enter the Walk</strong><span>A gentler guided entry for someone arriving without a map.</span>' +
+          '</a>' +
+          '<button class="evo-arrival-card" type="button" data-evo-explore-archives>' +
+            '<span class="evo-arrival-icon">🗂️</span><strong>Explore the Archives</strong><span>Open the collections and follow the record by subject, path, or view.</span>' +
+          '</button>' +
+        '</div>' +
+      '</div></section>';
+    evolutionLayer.querySelector('[data-evo-explore-archives]').addEventListener('click', function () {
+      enterLevel(1, {});
+      syncPresentationUrl();
+      commitSemanticState({ label:'ARCHIVES', relationship:'entered', reason:'Evolution A arrival choice' });
+    });
+  }
+
   function renderSystemBand() {
+    if (currentWorld === 'content' && currentProfile === 'evolution-v1') {
+      renderEvolutionAArrival();
+      return;
+    }
     hideEvolutionLayer();
     clearWorld();
     var worst = 'good';
@@ -2306,7 +2362,7 @@
   }
 }());
 </script>
-<script>window.VEXTREME_OVERRIDE = { bodyWrap: false };</script>
+<script>window.VEXTREME_OVERRIDE = { bodyWrap: false, nav: false, fabWidgets: { map: false } };</script>
 <script src="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/lib/shell.js"></script>
 </body>
 </html>
