@@ -29,7 +29,7 @@ jobs:
           node lib/build-terrain-map.js
       - name: Prove bounded generated delta
         run: |
-          changed="$(git status --short | awk '{print $2}' | sort)"
+          changed="$(git status --short --untracked-files=no | awk '{print $2}' | sort)"
           expected="$(printf '%s\n' data/status.json data/terrain-map.json | sort)"
           printf 'changed:\n%s\n' "$changed"
           test "$changed" = "$expected"
