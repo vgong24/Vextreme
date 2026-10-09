@@ -159,7 +159,7 @@ test('TERRAIN-VIEW: Evolution A is a URL-addressable presentation state over sha
   assert.match(source, /function boundaryGestureReady\(key, direction\)/);
   assert.match(source, /function handleEvolutionShelfWheel\(ev\)/);
   assert.match(source, /function handleEvolutionReaderWheel\(ev\)/);
-  assert.match(source, /BOUNDARY_GESTURE_IDLE_MS = 180/);
+  assert.match(source, /BOUNDARY_GESTURE_IDLE_MS = 220/);
   assert.match(source, /scrollPathCanMove\(ev\.target, doc, direction\)/);
   assert.match(source, /evolutionLayer\.addEventListener\('wheel', handleEvolutionShelfWheel/);
   assert.match(source, /evolutionReaderFrame\.addEventListener\('load', wireEvolutionReaderDocument\)/);
