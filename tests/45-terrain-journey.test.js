@@ -177,18 +177,18 @@ test('TERRAIN-JOURNEY: Evolution A keeps collection scrolling inert and uses onl
   assert.match(source, /if \(isEvolutionAGroup\(\) \|\| activeReaderId\) return;/);
 });
 
-test('TERRAIN-JOURNEY: compact Terrain chrome keeps one local row and lets the Spiral FAB swap controls for routes', () => {
+test('TERRAIN-JOURNEY: compact Terrain chrome restores the existing Spiral FAB action-rail contract', () => {
   const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
   assert.match(source, /id="terrainTopbar"/);
   assert.match(source, /id="terrainControlStrip"/);
   assert.match(source, /id="readerHeaderControls"/);
-  assert.match(source, /id="terrainRouteStrip"/);
-  assert.match(source, /function wireSpiralChromeSwap\(\)/);
-  assert.match(source, /getElementById\('vex-spiral-trigger'\)/);
-  assert.match(source, /aria-expanded/);
-  assert.match(source, /routes\.hidden = !spiralOpen/);
-  assert.match(source, /readerControls\.hidden = spiralOpen \|\| !activeReaderId/);
-  assert.match(source, /controls\.hidden = spiralOpen \|\| !!activeReaderId/);
+  assert.match(source, /class="vex-nav-actions" id="vex-nav-actions"/);
+  assert.match(source, /function syncTopbarMode\(\)/);
+  assert.match(source, /readerControls\.hidden = !activeReaderId/);
+  assert.match(source, /controls\.hidden = !!activeReaderId/);
+  assert.doesNotMatch(source, /terrainRouteStrip|wireSpiralChromeSwap|spiralOpen/);
+  assert.doesNotMatch(source, /getElementById\('vex-spiral-trigger'\)/,
+    'Terrain must not watch or shadow the FAB trigger state');
   assert.match(source, /VEXTREME_OVERRIDE = \{ bodyWrap: false, nav: false, fabWidgets: \{ map: false \} \}/);
 });
 

@@ -148,6 +148,10 @@ test('TERRAIN-VIEW: Evolution A is a URL-addressable presentation with explicit 
   assert.match(source, /Enter the Walk/);
   assert.match(source, /Explore the Archives/);
   assert.match(source, /data-evo-explore-archives/);
+  assert.match(source, /data-port-pending="take-a-walk"/);
+  assert.match(source, /Preserved source found\. GitHub Pages port pending\./);
+  assert.doesNotMatch(source, /https?:\\\/\\\/(?:www\\\.)?vextreme24\\\.com/,
+    'Terrain must not send a user back to the expired provider domain');
   assert.match(source, /function renderEvolutionAGroup\(\)/);
   assert.match(source, /stageMembers\(stage\)/);
   assert.match(source, /node\.screenshots \|\| \{\}/);
