@@ -707,8 +707,11 @@
     var worst = members.length ? 'good' : null;
     members.forEach(function (n) { if (worst == null || rank(n.status) < rank(worst)) worst = n.status; });
     var lensCount = members.filter(inLens).length;
-    var maxCount = Math.max.apply(null, STAGES.map(function (candidate) { return stageMembers(candidate).length; }).concat([1]));
     var kind = groupKind(stage);
+    var comparableStages = currentWorld === 'content'
+      ? STAGES.filter(function (candidate) { return groupKind(candidate) === kind; })
+      : STAGES;
+    var maxCount = Math.max.apply(null, comparableStages.map(function (candidate) { return stageMembers(candidate).length; }).concat([1]));
     var completeness = 'complete';
     if (kind === 'timeline-view') completeness = 'cross-cutting';
     else if (kind === 'curation-bucket') completeness = 'curation';
