@@ -33,7 +33,7 @@ function canonicalAssortment() {
   return { nodes, arcs, rows };
 }
 
-test('TERRAIN-VIEW: component contract names semantic levels and reserves two Evolution slots without inventing deltas', () => {
+test('TERRAIN-VIEW: component contract keeps Live accepted while forming one bounded Evolution A profile', () => {
   const value = contract();
   assert.equal(value.schemaVersion, 'vextreme.terrain-view-contract/v1');
   assert.equal(value.terminology.legacyLevelAliases.stage, 'group');
@@ -44,9 +44,13 @@ test('TERRAIN-VIEW: component contract names semantic levels and reserves two Ev
     'terrain.detail-drawer',
   ]);
   assert.equal(value.profiles.live.status, 'accepted-reference');
-  assert.equal(value.profiles['evolution-v1'].status, 'reserved-unformed');
+  assert.equal(value.profiles['evolution-v1'].status, 'experimental');
+  assert.equal(value.profiles['evolution-v1'].label, 'Evolution A');
+  assert.equal(value.profiles['evolution-v1'].inherits, 'live');
+  assert.ok(value.profiles['evolution-v1'].declaredDeltas.length >= 4);
+  assert.equal(value.profiles['evolution-v1'].levels.group.renderer, 'content-preview-shelf');
+  assert.equal(value.profiles['evolution-v1'].levels.node.renderer, 'preview-card');
   assert.equal(value.profiles['evolution-v2'].status, 'reserved-unformed');
-  assert.deepEqual(value.profiles['evolution-v1'].declaredDeltas, []);
   assert.deepEqual(value.profiles['evolution-v2'].declaredDeltas, []);
 });
 
@@ -117,6 +121,30 @@ test('TERRAIN-VIEW: dated content has one known timeline-only assortment excepti
     { slug: 'phantom-opera-meta-review', id: null, department: 'media', workType: 'reviews' },
     { slug: 'vxg-thread-round-5', id: null, department: 'media', workType: 'record-transcripts' },
   ]);
+});
+
+test('TERRAIN-VIEW: Evolution A is a URL-addressable presentation state over shared Content truth', () => {
+  const source = pageSource();
+
+  assert.match(source, /id="contentProfile"/);
+  assert.match(source, /<option value="live">Live<\/option>/);
+  assert.match(source, /<option value="evolution-v1">Evolution A<\/option>/);
+  assert.match(source, /id="evolutionLayer"/);
+  assert.match(source, /function readInitialRoute\(\)/);
+  assert.match(source, /params\.get\('profile'\)/);
+  assert.match(source, /params\.get\('group'\)/);
+  assert.match(source, /url\.searchParams\.set\('profile', currentProfile\)/);
+  assert.match(source, /url\.searchParams\.set\('group', String\(stage\.key\)\)/);
+  assert.match(source, /function setPresentationProfile\(profile, writeUrl\)/);
+  assert.match(source, /function renderEvolutionAGroup\(\)/);
+  assert.match(source, /stageMembers\(stage\)/);
+  assert.match(source, /node\.screenshots \|\| \{\}/);
+  assert.match(source, /preview pending/);
+  assert.match(source, /data-evo-detail/);
+
+  const profileFunction = source.match(/function setPresentationProfile\(profile, writeUrl\) \{([\s\S]*?)\n  \}/);
+  assert.ok(profileFunction, 'presentation-profile function should be present');
+  assert.doesNotMatch(profileFunction[1], /commitSemanticState/, 'renderer switching must not add a Journey step');
 });
 
 test('TERRAIN-VIEW: every shipped inline JavaScript block still parses after contract extraction', () => {
