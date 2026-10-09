@@ -47,9 +47,14 @@ test('TERRAIN-VIEW: component contract keeps Live accepted while forming one bou
   assert.equal(value.profiles['evolution-v1'].status, 'experimental');
   assert.equal(value.profiles['evolution-v1'].label, 'Evolution A');
   assert.equal(value.profiles['evolution-v1'].inherits, 'live');
-  assert.ok(value.profiles['evolution-v1'].declaredDeltas.length >= 4);
+  assert.ok(value.profiles['evolution-v1'].declaredDeltas.length >= 6);
   assert.equal(value.profiles['evolution-v1'].levels.group.renderer, 'content-preview-shelf');
   assert.equal(value.profiles['evolution-v1'].levels.node.renderer, 'preview-card');
+  assert.equal(value.profiles['evolution-v1'].levels.node.readerRenderer, 'embedded-page');
+  assert.equal(
+    value.profiles['evolution-v1'].levels.node.inputPriority,
+    'scrollable-content > armed-boundary-transition > terrain-zoom'
+  );
   assert.equal(value.profiles['evolution-v2'].status, 'reserved-unformed');
   assert.deepEqual(value.profiles['evolution-v2'].declaredDeltas, []);
 });
@@ -133,14 +138,32 @@ test('TERRAIN-VIEW: Evolution A is a URL-addressable presentation state over sha
   assert.match(source, /function readInitialRoute\(\)/);
   assert.match(source, /params\.get\('profile'\)/);
   assert.match(source, /params\.get\('group'\)/);
+  assert.match(source, /params\.get\('page'\)/);
   assert.match(source, /url\.searchParams\.set\('profile', currentProfile\)/);
   assert.match(source, /url\.searchParams\.set\('group', String\(stage\.key\)\)/);
+  assert.match(source, /url\.searchParams\.set\('page', String\(readerNode\.slug \|\| readerNode\.id\)\)/);
   assert.match(source, /function setPresentationProfile\(profile, writeUrl\)/);
   assert.match(source, /function renderEvolutionAGroup\(\)/);
   assert.match(source, /stageMembers\(stage\)/);
   assert.match(source, /node\.screenshots \|\| \{\}/);
   assert.match(source, /preview pending/);
   assert.match(source, /data-evo-detail/);
+  assert.match(source, /data-evo-reader/);
+  assert.match(source, /id="evolutionReader"/);
+  assert.match(source, /id="evolutionReaderFrame"/);
+  assert.match(source, /id="readerBack"/);
+  assert.match(source, /id="readerPrev"/);
+  assert.match(source, /id="readerNext"/);
+  assert.match(source, /function openEvolutionReader\(nodeId, options\)/);
+  assert.match(source, /function closeEvolutionReader\(options\)/);
+  assert.match(source, /function boundaryGestureReady\(key, direction\)/);
+  assert.match(source, /function handleEvolutionShelfWheel\(ev\)/);
+  assert.match(source, /function handleEvolutionReaderWheel\(ev\)/);
+  assert.match(source, /BOUNDARY_GESTURE_IDLE_MS = 180/);
+  assert.match(source, /scrollPathCanMove\(ev\.target, doc, direction\)/);
+  assert.match(source, /evolutionLayer\.addEventListener\('wheel', handleEvolutionShelfWheel/);
+  assert.match(source, /evolutionReaderFrame\.addEventListener\('load', wireEvolutionReaderDocument\)/);
+  assert.match(source, /if \(isEvolutionAGroup\(\) \|\| activeReaderId\) return;/);
 
   const profileFunction = source.match(/function setPresentationProfile\(profile, writeUrl\) \{([\s\S]*?)\n  \}/);
   assert.ok(profileFunction, 'presentation-profile function should be present');
