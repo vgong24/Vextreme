@@ -65,6 +65,16 @@
   .lens-btn{ appearance:none; border:none; background:transparent; color:var(--ink-muted); font-family:var(--sans); font-size:13px; font-weight:600; padding:7px 14px; border-radius:6px; cursor:pointer; }
   .lens-btn[aria-pressed="true"]{ background:var(--accent); color:#fff; }
   .lens-btn:not([aria-pressed="true"]):hover{ background:var(--line); color:var(--ink); }
+  .content-view-split{ display:inline-flex; align-items:stretch; gap:0; }
+  .content-view-split .world-btn{ border-radius:6px 0 0 6px; }
+  .content-profile-wrap{ display:inline-flex; align-items:center; }
+  .content-profile-wrap[hidden]{ display:none; }
+  .content-profile{
+    height:100%; min-height:34px; border:1px solid var(--line-strong); border-left:0;
+    border-radius:0 6px 6px 0; background:var(--panel); color:var(--ink); padding:0 24px 0 8px;
+    font:600 11px/1 var(--sans); cursor:pointer;
+  }
+  .content-profile:focus-visible{ outline:1.5px solid var(--accent); outline-offset:1px; }
 
   .legend{ display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
   .legend-item{ display:flex; align-items:center; gap:6px; font-size:12px; color:var(--ink-muted); }
@@ -118,6 +128,68 @@
   .zoom-btn{ width:28px; height:28px; border-radius:7px; border:1px solid var(--line-strong); background:var(--panel); color:var(--ink); font-size:15px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
   .zoom-btn:hover{ background:var(--panel-2); }
   .load-state{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:var(--ink-muted); font-family:var(--mono); font-size:13px; z-index:3; background:var(--ground); }
+
+  .evolution-layer{
+    position:absolute; inset:82px 16px 22px; z-index:4; overflow:auto; padding:0 0 28px;
+    cursor:default; scrollbar-gutter:stable; color:var(--ink);
+  }
+  .evolution-layer[hidden]{ display:none; }
+  .evolution-a-active .zoom-controls, .evolution-a-active .map-hint{ display:none; }
+  .evo-shell{ width:min(1180px, 100%); margin:0 auto; }
+  .evo-context{
+    position:sticky; top:0; z-index:3; background:color-mix(in srgb, var(--ground) 92%, transparent);
+    backdrop-filter:blur(12px); border:1px solid var(--line); border-radius:14px; padding:14px 16px 12px;
+    box-shadow:0 10px 30px color-mix(in srgb, var(--ink) 6%, transparent);
+  }
+  .evo-kicker{ font:10px/1.4 var(--mono); letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+  .evo-context-row{ display:flex; gap:16px; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; margin-top:6px; }
+  .evo-context h2{ margin:0; font:500 clamp(20px,3vw,30px)/1.1 var(--sans); letter-spacing:-.02em; }
+  .evo-context-meta{ font:10px/1.5 var(--mono); color:var(--ink-muted); }
+  .evo-rail{ display:flex; gap:7px; overflow:auto; padding:10px 1px 2px; }
+  .evo-rail-btn{
+    flex:none; border:1px solid var(--line); background:var(--panel); color:var(--ink-muted);
+    border-radius:999px; padding:6px 9px; font:10px/1 var(--mono); cursor:pointer; white-space:nowrap;
+  }
+  .evo-rail-btn[aria-current="true"]{ border-color:var(--accent); color:var(--accent); background:var(--accent-soft); }
+  .evo-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px; margin-top:14px; }
+  .evo-card{
+    min-width:0; background:var(--panel); border:1px solid var(--line); border-radius:14px; overflow:hidden;
+    box-shadow:0 8px 24px color-mix(in srgb, var(--ink) 4%, transparent);
+  }
+  .evo-card:hover, .evo-card:focus-within{ border-color:var(--accent); }
+  .evo-preview{
+    display:block; position:relative; aspect-ratio:16/10; overflow:hidden; background:var(--panel-2);
+    border-bottom:1px solid var(--line); text-decoration:none; color:inherit;
+  }
+  .evo-preview img{ width:100%; height:100%; object-fit:cover; object-position:top; display:block; transition:transform .18s ease; }
+  .evo-card:hover .evo-preview img{ transform:scale(1.02); }
+  .evo-fallback{ position:absolute; inset:0; display:grid; place-items:center; padding:20px; text-align:center; }
+  .evo-fallback-mark{ display:block; color:var(--accent); font:700 11px/1 var(--mono); letter-spacing:.15em; text-transform:uppercase; margin-bottom:10px; }
+  .evo-fallback-title{ font:500 18px/1.2 var(--sans); }
+  .evo-card-body{ padding:12px 13px 13px; }
+  .evo-card-title{ margin:0; font:600 15px/1.25 var(--sans); }
+  .evo-card-desc{ margin:7px 0 10px; min-height:2.8em; color:var(--ink-muted); font:12px/1.45 var(--sans); }
+  .evo-card-meta{ display:flex; gap:6px; flex-wrap:wrap; }
+  .evo-chip{ border:1px solid var(--line); border-radius:999px; padding:3px 6px; font:9px/1 var(--mono); color:var(--ink-muted); }
+  .evo-chip.good{ border-color:color-mix(in srgb, var(--good) 35%, var(--line)); color:var(--good); }
+  .evo-chip.warning{ border-color:color-mix(in srgb, var(--warning) 35%, var(--line)); color:var(--warning); }
+  .evo-chip.critical{ border-color:color-mix(in srgb, var(--critical) 35%, var(--line)); color:var(--critical); }
+  .evo-actions{ display:flex; gap:8px; align-items:center; margin-top:11px; }
+  .evo-open, .evo-detail{
+    border-radius:7px; padding:7px 9px; font:600 11px/1 var(--sans); text-decoration:none; cursor:pointer;
+  }
+  .evo-open{ background:var(--accent); color:#fff; border:1px solid var(--accent); }
+  .evo-detail{ background:var(--panel); color:var(--ink); border:1px solid var(--line-strong); }
+  .evo-url{
+    margin-top:8px; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+    color:var(--ink-faint); font:9px/1.3 var(--mono); opacity:0; transition:opacity .12s ease;
+  }
+  .evo-card:hover .evo-url, .evo-card:focus-within .evo-url{ opacity:1; }
+  .evo-empty{ padding:30px 4px; color:var(--ink-muted); font:13px/1.6 var(--sans); }
+  @media (max-width:720px){
+    .evolution-layer{ inset:78px 10px 16px; }
+    .evo-grid{ grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:10px; }
+  }
 
   svg{ display:block; width:100%; height:100%; }
   #world.snapping{ transition:transform .3s cubic-bezier(.2,.7,.3,1); }
@@ -261,7 +333,15 @@
       <span class="lens-label">View</span>
       <div class="lens-toggle" role="group" aria-label="Code or content" id="worldBar">
         <button class="lens-btn world-btn" data-world="code" aria-pressed="true">Code</button>
-        <button class="lens-btn world-btn" data-world="content" aria-pressed="false">Content</button>
+        <span class="content-view-split">
+          <button class="lens-btn world-btn" data-world="content" aria-pressed="false">Content</button>
+          <span class="content-profile-wrap" id="contentProfileWrap" hidden>
+            <select class="content-profile" id="contentProfile" aria-label="Content presentation">
+              <option value="live">Live</option>
+              <option value="evolution-v1">Evolution A</option>
+            </select>
+          </span>
+        </span>
       </div>
     </div>
     <div class="search" role="search">
@@ -290,6 +370,7 @@
     <div class="map-wrap" id="mapWrap">
       <div class="level-readout" id="levelReadout">Loading…</div>
       <svg id="svg"><defs><marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="currentColor" style="color:var(--line-strong)"/></marker></defs><g id="world"></g></svg>
+      <div class="evolution-layer" id="evolutionLayer" data-terrain-component="terrain.group-card" data-terrain-variant="evolution-a" hidden></div>
       <div id="loadState" class="load-state">Fetching data/terrain-map.json…</div>
       <div class="map-hint">scroll to zoom (levels snap to their own framing) · drag to pan · click a file or screen · off-lens files recede, never disappear</div>
       <div class="zoom-controls">
@@ -422,10 +503,25 @@
       }
     },
     "evolution-v1": {
-      "status": "reserved-unformed",
-      "label": "Evolution v1",
+      "status": "experimental",
+      "label": "Evolution A",
       "inherits": "live",
-      "declaredDeltas": []
+      "declaredDeltas": [
+        "Content group selection renders immediate membership destinations instead of a large confirmation rectangle.",
+        "Selected-group identity becomes compact persistent context with sibling groups in a condensed rail.",
+        "Content pages render as preview cards using real screenshot evidence when present and a deliberate fallback cover when absent.",
+        "Renderer choice is presentation state and is directly addressable by URL; semantic Journey state is unchanged."
+      ],
+      "levels": {
+        "group": {
+          "component": "terrain.group-card",
+          "renderer": "content-preview-shelf"
+        },
+        "node": {
+          "component": "terrain.node-marker",
+          "renderer": "preview-card"
+        }
+      }
     },
     "evolution-v2": {
       "status": "reserved-unformed",
@@ -538,15 +634,18 @@
   var SCREENS_KEY = 'screens';
   var TERRAIN_VIEW_CONTRACT = JSON.parse(document.getElementById('terrain-view-contract').textContent);
   var LIVE_VIEW = TERRAIN_VIEW_CONTRACT.profiles.live;
+  var EVOLUTION_A_VIEW = TERRAIN_VIEW_CONTRACT.profiles['evolution-v1'];
   var CONTENT_GROUP_RELATION = TERRAIN_VIEW_CONTRACT.relationships.contentGroup;
 
   var NS = 'http://www.w3.org/2000/svg';
   function el(tag, attrs) { var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); return e; }
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]; }); }
+  function escAttr(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]; }); }
 
   var svg = document.getElementById('svg');
   var world = document.getElementById('world');
   var mapWrap = document.getElementById('mapWrap');
+  var evolutionLayer = document.getElementById('evolutionLayer');
 
   var DATA = null, ALL = [], byId = {}, neighborsOf = {}, STAGES = [], currentWorld = 'code';
   var renderedNodes = {}, renderedEdges = {};
@@ -561,6 +660,8 @@
   var searchState = { query: '', matches: [], cursor: -1 };
   var searchMatchIds = new Set();
   var journeySnapshot = null, historyReady = false, restoringHistory = false;
+  var currentProfile = 'live';
+  var initialRoute = readInitialRoute();
 
   // ── fetch, then build the client-side view model on top of the real data ──
   fetch(TERRAIN_URL)
@@ -631,8 +732,150 @@
     WORLDS.content = buildContentWorld(data);
 
     wireControls();
-    switchWorld('code');
-    initializeJourneyHistory();
+    switchWorld(initialRoute.world === 'content' ? 'content' : 'code');
+    setPresentationProfile(initialRoute.profile, false);
+    if (currentWorld === 'content' && initialRoute.group) {
+      var initialStageIdx = STAGES.findIndex(function (stage) { return String(stage.key) === initialRoute.group; });
+      if (initialStageIdx >= 0) enterLevel(1, { stageIdx: initialStageIdx });
+    }
+    initializeJourneyHistory(initialRoute.explicit);
+    syncPresentationUrl();
+  }
+
+  function readInitialRoute() {
+    var params = new URLSearchParams(window.location.search);
+    var profile = params.get('profile');
+    return {
+      world: params.get('view') === 'content' ? 'content' : 'code',
+      profile: profile === 'evolution-v1' ? 'evolution-v1' : 'live',
+      group: params.get('group') || null,
+      explicit: params.has('view') || params.has('profile') || params.has('group')
+    };
+  }
+
+  function syncProfileControl() {
+    var wrap = document.getElementById('contentProfileWrap');
+    var select = document.getElementById('contentProfile');
+    wrap.hidden = currentWorld !== 'content';
+    select.value = currentProfile;
+  }
+
+  function syncPresentationUrl() {
+    var url = new URL(window.location.href);
+    url.searchParams.set('view', currentWorld);
+    if (currentWorld === 'content') {
+      url.searchParams.set('profile', currentProfile);
+      var stage = typeof levelCtx.stageIdx === 'number' ? STAGES[levelCtx.stageIdx] : null;
+      if (stage) url.searchParams.set('group', String(stage.key));
+      else url.searchParams.delete('group');
+    } else {
+      url.searchParams.delete('profile');
+      url.searchParams.delete('group');
+    }
+    history.replaceState(history.state, '', url.toString());
+  }
+
+  function setPresentationProfile(profile, writeUrl) {
+    currentProfile = profile === 'evolution-v1' ? 'evolution-v1' : 'live';
+    mapWrap.setAttribute('data-terrain-profile', currentProfile);
+    syncProfileControl();
+    if (DATA) {
+      if (levelIndex === 0) renderSystemBand();
+      else if (levelIndex === 1) renderStageBand();
+      else renderNodeLevel();
+      updateReadout();
+    }
+    if (writeUrl !== false) syncPresentationUrl();
+  }
+
+  function isEvolutionAGroup() {
+    return currentWorld === 'content'
+      && currentProfile === 'evolution-v1'
+      && levelIndex === 1
+      && typeof levelCtx.stageIdx === 'number'
+      && !!STAGES[levelCtx.stageIdx];
+  }
+
+  function hideEvolutionLayer() {
+    evolutionLayer.hidden = true;
+    evolutionLayer.innerHTML = '';
+    svg.style.visibility = '';
+    mapWrap.classList.remove('evolution-a-active');
+  }
+
+  function evolutionPreviewHtml(node) {
+    var screenshots = node.screenshots || {};
+    var languages = Object.keys(screenshots);
+    if (languages.length) {
+      var lang = languages.indexOf('en') !== -1 ? 'en' : languages[0];
+      return '<img src="../' + escAttr(screenshots[lang]) + '" alt="Preview of ' + escAttr(node.title || node.slug) + '" loading="lazy">';
+    }
+    return '<div class="evo-fallback"><div><span class="evo-fallback-mark">Vextreme · preview pending</span><span class="evo-fallback-title">' + esc(node.title || node.slug) + '</span></div></div>';
+  }
+
+  function renderEvolutionAGroup() {
+    clearWorld();
+    svg.style.visibility = 'hidden';
+    mapWrap.classList.add('evolution-a-active');
+    evolutionLayer.hidden = false;
+
+    var stage = STAGES[levelCtx.stageIdx];
+    var summary = stageSummary(stage);
+    var members = stageMembers(stage);
+    var kindLabel = summary.groupKind.replace(/-/g, ' ');
+    var rail = STAGES.map(function (candidate, index) {
+      return '<button class="evo-rail-btn" type="button" data-evo-stage-index="' + index + '" aria-current="' + String(index === levelCtx.stageIdx) + '">' + esc(candidate.name) + '</button>';
+    }).join('');
+
+    var cards = members.map(function (node) {
+      var capability = node.capability || {};
+      var description = capability.metaDescription || 'Repository-native preserved page.';
+      var languages = Array.isArray(capability.evidenceLanguages) ? capability.evidenceLanguages : [];
+      var chips = '<span class="evo-chip ' + escAttr(node.status || 'warning') + '">' + esc(STATUS_TEXT[node.status] || node.status || 'Status unknown') + '</span>'
+        + '<span class="evo-chip">' + (node.hasScreenshot ? 'preview captured' : 'preview pending') + '</span>'
+        + (languages.length ? '<span class="evo-chip">' + esc(languages.map(function (lang) { return lang.toUpperCase(); }).join(' · ')) + '</span>' : '<span class="evo-chip">source language only</span>');
+      var preview = node.live && node.liveUrl
+        ? '<a class="evo-preview" href="' + escAttr(node.liveUrl) + '" aria-label="Open ' + escAttr(node.title || node.slug) + '">' + evolutionPreviewHtml(node) + '</a>'
+        : '<div class="evo-preview">' + evolutionPreviewHtml(node) + '</div>';
+      var open = node.live && node.liveUrl
+        ? '<a class="evo-open" href="' + escAttr(node.liveUrl) + '">Open page ↗</a>'
+        : '<span class="evo-chip">page not live</span>';
+      return '<article class="evo-card" data-node-id="' + escAttr(node.id) + '">'
+        + preview
+        + '<div class="evo-card-body">'
+        + '<h3 class="evo-card-title">' + esc(node.title || node.slug) + '</h3>'
+        + '<p class="evo-card-desc">' + esc(description) + '</p>'
+        + '<div class="evo-card-meta">' + chips + '</div>'
+        + '<div class="evo-actions">' + open + '<button class="evo-detail" type="button" data-evo-detail="' + escAttr(node.id) + '">Details</button></div>'
+        + '<div class="evo-url">' + esc(node.liveUrl || ('pages/' + node.slug + '.html')) + '</div>'
+        + '</div></article>';
+    }).join('');
+
+    evolutionLayer.innerHTML = '<div class="evo-shell">'
+      + '<section class="evo-context">'
+      + '<div class="evo-kicker">Evolution A · ' + esc(kindLabel) + '</div>'
+      + '<div class="evo-context-row"><div><h2>' + esc(stage.name) + '</h2><div class="evo-context-meta">' + summary.membershipCount + ' members · ' + summary.primaryCount + ' primary placements · same Terrain state, alternate renderer</div></div>'
+      + '<div class="evo-context-meta">Live remains the accepted reference</div></div>'
+      + '<div class="evo-rail" aria-label="Content groups">' + rail + '</div>'
+      + '</section>'
+      + (cards ? '<section class="evo-grid" aria-label="' + escAttr(stage.name) + ' pages">' + cards + '</section>' : '<div class="evo-empty">No destinations are currently projected in this group.</div>')
+      + '</div>';
+
+    evolutionLayer.querySelectorAll('[data-evo-stage-index]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        var index = Number(button.getAttribute('data-evo-stage-index'));
+        if (!STAGES[index] || index === levelCtx.stageIdx) return;
+        enterLevel(1, { stageIdx:index });
+        syncPresentationUrl();
+        commitSemanticState({ label:STAGES[index].name, relationship:'selected', reason:'Evolution A group rail' });
+      });
+    });
+    evolutionLayer.querySelectorAll('[data-evo-detail]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        var node = byId[button.getAttribute('data-evo-detail')];
+        if (node) renderPanel(node);
+      });
+    });
   }
 
   function switchWorld(name) {
@@ -646,6 +889,7 @@
     byId = {}; ALL.forEach(function (n) { byId[n.id] = n; });
     if (!w.hasLenses) currentLens = 'all';
     document.getElementById('lensGroup').style.display = w.hasLenses ? '' : 'none';
+    syncProfileControl();
     var allX = ALL.map(function (n) { return n.x; }), allY = ALL.map(function (n) { return n.y; });
     FULL_RECT = allX.length ? {
       x: Math.min.apply(null, allX) - 130, y: Math.min.apply(null, allY) - 100,
@@ -892,10 +1136,10 @@
     };
   }
 
-  function initializeJourneyHistory() {
+  function initializeJourneyHistory(preferCurrent) {
     if (!Journey) throw new Error('Terrain Journey state module did not load');
     var existing = Journey.unwrap(history.state);
-    if (existing) {
+    if (existing && !preferCurrent) {
       journeySnapshot = existing;
       historyReady = true;
       restoreSemanticState(existing.semantic);
@@ -941,6 +1185,7 @@
   }
 
   function renderSystemBand() {
+    hideEvolutionLayer();
     clearWorld();
     var worst = 'good';
     ALL.forEach(function (n) { if (rank(n.status) < rank(worst)) worst = n.status; });
@@ -987,6 +1232,14 @@
 
   function activateStage(index) {
     if (levelIndex !== 1 || !STAGES[index]) return;
+    if (currentWorld === 'content' && currentProfile === 'evolution-v1') {
+      if (levelCtx.stageIdx !== index) {
+        enterLevel(1, { stageIdx:index });
+        syncPresentationUrl();
+        commitSemanticState({ label:STAGES[index].name, relationship:'selected', reason:'Evolution A direct membership view' });
+      }
+      return;
+    }
     if (levelCtx.stageIdx === index) {
       var summary = stageSummary(STAGES[index]);
       if (summary.groupKind === 'timeline-view') return;
@@ -996,10 +1249,16 @@
       return;
     }
     enterLevel(1, { stageIdx:index });
+    syncPresentationUrl();
     commitSemanticState({ label:STAGES[index].name, relationship:'selected', reason:'stage focus transition' });
   }
 
   function renderStageBand() {
+    if (isEvolutionAGroup()) {
+      renderEvolutionAGroup();
+      return;
+    }
+    hideEvolutionLayer();
     clearWorld();
     var layout = stageCompositionLayout(levelCtx || {});
     layout.items.sort(function (a,b) { return a.index - b.index; }).forEach(function (item) {
@@ -1098,7 +1357,7 @@
     return { minX: tl.x - margin, minY: tl.y - margin, maxX: br.x + margin, maxY: br.y + margin };
   }
 
-  function renderNodeLevel() { clearWorld(); syncTiles(); }
+  function renderNodeLevel() { hideEvolutionLayer(); clearWorld(); syncTiles(); }
 
   function syncTiles() {
     var b = viewportWorldBounds();
@@ -1643,11 +1902,16 @@
       });
     });
 
+    document.getElementById('contentProfile').addEventListener('change', function (event) {
+      setPresentationProfile(event.target.value, true);
+    });
+
     document.querySelectorAll('.world-btn').forEach(function (btn) {
       btn.addEventListener('click', function () {
         if (btn.getAttribute('data-world') === currentWorld) return;
         pinnedId = null; focusId = null; renderPanel(null);
         switchWorld(btn.getAttribute('data-world'));
+        syncPresentationUrl();
         commitSemanticState({
           label: currentWorld.charAt(0).toUpperCase() + currentWorld.slice(1) + ' view',
           relationship: 'changed view to',
