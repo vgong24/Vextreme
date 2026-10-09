@@ -177,6 +177,16 @@ test('TERRAIN-VIEW: Evolution A is a URL-addressable presentation state over sha
   assert.doesNotMatch(profileFunction[1], /commitSemanticState/, 'renderer switching must not add a Journey step');
 });
 
+
+test('TERRAIN-VIEW: compact semantic-depth rail keeps verbose ordering detail out of the visual pill', () => {
+  const source = pageSource();
+  assert.match(source, /\.level-order\{[^}]*overflow:hidden;[^}]*text-overflow:ellipsis;[^}]*white-space:nowrap;/s);
+  assert.match(source, /var orderLabel = ratio\.toFixed\(2\) \+ '× · ' \+ orderNote;/);
+  assert.match(source, /class="level-order" role="note" aria-label="/);
+  assert.match(source, /title="' \+ esc\(orderLabel\) \+ '">/);
+  assert.match(source, /ratio\.toFixed\(2\) \+ '×<\/div>'/);
+});
+
 test('TERRAIN-VIEW: every shipped inline JavaScript block still parses after contract extraction', () => {
   const source = pageSource();
   const scripts = [...source.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g)]

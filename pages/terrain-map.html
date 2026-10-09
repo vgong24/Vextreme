@@ -124,7 +124,7 @@
   .threshold-step[data-relation="current"]{ color:var(--accent); font-weight:800; }
   .threshold-step[data-relation="next"]{ color:var(--ink); }
   .threshold-meter{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); clip-path:inset(50%); white-space:nowrap; }
-  .level-order{ margin-top:8px; font-size:8px; line-height:1.3; text-align:center; color:var(--ink-faint); }
+  .level-order{ margin-top:8px; width:100%; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:8px; line-height:1; text-align:center; letter-spacing:.02em; color:var(--ink-faint); }
   /* offset by the drawer's own width so it's never covered once the panel slides in —
      the drawer is an overlay over the map, not a reserved column, so this can't be
      solved by measuring map-wrap's width (it's always the full window now) */
@@ -2296,6 +2296,7 @@
     var notes = (WORLDS[currentWorld] && WORLDS[currentWorld].orderNote) || {};
     var orderNote = notes[currentLens] || notes.all || 'ordered by real sequence';
     var ratio = view.scale / levelBaseScale;
+    var orderLabel = ratio.toFixed(2) + '× · ' + orderNote;
     var position = thresholdRailPosition(ratio);
     var steps = OVERVIEW_LEVELS.map(function (level, index) {
       var relation = index < levelIndex ? 'previous' : (index > levelIndex ? 'next' : 'current');
@@ -2309,7 +2310,7 @@
         '<span class="threshold-meter" role="progressbar" aria-label="' + esc(currentLevelName()) + '" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + Math.round(position) + '"></span>' +
         '<ol class="threshold-rail">' + steps + '</ol>' +
       '</div>' +
-      '<div class="level-order">' + ratio.toFixed(2) + '× · ' + esc(orderNote) + '</div>';
+      '<div class="level-order" role="note" aria-label="' + esc(orderLabel) + '" title="' + esc(orderLabel) + '">' + ratio.toFixed(2) + '×</div>';
   }
 
   // ── the navigation fix: exiting always steps to the level directly above,
