@@ -28,12 +28,12 @@
       "key": 1.5,
       "name": "UTILITIES",
       "sub": "other lib/ helpers, config, tracing",
-      "count": 22,
+      "count": 25,
       "rect": {
         "x": 690,
         "y": 40,
         "width": 300,
-        "height": 1410
+        "height": 1590
       }
     },
     {
@@ -52,12 +52,12 @@
       "key": 3,
       "name": "OUTPUT",
       "sub": "generated artifacts: dist, pages, index, sw",
-      "count": 4,
+      "count": 5,
       "rect": {
         "x": 1370,
         "y": 40,
         "width": 300,
-        "height": 330
+        "height": 390
       }
     },
     {
@@ -390,12 +390,40 @@
       "auditorRank": 0
     },
     {
-      "id": "lib/audit-nav.js",
+      "id": "lib/archive-renderer.js",
       "cluster": "lib",
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
       "y": 150,
+      "role": "v1 archive renderer — resolves page tokens/content and renders archive entry rows/sections from VEXTREME_PAGES and VEXTREME_ARCS",
+      "reads": [
+        "data/pages.json (through window.VEXTREME_PAGES)",
+        "data/arcs.json (through window.VEXTREME_ARCS)"
+      ],
+      "writes": [
+        "DOM: .entry-list archive markup",
+        "window.VEXTREME_resolveTokens / VEXTREME_renderEntryRow / VEXTREME_renderSection"
+      ],
+      "loadedBy": [
+        "lib/vextreme.js (gated v1 enhancement layer)"
+      ],
+      "testedBy": [],
+      "debts": [
+        "pe-009"
+      ],
+      "status": "critical",
+      "engineerFocus": false,
+      "auditorFocus": true,
+      "auditorRank": 3
+    },
+    {
+      "id": "lib/audit-nav.js",
+      "cluster": "lib",
+      "stage": 1.5,
+      "stageName": "UTILITIES",
+      "x": 740,
+      "y": 210,
       "role": "nav-coverage auditor -- read-only report of which pages∕*.html give a visitor any way to navigate elsewhere in the system",
       "reads": [
         "pages∕*.html (checks for hub links, shell.js reference)",
@@ -417,7 +445,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": true,
-      "auditorRank": 9
+      "auditorRank": 12
     },
     {
       "id": "lib/audit-pages.js",
@@ -425,7 +453,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 210,
+      "y": 270,
       "role": "page wiring auditor — read-only report of which pages/*.html are wired to a God Script, blocked, or intentionally skipped",
       "reads": [
         "pages/*.html (checks for a dist/vextreme-{slug}.js script src)",
@@ -467,7 +495,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 270,
+      "y": 330,
       "role": "synthesizes a node-shaped object for any pages/*.html file with no data/nodes.json entry, so adding a page alone is enough to make it visible",
       "reads": [
         "pages/*.html (title + optional vex:department/vex:workType meta tags)",
@@ -495,7 +523,7 @@
       "status": "warning",
       "engineerFocus": false,
       "auditorFocus": true,
-      "auditorRank": 5
+      "auditorRank": 8
     },
     {
       "id": "lib/build-analysis-index.js",
@@ -1098,7 +1126,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 330,
+      "y": 390,
       "role": "git-diffing orchestration for lib/compute-fab-version.js — finds the last VERSION-bump commit, diffs data files against it, applies the computed bump to widgets/fab-lang.js",
       "reads": [
         "git log/show/diff history (via child_process, not require())",
@@ -1123,7 +1151,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 10
+      "auditorRank": 13
     },
     {
       "id": "lib/check-continuity-lag.js",
@@ -1402,7 +1430,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 390,
+      "y": 450,
       "role": "pure semver classification for widgets/fab-lang.js's CDN cache-busting VERSION — major/minor/patch decision table + diff helpers, no I/O",
       "reads": [],
       "writes": [],
@@ -1417,7 +1445,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 11
+      "auditorRank": 14
     },
     {
       "id": "lib/compute-test-shards.js",
@@ -1425,7 +1453,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 450,
+      "y": 510,
       "role": "self-scaling CI test-sharding — computes shard count and per-shard file assignment from the real current tests/*.test.js file count, no hand-picked number to forget updating",
       "reads": [
         "tests/*.test.js (file list only, via fs.readdirSync — not file contents)"
@@ -1444,7 +1472,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 12
+      "auditorRank": 15
     },
     {
       "id": "lib/detect-wip-promotions.js",
@@ -1452,7 +1480,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 510,
+      "y": 570,
       "role": "detects a wip/*.html → pages/*.html move within a PR's diff, so a promotion shows up as a positive PR notice instead of silence or a false 'broken reference'",
       "reads": [
         "git diff --name-status -M output between two refs (wip/ and pages/ paths only)"
@@ -1472,7 +1500,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 13
+      "auditorRank": 16
     },
     {
       "id": "lib/discover-string-identity.js",
@@ -1480,7 +1508,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 570,
+      "y": 630,
       "role": "localization identity pilot, first script — proposal/report tool only, cross-references a page's string keys against its live HTML's data-legacy-id/id/title-alias attributes",
       "reads": [
         "data/strings/source/pages/{slug}.json (existing string keys)",
@@ -1500,7 +1528,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 14
+      "auditorRank": 17
     },
     {
       "id": "lib/institutional-localization-runtime.js",
@@ -1508,7 +1536,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 630,
+      "y": 690,
       "role": "bounded behavioral probe for transactional institutional localization — exercises precedence, hostile failures, rapid intent changes, and atomic visible/alt/ARIA application",
       "reads": [
         "declared institutional localization widget source (provided by lib/check-institutional-surfaces.js)",
@@ -1529,7 +1557,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 15
+      "auditorRank": 18
     },
     {
       "id": "lib/logger-codes.js",
@@ -1537,7 +1565,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 690,
+      "y": 750,
       "role": "event code registry — the CODES constant every logger.warn/error call references",
       "reads": [],
       "writes": [],
@@ -1555,7 +1583,7 @@
       "status": "critical",
       "engineerFocus": false,
       "auditorFocus": true,
-      "auditorRank": 3
+      "auditorRank": 4
     },
     {
       "id": "lib/logger.js",
@@ -1563,7 +1591,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 750,
+      "y": 810,
       "role": "structured logger — every build script's warn/info/error call goes through here",
       "reads": [],
       "writes": [
@@ -1584,7 +1612,7 @@
       "status": "critical",
       "engineerFocus": false,
       "auditorFocus": true,
-      "auditorRank": 4
+      "auditorRank": 5
     },
     {
       "id": "lib/run-test-prereqs.js",
@@ -1592,7 +1620,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 810,
+      "y": 870,
       "role": "runs the build scripts tests/helpers/prereqs.js declares as required before the test suite can read generated files — replaces a hardcoded run: line in .github/workflows/test.yml",
       "reads": [
         "tests/helpers/prereqs.js (PREREQUISITE_SCRIPTS)"
@@ -1608,7 +1636,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 16
+      "auditorRank": 19
     },
     {
       "id": "lib/screenshot-evidence.js",
@@ -1616,7 +1644,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 870,
+      "y": 930,
       "role": "shared screenshot-evidence filename parser and deterministic projection helper",
       "reads": [],
       "writes": [],
@@ -1638,7 +1666,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 17
+      "auditorRank": 20
     },
     {
       "id": "lib/session-bootstrap.js",
@@ -1646,7 +1674,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 930,
+      "y": 990,
       "role": "one-shot session-start state report — read-only, gathers what would otherwise be several manual checks into one command",
       "reads": [
         "docs/continuity/INDEX.md (last logged session, batch registry)",
@@ -1675,7 +1703,40 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 18
+      "auditorRank": 21
+    },
+    {
+      "id": "lib/shell.js",
+      "cluster": "lib",
+      "stage": 1.5,
+      "stageName": "UTILITIES",
+      "x": 740,
+      "y": 1050,
+      "role": "thin GitHub Pages shell bootstrap — loads the cache-versioned legacy runtime and invokes VEXTREME with the page's optional override",
+      "reads": [
+        "lib/vextreme.js (cache-versioned runtime loaded into the page)",
+        "window.VEXTREME_OVERRIDE (optional page configuration passed through after load)"
+      ],
+      "writes": [
+        "DOM script element for lib/vextreme.js",
+        "window.VEXTREME invocation after the runtime loads"
+      ],
+      "loadedBy": [
+        "pages/*.html (shell consumers; template edge)",
+        "lib/build-specimens.js (emits the shared shell tag for generated specimen pages)"
+      ],
+      "testedBy": [
+        "tests/41-vextreme-fab-autoload.test.js"
+      ],
+      "debts": [
+        "td-010",
+        "pe-002",
+        "pe-009"
+      ],
+      "status": "warning",
+      "engineerFocus": false,
+      "auditorFocus": true,
+      "auditorRank": 7
     },
     {
       "id": "lib/strings-check.js",
@@ -1683,7 +1744,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 990,
+      "y": 1110,
       "role": "strings pipeline integrity check — runs before compile, catches missing EN text, stale translations, and orphaned keys",
       "reads": [
         "data/strings/source/**/*.json",
@@ -1714,7 +1775,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1050,
+      "y": 1170,
       "role": "strings pipeline compiler — reads source JSON, writes compiled bundles and manifest",
       "reads": [
         "data/strings/source/**/*.json",
@@ -1740,7 +1801,7 @@
       "status": "warning",
       "engineerFocus": false,
       "auditorFocus": true,
-      "auditorRank": 6
+      "auditorRank": 9
     },
     {
       "id": "lib/terrain-journey.js",
@@ -1748,7 +1809,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1110,
+      "y": 1230,
       "role": "pure semantic-history state for Terrain Journey commits and browser Back/Forward restoration",
       "reads": [],
       "writes": [],
@@ -1763,7 +1824,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 19
+      "auditorRank": 22
     },
     {
       "id": "lib/trace-string-usage.js",
@@ -1771,7 +1832,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1170,
+      "y": 1290,
       "role": "string reverse-tracer — data-i18n usage in pages/wip HTML cross-referenced against the compiled manifest",
       "reads": [
         "pages/*.html (data-i18n attribute scan)",
@@ -1793,7 +1854,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 20
+      "auditorRank": 23
     },
     {
       "id": "lib/validate-blueprint.js",
@@ -1801,7 +1862,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1230,
+      "y": 1350,
       "role": "blueprint consistency validator — confirms every id in blueprint.json has a matching config file and vex-config constant",
       "reads": [
         "blueprint.json",
@@ -1825,7 +1886,7 @@
       "status": "warning",
       "engineerFocus": false,
       "auditorFocus": true,
-      "auditorRank": 7
+      "auditorRank": 10
     },
     {
       "id": "lib/vex-config.js",
@@ -1833,7 +1894,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1290,
+      "y": 1410,
       "role": "constants hub — pure declarations, no I/O",
       "reads": [],
       "writes": [],
@@ -1865,7 +1926,7 @@
       "status": "warning",
       "engineerFocus": false,
       "auditorFocus": true,
-      "auditorRank": 8
+      "auditorRank": 11
     },
     {
       "id": "lib/vextreme-index-v2.js",
@@ -1873,7 +1934,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1350,
+      "y": 1470,
       "role": "browser arc nav runtime — reads index.json at load time, renders prev/next/position into #arcNavMount",
       "reads": [
         "data/index.json via CDN (slugMap, arcMap, arcMeta)",
@@ -1896,7 +1957,57 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 21
+      "auditorRank": 24
+    },
+    {
+      "id": "lib/vextreme.js",
+      "cluster": "lib",
+      "stage": 1.5,
+      "stageName": "UTILITIES",
+      "x": 740,
+      "y": 1530,
+      "role": "legacy shell-era runtime composition loader — environment styles, shared nav/body composition, current Spiral FAB auto-load, and gated v1 archive enhancement",
+      "reads": [
+        "data/arcs.json (v1 arc data fetched at runtime)",
+        "data/pages.json (v1 page/template data fetched at runtime)",
+        "styles/site-nav.css (GitHub Pages/local shared chrome)",
+        "styles/squarespace-overrides.css (Squarespace environment style)",
+        "styles/design-system.css (gated v1 enhancement layer)",
+        "styles/arc-nav.css (gated v1 enhancement layer)",
+        "lib/arc-nav.js (gated v1 behavior)",
+        "lib/archive-renderer.js (gated v1 archive behavior)",
+        "components/section-toggle.js (gated v1 behavior)",
+        "components/bc-nav.js (gated v1 behavior)",
+        "widgets/vex-fab.js (Spiral trigger/group owner; loaded first)",
+        "widgets/fab-lang.js (optional Spiral child)",
+        "widgets/fab-theme.js (optional Spiral child)",
+        "widgets/fab-map.js (optional Spiral child)"
+      ],
+      "writes": [
+        "DOM: #vex-site-nav / #vex-nav-actions and optional .vex-page-body composition",
+        "window.VEXTREME_ENV / VEXTREME_BASE_URL / VEXTREME_ARCS / VEXTREME_PAGES runtime globals"
+      ],
+      "loadedBy": [
+        "lib/shell.js (one-tag GitHub Pages bootstrap)"
+      ],
+      "testedBy": [
+        "tests/39-vextreme-nav-links.test.js",
+        "tests/41-vextreme-fab-autoload.test.js",
+        "tests/43-runtime-chrome-composition.test.js"
+      ],
+      "debts": [
+        "td-006",
+        "td-009",
+        "td-010",
+        "od-012",
+        "od-011",
+        "pe-007",
+        "pe-009"
+      ],
+      "status": "warning",
+      "engineerFocus": false,
+      "auditorFocus": true,
+      "auditorRank": 6
     },
     {
       "id": "pages/terrain-map.html",
@@ -1957,12 +2068,41 @@
       "auditorRank": 2
     },
     {
-      "id": "sw.js",
+      "id": "scripts/screenshot-page.js",
       "cluster": "root",
       "stage": 3,
       "stageName": "OUTPUT",
       "x": 1420,
       "y": 270,
+      "role": "legacy general Playwright screenshot writer — serves branch-local page/assets, intercepts @main CDN requests, captures default and language-switched PNG evidence",
+      "reads": [
+        "pages/{slug}.html (page under test, served from the branch-local repository)",
+        "repository assets requested by the rendered page (local server/CDN interception)"
+      ],
+      "writes": [
+        "docs/screenshots/{slug}-en.png",
+        "docs/screenshots/{slug}-{lang}.png"
+      ],
+      "loadedBy": [
+        ".github/pull_request_template.md (browser-rendered change evidence instruction)",
+        "manual run: node scripts/screenshot-page.js [slug] [lang]"
+      ],
+      "testedBy": [
+        "review-time browser execution and visual inspection"
+      ],
+      "debts": [],
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": false,
+      "auditorRank": 3
+    },
+    {
+      "id": "sw.js",
+      "cluster": "root",
+      "stage": 3,
+      "stageName": "OUTPUT",
+      "x": 1420,
+      "y": 330,
       "role": "Service Worker — pre-caches all God Scripts and core assets at install",
       "reads": [],
       "writes": [],
@@ -1976,7 +2116,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 3
+      "auditorRank": 4
     },
     {
       "id": "widgets/fab-analysis.js",
@@ -2188,8 +2328,16 @@
       "lib/vextreme-index-v2.js"
     ],
     [
+      "data/index.json",
+      "lib/vextreme.js"
+    ],
+    [
       "data/nodes.json",
       "lib/build-index.js"
+    ],
+    [
+      "data/viewmodels.json",
+      "lib/vextreme.js"
     ],
     [
       "lib/apply-content-intents.js",
@@ -2198,6 +2346,10 @@
     [
       "lib/apply-content-intents.js",
       "data/departments.json"
+    ],
+    [
+      "lib/arc-nav.js",
+      "lib/vextreme.js"
     ],
     [
       "lib/audit-pages.js",
@@ -2230,6 +2382,10 @@
     [
       "lib/audit-pages.js",
       "lib/check-key-alignment.js"
+    ],
+    [
+      "lib/audit-pages.js",
+      "lib/vextreme.js"
     ],
     [
       "lib/auto-discover-nodes.js",
@@ -2274,6 +2430,10 @@
     [
       "lib/build-arc-bundles.js",
       "lib/strings-compile.js"
+    ],
+    [
+      "lib/build-arc-bundles.js",
+      "lib/vextreme.js"
     ],
     [
       "lib/build-archives.js",
@@ -2342,6 +2502,10 @@
     [
       "lib/build-index.js",
       "lib/vextreme-index-v2.js"
+    ],
+    [
+      "lib/build-index.js",
+      "lib/vextreme.js"
     ],
     [
       "lib/build-lessons.js",
@@ -2422,6 +2586,10 @@
     [
       "lib/build-vextreme.js",
       "lib/vextreme-index-v2.js"
+    ],
+    [
+      "lib/build-vextreme.js",
+      "lib/vextreme.js"
     ],
     [
       "lib/build-vextreme.js",
@@ -2516,6 +2684,10 @@
       "lib/build-vextreme.js"
     ],
     [
+      "lib/check-key-alignment.js",
+      "lib/vextreme.js"
+    ],
+    [
       "lib/compute-fab-version.js",
       "lib/bump-fab-version.js"
     ],
@@ -2544,6 +2716,10 @@
       "lib/strings-compile.js"
     ],
     [
+      "lib/logger-codes.js",
+      "lib/vextreme.js"
+    ],
+    [
       "lib/logger.js",
       "lib/build-index.js"
     ],
@@ -2562,6 +2738,10 @@
     [
       "lib/logger.js",
       "lib/strings-compile.js"
+    ],
+    [
+      "lib/logger.js",
+      "lib/vextreme.js"
     ],
     [
       "lib/screenshot-evidence.js",
@@ -2600,12 +2780,20 @@
       "lib/check-map-bindings.js"
     ],
     [
+      "lib/shell.js",
+      "lib/vextreme.js"
+    ],
+    [
       "lib/strings-compile.js",
       "lib/build-vextreme.js"
     ],
     [
       "lib/strings-compile.js",
       "lib/strings-check.js"
+    ],
+    [
+      "lib/strings-compile.js",
+      "lib/vextreme.js"
     ],
     [
       "lib/strings-compile.js",
@@ -2664,6 +2852,18 @@
       "lib/validate-blueprint.js"
     ],
     [
+      "lib/vex-config.js",
+      "lib/vextreme.js"
+    ],
+    [
+      "lib/vextreme-index-v2.js",
+      "lib/vextreme.js"
+    ],
+    [
+      "lib/vextreme.js",
+      "lib/archive-renderer.js"
+    ],
+    [
       "scripts/screenshot-institutional.js",
       "config/institutional-surfaces.json"
     ],
@@ -2682,6 +2882,30 @@
     [
       "widgets/fab-analysis.js",
       "lib/build-vextreme.js"
+    ],
+    [
+      "widgets/fab-analysis.js",
+      "lib/vextreme.js"
+    ],
+    [
+      "widgets/fab-lang.js",
+      "lib/vextreme.js"
+    ],
+    [
+      "widgets/fab-map.js",
+      "lib/vextreme.js"
+    ],
+    [
+      "widgets/fab-theme.js",
+      "lib/vextreme.js"
+    ],
+    [
+      "widgets/sw-register.js",
+      "lib/vextreme.js"
+    ],
+    [
+      "widgets/vex-fab.js",
+      "lib/vextreme.js"
     ],
     [
       "widgets/vex-fab.js",
