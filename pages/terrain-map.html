@@ -55,7 +55,7 @@
 
   .topbar{
     display:flex; align-items:center; gap:12px; flex-wrap:nowrap; min-height:54px;
-    padding:8px 76px 8px 14px; border-bottom:1px solid var(--line); background:var(--panel); flex:none; z-index:11;
+    padding:8px 14px; border-bottom:1px solid var(--line); background:var(--panel); flex:none; z-index:11;
   }
   .topbar > *{ min-width:0; }
   .terrain-brand{ display:inline-flex; align-items:baseline; gap:8px; flex:none; min-width:0; color:var(--ink); text-decoration:none; white-space:nowrap; }
@@ -63,11 +63,7 @@
   .terrain-brand-context{ color:var(--ink-faint); font:10px/1 var(--mono); letter-spacing:.12em; text-transform:uppercase; }
   .terrain-sr-only{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); clip-path:inset(50%); white-space:nowrap; }
   .terrain-control-strip{ display:flex; align-items:center; justify-content:flex-end; gap:9px; min-width:0; flex:1; }
-  .terrain-route-strip{ display:flex; align-items:center; justify-content:flex-end; gap:7px; min-width:0; flex:1; overflow-x:auto; }
-  .terrain-route-strip[hidden], .reader-header-controls[hidden], .terrain-control-strip[hidden]{ display:none; }
-  .terrain-route{ flex:none; display:inline-flex; align-items:center; gap:6px; padding:7px 10px; border:1px solid var(--line-strong); border-radius:999px; background:var(--panel-2); color:var(--ink); text-decoration:none; font:600 11px/1 var(--sans); }
-  .terrain-route:hover{ border-color:var(--accent); color:var(--accent); }
-  .terrain-route-icon{ font-size:15px; line-height:1; }
+  .reader-header-controls[hidden], .terrain-control-strip[hidden]{ display:none; }
   .reader-header-controls{ display:flex; align-items:center; gap:9px; min-width:0; flex:1; }
   .reader-header-identity{ min-width:0; flex:1; text-align:center; }
   .reader-header-title{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font:600 13px/1.15 var(--sans); }
@@ -211,7 +207,8 @@
   .evo-arrival-sub{ margin:0 auto 26px; max-width:620px; color:var(--ink-muted); text-align:center; font:14px/1.6 var(--sans); }
   .evo-arrival-choices{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
   .evo-arrival-card{ appearance:none; display:block; min-height:180px; padding:22px; border:1px solid var(--line-strong); border-radius:16px; background:var(--panel); color:var(--ink); text-decoration:none; text-align:left; cursor:pointer; transition:border-color .12s ease, transform .12s ease, background .12s ease; }
-  .evo-arrival-card:hover, .evo-arrival-card:focus-visible{ border-color:var(--accent); background:var(--accent-soft); transform:translateY(-2px); outline:none; }
+  .evo-arrival-card:hover:not(:disabled), .evo-arrival-card:focus-visible:not(:disabled){ border-color:var(--accent); background:var(--accent-soft); transform:translateY(-2px); outline:none; }
+  .evo-arrival-card:disabled{ cursor:not-allowed; opacity:.64; transform:none; }
   .evo-arrival-icon{ display:block; font-size:24px; margin-bottom:24px; }
   .evo-arrival-card strong{ display:block; font:650 21px/1.15 var(--sans); margin-bottom:8px; }
   .evo-arrival-card span:last-child{ display:block; color:var(--ink-muted); font:12px/1.55 var(--sans); }
@@ -378,7 +375,7 @@
   .visit-btn:hover{ filter:brightness(1.08); }
 
   @media (max-width:900px){
-    .topbar{ padding:7px 68px 7px 10px; gap:8px; }
+    .topbar{ padding:7px 10px; gap:8px; }
     .terrain-brand-context{ display:none; }
     .terrain-brand-word{ font-size:15px; }
     .terrain-control-strip{ gap:6px; overflow-x:auto; justify-content:flex-start; }
@@ -386,8 +383,6 @@
     .level-readout{ width:120px; min-width:120px; }
     .search{ min-width:130px; width:150px; }
     .reader-header-meta{ display:none; }
-    .terrain-route-label{ display:none; }
-    .terrain-route{ padding:7px; }
     .panel{ width:min(340px,100%); }
     .zoom-controls{ right:12px; bottom:12px; }
     .map-hint{ left:12px; right:52px; max-width:none; overflow-wrap:anywhere; }
@@ -459,11 +454,7 @@
       <a class="reader-standalone" id="readerStandalone" href="#" target="_blank" rel="noopener">Standalone ↗</a>
     </div>
 
-    <nav class="terrain-route-strip" id="terrainRouteStrip" aria-label="Vex Life routes" hidden>
-      <a class="terrain-route" href="https://www.vextreme24.com/" title="Original Vex Life home"><span class="terrain-route-icon">🧭</span><span class="terrain-route-label">Origin</span></a>
-      <a class="terrain-route" href="https://www.vextreme24.com/contact" title="Contact Victor"><span class="terrain-route-icon">✉️</span><span class="terrain-route-label">Contact</span></a>
-      <a class="terrain-route" href="/Vextreme/pages/vex-support.html" title="Support Vextreme"><span class="terrain-route-icon">🪙</span><span class="terrain-route-label">Support</span></a>
-    </nav>
+    <div class="vex-nav-actions" id="vex-nav-actions" aria-label="Page tools"></div>
   </div>
   <div class="body">
     <div class="map-wrap" id="mapWrap">
@@ -625,7 +616,7 @@
         "The legacy dot-node depth is not used inside Evolution A; clicking a page preview is the explicit entry action for the embedded same-origin reader.",
         "Collection scrolling has no semantic side effect; inside the final reader depth, only a confirmed extra downward gesture at page end returns to the collection.",
         "Evolution A system arrival offers a gentle human choice between entering the Walk and exploring the Archives.",
-        "Terrain may use compact surface-owned chrome while keeping the shared Spiral FAB as the expandable page-tools trigger.",
+        "Terrain uses compact surface-owned chrome and provides the existing #vex-nav-actions rail; the shared Spiral FAB exclusively owns its trigger/group expansion.",
         "Renderer choice is presentation state and is directly addressable by URL; semantic Journey state is unchanged."
       ],
       "levels": {
@@ -859,7 +850,6 @@
     WORLDS.content = buildContentWorld(data);
 
     wireControls();
-    wireSpiralChromeSwap();
     switchWorld(initialRoute.world === 'content' ? 'content' : 'code');
     setPresentationProfile(initialRoute.profile, false);
     if (currentWorld === 'content' && initialRoute.group) {
@@ -874,35 +864,12 @@
     syncPresentationUrl();
   }
 
-  var spiralOpen = false;
-
   function syncTopbarMode() {
     var controls = document.getElementById('terrainControlStrip');
     var readerControls = document.getElementById('readerHeaderControls');
-    var routes = document.getElementById('terrainRouteStrip');
-    if (!controls || !readerControls || !routes) return;
-    routes.hidden = !spiralOpen;
-    readerControls.hidden = spiralOpen || !activeReaderId;
-    controls.hidden = spiralOpen || !!activeReaderId;
-  }
-
-  function wireSpiralChromeSwap() {
-    var attempts = 0;
-    function bind() {
-      var trigger = document.getElementById('vex-spiral-trigger');
-      if (!trigger) {
-        attempts += 1;
-        if (attempts < 80) window.setTimeout(bind, 100);
-        return;
-      }
-      function sync() {
-        spiralOpen = trigger.getAttribute('aria-expanded') === 'true';
-        syncTopbarMode();
-      }
-      new MutationObserver(sync).observe(trigger, { attributes:true, attributeFilter:['aria-expanded'] });
-      sync();
-    }
-    bind();
+    if (!controls || !readerControls) return;
+    readerControls.hidden = !activeReaderId;
+    controls.hidden = !!activeReaderId;
   }
 
   function readInitialRoute() {
@@ -1557,9 +1524,9 @@
         '<h1 class="evo-arrival-title">How do you want to enter?</h1>' +
         '<p class="evo-arrival-sub">You do not need to understand the archive before you begin. Follow a guided entry, or open the record and explore it yourself.</p>' +
         '<div class="evo-arrival-choices">' +
-          '<a class="evo-arrival-card" href="https://www.vextreme24.com/take-a-walk">' +
-            '<span class="evo-arrival-icon">🚶</span><strong>Enter the Walk</strong><span>A gentler guided entry for someone arriving without a map.</span>' +
-          '</a>' +
+          '<button class="evo-arrival-card" type="button" disabled aria-disabled="true" data-port-pending="take-a-walk" title="Preserved source found; GitHub Pages port pending">' +
+            '<span class="evo-arrival-icon">🚶</span><strong>Enter the Walk</strong><span>Preserved source found. GitHub Pages port pending.</span>' +
+          '</button>' +
           '<button class="evo-arrival-card" type="button" data-evo-explore-archives>' +
             '<span class="evo-arrival-icon">🗂️</span><strong>Explore the Archives</strong><span>Open the collections and follow the record by subject, path, or view.</span>' +
           '</button>' +
