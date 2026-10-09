@@ -28,7 +28,7 @@ jobs:
       - name: Render exact-head Terrain entry
         run: |
           mkdir -p artifacts
-          cat > /tmp/terrain-evidence.cjs <<'NODE'
+          cat > .vexsite-browser-evidence.cjs <<'NODE'
           'use strict';
           const fs = require('fs');
           const http = require('http');
@@ -233,7 +233,8 @@ jobs:
             }
           })().catch(error => { console.error(error.stack || error); process.exit(1); });
           NODE
-          node /tmp/terrain-evidence.cjs
+          node .vexsite-browser-evidence.cjs
+          rm -f .vexsite-browser-evidence.cjs
       - name: Upload browser evidence
         if: always()
         uses: actions/upload-artifact@v4
