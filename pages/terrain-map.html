@@ -158,8 +158,8 @@
   }
   .evo-card:hover, .evo-card:focus-within{ border-color:var(--accent); }
   .evo-preview{
-    display:block; position:relative; aspect-ratio:16/10; overflow:hidden; background:var(--panel-2);
-    border-bottom:1px solid var(--line); text-decoration:none; color:inherit;
+    display:block; position:relative; width:100%; aspect-ratio:16/10; overflow:hidden; background:var(--panel-2);
+    border:0; border-bottom:1px solid var(--line); padding:0; text-decoration:none; color:inherit; text-align:inherit; cursor:pointer;
   }
   .evo-preview img{ width:100%; height:100%; object-fit:cover; object-position:top; display:block; transition:transform .18s ease; }
   .evo-card:hover .evo-preview img{ transform:scale(1.02); }
@@ -186,9 +186,59 @@
   }
   .evo-card:hover .evo-url, .evo-card:focus-within .evo-url{ opacity:1; }
   .evo-empty{ padding:30px 4px; color:var(--ink-muted); font:13px/1.6 var(--sans); }
+  .evo-gesture-hint{
+    position:absolute; left:50%; bottom:18px; z-index:12; transform:translateX(-50%);
+    max-width:min(620px,calc(100% - 32px)); padding:8px 12px; border:1px solid var(--line-strong);
+    border-radius:999px; background:color-mix(in srgb, var(--panel) 94%, transparent);
+    box-shadow:0 8px 24px color-mix(in srgb, var(--ink) 10%, transparent);
+    color:var(--ink-muted); font:10px/1.35 var(--mono); text-align:center; pointer-events:none;
+  }
+  .evo-gesture-hint[hidden]{ display:none; }
+  .evolution-reader{
+    position:absolute; inset:0; z-index:10; display:grid; grid-template-rows:auto minmax(0,1fr);
+    background:var(--ground); color:var(--ink);
+  }
+  .evolution-reader[hidden]{ display:none; }
+  .reader-toolbar{
+    min-height:52px; display:flex; align-items:center; gap:10px; padding:8px 58px;
+    border-bottom:1px solid var(--line); background:var(--panel); box-shadow:0 5px 18px color-mix(in srgb, var(--ink) 5%, transparent);
+  }
+  .reader-back, .reader-standalone{
+    flex:none; border:1px solid var(--line-strong); border-radius:7px; background:var(--panel);
+    color:var(--ink); padding:7px 9px; font:600 11px/1 var(--sans); text-decoration:none; cursor:pointer;
+  }
+  .reader-identity{ min-width:0; flex:1; text-align:center; }
+  .reader-title{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font:600 14px/1.2 var(--sans); }
+  .reader-meta{ margin-top:3px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--ink-faint); font:9px/1.2 var(--mono); }
+  .reader-stage{ position:relative; min-height:0; padding:12px 54px 14px; }
+  .reader-frame-shell{
+    width:100%; height:100%; overflow:hidden; border:1px solid var(--line); border-radius:12px;
+    background:#fff; box-shadow:0 10px 30px color-mix(in srgb, var(--ink) 8%, transparent);
+  }
+  .reader-frame{ display:block; width:100%; height:100%; border:0; background:#fff; }
+  .reader-side{
+    position:absolute; top:12px; bottom:14px; width:44px; border:1px solid transparent; border-radius:12px;
+    background:transparent; color:var(--ink-faint); cursor:pointer; font:600 10px/1.25 var(--mono);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:7px; opacity:.55;
+    transition:opacity .12s ease, background .12s ease, border-color .12s ease;
+  }
+  .reader-side:hover:not(:disabled), .reader-side:focus-visible{ opacity:1; background:var(--panel); border-color:var(--line); color:var(--accent); }
+  .reader-side:disabled{ opacity:.16; cursor:default; }
+  .reader-side.reader-prev{ left:5px; }
+  .reader-side.reader-next{ right:5px; }
+  .reader-side-arrow{ font:400 28px/1 var(--sans); }
+  .reader-side-label{ writing-mode:vertical-rl; transform:rotate(180deg); letter-spacing:.08em; text-transform:uppercase; }
+  .evolution-reader-active .zoom-controls, .evolution-reader-active .map-hint, .evolution-reader-active .level-readout{ display:none; }
+
   @media (max-width:720px){
     .evolution-layer{ inset:78px 10px 16px; }
     .evo-grid{ grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:10px; }
+    .reader-toolbar{ padding:7px 10px; }
+    .reader-standalone{ display:none; }
+    .reader-stage{ padding:8px 38px 10px; }
+    .reader-side{ width:32px; }
+    .reader-side.reader-prev{ left:2px; }
+    .reader-side.reader-next{ right:2px; }
   }
 
   svg{ display:block; width:100%; height:100%; }
@@ -371,6 +421,28 @@
       <div class="level-readout" id="levelReadout">Loading…</div>
       <svg id="svg"><defs><marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="currentColor" style="color:var(--line-strong)"/></marker></defs><g id="world"></g></svg>
       <div class="evolution-layer" id="evolutionLayer" data-terrain-component="terrain.group-card" data-terrain-variant="evolution-a" hidden></div>
+      <div class="evolution-reader" id="evolutionReader" data-terrain-profile="evolution-v1" hidden>
+        <div class="reader-toolbar">
+          <button class="reader-back" id="readerBack" type="button">← Collection</button>
+          <div class="reader-identity">
+            <div class="reader-title" id="readerTitle">Page</div>
+            <div class="reader-meta" id="readerMeta"></div>
+          </div>
+          <a class="reader-standalone" id="readerStandalone" href="#" target="_blank" rel="noopener">Open standalone ↗</a>
+        </div>
+        <div class="reader-stage">
+          <button class="reader-side reader-prev" id="readerPrev" type="button" aria-label="Previous page">
+            <span class="reader-side-arrow">‹</span><span class="reader-side-label">Previous</span>
+          </button>
+          <div class="reader-frame-shell">
+            <iframe class="reader-frame" id="evolutionReaderFrame" title="Terrain embedded page reader"></iframe>
+          </div>
+          <button class="reader-side reader-next" id="readerNext" type="button" aria-label="Next page">
+            <span class="reader-side-arrow">›</span><span class="reader-side-label">Next</span>
+          </button>
+        </div>
+      </div>
+      <div class="evo-gesture-hint" id="evolutionGestureHint" role="status" aria-live="polite" hidden></div>
       <div id="loadState" class="load-state">Fetching data/terrain-map.json…</div>
       <div class="map-hint">scroll to zoom (levels snap to their own framing) · drag to pan · click a file or screen · off-lens files recede, never disappear</div>
       <div class="zoom-controls">
@@ -510,6 +582,8 @@
         "Content group selection renders immediate membership destinations instead of a large confirmation rectangle.",
         "Selected-group identity becomes compact persistent context with sibling groups in a condensed rail.",
         "Content pages render as preview cards using real screenshot evidence when present and a deliberate fallback cover when absent.",
+        "The legacy dot-node depth is not used inside Evolution A; page depth is an embedded same-origin reader inside Terrain.",
+        "Scrollable content has input priority over layer transitions; a boundary only arms a transition and a distinct follow-up wheel gesture confirms it.",
         "Renderer choice is presentation state and is directly addressable by URL; semantic Journey state is unchanged."
       ],
       "levels": {
@@ -519,7 +593,9 @@
         },
         "node": {
           "component": "terrain.node-marker",
-          "renderer": "preview-card"
+          "renderer": "preview-card",
+          "readerRenderer": "embedded-page",
+          "inputPriority": "scrollable-content > armed-boundary-transition > terrain-zoom"
         }
       }
     },
@@ -646,6 +722,9 @@
   var world = document.getElementById('world');
   var mapWrap = document.getElementById('mapWrap');
   var evolutionLayer = document.getElementById('evolutionLayer');
+  var evolutionReader = document.getElementById('evolutionReader');
+  var evolutionReaderFrame = document.getElementById('evolutionReaderFrame');
+  var evolutionGestureHint = document.getElementById('evolutionGestureHint');
 
   var DATA = null, ALL = [], byId = {}, neighborsOf = {}, STAGES = [], currentWorld = 'code';
   var renderedNodes = {}, renderedEdges = {};
@@ -661,6 +740,10 @@
   var searchMatchIds = new Set();
   var journeySnapshot = null, historyReady = false, restoringHistory = false;
   var currentProfile = 'live';
+  var activeReaderId = null, hoveredEvolutionNodeId = null;
+  var boundaryGesture = { key:null, direction:0, lastAt:0 };
+  var BOUNDARY_GESTURE_IDLE_MS = 220, BOUNDARY_GESTURE_RESET_MS = 3000;
+  var gestureHintTimer = null;
   var initialRoute = readInitialRoute();
 
   // ── fetch, then build the client-side view model on top of the real data ──
@@ -739,6 +822,10 @@
       if (initialStageIdx >= 0) enterLevel(1, { stageIdx: initialStageIdx });
     }
     initializeJourneyHistory(initialRoute.explicit);
+    if (currentWorld === 'content' && currentProfile === 'evolution-v1' && initialRoute.page) {
+      var initialPage = ALL.find(function (node) { return node.slug === initialRoute.page || node.id === initialRoute.page; });
+      if (initialPage && initialPage.live) openEvolutionReader(initialPage.id, { writeUrl:false });
+    }
     syncPresentationUrl();
   }
 
@@ -749,7 +836,8 @@
       world: params.get('view') === 'content' ? 'content' : 'code',
       profile: profile === 'evolution-v1' ? 'evolution-v1' : 'live',
       group: params.get('group') || null,
-      explicit: params.has('view') || params.has('profile') || params.has('group')
+      page: params.get('page') || null,
+      explicit: params.has('view') || params.has('profile') || params.has('group') || params.has('page')
     };
   }
 
@@ -768,18 +856,36 @@
       var stage = typeof levelCtx.stageIdx === 'number' ? STAGES[levelCtx.stageIdx] : null;
       if (stage) url.searchParams.set('group', String(stage.key));
       else url.searchParams.delete('group');
+      var readerNode = activeReaderId && byId[activeReaderId];
+      if (readerNode) url.searchParams.set('page', String(readerNode.slug || readerNode.id));
+      else url.searchParams.delete('page');
     } else {
       url.searchParams.delete('profile');
       url.searchParams.delete('group');
+      url.searchParams.delete('page');
     }
     history.replaceState(history.state, '', url.toString());
   }
 
   function setPresentationProfile(profile, writeUrl) {
-    currentProfile = profile === 'evolution-v1' ? 'evolution-v1' : 'live';
+    var nextProfile = profile === 'evolution-v1' ? 'evolution-v1' : 'live';
+    var priorPinned = pinnedId;
+    currentProfile = nextProfile;
     mapWrap.setAttribute('data-terrain-profile', currentProfile);
     syncProfileControl();
-    if (DATA) {
+
+    if (currentProfile !== 'evolution-v1' && activeReaderId) {
+      closeEvolutionReader({ writeUrl:false, renderGroup:false });
+    }
+
+    if (DATA && currentWorld === 'content' && currentProfile === 'evolution-v1' && levelIndex === 2) {
+      var stageIdx = levelCtx.stageIdx;
+      pinnedId = null; focusId = null; renderPanel(null);
+      enterLevel(1, { stageIdx:stageIdx });
+      if (priorPinned && byId[priorPinned] && byId[priorPinned].live) {
+        openEvolutionReader(priorPinned, { writeUrl:false });
+      }
+    } else if (DATA) {
       if (levelIndex === 0) renderSystemBand();
       else if (levelIndex === 1) renderStageBand();
       else renderNodeLevel();
@@ -796,11 +902,218 @@
       && !!STAGES[levelCtx.stageIdx];
   }
 
+  function resetBoundaryGesture() {
+    boundaryGesture.key = null;
+    boundaryGesture.direction = 0;
+    boundaryGesture.lastAt = 0;
+  }
+
+  function hideGestureHint() {
+    if (gestureHintTimer) window.clearTimeout(gestureHintTimer);
+    gestureHintTimer = null;
+    evolutionGestureHint.hidden = true;
+    evolutionGestureHint.textContent = '';
+  }
+
+  function showGestureHint(message) {
+    evolutionGestureHint.textContent = message;
+    evolutionGestureHint.hidden = false;
+    if (gestureHintTimer) window.clearTimeout(gestureHintTimer);
+    gestureHintTimer = window.setTimeout(hideGestureHint, 2200);
+  }
+
+  function boundaryGestureReady(key, direction) {
+    var now = performance.now();
+    var same = boundaryGesture.key === key && boundaryGesture.direction === direction;
+    var gap = now - boundaryGesture.lastAt;
+    if (!same || gap > BOUNDARY_GESTURE_RESET_MS) {
+      boundaryGesture.key = key;
+      boundaryGesture.direction = direction;
+      boundaryGesture.lastAt = now;
+      return false;
+    }
+    boundaryGesture.lastAt = now;
+    if (gap < BOUNDARY_GESTURE_IDLE_MS) return false;
+    resetBoundaryGesture();
+    return true;
+  }
+
+  function canScrollElement(element, direction) {
+    if (!element) return false;
+    if (direction < 0) return element.scrollTop > 1;
+    return element.scrollTop + element.clientHeight < element.scrollHeight - 1;
+  }
+
+  function scrollPathCanMove(target, doc, direction) {
+    var node = target && target.nodeType === 1 ? target : target && target.parentElement;
+    while (node && node !== doc.body && node !== doc.documentElement) {
+      var style = doc.defaultView.getComputedStyle(node);
+      if (/(auto|scroll|overlay)/.test(style.overflowY) && node.scrollHeight > node.clientHeight + 1 && canScrollElement(node, direction)) return true;
+      node = node.parentElement;
+    }
+    var root = doc.scrollingElement || doc.documentElement;
+    return canScrollElement(root, direction);
+  }
+
+  function evolutionReaderMembers() {
+    if (typeof levelCtx.stageIdx !== 'number' || !STAGES[levelCtx.stageIdx]) return [];
+    return stageMembers(STAGES[levelCtx.stageIdx]).filter(function (node) { return node.live && node.liveUrl; });
+  }
+
+  function readerNeighbor(offset) {
+    var members = evolutionReaderMembers();
+    var index = members.findIndex(function (node) { return node.id === activeReaderId; });
+    var target = index < 0 ? null : members[index + offset];
+    return target || null;
+  }
+
+  function updateReaderChrome(node) {
+    var members = evolutionReaderMembers();
+    var index = members.findIndex(function (candidate) { return candidate.id === node.id; });
+    var stage = typeof levelCtx.stageIdx === 'number' ? STAGES[levelCtx.stageIdx] : null;
+    document.getElementById('readerTitle').textContent = node.title || node.slug;
+    document.getElementById('readerMeta').textContent =
+      (stage ? stage.name + ' · ' : '') + (index >= 0 ? ('page ' + (index + 1) + ' of ' + members.length) : 'page reader');
+    document.getElementById('readerStandalone').href = node.liveUrl;
+    document.getElementById('readerPrev').disabled = !readerNeighbor(-1);
+    document.getElementById('readerNext').disabled = !readerNeighbor(1);
+  }
+
+  function openEvolutionReader(nodeId, options) {
+    options = options || {};
+    var node = byId[nodeId];
+    if (!node || !node.live || !node.liveUrl || currentWorld !== 'content' || currentProfile !== 'evolution-v1') return;
+    if (!evolutionReaderMembers().some(function (member) { return member.id === node.id; })) return;
+
+    activeReaderId = node.id;
+    hoveredEvolutionNodeId = node.id;
+    resetBoundaryGesture();
+    hideGestureHint();
+    evolutionLayer.hidden = true;
+    evolutionReader.hidden = false;
+    svg.style.visibility = 'hidden';
+    mapWrap.classList.add('evolution-a-active', 'evolution-reader-active');
+    updateReaderChrome(node);
+    evolutionReaderFrame.title = 'Reading ' + (node.title || node.slug) + ' inside Terrain';
+    evolutionReaderFrame.src = node.liveUrl;
+    if (options.writeUrl !== false) syncPresentationUrl();
+  }
+
+  function closeEvolutionReader(options) {
+    options = options || {};
+    activeReaderId = null;
+    resetBoundaryGesture();
+    hideGestureHint();
+    evolutionReader.hidden = true;
+    evolutionReaderFrame.src = 'about:blank';
+    mapWrap.classList.remove('evolution-reader-active');
+    if (options.renderGroup !== false && isEvolutionAGroup()) {
+      evolutionLayer.hidden = false;
+      svg.style.visibility = 'hidden';
+    }
+    if (options.writeUrl !== false) syncPresentationUrl();
+  }
+
+  function handleEvolutionShelfWheel(ev) {
+    if (!isEvolutionAGroup() || activeReaderId) return;
+    ev.stopPropagation();
+    if (!ev.deltaY || Math.abs(ev.deltaY) < Math.abs(ev.deltaX)) return;
+    var direction = ev.deltaY > 0 ? 1 : -1;
+
+    if (canScrollElement(evolutionLayer, direction)) {
+      resetBoundaryGesture();
+      hideGestureHint();
+      return;
+    }
+
+    ev.preventDefault();
+    if (direction < 0) {
+      if (boundaryGestureReady('collection-exit', -1)) {
+        hoveredEvolutionNodeId = null;
+        enterLevel(1, {});
+        syncPresentationUrl();
+        commitSemanticState({ label:'GROUPS', relationship:'returned to', reason:'Evolution A boundary scroll' });
+      } else {
+        showGestureHint('Top reached · pause, then scroll up again to return to groups');
+      }
+      return;
+    }
+
+    var card = ev.target && ev.target.closest ? ev.target.closest('.evo-card') : null;
+    var candidateId = card ? card.getAttribute('data-node-id') : hoveredEvolutionNodeId;
+    var node = candidateId && byId[candidateId];
+    if (!node || !node.live) {
+      resetBoundaryGesture();
+      showGestureHint('End reached · hover or focus a live page card, then scroll down again to read it');
+      return;
+    }
+    if (boundaryGestureReady('collection-enter:' + node.id, 1)) {
+      openEvolutionReader(node.id);
+    } else {
+      showGestureHint('End reached · pause, then scroll down again to read “' + (node.title || node.slug) + '”');
+    }
+  }
+
+  function handleEvolutionReaderWheel(ev) {
+    if (!activeReaderId) return;
+    if (!ev.deltaY || Math.abs(ev.deltaY) < Math.abs(ev.deltaX)) return;
+    var direction = ev.deltaY > 0 ? 1 : -1;
+    var doc = evolutionReaderFrame.contentDocument;
+    if (!doc) return;
+
+    if (scrollPathCanMove(ev.target, doc, direction)) {
+      resetBoundaryGesture();
+      hideGestureHint();
+      return;
+    }
+
+    ev.preventDefault();
+    if (direction < 0) {
+      if (boundaryGestureReady('reader-back:' + activeReaderId, -1)) {
+        closeEvolutionReader();
+      } else {
+        showGestureHint('Top reached · pause, then scroll up again to return to the collection');
+      }
+      return;
+    }
+
+    var next = readerNeighbor(1);
+    if (!next) {
+      if (boundaryGestureReady('reader-end:' + activeReaderId, 1)) {
+        closeEvolutionReader();
+      } else {
+        showGestureHint('End of collection · pause, then scroll down again to return');
+      }
+      return;
+    }
+    if (boundaryGestureReady('reader-next:' + activeReaderId, 1)) {
+      openEvolutionReader(next.id);
+    } else {
+      showGestureHint('Page end reached · pause, then scroll down again for “' + (next.title || next.slug) + '”');
+    }
+  }
+
+  function wireEvolutionReaderDocument() {
+    try {
+      var doc = evolutionReaderFrame.contentDocument;
+      if (!doc) return;
+      doc.addEventListener('wheel', handleEvolutionReaderWheel, { passive:false });
+    } catch (err) {
+      showGestureHint('Embedded page scroll handoff is unavailable here · use Back / Previous / Next');
+    }
+  }
+
   function hideEvolutionLayer() {
     evolutionLayer.hidden = true;
     evolutionLayer.innerHTML = '';
+    activeReaderId = null;
+    hoveredEvolutionNodeId = null;
+    evolutionReader.hidden = true;
+    evolutionReaderFrame.src = 'about:blank';
+    resetBoundaryGesture();
+    hideGestureHint();
     svg.style.visibility = '';
-    mapWrap.classList.remove('evolution-a-active');
+    mapWrap.classList.remove('evolution-a-active', 'evolution-reader-active');
   }
 
   function evolutionPreviewHtml(node) {
@@ -817,6 +1130,10 @@
     clearWorld();
     svg.style.visibility = 'hidden';
     mapWrap.classList.add('evolution-a-active');
+    mapWrap.classList.remove('evolution-reader-active');
+    activeReaderId = null;
+    evolutionReader.hidden = true;
+    evolutionReaderFrame.src = 'about:blank';
     evolutionLayer.hidden = false;
 
     var stage = STAGES[levelCtx.stageIdx];
@@ -835,12 +1152,12 @@
         + '<span class="evo-chip">' + (node.hasScreenshot ? 'preview captured' : 'preview pending') + '</span>'
         + (languages.length ? '<span class="evo-chip">' + esc(languages.map(function (lang) { return lang.toUpperCase(); }).join(' · ')) + '</span>' : '<span class="evo-chip">source language only</span>');
       var preview = node.live && node.liveUrl
-        ? '<a class="evo-preview" href="' + escAttr(node.liveUrl) + '" aria-label="Open ' + escAttr(node.title || node.slug) + '">' + evolutionPreviewHtml(node) + '</a>'
+        ? '<button class="evo-preview" type="button" data-evo-reader="' + escAttr(node.id) + '" aria-label="Read ' + escAttr(node.title || node.slug) + ' inside Terrain">' + evolutionPreviewHtml(node) + '</button>'
         : '<div class="evo-preview">' + evolutionPreviewHtml(node) + '</div>';
       var open = node.live && node.liveUrl
-        ? '<a class="evo-open" href="' + escAttr(node.liveUrl) + '">Open page ↗</a>'
+        ? '<button class="evo-open" type="button" data-evo-reader="' + escAttr(node.id) + '">Read here</button><a class="evo-detail" href="' + escAttr(node.liveUrl) + '" target="_blank" rel="noopener">Standalone ↗</a>'
         : '<span class="evo-chip">page not live</span>';
-      return '<article class="evo-card" data-node-id="' + escAttr(node.id) + '">'
+      return '<article class="evo-card" data-node-id="' + escAttr(node.id) + '" tabindex="0">'
         + preview
         + '<div class="evo-card-body">'
         + '<h3 class="evo-card-title">' + esc(node.title || node.slug) + '</h3>'
@@ -860,6 +1177,16 @@
       + '</section>'
       + (cards ? '<section class="evo-grid" aria-label="' + escAttr(stage.name) + ' pages">' + cards + '</section>' : '<div class="evo-empty">No destinations are currently projected in this group.</div>')
       + '</div>';
+
+    evolutionLayer.querySelectorAll('.evo-card').forEach(function (card) {
+      var nodeId = card.getAttribute('data-node-id');
+      card.addEventListener('mouseenter', function () { hoveredEvolutionNodeId = nodeId; resetBoundaryGesture(); hideGestureHint(); });
+      card.addEventListener('mouseleave', function () { if (hoveredEvolutionNodeId === nodeId) hoveredEvolutionNodeId = null; resetBoundaryGesture(); });
+      card.addEventListener('focusin', function () { hoveredEvolutionNodeId = nodeId; });
+    });
+    evolutionLayer.querySelectorAll('[data-evo-reader]').forEach(function (control) {
+      control.addEventListener('click', function () { openEvolutionReader(control.getAttribute('data-evo-reader')); });
+    });
 
     evolutionLayer.querySelectorAll('[data-evo-stage-index]').forEach(function (button) {
       button.addEventListener('click', function () {
@@ -1826,6 +2153,7 @@
   // never straight back to the top. Entering a deeper level always snaps to
   // that level's own full framing first. ─────────────────────────────────────
   function handleZoomAt(mx, my, newScale) {
+    if (isEvolutionAGroup() || activeReaderId) return;
     var world0 = screenToWorld(mx, my);
     var ratio = newScale / levelBaseScale;
 
@@ -1868,7 +2196,26 @@
   }
 
   function wireControls() {
+    evolutionLayer.addEventListener('wheel', handleEvolutionShelfWheel, { passive:false });
+    evolutionLayer.addEventListener('mousedown', function (ev) { ev.stopPropagation(); });
+    evolutionLayer.addEventListener('click', function (ev) { ev.stopPropagation(); });
+    evolutionReader.addEventListener('mousedown', function (ev) { ev.stopPropagation(); });
+    evolutionReader.addEventListener('click', function (ev) { ev.stopPropagation(); });
+    evolutionReaderFrame.addEventListener('load', wireEvolutionReaderDocument);
+
+    document.getElementById('readerBack').addEventListener('click', function () { closeEvolutionReader(); });
+    document.getElementById('readerPrev').addEventListener('click', function () {
+      var previous = readerNeighbor(-1); if (previous) openEvolutionReader(previous.id);
+    });
+    document.getElementById('readerNext').addEventListener('click', function () {
+      var next = readerNeighbor(1); if (next) openEvolutionReader(next.id);
+    });
+
     mapWrap.addEventListener('wheel', function (ev) {
+      if (currentWorld === 'content' && currentProfile === 'evolution-v1' && (isEvolutionAGroup() || activeReaderId)) {
+        ev.preventDefault();
+        return;
+      }
       ev.preventDefault();
       var rect = mapWrap.getBoundingClientRect();
       handleZoomAt(ev.clientX - rect.left, ev.clientY - rect.top, view.scale * Math.pow(1.0015, -ev.deltaY));
