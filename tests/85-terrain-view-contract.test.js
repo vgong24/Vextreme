@@ -133,8 +133,9 @@ test('TERRAIN-VIEW: every shipped inline JavaScript block still parses after con
 
 test('TERRAIN-VIEW: shipped renderer consumes the contract and exposes semantic component metadata in the DOM', () => {
   const source = pageSource();
-  assert.match(source, /LIVE_VIEW\.levels\.group\.overview/);
-  assert.match(source, /LIVE_VIEW\.levels\.group\.focus/);
+  assert.match(source, /var profile = LIVE_VIEW\.levels\.group/);
+  assert.match(source, /var overview = profile\.overview/);
+  assert.match(source, /var focus = profile\.focus/);
   assert.match(source, /LIVE_VIEW\.levels\.node\.marker/);
   assert.match(source, /LIVE_VIEW\.levels\.node\.neighborhood/);
   assert.match(source, /LIVE_VIEW\.levels\.system\.geometry/);
