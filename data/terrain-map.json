@@ -476,7 +476,8 @@
         "tests/28-build-terrain-map.test.js",
         "lib/build-analysis-index.js (reuses getPageSlugs)",
         "lib/audit-nav.js (reuses getPageSlugs, isWiredToGodScript)",
-        "lib/build-page-health.js (reuses page inventory and God Script wiring)"
+        "lib/build-page-health.js (reuses page inventory and God Script wiring)",
+        "tests/86-terrain-entry-pages.test.js"
       ],
       "testedBy": [],
       "debts": [
