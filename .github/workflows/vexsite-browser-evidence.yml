@@ -170,7 +170,7 @@ jobs:
             await page.screenshot({path:path.join(OUT, name + '-arrival-fab-open.png'), fullPage:false});
 
             const themeBefore = await page.evaluate(() => document.documentElement.getAttribute('data-theme') || '');
-            await page.click('#vex-theme-fab-btn');
+            await page.click('#vex-theme-orb');
             await page.waitForTimeout(120);
             const themeAfter = await page.evaluate(() => document.documentElement.getAttribute('data-theme') || '');
             assert(themeAfter && themeAfter !== themeBefore, name + ': theme orb did not change document theme');
