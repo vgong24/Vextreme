@@ -98,7 +98,10 @@ test('TERRAIN-JOURNEY: threshold rail projects the existing semantic ladder with
   assert.match(railSource, /aria-current="step"/);
   assert.match(railSource, /role="progressbar"/);
   assert.doesNotMatch(railSource, /<button|<input|tabindex=/, 'the rail is a projection, not another navigation control');
-  assert.match(source, /\.level-readout\{[\s\S]*pointer-events:none;/);
+  assert.match(source, /\.level-readout\{[\s\S]*pointer-events:none;[\s\S]*opacity:\.18;/);
+  assert.match(source, /\.level-readout\.is-active\{ opacity:\.94; \}/);
+  assert.match(source, /style="top:' \+ position\.toFixed\(2\) \+ '%"/);
+  assert.match(source, /function revealDepthRail\(\)/);
   assert.match(source, /@media \(prefers-reduced-motion:reduce\)/);
   assert.match(source, /\.topbar > \*\{ min-width:0; \}/);
 });
@@ -176,7 +179,8 @@ test('TERRAIN-JOURNEY: Evolution A gives scrollable content priority and require
   assert.match(source, /gap < BOUNDARY_GESTURE_IDLE_MS/);
   assert.match(source, /currentProfile === 'evolution-v1' && levelIndex === 2/);
   assert.match(source, /enterLevel\(1, \{ stageIdx:stageIdx \}\)/);
-  assert.match(source, /if \(isEvolutionAGroup\(\) \|\| activeReaderId\) return;/);
+  assert.match(source, /if \(isEvolutionAGroup\(\) \|\| activeReaderId \|\| activeEntrySlug\) return;/);
+  assert.match(reader, /if \(activeEntrySlug \|\| !activeReaderId\) return;/);
 });
 
 // [VXG RealForever]
