@@ -21,6 +21,13 @@ function contract() {
   return JSON.parse(match[1]);
 }
 
+function entryContract() {
+  const source = pageSource();
+  const match = source.match(/<script type="application\/json" id="terrain-entry-contract">\s*([\s\S]*?)\s*<\/script>/);
+  assert.ok(match, 'Terrain entry contract must be embedded in the shipped page');
+  return JSON.parse(match[1]);
+}
+
 function canonicalAssortment() {
   const nodes = JSON.parse(fs.readFileSync(NODES, 'utf8'));
   const arcs = JSON.parse(fs.readFileSync(ARCS, 'utf8'));
@@ -201,6 +208,29 @@ test('TERRAIN-VIEW: shipped renderer consumes the contract and exposes semantic 
   assert.doesNotMatch(source, /var cardW = 240, cardH = 140, gap = 24/);
   assert.doesNotMatch(source, /var focusRect = \{ x:165, y:/);
   assert.doesNotMatch(source, /var NODE_NEIGHBORHOOD_LIMIT = 12;/);
+});
+
+
+test('TERRAIN-VIEW: ordered entry contract keeps Receive God before Take a Walk and reserves VexSystem without inventing a third active route', () => {
+  const value = entryContract();
+  assert.equal(value.schemaVersion, 'vextreme.terrain-entry/v1');
+  assert.deepEqual(value.choices.map(choice => [choice.id, choice.effect, choice.enabled]), [
+    ['receive-god', 'reader', true],
+    ['archives', 'terrain-group-overview', true],
+    ['vexsystem', 'reserved', false],
+  ]);
+  assert.equal(value.documents['receive-god'].order, 1);
+  assert.equal(value.documents['take-a-walk'].order, 2);
+  assert.equal(value.choices.some(choice => choice.id === 'take-a-walk'), false);
+
+  const source = pageSource();
+  assert.match(source, /function renderEvolutionAArrival\(\)/);
+  assert.match(source, /function openEntryReader\(slug\)/);
+  assert.match(source, /function enterArchivesFromArrival\(\)/);
+  assert.match(source, /function handleTerrainEntryMessage\(event\)/);
+  assert.match(source, /data-entry-action="vexsystem" disabled aria-disabled="true"/);
+  assert.match(source, /openEntryReader\('receive-god'\)/);
+  assert.doesNotMatch(source, /data-entry-action="take-a-walk"/);
 });
 
 // [VXG RealForever]
