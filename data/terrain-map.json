@@ -2028,7 +2028,8 @@
       ],
       "testedBy": [
         "tests/43-runtime-chrome-composition.test.js",
-        "tests/45-terrain-journey.test.js"
+        "tests/45-terrain-journey.test.js",
+        "tests/85-terrain-view-contract.test.js"
       ],
       "debts": [],
       "status": "good",
