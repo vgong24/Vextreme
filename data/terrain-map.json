@@ -469,7 +469,7 @@
         "lib/check-key-alignment.js (imports AUTO_DISCOVERY_EXCLUSIONS + getPageSlugs)",
         "lib/build-index.js (AUTO_DISCOVERY_EXCLUSIONS + getPageSlugs, feeds auto-discovery)",
         "lib/build-archives.js (same shared exclusion, independently — see pe-011)",
-        "lib/build-terrain-map.js (getRecordPageSlugs keeps institutional surfaces outside the content/arc layer)",
+        "lib/build-terrain-map.js (getRecordPageSlugs keeps every AUTO_DISCOVERY_EXCLUSIONS surface outside the content/arc layer)",
         "tests/15-departments.test.js",
         "tests/54-institutional-surfaces.test.js",
         "tests/20-roles.test.js",
@@ -3616,12 +3616,12 @@
       "key": "uncurated",
       "name": "UNCURATED",
       "sub": "auto-discovered pages, no nodes.json entry yet",
-      "count": 36,
+      "count": 29,
       "rect": {
         "x": 6130,
         "y": 40,
         "width": 300,
-        "height": 2250
+        "height": 1830
       }
     }
   ],
@@ -7334,45 +7334,6 @@
       "curated": false
     },
     {
-      "id": "archives",
-      "slug": "archives",
-      "title": "archives",
-      "arcKeys": [],
-      "arc": "uncurated",
-      "arcName": "UNCURATED",
-      "x": 6180,
-      "y": 330,
-      "live": true,
-      "liveUrl": "https://vgong24.github.io/Vextreme/pages/archives.html",
-      "screenshots": {},
-      "hasScreenshot": false,
-      "status": "warning",
-      "capability": {
-        "health": {
-          "state": "attention",
-          "gaps": [
-            "fab",
-            "uncurated",
-            "identity",
-            "screenshot"
-          ],
-          "blockers": []
-        },
-        "placement": "uncurated",
-        "fab": "missing",
-        "theme": {
-          "control": "none",
-          "visibleStyles": false
-        },
-        "identityKeys": 0,
-        "analysisIndexed": true,
-        "analysisControl": false,
-        "evidenceLanguages": [],
-        "metaDescription": ""
-      },
-      "curated": false
-    },
-    {
       "id": "bridge-council",
       "slug": "bridge-council",
       "title": "bridge-council",
@@ -7380,7 +7341,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 6180,
-      "y": 390,
+      "y": 330,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/bridge-council.html",
       "screenshots": {},
@@ -7419,7 +7380,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 6180,
-      "y": 450,
+      "y": 390,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/bridge-council-os.html",
       "screenshots": {},
@@ -7458,7 +7419,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 6180,
-      "y": 510,
+      "y": 450,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/bridge-council-schema.html",
       "screenshots": {},
@@ -7490,45 +7451,6 @@
       "curated": false
     },
     {
-      "id": "build-health",
-      "slug": "build-health",
-      "title": "build-health",
-      "arcKeys": [],
-      "arc": "uncurated",
-      "arcName": "UNCURATED",
-      "x": 6180,
-      "y": 570,
-      "live": true,
-      "liveUrl": "https://vgong24.github.io/Vextreme/pages/build-health.html",
-      "screenshots": {},
-      "hasScreenshot": false,
-      "status": "warning",
-      "capability": {
-        "health": {
-          "state": "attention",
-          "gaps": [
-            "fab",
-            "uncurated",
-            "screenshot",
-            "theme-effect"
-          ],
-          "blockers": []
-        },
-        "placement": "uncurated",
-        "fab": "missing",
-        "theme": {
-          "control": "page-owned",
-          "visibleStyles": false
-        },
-        "identityKeys": 12,
-        "analysisIndexed": true,
-        "analysisControl": false,
-        "evidenceLanguages": [],
-        "metaDescription": "Build health across page porting, localization, and runtime capabilities. Shows what is live, what needs attention, and what remains."
-      },
-      "curated": false
-    },
-    {
       "id": "connect",
       "slug": "connect",
       "title": "connect",
@@ -7536,7 +7458,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 6180,
-      "y": 630,
+      "y": 510,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/connect.html",
       "screenshots": {},
@@ -7575,7 +7497,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 6180,
-      "y": 690,
+      "y": 570,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/covenant-architect-accord.html",
       "screenshots": {},
@@ -7607,45 +7529,6 @@
       "curated": false
     },
     {
-      "id": "ecosystem-hub",
-      "slug": "ecosystem-hub",
-      "title": "ecosystem-hub",
-      "arcKeys": [],
-      "arc": "uncurated",
-      "arcName": "UNCURATED",
-      "x": 6180,
-      "y": 750,
-      "live": true,
-      "liveUrl": "https://vgong24.github.io/Vextreme/pages/ecosystem-hub.html",
-      "screenshots": {},
-      "hasScreenshot": false,
-      "status": "warning",
-      "capability": {
-        "health": {
-          "state": "attention",
-          "gaps": [
-            "fab",
-            "uncurated",
-            "identity",
-            "screenshot"
-          ],
-          "blockers": []
-        },
-        "placement": "uncurated",
-        "fab": "missing",
-        "theme": {
-          "control": "none",
-          "visibleStyles": false
-        },
-        "identityKeys": 0,
-        "analysisIndexed": true,
-        "analysisControl": false,
-        "evidenceLanguages": [],
-        "metaDescription": ""
-      },
-      "curated": false
-    },
-    {
       "id": "fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments",
       "slug": "fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments",
       "title": "fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments",
@@ -7653,7 +7536,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 6180,
-      "y": 810,
+      "y": 630,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments.html",
       "screenshots": {},
@@ -7692,7 +7575,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 6180,
-      "y": 870,
+      "y": 690,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/how-to-invest-in-trust-and-integrity.html",
       "screenshots": {},
@@ -7733,7 +7616,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 6180,
-      "y": 930,
+      "y": 750,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/human-ai-corelational-governance.html",
       "screenshots": {},
@@ -7771,7 +7654,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 6180,
-      "y": 990,
+      "y": 810,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/instance-thread-logs.html",
       "screenshots": {},
@@ -7812,7 +7695,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 6180,
-      "y": 1050,
+      "y": 870,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/investor-archetype-simulation.html",
       "screenshots": {},
@@ -7851,7 +7734,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 6180,
-      "y": 1110,
+      "y": 930,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/localization-source-truth-demo.html",
       "screenshots": {},
@@ -7890,7 +7773,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 6180,
-      "y": 1170,
+      "y": 990,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/org-blueprint.html",
       "screenshots": {},
@@ -7929,7 +7812,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 6180,
-      "y": 1230,
+      "y": 1050,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/org-history.html",
       "screenshots": {},
@@ -7968,7 +7851,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 6180,
-      "y": 1290,
+      "y": 1110,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/origins-of-proof.html",
       "screenshots": {},
@@ -7999,124 +7882,6 @@
       "curated": false
     },
     {
-      "id": "process-atlas",
-      "slug": "process-atlas",
-      "title": "process-atlas",
-      "arcKeys": [],
-      "arc": "uncurated",
-      "arcName": "UNCURATED",
-      "x": 6180,
-      "y": 1350,
-      "live": true,
-      "liveUrl": "https://vgong24.github.io/Vextreme/pages/process-atlas.html",
-      "screenshots": {
-        "en": "docs/screenshots/process-atlas-en-dark-1440.png"
-      },
-      "hasScreenshot": true,
-      "screenshotEvidence": [
-        {
-          "slug": "process-atlas",
-          "locale": "en",
-          "theme": "dark",
-          "viewport": 1440,
-          "kind": "matrix",
-          "path": "docs/screenshots/process-atlas-en-dark-1440.png"
-        },
-        {
-          "slug": "process-atlas",
-          "locale": "en",
-          "theme": "dark",
-          "viewport": 390,
-          "kind": "matrix",
-          "path": "docs/screenshots/process-atlas-en-dark-390.png"
-        },
-        {
-          "slug": "process-atlas",
-          "locale": "en",
-          "theme": "light",
-          "viewport": 1440,
-          "kind": "matrix",
-          "path": "docs/screenshots/process-atlas-en-light-1440.png"
-        },
-        {
-          "slug": "process-atlas",
-          "locale": "en",
-          "theme": "light",
-          "viewport": 390,
-          "kind": "matrix",
-          "path": "docs/screenshots/process-atlas-en-light-390.png"
-        }
-      ],
-      "status": "warning",
-      "capability": {
-        "health": {
-          "state": "attention",
-          "gaps": [
-            "fab",
-            "uncurated",
-            "identity"
-          ],
-          "blockers": []
-        },
-        "placement": "uncurated",
-        "fab": "missing",
-        "theme": {
-          "control": "page-owned",
-          "visibleStyles": true
-        },
-        "identityKeys": 0,
-        "analysisIndexed": true,
-        "analysisControl": false,
-        "evidenceLanguages": [
-          "en"
-        ],
-        "metaDescription": "A wholly synthetic, read-only public Process Atlas proof."
-      },
-      "curated": false
-    },
-    {
-      "id": "roles-index",
-      "slug": "roles-index",
-      "title": "roles-index",
-      "arcKeys": [],
-      "arc": "uncurated",
-      "arcName": "UNCURATED",
-      "x": 6180,
-      "y": 1410,
-      "live": true,
-      "liveUrl": "https://vgong24.github.io/Vextreme/pages/roles-index.html",
-      "screenshots": {
-        "en": "docs/screenshots/roles-index-en.png"
-      },
-      "hasScreenshot": true,
-      "status": "warning",
-      "capability": {
-        "health": {
-          "state": "attention",
-          "gaps": [
-            "fab",
-            "uncurated",
-            "identity"
-          ],
-          "blockers": []
-        },
-        "placement": "uncurated",
-        "fab": "missing",
-        "theme": {
-          "control": "none",
-          "visibleStyles": false
-        },
-        "identityKeys": 0,
-        "analysisIndexed": true,
-        "analysisControl": false,
-        "evidenceLanguages": [
-          "en"
-        ],
-        "metaDescription": ""
-      },
-      "curated": false
-    },
-    {
       "id": "sdk-identity-demo",
       "slug": "sdk-identity-demo",
       "title": "sdk-identity-demo",
@@ -8124,7 +7889,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 6180,
-      "y": 1470,
+      "y": 1170,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/sdk-identity-demo.html",
       "screenshots": {},
@@ -8163,7 +7928,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 6180,
-      "y": 1530,
+      "y": 1230,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/specimen-architectural-wisdoms.html",
       "screenshots": {},
@@ -8201,7 +7966,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 6180,
-      "y": 1590,
+      "y": 1290,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/specimen-full-translation.html",
       "screenshots": {
@@ -8244,7 +8009,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 6180,
-      "y": 1650,
+      "y": 1350,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/specimen-partial-translation.html",
       "screenshots": {
@@ -8287,7 +8052,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 6180,
-      "y": 1710,
+      "y": 1410,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/specimen-smallest-miss.html",
       "screenshots": {
@@ -8330,7 +8095,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 6180,
-      "y": 1770,
+      "y": 1470,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/specimens.html",
       "screenshots": {
@@ -8373,7 +8138,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 6180,
-      "y": 1830,
+      "y": 1530,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/summary-of-value.html",
       "screenshots": {},
@@ -8407,44 +8172,6 @@
       "curated": false
     },
     {
-      "id": "terrain-map",
-      "slug": "terrain-map",
-      "title": "terrain-map",
-      "arcKeys": [],
-      "arc": "uncurated",
-      "arcName": "UNCURATED",
-      "x": 6180,
-      "y": 1890,
-      "live": true,
-      "liveUrl": "https://vgong24.github.io/Vextreme/pages/terrain-map.html",
-      "screenshots": {},
-      "hasScreenshot": false,
-      "status": "warning",
-      "capability": {
-        "health": {
-          "state": "attention",
-          "gaps": [
-            "uncurated",
-            "identity",
-            "screenshot"
-          ],
-          "blockers": []
-        },
-        "placement": "uncurated",
-        "fab": "shell",
-        "theme": {
-          "control": "shared",
-          "visibleStyles": true
-        },
-        "identityKeys": 0,
-        "analysisIndexed": true,
-        "analysisControl": false,
-        "evidenceLanguages": [],
-        "metaDescription": "Organizational health map of the Vextreme repo — file lattice, page capability status, and content-node graph in one interactive view."
-      },
-      "curated": false
-    },
-    {
       "id": "the-victor-pattern",
       "slug": "the-victor-pattern",
       "title": "the-victor-pattern",
@@ -8452,7 +8179,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 6180,
-      "y": 1950,
+      "y": 1590,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-victor-pattern.html",
       "screenshots": {},
@@ -8491,7 +8218,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 6180,
-      "y": 2010,
+      "y": 1650,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-victor-pattern-transcript.html",
       "screenshots": {},
@@ -8523,47 +8250,6 @@
       "curated": false
     },
     {
-      "id": "v2-test",
-      "slug": "v2-test",
-      "title": "v2-test",
-      "arcKeys": [],
-      "arc": "uncurated",
-      "arcName": "UNCURATED",
-      "x": 6180,
-      "y": 2070,
-      "live": true,
-      "liveUrl": "https://vgong24.github.io/Vextreme/pages/v2-test.html",
-      "screenshots": {},
-      "hasScreenshot": false,
-      "status": "critical",
-      "capability": {
-        "health": {
-          "state": "critical",
-          "gaps": [
-            "fab",
-            "uncurated",
-            "identity",
-            "screenshot"
-          ],
-          "blockers": [
-            "isolated"
-          ]
-        },
-        "placement": "uncurated",
-        "fab": "missing",
-        "theme": {
-          "control": "none",
-          "visibleStyles": false
-        },
-        "identityKeys": 0,
-        "analysisIndexed": true,
-        "analysisControl": false,
-        "evidenceLanguages": [],
-        "metaDescription": ""
-      },
-      "curated": false
-    },
-    {
       "id": "vextreme-demo",
       "slug": "vextreme-demo",
       "title": "vextreme-demo",
@@ -8571,7 +8257,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 6180,
-      "y": 2130,
+      "y": 1710,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/vextreme-demo.html",
       "screenshots": {
@@ -8614,7 +8300,7 @@
       "arc": "uncurated",
       "arcName": "UNCURATED",
       "x": 6180,
-      "y": 2190,
+      "y": 1770,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/witness-committee-operations.html",
       "screenshots": {},
