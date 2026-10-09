@@ -983,6 +983,7 @@
     options = options || {};
     var node = byId[nodeId];
     if (!node || !node.live || !node.liveUrl || currentWorld !== 'content' || currentProfile !== 'evolution-v1') return;
+    if (!evolutionReaderMembers().some(function (member) { return member.id === node.id; })) return;
 
     activeReaderId = node.id;
     hoveredEvolutionNodeId = node.id;
@@ -1038,7 +1039,9 @@
       return;
     }
 
-    var node = hoveredEvolutionNodeId && byId[hoveredEvolutionNodeId];
+    var card = ev.target && ev.target.closest ? ev.target.closest('.evo-card') : null;
+    var candidateId = card ? card.getAttribute('data-node-id') : hoveredEvolutionNodeId;
+    var node = candidateId && byId[candidateId];
     if (!node || !node.live) {
       resetBoundaryGesture();
       showGestureHint('End reached · hover or focus a live page card, then scroll down again to read it');
