@@ -170,7 +170,7 @@ test('TERRAIN-VIEW: Evolution A is a URL-addressable presentation state over sha
   assert.match(source, /scrollPathCanMove\(ev\.target, doc, direction\)/);
   assert.match(source, /evolutionLayer\.addEventListener\('wheel', handleEvolutionShelfWheel/);
   assert.match(source, /evolutionReaderFrame\.addEventListener\('load', wireEvolutionReaderDocument\)/);
-  assert.match(source, /if \(isEvolutionAGroup\(\) \|\| activeReaderId\) return;/);
+  assert.match(source, /if \(isEvolutionAGroup\(\) \|\| activeReaderId \|\| activeEntrySlug\) return;/);
 
   const profileFunction = source.match(/function setPresentationProfile\(profile, writeUrl\) \{([\s\S]*?)\n  \}/);
   assert.ok(profileFunction, 'presentation-profile function should be present');
