@@ -298,7 +298,7 @@
         <button class="zoom-btn" id="zoomReset" aria-label="Reset view" style="font-size:12px">&#8635;</button>
       </div>
     </div>
-    <div class="panel" id="panel">
+    <div class="panel" id="panel" data-terrain-component="terrain.detail-drawer" data-terrain-variant="overlay">
       <div class="panel-empty">
         <span class="glyph">&#8982;</span>
         Zoom into a stage, then a file, or click any node — role, edges, tests, and the real open items that reference it. Reads/Writes/Loaded-by entries that name a real file are clickable and travel you there.
@@ -307,6 +307,135 @@
   </div>
 </div>
 
+<script type="application/json" id="terrain-view-contract">
+{
+  "schemaVersion": "vextreme.terrain-view-contract/v1",
+  "terminology": {
+    "system": "whole active world",
+    "group": "code lifecycle stage or content grouping",
+    "node": "selectable item within the active world",
+    "detail": "focused item information and actions",
+    "legacyLevelAliases": {
+      "stage": "group"
+    }
+  },
+  "components": {
+    "terrain.system-field": {
+      "level": "system",
+      "semanticRole": "summarize the whole active world without inventing a parent entity"
+    },
+    "terrain.group-card": {
+      "level": "group",
+      "semanticRole": "represent one grouping while preserving membership and primary placement as separate facts",
+      "variants": ["overview", "focus", "context"]
+    },
+    "terrain.node-marker": {
+      "level": "node",
+      "semanticRole": "represent a selectable item; dot/rect shape is presentation, not node identity",
+      "variants": ["node", "page", "screen"]
+    },
+    "terrain.detail-drawer": {
+      "level": "detail",
+      "semanticRole": "show focused metadata/actions without becoming the canonical owner of that data",
+      "variants": ["overlay"]
+    }
+  },
+  "relationships": {
+    "codeGroup": {
+      "membership": "node.stage === group.key",
+      "primaryPlacement": "node.stage"
+    },
+    "contentGroup": {
+      "membership": "node.arcKeys includes group.key",
+      "primaryPlacement": "node.arc",
+      "crossCuttingViewKeys": ["full_timeline"],
+      "curationBucketKeys": ["unsorted", "uncurated"]
+    }
+  },
+  "profiles": {
+    "live": {
+      "status": "accepted-reference",
+      "label": "Live",
+      "levels": {
+        "system": {
+          "component": "terrain.system-field",
+          "renderer": "system-field",
+          "fit": 0.60,
+          "geometry": {
+            "cornerRadius": 60,
+            "titleFontSize": 30,
+            "summaryFontSize": 14
+          }
+        },
+        "group": {
+          "component": "terrain.group-card",
+          "renderer": "adaptive-group-cards",
+          "fit": 0.92,
+          "overview": {
+            "maxColumns": 3,
+            "cardWidth": 240,
+            "cardHeight": 140,
+            "gap": 24,
+            "boundsPadding": 18
+          },
+          "focus": {
+            "canvasWidth": 820,
+            "minCanvasHeight": 660,
+            "focusWidth": 490,
+            "focusHeight": 520,
+            "contextWidth": 145,
+            "contextHeight": 64,
+            "contextGap": 16,
+            "railCanvasPadding": 40,
+            "boundsPadding": 20
+          }
+        },
+        "node": {
+          "component": "terrain.node-marker",
+          "renderer": "marker-field",
+          "fit": 0.68,
+          "neighborhoodLimit": 12,
+          "neighborhood": {
+            "minWidth": 240,
+            "maxWidth": 300,
+            "minHeight": 300,
+            "maxHeight": 420,
+            "xPadding": 80,
+            "yPadding": 100
+          },
+          "marker": {
+            "focusRingRadius": 12,
+            "hitRadius": 16,
+            "nodeRadius": 6,
+            "screenWidth": 18,
+            "screenHeight": 14,
+            "screenCornerRadius": 3,
+            "labelOffsetX": 11,
+            "labelOffsetY": 4,
+            "pinOffsetY": 12
+          }
+        },
+        "detail": {
+          "component": "terrain.detail-drawer",
+          "renderer": "overlay-drawer"
+        }
+      }
+    },
+    "evolution-v1": {
+      "status": "reserved-unformed",
+      "label": "Evolution v1",
+      "inherits": "live",
+      "declaredDeltas": []
+    },
+    "evolution-v2": {
+      "status": "reserved-unformed",
+      "label": "Evolution v2",
+      "inherits": "live",
+      "declaredDeltas": []
+    }
+  }
+}
+</script>
 <script id="terrain-search-logic">
 (function (root) {
   'use strict';
@@ -407,6 +536,9 @@
   var STATUS_TEXT = { good: 'Healthy', warning: 'Tested, open item(s)', critical: 'Untested, open item(s)' };
   var ICON = { good: '●', warning: '▲', critical: '✗' };
   var SCREENS_KEY = 'screens';
+  var TERRAIN_VIEW_CONTRACT = JSON.parse(document.getElementById('terrain-view-contract').textContent);
+  var LIVE_VIEW = TERRAIN_VIEW_CONTRACT.profiles.live;
+  var CONTENT_GROUP_RELATION = TERRAIN_VIEW_CONTRACT.relationships.contentGroup;
 
   var NS = 'http://www.w3.org/2000/svg';
   function el(tag, attrs) { var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); return e; }
@@ -551,52 +683,133 @@
   }
   function toScreen(n) { return { x: view.x + n.x * view.scale, y: view.y + effY(n) * view.scale }; }
 
-  var NODE_NEIGHBORHOOD_LIMIT = 12;
+  var NODE_NEIGHBORHOOD_LIMIT = LIVE_VIEW.levels.node.neighborhoodLimit;
 
-  function stageMembers(stage) { return ALL.filter(function (n) { return n.stage === stage.key; }); }
+  function groupKind(stage) {
+    if (currentWorld === 'code') return stage.key === SCREENS_KEY ? 'screen-group' : 'lifecycle-stage';
+    if (CONTENT_GROUP_RELATION.crossCuttingViewKeys.indexOf(stage.key) !== -1) return 'timeline-view';
+    if (CONTENT_GROUP_RELATION.curationBucketKeys.indexOf(stage.key) !== -1) return 'curation-bucket';
+    return 'collection';
+  }
+  function stagePrimaryMembers(stage) {
+    return ALL.filter(function (n) { return n.stage === stage.key; });
+  }
+  function stageMembers(stage) {
+    var kind = groupKind(stage);
+    if (currentWorld !== 'content' || kind === 'curation-bucket') return stagePrimaryMembers(stage);
+    return ALL.filter(function (n) {
+      return Array.isArray(n.arcKeys) && n.arcKeys.indexOf(stage.key) !== -1;
+    });
+  }
   function stageSummary(stage) {
     var members = stageMembers(stage);
+    var primaryMembers = stagePrimaryMembers(stage);
     var worst = members.length ? 'good' : null;
     members.forEach(function (n) { if (worst == null || rank(n.status) < rank(worst)) worst = n.status; });
     var lensCount = members.filter(inLens).length;
     var maxCount = Math.max.apply(null, STAGES.map(function (candidate) { return stageMembers(candidate).length; }).concat([1]));
-    return { members: members, worst: worst, lensCount: lensCount, density: members.length / maxCount };
+    var kind = groupKind(stage);
+    var completeness = 'complete';
+    if (kind === 'timeline-view') completeness = 'cross-cutting';
+    else if (kind === 'curation-bucket') completeness = 'curation';
+    else if (members.length && primaryMembers.length === 0) completeness = 'secondary-only';
+    else if (members.length !== primaryMembers.length) completeness = 'partial-primary';
+    return {
+      members: members,
+      primaryMembers: primaryMembers,
+      membershipCount: members.length,
+      primaryCount: primaryMembers.length,
+      worst: worst,
+      lensCount: lensCount,
+      density: members.length / maxCount,
+      groupKind: kind,
+      projectionCompleteness: completeness,
+    };
   }
   function stageLabelText(value, limit) {
     var chars = Array.from(String(value || ''));
     return chars.length > limit ? chars.slice(0, Math.max(1, limit - 1)).join('') + '…' : chars.join('');
   }
   function stageCompositionLayout(ctx) {
+    var profile = LIVE_VIEW.levels.group;
+    var overview = profile.overview;
+    var focus = profile.focus;
     var focusedIdx = ctx && typeof ctx.stageIdx === 'number' && STAGES[ctx.stageIdx] ? ctx.stageIdx : -1;
     var items = [];
     if (focusedIdx < 0) {
-      var cols = Math.min(3, Math.max(1, STAGES.length));
-      var cardW = 240, cardH = 140, gap = 24;
+      var cols = Math.min(overview.maxColumns, Math.max(1, STAGES.length));
       STAGES.forEach(function (stage, index) {
         var row = Math.floor(index / cols), col = index % cols;
-        items.push({ stage:stage, index:index, kind:'overview', rect:{ x:col * (cardW + gap), y:row * (cardH + gap), width:cardW, height:cardH } });
+        items.push({
+          stage:stage,
+          index:index,
+          kind:'overview',
+          rect:{
+            x:col * (overview.cardWidth + overview.gap),
+            y:row * (overview.cardHeight + overview.gap),
+            width:overview.cardWidth,
+            height:overview.cardHeight
+          }
+        });
       });
       var rows = Math.max(1, Math.ceil(STAGES.length / cols));
-      return { focusedIdx:-1, items:items, bounds:{ x:-18, y:-18, width:cols * cardW + (cols - 1) * gap + 36, height:rows * cardH + (rows - 1) * gap + 36 } };
+      return {
+        focusedIdx:-1,
+        items:items,
+        bounds:{
+          x:-overview.boundsPadding,
+          y:-overview.boundsPadding,
+          width:cols * overview.cardWidth + (cols - 1) * overview.gap + overview.boundsPadding * 2,
+          height:rows * overview.cardHeight + (rows - 1) * overview.gap + overview.boundsPadding * 2
+        }
+      };
     }
-    var canvasW = 820;
+    var canvasW = focus.canvasWidth;
     var siblings = STAGES.map(function (stage,index) { return {stage:stage,index:index}; }).filter(function (item) { return item.index !== focusedIdx; });
     var split = Math.ceil(siblings.length / 2), left = siblings.slice(0, split), right = siblings.slice(split);
-    var railRows = Math.max(left.length, right.length), railH = 64, railGap = 16;
-    var railTotal = railRows ? railRows * railH + (railRows - 1) * railGap : 0;
-    var canvasH = Math.max(660, railTotal + 40);
-    var focusRect = { x:165, y:(canvasH - 520) / 2, width:490, height:520 };
+    var railRows = Math.max(left.length, right.length);
+    var railTotal = railRows ? railRows * focus.contextHeight + (railRows - 1) * focus.contextGap : 0;
+    var canvasH = Math.max(focus.minCanvasHeight, railTotal + focus.railCanvasPadding);
+    var focusRect = {
+      x:(canvasW - focus.focusWidth) / 2,
+      y:(canvasH - focus.focusHeight) / 2,
+      width:focus.focusWidth,
+      height:focus.focusHeight
+    };
     items.push({ stage:STAGES[focusedIdx], index:focusedIdx, kind:'focus', rect:focusRect });
     function rail(list, x) {
-      var h=64, gap=16, total=list.length ? list.length*h + (list.length-1)*gap : 0;
+      var total=list.length ? list.length * focus.contextHeight + (list.length - 1) * focus.contextGap : 0;
       var y=(canvasH-total)/2;
-      list.forEach(function (item,offset) { items.push({ stage:item.stage, index:item.index, kind:'context', rect:{x:x,y:y+offset*(h+gap),width:145,height:h} }); });
+      list.forEach(function (item,offset) {
+        items.push({
+          stage:item.stage,
+          index:item.index,
+          kind:'context',
+          rect:{
+            x:x,
+            y:y + offset * (focus.contextHeight + focus.contextGap),
+            width:focus.contextWidth,
+            height:focus.contextHeight
+          }
+        });
+      });
     }
-    rail(left, 0); rail(right, 675);
-    return { focusedIdx:focusedIdx, items:items, bounds:{x:-20,y:-20,width:canvasW+40,height:canvasH+40} };
+    rail(left, 0);
+    rail(right, canvasW - focus.contextWidth);
+    return {
+      focusedIdx:focusedIdx,
+      items:items,
+      bounds:{
+        x:-focus.boundsPadding,
+        y:-focus.boundsPadding,
+        width:canvasW + focus.boundsPadding * 2,
+        height:canvasH + focus.boundsPadding * 2
+      }
+    };
   }
   function stageCompositionRect(ctx) { return stageCompositionLayout(ctx || {}).bounds; }
   function nodeNeighborhoodRect(ctx) {
+    var geometry = LIVE_VIEW.levels.node.neighborhood;
     var fallback = STAGES[ctx && ctx.stageIdx] ? STAGES[ctx.stageIdx].rect : FULL_RECT;
     var origin = ctx && ctx.nodeId ? byId[ctx.nodeId] : null;
     if (!origin) return fallback;
@@ -605,8 +818,8 @@
     var xs = nodes.map(function (n) { return n.x; }), ys = nodes.map(function (n) { return effY(n); });
     var minX = xs.length ? Math.min.apply(null, xs) : origin.x, maxX = xs.length ? Math.max.apply(null, xs) : origin.x;
     var minY = ys.length ? Math.min.apply(null, ys) : effY(origin), maxY = ys.length ? Math.max.apply(null, ys) : effY(origin);
-    var width = Math.min(300, Math.max(240, maxX - minX + 80));
-    var height = Math.min(420, Math.max(300, maxY - minY + 100));
+    var width = Math.min(geometry.maxWidth, Math.max(geometry.minWidth, maxX - minX + geometry.xPadding));
+    var height = Math.min(geometry.maxHeight, Math.max(geometry.minHeight, maxY - minY + geometry.yPadding));
     return { x: origin.x - width / 2, y: effY(origin) - height / 2, width: width, height: height };
   }
   function stageIndexAtWorld(x, y) {
@@ -622,9 +835,9 @@
   }
 
   var OVERVIEW_LEVELS = [
-    { id: 'system', fill: 0.60, rect: function () { return FULL_RECT; }, render: renderSystemBand },
-    { id: 'stage',  fill: 0.92, rect: function (ctx) { return stageCompositionRect(ctx); }, render: renderStageBand },
-    { id: 'node',   fill: 0.68, rect: function (ctx) { return nodeNeighborhoodRect(ctx || {}); }, render: renderNodeLevel },
+    { id: 'system', semanticLevel: 'system', fill: LIVE_VIEW.levels.system.fit, rect: function () { return FULL_RECT; }, render: renderSystemBand },
+    { id: 'stage',  semanticLevel: 'group',  fill: LIVE_VIEW.levels.group.fit,  rect: function (ctx) { return stageCompositionRect(ctx); }, render: renderStageBand },
+    { id: 'node',   semanticLevel: 'node',   fill: LIVE_VIEW.levels.node.fit,   rect: function (ctx) { return nodeNeighborhoodRect(ctx || {}); }, render: renderNodeLevel },
   ];
 
   function snapTo(target) {
@@ -728,14 +941,43 @@
     clearWorld();
     var worst = 'good';
     ALL.forEach(function (n) { if (rank(n.status) < rank(worst)) worst = n.status; });
-    world.appendChild(el('rect', { x: FULL_RECT.x, y: FULL_RECT.y, width: FULL_RECT.width, height: FULL_RECT.height, rx: 60, class: 'system-blob pop-in' }));
-    var t = el('text', { x: FULL_RECT.x + FULL_RECT.width / 2, y: FULL_RECT.y + FULL_RECT.height / 2 - 10, 'font-size': 30, 'text-anchor': 'middle', class: 'system-title pop-in' });
+    var geometry = LIVE_VIEW.levels.system.geometry;
+    var blob = el('rect', {
+      x: FULL_RECT.x, y: FULL_RECT.y, width: FULL_RECT.width, height: FULL_RECT.height,
+      rx: geometry.cornerRadius, class: 'system-blob pop-in',
+      'data-terrain-component': LIVE_VIEW.levels.system.component,
+      'data-terrain-profile': 'live'
+    });
+    world.appendChild(blob);
+    var t = el('text', {
+      x: FULL_RECT.x + FULL_RECT.width / 2,
+      y: FULL_RECT.y + FULL_RECT.height / 2 - 10,
+      'font-size': geometry.titleFontSize,
+      'text-anchor': 'middle',
+      class: 'system-title pop-in'
+    });
     t.textContent = 'VEXTREME'; world.appendChild(t);
-    var s = el('text', { x: FULL_RECT.x + FULL_RECT.width / 2, y: FULL_RECT.y + FULL_RECT.height / 2 + 20, 'font-size': 14, 'text-anchor': 'middle', class: 'system-sub pop-in' });
-    var summary = currentWorld === 'code'
-      ? (DATA.nodes.length + ' files, ' + DATA.screens.length + ' live screens')
-      : (ALL.length + ' pages across ' + STAGES.length + ' arcs');
-    s.textContent = summary + ' · worst status ' + ICON[worst] + ' ' + worst + ' · zoom in to see ' + (currentWorld === 'code' ? 'stages' : 'arcs');
+    var s = el('text', {
+      x: FULL_RECT.x + FULL_RECT.width / 2,
+      y: FULL_RECT.y + FULL_RECT.height / 2 + 20,
+      'font-size': geometry.summaryFontSize,
+      'text-anchor': 'middle',
+      class: 'system-sub pop-in'
+    });
+    var summary;
+    if (currentWorld === 'code') {
+      summary = DATA.nodes.length + ' files · ' + DATA.screens.length + ' live screens';
+    } else {
+      var kinds = { collection:0, 'timeline-view':0, 'curation-bucket':0 };
+      STAGES.forEach(function (stage) {
+        var kind = groupKind(stage);
+        if (Object.prototype.hasOwnProperty.call(kinds, kind)) kinds[kind] += 1;
+      });
+      summary = ALL.length + ' pages · ' + kinds.collection + ' collections'
+        + (kinds['timeline-view'] ? ' · ' + kinds['timeline-view'] + ' timeline view' : '')
+        + (kinds['curation-bucket'] ? ' · ' + kinds['curation-bucket'] + ' curation buckets' : '');
+    }
+    s.textContent = summary + ' · worst status ' + ICON[worst] + ' ' + worst + ' · zoom in to see ' + (currentWorld === 'code' ? 'stages' : 'groups');
     world.appendChild(s);
   }
   function rank(status) { return status === 'critical' ? 0 : status === 'warning' ? 1 : 2; }
@@ -743,7 +985,9 @@
   function activateStage(index) {
     if (levelIndex !== 1 || !STAGES[index]) return;
     if (levelCtx.stageIdx === index) {
-      if (!stageMembers(STAGES[index]).length) return;
+      var summary = stageSummary(STAGES[index]);
+      if (summary.groupKind === 'timeline-view') return;
+      if (!summary.primaryCount) return;
       enterLevel(2, { stageIdx:index });
       commitSemanticState({ label:STAGES[index].name, relationship:'zoomed into', reason:'semantic level transition' });
       return;
@@ -757,24 +1001,71 @@
     var layout = stageCompositionLayout(levelCtx || {});
     layout.items.sort(function (a,b) { return a.index - b.index; }).forEach(function (item) {
       var stage=item.stage, i=item.index, r=item.rect, summary=stageSummary(stage);
-      var unit = currentWorld === 'content' ? 'page' : (stage.key === SCREENS_KEY ? 'screen' : 'file');
+      var unit = currentWorld === 'content' ? 'member' : (stage.key === SCREENS_KEY ? 'screen' : 'file');
       var focused = item.kind === 'focus', context = item.kind === 'context';
-      var aria=stage.name + ', ' + summary.members.length + ' ' + unit + (summary.members.length === 1 ? '' : 's') + (summary.worst ? ', worst ' + summary.worst : '');
-      var g=el('g',{ class:'stage-card pop-in', tabindex:'0', role:'button', 'data-stage-index':String(i), 'data-stage-key':String(stage.key), 'data-member-count':String(summary.members.length), 'data-focused':String(focused), 'data-context':String(context), 'aria-pressed':String(focused), 'aria-label':aria });
+      var countText = summary.membershipCount + ' ' + unit + (summary.membershipCount === 1 ? '' : 's');
+      var placementText = currentWorld === 'content' && summary.primaryCount !== summary.membershipCount
+        ? ', ' + summary.primaryCount + ' primary placement' + (summary.primaryCount === 1 ? '' : 's')
+        : '';
+      var aria=stage.name + ', ' + countText + placementText
+        + ', group kind ' + summary.groupKind
+        + (summary.worst ? ', worst ' + summary.worst : '');
+      var g=el('g',{
+        class:'stage-card pop-in',
+        tabindex:'0',
+        role:'button',
+        'data-stage-index':String(i),
+        'data-stage-key':String(stage.key),
+        'data-terrain-component':LIVE_VIEW.levels.group.component,
+        'data-terrain-variant':item.kind,
+        'data-group-kind':summary.groupKind,
+        'data-membership-count':String(summary.membershipCount),
+        'data-primary-count':String(summary.primaryCount),
+        'data-projection-completeness':summary.projectionCompleteness,
+        'data-focused':String(focused),
+        'data-context':String(context),
+        'aria-pressed':String(focused),
+        'aria-label':aria
+      });
       var halo=el('rect',{x:r.x,y:r.y,width:r.width,height:r.height,rx:focused?22:14,class:'stage-halo'}); g.appendChild(halo);
       var label=el('text',{x:r.x+14,y:r.y+(context?25:31),class:'stage-label'}); label.textContent=stageLabelText(stage.name, context?15:(focused?30:22)); g.appendChild(label);
       if (!context) {
         var sub=el('text',{x:r.x+14,y:r.y+(focused?57:52),class:'stage-sub'}); sub.textContent=stageLabelText(stage.sub, focused?48:34); g.appendChild(sub);
       }
       var stat=el('text',{x:r.x+14,y:r.y+(context?48:(focused?84:78)),class:'stage-sub',fill:summary.worst ? ('var(--'+summary.worst+')') : 'var(--ink-muted)'});
-      stat.textContent=summary.worst
-        ? (ICON[summary.worst] + ' ' + (context ? summary.members.length : ('worst · ' + summary.members.length + ' ' + unit + (summary.members.length===1?'':'s') + (WORLDS[currentWorld].hasLenses ? (' · ' + summary.lensCount + ' in lens') : ''))))
-        : (context ? '0' : ('0 ' + unit + 's'));
+      if (currentWorld === 'content') {
+        stat.textContent = (summary.worst ? ICON[summary.worst] + ' ' : '')
+          + (context ? summary.membershipCount : countText + (summary.primaryCount !== summary.membershipCount ? ' · ' + summary.primaryCount + ' primary' : ''));
+      } else {
+        stat.textContent=summary.worst
+          ? (ICON[summary.worst] + ' ' + (context ? summary.membershipCount : ('worst · ' + countText + (WORLDS[currentWorld].hasLenses ? (' · ' + summary.lensCount + ' in lens') : ''))))
+          : (context ? '0' : ('0 ' + unit + 's'));
+      }
       g.appendChild(stat);
       var barX=r.x+14, barY=r.y+r.height-(context?12:20), barW=Math.max(12,r.width-28);
       g.appendChild(el('rect',{x:barX,y:barY,width:barW,height:context?4:6,rx:3,class:'stage-density-track'}));
       g.appendChild(el('rect',{x:barX,y:barY,width:barW*summary.density,height:context?4:6,rx:3,class:'stage-density-fill','data-density':summary.density.toFixed(4)}));
-      if (focused && summary.members.length) { var hint=el('text',{x:r.x+14,y:r.y+r.height-34,class:'stage-hint'}); hint.textContent='scroll to zoom into this column'; g.appendChild(hint); }
+      if (focused) {
+        var hintText = null;
+        if (currentWorld === 'content') {
+          if (summary.groupKind === 'timeline-view') {
+            hintText = 'cross-cutting view · not a primary parent in Live';
+          } else if (summary.membershipCount && !summary.primaryCount) {
+            hintText = 'secondary membership · members live under other primary collections';
+          } else if (summary.membershipCount > summary.primaryCount) {
+            hintText = 'node view shows ' + summary.primaryCount + ' primary of ' + summary.membershipCount + ' members';
+          } else if (summary.primaryCount) {
+            hintText = 'scroll to zoom into this collection';
+          }
+        } else if (summary.primaryCount) {
+          hintText = 'scroll to zoom into this column';
+        }
+        if (hintText) {
+          var hint=el('text',{x:r.x+14,y:r.y+r.height-34,class:'stage-hint'});
+          hint.textContent=hintText;
+          g.appendChild(hint);
+        }
+      }
       g.addEventListener('click',function(ev){ ev.stopPropagation(); activateStage(i); });
       g.addEventListener('keydown',function(ev){ if(ev.key==='Enter'||ev.key===' '){ ev.preventDefault(); ev.stopPropagation(); activateStage(i); } });
       world.appendChild(g);
@@ -815,15 +1106,29 @@
     Object.keys(visible).forEach(function (id) {
       if (renderedNodes[id]) return;
       var n = byId[id], ey = effY(n);
-      var g = el('g', { class: 'node-group pop-in' });
-      var ring = el('circle', { cx: n.x, cy: ey, r: 12, class: 'node-focus-ring' });
-      var hit = el('circle', { cx: n.x, cy: ey, r: 16, class: 'node-hit' });
+      var marker = LIVE_VIEW.levels.node.marker;
+      var g = el('g', {
+        class: 'node-group pop-in',
+        'data-terrain-component': LIVE_VIEW.levels.node.component,
+        'data-terrain-variant': n.kind === 'screen' ? 'screen' : (n.kind === 'page' ? 'page' : 'node'),
+        'data-node-id': n.id,
+        'data-primary-group': n.stage || ''
+      });
+      var ring = el('circle', { cx: n.x, cy: ey, r: marker.focusRingRadius, class: 'node-focus-ring' });
+      var hit = el('circle', { cx: n.x, cy: ey, r: marker.hitRadius, class: 'node-hit' });
       var dot = (n.kind === 'screen')
-        ? el('rect', { x: n.x - 9, y: ey - 7, width: 18, height: 14, rx: 3, class: 'screen-dot' })
-        : el('circle', { cx: n.x, cy: ey, r: 6, class: 'node-dot ' + n.status });
+        ? el('rect', {
+            x: n.x - marker.screenWidth / 2,
+            y: ey - marker.screenHeight / 2,
+            width: marker.screenWidth,
+            height: marker.screenHeight,
+            rx: marker.screenCornerRadius,
+            class: 'screen-dot'
+          })
+        : el('circle', { cx: n.x, cy: ey, r: marker.nodeRadius, class: 'node-dot ' + n.status });
       var labelText = (n.kind === 'screen' || n.kind === 'page') ? (n.slug.length > 18 ? n.slug.slice(0, 17) + '…' : n.slug) : n.id;
-      var label = el('text', { x: n.x + 11, y: ey + 4, class: 'node-label' }); label.textContent = labelText;
-      var pinTag = el('text', { x: n.x + 11, y: ey - 12, class: 'node-pin-tag', opacity: 0 });
+      var label = el('text', { x: n.x + marker.labelOffsetX, y: ey + marker.labelOffsetY, class: 'node-label' }); label.textContent = labelText;
+      var pinTag = el('text', { x: n.x + marker.labelOffsetX, y: ey - marker.pinOffsetY, class: 'node-pin-tag', opacity: 0 });
       pinTag.textContent = n.kind === 'screen' ? 'screen' : n.kind === 'page' ? n.arcName : (n.cluster + ' / ' + n.id.split('/').pop());
       g.appendChild(ring); g.appendChild(hit); g.appendChild(dot); g.appendChild(label); g.appendChild(pinTag);
       g.addEventListener('click', function (ev) {

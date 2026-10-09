@@ -1,0 +1,142 @@
+'use strict';
+
+const { test } = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+
+const ROOT = path.join(__dirname, '..');
+const PAGE = path.join(ROOT, 'pages', 'terrain-map.html');
+const NODES = path.join(ROOT, 'data', 'nodes.json');
+const ARCS = path.join(ROOT, 'data', 'arcs-v2.json');
+
+function pageSource() {
+  return fs.readFileSync(PAGE, 'utf8').replace(/\r\n/g, '\n');
+}
+
+function contract() {
+  const source = pageSource();
+  const match = source.match(/<script type="application\/json" id="terrain-view-contract">\s*([\s\S]*?)\s*<\/script>/);
+  assert.ok(match, 'Terrain view contract must be embedded in the shipped page');
+  return JSON.parse(match[1]);
+}
+
+function canonicalAssortment() {
+  const nodes = JSON.parse(fs.readFileSync(NODES, 'utf8'));
+  const arcs = JSON.parse(fs.readFileSync(ARCS, 'utf8'));
+  const arcKeys = Object.keys(arcs).filter(key => !key.startsWith('_'));
+  const rows = arcKeys.map(key => {
+    const members = nodes.filter(node => (node.arcKeys || []).includes(key));
+    const primary = nodes.filter(node => (node.arcKeys || [])[0] === key);
+    return { key, members: members.map(node => node.slug), primary: primary.map(node => node.slug) };
+  });
+  return { nodes, arcs, rows };
+}
+
+test('TERRAIN-VIEW: component contract names semantic levels and reserves two Evolution slots without inventing deltas', () => {
+  const value = contract();
+  assert.equal(value.schemaVersion, 'vextreme.terrain-view-contract/v1');
+  assert.equal(value.terminology.legacyLevelAliases.stage, 'group');
+  assert.deepEqual(Object.keys(value.components), [
+    'terrain.system-field',
+    'terrain.group-card',
+    'terrain.node-marker',
+    'terrain.detail-drawer',
+  ]);
+  assert.equal(value.profiles.live.status, 'accepted-reference');
+  assert.equal(value.profiles['evolution-v1'].status, 'reserved-unformed');
+  assert.equal(value.profiles['evolution-v2'].status, 'reserved-unformed');
+  assert.deepEqual(value.profiles['evolution-v1'].declaredDeltas, []);
+  assert.deepEqual(value.profiles['evolution-v2'].declaredDeltas, []);
+});
+
+test('TERRAIN-VIEW: Live profile preserves the accepted geometry as named component tokens', () => {
+  const live = contract().profiles.live;
+  assert.deepEqual(live.levels.group.overview, {
+    maxColumns: 3,
+    cardWidth: 240,
+    cardHeight: 140,
+    gap: 24,
+    boundsPadding: 18,
+  });
+  assert.deepEqual(live.levels.group.focus, {
+    canvasWidth: 820,
+    minCanvasHeight: 660,
+    focusWidth: 490,
+    focusHeight: 520,
+    contextWidth: 145,
+    contextHeight: 64,
+    contextGap: 16,
+    railCanvasPadding: 40,
+    boundsPadding: 20,
+  });
+  assert.equal(live.levels.node.neighborhoodLimit, 12);
+  assert.deepEqual(live.levels.node.marker, {
+    focusRingRadius: 12,
+    hitRadius: 16,
+    nodeRadius: 6,
+    screenWidth: 18,
+    screenHeight: 14,
+    screenCornerRadius: 3,
+    labelOffsetX: 11,
+    labelOffsetY: 4,
+    pinOffsetY: 12,
+  });
+});
+
+test('TERRAIN-VIEW: current canonical arcs are not empty; three are secondary-only in primary placement and Timeline is cross-cutting', () => {
+  const { rows } = canonicalAssortment();
+  assert.deepEqual(rows.filter(row => row.members.length === 0), []);
+
+  const secondaryOnly = rows
+    .filter(row => row.members.length > 0 && row.primary.length === 0)
+    .map(row => ({ key: row.key, members: row.members.length }));
+  assert.deepEqual(secondaryOnly, [
+    { key: 'ai_orientation', members: 8 },
+    { key: 'excavation', members: 5 },
+    { key: 'march_23_2026', members: 3 },
+  ]);
+
+  const timeline = rows.find(row => row.key === 'full_timeline');
+  assert.equal(timeline.members.length, 75);
+  assert.equal(timeline.primary.length, 1);
+});
+
+test('TERRAIN-VIEW: dated content has one known timeline-only assortment exception and id-null department records remain separately unplaced', () => {
+  const { nodes } = canonicalAssortment();
+  const datedTimelineOnly = nodes
+    .filter(node => node.id !== null)
+    .filter(node => (node.arcKeys || []).length === 1 && node.arcKeys[0] === 'full_timeline')
+    .map(node => node.slug);
+  assert.deepEqual(datedTimelineOnly, ['podcasts']);
+
+  const arcLess = nodes
+    .filter(node => !(node.arcKeys || []).length)
+    .map(node => ({ slug: node.slug, id: node.id, department: node.department, workType: node.workType }));
+  assert.deepEqual(arcLess, [
+    { slug: 'phantom-opera-meta-review', id: null, department: 'media', workType: 'reviews' },
+    { slug: 'vxg-thread-round-5', id: null, department: 'media', workType: 'record-transcripts' },
+  ]);
+});
+
+test('TERRAIN-VIEW: shipped renderer consumes the contract and exposes semantic component metadata in the DOM', () => {
+  const source = pageSource();
+  assert.match(source, /LIVE_VIEW\.levels\.group\.overview/);
+  assert.match(source, /LIVE_VIEW\.levels\.group\.focus/);
+  assert.match(source, /LIVE_VIEW\.levels\.node\.marker/);
+  assert.match(source, /LIVE_VIEW\.levels\.node\.neighborhood/);
+  assert.match(source, /LIVE_VIEW\.levels\.system\.geometry/);
+  assert.match(source, /data-terrain-component/);
+  assert.match(source, /data-group-kind/);
+  assert.match(source, /data-membership-count/);
+  assert.match(source, /data-primary-count/);
+  assert.match(source, /data-projection-completeness/);
+  assert.match(source, /cross-cutting view · not a primary parent in Live/);
+  assert.match(source, /secondary membership · members live under other primary collections/);
+
+  assert.doesNotMatch(source, /var cardW = 240, cardH = 140, gap = 24/);
+  assert.doesNotMatch(source, /var focusRect = \{ x:165, y:/);
+  assert.doesNotMatch(source, /var NODE_NEIGHBORHOOD_LIMIT = 12;/);
+});
+
+// [VXG RealForever]
