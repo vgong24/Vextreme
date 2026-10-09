@@ -104,23 +104,27 @@
   .map-wrap.grabbing{ cursor:grabbing; }
   .map-hint{ position:absolute; left:16px; bottom:14px; z-index:2; font-family:var(--mono); font-size:10.5px; color:var(--ink-faint); pointer-events:none; max-width:60%; }
   .level-readout{
-    position:absolute; left:16px; top:14px; z-index:2; width:min(560px, calc(100% - 32px)); min-width:0;
-    font-family:var(--mono); color:var(--ink-muted); background:var(--panel); border:1px solid var(--line);
-    padding:8px 12px 7px; border-radius:12px; pointer-events:none;
+    position:absolute; left:14px; top:14px; z-index:6; width:68px; height:188px; min-width:0;
+    font-family:var(--mono); color:var(--ink-muted);
+    background:color-mix(in srgb, var(--panel) 82%, transparent); border:1px solid var(--line);
+    padding:14px 8px; border-radius:14px; pointer-events:none; opacity:.18;
+    transition:opacity .22s ease; backdrop-filter:blur(8px);
   }
-  .threshold-progress{ position:relative; min-width:0; padding-top:10px; }
-  .threshold-track{ position:absolute; left:0; right:0; top:8px; height:2px; border-radius:2px; background:var(--line-strong); }
-  .threshold-marker{ position:absolute; top:4px; width:10px; height:10px; border-radius:50%; background:var(--accent); border:2px solid var(--panel); transform:translateX(-50%); transition:left .12s ease; box-shadow:0 0 0 1px var(--accent-soft); }
-  .threshold-rail{ list-style:none; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin:0; padding:9px 0 0; }
-  .threshold-step{ min-width:0; font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint); text-align:center; }
-  .threshold-step:first-child{ text-align:left; }
-  .threshold-step:last-child{ text-align:right; }
+  .level-readout.is-active{ opacity:.94; }
+  .threshold-progress{ position:relative; width:100%; height:132px; min-width:0; }
+  .threshold-track{ position:absolute; top:0; bottom:0; left:11px; width:2px; border-radius:2px; background:var(--line-strong); }
+  .threshold-marker{ position:absolute; left:11px; width:10px; height:10px; border-radius:50%; background:var(--accent); border:2px solid var(--panel); transform:translate(-40%,-50%); transition:top .12s ease; box-shadow:0 0 0 1px var(--accent-soft); }
+  .threshold-rail{ list-style:none; position:absolute; inset:0; margin:0; padding:0; }
+  .threshold-step{ position:absolute; left:23px; max-width:34px; font-size:8px; line-height:1; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-faint); text-align:left; }
+  .threshold-step:nth-child(1){ top:-1px; }
+  .threshold-step:nth-child(2){ top:50%; transform:translateY(-50%); }
+  .threshold-step:nth-child(3){ bottom:-1px; }
   .threshold-step span{ display:block; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
   .threshold-step[data-relation="previous"]{ color:var(--ink-muted); }
   .threshold-step[data-relation="current"]{ color:var(--accent); font-weight:800; }
   .threshold-step[data-relation="next"]{ color:var(--ink); }
   .threshold-meter{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); clip-path:inset(50%); white-space:nowrap; }
-  .level-order{ margin-top:5px; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:9.5px; letter-spacing:.02em; text-transform:none; color:var(--ink-faint); }
+  .level-order{ margin-top:8px; font-size:8px; line-height:1.3; text-align:center; color:var(--ink-faint); }
   /* offset by the drawer's own width so it's never covered once the panel slides in —
      the drawer is an overlay over the map, not a reserved column, so this can't be
      solved by measuring map-wrap's width (it's always the full window now) */
@@ -130,9 +134,29 @@
   .load-state{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:var(--ink-muted); font-family:var(--mono); font-size:13px; z-index:3; background:var(--ground); }
 
   .evolution-layer{
-    position:absolute; inset:82px 16px 22px; z-index:4; overflow:auto; padding:0 0 28px;
+    position:absolute; inset:18px 18px 20px 92px; z-index:4; overflow:auto; padding:0 0 28px;
     cursor:default; scrollbar-gutter:stable; color:var(--ink);
   }
+  .entry-arrival{ min-height:100%; display:grid; place-items:center; padding:clamp(30px,7vh,74px) 0; }
+  .entry-shell{ width:min(980px,100%); margin:auto; text-align:center; }
+  .entry-kicker{ color:var(--accent); font:10px/1.4 var(--mono); letter-spacing:.16em; text-transform:uppercase; }
+  .entry-shell h2{ margin:10px 0 8px; font:650 clamp(28px,4.5vw,48px)/1.06 var(--sans); letter-spacing:-.035em; }
+  .entry-lede{ max-width:720px; margin:0 auto 28px; color:var(--ink-muted); font:14px/1.6 var(--sans); }
+  .entry-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; text-align:left; }
+  .entry-card{
+    min-width:0; min-height:172px; display:flex; flex-direction:column; align-items:flex-start; gap:9px;
+    border:1px solid var(--line-strong); border-radius:16px; padding:20px; background:var(--panel); color:var(--ink);
+    box-shadow:0 12px 34px color-mix(in srgb,var(--ink) 5%,transparent); font-family:var(--sans); text-align:left;
+  }
+  button.entry-card{ cursor:pointer; }
+  button.entry-card:not(:disabled):hover, button.entry-card:not(:disabled):focus-visible{ border-color:var(--accent); background:color-mix(in srgb,var(--panel) 88%,var(--accent-soft)); outline:none; }
+  .entry-icon{ font-size:19px; line-height:1; }
+  .entry-title{ margin-top:auto; font-size:19px; font-weight:700; letter-spacing:-.02em; }
+  .entry-copy{ color:var(--ink-muted); font-size:12px; line-height:1.5; }
+  .entry-state{ margin-top:2px; color:var(--accent); font:9px/1.2 var(--mono); letter-spacing:.08em; text-transform:uppercase; }
+  .entry-card:disabled{ opacity:.42; cursor:not-allowed; border-style:dashed; }
+  .entry-card:disabled .entry-state{ color:var(--ink-faint); }
+
   .evolution-layer[hidden]{ display:none; }
   .evolution-a-active .zoom-controls, .evolution-a-active .map-hint{ display:none; }
   .evo-shell{ width:min(1180px, 100%); margin:0 auto; }
@@ -231,7 +255,10 @@
   .evolution-reader-active .zoom-controls, .evolution-reader-active .map-hint, .evolution-reader-active .level-readout{ display:none; }
 
   @media (max-width:720px){
-    .evolution-layer{ inset:78px 10px 16px; }
+    .evolution-layer{ inset:10px 10px 14px 72px; }
+    .entry-arrival{ padding:18px 0 28px; }
+    .entry-grid{ grid-template-columns:1fr; gap:10px; }
+    .entry-card{ min-height:126px; padding:16px; }
     .evo-grid{ grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:10px; }
     .reader-toolbar{ padding:7px 10px; }
     .reader-standalone{ display:none; }
@@ -358,15 +385,16 @@
     .lens-toggle{ max-width:100%; flex-wrap:wrap; }
     .body{ flex-direction:column; }
     .panel{ width:100%; border-left:none; border-top:1px solid var(--line); max-height:44vh; }
-    .level-readout{ left:12px; right:12px; width:auto; max-width:none; padding:7px 9px 6px; }
-    .threshold-rail{ gap:5px; }
-    .threshold-step{ font-size:9.5px; letter-spacing:.04em; }
-    .level-order{ font-size:9px; }
+    .level-readout{ left:8px; top:10px; width:58px; height:168px; padding:11px 6px; }
+    .threshold-progress{ height:116px; }
+    .threshold-track, .threshold-marker{ left:9px; }
+    .threshold-step{ left:19px; max-width:31px; font-size:7px; }
+    .level-order{ font-size:7px; }
     .zoom-controls{ right:12px; bottom:12px; }
     .map-hint{ left:12px; right:52px; max-width:none; overflow-wrap:anywhere; }
   }
   @media (prefers-reduced-motion:reduce){
-    #world.snapping, .panel, .threshold-marker{ transition:none !important; }
+    #world.snapping, .panel, .threshold-marker, .level-readout{ transition:none !important; }
     .pop-in{ animation:none !important; }
   }
 </style>
@@ -608,6 +636,21 @@
   }
 }
 </script>
+<script type="application/json" id="terrain-entry-contract">
+{
+  "schemaVersion": "vextreme.terrain-entry/v1",
+  "home": { "label": "Vex Life", "behavior": "terrain-system-arrival" },
+  "documents": {
+    "receive-god": { "label": "Receive God", "path": "receive-god.html", "order": 1 },
+    "take-a-walk": { "label": "Take a Walk", "path": "take-a-walk.html", "order": 2 }
+  },
+  "choices": [
+    { "id": "receive-god", "label": "Receive God", "effect": "reader", "document": "receive-god", "enabled": true },
+    { "id": "archives", "label": "Explore the Archives", "effect": "terrain-group-overview", "enabled": true },
+    { "id": "vexsystem", "label": "For VexSystem", "effect": "reserved", "enabled": false }
+  ]
+}
+</script>
 <script id="terrain-search-logic">
 (function (root) {
   'use strict';
@@ -712,6 +755,7 @@
   var LIVE_VIEW = TERRAIN_VIEW_CONTRACT.profiles.live;
   var EVOLUTION_A_VIEW = TERRAIN_VIEW_CONTRACT.profiles['evolution-v1'];
   var CONTENT_GROUP_RELATION = TERRAIN_VIEW_CONTRACT.relationships.contentGroup;
+  var TERRAIN_ENTRY_CONTRACT = JSON.parse(document.getElementById('terrain-entry-contract').textContent);
 
   var NS = 'http://www.w3.org/2000/svg';
   function el(tag, attrs) { var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); return e; }
@@ -740,10 +784,10 @@
   var searchMatchIds = new Set();
   var journeySnapshot = null, historyReady = false, restoringHistory = false;
   var currentProfile = 'live';
-  var activeReaderId = null, hoveredEvolutionNodeId = null;
+  var activeReaderId = null, hoveredEvolutionNodeId = null, activeEntrySlug = null;
   var boundaryGesture = { key:null, direction:0, lastAt:0 };
   var BOUNDARY_GESTURE_IDLE_MS = 220, BOUNDARY_GESTURE_RESET_MS = 3000;
-  var gestureHintTimer = null;
+  var gestureHintTimer = null, depthRailTimer = null;
   var initialRoute = readInitialRoute();
 
   // ── fetch, then build the client-side view model on top of the real data ──
@@ -874,8 +918,8 @@
     mapWrap.setAttribute('data-terrain-profile', currentProfile);
     syncProfileControl();
 
-    if (currentProfile !== 'evolution-v1' && activeReaderId) {
-      closeEvolutionReader({ writeUrl:false, renderGroup:false });
+    if (currentProfile !== 'evolution-v1' && (activeReaderId || activeEntrySlug)) {
+      hideEvolutionLayer();
     }
 
     if (DATA && currentWorld === 'content' && currentProfile === 'evolution-v1' && levelIndex === 2) {
@@ -968,6 +1012,9 @@
   }
 
   function updateReaderChrome(node) {
+    document.getElementById('readerBack').textContent = '← Collection';
+    document.getElementById('readerPrev').hidden = false;
+    document.getElementById('readerNext').hidden = false;
     var members = evolutionReaderMembers();
     var index = members.findIndex(function (candidate) { return candidate.id === node.id; });
     var stage = typeof levelCtx.stageIdx === 'number' ? STAGES[levelCtx.stageIdx] : null;
@@ -979,12 +1026,84 @@
     document.getElementById('readerNext').disabled = !readerNeighbor(1);
   }
 
+  function entryDocument(slug) {
+    return TERRAIN_ENTRY_CONTRACT.documents[slug] || null;
+  }
+
+  function updateEntryReaderChrome(slug) {
+    var entry = entryDocument(slug);
+    if (!entry) return;
+    activeEntrySlug = slug;
+    document.getElementById('readerBack').textContent = '← Vex Life';
+    document.getElementById('readerTitle').textContent = entry.label;
+    document.getElementById('readerMeta').textContent = 'Vex Life · ordered entry';
+    document.getElementById('readerStandalone').href = entry.path;
+    document.getElementById('readerPrev').hidden = true;
+    document.getElementById('readerNext').hidden = true;
+  }
+
+  function openEntryReader(slug) {
+    var entry = entryDocument(slug);
+    if (!entry || currentWorld !== 'content' || currentProfile !== 'evolution-v1' || levelIndex !== 0) return;
+    activeReaderId = null;
+    hoveredEvolutionNodeId = null;
+    activeEntrySlug = null;
+    activeEntrySlug = slug;
+    resetBoundaryGesture();
+    hideGestureHint();
+    evolutionLayer.hidden = true;
+    evolutionReader.hidden = false;
+    svg.style.visibility = 'hidden';
+    mapWrap.classList.remove('evolution-arrival-active');
+    mapWrap.classList.add('evolution-a-active', 'evolution-reader-active');
+    updateEntryReaderChrome(slug);
+    evolutionReaderFrame.title = 'Reading ' + entry.label + ' inside Terrain';
+    evolutionReaderFrame.src = entry.path;
+  }
+
+  function closeEntryReader() {
+    activeEntrySlug = null;
+    evolutionReader.hidden = true;
+    evolutionReaderFrame.src = 'about:blank';
+    mapWrap.classList.remove('evolution-reader-active');
+    renderEvolutionAArrival();
+  }
+
+  function syncEntryReaderFromDocument() {
+    if (!activeEntrySlug) return;
+    var doc = evolutionReaderFrame.contentDocument;
+    if (!doc || !doc.documentElement) return;
+    var slug = doc.documentElement.getAttribute('data-vex-entry-document');
+    if (!entryDocument(slug)) return;
+    updateEntryReaderChrome(slug);
+    evolutionReaderFrame.title = 'Reading ' + entryDocument(slug).label + ' inside Terrain';
+  }
+
+  function enterArchivesFromArrival() {
+    activeEntrySlug = null;
+    activeReaderId = null;
+    evolutionReader.hidden = true;
+    evolutionReaderFrame.src = 'about:blank';
+    mapWrap.classList.remove('evolution-reader-active', 'evolution-arrival-active');
+    enterLevel(1, {});
+    syncPresentationUrl();
+    commitSemanticState({ label:'GROUPS', relationship:'entered', reason:'Explore Archives arrival choice' });
+  }
+
+  function handleTerrainEntryMessage(event) {
+    if (event.origin !== window.location.origin || event.source !== evolutionReaderFrame.contentWindow) return;
+    var data = event.data || {};
+    if (data.type !== 'vextreme.terrain-entry/v1') return;
+    if (data.action === 'archives') enterArchivesFromArrival();
+  }
+
   function openEvolutionReader(nodeId, options) {
     options = options || {};
     var node = byId[nodeId];
     if (!node || !node.live || !node.liveUrl || currentWorld !== 'content' || currentProfile !== 'evolution-v1') return;
     if (!evolutionReaderMembers().some(function (member) { return member.id === node.id; })) return;
 
+    activeEntrySlug = null;
     activeReaderId = node.id;
     hoveredEvolutionNodeId = node.id;
     resetBoundaryGesture();
@@ -1055,7 +1174,7 @@
   }
 
   function handleEvolutionReaderWheel(ev) {
-    if (!activeReaderId) return;
+    if (activeEntrySlug || !activeReaderId) return;
     if (!ev.deltaY || Math.abs(ev.deltaY) < Math.abs(ev.deltaX)) return;
     var direction = ev.deltaY > 0 ? 1 : -1;
     var doc = evolutionReaderFrame.contentDocument;
@@ -1097,6 +1216,10 @@
     try {
       var doc = evolutionReaderFrame.contentDocument;
       if (!doc) return;
+      if (activeEntrySlug) {
+        syncEntryReaderFromDocument();
+        return;
+      }
       doc.addEventListener('wheel', handleEvolutionReaderWheel, { passive:false });
     } catch (err) {
       showGestureHint('Embedded page scroll handoff is unavailable here · use Back / Previous / Next');
@@ -1113,7 +1236,7 @@
     resetBoundaryGesture();
     hideGestureHint();
     svg.style.visibility = '';
-    mapWrap.classList.remove('evolution-a-active', 'evolution-reader-active');
+    mapWrap.classList.remove('evolution-a-active', 'evolution-reader-active', 'evolution-arrival-active');
   }
 
   function evolutionPreviewHtml(node) {
@@ -1130,7 +1253,7 @@
     clearWorld();
     svg.style.visibility = 'hidden';
     mapWrap.classList.add('evolution-a-active');
-    mapWrap.classList.remove('evolution-reader-active');
+    mapWrap.classList.remove('evolution-reader-active', 'evolution-arrival-active');
     activeReaderId = null;
     evolutionReader.hidden = true;
     evolutionReaderFrame.src = 'about:blank';
@@ -1430,6 +1553,7 @@
   }
   function enterLevel(idx, ctx) {
     levelIndex = idx; levelCtx = ctx || {};
+    revealDepthRail();
     var fit = fitRectToView(OVERVIEW_LEVELS[idx].rect(levelCtx), OVERVIEW_LEVELS[idx].fill);
     levelBaseScale = fit.scale;
     snapTo(fit);
@@ -1519,7 +1643,38 @@
     restoringHistory = false;
   }
 
+  function renderEvolutionAArrival() {
+    clearWorld();
+    svg.style.visibility = 'hidden';
+    activeReaderId = null;
+    activeEntrySlug = null;
+    hoveredEvolutionNodeId = null;
+    evolutionReader.hidden = true;
+    evolutionReaderFrame.src = 'about:blank';
+    evolutionLayer.hidden = false;
+    mapWrap.classList.add('evolution-a-active', 'evolution-arrival-active');
+    mapWrap.classList.remove('evolution-reader-active');
+
+    evolutionLayer.innerHTML = '<section class="entry-arrival" data-terrain-entry="arrival">'
+      + '<div class="entry-shell">'
+      + '<div class="entry-kicker">Vex Life · Terrain</div>'
+      + '<h2>How do you want to enter?</h2>'
+      + '<p class="entry-lede">Begin with the ordered path into Vex Life, or open the archive terrain and explore the record by collection.</p>'
+      + '<div class="entry-grid">'
+      + '<button class="entry-card" type="button" data-entry-action="receive-god"><span class="entry-icon">✦</span><span class="entry-title">Receive God</span><span class="entry-copy">Begin the ordered Vex Life entry. Take a Walk comes after this step, inside the experience.</span><span class="entry-state">Begin here</span></button>'
+      + '<button class="entry-card" type="button" data-entry-action="archives"><span class="entry-icon">🗂️</span><span class="entry-title">Explore the Archives</span><span class="entry-copy">Open the next Terrain layer and explore the repository-hosted record by collection.</span><span class="entry-state">Open collections</span></button>'
+      + '<button class="entry-card" type="button" data-entry-action="vexsystem" disabled aria-disabled="true"><span class="entry-icon">◌</span><span class="entry-title">For VexSystem</span><span class="entry-copy">Reserved collaboration slot for the larger VexSystem Whole convergence.</span><span class="entry-state">Reserved</span></button>'
+      + '</div></div></section>';
+
+    evolutionLayer.querySelector('[data-entry-action="receive-god"]').addEventListener('click', function () { openEntryReader('receive-god'); });
+    evolutionLayer.querySelector('[data-entry-action="archives"]').addEventListener('click', enterArchivesFromArrival);
+  }
+
   function renderSystemBand() {
+    if (currentWorld === 'content' && currentProfile === 'evolution-v1') {
+      renderEvolutionAArrival();
+      return;
+    }
     hideEvolutionLayer();
     clearWorld();
     var worst = 'good';
@@ -2129,6 +2284,14 @@
     return base;
   }
 
+  function revealDepthRail() {
+    var readout = document.getElementById('levelReadout');
+    if (!readout || mapWrap.classList.contains('evolution-reader-active')) return;
+    readout.classList.add('is-active');
+    if (depthRailTimer) window.clearTimeout(depthRailTimer);
+    depthRailTimer = window.setTimeout(function () { readout.classList.remove('is-active'); }, 1500);
+  }
+
   function updateReadout() {
     var notes = (WORLDS[currentWorld] && WORLDS[currentWorld].orderNote) || {};
     var orderNote = notes[currentLens] || notes.all || 'ordered by real sequence';
@@ -2142,7 +2305,7 @@
     document.getElementById('levelReadout').innerHTML =
       '<div class="threshold-progress">' +
         '<div class="threshold-track" aria-hidden="true"></div>' +
-        '<span class="threshold-marker" aria-hidden="true" style="left:' + position.toFixed(2) + '%"></span>' +
+        '<span class="threshold-marker" aria-hidden="true" style="top:' + position.toFixed(2) + '%"></span>' +
         '<span class="threshold-meter" role="progressbar" aria-label="' + esc(currentLevelName()) + '" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + Math.round(position) + '"></span>' +
         '<ol class="threshold-rail">' + steps + '</ol>' +
       '</div>' +
@@ -2153,7 +2316,7 @@
   // never straight back to the top. Entering a deeper level always snaps to
   // that level's own full framing first. ─────────────────────────────────────
   function handleZoomAt(mx, my, newScale) {
-    if (isEvolutionAGroup() || activeReaderId) return;
+    if (isEvolutionAGroup() || activeReaderId || activeEntrySlug) return;
     var world0 = screenToWorld(mx, my);
     var ratio = newScale / levelBaseScale;
 
@@ -2202,8 +2365,12 @@
     evolutionReader.addEventListener('mousedown', function (ev) { ev.stopPropagation(); });
     evolutionReader.addEventListener('click', function (ev) { ev.stopPropagation(); });
     evolutionReaderFrame.addEventListener('load', wireEvolutionReaderDocument);
+    window.addEventListener('message', handleTerrainEntryMessage);
 
-    document.getElementById('readerBack').addEventListener('click', function () { closeEvolutionReader(); });
+    document.getElementById('readerBack').addEventListener('click', function () {
+      if (activeEntrySlug) closeEntryReader();
+      else closeEvolutionReader();
+    });
     document.getElementById('readerPrev').addEventListener('click', function () {
       var previous = readerNeighbor(-1); if (previous) openEvolutionReader(previous.id);
     });
@@ -2212,7 +2379,8 @@
     });
 
     mapWrap.addEventListener('wheel', function (ev) {
-      if (currentWorld === 'content' && currentProfile === 'evolution-v1' && (isEvolutionAGroup() || activeReaderId)) {
+      revealDepthRail();
+      if (currentWorld === 'content' && currentProfile === 'evolution-v1' && (isEvolutionAGroup() || activeReaderId || activeEntrySlug)) {
         ev.preventDefault();
         return;
       }
@@ -2231,9 +2399,13 @@
     });
     window.addEventListener('mouseup', function () { dragging = false; mapWrap.classList.remove('grabbing'); });
     mapWrap.addEventListener('click', function () { if (!dragMoved && pinnedId) togglePin(pinnedId); });
+    mapWrap.addEventListener('pointermove', function (ev) {
+      var rect = mapWrap.getBoundingClientRect();
+      if (ev.clientX - rect.left < 96 && ev.clientY - rect.top < 220) revealDepthRail();
+    });
 
-    document.getElementById('zoomIn').addEventListener('click', function () { var vp = viewportSize(); handleZoomAt(vp.w / 2, vp.h / 2, view.scale * 1.3); });
-    document.getElementById('zoomOut').addEventListener('click', function () { var vp = viewportSize(); handleZoomAt(vp.w / 2, vp.h / 2, view.scale * 0.75); });
+    document.getElementById('zoomIn').addEventListener('click', function () { revealDepthRail(); var vp = viewportSize(); handleZoomAt(vp.w / 2, vp.h / 2, view.scale * 1.3); });
+    document.getElementById('zoomOut').addEventListener('click', function () { revealDepthRail(); var vp = viewportSize(); handleZoomAt(vp.w / 2, vp.h / 2, view.scale * 0.75); });
     document.getElementById('zoomReset').addEventListener('click', function () {
       resetView();
       commitSemanticState({ label: 'VEXTREME', relationship: 'reset to', reason: 'reset control' });
@@ -2306,7 +2478,7 @@
   }
 }());
 </script>
-<script>window.VEXTREME_OVERRIDE = { bodyWrap: false };</script>
+<script>window.VEXTREME_OVERRIDE = { bodyWrap: false, fabWidgets: { map: false } };</script>
 <script src="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/lib/shell.js"></script>
 </body>
 </html>
