@@ -873,7 +873,15 @@
     evolutionLayer.querySelectorAll('[data-evo-detail]').forEach(function (button) {
       button.addEventListener('click', function () {
         var node = byId[button.getAttribute('data-evo-detail')];
-        if (node) renderPanel(node);
+        if (!node) return;
+        renderPanel(node);
+        var panel = document.getElementById('panel');
+        var close = document.createElement('button');
+        close.className = 'unpin-btn';
+        close.type = 'button';
+        close.textContent = '✕ close';
+        close.addEventListener('click', function () { renderPanel(null); });
+        panel.insertBefore(close, panel.firstChild);
       });
     });
   }
