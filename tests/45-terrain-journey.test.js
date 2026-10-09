@@ -171,8 +171,8 @@ test('TERRAIN-JOURNEY: Evolution A gives scrollable content priority and require
   assert.match(reader, /boundaryGestureReady\('reader-next:' \+ activeReaderId, 1\)/);
   assert.match(reader, /boundaryGestureReady\('reader-end:' \+ activeReaderId, 1\)/);
 
-  assert.match(source, /BOUNDARY_GESTURE_IDLE_MS = 180/);
-  assert.match(source, /BOUNDARY_GESTURE_RESET_MS = 1200/);
+  assert.match(source, /BOUNDARY_GESTURE_IDLE_MS = 220/);
+  assert.match(source, /BOUNDARY_GESTURE_RESET_MS = 3000/);
   assert.match(source, /gap < BOUNDARY_GESTURE_IDLE_MS/);
   assert.match(source, /currentProfile === 'evolution-v1' && levelIndex === 2/);
   assert.match(source, /enterLevel\(1, \{ stageIdx:stageIdx \}\)/);
