@@ -124,8 +124,8 @@ jobs:
           async function verifyArrival(page, label) {
             await page.waitForSelector('[data-terrain-entry="arrival"]');
             await page.waitForSelector('#vex-spiral-trigger');
-            await page.waitForSelector('#vex-theme-orb');
-            await page.waitForSelector('#vex-lang-fab');
+            await page.waitForSelector('#vex-theme-orb', { state:'attached' });
+            await page.waitForSelector('#vex-lang-fab', { state:'attached' });
             const metrics = await arrivalMetrics(page);
             assert(metrics.view === 'content' && metrics.profile === 'evolution-v1', label + ': wrong Terrain route');
             assert(metrics.horizontalOverflow <= 1, label + ': horizontal overflow ' + metrics.horizontalOverflow);
@@ -163,6 +163,8 @@ jobs:
 
             await page.click('#vex-spiral-trigger');
             await page.waitForFunction(() => document.getElementById('vex-spiral-trigger')?.getAttribute('aria-expanded') === 'true');
+            await page.waitForSelector('#vex-theme-orb', { state:'visible' });
+            await page.waitForSelector('#vex-lang-fab', { state:'visible' });
             const opened = await arrivalMetrics(page);
             assert(opened.groupChildren === 2 && !opened.mapOrbPresent, name + ': FAB open state owns wrong children');
             await page.screenshot({path:path.join(OUT, name + '-arrival-fab-open.png'), fullPage:false});
