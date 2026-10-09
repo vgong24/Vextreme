@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 128,
+    "total": 130,
     "healthy": 3,
-    "attention": 119,
-    "critical": 6,
+    "attention": 120,
+    "critical": 7,
     "sorted": 89,
     "withFab": 115,
     "withIdentity": 96,
     "withScreenshots": 11,
-    "withMetaDescription": 93
+    "withMetaDescription": 95
   },
   "pages": {
     "a-conversation-with-pastor-jacob": {
@@ -3778,6 +3778,61 @@
         ]
       }
     },
+    "receive-god": {
+      "slug": "receive-god",
+      "title": "receive-god",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 1,
+        "shell": false,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "missing"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "A direct Vex Life entry for receiving God, preserving the original invitation and its ordered onward path into Take a Walk."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "fab",
+          "uncurated",
+          "identity",
+          "screenshot"
+        ]
+      }
+    },
     "restoration-protocol": {
       "slug": "restoration-protocol",
       "title": "Restoration Protocol",
@@ -4401,6 +4456,63 @@
       },
       "discovery": {
         "metaDescription": ""
+      },
+      "health": {
+        "state": "critical",
+        "blockers": [
+          "isolated"
+        ],
+        "gaps": [
+          "fab",
+          "uncurated",
+          "identity",
+          "screenshot"
+        ]
+      }
+    },
+    "take-a-walk": {
+      "slug": "take-a-walk",
+      "title": "take-a-walk",
+      "placement": {
+        "state": "uncurated",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": false,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "missing"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The preserved Vex Life Take a Walk experience, projected into a repository-hosted page for the ordered Terrain entry flow."
       },
       "health": {
         "state": "critical",
