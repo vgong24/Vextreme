@@ -1,0 +1,42 @@
+name: VexSite Regenerate P1 Projections
+
+on:
+  push:
+    branches:
+      - VXG-100926-chatgpt-vexsite-lattice-runtime-coverage
+    paths:
+      - '.github/workflows/vexsite-regenerate-p1.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: VXG-100926-chatgpt-vexsite-lattice-runtime-coverage
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - run: npm ci
+      - name: Regenerate exact lattice-dependent projections
+        run: |
+          node lib/build-status.js
+          node lib/build-terrain-map.js
+      - name: Prove bounded generated delta
+        run: |
+          changed="$(git status --short | awk '{print $2}' | sort)"
+          expected="$(printf '%s\n' data/status.json data/terrain-map.json | sort)"
+          printf 'changed:\n%s\n' "$changed"
+          test "$changed" = "$expected"
+      - name: Commit generated consequences
+        run: |
+          git config user.name "VexGPT"
+          git config user.email "victor.gong@vextreme24.com"
+          git add data/status.json data/terrain-map.json
+          git commit --signoff -m "[VexSite Template] Regenerate lattice-derived projections [VXG RealForever]"
+          git push origin HEAD:VXG-100926-chatgpt-vexsite-lattice-runtime-coverage
