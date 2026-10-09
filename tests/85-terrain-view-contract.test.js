@@ -119,6 +119,18 @@ test('TERRAIN-VIEW: dated content has one known timeline-only assortment excepti
   ]);
 });
 
+test('TERRAIN-VIEW: every shipped inline JavaScript block still parses after contract extraction', () => {
+  const source = pageSource();
+  const scripts = [...source.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g)]
+    .filter(match => !/type="application\/json"/.test(match[1]) && !/\bsrc=/.test(match[1]))
+    .map(match => match[2])
+    .filter(code => code.trim());
+  assert.ok(scripts.length >= 2, 'expected search helper plus Terrain runtime inline scripts');
+  scripts.forEach((code, index) => {
+    assert.doesNotThrow(() => new Function(code), 'inline script ' + index + ' must parse');
+  });
+});
+
 test('TERRAIN-VIEW: shipped renderer consumes the contract and exposes semantic component metadata in the DOM', () => {
   const source = pageSource();
   assert.match(source, /LIVE_VIEW\.levels\.group\.overview/);
