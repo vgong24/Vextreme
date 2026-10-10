@@ -9,6 +9,7 @@
 
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const crypto = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -18,12 +19,31 @@ const app = fs.readFileSync(path.join(ROOT, 'vexsystem', 'app.js'), 'utf8');
 const projectionSource = fs.readFileSync(path.join(ROOT, 'lib', 'vexsystem', 'projection.js'), 'utf8');
 const css = fs.readFileSync(path.join(ROOT, 'vexsystem', 'styles.css'), 'utf8');
 const browserProof = fs.readFileSync(path.join(ROOT, 'vexsystem', 'proof', 'browser-proof.js'), 'utf8');
+const atlasSource = fs.readFileSync(path.join(ROOT, 'data', 'vexsystem', 'atlas.json'), 'utf8');
 
-test('VEXSYSTEM PAGE: standalone surface consumes the canonical public projection core and atlas', () => {
-  assert.match(html, /src="\.\.\/lib\/vexsystem\/projection\.js"/);
-  assert.match(html, /src="\.\/app\.js"/);
-  assert.match(app, /fetch\('\.\.\/data\/vexsystem\/atlas\.json'/);
+function gitBlobSha(source) {
+  const bytes = Buffer.from(source, 'utf8');
+  return crypto.createHash('sha1').update(`blob ${bytes.length}\\0`).update(bytes).digest('hex');
+}
+
+test('VEXSYSTEM PAGE: standalone surface consumes content-addressed canonical projection, renderer, styles, and atlas', () => {
+  assert.ok(html.includes(`href="./styles.css?v=${gitBlobSha(css)}"`));
+  assert.ok(html.includes(`src="../lib/vexsystem/projection.js?v=${gitBlobSha(projectionSource)}"`));
+  assert.ok(html.includes(`src="./app.js?v=${gitBlobSha(app)}"`));
+  assert.ok(app.includes(`const VEXSYSTEM_ATLAS_BLOB = '${gitBlobSha(atlasSource)}';`));
+  assert.match(app, /fetch\(VEXSYSTEM_ATLAS_URL, \{ cache: 'no-store' \}\)/);
   assert.match(app, /projectionApi\.assertAtlas\(value\)/);
+  assert.doesNotMatch(html, /href="\.\/styles\.css"/);
+  assert.doesNotMatch(html, /src="\.\.\/lib\/vexsystem\/projection\.js"/);
+  assert.doesNotMatch(html, /src="\.\/app\.js"/);
+});
+
+test('VEXSYSTEM PAGE: renderer DOM contract is complete before any replaceChildren path can run', () => {
+  const ids = [...app.matchAll(/document\\.getElementById\\('([^']+)'\\)/g)].map(match => match[1]);
+  assert.ok(ids.length > 20);
+  for (const id of new Set(ids)) {
+    assert.ok(html.includes(`id="${id}"`), `missing VexSystem renderer DOM coordinate #${id}`);
+  }
 });
 
 test('VEXSYSTEM PAGE: graph has an explicit equivalent text/keyboard surface', () => {
