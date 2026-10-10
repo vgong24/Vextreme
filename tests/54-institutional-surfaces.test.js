@@ -274,7 +274,10 @@ test('INSTITUTIONAL-SURFACES: the home and English support domain are active', (
   assert.ok(!getRecordPageSlugs().includes('vextreme-home'));
   assert.ok(fs.existsSync(path.join(ROOT, 'pages', 'vex-support.html')));
   const rootIndex = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
-  assert.match(rootIndex, /href="https:\/\/vgong24\.github\.io\/Vextreme\/pages\/vextreme-home\.html">About Vextreme<\/a>/);
+  assert.match(rootIndex, /window\.location\.replace\('https:\/\/vgong24\.github\.io\/Vextreme\/pages\/terrain-map\.html'\)/,
+    'the public repository root must enter the accepted Terrain home without creating a redirect history stop');
+  assert.match(rootIndex, /href="https:\/\/vgong24\.github\.io\/Vextreme\/pages\/vextreme-home\.html">About Vextreme<\/a>/,
+    'generated archive fallback still advertises active institutional destinations');
   assert.match(rootIndex, /href="https:\/\/vgong24\.github\.io\/Vextreme\/pages\/vex-support\.html">Support Vextreme<\/a>/);
 });
 
