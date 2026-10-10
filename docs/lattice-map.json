@@ -2227,15 +2227,13 @@
         "components/section-toggle.js (gated v1 behavior)",
         "components/bc-nav.js (gated v1 behavior)",
         "widgets/vex-fab.js (Spiral trigger/group owner; loaded first)",
-        "widgets/fab-links.js (configured reusable link child; loaded only when fabLinks exist)",
         "widgets/fab-lang.js (optional Spiral child)",
         "widgets/fab-theme.js (optional Spiral child)",
         "widgets/fab-map.js (optional Spiral child)"
       ],
       "writes": [
         "DOM: #vex-site-nav / #vex-nav-actions and optional .vex-page-body composition",
-        "window.VEXTREME_ENV / VEXTREME_BASE_URL / VEXTREME_ARCS / VEXTREME_PAGES runtime globals",
-        "window.VEX_FAB_LINKS (resolved per-page configured link items consumed by widgets/fab-links.js)"
+        "window.VEXTREME_ENV / VEXTREME_BASE_URL / VEXTREME_ARCS / VEXTREME_PAGES runtime globals"
       ],
       "loadedBy": [
         "lib/shell.js (one-tag GitHub Pages bootstrap)"
@@ -2259,7 +2257,6 @@
         ],
         "FAB load order or default widget set changed": [
           "widgets/vex-fab.js",
-          "widgets/fab-links.js",
           "widgets/fab-lang.js",
           "widgets/fab-theme.js",
           "widgets/fab-map.js",
