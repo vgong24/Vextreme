@@ -1098,6 +1098,39 @@
     if (data.action === 'archives') enterArchivesFromArrival();
   }
 
+  function stageIndexForRouteNode(node) {
+    if (!node || !Array.isArray(node.arcKeys)) return -1;
+    return STAGES.findIndex(function (stage) { return node.arcKeys.indexOf(stage.key) !== -1; });
+  }
+
+  function openRepositoryRouteInTerrain(slug) {
+    if (slug === 'archives') {
+      enterArchivesFromArrival();
+      return true;
+    }
+    var node = ALL.find(function (candidate) { return candidate.slug === slug && candidate.live && candidate.liveUrl; });
+    if (!node) return false;
+    var stageIdx = stageIndexForRouteNode(node);
+    if (stageIdx < 0) return false;
+    levelIndex = 1;
+    levelCtx = { stageIdx:stageIdx };
+    openEvolutionReader(node.id, { writeUrl:false });
+    syncPresentationUrl();
+    commitSemanticState({ label:node.title || node.slug, nodeId:node.id, relationship:'opened from preserved route', reason:'Terrain embedded repository route resolver' });
+    return true;
+  }
+
+  function handleEvolutionReaderRouteClick(event) {
+    var anchor = event.target && event.target.closest ? event.target.closest('a[href]') : null;
+    if (!anchor) return;
+    var href = anchor.getAttribute('href') || '';
+    var match = /^\/([a-z0-9][a-z0-9-]*)(?:[?#].*)?$/i.exec(href);
+    if (!match) return;
+    event.preventDefault();
+    if (openRepositoryRouteInTerrain(match[1])) return;
+    showGestureHint('Route “' + match[1] + '” is preserved but not live in Vextreme yet');
+  }
+
   function openEvolutionReader(nodeId, options) {
     options = options || {};
     var node = byId[nodeId];
@@ -1217,6 +1250,7 @@
     try {
       var doc = evolutionReaderFrame.contentDocument;
       if (!doc) return;
+      doc.addEventListener('click', handleEvolutionReaderRouteClick);
       if (activeEntrySlug) {
         syncEntryReaderFromDocument();
         return;

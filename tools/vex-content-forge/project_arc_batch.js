@@ -82,6 +82,47 @@ function externalizeAssetReferences(root, catalog) {
   });
 }
 
+function setNodeAttr(node, name, value) {
+  const attrsList = node.attrs || (node.attrs = []);
+  const current = attrsList.find(item => item.name === name);
+  if (current) current.value = value;
+  else attrsList.push({ name, value });
+}
+function removeNodeAttr(node, name) {
+  node.attrs = (node.attrs || []).filter(item => item.name !== name);
+}
+function repositoryPageSlugs(root) {
+  const dir = path.join(root, 'pages');
+  if (!fs.existsSync(dir)) return new Set();
+  return new Set(fs.readdirSync(dir).filter(file => file.endsWith('.html')).map(file => file.replace(/\.html$/, '')));
+}
+function rewriteRepositoryRoutes(root, selected, additionalSlugs = []) {
+  const live = repositoryPageSlugs(root);
+  for (const slug of additionalSlugs || []) live.add(slug);
+  walk(selected, current => {
+    if (current.tagName !== 'a') return;
+    const href = attrs(current).href;
+    if (!href || !/^\/(?!\/|Vextreme\/)/.test(href)) return;
+    const route = /^\/([a-z0-9][a-z0-9-]*)([?#].*)?$/i.exec(href);
+    if (!route) return;
+    const slug = route[1];
+    const suffix = route[2] || '';
+    if (slug === 'archives') {
+      setNodeAttr(current, 'href', '../index.html' + suffix);
+      setNodeAttr(current, 'data-vex-route-state', 'repository-live');
+      return;
+    }
+    if (live.has(slug)) {
+      setNodeAttr(current, 'href', slug + '.html' + suffix);
+      setNodeAttr(current, 'data-vex-route-state', 'repository-live');
+      return;
+    }
+    removeNodeAttr(current, 'href');
+    setNodeAttr(current, 'data-vex-route-state', 'held-not-ported');
+    setNodeAttr(current, 'aria-disabled', 'true');
+  });
+}
+
 function walk(node, visit) {
   if (!node) return;
   visit(node);
@@ -251,6 +292,7 @@ function validatePage(page, strings, member) {
     invariant(strings[key]?.strings?.en?.text !== undefined, 'LOCALIZATION_SOURCE_MISSING', key);
   }
   invariant(!ROOT_RELATIVE_ASSET_REF.test(page), 'ROOT_RELATIVE_ASSET_REFERENCE', member.slug);
+  invariant(!/<a\b[^>]*\bhref=["']\/(?!\/|Vextreme\/)/i.test(page), 'ROOT_RELATIVE_INTERNAL_ROUTE', member.slug);
   invariant((page.match(/<h1(?:\s|>)/g) || []).length === 1, 'DOCUMENT_H1_COUNT_INVALID', member.slug);
   invariant(page.includes('id="arcNavMount"') && page.includes(`../dist/vextreme-${member.slug}.js`), 'RUNTIME_BINDING_MISSING', member.slug);
 }
@@ -271,6 +313,7 @@ function projectMember(root, member, nodesBySlug, assetCatalog) {
   const selected = member.adapterClass === 'SQS_AUTHORED_BODY' ? selectSqsBody(document) : selectAuthoredMain(document);
   const styles = member.adapterClass === 'AUTHORED_MAIN_FRAGMENT' ? authoredStyles(document) : [];
   const h1Seen = sanitize(selected, member.adapterClass);
+  rewriteRepositoryRoutes(root, selected);
   const synthesizeCanonicalHeading = member.adapterClass === 'AUTHORED_MAIN_FRAGMENT' && !h1Seen;
   const leaves = textLeaves(selected);
   invariant(leaves.length, 'AUTHORED_TEXT_EMPTY', member.slug);
@@ -420,4 +463,4 @@ if (require.main === module) {
   try { process.exitCode = main(cliOptions()).accounting.complete ? 0 : 1; }
   catch (error) { process.stderr.write(`${error.stack || error.message}\n`); process.exitCode = 1; }
 }
-module.exports = { ASSET_CATALOG_REL, ASSET_FILENAME, DEFAULT_ROOT, FORMATION_REL, GENERATOR_REF, ROOT_RELATIVE_ASSET_REF, ProjectionInvariantError, attrs, cliOptions, externalizeAssetReferences, findAll, findFirst, gitBlobSha, loadAssetCatalog, main, rawText, resolveAssetReference, rewriteAssetText, selectAuthoredMain, selectSqsBody, sha256, textLeaves, validateFormation };
+module.exports = { ASSET_CATALOG_REL, ASSET_FILENAME, DEFAULT_ROOT, FORMATION_REL, GENERATOR_REF, ROOT_RELATIVE_ASSET_REF, ProjectionInvariantError, attrs, cliOptions, externalizeAssetReferences, findAll, findFirst, gitBlobSha, loadAssetCatalog, main, rawText, repositoryPageSlugs, resolveAssetReference, rewriteAssetText, rewriteRepositoryRoutes, selectAuthoredMain, selectSqsBody, sha256, textLeaves, validateFormation };

@@ -178,6 +178,16 @@ test('TERRAIN-VIEW: Evolution A is a URL-addressable presentation state over sha
 });
 
 
+test('TERRAIN-VIEW: embedded preserved routes resolve through live Terrain nodes instead of escaping the project root', () => {
+  const source = pageSource();
+  assert.match(source, /function handleEvolutionReaderRouteClick\(event\)/);
+  assert.match(source, /function openRepositoryRouteInTerrain\(slug\)/);
+  assert.match(source, /stageIndexForRouteNode\(node\)/);
+  assert.match(source, /doc\.addEventListener\('click', handleEvolutionReaderRouteClick\)/);
+  assert.match(source, /relationship:'opened from preserved route'/);
+  assert.match(source, /preserved but not live in Vextreme yet/);
+});
+
 test('TERRAIN-VIEW: ordered entry reader hidden side controls stay visually absent', () => {
   const source = pageSource();
   assert.match(source, /\.reader-side\[hidden\]\{\s*display:none;\s*\}/);
