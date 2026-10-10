@@ -234,6 +234,27 @@ test('TERRAIN-VIEW: accepted Content quiet chrome and wheel boundaries preserve 
   assert.match(source, /return to the collection/);
 });
 
+test('TERRAIN-VIEW: public Content hides engineering evidence until the existing Inspect state is opened', () => {
+  const source = pageSource();
+
+  assert.match(source, /\.terrain-content-quiet:not\(\.terrain-inspect-open\) \.evo-card-meta,/);
+  assert.match(source, /\.terrain-content-quiet:not\(\.terrain-inspect-open\) \.stage-status-dot,/);
+  assert.match(source, /\.terrain-content-quiet:not\(\.terrain-inspect-open\) \.stage-density-track,/);
+  assert.match(source, /\.terrain-content-quiet:not\(\.terrain-inspect-open\) \.stage-density-fill\{ display:none; \}/);
+
+  assert.match(source, /terrainInspectToggle\.addEventListener\('click', function \(\) \{[\s\S]*classList\.toggle\('terrain-inspect-open'\)/,
+    'the already-shipped Inspect toggle remains the reveal control');
+
+  assert.match(source, /'<div class="evo-card-meta">' \+ chips \+ '<\/div>'/,
+    'technical card evidence remains rendered rather than deleted');
+  assert.match(source, /class:'stage-status-dot'/);
+  assert.match(source, /class:'stage-density-track'/);
+  assert.match(source, /class:'stage-density-fill'/);
+
+  assert.doesNotMatch(source, /\.evo-card-meta\s*\{\s*display:none/,
+    'evidence must not be globally hidden from Code or Inspect contexts');
+});
+
 test('TERRAIN-VIEW: embedded preserved routes resolve root and repository-relative page links through live Terrain nodes', () => {
   const source = pageSource();
   assert.match(source, /function repositorySlugFromHref\(href\)/);
