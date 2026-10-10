@@ -1212,6 +1212,26 @@ async function runRuntime(origin, cdp) {
 }
 
 
+async function placeExplorerInViewport(cdp, page, label) {
+  await evaluate(
+    cdp,
+    page.sessionId,
+    "(() => {" +
+      "const target = document.querySelector('.vs-explore');" +
+      "if (!target) return false;" +
+      "const top = Math.max(0, target.getBoundingClientRect().top + window.scrollY - 70);" +
+      "window.scrollTo(0, top);" +
+      "return true;" +
+    "})()"
+  );
+  await waitFor(
+    cdp,
+    page.sessionId,
+    "window.scrollY > 0 && document.querySelector('.vs-explore') && document.querySelector('.vs-explore').getBoundingClientRect().top >= 50 && document.querySelector('.vs-explore').getBoundingClientRect().top <= 120",
+    label
+  );
+}
+
 async function applyScenario(cdp, page, scenario) {
   if (scenario === 'formation-desktop' || scenario === 'history-desktop') {
     await evaluate(
@@ -1225,27 +1245,18 @@ async function applyScenario(cdp, page, scenario) {
       "new URL(location.href).searchParams.get('question') === 'HISTORY'",
       scenario
     );
-    await evaluate(
-      cdp,
-      page.sessionId,
-      "(() => {" +
-        "const target = document.querySelector('.vs-explore');" +
-        "if (!target) return false;" +
-        "const top = Math.max(0, target.getBoundingClientRect().top + window.scrollY - 70);" +
-        "window.scrollTo(0, top);" +
-        "return true;" +
-      "})()"
-    );
-    await waitFor(
-      cdp,
-      page.sessionId,
-      "window.scrollY > 0 && document.querySelector('.vs-explore') && document.querySelector('.vs-explore').getBoundingClientRect().top >= 50 && document.querySelector('.vs-explore').getBoundingClientRect().top <= 120",
-      'Formation deepening viewport'
-    );
+    await placeExplorerInViewport(cdp, page, 'History explorer viewport');
     return;
   }
 
-  if (scenario === 'blueprint-desktop' || scenario === 'blueprint-mobile' || scenario === 'receiver-desktop' || scenario === 'receiver-mobile') {
+  if (
+    scenario === 'blueprint-desktop' ||
+    scenario === 'blueprint-mobile' ||
+    scenario === 'receiver-desktop' ||
+    scenario === 'receiver-mobile' ||
+    scenario === 'receiver-map-desktop' ||
+    scenario === 'receiver-map-mobile'
+  ) {
     await evaluate(
       cdp,
       page.sessionId,
@@ -1257,12 +1268,35 @@ async function applyScenario(cdp, page, scenario) {
       "new URL(location.href).searchParams.get('question') === 'PUT_TOGETHER'",
       scenario
     );
+    if (scenario === 'receiver-map-desktop' || scenario === 'receiver-map-mobile') {
+      await placeExplorerInViewport(cdp, page, 'Receiver-first explorer viewport');
+    }
+    return;
+  }
+
+  if (scenario === 'health-map-desktop') {
+    await evaluate(
+      cdp,
+      page.sessionId,
+      "document.querySelector('[data-question=\"HEALTHY\"]').click()"
+    );
+    await waitFor(
+      cdp,
+      page.sessionId,
+      "new URL(location.href).searchParams.get('question') === 'HEALTHY'",
+      scenario
+    );
+    await placeExplorerInViewport(cdp, page, 'Health-question explorer viewport');
   }
 }
 
 async function screenshot(origin, cdp, scenario) {
   const terrainScenario = scenario === 'terrain-entry-desktop' || scenario === 'terrain-entry-mobile';
-  const mobile = scenario === 'blueprint-mobile' || scenario === 'receiver-mobile' || scenario === 'terrain-entry-mobile';
+  const mobile =
+    scenario === 'blueprint-mobile' ||
+    scenario === 'receiver-mobile' ||
+    scenario === 'receiver-map-mobile' ||
+    scenario === 'terrain-entry-mobile';
   const viewport = mobile
     ? { width: 390, height: 844, mobile: true }
     : { width: 1440, height: 900, mobile: false };
@@ -1280,7 +1314,13 @@ async function screenshot(origin, cdp, scenario) {
   if (terrainScenario) assertTerrainArrivalSnapshot(snapshot, scenario);
   else assertRuntimeSnapshot(snapshot, scenario);
   if (
-    (scenario === 'formation-desktop' || scenario === 'history-desktop') &&
+    (
+      scenario === 'formation-desktop' ||
+      scenario === 'history-desktop' ||
+      scenario === 'receiver-map-desktop' ||
+      scenario === 'receiver-map-mobile' ||
+      scenario === 'health-map-desktop'
+    ) &&
     (
       snapshot.scrollY == null ||
       snapshot.scrollY <= 0 ||
@@ -1291,7 +1331,7 @@ async function screenshot(origin, cdp, scenario) {
   ) {
     fail(
       'VEXSYSTEM_BROWSER_FORMATION_CAPTURE_NOT_DEEPENED',
-      'Formation screenshot did not move the optional deepening surface into the captured viewport.',
+      'Explorer screenshot did not move the receiver-first relationship surface into the captured viewport.',
       { scenario, snapshot }
     );
   }
@@ -1346,7 +1386,19 @@ async function main() {
 
   if (
     mode === 'screenshot' &&
-    !['blueprint-desktop', 'formation-desktop', 'blueprint-mobile', 'receiver-desktop', 'history-desktop', 'receiver-mobile', 'terrain-entry-desktop', 'terrain-entry-mobile'].includes(scenario)
+    ![
+      'blueprint-desktop',
+      'formation-desktop',
+      'blueprint-mobile',
+      'receiver-desktop',
+      'history-desktop',
+      'receiver-mobile',
+      'receiver-map-desktop',
+      'health-map-desktop',
+      'receiver-map-mobile',
+      'terrain-entry-desktop',
+      'terrain-entry-mobile'
+    ].includes(scenario)
   ) {
     fail(
       'VEXSYSTEM_BROWSER_SCENARIO_UNSUPPORTED',

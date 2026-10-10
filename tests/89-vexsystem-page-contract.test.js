@@ -302,4 +302,15 @@ test('VEXSYSTEM PAGE: browser proof treats map camera movement as presentation-o
   assert.match(browserProof, /#map-reset/);
 });
 
+
+test('VEXSYSTEM PAGE: receiver-first visual scenarios capture the changed explorer rather than the unchanged page top', () => {
+  assert.match(browserProof, /receiver-map-desktop/);
+  assert.match(browserProof, /health-map-desktop/);
+  assert.match(browserProof, /receiver-map-mobile/);
+  assert.match(browserProof, /placeExplorerInViewport/);
+  assert.match(browserProof, /Receiver-first explorer viewport/);
+  assert.match(browserProof, /Health-question explorer viewport/);
+  assert.match(browserProof, /Explorer screenshot did not move the receiver-first relationship surface/);
+});
+
 // [VXG RealForever]
