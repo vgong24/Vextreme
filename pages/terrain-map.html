@@ -122,6 +122,23 @@
   .search-nav-btn:hover:not(:disabled){ border-color:var(--accent); color:var(--accent); }
   .search-nav-btn:focus-visible{ outline:1.5px solid var(--accent); outline-offset:1px; }
   .search-nav-btn:disabled{ opacity:.35; cursor:default; }
+  .evo-search-results{
+    position:absolute; top:calc(100% + 7px); right:0; z-index:30; width:min(420px,calc(100vw - 24px));
+    max-height:min(430px,62vh); overflow:auto; padding:6px; border:1px solid var(--line-strong);
+    border-radius:11px; background:color-mix(in srgb,var(--panel) 97%,transparent);
+    box-shadow:0 14px 38px color-mix(in srgb,var(--ink) 16%,transparent); backdrop-filter:blur(14px);
+  }
+  .evo-search-results[hidden]{ display:none; }
+  .evo-search-result{
+    width:100%; display:flex; align-items:center; gap:10px; border:0; border-radius:8px; padding:10px;
+    background:transparent; color:var(--ink); text-align:left; cursor:pointer;
+  }
+  .evo-search-result:hover, .evo-search-result:focus-visible{ background:var(--accent-soft); outline:none; }
+  .evo-search-result-copy{ min-width:0; flex:1; }
+  .evo-search-result-title{ display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font:650 12px/1.25 var(--sans); }
+  .evo-search-result-meta{ display:block; margin-top:4px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--ink-muted); font:9px/1.25 var(--mono); }
+  .evo-search-result-action{ flex:none; color:var(--accent); font:700 9px/1 var(--mono); letter-spacing:.05em; text-transform:uppercase; }
+  .evo-search-empty{ padding:12px 10px; color:var(--ink-muted); font:10px/1.4 var(--mono); }
 
   .body{ position:relative; flex:1; min-height:0; overflow:hidden; }
   .map-wrap{ position:absolute; inset:0; overflow:hidden; background: radial-gradient(ellipse at 30% 15%, var(--accent-soft), transparent 55%), var(--ground); cursor:grab; }
@@ -481,6 +498,7 @@
           <button class="search-nav-btn" id="searchNext" type="button" aria-label="Next search result" title="Next result (Enter)" disabled>&darr;</button>
         </div>
       </div>
+      <div class="evo-search-results" id="evoSearchResults" role="listbox" aria-label="Evolution A search results" hidden></div>
     </div>
     <div class="lens" id="lensGroup">
       <span class="lens-label">Lens</span>
@@ -521,7 +539,7 @@
       </div>
       <div class="evo-gesture-hint" id="evolutionGestureHint" role="status" aria-live="polite" hidden></div>
       <div id="loadState" class="load-state">Fetching data/terrain-map.json…</div>
-      <div class="map-hint">scroll to zoom (levels snap to their own framing) · drag to pan · click a file or screen · off-lens files recede, never disappear</div>
+      <div class="map-hint">scroll to zoom (levels snap to their own framing) · drag to pan · click a file or evidence surface · off-lens files recede, never disappear</div>
       <div class="zoom-controls">
         <button class="zoom-btn" id="zoomIn" aria-label="Zoom in">+</button>
         <button class="zoom-btn" id="zoomOut" aria-label="Zoom out">&minus;</button>
@@ -664,6 +682,7 @@
         "At collection and embedded-reader boundaries, the confirming wheel gesture is always outward; entering a page remains an explicit click, tap, or keyboard action.",
         "A live collection parent renders as a first-position depth tile while remaining outside ordinary membership and Prev/Next sequencing.",
         "Content/Evolution A quiets engineering diagnostics by default and restores them through an explicit Inspect control; embedded reading hides the Terrain topbar.",
+        "Search remains in the Evolution A grammar: results expose collection context and open through collection-to-reader presentation rather than the legacy node inspector.",
         "Renderer choice is presentation state and is directly addressable by URL; semantic Journey state is unchanged."
       ],
       "levels": {
@@ -802,7 +821,7 @@
 
   var STATUS_TEXT = { good: 'Healthy', warning: 'Tested, open item(s)', critical: 'Untested, open item(s)' };
   var ICON = { good: '●', warning: '▲', critical: '✗' };
-  var SCREENS_KEY = 'screens';
+  var SCREENS_KEY = 'screens'; // evidence projection key; not a semantic page family
   var TERRAIN_VIEW_CONTRACT = JSON.parse(document.getElementById('terrain-view-contract').textContent);
   var LIVE_VIEW = TERRAIN_VIEW_CONTRACT.profiles.live;
   var EVOLUTION_A_VIEW = TERRAIN_VIEW_CONTRACT.profiles['evolution-v1'];
@@ -869,12 +888,12 @@
     var screensColIndex = stages.length;
     var screens = data.screens.map(function (s, i) {
       return Object.assign({}, s, {
-        id: 'screen:' + s.slug, kind: 'screen', stage: SCREENS_KEY, stageName: 'LIVE SCREENS',
+        id: 'screen:' + s.slug, kind: 'screen', stage: SCREENS_KEY, stageName: 'SCREENSHOT EVIDENCE',
         status: 'good', x: screensColIndex * colW + 60, y: i * 60 + 90,
       });
     });
     stages.push({
-      key: SCREENS_KEY, name: 'LIVE SCREENS', sub: 'real pages, verified by screenshot', count: screens.length,
+      key: SCREENS_KEY, name: 'SCREENSHOT EVIDENCE', sub: 'visual verification surfaces · membership means captured screenshot evidence', count: screens.length,
       rect: { x: screensColIndex * colW + 10, y: 40, width: colW - 40, height: screens.length * 60 + 60 },
     });
     var codeNodes = data.nodes.map(function (n) { return Object.assign({ kind: 'code' }, n); });
@@ -900,7 +919,7 @@
     DATA = data;
     document.getElementById('loadState').style.display = 'none';
     document.getElementById('subline').textContent =
-      data.nodes.length + ' code nodes · ' + data.screens.length + ' live screens · computed fresh, not hand-authored';
+      data.nodes.length + ' code nodes · ' + data.screens.length + ' screenshot evidence surfaces · computed fresh, not hand-authored';
 
     var legend = document.getElementById('legend');
     ['good', 'warning', 'critical'].forEach(function (s) {
@@ -955,6 +974,7 @@
       appRoot.classList.remove('terrain-inspect-open');
       terrainInspectToggle.setAttribute('aria-expanded', 'false');
     }
+    renderEvolutionSearchResults();
   }
 
   function syncProfileControl() {
@@ -1952,7 +1972,7 @@
     var layout = stageCompositionLayout(levelCtx || {});
     layout.items.sort(function (a,b) { return a.index - b.index; }).forEach(function (item) {
       var stage=item.stage, i=item.index, r=item.rect, summary=stageSummary(stage);
-      var unit = currentWorld === 'content' ? 'member' : (stage.key === SCREENS_KEY ? 'screen' : 'file');
+      var unit = currentWorld === 'content' ? 'member' : (stage.key === SCREENS_KEY ? 'evidence surface' : 'file');
       var focused = item.kind === 'focus', context = item.kind === 'context';
       var countText = summary.membershipCount + ' ' + unit + (summary.membershipCount === 1 ? '' : 's');
       var placementText = currentWorld === 'content' && summary.primaryCount !== summary.membershipCount
@@ -2129,6 +2149,64 @@
     }
   }
 
+  function isEvolutionASearch() {
+    return currentWorld === 'content' && currentProfile === 'evolution-v1';
+  }
+
+  function renderEvolutionSearchResults() {
+    var box = document.getElementById('evoSearchResults');
+    if (!box) return;
+    var normalized = TerrainSearch.normalize(searchState.query);
+    if (!isEvolutionASearch() || normalized.length < TerrainSearch.MIN_QUERY_LENGTH) {
+      box.hidden = true;
+      box.innerHTML = '';
+      return;
+    }
+    if (!searchState.matches.length) {
+      box.hidden = false;
+      box.innerHTML = '<div class="evo-search-empty">No matching pages</div>';
+      return;
+    }
+    var visible = searchState.matches.slice(0, 7);
+    box.innerHTML = visible.map(function (node) {
+      var group = node.stageName || node.arcName || node.stage || 'Content';
+      return '<button class="evo-search-result" type="button" role="option" data-evo-search-result="' + escAttr(node.id) + '">'
+        + '<span class="evo-search-result-copy"><span class="evo-search-result-title">' + esc(node.title || node.slug || node.id) + '</span>'
+        + '<span class="evo-search-result-meta">' + esc(group) + '</span></span>'
+        + '<span class="evo-search-result-action">Read →</span></button>';
+    }).join('');
+    box.hidden = false;
+    box.querySelectorAll('[data-evo-search-result]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        var id = button.getAttribute('data-evo-search-result');
+        var node = byId[id];
+        if (!node) return;
+        searchState.cursor = searchState.matches.findIndex(function (candidate) { return candidate.id === id; });
+        renderSearchStatus();
+        openEvolutionSearchMatch(node, 'search result click for "' + searchState.query.trim() + '"');
+      });
+    });
+  }
+
+  function openEvolutionSearchMatch(node, reason) {
+    if (!node || !isEvolutionASearch() || node.kind !== 'page' || !node.live || !node.liveUrl) return false;
+    var stageIdx = STAGES.findIndex(function (stage) { return String(stage.key) === String(node.stage); });
+    if (stageIdx < 0) stageIdx = stageIndexForRouteNode(node);
+    if (stageIdx < 0) return false;
+    pinnedId = null;
+    focusId = null;
+    renderPanel(null);
+    enterLevel(1, { stageIdx:stageIdx });
+    syncPresentationUrl('replace', null);
+    commitSemanticState({
+      label: node.title || node.slug,
+      relationship: 'searched for',
+      reason: reason || ('Evolution A search for "' + searchState.query.trim() + '"')
+    });
+    openEvolutionReader(node.id);
+    return true;
+  }
+
   function refreshSearch(resetCursor, repaint) {
     var query = searchQueryValue();
     var previousId = (!resetCursor && searchState.cursor >= 0 && searchState.matches[searchState.cursor])
@@ -2141,6 +2219,7 @@
     searchState = { query: query, matches: matches, cursor: cursor };
     searchMatchIds = new Set(matches.map(function (node) { return node.id; }));
     renderSearchStatus();
+    renderEvolutionSearchResults();
     if (repaint !== false && OVERVIEW_LEVELS[levelIndex].id === 'node') applyLOD();
   }
 
@@ -2150,9 +2229,11 @@
     searchState.cursor = TerrainSearch.nextIndex(searchState.matches.length, searchState.cursor, direction);
     var match = searchState.matches[searchState.cursor];
     renderSearchStatus();
+    var reason = 'search result ' + (searchState.cursor + 1) + ' of ' + searchState.matches.length + ' for "' + searchState.query.trim() + '"';
+    if (openEvolutionSearchMatch(match, reason)) return;
     travelTo(match.id, {
       relationship: 'searched for',
-      reason: 'search result ' + (searchState.cursor + 1) + ' of ' + searchState.matches.length + ' for "' + searchState.query.trim() + '"',
+      reason: reason,
     });
   }
 
@@ -2438,9 +2519,9 @@
 
     panel.innerHTML =
       (pinnedId === s.id ? '<button class="unpin-btn" onclick="window.__vexUnpin && window.__vexUnpin()">✕ unpin</button>' : '') +
-      '<div class="panel-eyebrow">LIVE SCREEN</div>' +
+      '<div class="panel-eyebrow">SCREENSHOT EVIDENCE</div>' +
       '<h2>' + esc(s.title) + '</h2>' +
-      '<span class="status-pill status-good"><span class="dot" style="background:var(--good)"></span>Verified by screenshot</span>' +
+      '<span class="status-pill status-good"><span class="dot" style="background:var(--good)"></span>Captured screenshot evidence</span>' +
       '<div class="field">' +
         '<div class="field-label">Real screenshot</div>' +
         '<div class="screen-lang-toggle" id="screenLangToggle">' +
