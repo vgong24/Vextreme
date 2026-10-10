@@ -111,4 +111,34 @@ test('VEXSYSTEM UNDERSTANDING: selecting a branch subject keeps its real named p
   assert.equal(view.subject.state, 'ACTIVE');
 });
 
+
+test('VEXSYSTEM QUESTIONS: receiver-facing questions compose internal lenses rather than rename them one-for-one', () => {
+  assert.deepEqual(vexsystem.HUMAN_QUESTION_REFS, ['PUT_TOGETHER', 'KEEP_WORKING', 'HEALTHY', 'SHOW_UP', 'HISTORY']);
+  assert.deepEqual(vexsystem.humanQuestionRecord('PUT_TOGETHER').lenses, ['BLUEPRINT', 'PROCESS']);
+  assert.deepEqual(vexsystem.humanQuestionRecord('KEEP_WORKING').lenses, ['PROCESS', 'CONSEQUENCE']);
+});
+
+test('VEXSYSTEM QUESTIONS: changing the question preserves semantic selection while materially changing relationships', () => {
+  const state = vexsystem.createState(atlas);
+  const structure = vexsystem.projectAtlasForQuestion(atlas, state, 'PUT_TOGETHER');
+  const health = vexsystem.projectAtlasForQuestion(atlas, state, 'HEALTHY');
+  assert.equal(structure.selectedSubject.subjectRef, atlas.defaultSubjectRef);
+  assert.equal(health.selectedSubject.subjectRef, atlas.defaultSubjectRef);
+  assert.notDeepEqual(structure.relations.map(item => item.relationRef).sort(), health.relations.map(item => item.relationRef).sort());
+  assert.ok(health.subjects.some(item => item.kind === 'PROOF'));
+});
+
+test('VEXSYSTEM QUESTIONS: health is evidence-based and fails closed when proof is absent', () => {
+  const structure = vexsystem.composeHumanQuestion(atlas, atlas.defaultSubjectRef, 'PUT_TOGETHER');
+  const health = vexsystem.composeHumanQuestion(atlas, atlas.defaultSubjectRef, 'HEALTHY');
+  assert.match(structure.answer, /Terrain entry contract v1/);
+  assert.match(health.answer, /We do not infer health from the diagram/);
+  assert.match(health.answer, /Source-contract tests validate the shipped contract/);
+  assert.equal(health.supported, true);
+
+  const unsupported = vexsystem.composeHumanQuestion(atlas, 'route.vextreme.vexsystem', 'HEALTHY');
+  assert.equal(unsupported.supported, false);
+  assert.match(unsupported.answer, /does not attach enough proof/i);
+});
+
 // [VXG RealForever]
