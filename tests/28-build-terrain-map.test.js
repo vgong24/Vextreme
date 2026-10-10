@@ -351,6 +351,26 @@ test('BUILD-TERRAIN-MAP: buildContentPages marks a live page with a real capture
 });
 
 
+test('BUILD-TERRAIN-MAP: record inventory respects non-production viewmodels without hiding unresolved SDK demos', () => {
+  const { getRecordPageSlugs } = require('../lib/audit-pages');
+  const records = new Set(getRecordPageSlugs());
+
+  for (const slug of [
+    'specimen-architectural-wisdoms',
+    'specimen-full-translation',
+    'specimen-partial-translation',
+    'specimen-smallest-miss',
+    'specimens',
+    'vextreme-demo',
+  ]) {
+    assert.equal(records.has(slug), false, `${slug} is already classified as a non-production viewmodel surface`);
+  }
+
+  assert.equal(records.has('god-witnessed-by-ai'), true, 'production viewmodel pages remain archive records');
+  assert.equal(records.has('sdk-identity-demo'), true, 'unresolved SDK demo remains visible until an accepted classification exists');
+  assert.equal(records.has('localization-source-truth-demo'), true, 'unresolved localization demo remains visible until an accepted classification exists');
+});
+
 test('BUILD-TERRAIN-MAP: materially larger code fields keep deterministic stage geometry without changing production data', () => {
   const input = [
     ...Array.from({ length: 160 }, (_, i) => `lib/build-scale-${String(i).padStart(3, '0')}.js`),
