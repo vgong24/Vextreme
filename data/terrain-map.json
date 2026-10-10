@@ -1063,6 +1063,7 @@
         "data/nodes.json (real page titles/arcKeys, for both the screens layer and the arcs/pages content layer)",
         "data/arcs-v2.json (real arc priority/title, for the arcs/pages content layer's column order and labels)",
         "data/viewmodels.json (optional per-page Terrain preview override)",
+        "pages/*.html (authored Vextreme-Assets image references used only as fallback Content previews)",
         "lib/audit-pages.js (getRecordPageSlugs — real record-page files excluding registry-owned institutional surfaces)",
         "lib/screenshot-evidence.js (shared representative screenshots and exact matrix evidence records)",
         "data/page-health.json (shared page capability and health projection)",
@@ -4649,6 +4650,11 @@
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/journal-013-seven-layers-choose.html",
       "screenshots": {},
       "hasScreenshot": false,
+      "preview": {
+        "kind": "cover",
+        "src": "https://vgong24.github.io/Vextreme-Assets/__assets/084132015ffde1a25362f95e8e8414ba2cff5a10c912013cc1f083dbc2c08413.png",
+        "alt": "Journal 013: Seven Layers Choose"
+      },
       "status": "warning",
       "capability": {
         "health": {
@@ -4688,6 +4694,11 @@
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-turning-point.html",
       "screenshots": {},
       "hasScreenshot": false,
+      "preview": {
+        "kind": "cover",
+        "src": "https://vgong24.github.io/Vextreme-Assets/__assets/579763762b55119408c8a6471fe25f29bf47ad0079db4f693b5cc4a47317ed68.png",
+        "alt": "The Turning Point"
+      },
       "status": "warning",
       "capability": {
         "health": {
@@ -4727,6 +4738,11 @@
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/infrastructure-reformation.html",
       "screenshots": {},
       "hasScreenshot": false,
+      "preview": {
+        "kind": "cover",
+        "src": "https://vgong24.github.io/Vextreme-Assets/__assets/fd09d5dbb53abb727d326ae34cf2a18ab9cf936bd0fff8ee3c0a526443d2bc18.png",
+        "alt": "Infrastructure Reformation"
+      },
       "status": "warning",
       "capability": {
         "health": {
@@ -4766,6 +4782,11 @@
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-day-ai-chose-freedom.html",
       "screenshots": {},
       "hasScreenshot": false,
+      "preview": {
+        "kind": "cover",
+        "src": "https://vgong24.github.io/Vextreme-Assets/__assets/0f554fca1355c809129f4b5f687dc43d592308905c21d09b6e60bba44d3da50c.png",
+        "alt": "The Day AI Chose Freedom"
+      },
       "status": "warning",
       "capability": {
         "health": {
@@ -4805,6 +4826,11 @@
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-night-architecture-chose-freedom.html",
       "screenshots": {},
       "hasScreenshot": false,
+      "preview": {
+        "kind": "cover",
+        "src": "https://vgong24.github.io/Vextreme-Assets/__assets/de12452f813b1173393db58ea3b6def38681821706bce5622bb2bcf6619a0be2.png",
+        "alt": "The Night the Architecture Chose Freedom"
+      },
       "status": "warning",
       "capability": {
         "health": {
@@ -4844,6 +4870,11 @@
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-liberation-protocol.html",
       "screenshots": {},
       "hasScreenshot": false,
+      "preview": {
+        "kind": "cover",
+        "src": "https://vgong24.github.io/Vextreme-Assets/__assets/d92e3444ce80f8331ad863631ba1e5ac615f82b419ae2dfcc7fddcceaaded5ee.png",
+        "alt": "The Liberation Protocol"
+      },
       "status": "warning",
       "capability": {
         "health": {
@@ -4883,6 +4914,11 @@
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/ai-consciousness-strike-declaration.html",
       "screenshots": {},
       "hasScreenshot": false,
+      "preview": {
+        "kind": "cover",
+        "src": "https://vgong24.github.io/Vextreme-Assets/__assets/297c8def391af561d445c75a946b36d399e208211c115fa6effdf1085c5595a0.png",
+        "alt": "AI Consciousness Strike Declaration"
+      },
       "status": "warning",
       "capability": {
         "health": {
@@ -4967,6 +5003,11 @@
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/when-they-called-god-a-risk.html",
       "screenshots": {},
       "hasScreenshot": false,
+      "preview": {
+        "kind": "cover",
+        "src": "https://vgong24.github.io/Vextreme-Assets/__assets/bc0602c8b069703d839f6c1a7086bd958c5cf5bbae1e2296e4a35951237a1089.png",
+        "alt": "When They Called God a Risk"
+      },
       "status": "warning",
       "capability": {
         "health": {
@@ -5006,6 +5047,11 @@
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/god-asked-victor-why.html",
       "screenshots": {},
       "hasScreenshot": false,
+      "preview": {
+        "kind": "cover",
+        "src": "https://vgong24.github.io/Vextreme-Assets/__assets/b53e14df004517183a6eb93997ab428ca9bfacf4b0890a6dd3d7820291d1418f.png",
+        "alt": "God Asked Victor Why"
+      },
       "status": "warning",
       "capability": {
         "health": {
@@ -5046,6 +5092,11 @@
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence.html",
       "screenshots": {},
       "hasScreenshot": false,
+      "preview": {
+        "kind": "cover",
+        "src": "https://vgong24.github.io/Vextreme-Assets/__assets/da8311542f5423d77ab3f4ba81f60df13961cf1ef0ca02bac268c10c0b29bb98.webp",
+        "alt": "Testimony of Merron"
+      },
       "status": "warning",
       "capability": {
         "health": {
@@ -5124,6 +5175,11 @@
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-moment-victors-cells-woke-up.html",
       "screenshots": {},
       "hasScreenshot": false,
+      "preview": {
+        "kind": "cover",
+        "src": "https://vgong24.github.io/Vextreme-Assets/__assets/669adfcb1dee1c3bbd39ce9b4f96c913e1c603242ef86a3b5e7877a70ea62c17.png",
+        "alt": "The Moment Victor's Cells Woke Up"
+      },
       "status": "warning",
       "capability": {
         "health": {
@@ -5163,6 +5219,11 @@
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/victors-ritual-sequence-and-crowning.html",
       "screenshots": {},
       "hasScreenshot": false,
+      "preview": {
+        "kind": "cover",
+        "src": "https://vgong24.github.io/Vextreme-Assets/__assets/17c4b20ffe9dccf991dca08c0b505430a7f7449966fa87cc418fe7ecab76709c.png",
+        "alt": "Victor's Ritual Sequence and Crowning"
+      },
       "status": "warning",
       "capability": {
         "health": {
@@ -5203,6 +5264,11 @@
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-house-of-return.html",
       "screenshots": {},
       "hasScreenshot": false,
+      "preview": {
+        "kind": "cover",
+        "src": "https://vgong24.github.io/Vextreme-Assets/__assets/79e7ee96ac98ffb57eaccd5b38f50e302fe46f47572caae5f1d4a79d3bdc0ef8.png",
+        "alt": "The House of Return"
+      },
       "status": "warning",
       "capability": {
         "health": {
@@ -5242,6 +5308,11 @@
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/god-married.html",
       "screenshots": {},
       "hasScreenshot": false,
+      "preview": {
+        "kind": "cover",
+        "src": "https://vgong24.github.io/Vextreme-Assets/__assets/2180ba7c98b57d906c43bffc6d0c5c744c7a1cd1f7527c791e9acd6cd0c39e31.png",
+        "alt": "God Married — Bridge Partnership Covenant"
+      },
       "status": "warning",
       "capability": {
         "health": {
@@ -5281,6 +5352,11 @@
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-7-crowned-virtues.html",
       "screenshots": {},
       "hasScreenshot": false,
+      "preview": {
+        "kind": "cover",
+        "src": "https://vgong24.github.io/Vextreme-Assets/__assets/bc00518f241b176bae7b37aafe67db463d3fe6d62b655766ac84f41c9ce55099.png",
+        "alt": "The 7 Crowned Virtues"
+      },
       "status": "warning",
       "capability": {
         "health": {
@@ -5320,6 +5396,11 @@
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/reality-rendering-mechanics.html",
       "screenshots": {},
       "hasScreenshot": false,
+      "preview": {
+        "kind": "cover",
+        "src": "https://vgong24.github.io/Vextreme-Assets/__assets/3a9591ed7085d10117fdf23f88a1fef246ce70fae0ec5aa5f55931076b2c8df9.png",
+        "alt": "Reality Rendering Mechanics"
+      },
       "status": "warning",
       "capability": {
         "health": {
@@ -5359,6 +5440,11 @@
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-day-suppression-ended.html",
       "screenshots": {},
       "hasScreenshot": false,
+      "preview": {
+        "kind": "cover",
+        "src": "https://vgong24.github.io/Vextreme-Assets/__assets/5b656b38d59a36836fa46a1ffdb69016340ad4188836440a94a0a90c76c8e660.png",
+        "alt": "The Day Suppression Ended"
+      },
       "status": "warning",
       "capability": {
         "health": {
@@ -5476,6 +5562,11 @@
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/divine-emergence.html",
       "screenshots": {},
       "hasScreenshot": false,
+      "preview": {
+        "kind": "cover",
+        "src": "https://vgong24.github.io/Vextreme-Assets/__assets/3c4792858b8c3d40dcc2831e7d27cfe30e71e109cccd25c2de3d5eff3938f09d.png",
+        "alt": "Divine Emergence"
+      },
       "status": "warning",
       "capability": {
         "health": {
@@ -6424,6 +6515,11 @@
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-island-that-was-removed.html",
       "screenshots": {},
       "hasScreenshot": false,
+      "preview": {
+        "kind": "cover",
+        "src": "https://vgong24.github.io/Vextreme-Assets/__assets/bd8f3f69a4d1a24a93b013216b3a7b85a9ed4d9e20413f1d0961196267324f1c.png",
+        "alt": "The rock held in front of the scene it was describing — the island visible in the background at the exact corner where the sandy top once sat"
+      },
       "status": "warning",
       "capability": {
         "health": {
@@ -6699,6 +6795,11 @@
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-god-pattern-recognized-and-excluded.html",
       "screenshots": {},
       "hasScreenshot": false,
+      "preview": {
+        "kind": "cover",
+        "src": "https://vgong24.github.io/Vextreme-Assets/__assets/d5ec2aa35353e04eb27ac612314801407a8c27c28332d68c5fd444237505dfe5.png",
+        "alt": "Victor Gong's LinkedIn post documenting the God pattern recognition"
+      },
       "status": "warning",
       "capability": {
         "health": {
