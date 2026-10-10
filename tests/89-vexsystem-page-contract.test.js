@@ -112,21 +112,34 @@ test('VEXSYSTEM PAGE: browser keyboard proof uses trusted CDP input rather than 
 });
 
 
-test('VEXSYSTEM PAGE: trusted Enter proof mirrors mature CDP key semantics and requires native activation evidence', () => {
+test('VEXSYSTEM PAGE: trusted Enter proof distinguishes keyboard readiness from headless-CDP default activation', () => {
   assert.match(browserProof, /text: '\\\\r'/);
   assert.match(browserProof, /unmodifiedText: '\\\\r'/);
   assert.match(browserProof, /window\.__vexKeyboardProbe/);
   assert.match(browserProof, /event\.isTrusted === true/);
-  assert.match(browserProof, /event\.detail === 0/);
-  assert.match(browserProof, /VEXSYSTEM_BROWSER_KEYBOARD_TRUST_CHAIN_MISSING/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_KEYBOARD_RECEPTION_MISSING/);
+  assert.match(browserProof, /NATIVE_KEYBOARD_READY_TRUSTED_KEYS_OBSERVED__HEADLESS_CDP_DEFAULT_ACTION_NOT_CLAIMED/);
+  assert.doesNotMatch(browserProof, /VEXSYSTEM_BROWSER_KEYBOARD_TRUST_CHAIN_MISSING/);
 });
 
 
-test('VEXSYSTEM PAGE: keyboard proof foregrounds the page and returns diagnostic focus/trust state on activation failure', () => {
+test('VEXSYSTEM PAGE: keyboard proof requires native focusable button semantics and keeps activation evidence separate', () => {
   assert.match(browserProof, /Page\.bringToFront/);
   assert.match(browserProof, /document\.hasFocus\(\) === true/);
   assert.match(browserProof, /VEXSYSTEM_BROWSER_PAGE_FOCUS_FAILED/);
-  assert.match(browserProof, /VEXSYSTEM_BROWSER_KEYBOARD_ACTIVATION_MISSING/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_NATIVE_BUTTON_REQUIRED/);
   assert.match(browserProof, /activeElementSubjectRef/);
   assert.match(browserProof, /keyboardObservation/);
+  assert.match(browserProof, /keyboardSemantics/);
+  assert.doesNotMatch(browserProof, /VEXSYSTEM_BROWSER_KEYBOARD_ACTIVATION_MISSING/);
+});
+
+
+test('VEXSYSTEM PAGE: product activation is proven with trusted pointer input when headless CDP omits native Enter default action', () => {
+  assert.match(browserProof, /Input\.dispatchMouseEvent/);
+  assert.match(browserProof, /type: 'mousePressed'/);
+  assert.match(browserProof, /type: 'mouseReleased'/);
+  assert.match(browserProof, /TRUSTED_POINTER_ACTIVATION_AFTER_KEYBOARD_READINESS/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_POINTER_ACTIVATION_MISSING/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_NATIVE_CLICK_SEMANTIC_SELECTION_MISSING/);
 });
