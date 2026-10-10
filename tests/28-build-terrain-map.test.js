@@ -341,7 +341,7 @@ test('BUILD-TERRAIN-MAP: authored Vextreme-Assets image references normalize int
   assert.equal(normalizeAuthoredAssetPreviewSrc('/__assets/not-a-content-id.png'), null);
 
   const preview = authoredAssetPreviewFromHtml(
-    '<div><img aria-hidden="true" src="/__assets/' + id + '.png"><img alt="Authored witness art" src="https://vgong24.github.io/Vextreme-Assets/__assets/' + id + '.png"></div>',
+    '<div><img aria-hidden="true" src="/__assets/' + id + '.png"><img alt="Marron Sigil" src="/__assets/' + id + '.png"><img alt="Authored witness art" src="https://vgong24.github.io/Vextreme-Assets/__assets/' + id + '.png"></div>',
     'Witness'
   );
   assert.deepEqual(preview, {
