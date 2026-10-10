@@ -374,6 +374,45 @@ test('TERRAIN-VIEW: wheel input over the collection pill rail scrolls it horizon
   assert.match(shelf[0], /if \(scrollEvolutionRailWithWheel\(ev\)\) return;/);
 });
 
+test('TERRAIN-VIEW: Content middle layer foregrounds group kind and placement relationships instead of priority jargon', () => {
+  const source = pageSource();
+  assert.match(source, /function groupKindLabel\(kind\)/);
+  assert.match(source, /function contentMembershipText\(summary\)/);
+  assert.match(source, /summary\.membershipCount \+ ' members · ' \+ summary\.primaryCount \+ ' primary placement'/);
+  assert.match(source, /if \(!context && currentWorld !== 'content'\) \{[\s\S]*stage\.sub/);
+  assert.match(source, /class:'stage-kind'/);
+  assert.match(source, /kind\.textContent=kindText/);
+});
+
+test('TERRAIN-VIEW: Content group overview exposes one bounded orientation legend without changing semantic state', () => {
+  const source = pageSource();
+  assert.match(source, /id="stageOrientation"/);
+  assert.match(source, /stage-orientation-title">Content groups</);
+  assert.match(source, /stage-orientation-kind">collection</);
+  assert.match(source, /stage-orientation-kind">timeline view</);
+  assert.match(source, /stage-orientation-kind">curation bucket</);
+  assert.match(source, /function renderStageOrientation\(layout\)/);
+  assert.match(source, /currentWorld !== 'content'/);
+  assert.match(source, /layout\.focusedIdx >= 0/);
+  assert.match(source, /stageOrientationSummary\.textContent = ALL\.length \+ ' pages/);
+});
+
+test('TERRAIN-VIEW: focused Content group reveals real member titles and existing group-home relationship', () => {
+  const source = pageSource();
+  assert.match(source, /var previewMembers = summary\.members\.slice\(0, 5\)/);
+  assert.match(source, /member\.title \|\| member\.slug \|\| member\.id/);
+  assert.match(source, /class:'stage-member'/);
+  assert.match(source, /stage\.parent && stage\.parent\.live/);
+  assert.match(source, /GROUP HOME · /);
+  assert.doesNotMatch(source, /groupDescriptions|groupMeaning|semanticDescription/);
+});
+
+test('TERRAIN-VIEW: Content groups no longer imply a linear sequence with Stage arrows', () => {
+  const source = pageSource();
+  assert.match(source, /if \(layout\.focusedIdx < 0 && currentWorld === 'code'\) \{/);
+  assert.match(source, /class:'stage-arrow pop-in'/);
+});
+
 test('TERRAIN-VIEW: every shipped inline JavaScript block still parses after contract extraction', () => {
   const source = pageSource();
   const scripts = [...source.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g)]
