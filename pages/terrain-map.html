@@ -60,6 +60,7 @@
     padding:7px 10px; font:600 11px/1 var(--sans); cursor:pointer;
   }
   .terrain-inspect-toggle:hover, .terrain-inspect-toggle:focus-visible{ border-color:var(--accent); color:var(--accent); outline:none; }
+  .terrain-inspect-toggle[hidden]{ display:none; }
   .terrain-content-quiet .topbar{ gap:10px; padding:8px 12px; flex-wrap:nowrap; }
   .terrain-content-quiet .brand{ min-width:0; margin-right:0; order:0; }
   .terrain-content-quiet .brand .eyebrow,
@@ -1388,12 +1389,12 @@
     svg.style.visibility = 'hidden';
     mapWrap.classList.add('evolution-a-active');
     mapWrap.classList.remove('evolution-reader-active', 'evolution-arrival-active');
-    syncTerrainChrome();
     activeReaderId = null;
     activeGroupHomeKey = null;
     evolutionReader.hidden = true;
     evolutionReaderFrame.src = 'about:blank';
     evolutionLayer.hidden = false;
+    syncTerrainChrome();
 
     var stage = STAGES[levelCtx.stageIdx];
     var summary = stageSummary(stage);
