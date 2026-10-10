@@ -120,3 +120,13 @@ test('VEXSYSTEM PAGE: trusted Enter proof mirrors mature CDP key semantics and r
   assert.match(browserProof, /event\.detail === 0/);
   assert.match(browserProof, /VEXSYSTEM_BROWSER_KEYBOARD_TRUST_CHAIN_MISSING/);
 });
+
+
+test('VEXSYSTEM PAGE: keyboard proof foregrounds the page and returns diagnostic focus/trust state on activation failure', () => {
+  assert.match(browserProof, /Page\.bringToFront/);
+  assert.match(browserProof, /document\.hasFocus\(\) === true/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_PAGE_FOCUS_FAILED/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_KEYBOARD_ACTIVATION_MISSING/);
+  assert.match(browserProof, /activeElementSubjectRef/);
+  assert.match(browserProof, /keyboardObservation/);
+});
