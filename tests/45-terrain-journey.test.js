@@ -231,7 +231,7 @@ test('TERRAIN-JOURNEY: shipped collection and reader wheel handlers execute outw
   let shelfHint = 0;
   let shelfPrevented = 0;
   const makeShelf = new Function(
-    'isEvolutionAGroup','canScrollElement','boundaryGestureReady','enterLevel','syncPresentationUrl','commitSemanticState','showGestureHint','resetBoundaryGesture','hideGestureHint',
+    'isEvolutionAGroup','canScrollElement','boundaryGestureReady','enterLevel','syncPresentationUrl','commitSemanticState','showGestureHint','resetBoundaryGesture','hideGestureHint','sustainOutwardWheelGesture','scrollEvolutionRailWithWheel','lockOutwardWheelGesture',
     [
       "var activeReaderId = null;",
       "var hoveredEvolutionNodeId = null;",
@@ -249,6 +249,9 @@ test('TERRAIN-JOURNEY: shipped collection and reader wheel handlers execute outw
     (entry) => { assert.equal(entry.relationship, 'returned to'); },
     () => { shelfHint += 1; },
     () => {},
+    () => {},
+    () => false,
+    () => false,
     () => {}
   );
   const shelfEvent = () => ({
@@ -269,7 +272,7 @@ test('TERRAIN-JOURNEY: shipped collection and reader wheel handlers execute outw
   let readerClosed = 0;
   let readerHints = 0;
   const makeReader = new Function(
-    'scrollPathCanMove','boundaryGestureReady','closeEvolutionReader','showGestureHint','resetBoundaryGesture','hideGestureHint',
+    'scrollPathCanMove','boundaryGestureReady','closeEvolutionReader','showGestureHint','resetBoundaryGesture','hideGestureHint','sustainOutwardWheelGesture','lockOutwardWheelGesture',
     [
       "var activeEntrySlug = null;",
       "var activeReaderId = 'node-a';",
@@ -285,6 +288,8 @@ test('TERRAIN-JOURNEY: shipped collection and reader wheel handlers execute outw
     () => { readerClosed += 1; },
     () => { readerHints += 1; },
     () => {},
+    () => {},
+    () => false,
     () => {}
   );
   const readerEvent = () => ({ deltaY: 120, deltaX: 0, target: null, preventDefault(){} });
@@ -302,7 +307,8 @@ test('TERRAIN-JOURNEY: shipped collection and reader wheel handlers execute outw
     () => true,
     () => { scrollBoundaryCalled = true; return true; },
     () => { throw new Error('must not leave collection while it can still scroll'); },
-    () => {}, () => {}, () => {}, () => {}, () => {}
+    () => {}, () => {}, () => {}, () => {}, () => {},
+    () => false, () => false, () => {}
   );
   let preventedWhileScrollable = false;
   scrollingShelf({
@@ -311,6 +317,41 @@ test('TERRAIN-JOURNEY: shipped collection and reader wheel handlers execute outw
   });
   assert.equal(scrollBoundaryCalled, false, 'ordinary scrolling wins before boundary logic');
   assert.equal(preventedWhileScrollable, false, 'ordinary scroll is not consumed as a boundary transition');
+
+  let upwardShelfBoundary = 0;
+  const upwardShelf = makeShelf(
+    () => true,
+    () => false,
+    () => { upwardShelfBoundary += 1; return true; },
+    () => { throw new Error('upward wheel must not leave the collection'); },
+    () => {}, () => {}, () => {}, () => {}, () => {},
+    () => false, () => false, () => {}
+  );
+  upwardShelf({ deltaY:-120, deltaX:0, target:null, stopPropagation(){}, preventDefault(){} });
+  assert.equal(upwardShelfBoundary, 0, 'top-edge upward wheel never arms outward collection navigation');
+
+  let upwardReaderBoundary = 0;
+  const upwardReader = makeReader(
+    () => false,
+    () => { upwardReaderBoundary += 1; return true; },
+    () => { throw new Error('upward wheel must not leave the reader'); },
+    () => {}, () => {}, () => {},
+    () => false, () => {}
+  );
+  upwardReader({ deltaY:-120, deltaX:0, target:null, preventDefault(){} });
+  assert.equal(upwardReaderBoundary, 0, 'top-edge upward wheel never arms outward reader navigation');
+
+  let lockedBoundary = 0;
+  const lockedShelf = makeShelf(
+    () => true,
+    () => false,
+    () => { lockedBoundary += 1; return true; },
+    () => { throw new Error('same wheel gesture must not cross another semantic boundary'); },
+    () => {}, () => {}, () => {}, () => {}, () => {},
+    () => true, () => false, () => {}
+  );
+  lockedShelf({ deltaY:120, deltaX:0, target:null, stopPropagation(){}, preventDefault(){} });
+  assert.equal(lockedBoundary, 0, 'gesture-session lock blocks a second outward transition');
 });
 
 
