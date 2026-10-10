@@ -937,11 +937,12 @@
     },
     "lib/audit-pages.js": {
       "role": "page wiring auditor — read-only report of which pages/*.html are wired to a God Script, blocked, or intentionally skipped",
-      "context": "The canonical way to answer 'what's the current wiring status' without manually reading every page. CLAUDE.md points here instead of describing wiring status in prose, since prose goes stale and this doesn't — it reads dist/ and pages/ directly on every run. Generated/dev exceptions remain in SKIP_PAGES; institutional identity is derived from config/institutional-surfaces.json and merged into AUTO_DISCOVERY_EXCLUSIONS. getRecordPageSlugs consumes that same exclusion map so generated/dev and institutional system surfaces cannot leak back into Archives or Terrain Content as fake uncurated records.",
+      "context": "The canonical way to answer 'what's the current wiring status' without manually reading every page. CLAUDE.md points here instead of describing wiring status in prose, since prose goes stale and this doesn't — it reads dist/ and pages/ directly on every run. Generated/dev exceptions remain in SKIP_PAGES; institutional identity is derived from config/institutional-surfaces.json and merged into AUTO_DISCOVERY_EXCLUSIONS. getRecordPageSlugs consumes that exclusion map plus existing non-production data/viewmodels.json classification so generated/dev, institutional, and already-classified demo/staging/experimental surfaces cannot leak back into Terrain Content as fake uncurated records. Production viewmodel pages remain records.",
       "reads": [
         "pages/*.html (checks for a dist/vextreme-{slug}.js script src)",
         "dist/*.js (checks which God Scripts exist)",
-        "config/institutional-surfaces.json (derives institutional classification and record-pipeline exclusions)"
+        "config/institutional-surfaces.json (derives institutional classification and record-pipeline exclusions)",
+        "data/viewmodels.json (non-production presentation categories are excluded from archive/Terrain record membership)"
       ],
       "writes": [
         "stdout only — read-only, changes nothing"
