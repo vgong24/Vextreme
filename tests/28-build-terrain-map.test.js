@@ -44,6 +44,8 @@ const {
   buildTerrainMap,
   layoutArcs,
   normalizePreviewOverride,
+  normalizeAuthoredAssetPreviewSrc,
+  authoredAssetPreviewFromHtml,
   buildContentPages,
 } = require('../lib/build-terrain-map');
 
@@ -323,6 +325,60 @@ test('BUILD-TERRAIN-MAP: buildContentPages marks a curated node without a real p
   assert.equal(page.live, false);
   assert.equal(page.liveUrl, null);
   assert.equal(page.status, 'critical');
+});
+
+test('BUILD-TERRAIN-MAP: authored Vextreme-Assets image references normalize into deterministic cover previews', () => {
+  const id = 'b867417e358bc99a0c0c04f81ce68ef0ecbb0060810067ba918f6e654089a468';
+  assert.equal(
+    normalizeAuthoredAssetPreviewSrc('https://vgong24.github.io/Vextreme-Assets/__assets/' + id + '.png'),
+    'https://vgong24.github.io/Vextreme-Assets/__assets/' + id + '.png'
+  );
+  assert.equal(
+    normalizeAuthoredAssetPreviewSrc('/__assets/' + id.toUpperCase() + '.JPG'),
+    'https://vgong24.github.io/Vextreme-Assets/__assets/' + id + '.jpg'
+  );
+  assert.equal(normalizeAuthoredAssetPreviewSrc('https://example.test/hero.png'), null);
+  assert.equal(normalizeAuthoredAssetPreviewSrc('/__assets/not-a-content-id.png'), null);
+
+  const preview = authoredAssetPreviewFromHtml(
+    '<div><img aria-hidden="true" src="/__assets/' + id + '.png"><img alt="Authored witness art" src="https://vgong24.github.io/Vextreme-Assets/__assets/' + id + '.png"></div>',
+    'Witness'
+  );
+  assert.deepEqual(preview, {
+    kind: 'cover',
+    src: 'https://vgong24.github.io/Vextreme-Assets/__assets/' + id + '.png',
+    alt: 'Authored witness art',
+  });
+});
+
+test('BUILD-TERRAIN-MAP: automatic authored-asset preview is fallback-only behind explicit covers and screenshots', () => {
+  const id = 'b867417e358bc99a0c0c04f81ce68ef0ecbb0060810067ba918f6e654089a468';
+  const assetPreview = {
+    kind: 'cover',
+    src: 'https://vgong24.github.io/Vextreme-Assets/__assets/' + id + '.png',
+    alt: 'Asset art',
+  };
+  const nodesJson = [
+    { id: 1, slug: 'asset-only', title: 'Asset Only', arcKeys: [] },
+    { id: 2, slug: 'with-shot', title: 'With Shot', arcKeys: [] },
+    { id: 3, slug: 'explicit', title: 'Explicit', arcKeys: [] },
+  ];
+  const screenshots = { 'with-shot': { en: 'docs/screenshots/with-shot-en.png' } };
+  const viewmodels = {
+    explicit: { preview: { kind:'cover', src:'https://example.test/explicit.png', alt:'Explicit art' } }
+  };
+  const authored = { 'asset-only':assetPreview, 'with-shot':assetPreview, explicit:assetPreview };
+  const result = buildContentPages(
+    nodesJson, {}, screenshots,
+    ['asset-only','with-shot','explicit'],
+    null, {}, ['asset-only','with-shot','explicit'],
+    viewmodels, authored
+  );
+  assert.deepEqual(result.pages.find(p => p.slug === 'asset-only').preview, assetPreview);
+  assert.equal(result.pages.find(p => p.slug === 'with-shot').preview, undefined, 'real screenshot remains ahead of automatic authored-asset fallback');
+  assert.deepEqual(result.pages.find(p => p.slug === 'explicit').preview, {
+    kind:'cover', src:'https://example.test/explicit.png', alt:'Explicit art'
+  }, 'explicit viewmodel cover remains highest-priority preview');
 });
 
 test('BUILD-TERRAIN-MAP: explicit cover preview is projected independently of screenshot evidence', () => {
