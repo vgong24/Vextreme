@@ -25,6 +25,8 @@
 
 const { test } = require('node:test');
 const assert   = require('node:assert/strict');
+const fs       = require('node:fs');
+const path     = require('node:path');
 const { buildSlugMap, buildArcMap, buildArcMeta } = require('../lib/build-index');
 
 const fixtureNodes   = require('./fixtures/nodes.fixture.json');
@@ -124,6 +126,13 @@ test('INVARIANT: renderMode flows from arcMeta into every arcView — without it
   const lattice = buildArcNavData('alpha', index, fakeUrl);
   assert.equal(lattice.arcs.find(v => v.arcName === 'arc_a').renderMode, 'dots');
   assert.equal(lattice.arcs.find(v => v.arcName === 'arc_b').renderMode, 'position');
+});
+
+test('REGRESSION: preserved legacy arc nav uses current GitHub Pages repository routes', () => {
+  const source = fs.readFileSync(path.join(__dirname, '..', 'lib', 'arc-nav.js'), 'utf8').replace(/\r\n/g, '\n');
+  assert.match(source, /if \(isGitHub\) return 'https:\/\/vgong24\.github\.io\/Vextreme';/);
+  assert.match(source, /if \(isGitHub \|\| isLocal\) return BASE_URL \+ '\/pages\/' \+ slug \+ '\.html';/);
+  assert.doesNotMatch(source, /vgong24\.github\.io\/vextreme/);
 });
 
 // ── 3. Edge cases / regression guards ────────────────────────────────────────
