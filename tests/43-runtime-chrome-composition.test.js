@@ -126,7 +126,7 @@ test('ARC-COMPOSITION: one shared stylesheet serves both preserved v1 lattice an
 
   assert.match(v1, /class="arc-nav-header"/);
   assert.match(v1, /class="arc-nav-dots"/);
-  assert.match(v1, /class="arc-dot active"/);
+  assert.match(v1, /var dotClass = isActive \? 'arc-dot active'/);
   assert.match(css, /\.arc-nav-header\s*\{/);
   assert.match(css, /\.arc-nav-dots\s*\{/);
   assert.match(css, /\.arc-dot\.active\s*\{/);
