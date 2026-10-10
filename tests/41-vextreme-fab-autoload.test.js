@@ -215,6 +215,18 @@ test('CACHE-SYNC: shell.js VEXTREME_VER matches vextreme.js DEFAULT_CACHE exactl
     `shell.js VEXTREME_VER (${shellVer[1]}) and vextreme.js DEFAULT_CACHE (${vxVer[1]}) must be bumped together — a mismatch means production serves a stale vextreme.js`);
 });
 
+test('CACHE-SYNC: Terrain shell bootstrap uses same-origin cache token equal to VEXTREME_VER', () => {
+  const shell = fs.readFileSync(path.join(ROOT, 'lib', 'shell.js'), 'utf8');
+  const terrain = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8');
+  const shellVer = shell.match(/var VEXTREME_VER = '([^']+)';/);
+  const terrainTag = terrain.match(/<script src="\.\.\/lib\/shell\.js([^"]*)"><\/script>/);
+  assert.ok(shellVer, 'shell.js must declare VEXTREME_VER');
+  assert.ok(terrainTag, 'Terrain must bootstrap shell.js from same-origin GitHub Pages rather than mutable jsDelivr @main');
+  assert.equal(terrainTag[1], shellVer[1],
+    'Terrain bootstrap query must move with shell.js VEXTREME_VER so the bootstrap itself cannot stay on an older CDN/browser cache generation');
+  assert.doesNotMatch(terrain, /cdn\.jsdelivr\.net\/gh\/vgong24\/vextreme@main\/lib\/shell\.js/);
+});
+
 // ── v1 enhancement-layer gating (authored-style protection) ─────────────────
 // design-system.css carries a universal reset + :root tokens + a global body
 // rule; blanket-injecting it overwrote authored pages' own styles (real
