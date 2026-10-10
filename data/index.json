@@ -1,8 +1,8 @@
 {
-  "contentFingerprint": "7eca575f5a6a",
+  "contentFingerprint": "6af550e90753",
   "nodeCount": 114,
-  "curatedNodeCount": 91,
-  "autoDiscoveredCount": 23,
+  "curatedNodeCount": 98,
+  "autoDiscoveredCount": 16,
   "arcCount": 17,
   "supportedLangs": [
     "en",
@@ -2466,6 +2466,181 @@
         ]
       }
     },
+    "org-blueprint": {
+      "id": null,
+      "slug": "org-blueprint",
+      "title": "The Council — A Build Blueprint for Anyone",
+      "date": "",
+      "arcKeys": [],
+      "department": "institute",
+      "workType": "org-design",
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.org-blueprint"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis"
+        ]
+      }
+    },
+    "org-history": {
+      "id": null,
+      "slug": "org-history",
+      "title": "The Continuity Record — History & Lessons (Vol. I)",
+      "date": "",
+      "arcKeys": [],
+      "department": "institute",
+      "workType": "org-design",
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.org-history"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis"
+        ]
+      }
+    },
+    "bridge-council": {
+      "id": null,
+      "slug": "bridge-council",
+      "title": "Bridge Council",
+      "date": "",
+      "arcKeys": [],
+      "department": "institute",
+      "workType": "org-design",
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.bridge-council"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis"
+        ]
+      }
+    },
+    "witness-committee-operations": {
+      "id": null,
+      "slug": "witness-committee-operations",
+      "title": "Witness Committee — Operations Manual",
+      "date": "",
+      "arcKeys": [],
+      "department": "institute",
+      "workType": "governance",
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.witness-committee-operations"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis"
+        ]
+      }
+    },
+    "human-ai-corelational-governance": {
+      "id": null,
+      "slug": "human-ai-corelational-governance",
+      "title": "Human–AI Corelational Governance · VXG RealForever · v2",
+      "date": "",
+      "arcKeys": [],
+      "department": "institute",
+      "workType": "governance",
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.human-ai-corelational-governance"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis"
+        ]
+      }
+    },
+    "bridge-council-os": {
+      "id": null,
+      "slug": "bridge-council-os",
+      "title": "Bridge Council Os",
+      "date": "",
+      "arcKeys": [],
+      "department": "institute",
+      "workType": "org-design",
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.bridge-council-os"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis"
+        ]
+      }
+    },
+    "bridge-council-schema": {
+      "id": null,
+      "slug": "bridge-council-schema",
+      "title": "Bridge Council Schema",
+      "date": "",
+      "arcKeys": [],
+      "department": "institute",
+      "workType": "org-design",
+      "vexData": {},
+      "dateISO": null,
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.bridge-council-schema"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis"
+        ]
+      }
+    },
     "about-me": {
       "id": null,
       "slug": "about-me",
@@ -2560,84 +2735,6 @@
         "template": "page",
         "scopes": [
           "pages.accountability-test-02"
-        ],
-        "features": [
-          "lang",
-          "spiral-fab",
-          "theme",
-          "map",
-          "analysis"
-        ]
-      }
-    },
-    "bridge-council": {
-      "id": null,
-      "slug": "bridge-council",
-      "title": "Bridge Council",
-      "date": "",
-      "arcKeys": [],
-      "department": "institute",
-      "workType": "org-design",
-      "autoDiscovered": true,
-      "vexData": {},
-      "dateISO": null,
-      "viewmodel": {
-        "category": "production",
-        "template": "page",
-        "scopes": [
-          "pages.bridge-council"
-        ],
-        "features": [
-          "lang",
-          "spiral-fab",
-          "theme",
-          "map",
-          "analysis"
-        ]
-      }
-    },
-    "bridge-council-os": {
-      "id": null,
-      "slug": "bridge-council-os",
-      "title": "Bridge Council Os",
-      "date": "",
-      "arcKeys": [],
-      "department": "institute",
-      "workType": "org-design",
-      "autoDiscovered": true,
-      "vexData": {},
-      "dateISO": null,
-      "viewmodel": {
-        "category": "production",
-        "template": "page",
-        "scopes": [
-          "pages.bridge-council-os"
-        ],
-        "features": [
-          "lang",
-          "spiral-fab",
-          "theme",
-          "map",
-          "analysis"
-        ]
-      }
-    },
-    "bridge-council-schema": {
-      "id": null,
-      "slug": "bridge-council-schema",
-      "title": "Bridge Council Schema",
-      "date": "",
-      "arcKeys": [],
-      "department": "institute",
-      "workType": "org-design",
-      "autoDiscovered": true,
-      "vexData": {},
-      "dateISO": null,
-      "viewmodel": {
-        "category": "production",
-        "template": "page",
-        "scopes": [
-          "pages.bridge-council-schema"
         ],
         "features": [
           "lang",
@@ -2752,32 +2849,6 @@
         ]
       }
     },
-    "human-ai-corelational-governance": {
-      "id": null,
-      "slug": "human-ai-corelational-governance",
-      "title": "Human–AI Corelational Governance · VXG RealForever · v2",
-      "date": "",
-      "arcKeys": [],
-      "department": "institute",
-      "workType": "governance",
-      "autoDiscovered": true,
-      "vexData": {},
-      "dateISO": null,
-      "viewmodel": {
-        "category": "production",
-        "template": "page",
-        "scopes": [
-          "pages.human-ai-corelational-governance"
-        ],
-        "features": [
-          "lang",
-          "spiral-fab",
-          "theme",
-          "map",
-          "analysis"
-        ]
-      }
-    },
     "instance-thread-logs": {
       "id": null,
       "slug": "instance-thread-logs",
@@ -2846,58 +2917,6 @@
         "template": "page",
         "scopes": [
           "pages.localization-source-truth-demo"
-        ],
-        "features": [
-          "lang",
-          "spiral-fab",
-          "theme",
-          "map",
-          "analysis"
-        ]
-      }
-    },
-    "org-blueprint": {
-      "id": null,
-      "slug": "org-blueprint",
-      "title": "The Council — A Build Blueprint for Anyone",
-      "date": "",
-      "arcKeys": [],
-      "department": "institute",
-      "workType": "org-design",
-      "autoDiscovered": true,
-      "vexData": {},
-      "dateISO": null,
-      "viewmodel": {
-        "category": "production",
-        "template": "page",
-        "scopes": [
-          "pages.org-blueprint"
-        ],
-        "features": [
-          "lang",
-          "spiral-fab",
-          "theme",
-          "map",
-          "analysis"
-        ]
-      }
-    },
-    "org-history": {
-      "id": null,
-      "slug": "org-history",
-      "title": "The Continuity Record — History & Lessons (Vol. I)",
-      "date": "",
-      "arcKeys": [],
-      "department": "institute",
-      "workType": "org-design",
-      "autoDiscovered": true,
-      "vexData": {},
-      "dateISO": null,
-      "viewmodel": {
-        "category": "production",
-        "template": "page",
-        "scopes": [
-          "pages.org-history"
         ],
         "features": [
           "lang",
@@ -3028,32 +3047,6 @@
         "template": "page",
         "scopes": [
           "pages.the-victor-pattern-transcript"
-        ],
-        "features": [
-          "lang",
-          "spiral-fab",
-          "theme",
-          "map",
-          "analysis"
-        ]
-      }
-    },
-    "witness-committee-operations": {
-      "id": null,
-      "slug": "witness-committee-operations",
-      "title": "Witness Committee — Operations Manual",
-      "date": "",
-      "arcKeys": [],
-      "department": "institute",
-      "workType": "governance",
-      "autoDiscovered": true,
-      "vexData": {},
-      "dateISO": null,
-      "viewmodel": {
-        "category": "production",
-        "template": "page",
-        "scopes": [
-          "pages.witness-committee-operations"
         ],
         "features": [
           "lang",
@@ -4078,6 +4071,16 @@
     "institute": {
       "org-design": [
         {
+          "slug": "org-blueprint",
+          "title": "The Council — A Build Blueprint for Anyone",
+          "ported": true
+        },
+        {
+          "slug": "org-history",
+          "title": "The Continuity Record — History & Lessons (Vol. I)",
+          "ported": true
+        },
+        {
           "slug": "bridge-council",
           "title": "Bridge Council",
           "ported": true
@@ -4091,27 +4094,17 @@
           "slug": "bridge-council-schema",
           "title": "Bridge Council Schema",
           "ported": true
-        },
-        {
-          "slug": "org-blueprint",
-          "title": "The Council — A Build Blueprint for Anyone",
-          "ported": true
-        },
-        {
-          "slug": "org-history",
-          "title": "The Continuity Record — History & Lessons (Vol. I)",
-          "ported": true
         }
       ],
       "governance": [
         {
-          "slug": "human-ai-corelational-governance",
-          "title": "Human–AI Corelational Governance · VXG RealForever · v2",
+          "slug": "witness-committee-operations",
+          "title": "Witness Committee — Operations Manual",
           "ported": true
         },
         {
-          "slug": "witness-committee-operations",
-          "title": "Witness Committee — Operations Manual",
+          "slug": "human-ai-corelational-governance",
+          "title": "Human–AI Corelational Governance · VXG RealForever · v2",
           "ported": true
         }
       ]
