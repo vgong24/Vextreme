@@ -259,6 +259,30 @@ test('TERRAIN-VIEW: compact semantic-depth rail keeps verbose ordering detail ou
   assert.match(source, /ratio\.toFixed\(2\) \+ '×<\/div>'/);
 });
 
+test('TERRAIN-VIEW: screenshot-backed surfaces remain visible as evidence without pretending to be a semantic screen family', () => {
+  const source = pageSource();
+  assert.match(source, /SCREENSHOT EVIDENCE/);
+  assert.match(source, /membership means captured screenshot evidence/);
+  assert.match(source, /evidence surface/);
+  assert.doesNotMatch(source, /LIVE SCREENS/);
+  assert.doesNotMatch(source, /LIVE SCREEN<\/div>/);
+});
+
+test('TERRAIN-VIEW: Evolution A Search renders collection-aware results and opens them through the reader', () => {
+  const source = pageSource();
+  assert.match(source, /id="evoSearchResults"/);
+  assert.match(source, /function renderEvolutionSearchResults\(\)/);
+  assert.match(source, /function openEvolutionSearchMatch\(node, reason\)/);
+  assert.match(source, /currentWorld === 'content' && currentProfile === 'evolution-v1'/);
+  assert.match(source, /node\.stageName \|\| node\.arcName \|\| node\.stage/);
+  assert.match(source, /enterLevel\(1, \{ stageIdx:stageIdx \}\)/);
+  assert.match(source, /openEvolutionReader\(node\.id\)/);
+  const travel = source.match(/function travelSearch\(direction\) \{[\s\S]*?\n  \}/);
+  assert.ok(travel, 'travelSearch must remain present');
+  assert.match(travel[0], /openEvolutionSearchMatch\(match, reason\)/);
+  assert.match(travel[0], /travelTo\(match\.id/, 'legacy Code\/Live search remains the fallback');
+});
+
 test('TERRAIN-VIEW: Evolution A prefers explicit cover art without claiming screenshot evidence', () => {
   const source = pageSource();
   assert.match(source, /node\.preview && node\.preview\.kind === 'cover'/);
