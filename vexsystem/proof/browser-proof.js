@@ -506,6 +506,7 @@ async function runtimeSnapshot(cdp, page) {
     "const activeQuestion = document.querySelector('[data-question][aria-pressed=\"true\"]');" +
     "const questionPrompt = document.querySelector('#view-question');" +
     "const questionAnswer = document.querySelector('#view-answer');" +
+    "const mapWorld = document.querySelector('#map-world');" +
     "const understanding = document.querySelector('[data-vexsystem-component=\"composed-understanding\"]');" +
     "const understandingTitle = document.querySelector('#understanding-title');" +
     "const understandingPurpose = document.querySelector('#understanding-purpose');" +
@@ -520,6 +521,8 @@ async function runtimeSnapshot(cdp, page) {
       "lens: url.searchParams.get('lens')," +
       "question: url.searchParams.get('question')," +
       "level: url.searchParams.get('level')," +
+      "search: url.search," +
+      "mapTransform: mapWorld?.getAttribute('transform') || null," +
       "activeQuestion: activeQuestion && activeQuestion.dataset.question," +
       "questionPrompt: questionPrompt?.textContent || null," +
       "questionAnswer: questionAnswer?.textContent || null," +
@@ -752,6 +755,86 @@ async function runTerrainEntryRuntime(origin, cdp) {
 }
 
 
+async function proveMapCameraIsPresentationOnly(cdp, page) {
+  const before = await runtimeSnapshot(cdp, page);
+  await evaluate(
+    cdp,
+    page.sessionId,
+    "window.__vexMapFitTransform = document.querySelector('#map-world').getAttribute('transform')"
+  );
+  const target = await evaluate(
+    cdp,
+    page.sessionId,
+    "(() => {" +
+      "const map = document.querySelector('#vexsystem-map');" +
+      "const rect = map.getBoundingClientRect();" +
+      "return {" +
+        "x: rect.left + Math.min(70, rect.width * 0.1)," +
+        "y: rect.top + Math.min(70, rect.height * 0.1)," +
+        "centerX: rect.left + rect.width / 2," +
+        "centerY: rect.top + rect.height / 2" +
+      "};" +
+    "})()"
+  );
+
+  await cdp.send('Input.dispatchMouseEvent', { type: 'mouseMoved', x: target.x, y: target.y, button: 'none' }, page.sessionId);
+  await cdp.send('Input.dispatchMouseEvent', { type: 'mousePressed', x: target.x, y: target.y, button: 'left', clickCount: 1 }, page.sessionId);
+  await cdp.send('Input.dispatchMouseEvent', { type: 'mouseMoved', x: target.x + 72, y: target.y + 38, button: 'left' }, page.sessionId);
+  await cdp.send('Input.dispatchMouseEvent', { type: 'mouseReleased', x: target.x + 72, y: target.y + 38, button: 'left', clickCount: 1 }, page.sessionId);
+  await waitFor(
+    cdp,
+    page.sessionId,
+    "document.querySelector('#map-world').getAttribute('transform') !== window.__vexMapFitTransform",
+    'relationship map drag'
+  );
+  const panned = await runtimeSnapshot(cdp, page);
+  if (panned.selected !== before.selected || panned.question !== before.question || panned.level !== before.level || panned.search !== before.search) {
+    fail('VEXSYSTEM_BROWSER_MAP_PAN_SEMANTIC_MUTATION', 'Dragging the relationship map changed semantic state.', { before, panned });
+  }
+
+  await evaluate(
+    cdp,
+    page.sessionId,
+    "window.__vexMapPannedTransform = document.querySelector('#map-world').getAttribute('transform')"
+  );
+  await cdp.send('Input.dispatchMouseEvent', {
+    type: 'mouseWheel',
+    x: target.centerX,
+    y: target.centerY,
+    deltaX: 0,
+    deltaY: -260
+  }, page.sessionId);
+  await waitFor(
+    cdp,
+    page.sessionId,
+    "document.querySelector('#map-world').getAttribute('transform') !== window.__vexMapPannedTransform",
+    'relationship map wheel zoom'
+  );
+  const zoomed = await runtimeSnapshot(cdp, page);
+  if (zoomed.selected !== before.selected || zoomed.question !== before.question || zoomed.level !== before.level || zoomed.search !== before.search) {
+    fail('VEXSYSTEM_BROWSER_MAP_ZOOM_SEMANTIC_MUTATION', 'Zooming the relationship map changed semantic state.', { before, zoomed });
+  }
+
+  await evaluate(cdp, page.sessionId, "document.querySelector('#map-fit').click()");
+  await waitFor(
+    cdp,
+    page.sessionId,
+    "document.querySelector('#map-world').getAttribute('transform') === window.__vexMapFitTransform",
+    'fit current question'
+  );
+  await evaluate(cdp, page.sessionId, "document.querySelector('#map-reset').click()");
+  await waitFor(
+    cdp,
+    page.sessionId,
+    "document.querySelector('#map-world').getAttribute('transform') === 'matrix(1 0 0 1 0 0)'",
+    'reset relationship map'
+  );
+  await evaluate(cdp, page.sessionId, "document.querySelector('#map-fit').click()");
+
+  return { before, panned, zoomed };
+}
+
+
 async function runRuntime(origin, cdp) {
   const desktop = await createPage(cdp, origin + ENTRY, {
     width: 1440,
@@ -857,6 +940,8 @@ async function runRuntime(origin, cdp) {
     "new URL(location.href).searchParams.get('question') === 'PUT_TOGETHER'",
     'Structure question'
   );
+
+  const mapInteraction = await proveMapCameraIsPresentationOnly(cdp, desktop);
 
   await cdp.send('Page.bringToFront', {}, desktop.sessionId);
   await waitFor(
@@ -1108,6 +1193,7 @@ async function runRuntime(origin, cdp) {
       health,
       formation,
       zoomed,
+      mapInteraction,
       keyboardSelectionTarget: keyboardTarget.subjectRef,
       keyboardProbe,
       keyboardObservation,

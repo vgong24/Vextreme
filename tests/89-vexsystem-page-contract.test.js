@@ -291,4 +291,15 @@ test('VEXSYSTEM PAGE: Terrain screenshots admit one initial document abort only 
   assert.doesNotMatch(browserProof, /allowSingleSupersededDocumentAbort:\s*true/);
 });
 
+
+test('VEXSYSTEM PAGE: browser proof treats map camera movement as presentation-only', () => {
+  assert.match(browserProof, /proveMapCameraIsPresentationOnly/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_MAP_PAN_SEMANTIC_MUTATION/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_MAP_ZOOM_SEMANTIC_MUTATION/);
+  assert.match(browserProof, /type: 'mouseWheel'/);
+  assert.match(browserProof, /window\.__vexMapFitTransform/);
+  assert.match(browserProof, /#map-fit/);
+  assert.match(browserProof, /#map-reset/);
+});
+
 // [VXG RealForever]
