@@ -178,17 +178,25 @@ test('TERRAIN-VIEW: Evolution A is a URL-addressable presentation state over sha
 });
 
 
-test('TERRAIN-VIEW: collection renderer keeps group home distinct from member cards', () => {
+test('TERRAIN-VIEW: collection group homes stay outside membership while remaining readable inside Terrain', () => {
   const source = pageSource();
   assert.match(source, /parent: a\.parent \|\| null/);
   assert.match(source, /stage\.parent && stage\.parent\.live && stage\.parent\.url/);
   assert.match(source, /class="evo-group-home"/);
-  assert.match(source, />Group home ↗<\/a>/);
+  assert.match(source, /data-evo-group-home/);
+  assert.match(source, />Group home<\/button>/);
+  assert.match(source, /function openEvolutionGroupHome\(stage, options\)/);
+  assert.match(source, /activeGroupHomeKey = stage\.key/);
+  assert.match(source, /initialStage\.parent\.pageSlug === initialRoute\.page/);
+  assert.match(source, /openEvolutionGroupHome\(stage\)/);
   assert.match(source, /group home pending/);
 });
 
-test('TERRAIN-VIEW: embedded preserved routes resolve through live Terrain nodes instead of escaping the project root', () => {
+test('TERRAIN-VIEW: embedded preserved routes resolve root and repository-relative page links through live Terrain nodes', () => {
   const source = pageSource();
+  assert.match(source, /function repositorySlugFromHref\(href\)/);
+  assert.match(source, /var rootMatch =/);
+  assert.match(source, /var relativeMatch =/);
   assert.match(source, /function handleEvolutionReaderRouteClick\(event\)/);
   assert.match(source, /function openRepositoryRouteInTerrain\(slug\)/);
   assert.match(source, /stageIndexForRouteNode\(node\)/);

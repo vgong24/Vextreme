@@ -171,7 +171,7 @@
   .evo-context-row{ display:flex; gap:16px; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; margin-top:6px; }
   .evo-context h2{ margin:0; font:500 clamp(20px,3vw,30px)/1.1 var(--sans); letter-spacing:-.02em; }
   .evo-context-meta{ font:10px/1.5 var(--mono); color:var(--ink-muted); }
-  .evo-group-home{ display:inline-flex; align-items:center; gap:5px; margin-left:10px; color:var(--accent); text-decoration:none; font:600 10px/1 var(--mono); }
+  .evo-group-home{ display:inline-flex; align-items:center; gap:5px; margin-left:10px; border:0; background:none; padding:0; color:var(--accent); text-decoration:none; font:600 10px/1 var(--mono); cursor:pointer; }
   .evo-group-home:hover, .evo-group-home:focus-visible{ text-decoration:underline; }
   .evo-rail{ display:flex; gap:7px; overflow:auto; padding:10px 1px 2px; }
   .evo-rail-btn{
@@ -789,7 +789,7 @@
   var searchMatchIds = new Set();
   var journeySnapshot = null, historyReady = false, restoringHistory = false;
   var currentProfile = 'live';
-  var activeReaderId = null, hoveredEvolutionNodeId = null, activeEntrySlug = null;
+  var activeReaderId = null, hoveredEvolutionNodeId = null, activeEntrySlug = null, activeGroupHomeKey = null;
   var boundaryGesture = { key:null, direction:0, lastAt:0 };
   var BOUNDARY_GESTURE_IDLE_MS = 220, BOUNDARY_GESTURE_RESET_MS = 3000;
   var gestureHintTimer = null, depthRailTimer = null;
@@ -873,7 +873,11 @@
     initializeJourneyHistory(initialRoute.explicit);
     if (currentWorld === 'content' && currentProfile === 'evolution-v1' && initialRoute.page) {
       var initialPage = ALL.find(function (node) { return node.slug === initialRoute.page || node.id === initialRoute.page; });
+      var initialStage = typeof levelCtx.stageIdx === 'number' ? STAGES[levelCtx.stageIdx] : null;
       if (initialPage && initialPage.live) openEvolutionReader(initialPage.id, { writeUrl:false });
+      else if (initialStage && initialStage.parent && initialStage.parent.live && initialStage.parent.pageSlug === initialRoute.page) {
+        openEvolutionGroupHome(initialStage, { writeUrl:false });
+      }
     }
     syncPresentationUrl();
   }
@@ -906,7 +910,9 @@
       if (stage) url.searchParams.set('group', String(stage.key));
       else url.searchParams.delete('group');
       var readerNode = activeReaderId && byId[activeReaderId];
+      var groupHomeStage = activeGroupHomeKey && STAGES.find(function (candidate) { return String(candidate.key) === String(activeGroupHomeKey); });
       if (readerNode) url.searchParams.set('page', String(readerNode.slug || readerNode.id));
+      else if (groupHomeStage && groupHomeStage.parent && groupHomeStage.parent.pageSlug) url.searchParams.set('page', String(groupHomeStage.parent.pageSlug));
       else url.searchParams.delete('page');
     } else {
       url.searchParams.delete('profile');
@@ -923,7 +929,7 @@
     mapWrap.setAttribute('data-terrain-profile', currentProfile);
     syncProfileControl();
 
-    if (currentProfile !== 'evolution-v1' && (activeReaderId || activeEntrySlug)) {
+    if (currentProfile !== 'evolution-v1' && (activeReaderId || activeEntrySlug || activeGroupHomeKey)) {
       hideEvolutionLayer();
     }
 
@@ -1051,6 +1057,7 @@
     var entry = entryDocument(slug);
     if (!entry || currentWorld !== 'content' || currentProfile !== 'evolution-v1' || levelIndex !== 0) return;
     activeReaderId = null;
+    activeGroupHomeKey = null;
     hoveredEvolutionNodeId = null;
     activeEntrySlug = null;
     activeEntrySlug = slug;
@@ -1124,15 +1131,52 @@
     return true;
   }
 
+  function repositorySlugFromHref(href) {
+    var rootMatch = /^\/([a-z0-9][a-z0-9-]*)(?:[?#].*)?$/i.exec(href);
+    if (rootMatch) return rootMatch[1];
+    var relativeMatch = /^([a-z0-9][a-z0-9-]*)\.html(?:[?#].*)?$/i.exec(href);
+    return relativeMatch ? relativeMatch[1] : null;
+  }
+
   function handleEvolutionReaderRouteClick(event) {
     var anchor = event.target && event.target.closest ? event.target.closest('a[href]') : null;
     if (!anchor) return;
     var href = anchor.getAttribute('href') || '';
-    var match = /^\/([a-z0-9][a-z0-9-]*)(?:[?#].*)?$/i.exec(href);
-    if (!match) return;
+    var slug = repositorySlugFromHref(href);
+    if (!slug) return;
     event.preventDefault();
-    if (openRepositoryRouteInTerrain(match[1])) return;
-    showGestureHint('Route “' + match[1] + '” is preserved but not live in Vextreme yet');
+    if (openRepositoryRouteInTerrain(slug)) return;
+    showGestureHint('Route “' + slug + '” is preserved but not live in Vextreme yet');
+  }
+
+  function updateGroupHomeReaderChrome(stage) {
+    var parent = stage && stage.parent;
+    if (!parent) return;
+    document.getElementById('readerBack').textContent = '← Collection';
+    document.getElementById('readerTitle').textContent = parent.title || stage.name || 'Group home';
+    document.getElementById('readerMeta').textContent = stage.name + ' · group home';
+    document.getElementById('readerStandalone').href = parent.url;
+    document.getElementById('readerPrev').hidden = true;
+    document.getElementById('readerNext').hidden = true;
+  }
+
+  function openEvolutionGroupHome(stage, options) {
+    options = options || {};
+    if (!stage || !stage.parent || !stage.parent.live || !stage.parent.url || currentWorld !== 'content' || currentProfile !== 'evolution-v1') return;
+    activeEntrySlug = null;
+    activeReaderId = null;
+    activeGroupHomeKey = stage.key;
+    hoveredEvolutionNodeId = null;
+    resetBoundaryGesture();
+    hideGestureHint();
+    evolutionLayer.hidden = true;
+    evolutionReader.hidden = false;
+    svg.style.visibility = 'hidden';
+    mapWrap.classList.add('evolution-a-active', 'evolution-reader-active');
+    updateGroupHomeReaderChrome(stage);
+    evolutionReaderFrame.title = 'Reading ' + (stage.parent.title || stage.name) + ' inside Terrain';
+    evolutionReaderFrame.src = stage.parent.url;
+    if (options.writeUrl !== false) syncPresentationUrl();
   }
 
   function openEvolutionReader(nodeId, options) {
@@ -1142,6 +1186,7 @@
     if (!evolutionReaderMembers().some(function (member) { return member.id === node.id; })) return;
 
     activeEntrySlug = null;
+    activeGroupHomeKey = null;
     activeReaderId = node.id;
     hoveredEvolutionNodeId = node.id;
     resetBoundaryGesture();
@@ -1159,6 +1204,7 @@
   function closeEvolutionReader(options) {
     options = options || {};
     activeReaderId = null;
+    activeGroupHomeKey = null;
     resetBoundaryGesture();
     hideGestureHint();
     evolutionReader.hidden = true;
@@ -1269,6 +1315,7 @@
     evolutionLayer.hidden = true;
     evolutionLayer.innerHTML = '';
     activeReaderId = null;
+    activeGroupHomeKey = null;
     hoveredEvolutionNodeId = null;
     evolutionReader.hidden = true;
     evolutionReaderFrame.src = 'about:blank';
@@ -1294,6 +1341,7 @@
     mapWrap.classList.add('evolution-a-active');
     mapWrap.classList.remove('evolution-reader-active', 'evolution-arrival-active');
     activeReaderId = null;
+    activeGroupHomeKey = null;
     evolutionReader.hidden = true;
     evolutionReaderFrame.src = 'about:blank';
     evolutionLayer.hidden = false;
@@ -1303,7 +1351,7 @@
     var members = stageMembers(stage);
     var kindLabel = summary.groupKind.replace(/-/g, ' ');
     var groupHome = stage.parent && stage.parent.live && stage.parent.url
-      ? '<a class="evo-group-home" href="' + escAttr(stage.parent.url) + '" target="_blank" rel="noopener">Group home ↗</a>'
+      ? '<button class="evo-group-home" type="button" data-evo-group-home="' + escAttr(stage.key) + '">Group home</button>'
       : (stage.parent ? '<span class="evo-context-meta">group home pending</span>' : '');
     var rail = STAGES.map(function (candidate, index) {
       return '<button class="evo-rail-btn" type="button" data-evo-stage-index="' + index + '" aria-current="' + String(index === levelCtx.stageIdx) + '">' + esc(candidate.name) + '</button>';
@@ -1352,6 +1400,8 @@
     evolutionLayer.querySelectorAll('[data-evo-reader]').forEach(function (control) {
       control.addEventListener('click', function () { openEvolutionReader(control.getAttribute('data-evo-reader')); });
     });
+    var groupHomeControl = evolutionLayer.querySelector('[data-evo-group-home]');
+    if (groupHomeControl) groupHomeControl.addEventListener('click', function () { openEvolutionGroupHome(stage); });
 
     evolutionLayer.querySelectorAll('[data-evo-stage-index]').forEach(function (button) {
       button.addEventListener('click', function () {
@@ -1689,6 +1739,7 @@
     clearWorld();
     svg.style.visibility = 'hidden';
     activeReaderId = null;
+    activeGroupHomeKey = null;
     activeEntrySlug = null;
     hoveredEvolutionNodeId = null;
     evolutionReader.hidden = true;
