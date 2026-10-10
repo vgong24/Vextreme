@@ -55,7 +55,7 @@ jobs:
         run: node lib/run-test-prereqs.js
 
       - name: Run tests (shard ${{ matrix.shard }}/${{ needs.shards.outputs.total }})
-        run: node --test $(node lib/compute-test-shards.js files --shard ${{ matrix.shard }} --total ${{ needs.shards.outputs.total }})
+        run: node --test --test-concurrency=1 $(node lib/compute-test-shards.js files --shard ${{ matrix.shard }} --total ${{ needs.shards.outputs.total }})
 
   # Stable, single check name for branch protection to require. The `test`
   # job's own check name changes shape with the shard count (test (1),
