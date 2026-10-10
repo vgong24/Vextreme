@@ -855,6 +855,7 @@
   var TerrainSearch = window.VextremeTerrainSearch;
   var searchState = { query: '', matches: [], cursor: -1 };
   var searchMatchIds = new Set();
+  var searchPopoverOpen = false;
   var journeySnapshot = null, historyReady = false, restoringHistory = false;
   var PRESENTATION_HISTORY_KEY = 'vextremeTerrainPresentation';
   var currentProfile = 'live';
@@ -865,7 +866,7 @@
   var initialRoute = readInitialRoute();
 
   // ── fetch, then build the client-side view model on top of the real data ──
-  fetch(TERRAIN_URL)
+  fetch(TERRAIN_URL, { cache: 'no-store' })
     .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
     .then(boot)
     .catch(function (err) {
@@ -1173,6 +1174,12 @@
     document.getElementById('readerNext').hidden = true;
   }
 
+  function replaceEvolutionReaderDocument(url) {
+    var target = url === 'about:blank' ? url : new URL(url, window.location.href).href;
+    if (!evolutionReaderFrame.contentWindow) return;
+    evolutionReaderFrame.contentWindow.location.replace(target);
+  }
+
   function openEntryReader(slug) {
     var entry = entryDocument(slug);
     if (!entry || currentWorld !== 'content' || currentProfile !== 'evolution-v1' || levelIndex !== 0) return;
@@ -1191,13 +1198,13 @@
     syncTerrainChrome();
     updateEntryReaderChrome(slug);
     evolutionReaderFrame.title = 'Reading ' + entry.label + ' inside Terrain';
-    evolutionReaderFrame.src = entry.path;
+    replaceEvolutionReaderDocument(entry.path);
   }
 
   function closeEntryReader() {
     activeEntrySlug = null;
     evolutionReader.hidden = true;
-    evolutionReaderFrame.src = 'about:blank';
+    replaceEvolutionReaderDocument('about:blank');
     mapWrap.classList.remove('evolution-reader-active');
     renderEvolutionAArrival();
   }
@@ -1216,7 +1223,7 @@
     activeEntrySlug = null;
     activeReaderId = null;
     evolutionReader.hidden = true;
-    evolutionReaderFrame.src = 'about:blank';
+    replaceEvolutionReaderDocument('about:blank');
     mapWrap.classList.remove('evolution-reader-active', 'evolution-arrival-active');
     enterLevel(1, {});
     syncPresentationUrl();
@@ -1264,7 +1271,20 @@
     var rootMatch = /^\/([a-z0-9][a-z0-9-]*)(?:[?#].*)?$/i.exec(href);
     if (rootMatch) return rootMatch[1];
     var relativeMatch = /^([a-z0-9][a-z0-9-]*)\.html(?:[?#].*)?$/i.exec(href);
-    return relativeMatch ? relativeMatch[1] : null;
+    if (relativeMatch) return relativeMatch[1];
+
+    var target;
+    try {
+      target = new URL(href, evolutionReaderFrame.contentWindow ? evolutionReaderFrame.contentWindow.location.href : window.location.href);
+    } catch (err) {
+      return null;
+    }
+    if (target.origin !== window.location.origin) return null;
+    var pagesPrefix = BASE.replace(/\/$/, '') + '/pages/';
+    if (target.pathname.indexOf(pagesPrefix) !== 0) return null;
+    var filename = target.pathname.slice(pagesPrefix.length);
+    var pageMatch = /^([a-z0-9][a-z0-9-]*)\.html$/i.exec(filename);
+    return pageMatch ? pageMatch[1] : null;
   }
 
   function handleEvolutionReaderRouteClick(event) {
@@ -1274,6 +1294,10 @@
     var slug = repositorySlugFromHref(href);
     if (!slug) return;
     event.preventDefault();
+    if (slug === 'terrain-map') {
+      closeEvolutionReader();
+      return;
+    }
     if (openRepositoryRouteInTerrain(slug)) return;
     showGestureHint('Route “' + slug + '” is preserved but not live in Vextreme yet');
   }
@@ -1305,7 +1329,7 @@
     syncTerrainChrome();
     updateGroupHomeReaderChrome(stage);
     evolutionReaderFrame.title = 'Reading ' + (stage.parent.title || stage.name) + ' inside Terrain';
-    evolutionReaderFrame.src = stage.parent.url;
+    replaceEvolutionReaderDocument(stage.parent.url);
     if (options.writeUrl !== false) syncPresentationUrl(options.historyMode || 'push', 'group-home');
   }
 
@@ -1328,7 +1352,7 @@
     syncTerrainChrome();
     updateReaderChrome(node);
     evolutionReaderFrame.title = 'Reading ' + (node.title || node.slug) + ' inside Terrain';
-    evolutionReaderFrame.src = node.liveUrl;
+    replaceEvolutionReaderDocument(node.liveUrl);
     if (options.writeUrl !== false) syncPresentationUrl(options.historyMode || 'push', 'reader');
   }
 
@@ -1343,7 +1367,7 @@
     resetBoundaryGesture();
     hideGestureHint();
     evolutionReader.hidden = true;
-    evolutionReaderFrame.src = 'about:blank';
+    replaceEvolutionReaderDocument('about:blank');
     mapWrap.classList.remove('evolution-reader-active');
     syncTerrainChrome();
     if (options.renderGroup !== false && isEvolutionAGroup()) {
@@ -1424,7 +1448,7 @@
     activeGroupHomeKey = null;
     hoveredEvolutionNodeId = null;
     evolutionReader.hidden = true;
-    evolutionReaderFrame.src = 'about:blank';
+    replaceEvolutionReaderDocument('about:blank');
     resetBoundaryGesture();
     hideGestureHint();
     svg.style.visibility = '';
@@ -1453,7 +1477,7 @@
     activeReaderId = null;
     activeGroupHomeKey = null;
     evolutionReader.hidden = true;
-    evolutionReaderFrame.src = 'about:blank';
+    replaceEvolutionReaderDocument('about:blank');
     evolutionLayer.hidden = false;
     syncTerrainChrome();
 
@@ -1867,7 +1891,7 @@
     activeEntrySlug = null;
     hoveredEvolutionNodeId = null;
     evolutionReader.hidden = true;
-    evolutionReaderFrame.src = 'about:blank';
+    replaceEvolutionReaderDocument('about:blank');
     evolutionLayer.hidden = false;
     mapWrap.classList.add('evolution-a-active', 'evolution-arrival-active');
     mapWrap.classList.remove('evolution-reader-active');
@@ -2153,11 +2177,17 @@
     return currentWorld === 'content' && currentProfile === 'evolution-v1';
   }
 
+  function dismissEvolutionSearchResults() {
+    searchPopoverOpen = false;
+    var box = document.getElementById('evoSearchResults');
+    if (box) box.hidden = true;
+  }
+
   function renderEvolutionSearchResults() {
     var box = document.getElementById('evoSearchResults');
     if (!box) return;
     var normalized = TerrainSearch.normalize(searchState.query);
-    if (!isEvolutionASearch() || normalized.length < TerrainSearch.MIN_QUERY_LENGTH) {
+    if (!searchPopoverOpen || !isEvolutionASearch() || normalized.length < TerrainSearch.MIN_QUERY_LENGTH) {
       box.hidden = true;
       box.innerHTML = '';
       return;
@@ -2183,6 +2213,7 @@
         if (!node) return;
         searchState.cursor = searchState.matches.findIndex(function (candidate) { return candidate.id === id; });
         renderSearchStatus();
+        dismissEvolutionSearchResults();
         openEvolutionSearchMatch(node, 'search result click for "' + searchState.query.trim() + '"');
       });
     });
@@ -2190,6 +2221,7 @@
 
   function openEvolutionSearchMatch(node, reason) {
     if (!node || !isEvolutionASearch() || node.kind !== 'page' || !node.live || !node.liveUrl) return false;
+    dismissEvolutionSearchResults();
     var stageIdx = STAGES.findIndex(function (stage) { return String(stage.key) === String(node.stage); });
     if (stageIdx < 0) stageIdx = stageIndexForRouteNode(node);
     if (stageIdx < 0) return false;
@@ -2239,6 +2271,7 @@
 
   function clearSearch() {
     var input = document.getElementById('searchInput');
+    dismissEvolutionSearchResults();
     if (!input.value) return;
     input.value = '';
     refreshSearch(true);
@@ -2673,6 +2706,11 @@
     updateReadout();
   }
 
+  function handleTerrainResize() {
+    if (evolutionReader && !evolutionReader.hidden) return;
+    enterLevel(levelIndex, levelCtx);
+  }
+
   function wireControls() {
     terrainInspectToggle.addEventListener('click', function () {
       var open = appRoot.classList.toggle('terrain-inspect-open');
@@ -2769,7 +2807,13 @@
     updateReadout();
 
     document.getElementById('searchInput').addEventListener('input', function () {
+      searchPopoverOpen = true;
       refreshSearch(true);
+    });
+    document.getElementById('searchInput').addEventListener('focus', function () {
+      if (!TerrainSearch.normalize(searchQueryValue())) return;
+      searchPopoverOpen = true;
+      renderEvolutionSearchResults();
     });
     document.getElementById('searchInput').addEventListener('keydown', function (ev) {
       if (ev.key === 'Escape') {
@@ -2783,8 +2827,12 @@
     });
     document.getElementById('searchPrev').addEventListener('click', function () { travelSearch(-1); });
     document.getElementById('searchNext').addEventListener('click', function () { travelSearch(1); });
+    var searchRegion = document.querySelector('.search');
+    document.addEventListener('pointerdown', function (ev) {
+      if (searchPopoverOpen && searchRegion && !searchRegion.contains(ev.target)) dismissEvolutionSearchResults();
+    });
 
-    window.addEventListener('resize', function () { enterLevel(levelIndex, levelCtx); });
+    window.addEventListener('resize', handleTerrainResize);
     window.addEventListener('popstate', function (event) {
       var snapshot = Journey && Journey.unwrap(event.state);
       if (!snapshot) return;
