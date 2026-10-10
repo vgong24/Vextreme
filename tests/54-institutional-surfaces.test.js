@@ -700,6 +700,30 @@ test('INSTITUTIONAL-SURFACES: evidence requires every variant and a complete PNG
   ).some(issue => issue.check === 'evidence-theme-coverage'));
 });
 
+test('INSTITUTIONAL-SURFACES: matrix writer can add structured Assets custody without changing local activation evidence', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'scripts', 'screenshot-institutional.js'), 'utf8').replace(/\r\n/g, '\n');
+
+  assert.match(source, /docs\/screenshots\/\{slug\}-\{locale\}-\{theme\}-\{viewport\}\.png/);
+  assert.match(source, /VEXTREME_ASSETS_ROOT/);
+  assert.match(source, /--assets-root/);
+  assert.match(source, /ingest-screenshot-evidence\.mjs/);
+  assert.match(source, /'--namespace', 'vextreme'/);
+  assert.match(source, /'--slug', surface\.slug/);
+  assert.match(source, /'--locale', locale/);
+  assert.match(source, /'--theme', theme/);
+  assert.match(source, /'--viewport', String\(viewport\)/);
+  assert.match(source, /'--source-repo', 'vgong24\/Vextreme'/);
+  assert.match(source, /'--source-commit', sourceCommit\(\)/);
+  assert.match(source, /'--source-path', 'pages\/' \+ surface\.slug \+ '\.html'/);
+  assert.match(source, /'--capture-kind', 'institutional-localization'/);
+  assert.match(source, /git', \['rev-parse', 'HEAD'\]/,
+    'matrix evidence must bind to exact Vextreme source bytes');
+  assert.match(source, /const outPath = path\.join\(OUT_DIR, filename\);[\s\S]*page\.screenshot\(\{ path: outPath, fullPage: true \}\);[\s\S]*publishScreenshotEvidence\(outPath, surface, locale, theme, viewport\);/,
+    'Assets publication must happen only after the verified matrix cell is captured through the existing local evidence path');
+  assert.match(source, /requestedSlug: positional\[0\] \|\| null/,
+    'existing single-surface filtering must remain available alongside the Assets option');
+});
+
 test('INSTITUTIONAL-SURFACES: a bounded standalone active fixture passes', () => {
   const root = makeRoot();
   fs.writeFileSync(path.join(root, 'pages', 'vex-test.html'), activeHtml());
