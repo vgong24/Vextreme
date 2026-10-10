@@ -65,13 +65,14 @@ test('TERRAIN ENTRY: active documents are provider-neutral repository pages outs
   }
 });
 
-test('TERRAIN ENTRY: Receive God owns the ordered continuation and archive handoff instead of exposing Take a Walk as an arrival peer', () => {
+test('TERRAIN ENTRY: Receive God owns the ordered continuation, archive handoff, and live group-home primary paths', () => {
   const html = fs.readFileSync(path.join(ROOT, 'pages', 'receive-god.html'), 'utf8');
   assert.match(html, /href="take-a-walk\.html"/);
   assert.match(html, /data-terrain-action="archives"/);
   assert.match(html, /type:'vextreme\.terrain-entry\/v1'/);
-  assert.match(html, /data-vex-route-state="held-not-ported"/);
-  assert.doesNotMatch(html, /href="(?:direct-contact|ai-practitioner-tools)\.html"/);
+  assert.ok(html.includes('href="terrain-map.html?view=content&amp;profile=evolution-v1&amp;group=direct_contact&amp;page=direct-contact" target="_parent"'));
+  assert.ok(html.includes('href="terrain-map.html?view=content&amp;profile=evolution-v1&amp;group=ai_practitioner_tools&amp;page=ai-practitioner-tools" target="_parent"'));
+  assert.doesNotMatch(html, /held-not-ported/);
 });
 
 test('TERRAIN ENTRY: Take a Walk resolves preserved image identities through the existing public asset origin', () => {
