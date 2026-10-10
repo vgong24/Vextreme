@@ -194,4 +194,15 @@ test('VEXSYSTEM PAGE: mobile composition keeps meaning primary before the graph'
 });
 
 
+
+test('VEXSYSTEM PAGE: browser proof requires source-derived meaning before optional exploration', () => {
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_COMPOSED_UNDERSTANDING_MISSING/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_GRAPH_PRECEDES_UNDERSTANDING/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_WHOLE_ERASED_BY_FOCUS/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_MOBILE_FIRST_FOLD_MEANING_MISSING/);
+  assert.match(browserProof, /understandingTitle/);
+  assert.match(browserProof, /currentAnswerTop/);
+  assert.match(browserProof, /purposeBottom/);
+});
+
 // [VXG RealForever]
