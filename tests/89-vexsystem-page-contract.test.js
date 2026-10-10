@@ -110,3 +110,13 @@ test('VEXSYSTEM PAGE: browser keyboard proof uses trusted CDP input rather than 
   assert.match(browserProof, /type: 'keyUp'/);
   assert.doesNotMatch(browserProof, /dispatchEvent\(new KeyboardEvent/);
 });
+
+
+test('VEXSYSTEM PAGE: trusted Enter proof mirrors mature CDP key semantics and requires native activation evidence', () => {
+  assert.match(browserProof, /text: '\\\\r'/);
+  assert.match(browserProof, /unmodifiedText: '\\\\r'/);
+  assert.match(browserProof, /window\.__vexKeyboardProbe/);
+  assert.match(browserProof, /event\.isTrusted === true/);
+  assert.match(browserProof, /event\.detail === 0/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_KEYBOARD_TRUST_CHAIN_MISSING/);
+});
