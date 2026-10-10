@@ -73,6 +73,15 @@
       "addedSession": "2026-07-10 (nav-coverage rollout Step 4)",
       "migrationPath": "Give #vex-site-nav itself `position: sticky; top: 0` (removing the redundant nested sticky, since the wrapper and its single child are the same size and either one sticking has the same visible effect), or set an explicit min-height on #vex-site-nav taller than .vex-nav so the inner sticky element has real room to stick. Verify with a real scroll test (not just 'element exists at load'), same discipline this finding was caught with.",
       "priority": "medium"
+    },
+    {
+      "id": "td-011",
+      "title": "[VexSite TechDebt: Stale htmls] Legacy/pre-Rescue pages do not yet share the current VexSite composition contract",
+      "description": "Vextreme carries multiple generations of preserved HTML. Some older pre–VexSite Rescue / legacy-authored pages remain usable but visibly retain older shared-nav, spacing, runtime-chrome, or composition assumptions when embedded in the newer Terrain reader. Age alone is not a defect and this item does not classify every legacy page as stale. The debt is that page generation/currentness is not yet inventoried explicitly, so visible mismatches are discovered ad hoc during lived browsing instead of being named as CURRENT, LEGACY-COMPATIBLE, STALE, or MISSING/PLACEHOLDER.",
+      "context": "Known lived specimen: pages/the-testimony-of-victor-gong.html. Inventory scope: pages/*.html, but do not infer that every legacy page is stale.",
+      "addedSession": "2026-10-10 (VexSite Template lived-UI review)",
+      "migrationPath": "Inventory before rewriting. Classify each page generation as CURRENT, LEGACY-COMPATIBLE, STALE (visibly conflicts with the current VexSite composition contract), or MISSING/PLACEHOLDER (source-recovery problem, not modernization). Modernize selectively when a page's current role or a concrete lived conflict justifies it; preserve intentional page-specific design and avoid a mass HTML rewrite.",
+      "priority": "medium"
     }
   ]
 }
