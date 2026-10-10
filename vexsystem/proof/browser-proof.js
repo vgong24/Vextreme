@@ -458,36 +458,81 @@ async function runRuntime(origin, cdp) {
       "const current = new URL(location.href).searchParams.get('subject');" +
       "const target = [...document.querySelectorAll('.vs-text-node')].find(node => node.dataset.subjectRef && node.dataset.subjectRef !== current);" +
       "if (!target) return null;" +
+      "window.__vexKeyboardProbe = [];" +
+      "for (const type of ['keydown', 'keyup', 'click']) {" +
+        "target.addEventListener(type, event => {" +
+          "window.__vexKeyboardProbe.push({" +
+            "type," +
+            "isTrusted: event.isTrusted === true," +
+            "key: event.key || null," +
+            "code: event.code || null," +
+            "detail: typeof event.detail === 'number' ? event.detail : null" +
+          "});" +
+        "}, { once: type === 'click' });" +
+      "}" +
       "target.focus();" +
-      "return target.dataset.subjectRef;" +
+      "return { subjectRef: target.dataset.subjectRef, focused: document.activeElement === target };" +
     "})()"
   );
 
-  if (!keyboardTarget) {
+  if (!keyboardTarget || !keyboardTarget.subjectRef) {
     fail('VEXSYSTEM_BROWSER_KEYBOARD_TARGET_MISSING', 'No alternate text-view node was available.');
+  }
+  if (!keyboardTarget.focused) {
+    fail('VEXSYSTEM_BROWSER_KEYBOARD_FOCUS_FAILED', 'The native text-view button could not receive focus.');
   }
 
   await cdp.send('Input.dispatchKeyEvent', {
     type: 'keyDown',
-    key: 'Enter',
-    code: 'Enter',
+    modifiers: 0,
     windowsVirtualKeyCode: 13,
-    nativeVirtualKeyCode: 13
+    code: 'Enter',
+    key: 'Enter',
+    text: '\\r',
+    unmodifiedText: '\\r',
+    autoRepeat: false,
+    location: 0,
+    isKeypad: false
   }, desktop.sessionId);
   await cdp.send('Input.dispatchKeyEvent', {
     type: 'keyUp',
+    modifiers: 0,
     key: 'Enter',
-    code: 'Enter',
     windowsVirtualKeyCode: 13,
-    nativeVirtualKeyCode: 13
+    code: 'Enter',
+    location: 0
   }, desktop.sessionId);
 
   await waitFor(
     cdp,
     desktop.sessionId,
-    "new URL(location.href).searchParams.get('subject') === " + JSON.stringify(keyboardTarget),
+    "new URL(location.href).searchParams.get('subject') === " + JSON.stringify(keyboardTarget.subjectRef),
     'keyboard semantic selection'
   );
+
+  const keyboardProbe = await evaluate(
+    cdp,
+    desktop.sessionId,
+    "window.__vexKeyboardProbe || []"
+  );
+  const trustedKeydown = keyboardProbe.some(event =>
+    event.type === 'keydown' &&
+    event.isTrusted === true &&
+    event.key === 'Enter' &&
+    event.code === 'Enter'
+  );
+  const trustedClick = keyboardProbe.some(event =>
+    event.type === 'click' &&
+    event.isTrusted === true &&
+    event.detail === 0
+  );
+  if (!trustedKeydown || !trustedClick) {
+    fail(
+      'VEXSYSTEM_BROWSER_KEYBOARD_TRUST_CHAIN_MISSING',
+      'Keyboard activation did not produce the required trusted Enter -> native button click chain.',
+      { keyboardTarget, keyboardProbe, trustedKeydown, trustedClick }
+    );
+  }
 
   const mobile = await createPage(cdp, origin + ENTRY, {
     width: 390,
@@ -506,7 +551,8 @@ async function runRuntime(origin, cdp) {
       initial,
       formation,
       zoomed,
-      keyboardSelectionTarget: keyboardTarget,
+      keyboardSelectionTarget: keyboardTarget.subjectRef,
+      keyboardProbe,
       pageErrors: desktop.errors.length,
       consoleErrors: desktop.consoleErrors.length
     },
