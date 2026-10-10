@@ -5,6 +5,11 @@
  * Usage:
  *   node scripts/screenshot-institutional.js
  *   node scripts/screenshot-institutional.js vextreme-home
+ *   node scripts/screenshot-institutional.js vextreme-home --assets-root ../Vextreme-Assets
+ *
+ * --assets-root (or VEXTREME_ASSETS_ROOT) is optional. When supplied, each
+ * already-verified locale/theme/viewport PNG is also handed unchanged to the
+ * Vextreme-Assets structured screenshot-evidence custody contract.
  *
  * Output:
  *   docs/screenshots/{slug}-{locale}-{theme}-{viewport}.png
@@ -42,6 +47,7 @@
 const fs = require('fs');
 const http = require('http');
 const path = require('path');
+const { execFileSync } = require('child_process');
 
 const { surfacesByState } = require('../lib/check-institutional-surfaces');
 const { evidenceFilename } = require('../lib/screenshot-evidence');
@@ -49,6 +55,59 @@ const { evidenceFilename } = require('../lib/screenshot-evidence');
 const ROOT = path.join(__dirname, '..');
 const OUT_DIR = path.join(ROOT, 'docs', 'screenshots');
 const REGISTRY_PATH = path.join(ROOT, 'config', 'institutional-surfaces.json');
+
+function parseArgs(argv) {
+  const positional = [];
+  let assetsRoot = process.env.VEXTREME_ASSETS_ROOT || null;
+  for (let i = 0; i < argv.length; i += 1) {
+    if (argv[i] === '--assets-root') {
+      assetsRoot = argv[++i];
+      if (!assetsRoot) throw new Error('--assets-root requires a path');
+    } else if (argv[i].startsWith('--')) {
+      throw new Error('unknown argument: ' + argv[i]);
+    } else {
+      positional.push(argv[i]);
+    }
+  }
+  if (positional.length > 1) {
+    throw new Error('usage: node scripts/screenshot-institutional.js [slug] [--assets-root <path>]');
+  }
+  return {
+    requestedSlug: positional[0] || null,
+    assetsRoot: assetsRoot ? path.resolve(assetsRoot) : null,
+  };
+}
+
+const OPTIONS = parseArgs(process.argv.slice(2));
+let SOURCE_COMMIT = null;
+
+function sourceCommit() {
+  if (SOURCE_COMMIT) return SOURCE_COMMIT;
+  SOURCE_COMMIT = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: ROOT, encoding: 'utf8' }).trim().toLowerCase();
+  if (!/^[0-9a-f]{40}$/.test(SOURCE_COMMIT)) throw new Error('could not resolve an exact Vextreme source commit');
+  return SOURCE_COMMIT;
+}
+
+function publishScreenshotEvidence(file, surface, locale, theme, viewport) {
+  if (!OPTIONS.assetsRoot) return;
+  const ingest = path.join(OPTIONS.assetsRoot, 'scripts', 'ingest-screenshot-evidence.mjs');
+  if (!fs.existsSync(ingest)) {
+    throw new Error('Vextreme-Assets screenshot ingest contract not found: ' + ingest);
+  }
+  execFileSync(process.execPath, [
+    ingest,
+    '--file', file,
+    '--namespace', 'vextreme',
+    '--slug', surface.slug,
+    '--locale', locale,
+    '--theme', theme,
+    '--viewport', String(viewport),
+    '--source-repo', 'vgong24/Vextreme',
+    '--source-commit', sourceCommit(),
+    '--source-path', 'pages/' + surface.slug + '.html',
+    '--capture-kind', 'institutional-localization',
+  ], { cwd: OPTIONS.assetsRoot, stdio: 'inherit' });
+}
 const MIME = {
   '.css': 'text/css; charset=utf-8',
   '.html': 'text/html; charset=utf-8',
@@ -617,15 +676,17 @@ async function renderCell(browser, baseUrl, surface, locale, theme, viewport, ve
     }));
 
     const filename = evidenceFilename(surface.slug, locale, theme, viewport);
-    await page.screenshot({ path: path.join(OUT_DIR, filename), fullPage: true });
-    process.stdout.write(`  ${filename}\n`);
+    const outPath = path.join(OUT_DIR, filename);
+    await page.screenshot({ path: outPath, fullPage: true });
+    publishScreenshotEvidence(outPath, surface, locale, theme, viewport);
+    process.stdout.write(`  ${filename}${OPTIONS.assetsRoot ? ' + Assets' : ''}\n`);
   } finally {
     await context.close();
   }
 }
 
 async function main() {
-  const requestedSlug = process.argv[2] || null;
+  const requestedSlug = OPTIONS.requestedSlug;
   let surfaces = readActiveSurfaces();
   if (requestedSlug) surfaces = surfaces.filter(surface => surface.slug === requestedSlug);
   if (surfaces.length === 0) {
