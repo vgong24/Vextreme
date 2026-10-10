@@ -734,7 +734,11 @@ async function runTerrainEntryRuntime(origin, cdp) {
     },
     mobile: {
       arrival: mobileArrival,
-      signals: assertPageSignals(mobile, 'Terrain mobile arrival runtime')
+      signals: assertPageSignals(mobile, 'Terrain mobile arrival runtime', {
+        allowSingleSupersededDocumentAbort:
+          mobileArrival.entryPresent === true &&
+          mobileArrival.pathname === '/Vextreme/pages/terrain-map.html'
+      })
     }
   };
 }

@@ -243,4 +243,11 @@ test('VEXSYSTEM PAGE: navigation-abort noise is admitted only after a proven top
   assert.doesNotMatch(browserProof, /allowSingleSupersededDocumentAbort:\s*true/);
 });
 
+
+test('VEXSYSTEM PAGE: mobile Terrain initialization admits one superseded document only after canonical arrival is proven', () => {
+  assert.match(browserProof, /mobileArrival\.entryPresent === true/);
+  assert.match(browserProof, /mobileArrival\.pathname === '\/Vextreme\/pages\/terrain-map\.html'/);
+  assert.match(browserProof, /Terrain mobile arrival runtime/);
+});
+
 // [VXG RealForever]
