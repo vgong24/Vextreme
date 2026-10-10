@@ -23,7 +23,7 @@ const atlasSource = fs.readFileSync(path.join(ROOT, 'data', 'vexsystem', 'atlas.
 
 function gitBlobSha(source) {
   const bytes = Buffer.from(source, 'utf8');
-  return crypto.createHash('sha1').update(`blob ${bytes.length}\\0`).update(bytes).digest('hex');
+  return crypto.createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex');
 }
 
 test('VEXSYSTEM PAGE: standalone surface consumes content-addressed canonical projection, renderer, styles, and atlas', () => {
