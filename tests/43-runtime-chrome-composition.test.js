@@ -55,17 +55,19 @@ test('CHROME-RAIL: spiral FAB uses the nav rail with a standalone fallback', () 
   assert.match(source, /vex-spiral-fab--nav/);
 });
 
-test('CHROME-RAIL: generic FAB links remain children of the shared Spiral and fail closed on unsafe URL / raw HTML patterns', () => {
-  const source = read('widgets/fab-links.js');
-  assert.match(source, /getElementById\('vex-spiral-group'\)/);
-  assert.match(source, /Array\.isArray\(global\.VEX_FAB_LINKS\)/);
-  assert.match(source, /url\.protocol === 'http:' \|\| url\.protocol === 'https:'/);
-  assert.match(source, /document\.createElement\('a'\)/);
-  assert.match(source, /document\.createElement\('img'\)/);
-  assert.match(source, /link\.setAttribute\('aria-label', label\)/);
-  assert.match(source, /group\.appendChild\(link\)/);
-  assert.doesNotMatch(source, /\.innerHTML\s*=/, 'configured icons/labels must not become raw HTML injection');
-  assert.doesNotMatch(source, /position:\s*fixed/, 'link child must not create a second independently positioned FAB');
+test('CHROME-RAIL: configured FAB links remain children of the shared Spiral and fail closed on unsafe URL / raw HTML patterns', () => {
+  const source = read('lib/vextreme.js');
+  const helper = source.match(/function safeFabLinkUrl\(value\) \{[\s\S]*?\n  function loadFabWidgets\(cfg\)/);
+  assert.ok(helper, 'configured FAB link helpers must remain adjacent to the shared loader');
+  const code = helper[0];
+  assert.match(code, /getElementById\('vex-spiral-group'\)/);
+  assert.match(code, /url\.protocol === 'http:' \|\| url\.protocol === 'https:'/);
+  assert.match(code, /document\.createElement\('a'\)/);
+  assert.match(code, /document\.createElement\('img'\)/);
+  assert.match(code, /link\.setAttribute\('aria-label', label\)/);
+  assert.match(code, /group\.appendChild\(link\)/);
+  assert.doesNotMatch(code, /\.innerHTML\s*=/, 'configured icons/labels must not become raw HTML injection');
+  assert.doesNotMatch(code, /position:\s*fixed/, 'configured links must not create a second independently positioned FAB');
 });
 
 test('CHROME-RAIL: site nav is full-width and owns a below-nav page-action lane', () => {
