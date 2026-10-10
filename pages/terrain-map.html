@@ -175,6 +175,20 @@
   .zoom-btn{ width:28px; height:28px; border-radius:7px; border:1px solid var(--line-strong); background:var(--panel); color:var(--ink); font-size:15px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
   .zoom-btn:hover{ background:var(--panel-2); }
   .load-state{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:var(--ink-muted); font-family:var(--mono); font-size:13px; z-index:3; background:var(--ground); }
+  .stage-orientation{
+    position:absolute; top:14px; left:104px; right:18px; z-index:5; display:flex; align-items:center; gap:14px;
+    min-height:48px; padding:9px 12px; border:1px solid var(--line); border-radius:13px;
+    background:color-mix(in srgb,var(--panel) 88%,transparent); box-shadow:0 8px 24px color-mix(in srgb,var(--ink) 6%,transparent);
+    backdrop-filter:blur(10px); pointer-events:none;
+  }
+  .stage-orientation[hidden]{ display:none; }
+  .stage-orientation-title{ flex:none; color:var(--ink); font:700 10px/1 var(--mono); letter-spacing:.12em; text-transform:uppercase; }
+  .stage-orientation-summary{ min-width:0; flex:1; color:var(--ink-muted); font:9px/1.35 var(--mono); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .stage-orientation-kinds{ flex:none; display:flex; align-items:center; gap:5px; }
+  .stage-orientation-kind{
+    border:1px solid var(--line); border-radius:999px; padding:4px 7px; background:var(--panel-2);
+    color:var(--ink-muted); font:700 8px/1 var(--mono); letter-spacing:.05em; text-transform:uppercase;
+  }
 
   .evolution-layer{
     position:absolute; inset:18px 18px 20px 92px; z-index:4; overflow:auto; padding:0 0 28px;
@@ -316,6 +330,9 @@
   .evolution-reader-active .zoom-controls, .evolution-reader-active .map-hint, .evolution-reader-active .level-readout{ display:none; }
 
   @media (max-width:720px){
+    .stage-orientation{ left:88px; right:10px; top:10px; display:block; min-height:0; padding:8px 10px; }
+    .stage-orientation-summary{ display:block; margin-top:4px; }
+    .stage-orientation-kinds{ display:none; }
     .evolution-layer{ inset:10px 10px 14px 72px; }
     .entry-arrival{ padding:18px 0 28px; }
     .entry-grid{ grid-template-columns:1fr; gap:10px; }
@@ -343,9 +360,14 @@
   .system-sub{ font-family:var(--mono); fill:var(--ink-muted); }
 
   .stage-halo{ fill:var(--panel-2); stroke:var(--line); stroke-width:1; }
+  .stage-kind{ font-family:var(--mono); font-size:8.5px; font-weight:800; fill:var(--accent); text-transform:uppercase; letter-spacing:.11em; }
   .stage-label{ font-family:var(--mono); font-size:13px; font-weight:700; fill:var(--ink); text-transform:uppercase; letter-spacing:.06em; }
   .stage-sub{ font-family:var(--mono); font-size:9.5px; fill:var(--ink-muted); }
-  .stage-arrow{ stroke:var(--line-strong); stroke-width:2; marker-end:url(#arrowhead); }
+  .stage-member{ font-family:var(--sans); font-size:12px; fill:var(--ink-muted); }
+  .stage-member-more{ font-family:var(--mono); font-size:9px; font-weight:700; fill:var(--accent); }
+  .stage-parent{ font-family:var(--mono); font-size:9px; fill:var(--ink-faint); text-transform:uppercase; letter-spacing:.05em; }
+  .stage-status-dot{ stroke:var(--panel); stroke-width:2; }
+  .stage-arrow{ stroke:var(--line-strong); stroke-width:2; marker-end:url(#arrowhead); opacity:.34; }
   .stage-hint{ font-family:var(--mono); font-size:9px; fill:var(--ink-faint); font-style:italic; }
   .stage-card{ cursor:pointer; outline:none; }
   .stage-card .stage-halo{ transition:stroke .12s ease, fill .12s ease; }
@@ -514,6 +536,15 @@
   <div class="body">
     <div class="map-wrap" id="mapWrap">
       <div class="level-readout" id="levelReadout" tabindex="0" aria-label="Semantic depth. Scroll upward while focused or hovered to zoom out one level.">Loading…</div>
+      <section class="stage-orientation" id="stageOrientation" aria-label="Content groups" hidden>
+        <span class="stage-orientation-title">Content groups</span>
+        <span class="stage-orientation-summary" id="stageOrientationSummary"></span>
+        <span class="stage-orientation-kinds" aria-hidden="true">
+          <span class="stage-orientation-kind">collection</span>
+          <span class="stage-orientation-kind">timeline view</span>
+          <span class="stage-orientation-kind">curation bucket</span>
+        </span>
+      </section>
       <svg id="svg"><defs><marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="currentColor" style="color:var(--line-strong)"/></marker></defs><g id="world"></g></svg>
       <div class="evolution-layer" id="evolutionLayer" data-terrain-component="terrain.group-card" data-terrain-variant="evolution-a" hidden></div>
       <div class="evolution-reader" id="evolutionReader" data-terrain-profile="evolution-v1" hidden>
@@ -838,6 +869,8 @@
   var svg = document.getElementById('svg');
   var world = document.getElementById('world');
   var mapWrap = document.getElementById('mapWrap');
+  var stageOrientation = document.getElementById('stageOrientation');
+  var stageOrientationSummary = document.getElementById('stageOrientationSummary');
   var evolutionLayer = document.getElementById('evolutionLayer');
   var evolutionReader = document.getElementById('evolutionReader');
   var evolutionReaderFrame = document.getElementById('evolutionReaderFrame');
@@ -1531,6 +1564,7 @@
   }
 
   function renderEvolutionAGroup() {
+    hideStageOrientation();
     clearWorld();
     svg.style.visibility = 'hidden';
     mapWrap.classList.add('evolution-a-active');
@@ -1704,6 +1738,15 @@
       return Array.isArray(n.arcKeys) && n.arcKeys.indexOf(stage.key) !== -1;
     });
   }
+  function groupKindLabel(kind) {
+    return String(kind || '').replace(/-/g, ' ');
+  }
+
+  function contentMembershipText(summary) {
+    if (summary.groupKind === 'timeline-view') return summary.membershipCount + ' members · cross-cutting view';
+    return summary.membershipCount + ' members · ' + summary.primaryCount + ' primary placement' + (summary.primaryCount === 1 ? '' : 's');
+  }
+
   function stageSummary(stage) {
     var members = stageMembers(stage);
     var primaryMembers = stagePrimaryMembers(stage);
@@ -1974,7 +2017,28 @@
     evolutionLayer.querySelector('[data-entry-action="vexsystem"]').addEventListener('click', enterVexSystemFromArrival);
   }
 
+  function hideStageOrientation() {
+    if (stageOrientation) stageOrientation.hidden = true;
+  }
+
+  function renderStageOrientation(layout) {
+    if (!stageOrientation || currentWorld !== 'content' || currentProfile === 'evolution-v1' || layout.focusedIdx >= 0) {
+      hideStageOrientation();
+      return;
+    }
+    var kinds = { collection:0, 'timeline-view':0, 'curation-bucket':0 };
+    STAGES.forEach(function (stage) {
+      var kind = groupKind(stage);
+      if (Object.prototype.hasOwnProperty.call(kinds, kind)) kinds[kind] += 1;
+    });
+    stageOrientationSummary.textContent = ALL.length + ' pages · ' + kinds.collection + ' collections'
+      + (kinds['timeline-view'] ? ' · ' + kinds['timeline-view'] + ' timeline view' : '')
+      + (kinds['curation-bucket'] ? ' · ' + kinds['curation-bucket'] + ' curation buckets' : '');
+    stageOrientation.hidden = false;
+  }
+
   function renderSystemBand() {
+    hideStageOrientation();
     if (currentWorld === 'content' && currentProfile === 'evolution-v1') {
       renderEvolutionAArrival();
       return;
@@ -2055,6 +2119,7 @@
     hideEvolutionLayer();
     clearWorld();
     var layout = stageCompositionLayout(levelCtx || {});
+    renderStageOrientation(layout);
     layout.items.sort(function (a,b) { return a.index - b.index; }).forEach(function (item) {
       var stage=item.stage, i=item.index, r=item.rect, summary=stageSummary(stage);
       var unit = currentWorld === 'content' ? 'member' : (stage.key === SCREENS_KEY ? 'evidence surface' : 'file');
@@ -2063,7 +2128,9 @@
       var placementText = currentWorld === 'content' && summary.primaryCount !== summary.membershipCount
         ? ', ' + summary.primaryCount + ' primary placement' + (summary.primaryCount === 1 ? '' : 's')
         : '';
-      var aria=stage.name + ', ' + countText + placementText
+      var kindText = groupKindLabel(summary.groupKind);
+      var membershipText = currentWorld === 'content' ? contentMembershipText(summary) : countText;
+      var aria=stage.name + ', ' + membershipText
         + ', group kind ' + summary.groupKind
         + (summary.worst ? ', worst ' + summary.worst : '');
       var g=el('g',{
@@ -2084,20 +2151,44 @@
         'aria-label':aria
       });
       var halo=el('rect',{x:r.x,y:r.y,width:r.width,height:r.height,rx:focused?22:14,class:'stage-halo'}); g.appendChild(halo);
-      var label=el('text',{x:r.x+14,y:r.y+(context?25:31),class:'stage-label'}); label.textContent=stageLabelText(stage.name, context?15:(focused?30:22)); g.appendChild(label);
-      if (!context) {
+      if (currentWorld === 'content' && !context) {
+        var kind=el('text',{x:r.x+14,y:r.y+(focused?35:24),class:'stage-kind'}); kind.textContent=kindText; g.appendChild(kind);
+      }
+      var label=el('text',{x:r.x+14,y:r.y+(context?25:(currentWorld === 'content' ? (focused?70:50) : 31)),class:'stage-label'});
+      label.textContent=stageLabelText(stage.name, context?15:(focused?30:22)); g.appendChild(label);
+      if (!context && currentWorld !== 'content') {
         var sub=el('text',{x:r.x+14,y:r.y+(focused?57:52),class:'stage-sub'}); sub.textContent=stageLabelText(stage.sub, focused?48:34); g.appendChild(sub);
       }
-      var stat=el('text',{x:r.x+14,y:r.y+(context?48:(focused?84:78)),class:'stage-sub',fill:summary.worst ? ('var(--'+summary.worst+')') : 'var(--ink-muted)'});
+      var stat=el('text',{x:r.x+14,y:r.y+(context?48:(currentWorld === 'content' ? (focused?103:80) : (focused?84:78))),class:'stage-sub'});
       if (currentWorld === 'content') {
-        stat.textContent = (summary.worst ? ICON[summary.worst] + ' ' : '')
-          + (context ? summary.membershipCount : countText + (summary.primaryCount !== summary.membershipCount ? ' · ' + summary.primaryCount + ' primary' : ''));
+        stat.textContent = context ? summary.membershipCount : membershipText;
       } else {
         stat.textContent=summary.worst
           ? (ICON[summary.worst] + ' ' + (context ? summary.membershipCount : ('worst · ' + countText + (WORLDS[currentWorld].hasLenses ? (' · ' + summary.lensCount + ' in lens') : ''))))
           : (context ? '0' : ('0 ' + unit + 's'));
       }
       g.appendChild(stat);
+      if (currentWorld === 'content' && summary.worst && !context) {
+        g.appendChild(el('circle',{cx:r.x+r.width-18,cy:r.y+18,r:5,class:'stage-status-dot',fill:'var(--'+summary.worst+')','data-status':summary.worst}));
+      }
+      if (currentWorld === 'content' && focused) {
+        var previewMembers = summary.members.slice(0, 5);
+        previewMembers.forEach(function (member, memberIndex) {
+          var memberText = el('text',{x:r.x+24,y:r.y+150+memberIndex*29,class:'stage-member'});
+          memberText.textContent = '• ' + stageLabelText(member.title || member.slug || member.id, 46);
+          g.appendChild(memberText);
+        });
+        if (summary.members.length > previewMembers.length) {
+          var more=el('text',{x:r.x+24,y:r.y+150+previewMembers.length*29,class:'stage-member-more'});
+          more.textContent='+' + (summary.members.length-previewMembers.length);
+          g.appendChild(more);
+        }
+        if (stage.parent && stage.parent.live) {
+          var parentText=el('text',{x:r.x+24,y:r.y+r.height-62,class:'stage-parent'});
+          parentText.textContent='GROUP HOME · ' + stageLabelText(stage.parent.title || stage.name, 44);
+          g.appendChild(parentText);
+        }
+      }
       var barX=r.x+14, barY=r.y+r.height-(context?12:20), barW=Math.max(12,r.width-28);
       g.appendChild(el('rect',{x:barX,y:barY,width:barW,height:context?4:6,rx:3,class:'stage-density-track'}));
       g.appendChild(el('rect',{x:barX,y:barY,width:barW*summary.density,height:context?4:6,rx:3,class:'stage-density-fill','data-density':summary.density.toFixed(4)}));
@@ -2126,7 +2217,7 @@
       g.addEventListener('keydown',function(ev){ if(ev.key==='Enter'||ev.key===' '){ ev.preventDefault(); ev.stopPropagation(); activateStage(i); } });
       world.appendChild(g);
     });
-    if (layout.focusedIdx < 0) {
+    if (layout.focusedIdx < 0 && currentWorld === 'code') {
       for (var i=0;i<layout.items.length-1;i++) {
         var a=layout.items.find(function(item){return item.index===i;}); var b=layout.items.find(function(item){return item.index===i+1;});
         if (!a || !b) continue;
@@ -2151,7 +2242,7 @@
     return { minX: tl.x - margin, minY: tl.y - margin, maxX: br.x + margin, maxY: br.y + margin };
   }
 
-  function renderNodeLevel() { hideEvolutionLayer(); clearWorld(); syncTiles(); }
+  function renderNodeLevel() { hideStageOrientation(); hideEvolutionLayer(); clearWorld(); syncTiles(); }
 
   function syncTiles() {
     var b = viewportWorldBounds();
