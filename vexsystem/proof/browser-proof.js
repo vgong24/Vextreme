@@ -777,16 +777,97 @@ async function proveMapCameraIsPresentationOnly(cdp, page) {
     "})()"
   );
 
-  await cdp.send('Input.dispatchMouseEvent', { type: 'mouseMoved', x: target.x, y: target.y, button: 'none' }, page.sessionId);
-  await cdp.send('Input.dispatchMouseEvent', { type: 'mousePressed', x: target.x, y: target.y, button: 'left', clickCount: 1 }, page.sessionId);
-  await cdp.send('Input.dispatchMouseEvent', { type: 'mouseMoved', x: target.x + 72, y: target.y + 38, button: 'left' }, page.sessionId);
-  await cdp.send('Input.dispatchMouseEvent', { type: 'mouseReleased', x: target.x + 72, y: target.y + 38, button: 'left', clickCount: 1 }, page.sessionId);
+  await evaluate(
+    cdp,
+    page.sessionId,
+    "(() => {" +
+      "const map = document.querySelector('#vexsystem-map');" +
+      "window.__vexMapPointerProbe = [];" +
+      "for (const type of ['pointerdown', 'pointermove', 'pointerup']) {" +
+        "map.addEventListener(type, event => {" +
+          "window.__vexMapPointerProbe.push({" +
+            "type," +
+            "isTrusted: event.isTrusted === true," +
+            "pointerType: event.pointerType || null," +
+            "button: event.button," +
+            "buttons: event.buttons" +
+          "});" +
+        "});" +
+      "}" +
+      "return true;" +
+    "})()"
+  );
+  await cdp.send('Input.dispatchMouseEvent', {
+    type: 'mouseMoved',
+    x: target.x,
+    y: target.y,
+    button: 'none',
+    buttons: 0,
+    pointerType: 'mouse'
+  }, page.sessionId);
+  await cdp.send('Input.dispatchMouseEvent', {
+    type: 'mousePressed',
+    x: target.x,
+    y: target.y,
+    button: 'left',
+    buttons: 1,
+    clickCount: 1,
+    pointerType: 'mouse'
+  }, page.sessionId);
+  await cdp.send('Input.dispatchMouseEvent', {
+    type: 'mouseMoved',
+    x: target.x + 72,
+    y: target.y + 38,
+    button: 'left',
+    buttons: 1,
+    pointerType: 'mouse'
+  }, page.sessionId);
+  await cdp.send('Input.dispatchMouseEvent', {
+    type: 'mouseReleased',
+    x: target.x + 72,
+    y: target.y + 38,
+    button: 'left',
+    buttons: 0,
+    clickCount: 1,
+    pointerType: 'mouse'
+  }, page.sessionId);
   await waitFor(
     cdp,
     page.sessionId,
     "document.querySelector('#map-world').getAttribute('transform') !== window.__vexMapFitTransform",
     'relationship map drag'
   );
+  const pointerProbe = await evaluate(
+    cdp,
+    page.sessionId,
+    "window.__vexMapPointerProbe || []"
+  );
+  const trustedPointerDown = pointerProbe.some(event =>
+    event.type === 'pointerdown' &&
+    event.isTrusted === true &&
+    event.pointerType === 'mouse' &&
+    event.buttons === 1
+  );
+  const trustedPointerMove = pointerProbe.some(event =>
+    event.type === 'pointermove' &&
+    event.isTrusted === true &&
+    event.pointerType === 'mouse' &&
+    event.buttons === 1
+  );
+  const trustedPointerUp = pointerProbe.some(event =>
+    event.type === 'pointerup' &&
+    event.isTrusted === true &&
+    event.pointerType === 'mouse' &&
+    event.buttons === 0
+  );
+  if (!trustedPointerDown || !trustedPointerMove || !trustedPointerUp) {
+    fail(
+      'VEXSYSTEM_BROWSER_TRUSTED_MAP_DRAG_MISSING',
+      'The relationship map did not receive the required trusted pointer drag sequence.',
+      { pointerProbe, trustedPointerDown, trustedPointerMove, trustedPointerUp }
+    );
+  }
+
   const panned = await runtimeSnapshot(cdp, page);
   if (panned.selected !== before.selected || panned.question !== before.question || panned.level !== before.level || panned.search !== before.search) {
     fail('VEXSYSTEM_BROWSER_MAP_PAN_SEMANTIC_MUTATION', 'Dragging the relationship map changed semantic state.', { before, panned });
@@ -831,7 +912,15 @@ async function proveMapCameraIsPresentationOnly(cdp, page) {
   );
   await evaluate(cdp, page.sessionId, "document.querySelector('#map-fit').click()");
 
-  return { before, panned, zoomed };
+  return {
+    before,
+    panned,
+    zoomed,
+    pointerProbe,
+    trustedPointerDown,
+    trustedPointerMove,
+    trustedPointerUp
+  };
 }
 
 

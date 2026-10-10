@@ -313,4 +313,16 @@ test('VEXSYSTEM PAGE: receiver-first visual scenarios capture the changed explor
   assert.match(browserProof, /Explorer screenshot did not move the receiver-first relationship surface/);
 });
 
+
+test('VEXSYSTEM PAGE: trusted map drag proof drives a held mouse button and requires real Pointer Events', () => {
+  assert.match(browserProof, /buttons: 1/);
+  assert.match(browserProof, /pointerType: 'mouse'/);
+  assert.match(browserProof, /window\.__vexMapPointerProbe/);
+  assert.match(browserProof, /pointerdown/);
+  assert.match(browserProof, /pointermove/);
+  assert.match(browserProof, /pointerup/);
+  assert.match(browserProof, /event\.isTrusted === true/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_TRUSTED_MAP_DRAG_MISSING/);
+});
+
 // [VXG RealForever]
