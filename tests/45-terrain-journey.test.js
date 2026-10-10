@@ -155,7 +155,7 @@ test('TERRAIN-JOURNEY: Row B correction keeps zero stages perceivable and select
   assert.doesNotMatch(source, /semantic\s*=\s*\{[^}]*\b(?:x|y|scale)\s*:/s);
 });
 
-test('TERRAIN-JOURNEY: Evolution A gives scrollable content priority and requires a fresh boundary gesture', () => {
+test('TERRAIN-JOURNEY: Evolution A gives scrollable content priority and makes confirmed wheel boundaries outward-only', () => {
   const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
 
   const shelfStart = source.indexOf('function handleEvolutionShelfWheel');
@@ -166,8 +166,8 @@ test('TERRAIN-JOURNEY: Evolution A gives scrollable content priority and require
     shelf.indexOf('canScrollElement(evolutionLayer, direction)') < shelf.indexOf('ev.preventDefault()'),
     'ordinary collection scrolling must be checked before a boundary transition consumes the wheel event'
   );
-  assert.match(shelf, /boundaryGestureReady\('collection-exit', -1\)/);
-  assert.match(shelf, /boundaryGestureReady\('collection-enter:' \+ node\.id, 1\)/);
+  assert.match(shelf, /boundaryGestureReady\('collection-outward', direction\)/);
+  assert.doesNotMatch(shelf, /collection-enter:/, 'wheel boundary must not implicitly enter a page');
 
   const readerStart = source.indexOf('function handleEvolutionReaderWheel');
   const readerEnd = source.indexOf('function wireEvolutionReaderDocument', readerStart);
@@ -177,9 +177,9 @@ test('TERRAIN-JOURNEY: Evolution A gives scrollable content priority and require
     reader.indexOf('scrollPathCanMove(ev.target, doc, direction)') < reader.indexOf('ev.preventDefault()'),
     'page and nested page scrolling must be exhausted before reader navigation consumes the wheel event'
   );
-  assert.match(reader, /boundaryGestureReady\('reader-back:' \+ activeReaderId, -1\)/);
-  assert.match(reader, /boundaryGestureReady\('reader-next:' \+ activeReaderId, 1\)/);
-  assert.match(reader, /boundaryGestureReady\('reader-end:' \+ activeReaderId, 1\)/);
+  assert.match(reader, /boundaryGestureReady\('reader-outward:' \+ readerKey, direction\)/);
+  assert.doesNotMatch(reader, /reader-next:|reader-end:/, 'wheel boundary must not implicitly advance to another page');
+  assert.match(reader, /if \(activeEntrySlug \|\| \(!activeReaderId && !activeGroupHomeKey\)\) return;/);
 
   assert.match(source, /BOUNDARY_GESTURE_IDLE_MS = 220/);
   assert.match(source, /BOUNDARY_GESTURE_RESET_MS = 3000/);
@@ -187,7 +187,130 @@ test('TERRAIN-JOURNEY: Evolution A gives scrollable content priority and require
   assert.match(source, /currentProfile === 'evolution-v1' && levelIndex === 2/);
   assert.match(source, /enterLevel\(1, \{ stageIdx:stageIdx \}\)/);
   assert.match(source, /if \(isEvolutionAGroup\(\) \|\| activeReaderId \|\| activeEntrySlug\) return;/);
-  assert.match(reader, /if \(activeEntrySlug \|\| !activeReaderId\) return;/);
+});
+
+
+test('TERRAIN-JOURNEY: the shipped boundary armer requires a distinct second gesture in the same direction', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
+  const match = source.match(/function boundaryGestureReady\(key, direction\) \{[\s\S]*?\n  \}/);
+  assert.ok(match, 'boundaryGestureReady must be extractable from the shipped page');
+  const idle = Number(source.match(/BOUNDARY_GESTURE_IDLE_MS = (\d+)/)[1]);
+  const reset = Number(source.match(/BOUNDARY_GESTURE_RESET_MS = (\d+)/)[1]);
+
+  let now = 0;
+  const make = new Function('performance', 'IDLE', 'RESET', [
+    "var boundaryGesture = { key:null, direction:0, lastAt:0 };",
+    "var BOUNDARY_GESTURE_IDLE_MS = IDLE;",
+    "var BOUNDARY_GESTURE_RESET_MS = RESET;",
+    "function resetBoundaryGesture(){ boundaryGesture.key=null; boundaryGesture.direction=0; boundaryGesture.lastAt=0; }",
+    match[0],
+    "return { ready: boundaryGestureReady, state: function(){ return Object.assign({}, boundaryGesture); } };"
+  ].join('\n'));
+  const armer = make({ now: () => now }, idle, reset);
+
+  assert.equal(armer.ready('collection-outward', 1), false, 'first boundary gesture arms only');
+  now = idle + 1;
+  assert.equal(armer.ready('collection-outward', 1), true, 'second distinct same-direction gesture confirms outward transition');
+  assert.deepEqual(armer.state(), { key:null, direction:0, lastAt:0 }, 'successful confirmation resets the armer');
+
+  now += idle + 1;
+  assert.equal(armer.ready('collection-outward', 1), false);
+  now += idle + 1;
+  assert.equal(armer.ready('collection-outward', -1), false, 'reversing direction re-arms instead of confirming');
+});
+
+test('TERRAIN-JOURNEY: shipped collection and reader wheel handlers execute outward-only boundary transitions', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
+
+  const shelfMatch = source.match(/function handleEvolutionShelfWheel\(ev\) \{[\s\S]*?\n  \}/);
+  const readerMatch = source.match(/function handleEvolutionReaderWheel\(ev\) \{[\s\S]*?\n  \}/);
+  assert.ok(shelfMatch && readerMatch, 'Evolution A wheel handlers must be extractable');
+
+  let shelfConfirm = false;
+  let shelfEnter = 0;
+  let shelfHint = 0;
+  let shelfPrevented = 0;
+  const makeShelf = new Function(
+    'isEvolutionAGroup','canScrollElement','boundaryGestureReady','enterLevel','syncPresentationUrl','commitSemanticState','showGestureHint','resetBoundaryGesture','hideGestureHint',
+    [
+      "var activeReaderId = null;",
+      "var hoveredEvolutionNodeId = null;",
+      "var evolutionLayer = {};",
+      shelfMatch[0],
+      "return handleEvolutionShelfWheel;"
+    ].join('\n')
+  );
+  const shelf = makeShelf(
+    () => true,
+    () => false,
+    () => shelfConfirm,
+    (level, ctx) => { assert.equal(level, 1); assert.deepEqual(ctx, {}); shelfEnter += 1; },
+    () => {},
+    (entry) => { assert.equal(entry.relationship, 'returned to'); },
+    () => { shelfHint += 1; },
+    () => {},
+    () => {}
+  );
+  const shelfEvent = () => ({
+    deltaY: 120, deltaX: 0,
+    stopPropagation(){},
+    preventDefault(){ shelfPrevented += 1; }
+  });
+
+  shelf(shelfEvent());
+  assert.equal(shelfEnter, 0);
+  assert.equal(shelfHint, 1);
+  shelfConfirm = true;
+  shelf(shelfEvent());
+  assert.equal(shelfEnter, 1, 'confirmed downward boundary returns from collection to groups');
+  assert.equal(shelfPrevented, 2);
+
+  let readerConfirm = false;
+  let readerClosed = 0;
+  let readerHints = 0;
+  const makeReader = new Function(
+    'scrollPathCanMove','boundaryGestureReady','closeEvolutionReader','showGestureHint','resetBoundaryGesture','hideGestureHint',
+    [
+      "var activeEntrySlug = null;",
+      "var activeReaderId = 'node-a';",
+      "var activeGroupHomeKey = null;",
+      "var evolutionReaderFrame = { contentDocument: {} };",
+      readerMatch[0],
+      "return handleEvolutionReaderWheel;"
+    ].join('\n')
+  );
+  const reader = makeReader(
+    () => false,
+    () => readerConfirm,
+    () => { readerClosed += 1; },
+    () => { readerHints += 1; },
+    () => {},
+    () => {}
+  );
+  const readerEvent = () => ({ deltaY: 120, deltaX: 0, target: null, preventDefault(){} });
+
+  reader(readerEvent());
+  assert.equal(readerClosed, 0);
+  assert.equal(readerHints, 1);
+  readerConfirm = true;
+  reader(readerEvent());
+  assert.equal(readerClosed, 1, 'confirmed downward boundary returns from reader to collection');
+
+  let scrollBoundaryCalled = false;
+  const scrollingShelf = makeShelf(
+    () => true,
+    () => true,
+    () => { scrollBoundaryCalled = true; return true; },
+    () => { throw new Error('must not leave collection while it can still scroll'); },
+    () => {}, () => {}, () => {}, () => {}, () => {}
+  );
+  let preventedWhileScrollable = false;
+  scrollingShelf({
+    deltaY: 120, deltaX: 0, stopPropagation(){},
+    preventDefault(){ preventedWhileScrollable = true; }
+  });
+  assert.equal(scrollBoundaryCalled, false, 'ordinary scrolling wins before boundary logic');
+  assert.equal(preventedWhileScrollable, false, 'ordinary scroll is not consumed as a boundary transition');
 });
 
 // [VXG RealForever]

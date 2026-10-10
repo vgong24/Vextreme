@@ -199,9 +199,10 @@ test('TERRAIN-VIEW: collection group homes stay outside membership while remaini
   const source = pageSource();
   assert.match(source, /parent: a\.parent \|\| null/);
   assert.match(source, /stage\.parent && stage\.parent\.live && stage\.parent\.url/);
-  assert.match(source, /class="evo-group-home"/);
+  assert.match(source, /class="evo-group-depth-card"/);
   assert.match(source, /data-evo-group-home/);
-  assert.match(source, />Group home<\/button>/);
+  assert.match(source, /evo-group-depth-kicker">Group home/);
+  assert.match(source, /summary\.membershipCount \+ ' members · parent surface<\/span>'/);
   assert.match(source, /function openEvolutionGroupHome\(stage, options\)/);
   assert.match(source, /activeGroupHomeKey = stage\.key/);
   assert.match(source, /initialStage\.parent\.pageSlug === initialRoute\.page/);
@@ -210,6 +211,22 @@ test('TERRAIN-VIEW: collection group homes stay outside membership while remaini
   assert.ok(scopedParentRoute > -1 && globalRecordRoute > -1 && scopedParentRoute < globalRecordRoute, 'group-scoped parent route must win before global record lookup');
   assert.match(source, /openEvolutionGroupHome\(stage\)/);
   assert.match(source, /group home pending/);
+});
+
+test('TERRAIN-VIEW: Evolution A quiet chrome and wheel boundaries preserve explicit entry / outward exit semantics', () => {
+  const source = pageSource();
+  assert.match(source, /id="terrainInspectToggle"/);
+  assert.match(source, /function syncTerrainChrome\(\)/);
+  assert.match(source, /terrain-content-quiet/);
+  assert.match(source, /terrain-reader-quiet/);
+  assert.match(source, /class="evo-group-depth-card"/);
+  assert.match(source, /boundaryGestureReady\('collection-outward', direction\)/);
+  assert.match(source, /boundaryGestureReady\('reader-outward:' \+ readerKey, direction\)/);
+  assert.doesNotMatch(source, /collection-enter:/);
+  assert.doesNotMatch(source, /reader-next:/);
+  assert.doesNotMatch(source, /scroll down again to read/);
+  assert.match(source, /return to groups/);
+  assert.match(source, /return to the collection/);
 });
 
 test('TERRAIN-VIEW: embedded preserved routes resolve root and repository-relative page links through live Terrain nodes', () => {
