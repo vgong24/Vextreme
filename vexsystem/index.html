@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!--
+  VEXTREME — vexsystem/index.html
+
+  Standalone public-safe VexSystem learning surface.
+  This is a projection consumer, not the canonical architecture owner and not
+  a fork of Terrain's shared navigation/FAB/scroll container.
+
+  [VXG RealForever]
+-->
+<html lang="en" data-vexsystem-surface="learning-world">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learn the VexSystem — Vextreme</title>
+<meta name="description" content="Explore how Vextreme systems move from intention to implementation and proof through multiple semantic vantage points.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<a class="skip-link" href="#vexsystem-main">Skip to VexSystem explorer</a>
+
+<header class="vs-header">
+  <a class="vs-brand" href="../pages/terrain-map.html" aria-label="Return to Terrain">
+    <span class="vs-brand-mark" aria-hidden="true">◎</span>
+    <span>
+      <strong>VexSystem</strong>
+      <small>public learning world</small>
+    </span>
+  </a>
+  <nav class="vs-header-links" aria-label="VexSystem">
+    <a href="../pages/terrain-map.html">Terrain</a>
+    <a href="https://github.com/vgong24/Vextreme/issues/202">Why this exists</a>
+  </nav>
+</header>
+
+<main id="vexsystem-main">
+  <section class="vs-intro" aria-labelledby="vs-title">
+    <p class="vs-kicker">VEXSYSTEM · MULTI-VANTAGE ARCHITECTURE</p>
+    <div class="vs-intro-row">
+      <div>
+        <h1 id="vs-title">See one system from more than one truth-preserving angle.</h1>
+        <p>
+          Start with the current blueprint. Change the vantage, zoom into the
+          process, trace consequences, or ask how the structure formed without
+          turning history into the current source of truth.
+        </p>
+      </div>
+      <div class="vs-principle" aria-label="Core invariant">
+        <span>ONE SUBJECT</span>
+        <strong>many projections</strong>
+        <small>view change ≠ semantic teleport</small>
+      </div>
+    </div>
+  </section>
+
+  <section class="vs-controls" aria-label="VexSystem vantage controls">
+    <div class="vs-control-group">
+      <span class="vs-control-label">Vantage</span>
+      <div id="lens-controls" class="vs-lens-controls" role="group" aria-label="Select a VexSystem vantage"></div>
+    </div>
+    <div class="vs-control-group vs-level-control">
+      <span class="vs-control-label">Semantic depth</span>
+      <button id="level-out" type="button" aria-label="Zoom outward one semantic level">−</button>
+      <output id="level-output" for="level-out level-in">L3 · Feature</output>
+      <button id="level-in" type="button" aria-label="Zoom inward one semantic level">+</button>
+    </div>
+    <button id="semantic-back" class="vs-back" type="button" disabled>← Return</button>
+  </section>
+
+  <section class="vs-workbench">
+    <div class="vs-map-panel">
+      <div class="vs-map-heading">
+        <div>
+          <p id="view-question" class="vs-view-question">Loading architecture…</p>
+          <p id="view-meta" class="vs-view-meta"></p>
+        </div>
+        <div class="vs-legend" aria-label="Branch legend">
+          <span><i class="primary"></i>forward</span>
+          <span><i class="alternative"></i>parallel</span>
+          <span><i class="held"></i>held</span>
+          <span><i class="proof"></i>proof</span>
+          <span><i class="history"></i>formation</span>
+        </div>
+      </div>
+
+      <div id="map-stage" class="vs-map-stage">
+        <svg id="vexsystem-map" viewBox="0 0 1080 620" role="img" aria-labelledby="map-title map-desc">
+          <title id="map-title">VexSystem semantic projection</title>
+          <desc id="map-desc">Interactive graph. An equivalent keyboard-accessible text view follows the graph.</desc>
+          <defs>
+            <marker id="vs-arrow" viewBox="0 0 10 10" refX="8" refY="5"
+                    markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z"></path>
+            </marker>
+          </defs>
+          <g id="edge-layer"></g>
+          <g id="node-layer"></g>
+        </svg>
+        <div id="map-status" class="vs-map-status" role="status" aria-live="polite">Loading…</div>
+      </div>
+    </div>
+
+    <aside class="vs-inspector" aria-labelledby="inspector-heading">
+      <p class="vs-control-label">Selected subject</p>
+      <h2 id="inspector-heading">Loading…</h2>
+      <p id="inspector-kind" class="vs-inspector-kind"></p>
+      <p id="inspector-summary" class="vs-inspector-summary"></p>
+      <div id="inspector-state" class="vs-state"></div>
+
+      <div class="vs-inspector-section">
+        <h3>Source / proof descent</h3>
+        <div id="inspector-sources" class="vs-source-list"></div>
+      </div>
+
+      <div class="vs-inspector-section">
+        <h3>Why this vantage?</h3>
+        <p id="lens-purpose"></p>
+      </div>
+    </aside>
+  </section>
+
+  <section class="vs-text-view" aria-labelledby="text-view-heading">
+    <div class="vs-text-heading">
+      <div>
+        <p class="vs-kicker">EQUIVALENT TEXT VIEW</p>
+        <h2 id="text-view-heading">Current semantic neighborhood</h2>
+      </div>
+      <p>Every graph node below is keyboard-selectable. SVG position never owns meaning.</p>
+    </div>
+    <div id="text-node-list" class="vs-node-list"></div>
+  </section>
+
+  <section class="vs-note" aria-label="Architecture boundary">
+    <strong>What you are looking at:</strong>
+    a public-safe projection of source-owned architecture.
+    The Blueprint is current-first. Formation history appears only when you ask for it.
+    Private SDK source remains withheld rather than copied into this public world.
+  </section>
+</main>
+
+<noscript>
+  <p class="vs-noscript">
+    This explorer needs JavaScript to switch semantic projections. Its public source
+    model remains readable at <a href="../data/vexsystem/atlas.json">data/vexsystem/atlas.json</a>.
+  </p>
+</noscript>
+
+<script src="../lib/vexsystem/projection.js"></script>
+<script src="./app.js"></script>
+</body>
+</html>
