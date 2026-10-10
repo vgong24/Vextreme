@@ -230,4 +230,17 @@ test('VEXSYSTEM PAGE: browser proof covers the live Terrain -> VexSystem top-lev
   assert.match(browserProof, /terrain-entry-mobile/);
 });
 
+
+test('VEXSYSTEM PAGE: navigation-abort noise is admitted only after a proven top-level Terrain -> VexSystem handoff', () => {
+  assert.match(browserProof, /allowSingleSupersededDocumentAbort/);
+  assert.match(browserProof, /entry\.url == null/);
+  assert.match(browserProof, /entry\.errorText === 'net::ERR_ABORTED'/);
+  assert.match(browserProof, /entry\.canceled === true/);
+  assert.match(browserProof, /entry\.type === 'Document'/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_MULTIPLE_NAVIGATION_ABORTS/);
+  assert.match(browserProof, /topLevel === true/);
+  assert.match(browserProof, /navigated\.pathname === '\/Vextreme\/vexsystem\/'/);
+  assert.doesNotMatch(browserProof, /allowSingleSupersededDocumentAbort:\s*true/);
+});
+
 // [VXG RealForever]

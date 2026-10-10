@@ -361,7 +361,8 @@ function isExpectedProofBlockedUrl(value) {
   );
 }
 
-function classifyPageSignals(page) {
+function classifyPageSignals(page, options) {
+  options = options || {};
   const benignResponseErrors = page.responseErrors.filter(entry =>
     entry.status === 404 && urlPathname(entry.url) === '/favicon.ico'
   );
@@ -369,11 +370,28 @@ function classifyPageSignals(page) {
     !(entry.status === 404 && urlPathname(entry.url) === '/favicon.ico')
   );
 
+  const navigationSupersededDocumentAborts = options.allowSingleSupersededDocumentAbort === true
+    ? page.loadingFailures.filter(entry =>
+        entry.url == null &&
+        entry.errorText === 'net::ERR_ABORTED' &&
+        entry.blockedReason == null &&
+        entry.canceled === true &&
+        entry.type === 'Document'
+      )
+    : [];
+  if (navigationSupersededDocumentAborts.length > 1) {
+    fail(
+      'VEXSYSTEM_BROWSER_MULTIPLE_NAVIGATION_ABORTS',
+      'More than one canceled top-level document was observed during the admitted Terrain -> VexSystem handoff.',
+      { navigationSupersededDocumentAborts }
+    );
+  }
+  const navigationAbortSet = new Set(navigationSupersededDocumentAborts);
   const expectedLoadingFailures = page.loadingFailures.filter(entry =>
     isExpectedProofBlockedUrl(entry.url)
   );
   const blockingLoadingFailures = page.loadingFailures.filter(entry =>
-    !isExpectedProofBlockedUrl(entry.url)
+    !isExpectedProofBlockedUrl(entry.url) && !navigationAbortSet.has(entry)
   );
 
   const directlyBenignConsoleErrors = page.consoleErrors.filter(entry =>
@@ -413,6 +431,7 @@ function classifyPageSignals(page) {
         ...correlatedFaviconConsoleErrors
       ],
       expectedProofBlockedLoads: expectedLoadingFailures,
+      navigationSupersededDocumentAborts,
       expectedProofBlockedConsoleErrors: directlyExpectedBlockedConsoleErrors
     },
     blocking: {
@@ -424,8 +443,8 @@ function classifyPageSignals(page) {
   };
 }
 
-function assertPageSignals(page, label) {
-  const signals = classifyPageSignals(page);
+function assertPageSignals(page, label, options) {
+  const signals = classifyPageSignals(page, options);
   const blocking = signals.blocking;
   if (
     blocking.runtimeExceptions.length ||
@@ -707,7 +726,11 @@ async function runTerrainEntryRuntime(origin, cdp) {
       arrival,
       navigated,
       topLevel,
-      signals: assertPageSignals(desktop, 'Terrain desktop -> VexSystem runtime')
+      signals: assertPageSignals(desktop, 'Terrain desktop -> VexSystem runtime', {
+        allowSingleSupersededDocumentAbort:
+          topLevel === true &&
+          (navigated.pathname === '/Vextreme/vexsystem/' || navigated.pathname === '/Vextreme/vexsystem/index.html')
+      })
     },
     mobile: {
       arrival: mobileArrival,
