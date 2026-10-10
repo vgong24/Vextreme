@@ -155,7 +155,7 @@ test('TERRAIN-JOURNEY: Row B correction keeps zero stages perceivable and select
   assert.doesNotMatch(source, /semantic\s*=\s*\{[^}]*\b(?:x|y|scale)\s*:/s);
 });
 
-test('TERRAIN-JOURNEY: Evolution A gives scrollable content priority and requires a fresh boundary gesture', () => {
+test('TERRAIN-JOURNEY: Evolution A gives scrollable content priority and makes confirmed wheel boundaries outward-only', () => {
   const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
 
   const shelfStart = source.indexOf('function handleEvolutionShelfWheel');
@@ -166,8 +166,8 @@ test('TERRAIN-JOURNEY: Evolution A gives scrollable content priority and require
     shelf.indexOf('canScrollElement(evolutionLayer, direction)') < shelf.indexOf('ev.preventDefault()'),
     'ordinary collection scrolling must be checked before a boundary transition consumes the wheel event'
   );
-  assert.match(shelf, /boundaryGestureReady\('collection-exit', -1\)/);
-  assert.match(shelf, /boundaryGestureReady\('collection-enter:' \+ node\.id, 1\)/);
+  assert.match(shelf, /boundaryGestureReady\('collection-outward', direction\)/);
+  assert.doesNotMatch(shelf, /collection-enter:/, 'wheel boundary must not implicitly enter a page');
 
   const readerStart = source.indexOf('function handleEvolutionReaderWheel');
   const readerEnd = source.indexOf('function wireEvolutionReaderDocument', readerStart);
@@ -177,9 +177,9 @@ test('TERRAIN-JOURNEY: Evolution A gives scrollable content priority and require
     reader.indexOf('scrollPathCanMove(ev.target, doc, direction)') < reader.indexOf('ev.preventDefault()'),
     'page and nested page scrolling must be exhausted before reader navigation consumes the wheel event'
   );
-  assert.match(reader, /boundaryGestureReady\('reader-back:' \+ activeReaderId, -1\)/);
-  assert.match(reader, /boundaryGestureReady\('reader-next:' \+ activeReaderId, 1\)/);
-  assert.match(reader, /boundaryGestureReady\('reader-end:' \+ activeReaderId, 1\)/);
+  assert.match(reader, /boundaryGestureReady\('reader-outward:' \+ readerKey, direction\)/);
+  assert.doesNotMatch(reader, /reader-next:|reader-end:/, 'wheel boundary must not implicitly advance to another page');
+  assert.match(reader, /if \(activeEntrySlug \|\| \(!activeReaderId && !activeGroupHomeKey\)\) return;/);
 
   assert.match(source, /BOUNDARY_GESTURE_IDLE_MS = 220/);
   assert.match(source, /BOUNDARY_GESTURE_RESET_MS = 3000/);
@@ -187,7 +187,6 @@ test('TERRAIN-JOURNEY: Evolution A gives scrollable content priority and require
   assert.match(source, /currentProfile === 'evolution-v1' && levelIndex === 2/);
   assert.match(source, /enterLevel\(1, \{ stageIdx:stageIdx \}\)/);
   assert.match(source, /if \(isEvolutionAGroup\(\) \|\| activeReaderId \|\| activeEntrySlug\) return;/);
-  assert.match(reader, /if \(activeEntrySlug \|\| !activeReaderId\) return;/);
 });
 
 // [VXG RealForever]

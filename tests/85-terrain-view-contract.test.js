@@ -202,7 +202,7 @@ test('TERRAIN-VIEW: collection group homes stay outside membership while remaini
   assert.match(source, /class="evo-group-depth-card"/);
   assert.match(source, /data-evo-group-home/);
   assert.match(source, /evo-group-depth-kicker">Group home/);
-  assert.match(source, /summary\.membershipCount \+ ' members · parent surface'/);
+  assert.match(source, /summary\.membershipCount \+ ' members · parent surface<\/span>'/);
   assert.match(source, /function openEvolutionGroupHome\(stage, options\)/);
   assert.match(source, /activeGroupHomeKey = stage\.key/);
   assert.match(source, /initialStage\.parent\.pageSlug === initialRoute\.page/);
