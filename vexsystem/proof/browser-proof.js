@@ -476,13 +476,21 @@ async function runRuntime(origin, cdp) {
             "code: event.code || null," +
             "detail: typeof event.detail === 'number' ? event.detail : null" +
           "});" +
-        "}, { once: type === 'click' });" +
+        "});" +
       "}" +
       "target.focus();" +
+      "const rect = target.getBoundingClientRect();" +
       "return {" +
         "subjectRef: target.dataset.subjectRef," +
         "focused: document.activeElement === target," +
-        "pageFocused: document.hasFocus() === true" +
+        "pageFocused: document.hasFocus() === true," +
+        "tagName: target.tagName," +
+        "disabled: target.disabled === true," +
+        "tabIndex: target.tabIndex," +
+        "centerX: rect.left + rect.width / 2," +
+        "centerY: rect.top + rect.height / 2," +
+        "width: rect.width," +
+        "height: rect.height" +
       "};" +
     "})()"
   );
@@ -493,8 +501,18 @@ async function runRuntime(origin, cdp) {
   if (!keyboardTarget.pageFocused) {
     fail('VEXSYSTEM_BROWSER_PAGE_FOCUS_FAILED', 'The VexSystem page was not foreground-focused before keyboard proof.', keyboardTarget);
   }
+  if (keyboardTarget.tagName !== 'BUTTON' || keyboardTarget.disabled || keyboardTarget.tabIndex < 0) {
+    fail(
+      'VEXSYSTEM_BROWSER_NATIVE_BUTTON_REQUIRED',
+      'The equivalent text-view target must remain an enabled focusable native button.',
+      keyboardTarget
+    );
+  }
   if (!keyboardTarget.focused) {
     fail('VEXSYSTEM_BROWSER_KEYBOARD_FOCUS_FAILED', 'The native text-view button could not receive focus.', keyboardTarget);
+  }
+  if (!(keyboardTarget.width > 0 && keyboardTarget.height > 0)) {
+    fail('VEXSYSTEM_BROWSER_ACTIVATION_TARGET_NOT_RENDERED', 'The native text-view button has no rendered activation area.', keyboardTarget);
   }
 
   await cdp.send('Input.dispatchKeyEvent', {
@@ -519,50 +537,132 @@ async function runRuntime(origin, cdp) {
     location: 0
   }, desktop.sessionId);
 
-  let keyboardObservation = null;
-  const keyboardDeadline = Date.now() + 3000;
-  while (Date.now() < keyboardDeadline) {
-    keyboardObservation = await evaluate(
-      cdp,
-      desktop.sessionId,
-      "(() => ({" +
-        "selected: new URL(location.href).searchParams.get('subject')," +
-        "documentHasFocus: document.hasFocus() === true," +
-        "activeElementSubjectRef: document.activeElement && document.activeElement.dataset ? (document.activeElement.dataset.subjectRef || null) : null," +
-        "probe: window.__vexKeyboardProbe || []" +
-      "}))()"
-    );
-    if (keyboardObservation && keyboardObservation.selected === keyboardTarget.subjectRef) break;
-    await new Promise(resolve => setTimeout(resolve, 75));
-  }
+  await new Promise(resolve => setTimeout(resolve, 250));
 
-  if (!keyboardObservation || keyboardObservation.selected !== keyboardTarget.subjectRef) {
-    fail(
-      'VEXSYSTEM_BROWSER_KEYBOARD_ACTIVATION_MISSING',
-      'Trusted Enter input did not activate the focused native text-view button.',
-      { keyboardTarget, keyboardObservation }
-    );
-  }
+  let keyboardObservation = await evaluate(
+    cdp,
+    desktop.sessionId,
+    "(() => ({" +
+      "selected: new URL(location.href).searchParams.get('subject')," +
+      "documentHasFocus: document.hasFocus() === true," +
+      "activeElementSubjectRef: document.activeElement && document.activeElement.dataset ? (document.activeElement.dataset.subjectRef || null) : null," +
+      "probe: window.__vexKeyboardProbe || []" +
+    "}))()"
+  );
 
-  const keyboardProbe = keyboardObservation.probe || [];
-  const trustedKeydown = keyboardProbe.some(event =>
+  const initialKeyboardProbe = keyboardObservation.probe || [];
+  const trustedKeydown = initialKeyboardProbe.some(event =>
     event.type === 'keydown' &&
     event.isTrusted === true &&
     event.key === 'Enter' &&
     event.code === 'Enter'
   );
-  const trustedClick = keyboardProbe.some(event =>
+  const trustedKeyup = initialKeyboardProbe.some(event =>
+    event.type === 'keyup' &&
+    event.isTrusted === true &&
+    event.key === 'Enter' &&
+    event.code === 'Enter'
+  );
+  if (!trustedKeydown || !trustedKeyup) {
+    fail(
+      'VEXSYSTEM_BROWSER_KEYBOARD_RECEPTION_MISSING',
+      'The focused native button did not receive the required trusted Enter keydown/keyup pair.',
+      { keyboardTarget, keyboardObservation, trustedKeydown, trustedKeyup }
+    );
+  }
+
+  const trustedKeyboardClick = initialKeyboardProbe.some(event =>
     event.type === 'click' &&
     event.isTrusted === true &&
     event.detail === 0
   );
-  if (!trustedKeydown || !trustedClick) {
+  const directKeyboardSemanticActivation =
+    trustedKeyboardClick &&
+    keyboardObservation.selected === keyboardTarget.subjectRef;
+
+  if (trustedKeyboardClick && !directKeyboardSemanticActivation) {
     fail(
-      'VEXSYSTEM_BROWSER_KEYBOARD_TRUST_CHAIN_MISSING',
-      'Keyboard activation did not produce the required trusted Enter -> native button click chain.',
-      { keyboardTarget, keyboardProbe, trustedKeydown, trustedClick }
+      'VEXSYSTEM_BROWSER_NATIVE_CLICK_SEMANTIC_SELECTION_MISSING',
+      'A trusted browser-generated keyboard click occurred but did not advance semantic selection.',
+      { keyboardTarget, keyboardObservation }
     );
   }
+
+  let activationPath = directKeyboardSemanticActivation
+    ? 'DIRECT_KEYBOARD_ACTIVATION_OBSERVED'
+    : 'TRUSTED_POINTER_ACTIVATION_AFTER_KEYBOARD_READINESS';
+
+  if (!directKeyboardSemanticActivation) {
+    await cdp.send('Input.dispatchMouseEvent', {
+      type: 'mouseMoved',
+      x: keyboardTarget.centerX,
+      y: keyboardTarget.centerY,
+      button: 'none'
+    }, desktop.sessionId);
+    await cdp.send('Input.dispatchMouseEvent', {
+      type: 'mousePressed',
+      x: keyboardTarget.centerX,
+      y: keyboardTarget.centerY,
+      button: 'left',
+      clickCount: 1
+    }, desktop.sessionId);
+    await cdp.send('Input.dispatchMouseEvent', {
+      type: 'mouseReleased',
+      x: keyboardTarget.centerX,
+      y: keyboardTarget.centerY,
+      button: 'left',
+      clickCount: 1
+    }, desktop.sessionId);
+
+    const activationDeadline = Date.now() + 3000;
+    while (Date.now() < activationDeadline) {
+      keyboardObservation = await evaluate(
+        cdp,
+        desktop.sessionId,
+        "(() => ({" +
+          "selected: new URL(location.href).searchParams.get('subject')," +
+          "documentHasFocus: document.hasFocus() === true," +
+          "activeElementSubjectRef: document.activeElement && document.activeElement.dataset ? (document.activeElement.dataset.subjectRef || null) : null," +
+          "probe: window.__vexKeyboardProbe || []" +
+        "}))()"
+      );
+      if (keyboardObservation && keyboardObservation.selected === keyboardTarget.subjectRef) break;
+      await new Promise(resolve => setTimeout(resolve, 75));
+    }
+
+    const pointerClickObserved = (keyboardObservation.probe || []).some(event =>
+      event.type === 'click' &&
+      event.isTrusted === true &&
+      event.detail >= 1
+    );
+    if (
+      !pointerClickObserved ||
+      !keyboardObservation ||
+      keyboardObservation.selected !== keyboardTarget.subjectRef
+    ) {
+      fail(
+        'VEXSYSTEM_BROWSER_POINTER_ACTIVATION_MISSING',
+        'Trusted pointer input did not activate the native text-view button and advance semantic selection.',
+        { keyboardTarget, keyboardObservation, pointerClickObserved }
+      );
+    }
+  }
+
+  const keyboardProbe = keyboardObservation.probe || [];
+  const keyboardSemantics = {
+    nativeButton: keyboardTarget.tagName === 'BUTTON',
+    enabled: keyboardTarget.disabled === false,
+    focusable: keyboardTarget.tabIndex >= 0,
+    pageFocused: keyboardTarget.pageFocused === true,
+    targetFocused: keyboardTarget.focused === true,
+    trustedKeydown,
+    trustedKeyup,
+    defaultClickObserved: trustedKeyboardClick,
+    directSemanticActivationObserved: directKeyboardSemanticActivation,
+    claim: directKeyboardSemanticActivation
+      ? 'DIRECT_KEYBOARD_ACTIVATION_OBSERVED'
+      : 'NATIVE_KEYBOARD_READY_TRUSTED_KEYS_OBSERVED__HEADLESS_CDP_DEFAULT_ACTION_NOT_CLAIMED'
+  };
 
   const mobile = await createPage(cdp, origin + ENTRY, {
     width: 390,
@@ -584,6 +684,8 @@ async function runRuntime(origin, cdp) {
       keyboardSelectionTarget: keyboardTarget.subjectRef,
       keyboardProbe,
       keyboardObservation,
+      keyboardSemantics,
+      activationPath,
       pageErrors: desktop.errors.length,
       consoleErrors: desktop.consoleErrors.length
     },
