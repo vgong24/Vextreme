@@ -35,22 +35,22 @@ test('injectNav links: includes the real Archives destination (unchanged)', () =
   assert.equal(archives.href, '/Vextreme/index.html');
 });
 
-test('injectNav links: includes real Terrain Map and Ecosystem Hub destinations (new)', () => {
+test('injectNav links: Terrain, Receive God, and Ecosystem Hub use repository-hosted destinations', () => {
   const links = loadNavLinks();
   const terrainMap = links.find(l => l.label === 'Terrain Map');
+  const receiveGod = links.find(l => l.label === 'Receive God');
   const ecosystemHub = links.find(l => l.label === 'Ecosystem Hub');
-  assert.ok(terrainMap, 'Terrain Map link must exist');
-  assert.equal(terrainMap.href, '/Vextreme/pages/terrain-map.html');
-  assert.ok(ecosystemHub, 'Ecosystem Hub link must exist');
+  assert.equal(terrainMap.href, '/Vextreme/pages/terrain-map.html?view=content&profile=evolution-v1');
+  assert.equal(receiveGod.href, '/Vextreme/pages/receive-god.html');
   assert.equal(ecosystemHub.href, '/Vextreme/pages/ecosystem-hub.html');
 });
 
-test('injectNav links: original vextreme24.com links are preserved, not removed', () => {
+test('injectNav links: active shared chrome has no provider-domain or out-of-sequence Take a Walk destination', () => {
+  const source = fs.readFileSync(VX_IN, 'utf8');
   const links = loadNavLinks();
-  const labels = links.map(l => l.label);
-  assert.ok(labels.includes('Direct Contact'), 'Direct Contact must still be present');
-  assert.ok(labels.includes('AI Tools'), 'AI Tools must still be present');
-  assert.ok(labels.includes('vextreme24.com'), 'vextreme24.com must still be present');
+  assert.equal(links.some(l => /vextreme24\.com/.test(l.href)), false);
+  assert.equal(links.some(l => /take-a-walk/.test(l.href)), false);
+  assert.match(source, /vex-nav-title[^>]*href="\/Vextreme\/pages\/terrain-map\.html\?view=content&profile=evolution-v1">Vex Life/);
 });
 
 test('injectNav links: every href is a non-empty string, every label is unique', () => {

@@ -21,6 +21,13 @@ function contract() {
   return JSON.parse(match[1]);
 }
 
+function entryContract() {
+  const source = pageSource();
+  const match = source.match(/<script type="application\/json" id="terrain-entry-contract">\s*([\s\S]*?)\s*<\/script>/);
+  assert.ok(match, 'Terrain entry contract must be embedded in the shipped page');
+  return JSON.parse(match[1]);
+}
+
 function canonicalAssortment() {
   const nodes = JSON.parse(fs.readFileSync(NODES, 'utf8'));
   const arcs = JSON.parse(fs.readFileSync(ARCS, 'utf8'));
@@ -163,11 +170,28 @@ test('TERRAIN-VIEW: Evolution A is a URL-addressable presentation state over sha
   assert.match(source, /scrollPathCanMove\(ev\.target, doc, direction\)/);
   assert.match(source, /evolutionLayer\.addEventListener\('wheel', handleEvolutionShelfWheel/);
   assert.match(source, /evolutionReaderFrame\.addEventListener\('load', wireEvolutionReaderDocument\)/);
-  assert.match(source, /if \(isEvolutionAGroup\(\) \|\| activeReaderId\) return;/);
+  assert.match(source, /if \(isEvolutionAGroup\(\) \|\| activeReaderId \|\| activeEntrySlug\) return;/);
 
   const profileFunction = source.match(/function setPresentationProfile\(profile, writeUrl\) \{([\s\S]*?)\n  \}/);
   assert.ok(profileFunction, 'presentation-profile function should be present');
   assert.doesNotMatch(profileFunction[1], /commitSemanticState/, 'renderer switching must not add a Journey step');
+});
+
+
+test('TERRAIN-VIEW: ordered entry reader hidden side controls stay visually absent', () => {
+  const source = pageSource();
+  assert.match(source, /\.reader-side\[hidden\]\{\s*display:none;\s*\}/);
+  assert.match(source, /document\.getElementById\('readerPrev'\)\.hidden = true;/);
+  assert.match(source, /document\.getElementById\('readerNext'\)\.hidden = true;/);
+});
+
+test('TERRAIN-VIEW: compact semantic-depth rail keeps verbose ordering detail out of the visual pill', () => {
+  const source = pageSource();
+  assert.match(source, /\.level-order\{[^}]*overflow:hidden;[^}]*text-overflow:ellipsis;[^}]*white-space:nowrap;/s);
+  assert.match(source, /var orderLabel = ratio\.toFixed\(2\) \+ '× · ' \+ orderNote;/);
+  assert.match(source, /class="level-order" role="note" aria-label="/);
+  assert.match(source, /title="' \+ esc\(orderLabel\) \+ '">/);
+  assert.match(source, /ratio\.toFixed\(2\) \+ '×<\/div>'/);
 });
 
 test('TERRAIN-VIEW: every shipped inline JavaScript block still parses after contract extraction', () => {
@@ -201,6 +225,29 @@ test('TERRAIN-VIEW: shipped renderer consumes the contract and exposes semantic 
   assert.doesNotMatch(source, /var cardW = 240, cardH = 140, gap = 24/);
   assert.doesNotMatch(source, /var focusRect = \{ x:165, y:/);
   assert.doesNotMatch(source, /var NODE_NEIGHBORHOOD_LIMIT = 12;/);
+});
+
+
+test('TERRAIN-VIEW: ordered entry contract keeps Receive God before Take a Walk and reserves VexSystem without inventing a third active route', () => {
+  const value = entryContract();
+  assert.equal(value.schemaVersion, 'vextreme.terrain-entry/v1');
+  assert.deepEqual(value.choices.map(choice => [choice.id, choice.effect, choice.enabled]), [
+    ['receive-god', 'reader', true],
+    ['archives', 'terrain-group-overview', true],
+    ['vexsystem', 'reserved', false],
+  ]);
+  assert.equal(value.documents['receive-god'].order, 1);
+  assert.equal(value.documents['take-a-walk'].order, 2);
+  assert.equal(value.choices.some(choice => choice.id === 'take-a-walk'), false);
+
+  const source = pageSource();
+  assert.match(source, /function renderEvolutionAArrival\(\)/);
+  assert.match(source, /function openEntryReader\(slug\)/);
+  assert.match(source, /function enterArchivesFromArrival\(\)/);
+  assert.match(source, /function handleTerrainEntryMessage\(event\)/);
+  assert.match(source, /data-entry-action="vexsystem" disabled aria-disabled="true"/);
+  assert.match(source, /openEntryReader\('receive-god'\)/);
+  assert.doesNotMatch(source, /data-entry-action="take-a-walk"/);
 });
 
 // [VXG RealForever]

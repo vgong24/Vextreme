@@ -62,6 +62,13 @@ test('CHROME-RAIL: nav cancels authored body insets without mutating body styles
   assert.equal(/document\.body\.style\.(?:margin|padding)/.test(source), false);
 });
 
+test('TERRAIN-COMPOSITION: Terrain keeps shared FAB ownership and disables only its redundant map child', () => {
+  const source = read('pages/terrain-map.html');
+  assert.match(source, /VEXTREME_OVERRIDE = \{ bodyWrap: false, fabWidgets: \{ map: false \} \}/);
+  assert.doesNotMatch(source, /MutationObserver[\s\S]{0,300}aria-expanded/);
+  assert.doesNotMatch(source, /getAttribute\(['"]aria-expanded['"]\)/);
+});
+
 test('TERRAIN-COMPOSITION: map consumes the remaining viewport below nav', () => {
   const source = read('pages/terrain-map.html');
   const navCss = read('styles/site-nav.css');

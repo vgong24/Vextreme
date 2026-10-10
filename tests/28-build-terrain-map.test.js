@@ -427,6 +427,16 @@ test('BUILD-TERRAIN-MAP integration: the real content layer (arcs/pages) is inte
   }
 });
 
+test('BUILD-TERRAIN-MAP: record inventory reuses AUTO_DISCOVERY_EXCLUSIONS so system/dev pages cannot appear as UNCURATED Content', () => {
+  const { SKIP_PAGES, AUTO_DISCOVERY_EXCLUSIONS, getRecordPageSlugs } = require('../lib/audit-pages');
+  const records = new Set(getRecordPageSlugs());
+
+  for (const slug of Object.keys(SKIP_PAGES)) {
+    assert.ok(AUTO_DISCOVERY_EXCLUSIONS[slug], `${slug} must remain in the shared exclusion projection`);
+    assert.equal(records.has(slug), false, `${slug} is a system/dev surface, not a Terrain Content record`);
+  }
+});
+
 test('TERRAIN-MAP-PAGE: pages/terrain-map.html is registered in audit-pages.js SKIP_PAGES so it is not flagged as an orphan/blocker', () => {
   const { SKIP_PAGES } = require('../lib/audit-pages');
   assert.ok('terrain-map' in SKIP_PAGES);
