@@ -15,6 +15,7 @@ const path = require('node:path');
 const ROOT = path.join(__dirname, '..');
 const html = fs.readFileSync(path.join(ROOT, 'vexsystem', 'index.html'), 'utf8');
 const app = fs.readFileSync(path.join(ROOT, 'vexsystem', 'app.js'), 'utf8');
+const projectionSource = fs.readFileSync(path.join(ROOT, 'lib', 'vexsystem', 'projection.js'), 'utf8');
 const css = fs.readFileSync(path.join(ROOT, 'vexsystem', 'styles.css'), 'utf8');
 const browserProof = fs.readFileSync(path.join(ROOT, 'vexsystem', 'proof', 'browser-proof.js'), 'utf8');
 
@@ -34,17 +35,19 @@ test('VEXSYSTEM PAGE: graph has an explicit equivalent text/keyboard surface', (
   assert.match(app, /renderTextView\(view\)/);
 });
 
-test('VEXSYSTEM PAGE: lenses and semantic depth are model-driven, not separate hard-coded pages', () => {
-  assert.match(html, /id="lens-controls"/);
-  assert.match(html, /id="level-out"/);
-  assert.match(html, /id="level-in"/);
-  assert.match(app, /for \(const lensRecord of atlas\.lenses\)/);
-  assert.match(app, /projectionApi\.setLens/);
+test('VEXSYSTEM PAGE: human questions compose the semantic engine instead of exposing internal lenses as the primary control', () => {
+  assert.match(html, /id="question-controls"/);
+  assert.match(html, /What do you want to understand\?/);
+  assert.match(app, /for \(const question of projectionApi\.HUMAN_QUESTIONS\)/);
+  assert.match(app, /projectionApi\.projectAtlasForQuestion/);
+  assert.match(app, /projectionApi\.composeHumanQuestion/);
   assert.match(app, /projectionApi\.setLevel/);
+  assert.doesNotMatch(html, />Focus on</);
 });
 
 test('VEXSYSTEM PAGE: selected semantic coordinate is URL-addressable and returnable', () => {
   assert.match(app, /url\.searchParams\.set\('subject', state\.selectedSubjectRef\)/);
+  assert.match(app, /url\.searchParams\.set\('question', questionRef\)/);
   assert.match(app, /url\.searchParams\.set\('lens', state\.lens\)/);
   assert.match(app, /url\.searchParams\.set\('level', String\(state\.level\)\)/);
   assert.match(app, /projectionApi\.returnFocus/);
@@ -170,23 +173,48 @@ test('VEXSYSTEM PAGE: screenshot evidence uses the same strict runtime/network c
 
 test('VEXSYSTEM PAGE: composed understanding precedes optional exploration controls', () => {
   const understanding = html.indexOf('id="understanding-title"');
-  const controls = html.indexOf('id="lens-controls"');
+  const controls = html.indexOf('id="question-controls"');
   assert.ok(understanding >= 0);
   assert.ok(controls > understanding);
   assert.match(html, /data-vexsystem-component="composed-understanding"/);
   assert.match(app, /projectionApi\.composeUnderstanding\(atlas, state\.selectedSubjectRef\)/);
 });
 
-test('VEXSYSTEM PAGE: human-facing focus and context labels do not require lens or numeric-level jargon', () => {
-  assert.match(html, />Focus on</);
-  assert.match(html, />Context</);
-  assert.match(app, /BLUEPRINT: 'Structure'/);
-  assert.match(app, /PROCESS: 'Building'/);
-  assert.match(app, /CONSEQUENCE: 'Impact'/);
-  assert.match(app, /PLATFORM: 'Platforms'/);
-  assert.match(app, /FORMATION: 'History'/);
-  assert.match(app, /dom\.levelOutput\.textContent = level\.name/);
-  assert.doesNotMatch(html, />Semantic depth</);
+test('VEXSYSTEM PAGE: receiver-facing controls ask questions instead of presenting architecture buzzwords', () => {
+  assert.match(html, /What do you want to understand\?/);
+  assert.match(projectionSource, /How is this put together\?/);
+  assert.match(projectionSource, /How does it keep working\?/);
+  assert.match(projectionSource, /How do we know it is healthy\?/);
+  assert.match(projectionSource, /Where does it show up\?/);
+  assert.match(projectionSource, /How did we get here\?/);
+  assert.match(html, />Detail</);
+  assert.match(html, />Less</);
+  assert.match(html, />More</);
+  assert.doesNotMatch(html, />Focus on</);
+  assert.doesNotMatch(app, /BLUEPRINT: 'Structure'/);
+  assert.doesNotMatch(app, /CONSEQUENCE: 'Impact'/);
+});
+
+test('VEXSYSTEM PAGE: relationship map has explicit pan, zoom, fit and reset presentation controls', () => {
+  assert.match(html, /id="map-world"/);
+  assert.match(html, /id="map-fit"/);
+  assert.match(html, /id="map-zoom-in"/);
+  assert.match(html, /id="map-zoom-out"/);
+  assert.match(html, /id="map-reset"/);
+  assert.match(css, /touch-action:none/);
+  assert.match(css, /cursor:grab/);
+  assert.match(app, /function zoomMapAt\(point, requestedScale\)/);
+  assert.match(app, /function fitMapToQuestion\(positions, supportSubjectRefs\)/);
+  assert.match(app, /addEventListener\('wheel'/);
+  assert.match(app, /addEventListener\('pointerdown'/);
+  assert.match(app, /addEventListener\('pointermove'/);
+});
+
+test('VEXSYSTEM PAGE: direct human answer precedes raw map inspection detail', () => {
+  assert.match(html, /id="view-answer"/);
+  assert.match(html, /Why does this answer the question\?/);
+  assert.match(html, /Same relationships, without the map/);
+  assert.match(app, /dom\.viewAnswer\.textContent = question\.answer/);
 });
 
 test('VEXSYSTEM PAGE: mobile composition keeps meaning primary before the graph', () => {

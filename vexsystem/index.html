@@ -94,19 +94,19 @@
         <p class="vs-kicker">OPTIONAL DEEPENING</p>
         <h2 id="explore-heading">Explore the relationships</h2>
       </div>
-      <p>The composed understanding above stays intact. These controls only emphasize a perspective or move through the semantic neighborhood.</p>
+      <p>Pick the question you actually care about. The answer and the map shift together; the deeper architecture stays available when you want to inspect it.</p>
     </div>
 
     <section class="vs-controls" aria-label="VexSystem exploration controls">
-      <div class="vs-control-group">
-        <span class="vs-control-label">Focus on</span>
-        <div id="lens-controls" class="vs-lens-controls" role="group" aria-label="Emphasize one VexSystem perspective"></div>
+      <div class="vs-control-group vs-question-group">
+        <span class="vs-control-label">What do you want to understand?</span>
+        <div id="question-controls" class="vs-question-controls" role="group" aria-label="Choose a human question about this subject"></div>
       </div>
       <div class="vs-control-group vs-level-control">
-        <span class="vs-control-label">Context</span>
-        <button id="level-out" type="button" aria-label="Show broader semantic context">Broader</button>
-        <output id="level-output" for="level-out level-in">Feature</output>
-        <button id="level-in" type="button" aria-label="Show deeper semantic context">Deeper</button>
+        <span class="vs-control-label">Detail</span>
+        <button id="level-out" type="button" aria-label="Show less architectural detail">Less</button>
+        <output id="level-output" for="level-out level-in">Current thing</output>
+        <button id="level-in" type="button" aria-label="Show more architectural detail">More</button>
       </div>
       <button id="semantic-back" class="vs-back" type="button" disabled>← Prior subject</button>
     </section>
@@ -115,15 +115,16 @@
       <div class="vs-map-panel">
         <div class="vs-map-heading">
           <div>
-            <p id="view-question" class="vs-view-question">Loading architecture…</p>
+            <p id="view-question" class="vs-view-question">Loading question…</p>
+            <p id="view-answer" class="vs-view-answer">Loading answer…</p>
             <p id="view-meta" class="vs-view-meta"></p>
           </div>
           <div class="vs-legend" aria-label="Branch legend">
-            <span><i class="primary"></i>forward</span>
-            <span><i class="alternative"></i>parallel</span>
-            <span><i class="held"></i>held</span>
+            <span><i class="primary"></i>main path</span>
+            <span><i class="alternative"></i>another path</span>
+            <span><i class="held"></i>not active</span>
             <span><i class="proof"></i>proof</span>
-            <span><i class="history"></i>formation</span>
+            <span><i class="history"></i>history</span>
           </div>
         </div>
 
@@ -137,9 +138,18 @@
                 <path d="M 0 0 L 10 5 L 0 10 z"></path>
               </marker>
             </defs>
-            <g id="edge-layer"></g>
-            <g id="node-layer"></g>
+            <g id="map-world">
+              <g id="edge-layer"></g>
+              <g id="node-layer"></g>
+            </g>
           </svg>
+          <div class="vs-map-tools" aria-label="Relationship map movement controls">
+            <button id="map-fit" type="button">Fit answer</button>
+            <button id="map-zoom-out" type="button" aria-label="Zoom relationship map out">−</button>
+            <button id="map-zoom-in" type="button" aria-label="Zoom relationship map in">+</button>
+            <button id="map-reset" type="button">Reset</button>
+          </div>
+          <div class="vs-map-hint">Drag to move · scroll to zoom</div>
           <div id="map-status" class="vs-map-status" role="status" aria-live="polite">Loading…</div>
         </div>
       </div>
@@ -157,8 +167,8 @@
         </div>
 
         <div class="vs-inspector-section">
-          <h3>Why emphasize this perspective?</h3>
-          <p id="lens-purpose"></p>
+          <h3>Why does this answer the question?</h3>
+          <p id="question-purpose"></p>
         </div>
       </aside>
     </section>
@@ -167,7 +177,7 @@
       <div class="vs-text-heading">
         <div>
           <p class="vs-kicker">EQUIVALENT TEXT VIEW</p>
-          <h2 id="text-view-heading">Current semantic neighborhood</h2>
+          <h2 id="text-view-heading">Same relationships, without the map</h2>
         </div>
         <p>Every graph node below is keyboard-selectable. SVG position never owns meaning.</p>
       </div>
