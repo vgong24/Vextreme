@@ -98,7 +98,7 @@
 }
 
 .vex-nav-brand-separator {
-  color: var(--line-strong, #d6d3d1);
+  color: var(--border-strong, #d6d3d1);
   font-family: var(--mono, 'IBM Plex Mono', monospace);
   font-size: 12px;
 }

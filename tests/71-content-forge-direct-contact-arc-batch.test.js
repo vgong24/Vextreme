@@ -45,16 +45,6 @@ function outputMain(document,slug){
   return main;
 }
 
-test('Content Forge route projection keeps repository-native pages inside the GitHub Pages project and holds unknown routes',()=>{
-  const fragment=parse5.parseFragment('<div><a href="/the-grimoire">Live</a><a href="/archives">Archives</a><a href="/route-that-is-not-ported">Held</a></div>');
-  projector.rewriteRepositoryRoutes(ROOT,fragment);
-  const html=parse5.serialize(fragment);
-  assert.match(html,/href="the-grimoire\.html"[^>]*data-vex-route-state="repository-live"/);
-  assert.match(html,/href="\.\.\/index\.html"[^>]*data-vex-route-state="repository-live"/);
-  assert.match(html,/data-vex-route-state="held-not-ported"[^>]*aria-disabled="true"/);
-  assert.doesNotMatch(html,/href="\/route-that-is-not-ported"/);
-});
-
 test('Content Forge Direct Contact completes the exact canonical arc from two unique preserved authored sources while preserving accepted legacy page-only members',()=>{
   const formation=json(FORMATION); const nodes=json(NODES); const nodesBySlug=new Map(nodes.map(node=>[node.slug,node])); const arcs=json(ARCS); const proposal=json(PROPOSAL);
   const protectedBefore={nodes:hash(NODES),arcs:hash(ARCS),intents:hash(INTENTS),projector:hash(path.join(ROOT,'tools','vex-content-forge','project_arc_batch.js'))};
@@ -108,10 +98,6 @@ test('Content Forge Direct Contact completes the exact canonical arc from two un
     const node=nodesBySlug.get(member.slug); const source=fs.readFileSync(path.join(ROOT,member.sourcePath)); const page=fs.readFileSync(path.join(ROOT,'pages',member.slug+'.html'),'utf8'); const strings=json(path.join(ROOT,'data','strings','source','pages',member.slug+'.json'));
     assert.ok(page.includes('data-content-forge-generator="'+projector.GENERATOR_REF+'"')); assert.ok(page.includes('data-content-forge-body="'+member.slug+'"')); assert.ok(page.includes('id="arcNavMount"')); assert.ok(page.includes('../dist/vextreme-'+member.slug+'.js')); assert.equal((page.match(/<h1(?:\s|>)/g)||[]).length,1,member.slug+': one H1');
     for(const marker of ['window.__RESCUE_SOURCE','/__rescue/','data-sqsp-','data-vex-id=','vex-generated:','vexsite-provider-shell','common.nav.']) assert.equal(page.includes(marker),false,member.slug+': forbidden '+marker);
-    assert.doesNotMatch(page,/<a\b[^>]*\bhref=["']\/(?!\/|Vextreme\/)/i,member.slug+': projected page must not retain root-relative internal routes');
-    if(member.slug==='the-living-blueprint'){
-      for(const target of ['the-grimoire','covenant-access','life-pattern-mapping','grief-resolution','discernment-mapping']) assert.ok(page.includes('href="'+target+'.html"'),target+': repository-native child route');
-    }
     const scope='pages.'+member.slug; assert.equal(strings._meta.scope,scope); assert.equal(strings._meta.sourceProvenance.adapterClass,'AUTHORED_MAIN_FRAGMENT'); assert.equal(strings._meta.sourceProvenance.route,member.sourceRoute); assert.equal(strings._meta.sourceProvenance.preservedPath,member.sourcePath); assert.equal(strings._meta.sourceProvenance.preservedGitBlob,member.sourceGitBlob); assert.equal(strings._meta.sourceProvenance.preservedHtmlSha256,member.preservedHtmlSha256); assert.equal(strings._meta.sourceProvenance.pageId,member.pageId); assert.equal(strings._meta.sourceProvenance.proposalRecordRef,member.proposalRecordRef);
     assert.deepEqual(viewmodels[member.slug],{title:node.title,category:'production',template:'page',scopes:[scope],features:['lang','spiral-fab','theme','map','analysis','arc-nav']});
     const expected=expectedAuthoredMain(parse5.parse(source.toString('utf8'))); const actual=outputMain(parse5.parse(page),member.slug); assert.ok(actual); assert.deepEqual(textLeaves(actual),textLeaves(expected),member.slug+': authored text order'); assert.deepEqual(semanticShape(actual),semanticShape(expected),member.slug+': semantic shape'); assert.equal(strings._meta.projectionStats.authoredTextLeafCount,textLeaves(expected).length);

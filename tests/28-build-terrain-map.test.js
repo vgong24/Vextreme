@@ -439,7 +439,22 @@ test('BUILD-TERRAIN-MAP: collection parent coverage is derived separately from r
     assert.equal(byKey[key].parent.url, 'https://vgong24.github.io/Vextreme/pages/' + slug + '.html');
     assert.equal(result.pages.some(page => page.slug === slug && !nodes.some(node => node.slug === slug)), false, slug + ': parent-only home must not enter uncurated membership');
   }
-  assert.ok(result.arcs.some(arc => arc.parent && arc.parent.live === false), 'coverage must retain missing group-home visibility without inventing a route');
+  const synthetic = buildContentPages(
+    [],
+    { missing_group: { parent:{ title:'Missing Group', url:'/missing-group-home' }, priority:1, sections:[] } },
+    {},
+    [],
+    { pages:{} },
+    {},
+    []
+  );
+  assert.deepEqual(synthetic.arcs[0].parent, {
+    title:'Missing Group',
+    pageSlug:'missing-group-home',
+    live:false,
+    url:null,
+    sourceUrl:'/missing-group-home',
+  }, 'missing parent coverage remains visible without inventing a live route');
 });
 
 test('BUILD-TERRAIN-MAP: record inventory reuses AUTO_DISCOVERY_EXCLUSIONS so system/dev pages cannot appear as UNCURATED Content', () => {
