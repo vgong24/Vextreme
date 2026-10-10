@@ -769,16 +769,19 @@ async function proveMapNodeActivation(cdp, page) {
         "return rect.width > 0 && rect.height > 0 && rect.bottom > 0 && rect.top < innerHeight && rect.right > 0 && rect.left < innerWidth;" +
       "});" +
       "if (!node) return null;" +
+      "const map = document.querySelector('#vexsystem-map');" +
       "window.__vexMapNodeProbe = [];" +
       "for (const type of ['pointerdown', 'pointerup', 'click']) {" +
-        "node.addEventListener(type, event => {" +
+        "map.addEventListener(type, event => {" +
+          "const subjectNode = event.target.closest ? event.target.closest('[data-subject-ref]') : null;" +
           "window.__vexMapNodeProbe.push({" +
             "type," +
             "isTrusted: event.isTrusted === true," +
             "pointerType: event.pointerType || null," +
             "button: event.button," +
             "buttons: event.buttons," +
-            "detail: typeof event.detail === 'number' ? event.detail : null" +
+            "detail: typeof event.detail === 'number' ? event.detail : null," +
+            "subjectRef: subjectNode ? subjectNode.dataset.subjectRef : null" +
           "});" +
         "});" +
       "}" +
@@ -835,7 +838,8 @@ async function proveMapNodeActivation(cdp, page) {
     event.type === 'pointerdown' &&
     event.isTrusted === true &&
     event.pointerType === 'mouse' &&
-    event.buttons === 1
+    event.buttons === 1 &&
+    event.subjectRef === target.subjectRef
   );
   const trustedPointerUp = pointerProbe.some(event =>
     event.type === 'pointerup' &&

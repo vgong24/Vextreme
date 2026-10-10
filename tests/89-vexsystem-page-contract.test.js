@@ -315,7 +315,8 @@ test('VEXSYSTEM PAGE: Terrain screenshots admit one initial document abort only 
 test('VEXSYSTEM PAGE: no-drag pointer release activates a map node while drag/cancel remain non-activating', () => {
   assert.match(app, /const activateRef = event\.type === 'pointerup' && !completed\.moved/);
   assert.match(app, /activateSubject\(activateRef\)/);
-  assert.match(app, /if \(completed\.moved && completed\.startSubjectRef\) suppressSubjectClick/);
+  assert.match(app, /function suppressCompatibilityClick\(subjectRef\)/);
+  assert.match(app, /if \(completed\.startSubjectRef\) suppressCompatibilityClick\(completed\.startSubjectRef\)/);
   assert.match(app, /setTimeout\(\(\) => \{/);
   assert.match(browserProof, /async function proveMapNodeActivation/);
   assert.match(browserProof, /VEXSYSTEM_BROWSER_MAP_NODE_ACTIVATION_MISSING/);

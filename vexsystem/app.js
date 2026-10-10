@@ -460,6 +460,13 @@
     applyMapTransform();
     event.preventDefault();
   });
+  function suppressCompatibilityClick(subjectRef) {
+    if (!subjectRef) return;
+    suppressSubjectClick = subjectRef;
+    setTimeout(() => {
+      if (suppressSubjectClick === subjectRef) suppressSubjectClick = null;
+    }, 0);
+  }
   function endMapDrag(event) {
     if (!mapDrag || mapDrag.pointerId !== event.pointerId) return;
     const completed = mapDrag;
@@ -467,21 +474,16 @@
       ? completed.startSubjectRef
       : null;
 
-    if (completed.moved && completed.startSubjectRef) suppressSubjectClick = completed.startSubjectRef;
+    if (completed.startSubjectRef) suppressCompatibilityClick(completed.startSubjectRef);
     if (dom.mapSvg.releasePointerCapture) dom.mapSvg.releasePointerCapture(event.pointerId);
     dom.mapSvg.classList.remove('grabbing');
     mapDrag = null;
 
     if (activateRef) {
       // Pointer capture is required for stable panning, but it can retarget the
-      // later click away from the original SVG node. Treat a completed no-drag
-      // pointer gesture as the semantic activation, then suppress only the
-      // immediate compatibility click if the browser still emits it at the node.
-      suppressSubjectClick = activateRef;
+      // later click away from the original SVG node. A completed no-drag pointer
+      // gesture is therefore the semantic activation itself.
       activateSubject(activateRef);
-      setTimeout(() => {
-        if (suppressSubjectClick === activateRef) suppressSubjectClick = null;
-      }, 0);
     }
   }
   dom.mapSvg.addEventListener('pointerup', endMapDrag);
