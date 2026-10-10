@@ -119,6 +119,31 @@ test('PHANTOM-COMPOSITION: authored palette, full-bleed hero, and page action re
   assert.match(source, /VEXTREME_OVERRIDE = \{ bodyWrap: false, fabWidgets: \{ theme: false \} \}/);
 });
 
+test('ARC-COMPOSITION: one shared stylesheet serves both preserved v1 lattice and current v2 renderer grammars', () => {
+  const css = read('styles/arc-nav.css');
+  const v1 = read('lib/arc-nav.js');
+  const v2 = read('lib/vextreme-index-v2.js');
+
+  assert.match(v1, /class="arc-nav-header"/);
+  assert.match(v1, /class="arc-nav-dots"/);
+  assert.match(v1, /class="arc-dot active"/);
+  assert.match(css, /\.arc-nav-header\s*\{/);
+  assert.match(css, /\.arc-nav-dots\s*\{/);
+  assert.match(css, /\.arc-dot\.active\s*\{/);
+
+  assert.match(v2, /class="arc-nav-label"/);
+  assert.match(v2, /class="arc-nav-right"/);
+  assert.match(v2, /class="arc-nav-counter"/);
+  assert.match(v2, /class="arc-nav-arrows"/);
+  assert.match(css, /\.arc-nav-row:has\(> \.arc-nav-label\)\s*\{/);
+  assert.match(css, /\.arc-nav-label\s*\{/);
+  assert.match(css, /\.arc-nav-right,\s*\n\.arc-nav-arrows\s*\{/);
+  assert.match(css, /\.arc-nav-counter\s*\{/);
+
+  assert.match(css, /\.arc-nav-current\s*\{[\s\S]*?font-family: var\(--serif\)/,
+    'v2 inline current-title text must inherit the same reading typography as the preserved v1 current-title child');
+});
+
 test('PAGE-ACTIONS: other known fixed top-right controls use the same lane', () => {
   for (const file of ['pages/accountability-test-02.html', 'pages/witness-committee-operations.html']) {
     assert.match(read(file), /<button class="toggle" data-vex-page-action/);
