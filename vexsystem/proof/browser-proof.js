@@ -21,6 +21,7 @@ const { spawn } = require('node:child_process');
 
 const ROOT = path.resolve(__dirname, '..', '..');
 const ENTRY = '/vexsystem/index.html';
+const TERRAIN_ENTRY = '/Vextreme/pages/terrain-map.html?view=content&profile=evolution-v1';
 const BROWSER_CANDIDATES = [
   '/Applications/Brave Browser.app/Contents/MacOS/Brave Browser',
   '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
@@ -54,7 +55,9 @@ function browserExecutable() {
 function safeFilePath(urlPath) {
   const decoded = decodeURIComponent(String(urlPath || '/').split('?')[0]);
   const normalized = path.posix.normalize(decoded);
-  const relative = normalized.replace(/^\/+/, '');
+  let relative = normalized.replace(/^\/+/, '');
+  if (relative === 'Vextreme') relative = 'index.html';
+  else if (relative.startsWith('Vextreme/')) relative = relative.slice('Vextreme/'.length);
   const candidate = path.resolve(ROOT, relative || 'index.html');
   if (candidate !== ROOT && !candidate.startsWith(ROOT + path.sep)) {
     fail('VEXSYSTEM_HTTP_PATH_ESCAPE', decoded);
@@ -358,7 +361,8 @@ function isExpectedProofBlockedUrl(value) {
   );
 }
 
-function classifyPageSignals(page) {
+function classifyPageSignals(page, options) {
+  options = options || {};
   const benignResponseErrors = page.responseErrors.filter(entry =>
     entry.status === 404 && urlPathname(entry.url) === '/favicon.ico'
   );
@@ -366,11 +370,28 @@ function classifyPageSignals(page) {
     !(entry.status === 404 && urlPathname(entry.url) === '/favicon.ico')
   );
 
+  const navigationSupersededDocumentAborts = options.allowSingleSupersededDocumentAbort === true
+    ? page.loadingFailures.filter(entry =>
+        entry.url == null &&
+        entry.errorText === 'net::ERR_ABORTED' &&
+        entry.blockedReason == null &&
+        entry.canceled === true &&
+        entry.type === 'Document'
+      )
+    : [];
+  if (navigationSupersededDocumentAborts.length > 1) {
+    fail(
+      'VEXSYSTEM_BROWSER_MULTIPLE_NAVIGATION_ABORTS',
+      'More than one canceled top-level document was observed during the admitted Terrain -> VexSystem handoff.',
+      { navigationSupersededDocumentAborts }
+    );
+  }
+  const navigationAbortSet = new Set(navigationSupersededDocumentAborts);
   const expectedLoadingFailures = page.loadingFailures.filter(entry =>
     isExpectedProofBlockedUrl(entry.url)
   );
   const blockingLoadingFailures = page.loadingFailures.filter(entry =>
-    !isExpectedProofBlockedUrl(entry.url)
+    !isExpectedProofBlockedUrl(entry.url) && !navigationAbortSet.has(entry)
   );
 
   const directlyBenignConsoleErrors = page.consoleErrors.filter(entry =>
@@ -410,6 +431,7 @@ function classifyPageSignals(page) {
         ...correlatedFaviconConsoleErrors
       ],
       expectedProofBlockedLoads: expectedLoadingFailures,
+      navigationSupersededDocumentAborts,
       expectedProofBlockedConsoleErrors: directlyExpectedBlockedConsoleErrors
     },
     blocking: {
@@ -421,8 +443,8 @@ function classifyPageSignals(page) {
   };
 }
 
-function assertPageSignals(page, label) {
-  const signals = classifyPageSignals(page);
+function assertPageSignals(page, label, options) {
+  const signals = classifyPageSignals(page, options);
   const blocking = signals.blocking;
   if (
     blocking.runtimeExceptions.length ||
@@ -491,6 +513,7 @@ async function runtimeSnapshot(cdp, page) {
     "const rect = node => node ? node.getBoundingClientRect() : null;" +
     "return {" +
       "title: document.title," +
+      "pathname: url.pathname," +
       "selected: url.searchParams.get('subject')," +
       "lens: url.searchParams.get('lens')," +
       "level: url.searchParams.get('level')," +
@@ -563,6 +586,163 @@ function assertRuntimeSnapshot(snapshot, label) {
     fail('VEXSYSTEM_BROWSER_PRIVATE_COORDINATE_LEAK', label, snapshot);
   }
 }
+
+async function readyTerrainArrival(cdp, page) {
+  await waitFor(
+    cdp,
+    page.sessionId,
+    "document.readyState === 'complete' && document.querySelector('[data-terrain-entry=\"arrival\"]') && document.querySelector('[data-entry-action=\"vexsystem\"]')",
+    'Terrain VexSystem arrival readiness'
+  );
+}
+
+async function terrainArrivalSnapshot(cdp, page) {
+  const expression = "(() => {" +
+    "const contract = JSON.parse(document.querySelector('#terrain-entry-contract')?.textContent || '{}');" +
+    "const choice = (contract.choices || []).find(item => item.id === 'vexsystem') || null;" +
+    "const button = document.querySelector('[data-entry-action=\"vexsystem\"]');" +
+    "const reader = document.querySelector('#evolutionReader');" +
+    "const rect = button ? button.getBoundingClientRect() : null;" +
+    "return {" +
+      "pathname: location.pathname," +
+      "entryPresent: Boolean(document.querySelector('[data-terrain-entry=\"arrival\"]'))," +
+      "choiceCount: document.querySelectorAll('[data-entry-action]').length," +
+      "enabledChoiceCount: [...document.querySelectorAll('[data-entry-action]')].filter(node => !node.disabled).length," +
+      "vexsystemButtonPresent: Boolean(button)," +
+      "vexsystemButtonDisabled: button ? button.disabled : null," +
+      "vexsystemAriaDisabled: button ? button.getAttribute('aria-disabled') : null," +
+      "vexsystemCopy: button ? button.textContent : null," +
+      "choiceEffect: choice ? choice.effect : null," +
+      "choicePath: choice ? choice.path : null," +
+      "choiceEnabled: choice ? choice.enabled : null," +
+      "readerHidden: reader ? reader.hidden === true : null," +
+      "buttonCenterX: rect ? rect.left + rect.width / 2 : null," +
+      "buttonCenterY: rect ? rect.top + rect.height / 2 : null," +
+      "buttonVisible: rect ? rect.bottom > 0 && rect.top < window.innerHeight : false," +
+      "bodyWidth: document.documentElement.scrollWidth," +
+      "viewportWidth: document.documentElement.clientWidth," +
+      "horizontalOverflow: Math.max(0, document.documentElement.scrollWidth - document.documentElement.clientWidth)" +
+    "};" +
+  "})()";
+  return evaluate(cdp, page.sessionId, expression);
+}
+
+function assertTerrainArrivalSnapshot(snapshot, label) {
+  if (!snapshot.entryPresent || !snapshot.vexsystemButtonPresent) {
+    fail('VEXSYSTEM_BROWSER_TERRAIN_ENTRY_MISSING', label, snapshot);
+  }
+  if (
+    snapshot.choiceCount !== 3 ||
+    snapshot.enabledChoiceCount !== 3 ||
+    snapshot.vexsystemButtonDisabled !== false ||
+    snapshot.vexsystemAriaDisabled === 'true'
+  ) {
+    fail('VEXSYSTEM_BROWSER_TERRAIN_VEXSYSTEM_NOT_ACTIVE', label, snapshot);
+  }
+  if (
+    snapshot.choiceEffect !== 'vexsystem-learning-world' ||
+    snapshot.choicePath !== '../vexsystem/' ||
+    snapshot.choiceEnabled !== true
+  ) {
+    fail('VEXSYSTEM_BROWSER_TERRAIN_CONTRACT_MISMATCH', label, snapshot);
+  }
+  if (snapshot.readerHidden !== true) {
+    fail('VEXSYSTEM_BROWSER_TERRAIN_READER_OWNS_VEXSYSTEM', label, snapshot);
+  }
+  if (snapshot.horizontalOverflow !== 0) {
+    fail('VEXSYSTEM_BROWSER_TERRAIN_HORIZONTAL_OVERFLOW', label, snapshot);
+  }
+}
+
+async function runTerrainEntryRuntime(origin, cdp) {
+  const desktop = await createPage(cdp, origin + TERRAIN_ENTRY, {
+    width: 1440,
+    height: 900,
+    mobile: false
+  });
+  await readyTerrainArrival(cdp, desktop);
+  const arrival = await terrainArrivalSnapshot(cdp, desktop);
+  assertTerrainArrivalSnapshot(arrival, 'Terrain desktop arrival');
+  if (
+    arrival.buttonCenterX == null ||
+    arrival.buttonCenterY == null ||
+    arrival.buttonVisible !== true
+  ) {
+    fail('VEXSYSTEM_BROWSER_TERRAIN_VEXSYSTEM_BUTTON_NOT_VISIBLE', 'Terrain desktop arrival', arrival);
+  }
+
+  await cdp.send('Input.dispatchMouseEvent', {
+    type: 'mouseMoved',
+    x: arrival.buttonCenterX,
+    y: arrival.buttonCenterY,
+    button: 'none'
+  }, desktop.sessionId);
+  await cdp.send('Input.dispatchMouseEvent', {
+    type: 'mousePressed',
+    x: arrival.buttonCenterX,
+    y: arrival.buttonCenterY,
+    button: 'left',
+    clickCount: 1
+  }, desktop.sessionId);
+  await cdp.send('Input.dispatchMouseEvent', {
+    type: 'mouseReleased',
+    x: arrival.buttonCenterX,
+    y: arrival.buttonCenterY,
+    button: 'left',
+    clickCount: 1
+  }, desktop.sessionId);
+
+  await waitFor(
+    cdp,
+    desktop.sessionId,
+    "location.pathname === '/Vextreme/vexsystem/' || location.pathname === '/Vextreme/vexsystem/index.html'",
+    'Terrain top-level VexSystem handoff'
+  );
+  await ready(cdp, desktop);
+  const navigated = await runtimeSnapshot(cdp, desktop);
+  assertRuntimeSnapshot(navigated, 'Terrain -> VexSystem destination');
+  const topLevel = await evaluate(cdp, desktop.sessionId, 'window.top === window');
+  if (topLevel !== true) {
+    fail(
+      'VEXSYSTEM_BROWSER_TERRAIN_HANDOFF_EMBEDDED',
+      'Terrain handed VexSystem to an embedded reader instead of top-level navigation.',
+      { arrival, navigated, topLevel }
+    );
+  }
+
+  const mobile = await createPage(cdp, origin + TERRAIN_ENTRY, {
+    width: 390,
+    height: 844,
+    mobile: true
+  });
+  await readyTerrainArrival(cdp, mobile);
+  const mobileArrival = await terrainArrivalSnapshot(cdp, mobile);
+  assertTerrainArrivalSnapshot(mobileArrival, 'Terrain mobile arrival');
+
+  await new Promise(resolve => setTimeout(resolve, 120));
+  return {
+    activationPath: 'TRUSTED_POINTER_TOP_LEVEL_HANDOFF',
+    desktop: {
+      arrival,
+      navigated,
+      topLevel,
+      signals: assertPageSignals(desktop, 'Terrain desktop -> VexSystem runtime', {
+        allowSingleSupersededDocumentAbort:
+          topLevel === true &&
+          (navigated.pathname === '/Vextreme/vexsystem/' || navigated.pathname === '/Vextreme/vexsystem/index.html')
+      })
+    },
+    mobile: {
+      arrival: mobileArrival,
+      signals: assertPageSignals(mobile, 'Terrain mobile arrival runtime', {
+        allowSingleSupersededDocumentAbort:
+          mobileArrival.entryPresent === true &&
+          mobileArrival.pathname === '/Vextreme/pages/terrain-map.html'
+      })
+    }
+  };
+}
+
 
 async function runRuntime(origin, cdp) {
   const desktop = await createPage(cdp, origin + ENTRY, {
@@ -888,6 +1068,8 @@ async function runRuntime(origin, cdp) {
     );
   }
 
+  const terrainEntry = await runTerrainEntryRuntime(origin, cdp);
+
   await new Promise(resolve => setTimeout(resolve, 150));
   const desktopSignals = assertPageSignals(desktop, 'desktop runtime');
   const mobileSignals = assertPageSignals(mobile, 'mobile runtime');
@@ -910,7 +1092,8 @@ async function runRuntime(origin, cdp) {
     mobile: {
       initial: mobileSnapshot,
       signals: mobileSignals
-    }
+    },
+    terrainEntry
   };
 
   return findings;
@@ -966,17 +1149,24 @@ async function applyScenario(cdp, page, scenario) {
 }
 
 async function screenshot(origin, cdp, scenario) {
-  const mobile = scenario === 'blueprint-mobile';
+  const terrainScenario = scenario === 'terrain-entry-desktop' || scenario === 'terrain-entry-mobile';
+  const mobile = scenario === 'blueprint-mobile' || scenario === 'terrain-entry-mobile';
   const viewport = mobile
     ? { width: 390, height: 844, mobile: true }
     : { width: 1440, height: 900, mobile: false };
 
-  const page = await createPage(cdp, origin + ENTRY, viewport);
-  await ready(cdp, page);
-  await applyScenario(cdp, page, scenario);
+  const page = await createPage(cdp, origin + (terrainScenario ? TERRAIN_ENTRY : ENTRY), viewport);
+  if (terrainScenario) await readyTerrainArrival(cdp, page);
+  else {
+    await ready(cdp, page);
+    await applyScenario(cdp, page, scenario);
+  }
 
-  const snapshot = await runtimeSnapshot(cdp, page);
-  assertRuntimeSnapshot(snapshot, scenario);
+  const snapshot = terrainScenario
+    ? await terrainArrivalSnapshot(cdp, page)
+    : await runtimeSnapshot(cdp, page);
+  if (terrainScenario) assertTerrainArrivalSnapshot(snapshot, scenario);
+  else assertRuntimeSnapshot(snapshot, scenario);
   if (
     scenario === 'formation-desktop' &&
     (
@@ -1011,7 +1201,17 @@ async function screenshot(origin, cdp, scenario) {
   }
 
   await new Promise(resolve => setTimeout(resolve, 100));
-  const signals = assertPageSignals(page, 'screenshot ' + scenario);
+  const signals = assertPageSignals(
+    page,
+    'screenshot ' + scenario,
+    terrainScenario
+      ? {
+          allowSingleSupersededDocumentAbort:
+            snapshot.entryPresent === true &&
+            snapshot.pathname === '/Vextreme/pages/terrain-map.html'
+        }
+      : undefined
+  );
 
   return {
     state: 'PASS',
@@ -1034,7 +1234,7 @@ async function main() {
 
   if (
     mode === 'screenshot' &&
-    !['blueprint-desktop', 'formation-desktop', 'blueprint-mobile'].includes(scenario)
+    !['blueprint-desktop', 'formation-desktop', 'blueprint-mobile', 'terrain-entry-desktop', 'terrain-entry-mobile'].includes(scenario)
   ) {
     fail(
       'VEXSYSTEM_BROWSER_SCENARIO_UNSUPPORTED',

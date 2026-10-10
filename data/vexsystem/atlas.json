@@ -61,7 +61,7 @@
       "subjectRef": "contract.vextreme.terrain-entry.v1",
       "kind": "CONTRACT",
       "title": "Terrain entry contract v1",
-      "summary": "The shipped entry contract names the home behavior and three choices: Receive God, Explore the Archives, and a reserved VexSystem seam.",
+      "summary": "The shipped entry contract names the home behavior and three choices: Receive God, Explore the Archives, and an active same-origin VexSystem learning-world handoff.",
       "level": 4,
       "tags": ["feature", "blueprint", "process", "consequence"],
       "state": "CURRENT",
@@ -94,18 +94,18 @@
       "subjectRef": "route.vextreme.vexsystem",
       "kind": "ROUTE",
       "title": "For VexSystem",
-      "summary": "Deliberately reserved and disabled seam for the future VexSystem learning world. Reservation proves placement, not readiness or activation.",
+      "summary": "Active Terrain-owned same-origin handoff from the arrival choice into the public VexSystem learning world.",
       "level": 4,
       "tags": ["feature", "process", "consequence", "platform"],
-      "state": "HELD",
-      "sourceRefs": ["pages/terrain-map.html", "github.issue.vextreme.202"],
+      "state": "ACTIVE",
+      "sourceRefs": ["pages/terrain-map.html", "vexsystem/index.html", "github.issue.vextreme.202"],
       "proofRefs": ["tests/85-terrain-view-contract.test.js"]
     },
     {
       "subjectRef": "proof.vextreme.terrain-entry.contract",
       "kind": "PROOF",
       "title": "Terrain entry source-contract proof",
-      "summary": "Deterministic tests verify the shipped JSON contract, choice ordering, disabled VexSystem seam, and ordered-entry documents.",
+      "summary": "Deterministic tests verify the shipped JSON contract, choice ordering, active same-origin VexSystem path, and ordered-entry documents.",
       "level": 5,
       "tags": ["feature", "consequence", "blueprint"],
       "state": "ACCEPTED",
@@ -236,8 +236,8 @@
       "from": "contract.vextreme.terrain-entry.v1",
       "to": "route.vextreme.vexsystem",
       "lenses": ["BLUEPRINT", "PROCESS", "CONSEQUENCE", "PLATFORM"],
-      "branchClass": "HELD_BRANCH",
-      "summary": "The third choice is structurally reserved but intentionally non-executable."
+      "branchClass": "ALTERNATIVE_BRANCH",
+      "summary": "A parallel active choice hands off from Terrain into the public VexSystem learning world."
     },
     {
       "relationRef": "rel.vexsystem.contract-proof",

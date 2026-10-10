@@ -28,7 +28,7 @@ test('VEXSYSTEM VIEW: relation vocabulary stays typed and rejects generic RELATE
   }
 });
 
-test('VEXSYSTEM VIEW: Terrain entry exposes two active branches and one held future branch', () => {
+test('VEXSYSTEM VIEW: Terrain entry exposes three executable choices while preserving one primary ordered-entry branch', () => {
   const process = vexsystem.projectAtlas(
     atlas,
     vexsystem.setLens(atlas, vexsystem.createState(atlas), 'PROCESS')
@@ -37,7 +37,7 @@ test('VEXSYSTEM VIEW: Terrain entry exposes two active branches and one held fut
   const branchClasses = new Map(process.relations.map(item => [item.relationRef, item.branchClass]));
   assert.equal(branchClasses.get('rel.vexsystem.contract-to-receive-god'), 'ACTIVE_BRANCH');
   assert.equal(branchClasses.get('rel.vexsystem.contract-to-archives'), 'ALTERNATIVE_BRANCH');
-  assert.equal(branchClasses.get('rel.vexsystem.contract-to-vexsystem'), 'HELD_BRANCH');
+  assert.equal(branchClasses.get('rel.vexsystem.contract-to-vexsystem'), 'ALTERNATIVE_BRANCH');
 });
 
 test('VEXSYSTEM VIEW: consequence lens can distinguish contract proof from browser/visual proof', () => {

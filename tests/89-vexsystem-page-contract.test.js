@@ -160,8 +160,11 @@ test('VEXSYSTEM PAGE: browser proof retains exact network failure identity and o
   assert.match(browserProof, /VEXSYSTEM_BROWSER_PAGE_ERRORS/);
 });
 
-test('VEXSYSTEM PAGE: screenshot evidence uses the same strict runtime/network classification as interactive proof', () => {
-  assert.match(browserProof, /assertPageSignals\(page, 'screenshot ' \+ scenario\)/);
+test('VEXSYSTEM PAGE: screenshot evidence uses the same strict runtime/network classifier with bounded Terrain initialization options', () => {
+  assert.match(browserProof, /assertPageSignals\(/);
+  assert.match(browserProof, /'screenshot ' \+ scenario/);
+  assert.match(browserProof, /terrainScenario/);
+  assert.match(browserProof, /allowSingleSupersededDocumentAbort/);
   assert.match(browserProof, /signals,/);
 });
 
@@ -212,6 +215,51 @@ test('VEXSYSTEM PAGE: Formation screenshot visibly captures the optional deepeni
   assert.match(browserProof, /Formation deepening viewport/);
   assert.match(browserProof, /VEXSYSTEM_BROWSER_FORMATION_CAPTURE_NOT_DEEPENED/);
   assert.match(browserProof, /scrollY: window\.scrollY/);
+});
+
+
+test('VEXSYSTEM PAGE: browser proof covers the live Terrain -> VexSystem top-level handoff', () => {
+  assert.match(browserProof, /const TERRAIN_ENTRY = '\/Vextreme\/pages\/terrain-map\.html\?view=content&profile=evolution-v1'/);
+  assert.match(browserProof, /relative\.startsWith\('Vextreme\/'\)/);
+  assert.match(browserProof, /function assertTerrainArrivalSnapshot\(snapshot, label\)/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_TERRAIN_VEXSYSTEM_NOT_ACTIVE/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_TERRAIN_CONTRACT_MISMATCH/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_TERRAIN_READER_OWNS_VEXSYSTEM/);
+  assert.match(browserProof, /TRUSTED_POINTER_TOP_LEVEL_HANDOFF/);
+  assert.match(browserProof, /Terrain top-level VexSystem handoff/);
+  assert.match(browserProof, /\/Vextreme\/vexsystem\//);
+  assert.match(browserProof, /window\.top === window/);
+  assert.match(browserProof, /terrain-entry-desktop/);
+  assert.match(browserProof, /terrain-entry-mobile/);
+});
+
+
+test('VEXSYSTEM PAGE: navigation-abort noise is admitted only after a proven top-level Terrain -> VexSystem handoff', () => {
+  assert.match(browserProof, /allowSingleSupersededDocumentAbort/);
+  assert.match(browserProof, /entry\.url == null/);
+  assert.match(browserProof, /entry\.errorText === 'net::ERR_ABORTED'/);
+  assert.match(browserProof, /entry\.canceled === true/);
+  assert.match(browserProof, /entry\.type === 'Document'/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_MULTIPLE_NAVIGATION_ABORTS/);
+  assert.match(browserProof, /topLevel === true/);
+  assert.match(browserProof, /navigated\.pathname === '\/Vextreme\/vexsystem\/'/);
+  assert.doesNotMatch(browserProof, /allowSingleSupersededDocumentAbort:\s*true/);
+});
+
+
+test('VEXSYSTEM PAGE: mobile Terrain initialization admits one superseded document only after canonical arrival is proven', () => {
+  assert.match(browserProof, /mobileArrival\.entryPresent === true/);
+  assert.match(browserProof, /mobileArrival\.pathname === '\/Vextreme\/pages\/terrain-map\.html'/);
+  assert.match(browserProof, /Terrain mobile arrival runtime/);
+});
+
+
+test('VEXSYSTEM PAGE: Terrain screenshots admit one initial document abort only after canonical arrival is proven', () => {
+  assert.match(browserProof, /terrainScenario\s*\?\s*\{/);
+  assert.match(browserProof, /snapshot\.entryPresent === true/);
+  assert.match(browserProof, /snapshot\.pathname === '\/Vextreme\/pages\/terrain-map\.html'/);
+  assert.match(browserProof, /'screenshot ' \+ scenario/);
+  assert.doesNotMatch(browserProof, /allowSingleSupersededDocumentAbort:\s*true/);
 });
 
 // [VXG RealForever]
