@@ -107,10 +107,12 @@
     position:absolute; left:14px; top:14px; z-index:6; width:68px; height:188px; min-width:0;
     font-family:var(--mono); color:var(--ink-muted);
     background:color-mix(in srgb, var(--panel) 82%, transparent); border:1px solid var(--line);
-    padding:14px 8px; border-radius:14px; pointer-events:none; opacity:.18;
-    transition:opacity .22s ease; backdrop-filter:blur(8px);
+    padding:14px 8px; border-radius:14px; pointer-events:auto; opacity:.18;
+    transition:opacity .22s ease, border-color .16s ease; backdrop-filter:blur(8px);
   }
   .level-readout.is-active{ opacity:.94; }
+  .level-readout[data-can-zoom-out="true"]{ cursor:zoom-out; }
+  .level-readout:focus-visible{ outline:none; border-color:var(--accent); opacity:.94; }
   .threshold-progress{ position:relative; width:100%; height:132px; min-width:0; }
   .threshold-track{ position:absolute; top:0; bottom:0; left:11px; width:2px; border-radius:2px; background:var(--line-strong); }
   .threshold-marker{ position:absolute; left:11px; width:10px; height:10px; border-radius:50%; background:var(--accent); border:2px solid var(--panel); transform:translate(-40%,-50%); transition:top .12s ease; box-shadow:0 0 0 1px var(--accent-soft); }
@@ -447,7 +449,7 @@
 
   <div class="body">
     <div class="map-wrap" id="mapWrap">
-      <div class="level-readout" id="levelReadout">Loading…</div>
+      <div class="level-readout" id="levelReadout" tabindex="0" aria-label="Semantic depth. Scroll upward while focused or hovered to zoom out one level.">Loading…</div>
       <svg id="svg"><defs><marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="currentColor" style="color:var(--line-strong)"/></marker></defs><g id="world"></g></svg>
       <div class="evolution-layer" id="evolutionLayer" data-terrain-component="terrain.group-card" data-terrain-variant="evolution-a" hidden></div>
       <div class="evolution-reader" id="evolutionReader" data-terrain-profile="evolution-v1" hidden>
@@ -2333,12 +2335,14 @@
     var ratio = view.scale / levelBaseScale;
     var orderLabel = ratio.toFixed(2) + '× · ' + orderNote;
     var position = thresholdRailPosition(ratio);
+    var readout = document.getElementById('levelReadout');
+    readout.setAttribute('data-can-zoom-out', String(levelIndex > 0));
     var steps = OVERVIEW_LEVELS.map(function (level, index) {
       var relation = index < levelIndex ? 'previous' : (index > levelIndex ? 'next' : 'current');
       return '<li class="threshold-step" data-relation="' + relation + '"' +
         (index === levelIndex ? ' aria-current="step"' : '') + '><span>' + esc(level.id) + '</span></li>';
     }).join('');
-    document.getElementById('levelReadout').innerHTML =
+    readout.innerHTML =
       '<div class="threshold-progress">' +
         '<div class="threshold-track" aria-hidden="true"></div>' +
         '<span class="threshold-marker" aria-hidden="true" style="top:' + position.toFixed(2) + '%"></span>' +
@@ -2346,6 +2350,38 @@
         '<ol class="threshold-rail">' + steps + '</ol>' +
       '</div>' +
       '<div class="level-order" role="note" aria-label="' + esc(orderLabel) + '" title="' + esc(orderLabel) + '">' + ratio.toFixed(2) + '×</div>';
+  }
+
+  function zoomOutOneSemanticLevel(reason) {
+    if (levelIndex <= 0) return false;
+    if (levelIndex === 1 && typeof levelCtx.stageIdx === 'number') {
+      enterLevel(1, {});
+    } else {
+      enterLevel(levelIndex - 1, levelIndex - 1 === 0 ? {} : { stageIdx:levelCtx.stageIdx });
+    }
+    syncPresentationUrl();
+    commitSemanticState({ label:currentLevelName().toUpperCase(), relationship:'zoomed out to', reason:reason || 'semantic depth rail' });
+    return true;
+  }
+
+  function wireDepthRailOutwardGesture() {
+    var readout = document.getElementById('levelReadout');
+    if (!readout || readout._vexDepthRailBound) return;
+    readout._vexDepthRailBound = true;
+    readout.addEventListener('mouseenter', revealDepthRail);
+    readout.addEventListener('focus', revealDepthRail);
+    readout.addEventListener('wheel', function (event) {
+      revealDepthRail();
+      if (event.deltaY >= 0 || levelIndex <= 0) return;
+      event.preventDefault();
+      event.stopPropagation();
+      zoomOutOneSemanticLevel('semantic depth rail wheel');
+    }, { passive:false });
+    readout.addEventListener('keydown', function (event) {
+      if (!['ArrowUp','PageUp','-','_'].includes(event.key) || levelIndex <= 0) return;
+      event.preventDefault();
+      zoomOutOneSemanticLevel('semantic depth rail keyboard');
+    });
   }
 
   // ── the navigation fix: exiting always steps to the level directly above,
@@ -2395,6 +2431,7 @@
   }
 
   function wireControls() {
+    wireDepthRailOutwardGesture();
     evolutionLayer.addEventListener('wheel', handleEvolutionShelfWheel, { passive:false });
     evolutionLayer.addEventListener('mousedown', function (ev) { ev.stopPropagation(); });
     evolutionLayer.addEventListener('click', function (ev) { ev.stopPropagation(); });
