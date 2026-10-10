@@ -69,6 +69,53 @@
   flex-shrink: 0;
 }
 
+/* ── v2/God-Script compatibility ─────────────────────────────────────────
+ * The v2 renderer carries the same arc semantics through a flatter DOM
+ * vocabulary. Keep the old lattice renderer intact and let both projections
+ * consume this one visual language. */
+.arc-nav-row:has(> .arc-nav-label) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.arc-nav-label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.arc-nav-label a {
+  color: var(--ember);
+  text-decoration: none;
+}
+
+.arc-nav-label a:hover {
+  text-decoration: underline;
+}
+
+.arc-nav-right,
+.arc-nav-arrows {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.arc-nav-counter {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--ember);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
 .arc-nav-position {
   font-family: var(--mono);
   font-size: 10px;
@@ -213,6 +260,13 @@
   border-top: 1px solid var(--border);
   padding-top: 14px;
   margin-top: 0;
+  /* v2 places the current title as a text node after its label. v1's
+     .arc-nav-current-title child overrides these inherited values. */
+  font-family: var(--serif);
+  font-size: clamp(13px, 1.5vw, 15px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--stone);
 }
 
 .arc-nav-current-label {
