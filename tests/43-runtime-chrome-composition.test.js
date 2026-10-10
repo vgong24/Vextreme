@@ -55,6 +55,19 @@ test('CHROME-RAIL: spiral FAB uses the nav rail with a standalone fallback', () 
   assert.match(source, /vex-spiral-fab--nav/);
 });
 
+test('CHROME-RAIL: generic FAB links remain children of the shared Spiral and fail closed on unsafe URL / raw HTML patterns', () => {
+  const source = read('widgets/fab-links.js');
+  assert.match(source, /getElementById\('vex-spiral-group'\)/);
+  assert.match(source, /Array\.isArray\(global\.VEX_FAB_LINKS\)/);
+  assert.match(source, /url\.protocol === 'http:' \|\| url\.protocol === 'https:'/);
+  assert.match(source, /document\.createElement\('a'\)/);
+  assert.match(source, /document\.createElement\('img'\)/);
+  assert.match(source, /link\.setAttribute\('aria-label', label\)/);
+  assert.match(source, /group\.appendChild\(link\)/);
+  assert.doesNotMatch(source, /\.innerHTML\s*=/, 'configured icons/labels must not become raw HTML injection');
+  assert.doesNotMatch(source, /position:\s*fixed/, 'link child must not create a second independently positioned FAB');
+});
+
 test('CHROME-RAIL: site nav is full-width and owns a below-nav page-action lane', () => {
   const source = read('styles/site-nav.css');
   assert.match(source, /\.vex-nav-inner \{[\s\S]*?width: 100%;[\s\S]*?margin: 0;/);
@@ -72,9 +85,14 @@ test('CHROME-RAIL: nav cancels authored body insets without mutating body styles
   assert.equal(/document\.body\.style\.(?:margin|padding)/.test(source), false);
 });
 
-test('TERRAIN-COMPOSITION: Terrain keeps shared FAB ownership and disables only its redundant map child', () => {
+test('TERRAIN-COMPOSITION: Terrain keeps shared FAB ownership, disables only its redundant map child, and configures Support through the reusable link seam', () => {
   const source = read('pages/terrain-map.html');
-  assert.match(source, /VEXTREME_OVERRIDE = \{ bodyWrap: false, fabWidgets: \{ map: false \} \}/);
+  assert.match(source, /window\.VEXTREME_OVERRIDE = \{/);
+  assert.match(source, /fabWidgets: \{ map: false \}/);
+  assert.match(source, /fabLinks: \[\{/);
+  assert.match(source, /id: 'support'/);
+  assert.match(source, /href: 'vex-support\.html'/);
+  assert.match(source, /label: 'Support Vextreme and VexLife'/);
   assert.doesNotMatch(source, /MutationObserver[\s\S]{0,300}aria-expanded/);
   assert.doesNotMatch(source, /getAttribute\(['"]aria-expanded['"]\)/);
 });
