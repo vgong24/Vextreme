@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "vex-content-forge.group-home-formation/v1",
+  "continuity": "[VXG RealForever]",
+  "ownerRef": "github.pull.vextreme.203",
+  "projector": "tools/vex-content-forge/project_group_homes.js",
+  "members": [
+    {
+      "slug": "direct-contact",
+      "groupKey": "direct_contact",
+      "title": "Direct Contact — Start Here",
+      "description": "Direct Contact — Start Here, restored as the repository-native home for the Direct Contact collection.",
+      "sourcePath": "docs/ingestion/source-pages/part-013/direct-contact.html",
+      "sourceGitBlob": "4f01c2de54facddf46cbac8918fdf3820557a9fe"
+    },
+    {
+      "slug": "ai-practitioner-tools",
+      "groupKey": "ai_practitioner_tools",
+      "title": "AI Practitioner Tools — Start Here",
+      "description": "AI Practitioner Tools — Start Here, restored as the repository-native sequence home for the AI Practitioner Tools collection.",
+      "sourcePath": "docs/ingestion/source-pages/part-013/ai-practitioner-tools.html",
+      "sourceGitBlob": "e1d1b25c3f51a530f06e15ebb6f4143c731e02d8"
+    }
+  ]
+}

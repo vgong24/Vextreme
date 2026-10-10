@@ -84,7 +84,7 @@ test('TERRAIN-JOURNEY: page wires semantic history without storing camera noise'
 });
 
 
-test('TERRAIN-JOURNEY: threshold rail projects the existing semantic ladder without becoming an editable control', () => {
+test('TERRAIN-JOURNEY: threshold rail projects semantic depth and exposes only a bounded outward zoom affordance', () => {
   const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
   const start = source.indexOf('function thresholdRailPosition');
   const end = source.indexOf('// ── the navigation fix', start);
@@ -97,8 +97,15 @@ test('TERRAIN-JOURNEY: threshold rail projects the existing semantic ladder with
   assert.match(railSource, /EXIT_RATIO/);
   assert.match(railSource, /aria-current="step"/);
   assert.match(railSource, /role="progressbar"/);
-  assert.doesNotMatch(railSource, /<button|<input|tabindex=/, 'the rail is a projection, not another navigation control');
-  assert.match(source, /\.level-readout\{[\s\S]*pointer-events:none;[\s\S]*opacity:\.18;/);
+  assert.doesNotMatch(railSource, /<button|<input/, 'the rail does not become an arbitrary navigation surface');
+  assert.match(source, /id="levelReadout" tabindex="0" aria-label="Semantic depth\./);
+  assert.match(source, /\.level-readout\{[\s\S]*pointer-events:auto;[\s\S]*opacity:\.18;/);
+  assert.match(source, /\.level-readout\[data-can-zoom-out="true"\]\{ cursor:zoom-out; \}/);
+  assert.match(source, /function zoomOutOneSemanticLevel\(reason\)/);
+  assert.match(source, /function wireDepthRailOutwardGesture\(\)/);
+  assert.match(source, /event\.deltaY >= 0 \|\| levelIndex <= 0/);
+  assert.match(source, /semantic depth rail wheel/);
+  assert.match(source, /semantic depth rail keyboard/);
   assert.match(source, /\.level-readout\.is-active\{ opacity:\.94; \}/);
   assert.match(source, /style="top:' \+ position\.toFixed\(2\) \+ '%"/);
   assert.match(source, /function revealDepthRail\(\)/);

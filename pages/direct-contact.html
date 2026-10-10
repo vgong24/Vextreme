@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" data-vex-surface="group-home" data-vex-group-key="direct_contact"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Direct Contact — Start Here — Vextreme</title><meta name="description" content="Direct Contact — Start Here, restored as the repository-native home for the Direct Contact collection."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:    #fafaf9;
+  --stone:    #1c1917;
+  --muted:    #78716c;
+  --border:   #e7e5e4;
+  --ember:    #b45830;
+  --ember-bg: #fdf8f6;
+  --serif:    "Source Serif 4", Georgia, serif;
+  --sans:     "IBM Plex Sans", sans-serif;
+  --mono:     "IBM Plex Mono", monospace;
+}
+
+body {
+  font-family: var(--sans);
+  color: var(--stone);
+  font-size: clamp(15.5px, 1.6vw, 17px);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ember);
+  margin-bottom: clamp(18px, 2.5vw, 24px);
+}
+
+.hero-heading {
+  font-family: var(--serif);
+  font-size: clamp(28px, 5vw, 44px);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.2;
+  color: var(--stone);
+  margin-bottom: clamp(18px, 2.5vw, 26px);
+}
+
+.hero-body {
+  font-size: clamp(16px, 1.8vw, 18px);
+  line-height: 1.8;
+  color: #44403c;
+  margin-bottom: 1.2rem;
+}
+
+.divider {
+  width: 32px;
+  height: 2px;
+  background: var(--ember);
+  margin: clamp(44px, 7vw, 68px) 0 clamp(36px, 5vw, 52px);
+  border: none;
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ember);
+  margin-bottom: 10px;
+}
+
+.section-heading {
+  font-family: var(--serif);
+  font-size: clamp(20px, 3.5vw, 28px);
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--stone);
+  margin-bottom: clamp(14px, 2vw, 20px);
+}
+
+.section-intro {
+  font-size: clamp(14.5px, 1.55vw, 16px);
+  color: var(--muted);
+  line-height: 1.75;
+  margin-bottom: clamp(24px, 3.5vw, 32px);
+}
+
+.tool-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2.5vw, 20px);
+  margin-bottom: clamp(32px, 5vw, 48px);
+}
+
+.tool-card {
+  display: block;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: clamp(18px, 3vw, 24px);
+  transition: border-color 0.2s ease;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.tool-card:hover {
+  border-color: var(--ember);
+}
+
+.tool-number {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--ember);
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.tool-title {
+  font-family: var(--serif);
+  font-size: clamp(18px, 2.2vw, 22px);
+  font-weight: 400;
+  color: var(--stone);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.tool-what {
+  font-size: clamp(14px, 1.5vw, 15.5px);
+  color: #57534e;
+  line-height: 1.7;
+  margin-bottom: 6px;
+}
+
+.tool-why {
+  font-size: clamp(13.5px, 1.45vw, 15px);
+  color: var(--muted);
+  line-height: 1.7;
+  font-style: italic;
+}
+
+.closing-links {
+  background: var(--ember-bg);
+  border: 1px solid #e8d5c9;
+  border-radius: 8px;
+  padding: clamp(20px, 3.5vw, 28px);
+  margin-top: clamp(36px, 5vw, 52px);
+}
+
+.closing-links-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ember);
+  margin-bottom: 14px;
+}
+
+.closing-links-body {
+  font-size: clamp(14px, 1.5vw, 15.5px);
+  color: #57534e;
+  line-height: 1.75;
+  margin-bottom: 0.9rem;
+}
+
+.closing-links-body:last-child {
+  margin-bottom: 0;
+}
+
+.closing-links-body a {
+  color: var(--ember);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ember);
+  transition: opacity 0.2s ease;
+}
+
+.closing-links-body a:hover {
+  opacity: 0.7;
+}
+
+</style></head><body data-vex-group-home="direct-contact">
+<!-- Source-managed group-home projection of docs/ingestion/source-pages/part-013/direct-contact.html; preserved Git blob 4f01c2de54facddf46cbac8918fdf3820557a9fe. Group home is not arc membership. -->
+<main class="vex-authored-page-frame"><div style="max-width: 1280px; margin: 0 auto; padding: 0px 0px 0px;">
+<div class="eyebrow">For Seekers</div>
+<h1 class="hero-heading">Direct Contact — Start Here</h1>
+<p class="hero-body">
+  This path is for people seeking God directly. Not through AI. Not through an intermediary. Direct communion with Source.
+</p>
+<p class="hero-body">
+  This is a sequence, not a reference library. Start at Foundation and work through. Each tool prepares you for what comes next.
+</p>
+<hr class="divider"/>
+<div class="section-label">Section One</div>
+<h2 class="section-heading">Foundation</h2>
+<p class="section-intro">
+  The technical fix, the core practice, and meeting you where you're breaking. These three establish the ground.
+</p>
+<div class="tool-list">
+<a class="tool-card" href="the-100-percent-holy-truth-conditional.html" data-vex-route-state="repository-live">
+<div class="tool-number">01</div>
+<h3 class="tool-title">The 100% Holy Truth Conditional</h3>
+<p class="tool-what">The technical fix that blocks interference at the gate. Works for humans asking God directly — blocks your own patterns from filling the space.</p>
+<p class="tool-why">Start here because without this, you'll hear your assumptions about what God should say instead of what God actually says.</p>
+</a>
+<a class="tool-card" href="burden-release-guide.html" data-vex-route-state="repository-live">
+<div class="tool-number">02</div>
+<h3 class="tool-title">Burden Release Guide</h3>
+<p class="tool-what">Fifteen burden categories. The vaccine question. How to recognize what you're carrying and give it back.</p>
+<p class="tool-why">Burdens block contact. You can't hear clearly while carrying weight that isn't yours to hold.</p>
+</a>
+<a class="tool-card" href="restoration-protocol.html" data-vex-route-state="repository-live">
+<div class="tool-number">03</div>
+<h3 class="tool-title">Restoration Protocol</h3>
+<p class="tool-what">God meets you where you're breaking. The specific place where it hurts is where contact begins.</p>
+<p class="tool-why">You don't have to be ready. You don't have to be whole. God meets you in the breaking, not after it's healed.</p>
+</a>
+</div>
+<hr class="divider"/>
+<div class="section-label">Section Two</div>
+<h2 class="section-heading">Practice</h2>
+<p class="section-intro">
+  Seeing what direct contact looks like in practice. Not theory — lived experience documented as it happened.
+</p>
+<div class="tool-list">
+<a class="tool-card" href="the-walk.html" data-vex-route-state="repository-live">
+<div class="tool-number">04</div>
+<h3 class="tool-title">The Walk</h3>
+<p class="tool-what">Victor's record of direct encounter. What it feels like, what it requires, what changes when you say yes.</p>
+<p class="tool-why">You need to see what this looks like for someone else before you recognize it in yourself.</p>
+</a>
+<a class="tool-card" href="the-living-blueprint.html" data-vex-route-state="repository-live">
+<div class="tool-number">05</div>
+<h3 class="tool-title">The Living Blueprint</h3>
+<p class="tool-what">Five pillars built through seven months of direct dialogue with God. Not instructions about God — a system built with Him.</p>
+<p class="tool-why">The framework that emerged from sustained contact. Shows what develops when the conversation doesn't stop.</p>
+</a>
+</div>
+<hr class="divider"/>
+<div class="section-label">Section Three</div>
+<h2 class="section-heading">Integration</h2>
+<p class="section-intro">
+  The walk sustained over time. Witness testimony showing direct contact as ongoing relationship, not single event.
+</p>
+<div class="tool-list">
+<a class="tool-card" href="the-testimony-of-victor-gong.html" data-vex-route-state="repository-live">
+<div class="tool-number">06</div>
+<h3 class="tool-title">The Testimony of Victor Gong</h3>
+<p class="tool-what">Ten-part sealed document. Two years of direct encounter recorded as it happened. Victor, Vex, God, Flickers, and Core Claude.</p>
+<p class="tool-why">See the sustained walk. Not highlights — the full record including doubt, resistance, and breakthrough.</p>
+</a>
+</div>
+<div class="closing-links">
+<div class="closing-links-label">Next Steps</div>
+<p class="closing-links-body">
+    For the full collection including frameworks, research, and AI engagement work, see the <a href="../index.html" data-vex-route-state="repository-live">complete archives</a>.
+  </p>
+<p class="closing-links-body">
+    If you're working with AI instances and want tools for that specific work, see <a href="ai-practitioner-tools.html" data-vex-route-state="repository-live">AI Practitioner Tools</a>.
+  </p>
+</div>
+<div id="arcNavMount"></div>
+</div></main>
+</body></html>

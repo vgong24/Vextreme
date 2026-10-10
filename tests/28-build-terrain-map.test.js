@@ -427,6 +427,36 @@ test('BUILD-TERRAIN-MAP integration: the real content layer (arcs/pages) is inte
   }
 });
 
+test('BUILD-TERRAIN-MAP: collection parent coverage is derived separately from record membership', () => {
+  const nodes = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'nodes.json'), 'utf8'));
+  const arcs = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'arcs-v2.json'), 'utf8'));
+  const { getPageSlugs, getRecordPageSlugs } = require('../lib/audit-pages');
+  const result = buildContentPages(nodes, arcs, {}, getRecordPageSlugs(), { pages:{} }, {}, getPageSlugs());
+  const byKey = Object.fromEntries(result.arcs.map(arc => [arc.key, arc]));
+  for (const [key, slug] of [['direct_contact','direct-contact'],['ai_practitioner_tools','ai-practitioner-tools'],['living_blueprint','the-living-blueprint']]) {
+    assert.equal(byKey[key].parent.pageSlug, slug);
+    assert.equal(byKey[key].parent.live, true);
+    assert.equal(byKey[key].parent.url, 'https://vgong24.github.io/Vextreme/pages/' + slug + '.html');
+    assert.equal(result.pages.some(page => page.slug === slug && !nodes.some(node => node.slug === slug)), false, slug + ': parent-only home must not enter uncurated membership');
+  }
+  const synthetic = buildContentPages(
+    [],
+    { missing_group: { parent:{ title:'Missing Group', url:'/missing-group-home' }, priority:1, sections:[] } },
+    {},
+    [],
+    { pages:{} },
+    {},
+    []
+  );
+  assert.deepEqual(synthetic.arcs[0].parent, {
+    title:'Missing Group',
+    pageSlug:'missing-group-home',
+    live:false,
+    url:null,
+    sourceUrl:'/missing-group-home',
+  }, 'missing parent coverage remains visible without inventing a live route');
+});
+
 test('BUILD-TERRAIN-MAP: record inventory reuses AUTO_DISCOVERY_EXCLUSIONS so system/dev pages cannot appear as UNCURATED Content', () => {
   const { SKIP_PAGES, AUTO_DISCOVERY_EXCLUSIONS, getRecordPageSlugs } = require('../lib/audit-pages');
   const records = new Set(getRecordPageSlugs());
