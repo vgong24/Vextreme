@@ -1389,24 +1389,28 @@
       }
     },
     "scripts/screenshot-institutional.js": {
-      "role": "registry-driven Playwright renderer for exact institutional locale/theme/viewport evidence cells",
-      "context": "Institutional Surface Integration 4/4. This harness reads only active registry entries and writes the exact matrix filename accepted by activation, Page Health, Terrain, and Analysis. Before rendering, it performs browser acceptance for JavaScript-disabled static English, wrong-locale first-paint prevention, exact URL-over-storage-over-English precedence, invalid URL handling, fetch/parse/timeout/missing-key preservation, later recovery, latest-intent wins, and sub-2,000 ms pre-paint hold release. For every locale/theme/viewport cell it validates the complete visible, alt, and ARIA bundle projection; native selector label/options/state; URL, storage, and cross-page locale propagation; held support routes; focus retention; runtime errors; and horizontal overflow before preserving evidence.",
+      "role": "registry-driven Playwright renderer for exact institutional locale/theme/viewport evidence cells with optional structured Vextreme-Assets custody",
+      "context": "Institutional Surface Integration 4/4 plus additive evidence custody. This harness reads only active registry entries and writes the exact local matrix filename accepted by activation, Page Health, Terrain, and Analysis. Before rendering, it performs browser acceptance for JavaScript-disabled static English, wrong-locale first-paint prevention, exact URL-over-storage-over-English precedence, invalid URL handling, fetch/parse/timeout/missing-key preservation, later recovery, latest-intent wins, and sub-2,000 ms pre-paint hold release. For every locale/theme/viewport cell it validates the complete visible, alt, and ARIA bundle projection; native selector label/options/state; URL, storage, and cross-page locale propagation; held support routes; focus retention; runtime errors; and horizontal overflow before preserving evidence. When --assets-root or VEXTREME_ASSETS_ROOT is explicitly supplied, the already-verified PNG is additionally handed unchanged to the Vextreme-Assets screenshot-evidence ingest contract with the real locale/theme/viewport and exact Vextreme source commit. Current local docs/screenshots files remain the activation/read surface during migration.",
       "reads": [
         "config/institutional-surfaces.json (active slugs and declared evidence matrix)",
         "lib/check-institutional-surfaces.js (surfacesByState; no second lifecycle list)",
         "lib/screenshot-evidence.js (canonical matrix filename)",
         "pages/{active institutional slug}.html (rendered through a bounded local server)",
-        "styles and widgets loaded by each active page"
+        "styles and widgets loaded by each active page",
+        "optional sibling Vextreme-Assets/scripts/ingest-screenshot-evidence.mjs when --assets-root or VEXTREME_ASSETS_ROOT is explicitly supplied",
+        "git HEAD (exact Vextreme source commit attached to optional Assets evidence)"
       ],
       "writes": [
-        "docs/screenshots/{slug}-{locale}-{theme}-{viewport}.png"
+        "docs/screenshots/{slug}-{locale}-{theme}-{viewport}.png",
+        "optional Vextreme-Assets evidence/screenshots/vextreme/{slug}/{locale}/{theme}/{viewport}/{sha256}.png + manifest via the Assets-owned ingest contract"
       ],
       "loadedBy": [
         "package.json (institutional-surfaces:screenshots script)",
-        "manual visual-evidence regeneration before institutional review"
+        "manual visual-evidence regeneration before institutional review; optional --assets-root <Vextreme-Assets checkout>"
       ],
       "testedBy": [
         "lib/check-institutional-surfaces.js (exact output-matrix completeness)",
+        "tests/54-institutional-surfaces.test.js (source contract for additive Assets custody)",
         "review-time browser execution and visual inspection"
       ],
       "changeMap": {
@@ -1419,6 +1423,11 @@
           "widgets/vex-institutional.js",
           "pages/{active institutional slug}.html",
           "lib/check-institutional-surfaces.js behavioral runtime probe"
+        ],
+        "optional Vextreme-Assets screenshot publication changed": [
+          "Vextreme-Assets/scripts/ingest-screenshot-evidence.mjs (custody/schema owner)",
+          "tests/54-institutional-surfaces.test.js (bridge contract)",
+          "lib/screenshot-evidence.js / Page Health / Analysis / Terrain remain local readers until separately migrated"
         ]
       }
     },
