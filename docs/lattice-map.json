@@ -620,7 +620,8 @@
       "writes": [],
       "loadedBy": [
         "lib/build-index.js (buildViewmodel reads overrides)",
-        "lib/build-vextreme.js (resolveAllSlugs merges these with slugMap)"
+        "lib/build-vextreme.js (resolveAllSlugs merges these with slugMap)",
+        "lib/audit-pages.js (non-production categories gate Terrain Content record membership)"
       ],
       "testedBy": [
         "tests/07-viewmodel.test.js",
