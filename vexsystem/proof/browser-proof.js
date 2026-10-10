@@ -459,7 +459,6 @@ async function runRuntime(origin, cdp) {
       "const target = [...document.querySelectorAll('.vs-text-node')].find(node => node.dataset.subjectRef && node.dataset.subjectRef !== current);" +
       "if (!target) return null;" +
       "target.focus();" +
-      "target.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));" +
       "return target.dataset.subjectRef;" +
     "})()"
   );
@@ -467,6 +466,21 @@ async function runRuntime(origin, cdp) {
   if (!keyboardTarget) {
     fail('VEXSYSTEM_BROWSER_KEYBOARD_TARGET_MISSING', 'No alternate text-view node was available.');
   }
+
+  await cdp.send('Input.dispatchKeyEvent', {
+    type: 'keyDown',
+    key: 'Enter',
+    code: 'Enter',
+    windowsVirtualKeyCode: 13,
+    nativeVirtualKeyCode: 13
+  }, desktop.sessionId);
+  await cdp.send('Input.dispatchKeyEvent', {
+    type: 'keyUp',
+    key: 'Enter',
+    code: 'Enter',
+    windowsVirtualKeyCode: 13,
+    nativeVirtualKeyCode: 13
+  }, desktop.sessionId);
 
   await waitFor(
     cdp,
