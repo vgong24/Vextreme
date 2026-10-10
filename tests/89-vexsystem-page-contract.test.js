@@ -39,7 +39,7 @@ test('VEXSYSTEM PAGE: standalone surface consumes content-addressed canonical pr
 });
 
 test('VEXSYSTEM PAGE: renderer DOM contract is complete before any replaceChildren path can run', () => {
-  const ids = [...app.matchAll(/document\\.getElementById\\('([^']+)'\\)/g)].map(match => match[1]);
+  const ids = [...app.matchAll(/document\.getElementById\('([^']+)'\)/g)].map(match => match[1]);
   assert.ok(ids.length > 20);
   for (const id of new Set(ids)) {
     assert.ok(html.includes(`id="${id}"`), `missing VexSystem renderer DOM coordinate #${id}`);
