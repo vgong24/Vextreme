@@ -160,8 +160,11 @@ test('VEXSYSTEM PAGE: browser proof retains exact network failure identity and o
   assert.match(browserProof, /VEXSYSTEM_BROWSER_PAGE_ERRORS/);
 });
 
-test('VEXSYSTEM PAGE: screenshot evidence uses the same strict runtime/network classification as interactive proof', () => {
-  assert.match(browserProof, /assertPageSignals\(page, 'screenshot ' \+ scenario\)/);
+test('VEXSYSTEM PAGE: screenshot evidence uses the same strict runtime/network classifier with bounded Terrain initialization options', () => {
+  assert.match(browserProof, /assertPageSignals\(/);
+  assert.match(browserProof, /'screenshot ' \+ scenario/);
+  assert.match(browserProof, /terrainScenario/);
+  assert.match(browserProof, /allowSingleSupersededDocumentAbort/);
   assert.match(browserProof, /signals,/);
 });
 
