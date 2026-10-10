@@ -9,6 +9,7 @@ const ROOT = path.join(__dirname, '..');
 const PAGE = path.join(ROOT, 'pages', 'terrain-map.html');
 const NODES = path.join(ROOT, 'data', 'nodes.json');
 const ARCS = path.join(ROOT, 'data', 'arcs-v2.json');
+const INTENTS = path.join(ROOT, 'config', 'content-intents.json');
 
 function pageSource() {
   return fs.readFileSync(PAGE, 'utf8').replace(/\r\n/g, '\n');
@@ -118,7 +119,7 @@ test('TERRAIN-VIEW: current canonical arcs are not empty; three are secondary-on
   assert.equal(timeline.primary.length, 1);
 });
 
-test('TERRAIN-VIEW: dated content has one known timeline-only assortment exception and id-null department records remain separately unplaced', () => {
+test('TERRAIN-VIEW: dated content has one known timeline-only exception and canonical arc-less department records stay explicitly unplaced', () => {
   const { nodes } = canonicalAssortment();
   const datedTimelineOnly = nodes
     .filter(node => node.id !== null)
@@ -126,13 +127,29 @@ test('TERRAIN-VIEW: dated content has one known timeline-only assortment excepti
     .map(node => node.slug);
   assert.deepEqual(datedTimelineOnly, ['podcasts']);
 
-  const arcLess = nodes
-    .filter(node => !(node.arcKeys || []).length)
-    .map(node => ({ slug: node.slug, id: node.id, department: node.department, workType: node.workType }));
-  assert.deepEqual(arcLess, [
-    { slug: 'phantom-opera-meta-review', id: null, department: 'media', workType: 'reviews' },
-    { slug: 'vxg-thread-round-5', id: null, department: 'media', workType: 'record-transcripts' },
+  const arcLess = nodes.filter(node => !(node.arcKeys || []).length);
+  assert.equal(arcLess.some(node => node.id !== null), false, 'arc-less canonical records remain id-null rather than acquiring invented chronology');
+  assert.equal(arcLess.some(node => !node.department || !node.workType), false, 'arc-less canonical records remain explicitly department-placed');
+
+  const historicalMedia = arcLess
+    .filter(node => ['phantom-opera-meta-review', 'vxg-thread-round-5'].includes(node.slug))
+    .map(node => ({ slug: node.slug, department: node.department, workType: node.workType }));
+  assert.deepEqual(historicalMedia, [
+    { slug: 'phantom-opera-meta-review', department: 'media', workType: 'reviews' },
+    { slug: 'vxg-thread-round-5', department: 'media', workType: 'record-transcripts' },
   ]);
+
+  const intents = JSON.parse(fs.readFileSync(INTENTS, 'utf8')).intents || [];
+  const registeredArcLess = intents
+    .filter(intent => intent.registerNode === true && !intent.arcKey)
+    .map(intent => ({ slug: intent.slug, department: intent.department, workType: intent.workType }))
+    .sort((a, b) => a.slug.localeCompare(b.slug));
+  const registeredSlugs = new Set(registeredArcLess.map(item => item.slug));
+  const canonicalRegisteredArcLess = arcLess
+    .filter(node => registeredSlugs.has(node.slug))
+    .map(node => ({ slug: node.slug, department: node.department, workType: node.workType }))
+    .sort((a, b) => a.slug.localeCompare(b.slug));
+  assert.deepEqual(canonicalRegisteredArcLess, registeredArcLess, 'registerNode intents without arcKey become canonical without inventing narrative membership');
 });
 
 test('TERRAIN-VIEW: Evolution A is a URL-addressable presentation state over shared Content truth', () => {
