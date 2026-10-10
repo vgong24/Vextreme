@@ -84,14 +84,15 @@ test('VEXSYSTEM PAGE: browser proof is dependency-free CDP over installed Chromi
 test('VEXSYSTEM PAGE: browser proof keeps runtime and screenshots in separate bounded modes', () => {
   assert.match(browserProof, /mode === 'runtime'/);
   assert.match(browserProof, /mode === 'screenshot'/);
-  assert.match(browserProof, /blueprint-desktop/);
-  assert.match(browserProof, /formation-desktop/);
-  assert.match(browserProof, /blueprint-mobile/);
+  assert.match(browserProof, /receiver-desktop/);
+  assert.match(browserProof, /history-desktop/);
+  assert.match(browserProof, /receiver-mobile/);
   assert.match(browserProof, /Page\.captureScreenshot/);
 });
 
 test('VEXSYSTEM PAGE: browser proof checks semantic stability, accessibility projection, privacy and overflow', () => {
-  assert.match(browserProof, /VEXSYSTEM_BROWSER_LENS_TELEPORT/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_QUESTION_TELEPORT/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_QUESTION_CONSEQUENCE_MISSING/);
   assert.match(browserProof, /VEXSYSTEM_BROWSER_ZOOM_TELEPORT/);
   assert.match(browserProof, /VEXSYSTEM_BROWSER_EQUIVALENT_VIEWS_MISSING/);
   assert.match(browserProof, /VEXSYSTEM_BROWSER_PRIVATE_COORDINATE_LEAK/);

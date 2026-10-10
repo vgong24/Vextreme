@@ -495,7 +495,7 @@ async function ready(cdp, page) {
   await waitFor(
     cdp,
     page.sessionId,
-    "document.readyState === 'complete' && document.querySelectorAll('.vs-text-node').length > 0 && document.querySelectorAll('.vs-route-card').length > 0 && document.querySelector('#understanding-title') && !document.querySelector('#understanding-title').textContent.includes('Loading') && document.querySelector('#map-status') && !document.querySelector('#map-status').textContent.includes('Loading')",
+    "document.readyState === 'complete' && document.querySelectorAll('.vs-text-node').length > 0 && document.querySelectorAll('.vs-route-card').length > 0 && document.querySelector('[data-question][aria-pressed=\"true\"]') && document.querySelector('#view-answer') && !document.querySelector('#view-answer').textContent.includes('Loading') && document.querySelector('#understanding-title') && !document.querySelector('#understanding-title').textContent.includes('Loading') && document.querySelector('#map-status') && !document.querySelector('#map-status').textContent.includes('Loading')",
     'VexSystem explorer readiness'
   );
 }
@@ -503,7 +503,9 @@ async function ready(cdp, page) {
 async function runtimeSnapshot(cdp, page) {
   const expression = "(() => {" +
     "const url = new URL(location.href);" +
-    "const activeLens = document.querySelector('[data-lens][aria-pressed=\"true\"]');" +
+    "const activeQuestion = document.querySelector('[data-question][aria-pressed=\"true\"]');" +
+    "const questionPrompt = document.querySelector('#view-question');" +
+    "const questionAnswer = document.querySelector('#view-answer');" +
     "const understanding = document.querySelector('[data-vexsystem-component=\"composed-understanding\"]');" +
     "const understandingTitle = document.querySelector('#understanding-title');" +
     "const understandingPurpose = document.querySelector('#understanding-purpose');" +
@@ -516,8 +518,12 @@ async function runtimeSnapshot(cdp, page) {
       "pathname: url.pathname," +
       "selected: url.searchParams.get('subject')," +
       "lens: url.searchParams.get('lens')," +
+      "question: url.searchParams.get('question')," +
       "level: url.searchParams.get('level')," +
-      "activeLens: activeLens && activeLens.dataset.lens," +
+      "activeQuestion: activeQuestion && activeQuestion.dataset.question," +
+      "questionPrompt: questionPrompt?.textContent || null," +
+      "questionAnswer: questionAnswer?.textContent || null," +
+      "svgRelations: document.querySelectorAll('.vs-edge').length," +
       "understandingPresent: Boolean(understanding)," +
       "understandingTitle: understandingTitle?.textContent || null," +
       "understandingPurpose: understandingPurpose?.textContent || null," +
@@ -549,7 +555,9 @@ function assertRuntimeSnapshot(snapshot, label) {
     fail('VEXSYSTEM_BROWSER_TITLE', label, snapshot);
   }
   if (!snapshot.selected) fail('VEXSYSTEM_BROWSER_SELECTED_SUBJECT_MISSING', label, snapshot);
-  if (!snapshot.activeLens) fail('VEXSYSTEM_BROWSER_ACTIVE_LENS_MISSING', label, snapshot);
+  if (!snapshot.activeQuestion || !snapshot.questionPrompt || !snapshot.questionAnswer) {
+    fail('VEXSYSTEM_BROWSER_HUMAN_QUESTION_MISSING', label, snapshot);
+  }
   if (
     !snapshot.understandingPresent ||
     !snapshot.understandingTitle ||
@@ -764,21 +772,38 @@ async function runRuntime(origin, cdp) {
   await evaluate(
     cdp,
     desktop.sessionId,
-    "document.querySelector('[data-lens=\"FORMATION\"]').click()"
+    "document.querySelector('[data-question=\"HEALTHY\"]').click()"
   );
   await waitFor(
     cdp,
     desktop.sessionId,
-    "new URL(location.href).searchParams.get('lens') === 'FORMATION'",
-    'Formation lens'
+    "new URL(location.href).searchParams.get('question') === 'HEALTHY'",
+    'Health question'
+  );
+  const health = await runtimeSnapshot(cdp, desktop);
+  assertRuntimeSnapshot(health, 'desktop health');
+  if (health.selected !== initialSubject) {
+    fail('VEXSYSTEM_BROWSER_QUESTION_TELEPORT', 'Changing the human question changed selected subject.', { initial, health });
+  }
+  if (health.questionAnswer === initial.questionAnswer || health.svgRelations === initial.svgRelations) {
+    fail('VEXSYSTEM_BROWSER_QUESTION_CONSEQUENCE_MISSING', 'Changing the human question did not materially change the answer and relationship projection.', { initial, health });
+  }
+
+  await evaluate(
+    cdp,
+    desktop.sessionId,
+    "document.querySelector('[data-question=\"HISTORY\"]').click()"
+  );
+  await waitFor(
+    cdp,
+    desktop.sessionId,
+    "new URL(location.href).searchParams.get('question') === 'HISTORY'",
+    'History question'
   );
   const formation = await runtimeSnapshot(cdp, desktop);
-  assertRuntimeSnapshot(formation, 'desktop formation');
+  assertRuntimeSnapshot(formation, 'desktop history');
   if (formation.selected !== initialSubject) {
-    fail('VEXSYSTEM_BROWSER_LENS_TELEPORT', 'Changing lens changed selected subject.', {
-      initial,
-      formation
-    });
+    fail('VEXSYSTEM_BROWSER_QUESTION_TELEPORT', 'Changing the human question changed selected subject.', { initial, formation });
   }
   const formationUnderstanding = {
     title: formation.understandingTitle,
@@ -789,7 +814,7 @@ async function runRuntime(origin, cdp) {
   if (JSON.stringify(formationUnderstanding) !== JSON.stringify(initialUnderstanding)) {
     fail(
       'VEXSYSTEM_BROWSER_WHOLE_ERASED_BY_FOCUS',
-      'Changing perspective altered or erased the composed subject understanding.',
+      'Changing the human question altered or erased the composed subject understanding.',
       { initialUnderstanding, formationUnderstanding }
     );
   }
@@ -802,7 +827,7 @@ async function runRuntime(origin, cdp) {
   if (!/PR #196/.test(formationText) || !/PR #200/.test(formationText)) {
     fail(
       'VEXSYSTEM_BROWSER_FORMATION_HISTORY_MISSING',
-      'Formation lens did not expose bounded PR #196/#200 history.'
+      'History question did not expose bounded PR #196/#200 history.'
     );
   }
 
@@ -824,13 +849,13 @@ async function runRuntime(origin, cdp) {
   await evaluate(
     cdp,
     desktop.sessionId,
-    "document.querySelector('[data-lens=\"BLUEPRINT\"]').click()"
+    "document.querySelector('[data-question=\"PUT_TOGETHER\"]').click()"
   );
   await waitFor(
     cdp,
     desktop.sessionId,
-    "new URL(location.href).searchParams.get('lens') === 'BLUEPRINT'",
-    'Blueprint lens'
+    "new URL(location.href).searchParams.get('question') === 'PUT_TOGETHER'",
+    'Structure question'
   );
 
   await cdp.send('Page.bringToFront', {}, desktop.sessionId);
@@ -1080,6 +1105,7 @@ async function runRuntime(origin, cdp) {
     installOrDownloadAttempted: false,
     desktop: {
       initial,
+      health,
       formation,
       zoomed,
       keyboardSelectionTarget: keyboardTarget.subjectRef,
@@ -1101,16 +1127,16 @@ async function runRuntime(origin, cdp) {
 
 
 async function applyScenario(cdp, page, scenario) {
-  if (scenario === 'formation-desktop') {
+  if (scenario === 'formation-desktop' || scenario === 'history-desktop') {
     await evaluate(
       cdp,
       page.sessionId,
-      "document.querySelector('[data-lens=\"FORMATION\"]').click()"
+      "document.querySelector('[data-question=\"HISTORY\"]').click()"
     );
     await waitFor(
       cdp,
       page.sessionId,
-      "new URL(location.href).searchParams.get('lens') === 'FORMATION'",
+      "new URL(location.href).searchParams.get('question') === 'HISTORY'",
       scenario
     );
     await evaluate(
@@ -1133,16 +1159,16 @@ async function applyScenario(cdp, page, scenario) {
     return;
   }
 
-  if (scenario === 'blueprint-desktop' || scenario === 'blueprint-mobile') {
+  if (scenario === 'blueprint-desktop' || scenario === 'blueprint-mobile' || scenario === 'receiver-desktop' || scenario === 'receiver-mobile') {
     await evaluate(
       cdp,
       page.sessionId,
-      "document.querySelector('[data-lens=\"BLUEPRINT\"]').click()"
+      "document.querySelector('[data-question=\"PUT_TOGETHER\"]').click()"
     );
     await waitFor(
       cdp,
       page.sessionId,
-      "new URL(location.href).searchParams.get('lens') === 'BLUEPRINT'",
+      "new URL(location.href).searchParams.get('question') === 'PUT_TOGETHER'",
       scenario
     );
   }
@@ -1150,7 +1176,7 @@ async function applyScenario(cdp, page, scenario) {
 
 async function screenshot(origin, cdp, scenario) {
   const terrainScenario = scenario === 'terrain-entry-desktop' || scenario === 'terrain-entry-mobile';
-  const mobile = scenario === 'blueprint-mobile' || scenario === 'terrain-entry-mobile';
+  const mobile = scenario === 'blueprint-mobile' || scenario === 'receiver-mobile' || scenario === 'terrain-entry-mobile';
   const viewport = mobile
     ? { width: 390, height: 844, mobile: true }
     : { width: 1440, height: 900, mobile: false };
@@ -1168,7 +1194,7 @@ async function screenshot(origin, cdp, scenario) {
   if (terrainScenario) assertTerrainArrivalSnapshot(snapshot, scenario);
   else assertRuntimeSnapshot(snapshot, scenario);
   if (
-    scenario === 'formation-desktop' &&
+    (scenario === 'formation-desktop' || scenario === 'history-desktop') &&
     (
       snapshot.scrollY == null ||
       snapshot.scrollY <= 0 ||
@@ -1234,7 +1260,7 @@ async function main() {
 
   if (
     mode === 'screenshot' &&
-    !['blueprint-desktop', 'formation-desktop', 'blueprint-mobile', 'terrain-entry-desktop', 'terrain-entry-mobile'].includes(scenario)
+    !['blueprint-desktop', 'formation-desktop', 'blueprint-mobile', 'receiver-desktop', 'history-desktop', 'receiver-mobile', 'terrain-entry-desktop', 'terrain-entry-mobile'].includes(scenario)
   ) {
     fail(
       'VEXSYSTEM_BROWSER_SCENARIO_UNSUPPORTED',
