@@ -332,6 +332,48 @@ test('TERRAIN-VIEW: embedded same-origin Terrain links return to the parent coll
   assert.match(source, /if \(slug === 'terrain-map'\) \{[\s\S]*?closeEvolutionReader\(\);[\s\S]*?return;/);
 });
 
+test('TERRAIN-VIEW: Evolution A outward wheel escape is downward-only at reader and collection boundaries', () => {
+  const source = pageSource();
+  const shelf = source.match(/function handleEvolutionShelfWheel\(ev\) \{[\s\S]*?\n  \}/);
+  const reader = source.match(/function handleEvolutionReaderWheel\(ev\) \{[\s\S]*?\n  \}/);
+  assert.ok(shelf && reader, 'reader and collection wheel handlers must remain present');
+  assert.match(shelf[0], /if \(direction < 0\) \{[\s\S]*?return;/);
+  assert.match(reader[0], /if \(direction < 0\) \{[\s\S]*?return;/);
+  assert.match(shelf[0], /End reached · pause, then scroll down again to return to groups/);
+  assert.match(reader[0], /End reached · pause, then scroll down again to return to the collection/);
+  assert.doesNotMatch(shelf[0], /Top reached/);
+  assert.doesNotMatch(reader[0], /Top reached/);
+});
+
+test('TERRAIN-VIEW: one physical wheel gesture can cross at most one Evolution A semantic boundary', () => {
+  const source = pageSource();
+  assert.match(source, /var outwardWheelGesture = \{ active:false, timer:null \};/);
+  assert.match(source, /OUTWARD_WHEEL_RELEASE_MS = 520/);
+  assert.match(source, /function sustainOutwardWheelGesture\(\)/);
+  assert.match(source, /function lockOutwardWheelGesture\(\)/);
+  const shelf = source.match(/function handleEvolutionShelfWheel\(ev\) \{[\s\S]*?\n  \}/);
+  const reader = source.match(/function handleEvolutionReaderWheel\(ev\) \{[\s\S]*?\n  \}/);
+  assert.ok(shelf && reader);
+  assert.match(shelf[0], /var outwardLocked = sustainOutwardWheelGesture\(\);/);
+  assert.match(reader[0], /var outwardLocked = sustainOutwardWheelGesture\(\);/);
+  assert.match(shelf[0], /if \(outwardLocked\) \{[\s\S]*?return;/);
+  assert.match(reader[0], /if \(outwardLocked\) \{[\s\S]*?return;/);
+  assert.match(shelf[0], /lockOutwardWheelGesture\(\);[\s\S]*?enterLevel\(1, \{\}\);/);
+  assert.match(reader[0], /lockOutwardWheelGesture\(\);[\s\S]*?closeEvolutionReader\(\);/);
+});
+
+test('TERRAIN-VIEW: wheel input over the collection pill rail scrolls it horizontally', () => {
+  const source = pageSource();
+  assert.match(source, /function evolutionRailFromTarget\(target\)/);
+  assert.match(source, /node\.closest\('\.evo-rail'\)/);
+  assert.match(source, /function scrollEvolutionRailWithWheel\(ev\)/);
+  assert.match(source, /rail\.scrollWidth <= rail\.clientWidth \+ 1/);
+  assert.match(source, /rail\.scrollLeft \+= delta;/);
+  const shelf = source.match(/function handleEvolutionShelfWheel\(ev\) \{[\s\S]*?\n  \}/);
+  assert.ok(shelf);
+  assert.match(shelf[0], /if \(scrollEvolutionRailWithWheel\(ev\)\) return;/);
+});
+
 test('TERRAIN-VIEW: every shipped inline JavaScript block still parses after contract extraction', () => {
   const source = pageSource();
   const scripts = [...source.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g)]

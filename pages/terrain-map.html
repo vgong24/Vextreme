@@ -861,7 +861,8 @@
   var currentProfile = 'live';
   var activeReaderId = null, hoveredEvolutionNodeId = null, activeEntrySlug = null, activeGroupHomeKey = null;
   var boundaryGesture = { key:null, direction:0, lastAt:0 };
-  var BOUNDARY_GESTURE_IDLE_MS = 220, BOUNDARY_GESTURE_RESET_MS = 3000;
+  var outwardWheelGesture = { active:false, timer:null };
+  var BOUNDARY_GESTURE_IDLE_MS = 220, BOUNDARY_GESTURE_RESET_MS = 3000, OUTWARD_WHEEL_RELEASE_MS = 520;
   var gestureHintTimer = null, depthRailTimer = null;
   var initialRoute = readInitialRoute();
 
@@ -1108,6 +1109,28 @@
     if (gap < BOUNDARY_GESTURE_IDLE_MS) return false;
     resetBoundaryGesture();
     return true;
+  }
+
+  function releaseOutwardWheelGesture() {
+    outwardWheelGesture.active = false;
+    if (outwardWheelGesture.timer) window.clearTimeout(outwardWheelGesture.timer);
+    outwardWheelGesture.timer = null;
+  }
+
+  function armOutwardWheelRelease() {
+    if (outwardWheelGesture.timer) window.clearTimeout(outwardWheelGesture.timer);
+    outwardWheelGesture.timer = window.setTimeout(releaseOutwardWheelGesture, OUTWARD_WHEEL_RELEASE_MS);
+  }
+
+  function sustainOutwardWheelGesture() {
+    if (!outwardWheelGesture.active) return false;
+    armOutwardWheelRelease();
+    return true;
+  }
+
+  function lockOutwardWheelGesture() {
+    outwardWheelGesture.active = true;
+    armOutwardWheelRelease();
   }
 
   function canScrollElement(element, direction) {
@@ -1377,9 +1400,28 @@
     if (options.writeUrl !== false) syncPresentationUrl('replace', null);
   }
 
+  function evolutionRailFromTarget(target) {
+    var node = target && target.nodeType === 1 ? target : target && target.parentElement;
+    return node && node.closest ? node.closest('.evo-rail') : null;
+  }
+
+  function scrollEvolutionRailWithWheel(ev) {
+    var rail = evolutionRailFromTarget(ev.target);
+    if (!rail || rail.scrollWidth <= rail.clientWidth + 1) return false;
+    var delta = Math.abs(ev.deltaX) > Math.abs(ev.deltaY) ? ev.deltaX : ev.deltaY;
+    if (!delta) return false;
+    rail.scrollLeft += delta;
+    ev.preventDefault();
+    resetBoundaryGesture();
+    hideGestureHint();
+    return true;
+  }
+
   function handleEvolutionShelfWheel(ev) {
     if (!isEvolutionAGroup() || activeReaderId) return;
     ev.stopPropagation();
+    var outwardLocked = sustainOutwardWheelGesture();
+    if (scrollEvolutionRailWithWheel(ev)) return;
     if (!ev.deltaY || Math.abs(ev.deltaY) < Math.abs(ev.deltaX)) return;
     var direction = ev.deltaY > 0 ? 1 : -1;
 
@@ -1390,20 +1432,30 @@
     }
 
     ev.preventDefault();
-    var edgeLabel = direction < 0 ? 'Top' : 'End';
-    var directionLabel = direction < 0 ? 'up' : 'down';
+    if (direction < 0) {
+      resetBoundaryGesture();
+      hideGestureHint();
+      return;
+    }
+    if (outwardLocked) {
+      resetBoundaryGesture();
+      hideGestureHint();
+      return;
+    }
     if (boundaryGestureReady('collection-outward', direction)) {
+      lockOutwardWheelGesture();
       hoveredEvolutionNodeId = null;
       enterLevel(1, {});
       syncPresentationUrl();
       commitSemanticState({ label:'GROUPS', relationship:'returned to', reason:'Evolution A outward boundary scroll' });
     } else {
-      showGestureHint(edgeLabel + ' reached · pause, then scroll ' + directionLabel + ' again to return to groups');
+      showGestureHint('End reached · pause, then scroll down again to return to groups');
     }
   }
 
   function handleEvolutionReaderWheel(ev) {
     if (activeEntrySlug || (!activeReaderId && !activeGroupHomeKey)) return;
+    var outwardLocked = sustainOutwardWheelGesture();
     if (!ev.deltaY || Math.abs(ev.deltaY) < Math.abs(ev.deltaX)) return;
     var direction = ev.deltaY > 0 ? 1 : -1;
     var doc = evolutionReaderFrame.contentDocument;
@@ -1416,13 +1468,22 @@
     }
 
     ev.preventDefault();
-    var edgeLabel = direction < 0 ? 'Top' : 'End';
-    var directionLabel = direction < 0 ? 'up' : 'down';
+    if (direction < 0) {
+      resetBoundaryGesture();
+      hideGestureHint();
+      return;
+    }
+    if (outwardLocked) {
+      resetBoundaryGesture();
+      hideGestureHint();
+      return;
+    }
     var readerKey = activeReaderId || ('group:' + activeGroupHomeKey);
     if (boundaryGestureReady('reader-outward:' + readerKey, direction)) {
+      lockOutwardWheelGesture();
       closeEvolutionReader();
     } else {
-      showGestureHint(edgeLabel + ' reached · pause, then scroll ' + directionLabel + ' again to return to the collection');
+      showGestureHint('End reached · pause, then scroll down again to return to the collection');
     }
   }
 
