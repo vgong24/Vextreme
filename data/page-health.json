@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 130,
+    "total": 132,
     "healthy": 3,
-    "attention": 120,
+    "attention": 122,
     "critical": 7,
     "sorted": 89,
     "withFab": 115,
     "withIdentity": 96,
     "withScreenshots": 11,
-    "withMetaDescription": 95
+    "withMetaDescription": 97
   },
   "pages": {
     "a-conversation-with-pastor-jacob": {
@@ -396,6 +396,63 @@
         "state": "attention",
         "blockers": [],
         "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "ai-practitioner-tools": {
+      "slug": "ai-practitioner-tools",
+      "title": "ai-practitioner-tools",
+      "surface": {
+        "kind": "group-home",
+        "state": "active"
+      },
+      "placement": {
+        "state": "group-home",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 1,
+        "shell": false,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "not-applicable"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "AI Practitioner Tools — Start Here, restored as the repository-native sequence home for the AI Practitioner Tools collection."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "identity",
           "screenshot"
         ]
       }
@@ -1511,6 +1568,63 @@
           "identity",
           "screenshot",
           "theme-effect"
+        ]
+      }
+    },
+    "direct-contact": {
+      "slug": "direct-contact",
+      "title": "direct-contact",
+      "surface": {
+        "kind": "group-home",
+        "state": "active"
+      },
+      "placement": {
+        "state": "group-home",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 1,
+        "shell": false,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "not-applicable"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 0,
+        "languages": {
+          "en": {
+            "translated": 0,
+            "total": 0,
+            "state": "none"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Direct Contact — Start Here, restored as the repository-native home for the Direct Contact collection."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "identity",
+          "screenshot"
         ]
       }
     },

@@ -5,6 +5,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const parse5 = require('parse5');
+const groupHomes = require('../tools/vex-content-forge/project_group_homes');
 
 const ROOT = path.join(__dirname, '..');
 const CASES = [
@@ -82,5 +83,28 @@ test('TERRAIN ENTRY: Take a Walk resolves preserved image identities through the
     assert.ok(html.includes('https://vgong24.github.io/Vextreme-Assets/__assets/' + id), 'missing resolved asset ' + id);
   }
 });
+
+test('TERRAIN GROUP HOME: Direct Contact and AI Practitioner Tools are deterministic provider-neutral parent documents outside record membership', () => {
+  const formation = JSON.parse(fs.readFileSync(path.join(ROOT, groupHomes.FORMATION_REL), 'utf8'));
+  const projected = groupHomes.projectFormation(ROOT, { write:false });
+  const { SKIP_PAGES, getRecordPageSlugs } = require('../lib/audit-pages');
+  const records = new Set(getRecordPageSlugs());
+  const arcs = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'arcs-v2.json'), 'utf8'));
+
+  assert.deepEqual(projected.map(item => item.member.slug), ['direct-contact','ai-practitioner-tools']);
+  for (const output of projected) {
+    const member = output.member;
+    const committed = fs.readFileSync(path.join(ROOT, 'pages', member.slug + '.html'), 'utf8');
+    assert.equal(committed, output.page, member.slug + ': committed group home must equal source-managed projection');
+    assert.ok(SKIP_PAGES[member.slug], member.slug + ': group home classification missing');
+    assert.equal(records.has(member.slug), false, member.slug + ': group home leaked into ordinary record discovery');
+    assert.equal(arcs[member.groupKey].parent.pageSlug, member.slug);
+    assert.equal(arcs[member.groupKey].parent.url, '/Vextreme/pages/' + member.slug + '.html');
+    assert.match(committed, /data-vex-surface="group-home"/);
+    assert.doesNotMatch(committed, /www\.vextreme24\.com|\/__rescue\/|\/__vex\/|data-vex-id=|data-i18n=/);
+    assert.doesNotMatch(committed, /(?:href|src)=["']\/(?!\/)/);
+  }
+});
+
 
 // [VXG RealForever]

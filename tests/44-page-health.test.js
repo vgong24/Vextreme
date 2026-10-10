@@ -98,6 +98,24 @@ test('PAGE-HEALTH: critical means isolated; incomplete capabilities remain visib
   assert.equal(result.summary.withMetaDescription, 1);
 });
 
+test('PAGE-HEALTH: Terrain group-home surfaces do not inherit ordinary record placement/FAB debt', () => {
+  const slug = 'direct-contact';
+  const result = buildPageHealth({
+    pageSlugs:[slug],
+    htmlBySlug:{[slug]:'<html data-vex-surface="group-home"><a href="the-walk.html">Walk</a></html>'},
+    distBySlug:{[slug]:''}, wiredBySlug:{},
+    navRows:[{slug,navigable:true,staticHubLinks:1,hasShellJs:false,hasFabNav:false}],
+    nodes:[], manifest:{}, analysisPages:{}, screenshotFiles:[]
+  });
+  const page=result.pages[slug];
+  assert.deepEqual(page.surface,{kind:'group-home',state:'active'});
+  assert.equal(page.placement.state,'group-home');
+  assert.equal(page.fab.delivery,'not-applicable');
+  assert.equal(page.health.blockers.length,0);
+  assert.equal(page.health.gaps.includes('uncurated'),false);
+  assert.equal(page.health.gaps.includes('fab'),false);
+});
+
 test('PAGE-HEALTH: registry-owned institutional pages do not inherit record FAB and placement debt', () => {
   const slug = 'vex-test';
   const result = buildPageHealth({
