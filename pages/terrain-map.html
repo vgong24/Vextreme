@@ -501,12 +501,6 @@
         <button class="lens-btn world-btn" data-world="code" aria-pressed="true">Code</button>
         <span class="content-view-split">
           <button class="lens-btn world-btn" data-world="content" aria-pressed="false">Content</button>
-          <span class="content-profile-wrap" id="contentProfileWrap" hidden>
-            <select class="content-profile" id="contentProfile" aria-label="Content presentation">
-              <option value="live">Live</option>
-              <option value="evolution-v1">Evolution A</option>
-            </select>
-          </span>
         </span>
       </div>
     </div>
@@ -520,7 +514,7 @@
           <button class="search-nav-btn" id="searchNext" type="button" aria-label="Next search result" title="Next result (Enter)" disabled>&darr;</button>
         </div>
       </div>
-      <div class="evo-search-results" id="evoSearchResults" role="listbox" aria-label="Evolution A search results" hidden></div>
+      <div class="evo-search-results" id="evoSearchResults" role="listbox" aria-label="Content search results" hidden></div>
     </div>
     <div class="lens" id="lensGroup">
       <span class="lens-label">Lens</span>
@@ -701,19 +695,19 @@
       }
     },
     "evolution-v1": {
-      "status": "experimental",
-      "label": "Evolution A",
+      "status": "accepted-reference",
+      "label": "Content",
       "inherits": "live",
       "declaredDeltas": [
         "Content group selection renders immediate membership destinations instead of a large confirmation rectangle.",
         "Selected-group identity becomes compact persistent context with sibling groups in a condensed rail.",
         "Content pages render as preview cards using real screenshot evidence when present and a deliberate fallback cover when absent.",
-        "The legacy dot-node depth is not used inside Evolution A; page depth is an embedded same-origin reader inside Terrain.",
+        "The legacy dot-node depth is not used inside Content; page depth is an embedded same-origin reader inside Terrain.",
         "Scrollable content has input priority over layer transitions; a boundary only arms a transition and a distinct follow-up wheel gesture confirms it.",
         "At collection and embedded-reader boundaries, the confirming wheel gesture is always outward; entering a page remains an explicit click, tap, or keyboard action.",
         "A live collection parent renders as a first-position depth tile while remaining outside ordinary membership and Prev/Next sequencing.",
-        "Content/Evolution A quiets engineering diagnostics by default and restores them through an explicit Inspect control; embedded reading hides the Terrain topbar.",
-        "Search remains in the Evolution A grammar: results expose collection context and open through collection-to-reader presentation rather than the legacy node inspector.",
+        "Content quiets engineering diagnostics by default and restores them through an explicit Inspect control; embedded reading hides the Terrain topbar.",
+        "Search remains in the Content grammar: results expose collection context and open through collection-to-reader presentation rather than the legacy node inspector.",
         "Renderer choice is presentation state and is directly addressable by URL; semantic Journey state is unchanged."
       ],
       "levels": {
@@ -876,7 +870,7 @@
   var evolutionReaderFrame = document.getElementById('evolutionReaderFrame');
   var evolutionGestureHint = document.getElementById('evolutionGestureHint');
 
-  var DATA = null, ALL = [], byId = {}, neighborsOf = {}, STAGES = [], currentWorld = 'code';
+  var DATA = null, ALL = [], byId = {}, neighborsOf = {}, STAGES = [], currentWorld = 'content';
   var renderedNodes = {}, renderedEdges = {};
   var pinnedId = null, focusId = null, currentLens = 'all';
   var view = { x: 0, y: 0, scale: 1 };
@@ -891,7 +885,7 @@
   var searchPopoverOpen = false;
   var journeySnapshot = null, historyReady = false, restoringHistory = false;
   var PRESENTATION_HISTORY_KEY = 'vextremeTerrainPresentation';
-  var currentProfile = 'live';
+  var currentProfile = 'evolution-v1';
   var activeReaderId = null, hoveredEvolutionNodeId = null, activeEntrySlug = null, activeGroupHomeKey = null;
   var boundaryGesture = { key:null, direction:0, lastAt:0 };
   var outwardWheelGesture = { active:false, timer:null };
@@ -989,10 +983,11 @@
 
   function readInitialRoute() {
     var params = new URLSearchParams(window.location.search);
+    var view = params.get('view');
     var profile = params.get('profile');
     return {
-      world: params.get('view') === 'content' ? 'content' : 'code',
-      profile: profile === 'evolution-v1' ? 'evolution-v1' : 'live',
+      world: view === 'code' ? 'code' : 'content',
+      profile: profile === 'live' ? 'live' : 'evolution-v1',
       group: params.get('group') || null,
       page: params.get('page') || null,
       explicit: params.has('view') || params.has('profile') || params.has('group') || params.has('page')
@@ -1013,10 +1008,6 @@
   }
 
   function syncProfileControl() {
-    var wrap = document.getElementById('contentProfileWrap');
-    var select = document.getElementById('contentProfile');
-    wrap.hidden = currentWorld !== 'content';
-    select.value = currentProfile;
     syncTerrainChrome();
   }
 
@@ -1035,9 +1026,15 @@
   function syncPresentationUrl(mode, presentationKind) {
     mode = mode === 'push' ? 'push' : 'replace';
     var url = new URL(window.location.href);
-    url.searchParams.set('view', currentWorld);
+    if (currentWorld === 'content' && currentProfile === 'evolution-v1') {
+      url.searchParams.delete('view');
+      url.searchParams.delete('profile');
+    } else {
+      url.searchParams.set('view', currentWorld);
+      if (currentWorld === 'content') url.searchParams.set('profile', currentProfile);
+      else url.searchParams.delete('profile');
+    }
     if (currentWorld === 'content') {
-      url.searchParams.set('profile', currentProfile);
       var stage = typeof levelCtx.stageIdx === 'number' ? STAGES[levelCtx.stageIdx] : null;
       if (stage) url.searchParams.set('group', String(stage.key));
       else url.searchParams.delete('group');
@@ -1057,7 +1054,7 @@
   }
 
   function setPresentationProfile(profile, writeUrl) {
-    var nextProfile = profile === 'evolution-v1' ? 'evolution-v1' : 'live';
+    var nextProfile = profile === 'live' ? 'live' : 'evolution-v1';
     var priorPinned = pinnedId;
     currentProfile = nextProfile;
     mapWrap.setAttribute('data-terrain-profile', currentProfile);
@@ -1480,7 +1477,7 @@
       hoveredEvolutionNodeId = null;
       enterLevel(1, {});
       syncPresentationUrl();
-      commitSemanticState({ label:'GROUPS', relationship:'returned to', reason:'Evolution A outward boundary scroll' });
+      commitSemanticState({ label:'GROUPS', relationship:'returned to', reason:'Content outward boundary scroll' });
     } else {
       showGestureHint('End reached · pause, then scroll down again to return to groups');
     }
@@ -1626,7 +1623,7 @@
 
     evolutionLayer.innerHTML = '<div class="evo-shell">'
       + '<section class="evo-context">'
-      + '<div class="evo-kicker">Evolution A · ' + esc(kindLabel) + '</div>'
+      + '<div class="evo-kicker">Content · ' + esc(kindLabel) + '</div>'
       + '<div class="evo-context-row"><div><h2>' + esc(stage.name) + '</h2><div class="evo-context-meta">' + summary.membershipCount + ' members · ' + summary.primaryCount + ' primary placements · same Terrain state, alternate renderer</div></div>'
       + '<div class="evo-context-meta">Live remains the accepted reference' + parentPending + '</div></div>'
       + '<div class="evo-rail" aria-label="Content groups">' + rail + '</div>'
@@ -1652,7 +1649,7 @@
         if (!STAGES[index] || index === levelCtx.stageIdx) return;
         enterLevel(1, { stageIdx:index });
         syncPresentationUrl();
-        commitSemanticState({ label:STAGES[index].name, relationship:'selected', reason:'Evolution A group rail' });
+        commitSemanticState({ label:STAGES[index].name, relationship:'selected', reason:'Content group rail' });
       });
     });
     evolutionLayer.querySelectorAll('[data-evo-detail]').forEach(function (button) {
@@ -2094,7 +2091,7 @@
       if (levelCtx.stageIdx !== index) {
         enterLevel(1, { stageIdx:index });
         syncPresentationUrl();
-        commitSemanticState({ label:STAGES[index].name, relationship:'selected', reason:'Evolution A direct membership view' });
+        commitSemanticState({ label:STAGES[index].name, relationship:'selected', reason:'Content direct membership view' });
       }
       return;
     }
@@ -2385,7 +2382,7 @@
     commitSemanticState({
       label: node.title || node.slug,
       relationship: 'searched for',
-      reason: reason || ('Evolution A search for "' + searchState.query.trim() + '"')
+      reason: reason || ('Content search for "' + searchState.query.trim() + '"')
     });
     openEvolutionReader(node.id);
     return true;
@@ -2939,15 +2936,13 @@
       });
     });
 
-    document.getElementById('contentProfile').addEventListener('change', function (event) {
-      setPresentationProfile(event.target.value, true);
-    });
-
     document.querySelectorAll('.world-btn').forEach(function (btn) {
       btn.addEventListener('click', function () {
         if (btn.getAttribute('data-world') === currentWorld) return;
         pinnedId = null; focusId = null; renderPanel(null);
-        switchWorld(btn.getAttribute('data-world'));
+        var nextWorld = btn.getAttribute('data-world');
+        if (nextWorld === 'content') currentProfile = 'evolution-v1';
+        switchWorld(nextWorld);
         syncPresentationUrl();
         commitSemanticState({
           label: currentWorld.charAt(0).toUpperCase() + currentWorld.slice(1) + ' view',

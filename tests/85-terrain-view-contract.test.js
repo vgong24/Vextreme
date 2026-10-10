@@ -41,7 +41,7 @@ function canonicalAssortment() {
   return { nodes, arcs, rows };
 }
 
-test('TERRAIN-VIEW: component contract keeps Live accepted while forming one bounded Evolution A profile', () => {
+test('TERRAIN-VIEW: Content presentation is accepted while the legacy Live geometry remains available', () => {
   const value = contract();
   assert.equal(value.schemaVersion, 'vextreme.terrain-view-contract/v1');
   assert.equal(value.terminology.legacyLevelAliases.stage, 'group');
@@ -52,8 +52,8 @@ test('TERRAIN-VIEW: component contract keeps Live accepted while forming one bou
     'terrain.detail-drawer',
   ]);
   assert.equal(value.profiles.live.status, 'accepted-reference');
-  assert.equal(value.profiles['evolution-v1'].status, 'experimental');
-  assert.equal(value.profiles['evolution-v1'].label, 'Evolution A');
+  assert.equal(value.profiles['evolution-v1'].status, 'accepted-reference');
+  assert.equal(value.profiles['evolution-v1'].label, 'Content');
   assert.equal(value.profiles['evolution-v1'].inherits, 'live');
   assert.ok(value.profiles['evolution-v1'].declaredDeltas.length >= 6);
   assert.equal(value.profiles['evolution-v1'].levels.group.renderer, 'content-preview-shelf');
@@ -152,21 +152,27 @@ test('TERRAIN-VIEW: dated content has one known timeline-only exception and cano
   assert.deepEqual(canonicalRegisteredArcLess, registeredArcLess, 'registerNode intents without arcKey become canonical without inventing narrative membership');
 });
 
-test('TERRAIN-VIEW: Evolution A is a URL-addressable presentation state over shared Content truth', () => {
+test('TERRAIN-VIEW: accepted Content is the no-query default and canonical public URL', () => {
   const source = pageSource();
 
-  assert.match(source, /id="contentProfile"/);
-  assert.match(source, /<option value="live">Live<\/option>/);
-  assert.match(source, /<option value="evolution-v1">Evolution A<\/option>/);
+  assert.doesNotMatch(source, /id="contentProfile"/);
+  assert.doesNotMatch(source, />Evolution A</);
   assert.match(source, /id="evolutionLayer"/);
   assert.match(source, /function readInitialRoute\(\)/);
-  assert.match(source, /params\.get\('profile'\)/);
+  assert.match(source, /var view = params\.get\('view'\)/);
+  assert.match(source, /world: view === 'code' \? 'code' : 'content'/);
+  assert.match(source, /profile: profile === 'live' \? 'live' : 'evolution-v1'/);
   assert.match(source, /params\.get\('group'\)/);
   assert.match(source, /params\.get\('page'\)/);
-  assert.match(source, /url\.searchParams\.set\('profile', currentProfile\)/);
+  assert.match(source, /currentWorld === 'content' && currentProfile === 'evolution-v1'/);
+  assert.match(source, /url\.searchParams\.delete\('view'\)/);
+  assert.match(source, /url\.searchParams\.delete\('profile'\)/);
+  assert.match(source, /if \(currentWorld === 'content'\) url\.searchParams\.set\('profile', currentProfile\)/);
   assert.match(source, /url\.searchParams\.set\('group', String\(stage\.key\)\)/);
   assert.match(source, /url\.searchParams\.set\('page', String\(readerNode\.slug \|\| readerNode\.id\)\)/);
   assert.match(source, /function setPresentationProfile\(profile, writeUrl\)/);
+  assert.match(source, /var nextProfile = profile === 'live' \? 'live' : 'evolution-v1'/);
+  assert.match(source, /if \(nextWorld === 'content'\) currentProfile = 'evolution-v1'/);
   assert.match(source, /function renderEvolutionAGroup\(\)/);
   assert.match(source, /stageMembers\(stage\)/);
   assert.match(source, /node\.screenshots \|\| \{\}/);
@@ -194,7 +200,6 @@ test('TERRAIN-VIEW: Evolution A is a URL-addressable presentation state over sha
   assert.doesNotMatch(profileFunction[1], /commitSemanticState/, 'renderer switching must not add a Journey step');
 });
 
-
 test('TERRAIN-VIEW: collection group homes stay outside membership while remaining readable inside Terrain', () => {
   const source = pageSource();
   assert.match(source, /parent: a\.parent \|\| null/);
@@ -213,7 +218,7 @@ test('TERRAIN-VIEW: collection group homes stay outside membership while remaini
   assert.match(source, /group home pending/);
 });
 
-test('TERRAIN-VIEW: Evolution A quiet chrome and wheel boundaries preserve explicit entry / outward exit semantics', () => {
+test('TERRAIN-VIEW: accepted Content quiet chrome and wheel boundaries preserve explicit entry / outward exit semantics', () => {
   const source = pageSource();
   assert.match(source, /id="terrainInspectToggle"/);
   assert.match(source, /function syncTerrainChrome\(\)/);
@@ -268,7 +273,7 @@ test('TERRAIN-VIEW: screenshot-backed surfaces remain visible as evidence withou
   assert.doesNotMatch(source, /LIVE SCREEN<\/div>/);
 });
 
-test('TERRAIN-VIEW: Evolution A Search renders collection-aware results and opens them through the reader', () => {
+test('TERRAIN-VIEW: Content Search renders collection-aware results and opens them through the reader', () => {
   const source = pageSource();
   assert.match(source, /id="evoSearchResults"/);
   assert.match(source, /function renderEvolutionSearchResults\(\)/);
@@ -283,7 +288,7 @@ test('TERRAIN-VIEW: Evolution A Search renders collection-aware results and open
   assert.match(travel[0], /travelTo\(match\.id/, 'legacy Code\/Live search remains the fallback');
 });
 
-test('TERRAIN-VIEW: Evolution A prefers explicit cover art without claiming screenshot evidence', () => {
+test('TERRAIN-VIEW: Content prefers explicit cover art without claiming screenshot evidence', () => {
   const source = pageSource();
   assert.match(source, /node\.preview && node\.preview\.kind === 'cover'/);
   assert.match(source, /class="evo-cover-image"/);
@@ -297,7 +302,7 @@ test('TERRAIN-VIEW: mutable Terrain data bypasses stale browser cache so current
   assert.match(source, /fetch\(TERRAIN_URL, \{ cache: 'no-store' \}\)/);
 });
 
-test('TERRAIN-VIEW: Evolution A search dismisses on outside pointer interaction without erasing the query', () => {
+test('TERRAIN-VIEW: Content search dismisses on outside pointer interaction without erasing the query', () => {
   const source = pageSource();
   assert.match(source, /var searchPopoverOpen = false;/);
   assert.match(source, /function dismissEvolutionSearchResults\(\)/);
@@ -332,7 +337,7 @@ test('TERRAIN-VIEW: embedded same-origin Terrain links return to the parent coll
   assert.match(source, /if \(slug === 'terrain-map'\) \{[\s\S]*?closeEvolutionReader\(\);[\s\S]*?return;/);
 });
 
-test('TERRAIN-VIEW: Evolution A outward wheel escape is downward-only at reader and collection boundaries', () => {
+test('TERRAIN-VIEW: Content outward wheel escape is downward-only at reader and collection boundaries', () => {
   const source = pageSource();
   const shelf = source.match(/function handleEvolutionShelfWheel\(ev\) \{[\s\S]*?\n  \}/);
   const reader = source.match(/function handleEvolutionReaderWheel\(ev\) \{[\s\S]*?\n  \}/);
@@ -345,7 +350,7 @@ test('TERRAIN-VIEW: Evolution A outward wheel escape is downward-only at reader 
   assert.doesNotMatch(reader[0], /Top reached/);
 });
 
-test('TERRAIN-VIEW: one physical wheel gesture can cross at most one Evolution A semantic boundary', () => {
+test('TERRAIN-VIEW: one physical wheel gesture can cross at most one Content semantic boundary', () => {
   const source = pageSource();
   assert.match(source, /var outwardWheelGesture = \{ active:false, timer:null \};/);
   assert.match(source, /OUTWARD_WHEEL_RELEASE_MS = 520/);
