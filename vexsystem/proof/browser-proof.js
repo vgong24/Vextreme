@@ -755,6 +755,125 @@ async function runTerrainEntryRuntime(origin, cdp) {
 }
 
 
+async function proveMapNodeActivation(cdp, page) {
+  await placeExplorerInViewport(cdp, page, 'Receiver-first runtime node activation viewport');
+  const before = await runtimeSnapshot(cdp, page);
+  const target = await evaluate(
+    cdp,
+    page.sessionId,
+    "(() => {" +
+      "const current = new URL(location.href).searchParams.get('subject');" +
+      "const node = [...document.querySelectorAll('.vs-svg-node[data-subject-ref]')].find(candidate => {" +
+        "if (!candidate.dataset.subjectRef || candidate.dataset.subjectRef === current) return false;" +
+        "const rect = candidate.getBoundingClientRect();" +
+        "return rect.width > 0 && rect.height > 0 && rect.bottom > 0 && rect.top < innerHeight && rect.right > 0 && rect.left < innerWidth;" +
+      "});" +
+      "if (!node) return null;" +
+      "const map = document.querySelector('#vexsystem-map');" +
+      "window.__vexMapNodeProbe = [];" +
+      "for (const type of ['pointerdown', 'pointerup', 'click']) {" +
+        "map.addEventListener(type, event => {" +
+          "const subjectNode = event.target.closest ? event.target.closest('[data-subject-ref]') : null;" +
+          "window.__vexMapNodeProbe.push({" +
+            "type," +
+            "isTrusted: event.isTrusted === true," +
+            "pointerType: event.pointerType || null," +
+            "button: event.button," +
+            "buttons: event.buttons," +
+            "detail: typeof event.detail === 'number' ? event.detail : null," +
+            "subjectRef: subjectNode ? subjectNode.dataset.subjectRef : null" +
+          "});" +
+        "});" +
+      "}" +
+      "const rect = node.getBoundingClientRect();" +
+      "return {" +
+        "subjectRef: node.dataset.subjectRef," +
+        "centerX: rect.left + rect.width / 2," +
+        "centerY: rect.top + rect.height / 2" +
+      "};" +
+    "})()"
+  );
+
+  if (!target || !target.subjectRef) {
+    fail('VEXSYSTEM_BROWSER_MAP_NODE_TARGET_MISSING', 'No visible alternate relationship-map node was available.', { before, target });
+  }
+
+  await cdp.send('Input.dispatchMouseEvent', {
+    type: 'mouseMoved',
+    x: target.centerX,
+    y: target.centerY,
+    button: 'none',
+    buttons: 0,
+    pointerType: 'mouse'
+  }, page.sessionId);
+  await cdp.send('Input.dispatchMouseEvent', {
+    type: 'mousePressed',
+    x: target.centerX,
+    y: target.centerY,
+    button: 'left',
+    buttons: 1,
+    clickCount: 1,
+    pointerType: 'mouse'
+  }, page.sessionId);
+  await cdp.send('Input.dispatchMouseEvent', {
+    type: 'mouseReleased',
+    x: target.centerX,
+    y: target.centerY,
+    button: 'left',
+    buttons: 0,
+    clickCount: 1,
+    pointerType: 'mouse'
+  }, page.sessionId);
+
+  await waitFor(
+    cdp,
+    page.sessionId,
+    "new URL(location.href).searchParams.get('subject') === " + JSON.stringify(target.subjectRef),
+    'relationship map node activation'
+  );
+
+  const after = await runtimeSnapshot(cdp, page);
+  const pointerProbe = await evaluate(cdp, page.sessionId, "window.__vexMapNodeProbe || []");
+  const trustedPointerDown = pointerProbe.some(event =>
+    event.type === 'pointerdown' &&
+    event.isTrusted === true &&
+    event.pointerType === 'mouse' &&
+    event.buttons === 1 &&
+    event.subjectRef === target.subjectRef
+  );
+  const trustedPointerUp = pointerProbe.some(event =>
+    event.type === 'pointerup' &&
+    event.isTrusted === true &&
+    event.pointerType === 'mouse' &&
+    event.buttons === 0
+  );
+
+  if (!trustedPointerDown || !trustedPointerUp) {
+    fail(
+      'VEXSYSTEM_BROWSER_TRUSTED_MAP_NODE_POINTER_MISSING',
+      'The relationship-map node did not receive the required trusted no-drag pointer sequence.',
+      { target, pointerProbe, trustedPointerDown, trustedPointerUp }
+    );
+  }
+  if (after.selected !== target.subjectRef) {
+    fail('VEXSYSTEM_BROWSER_MAP_NODE_ACTIVATION_MISSING', 'Trusted node pointer input did not advance semantic selection.', { before, target, after, pointerProbe });
+  }
+  if (after.question !== before.question || after.level !== before.level || after.lens !== before.lens) {
+    fail('VEXSYSTEM_BROWSER_MAP_NODE_ACTIVATION_OVERREACH', 'Node activation changed question/detail/lens semantics in addition to subject selection.', { before, target, after });
+  }
+
+  return {
+    before,
+    after,
+    target,
+    pointerProbe,
+    trustedPointerDown,
+    trustedPointerUp,
+    activationPath: 'TRUSTED_POINTER_UP_NO_DRAG'
+  };
+}
+
+
 async function proveMapCameraIsPresentationOnly(cdp, page) {
   await placeExplorerInViewport(cdp, page, 'Receiver-first runtime map viewport');
   const before = await runtimeSnapshot(cdp, page);
@@ -1031,6 +1150,7 @@ async function runRuntime(origin, cdp) {
     'Structure question'
   );
 
+  const mapNodeActivation = await proveMapNodeActivation(cdp, desktop);
   const mapInteraction = await proveMapCameraIsPresentationOnly(cdp, desktop);
 
   await cdp.send('Page.bringToFront', {}, desktop.sessionId);
@@ -1283,6 +1403,7 @@ async function runRuntime(origin, cdp) {
       health,
       formation,
       zoomed,
+      mapNodeActivation,
       mapInteraction,
       keyboardSelectionTarget: keyboardTarget.subjectRef,
       keyboardProbe,
