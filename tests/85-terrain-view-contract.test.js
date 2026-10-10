@@ -259,14 +259,15 @@ test('TERRAIN-VIEW: shipped renderer consumes the contract and exposes semantic 
 });
 
 
-test('TERRAIN-VIEW: ordered entry contract keeps Receive God before Take a Walk and reserves VexSystem without inventing a third active route', () => {
+test('TERRAIN-VIEW: ordered entry contract keeps Take a Walk inside the reader while activating the VexSystem learning-world handoff', () => {
   const value = entryContract();
   assert.equal(value.schemaVersion, 'vextreme.terrain-entry/v1');
   assert.deepEqual(value.choices.map(choice => [choice.id, choice.effect, choice.enabled]), [
     ['receive-god', 'reader', true],
     ['archives', 'terrain-group-overview', true],
-    ['vexsystem', 'reserved', false],
+    ['vexsystem', 'vexsystem-learning-world', true],
   ]);
+  assert.equal(value.choices.find(choice => choice.id === 'vexsystem').path, '../vexsystem/');
   assert.equal(value.documents['receive-god'].order, 1);
   assert.equal(value.documents['take-a-walk'].order, 2);
   assert.equal(value.choices.some(choice => choice.id === 'take-a-walk'), false);
@@ -276,7 +277,13 @@ test('TERRAIN-VIEW: ordered entry contract keeps Receive God before Take a Walk 
   assert.match(source, /function openEntryReader\(slug\)/);
   assert.match(source, /function enterArchivesFromArrival\(\)/);
   assert.match(source, /function handleTerrainEntryMessage\(event\)/);
-  assert.match(source, /data-entry-action="vexsystem" disabled aria-disabled="true"/);
+  assert.match(source, /function enterVexSystemFromArrival\(\)/);
+  assert.match(source, /data-entry-action="vexsystem"/);
+  assert.doesNotMatch(source, /data-entry-action="vexsystem" disabled/);
+  assert.match(source, /new URL\(choice\.path, window\.location\.href\)/);
+  assert.match(source, /target\.origin !== window\.location\.origin/);
+  assert.match(source, /window\.location\.assign\(target\.href\)/);
+  assert.match(source, /data-entry-action="vexsystem"'\]\)\.addEventListener\('click', enterVexSystemFromArrival\)/);
   assert.match(source, /openEntryReader\('receive-god'\)/);
   assert.doesNotMatch(source, /data-entry-action="take-a-walk"/);
 });

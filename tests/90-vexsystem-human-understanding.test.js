@@ -41,7 +41,7 @@ test('VEXSYSTEM UNDERSTANDING: placement and named descent use existing semantic
   ]);
 });
 
-test('VEXSYSTEM UNDERSTANDING: current answer preserves active, alternative and held route truth', () => {
+test('VEXSYSTEM UNDERSTANDING: current answer preserves primary and parallel active route truth', () => {
   const view = vexsystem.composeUnderstanding(atlas);
   assert.deepEqual(view.currentStructure.map(subject => subject.subjectRef), [
     'contract.vextreme.terrain-entry.v1'
@@ -49,7 +49,7 @@ test('VEXSYSTEM UNDERSTANDING: current answer preserves active, alternative and 
   assert.deepEqual(view.routes.map(item => [item.subject.subjectRef, item.subject.state, item.relation.branchClass]), [
     ['route.vextreme.receive-god', 'ACTIVE', 'ACTIVE_BRANCH'],
     ['route.vextreme.archives', 'ACTIVE', 'ALTERNATIVE_BRANCH'],
-    ['route.vextreme.vexsystem', 'HELD', 'HELD_BRANCH']
+    ['route.vextreme.vexsystem', 'ACTIVE', 'ALTERNATIVE_BRANCH']
   ]);
 });
 
@@ -108,7 +108,7 @@ test('VEXSYSTEM UNDERSTANDING: selecting a branch subject keeps its real named p
     'feature.vextreme.terrain-entry',
     'contract.vextreme.terrain-entry.v1'
   ]);
-  assert.equal(view.subject.state, 'HELD');
+  assert.equal(view.subject.state, 'ACTIVE');
 });
 
 // [VXG RealForever]

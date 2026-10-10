@@ -80,16 +80,17 @@ test('VEXSYSTEM: semantic zoom changes visible neighborhood, not selected subjec
   assert.ok(sourceProjection.subjects.some(subject => subject.kind === 'PROOF'));
 });
 
-test('VEXSYSTEM: held VexSystem route remains visibly held, not silently executable', () => {
+test('VEXSYSTEM: activated VexSystem route is current and remains a parallel branch rather than the primary ordered entry', () => {
   const route = atlas.subjects.find(subject => subject.subjectRef === 'route.vextreme.vexsystem');
   assert.ok(route);
-  assert.equal(route.state, 'HELD');
+  assert.equal(route.state, 'ACTIVE');
+  assert.ok(route.sourceRefs.includes('vexsystem/index.html'));
 
   const relation = atlas.relations.find(item =>
     item.relationRef === 'rel.vexsystem.contract-to-vexsystem'
   );
   assert.ok(relation);
-  assert.equal(relation.branchClass, 'HELD_BRANCH');
+  assert.equal(relation.branchClass, 'ALTERNATIVE_BRANCH');
 });
 
 test('VEXSYSTEM: focus trail supports forward exploration and semantic return', () => {
