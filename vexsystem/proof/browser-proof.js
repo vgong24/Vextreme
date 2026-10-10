@@ -756,6 +756,7 @@ async function runTerrainEntryRuntime(origin, cdp) {
 
 
 async function proveMapCameraIsPresentationOnly(cdp, page) {
+  await placeExplorerInViewport(cdp, page, 'Receiver-first runtime map viewport');
   const before = await runtimeSnapshot(cdp, page);
   await evaluate(
     cdp,

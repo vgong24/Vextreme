@@ -325,4 +325,16 @@ test('VEXSYSTEM PAGE: trusted map drag proof drives a held mouse button and requ
   assert.match(browserProof, /VEXSYSTEM_BROWSER_TRUSTED_MAP_DRAG_MISSING/);
 });
 
+
+test('VEXSYSTEM PAGE: runtime map input is aimed only after the receiver-first explorer is visible', () => {
+  const start = browserProof.indexOf('async function proveMapCameraIsPresentationOnly');
+  const end = browserProof.indexOf('async function runRuntime', start);
+  const block = browserProof.slice(start, end);
+  assert.match(block, /placeExplorerInViewport\(cdp, page, 'Receiver-first runtime map viewport'\)/);
+  assert.ok(
+    block.indexOf('placeExplorerInViewport') < block.indexOf("Input.dispatchMouseEvent"),
+    'map must be scrolled into the visible runtime viewport before trusted pointer input'
+  );
+});
+
 // [VXG RealForever]
