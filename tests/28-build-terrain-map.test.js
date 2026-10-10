@@ -43,6 +43,7 @@ const {
   findScreenshotEvidence,
   buildTerrainMap,
   layoutArcs,
+  normalizePreviewOverride,
   buildContentPages,
 } = require('../lib/build-terrain-map');
 
@@ -322,6 +323,20 @@ test('BUILD-TERRAIN-MAP: buildContentPages marks a curated node without a real p
   assert.equal(page.live, false);
   assert.equal(page.liveUrl, null);
   assert.equal(page.status, 'critical');
+});
+
+test('BUILD-TERRAIN-MAP: explicit cover preview is projected independently of screenshot evidence', () => {
+  const nodesJson = [{ id: 1, slug: 'cover-page', title: 'Cover Page', arcKeys: [] }];
+  const viewmodels = {
+    'cover-page': {
+      preview: { kind: 'cover', src: 'https://example.test/cover.png', alt: 'Cover art' }
+    }
+  };
+  const result = buildContentPages(nodesJson, {}, {}, ['cover-page'], null, {}, ['cover-page'], viewmodels);
+  const page = result.pages.find(p => p.slug === 'cover-page');
+  assert.deepEqual(page.preview, { kind: 'cover', src: 'https://example.test/cover.png', alt: 'Cover art' });
+  assert.equal(page.hasScreenshot, false, 'cover art does not fabricate screenshot evidence');
+  assert.deepEqual(normalizePreviewOverride({ kind:'other', src:'x' }), null, 'unknown preview kinds fail closed');
 });
 
 test('BUILD-TERRAIN-MAP: buildContentPages marks a live page with a real captured screenshot as good, and without one as warning', () => {
