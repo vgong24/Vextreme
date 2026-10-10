@@ -473,7 +473,7 @@ async function ready(cdp, page) {
   await waitFor(
     cdp,
     page.sessionId,
-    "document.readyState === 'complete' && document.querySelectorAll('.vs-text-node').length > 0 && document.querySelector('#map-status') && !document.querySelector('#map-status').textContent.includes('Loading')",
+    "document.readyState === 'complete' && document.querySelectorAll('.vs-text-node').length > 0 && document.querySelectorAll('.vs-route-card').length > 0 && document.querySelector('#understanding-title') && !document.querySelector('#understanding-title').textContent.includes('Loading') && document.querySelector('#map-status') && !document.querySelector('#map-status').textContent.includes('Loading')",
     'VexSystem explorer readiness'
   );
 }
@@ -482,12 +482,30 @@ async function runtimeSnapshot(cdp, page) {
   const expression = "(() => {" +
     "const url = new URL(location.href);" +
     "const activeLens = document.querySelector('[data-lens][aria-pressed=\"true\"]');" +
+    "const understanding = document.querySelector('[data-vexsystem-component=\"composed-understanding\"]');" +
+    "const understandingTitle = document.querySelector('#understanding-title');" +
+    "const understandingPurpose = document.querySelector('#understanding-purpose');" +
+    "const currentAnswer = document.querySelector('#current-answer-heading');" +
+    "const explore = document.querySelector('.vs-explore');" +
+    "const map = document.querySelector('#vexsystem-map');" +
+    "const rect = node => node ? node.getBoundingClientRect() : null;" +
     "return {" +
       "title: document.title," +
       "selected: url.searchParams.get('subject')," +
       "lens: url.searchParams.get('lens')," +
       "level: url.searchParams.get('level')," +
       "activeLens: activeLens && activeLens.dataset.lens," +
+      "understandingPresent: Boolean(understanding)," +
+      "understandingTitle: understandingTitle?.textContent || null," +
+      "understandingPurpose: understandingPurpose?.textContent || null," +
+      "routeCards: document.querySelectorAll('.vs-route-card').length," +
+      "proofCards: document.querySelectorAll('.vs-proof-item').length," +
+      "understandingTop: rect(understanding)?.top ?? null," +
+      "purposeBottom: rect(understandingPurpose)?.bottom ?? null," +
+      "currentAnswerTop: rect(currentAnswer)?.top ?? null," +
+      "exploreTop: rect(explore)?.top ?? null," +
+      "mapTop: rect(map)?.top ?? null," +
+      "viewportHeight: window.innerHeight," +
       "inspectorTitle: document.querySelector('#inspector-heading')?.textContent || null," +
       "svgNodes: document.querySelectorAll('.vs-svg-node').length," +
       "textNodes: document.querySelectorAll('.vs-text-node').length," +
@@ -508,6 +526,32 @@ function assertRuntimeSnapshot(snapshot, label) {
   }
   if (!snapshot.selected) fail('VEXSYSTEM_BROWSER_SELECTED_SUBJECT_MISSING', label, snapshot);
   if (!snapshot.activeLens) fail('VEXSYSTEM_BROWSER_ACTIVE_LENS_MISSING', label, snapshot);
+  if (
+    !snapshot.understandingPresent ||
+    !snapshot.understandingTitle ||
+    !snapshot.understandingPurpose ||
+    snapshot.routeCards < 1 ||
+    snapshot.proofCards < 1
+  ) {
+    fail(
+      'VEXSYSTEM_BROWSER_COMPOSED_UNDERSTANDING_MISSING',
+      'The source-derived subject understanding is not materially present before exploration.',
+      { label, snapshot }
+    );
+  }
+  if (
+    snapshot.exploreTop == null ||
+    snapshot.mapTop == null ||
+    snapshot.understandingTop == null ||
+    snapshot.exploreTop <= snapshot.understandingTop ||
+    snapshot.mapTop <= snapshot.understandingTop
+  ) {
+    fail(
+      'VEXSYSTEM_BROWSER_GRAPH_PRECEDES_UNDERSTANDING',
+      'Optional exploration appeared before the composed understanding.',
+      { label, snapshot }
+    );
+  }
   if (snapshot.svgNodes < 1 || snapshot.textNodes < 1 || !snapshot.textViewPresent) {
     fail('VEXSYSTEM_BROWSER_EQUIVALENT_VIEWS_MISSING', label, snapshot);
   }
@@ -529,6 +573,12 @@ async function runRuntime(origin, cdp) {
   const initial = await runtimeSnapshot(cdp, desktop);
   assertRuntimeSnapshot(initial, 'desktop initial');
   const initialSubject = initial.selected;
+  const initialUnderstanding = {
+    title: initial.understandingTitle,
+    purpose: initial.understandingPurpose,
+    routeCards: initial.routeCards,
+    proofCards: initial.proofCards
+  };
 
   await evaluate(
     cdp,
@@ -548,6 +598,19 @@ async function runRuntime(origin, cdp) {
       initial,
       formation
     });
+  }
+  const formationUnderstanding = {
+    title: formation.understandingTitle,
+    purpose: formation.understandingPurpose,
+    routeCards: formation.routeCards,
+    proofCards: formation.proofCards
+  };
+  if (JSON.stringify(formationUnderstanding) !== JSON.stringify(initialUnderstanding)) {
+    fail(
+      'VEXSYSTEM_BROWSER_WHOLE_ERASED_BY_FOCUS',
+      'Changing perspective altered or erased the composed subject understanding.',
+      { initialUnderstanding, formationUnderstanding }
+    );
   }
 
   const formationText = await evaluate(
@@ -810,6 +873,19 @@ async function runRuntime(origin, cdp) {
   await ready(cdp, mobile);
   const mobileSnapshot = await runtimeSnapshot(cdp, mobile);
   assertRuntimeSnapshot(mobileSnapshot, 'mobile initial');
+  if (
+    mobileSnapshot.purposeBottom == null ||
+    mobileSnapshot.currentAnswerTop == null ||
+    mobileSnapshot.viewportHeight == null ||
+    mobileSnapshot.purposeBottom > mobileSnapshot.viewportHeight ||
+    mobileSnapshot.currentAnswerTop > mobileSnapshot.viewportHeight
+  ) {
+    fail(
+      'VEXSYSTEM_BROWSER_MOBILE_FIRST_FOLD_MEANING_MISSING',
+      'The first mobile viewport did not reach useful subject meaning before optional exploration.',
+      { mobileSnapshot }
+    );
+  }
 
   await new Promise(resolve => setTimeout(resolve, 150));
   const desktopSignals = assertPageSignals(desktop, 'desktop runtime');
