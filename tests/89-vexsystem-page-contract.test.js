@@ -16,6 +16,7 @@ const ROOT = path.join(__dirname, '..');
 const html = fs.readFileSync(path.join(ROOT, 'vexsystem', 'index.html'), 'utf8');
 const app = fs.readFileSync(path.join(ROOT, 'vexsystem', 'app.js'), 'utf8');
 const css = fs.readFileSync(path.join(ROOT, 'vexsystem', 'styles.css'), 'utf8');
+const browserProof = fs.readFileSync(path.join(ROOT, 'vexsystem', 'proof', 'browser-proof.js'), 'utf8');
 
 test('VEXSYSTEM PAGE: standalone surface consumes the canonical public projection core and atlas', () => {
   assert.match(html, /src="\.\.\/lib\/vexsystem\/projection\.js"/);
@@ -65,4 +66,32 @@ test('VEXSYSTEM PAGE: Terrain remains an external host route rather than copied 
   assert.match(html, /href="\.\.\/pages\/terrain-map\.html"/);
   assert.doesNotMatch(html, /vex-spiral-trigger|vex-nav-actions|terrain-entry-contract/);
   assert.doesNotMatch(app, /vex-spiral-trigger|vex-nav-actions/);
+});
+
+
+test('VEXSYSTEM PAGE: browser proof is dependency-free CDP over installed Chromium-family browsers', () => {
+  assert.match(browserProof, /--remote-debugging-pipe/);
+  assert.match(browserProof, /Brave Browser\.app/);
+  assert.match(browserProof, /Google Chrome\.app/);
+  assert.match(browserProof, /CHROMIUM_DEVTOOLS_PROTOCOL_PIPE/);
+  assert.match(browserProof, /installOrDownloadAttempted: false/);
+  assert.doesNotMatch(browserProof, /require\(['"]playwright['"]\)|require\(['"]puppeteer['"]\)/);
+});
+
+test('VEXSYSTEM PAGE: browser proof keeps runtime and screenshots in separate bounded modes', () => {
+  assert.match(browserProof, /mode === 'runtime'/);
+  assert.match(browserProof, /mode === 'screenshot'/);
+  assert.match(browserProof, /blueprint-desktop/);
+  assert.match(browserProof, /formation-desktop/);
+  assert.match(browserProof, /blueprint-mobile/);
+  assert.match(browserProof, /Page\.captureScreenshot/);
+});
+
+test('VEXSYSTEM PAGE: browser proof checks semantic stability, accessibility projection, privacy and overflow', () => {
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_LENS_TELEPORT/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_ZOOM_TELEPORT/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_EQUIVALENT_VIEWS_MISSING/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_PRIVATE_COORDINATE_LEAK/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_HORIZONTAL_OVERFLOW/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_FORMATION_HISTORY_MISSING/);
 });
