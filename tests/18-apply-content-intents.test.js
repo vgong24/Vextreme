@@ -22,7 +22,7 @@
 const { test } = require('node:test');
 const assert   = require('node:assert/strict');
 
-const { upsertMetaTag, applyArcPlacement, applyIntent, validateIntent, collectArcKeysForSlug, buildCanonicalNode, promoteCanonicalNode, AUTO_SECTION_LABEL } = require('../lib/apply-content-intents');
+const { upsertMetaTag, applyArcPlacement, applyIntent, validateIntent, collectArcKeysForSlug, buildCanonicalNode, promoteCanonicalNode, appendCanonicalNodesJson, AUTO_SECTION_LABEL } = require('../lib/apply-content-intents');
 
 // ── 1. upsertMetaTag ───────────────────────────────────────────────────────────
 
@@ -209,6 +209,23 @@ test('APPLY-CONTENT-INTENTS: validateIntent rejects a non-boolean registerNode d
   const result = validateIntent({ slug:'x', registerNode:'yes' }, SAMPLE_DEPARTMENTS, SAMPLE_ARCS);
   assert.equal(result.valid, false);
   assert.match(result.errors[0], /registerNode must be boolean/);
+});
+
+test('APPLY-CONTENT-INTENTS: appendCanonicalNodesJson preserves existing registry bytes and appends only new rows', () => {
+  const source = '[\n  { "id": 1, "slug": "existing", "title": "Existing", "date": "", "arcKeys": [], "vexData": {} }\n]\n';
+  const addition = { id:null, slug:'new-page', title:'New Page', date:'', arcKeys:[], department:'institute', workType:'org-design', vexData:{} };
+  const output = appendCanonicalNodesJson(source, [addition]);
+  assert.ok(output.startsWith(source.slice(0, source.lastIndexOf('\n]\n'))), 'existing registry bytes must remain unchanged');
+  assert.match(output, /\{"id":null,"slug":"new-page"/);
+  assert.deepEqual(JSON.parse(output), [...JSON.parse(source), addition]);
+});
+
+test('APPLY-CONTENT-INTENTS: appendCanonicalNodesJson rejects duplicate canonical slugs', () => {
+  const source = '[\n  {"id":null,"slug":"existing","title":"Existing","date":"","arcKeys":[],"vexData":{}}\n]\n';
+  assert.throws(
+    () => appendCanonicalNodesJson(source, [{ id:null, slug:'existing', title:'Duplicate', date:'', arcKeys:[], vexData:{} }]),
+    /already exists/
+  );
 });
 
 // [VXG RealForever]
