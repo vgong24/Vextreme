@@ -451,6 +451,14 @@ async function runRuntime(origin, cdp) {
     'Blueprint lens'
   );
 
+  await cdp.send('Page.bringToFront', {}, desktop.sessionId);
+  await waitFor(
+    cdp,
+    desktop.sessionId,
+    "document.hasFocus() === true",
+    'foreground page focus'
+  );
+
   const keyboardTarget = await evaluate(
     cdp,
     desktop.sessionId,
@@ -471,15 +479,22 @@ async function runRuntime(origin, cdp) {
         "}, { once: type === 'click' });" +
       "}" +
       "target.focus();" +
-      "return { subjectRef: target.dataset.subjectRef, focused: document.activeElement === target };" +
+      "return {" +
+        "subjectRef: target.dataset.subjectRef," +
+        "focused: document.activeElement === target," +
+        "pageFocused: document.hasFocus() === true" +
+      "};" +
     "})()"
   );
 
   if (!keyboardTarget || !keyboardTarget.subjectRef) {
     fail('VEXSYSTEM_BROWSER_KEYBOARD_TARGET_MISSING', 'No alternate text-view node was available.');
   }
+  if (!keyboardTarget.pageFocused) {
+    fail('VEXSYSTEM_BROWSER_PAGE_FOCUS_FAILED', 'The VexSystem page was not foreground-focused before keyboard proof.', keyboardTarget);
+  }
   if (!keyboardTarget.focused) {
-    fail('VEXSYSTEM_BROWSER_KEYBOARD_FOCUS_FAILED', 'The native text-view button could not receive focus.');
+    fail('VEXSYSTEM_BROWSER_KEYBOARD_FOCUS_FAILED', 'The native text-view button could not receive focus.', keyboardTarget);
   }
 
   await cdp.send('Input.dispatchKeyEvent', {
@@ -492,7 +507,8 @@ async function runRuntime(origin, cdp) {
     unmodifiedText: '\\r',
     autoRepeat: false,
     location: 0,
-    isKeypad: false
+    isKeypad: false,
+    commands: []
   }, desktop.sessionId);
   await cdp.send('Input.dispatchKeyEvent', {
     type: 'keyUp',
@@ -503,18 +519,32 @@ async function runRuntime(origin, cdp) {
     location: 0
   }, desktop.sessionId);
 
-  await waitFor(
-    cdp,
-    desktop.sessionId,
-    "new URL(location.href).searchParams.get('subject') === " + JSON.stringify(keyboardTarget.subjectRef),
-    'keyboard semantic selection'
-  );
+  let keyboardObservation = null;
+  const keyboardDeadline = Date.now() + 3000;
+  while (Date.now() < keyboardDeadline) {
+    keyboardObservation = await evaluate(
+      cdp,
+      desktop.sessionId,
+      "(() => ({" +
+        "selected: new URL(location.href).searchParams.get('subject')," +
+        "documentHasFocus: document.hasFocus() === true," +
+        "activeElementSubjectRef: document.activeElement && document.activeElement.dataset ? (document.activeElement.dataset.subjectRef || null) : null," +
+        "probe: window.__vexKeyboardProbe || []" +
+      "}))()"
+    );
+    if (keyboardObservation && keyboardObservation.selected === keyboardTarget.subjectRef) break;
+    await new Promise(resolve => setTimeout(resolve, 75));
+  }
 
-  const keyboardProbe = await evaluate(
-    cdp,
-    desktop.sessionId,
-    "window.__vexKeyboardProbe || []"
-  );
+  if (!keyboardObservation || keyboardObservation.selected !== keyboardTarget.subjectRef) {
+    fail(
+      'VEXSYSTEM_BROWSER_KEYBOARD_ACTIVATION_MISSING',
+      'Trusted Enter input did not activate the focused native text-view button.',
+      { keyboardTarget, keyboardObservation }
+    );
+  }
+
+  const keyboardProbe = keyboardObservation.probe || [];
   const trustedKeydown = keyboardProbe.some(event =>
     event.type === 'keydown' &&
     event.isTrusted === true &&
@@ -553,6 +583,7 @@ async function runRuntime(origin, cdp) {
       zoomed,
       keyboardSelectionTarget: keyboardTarget.subjectRef,
       keyboardProbe,
+      keyboardObservation,
       pageErrors: desktop.errors.length,
       consoleErrors: desktop.consoleErrors.length
     },
