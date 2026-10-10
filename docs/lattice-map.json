@@ -2308,21 +2308,26 @@
       }
     },
     "scripts/screenshot-page.js": {
-      "role": "legacy general Playwright screenshot writer — serves branch-local page/assets, intercepts @main CDN requests, captures default and language-switched PNG evidence",
-      "context": "This is the older general content-page writer, not the institutional matrix harness. It starts a local server, redirects the Vextreme jsDelivr @main prefix to branch-local files, launches a fixed Playwright/Chromium installation, captures a default screenshot, then drives the historical language-FAB selectors before the second screenshot. A007 explicitly classifies it as legacy requiring current FAB and host compatibility checking. Its existing local server also lacks the /Vextreme path-prefix behavior needed by some hub-style pages. Mapping it makes those limits visible; it does not bless them as current browser acceptance.",
+      "role": "legacy general Playwright localization screenshot writer — serves branch-local page/assets, captures verified default/language-switched PNG evidence, and optionally hands identical bytes to Vextreme-Assets structured screenshot custody",
+      "context": "This remains the older general content-page writer, not the institutional matrix harness. It starts a local server, redirects the Vextreme jsDelivr @main prefix to branch-local files, launches the fixed Playwright/Chromium installation, captures the default page, drives the current language-FAB selectors, verifies the requested locale through the widget's localStorage contract, then captures the localized page. Local docs/screenshots outputs remain authoritative for current Vextreme readers during migration. When --assets-root (or VEXTREME_ASSETS_ROOT) is explicitly supplied, the same PNG bytes are additionally passed to Vextreme-Assets scripts/ingest-screenshot-evidence.mjs with exact source-commit provenance. No sibling checkout is auto-discovered or mutated implicitly.",
       "reads": [
         "pages/{slug}.html (page under test, served from the branch-local repository)",
-        "repository assets requested by the rendered page (local server/CDN interception)"
+        "repository assets requested by the rendered page (local server/CDN interception)",
+        "widgets/fab-lang.js runtime contract (#vex-lang-fab-btn / .vex-lang-item / localStorage vex-lang verification)",
+        "optional sibling Vextreme-Assets/scripts/ingest-screenshot-evidence.mjs when --assets-root or VEXTREME_ASSETS_ROOT is explicitly supplied",
+        "git HEAD (exact Vextreme source commit attached to optional Assets evidence)"
       ],
       "writes": [
         "docs/screenshots/{slug}-en.png",
-        "docs/screenshots/{slug}-{lang}.png"
+        "docs/screenshots/{slug}-{lang}.png",
+        "optional Vextreme-Assets evidence/screenshots/vextreme/{slug}/{locale}/default/1280/{sha256}.png + manifest via the Assets-owned ingest contract"
       ],
       "loadedBy": [
         ".github/pull_request_template.md (browser-rendered change evidence instruction)",
-        "manual run: node scripts/screenshot-page.js [slug] [lang]"
+        "manual run: node scripts/screenshot-page.js [slug] [lang] [--assets-root <Vextreme-Assets checkout>]"
       ],
       "testedBy": [
+        "tests/44-page-health.test.js (source contract for additive Assets handoff + verified locale switch)",
         "review-time browser execution and visual inspection"
       ],
       "changeMap": {
@@ -2341,6 +2346,11 @@
         "local serving or GitHub Pages path-prefix behavior changed": [
           "scripts/screenshot-institutional.js (newer bounded local-server pattern)",
           "hub-style pages using /Vextreme-prefixed asset paths"
+        ],
+        "optional Vextreme-Assets screenshot publication changed": [
+          "Vextreme-Assets/scripts/ingest-screenshot-evidence.mjs (custody/schema owner)",
+          "tests/44-page-health.test.js (bridge contract)",
+          "lib/screenshot-evidence.js / Page Health / Analysis / Terrain remain local readers until separately migrated"
         ]
       }
     }

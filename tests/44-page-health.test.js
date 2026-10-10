@@ -180,6 +180,34 @@ test('PAGE-HEALTH: institutional shell and God Script delivery fail closed', () 
   });
 });
 
+test('SCREENSHOT-EVIDENCE: general localization crawler keeps local evidence and optionally hands identical captures to Assets custody', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'scripts', 'screenshot-page.js'), 'utf8').replace(/\r\n/g, '\n');
+
+  assert.match(source, /docs\/screenshots\/\{slug\}-en\.png/);
+  assert.match(source, /docs\/screenshots\/\{slug\}-\{lang\}\.png/);
+  assert.match(source, /VEXTREME_ASSETS_ROOT/);
+  assert.match(source, /--assets-root/);
+  assert.match(source, /ingest-screenshot-evidence\.mjs/);
+  assert.match(source, /'--namespace', 'vextreme'/);
+  assert.match(source, /'--theme', 'default'/);
+  assert.match(source, /'--viewport', String\(VIEWPORT\.width\)/);
+  assert.match(source, /'--source-repo', 'vgong24\/Vextreme'/);
+  assert.match(source, /'--source-commit', commit/);
+  assert.match(source, /'--source-path', 'pages\/' \+ slug \+ '\.html'/);
+  assert.match(source, /'--capture-kind', 'localization'/);
+  assert.match(source, /git', \['rev-parse', 'HEAD'\]/,
+    'Assets evidence must bind to an exact source commit, not a mutable branch name');
+
+  assert.match(source, /FAB button not found — refusing to label a localization screenshot/);
+  assert.match(source, /No FAB item found for lang=/);
+  assert.match(source, /localStorage\.getItem\('vex-lang'\) === expected/,
+    'requested locale must be behaviorally observed before the localized screenshot is accepted');
+
+  assert.match(source, /'\.png':\s+'image\/png'/);
+  assert.match(source, /'\.woff2':\s+'font\/woff2'/);
+  assert.match(source, /'\.ttf':\s+'font\/ttf'/,
+    'local screenshot fidelity must serve retained visual/font dependencies with browser-appropriate MIME types');
+});
 test('PAGE-HEALTH integration: committed projection equals fresh source computation', () => {
   const committed = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'page-health.json'), 'utf8'));
   assert.deepEqual(committed, buildPageHealth(loadInputs()));
