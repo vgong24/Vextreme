@@ -1300,11 +1300,11 @@
     try {
       var doc = evolutionReaderFrame.contentDocument;
       if (!doc) return;
-      doc.addEventListener('click', handleEvolutionReaderRouteClick);
       if (activeEntrySlug) {
         syncEntryReaderFromDocument();
         return;
       }
+      doc.addEventListener('click', handleEvolutionReaderRouteClick);
       doc.addEventListener('wheel', handleEvolutionReaderWheel, { passive:false });
     } catch (err) {
       showGestureHint('Embedded page scroll handoff is unavailable here · use Back / Previous / Next');

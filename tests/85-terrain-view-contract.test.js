@@ -201,6 +201,7 @@ test('TERRAIN-VIEW: embedded preserved routes resolve root and repository-relati
   assert.match(source, /function openRepositoryRouteInTerrain\(slug\)/);
   assert.match(source, /stageIndexForRouteNode\(node\)/);
   assert.match(source, /doc\.addEventListener\('click', handleEvolutionReaderRouteClick\)/);
+  assert.match(source, /if \(activeEntrySlug\) \{\s*syncEntryReaderFromDocument\(\);\s*return;\s*\}\s*doc\.addEventListener\('click', handleEvolutionReaderRouteClick\);/);
   assert.match(source, /relationship:'opened from preserved route'/);
   assert.match(source, /preserved but not live in Vextreme yet/);
 });
