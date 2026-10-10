@@ -264,6 +264,9 @@ async function createPage(cdp, url, viewport) {
 
   const errors = [];
   const consoleErrors = [];
+  const responseErrors = [];
+  const loadingFailures = [];
+  const requestUrls = new Map();
 
   cdp.on('Runtime.exceptionThrown', params => {
     errors.push(params.exceptionDetails && params.exceptionDetails.text
@@ -273,7 +276,42 @@ async function createPage(cdp, url, viewport) {
 
   cdp.on('Log.entryAdded', params => {
     const entry = params.entry || {};
-    if (entry.level === 'error') consoleErrors.push(entry.text || 'Log error');
+    if (entry.level === 'error') {
+      consoleErrors.push({
+        text: entry.text || 'Log error',
+        source: entry.source || null,
+        url: entry.url || null
+      });
+    }
+  }, sessionId);
+
+  cdp.on('Network.requestWillBeSent', params => {
+    if (params.requestId && params.request && params.request.url) {
+      requestUrls.set(params.requestId, params.request.url);
+    }
+  }, sessionId);
+
+  cdp.on('Network.responseReceived', params => {
+    const response = params.response || {};
+    if (Number(response.status) >= 400) {
+      responseErrors.push({
+        url: response.url || requestUrls.get(params.requestId) || null,
+        status: Number(response.status),
+        statusText: response.statusText || null,
+        type: params.type || null,
+        mimeType: response.mimeType || null
+      });
+    }
+  }, sessionId);
+
+  cdp.on('Network.loadingFailed', params => {
+    loadingFailures.push({
+      url: requestUrls.get(params.requestId) || null,
+      errorText: params.errorText || null,
+      blockedReason: params.blockedReason || null,
+      canceled: params.canceled === true,
+      type: params.type || null
+    });
   }, sessionId);
 
   await Promise.all([
@@ -298,7 +336,107 @@ async function createPage(cdp, url, viewport) {
   }, sessionId);
 
   await cdp.send('Page.navigate', { url }, sessionId);
-  return { sessionId, errors, consoleErrors };
+  return {
+    sessionId,
+    errors,
+    consoleErrors,
+    responseErrors,
+    loadingFailures
+  };
+}
+
+function urlPathname(value) {
+  if (typeof value !== 'string' || !value) return null;
+  try { return new URL(value).pathname; }
+  catch (_) { return null; }
+}
+
+function isExpectedProofBlockedUrl(value) {
+  return typeof value === 'string' && (
+    value.startsWith('https://fonts.googleapis.com/') ||
+    value.startsWith('https://fonts.gstatic.com/')
+  );
+}
+
+function classifyPageSignals(page) {
+  const benignResponseErrors = page.responseErrors.filter(entry =>
+    entry.status === 404 && urlPathname(entry.url) === '/favicon.ico'
+  );
+  const blockingResponseErrors = page.responseErrors.filter(entry =>
+    !(entry.status === 404 && urlPathname(entry.url) === '/favicon.ico')
+  );
+
+  const expectedLoadingFailures = page.loadingFailures.filter(entry =>
+    isExpectedProofBlockedUrl(entry.url)
+  );
+  const blockingLoadingFailures = page.loadingFailures.filter(entry =>
+    !isExpectedProofBlockedUrl(entry.url)
+  );
+
+  const directlyBenignConsoleErrors = page.consoleErrors.filter(entry =>
+    entry.source === 'network' &&
+    /404/.test(entry.text || '') &&
+    urlPathname(entry.url) === '/favicon.ico'
+  );
+  const directlyExpectedBlockedConsoleErrors = page.consoleErrors.filter(entry =>
+    entry.source === 'network' &&
+    isExpectedProofBlockedUrl(entry.url)
+  );
+
+  const accountedConsole = new Set([
+    ...directlyBenignConsoleErrors,
+    ...directlyExpectedBlockedConsoleErrors
+  ]);
+  const unresolvedConsoleErrors = page.consoleErrors.filter(entry => !accountedConsole.has(entry));
+
+  const faviconOnlyNetwork404 =
+    blockingResponseErrors.length === 0 &&
+    benignResponseErrors.length > 0;
+  const correlatedFaviconConsoleErrors = faviconOnlyNetwork404
+    ? unresolvedConsoleErrors.filter(entry =>
+        entry.source === 'network' &&
+        /404/.test(entry.text || '') &&
+        !entry.url
+      )
+    : [];
+  const correlatedSet = new Set(correlatedFaviconConsoleErrors);
+  const blockingConsoleErrors = unresolvedConsoleErrors.filter(entry => !correlatedSet.has(entry));
+
+  return {
+    benignBrowserNoise: {
+      favicon404Responses: benignResponseErrors,
+      favicon404ConsoleErrors: [
+        ...directlyBenignConsoleErrors,
+        ...correlatedFaviconConsoleErrors
+      ],
+      expectedProofBlockedLoads: expectedLoadingFailures,
+      expectedProofBlockedConsoleErrors: directlyExpectedBlockedConsoleErrors
+    },
+    blocking: {
+      runtimeExceptions: [...page.errors],
+      consoleErrors: blockingConsoleErrors,
+      responseErrors: blockingResponseErrors,
+      loadingFailures: blockingLoadingFailures
+    }
+  };
+}
+
+function assertPageSignals(page, label) {
+  const signals = classifyPageSignals(page);
+  const blocking = signals.blocking;
+  if (
+    blocking.runtimeExceptions.length ||
+    blocking.consoleErrors.length ||
+    blocking.responseErrors.length ||
+    blocking.loadingFailures.length
+  ) {
+    fail(
+      'VEXSYSTEM_BROWSER_PAGE_ERRORS',
+      'Browser emitted blocking runtime/network evidence: ' + label,
+      { label, signals }
+    );
+  }
+  return signals;
 }
 
 async function evaluate(cdp, sessionId, expression, awaitPromise) {
@@ -673,6 +811,10 @@ async function runRuntime(origin, cdp) {
   const mobileSnapshot = await runtimeSnapshot(cdp, mobile);
   assertRuntimeSnapshot(mobileSnapshot, 'mobile initial');
 
+  await new Promise(resolve => setTimeout(resolve, 150));
+  const desktopSignals = assertPageSignals(desktop, 'desktop runtime');
+  const mobileSignals = assertPageSignals(mobile, 'mobile runtime');
+
   const findings = {
     state: 'PASS',
     browserRuntime: 'CHROMIUM_DEVTOOLS_PROTOCOL_PIPE',
@@ -686,30 +828,13 @@ async function runRuntime(origin, cdp) {
       keyboardObservation,
       keyboardSemantics,
       activationPath,
-      pageErrors: desktop.errors.length,
-      consoleErrors: desktop.consoleErrors.length
+      signals: desktopSignals
     },
     mobile: {
       initial: mobileSnapshot,
-      pageErrors: mobile.errors.length,
-      consoleErrors: mobile.consoleErrors.length
+      signals: mobileSignals
     }
   };
-
-  if (
-    desktop.errors.length ||
-    desktop.consoleErrors.length ||
-    mobile.errors.length ||
-    mobile.consoleErrors.length
-  ) {
-    fail('VEXSYSTEM_BROWSER_PAGE_ERRORS', 'Browser emitted runtime/console errors.', {
-      findings,
-      desktopErrors: desktop.errors,
-      desktopConsoleErrors: desktop.consoleErrors,
-      mobileErrors: mobile.errors,
-      mobileConsoleErrors: mobile.consoleErrors
-    });
-  }
 
   return findings;
 }
@@ -775,12 +900,16 @@ async function screenshot(origin, cdp, scenario) {
     fail('VEXSYSTEM_BROWSER_SCREENSHOT_EMPTY', 'Screenshot ' + scenario + ' was empty.');
   }
 
+  await new Promise(resolve => setTimeout(resolve, 100));
+  const signals = assertPageSignals(page, 'screenshot ' + scenario);
+
   return {
     state: 'PASS',
     scenario,
     mime: 'image/jpeg',
     viewport,
     snapshot,
+    signals,
     base64: image.data
   };
 }
