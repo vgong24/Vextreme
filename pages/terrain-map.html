@@ -872,11 +872,12 @@
     }
     initializeJourneyHistory(initialRoute.explicit);
     if (currentWorld === 'content' && currentProfile === 'evolution-v1' && initialRoute.page) {
-      var initialPage = ALL.find(function (node) { return node.slug === initialRoute.page || node.id === initialRoute.page; });
       var initialStage = typeof levelCtx.stageIdx === 'number' ? STAGES[levelCtx.stageIdx] : null;
-      if (initialPage && initialPage.live) openEvolutionReader(initialPage.id, { writeUrl:false });
-      else if (initialStage && initialStage.parent && initialStage.parent.live && initialStage.parent.pageSlug === initialRoute.page) {
+      if (initialStage && initialStage.parent && initialStage.parent.live && initialStage.parent.pageSlug === initialRoute.page) {
         openEvolutionGroupHome(initialStage, { writeUrl:false });
+      } else {
+        var initialPage = ALL.find(function (node) { return node.slug === initialRoute.page || node.id === initialRoute.page; });
+        if (initialPage && initialPage.live) openEvolutionReader(initialPage.id, { writeUrl:false });
       }
     }
     syncPresentationUrl();

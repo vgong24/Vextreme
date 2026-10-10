@@ -188,6 +188,9 @@ test('TERRAIN-VIEW: collection group homes stay outside membership while remaini
   assert.match(source, /function openEvolutionGroupHome\(stage, options\)/);
   assert.match(source, /activeGroupHomeKey = stage\.key/);
   assert.match(source, /initialStage\.parent\.pageSlug === initialRoute\.page/);
+  const scopedParentRoute = source.indexOf('initialStage.parent.pageSlug === initialRoute.page');
+  const globalRecordRoute = source.indexOf('var initialPage = ALL.find', scopedParentRoute > -1 ? scopedParentRoute : 0);
+  assert.ok(scopedParentRoute > -1 && globalRecordRoute > -1 && scopedParentRoute < globalRecordRoute, 'group-scoped parent route must win before global record lookup');
   assert.match(source, /openEvolutionGroupHome\(stage\)/);
   assert.match(source, /group home pending/);
 });
