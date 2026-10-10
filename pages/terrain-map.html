@@ -247,6 +247,7 @@
     transition:opacity .12s ease, background .12s ease, border-color .12s ease;
   }
   .reader-side:hover:not(:disabled), .reader-side:focus-visible{ opacity:1; background:var(--panel); border-color:var(--line); color:var(--accent); }
+  .reader-side[hidden]{ display:none; }
   .reader-side:disabled{ opacity:.16; cursor:default; }
   .reader-side.reader-prev{ left:5px; }
   .reader-side.reader-next{ right:5px; }

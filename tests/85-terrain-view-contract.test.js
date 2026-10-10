@@ -178,6 +178,13 @@ test('TERRAIN-VIEW: Evolution A is a URL-addressable presentation state over sha
 });
 
 
+test('TERRAIN-VIEW: ordered entry reader hidden side controls stay visually absent', () => {
+  const source = pageSource();
+  assert.match(source, /\.reader-side\[hidden\]\{\s*display:none;\s*\}/);
+  assert.match(source, /document\.getElementById\('readerPrev'\)\.hidden = true;/);
+  assert.match(source, /document\.getElementById\('readerNext'\)\.hidden = true;/);
+});
+
 test('TERRAIN-VIEW: compact semantic-depth rail keeps verbose ordering detail out of the visual pill', () => {
   const source = pageSource();
   assert.match(source, /\.level-order\{[^}]*overflow:hidden;[^}]*text-overflow:ellipsis;[^}]*white-space:nowrap;/s);
