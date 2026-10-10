@@ -908,7 +908,8 @@
         "tests/16-auto-discover-nodes.test.js",
         "tests/15-departments.test.js (integration test)",
         "tests/21-wip-drafts.test.js",
-        "tests/54-institutional-surfaces.test.js (real discovery exclusion integration)"
+        "tests/54-institutional-surfaces.test.js (real discovery exclusion integration)",
+        "lib/apply-content-intents.js"
       ],
       "testedBy": [
         "tests/16-auto-discover-nodes.test.js",
@@ -927,6 +928,10 @@
           "lib/check-key-alignment.js (scanWipHtmlDrafts consumes it, feeds report.wip.htmlDrafts)",
           "lib/build-status.js (buildContentIntegrityNotices reads slug/title)",
           "tests/21-wip-drafts.test.js"
+        ],
+        "title/meta parser gained a new consumer": [
+          "lib/apply-content-intents.js canonical registerNode promotion (must preserve discovery identity)",
+          "tests/18-apply-content-intents.test.js"
         ]
       }
     },
@@ -1125,18 +1130,21 @@
       }
     },
     "lib/apply-content-intents.js": {
-      "role": "applies config/content-intents.json's pending entries — mutates pages/*.html meta tags and data/arcs-v2.json's auto-managed sections, then runs the existing sanity-check pipeline",
-      "context": "Session 022: generalizes the existing vex:department/vex:workType meta-tag pattern (declare intent on the page, let a build step read it) to arc membership too. Rather than inventing a new order:\"auto\" mode in arcs-v2.json's schema, each arc gets one ordinary explicit section with a reserved label (AUTO_SECTION_LABEL) that this tool alone manages — lib/build-archives.js's getArcSlugs() and lib/build-index.js's buildArcMap() need zero changes, since a flat explicit slugs array is exactly what they already render. Re-declaring a slug's arcKey moves it (removes from every other arc's auto section first) rather than duplicating it — the 'repo's own self-awareness of its prior mappings' Victor asked for. Never touches a hand-curated (non-auto-label) section — arc curation stays a human act. validateIntent() catches two silent-failure modes found by actually running this against real content: an unregistered department (buildDepartmentMap groups by any string with no validation, but build-ecosystem-hub.js's renderDepartments() only iterates departmentMeta's registered keys, so unregistered content is present in index.json but rendered nowhere) and a nonexistent arcKey (applyArcPlacement would otherwise throw mid-loop, aborting every remaining intent in the same run). Also: upsertMetaTag() must prepend rather than insert-before-</head> for pages with no <head> at all — several real candidate pages (about-me.html, connect.html) are Squarespace paste-block fragments with no HTML document wrapper; found by running this tool against them, not anticipated in advance. After applying, shells out to lib/build-index.js (the real BLOCK gate for duplicate slugs) then calls lib/check-key-alignment.js's checkKeyAlignment() directly as the sanity-check report, same as every other content change in this repo is verified against.",
+      "role": "applies config/content-intents.json placement intents plus optional one-time canonical-node promotion, then runs the existing sanity-check pipeline",
+      "context": "Session 022: generalizes the existing vex:department/vex:workType meta-tag pattern (declare intent on the page, let a build step read it) to arc membership too. Rather than inventing a new order:\"auto\" mode in arcs-v2.json's schema, each arc gets one ordinary explicit section with a reserved label (AUTO_SECTION_LABEL) that this tool alone manages — lib/build-archives.js's getArcSlugs() and lib/build-index.js's buildArcMap() need zero changes, since a flat explicit slugs array is exactly what they already render. Re-declaring a slug's arcKey moves it (removes from every other arc's auto section first) rather than duplicating it — the 'repo's own self-awareness of its prior mappings' Victor asked for. Never touches a hand-curated (non-auto-label) section — arc curation stays a human act. validateIntent() catches two silent-failure modes found by actually running this against real content: an unregistered department (buildDepartmentMap groups by any string with no validation, but build-ecosystem-hub.js's renderDepartments() only iterates departmentMeta's registered keys, so unregistered content is present in index.json but rendered nowhere) and a nonexistent arcKey (applyArcPlacement would otherwise throw mid-loop, aborting every remaining intent in the same run). Also: upsertMetaTag() must prepend rather than insert-before-</head> for pages with no <head> at all — several real candidate pages (about-me.html, connect.html) are Squarespace paste-block fragments with no HTML document wrapper; found by running this tool against them, not anticipated in advance. After applying, shells out to lib/build-index.js (the real BLOCK gate for duplicate slugs) then calls lib/check-key-alignment.js's checkKeyAlignment() directly as the sanity-check report, same as every other content change in this repo is verified against. Session 2026-10 VexSite continuation: registerNode:true closes the observed gap where pages can already have accepted department/workType placement but remain forever 'uncurated' because auto-discovery is intentionally in-memory only. Registration reuses auto-discovery's title/meta parser, derives arcKeys from actual arcs-v2 sections after placement, preserves id:null/empty date unless explicitly supplied, and treats an already-applied intent as actionable only until its canonical node exists — preserving the original appliedAt rather than inventing a second intent/status ledger.",
       "reads": [
         "config/content-intents.json",
-        "pages/*.html (only the slugs named by pending intents)",
+        "pages/*.html (only the slugs named by actionable intents)",
         "data/arcs-v2.json",
-        "data/departments.json (validation only)"
+        "data/departments.json (validation + default department)",
+        "data/nodes.json (canonical registration check and append-only promotion input)",
+        "lib/auto-discover-nodes.js (shared title/meta parsing for canonical promotion)"
       ],
       "writes": [
-        "pages/*.html (meta tag upserts, only for slugs named by pending intents)",
+        "pages/*.html (meta tag upserts, only for pending placement intents)",
         "data/arcs-v2.json (auto-managed section only)",
-        "config/content-intents.json (marks applied intents, with appliedAt)"
+        "data/nodes.json (registerNode:true promotion only; existing canonical nodes are never overwritten)",
+        "config/content-intents.json (marks pending placement intents applied, with appliedAt; existing appliedAt is preserved for registration-only completion)"
       ],
       "loadedBy": [
         "manual run: node lib/apply-content-intents.js",
@@ -1147,14 +1155,21 @@
       ],
       "changeMap": {
         "content-intents.json schema changed (new field, field renamed)": [
-          "applyIntent() in this file",
-          "tests/18-apply-content-intents.test.js"
+          "applyIntent()/promotion helpers in this file",
+          "tests/18-apply-content-intents.test.js",
+          "docs/architecture/03-data.md"
         ],
         "vex:department / vex:workType meta tag convention changed": [
           "lib/auto-discover-nodes.js parsePageMeta() (must stay compatible with what this file writes)"
         ],
         "AUTO_SECTION_LABEL or arc-placement rule changed": [
           "lib/build-archives.js getArcSlugs() / lib/build-index.js buildArcMap() — both must keep treating an auto-managed section as an ordinary explicit section (no special-casing needed as long as the label doesn't collide with a real curated label)"
+        ],
+        "registerNode promotion rule changed": [
+          "lib/auto-discover-nodes.js parsePageTitle()/parsePageMeta() (promotion must preserve the same discovery identity)",
+          "data/nodes.json canonical node shape",
+          "lib/build-index.js buildSlugMap()/buildDepartmentMap()/buildArcMap()",
+          "tests/18-apply-content-intents.test.js"
         ]
       }
     },

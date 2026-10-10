@@ -255,12 +255,18 @@ should be treated as frozen, not as a file that stays in sync with future
 
 **Content-placement intents.** `config/content-intents.json` extends the
 `vex:department`/`vex:workType` meta-tag pattern to arc membership:
-`{ id, slug, department?, workType?, arcKey?, status }`. `lib/apply-content-intents.js`
-applies each `status:"pending"` entry — upserting the meta tags on the target
+`{ id, slug, department?, workType?, arcKey?, registerNode?, status }`. `lib/apply-content-intents.js`
+applies each `status:"pending"` placement — upserting the meta tags on the target
 page and, if `arcKey` is set, adding the slug to that arc's one auto-managed
 section in `arcs-v2.json` (removing it from any other arc's auto section
 first, so re-declaring a placement moves it rather than duplicating it) —
-then marks it applied. It never writes into a hand-curated section; arc
+then marks it applied. `registerNode:true` is a separate one-time completion effect:
+an already-applied intent remains actionable while its page is still auto-discovered,
+and promotion creates the canonical `data/nodes.json` entry from the same page title/meta
+parser auto-discovery already uses. Promotion keeps `id:null`, does not invent a date,
+derives `arcKeys` from the actual arc sections, and preserves the established
+department/workType; once the node exists, reruns are naturally no-ops and the
+intent's historical `appliedAt` is left unchanged. It never writes into a hand-curated section; arc
 curation (position within a narrative arc) stays a human act, same as
 department/workType's registry-default fallback already works for
 undeclared pages. After applying, it re-runs `lib/build-index.js` (the real
