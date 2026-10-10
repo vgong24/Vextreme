@@ -27,6 +27,13 @@
     CURRENT_ACCEPTED_CONVERGENCE: 'Current convergence'
   });
 
+  // GitHub Pages is controlled by Vextreme's site-wide service worker, which
+  // caches non-HTML requests by URL. Bind mutable VexSystem data to the exact
+  // Git blob identity so an older cached atlas cannot cross generations with
+  // the current renderer.
+  const VEXSYSTEM_ATLAS_BLOB = 'c7694c6c0b7f97c3fe95abfeb9cc5f28fc0b3b5b';
+  const VEXSYSTEM_ATLAS_URL = `../data/vexsystem/atlas.json?v=${VEXSYSTEM_ATLAS_BLOB}`;
+
   const dom = {
     understandingPlacement: document.getElementById('understanding-placement'),
     understandingKind: document.getElementById('understanding-kind'),
@@ -467,7 +474,7 @@
   dom.mapFit.addEventListener('click', fitCurrentQuestion);
   dom.mapReset.addEventListener('click', resetMapView);
 
-  fetch('../data/vexsystem/atlas.json', { cache: 'no-store' })
+  fetch(VEXSYSTEM_ATLAS_URL, { cache: 'no-store' })
     .then(response => {
       if (!response.ok) throw new Error(`atlas fetch failed: ${response.status}`);
       return response.json();
