@@ -34,8 +34,13 @@ function loadLoadFabWidgets() {
   const source = readSource();
   const match = source.match(/function loadFabWidgets\(cfg\) \{[\s\S]*?\n  \}/);
   assert.ok(match, 'loadFabWidgets() must exist in lib/vextreme.js');
-  const fn = new Function('loadScript', 'log', match[0] + '\nreturn loadFabWidgets;');
-  return fn;
+  return function (loadScript, log, mountFabLinks) {
+    const fn = new Function(
+      'loadScript', 'log', 'mountFabLinks',
+      match[0] + '\nreturn loadFabWidgets;'
+    );
+    return fn(loadScript, log, mountFabLinks || function () {});
+  };
 }
 
 function fakeLoadScript(calls) {
@@ -64,45 +69,52 @@ test('FAB-AUTOLOAD: loadFabWidgets loads the base FAB set in stable order when n
   ]);
 });
 
-test('FAB-AUTOLOAD: configured link items load fab-links.js immediately after the shared Spiral owner', async () => {
+test('FAB-AUTOLOAD: configured link items mount after the shared Spiral owner without adding another script', async () => {
   const calls = [];
-  const loadFabWidgets = loadLoadFabWidgets()(fakeLoadScript(calls), function () {});
-  try {
-    await loadFabWidgets({
-      fab: true,
-      fabLinks: [{ id:'support', href:'vex-support.html', label:'Support' }],
-      baseUrl: 'https://cdn.example',
-      cacheVer: '?v=1'
-    });
-    assert.deepEqual(calls, [
-      'https://cdn.example/widgets/vex-fab.js?v=1',
-      'https://cdn.example/widgets/fab-links.js?v=1',
-      'https://cdn.example/widgets/fab-lang.js?v=1',
-      'https://cdn.example/widgets/fab-theme.js?v=1',
-      'https://cdn.example/widgets/fab-map.js?v=1',
-    ]);
-    assert.deepEqual(global.VEX_FAB_LINKS, [{ id:'support', href:'vex-support.html', label:'Support' }]);
-  } finally {
-    delete global.VEX_FAB_LINKS;
-  }
+  const mounted = [];
+  const loadFabWidgets = loadLoadFabWidgets()(
+    fakeLoadScript(calls),
+    function () {},
+    function (items) { mounted.push(items); }
+  );
+  const links = [{ id:'support', href:'vex-support.html', label:'Support' }];
+  await loadFabWidgets({
+    fab: true,
+    fabLinks: links,
+    baseUrl: 'https://cdn.example',
+    cacheVer: '?v=1'
+  });
+  assert.deepEqual(calls, [
+    'https://cdn.example/widgets/vex-fab.js?v=1',
+    'https://cdn.example/widgets/fab-lang.js?v=1',
+    'https://cdn.example/widgets/fab-theme.js?v=1',
+    'https://cdn.example/widgets/fab-map.js?v=1',
+  ]);
+  assert.deepEqual(mounted, [links]);
 });
 
-test('FAB-AUTOLOAD: fabWidgets.links:false preserves config without loading the generic link child', async () => {
+test('FAB-AUTOLOAD: fabWidgets.links:false suppresses configured link mounting while preserving the base FAB set', async () => {
   const calls = [];
-  const loadFabWidgets = loadLoadFabWidgets()(fakeLoadScript(calls), function () {});
-  try {
-    await loadFabWidgets({
-      fab: true,
-      fabWidgets: { links:false },
-      fabLinks: [{ id:'support', href:'vex-support.html', label:'Support' }],
-      baseUrl: 'https://cdn.example',
-      cacheVer: ''
-    });
-    assert.equal(calls.some(src => src.includes('fab-links.js')), false);
-    assert.deepEqual(global.VEX_FAB_LINKS, [{ id:'support', href:'vex-support.html', label:'Support' }]);
-  } finally {
-    delete global.VEX_FAB_LINKS;
-  }
+  const mounted = [];
+  const loadFabWidgets = loadLoadFabWidgets()(
+    fakeLoadScript(calls),
+    function () {},
+    function (items) { mounted.push(items); }
+  );
+  await loadFabWidgets({
+    fab: true,
+    fabWidgets: { links:false },
+    fabLinks: [{ id:'support', href:'vex-support.html', label:'Support' }],
+    baseUrl: 'https://cdn.example',
+    cacheVer: ''
+  });
+  assert.deepEqual(mounted, []);
+  assert.deepEqual(calls, [
+    'https://cdn.example/widgets/vex-fab.js',
+    'https://cdn.example/widgets/fab-lang.js',
+    'https://cdn.example/widgets/fab-theme.js',
+    'https://cdn.example/widgets/fab-map.js',
+  ]);
 });
 
 test('FAB-AUTOLOAD: fabWidgets.theme:false skips fab-theme.js but keeps vex-fab.js/fab-lang.js/fab-map.js', async () => {
