@@ -164,3 +164,54 @@ test('VEXSYSTEM PAGE: screenshot evidence uses the same strict runtime/network c
   assert.match(browserProof, /assertPageSignals\(page, 'screenshot ' \+ scenario\)/);
   assert.match(browserProof, /signals,/);
 });
+
+test('VEXSYSTEM PAGE: composed understanding precedes optional exploration controls', () => {
+  const understanding = html.indexOf('id="understanding-title"');
+  const controls = html.indexOf('id="lens-controls"');
+  assert.ok(understanding >= 0);
+  assert.ok(controls > understanding);
+  assert.match(html, /data-vexsystem-component="composed-understanding"/);
+  assert.match(app, /projectionApi\.composeUnderstanding\(atlas, state\.selectedSubjectRef\)/);
+});
+
+test('VEXSYSTEM PAGE: human-facing focus and context labels do not require lens or numeric-level jargon', () => {
+  assert.match(html, />Focus on</);
+  assert.match(html, />Context</);
+  assert.match(app, /BLUEPRINT: 'Structure'/);
+  assert.match(app, /PROCESS: 'Building'/);
+  assert.match(app, /CONSEQUENCE: 'Impact'/);
+  assert.match(app, /PLATFORM: 'Platforms'/);
+  assert.match(app, /FORMATION: 'History'/);
+  assert.match(app, /dom\.levelOutput\.textContent = level\.name/);
+  assert.doesNotMatch(html, />Semantic depth</);
+});
+
+test('VEXSYSTEM PAGE: mobile composition keeps meaning primary before the graph', () => {
+  assert.match(css, /\.vs-understanding-heading h1\{font-size:31px/);
+  assert.match(css, /\.vs-route-grid\{grid-template-columns:1fr/);
+  assert.match(css, /\.vs-map-stage,#vexsystem-map\{min-height:390px\}/);
+  assert.ok(html.indexOf('id="understanding-purpose"') < html.indexOf('id="vexsystem-map"'));
+});
+
+
+
+test('VEXSYSTEM PAGE: browser proof requires source-derived meaning before optional exploration', () => {
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_COMPOSED_UNDERSTANDING_MISSING/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_GRAPH_PRECEDES_UNDERSTANDING/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_WHOLE_ERASED_BY_FOCUS/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_MOBILE_FIRST_FOLD_MEANING_MISSING/);
+  assert.match(browserProof, /understandingTitle/);
+  assert.match(browserProof, /currentAnswerTop/);
+  assert.match(browserProof, /purposeBottom/);
+});
+
+
+test('VEXSYSTEM PAGE: Formation screenshot visibly captures the optional deepening surface', () => {
+  assert.match(browserProof, /document\.querySelector\('\.vs-explore'\)/);
+  assert.match(browserProof, /window\.scrollTo\(0, top\)/);
+  assert.match(browserProof, /Formation deepening viewport/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_FORMATION_CAPTURE_NOT_DEEPENED/);
+  assert.match(browserProof, /scrollY: window\.scrollY/);
+});
+
+// [VXG RealForever]
