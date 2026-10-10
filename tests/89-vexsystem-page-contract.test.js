@@ -143,3 +143,24 @@ test('VEXSYSTEM PAGE: product activation is proven with trusted pointer input wh
   assert.match(browserProof, /VEXSYSTEM_BROWSER_POINTER_ACTIVATION_MISSING/);
   assert.match(browserProof, /VEXSYSTEM_BROWSER_NATIVE_CLICK_SEMANTIC_SELECTION_MISSING/);
 });
+
+
+test('VEXSYSTEM PAGE: browser proof retains exact network failure identity and only bounds known browser/proof noise', () => {
+  assert.match(browserProof, /Network\.requestWillBeSent/);
+  assert.match(browserProof, /Network\.responseReceived/);
+  assert.match(browserProof, /Network\.loadingFailed/);
+  assert.match(browserProof, /responseErrors/);
+  assert.match(browserProof, /loadingFailures/);
+  assert.match(browserProof, /urlPathname\(entry\.url\) === '\/favicon\.ico'/);
+  assert.match(browserProof, /fonts\.googleapis\.com/);
+  assert.match(browserProof, /fonts\.gstatic\.com/);
+  assert.match(browserProof, /blockingResponseErrors/);
+  assert.match(browserProof, /blockingLoadingFailures/);
+  assert.match(browserProof, /blockingConsoleErrors/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_PAGE_ERRORS/);
+});
+
+test('VEXSYSTEM PAGE: screenshot evidence uses the same strict runtime/network classification as interactive proof', () => {
+  assert.match(browserProof, /assertPageSignals\(page, 'screenshot ' \+ scenario\)/);
+  assert.match(browserProof, /signals,/);
+});
