@@ -21,7 +21,7 @@ const { spawn } = require('node:child_process');
 
 const ROOT = path.resolve(__dirname, '..', '..');
 const ENTRY = '/vexsystem/index.html';
-const TERRAIN_ENTRY = '/pages/terrain-map.html';
+const TERRAIN_ENTRY = '/Vextreme/pages/terrain-map.html';
 const BROWSER_CANDIDATES = [
   '/Applications/Brave Browser.app/Contents/MacOS/Brave Browser',
   '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
@@ -676,7 +676,7 @@ async function runTerrainEntryRuntime(origin, cdp) {
   await waitFor(
     cdp,
     desktop.sessionId,
-    "location.pathname === '/vexsystem/' || location.pathname === '/vexsystem/index.html'",
+    "location.pathname === '/Vextreme/vexsystem/' || location.pathname === '/Vextreme/vexsystem/index.html'",
     'Terrain top-level VexSystem handoff'
   );
   await ready(cdp, desktop);
