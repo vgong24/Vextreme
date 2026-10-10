@@ -250,4 +250,13 @@ test('VEXSYSTEM PAGE: mobile Terrain initialization admits one superseded docume
   assert.match(browserProof, /Terrain mobile arrival runtime/);
 });
 
+
+test('VEXSYSTEM PAGE: Terrain screenshots admit one initial document abort only after canonical arrival is proven', () => {
+  assert.match(browserProof, /terrainScenario\s*\?\s*\{/);
+  assert.match(browserProof, /snapshot\.entryPresent === true/);
+  assert.match(browserProof, /snapshot\.pathname === '\/Vextreme\/pages\/terrain-map\.html'/);
+  assert.match(browserProof, /'screenshot ' \+ scenario/);
+  assert.doesNotMatch(browserProof, /allowSingleSupersededDocumentAbort:\s*true/);
+});
+
 // [VXG RealForever]

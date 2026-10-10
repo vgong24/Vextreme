@@ -1201,7 +1201,17 @@ async function screenshot(origin, cdp, scenario) {
   }
 
   await new Promise(resolve => setTimeout(resolve, 100));
-  const signals = assertPageSignals(page, 'screenshot ' + scenario);
+  const signals = assertPageSignals(
+    page,
+    'screenshot ' + scenario,
+    terrainScenario
+      ? {
+          allowSingleSupersededDocumentAbort:
+            snapshot.entryPresent === true &&
+            snapshot.pathname === '/Vextreme/pages/terrain-map.html'
+        }
+      : undefined
+  );
 
   return {
     state: 'PASS',
