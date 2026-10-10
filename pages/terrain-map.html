@@ -54,6 +54,29 @@
   }
 
   .topbar{ display:flex; align-items:center; gap:20px; flex-wrap:wrap; padding:14px 20px; border-bottom:1px solid var(--line); background:var(--panel); flex:none; z-index:5; }
+  .terrain-inspect-toggle{
+    display:none; align-items:center; justify-content:center; flex:none;
+    border:1px solid var(--line-strong); border-radius:8px; background:var(--panel); color:var(--ink);
+    padding:7px 10px; font:600 11px/1 var(--sans); cursor:pointer;
+  }
+  .terrain-inspect-toggle:hover, .terrain-inspect-toggle:focus-visible{ border-color:var(--accent); color:var(--accent); outline:none; }
+  .terrain-content-quiet .topbar{ gap:10px; padding:8px 12px; flex-wrap:nowrap; }
+  .terrain-content-quiet .brand{ min-width:0; margin-right:0; order:0; }
+  .terrain-content-quiet .brand .eyebrow,
+  .terrain-content-quiet .brand .sub,
+  .terrain-content-quiet .lens,
+  .terrain-content-quiet .legend{ display:none; }
+  .terrain-content-quiet .brand h1{ font-size:15px; white-space:nowrap; }
+  .terrain-content-quiet .search{ order:1; margin-left:auto; width:clamp(150px,28vw,260px); }
+  .terrain-content-quiet .search-meta{ display:none; }
+  .terrain-content-quiet .terrain-inspect-toggle{ display:inline-flex; order:2; }
+  .terrain-content-quiet.terrain-inspect-open .topbar{ flex-wrap:wrap; }
+  .terrain-content-quiet.terrain-inspect-open .lens,
+  .terrain-content-quiet.terrain-inspect-open .legend{ display:flex; }
+  .terrain-content-quiet.terrain-inspect-open .search-meta{ display:flex; }
+  .terrain-content-quiet.terrain-inspect-open .lens{ order:3; }
+  .terrain-content-quiet.terrain-inspect-open .legend{ order:4; width:100%; }
+  .terrain-content-quiet.terrain-reader-quiet .topbar{ display:none; }
   .brand{ display:flex; flex-direction:column; gap:2px; margin-right:auto; min-width:220px; }
   .brand .eyebrow{ margin:0; font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); }
   .brand h1{ margin:0; font-size:18px; font-weight:650; letter-spacing:-.01em; }
@@ -171,8 +194,22 @@
   .evo-context-row{ display:flex; gap:16px; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; margin-top:6px; }
   .evo-context h2{ margin:0; font:500 clamp(20px,3vw,30px)/1.1 var(--sans); letter-spacing:-.02em; }
   .evo-context-meta{ font:10px/1.5 var(--mono); color:var(--ink-muted); }
-  .evo-group-home{ display:inline-flex; align-items:center; gap:5px; margin-left:10px; border:0; background:none; padding:0; color:var(--accent); text-decoration:none; font:600 10px/1 var(--mono); cursor:pointer; }
-  .evo-group-home:hover, .evo-group-home:focus-visible{ text-decoration:underline; }
+  .evo-group-depth-card{
+    position:relative; z-index:1; min-width:0; min-height:238px; display:flex; flex-direction:column; align-items:flex-start;
+    border:1px solid color-mix(in srgb,var(--accent) 62%,var(--line-strong)); border-radius:14px; padding:18px;
+    background:linear-gradient(145deg,color-mix(in srgb,var(--panel) 92%,var(--accent-soft)),var(--panel));
+    color:var(--ink); text-align:left; cursor:pointer; overflow:visible;
+    box-shadow:
+      6px 6px 0 -1px var(--panel), 6px 6px 0 0 var(--line-strong),
+      12px 12px 0 -1px var(--panel), 12px 12px 0 0 var(--line);
+  }
+  .evo-group-depth-card:hover, .evo-group-depth-card:focus-visible{
+    border-color:var(--accent); outline:none; transform:translateY(-1px);
+  }
+  .evo-group-depth-kicker{ color:var(--accent); font:700 10px/1.2 var(--mono); letter-spacing:.14em; text-transform:uppercase; }
+  .evo-group-depth-title{ margin:auto 0 10px; font:650 20px/1.15 var(--sans); letter-spacing:-.02em; }
+  .evo-group-depth-meta{ color:var(--ink-muted); font:10px/1.45 var(--mono); }
+  .evo-group-depth-action{ margin-top:12px; color:var(--accent); font:700 10px/1.2 var(--mono); text-transform:uppercase; letter-spacing:.08em; }
   .evo-rail{ display:flex; gap:7px; overflow:auto; padding:10px 1px 2px; }
   .evo-rail-btn{
     flex:none; border:1px solid var(--line); background:var(--panel); color:var(--ink-muted);
@@ -265,6 +302,10 @@
     .entry-grid{ grid-template-columns:1fr; gap:10px; }
     .entry-card{ min-height:126px; padding:16px; }
     .evo-grid{ grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:10px; }
+    .evo-group-depth-card{ min-height:190px; margin:0 10px 10px 0; }
+    .terrain-content-quiet .topbar{ gap:7px; padding:7px 10px; }
+    .terrain-content-quiet .search{ width:min(52vw,220px); }
+    .terrain-content-quiet.terrain-inspect-open .search{ width:100%; order:5; }
     .reader-toolbar{ padding:7px 10px; }
     .reader-standalone{ display:none; }
     .reader-stage{ padding:8px 38px 10px; }
@@ -412,6 +453,7 @@
       <h1>Terrain Map</h1>
       <div class="sub" id="subline">Loading…</div>
     </div>
+    <button class="terrain-inspect-toggle" id="terrainInspectToggle" type="button" aria-expanded="false">Inspect</button>
     <div class="lens">
       <span class="lens-label">View</span>
       <div class="lens-toggle" role="group" aria-label="Code or content" id="worldBar">
@@ -617,6 +659,9 @@
         "Content pages render as preview cards using real screenshot evidence when present and a deliberate fallback cover when absent.",
         "The legacy dot-node depth is not used inside Evolution A; page depth is an embedded same-origin reader inside Terrain.",
         "Scrollable content has input priority over layer transitions; a boundary only arms a transition and a distinct follow-up wheel gesture confirms it.",
+        "At collection and embedded-reader boundaries, the confirming wheel gesture is always outward; entering a page remains an explicit click, tap, or keyboard action.",
+        "A live collection parent renders as a first-position depth tile while remaining outside ordinary membership and Prev/Next sequencing.",
+        "Content/Evolution A quiets engineering diagnostics by default and restores them through an explicit Inspect control; embedded reading hides the Terrain topbar.",
         "Renderer choice is presentation state and is directly addressable by URL; semantic Journey state is unchanged."
       ],
       "levels": {
@@ -767,6 +812,8 @@
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]; }); }
   function escAttr(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]; }); }
 
+  var appRoot = document.querySelector('.app');
+  var terrainInspectToggle = document.getElementById('terrainInspectToggle');
   var svg = document.getElementById('svg');
   var world = document.getElementById('world');
   var mapWrap = document.getElementById('mapWrap');
@@ -895,11 +942,24 @@
     };
   }
 
+  function syncTerrainChrome() {
+    var quiet = currentWorld === 'content' && currentProfile === 'evolution-v1';
+    var reading = quiet && evolutionReader && !evolutionReader.hidden;
+    appRoot.classList.toggle('terrain-content-quiet', quiet);
+    appRoot.classList.toggle('terrain-reader-quiet', reading);
+    terrainInspectToggle.hidden = !quiet || reading;
+    if (!quiet || reading) {
+      appRoot.classList.remove('terrain-inspect-open');
+      terrainInspectToggle.setAttribute('aria-expanded', 'false');
+    }
+  }
+
   function syncProfileControl() {
     var wrap = document.getElementById('contentProfileWrap');
     var select = document.getElementById('contentProfile');
     wrap.hidden = currentWorld !== 'content';
     select.value = currentProfile;
+    syncTerrainChrome();
   }
 
   function syncPresentationUrl() {
@@ -1073,6 +1133,7 @@
     svg.style.visibility = 'hidden';
     mapWrap.classList.remove('evolution-arrival-active');
     mapWrap.classList.add('evolution-a-active', 'evolution-reader-active');
+    syncTerrainChrome();
     updateEntryReaderChrome(slug);
     evolutionReaderFrame.title = 'Reading ' + entry.label + ' inside Terrain';
     evolutionReaderFrame.src = entry.path;
@@ -1186,6 +1247,7 @@
     evolutionReader.hidden = false;
     svg.style.visibility = 'hidden';
     mapWrap.classList.add('evolution-a-active', 'evolution-reader-active');
+    syncTerrainChrome();
     updateGroupHomeReaderChrome(stage);
     evolutionReaderFrame.title = 'Reading ' + (stage.parent.title || stage.name) + ' inside Terrain';
     evolutionReaderFrame.src = stage.parent.url;
@@ -1208,6 +1270,7 @@
     evolutionReader.hidden = false;
     svg.style.visibility = 'hidden';
     mapWrap.classList.add('evolution-a-active', 'evolution-reader-active');
+    syncTerrainChrome();
     updateReaderChrome(node);
     evolutionReaderFrame.title = 'Reading ' + (node.title || node.slug) + ' inside Terrain';
     evolutionReaderFrame.src = node.liveUrl;
@@ -1223,6 +1286,7 @@
     evolutionReader.hidden = true;
     evolutionReaderFrame.src = 'about:blank';
     mapWrap.classList.remove('evolution-reader-active');
+    syncTerrainChrome();
     if (options.renderGroup !== false && isEvolutionAGroup()) {
       evolutionLayer.hidden = false;
       svg.style.visibility = 'hidden';
@@ -1243,35 +1307,20 @@
     }
 
     ev.preventDefault();
-    if (direction < 0) {
-      if (boundaryGestureReady('collection-exit', -1)) {
-        hoveredEvolutionNodeId = null;
-        enterLevel(1, {});
-        syncPresentationUrl();
-        commitSemanticState({ label:'GROUPS', relationship:'returned to', reason:'Evolution A boundary scroll' });
-      } else {
-        showGestureHint('Top reached · pause, then scroll up again to return to groups');
-      }
-      return;
-    }
-
-    var card = ev.target && ev.target.closest ? ev.target.closest('.evo-card') : null;
-    var candidateId = card ? card.getAttribute('data-node-id') : hoveredEvolutionNodeId;
-    var node = candidateId && byId[candidateId];
-    if (!node || !node.live) {
-      resetBoundaryGesture();
-      showGestureHint('End reached · hover or focus a live page card, then scroll down again to read it');
-      return;
-    }
-    if (boundaryGestureReady('collection-enter:' + node.id, 1)) {
-      openEvolutionReader(node.id);
+    var edgeLabel = direction < 0 ? 'Top' : 'End';
+    var directionLabel = direction < 0 ? 'up' : 'down';
+    if (boundaryGestureReady('collection-outward', direction)) {
+      hoveredEvolutionNodeId = null;
+      enterLevel(1, {});
+      syncPresentationUrl();
+      commitSemanticState({ label:'GROUPS', relationship:'returned to', reason:'Evolution A outward boundary scroll' });
     } else {
-      showGestureHint('End reached · pause, then scroll down again to read “' + (node.title || node.slug) + '”');
+      showGestureHint(edgeLabel + ' reached · pause, then scroll ' + directionLabel + ' again to return to groups');
     }
   }
 
   function handleEvolutionReaderWheel(ev) {
-    if (activeEntrySlug || !activeReaderId) return;
+    if (activeEntrySlug || (!activeReaderId && !activeGroupHomeKey)) return;
     if (!ev.deltaY || Math.abs(ev.deltaY) < Math.abs(ev.deltaX)) return;
     var direction = ev.deltaY > 0 ? 1 : -1;
     var doc = evolutionReaderFrame.contentDocument;
@@ -1284,28 +1333,13 @@
     }
 
     ev.preventDefault();
-    if (direction < 0) {
-      if (boundaryGestureReady('reader-back:' + activeReaderId, -1)) {
-        closeEvolutionReader();
-      } else {
-        showGestureHint('Top reached · pause, then scroll up again to return to the collection');
-      }
-      return;
-    }
-
-    var next = readerNeighbor(1);
-    if (!next) {
-      if (boundaryGestureReady('reader-end:' + activeReaderId, 1)) {
-        closeEvolutionReader();
-      } else {
-        showGestureHint('End of collection · pause, then scroll down again to return');
-      }
-      return;
-    }
-    if (boundaryGestureReady('reader-next:' + activeReaderId, 1)) {
-      openEvolutionReader(next.id);
+    var edgeLabel = direction < 0 ? 'Top' : 'End';
+    var directionLabel = direction < 0 ? 'up' : 'down';
+    var readerKey = activeReaderId || ('group:' + activeGroupHomeKey);
+    if (boundaryGestureReady('reader-outward:' + readerKey, direction)) {
+      closeEvolutionReader();
     } else {
-      showGestureHint('Page end reached · pause, then scroll down again for “' + (next.title || next.slug) + '”');
+      showGestureHint(edgeLabel + ' reached · pause, then scroll ' + directionLabel + ' again to return to the collection');
     }
   }
 
@@ -1336,6 +1370,7 @@
     hideGestureHint();
     svg.style.visibility = '';
     mapWrap.classList.remove('evolution-a-active', 'evolution-reader-active', 'evolution-arrival-active');
+    syncTerrainChrome();
   }
 
   function evolutionPreviewHtml(node) {
@@ -1353,6 +1388,7 @@
     svg.style.visibility = 'hidden';
     mapWrap.classList.add('evolution-a-active');
     mapWrap.classList.remove('evolution-reader-active', 'evolution-arrival-active');
+    syncTerrainChrome();
     activeReaderId = null;
     activeGroupHomeKey = null;
     evolutionReader.hidden = true;
@@ -1363,14 +1399,22 @@
     var summary = stageSummary(stage);
     var members = stageMembers(stage);
     var kindLabel = summary.groupKind.replace(/-/g, ' ');
-    var groupHome = stage.parent && stage.parent.live && stage.parent.url
-      ? '<button class="evo-group-home" type="button" data-evo-group-home="' + escAttr(stage.key) + '">Group home</button>'
-      : (stage.parent ? '<span class="evo-context-meta">group home pending</span>' : '');
+    var parentPending = stage.parent && !(stage.parent.live && stage.parent.url)
+      ? '<span class="evo-context-meta">group home pending</span>'
+      : '';
+    var groupHomeCard = stage.parent && stage.parent.live && stage.parent.url
+      ? '<button class="evo-group-depth-card" type="button" data-evo-group-home="' + escAttr(stage.key) + '" aria-label="Open ' + escAttr(stage.parent.title || stage.name) + ' group home">'
+        + '<span class="evo-group-depth-kicker">Group home</span>'
+        + '<span class="evo-group-depth-title">' + esc(stage.parent.title || stage.name) + '</span>'
+        + '<span class="evo-group-depth-meta">' + summary.membershipCount + ' members · parent surface</span>'
+        + '<span class="evo-group-depth-action">Enter the group →</span>'
+        + '</button>'
+      : '';
     var rail = STAGES.map(function (candidate, index) {
       return '<button class="evo-rail-btn" type="button" data-evo-stage-index="' + index + '" aria-current="' + String(index === levelCtx.stageIdx) + '">' + esc(candidate.name) + '</button>';
     }).join('');
 
-    var cards = members.map(function (node) {
+    var memberCards = members.map(function (node) {
       var capability = node.capability || {};
       var description = capability.metaDescription || 'Repository-native preserved page.';
       var languages = Array.isArray(capability.evidenceLanguages) ? capability.evidenceLanguages : [];
@@ -1393,12 +1437,13 @@
         + '<div class="evo-url">' + esc(node.liveUrl || ('pages/' + node.slug + '.html')) + '</div>'
         + '</div></article>';
     }).join('');
+    var cards = groupHomeCard + memberCards;
 
     evolutionLayer.innerHTML = '<div class="evo-shell">'
       + '<section class="evo-context">'
       + '<div class="evo-kicker">Evolution A · ' + esc(kindLabel) + '</div>'
       + '<div class="evo-context-row"><div><h2>' + esc(stage.name) + '</h2><div class="evo-context-meta">' + summary.membershipCount + ' members · ' + summary.primaryCount + ' primary placements · same Terrain state, alternate renderer</div></div>'
-      + '<div class="evo-context-meta">Live remains the accepted reference' + groupHome + '</div></div>'
+      + '<div class="evo-context-meta">Live remains the accepted reference' + parentPending + '</div></div>'
       + '<div class="evo-rail" aria-label="Content groups">' + rail + '</div>'
       + '</section>'
       + (cards ? '<section class="evo-grid" aria-label="' + escAttr(stage.name) + ' pages">' + cards + '</section>' : '<div class="evo-empty">No destinations are currently projected in this group.</div>')
@@ -1760,6 +1805,7 @@
     evolutionLayer.hidden = false;
     mapWrap.classList.add('evolution-a-active', 'evolution-arrival-active');
     mapWrap.classList.remove('evolution-reader-active');
+    syncTerrainChrome();
 
     evolutionLayer.innerHTML = '<section class="entry-arrival" data-terrain-entry="arrival">'
       + '<div class="entry-shell">'
@@ -2501,6 +2547,10 @@
   }
 
   function wireControls() {
+    terrainInspectToggle.addEventListener('click', function () {
+      var open = appRoot.classList.toggle('terrain-inspect-open');
+      terrainInspectToggle.setAttribute('aria-expanded', String(open));
+    });
     wireDepthRailOutwardGesture();
     evolutionLayer.addEventListener('wheel', handleEvolutionShelfWheel, { passive:false });
     evolutionLayer.addEventListener('mousedown', function (ev) { ev.stopPropagation(); });
