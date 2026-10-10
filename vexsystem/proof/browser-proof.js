@@ -194,3 +194,322 @@ class PipeCdp {
     this.listeners.get(key).push(listener);
   }
 }
+
+
+async function launchBrowser() {
+  const executable = browserExecutable();
+  const userDataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'vexsystem-cdp-'));
+  const args = [
+    '--headless=new',
+    '--disable-gpu',
+    '--disable-background-networking',
+    '--disable-component-update',
+    '--disable-default-apps',
+    '--disable-extensions',
+    '--disable-features=Translate,MediaRouter',
+    '--disable-sync',
+    '--metrics-recording-only',
+    '--mute-audio',
+    '--no-first-run',
+    '--no-default-browser-check',
+    '--remote-debugging-pipe',
+    '--user-data-dir=' + userDataDir,
+    'about:blank'
+  ];
+
+  const browser = spawn(executable, args, {
+    stdio: ['ignore', 'ignore', 'pipe', 'pipe', 'pipe'],
+    shell: false
+  });
+
+  if (!browser.stdio[3] || !browser.stdio[4]) {
+    browser.kill('SIGKILL');
+    fail('VEXSYSTEM_CDP_PIPE_UNAVAILABLE', 'Browser did not expose CDP pipe descriptors.');
+  }
+
+  const stderr = [];
+  browser.stderr.on('data', chunkValue => {
+    if (stderr.join('').length < 12000) stderr.push(chunkValue.toString('utf8'));
+  });
+
+  const cdp = new PipeCdp(browser, browser.stdio[4], browser.stdio[3]);
+  try {
+    await cdp.send('Browser.getVersion', {}, null, 15000);
+  } catch (error) {
+    browser.kill('SIGKILL');
+    fail('VEXSYSTEM_CDP_START_FAILED', error.message, { stderr: stderr.join('').slice(-4000) });
+  }
+
+  return {
+    executable,
+    browser,
+    cdp,
+    userDataDir,
+    async close() {
+      try { await cdp.send('Browser.close', {}, null, 5000); } catch (_) {}
+      if (!browser.killed) browser.kill('SIGTERM');
+      await new Promise(resolve => setTimeout(resolve, 80));
+      fs.rmSync(userDataDir, { recursive: true, force: true });
+    }
+  };
+}
+
+async function createPage(cdp, url, viewport) {
+  const created = await cdp.send('Target.createTarget', { url: 'about:blank' });
+  const attached = await cdp.send('Target.attachToTarget', {
+    targetId: created.targetId,
+    flatten: true
+  });
+  const sessionId = attached.sessionId;
+
+  const errors = [];
+  const consoleErrors = [];
+
+  cdp.on('Runtime.exceptionThrown', params => {
+    errors.push(params.exceptionDetails && params.exceptionDetails.text
+      ? params.exceptionDetails.text
+      : 'Runtime exception');
+  }, sessionId);
+
+  cdp.on('Log.entryAdded', params => {
+    const entry = params.entry || {};
+    if (entry.level === 'error') consoleErrors.push(entry.text || 'Log error');
+  }, sessionId);
+
+  await Promise.all([
+    cdp.send('Page.enable', {}, sessionId),
+    cdp.send('Runtime.enable', {}, sessionId),
+    cdp.send('Log.enable', {}, sessionId),
+    cdp.send('Network.enable', {}, sessionId)
+  ]);
+
+  await cdp.send('Emulation.setDeviceMetricsOverride', {
+    width: viewport.width,
+    height: viewport.height,
+    deviceScaleFactor: 1,
+    mobile: viewport.mobile
+  }, sessionId);
+
+  await cdp.send('Page.navigate', { url }, sessionId);
+  return { sessionId, errors, consoleErrors };
+}
+
+async function evaluate(cdp, sessionId, expression, awaitPromise) {
+  const result = await cdp.send('Runtime.evaluate', {
+    expression,
+    awaitPromise: awaitPromise !== false,
+    returnByValue: true,
+    userGesture: true
+  }, sessionId);
+
+  if (result.exceptionDetails) {
+    fail(
+      'VEXSYSTEM_BROWSER_EVALUATION_EXCEPTION',
+      result.exceptionDetails.text || 'Browser evaluation failed.',
+      result.exceptionDetails
+    );
+  }
+
+  return result.result ? result.result.value : undefined;
+}
+
+async function waitFor(cdp, sessionId, expression, label, timeoutMs) {
+  const started = Date.now();
+  const timeout = timeoutMs || 12000;
+  while (Date.now() - started < timeout) {
+    const value = await evaluate(cdp, sessionId, 'Boolean(' + expression + ')');
+    if (value) return;
+    await new Promise(resolve => setTimeout(resolve, 90));
+  }
+  fail('VEXSYSTEM_BROWSER_WAIT_TIMEOUT', 'Timed out waiting for ' + label);
+}
+
+async function ready(cdp, page) {
+  await waitFor(
+    cdp,
+    page.sessionId,
+    "document.readyState === 'complete' && document.querySelectorAll('.vs-text-node').length > 0 && document.querySelector('#map-status') && !document.querySelector('#map-status').textContent.includes('Loading')",
+    'VexSystem explorer readiness'
+  );
+}
+
+async function runtimeSnapshot(cdp, page) {
+  const expression = "(() => {" +
+    "const url = new URL(location.href);" +
+    "const activeLens = document.querySelector('[data-lens][aria-pressed=\"true\"]');" +
+    "return {" +
+      "title: document.title," +
+      "selected: url.searchParams.get('subject')," +
+      "lens: url.searchParams.get('lens')," +
+      "level: url.searchParams.get('level')," +
+      "activeLens: activeLens && activeLens.dataset.lens," +
+      "inspectorTitle: document.querySelector('#inspector-heading')?.textContent || null," +
+      "svgNodes: document.querySelectorAll('.vs-svg-node').length," +
+      "textNodes: document.querySelectorAll('.vs-text-node').length," +
+      "textViewPresent: Boolean(document.querySelector('#text-node-list'))," +
+      "bodyWidth: document.documentElement.scrollWidth," +
+      "viewportWidth: document.documentElement.clientWidth," +
+      "horizontalOverflow: Math.max(0, document.documentElement.scrollWidth - document.documentElement.clientWidth)," +
+      "privateSdkCoordinateLeaked: /github\\.(?:issue|pull)\\.vextreme-sdk\\.\\d+/i.test(document.documentElement.innerHTML)," +
+      "failureText: document.querySelector('#view-meta')?.textContent || ''" +
+    "};" +
+  "})()";
+  return evaluate(cdp, page.sessionId, expression);
+}
+
+function assertRuntimeSnapshot(snapshot, label) {
+  if (!snapshot.title || !snapshot.title.includes('Learn the VexSystem')) {
+    fail('VEXSYSTEM_BROWSER_TITLE', label, snapshot);
+  }
+  if (!snapshot.selected) fail('VEXSYSTEM_BROWSER_SELECTED_SUBJECT_MISSING', label, snapshot);
+  if (!snapshot.activeLens) fail('VEXSYSTEM_BROWSER_ACTIVE_LENS_MISSING', label, snapshot);
+  if (snapshot.svgNodes < 1 || snapshot.textNodes < 1 || !snapshot.textViewPresent) {
+    fail('VEXSYSTEM_BROWSER_EQUIVALENT_VIEWS_MISSING', label, snapshot);
+  }
+  if (snapshot.horizontalOverflow !== 0) {
+    fail('VEXSYSTEM_BROWSER_HORIZONTAL_OVERFLOW', label, snapshot);
+  }
+  if (snapshot.privateSdkCoordinateLeaked) {
+    fail('VEXSYSTEM_BROWSER_PRIVATE_COORDINATE_LEAK', label, snapshot);
+  }
+}
+
+async function runRuntime(origin, cdp) {
+  const desktop = await createPage(cdp, origin + ENTRY, {
+    width: 1440,
+    height: 900,
+    mobile: false
+  });
+  await ready(cdp, desktop);
+  const initial = await runtimeSnapshot(cdp, desktop);
+  assertRuntimeSnapshot(initial, 'desktop initial');
+  const initialSubject = initial.selected;
+
+  await evaluate(
+    cdp,
+    desktop.sessionId,
+    "document.querySelector('[data-lens=\"FORMATION\"]').click()"
+  );
+  await waitFor(
+    cdp,
+    desktop.sessionId,
+    "new URL(location.href).searchParams.get('lens') === 'FORMATION'",
+    'Formation lens'
+  );
+  const formation = await runtimeSnapshot(cdp, desktop);
+  assertRuntimeSnapshot(formation, 'desktop formation');
+  if (formation.selected !== initialSubject) {
+    fail('VEXSYSTEM_BROWSER_LENS_TELEPORT', 'Changing lens changed selected subject.', {
+      initial,
+      formation
+    });
+  }
+
+  const formationText = await evaluate(
+    cdp,
+    desktop.sessionId,
+    "document.querySelector('#text-node-list').innerText"
+  );
+  if (!/PR #196/.test(formationText) || !/PR #200/.test(formationText)) {
+    fail(
+      'VEXSYSTEM_BROWSER_FORMATION_HISTORY_MISSING',
+      'Formation lens did not expose bounded PR #196/#200 history.'
+    );
+  }
+
+  await evaluate(cdp, desktop.sessionId, "document.querySelector('#level-in').click()");
+  await waitFor(
+    cdp,
+    desktop.sessionId,
+    "new URL(location.href).searchParams.get('level') === '4'",
+    'semantic zoom to L4'
+  );
+  const zoomed = await runtimeSnapshot(cdp, desktop);
+  if (zoomed.selected !== initialSubject) {
+    fail('VEXSYSTEM_BROWSER_ZOOM_TELEPORT', 'Semantic zoom changed selected subject.', {
+      initial,
+      zoomed
+    });
+  }
+
+  await evaluate(
+    cdp,
+    desktop.sessionId,
+    "document.querySelector('[data-lens=\"BLUEPRINT\"]').click()"
+  );
+  await waitFor(
+    cdp,
+    desktop.sessionId,
+    "new URL(location.href).searchParams.get('lens') === 'BLUEPRINT'",
+    'Blueprint lens'
+  );
+
+  const keyboardTarget = await evaluate(
+    cdp,
+    desktop.sessionId,
+    "(() => {" +
+      "const current = new URL(location.href).searchParams.get('subject');" +
+      "const target = [...document.querySelectorAll('.vs-text-node')].find(node => node.dataset.subjectRef && node.dataset.subjectRef !== current);" +
+      "if (!target) return null;" +
+      "target.focus();" +
+      "target.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));" +
+      "return target.dataset.subjectRef;" +
+    "})()"
+  );
+
+  if (!keyboardTarget) {
+    fail('VEXSYSTEM_BROWSER_KEYBOARD_TARGET_MISSING', 'No alternate text-view node was available.');
+  }
+
+  await waitFor(
+    cdp,
+    desktop.sessionId,
+    "new URL(location.href).searchParams.get('subject') === " + JSON.stringify(keyboardTarget),
+    'keyboard semantic selection'
+  );
+
+  const mobile = await createPage(cdp, origin + ENTRY, {
+    width: 390,
+    height: 844,
+    mobile: true
+  });
+  await ready(cdp, mobile);
+  const mobileSnapshot = await runtimeSnapshot(cdp, mobile);
+  assertRuntimeSnapshot(mobileSnapshot, 'mobile initial');
+
+  const findings = {
+    state: 'PASS',
+    browserRuntime: 'CHROMIUM_DEVTOOLS_PROTOCOL_PIPE',
+    installOrDownloadAttempted: false,
+    desktop: {
+      initial,
+      formation,
+      zoomed,
+      keyboardSelectionTarget: keyboardTarget,
+      pageErrors: desktop.errors.length,
+      consoleErrors: desktop.consoleErrors.length
+    },
+    mobile: {
+      initial: mobileSnapshot,
+      pageErrors: mobile.errors.length,
+      consoleErrors: mobile.consoleErrors.length
+    }
+  };
+
+  if (
+    desktop.errors.length ||
+    desktop.consoleErrors.length ||
+    mobile.errors.length ||
+    mobile.consoleErrors.length
+  ) {
+    fail('VEXSYSTEM_BROWSER_PAGE_ERRORS', 'Browser emitted runtime/console errors.', {
+      findings,
+      desktopErrors: desktop.errors,
+      desktopConsoleErrors: desktop.consoleErrors,
+      mobileErrors: mobile.errors,
+      mobileConsoleErrors: mobile.consoleErrors
+    });
+  }
+
+  return findings;
+}
