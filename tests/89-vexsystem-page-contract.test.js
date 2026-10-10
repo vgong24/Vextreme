@@ -205,4 +205,13 @@ test('VEXSYSTEM PAGE: browser proof requires source-derived meaning before optio
   assert.match(browserProof, /purposeBottom/);
 });
 
+
+test('VEXSYSTEM PAGE: Formation screenshot visibly captures the optional deepening surface', () => {
+  assert.match(browserProof, /document\.querySelector\('\.vs-explore'\)/);
+  assert.match(browserProof, /window\.scrollTo\(0, top\)/);
+  assert.match(browserProof, /Formation deepening viewport/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_FORMATION_CAPTURE_NOT_DEEPENED/);
+  assert.match(browserProof, /scrollY: window\.scrollY/);
+});
+
 // [VXG RealForever]
