@@ -908,7 +908,8 @@
         "tests/16-auto-discover-nodes.test.js",
         "tests/15-departments.test.js (integration test)",
         "tests/21-wip-drafts.test.js",
-        "tests/54-institutional-surfaces.test.js (real discovery exclusion integration)"
+        "tests/54-institutional-surfaces.test.js (real discovery exclusion integration)",
+        "lib/apply-content-intents.js"
       ],
       "testedBy": [
         "tests/16-auto-discover-nodes.test.js",
@@ -927,6 +928,10 @@
           "lib/check-key-alignment.js (scanWipHtmlDrafts consumes it, feeds report.wip.htmlDrafts)",
           "lib/build-status.js (buildContentIntegrityNotices reads slug/title)",
           "tests/21-wip-drafts.test.js"
+        ],
+        "title/meta parser gained a new consumer": [
+          "lib/apply-content-intents.js canonical registerNode promotion (must preserve discovery identity)",
+          "tests/18-apply-content-intents.test.js"
         ]
       }
     },
