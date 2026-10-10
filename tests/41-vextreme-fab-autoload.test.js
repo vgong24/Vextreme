@@ -52,7 +52,7 @@ test('FAB-AUTOLOAD: loadFabWidgets does nothing when cfg.fab is false', async ()
   assert.deepEqual(calls, []);
 });
 
-test('FAB-AUTOLOAD: loadFabWidgets loads vex-fab.js, fab-lang.js, fab-theme.js, fab-map.js in that exact order', async () => {
+test('FAB-AUTOLOAD: loadFabWidgets loads the base FAB set in stable order when no configured links exist', async () => {
   const calls = [];
   const loadFabWidgets = loadLoadFabWidgets()(fakeLoadScript(calls), function () {});
   await loadFabWidgets({ fab: true, baseUrl: 'https://cdn.example', cacheVer: '?v=1' });
@@ -62,6 +62,47 @@ test('FAB-AUTOLOAD: loadFabWidgets loads vex-fab.js, fab-lang.js, fab-theme.js, 
     'https://cdn.example/widgets/fab-theme.js?v=1',
     'https://cdn.example/widgets/fab-map.js?v=1',
   ]);
+});
+
+test('FAB-AUTOLOAD: configured link items load fab-links.js immediately after the shared Spiral owner', async () => {
+  const calls = [];
+  const loadFabWidgets = loadLoadFabWidgets()(fakeLoadScript(calls), function () {});
+  try {
+    await loadFabWidgets({
+      fab: true,
+      fabLinks: [{ id:'support', href:'vex-support.html', label:'Support' }],
+      baseUrl: 'https://cdn.example',
+      cacheVer: '?v=1'
+    });
+    assert.deepEqual(calls, [
+      'https://cdn.example/widgets/vex-fab.js?v=1',
+      'https://cdn.example/widgets/fab-links.js?v=1',
+      'https://cdn.example/widgets/fab-lang.js?v=1',
+      'https://cdn.example/widgets/fab-theme.js?v=1',
+      'https://cdn.example/widgets/fab-map.js?v=1',
+    ]);
+    assert.deepEqual(global.VEX_FAB_LINKS, [{ id:'support', href:'vex-support.html', label:'Support' }]);
+  } finally {
+    delete global.VEX_FAB_LINKS;
+  }
+});
+
+test('FAB-AUTOLOAD: fabWidgets.links:false preserves config without loading the generic link child', async () => {
+  const calls = [];
+  const loadFabWidgets = loadLoadFabWidgets()(fakeLoadScript(calls), function () {});
+  try {
+    await loadFabWidgets({
+      fab: true,
+      fabWidgets: { links:false },
+      fabLinks: [{ id:'support', href:'vex-support.html', label:'Support' }],
+      baseUrl: 'https://cdn.example',
+      cacheVer: ''
+    });
+    assert.equal(calls.some(src => src.includes('fab-links.js')), false);
+    assert.deepEqual(global.VEX_FAB_LINKS, [{ id:'support', href:'vex-support.html', label:'Support' }]);
+  } finally {
+    delete global.VEX_FAB_LINKS;
+  }
 });
 
 test('FAB-AUTOLOAD: fabWidgets.theme:false skips fab-theme.js but keeps vex-fab.js/fab-lang.js/fab-map.js', async () => {
@@ -185,6 +226,16 @@ test('FAB-AUTOLOAD: resolveConfig passes an explicit fabWidgets override through
   assert.deepEqual(cfg.fabWidgets, { theme: false });
 });
 
+test('FAB-AUTOLOAD: resolveConfig defaults fabLinks to an empty array and copies configured items', () => {
+  const resolveConfig = loadResolveConfig();
+  assert.deepEqual(resolveConfig({ env:'github_pages' }).fabLinks, []);
+  const input = [{ id:'support', href:'vex-support.html', label:'Support' }];
+  const cfg = resolveConfig({ env:'github_pages', fabLinks:input });
+  assert.deepEqual(cfg.fabLinks, input);
+  assert.notEqual(cfg.fabLinks, input, 'resolved config should own its array container');
+  assert.deepEqual(resolveConfig({ env:'github_pages', fabLinks:'invalid' }).fabLinks, []);
+});
+
 test('FAB-AUTOLOAD: run() actually calls loadFabWidgets — wired into the main loader, not just defined and orphaned', () => {
   const source = readSource();
   const runMatch = source.match(/function run\(cfg\) \{[\s\S]*?\n  \}\n\n\n  \/\//);
@@ -192,9 +243,10 @@ test('FAB-AUTOLOAD: run() actually calls loadFabWidgets — wired into the main 
   assert.ok(runMatch[0].includes('loadFabWidgets(cfg)'), 'run() must call loadFabWidgets(cfg)');
 });
 
-test('FAB-AUTOLOAD: CONFIG SCHEMA doc comment documents the new fab field', () => {
+test('FAB-AUTOLOAD: CONFIG SCHEMA doc comment documents FAB enablement and reusable link config', () => {
   const source = readSource();
   assert.match(source, /\*\s+fab\s+boolean\s+Auto-load the spiral-FAB widget set/);
+  assert.match(source, /\*\s+fabLinks\s+array\s+Reusable Spiral link-item config/);
 });
 
 // ── Cache-version sync (regression guard) ──────────────────────────────────
