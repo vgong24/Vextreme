@@ -292,6 +292,46 @@ test('TERRAIN-VIEW: Evolution A prefers explicit cover art without claiming scre
   assert.match(source, /screenshots = node\.screenshots \|\| \{\}/);
 });
 
+test('TERRAIN-VIEW: mutable Terrain data bypasses stale browser cache so current preview metadata is visible', () => {
+  const source = pageSource();
+  assert.match(source, /fetch\(TERRAIN_URL, \{ cache: 'no-store' \}\)/);
+});
+
+test('TERRAIN-VIEW: Evolution A search dismisses on outside pointer interaction without erasing the query', () => {
+  const source = pageSource();
+  assert.match(source, /var searchPopoverOpen = false;/);
+  assert.match(source, /function dismissEvolutionSearchResults\(\)/);
+  assert.match(source, /document\.addEventListener\('pointerdown'/);
+  assert.match(source, /!searchRegion\.contains\(ev\.target\)/);
+  assert.match(source, /addEventListener\('focus', function \(\) \{[\s\S]*searchPopoverOpen = true;/);
+});
+
+test('TERRAIN-VIEW: passive resize never re-enters semantic rendering while the reader is open', () => {
+  const source = pageSource();
+  const resize = source.match(/function handleTerrainResize\(\) \{[\s\S]*?\n  \}/);
+  assert.ok(resize, 'resize guard must remain present');
+  assert.match(resize[0], /if \(evolutionReader && !evolutionReader\.hidden\) return;/);
+  assert.match(resize[0], /enterLevel\(levelIndex, levelCtx\);/);
+  assert.match(source, /window\.addEventListener\('resize', handleTerrainResize\);/);
+});
+
+test('TERRAIN-VIEW: embedded reader navigation replaces iframe history instead of adding a blank Back stop', () => {
+  const source = pageSource();
+  assert.match(source, /function replaceEvolutionReaderDocument\(url\)/);
+  assert.match(source, /evolutionReaderFrame\.contentWindow\.location\.replace\(target\);/);
+  assert.match(source, /replaceEvolutionReaderDocument\(node\.liveUrl\);/);
+  assert.match(source, /replaceEvolutionReaderDocument\('about:blank'\);/);
+  assert.doesNotMatch(source, /evolutionReaderFrame\.src\s*=/);
+});
+
+test('TERRAIN-VIEW: embedded same-origin Terrain links return to the parent collection instead of nesting Terrain', () => {
+  const source = pageSource();
+  assert.match(source, /target = new URL\(href, evolutionReaderFrame\.contentWindow \? evolutionReaderFrame\.contentWindow\.location\.href : window\.location\.href\);/);
+  assert.match(source, /target\.origin !== window\.location\.origin/);
+  assert.match(source, /var pagesPrefix = BASE\.replace\(\/\\\/\$\/, ''\) \+ '\/pages\/';/);
+  assert.match(source, /if \(slug === 'terrain-map'\) \{[\s\S]*?closeEvolutionReader\(\);[\s\S]*?return;/);
+});
+
 test('TERRAIN-VIEW: every shipped inline JavaScript block still parses after contract extraction', () => {
   const source = pageSource();
   const scripts = [...source.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g)]
