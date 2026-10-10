@@ -7,10 +7,14 @@
  * version of all JS/data is tested, not whatever is on @main.
  *
  * Usage:
- *   node scripts/screenshot-page.js [slug] [lang]
+ *   node scripts/screenshot-page.js [slug] [lang] [--assets-root ../Vextreme-Assets]
  *
- *   slug  — page slug under pages/ (default: claude-answers-the-doubt)
- *   lang  — language to switch to for the "after" shot (default: ja)
+ *   slug         — page slug under pages/ (default: claude-answers-the-doubt)
+ *   lang         — language to switch to for the "after" shot (default: ja)
+ *   --assets-root — optional checkout of vgong24/Vextreme-Assets. When supplied,
+ *                   each captured PNG is also ingested into its structured
+ *                   evidence/screenshots namespace without changing the local
+ *                   docs/screenshots output current Vextreme readers consume.
  *
  * Output:
  *   docs/screenshots/{slug}-en.png   — page in default language
@@ -50,26 +54,57 @@
 const http   = require('http');
 const fs     = require('fs');
 const path   = require('path');
+const { execFileSync } = require('child_process');
 
 // Resolve Playwright from its global install location
 const PLAYWRIGHT_PATH = '/opt/node22/lib/node_modules/playwright';
 const { chromium } = require(PLAYWRIGHT_PATH);
 
 const ROOT       = path.join(__dirname, '..');
-const PAGES_DIR  = path.join(ROOT, 'pages');
 const OUT_DIR    = path.join(ROOT, 'docs', 'screenshots');
 const CDN_PREFIX = 'https://cdn.jsdelivr.net/gh/vgong24/vextreme@main';
+const VIEWPORT   = { width: 1280, height: 900 };
 
-const slug = process.argv[2] || 'claude-answers-the-doubt';
-const lang = process.argv[3] || 'ja';
+function parseArgs(argv) {
+  const positional = [];
+  let assetsRoot = process.env.VEXTREME_ASSETS_ROOT || null;
+  for (let i = 0; i < argv.length; i += 1) {
+    if (argv[i] === '--assets-root') {
+      assetsRoot = argv[++i];
+      if (!assetsRoot) throw new Error('--assets-root requires a path');
+    } else if (argv[i].startsWith('--')) {
+      throw new Error('unknown argument: ' + argv[i]);
+    } else {
+      positional.push(argv[i]);
+    }
+  }
+  if (positional.length > 2) throw new Error('usage: node scripts/screenshot-page.js [slug] [lang] [--assets-root <path>]');
+  return {
+    slug: positional[0] || 'claude-answers-the-doubt',
+    lang: positional[1] || 'ja',
+    assetsRoot: assetsRoot ? path.resolve(assetsRoot) : null,
+  };
+}
+
+const options = parseArgs(process.argv.slice(2));
+const slug = options.slug;
+const lang = options.lang;
 
 // ── MIME types ───────────────────────────────────────────────────────────────
 
 const MIME = {
-  '.html': 'text/html',
-  '.js':   'text/javascript',
-  '.json': 'application/json',
-  '.css':  'text/css',
+  '.html':  'text/html; charset=utf-8',
+  '.js':    'text/javascript; charset=utf-8',
+  '.json':  'application/json; charset=utf-8',
+  '.css':   'text/css; charset=utf-8',
+  '.png':   'image/png',
+  '.jpg':   'image/jpeg',
+  '.jpeg':  'image/jpeg',
+  '.webp':  'image/webp',
+  '.svg':   'image/svg+xml',
+  '.woff':  'font/woff',
+  '.woff2': 'font/woff2',
+  '.ttf':   'font/ttf',
 };
 
 function mimeFor(filePath) {
@@ -121,6 +156,35 @@ async function screenshotPage(page, outPath, label) {
   console.log(`  [screenshot] ${label} → ${path.relative(ROOT, outPath)}`);
 }
 
+function sourceCommit() {
+  const commit = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: ROOT, encoding: 'utf8' }).trim();
+  if (!/^[0-9a-f]{40}$/i.test(commit)) throw new Error('could not resolve an exact Vextreme source commit');
+  return commit.toLowerCase();
+}
+
+function publishScreenshotEvidence(outPath, locale) {
+  if (!options.assetsRoot) return;
+  const ingest = path.join(options.assetsRoot, 'scripts', 'ingest-screenshot-evidence.mjs');
+  if (!fs.existsSync(ingest)) {
+    throw new Error('Vextreme-Assets screenshot ingest contract not found: ' + ingest);
+  }
+  const commit = sourceCommit();
+  execFileSync(process.execPath, [
+    ingest,
+    '--file', outPath,
+    '--namespace', 'vextreme',
+    '--slug', slug,
+    '--locale', locale,
+    '--theme', 'default',
+    '--viewport', String(VIEWPORT.width),
+    '--source-repo', 'vgong24/Vextreme',
+    '--source-commit', commit,
+    '--source-path', 'pages/' + slug + '.html',
+    '--capture-kind', 'localization',
+  ], { cwd: options.assetsRoot, stdio: 'inherit' });
+  console.log(`  [assets] ${locale.toUpperCase()} → structured screenshot evidence (${commit.slice(0, 12)})`);
+}
+
 // ── Main ──────────────────────────────────────────────────────────────────────
 
 (async () => {
@@ -135,7 +199,7 @@ async function screenshotPage(page, outPath, label) {
   });
 
   const context = await browser.newContext({
-    viewport: { width: 1280, height: 900 },
+    viewport: VIEWPORT,
   });
 
   const page = await context.newPage();
@@ -161,6 +225,7 @@ async function screenshotPage(page, outPath, label) {
 
   const enOut = path.join(OUT_DIR, `${slug}-en.png`);
   await screenshotPage(page, enOut, 'EN (default)');
+  publishScreenshotEvidence(enOut, 'en');
 
   // ── Switch language via FAB ──────────────────────────────────────────────
 
@@ -168,27 +233,30 @@ async function screenshotPage(page, outPath, label) {
   const fabExists = await fabBtn.count();
 
   if (!fabExists) {
-    console.warn('  [warn] FAB button not found — lang-fab may not have mounted');
-  } else {
-    await fabBtn.click();
-    await page.waitForTimeout(400); // wheel open animation
-
-    const langItem = page.locator(`.vex-lang-item[data-lang="${lang}"]`);
-    const langExists = await langItem.count();
-
-    if (!langExists) {
-      console.warn(`  [warn] No FAB item found for lang="${lang}"`);
-    } else {
-      await langItem.click();
-      await page.waitForTimeout(1000); // strings fetch + swap
-    }
+    throw new Error('FAB button not found — refusing to label a localization screenshot without a verified language switch');
   }
+
+  await fabBtn.click();
+  await page.waitForTimeout(400); // wheel open animation
+
+  const langItem = page.locator(`.vex-lang-item[data-lang="${lang}"]`);
+  const langExists = await langItem.count();
+  if (!langExists) {
+    throw new Error(`No FAB item found for lang="${lang}" — refusing to capture mislabeled evidence`);
+  }
+
+  await langItem.click();
+  await page.waitForFunction((expected) => {
+    try { return localStorage.getItem('vex-lang') === expected; } catch (error) { return false; }
+  }, lang);
+  await page.waitForTimeout(250); // allow post-swap layout/fonts to settle
 
   // Scroll back to top for consistent framing
   await page.evaluate(() => window.scrollTo(0, 0));
 
   const langOut = path.join(OUT_DIR, `${slug}-${lang}.png`);
-  await screenshotPage(page, langOut, `${lang.toUpperCase()} (after FAB switch)`);
+  await screenshotPage(page, langOut, `${lang.toUpperCase()} (after verified FAB switch)`);
+  publishScreenshotEvidence(langOut, lang);
 
   await browser.close();
   server.close();
@@ -196,6 +264,7 @@ async function screenshotPage(page, outPath, label) {
   console.log('\nDone.');
   console.log(`  EN  : docs/screenshots/${slug}-en.png`);
   console.log(`  ${lang.toUpperCase()}  : docs/screenshots/${slug}-${lang}.png`);
+  if (options.assetsRoot) console.log(`  Assets evidence checkout: ${options.assetsRoot}`);
 })();
 
 // [VXG RealForever]
