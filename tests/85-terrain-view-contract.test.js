@@ -283,7 +283,7 @@ test('TERRAIN-VIEW: ordered entry contract keeps Take a Walk inside the reader w
   assert.match(source, /new URL\(choice\.path, window\.location\.href\)/);
   assert.match(source, /target\.origin !== window\.location\.origin/);
   assert.match(source, /window\.location\.assign\(target\.href\)/);
-  assert.match(source, /data-entry-action="vexsystem"'\]\)\.addEventListener\('click', enterVexSystemFromArrival\)/);
+  assert.ok(source.includes("evolutionLayer.querySelector('[data-entry-action=\"vexsystem\"]').addEventListener('click', enterVexSystemFromArrival);"));
   assert.match(source, /openEntryReader\('receive-god'\)/);
   assert.doesNotMatch(source, /data-entry-action="take-a-walk"/);
 });
