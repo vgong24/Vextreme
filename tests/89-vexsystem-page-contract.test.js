@@ -102,3 +102,11 @@ test('VEXSYSTEM PAGE: host browser proof blocks nonessential external font traff
   assert.match(browserProof, /fonts\.googleapis\.com/);
   assert.match(browserProof, /fonts\.gstatic\.com/);
 });
+
+
+test('VEXSYSTEM PAGE: browser keyboard proof uses trusted CDP input rather than synthetic DOM keyboard events', () => {
+  assert.match(browserProof, /Input\.dispatchKeyEvent/);
+  assert.match(browserProof, /type: 'keyDown'/);
+  assert.match(browserProof, /type: 'keyUp'/);
+  assert.doesNotMatch(browserProof, /dispatchEvent\(new KeyboardEvent/);
+});
