@@ -178,6 +178,15 @@ test('TERRAIN-VIEW: Evolution A is a URL-addressable presentation state over sha
 });
 
 
+test('TERRAIN-VIEW: collection renderer keeps group home distinct from member cards', () => {
+  const source = pageSource();
+  assert.match(source, /parent: a\.parent \|\| null/);
+  assert.match(source, /stage\.parent && stage\.parent\.live && stage\.parent\.url/);
+  assert.match(source, /class="evo-group-home"/);
+  assert.match(source, />Group home ↗<\/a>/);
+  assert.match(source, /group home pending/);
+});
+
 test('TERRAIN-VIEW: embedded preserved routes resolve through live Terrain nodes instead of escaping the project root', () => {
   const source = pageSource();
   assert.match(source, /function handleEvolutionReaderRouteClick\(event\)/);

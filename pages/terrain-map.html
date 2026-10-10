@@ -171,6 +171,8 @@
   .evo-context-row{ display:flex; gap:16px; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; margin-top:6px; }
   .evo-context h2{ margin:0; font:500 clamp(20px,3vw,30px)/1.1 var(--sans); letter-spacing:-.02em; }
   .evo-context-meta{ font:10px/1.5 var(--mono); color:var(--ink-muted); }
+  .evo-group-home{ display:inline-flex; align-items:center; gap:5px; margin-left:10px; color:var(--accent); text-decoration:none; font:600 10px/1 var(--mono); }
+  .evo-group-home:hover, .evo-group-home:focus-visible{ text-decoration:underline; }
   .evo-rail{ display:flex; gap:7px; overflow:auto; padding:10px 1px 2px; }
   .evo-rail-btn{
     flex:none; border:1px solid var(--line); background:var(--panel); color:var(--ink-muted);
@@ -836,7 +838,7 @@
   }
 
   function buildContentWorld(data) {
-    var stages = (data.arcs || []).map(function (a) { return { key: a.key, name: a.name, sub: a.sub, count: a.count, rect: a.rect }; });
+    var stages = (data.arcs || []).map(function (a) { return { key: a.key, name: a.name, sub: a.sub, count: a.count, rect: a.rect, parent: a.parent || null }; });
     var colW = (stages.length > 1) ? (stages[1].rect.x - stages[0].rect.x) : 340;
     var all = (data.pages || []).map(function (p) {
       return Object.assign({ kind: 'page' }, p, { stage: p.arc, stageName: p.arcName });
@@ -1300,6 +1302,9 @@
     var summary = stageSummary(stage);
     var members = stageMembers(stage);
     var kindLabel = summary.groupKind.replace(/-/g, ' ');
+    var groupHome = stage.parent && stage.parent.live && stage.parent.url
+      ? '<a class="evo-group-home" href="' + escAttr(stage.parent.url) + '" target="_blank" rel="noopener">Group home ↗</a>'
+      : (stage.parent ? '<span class="evo-context-meta">group home pending</span>' : '');
     var rail = STAGES.map(function (candidate, index) {
       return '<button class="evo-rail-btn" type="button" data-evo-stage-index="' + index + '" aria-current="' + String(index === levelCtx.stageIdx) + '">' + esc(candidate.name) + '</button>';
     }).join('');
@@ -1332,7 +1337,7 @@
       + '<section class="evo-context">'
       + '<div class="evo-kicker">Evolution A · ' + esc(kindLabel) + '</div>'
       + '<div class="evo-context-row"><div><h2>' + esc(stage.name) + '</h2><div class="evo-context-meta">' + summary.membershipCount + ' members · ' + summary.primaryCount + ' primary placements · same Terrain state, alternate renderer</div></div>'
-      + '<div class="evo-context-meta">Live remains the accepted reference</div></div>'
+      + '<div class="evo-context-meta">Live remains the accepted reference' + groupHome + '</div></div>'
       + '<div class="evo-rail" aria-label="Content groups">' + rail + '</div>'
       + '</section>'
       + (cards ? '<section class="evo-grid" aria-label="' + escAttr(stage.name) + ' pages">' + cards + '</section>' : '<div class="evo-empty">No destinations are currently projected in this group.</div>')
