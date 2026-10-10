@@ -513,3 +513,120 @@ async function runRuntime(origin, cdp) {
 
   return findings;
 }
+
+
+async function applyScenario(cdp, page, scenario) {
+  if (scenario === 'formation-desktop') {
+    await evaluate(
+      cdp,
+      page.sessionId,
+      "document.querySelector('[data-lens=\"FORMATION\"]').click()"
+    );
+    await waitFor(
+      cdp,
+      page.sessionId,
+      "new URL(location.href).searchParams.get('lens') === 'FORMATION'",
+      scenario
+    );
+    return;
+  }
+
+  if (scenario === 'blueprint-desktop' || scenario === 'blueprint-mobile') {
+    await evaluate(
+      cdp,
+      page.sessionId,
+      "document.querySelector('[data-lens=\"BLUEPRINT\"]').click()"
+    );
+    await waitFor(
+      cdp,
+      page.sessionId,
+      "new URL(location.href).searchParams.get('lens') === 'BLUEPRINT'",
+      scenario
+    );
+  }
+}
+
+async function screenshot(origin, cdp, scenario) {
+  const mobile = scenario === 'blueprint-mobile';
+  const viewport = mobile
+    ? { width: 390, height: 844, mobile: true }
+    : { width: 1440, height: 900, mobile: false };
+
+  const page = await createPage(cdp, origin + ENTRY, viewport);
+  await ready(cdp, page);
+  await applyScenario(cdp, page, scenario);
+
+  const snapshot = await runtimeSnapshot(cdp, page);
+  assertRuntimeSnapshot(snapshot, scenario);
+
+  const image = await cdp.send(
+    'Page.captureScreenshot',
+    {
+      format: 'jpeg',
+      quality: 68,
+      fromSurface: true,
+      captureBeyondViewport: false
+    },
+    page.sessionId,
+    20000
+  );
+
+  if (!image.data || image.data.length < 1000) {
+    fail('VEXSYSTEM_BROWSER_SCREENSHOT_EMPTY', 'Screenshot ' + scenario + ' was empty.');
+  }
+
+  return {
+    state: 'PASS',
+    scenario,
+    mime: 'image/jpeg',
+    viewport,
+    snapshot,
+    base64: image.data
+  };
+}
+
+async function main() {
+  const mode = process.argv[2] || 'runtime';
+  const scenario = process.argv[3] || 'blueprint-desktop';
+
+  if (!['runtime', 'screenshot'].includes(mode)) {
+    fail('VEXSYSTEM_BROWSER_MODE_UNSUPPORTED', 'Unsupported mode: ' + mode);
+  }
+
+  if (
+    mode === 'screenshot' &&
+    !['blueprint-desktop', 'formation-desktop', 'blueprint-mobile'].includes(scenario)
+  ) {
+    fail(
+      'VEXSYSTEM_BROWSER_SCENARIO_UNSUPPORTED',
+      'Unsupported screenshot scenario: ' + scenario
+    );
+  }
+
+  const hosted = await startServer();
+  const launched = await launchBrowser();
+
+  try {
+    const result = mode === 'runtime'
+      ? await runRuntime(hosted.origin, launched.cdp)
+      : await screenshot(hosted.origin, launched.cdp, scenario);
+
+    result.browserExecutable = launched.executable;
+    process.stdout.write(JSON.stringify(result) + '\n');
+  } finally {
+    await launched.close();
+    await new Promise(resolve => hosted.server.close(resolve));
+  }
+}
+
+main().catch(error => {
+  const result = {
+    state: 'FAIL',
+    code: error.code || 'VEXSYSTEM_BROWSER_PROOF_FAILED',
+    message: error.message,
+    details: error.details || null,
+    installOrDownloadAttempted: false
+  };
+  process.stderr.write(JSON.stringify(result) + '\n');
+  process.exitCode = 1;
+});
