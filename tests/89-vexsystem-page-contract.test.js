@@ -95,3 +95,10 @@ test('VEXSYSTEM PAGE: browser proof checks semantic stability, accessibility pro
   assert.match(browserProof, /VEXSYSTEM_BROWSER_HORIZONTAL_OVERFLOW/);
   assert.match(browserProof, /VEXSYSTEM_BROWSER_FORMATION_HISTORY_MISSING/);
 });
+
+
+test('VEXSYSTEM PAGE: host browser proof blocks nonessential external font traffic', () => {
+  assert.match(browserProof, /Network\.setBlockedURLs/);
+  assert.match(browserProof, /fonts\.googleapis\.com/);
+  assert.match(browserProof, /fonts\.gstatic\.com/);
+});
