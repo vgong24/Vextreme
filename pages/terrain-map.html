@@ -228,6 +228,7 @@
     border:0; border-bottom:1px solid var(--line); padding:0; text-decoration:none; color:inherit; text-align:inherit; cursor:pointer;
   }
   .evo-preview img{ width:100%; height:100%; object-fit:cover; object-position:top; display:block; transition:transform .18s ease; }
+  .evo-preview img.evo-cover-image{ object-position:center; }
   .evo-card:hover .evo-preview img{ transform:scale(1.02); }
   .evo-fallback{ position:absolute; inset:0; display:grid; place-items:center; padding:20px; text-align:center; }
   .evo-fallback-mark{ display:block; color:var(--accent); font:700 11px/1 var(--mono); letter-spacing:.15em; text-transform:uppercase; margin-bottom:10px; }
@@ -836,6 +837,7 @@
   var searchState = { query: '', matches: [], cursor: -1 };
   var searchMatchIds = new Set();
   var journeySnapshot = null, historyReady = false, restoringHistory = false;
+  var PRESENTATION_HISTORY_KEY = 'vextremeTerrainPresentation';
   var currentProfile = 'live';
   var activeReaderId = null, hoveredEvolutionNodeId = null, activeEntrySlug = null, activeGroupHomeKey = null;
   var boundaryGesture = { key:null, direction:0, lastAt:0 };
@@ -963,7 +965,20 @@
     syncTerrainChrome();
   }
 
-  function syncPresentationUrl() {
+  function presentationHistoryState(kind) {
+    var state = history.state && typeof history.state === 'object' ? Object.assign({}, history.state) : {};
+    if (kind) state[PRESENTATION_HISTORY_KEY] = { version:1, kind:kind };
+    else delete state[PRESENTATION_HISTORY_KEY];
+    return state;
+  }
+
+  function presentationHistoryKind(state) {
+    var value = state && state[PRESENTATION_HISTORY_KEY];
+    return value && value.version === 1 ? value.kind : null;
+  }
+
+  function syncPresentationUrl(mode, presentationKind) {
+    mode = mode === 'push' ? 'push' : 'replace';
     var url = new URL(window.location.href);
     url.searchParams.set('view', currentWorld);
     if (currentWorld === 'content') {
@@ -981,7 +996,9 @@
       url.searchParams.delete('group');
       url.searchParams.delete('page');
     }
-    history.replaceState(history.state, '', url.toString());
+    var state = presentationHistoryState(presentationKind || null);
+    if (mode === 'push') history.pushState(state, '', url.toString());
+    else history.replaceState(state, '', url.toString());
   }
 
   function setPresentationProfile(profile, writeUrl) {
@@ -1009,6 +1026,23 @@
       updateReadout();
     }
     if (writeUrl !== false) syncPresentationUrl();
+  }
+
+  function restoreEvolutionPresentationFromHistory(state) {
+    var kind = presentationHistoryKind(state);
+    if ((kind !== 'reader' && kind !== 'group-home') || currentWorld !== 'content' || currentProfile !== 'evolution-v1') return;
+    var route = readInitialRoute();
+    if (!route.group || !route.page) return;
+    var stageIdx = STAGES.findIndex(function (stage) { return String(stage.key) === String(route.group); });
+    if (stageIdx < 0) return;
+    if (!isEvolutionAGroup() || levelCtx.stageIdx !== stageIdx) enterLevel(1, { stageIdx:stageIdx });
+    var stage = STAGES[stageIdx];
+    if (kind === 'group-home' && stage.parent && stage.parent.live && stage.parent.pageSlug === route.page) {
+      openEvolutionGroupHome(stage, { writeUrl:false });
+      return;
+    }
+    var node = ALL.find(function (candidate) { return candidate.slug === route.page || candidate.id === route.page; });
+    if (node && node.live) openEvolutionReader(node.id, { writeUrl:false });
   }
 
   function isEvolutionAGroup() {
@@ -1201,7 +1235,7 @@
     levelIndex = 1;
     levelCtx = { stageIdx:stageIdx };
     openEvolutionReader(node.id, { writeUrl:false });
-    syncPresentationUrl();
+    syncPresentationUrl('replace', 'reader');
     commitSemanticState({ label:node.title || node.slug, nodeId:node.id, relationship:'opened from preserved route', reason:'Terrain embedded repository route resolver' });
     return true;
   }
@@ -1252,7 +1286,7 @@
     updateGroupHomeReaderChrome(stage);
     evolutionReaderFrame.title = 'Reading ' + (stage.parent.title || stage.name) + ' inside Terrain';
     evolutionReaderFrame.src = stage.parent.url;
-    if (options.writeUrl !== false) syncPresentationUrl();
+    if (options.writeUrl !== false) syncPresentationUrl(options.historyMode || 'push', 'group-home');
   }
 
   function openEvolutionReader(nodeId, options) {
@@ -1275,11 +1309,15 @@
     updateReaderChrome(node);
     evolutionReaderFrame.title = 'Reading ' + (node.title || node.slug) + ' inside Terrain';
     evolutionReaderFrame.src = node.liveUrl;
-    if (options.writeUrl !== false) syncPresentationUrl();
+    if (options.writeUrl !== false) syncPresentationUrl(options.historyMode || 'push', 'reader');
   }
 
   function closeEvolutionReader(options) {
     options = options || {};
+    if (options.history !== false && (presentationHistoryKind(history.state) === 'reader' || presentationHistoryKind(history.state) === 'group-home')) {
+      history.back();
+      return;
+    }
     activeReaderId = null;
     activeGroupHomeKey = null;
     resetBoundaryGesture();
@@ -1292,7 +1330,7 @@
       evolutionLayer.hidden = false;
       svg.style.visibility = 'hidden';
     }
-    if (options.writeUrl !== false) syncPresentationUrl();
+    if (options.writeUrl !== false) syncPresentationUrl('replace', null);
   }
 
   function handleEvolutionShelfWheel(ev) {
@@ -1375,6 +1413,9 @@
   }
 
   function evolutionPreviewHtml(node) {
+    if (node.preview && node.preview.kind === 'cover' && node.preview.src) {
+      return '<img class="evo-cover-image" src="' + escAttr(node.preview.src) + '" alt="' + escAttr(node.preview.alt || ('Cover art for ' + (node.title || node.slug))) + '" loading="lazy">';
+    }
     var screenshots = node.screenshots || {};
     var languages = Object.keys(screenshots);
     if (languages.length) {
@@ -1419,8 +1460,12 @@
       var capability = node.capability || {};
       var description = capability.metaDescription || 'Repository-native preserved page.';
       var languages = Array.isArray(capability.evidenceLanguages) ? capability.evidenceLanguages : [];
+      var hasCover = !!(node.preview && node.preview.kind === 'cover' && node.preview.src);
+      var previewChips = hasCover
+        ? '<span class="evo-chip">cover image</span><span class="evo-chip">' + (node.hasScreenshot ? 'screenshot captured' : 'screenshot pending') + '</span>'
+        : '<span class="evo-chip">' + (node.hasScreenshot ? 'preview captured' : 'preview pending') + '</span>';
       var chips = '<span class="evo-chip ' + escAttr(node.status || 'warning') + '">' + esc(STATUS_TEXT[node.status] || node.status || 'Status unknown') + '</span>'
-        + '<span class="evo-chip">' + (node.hasScreenshot ? 'preview captured' : 'preview pending') + '</span>'
+        + previewChips
         + (languages.length ? '<span class="evo-chip">' + esc(languages.map(function (lang) { return lang.toUpperCase(); }).join(' · ')) + '</span>' : '<span class="evo-chip">source language only</span>');
       var preview = node.live && node.liveUrl
         ? '<button class="evo-preview" type="button" data-evo-reader="' + escAttr(node.id) + '" aria-label="Read ' + escAttr(node.title || node.slug) + ' inside Terrain">' + evolutionPreviewHtml(node) + '</button>'
@@ -2566,10 +2611,10 @@
       else closeEvolutionReader();
     });
     document.getElementById('readerPrev').addEventListener('click', function () {
-      var previous = readerNeighbor(-1); if (previous) openEvolutionReader(previous.id);
+      var previous = readerNeighbor(-1); if (previous) openEvolutionReader(previous.id, { historyMode:'replace' });
     });
     document.getElementById('readerNext').addEventListener('click', function () {
-      var next = readerNeighbor(1); if (next) openEvolutionReader(next.id);
+      var next = readerNeighbor(1); if (next) openEvolutionReader(next.id, { historyMode:'replace' });
     });
 
     mapWrap.addEventListener('wheel', function (ev) {
@@ -2668,6 +2713,7 @@
       }
       journeySnapshot = snapshot;
       restoreSemanticState(snapshot.semantic);
+      restoreEvolutionPresentationFromHistory(event.state);
     });
   }
 }());

@@ -159,6 +159,12 @@ test('VIEWMODEL: viewmodels.json entries have valid shape', () => {
     assert.ok(Array.isArray(vm.features), `viewmodels.json[${slug}]: features must be array`);
     assert.ok(vm.scopes.length > 0,   `viewmodels.json[${slug}]: scopes must not be empty`);
     assert.ok(vm.features.length > 0, `viewmodels.json[${slug}]: features must not be empty`);
+    if (vm.preview !== undefined) {
+      assert.equal(vm.preview.kind, 'cover', `viewmodels.json[${slug}].preview.kind must be cover`);
+      assert.equal(typeof vm.preview.src, 'string', `viewmodels.json[${slug}].preview.src must be string`);
+      assert.ok(vm.preview.src.trim(), `viewmodels.json[${slug}].preview.src must not be empty`);
+      assert.equal(typeof vm.preview.alt, 'string', `viewmodels.json[${slug}].preview.alt must be string`);
+    }
   }
 });
 

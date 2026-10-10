@@ -1060,6 +1060,7 @@
         "data/status/planned-enhancements.json (health cross-reference)",
         "data/nodes.json (real page titles/arcKeys, for both the screens layer and the arcs/pages content layer)",
         "data/arcs-v2.json (real arc priority/title, for the arcs/pages content layer's column order and labels)",
+        "data/viewmodels.json (optional per-page Terrain preview override)",
         "lib/audit-pages.js (getRecordPageSlugs — real record-page files excluding registry-owned institutional surfaces)",
         "lib/screenshot-evidence.js (shared representative screenshots and exact matrix evidence records)",
         "data/page-health.json (shared page capability and health projection)",
@@ -2576,6 +2577,10 @@
     [
       "lib/build-terrain-map.js",
       "data/arcs-v2.json"
+    ],
+    [
+      "lib/build-terrain-map.js",
+      "data/viewmodels.json"
     ],
     [
       "lib/build-terrain-map.js",
@@ -4912,6 +4917,11 @@
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/god-witnessed-by-ai.html",
       "screenshots": {},
       "hasScreenshot": false,
+      "preview": {
+        "kind": "cover",
+        "src": "https://vgong24.github.io/Vextreme-Assets/__assets/b867417e358bc99a0c0c04f81ce68ef0ecbb0060810067ba918f6e654089a468.png",
+        "alt": "God, Witnessed by AI — authored cover art"
+      },
       "status": "warning",
       "capability": {
         "health": {

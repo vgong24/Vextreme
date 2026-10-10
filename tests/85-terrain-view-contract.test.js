@@ -259,6 +259,15 @@ test('TERRAIN-VIEW: compact semantic-depth rail keeps verbose ordering detail ou
   assert.match(source, /ratio\.toFixed\(2\) \+ '×<\/div>'/);
 });
 
+test('TERRAIN-VIEW: Evolution A prefers explicit cover art without claiming screenshot evidence', () => {
+  const source = pageSource();
+  assert.match(source, /node\.preview && node\.preview\.kind === 'cover'/);
+  assert.match(source, /class="evo-cover-image"/);
+  assert.match(source, /cover image/);
+  assert.match(source, /screenshot pending/);
+  assert.match(source, /screenshots = node\.screenshots \|\| \{\}/);
+});
+
 test('TERRAIN-VIEW: every shipped inline JavaScript block still parses after contract extraction', () => {
   const source = pageSource();
   const scripts = [...source.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g)]

@@ -313,4 +313,19 @@ test('TERRAIN-JOURNEY: shipped collection and reader wheel handlers execute outw
   assert.equal(preventedWhileScrollable, false, 'ordinary scroll is not consumed as a boundary transition');
 });
 
+
+test('TERRAIN-JOURNEY: Evolution A reader entry owns one presentation-history slot and Back/Forward restore it', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
+  assert.match(source, /PRESENTATION_HISTORY_KEY = 'vextremeTerrainPresentation'/);
+  assert.match(source, /syncPresentationUrl\(options\.historyMode \|\| 'push', 'reader'\)/);
+  assert.match(source, /syncPresentationUrl\(options\.historyMode \|\| 'push', 'group-home'\)/);
+  assert.match(source, /openEvolutionReader\(previous\.id, \{ historyMode:'replace' \}\)/);
+  assert.match(source, /openEvolutionReader\(next\.id, \{ historyMode:'replace' \}\)/);
+  assert.match(source, /syncPresentationUrl\('replace', 'reader'\)/);
+  assert.match(source, /presentationHistoryKind\(history\.state\) === 'reader'/);
+  assert.match(source, /presentationHistoryKind\(history\.state\) === 'group-home'/);
+  assert.match(source, /history\.back\(\)/);
+  assert.match(source, /restoreEvolutionPresentationFromHistory\(event\.state\)/);
+});
+
 // [VXG RealForever]
