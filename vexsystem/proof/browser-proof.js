@@ -21,7 +21,7 @@ const { spawn } = require('node:child_process');
 
 const ROOT = path.resolve(__dirname, '..', '..');
 const ENTRY = '/vexsystem/index.html';
-const TERRAIN_ENTRY = '/Vextreme/pages/terrain-map.html';
+const TERRAIN_ENTRY = '/Vextreme/pages/terrain-map.html?view=content&profile=evolution-v1';
 const BROWSER_CANDIDATES = [
   '/Applications/Brave Browser.app/Contents/MacOS/Brave Browser',
   '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',

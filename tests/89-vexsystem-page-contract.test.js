@@ -216,7 +216,7 @@ test('VEXSYSTEM PAGE: Formation screenshot visibly captures the optional deepeni
 
 
 test('VEXSYSTEM PAGE: browser proof covers the live Terrain -> VexSystem top-level handoff', () => {
-  assert.match(browserProof, /const TERRAIN_ENTRY = '\/Vextreme\/pages\/terrain-map\.html'/);
+  assert.match(browserProof, /const TERRAIN_ENTRY = '\/Vextreme\/pages\/terrain-map\.html\?view=content&profile=evolution-v1'/);
   assert.match(browserProof, /relative\.startsWith\('Vextreme\/'\)/);
   assert.match(browserProof, /function assertTerrainArrivalSnapshot\(snapshot, label\)/);
   assert.match(browserProof, /VEXSYSTEM_BROWSER_TERRAIN_VEXSYSTEM_NOT_ACTIVE/);
