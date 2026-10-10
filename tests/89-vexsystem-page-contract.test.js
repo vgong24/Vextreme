@@ -85,6 +85,11 @@ test('VEXSYSTEM PAGE: visual branch classes include held, proof, and historical 
   assert.match(css, /\.vs-edge\.CONVERGENCE/);
 });
 
+test('VEXSYSTEM PAGE: standalone renderer does not absorb the shared main-page runtime', () => {
+  assert.doesNotMatch(html, /lib\/shell\.js|lib\/vextreme\.js|widgets\/vex-fab|widgets\/fab-/);
+  assert.doesNotMatch(app, /\bVEXTREME\s*\(|\bJourney\b|terrain-entry-contract/);
+});
+
 test('VEXSYSTEM PAGE: Terrain remains an external host route rather than copied shared chrome', () => {
   assert.match(html, /href="\.\.\/pages\/terrain-map\.html"/);
   assert.doesNotMatch(html, /vex-spiral-trigger|vex-nav-actions|terrain-entry-contract/);
