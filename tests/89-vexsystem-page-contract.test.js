@@ -15,6 +15,7 @@ const path = require('node:path');
 const ROOT = path.join(__dirname, '..');
 const html = fs.readFileSync(path.join(ROOT, 'vexsystem', 'index.html'), 'utf8');
 const app = fs.readFileSync(path.join(ROOT, 'vexsystem', 'app.js'), 'utf8');
+const projectionSource = fs.readFileSync(path.join(ROOT, 'lib', 'vexsystem', 'projection.js'), 'utf8');
 const css = fs.readFileSync(path.join(ROOT, 'vexsystem', 'styles.css'), 'utf8');
 const browserProof = fs.readFileSync(path.join(ROOT, 'vexsystem', 'proof', 'browser-proof.js'), 'utf8');
 
@@ -34,17 +35,19 @@ test('VEXSYSTEM PAGE: graph has an explicit equivalent text/keyboard surface', (
   assert.match(app, /renderTextView\(view\)/);
 });
 
-test('VEXSYSTEM PAGE: lenses and semantic depth are model-driven, not separate hard-coded pages', () => {
-  assert.match(html, /id="lens-controls"/);
-  assert.match(html, /id="level-out"/);
-  assert.match(html, /id="level-in"/);
-  assert.match(app, /for \(const lensRecord of atlas\.lenses\)/);
-  assert.match(app, /projectionApi\.setLens/);
+test('VEXSYSTEM PAGE: human questions compose the semantic engine instead of exposing internal lenses as the primary control', () => {
+  assert.match(html, /id="question-controls"/);
+  assert.match(html, /What do you want to understand\?/);
+  assert.match(app, /for \(const question of projectionApi\.HUMAN_QUESTIONS\)/);
+  assert.match(app, /projectionApi\.projectAtlasForQuestion/);
+  assert.match(app, /projectionApi\.composeHumanQuestion/);
   assert.match(app, /projectionApi\.setLevel/);
+  assert.doesNotMatch(html, />Focus on</);
 });
 
 test('VEXSYSTEM PAGE: selected semantic coordinate is URL-addressable and returnable', () => {
   assert.match(app, /url\.searchParams\.set\('subject', state\.selectedSubjectRef\)/);
+  assert.match(app, /url\.searchParams\.set\('question', questionRef\)/);
   assert.match(app, /url\.searchParams\.set\('lens', state\.lens\)/);
   assert.match(app, /url\.searchParams\.set\('level', String\(state\.level\)\)/);
   assert.match(app, /projectionApi\.returnFocus/);
@@ -81,14 +84,15 @@ test('VEXSYSTEM PAGE: browser proof is dependency-free CDP over installed Chromi
 test('VEXSYSTEM PAGE: browser proof keeps runtime and screenshots in separate bounded modes', () => {
   assert.match(browserProof, /mode === 'runtime'/);
   assert.match(browserProof, /mode === 'screenshot'/);
-  assert.match(browserProof, /blueprint-desktop/);
-  assert.match(browserProof, /formation-desktop/);
-  assert.match(browserProof, /blueprint-mobile/);
+  assert.match(browserProof, /receiver-desktop/);
+  assert.match(browserProof, /history-desktop/);
+  assert.match(browserProof, /receiver-mobile/);
   assert.match(browserProof, /Page\.captureScreenshot/);
 });
 
 test('VEXSYSTEM PAGE: browser proof checks semantic stability, accessibility projection, privacy and overflow', () => {
-  assert.match(browserProof, /VEXSYSTEM_BROWSER_LENS_TELEPORT/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_QUESTION_TELEPORT/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_QUESTION_CONSEQUENCE_MISSING/);
   assert.match(browserProof, /VEXSYSTEM_BROWSER_ZOOM_TELEPORT/);
   assert.match(browserProof, /VEXSYSTEM_BROWSER_EQUIVALENT_VIEWS_MISSING/);
   assert.match(browserProof, /VEXSYSTEM_BROWSER_PRIVATE_COORDINATE_LEAK/);
@@ -170,23 +174,48 @@ test('VEXSYSTEM PAGE: screenshot evidence uses the same strict runtime/network c
 
 test('VEXSYSTEM PAGE: composed understanding precedes optional exploration controls', () => {
   const understanding = html.indexOf('id="understanding-title"');
-  const controls = html.indexOf('id="lens-controls"');
+  const controls = html.indexOf('id="question-controls"');
   assert.ok(understanding >= 0);
   assert.ok(controls > understanding);
   assert.match(html, /data-vexsystem-component="composed-understanding"/);
   assert.match(app, /projectionApi\.composeUnderstanding\(atlas, state\.selectedSubjectRef\)/);
 });
 
-test('VEXSYSTEM PAGE: human-facing focus and context labels do not require lens or numeric-level jargon', () => {
-  assert.match(html, />Focus on</);
-  assert.match(html, />Context</);
-  assert.match(app, /BLUEPRINT: 'Structure'/);
-  assert.match(app, /PROCESS: 'Building'/);
-  assert.match(app, /CONSEQUENCE: 'Impact'/);
-  assert.match(app, /PLATFORM: 'Platforms'/);
-  assert.match(app, /FORMATION: 'History'/);
-  assert.match(app, /dom\.levelOutput\.textContent = level\.name/);
-  assert.doesNotMatch(html, />Semantic depth</);
+test('VEXSYSTEM PAGE: receiver-facing controls ask questions instead of presenting architecture buzzwords', () => {
+  assert.match(html, /What do you want to understand\?/);
+  assert.match(projectionSource, /How is this put together\?/);
+  assert.match(projectionSource, /How does it keep working\?/);
+  assert.match(projectionSource, /How do we know it is healthy\?/);
+  assert.match(projectionSource, /Where does it show up\?/);
+  assert.match(projectionSource, /How did we get here\?/);
+  assert.match(html, />Detail</);
+  assert.match(html, />Less</);
+  assert.match(html, />More</);
+  assert.doesNotMatch(html, />Focus on</);
+  assert.doesNotMatch(app, /BLUEPRINT: 'Structure'/);
+  assert.doesNotMatch(app, /CONSEQUENCE: 'Impact'/);
+});
+
+test('VEXSYSTEM PAGE: relationship map has explicit pan, zoom, fit and reset presentation controls', () => {
+  assert.match(html, /id="map-world"/);
+  assert.match(html, /id="map-fit"/);
+  assert.match(html, /id="map-zoom-in"/);
+  assert.match(html, /id="map-zoom-out"/);
+  assert.match(html, /id="map-reset"/);
+  assert.match(css, /touch-action:none/);
+  assert.match(css, /cursor:grab/);
+  assert.match(app, /function zoomMapAt\(point, requestedScale\)/);
+  assert.match(app, /function fitMapToQuestion\(positions, supportSubjectRefs\)/);
+  assert.match(app, /addEventListener\('wheel'/);
+  assert.match(app, /addEventListener\('pointerdown'/);
+  assert.match(app, /addEventListener\('pointermove'/);
+});
+
+test('VEXSYSTEM PAGE: direct human answer precedes raw map inspection detail', () => {
+  assert.match(html, /id="view-answer"/);
+  assert.match(html, /Why does this answer the question\?/);
+  assert.match(html, /Same relationships, without the map/);
+  assert.match(app, /dom\.viewAnswer\.textContent = question\.answer/);
 });
 
 test('VEXSYSTEM PAGE: mobile composition keeps meaning primary before the graph', () => {
@@ -212,7 +241,7 @@ test('VEXSYSTEM PAGE: browser proof requires source-derived meaning before optio
 test('VEXSYSTEM PAGE: Formation screenshot visibly captures the optional deepening surface', () => {
   assert.match(browserProof, /document\.querySelector\('\.vs-explore'\)/);
   assert.match(browserProof, /window\.scrollTo\(0, top\)/);
-  assert.match(browserProof, /Formation deepening viewport/);
+  assert.match(browserProof, /History explorer viewport/);
   assert.match(browserProof, /VEXSYSTEM_BROWSER_FORMATION_CAPTURE_NOT_DEEPENED/);
   assert.match(browserProof, /scrollY: window\.scrollY/);
 });
@@ -260,6 +289,52 @@ test('VEXSYSTEM PAGE: Terrain screenshots admit one initial document abort only 
   assert.match(browserProof, /snapshot\.pathname === '\/Vextreme\/pages\/terrain-map\.html'/);
   assert.match(browserProof, /'screenshot ' \+ scenario/);
   assert.doesNotMatch(browserProof, /allowSingleSupersededDocumentAbort:\s*true/);
+});
+
+
+test('VEXSYSTEM PAGE: browser proof treats map camera movement as presentation-only', () => {
+  assert.match(browserProof, /proveMapCameraIsPresentationOnly/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_MAP_PAN_SEMANTIC_MUTATION/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_MAP_ZOOM_SEMANTIC_MUTATION/);
+  assert.match(browserProof, /type: 'mouseWheel'/);
+  assert.match(browserProof, /window\.__vexMapFitTransform/);
+  assert.match(browserProof, /#map-fit/);
+  assert.match(browserProof, /#map-reset/);
+});
+
+
+test('VEXSYSTEM PAGE: receiver-first visual scenarios capture the changed explorer rather than the unchanged page top', () => {
+  assert.match(browserProof, /receiver-map-desktop/);
+  assert.match(browserProof, /health-map-desktop/);
+  assert.match(browserProof, /receiver-map-mobile/);
+  assert.match(browserProof, /placeExplorerInViewport/);
+  assert.match(browserProof, /Receiver-first explorer viewport/);
+  assert.match(browserProof, /Health-question explorer viewport/);
+  assert.match(browserProof, /Explorer screenshot did not move the receiver-first relationship surface/);
+});
+
+
+test('VEXSYSTEM PAGE: trusted map drag proof drives a held mouse button and requires real Pointer Events', () => {
+  assert.match(browserProof, /buttons: 1/);
+  assert.match(browserProof, /pointerType: 'mouse'/);
+  assert.match(browserProof, /window\.__vexMapPointerProbe/);
+  assert.match(browserProof, /pointerdown/);
+  assert.match(browserProof, /pointermove/);
+  assert.match(browserProof, /pointerup/);
+  assert.match(browserProof, /event\.isTrusted === true/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_TRUSTED_MAP_DRAG_MISSING/);
+});
+
+
+test('VEXSYSTEM PAGE: runtime map input is aimed only after the receiver-first explorer is visible', () => {
+  const start = browserProof.indexOf('async function proveMapCameraIsPresentationOnly');
+  const end = browserProof.indexOf('async function runRuntime', start);
+  const block = browserProof.slice(start, end);
+  assert.match(block, /placeExplorerInViewport\(cdp, page, 'Receiver-first runtime map viewport'\)/);
+  assert.ok(
+    block.indexOf('placeExplorerInViewport') < block.indexOf("Input.dispatchMouseEvent"),
+    'map must be scrolled into the visible runtime viewport before trusted pointer input'
+  );
 });
 
 // [VXG RealForever]
