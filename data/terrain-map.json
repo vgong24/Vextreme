@@ -2084,20 +2084,25 @@
       "stageName": "OUTPUT",
       "x": 1420,
       "y": 270,
-      "role": "legacy general Playwright screenshot writer — serves branch-local page/assets, intercepts @main CDN requests, captures default and language-switched PNG evidence",
+      "role": "legacy general Playwright localization screenshot writer — serves branch-local page/assets, captures verified default/language-switched PNG evidence, and optionally hands identical bytes to Vextreme-Assets structured screenshot custody",
       "reads": [
         "pages/{slug}.html (page under test, served from the branch-local repository)",
-        "repository assets requested by the rendered page (local server/CDN interception)"
+        "repository assets requested by the rendered page (local server/CDN interception)",
+        "widgets/fab-lang.js runtime contract (#vex-lang-fab-btn / .vex-lang-item / localStorage vex-lang verification)",
+        "optional sibling Vextreme-Assets/scripts/ingest-screenshot-evidence.mjs when --assets-root or VEXTREME_ASSETS_ROOT is explicitly supplied",
+        "git HEAD (exact Vextreme source commit attached to optional Assets evidence)"
       ],
       "writes": [
         "docs/screenshots/{slug}-en.png",
-        "docs/screenshots/{slug}-{lang}.png"
+        "docs/screenshots/{slug}-{lang}.png",
+        "optional Vextreme-Assets evidence/screenshots/vextreme/{slug}/{locale}/default/1280/{sha256}.png + manifest via the Assets-owned ingest contract"
       ],
       "loadedBy": [
         ".github/pull_request_template.md (browser-rendered change evidence instruction)",
-        "manual run: node scripts/screenshot-page.js [slug] [lang]"
+        "manual run: node scripts/screenshot-page.js [slug] [lang] [--assets-root <Vextreme-Assets checkout>]"
       ],
       "testedBy": [
+        "tests/44-page-health.test.js (source contract for additive Assets handoff + verified locale switch)",
         "review-time browser execution and visual inspection"
       ],
       "debts": [],
@@ -2892,6 +2897,18 @@
     [
       "scripts/screenshot-institutional.js",
       "lib/check-institutional-surfaces.js"
+    ],
+    [
+      "scripts/screenshot-page.js",
+      "lib/screenshot-evidence.js"
+    ],
+    [
+      "scripts/screenshot-page.js",
+      "lib/vextreme.js"
+    ],
+    [
+      "scripts/screenshot-page.js",
+      "widgets/fab-lang.js"
     ],
     [
       "sw.js",
