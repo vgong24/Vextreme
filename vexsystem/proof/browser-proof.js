@@ -506,6 +506,7 @@ async function runtimeSnapshot(cdp, page) {
       "exploreTop: rect(explore)?.top ?? null," +
       "mapTop: rect(map)?.top ?? null," +
       "viewportHeight: window.innerHeight," +
+      "scrollY: window.scrollY," +
       "inspectorTitle: document.querySelector('#inspector-heading')?.textContent || null," +
       "svgNodes: document.querySelectorAll('.vs-svg-node').length," +
       "textNodes: document.querySelectorAll('.vs-text-node').length," +
@@ -929,6 +930,23 @@ async function applyScenario(cdp, page, scenario) {
       "new URL(location.href).searchParams.get('lens') === 'FORMATION'",
       scenario
     );
+    await evaluate(
+      cdp,
+      page.sessionId,
+      "(() => {" +
+        "const target = document.querySelector('.vs-explore');" +
+        "if (!target) return false;" +
+        "const top = Math.max(0, target.getBoundingClientRect().top + window.scrollY - 70);" +
+        "window.scrollTo(0, top);" +
+        "return true;" +
+      "})()"
+    );
+    await waitFor(
+      cdp,
+      page.sessionId,
+      "window.scrollY > 0 && document.querySelector('.vs-explore') && document.querySelector('.vs-explore').getBoundingClientRect().top >= 50 && document.querySelector('.vs-explore').getBoundingClientRect().top <= 120",
+      'Formation deepening viewport'
+    );
     return;
   }
 
@@ -959,6 +977,22 @@ async function screenshot(origin, cdp, scenario) {
 
   const snapshot = await runtimeSnapshot(cdp, page);
   assertRuntimeSnapshot(snapshot, scenario);
+  if (
+    scenario === 'formation-desktop' &&
+    (
+      snapshot.scrollY == null ||
+      snapshot.scrollY <= 0 ||
+      snapshot.exploreTop == null ||
+      snapshot.exploreTop < 50 ||
+      snapshot.exploreTop > 120
+    )
+  ) {
+    fail(
+      'VEXSYSTEM_BROWSER_FORMATION_CAPTURE_NOT_DEEPENED',
+      'Formation screenshot did not move the optional deepening surface into the captured viewport.',
+      { scenario, snapshot }
+    );
+  }
 
   const image = await cdp.send(
     'Page.captureScreenshot',
