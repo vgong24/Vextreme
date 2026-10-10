@@ -2346,6 +2346,10 @@
     ],
     [
       "data/viewmodels.json",
+      "lib/audit-pages.js"
+    ],
+    [
+      "data/viewmodels.json",
       "lib/vextreme.js"
     ],
     [
@@ -2367,10 +2371,6 @@
     [
       "lib/audit-pages.js",
       "data/departments.json"
-    ],
-    [
-      "lib/audit-pages.js",
-      "data/viewmodels.json"
     ],
     [
       "lib/audit-pages.js",
