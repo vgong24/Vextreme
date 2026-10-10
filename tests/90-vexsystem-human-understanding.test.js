@@ -99,4 +99,16 @@ test('VEXSYSTEM UNDERSTANDING: public/private and source-descent boundaries rema
   }
 });
 
+
+test('VEXSYSTEM UNDERSTANDING: selecting a branch subject keeps its real named parent chain', () => {
+  const view = vexsystem.composeUnderstanding(atlas, 'route.vextreme.vexsystem');
+  assert.deepEqual(view.placement.map(subject => subject.subjectRef), [
+    'system.vextreme.public-institutional-template',
+    'foundation.vextreme.terrain',
+    'feature.vextreme.terrain-entry',
+    'contract.vextreme.terrain-entry.v1'
+  ]);
+  assert.equal(view.subject.state, 'HELD');
+});
+
 // [VXG RealForever]
