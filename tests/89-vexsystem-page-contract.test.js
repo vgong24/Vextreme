@@ -164,3 +164,34 @@ test('VEXSYSTEM PAGE: screenshot evidence uses the same strict runtime/network c
   assert.match(browserProof, /assertPageSignals\(page, 'screenshot ' \+ scenario\)/);
   assert.match(browserProof, /signals,/);
 });
+
+test('VEXSYSTEM PAGE: composed understanding precedes optional exploration controls', () => {
+  const understanding = html.indexOf('id="understanding-title"');
+  const controls = html.indexOf('id="lens-controls"');
+  assert.ok(understanding >= 0);
+  assert.ok(controls > understanding);
+  assert.match(html, /data-vexsystem-component="composed-understanding"/);
+  assert.match(app, /projectionApi\.composeUnderstanding\(atlas, state\.selectedSubjectRef\)/);
+});
+
+test('VEXSYSTEM PAGE: human-facing focus and context labels do not require lens or numeric-level jargon', () => {
+  assert.match(html, />Focus on</);
+  assert.match(html, />Context</);
+  assert.match(app, /BLUEPRINT: 'Structure'/);
+  assert.match(app, /PROCESS: 'Building'/);
+  assert.match(app, /CONSEQUENCE: 'Impact'/);
+  assert.match(app, /PLATFORM: 'Platforms'/);
+  assert.match(app, /FORMATION: 'History'/);
+  assert.match(app, /dom\.levelOutput\.textContent = level\.name/);
+  assert.doesNotMatch(html, />Semantic depth</);
+});
+
+test('VEXSYSTEM PAGE: mobile composition keeps meaning primary before the graph', () => {
+  assert.match(css, /\.vs-understanding-heading h1\{font-size:31px/);
+  assert.match(css, /\.vs-route-grid\{grid-template-columns:1fr/);
+  assert.match(css, /\.vs-map-stage,#vexsystem-map\{min-height:390px\}/);
+  assert.ok(html.indexOf('id="understanding-purpose"') < html.indexOf('id="vexsystem-map"'));
+});
+
+
+// [VXG RealForever]
