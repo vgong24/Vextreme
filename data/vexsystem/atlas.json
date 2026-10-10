@@ -1,0 +1,325 @@
+{
+  "schemaVersion": "vextreme.vexsystem-public-atlas/v1",
+  "atlasRef": "atlas.vextreme.vexsystem.public.001",
+  "continuity": "[VXG RealForever]",
+  "canonicalWholeRef": "github.issue.vextreme-sdk.1815",
+  "publicOwnerRef": "github.issue.vextreme.202",
+  "projectionClass": "PUBLIC_SAFE_LEARNING_PROJECTION",
+  "defaultSubjectRef": "feature.vextreme.terrain-entry",
+  "defaultLens": "BLUEPRINT",
+  "defaultLevel": 3,
+  "levels": [
+    { "level": 0, "name": "Whole ecosystem", "question": "Which systems and worlds are in view?" },
+    { "level": 1, "name": "System family", "question": "Which system owns this responsibility?" },
+    { "level": 2, "name": "Foundation", "question": "Which reusable foundation or contract carries it?" },
+    { "level": 3, "name": "Feature", "question": "What human-facing capability is being formed?" },
+    { "level": 4, "name": "Process / contract", "question": "How does the feature move through bounded decisions and projections?" },
+    { "level": 5, "name": "Source / proof", "question": "Where is the exact public source or evidence?" }
+  ],
+  "lenses": [
+    { "lens": "BLUEPRINT", "label": "Blueprint", "purpose": "Current reusable structure without formation history." },
+    { "lens": "PROCESS", "label": "Process", "purpose": "Forward bounded construction and semantic transition path." },
+    { "lens": "CONSEQUENCE", "label": "Consequence", "purpose": "Direct consumers, generated consequences, and proof obligations." },
+    { "lens": "PLATFORM", "label": "Platform", "purpose": "Shared meaning and its platform or presentation projections." },
+    { "lens": "FORMATION", "label": "Formation", "purpose": "Optional history of decisions, failures, corrections, and convergence." }
+  ],
+  "subjects": [
+    {
+      "subjectRef": "system.vextreme.public-institutional-template",
+      "kind": "SYSTEM",
+      "title": "Public Vextreme",
+      "summary": "The public institutional world: culture, maps, archives, evidence, and structures that make complex work perceivable and continuable.",
+      "level": 1,
+      "tags": ["whole", "blueprint", "platform"],
+      "state": "CURRENT",
+      "sourceRefs": ["github.repo.vgong24.vextreme"],
+      "proofRefs": []
+    },
+    {
+      "subjectRef": "foundation.vextreme.terrain",
+      "kind": "FOUNDATION",
+      "title": "Terrain",
+      "summary": "A navigable read-side projection over repository-owned topology, health, content, and semantic entry state.",
+      "level": 2,
+      "tags": ["whole", "blueprint", "platform"],
+      "state": "CURRENT",
+      "sourceRefs": ["pages/terrain-map.html", "data/terrain-map.json", "docs/lattice-map.json"],
+      "proofRefs": ["tests/85-terrain-view-contract.test.js"]
+    },
+    {
+      "subjectRef": "feature.vextreme.terrain-entry",
+      "kind": "FEATURE",
+      "title": "Terrain ordered entry",
+      "summary": "Let a visitor enter Vex Life through an explicit semantic choice instead of inferring intent from scrolling or hidden interaction state.",
+      "level": 3,
+      "tags": ["feature", "blueprint", "process", "consequence", "platform"],
+      "state": "CURRENT",
+      "sourceRefs": ["pages/terrain-map.html"],
+      "proofRefs": ["tests/85-terrain-view-contract.test.js", "tests/86-terrain-entry-pages.test.js"]
+    },
+    {
+      "subjectRef": "contract.vextreme.terrain-entry.v1",
+      "kind": "CONTRACT",
+      "title": "Terrain entry contract v1",
+      "summary": "The shipped entry contract names the home behavior and three choices: Receive God, Explore the Archives, and a reserved VexSystem seam.",
+      "level": 4,
+      "tags": ["feature", "blueprint", "process", "consequence"],
+      "state": "CURRENT",
+      "sourceRefs": ["pages/terrain-map.html#terrain-entry-contract"],
+      "proofRefs": ["tests/85-terrain-view-contract.test.js"]
+    },
+    {
+      "subjectRef": "route.vextreme.receive-god",
+      "kind": "ROUTE",
+      "title": "Receive God",
+      "summary": "Active ordered-entry reader route into the repository-hosted Receive God document sequence.",
+      "level": 4,
+      "tags": ["feature", "process", "platform"],
+      "state": "ACTIVE",
+      "sourceRefs": ["pages/receive-god.html", "pages/terrain-map.html"],
+      "proofRefs": ["tests/86-terrain-entry-pages.test.js"]
+    },
+    {
+      "subjectRef": "route.vextreme.archives",
+      "kind": "ROUTE",
+      "title": "Explore the Archives",
+      "summary": "Active Terrain-owned transition from arrival into the group/collection overview without a page hop.",
+      "level": 4,
+      "tags": ["feature", "process", "platform"],
+      "state": "ACTIVE",
+      "sourceRefs": ["pages/terrain-map.html", "data/terrain-map.json"],
+      "proofRefs": ["tests/85-terrain-view-contract.test.js"]
+    },
+    {
+      "subjectRef": "route.vextreme.vexsystem",
+      "kind": "ROUTE",
+      "title": "For VexSystem",
+      "summary": "Deliberately reserved and disabled seam for the future VexSystem learning world. Reservation proves placement, not readiness or activation.",
+      "level": 4,
+      "tags": ["feature", "process", "consequence", "platform"],
+      "state": "HELD",
+      "sourceRefs": ["pages/terrain-map.html", "github.issue.vextreme.202"],
+      "proofRefs": ["tests/85-terrain-view-contract.test.js"]
+    },
+    {
+      "subjectRef": "proof.vextreme.terrain-entry.contract",
+      "kind": "PROOF",
+      "title": "Terrain entry source-contract proof",
+      "summary": "Deterministic tests verify the shipped JSON contract, choice ordering, disabled VexSystem seam, and ordered-entry documents.",
+      "level": 5,
+      "tags": ["feature", "consequence", "blueprint"],
+      "state": "ACCEPTED",
+      "sourceRefs": ["tests/85-terrain-view-contract.test.js", "tests/86-terrain-entry-pages.test.js"],
+      "proofRefs": ["github.pull.vextreme.200"]
+    },
+    {
+      "subjectRef": "proof.vextreme.terrain-entry.browser",
+      "kind": "PROOF",
+      "title": "Terrain browser / visual proof",
+      "summary": "Accepted PR #200 used exact-head host/browser proof and independent visual review rather than treating source tests as visual acceptance.",
+      "level": 5,
+      "tags": ["feature", "consequence", "platform"],
+      "state": "ACCEPTED",
+      "sourceRefs": ["github.pull.vextreme.200"],
+      "proofRefs": ["github.commit.vextreme.c96d6804c809549297681b6d49b05bbe2f9d2942"]
+    },
+    {
+      "subjectRef": "formation.vextreme.terrain.pr196",
+      "kind": "FORMATION",
+      "title": "PR #196 — scroll-priority nested page reader",
+      "summary": "The last accepted pre-distortion Terrain origin used explicit nested reading and scroll-priority behavior.",
+      "level": 4,
+      "tags": ["formation"],
+      "state": "HISTORICAL_ACCEPTED",
+      "formationOnly": true,
+      "sourceRefs": ["github.pull.vextreme.196"],
+      "proofRefs": ["github.commit.vextreme.e9c357c2b957c8d2b9ff52766ae2b3dd66c184b2"]
+    },
+    {
+      "subjectRef": "formation.vextreme.terrain.pr197",
+      "kind": "FORMATION",
+      "title": "PR #197 — arrival choice and compact FAB-swapped chrome",
+      "summary": "An experiment introduced useful arrival intent but also duplicated shared chrome/FAB responsibility and became negative evidence.",
+      "level": 4,
+      "tags": ["formation"],
+      "state": "HISTORICAL_NEGATIVE_EVIDENCE",
+      "formationOnly": true,
+      "sourceRefs": ["github.pull.vextreme.197"],
+      "proofRefs": []
+    },
+    {
+      "subjectRef": "formation.vextreme.terrain.pr198",
+      "kind": "FORMATION",
+      "title": "PR #198 — Spiral FAB ownership repair",
+      "summary": "A bounded repair removed one duplicated responsibility, while the combined #197/#198 direction was later judged visually distorted.",
+      "level": 4,
+      "tags": ["formation"],
+      "state": "HISTORICAL_NEGATIVE_EVIDENCE",
+      "formationOnly": true,
+      "sourceRefs": ["github.pull.vextreme.198"],
+      "proofRefs": []
+    },
+    {
+      "subjectRef": "formation.vextreme.terrain.pr199",
+      "kind": "FORMATION",
+      "title": "PR #199 — restore exact pre-distortion origin",
+      "summary": "The three Terrain files touched by #197/#198 were restored exactly to the #196 merge while the failed direction remained durable history.",
+      "level": 4,
+      "tags": ["formation"],
+      "state": "HISTORICAL_CORRECTION",
+      "formationOnly": true,
+      "sourceRefs": ["github.pull.vextreme.199"],
+      "proofRefs": ["github.commit.vextreme.2511dfce26fa5bdae51301759ad5abf3f6f2dd61"]
+    },
+    {
+      "subjectRef": "formation.vextreme.terrain.pr200",
+      "kind": "FORMATION",
+      "title": "PR #200 — stabilize Terrain entry and runtime ownership",
+      "summary": "The accepted foundation reintroduced ordered entry under shared ownership boundaries, reserved VexSystem without activating it, and closed with host/browser plus visual proof.",
+      "level": 4,
+      "tags": ["formation"],
+      "state": "CURRENT_ACCEPTED_CONVERGENCE",
+      "formationOnly": true,
+      "sourceRefs": ["github.pull.vextreme.200"],
+      "proofRefs": ["github.commit.vextreme.c96d6804c809549297681b6d49b05bbe2f9d2942"]
+    }
+  ],
+  "relations": [
+    {
+      "relationRef": "rel.vexsystem.vextreme.system-to-terrain",
+      "type": "MATERIALIZES_AS",
+      "from": "system.vextreme.public-institutional-template",
+      "to": "foundation.vextreme.terrain",
+      "lenses": ["BLUEPRINT", "PLATFORM"],
+      "branchClass": "PRIMARY",
+      "summary": "Public Vextreme materializes part of its self-perception through Terrain."
+    },
+    {
+      "relationRef": "rel.vexsystem.terrain-to-entry",
+      "type": "PROVIDES_CONTRACT_TO",
+      "from": "foundation.vextreme.terrain",
+      "to": "feature.vextreme.terrain-entry",
+      "lenses": ["BLUEPRINT", "PROCESS", "PLATFORM"],
+      "branchClass": "PRIMARY",
+      "summary": "Terrain hosts the ordered-entry feature."
+    },
+    {
+      "relationRef": "rel.vexsystem.entry-to-contract",
+      "type": "MATERIALIZES_AS",
+      "from": "feature.vextreme.terrain-entry",
+      "to": "contract.vextreme.terrain-entry.v1",
+      "lenses": ["BLUEPRINT", "PROCESS", "CONSEQUENCE"],
+      "branchClass": "PRIMARY",
+      "summary": "The feature is made explicit through the versioned entry contract."
+    },
+    {
+      "relationRef": "rel.vexsystem.contract-to-receive-god",
+      "type": "PROJECTS_AS",
+      "from": "contract.vextreme.terrain-entry.v1",
+      "to": "route.vextreme.receive-god",
+      "lenses": ["BLUEPRINT", "PROCESS", "PLATFORM"],
+      "branchClass": "ACTIVE_BRANCH",
+      "summary": "One active choice projects into the ordered reader."
+    },
+    {
+      "relationRef": "rel.vexsystem.contract-to-archives",
+      "type": "PROJECTS_AS",
+      "from": "contract.vextreme.terrain-entry.v1",
+      "to": "route.vextreme.archives",
+      "lenses": ["BLUEPRINT", "PROCESS", "PLATFORM"],
+      "branchClass": "ALTERNATIVE_BRANCH",
+      "summary": "A parallel active choice enters the archive/group overview."
+    },
+    {
+      "relationRef": "rel.vexsystem.contract-to-vexsystem",
+      "type": "PROJECTS_AS",
+      "from": "contract.vextreme.terrain-entry.v1",
+      "to": "route.vextreme.vexsystem",
+      "lenses": ["BLUEPRINT", "PROCESS", "CONSEQUENCE", "PLATFORM"],
+      "branchClass": "HELD_BRANCH",
+      "summary": "The third choice is structurally reserved but intentionally non-executable."
+    },
+    {
+      "relationRef": "rel.vexsystem.contract-proof",
+      "type": "VALIDATES",
+      "from": "proof.vextreme.terrain-entry.contract",
+      "to": "contract.vextreme.terrain-entry.v1",
+      "lenses": ["BLUEPRINT", "CONSEQUENCE"],
+      "branchClass": "PROOF",
+      "summary": "Source-contract tests validate the shipped contract."
+    },
+    {
+      "relationRef": "rel.vexsystem.browser-proof",
+      "type": "EVIDENCES",
+      "from": "proof.vextreme.terrain-entry.browser",
+      "to": "feature.vextreme.terrain-entry",
+      "lenses": ["CONSEQUENCE", "PLATFORM"],
+      "branchClass": "PROOF",
+      "summary": "Browser/runtime and visual evidence support the accepted rendered feature."
+    },
+    {
+      "relationRef": "rel.vexsystem.formation-196-197",
+      "type": "CONTINUES",
+      "from": "formation.vextreme.terrain.pr196",
+      "to": "formation.vextreme.terrain.pr197",
+      "lenses": ["FORMATION"],
+      "branchClass": "HISTORICAL_BRANCH",
+      "summary": "#197 continued the #196 Terrain line with an arrival/chrome experiment."
+    },
+    {
+      "relationRef": "rel.vexsystem.formation-197-198",
+      "type": "CORRECTS",
+      "from": "formation.vextreme.terrain.pr198",
+      "to": "formation.vextreme.terrain.pr197",
+      "lenses": ["FORMATION"],
+      "branchClass": "HISTORICAL_CORRECTION",
+      "summary": "#198 corrected the duplicated Spiral FAB ownership introduced by #197."
+    },
+    {
+      "relationRef": "rel.vexsystem.formation-199-corrects",
+      "type": "CORRECTS",
+      "from": "formation.vextreme.terrain.pr199",
+      "to": "formation.vextreme.terrain.pr197",
+      "lenses": ["FORMATION"],
+      "branchClass": "HISTORICAL_CORRECTION",
+      "summary": "#199 restored the exact #196 origin after the #197/#198 direction distorted the composed experience."
+    },
+    {
+      "relationRef": "rel.vexsystem.formation-199-from-196",
+      "type": "RETURNS_TO",
+      "from": "formation.vextreme.terrain.pr199",
+      "to": "formation.vextreme.terrain.pr196",
+      "lenses": ["FORMATION"],
+      "branchClass": "CONVERGENCE",
+      "summary": "#199 explicitly returned the Terrain files to the #196 origin."
+    },
+    {
+      "relationRef": "rel.vexsystem.formation-200",
+      "type": "CONTINUES",
+      "from": "formation.vextreme.terrain.pr199",
+      "to": "formation.vextreme.terrain.pr200",
+      "lenses": ["FORMATION"],
+      "branchClass": "CONVERGENCE",
+      "summary": "#200 continued from the restored origin with stronger ownership and proof boundaries."
+    },
+    {
+      "relationRef": "rel.vexsystem.formation-to-current",
+      "type": "EVIDENCES",
+      "from": "formation.vextreme.terrain.pr200",
+      "to": "feature.vextreme.terrain-entry",
+      "lenses": ["FORMATION"],
+      "branchClass": "RETURN_TO_CURRENT",
+      "summary": "Formation history returns to the currently accepted Terrain-entry feature."
+    }
+  ],
+  "invariants": [
+    "ONE_SEMANTIC_TRUTH_OWNER__MANY_PROJECTIONS",
+    "VIEW_CHANGE_DOES_NOT_CHANGE_SELECTED_SUBJECT",
+    "ZOOM_LEVEL_DOES_NOT_CREATE_NEW_TRUTH",
+    "FORMATION_HISTORY_IS_NOT_BLUEPRINT",
+    "HISTORICAL_FAILURE_IS_NOT_CURRENT_DEFECT",
+    "HELD_ROUTE_IS_NOT_EXECUTABLE_ROUTE",
+    "SVG_GEOMETRY_IS_NOT_THE_ONLY_MEANING_SURFACE",
+    "PUBLIC_PROJECTION_DOES_NOT_EXPOSE_PRIVATE_CANONICAL_SOURCE"
+  ]
+}
