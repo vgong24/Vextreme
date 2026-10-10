@@ -2994,7 +2994,19 @@
   }
 }());
 </script>
-<script>window.VEXTREME_OVERRIDE = { bodyWrap: false, fabWidgets: { map: false } };</script>
-<script src="../lib/shell.js?v=10"></script>
+<script>
+window.VEXTREME_OVERRIDE = {
+  bodyWrap: false,
+  fabWidgets: { map: false },
+  fabLinks: [{
+    id: 'support',
+    href: 'vex-support.html',
+    label: 'Support Vextreme and VexLife',
+    title: 'Support the creator',
+    icon: '🫴'
+  }]
+};
+</script>
+<script src="../lib/shell.js?v=11"></script>
 </body>
 </html>
