@@ -85,6 +85,11 @@ test('VEXSYSTEM PAGE: visual branch classes include held, proof, and historical 
   assert.match(css, /\.vs-edge\.CONVERGENCE/);
 });
 
+test('VEXSYSTEM PAGE: standalone renderer does not absorb the shared main-page runtime', () => {
+  assert.doesNotMatch(html, /lib\/shell\.js|lib\/vextreme\.js|widgets\/vex-fab|widgets\/fab-/);
+  assert.doesNotMatch(app, /\bVEXTREME\s*\(|\bJourney\b|terrain-entry-contract/);
+});
+
 test('VEXSYSTEM PAGE: Terrain remains an external host route rather than copied shared chrome', () => {
   assert.match(html, /href="\.\.\/pages\/terrain-map\.html"/);
   assert.doesNotMatch(html, /vex-spiral-trigger|vex-nav-actions|terrain-entry-contract/);
@@ -311,6 +316,17 @@ test('VEXSYSTEM PAGE: Terrain screenshots admit one initial document abort only 
   assert.doesNotMatch(browserProof, /allowSingleSupersededDocumentAbort:\s*true/);
 });
 
+
+test('VEXSYSTEM PAGE: no-drag pointer release activates a map node while drag/cancel remain non-activating', () => {
+  assert.match(app, /const activateRef = event\.type === 'pointerup' && !completed\.moved/);
+  assert.match(app, /activateSubject\(activateRef\)/);
+  assert.match(app, /function suppressCompatibilityClick\(subjectRef\)/);
+  assert.match(app, /if \(completed\.startSubjectRef\) suppressCompatibilityClick\(completed\.startSubjectRef\)/);
+  assert.match(app, /setTimeout\(\(\) => \{/);
+  assert.match(browserProof, /async function proveMapNodeActivation/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_MAP_NODE_ACTIVATION_MISSING/);
+  assert.match(browserProof, /TRUSTED_POINTER_UP_NO_DRAG/);
+});
 
 test('VEXSYSTEM PAGE: browser proof treats map camera movement as presentation-only', () => {
   assert.match(browserProof, /proveMapCameraIsPresentationOnly/);

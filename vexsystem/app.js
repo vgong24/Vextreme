@@ -460,12 +460,31 @@
     applyMapTransform();
     event.preventDefault();
   });
+  function suppressCompatibilityClick(subjectRef) {
+    if (!subjectRef) return;
+    suppressSubjectClick = subjectRef;
+    setTimeout(() => {
+      if (suppressSubjectClick === subjectRef) suppressSubjectClick = null;
+    }, 0);
+  }
   function endMapDrag(event) {
     if (!mapDrag || mapDrag.pointerId !== event.pointerId) return;
-    if (mapDrag.moved && mapDrag.startSubjectRef) suppressSubjectClick = mapDrag.startSubjectRef;
+    const completed = mapDrag;
+    const activateRef = event.type === 'pointerup' && !completed.moved
+      ? completed.startSubjectRef
+      : null;
+
+    if (completed.startSubjectRef) suppressCompatibilityClick(completed.startSubjectRef);
     if (dom.mapSvg.releasePointerCapture) dom.mapSvg.releasePointerCapture(event.pointerId);
     dom.mapSvg.classList.remove('grabbing');
     mapDrag = null;
+
+    if (activateRef) {
+      // Pointer capture is required for stable panning, but it can retarget the
+      // later click away from the original SVG node. A completed no-drag pointer
+      // gesture is therefore the semantic activation itself.
+      activateSubject(activateRef);
+    }
   }
   dom.mapSvg.addEventListener('pointerup', endMapDrag);
   dom.mapSvg.addEventListener('pointercancel', endMapDrag);
