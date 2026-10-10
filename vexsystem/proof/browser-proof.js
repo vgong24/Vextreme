@@ -283,6 +283,13 @@ async function createPage(cdp, url, viewport) {
     cdp.send('Network.enable', {}, sessionId)
   ]);
 
+  await cdp.send('Network.setBlockedURLs', {
+    urls: [
+      'https://fonts.googleapis.com/*',
+      'https://fonts.gstatic.com/*'
+    ]
+  }, sessionId);
+
   await cdp.send('Emulation.setDeviceMetricsOverride', {
     width: viewport.width,
     height: viewport.height,
