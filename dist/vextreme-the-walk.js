@@ -381,6 +381,7 @@
   var LS_LANG    = 'vex-lang';
   var LS_DATA    = 'vex-index-v2-data';
   var LANG_CHANGE_EVENT = 'vextreme:languagechange';
+  var LANG_BRIDGE_MESSAGE = 'vextreme:languagechange/v1';
 
   // ── Config constants (mirrors lib/vex-config.js) ─────────────────────────────
   var CATEGORY_SYSTEM     = 'system';
@@ -700,6 +701,21 @@
 
   // ── i18n swap ────────────────────────────────────────────────────────────────
 
+  function notifyParentLanguage(lang, source) {
+    // localStorage remains the selected-language authority. This message is
+    // only a same-origin upward notification fallback for a direct child FAB
+    // selection when a browser/session does not deliver the expected storage
+    // event promptly to the parent browsing context.
+    if (source !== 'fab') return;
+    try {
+      if (!window.parent || window.parent === window) return;
+      window.parent.postMessage({
+        type: LANG_BRIDGE_MESSAGE,
+        lang: lang
+      }, window.location.origin);
+    } catch (e) { /* parent unavailable or cross-origin */ }
+  }
+
   function publishLanguageChange(lang, source) {
     try { document.documentElement.setAttribute('lang', lang); } catch (e) {}
     try {
@@ -707,6 +723,7 @@
         detail: { lang: lang, source: source || 'fab' }
       }));
     } catch (e) { /* CustomEvent unavailable */ }
+    notifyParentLanguage(lang, source || 'fab');
   }
 
   function persistLanguage(lang) {
@@ -991,15 +1008,28 @@
         document.body.appendChild(fab);
       }
 
-      // localStorage is the persisted same-origin language authority. Its
-      // storage event fires in OTHER browsing contexts, so parent/iframe FAB
-      // instances converge without postMessage plumbing or duplicate state.
+      // localStorage is the persisted same-origin language authority. Storage
+      // events remain the normal cross-context convergence path.
       window.addEventListener('storage', function (event) {
         if (event.key !== LS_LANG || !event.newValue || langs.indexOf(event.newValue) < 0) return;
         fabController.selectLanguage(event.newValue, {
           persist: false,
           source: 'storage',
           forceApply: true
+        });
+      });
+
+      // A direct child FAB selection also notifies its same-origin parent.
+      // This is notification-only: the child has already persisted vex-lang.
+      // The parent consumes that existing authority and applies it locally.
+      window.addEventListener('message', function (event) {
+        if (event.origin !== window.location.origin || event.source === window) return;
+        var data = event && event.data;
+        if (!data || data.type !== LANG_BRIDGE_MESSAGE || typeof data.lang !== 'string') return;
+        if (langs.indexOf(data.lang) < 0) return;
+        fabController.selectLanguage(data.lang, {
+          persist: false,
+          source: 'child-message'
         });
       });
 
