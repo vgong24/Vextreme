@@ -180,8 +180,7 @@
         "lib/vex-config.js"
       ],
       "writes": [
-        "data/index.json",
-        "data/index.json.pageLanguageMap (per-page availableLangs + completeLangs projection)"
+        "data/index.json"
       ],
       "loadedBy": [
         "lib/vextreme-index-v2.js (browser reads index.json via CDN)",
