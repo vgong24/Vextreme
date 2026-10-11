@@ -126,16 +126,21 @@ test('PROGRAM TIER CONTRACT: every global-core target is first-class in the brow
   const fs = require('node:fs');
   const path = require('node:path');
   const fab = fs.readFileSync(path.join(__dirname, '..', 'widgets', 'fab-lang.js'), 'utf8');
-  const flags = fab.match(/var LANG_FLAGS = \\{([\\s\\S]*?)\\n  \\};/);
-  const names = fab.match(/var LANG_NAMES = \\{([\\s\\S]*?)\\n  \\};/);
+  const flagsStart = fab.indexOf('var LANG_FLAGS = {');
+  const namesStart = fab.indexOf('var LANG_NAMES = {');
+  const sortStart = fab.indexOf('function sortLangs', namesStart);
 
-  assert.ok(flags, 'LANG_FLAGS block must remain discoverable');
-  assert.ok(names, 'LANG_NAMES block must remain discoverable');
+  assert.ok(flagsStart >= 0, 'LANG_FLAGS block must remain discoverable');
+  assert.ok(namesStart > flagsStart, 'LANG_NAMES block must remain discoverable');
+  assert.ok(sortStart > namesStart, 'sortLangs boundary must remain discoverable');
+
+  const flags = fab.slice(flagsStart, namesStart);
+  const names = fab.slice(namesStart, sortStart);
 
   for (const lang of LANGUAGE_TIERS['global-core']) {
-    const pattern = new RegExp('(?:^|\\\\n)\\\\s*' + lang + ':');
-    assert.match(flags[1], pattern, `${lang} must have a first-class flag`);
-    assert.match(names[1], pattern, `${lang} must have a first-class display name`);
+    const pattern = new RegExp('\\\\n\\\\s*' + lang + ':');
+    assert.match(flags, pattern, `${lang} must have a first-class flag`);
+    assert.match(names, pattern, `${lang} must have a first-class display name`);
   }
 });
 
