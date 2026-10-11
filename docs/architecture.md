@@ -770,6 +770,9 @@ A cell is capture-ready only when:
 
 The planner therefore cannot turn a partial translation batch into screenshot evidence. The
 renderer still has to observe the selected locale in a real browser before it writes the PNG.
+Before any Assets-bound render begins, the writer also requires a clean Vextreme worktree and
+binds the exact Git HEAD; that prevents a PNG rendered from uncommitted translation bytes from
+being mislabeled as evidence for an older source commit.
 
 When an Assets root is supplied, the existing screenshot writer passes those exact PNG bytes to
 Vextreme-Assets' accepted ingest contract. Continuous Assets-only capture uses a temporary local
