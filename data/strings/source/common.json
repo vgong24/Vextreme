@@ -25,6 +25,10 @@
       "ja": {
         "text": "← 前へ",
         "aria-label": "前のページ"
+      },
+      "fr": {
+        "text": "← précédent",
+        "aria-label": "Page précédente"
       }
     }
   },
@@ -37,6 +41,10 @@
       "ja": {
         "text": "次へ →",
         "aria-label": "次のページ"
+      },
+      "fr": {
+        "text": "suivant →",
+        "aria-label": "Page suivante"
       }
     }
   },
@@ -47,6 +55,9 @@
       },
       "ja": {
         "text": "現在地"
+      },
+      "fr": {
+        "text": "Vous êtes ici"
       }
     }
   },
@@ -59,6 +70,10 @@
       "ja": {
         "text": "vextreme24.com",
         "aria-label": "メインサイトへ"
+      },
+      "fr": {
+        "text": "vextreme24.com",
+        "aria-label": "Aller au site principal"
       }
     }
   },
@@ -71,6 +86,10 @@
       "ja": {
         "text": "GitHub",
         "aria-label": "GitHubでソースを表示"
+      },
+      "fr": {
+        "text": "GitHub",
+        "aria-label": "Voir le code source sur GitHub"
       }
     }
   },
@@ -83,6 +102,10 @@
       "ja": {
         "text": "ファイル名をコピー",
         "aria-label": "ファイル名をクリップボードにコピー"
+      },
+      "fr": {
+        "text": "Copier le nom du fichier",
+        "aria-label": "Copier le nom du fichier dans le presse-papiers"
       }
     }
   },
@@ -95,6 +118,10 @@
       "ja": {
         "text": "コピーしました",
         "aria-label": "ファイル名をコピーしました"
+      },
+      "fr": {
+        "text": "Copié !",
+        "aria-label": "Nom du fichier copié dans le presse-papiers"
       }
     }
   },
@@ -104,6 +131,9 @@
         "text": "Vextreme"
       },
       "ja": {
+        "text": "Vextreme"
+      },
+      "fr": {
         "text": "Vextreme"
       }
     }
@@ -115,6 +145,9 @@
       },
       "ja": {
         "text": "公開済み"
+      },
+      "fr": {
+        "text": "Page en ligne"
       }
     }
   },
@@ -125,6 +158,9 @@
       },
       "ja": {
         "text": "未移植"
+      },
+      "fr": {
+        "text": "Pas encore migré"
       }
     }
   },
@@ -135,6 +171,9 @@
       },
       "ja": {
         "text": "スラッグ"
+      },
+      "fr": {
+        "text": "Slug"
       }
     }
   },
@@ -145,6 +184,9 @@
       },
       "ja": {
         "text": "{total}ページ中{ported}ページ公開中"
+      },
+      "fr": {
+        "text": "{ported, plural, one {# page en ligne sur {total}} other {# pages en ligne sur {total}}}"
       }
     }
   },
@@ -155,6 +197,9 @@
       },
       "ja": {
         "text": "残り{count}ページ"
+      },
+      "fr": {
+        "text": "{count, plural, one {# restant} other {# restants}}"
       }
     }
   },
@@ -165,6 +210,9 @@
       },
       "ja": {
         "text": "{date}生成"
+      },
+      "fr": {
+        "text": "Généré le {date}"
       }
     }
   },
@@ -177,6 +225,10 @@
       "ja": {
         "text": "ビルド健全性",
         "aria-label": "ビルド健全性を表示"
+      },
+      "fr": {
+        "text": "Santé du build",
+        "aria-label": "Voir la santé du build"
       }
     }
   },
@@ -189,6 +241,10 @@
       "ja": {
         "text": "ビルド健全性 →",
         "aria-label": "ビルド健全性を表示"
+      },
+      "fr": {
+        "text": "Santé du build →",
+        "aria-label": "Voir la santé du build"
       }
     }
   }
