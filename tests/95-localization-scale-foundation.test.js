@@ -248,3 +248,13 @@ test('LOCALIZATION-SCALE: Assets-bound screenshot evidence binds clean source be
   assert.match(src, /data\/strings\/batches\//);
   assert.match(src, /line\.startsWith\('\?\? '\)/);
 });
+
+test('LOCALIZATION-SCALE: Assets mutation waits for target-locale proof', () => {
+  const src = fs.readFileSync(path.join(__dirname, '..', 'scripts', 'screenshot-page.js'), 'utf8');
+  const targetShot = src.indexOf("await screenshotPage(page, langOut");
+  const enPublish = src.indexOf("publishScreenshotEvidence(enOut, 'en')");
+  const targetPublish = src.indexOf("publishScreenshotEvidence(langOut, lang)");
+  assert.ok(targetShot >= 0, 'target screenshot must exist');
+  assert.ok(enPublish > targetShot, 'EN Assets ingest must wait until target screenshot succeeds');
+  assert.ok(targetPublish > enPublish, 'target Assets ingest follows verified EN ingest');
+});
