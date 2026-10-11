@@ -31,7 +31,8 @@
  *   role      : reusable Playwright localization screenshot engine + backwards-compatible one-page review CLI
  *   reads     : pages/{slug}.html (page under test, served from the branch-local repository)
  *               repository assets requested by the rendered page (local server/CDN interception)
- *               widgets/fab-lang.js runtime contract (#vex-lang-fab-btn / .vex-lang-item / localStorage vex-lang verification)
+ *               widgets/vex-fab.js runtime contract (#vex-spiral-trigger / #vex-spiral-group visibility + aria-expanded)
+ *               widgets/fab-lang.js runtime contract (#vex-lang-fab-btn / .vex-lang-item / localStorage vex-lang + <html lang> verification)
  *               optional sibling Vextreme-Assets/scripts/ingest-screenshot-evidence.mjs when --assets-root or VEXTREME_ASSETS_ROOT is explicitly supplied
  *               git HEAD (exact Vextreme source commit attached to optional Assets evidence)
  *   writes    : caller-selected local PNG path (legacy CLI defaults to docs/screenshots/{slug}-{locale}.png)
