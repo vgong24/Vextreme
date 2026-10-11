@@ -277,7 +277,6 @@ function publishScreenshotEvidence(outPath, locale) {
 
   const enOut = path.join(OUT_DIR, `${slug}-en.png`);
   await screenshotPage(page, enOut, 'EN (default)');
-  publishScreenshotEvidence(enOut, 'en');
 
   // ── Switch language via FAB ──────────────────────────────────────────────
 
@@ -308,6 +307,11 @@ function publishScreenshotEvidence(outPath, locale) {
 
   const langOut = path.join(OUT_DIR, `${slug}-${lang}.png`);
   await screenshotPage(page, langOut, `${lang.toUpperCase()} (after verified FAB switch)`);
+
+  // Do not mutate Assets until the target-language switch and both screenshots
+  // have succeeded. A failed localization attempt therefore leaves no EN-only
+  // custody side effect merely because its baseline capture happened first.
+  publishScreenshotEvidence(enOut, 'en');
   publishScreenshotEvidence(langOut, lang);
 
   await browser.close();
