@@ -110,9 +110,7 @@ const OUT_DIR = options.assetsOnly
   ? fs.mkdtempSync(path.join(os.tmpdir(), 'vextreme-localization-screenshots-'))
   : LOCAL_OUT_DIR;
 if (options.assetsOnly) {
-  process.on('exit', () => {
-    try { fs.rmSync(OUT_DIR, { recursive: true, force: true }); } catch (error) { /* best-effort temp cleanup */ }
-  });
+  console.log(`[assets-only] temporary screenshot carrier: ${OUT_DIR}`);
 }
 
 // ── MIME types ───────────────────────────────────────────────────────────────
@@ -295,6 +293,10 @@ function publishScreenshotEvidence(outPath, locale) {
     console.log(`  ${lang.toUpperCase()}  : docs/screenshots/${slug}-${lang}.png`);
   }
   if (options.assetsRoot) console.log(`  Assets evidence checkout: ${options.assetsRoot}`);
+  if (options.assetsOnly) {
+    fs.rmSync(OUT_DIR, { recursive: true, force: true });
+    console.log('  Temporary screenshot carrier cleaned after accepted Assets ingest');
+  }
 })();
 
 // [VXG RealForever]
