@@ -230,6 +230,47 @@ function writeActiveAcceptance(root, slug, surfaceEntry) {
   }
 }
 
+function writeAssetsEvidenceProjection(root, slug, surfaceEntry, overrides = {}) {
+  const records = {};
+  for (const locale of surfaceEntry.strings.requiredLocales) {
+    for (const theme of surfaceEntry.evidence.themes) {
+      for (const viewport of surfaceEntry.evidence.viewports) {
+        const coordinate = ['vextreme', slug, locale, theme, String(viewport)].join('/');
+        const sha256 = 'a'.repeat(64);
+        records[coordinate] = {
+          namespace: 'vextreme',
+          slug,
+          locale,
+          theme,
+          viewport,
+          sha256,
+          path: `evidence/screenshots/vextreme/${slug}/${locale}/${theme}/${viewport}/${sha256}.png`,
+          source: {
+            repository: 'vgong24/Vextreme',
+            commit: 'b'.repeat(40),
+            path: `pages/${slug}.html`,
+          },
+          captureKind: 'institutional-localization',
+          ...overrides,
+        };
+      }
+    }
+  }
+  fs.writeFileSync(
+    path.join(root, 'data', 'screenshot-evidence-assets.json'),
+    JSON.stringify({
+      schemaVersion: 'vextreme.screenshot-evidence-assets-projection/v1',
+      source: {
+        repository: 'vgong24/Vextreme-Assets',
+        commit: 'c'.repeat(40),
+        publicOrigin: 'https://vgong24.github.io/Vextreme-Assets',
+        manifestSchemaVersion: 'vextreme-assets.screenshot-evidence/v1',
+      },
+      records,
+    }, null, 2) + '\n'
+  );
+}
+
 function supportRouteFixture(routeBlock, { candidateUrl = null } = {}) {
   const root = makeRoot();
   const activeEntry = entry({
@@ -698,6 +739,64 @@ test('INSTITUTIONAL-SURFACES: evidence requires every variant and a complete PNG
     { schemaVersion: SCHEMA_VERSION, surfaces: { 'vex-theme': uncoveredTheme } },
     makeRoot()
   ).some(issue => issue.check === 'evidence-theme-coverage'));
+});
+
+test('INSTITUTIONAL-SURFACES: pinned Assets matrix is fallback-only and cannot mask invalid local evidence', () => {
+  const root = makeRoot();
+  fs.writeFileSync(path.join(root, 'pages', 'vex-test.html'), activeHtml());
+  const activeEntry = entry({ state: 'active' });
+  writeActiveAcceptance(root, 'vex-test', activeEntry);
+
+  fs.rmSync(path.join(root, 'docs', 'screenshots'), { recursive: true, force: true });
+  fs.mkdirSync(path.join(root, 'docs', 'screenshots'), { recursive: true });
+  writeAssetsEvidenceProjection(root, 'vex-test', activeEntry);
+
+  let evidenceIssues = validateRegistry(
+    { schemaVersion: SCHEMA_VERSION, surfaces: { 'vex-test': activeEntry } },
+    root
+  ).filter(issue => issue.check === 'evidence-matrix');
+  assert.deepEqual(evidenceIssues, [],
+    'an exact pinned Assets institutional matrix should satisfy missing local cells');
+
+  fs.writeFileSync(
+    path.join(root, 'docs', 'screenshots', 'vex-test-en-foundation-320.png'),
+    Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a])
+  );
+  evidenceIssues = validateRegistry(
+    { schemaVersion: SCHEMA_VERSION, surfaces: { 'vex-test': activeEntry } },
+    root
+  ).filter(issue => issue.check === 'evidence-matrix');
+  assert.ok(evidenceIssues.some(issue => issue.message.includes('exists but is not a structurally valid PNG')),
+    'present local evidence remains authoritative and invalid bytes must not be masked by remote fallback');
+});
+
+test('INSTITUTIONAL-SURFACES: Assets fallback must be exact institutional localization evidence for the same source page', () => {
+  const root = makeRoot();
+  fs.writeFileSync(path.join(root, 'pages', 'vex-test.html'), activeHtml());
+  const activeEntry = entry({ state: 'active' });
+  writeActiveAcceptance(root, 'vex-test', activeEntry);
+  fs.rmSync(path.join(root, 'docs', 'screenshots'), { recursive: true, force: true });
+  fs.mkdirSync(path.join(root, 'docs', 'screenshots'), { recursive: true });
+
+  writeAssetsEvidenceProjection(root, 'vex-test', activeEntry, { captureKind: 'localization' });
+  let issues = validateRegistry(
+    { schemaVersion: SCHEMA_VERSION, surfaces: { 'vex-test': activeEntry } },
+    root
+  );
+  assert.ok(issues.some(issue => issue.check === 'evidence-matrix'));
+
+  writeAssetsEvidenceProjection(root, 'vex-test', activeEntry, {
+    source: {
+      repository: 'vgong24/Vextreme',
+      commit: 'b'.repeat(40),
+      path: 'pages/other.html',
+    },
+  });
+  issues = validateRegistry(
+    { schemaVersion: SCHEMA_VERSION, surfaces: { 'vex-test': activeEntry } },
+    root
+  );
+  assert.ok(issues.some(issue => issue.check === 'evidence-matrix'));
 });
 
 test('INSTITUTIONAL-SURFACES: matrix writer can add structured Assets custody without changing local activation evidence', () => {
