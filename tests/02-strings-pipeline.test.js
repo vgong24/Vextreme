@@ -216,6 +216,7 @@ test('TRANSLATOR IMPORT: any stale or unbound row blocks preflight without mutat
     _meta: { scope: 'pages.example' },
     'pages.example.first': { strings: { en: { text: 'First' } } },
     'pages.example.second': { strings: { en: { text: 'Second', 'aria-label': 'Second action' } } },
+    'pages.example.third': { strings: { en: { text: 'Third' } } },
   };
   const source = Object.fromEntries(
     Object.entries(raw)
@@ -237,15 +238,15 @@ test('TRANSLATOR IMPORT: any stale or unbound row blocks preflight without mutat
       fr_aria_label: 'Deuxième action',
     },
     {
-      key: 'pages.example.first',
+      key: 'pages.example.third',
       source_en_hash12: '',
-      fr_text: 'Duplicate should not pass',
+      fr_text: 'Troisième',
       fr_aria_label: '',
     },
   ], 'fr', source, 'pages.example.fr.csv');
 
   assert.ok(plan.errors.some(error => error.includes('is stale')));
-  assert.ok(plan.errors.some(error => error.includes('duplicate key')));
+  assert.ok(plan.errors.some(error => error.includes('has no source_en_hash12 binding')));
   assert.equal(JSON.stringify(raw), before, 'planning a rejected return must not mutate canonical strings');
 });
 
