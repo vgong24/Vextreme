@@ -122,6 +122,23 @@ test('PROGRAM TIER: global-core matches the current first-class browser language
   assert.equal(LANGUAGE_TIERS['global-core'].includes('en'), false);
 });
 
+test('PROGRAM TIER CONTRACT: every global-core target is first-class in the browser language wheel', () => {
+  const fs = require('node:fs');
+  const path = require('node:path');
+  const fab = fs.readFileSync(path.join(__dirname, '..', 'widgets', 'fab-lang.js'), 'utf8');
+  const flags = fab.match(/var LANG_FLAGS = \\{([\\s\\S]*?)\\n  \\};/);
+  const names = fab.match(/var LANG_NAMES = \\{([\\s\\S]*?)\\n  \\};/);
+
+  assert.ok(flags, 'LANG_FLAGS block must remain discoverable');
+  assert.ok(names, 'LANG_NAMES block must remain discoverable');
+
+  for (const lang of LANGUAGE_TIERS['global-core']) {
+    const pattern = new RegExp('(?:^|\\\\n)\\\\s*' + lang + ':');
+    assert.match(flags[1], pattern, `${lang} must have a first-class flag`);
+    assert.match(names[1], pattern, `${lang} must have a first-class display name`);
+  }
+});
+
 test('PROGRAM ARGS: one page/arc unit is required and explicit langs may replace the tier', () => {
   const arc = parseArgs(['--arc', 'story']);
   assert.equal(arc.arc, 'story');
