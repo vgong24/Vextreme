@@ -1359,14 +1359,14 @@
         ],
         "pinned Assets screenshot projection changed": [
           "lib/screenshot-evidence.js (Assets record normalization + local-first merge semantics)",
-          "tests/44-page-health.test.js (remote fallback without weakening institutional matrix proof)",
+          "tests/44-page-health.test.js (matrix-grade Assets fallback plus generic-capture rejection)",
           "data/page-health.json generated projection"
         ]
       }
     },
     "lib/screenshot-evidence.js": {
       "role": "shared screenshot-evidence filename parser and deterministic projection helper",
-      "context": "Institutional Surface Integration 1/4 review repair. Legacy visual evidence uses {slug}-{locale}.png while institutional activation requires {slug}-{locale}-{theme}-{viewport}.png. This pure utility owns both shapes so Page Health, Terrain, Analysis, and activation validation cannot accept a file that another projection silently drops. Representative per-locale paths preserve existing UI contracts; matrix records preserve every exact filename for review and reverse traversal.",
+      "context": "Institutional Surface Integration 1/4 review repair plus structured Assets evidence migration. Legacy local evidence uses {slug}-{locale}.png while local institutional activation uses {slug}-{locale}-{theme}-{viewport}.png. This pure utility also normalizes a pinned Vextreme-Assets manifest projection into the same evidence-record model, preserves local-first representative selection, and owns the stricter matrix-grade predicate: ordinary Assets localization screenshots remain representative evidence but only institutional-localization records with exact Vextreme source identity/theme/viewport may satisfy institutional matrix proof.",
       "reads": [],
       "writes": [],
       "loadedBy": [
@@ -1391,6 +1391,13 @@
           "lib/build-analysis-index.js (per-page evidence projection)",
           "scripts/screenshot-institutional.js (matrix writer)",
           "tests/28, tests/44, and tests/54"
+        ],
+        "matrix-grade local/Assets evidence predicate changed": [
+          "lib/check-institutional-surfaces.js (activation fallback)",
+          "lib/build-page-health.js (institutional theme proof)",
+          "tests/44-page-health.test.js",
+          "tests/54-institutional-surfaces.test.js",
+          "docs/architecture/18-institutional-pages.md"
         ]
       }
     },
@@ -1659,7 +1666,7 @@
     },
     "lib/check-institutional-surfaces.js": {
       "role": "fail-closed institutional-surface registry, identity-reservation, static-English, inactive-support-route, runtime-localization, and evidence validator",
-      "context": "Institutional Surface Integration 4/4. Reserved entries own identity across page, node, arc, generated-index, and God Script projections. Active entries provide one standalone page with explicit surface/string-category/string-scope/theme markers, static English text/alt/ARIA values equal to the compiled English bundle, complete visible and accessibility locale bindings, exactly one labelled native-language selector, synchronous pre-paint localization wiring, hostile-failure-safe behavioral execution of the declared multi-locale loader/control, and structurally valid PNG evidence for every declared locale/theme/viewport cell. The support domain additionally binds its data-vex-route identities to data/support-routes.json and fails closed unless every route remains inactive, null-backed, prerequisite-bearing, action-bearing, ARIA-disabled, link-free, and candidate-free; payment activation remains outside this row.",
+      "context": "Institutional Surface Integration 4/4 plus structured evidence-custody migration. Reserved entries own identity across page, node, arc, generated-index, and God Script projections. Active entries provide one standalone page with explicit surface/string-category/string-scope/theme markers, static English text/alt/ARIA values equal to the compiled English bundle, complete visible and accessibility locale bindings, exactly one labelled native-language selector, synchronous pre-paint localization wiring, hostile-failure-safe behavioral execution of the declared multi-locale loader/control, and exact evidence for every declared locale/theme/viewport cell. A structurally valid local PNG remains first priority; when absent, a pinned Vextreme-Assets record qualifies only when captureKind/source identity and the exact matrix coordinate prove institutional-localization custody. The support domain additionally binds its data-vex-route identities to data/support-routes.json and fails closed unless every route remains inactive, null-backed, prerequisite-bearing, action-bearing, ARIA-disabled, link-free, and candidate-free; payment activation remains outside this row.",
       "reads": [
         "config/institutional-surfaces.json (surface lifecycle, discovery, and registry-declared runtime.supportRoutes target)",
         "lib/vex-config.js (valid compiled-string categories)",
@@ -1670,7 +1677,8 @@
         "data/arcs-v2.json (every registered institutional slug must remain outside narrative arcs)",
         "data/index.json (registered slugs must remain outside generated content maps)",
         "data/strings/compiled/scopes/{category}/*.json (required active-locale bindings)",
-        "docs/screenshots/*.png (required active locale/theme/viewport evidence cells)",
+        "docs/screenshots/*.png (priority-0 active locale/theme/viewport evidence cells)",
+        "data/screenshot-evidence-assets.json (pinned priority-1 institutional-localization matrix fallback)",
         "dist/*.js (no God Script may be generated for a registered institutional identity)"
       ],
       "writes": [
@@ -1696,6 +1704,12 @@
         ],
         "a new consumer needs institutional slugs": [
           "import registeredSurfaceSlugs() or read the registry through this validated contract; do not add a second slug list"
+        ],
+        "institutional evidence custody rule changed": [
+          "lib/screenshot-evidence.js (matrix-grade local/Assets predicate)",
+          "tests/54-institutional-surfaces.test.js (complete/hostile fallback fixtures)",
+          "tests/44-page-health.test.js (theme-proof projection)",
+          "docs/architecture/18-institutional-pages.md (active-page evidence invariant)"
         ]
       }
     },
