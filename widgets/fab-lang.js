@@ -74,6 +74,7 @@
   var INDEX_URL  = CDN_BASE + '/data/index.json?v=' + VERSION;
   var LS_LANG    = 'vex-lang';
   var LS_DATA    = 'vex-index-v2-data';
+  var LANG_CHANGE_EVENT = 'vextreme:languagechange';
 
   // ── Config constants (mirrors lib/vex-config.js) ─────────────────────────────
   var CATEGORY_SYSTEM     = 'system';
@@ -256,6 +257,17 @@
   // fetch from CDN. Behavior is identical to pre-God-Script lang-fab.js.
 
   var _langStrings = {};
+  var _sourceText = {};
+
+  function captureSourceText() {
+    var els = document.querySelectorAll('[data-i18n]');
+    for (var i = 0; i < els.length; i++) {
+      var key = els[i].getAttribute('data-i18n');
+      if (key && !Object.prototype.hasOwnProperty.call(_sourceText, key)) {
+        _sourceText[key] = els[i].textContent;
+      }
+    }
+  }
 
   function scopeUrl(scope, lang, category, variant) {
     var cat      = (scope === SCOPE_COMMON) ? CATEGORY_SYSTEM : (category || CATEGORY_PRODUCTION);
@@ -281,6 +293,10 @@
   }
 
   function loadStringsForLang(lang, onReady) {
+    // Never let a failed/partial fetch inherit the previous locale's bundle.
+    // Fallback is resolved from the immutable EN/source text during applyLang().
+    _langStrings = {};
+
     // God Script optimization: EN strings inlined at build time — no fetch needed.
     if (lang === LANG_DEFAULT && window.VEX_STRINGS_EN) {
       _langStrings = window.VEX_STRINGS_EN;
@@ -356,17 +372,41 @@
 
   // ── i18n swap ────────────────────────────────────────────────────────────────
 
-  function applyLang(lang) {
+  function publishLanguageChange(lang, source) {
+    try { document.documentElement.setAttribute('lang', lang); } catch (e) {}
+    try {
+      window.dispatchEvent(new CustomEvent(LANG_CHANGE_EVENT, {
+        detail: { lang: lang, source: source || 'fab' }
+      }));
+    } catch (e) { /* CustomEvent unavailable */ }
+  }
+
+  function persistLanguage(lang) {
+    try { localStorage.setItem(LS_LANG, lang); } catch (e) {}
+  }
+
+  function applyLang(lang, options) {
+    options = options || {};
     loadStringsForLang(lang, function () {
       var els = document.querySelectorAll('[data-i18n]');
       for (var i = 0; i < els.length; i++) {
-        var key   = els[i].getAttribute('data-i18n');
+        var key = els[i].getAttribute('data-i18n');
         var entry = _langStrings[key];
-        if (entry && entry.text) {
+        var english = window.VEX_STRINGS_EN && window.VEX_STRINGS_EN[key];
+        var fallback = english && english.text != null
+          ? english.text
+          : _sourceText[key];
+        if (entry && entry.text != null) {
           els[i].textContent = entry.text;
+        } else if (fallback != null) {
+          // A partial locale must fall back to EN/source, never retain text
+          // from the previously selected non-EN language.
+          els[i].textContent = fallback;
         }
       }
-      try { localStorage.setItem(LS_LANG, lang); } catch (e) {}
+      if (options.persist !== false) persistLanguage(lang);
+      publishLanguageChange(lang, options.source || 'fab');
+      if (typeof options.onApplied === 'function') options.onApplied();
     });
   }
 
@@ -487,6 +527,33 @@
     var wheel = document.createElement('div');
     wheel.id = 'vex-lang-wheel';
 
+    function renderCurrentLanguage(lang) {
+      btn.textContent = flagFor(lang);
+      var items = wheel.querySelectorAll('.vex-lang-item');
+      for (var j = 0; j < items.length; j++) {
+        items[j].classList.toggle('vex-lang-current', items[j].getAttribute('data-lang') === lang);
+      }
+    }
+
+    function selectLanguage(lang, options) {
+      options = options || {};
+      if (langs.indexOf(lang) < 0) return;
+      var changed = lang !== currentLang;
+      currentLang = lang;
+      renderCurrentLanguage(lang);
+      wheel.classList.remove('open');
+      syncUrlLang(lang);
+      if (changed || options.forceApply === true) {
+        applyLang(lang, {
+          persist: options.persist !== false,
+          source: options.source || 'fab'
+        });
+      } else {
+        if (options.persist !== false) persistLanguage(lang);
+        publishLanguageChange(lang, options.source || 'fab');
+      }
+    }
+
     // Overflow peek: show WHEEL_VISIBLE_ITEMS full rows; if there are more
     // languages than that, clip the wheel's height mid-row so the next item
     // is visibly cut off (a "peek") instead of hidden entirely — the visual
@@ -511,13 +578,7 @@
         item.setAttribute('data-lang', lang);
         item.setAttribute('title', lang);
         item.addEventListener('click', function () {
-          btn.textContent = flagFor(lang);
-          wheel.classList.remove('open');
-          syncUrlLang(lang);
-          if (lang !== currentLang) {
-            currentLang = lang;
-            applyLang(lang);
-          }
+          selectLanguage(lang, { persist: true, source: 'fab' });
         });
         track.appendChild(item);
       })(langs[i]);
@@ -537,7 +598,10 @@
       wheel.classList.remove('open');
     });
 
-    return container;
+    return {
+      element: container,
+      selectLanguage: selectLanguage
+    };
   }
 
   // ── Mount ─────────────────────────────────────────────────────────────────────
@@ -569,6 +633,10 @@
 
       if (langs.indexOf(savedLang) < 0) savedLang = langs[0];
 
+      // Capture the authored EN/source text once so partial locales can always
+      // fall back deterministically instead of retaining a previous locale.
+      captureSourceText();
+
       // Reflect the effective language into the URL even when it came from
       // localStorage, not the querystring — so the address bar is always an
       // accurate, forwardable snapshot of what's currently on screen, not
@@ -576,7 +644,8 @@
       syncUrlLang(savedLang);
 
       injectStyles();
-      var fab = buildFAB(langs, savedLang);
+      var fabController = buildFAB(langs, savedLang);
+      var fab = fabController.element;
 
       // Session 025 FAB unification: nest into the shared spiral-fab group
       // if present (widgets/vex-fab.js), else keep the original standalone
@@ -590,9 +659,30 @@
         document.body.appendChild(fab);
       }
 
-      // Apply persisted lang on load (skip if already English — avoids a
-      // pointless fetch when no preference has been set)
-      if (savedLang !== LANG_DEFAULT) applyLang(savedLang);
+      // localStorage is the persisted same-origin language authority. Its
+      // storage event fires in OTHER browsing contexts, so parent/iframe FAB
+      // instances converge without postMessage plumbing or duplicate state.
+      window.addEventListener('storage', function (event) {
+        if (event.key !== LS_LANG || !event.newValue || langs.indexOf(event.newValue) < 0) return;
+        fabController.selectLanguage(event.newValue, {
+          persist: false,
+          source: 'storage',
+          forceApply: true
+        });
+      });
+
+      // Apply persisted locale on load. EN needs no bundle fetch when the
+      // authored DOM is already EN, but it still publishes the effective
+      // language and updates <html lang> for parent consumers such as Terrain.
+      if (savedLang !== LANG_DEFAULT) {
+        fabController.selectLanguage(savedLang, {
+          persist: false,
+          source: urlLang ? 'url' : 'storage',
+          forceApply: true
+        });
+      } else {
+        publishLanguageChange(savedLang, urlLang ? 'url' : 'storage');
+      }
     });
   }
 
