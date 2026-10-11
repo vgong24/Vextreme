@@ -1696,6 +1696,7 @@
   }
 
   function scheduleContentTilePeekClose() {
+    cancelContentTilePeekOpen();
     cancelContentTilePeekClose();
     contentTilePeekCloseTimer = setTimeout(function () { closeContentTilePeek(false); }, CONTENT_TILE_PEEK_CLOSE_MS);
   }
@@ -1727,7 +1728,7 @@
         return;
       }
       contentTilePeekCycleIndex = contentTilePeekCycleIndex >= maxStep ? 0 : contentTilePeekCycleIndex + 1;
-      var width = first.getBoundingClientRect().width;
+      var width = first.offsetWidth;
       track.style.transform = 'translate3d(-' + (contentTilePeekCycleIndex * (width + 10)) + 'px,0,0)';
     }, CONTENT_TILE_PEEK_STEP_MS);
   }
