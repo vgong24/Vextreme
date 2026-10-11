@@ -173,6 +173,7 @@
         "data/arcs-v2.json",
         "data/viewmodels.json",
         "data/departments.json",
+        "data/strings/compiled/scopes/index.json (per-scope per-locale key counts for page-aware language coverage)",
         "pages/*.html (via lib/auto-discover-nodes.js, for any slug with no nodes.json entry)",
         "lib/audit-pages.js (AUTO_DISCOVERY_EXCLUSIONS, getPageSlugs)",
         "lib/auto-discover-nodes.js (discoverOrphanNodes, readPageFromDisk)",
@@ -241,6 +242,15 @@
           "lib/build-archives.js (calls the same function independently — see pe-011, tracked to collapse this someday)",
           "tests/16-auto-discover-nodes.test.js",
           "tests/15-departments.test.js (its integration test replicates the allNodes computation)"
+        ],
+        "page locale coverage fields": [
+          "data/strings/compiled/scopes/index.json (source projection consumed; not a second translation owner)",
+          "lib/build-vextreme.js (passes page-local availableLangs into window.VEX_SUPPORTED_LANGS)",
+          "widgets/fab-lang.js (standalone index fallback selects current slug's availableLangs)",
+          "tests/01-content-pipeline.test.js",
+          "tests/07-viewmodel.test.js",
+          "tests/08-build-vextreme.test.js",
+          "localized screenshot orchestration (consume completeLangs only)"
         ]
       }
     },
