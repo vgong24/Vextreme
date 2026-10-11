@@ -149,7 +149,7 @@
   .map-wrap.grabbing{ cursor:grabbing; }
   .map-hint{ position:absolute; left:16px; bottom:14px; z-index:2; font-family:var(--mono); font-size:10.5px; color:var(--ink-faint); pointer-events:none; max-width:60%; }
   .level-readout{
-    position:absolute; left:14px; top:14px; z-index:6; width:68px; height:188px; min-width:0;
+    position:absolute; left:14px; top:14px; z-index:12; width:68px; height:188px; min-width:0;
     font-family:var(--mono); color:var(--ink-muted);
     background:color-mix(in srgb, var(--panel) 82%, transparent); border:1px solid var(--line);
     padding:14px 8px; border-radius:14px; pointer-events:auto; opacity:.18;
@@ -975,6 +975,17 @@
   var activeReaderId = null, hoveredEvolutionNodeId = null, activeEntrySlug = null, activeGroupHomeKey = null;
   var boundaryGesture = { key:null, direction:0, lastAt:0 };
   var outwardWheelGesture = { active:false, timer:null };
+  var mapPointerGesture = {
+    active:false,
+    moved:false,
+    startX:0,
+    startY:0,
+    originViewX:0,
+    originViewY:0,
+    suppressClick:false,
+    suppressTimer:null
+  };
+  var MAP_DRAG_THRESHOLD_PX = 5;
   var BOUNDARY_GESTURE_IDLE_MS = 220, BOUNDARY_GESTURE_RESET_MS = 3000, OUTWARD_WHEEL_RELEASE_MS = 520;
   var gestureHintTimer = null, depthRailTimer = null;
   var initialRoute = readInitialRoute();
@@ -1255,6 +1266,24 @@
   function lockOutwardWheelGesture() {
     outwardWheelGesture.active = true;
     armOutwardWheelRelease();
+  }
+
+  function clearMapDragClickSuppression() {
+    if (mapPointerGesture.suppressTimer) window.clearTimeout(mapPointerGesture.suppressTimer);
+    mapPointerGesture.suppressTimer = null;
+    mapPointerGesture.suppressClick = false;
+  }
+
+  function armMapDragClickSuppression() {
+    clearMapDragClickSuppression();
+    mapPointerGesture.suppressClick = true;
+    mapPointerGesture.suppressTimer = window.setTimeout(clearMapDragClickSuppression, 160);
+  }
+
+  function consumeMapDragClickSuppression() {
+    if (!mapPointerGesture.suppressClick) return false;
+    clearMapDragClickSuppression();
+    return true;
   }
 
   function canScrollElement(element, direction) {
@@ -1544,10 +1573,10 @@
   function handleEvolutionShelfWheel(ev) {
     if (!isEvolutionAGroup() || activeReaderId) return;
     ev.stopPropagation();
-    var outwardLocked = sustainOutwardWheelGesture();
     if (scrollEvolutionRailWithWheel(ev)) return;
     if (!ev.deltaY || Math.abs(ev.deltaY) < Math.abs(ev.deltaX)) return;
     var direction = ev.deltaY > 0 ? 1 : -1;
+    var outwardLocked = direction > 0 && sustainOutwardWheelGesture();
 
     if (canScrollElement(evolutionLayer, direction)) {
       resetBoundaryGesture();
@@ -1572,6 +1601,7 @@
       enterLevel(1, {});
       syncPresentationUrl();
       commitSemanticState({ label:'GROUPS', relationship:'returned to', reason:'Content outward boundary scroll' });
+      showGestureHint('Groups reached · release, then scroll again to continue outward');
     } else {
       showGestureHint('End reached · pause, then scroll down again to return to groups');
     }
@@ -1579,9 +1609,9 @@
 
   function handleEvolutionReaderWheel(ev) {
     if (activeEntrySlug || (!activeReaderId && !activeGroupHomeKey)) return;
-    var outwardLocked = sustainOutwardWheelGesture();
     if (!ev.deltaY || Math.abs(ev.deltaY) < Math.abs(ev.deltaX)) return;
     var direction = ev.deltaY > 0 ? 1 : -1;
+    var outwardLocked = direction > 0 && sustainOutwardWheelGesture();
     var doc = evolutionReaderFrame.contentDocument;
     if (!doc) return;
 
@@ -1606,6 +1636,7 @@
     if (boundaryGestureReady('reader-outward:' + readerKey, direction)) {
       lockOutwardWheelGesture();
       closeEvolutionReader();
+      showGestureHint('Collection reached · release, then scroll again to return to groups');
     } else {
       showGestureHint('End reached · pause, then scroll down again to return to the collection');
     }
@@ -3087,7 +3118,7 @@
     var orderLabel = ratio.toFixed(2) + '× · ' + orderNote;
     var position = thresholdRailPosition(ratio);
     var readout = document.getElementById('levelReadout');
-    readout.setAttribute('data-can-zoom-out', String(levelIndex > 0));
+    readout.setAttribute('data-can-zoom-out', String(canStepOutwardTerrainLayer()));
     var steps = OVERVIEW_LEVELS.map(function (level, index) {
       var relation = index < levelIndex ? 'previous' : (index > levelIndex ? 'next' : 'current');
       return '<li class="threshold-step" data-relation="' + relation + '"' +
@@ -3103,7 +3134,40 @@
       '<div class="level-order" role="note" aria-label="' + esc(orderLabel) + '" title="' + esc(orderLabel) + '">' + ratio.toFixed(2) + '×</div>';
   }
 
-  function zoomOutOneSemanticLevel(reason) {
+  function canStepOutwardTerrainLayer() {
+    return !!(
+      activeEntrySlug
+      || activeReaderId
+      || activeGroupHomeKey
+      || isEvolutionAGroup()
+      || levelIndex > 0
+    );
+  }
+
+  function stepOutwardOneTerrainLayer(reason) {
+    reason = reason || 'semantic depth rail';
+
+    if (activeEntrySlug) {
+      closeEntryReader();
+      showGestureHint('Vex Life entry reached · new gesture to continue outward');
+      return true;
+    }
+
+    if (activeReaderId || activeGroupHomeKey) {
+      closeEvolutionReader({ history:false });
+      showGestureHint('Collection reached · release, then scroll again to return to groups');
+      return true;
+    }
+
+    if (isEvolutionAGroup()) {
+      hoveredEvolutionNodeId = null;
+      enterLevel(1, {});
+      syncPresentationUrl();
+      commitSemanticState({ label:'GROUPS', relationship:'returned to', reason:reason });
+      showGestureHint('Groups reached · release, then scroll again to continue outward');
+      return true;
+    }
+
     if (levelIndex <= 0) return false;
     if (levelIndex === 1 && typeof levelCtx.stageIdx === 'number') {
       enterLevel(1, {});
@@ -3111,7 +3175,8 @@
       enterLevel(levelIndex - 1, levelIndex - 1 === 0 ? {} : { stageIdx:levelCtx.stageIdx });
     }
     syncPresentationUrl();
-    commitSemanticState({ label:currentLevelName().toUpperCase(), relationship:'zoomed out to', reason:reason || 'semantic depth rail' });
+    commitSemanticState({ label:currentLevelName().toUpperCase(), relationship:'zoomed out to', reason:reason });
+    showGestureHint('Layer reached · release, then scroll again to continue outward');
     return true;
   }
 
@@ -3123,15 +3188,16 @@
     readout.addEventListener('focus', revealDepthRail);
     readout.addEventListener('wheel', function (event) {
       revealDepthRail();
-      if (event.deltaY >= 0 || levelIndex <= 0) return;
+      if (event.deltaY >= 0 || !canStepOutwardTerrainLayer()) return;
       event.preventDefault();
       event.stopPropagation();
-      zoomOutOneSemanticLevel('semantic depth rail wheel');
+      if (sustainOutwardWheelGesture()) return;
+      if (stepOutwardOneTerrainLayer('semantic depth rail wheel')) lockOutwardWheelGesture();
     }, { passive:false });
     readout.addEventListener('keydown', function (event) {
-      if (!['ArrowUp','PageUp','-','_'].includes(event.key) || levelIndex <= 0) return;
+      if (!['ArrowUp','PageUp','-','_'].includes(event.key) || !canStepOutwardTerrainLayer() || event.repeat) return;
       event.preventDefault();
-      zoomOutOneSemanticLevel('semantic depth rail keyboard');
+      stepOutwardOneTerrainLayer('semantic depth rail keyboard');
     });
   }
 
@@ -3161,11 +3227,13 @@
       return;
     }
     if (levelIndex === 1 && typeof levelCtx.stageIdx === 'number' && ratio < EXIT_RATIO) {
+      lockOutwardWheelGesture();
       enterLevel(1, {});
       commitSemanticState({ label:currentLevelName().toUpperCase(), relationship:'zoomed out to', reason:'stage overview transition' });
       return;
     }
     if (levelIndex > 0 && ratio < EXIT_RATIO) {
+      lockOutwardWheelGesture();
       enterLevel(levelIndex - 1, levelIndex - 1 === 0 ? {} : { stageIdx:levelCtx.stageIdx });
       commitSemanticState({ label:currentLevelName().toUpperCase(), relationship:'zoomed out to', reason:'semantic level transition' });
       return;
@@ -3216,6 +3284,10 @@
 
     mapWrap.addEventListener('wheel', function (ev) {
       revealDepthRail();
+      if (ev.deltaY > 0 && sustainOutwardWheelGesture()) {
+        ev.preventDefault();
+        return;
+      }
       if (currentWorld === 'content' && currentProfile === 'evolution-v1' && (isEvolutionAGroup() || activeReaderId || activeEntrySlug)) {
         ev.preventDefault();
         return;
@@ -3225,16 +3297,40 @@
       handleZoomAt(ev.clientX - rect.left, ev.clientY - rect.top, view.scale * Math.pow(1.0015, -ev.deltaY));
     }, { passive: false });
 
-    var dragging = false, lastX, lastY, dragMoved = false;
-    mapWrap.addEventListener('mousedown', function (ev) { dragging = true; dragMoved = false; lastX = ev.clientX; lastY = ev.clientY; mapWrap.classList.add('grabbing'); });
+    mapWrap.addEventListener('mousedown', function (ev) {
+      if (ev.button !== 0 || (ev.target.closest && ev.target.closest('#levelReadout'))) return;
+      clearMapDragClickSuppression();
+      mapPointerGesture.active = true;
+      mapPointerGesture.moved = false;
+      mapPointerGesture.startX = ev.clientX;
+      mapPointerGesture.startY = ev.clientY;
+      mapPointerGesture.originViewX = view.x;
+      mapPointerGesture.originViewY = view.y;
+      mapWrap.classList.add('grabbing');
+    });
     window.addEventListener('mousemove', function (ev) {
-      if (!dragging) return; dragMoved = true;
-      view.x += ev.clientX - lastX; view.y += ev.clientY - lastY; lastX = ev.clientX; lastY = ev.clientY;
+      if (!mapPointerGesture.active) return;
+      var dx = ev.clientX - mapPointerGesture.startX;
+      var dy = ev.clientY - mapPointerGesture.startY;
+      if (!mapPointerGesture.moved && Math.hypot(dx, dy) < MAP_DRAG_THRESHOLD_PX) return;
+      mapPointerGesture.moved = true;
+      view.x = mapPointerGesture.originViewX + dx;
+      view.y = mapPointerGesture.originViewY + dy;
       applyTransform();
       if (OVERVIEW_LEVELS[levelIndex].id === 'node') syncTiles();
     });
-    window.addEventListener('mouseup', function () { dragging = false; mapWrap.classList.remove('grabbing'); });
-    mapWrap.addEventListener('click', function () { if (!dragMoved && pinnedId) togglePin(pinnedId); });
+    window.addEventListener('mouseup', function () {
+      if (!mapPointerGesture.active) return;
+      if (mapPointerGesture.moved) armMapDragClickSuppression();
+      mapPointerGesture.active = false;
+      mapWrap.classList.remove('grabbing');
+    });
+    mapWrap.addEventListener('click', function (ev) {
+      if (!consumeMapDragClickSuppression()) return;
+      ev.preventDefault();
+      ev.stopPropagation();
+    }, true);
+    mapWrap.addEventListener('click', function () { if (pinnedId) togglePin(pinnedId); });
     mapWrap.addEventListener('pointermove', function (ev) {
       var rect = mapWrap.getBoundingClientRect();
       if (ev.clientX - rect.left < 96 && ev.clientY - rect.top < 220) revealDepthRail();
