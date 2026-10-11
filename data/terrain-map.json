@@ -1270,7 +1270,8 @@
       "reads": [
         "config/institutional-surfaces.json (surface lifecycle, discovery, and registry-declared runtime.supportRoutes target)",
         "lib/vex-config.js (valid compiled-string categories)",
-        "lib/screenshot-evidence.js (canonical locale/theme/viewport evidence filename)",
+        "lib/screenshot-evidence.js (canonical filenames plus pinned Assets evidence normalization)",
+        "data/screenshot-evidence-assets.json (pinned Vextreme-Assets screenshot records used only as local-missing fallback)",
         "lib/institutional-localization-runtime.js (bounded behavioral execution of the declared loader and control)",
         "pages/*.html (existence, visible/accessibility i18n bindings, and active projection markers, per registered slug)",
         "data/nodes.json (every registered institutional slug must remain outside archive indexing)",
