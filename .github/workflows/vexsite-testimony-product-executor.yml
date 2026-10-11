@@ -88,6 +88,8 @@ jobs:
               path = record[3:]
               if ' -> ' in path:
                   path = path.split(' -> ', 1)[1]
+              if path == 'node_modules/' or path.startswith('node_modules/'):
+                  continue
               changed.append(path)
               if path not in exact and not path.startswith(prefixes):
                   bad.append(path)
@@ -102,6 +104,7 @@ jobs:
 
       - name: Commit deterministic product outputs
         run: |
+          rm -rf node_modules
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
