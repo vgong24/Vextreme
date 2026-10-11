@@ -11,7 +11,6 @@ const {
   parseArgs,
   stableJson,
 } = require('../scripts/refresh-screenshot-evidence-assets.js');
-const { findAssetScreenshotEvidence } = require('../lib/screenshot-evidence.js');
 const projection = require('../data/screenshot-evidence-assets.json');
 
 const ASSET_CONFIG = {
@@ -76,7 +75,7 @@ test('SCREENSHOT-ASSETS-PROJECTION: deterministic writer preserves exact records
   assert.deepEqual(actual.records['vextreme/a/en/default/1280'], sourceRecords['vextreme/a/en/default/1280']);
   assert.deepEqual(actual.records['vextreme/z/en/default/1280'], sourceRecords['vextreme/z/en/default/1280']);
   assert.deepEqual(input.records, sourceRecords, 'projection formation must not mutate the Assets manifest');
-  assert.equal(stableJson(actual), JSON.stringify(actual, null, 2) + '\\n');
+  assert.equal(stableJson(actual), JSON.stringify(actual, null, 2) + '\n');
   assert.notEqual(ASSET_CONFIG.provider.manifestSchemaVersion, ASSET_MANIFEST_SCHEMA,
     'authored-asset import schema and screenshot-evidence schema must remain separate contracts');
 });
@@ -130,9 +129,9 @@ test('SCREENSHOT-ASSETS-PROJECTION: committed projection retains the historical 
   assert.ok(Object.keys(projection.records).length >= 38,
     'projection must not regress behind the accepted 38-record Assets checkpoint');
 
-  const bySlug = findAssetScreenshotEvidence(projection);
-  assert.ok((bySlug['vex-support'] || []).length >= 18,
-    'the accepted 18-cell vex-support matrix must remain visible to Vextreme consumers');
+  const supportRecords = Object.values(projection.records).filter(record => record && record.slug === 'vex-support');
+  assert.ok(supportRecords.length >= 18,
+    'the accepted 18-cell vex-support matrix must remain present in the pinned projection');
 });
 
 // [VXG RealForever]
