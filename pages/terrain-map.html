@@ -557,18 +557,18 @@
       <div class="sub" id="subline">Loading…</div>
     </div>
     <button class="terrain-inspect-toggle" id="terrainInspectToggle" type="button" aria-expanded="false">Inspect</button>
-    <label class="content-profile-wrap" id="contentProfileWrap" hidden>
-      <select class="content-profile" id="contentProfile" aria-label="Content presentation">
-        <option value="evolution-v1">Content</option>
-        <option value="evolution-v2">Evolution</option>
-      </select>
-    </label>
     <div class="lens">
       <span class="lens-label">View</span>
       <div class="lens-toggle" role="group" aria-label="Code or content" id="worldBar">
         <button class="lens-btn world-btn" data-world="code" aria-pressed="true">Code</button>
         <span class="content-view-split">
           <button class="lens-btn world-btn" data-world="content" aria-pressed="false">Content</button>
+          <label class="content-profile-wrap" id="contentProfileWrap" hidden>
+            <select class="content-profile" id="contentProfile" aria-label="Content presentation">
+              <option value="evolution-v1">Content</option>
+              <option value="evolution-v2">Evolution</option>
+            </select>
+          </label>
         </span>
       </div>
     </div>
@@ -767,6 +767,7 @@
       "label": "Content",
       "inherits": "live",
       "declaredDeltas": [
+        "Content group overview uses delayed hover/focus curiosity previews on the existing collection tiles, preserving collection order and making room in-flow instead of navigating on hover.",
         "Content group selection renders immediate membership destinations instead of a large confirmation rectangle.",
         "Selected-group identity becomes compact persistent context with sibling groups in a condensed rail.",
         "Content pages render as preview cards using real screenshot evidence when present and a deliberate fallback cover when absent.",
@@ -794,12 +795,11 @@
     "evolution-v2": {
       "status": "experimental",
       "label": "Evolution",
-      "inherits": "live",
+      "inherits": "evolution-v1",
       "declaredDeltas": [
-        "The accepted Content collection overview remains the canvas; curiosity is disclosed on the existing group tile instead of navigating to a second preview renderer.",
-        "A bounded prototype subset shows one representative visual at rest and opens a row-local ordered member preview after intentional hover or keyboard focus.",
-        "Opening a curiosity shelf shifts lower overview rows down instead of covering them, while click and keyboard activation retain the existing collection navigation semantics.",
-        "Preview motion is presentation-only, respects reduced motion, and does not create a Journey step or canonical content relationship."
+        "Evolution starts from accepted Content rather than from the legacy Live renderer.",
+        "The collection overview keeps the accepted curiosity-preview behavior, while explicit collection activation remains available for alternate depth experiments without changing canonical content or Journey state.",
+        "Renderer choice is presentation state and remains directly addressable by URL for human comparison."
       ],
       "levels": {
         "group": {
@@ -1674,7 +1674,6 @@
     return { src:screenshotUrl(screenshots[lang]), cover:false };
   }
 
-  var CONTENT_TILE_PEEK_STAGE_KEYS = { liberation:true, records:true };
   var CONTENT_TILE_PEEK_DELAY_MS = 200;
   var CONTENT_TILE_PEEK_CLOSE_MS = 180;
   var CONTENT_TILE_PEEK_STEP_MS = 1500;
@@ -1692,7 +1691,12 @@
   }
 
   function contentTilePeekEnabledFor(stage) {
-    return !!(stage && CONTENT_TILE_PEEK_STAGE_KEYS[stage.key]);
+    return !!(stage && stageMembers(stage).length);
+  }
+
+  function contentTilePeekProfileEnabled() {
+    return currentWorld === 'content'
+      && (currentProfile === 'evolution-v1' || currentProfile === 'evolution-v2');
   }
 
   function cancelContentTilePeekOpen() {
@@ -1762,7 +1766,7 @@
   }
 
   function openContentTilePeek(stageIndex) {
-    if (currentWorld !== 'content' || currentProfile !== 'evolution-v2' || levelIndex !== 1) return;
+    if (!contentTilePeekProfileEnabled() || levelIndex !== 1) return;
     if (levelCtx && typeof levelCtx.stageIdx === 'number') return;
     var stage = STAGES[stageIndex];
     if (!contentTilePeekEnabledFor(stage) || !contentTilePeekHoverCapable()) return;
@@ -2399,13 +2403,12 @@
     clearWorld();
     var layout = stageCompositionLayout(levelCtx || {});
     renderStageOrientation(layout);
-    var curiosityPrototype = currentWorld === 'content'
-      && currentProfile === 'evolution-v2'
+    var curiosityOverview = contentTilePeekProfileEnabled()
       && layout.focusedIdx < 0
       && contentTilePeekHoverCapable();
     layout.items.sort(function (a,b) { return a.index - b.index; }).forEach(function (item) {
       var stage=item.stage, i=item.index, r=item.rect, summary=stageSummary(stage);
-      var curiosityEnabled = curiosityPrototype && contentTilePeekEnabledFor(stage);
+      var curiosityEnabled = curiosityOverview && contentTilePeekEnabledFor(stage);
       var unit = currentWorld === 'content' ? 'member' : (stage.key === SCREENS_KEY ? 'evidence surface' : 'file');
       var focused = item.kind === 'focus', context = item.kind === 'context';
       var countText = summary.membershipCount + ' ' + unit + (summary.membershipCount === 1 ? '' : 's');
