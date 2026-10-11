@@ -494,14 +494,17 @@ test('TERRAIN-VIEW: pan gesture displacement suppresses the synthetic click with
     'keyboard activation remains an explicit non-pointer path');
 });
 
-test('TERRAIN-VIEW: accepted Content curiosity peek expands every real group without creating a new semantic level', () => {
+test('TERRAIN-VIEW: accepted Content curiosity shelf supports slower autoplay, manual edges, and direct reading', () => {
   const source = pageSource();
   assert.doesNotMatch(source, /CONTENT_TILE_PEEK_STAGE_KEYS/);
   assert.match(source, /CONTENT_TILE_PEEK_DELAY_MS = 200/);
+  assert.match(source, /CONTENT_TILE_PEEK_STEP_MS = 3200/,
+    'automatic preview movement should remain slow enough to inspect');
   assert.match(source, /CONTENT_TILE_PEEK_SHELF_HEIGHT = 176/);
+  assert.match(source, /var contentTilePeekManual = false/);
   assert.match(source, /function contentTilePeekEnabledFor\(stage\) \{[\s\S]*stageMembers\(stage\)\.length/);
   assert.match(source, /function contentTilePeekProfileEnabled\(\) \{[\s\S]*currentProfile === 'evolution-v1'[\s\S]*currentProfile === 'evolution-v2'/);
-  assert.match(source, /function openContentTilePeek\(stageIndex\)/);
+  assert.match(source, /function openContentTilePeek\(stageIndex, options\)/);
   assert.match(source, /if \(!contentTilePeekProfileEnabled\(\) \|\| levelIndex !== 1\) return/);
   assert.match(source, /var curiosityOverview = contentTilePeekProfileEnabled\(\)/);
   assert.match(source, /if \(levelCtx && typeof levelCtx\.stageIdx === 'number'\) return/);
@@ -513,6 +516,26 @@ test('TERRAIN-VIEW: accepted Content curiosity peek expands every real group wit
   assert.match(source, /stage-curiosity-track/);
   assert.match(source, /translate3d\(-' \+ \(contentTilePeekCycleIndex \* \(width \+ 10\)\)/);
   assert.match(source, /prefers-reduced-motion: reduce/);
+
+  assert.match(source, /data-curiosity-shift="-1"/);
+  assert.match(source, /data-curiosity-shift="1"/);
+  assert.match(source, /function manuallyStepContentTilePeek\(shell, memberCount, delta\)/);
+  assert.match(source, /contentTilePeekManual = true;[\s\S]*stopContentTilePeekCycle\(false\)/,
+    'first manual edge action permanently pauses autoplay for the open shelf');
+  assert.match(source, /prev\.disabled = contentTilePeekCycleIndex <= 0/);
+  assert.match(source, /next\.disabled = contentTilePeekCycleIndex >= maxStep/);
+
+  assert.match(source, /data-curiosity-reader=/);
+  assert.match(source, /function openContentTilePeekReader\(stageIndex, nodeId\)/);
+  assert.match(source, /history\.replaceState\(returnState, '', window\.location\.href\)/);
+  assert.match(source, /levelIndex = 1;[\s\S]*levelCtx = \{ stageIdx:stageIndex \};[\s\S]*openEvolutionReader\(node\.id, \{/);
+  const directOpen = source.match(/function openContentTilePeekReader\(stageIndex, nodeId\) \{[\s\S]*?\n  \}/);
+  assert.ok(directOpen, 'direct curiosity reader opener must remain extractable');
+  assert.doesNotMatch(directOpen[0], /enterLevel\(1, \{ stageIdx:stageIndex \}\)/,
+    'direct curiosity selection must not render the collection-card middle layer before opening the reader');
+  assert.match(source, /returnKind:'curiosity-overview'/);
+  assert.match(source, /select a preview to read directly/);
+
   assert.match(source, /g\.addEventListener\('mouseenter', function \(\) \{ scheduleContentTilePeekOpen\(i\); \}\)/);
   assert.match(source, /g\.addEventListener\('focusin', function \(\) \{ scheduleContentTilePeekOpen\(i\); \}\)/);
   assert.match(source, /g\.addEventListener\('click',function\(ev\)\{ ev\.stopPropagation\(\); activateStage\(i\); \}\)/);

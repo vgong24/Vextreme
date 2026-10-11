@@ -198,6 +198,8 @@ test('TERRAIN-JOURNEY: Evolution A gives scrollable content priority and makes c
   assert.match(reader, /boundaryGestureReady\('reader-outward:' \+ readerKey, direction\)/);
   assert.doesNotMatch(reader, /reader-next:|reader-end:/, 'wheel boundary must not implicitly advance to another page');
   assert.match(reader, /if \(activeEntrySlug \|\| \(!activeReaderId && !activeGroupHomeKey\)\) return;/);
+  assert.match(reader, /activeReaderReturnKind === 'curiosity-overview'/,
+    'reader boundary messaging must distinguish direct overview origins from collection origins');
 
   assert.match(source, /BOUNDARY_GESTURE_IDLE_MS = 220/);
   assert.match(source, /BOUNDARY_GESTURE_RESET_MS = 3000/);
@@ -304,6 +306,7 @@ test('TERRAIN-JOURNEY: shipped collection and reader wheel handlers execute outw
       "var activeEntrySlug = null;",
       "var activeReaderId = 'node-a';",
       "var activeGroupHomeKey = null;",
+      "var activeReaderReturnKind = 'collection';",
       "var evolutionReaderFrame = { contentDocument: {} };",
       readerMatch[0],
       "return handleEvolutionReaderWheel;"
@@ -383,10 +386,13 @@ test('TERRAIN-JOURNEY: shipped collection and reader wheel handlers execute outw
 });
 
 
-test('TERRAIN-JOURNEY: Evolution A reader entry owns one presentation-history slot and Back/Forward restore it', () => {
+test('TERRAIN-JOURNEY: reader history preserves the real return surface instead of inventing an intermediate layer', () => {
   const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
   assert.match(source, /PRESENTATION_HISTORY_KEY = 'vextremeTerrainPresentation'/);
-  assert.match(source, /syncPresentationUrl\(options\.historyMode \|\| 'push', 'reader'\)/);
+  assert.match(source, /function presentationHistoryState\(kind, details\)/);
+  assert.match(source, /Object\.assign\(\{ version:1, kind:kind \}, details \|\| \{\}\)/);
+  assert.match(source, /function presentationHistoryValue\(state\)/);
+  assert.match(source, /syncPresentationUrl\(options\.historyMode \|\| 'push', 'reader', \{[\s\S]*returnKind:activeReaderReturnKind/);
   assert.match(source, /syncPresentationUrl\(options\.historyMode \|\| 'push', 'group-home'\)/);
   assert.match(source, /openEvolutionReader\(previous\.id, \{ historyMode:'replace' \}\)/);
   assert.match(source, /openEvolutionReader\(next\.id, \{ historyMode:'replace' \}\)/);
@@ -395,6 +401,16 @@ test('TERRAIN-JOURNEY: Evolution A reader entry owns one presentation-history sl
   assert.match(source, /presentationHistoryKind\(history\.state\) === 'group-home'/);
   assert.match(source, /history\.back\(\)/);
   assert.match(source, /restoreEvolutionPresentationFromHistory\(event\.state\)/);
+
+  assert.match(source, /presentationHistoryState\('curiosity-overview', \{[\s\S]*stageKey:stage\.key,[\s\S]*step:contentTilePeekCycleIndex,[\s\S]*manual:contentTilePeekManual/);
+  assert.match(source, /history\.replaceState\(returnState, '', window\.location\.href\)/,
+    'direct overview entry rewrites only the current presentation coordinate before pushing the reader');
+  assert.match(source, /returnKind:'curiosity-overview'/);
+  assert.match(source, /activeReaderReturnKind === 'curiosity-overview' \? '← Overview' : '← Collection'/);
+  assert.match(source, /kind === 'curiosity-overview'/);
+  assert.match(source, /openContentTilePeek\(overviewStageIdx, \{[\s\S]*step:Number\.isInteger\(presentation\.step\)[\s\S]*manual:presentation\.manual === true/);
+  assert.match(source, /returnKind:presentation && presentation\.returnKind \? presentation\.returnKind : 'collection'/,
+    'browser Forward restores the reader with its original return contract');
 });
 
 // [VXG RealForever]
