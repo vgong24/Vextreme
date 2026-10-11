@@ -145,6 +145,20 @@ test('LANGUAGE AUTHORITY: FAB instances synchronize one effective locale across 
     'a slower stale locale request must not reclaim DOM/storage/event authority');
 });
 
+test('LANGUAGE AUTHORITY: live repository pages no longer load the legacy lang-fab engine directly', () => {
+  const legacyRef = 'widgets/' + 'lang-fab.js';
+  const pageFiles = fs.readdirSync(PAGES_DIR).filter(name => name.endsWith('.html'));
+  const offenders = pageFiles.filter(name => fs.readFileSync(path.join(PAGES_DIR, name), 'utf8').includes(legacyRef));
+  assert.deepEqual(offenders, [],
+    'live pages must consume canonical widgets/fab-lang.js (directly, via shell, or via God Script), not a second language engine');
+
+  const demoBuilder = fs.readFileSync(path.join(ROOT, 'lib', 'build-demo.js'), 'utf8');
+  assert.ok(demoBuilder.includes('widgets/fab-lang.js'));
+  assert.ok(demoBuilder.includes('widgets/fab-demo.js'));
+  assert.ok(!demoBuilder.includes(legacyRef),
+    'the generator must not reintroduce the legacy language engine on rebuild');
+});
+
 // ── Session 025: FAB system unification ─────────────────────────────────────
 //
 // spiral-fab/theme/map were reserved Feature slots since Session 013
