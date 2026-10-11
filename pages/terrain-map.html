@@ -1372,6 +1372,7 @@
     mapWrap.classList.remove('evolution-arrival-active');
     mapWrap.classList.add('evolution-a-active', 'evolution-reader-active');
     syncTerrainChrome();
+    updateReadout();
     updateEntryReaderChrome(slug);
     evolutionReaderFrame.title = 'Reading ' + entry.label + ' inside Terrain';
     replaceEvolutionReaderDocument(entry.path);
@@ -1383,6 +1384,7 @@
     replaceEvolutionReaderDocument('about:blank');
     mapWrap.classList.remove('evolution-reader-active');
     renderEvolutionAArrival();
+    updateReadout();
   }
 
   function syncEntryReaderFromDocument() {
@@ -1503,6 +1505,7 @@
     svg.style.visibility = 'hidden';
     mapWrap.classList.add('evolution-a-active', 'evolution-reader-active');
     syncTerrainChrome();
+    updateReadout();
     updateGroupHomeReaderChrome(stage);
     evolutionReaderFrame.title = 'Reading ' + (stage.parent.title || stage.name) + ' inside Terrain';
     replaceEvolutionReaderDocument(stage.parent.url);
@@ -1526,6 +1529,7 @@
     svg.style.visibility = 'hidden';
     mapWrap.classList.add('evolution-a-active', 'evolution-reader-active');
     syncTerrainChrome();
+    updateReadout();
     updateReaderChrome(node);
     evolutionReaderFrame.title = 'Reading ' + (node.title || node.slug) + ' inside Terrain';
     replaceEvolutionReaderDocument(node.liveUrl);
@@ -1546,6 +1550,7 @@
     replaceEvolutionReaderDocument('about:blank');
     mapWrap.classList.remove('evolution-reader-active');
     syncTerrainChrome();
+    updateReadout();
     if (options.renderGroup !== false && isEvolutionAGroup()) {
       evolutionLayer.hidden = false;
       svg.style.visibility = 'hidden';
