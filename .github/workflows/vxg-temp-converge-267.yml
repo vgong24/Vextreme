@@ -1,0 +1,55 @@
+name: VXG temporary converge PR 267
+
+on:
+  push:
+    branches:
+      - VXG-101126-helper-converge-267-371f41d7
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact helper branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+
+      - name: Generate canonical 68/N consequences
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git merge-base HEAD 7941088346e9283ab436f2a4c0e90ae4e8072632)" = "7941088346e9283ab436f2a4c0e90ae4e8072632" || {
+            echo "helper no longer descends from 68/N seed"
+            exit 1
+          }
+          unexpected="$(git diff --name-only 7941088346e9283ab436f2a4c0e90ae4e8072632...HEAD | grep -v '^.github/workflows/vxg-temp-converge-267.yml$' || true)"
+          test -z "$unexpected" || {
+            echo "unexpected pre-generation helper changes:"
+            printf '%s\n' "$unexpected"
+            exit 1
+          }
+          node lib/build-lattice-headers.js --check
+          node lib/build-vextreme.js
+          node lib/build-sw.js
+          node lib/build-terrain-map.js
+          unexpected_generated="$(git diff --name-only | grep -Ev '^(dist/|sw\.js|data/terrain-map\.json)$' || true)"
+          test -z "$unexpected_generated" || {
+            echo "unexpected generated path:"
+            printf '%s\n' "$unexpected_generated"
+            exit 1
+          }
+
+      - name: Commit generated consequences and remove helper workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm ".github/workflows/vxg-temp-converge-267.yml"
+          git add dist sw.js data/terrain-map.json
+          git commit -m "VXG-101126: generate 68/N canonical cache and terrain consequences [VXG RealForever]"
+          git push origin HEAD:VXG-101126-helper-converge-267-371f41d7
