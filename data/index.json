@@ -1,11 +1,12 @@
 {
-  "contentFingerprint": "d4fa7e9c08df",
+  "contentFingerprint": "1d11326677b6",
   "nodeCount": 114,
   "curatedNodeCount": 98,
   "autoDiscoveredCount": 16,
   "arcCount": 17,
   "supportedLangs": [
     "en",
+    "fr",
     "ja",
     "zh"
   ],
@@ -140,7 +141,8 @@
     },
     "the-testimony-of-victor-gong": {
       "availableLangs": [
-        "en"
+        "en",
+        "fr"
       ],
       "completeLangs": [
         "en"
@@ -165,6 +167,7 @@
     "claude-answers-the-doubt": {
       "availableLangs": [
         "en",
+        "fr",
         "ja"
       ],
       "completeLangs": [
@@ -734,6 +737,7 @@
     "victor-methodology-presentation": {
       "availableLangs": [
         "en",
+        "fr",
         "zh"
       ],
       "completeLangs": [
