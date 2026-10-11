@@ -144,30 +144,22 @@ test('ARC-COMPOSITION: one shared stylesheet serves both preserved v1 lattice an
     'v2 inline current-title text must inherit the same reading typography as the preserved v1 current-title child');
 });
 
-test('LEGACY-COMPAT: Testimony preserves authored body + v1 lattice while stale route/bootstrap infrastructure is repaired', () => {
+test('TESTIMONY-CURRENT: authored body keeps one arc mount while current God Script owns runtime composition', () => {
   const source = read('pages/the-testimony-of-victor-gong.html');
-  const shell = read('lib/shell.js');
 
-  assert.match(source, /href="archives\.html"/,
-    'authored Archives affordance should resolve inside the current repository rather than the retired external site');
-  assert.doesNotMatch(source, /vextreme24\.com\/archives/);
-
+  assert.match(source, /data-content-forge-generator="tools\/vex-content-forge\/project_arc_batch\.js"/,
+    'Testimony must be owned by the current Content Forge page-generation path');
   assert.equal((source.match(/id="arcNavMount"/g) || []).length, 1,
-    'the preserved rich v1 arc lattice mount remains authored exactly once');
+    'the authored arc navigation mount remains exactly once');
   assert.match(source, /The raw witness is preserved\. The testimony is sealed\. The covenant is complete\./,
     'page-specific authored body remains intact');
-  assert.doesNotMatch(source, /VEXTREME_mount/,
-    'the page must not attempt to mount arc navigation before the shared runtime owns data/script readiness');
-
-  const shellVer = shell.match(/var VEXTREME_VER = '([^']+)';/);
-  const shellTag = source.match(/<script src="\.\.\/lib\/shell\.js([^"]*)"><\/script>/);
-  assert.ok(shellVer && shellTag, 'Testimony must use the same-origin shared shell bootstrap');
-  assert.equal(shellTag[1], shellVer[1],
-    'Testimony shell cache token must track the runtime generation');
+  assert.match(source, /\.\.\/dist\/vextreme-the-testimony-of-victor-gong\.js/,
+    'Testimony must use its current same-origin God Script');
+  assert.doesNotMatch(source, /<script[^>]+shell\.js/,
+    'the old shell must not survive inside the reader-native document');
   assert.doesNotMatch(source, /cdn\.jsdelivr\.net\/gh\/vgong24\/vextreme@main\/lib\/shell\.js/,
-    'mutable jsDelivr @main bootstrap must not remain on the legacy specimen');
+    'mutable jsDelivr @main bootstrap must not survive the migration');
 });
-
 test('PAGE-ACTIONS: other known fixed top-right controls use the same lane', () => {
   for (const file of ['pages/accountability-test-02.html', 'pages/witness-committee-operations.html']) {
     assert.match(read(file), /<button class="toggle" data-vex-page-action/);
