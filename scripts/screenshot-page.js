@@ -190,9 +190,18 @@ function bindCleanSourceCommitForAssets() {
     cwd: ROOT,
     encoding: 'utf8',
   }).trim();
-  if (status) {
+  const material = status
+    ? status.split('\n').filter(line => {
+        if (!line.trim()) return false;
+        // Translator CSVs are local carrier artifacts, not render inputs. Allow only
+        // untracked batch files; any tracked/source/generated change still blocks.
+        return !(line.startsWith('?? ') && line.slice(3).startsWith('data/strings/batches/'));
+      })
+    : [];
+  if (material.length) {
     throw new Error(
-      'Assets-bound screenshot evidence requires a clean Vextreme worktree so sourceCommit matches rendered bytes'
+      'Assets-bound screenshot evidence requires clean render source so sourceCommit matches rendered bytes: ' +
+      material.join(' | ')
     );
   }
   return sourceCommit();
