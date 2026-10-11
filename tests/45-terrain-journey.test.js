@@ -129,6 +129,26 @@ test('TERRAIN-JOURNEY: threshold rail projects semantic depth and exposes only a
   assert.match(source, /terrain-outward-leaving \.evolution-reader/);
   assert.match(source, /terrain-outward-leaving #world/);
   assert.match(source, /\.topbar > \*\{ min-width:0; \}/);
+
+  assert.doesNotMatch(source, /class="map-hint"/);
+  assert.doesNotMatch(source, /\.map-hint\{/);
+  assert.doesNotMatch(source, /scroll to zoom \(levels snap to their own framing\)/);
+
+  assert.match(source, /\.zoom-controls\{[\s\S]*left:34px;[\s\S]*top:214px;[\s\S]*z-index:12;/,
+    'zoom controls are physically grouped beneath the depth rail');
+  assert.doesNotMatch(source, /\.zoom-controls\{[^}]*right:356px/,
+    'legacy far-side zoom-control island must remain removed');
+  assert.match(source, /ev\.clientX - rect\.left < 96 && ev\.clientY - rect\.top < 330/,
+    'depth-rail reveal zone includes the relocated controls');
+  assert.match(source, /zoomControls\.addEventListener\('mouseenter', revealDepthRail\)/);
+  assert.match(source, /zoomControls\.addEventListener\('focusin', revealDepthRail\)/);
+
+  assert.match(source, /id="zoomIn" aria-label="Zoom in"/);
+  assert.match(source, /id="zoomOut" aria-label="Zoom out"/);
+  assert.match(source, /id="zoomReset" aria-label="Reset view"/);
+  assert.match(source, /handleZoomAt\(vp\.w \/ 2, vp\.h \/ 2, view\.scale \* 1\.3\)/);
+  assert.match(source, /handleZoomAt\(vp\.w \/ 2, vp\.h \/ 2, view\.scale \* 0\.75\)/);
+  assert.match(source, /reason: 'reset control'/);
 });
 
 
