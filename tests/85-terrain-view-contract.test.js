@@ -779,6 +779,26 @@ test('TERRAIN-VIEW: accepted Content curiosity previews support slower autoplay,
   assert.doesNotMatch(source, /curiosity-peek[^\n]*semanticLevel/i);
 });
 
+test('TERRAIN-VIEW: embedded readers and screenshot previews follow the shared effective language', () => {
+  const source = pageSource();
+  assert.match(source, /var LANG_STORAGE_KEY = 'vex-lang'/);
+  assert.match(source, /var LANG_CHANGE_EVENT = 'vextreme:languagechange'/);
+  assert.match(source, /function readEffectiveLanguage\(\)[\s\S]*URLSearchParams[\s\S]*localStorage\.getItem\(LANG_STORAGE_KEY\)/,
+    'Terrain must resolve the same URL-then-persisted language precedence as the FAB');
+  assert.match(source, /function preferredScreenshotLanguage\(screenshots\)[\s\S]*languages\.indexOf\(activeLanguage\) !== -1[\s\S]*languages\.indexOf\('en'\)/,
+    'localized screenshot evidence must prefer the effective locale before EN fallback');
+  assert.match(source, /function languageAwareUrl\(url, lang\)[\s\S]*searchParams\.set\('lang', lang\)/,
+    'embedded/standalone reader destinations must carry the effective locale explicitly');
+  assert.match(source, /replaceEvolutionReaderDocument\(url\)[\s\S]*languageAwareUrl\(url, activeLanguage\)/,
+    'embedded reader loads must use the language-aware URL');
+  assert.match(source, /window\.addEventListener\(LANG_CHANGE_EVENT[\s\S]*activeLanguage = lang[\s\S]*refreshLocalizedPreviewImages\(\)/,
+    'Terrain must react live when the parent FAB language changes');
+  assert.match(source, /data-preview-node-id=/,
+    'curiosity previews need stable node identity so an already-rendered shelf can swap locale evidence');
+  assert.doesNotMatch(source, /languages\.indexOf\('en'\) !== -1 \? 'en' : languages\[0\]/,
+    'preview selection must not hardcode EN-first once a user locale exists');
+});
+
 test('TERRAIN-VIEW: every shipped inline JavaScript block still parses after contract extraction', () => {
   const source = pageSource();
   const scripts = [...source.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g)]
