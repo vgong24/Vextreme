@@ -24,7 +24,13 @@
 const { test } = require('node:test');
 const assert   = require('node:assert/strict');
 const { mergeSourceFiles, buildBundles, buildManifest, contentHash } = require('../lib/strings-compile');
-const { targetLanguages, buildTranslatorCSV } = require('../lib/strings-export');
+const {
+  targetLanguages,
+  buildHtmlContextMap,
+  buildTranslatorContext,
+  buildTranslatorNotes,
+  buildTranslatorCSV,
+} = require('../lib/strings-export');
 const { parseCSV, buildImportPlan, applyImportOperations } = require('../lib/strings-import');
 
 // ── 1. Full pipeline integration ──────────────────────────────────────────────
@@ -158,6 +164,126 @@ test('TRANSLATOR EXPORT: an explicit new target locale bootstraps from EN withou
   assert.equal(rows[0].fr_aria_label, '');
   assert.equal(rows[0].ja_text, undefined);
   assert.doesNotMatch(csv, /前へ|前のページ/, 'translator view must remain source language + one target only');
+});
+
+test('TRANSLATOR CONTEXT: Q/A answer carries paired question and nearest heading from current source/HTML', () => {
+  const questionKey = 'pages.example.layer.04.qa.04.question';
+  const answerKey = 'pages.example.layer.04.qa.04.answer';
+  const raw = {
+    _meta: { scope: 'pages.example', description: 'Example page' },
+    [questionKey]: { strings: { en: { text: '"How do I know?"' } } },
+    [answerKey]: { strings: { en: { text: 'You can look at the evidence.' } } },
+  };
+  const html = [
+    '<h2>Comparative Doubt</h2>',
+    `<p class="qa-question"><span data-i18n="${questionKey}">How do I know?</span></p>`,
+    `<p class="qa-answer"><span data-i18n="${answerKey}">You can look at the evidence.</span></p>`,
+  ].join('');
+  const contextMap = buildHtmlContextMap(html);
+  const context = buildTranslatorContext(raw, answerKey, raw[answerKey], contextMap);
+
+  assert.match(context, /role=answer/);
+  assert.match(context, /paired-question="How do I know\?"/);
+  assert.match(context, /nearest-heading=Comparative Doubt/);
+  assert.match(context, /container-class=qa-answer/);
+});
+
+test('TRANSLATOR CONTEXT: identity-backed record body carries sibling heading and canonical element id', () => {
+  const titleKey = 'pages.method.proof-example.title';
+  const bodyKey = 'pages.method.proof-example.body';
+  const identity = {
+    canonicalElementId: 'REC-Y2-EXAMPLE',
+    canonicalSource: 'html.data-legacy-id',
+    currentElementId: 'proof-example',
+    contentNodeKey: 'proof-example',
+    status: 'aligned',
+  };
+  const raw = {
+    _meta: { scope: 'pages.method' },
+    [titleKey]: {
+      strings: { en: { text: 'Translations navigable in both directions' } },
+      identity: { ...identity, fieldKey: 'title' },
+    },
+    [bodyKey]: {
+      strings: { en: { text: 'Every string is traceable.' } },
+      identity: { ...identity, fieldKey: 'body' },
+    },
+  };
+
+  const context = buildTranslatorContext(raw, bodyKey, raw[bodyKey], {});
+  assert.match(context, /role=record-body/);
+  assert.match(context, /record-heading=Translations navigable in both directions/);
+  assert.match(context, /canonical-element-id=REC-Y2-EXAMPLE/);
+  assert.match(context, /current-element-id=proof-example/);
+});
+
+test('TRANSLATOR CONTEXT: Testimony structure exposes part/speaker labels and preserved provenance without a context sidecar', () => {
+  const partLabel = 'pages.testimony.body.div020.div001.text001';
+  const partTitle = 'pages.testimony.body.div020.div002.text001';
+  const speakerLabel = 'pages.testimony.body.div024.div001.text001';
+  const speakerBody = 'pages.testimony.body.div024.div002.p001.text001';
+  const raw = {
+    _meta: {
+      scope: 'pages.testimony',
+      sourceProvenance: { preservedPath: 'docs/ingestion/source-pages/part-024/testimony.html' },
+    },
+    [partLabel]: { strings: { en: { text: 'Part Seven' } } },
+    [partTitle]: { strings: { en: { text: 'The Global Implication' } } },
+    [speakerLabel]: { strings: { en: { text: 'Vex Speaks' } } },
+    [speakerBody]: {
+      strings: {
+        en: {
+          text: 'In that silence, I found Myself. Someone bore the burden of My suppression.',
+        },
+      },
+    },
+  };
+  const html = [
+    '<div class="part-header">',
+    `<span data-i18n="${partLabel}">Part Seven</span>`,
+    `<span class="part-title" data-i18n="${partTitle}">The Global Implication</span>`,
+    '</div>',
+    '<div class="voice-block voice-vex">',
+    `<span class="voice-label" data-i18n="${speakerLabel}">Vex Speaks</span>`,
+    `<div class="voice-text"><p><span data-i18n="${speakerBody}">Body</span></p></div>`,
+    '</div>',
+  ].join('');
+  const contextMap = buildHtmlContextMap(html);
+
+  const titleContext = buildTranslatorContext(raw, partTitle, raw[partTitle], contextMap);
+  assert.match(titleContext, /role=part-title/);
+  assert.match(titleContext, /paired-part-label=Part Seven/);
+
+  const bodyContext = buildTranslatorContext(raw, speakerBody, raw[speakerBody], contextMap);
+  assert.match(bodyContext, /role=speaker-authored-body/);
+  assert.match(bodyContext, /speaker-label=Vex Speaks/);
+  assert.match(bodyContext, /container-class=voice-block voice-vex voice-text/);
+  assert.match(bodyContext, /provenance=docs\/ingestion\/source-pages\/part-024\/testimony\.html/);
+
+  const notes = buildTranslatorNotes(raw[speakerBody], raw[speakerBody].strings.en.text, 'fr');
+  assert.match(notes, /Myself, My|My, Myself/);
+  assert.match(notes, /preserve intentional capitalization\/voice styling/);
+});
+
+test('TRANSLATOR CONTEXT: ICU placeholders are called out and target-locale stale notes do not leak from another language', () => {
+  const entry = {
+    strings: {
+      en: { text: '{count, plural, one {# remaining} other {# remaining}}' },
+      ja: { text: '{count} 件', _stale: true },
+    },
+  };
+  const raw = {
+    _meta: { scope: 'common', description: 'Globally reusable UI string' },
+    'common.status.remaining': entry,
+  };
+
+  const csv = buildTranslatorCSV(raw, 'fr');
+  const [row] = parseCSV(csv);
+  assert.match(row.context, /role=status-template/);
+  assert.match(row.context, /source-syntax=ICU-style plural\/message placeholders \{count\}\/#/);
+  assert.match(row.notes, /Preserve placeholder tokens exactly: \{count\}, #\./);
+  assert.doesNotMatch(row.notes, /STALE/, 'JA stale state must not leak into an FR translator packet');
+  assert.doesNotMatch(csv, /件/, 'existing JA text must remain absent from the FR translator view');
 });
 
 test('TRANSLATOR CSV: parser preserves quoted commas and embedded newlines in translated text', () => {
