@@ -348,7 +348,7 @@ test('TERRAIN-VIEW: screenshot rendering accepts local repository paths and abso
   const source = pageSource();
 
   assert.match(source, /function screenshotUrl\(value\)/);
-  assert.match(source, /\^https\?:\\\/\\\/i\.test\(src\) \? src : BASE \+ '\/' \+ src\.replace/);
+  assert.ok(source.includes("return /^https?:\\/\\//i.test(src) ? src : BASE + '/' + src.replace(/^\\/+/, '');"));
   assert.match(source, /escAttr\(screenshotUrl\(screenshots\[lang\]\)\)/,
     'Content card preview must resolve through the shared screenshot URL helper');
   assert.match(source, /screenshotUrl\(p\.screenshots\[panelLang\]\)/,
