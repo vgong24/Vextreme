@@ -2387,11 +2387,12 @@
     },
     "scripts/screenshot-page.js": {
       "role": "reusable Playwright localization screenshot engine + backwards-compatible one-page review CLI",
-      "context": "The general content-page localization capture engine. It serves the branch-local repository, redirects the Vextreme jsDelivr @main prefix to the checked-out files, and verifies non-EN identity through the current language FAB before accepting a localized screenshot. The legacy one-page CLI still emits docs/screenshots review files. The reusable API lazily loads Playwright and lets the localization matrix reuse one Chromium process with a fresh context per evidence cell. Optional Assets publication remains explicit and delegates custody/schema to Vextreme-Assets.",
+      "context": "The general content-page localization capture engine. It serves the branch-local repository, redirects the Vextreme jsDelivr @main prefix to the checked-out files, and verifies non-EN identity through the current visible chrome path before accepting a localized screenshot. When the language orb is nested in the shared Spiral, the engine opens #vex-spiral-trigger normally, observes the group/button becoming visible, then opens the language wheel; standalone-visible language FABs keep their direct path. Acceptance observes both persisted vex-lang state and <html lang>. The legacy one-page CLI still emits docs/screenshots review files. The reusable API lazily loads Playwright and lets the localization matrix reuse one Chromium process with a fresh context per evidence cell. Optional Assets publication remains explicit and delegates custody/schema to Vextreme-Assets.",
       "reads": [
         "pages/{slug}.html (page under test, served from the branch-local repository)",
         "repository assets requested by the rendered page (local server/CDN interception)",
-        "widgets/fab-lang.js runtime contract (#vex-lang-fab-btn / .vex-lang-item / localStorage vex-lang verification)",
+        "widgets/vex-fab.js runtime contract (#vex-spiral-trigger / #vex-spiral-group visibility + aria-expanded)",
+        "widgets/fab-lang.js runtime contract (#vex-lang-fab-btn / .vex-lang-item / localStorage vex-lang + <html lang> verification)",
         "optional sibling Vextreme-Assets/scripts/ingest-screenshot-evidence.mjs when --assets-root or VEXTREME_ASSETS_ROOT is explicitly supplied",
         "git HEAD (exact Vextreme source commit attached to optional Assets evidence)"
       ],
