@@ -188,27 +188,31 @@ function alreadyMigrated(root, formation, migration) {
   const viewmodelsPath = path.join(root, 'data', 'viewmodels.json');
   const pageExists = fs.existsSync(pagePath);
   const stringsExist = fs.existsSync(stringsPath);
-  const viewmodelsExist = fs.existsSync(viewmodelsPath);
-  if (!pageExists && !stringsExist) return false;
-  if (!pageExists || !stringsExist || !viewmodelsExist) {
+
+  let pageBytes = null;
+  let page = '';
+  let pageLooksMigrated = false;
+  if (pageExists) {
+    pageBytes = fs.readFileSync(pagePath);
+    page = pageBytes.toString('utf8');
+    pageLooksMigrated = page.includes('data-content-forge-generator="' + projector.GENERATOR_REF + '"');
+  }
+
+  let strings = null;
+  let receipt = null;
+  let receiptLooksMigrated = false;
+  if (stringsExist) {
+    strings = readJson(stringsPath);
+    receipt = strings?._meta?.sourceProvenance?.migration;
+    receiptLooksMigrated = receipt?.adapter === ADAPTER_REF;
+  }
+
+  if (!pageLooksMigrated && !receiptLooksMigrated) return false;
+  if (!pageExists || !stringsExist || !fs.existsSync(viewmodelsPath) ||
+      !pageLooksMigrated || !receiptLooksMigrated) {
     throw new StalePageMigrationError(
       'MIGRATION_MIGRATED_RESULT_DRIFT',
       migration.slug + ': migrated result is structurally incomplete'
-    );
-  }
-
-  const pageBytes = fs.readFileSync(pagePath);
-  const page = pageBytes.toString('utf8');
-  const strings = readJson(stringsPath);
-  const receipt = strings?._meta?.sourceProvenance?.migration;
-  const pageLooksMigrated = page.includes('data-content-forge-generator="' + projector.GENERATOR_REF + '"');
-  const receiptLooksMigrated = receipt?.adapter === ADAPTER_REF;
-
-  if (!pageLooksMigrated && !receiptLooksMigrated) return false;
-  if (!pageLooksMigrated || !receiptLooksMigrated) {
-    throw new StalePageMigrationError(
-      'MIGRATION_MIGRATED_RESULT_DRIFT',
-      migration.slug + ': page ownership and migration receipt disagree'
     );
   }
 
@@ -250,7 +254,6 @@ function alreadyMigrated(root, formation, migration) {
   }
   return true;
 }
-
 function recoverInterrupted(pagePath, backupPath) {
   if (!fs.existsSync(backupPath)) return;
   if (!fs.existsSync(pagePath)) {
