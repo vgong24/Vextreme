@@ -3,6 +3,8 @@
 
 const assert = require('assert');
 const test = require('node:test');
+const path = require('path');
+const { execFileSync } = require('child_process');
 
 const exporter = require('../lib/strings-export');
 const importer = require('../lib/strings-import');
@@ -138,4 +140,10 @@ test('LOCALIZATION-SCALE: Assets batch capture uses temporary local carrier file
       'alpha', 'fr', '--assets-root', '/tmp/Vextreme-Assets', '--assets-only',
     ]
   );
+});
+
+test('LOCALIZATION-SCALE: general screenshot writer remains syntactically valid', () => {
+  execFileSync(process.execPath, ['--check', path.join(__dirname, '..', 'scripts', 'screenshot-page.js')], {
+    stdio: 'pipe',
+  });
 });
