@@ -99,12 +99,18 @@ test('TERRAIN-JOURNEY: threshold rail projects semantic depth and exposes only a
   assert.match(railSource, /role="progressbar"/);
   assert.doesNotMatch(railSource, /<button|<input/, 'the rail does not become an arbitrary navigation surface');
   assert.match(source, /id="levelReadout" tabindex="0" aria-label="Semantic depth\./);
-  assert.match(source, /\.level-readout\{[\s\S]*pointer-events:auto;[\s\S]*opacity:\.18;/);
+  assert.match(source, /\.level-readout\{[\s\S]*z-index:12;[\s\S]*pointer-events:auto;[\s\S]*opacity:\.18;/);
   assert.match(source, /\.level-readout\[data-can-zoom-out="true"\]\{ cursor:zoom-out; \}/);
-  assert.match(source, /function zoomOutOneSemanticLevel\(reason\)/);
+  assert.match(source, /function canStepOutwardTerrainLayer\(\)/);
+  assert.match(source, /function stepOutwardOneTerrainLayer\(reason\)/);
+  assert.match(source, /activeReaderId \|\| activeGroupHomeKey/);
+  assert.match(source, /closeEvolutionReader\(\{ history:false \}\)/);
+  assert.match(source, /if \(isEvolutionAGroup\(\)\)/);
   assert.match(source, /function wireDepthRailOutwardGesture\(\)/);
-  assert.match(source, /event\.deltaY >= 0 \|\| levelIndex <= 0/);
-  assert.match(source, /semantic depth rail wheel/);
+  assert.match(source, /event\.deltaY >= 0 \|\| !canStepOutwardTerrainLayer\(\)/);
+  assert.match(source, /if \(sustainOutwardWheelGesture\(\)\) return/);
+  assert.match(source, /stepOutwardOneTerrainLayer\('semantic depth rail wheel'\)/);
+  assert.match(source, /lockOutwardWheelGesture\(\)/);
   assert.match(source, /semantic depth rail keyboard/);
   assert.match(source, /\.level-readout\.is-active\{ opacity:\.94; \}/);
   assert.match(source, /style="top:' \+ position\.toFixed\(2\) \+ '%"/);
@@ -187,6 +193,14 @@ test('TERRAIN-JOURNEY: Evolution A gives scrollable content priority and makes c
   assert.match(source, /currentProfile === 'evolution-v1' && levelIndex === 2/);
   assert.match(source, /enterLevel\(1, \{ stageIdx:stageIdx \}\)/);
   assert.match(source, /if \(isEvolutionAGroup\(\) \|\| activeReaderId \|\| activeEntrySlug\) return;/);
+  assert.match(source, /if \(ev\.deltaY > 0 && sustainOutwardWheelGesture\(\)\)/,
+    'outer map must consume same-direction momentum after an outward transition');
+  assert.match(source, /levelIndex === 1 && typeof levelCtx\.stageIdx === 'number' && ratio < EXIT_RATIO\)[\s\S]*lockOutwardWheelGesture\(\)[\s\S]*enterLevel\(1, \{\}\)/,
+    'semantic stage-focus exit lands once before later wheel momentum may continue');
+  assert.match(source, /levelIndex > 0 && ratio < EXIT_RATIO\)[\s\S]*lockOutwardWheelGesture\(\)[\s\S]*enterLevel\(levelIndex - 1/,
+    'semantic level exit also arms the cross-layer landing lock');
+  assert.match(source, /Collection reached · release, then scroll again to return to groups/);
+  assert.match(source, /Groups reached · release, then scroll again to continue outward/);
 });
 
 
@@ -266,6 +280,7 @@ test('TERRAIN-JOURNEY: shipped collection and reader wheel handlers execute outw
   shelfConfirm = true;
   shelf(shelfEvent());
   assert.equal(shelfEnter, 1, 'confirmed downward boundary returns from collection to groups');
+  assert.equal(shelfHint, 2, 'confirmed outward transition exposes the new-layer landing hint');
   assert.equal(shelfPrevented, 2);
 
   let readerConfirm = false;
@@ -300,6 +315,7 @@ test('TERRAIN-JOURNEY: shipped collection and reader wheel handlers execute outw
   readerConfirm = true;
   reader(readerEvent());
   assert.equal(readerClosed, 1, 'confirmed downward boundary returns from reader to collection');
+  assert.equal(readerHints, 2, 'reader transition lands visibly at the collection before another gesture may exit');
 
   let scrollBoundaryCalled = false;
   const scrollingShelf = makeShelf(
