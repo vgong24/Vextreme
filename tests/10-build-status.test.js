@@ -92,6 +92,38 @@ test('BUILD-STATUS: production gaps sort before fixture gaps', () => {
   }
 });
 
+test('BUILD-STATUS: source-only scopes are omitted from translation notices entirely', () => {
+  const manifest = {
+    'pages.ai-cheat-sheet.body.title': { enHash: 'x', langs: ['en'] },
+    'pages.normal.body': { enHash: 'y', langs: ['en'] },
+  };
+  const en = {
+    'pages.ai-cheat-sheet.body.title': { text: 'Huge English-only surface' },
+    'pages.normal.body': { text: 'Needs translation' },
+  };
+
+  const result = buildTranslationNotices(
+    manifest,
+    en,
+    ['en', 'fr', 'ja'],
+    [],
+    ['pages.ai-cheat-sheet']
+  );
+
+  assert.deepEqual(
+    result.map(item => [item.key, item.lang]),
+    [
+      ['pages.normal.body', 'fr'],
+      ['pages.normal.body', 'ja'],
+    ]
+  );
+  assert.equal(
+    result.some(item => item.key.startsWith('pages.ai-cheat-sheet.')),
+    false,
+    'source-only keys must not appear as genuine debt or fixtures'
+  );
+});
+
 // ── 2. buildStatusRollup ─────────────────────────────────────────────────────
 
 const SAMPLE_NOTICES = {
