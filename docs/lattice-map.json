@@ -135,7 +135,9 @@
         "tests/08-build-vextreme.test.js (FAB SYSTEM propagation tests — reads Feature.* constants directly)",
         "lib/build-demo.js",
         "lib/build-arc-bundles.js",
-        "lib/check-institutional-surfaces.js"
+        "lib/check-institutional-surfaces.js",
+        "lib/translation-campaign.js",
+        "lib/translation-program.js"
       ],
       "testedBy": [
         "tests/05-vex-config.test.js",
