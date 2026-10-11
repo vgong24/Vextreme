@@ -462,18 +462,24 @@ test('WIP-DUPLICATE-INTENT: two wip/ files declaring the same slug are both repo
   assert.deepEqual(result[0].files.sort(), ['a.json', 'b.json']);
 });
 
-test('LANG-FAB: standalone widget refreshes supportedLangs before using stale index cache', () => {
+test('LANG-FAB: standalone widget refreshes page-aware language coverage before using stale index cache', () => {
   const source = fs.readFileSync(FAB_IN, 'utf8');
   const globalCheck = source.indexOf('window.VEX_SUPPORTED_LANGS');
   const cacheRead   = source.indexOf('localStorage.getItem(LS_DATA)');
   const requestOpen = source.indexOf("req.open('GET', INDEX_URL, true)");
-  const earlyReturn = source.indexOf('onReady(cached.supportedLangs)');
 
   assert.ok(globalCheck >= 0, 'standalone widget must honor build-time supported lang globals');
   assert.ok(cacheRead >= 0 && requestOpen >= 0, 'widget must still have cache and network paths');
   assert.ok(globalCheck < cacheRead, 'build-time globals must bypass stale localStorage');
-  assert.ok(cacheRead < requestOpen, 'cached langs should be available as fetch fallback');
-  assert.equal(earlyReturn, -1, 'cached supportedLangs must not short-circuit the current index fetch');
+  assert.ok(cacheRead < requestOpen, 'cached page-aware langs should be available as fetch fallback');
+  assert.match(source, /data\.pageLanguageMap && slug \? data\.pageLanguageMap\[slug\] : null/,
+    'standalone fallback must resolve the current slug through pageLanguageMap');
+  assert.match(source, /pageCoverage\.availableLangs/,
+    'standalone fallback must consume page-local availableLangs');
+  assert.match(source, /data\.supportedLangs && data\.supportedLangs\.length/,
+    'site-wide supportedLangs remains compatibility fallback, not primary page truth');
+  assert.equal(source.indexOf('onReady(cached.supportedLangs)'), -1,
+    'cached site-wide supportedLangs must not short-circuit page-aware resolution');
 });
 
 test('LANG-FAB: hand-authored pages do not own supported language data', () => {
