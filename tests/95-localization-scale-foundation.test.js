@@ -129,3 +129,13 @@ test('LOCALIZATION-SCALE: screenshot plan emits only live, complete, non-stale p
   assert.ok(plan.skipped.some(x => x.locale === 'de' && x.reason === 'locale-not-live-in-index'));
   assert.ok(plan.skipped.some(x => x.slug === 'gamma' && x.reason === 'lang-feature-not-active'));
 });
+
+test('LOCALIZATION-SCALE: Assets batch capture uses temporary local carrier files', () => {
+  assert.deepEqual(
+    screenshots.screenshotArgs({ slug: 'alpha', locale: 'fr' }, '/tmp/Vextreme-Assets'),
+    [
+      require('path').join(__dirname, '..', 'scripts', 'screenshot-page.js'),
+      'alpha', 'fr', '--assets-root', '/tmp/Vextreme-Assets', '--assets-only',
+    ]
+  );
+});
