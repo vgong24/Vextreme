@@ -147,7 +147,6 @@
   .body{ position:relative; flex:1; min-height:0; overflow:hidden; }
   .map-wrap{ position:absolute; inset:0; overflow:hidden; background: radial-gradient(ellipse at 30% 15%, var(--accent-soft), transparent 55%), var(--ground); cursor:grab; }
   .map-wrap.grabbing{ cursor:grabbing; }
-  .map-hint{ position:absolute; left:16px; bottom:14px; z-index:2; font-family:var(--mono); font-size:10.5px; color:var(--ink-faint); pointer-events:none; max-width:60%; }
   .level-readout{
     position:absolute; left:14px; top:14px; z-index:12; width:68px; height:188px; min-width:0;
     font-family:var(--mono); color:var(--ink-muted);
@@ -172,12 +171,16 @@
   .threshold-step[data-relation="next"]{ color:var(--ink); }
   .threshold-meter{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); clip-path:inset(50%); white-space:nowrap; }
   .level-order{ margin-top:8px; width:100%; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:8px; line-height:1; text-align:center; letter-spacing:.02em; color:var(--ink-faint); }
-  /* offset by the drawer's own width so it's never covered once the panel slides in —
-     the drawer is an overlay over the map, not a reserved column, so this can't be
-     solved by measuring map-wrap's width (it's always the full window now) */
-  .zoom-controls{ position:absolute; right:356px; bottom:14px; z-index:9; display:flex; flex-direction:column; gap:6px; }
-  .zoom-btn{ width:28px; height:28px; border-radius:7px; border:1px solid var(--line-strong); background:var(--panel); color:var(--ink); font-size:15px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
-  .zoom-btn:hover{ background:var(--panel-2); }
+  .zoom-controls{
+    position:absolute; left:34px; top:214px; z-index:12;
+    display:flex; flex-direction:column; gap:6px;
+  }
+  .zoom-btn{
+    width:28px; height:28px; border-radius:7px; border:1px solid var(--line-strong);
+    background:color-mix(in srgb,var(--panel) 88%,transparent); color:var(--ink); font-size:15px;
+    cursor:pointer; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(8px);
+  }
+  .zoom-btn:hover, .zoom-btn:focus-visible{ background:var(--panel-2); border-color:var(--accent); outline:none; }
   .load-state{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:var(--ink-muted); font-family:var(--mono); font-size:13px; z-index:3; background:var(--ground); }
   .stage-orientation{
     position:absolute; top:14px; left:104px; right:18px; z-index:5; display:flex; align-items:center; gap:14px;
@@ -221,7 +224,7 @@
   .entry-card:disabled .entry-state{ color:var(--ink-faint); }
 
   .evolution-layer[hidden]{ display:none; }
-  .evolution-a-active .zoom-controls, .evolution-a-active .map-hint{ display:none; }
+  .evolution-a-active .zoom-controls{ display:none; }
   .evo-shell{ width:min(1180px, 100%); margin:0 auto; }
   .evo-context{
     position:sticky; top:0; z-index:3; background:color-mix(in srgb, var(--ground) 92%, transparent);
@@ -650,7 +653,6 @@
       </div>
       <div class="evo-gesture-hint" id="evolutionGestureHint" role="status" aria-live="polite" hidden></div>
       <div id="loadState" class="load-state">Fetching data/terrain-map.json…</div>
-      <div class="map-hint">scroll to zoom (levels snap to their own framing) · drag to pan · click a file or evidence surface · off-lens files recede, never disappear</div>
       <div class="zoom-controls">
         <button class="zoom-btn" id="zoomIn" aria-label="Zoom in">+</button>
         <button class="zoom-btn" id="zoomOut" aria-label="Zoom out">&minus;</button>
@@ -3674,9 +3676,14 @@
     mapWrap.addEventListener('click', function () { if (pinnedId) togglePin(pinnedId); });
     mapWrap.addEventListener('pointermove', function (ev) {
       var rect = mapWrap.getBoundingClientRect();
-      if (ev.clientX - rect.left < 96 && ev.clientY - rect.top < 220) revealDepthRail();
+      if (ev.clientX - rect.left < 96 && ev.clientY - rect.top < 330) revealDepthRail();
     });
 
+    var zoomControls = document.querySelector('.zoom-controls');
+    if (zoomControls) {
+      zoomControls.addEventListener('mouseenter', revealDepthRail);
+      zoomControls.addEventListener('focusin', revealDepthRail);
+    }
     document.getElementById('zoomIn').addEventListener('click', function () { revealDepthRail(); var vp = viewportSize(); handleZoomAt(vp.w / 2, vp.h / 2, view.scale * 1.3); });
     document.getElementById('zoomOut').addEventListener('click', function () { revealDepthRail(); var vp = viewportSize(); handleZoomAt(vp.w / 2, vp.h / 2, view.scale * 0.75); });
     document.getElementById('zoomReset').addEventListener('click', function () {
