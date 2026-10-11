@@ -181,6 +181,16 @@
     cursor:pointer; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(8px);
   }
   .zoom-btn:hover, .zoom-btn:focus-visible{ background:var(--panel-2); border-color:var(--accent); outline:none; }
+  @media (min-width:721px){
+    .zoom-controls{
+      opacity:0; pointer-events:none; transform:translateY(-4px);
+      transition:opacity .16s ease, transform .16s ease;
+    }
+    .level-readout.is-active ~ .zoom-controls,
+    .zoom-controls:focus-within{
+      opacity:1; pointer-events:auto; transform:translateY(0);
+    }
+  }
   .load-state{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:var(--ink-muted); font-family:var(--mono); font-size:13px; z-index:3; background:var(--ground); }
   .stage-orientation{
     position:absolute; top:14px; left:104px; right:18px; z-index:5; display:flex; align-items:center; gap:14px;
@@ -562,7 +572,7 @@
     .zoom-controls{ right:12px; bottom:12px; }
   }
   @media (prefers-reduced-motion:reduce){
-    #world, #world.snapping, .panel, .threshold-marker, .level-readout,
+    #world, #world.snapping, .panel, .threshold-marker, .level-readout, .zoom-controls,
     .evolution-layer, .evolution-reader{ transition:none !important; }
     .pop-in{ animation:none !important; }
   }
