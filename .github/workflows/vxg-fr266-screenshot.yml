@@ -11,8 +11,6 @@ permissions:
 jobs:
   capture:
     runs-on: ubuntu-latest
-    env:
-      PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/pw-browsers
     steps:
       - name: Checkout exact Vextreme source candidate
         uses: actions/checkout@v4
@@ -36,19 +34,24 @@ jobs:
 
       - name: Install isolated Playwright runtime
         working-directory: Vextreme
+        shell: bash
         run: |
           set -euo pipefail
+          export PLAYWRIGHT_BROWSERS_PATH="$RUNNER_TEMP/pw-browsers"
+          echo "PLAYWRIGHT_BROWSERS_PATH=$PLAYWRIGHT_BROWSERS_PATH" >> "$GITHUB_ENV"
           npm install --no-save --package-lock=false playwright
           npx playwright install --with-deps chromium
           sudo mkdir -p /opt/node22/lib/node_modules
           sudo ln -sfn "$GITHUB_WORKSPACE/Vextreme/node_modules/playwright" /opt/node22/lib/node_modules/playwright
-          echo "VEX_CHROMIUM_PATH=$(node -e "console.log(require('playwright').chromium.executablePath())")" >> "$GITHUB_ENV"
+          VEX_CHROMIUM_PATH="$(node -e 'console.log(require("playwright").chromium.executablePath())')"
+          echo "VEX_CHROMIUM_PATH=$VEX_CHROMIUM_PATH" >> "$GITHUB_ENV"
 
       - name: Capture complete French matrix cells into Assets checkout
         working-directory: Vextreme
+        shell: bash
         run: |
           set -euo pipefail
-          node scripts/screenshot-localization-matrix.js             --locale fr             --assets-root "$GITHUB_WORKSPACE/Vextreme-Assets"             | tee "$GITHUB_WORKSPACE/fr266-matrix.log"
+          node scripts/screenshot-localization-matrix.js --locale fr --assets-root "$GITHUB_WORKSPACE/Vextreme-Assets" | tee "$GITHUB_WORKSPACE/fr266-matrix.log"
 
       - name: Form exact changed-file artifact
         shell: bash
