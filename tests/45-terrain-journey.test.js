@@ -98,7 +98,7 @@ test('TERRAIN-JOURNEY: threshold rail projects semantic depth and exposes only a
   assert.match(railSource, /aria-current="step"/);
   assert.match(railSource, /role="progressbar"/);
   assert.doesNotMatch(railSource, /<button|<input/, 'the rail does not become an arbitrary navigation surface');
-  assert.match(source, /id="levelReadout" tabindex="0" aria-label="Semantic depth\./);
+  assert.match(source, /id="levelReadout" tabindex="0" aria-label="Semantic depth\. Scroll downward while focused or hovered to move outward one layer\."/);
   assert.match(source, /\.level-readout\{[\s\S]*z-index:12;[\s\S]*pointer-events:auto;[\s\S]*opacity:\.18;/);
   assert.match(source, /\.level-readout\[data-can-zoom-out="true"\]\{ cursor:zoom-out; \}/);
   assert.match(source, /function canStepOutwardTerrainLayer\(\)/);
@@ -106,16 +106,28 @@ test('TERRAIN-JOURNEY: threshold rail projects semantic depth and exposes only a
   assert.match(source, /activeReaderId \|\| activeGroupHomeKey/);
   assert.match(source, /closeEvolutionReader\(\{ history:false \}\)/);
   assert.match(source, /if \(isEvolutionAGroup\(\)\)/);
+  assert.match(source, /function prefersReducedTerrainMotion\(\)/);
+  assert.match(source, /function animateOutwardTerrainLayer\(reason\)/);
+  assert.match(source, /terrainOutwardTransition = \{ active:false, timer:null \}/);
+  assert.match(source, /TERRAIN_OUTWARD_TRANSITION_MS = 170/);
+  assert.match(source, /mapWrap\.classList\.add\('terrain-outward-leaving'\)/);
+  assert.match(source, /window\.setTimeout\(function \(\) \{[\s\S]*finishTerrainOutwardTransition\(reason\)/);
   assert.match(source, /function wireDepthRailOutwardGesture\(\)/);
-  assert.match(source, /event\.deltaY >= 0 \|\| !canStepOutwardTerrainLayer\(\)/);
+  assert.match(source, /event\.deltaY <= 0 \|\| !canStepOutwardTerrainLayer\(\)/,
+    'depth rail uses the same downward-wheel outward grammar as map zoom and Content boundaries');
   assert.match(source, /if \(sustainOutwardWheelGesture\(\)\) return/);
-  assert.match(source, /stepOutwardOneTerrainLayer\('semantic depth rail wheel'\)/);
+  assert.match(source, /animateOutwardTerrainLayer\('semantic depth rail wheel'\)/);
+  assert.match(source, /\['ArrowDown','PageDown','-','_'\]/);
   assert.match(source, /lockOutwardWheelGesture\(\)/);
   assert.match(source, /semantic depth rail keyboard/);
   assert.match(source, /\.level-readout\.is-active\{ opacity:\.94; \}/);
   assert.match(source, /style="top:' \+ position\.toFixed\(2\) \+ '%"/);
   assert.match(source, /function revealDepthRail\(\)/);
   assert.match(source, /@media \(prefers-reduced-motion:reduce\)/);
+  assert.match(source, /#world, #world\.snapping, \.panel, \.threshold-marker, \.level-readout,[\s\S]*\.evolution-layer, \.evolution-reader\{ transition:none !important; \}/);
+  assert.match(source, /terrain-outward-leaving \.evolution-layer/);
+  assert.match(source, /terrain-outward-leaving \.evolution-reader/);
+  assert.match(source, /terrain-outward-leaving #world/);
   assert.match(source, /\.topbar > \*\{ min-width:0; \}/);
 });
 
