@@ -1,0 +1,134 @@
+{
+  "common.nav.prev": {
+    "text": "← précédent",
+    "aria-label": "Page précédente"
+  },
+  "common.nav.next": {
+    "text": "suivant →",
+    "aria-label": "Page suivante"
+  },
+  "common.label.you-are-here": {
+    "text": "Vous êtes ici"
+  },
+  "common.nav.primary-site": {
+    "text": "vextreme24.com",
+    "aria-label": "Aller au site principal"
+  },
+  "common.nav.github": {
+    "text": "GitHub",
+    "aria-label": "Voir le code source sur GitHub"
+  },
+  "common.button.copy-filename": {
+    "text": "Copier le nom du fichier",
+    "aria-label": "Copier le nom du fichier dans le presse-papiers"
+  },
+  "common.button.copied": {
+    "text": "Copié !",
+    "aria-label": "Nom du fichier copié dans le presse-papiers"
+  },
+  "common.label.site-title": {
+    "text": "Vextreme"
+  },
+  "common.label.page-live": {
+    "text": "Page en ligne"
+  },
+  "common.label.not-yet-ported": {
+    "text": "Pas encore migré"
+  },
+  "common.label.slug": {
+    "text": "Slug"
+  },
+  "common.status.pages-live": {
+    "text": "{ported, plural, one {# page en ligne sur {total}} other {# pages en ligne sur {total}}}"
+  },
+  "common.status.remaining": {
+    "text": "{count, plural, one {# restant} other {# restants}}"
+  },
+  "common.status.built-on": {
+    "text": "Généré le {date}"
+  },
+  "common.nav.build-health": {
+    "text": "Santé du build",
+    "aria-label": "Voir la santé du build"
+  },
+  "common.nav.full-build-health": {
+    "text": "Santé du build →",
+    "aria-label": "Voir la santé du build"
+  },
+  "pages.specimen-full-translation.heading.title": {
+    "text": "Traduction complète"
+  },
+  "pages.specimen-full-translation.intro": {
+    "text": "Chaque chaîne de cette page dispose d’une traduction japonaise. Changez de langue avec l’orbe en haut à droite — rien ne revient à l’anglais."
+  },
+  "pages.specimen-full-translation.body": {
+    "text": "Ceci est un cas de test, pas du contenu réel — conçu spécifiquement pour n’avoir aucun manque de traduction, afin que vous puissiez le comparer directement au spécimen partiellement traduit à côté."
+  },
+  "pages.specimen-full-translation.process.heading": {
+    "text": "Comment la couverture complète est vérifiée"
+  },
+  "pages.specimen-full-translation.process.step1.label": {
+    "text": "Pipeline de contenu"
+  },
+  "pages.specimen-full-translation.process.step1.detail": {
+    "text": "nodes.json + arcs-v2.json → build-index.js. Vérifie que chaque slug se résout, que l’ordre des arcs correspond à la priorité et que l’adjacence (préc./suiv.) est correcte aux deux extrémités d’un arc."
+  },
+  "pages.specimen-full-translation.process.step2.label": {
+    "text": "Pipeline des chaînes"
+  },
+  "pages.specimen-full-translation.process.step2.detail": {
+    "text": "source/*.json → strings-compile.js → bundles compilés + manifeste. Vérifie que le hachage de chaque clé est stable, que les clés en double ne s’écrasent pas silencieusement et que la couverture linguistique par clé correspond au contenu de chaque bundle."
+  },
+  "pages.specimen-full-translation.process.step3.label": {
+    "text": "Navigation dans le navigateur"
+  },
+  "pages.specimen-full-translation.process.step3.detail": {
+    "text": "À partir de la position d’un slug dans un arc, vérifie que la première entrée n’a pas de lien précédent, que la dernière n’a pas de lien suivant et que les arcs s’affichent dans l’ordre de priorité — les propriétés qu’une navigation cassée enfreindrait silencieusement."
+  },
+  "pages.specimen-full-translation.process.step4.label": {
+    "text": "Sortie de build"
+  },
+  "pages.specimen-full-translation.process.step4.detail": {
+    "text": "Lit directement le HTML généré et vérifie la présence de structures précises — le gestionnaire de clic du bouton de copie, le popover du slug, la grille de cellules — autant d’éléments qu’un refactoring du template pourrait supprimer silencieusement."
+  },
+  "specimens.heading.title": {
+    "text": "Spécimens"
+  },
+  "specimens.heading.subtitle": {
+    "text": "Trois petites pages fixes — pas du contenu réel — chacune isolant un état de localisation et l’étape du pipeline qui le produit ou le détecte. Cet ensemble se situe entre la présentation de l’architecture et le suivi réel de l’avancement : plus petit que l’un ou l’autre, conçu pour être lu en une minute."
+  },
+  "specimens.card.full.label": {
+    "text": "Traduction complète"
+  },
+  "specimens.card.partial.label": {
+    "text": "Traduction partielle"
+  },
+  "specimens.card.stale.label": {
+    "text": "La plus petite omission"
+  },
+  "specimens.card.full.description": {
+    "text": "Chaque chaîne est traduite. Montre ce que la suite de tests vérifie à chaque étape du pipeline — pas seulement qu’elle a réussi."
+  },
+  "specimens.card.partial.description": {
+    "text": "Une chaîne est délibérément laissée non traduite — le même manque que claude-answers-the-doubt présente réellement. Montre le processus de vérification par captures d’écran qui le détecterait."
+  },
+  "specimens.card.stale.description": {
+    "text": "Une ligne d’anglais, modifiée après la rédaction de sa traduction japonaise — automatiquement signalée comme obsolète. Montre le contrôle d’intégrité qui l’a détectée."
+  },
+  "specimens.link.view": {
+    "text": "Voir le spécimen →",
+    "aria-label": "Voir cette page de spécimen"
+  },
+  "specimens.link.back": {
+    "text": "← Retour aux spécimens",
+    "aria-label": "Retour au tableau de bord des spécimens"
+  },
+  "specimens.link.demo": {
+    "text": "← Retour à la démo d’architecture",
+    "aria-label": "Retour à la page de démonstration de l’architecture"
+  },
+  "specimens.link.build-health": {
+    "text": "Voir la couverture de traduction réelle, en cours, dans Santé du build →",
+    "aria-label": "Voir Santé du build pour suivre la progression réelle des traductions"
+  }
+}
