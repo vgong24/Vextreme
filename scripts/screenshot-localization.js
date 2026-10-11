@@ -17,10 +17,13 @@
  * Usage:
  *   node scripts/screenshot-localization.js --plan
  *   node scripts/screenshot-localization.js --plan --langs ja,zh
+ *   node scripts/screenshot-localization.js --plan --langs fr --staged
  *   node scripts/screenshot-localization.js --capture --langs ja,zh --assets-root ../Vextreme-Assets
  *   node scripts/screenshot-localization.js --capture --slug claude-answers-the-doubt --assets-root ../Vextreme-Assets
  *
- * --plan is the default. --capture delegates each ready cell to screenshot-page.js.
+ * --plan is the default. --staged lets planning measure a compiled not-yet-released
+ * locale, but is forbidden with --capture because the real FAB does not expose that locale yet.
+ * --capture delegates each ready live cell to screenshot-page.js.
  * When --assets-root is supplied, that existing writer hands the exact PNG bytes to
  * Vextreme-Assets' accepted screenshot ingest contract.
  */
