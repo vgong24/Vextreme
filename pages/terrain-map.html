@@ -586,7 +586,7 @@
           <label class="content-profile-wrap" id="contentProfileWrap" hidden>
             <select class="content-profile" id="contentProfile" aria-label="Content presentation">
               <option value="evolution-v1">Content</option>
-              <option value="evolution-v2">Evolution</option>
+              <option value="evolution-v2">Reflow shelf</option>
             </select>
           </label>
         </span>
@@ -792,7 +792,7 @@
       "label": "Content",
       "inherits": "live",
       "declaredDeltas": [
-        "Content group overview uses delayed hover/focus curiosity previews on the existing collection tiles, preserving collection order and making room in-flow instead of navigating on hover.",
+        "Content group overview reserves a viewport-owned inspection dock before hover, preserving collection order without changing collection-tile coordinates.",
         "Content group selection renders immediate membership destinations instead of a large confirmation rectangle.",
         "Selected-group identity becomes compact persistent context with sibling groups in a condensed rail.",
         "Content pages render as preview cards using real screenshot evidence when present and a deliberate fallback cover when absent.",
@@ -807,7 +807,7 @@
       "levels": {
         "group": {
           "component": "terrain.group-card",
-          "renderer": "content-preview-shelf"
+          "renderer": "viewport-curiosity-dock"
         },
         "node": {
           "component": "terrain.node-marker",
@@ -819,18 +819,18 @@
     },
     "evolution-v2": {
       "status": "experimental",
-      "label": "Evolution",
+      "label": "Reflow shelf",
       "inherits": "evolution-v1",
       "declaredDeltas": [
-        "Evolution starts from accepted Content rather than from the legacy Live renderer.",
-        "The collection overview reserves a viewport-owned inspection dock before hover, so preview disclosure never changes collection-tile coordinates.",
-        "The preview dock reuses accepted collection ordering, preview evidence, direct reading, manual navigation, and presentation-history continuity without becoming a Journey level.",
-        "Renderer choice is presentation state and remains directly addressable by URL for human comparison."
+        "This Inspect-only comparison restores the former in-flow curiosity shelf so the accepted stable dock can be judged against the displaced-row behavior it replaced.",
+        "Preview disclosure translates lower collection rows to make room for the shelf; this behavior is not the public Content default.",
+        "Collection ordering, preview evidence, direct reading, manual navigation, and presentation-history continuity remain shared with Content.",
+        "Renderer choice is presentation state and remains directly addressable by URL for bounded comparison."
       ],
       "levels": {
         "group": {
           "component": "terrain.group-card",
-          "renderer": "viewport-curiosity-dock"
+          "renderer": "content-preview-shelf-reflow"
         }
       }
     }
@@ -1136,7 +1136,7 @@
 
   function contentCuriosityDockModeEnabled() {
     return currentWorld === 'content'
-      && currentProfile === 'evolution-v2'
+      && currentProfile === 'evolution-v1'
       && levelIndex === 1
       && !(levelCtx && typeof levelCtx.stageIdx === 'number')
       && !activeReaderId
@@ -1889,7 +1889,7 @@
   function scheduleContentTilePeekClose() {
     cancelContentTilePeekOpen();
     cancelContentTilePeekClose();
-    var delay = currentProfile === 'evolution-v2' ? 520 : CONTENT_TILE_PEEK_CLOSE_MS;
+    var delay = currentProfile === 'evolution-v1' ? 520 : CONTENT_TILE_PEEK_CLOSE_MS;
     contentTilePeekCloseTimer = setTimeout(function () { closeContentTilePeek(false); }, delay);
   }
 
@@ -2030,7 +2030,7 @@
     if (levelCtx && typeof levelCtx.stageIdx === 'number') return;
     var stage = STAGES[stageIndex];
     if (!contentTilePeekEnabledFor(stage) || !contentTilePeekHoverCapable()) return;
-    if (currentProfile === 'evolution-v2') {
+    if (currentProfile === 'evolution-v1') {
       openContentCuriosityDock(stageIndex, options);
       return;
     }
