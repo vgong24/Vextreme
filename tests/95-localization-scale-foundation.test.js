@@ -5,11 +5,13 @@ const assert = require('assert');
 const fs = require('fs');
 const test = require('node:test');
 const path = require('path');
+const os = require('os');
 const { execFileSync } = require('child_process');
 
 const exporter = require('../lib/strings-export');
 const importer = require('../lib/strings-import');
 const screenshots = require('../scripts/screenshot-localization');
+const { buildSupportedLangs } = require('../lib/build-index');
 
 test('LOCALIZATION-SCALE: explicit new target locale exports even when source has no target entry', () => {
   const raw = {
@@ -129,6 +131,22 @@ test('LOCALIZATION-SCALE: import rejects return when translation context changed
     () => importer.planCsvImport({ csvFile: 'test.fr.csv', csvText: csv, source }),
     /stale translation context/
   );
+});
+
+test('LOCALIZATION-SCALE: compiled locale stays hidden until runtime Language release', () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'vextreme-supported-langs-'));
+  try {
+    fs.writeFileSync(path.join(dir, 'strings.en.json'), '{}');
+    fs.writeFileSync(path.join(dir, 'strings.ja.json'), '{}');
+    fs.writeFileSync(path.join(dir, 'strings.fr.json'), '{}');
+    fs.writeFileSync(path.join(dir, 'strings.pt-br.json'), '{}');
+
+    assert.deepEqual(buildSupportedLangs(dir, ['en', 'ja']), ['en', 'ja']);
+    assert.deepEqual(buildSupportedLangs(dir, ['en', 'fr']), ['en', 'fr']);
+    assert.deepEqual(buildSupportedLangs(dir, ['en', 'pt-br']), ['en', 'pt-br']);
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
 });
 
 test('LOCALIZATION-SCALE: screenshot plan emits only live, complete, non-stale page-locale cells', () => {
