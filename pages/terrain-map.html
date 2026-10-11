@@ -1028,6 +1028,8 @@
   var MAP_DRAG_THRESHOLD_PX = 5;
   var BOUNDARY_GESTURE_IDLE_MS = 220, BOUNDARY_GESTURE_RESET_MS = 3000, OUTWARD_WHEEL_RELEASE_MS = 520;
   var gestureHintTimer = null, depthRailTimer = null;
+  var stageThumbnailHydrationQueue = [];
+  var stageThumbnailHydrationHandle = null;
   var initialRoute = readInitialRoute();
 
   // ── fetch, then build the client-side view model on top of the real data ──
@@ -1809,6 +1811,55 @@
     svg.style.visibility = '';
     mapWrap.classList.remove('evolution-a-active', 'evolution-reader-active', 'evolution-arrival-active');
     syncTerrainChrome();
+  }
+
+  function scheduleTerrainIdle(callback) {
+    if (typeof window.requestIdleCallback === 'function') {
+      return {
+        kind:'idle',
+        id:window.requestIdleCallback(callback, { timeout:1200 })
+      };
+    }
+    return {
+      kind:'timeout',
+      id:window.setTimeout(function () {
+        callback({ didTimeout:true, timeRemaining:function () { return 0; } });
+      }, 48)
+    };
+  }
+
+  function cancelTerrainIdle(handle) {
+    if (!handle) return;
+    if (handle.kind === 'idle' && typeof window.cancelIdleCallback === 'function') {
+      window.cancelIdleCallback(handle.id);
+      return;
+    }
+    window.clearTimeout(handle.id);
+  }
+
+  function clearStageThumbnailHydration() {
+    cancelTerrainIdle(stageThumbnailHydrationHandle);
+    stageThumbnailHydrationHandle = null;
+    stageThumbnailHydrationQueue = [];
+  }
+
+  function drainStageThumbnailHydration() {
+    stageThumbnailHydrationHandle = null;
+    var item = stageThumbnailHydrationQueue.shift();
+    if (item && item.node && item.node.isConnected) {
+      item.node.setAttribute('href', item.src);
+    }
+    if (stageThumbnailHydrationQueue.length) {
+      stageThumbnailHydrationHandle = scheduleTerrainIdle(drainStageThumbnailHydration);
+    }
+  }
+
+  function queueStageThumbnailHydration(node, src) {
+    if (!node || !src) return;
+    stageThumbnailHydrationQueue.push({ node:node, src:src });
+    if (!stageThumbnailHydrationHandle) {
+      stageThumbnailHydrationHandle = scheduleTerrainIdle(drainStageThumbnailHydration);
+    }
   }
 
   function hasEvolutionPreview(node) {
@@ -2784,20 +2835,22 @@
         'aria-label':aria
       });
       var halo=el('rect',{x:r.x,y:r.y,width:r.width,height:r.height,rx:focused?22:14,class:'stage-halo'}); g.appendChild(halo);
+      var representativeThumb = null;
+      var representativeVisual = null;
       if (curiosityEnabled) {
         var representative = stageMembers(stage).filter(hasEvolutionPreview)[0] || null;
-        var representativeVisual = representative ? evolutionPreviewSource(representative) : null;
+        representativeVisual = representative ? evolutionPreviewSource(representative) : null;
         if (representativeVisual) {
-          g.appendChild(el('image',{
+          representativeThumb = el('image',{
             x:r.x+r.width-73,
             y:r.y+r.height-54,
             width:58,
             height:34,
-            href:representativeVisual.src,
             preserveAspectRatio:'xMidYMid slice',
             class:'stage-curiosity-thumb',
             'aria-hidden':'true'
-          }));
+          });
+          g.appendChild(representativeThumb);
           g.appendChild(el('rect',{
             x:r.x+r.width-73,
             y:r.y+r.height-54,
@@ -2888,6 +2941,9 @@
         g.addEventListener('focusout', function () { scheduleContentTilePeekClose(); });
       }
       world.appendChild(g);
+      if (representativeThumb && representativeVisual) {
+        queueStageThumbnailHydration(representativeThumb, representativeVisual.src);
+      }
     });
     if (layout.focusedIdx < 0 && currentWorld === 'code') {
       for (var i=0;i<layout.items.length-1;i++) {
@@ -2900,6 +2956,7 @@
 
   function clearWorld() {
     closeContentTilePeek(true);
+    clearStageThumbnailHydration();
     while (world.firstChild) world.removeChild(world.firstChild);
     renderedNodes = {};
     renderedEdges = {};

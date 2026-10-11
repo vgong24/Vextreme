@@ -475,6 +475,89 @@ test('TERRAIN-VIEW: Content groups no longer imply a linear sequence with Stage 
   assert.match(source, /class:'stage-arrow pop-in'/);
 });
 
+test('TERRAIN-VIEW: overview thumbnail imagery hydrates progressively after interaction is ready', () => {
+  const source = pageSource();
+
+  assert.match(source, /var stageThumbnailHydrationQueue = \[\];/);
+  assert.match(source, /var stageThumbnailHydrationHandle = null;/);
+  assert.match(source, /function scheduleTerrainIdle\(callback\)/);
+  assert.match(source, /window\.requestIdleCallback\(callback, \{ timeout:1200 \}\)/);
+  assert.match(source, /window\.setTimeout\(function \(\) \{[\s\S]*callback\(\{ didTimeout:true/);
+  assert.match(source, /function queueStageThumbnailHydration\(node, src\)/);
+  assert.match(source, /function drainStageThumbnailHydration\(\)/);
+  assert.match(source, /item\.node\.setAttribute\('href', item\.src\)/);
+  assert.match(source, /function clearStageThumbnailHydration\(\)/);
+  assert.match(source, /clearStageThumbnailHydration\(\);[\s\S]*while \(world\.firstChild\)/,
+    'rerender must cancel stale thumbnail work before replacing the world');
+
+  const creationBlock = source.match(/representativeThumb = el\('image',\{[\s\S]*?\n          \}\);/);
+  assert.ok(creationBlock, 'overview thumbnail shell must remain extractable');
+  assert.doesNotMatch(creationBlock[0], /href:/,
+    'initial interactive render must not eagerly attach the screenshot URL');
+  assert.match(source, /world\.appendChild\(g\);[\s\S]*queueStageThumbnailHydration\(representativeThumb, representativeVisual\.src\)/,
+    'thumbnail hydration is queued only after the interactive card is attached');
+
+  const scheduleFn = source.match(/function scheduleTerrainIdle\(callback\) \{[\s\S]*?\n  \}/);
+  const cancelFn = source.match(/function cancelTerrainIdle\(handle\) \{[\s\S]*?\n  \}/);
+  const clearFn = source.match(/function clearStageThumbnailHydration\(\) \{[\s\S]*?\n  \}/);
+  const drainFn = source.match(/function drainStageThumbnailHydration\(\) \{[\s\S]*?\n  \}/);
+  const queueFn = source.match(/function queueStageThumbnailHydration\(node, src\) \{[\s\S]*?\n  \}/);
+  assert.ok(scheduleFn && cancelFn && clearFn && drainFn && queueFn, 'thumbnail scheduler helpers must remain extractable');
+
+  const makeHarness = new Function('window', [
+    "var stageThumbnailHydrationQueue = [];",
+    "var stageThumbnailHydrationHandle = null;",
+    scheduleFn[0],
+    cancelFn[0],
+    clearFn[0],
+    drainFn[0],
+    queueFn[0],
+    "return { queue:queueStageThumbnailHydration, clear:clearStageThumbnailHydration, state:function(){ return { queue:stageThumbnailHydrationQueue, handle:stageThumbnailHydrationHandle }; } };"
+  ].join('\n'));
+
+  const idle = [];
+  const cancelled = [];
+  const fakeWindow = {
+    requestIdleCallback(fn) { idle.push(fn); return idle.length; },
+    cancelIdleCallback(id) { cancelled.push(id); },
+    setTimeout() { throw new Error('idle-capable harness must not use timeout fallback'); },
+    clearTimeout() {}
+  };
+  const harness = makeHarness(fakeWindow);
+  const makeNode = connected => ({
+    isConnected: connected,
+    attrs: {},
+    setAttribute(key, value) { this.attrs[key] = value; }
+  });
+  const first = makeNode(true);
+  const second = makeNode(true);
+
+  harness.queue(first, 'first.png');
+  harness.queue(second, 'second.png');
+  assert.equal(first.attrs.href, undefined, 'queueing must not synchronously start image hydration');
+  assert.equal(second.attrs.href, undefined);
+  assert.equal(idle.length, 1, 'one idle turn is scheduled for the queue');
+
+  idle.shift()();
+  assert.equal(first.attrs.href, 'first.png');
+  assert.equal(second.attrs.href, undefined, 'only one thumbnail hydrates per idle turn');
+  assert.equal(idle.length, 1, 'remaining work schedules a later idle turn');
+
+  idle.shift()();
+  assert.equal(second.attrs.href, 'second.png');
+
+  const stale = makeNode(false);
+  harness.queue(stale, 'stale.png');
+  idle.shift()();
+  assert.equal(stale.attrs.href, undefined, 'detached thumbnails are skipped rather than fetching obsolete imagery');
+
+  const pending = makeNode(true);
+  harness.queue(pending, 'pending.png');
+  harness.clear();
+  assert.ok(cancelled.length >= 1, 'clearing the world cancels pending idle hydration');
+  assert.equal(harness.state().queue.length, 0);
+});
+
 test('TERRAIN-VIEW: collection pointer intent cancels pending preview before click activation', () => {
   const source = pageSource();
 
