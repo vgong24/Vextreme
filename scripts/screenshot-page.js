@@ -248,8 +248,32 @@ async function createCaptureSession(defaultSlug) {
 async function switchLocale(page, locale) {
   const fabBtn = page.locator('#vex-lang-fab-btn');
   const fabExists = await fabBtn.count();
-  if (!fabExists) {
+  if (fabExists !== 1) {
     throw new Error('FAB button not found — refusing to label a localization screenshot without a verified language switch');
+  }
+
+  // Current chrome nests the language orb inside the shared Spiral group.
+  // The group is intentionally display:none until a real user opens the
+  // Spiral. Follow that visible interaction path rather than force-clicking a
+  // hidden descendant. Standalone pages keep their existing direct path.
+  if (!await fabBtn.isVisible()) {
+    const spiralTrigger = page.locator('#vex-spiral-trigger');
+    const spiralGroup = page.locator('#vex-spiral-group');
+    if (await spiralTrigger.count() !== 1 || await spiralGroup.count() !== 1) {
+      throw new Error('Language FAB exists but is hidden and no usable Spiral trigger/group exists');
+    }
+
+    await spiralTrigger.click();
+    await page.waitForFunction(() => {
+      const trigger = document.getElementById('vex-spiral-trigger');
+      const group = document.getElementById('vex-spiral-group');
+      const langButton = document.getElementById('vex-lang-fab-btn');
+      if (!trigger || !group || !langButton) return false;
+      const visible = !!(langButton.offsetWidth || langButton.offsetHeight || langButton.getClientRects().length);
+      return trigger.getAttribute('aria-expanded') === 'true'
+        && group.classList.contains('open')
+        && visible;
+    });
   }
 
   await fabBtn.click();
@@ -263,7 +287,12 @@ async function switchLocale(page, locale) {
 
   await langItem.click();
   await page.waitForFunction((expected) => {
-    try { return localStorage.getItem('vex-lang') === expected; } catch (error) { return false; }
+    try {
+      return localStorage.getItem('vex-lang') === expected
+        && document.documentElement.lang === expected;
+    } catch (error) {
+      return false;
+    }
   }, locale);
   await page.waitForTimeout(250);
 }
