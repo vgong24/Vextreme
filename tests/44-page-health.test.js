@@ -42,6 +42,61 @@ test('PAGE-HEALTH: matrix evidence contributes its locale without collapsing the
   assert.deepEqual(screenshotLanguages('vex-test', files), ['en']);
 });
 
+test('PAGE-HEALTH: Assets evidence fills screenshot languages when local screenshot files are absent', () => {
+  const projection = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'screenshot-evidence-assets.json'), 'utf8'));
+  const result = buildPageHealth({
+    pageSlugs: ['specimen-full-translation'],
+    htmlBySlug: { 'specimen-full-translation': '<a href="archives.html">out</a>' },
+    distBySlug: { 'specimen-full-translation': '' },
+    wiredBySlug: {},
+    navRows: [{ slug:'specimen-full-translation', navigable:true, staticHubLinks:1, hasShellJs:false, hasFabNav:false }],
+    nodes: [],
+    manifest: {},
+    analysisPages: {},
+    screenshotFiles: [],
+    assetScreenshotProjection: projection,
+    institutionalSurfaces: {},
+  });
+  assert.deepEqual(result.pages['specimen-full-translation'].evidence.screenshotLanguages, ['en', 'ja']);
+  assert.equal(result.pages['specimen-full-translation'].health.gaps.includes('screenshot'), false);
+});
+
+test('PAGE-HEALTH: Assets fallback evidence does not satisfy strict institutional theme-matrix proof', () => {
+  const projection = {
+    schemaVersion:'vextreme.screenshot-evidence-assets-projection/v1',
+    source:{
+      repository:'vgong24/Vextreme-Assets',
+      commit:'7a8af51edeefe77531904b6228dfbb895edef81b',
+      publicOrigin:'https://vgong24.github.io/Vextreme-Assets',
+      manifestSchemaVersion:'vextreme-assets.screenshot-evidence/v1'
+    },
+    records:{
+      'vextreme/institution-test/en/foundation/320':{
+        namespace:'vextreme', slug:'institution-test', locale:'en', theme:'foundation', viewport:320,
+        sha256:'0'.repeat(64),
+        path:'evidence/screenshots/vextreme/institution-test/en/foundation/320/' + '0'.repeat(64) + '.png',
+        source:{repository:'vgong24/Vextreme',commit:'0'.repeat(40),path:'pages/institution-test.html'},
+        captureKind:'institutional-localization'
+      }
+    }
+  };
+  const result = buildPageHealth({
+    pageSlugs:['institution-test'],
+    htmlBySlug:{'institution-test':'<html data-theme="foundation"></html>'},
+    distBySlug:{'institution-test':''},
+    wiredBySlug:{},
+    navRows:[{slug:'institution-test',navigable:true,staticHubLinks:1,hasShellJs:false,hasFabNav:false}],
+    nodes:[], manifest:{}, analysisPages:{}, screenshotFiles:[],
+    assetScreenshotProjection:projection,
+    institutionalSurfaces:{
+      'institution-test':{state:'active',evidence:{themes:['foundation']}}
+    }
+  });
+  assert.deepEqual(result.pages['institution-test'].evidence.screenshotLanguages, ['en']);
+  assert.equal(result.pages['institution-test'].theme.visibleStyles, false,
+    'institutional theme proof remains local matrix-only until separately migrated');
+});
+
 test('PAGE-HEALTH: meta description is extracted as text, not flattened to a boolean', () => {
   assert.equal(metaDescriptionText('<meta name="description" content="A real summary.">'), 'A real summary.');
   assert.equal(metaDescriptionText('<meta name="description" content="  padded  ">'), 'padded');
