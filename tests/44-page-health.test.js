@@ -61,26 +61,25 @@ test('PAGE-HEALTH: Assets evidence fills screenshot languages when local screens
   assert.equal(result.pages['specimen-full-translation'].health.gaps.includes('screenshot'), false);
 });
 
-test('PAGE-HEALTH: Assets fallback evidence does not satisfy strict institutional theme-matrix proof', () => {
+test('PAGE-HEALTH: exact Assets institutional matrix evidence can satisfy theme proof when local cells are absent', () => {
+  const baseRecord = {
+    namespace:'vextreme', slug:'institution-test', locale:'en', theme:'foundation', viewport:320,
+    sha256:'0'.repeat(64),
+    path:'evidence/screenshots/vextreme/institution-test/en/foundation/320/' + '0'.repeat(64) + '.png',
+    source:{repository:'vgong24/Vextreme',commit:'0'.repeat(40),path:'pages/institution-test.html'},
+    captureKind:'institutional-localization'
+  };
   const projection = {
     schemaVersion:'vextreme.screenshot-evidence-assets-projection/v1',
     source:{
       repository:'vgong24/Vextreme-Assets',
-      commit:'7a8af51edeefe77531904b6228dfbb895edef81b',
+      commit:'c519389fb6daf839cc757c4e0b92ed0344681e72',
       publicOrigin:'https://vgong24.github.io/Vextreme-Assets',
       manifestSchemaVersion:'vextreme-assets.screenshot-evidence/v1'
     },
-    records:{
-      'vextreme/institution-test/en/foundation/320':{
-        namespace:'vextreme', slug:'institution-test', locale:'en', theme:'foundation', viewport:320,
-        sha256:'0'.repeat(64),
-        path:'evidence/screenshots/vextreme/institution-test/en/foundation/320/' + '0'.repeat(64) + '.png',
-        source:{repository:'vgong24/Vextreme',commit:'0'.repeat(40),path:'pages/institution-test.html'},
-        captureKind:'institutional-localization'
-      }
-    }
+    records:{'vextreme/institution-test/en/foundation/320':baseRecord}
   };
-  const result = buildPageHealth({
+  const inputs = {
     pageSlugs:['institution-test'],
     htmlBySlug:{'institution-test':'<html data-theme="foundation"></html>'},
     distBySlug:{'institution-test':''},
@@ -91,10 +90,17 @@ test('PAGE-HEALTH: Assets fallback evidence does not satisfy strict institutiona
     institutionalSurfaces:{
       'institution-test':{state:'active',evidence:{themes:['foundation']}}
     }
-  });
+  };
+  const result = buildPageHealth(inputs);
   assert.deepEqual(result.pages['institution-test'].evidence.screenshotLanguages, ['en']);
-  assert.equal(result.pages['institution-test'].theme.visibleStyles, false,
-    'institutional theme proof remains local matrix-only until separately migrated');
+  assert.equal(result.pages['institution-test'].theme.visibleStyles, true,
+    'matrix-grade Assets custody should satisfy the same institutional theme proof');
+
+  const genericProjection = JSON.parse(JSON.stringify(projection));
+  genericProjection.records['vextreme/institution-test/en/foundation/320'].captureKind = 'localization';
+  const generic = buildPageHealth({ ...inputs, assetScreenshotProjection:genericProjection });
+  assert.equal(generic.pages['institution-test'].theme.visibleStyles, false,
+    'ordinary localization screenshots must not become institutional matrix proof');
 });
 
 test('PAGE-HEALTH: meta description is extracted as text, not flattened to a boolean', () => {
