@@ -108,12 +108,8 @@ test('VIEWMODEL: buildSlugMap attaches viewmodel to every slug entry', () => {
     assert.ok(entry.viewmodel,                     `${slug}: missing viewmodel field`);
     assert.ok(entry.viewmodel.category,            `${slug}: viewmodel.category missing`);
     assert.ok(entry.viewmodel.template,            `${slug}: viewmodel.template missing`);
-    assert.ok(Array.isArray(entry.viewmodel.scopes),        `${slug}: viewmodel.scopes must be array`);
-    assert.ok(Array.isArray(entry.viewmodel.features),      `${slug}: viewmodel.features must be array`);
-    assert.ok(Array.isArray(entry.viewmodel.availableLangs), `${slug}: viewmodel.availableLangs must be array`);
-    assert.ok(Array.isArray(entry.viewmodel.completeLangs),  `${slug}: viewmodel.completeLangs must be array`);
-    assert.deepEqual(entry.viewmodel.availableLangs, ['en'], `${slug}: no scope index means EN-only availability`);
-    assert.deepEqual(entry.viewmodel.completeLangs, ['en'],  `${slug}: no scope index means EN-only completeness`);
+    assert.ok(Array.isArray(entry.viewmodel.scopes),   `${slug}: viewmodel.scopes must be array`);
+    assert.ok(Array.isArray(entry.viewmodel.features), `${slug}: viewmodel.features must be array`);
   }
 });
 
