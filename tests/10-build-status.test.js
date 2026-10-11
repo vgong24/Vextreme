@@ -55,6 +55,33 @@ test('BUILD-STATUS: detects genuinely missing translation', () => {
   assert.equal(genuine[0].reason, 'missing_translation');
 });
 
+test('BUILD-STATUS: page-aware Analysis demand does not manufacture missing-locale debt on unrelated keys', () => {
+  const manifest = {
+    'pages.alpha.body': { enHash: 'a', langs: ['en'] },
+    'pages.beta.body': { enHash: 'b', langs: ['en'] },
+    'common.shared': { enHash: 'c', langs: ['en', 'fr'] },
+  };
+  const en = {
+    'pages.alpha.body': { text: 'Alpha' },
+    'pages.beta.body': { text: 'Beta' },
+    'common.shared': { text: 'Shared' },
+  };
+  const analysisElements = {
+    'pages.alpha.body': { missingLangs: ['fr'] },
+    'pages.beta.body': { missingLangs: [] },
+    'common.shared': { missingLangs: [] },
+  };
+
+  const result = buildTranslationNotices(manifest, en, analysisElements, []);
+  assert.deepEqual(result, [{
+    key: 'pages.alpha.body',
+    lang: 'fr',
+    reason: 'missing_translation',
+    intentional: false,
+    en: 'Alpha',
+  }]);
+});
+
 test('BUILD-STATUS: marks demo scope keys as intentional fixtures', () => {
   const result = buildTranslationNotices(SAMPLE_MANIFEST, SAMPLE_EN, ['en', 'ja'], DEMO_SCOPES);
   const fixtures = result.filter(r => r.intentional);
