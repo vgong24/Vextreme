@@ -26,6 +26,8 @@ const path      = require('path');
 
 const {
   computeMissingLangs,
+  pageSlugFromUsage,
+  expectedLangsForUsage,
   buildElementIndex,
   buildPageIndex,
   buildAnalysisIndex,
@@ -55,6 +57,27 @@ test('computeMissingLangs: empty supportedLangs yields empty result', () => {
   assert.deepEqual(computeMissingLangs(['en'], []), []);
 });
 
+test('pageSlugFromUsage: only real pages/*.html paths become page-language demand', () => {
+  assert.equal(pageSlugFromUsage('pages/alpha.html'), 'alpha');
+  assert.equal(pageSlugFromUsage('wip/alpha.html'), null);
+  assert.equal(pageSlugFromUsage('pages/nested/alpha.html'), null);
+});
+
+test('expectedLangsForUsage: a partial locale is demanded only by pages that actually advertise it', () => {
+  const pageLanguageMap = {
+    alpha: { availableLangs: ['en', 'fr'] },
+    beta: { availableLangs: ['en', 'ja'] },
+  };
+  const supported = ['en', 'fr', 'ja', 'zh'];
+
+  assert.deepEqual(expectedLangsForUsage(['pages/alpha.html'], supported, pageLanguageMap), ['en', 'fr']);
+  assert.deepEqual(expectedLangsForUsage(['pages/beta.html'], supported, pageLanguageMap), ['en', 'ja']);
+  assert.deepEqual(expectedLangsForUsage(['pages/alpha.html', 'pages/beta.html'], supported, pageLanguageMap), ['en', 'fr', 'ja']);
+  assert.deepEqual(expectedLangsForUsage([], supported, pageLanguageMap), ['en']);
+  assert.deepEqual(expectedLangsForUsage(['pages/alpha.html'], supported, null), supported,
+    'omitting pageLanguageMap preserves legacy global behavior for pure callers');
+});
+
 // ── 2. buildElementIndex ──────────────────────────────────────────────────────
 
 test('buildElementIndex: includes a manifest key with no HTML usage', () => {
@@ -68,6 +91,31 @@ test('buildElementIndex: includes a manifest key with no HTML usage', () => {
     langs: ['en'],
     missingLangs: ['ja'],
   });
+});
+
+test('buildElementIndex: page-aware demand prevents a new locale from becoming unrelated site-wide debt', () => {
+  const usages = {
+    'pages.alpha.body': ['pages/alpha.html'],
+    'pages.beta.body': ['pages/beta.html'],
+    'common.shared': ['pages/alpha.html', 'pages/beta.html'],
+    'unused.key': [],
+  };
+  const manifest = {
+    'pages.alpha.body': { enHash: 'a', langs: ['en'] },
+    'pages.beta.body': { enHash: 'b', langs: ['en'] },
+    'common.shared': { enHash: 'c', langs: ['en', 'fr'] },
+    'unused.key': { enHash: 'd', langs: ['en'] },
+  };
+  const pageLanguageMap = {
+    alpha: { availableLangs: ['en', 'fr'] },
+    beta: { availableLangs: ['en'] },
+  };
+  const elements = buildElementIndex(usages, manifest, ['en', 'fr', 'ja'], pageLanguageMap);
+
+  assert.deepEqual(elements['pages.alpha.body'].missingLangs, ['fr']);
+  assert.deepEqual(elements['pages.beta.body'].missingLangs, []);
+  assert.deepEqual(elements['common.shared'].missingLangs, []);
+  assert.deepEqual(elements['unused.key'].missingLangs, []);
 });
 
 test('buildElementIndex: includes an HTML-used key missing from the manifest (orphan)', () => {
