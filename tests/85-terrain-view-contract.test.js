@@ -534,6 +534,12 @@ test('TERRAIN-VIEW: accepted Content curiosity shelf supports slower autoplay, m
   assert.doesNotMatch(directOpen[0], /enterLevel\(1, \{ stageIdx:stageIndex \}\)/,
     'direct curiosity selection must not render the collection-card middle layer before opening the reader');
   assert.match(source, /returnKind:'curiosity-overview'/);
+  assert.match(source, /camera:capturePresentationCamera\(\)/,
+    'direct preview entry preserves the exact overview camera in presentation history');
+  assert.match(source, /function restorePresentationCamera\(camera\)/);
+  assert.match(source, /restorePresentationCamera\(presentation\.camera\)/);
+  assert.doesNotMatch(source, /semantic\s*=\s*\{[^}]*\b(?:x|y|scale)\s*:/s,
+    'camera continuity remains presentation-only and does not contaminate Journey semantic state');
   assert.match(source, /select a preview to read directly/);
 
   assert.match(source, /g\.addEventListener\('mouseenter', function \(\) \{ scheduleContentTilePeekOpen\(i\); \}\)/);
