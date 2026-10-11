@@ -13,7 +13,8 @@
     "institutional-surfaces:check": "node lib/check-institutional-surfaces.js",
     "institutional-surfaces:screenshots": "node scripts/screenshot-institutional.js",
     "localization:screenshots": "node scripts/screenshot-localization-matrix.js",
-    "translation:campaign": "node lib/translation-campaign.js"
+    "translation:campaign": "node lib/translation-campaign.js",
+    "translation:program": "node lib/translation-program.js"
   },
   "engines": {
     "node": ">=18.19.0"
