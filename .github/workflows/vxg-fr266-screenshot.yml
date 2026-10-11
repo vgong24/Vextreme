@@ -1,0 +1,74 @@
+name: VXG FR266 Screenshot Realization
+
+on:
+  push:
+    branches:
+      - tmp-vxg-fr266-materialize
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    env:
+      PLAYWRIGHT_BROWSERS_PATH: ${{ runner.temp }}/pw-browsers
+    steps:
+      - name: Checkout exact Vextreme source candidate
+        uses: actions/checkout@v4
+        with:
+          ref: 68be566230772f9651fed3bc5b02b5cdea730512
+          path: Vextreme
+          fetch-depth: 0
+
+      - name: Checkout exact Vextreme-Assets custody base
+        uses: actions/checkout@v4
+        with:
+          repository: vgong24/Vextreme-Assets
+          ref: cc9444aab70c9f5680e207b3602ba7277032640d
+          path: Vextreme-Assets
+          fetch-depth: 1
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install isolated Playwright runtime
+        working-directory: Vextreme
+        run: |
+          set -euo pipefail
+          npm install --no-save --package-lock=false playwright
+          npx playwright install --with-deps chromium
+          sudo mkdir -p /opt/node22/lib/node_modules
+          sudo ln -sfn "$GITHUB_WORKSPACE/Vextreme/node_modules/playwright" /opt/node22/lib/node_modules/playwright
+          echo "VEX_CHROMIUM_PATH=$(node -e "console.log(require('playwright').chromium.executablePath())")" >> "$GITHUB_ENV"
+
+      - name: Capture complete French matrix cells into Assets checkout
+        working-directory: Vextreme
+        run: |
+          set -euo pipefail
+          node scripts/screenshot-localization-matrix.js             --locale fr             --assets-root "$GITHUB_WORKSPACE/Vextreme-Assets"             | tee "$GITHUB_WORKSPACE/fr266-matrix.log"
+
+      - name: Form exact changed-file artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$GITHUB_WORKSPACE/fr266-assets-delta"
+          cd "$GITHUB_WORKSPACE/Vextreme-Assets"
+          git status --porcelain=v1 | tee "$GITHUB_WORKSPACE/fr266-assets-status.txt"
+          git ls-files -m -o --exclude-standard -z | while IFS= read -r -d '' f; do
+            mkdir -p "$GITHUB_WORKSPACE/fr266-assets-delta/$(dirname "$f")"
+            cp "$f" "$GITHUB_WORKSPACE/fr266-assets-delta/$f"
+          done
+          cp "$GITHUB_WORKSPACE/fr266-matrix.log" "$GITHUB_WORKSPACE/fr266-assets-delta/FR266-MATRIX.log"
+          cp "$GITHUB_WORKSPACE/fr266-assets-status.txt" "$GITHUB_WORKSPACE/fr266-assets-delta/FR266-ASSETS-STATUS.txt"
+          printf '%s\n'             'vextremeSourceCommit=68be566230772f9651fed3bc5b02b5cdea730512'             'assetsBaseCommit=cc9444aab70c9f5680e207b3602ba7277032640d'             "chromium=$VEX_CHROMIUM_PATH"             > "$GITHUB_WORKSPACE/fr266-assets-delta/FR266-PROOF.txt"
+
+      - name: Upload exact Assets delta
+        uses: actions/upload-artifact@v4
+        with:
+          name: fr266-screenshot-assets-delta
+          path: fr266-assets-delta
+          if-no-files-found: error
+          retention-days: 7
