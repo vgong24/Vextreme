@@ -1277,7 +1277,8 @@
         "data/arcs-v2.json (every registered institutional slug must remain outside narrative arcs)",
         "data/index.json (registered slugs must remain outside generated content maps)",
         "data/strings/compiled/scopes/{category}/*.json (required active-locale bindings)",
-        "docs/screenshots/*.png (required active locale/theme/viewport evidence cells)",
+        "docs/screenshots/*.png (local active locale/theme/viewport evidence cells; authoritative when present)",
+        "data/screenshot-evidence-assets.json (pinned Vextreme-Assets screenshot projection used only as exact institutional fallback)",
         "dist/*.js (no God Script may be generated for a registered institutional identity)"
       ],
       "writes": [
