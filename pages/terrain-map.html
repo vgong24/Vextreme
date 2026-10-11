@@ -1130,6 +1130,25 @@
     return value && value.version === 1 ? value : null;
   }
 
+  function capturePresentationCamera() {
+    return { x:view.x, y:view.y, scale:view.scale };
+  }
+
+  function restorePresentationCamera(camera) {
+    if (!camera
+      || !Number.isFinite(camera.x)
+      || !Number.isFinite(camera.y)
+      || !Number.isFinite(camera.scale)
+      || camera.scale <= 0) return false;
+    world.classList.remove('snapping');
+    view.x = camera.x;
+    view.y = camera.y;
+    view.scale = camera.scale;
+    applyTransform();
+    updateReadout();
+    return true;
+  }
+
   function presentationHistoryKind(state) {
     var value = presentationHistoryValue(state);
     return value ? value.kind : null;
@@ -1205,6 +1224,7 @@
       var overviewStageIdx = STAGES.findIndex(function (stage) { return String(stage.key) === String(presentation.stageKey); });
       if (overviewStageIdx < 0) return;
       if (levelIndex !== 1 || (levelCtx && typeof levelCtx.stageIdx === 'number')) enterLevel(1, {});
+      restorePresentationCamera(presentation.camera);
       activeReaderReturnKind = 'collection';
       window.requestAnimationFrame(function () {
         openContentTilePeek(overviewStageIdx, {
@@ -1878,7 +1898,8 @@
     var returnState = presentationHistoryState('curiosity-overview', {
       stageKey:stage.key,
       step:contentTilePeekCycleIndex,
-      manual:contentTilePeekManual
+      manual:contentTilePeekManual,
+      camera:capturePresentationCamera()
     });
     history.replaceState(returnState, '', window.location.href);
 
