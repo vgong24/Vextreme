@@ -36,7 +36,24 @@ jobs:
           node lib/build-vextreme.js
           node lib/build-sw.js
           node lib/build-terrain-map.js
-          unexpected_generated="$(git diff --name-only | grep -Ev '^(dist/|sw\.js|data/terrain-map\.json)$' || true)"
+          unexpected_generated="$(git diff --name-only | grep -Ev '^(dist/.*|sw\.js|data/terrain-map\.json) || true)"
+          test -z "$unexpected_generated" || {
+            echo "unexpected generated path:"
+            printf '%s\n' "$unexpected_generated"
+            exit 1
+          }
+
+      - name: Commit generated consequences and remove helper workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm ".github/workflows/vxg-temp-converge-267.yml"
+          git add dist sw.js data/terrain-map.json
+          git commit -m "VXG-101126: generate 68/N canonical cache and terrain consequences [VXG RealForever]"
+          git push origin HEAD:VXG-101126-helper-converge-267-371f41d7
+ || true)"
           test -z "$unexpected_generated" || {
             echo "unexpected generated path:"
             printf '%s\n' "$unexpected_generated"
