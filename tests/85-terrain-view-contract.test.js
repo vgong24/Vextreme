@@ -344,6 +344,19 @@ test('TERRAIN-VIEW: Content visual windows are bounded, image-backed, order-pres
     'visual invitation must not silently become ranking or timed carousel behavior');
 });
 
+test('TERRAIN-VIEW: screenshot rendering accepts local repository paths and absolute Assets evidence URLs', () => {
+  const source = pageSource();
+
+  assert.match(source, /function screenshotUrl\(value\)/);
+  assert.ok(source.includes("return /^https?:\\/\\//i.test(src) ? src : BASE + '/' + src.replace(/^\\/+/, '');"));
+  assert.match(source, /escAttr\(screenshotUrl\(screenshots\[lang\]\)\)/,
+    'Content card preview must resolve through the shared screenshot URL helper');
+  assert.match(source, /screenshotUrl\(p\.screenshots\[panelLang\]\)/,
+    'Content Details screenshot must resolve local or remote custody');
+  assert.match(source, /screenshotUrl\(s\.screenshots\[panelLang\]\)/,
+    'Code\/screen evidence panel must resolve local or remote custody');
+});
+
 test('TERRAIN-VIEW: mutable Terrain data bypasses stale browser cache so current preview metadata is visible', () => {
   const source = pageSource();
   assert.match(source, /fetch\(TERRAIN_URL, \{ cache: 'no-store' \}\)/);

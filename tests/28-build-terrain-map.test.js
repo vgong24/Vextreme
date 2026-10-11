@@ -41,6 +41,9 @@ const {
   computeEdges,
   findScreenshots,
   findScreenshotEvidence,
+  findAssetScreenshotEvidence,
+  mergeScreenshotEvidence,
+  representativeScreenshots,
   buildTerrainMap,
   layoutArcs,
   normalizePreviewOverride,
@@ -238,6 +241,43 @@ test('BUILD-TERRAIN-MAP: institutional matrix evidence remains discoverable and 
     terrain.screens[0].screenshotEvidence.map(record => record.path),
     files.slice().sort().map(file => `docs/screenshots/${file}`)
   );
+});
+
+test('BUILD-TERRAIN-MAP: pinned Assets evidence is fallback-only behind local screenshots', () => {
+  const projection = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'screenshot-evidence-assets.json'), 'utf8'));
+  const assets = findAssetScreenshotEvidence(projection);
+  assert.ok(assets['specimen-full-translation']);
+  assert.equal(assets['specimen-full-translation'].length, 2);
+  assert.ok(assets['specimen-full-translation'].every(record =>
+    record.storage === 'assets' &&
+    record.kind === 'asset' &&
+    record.path.startsWith('https://vgong24.github.io/Vextreme-Assets/evidence/screenshots/')
+  ));
+
+  const local = findScreenshotEvidence(['specimen-full-translation-en.png']);
+  const merged = mergeScreenshotEvidence(local, assets);
+  const representatives = representativeScreenshots(merged);
+
+  assert.equal(
+    representatives['specimen-full-translation'].en,
+    'docs/screenshots/specimen-full-translation-en.png',
+    'local evidence remains authoritative while present'
+  );
+  assert.match(
+    representatives['specimen-full-translation'].ja,
+    /^https:\/\/vgong24\.github\.io\/Vextreme-Assets\/evidence\/screenshots\/.*\.png$/,
+    'remote Assets custody fills an otherwise-missing locale'
+  );
+
+  const terrain = buildTerrainMap(
+    { nodes:{} }, [], [],
+    ['specimen-full-translation-en.png'],
+    {}, ['specimen-full-translation'],
+    null, ['specimen-full-translation'],
+    {}, {}, projection
+  );
+  assert.equal(terrain.screens[0].screenshots.en, 'docs/screenshots/specimen-full-translation-en.png');
+  assert.match(terrain.screens[0].screenshots.ja, /^https:\/\/vgong24\.github\.io\/Vextreme-Assets\//);
 });
 
 // ── 7. buildTerrainMap ────────────────────────────────────────────────────────
@@ -486,8 +526,13 @@ test('BUILD-TERRAIN-MAP integration: every edge in the real output references tw
 test('BUILD-TERRAIN-MAP integration: every screen references a screenshot file that actually exists', () => {
   const data = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'terrain-map.json'), 'utf8'));
   for (const screen of data.screens) {
-    for (const relPath of Object.values(screen.screenshots)) {
-      assert.ok(fs.existsSync(path.join(ROOT, relPath)), `missing screenshot file: ${relPath}`);
+    for (const screenshotPath of Object.values(screen.screenshots)) {
+      if (/^https:\/\//.test(screenshotPath)) {
+        assert.match(screenshotPath, /^https:\/\/vgong24\.github\.io\/Vextreme-Assets\/evidence\/screenshots\//,
+          `unexpected remote screenshot origin: ${screenshotPath}`);
+      } else {
+        assert.ok(fs.existsSync(path.join(ROOT, screenshotPath)), `missing screenshot file: ${screenshotPath}`);
+      }
     }
     for (const record of (screen.screenshotEvidence || [])) {
       assert.ok(fs.existsSync(path.join(ROOT, record.path)), `missing screenshot evidence file: ${record.path}`);

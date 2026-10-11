@@ -883,6 +883,10 @@
   function el(tag, attrs) { var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); return e; }
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]; }); }
   function escAttr(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]; }); }
+  function screenshotUrl(value) {
+    var src = String(value || '');
+    return /^https?:\/\//i.test(src) ? src : BASE + '/' + src.replace(/^\/+/, '');
+  }
 
   var appRoot = document.querySelector('.app');
   var terrainInspectToggle = document.getElementById('terrainInspectToggle');
@@ -1590,7 +1594,7 @@
     var languages = Object.keys(screenshots);
     if (languages.length) {
       var lang = languages.indexOf('en') !== -1 ? 'en' : languages[0];
-      return '<img src="../' + escAttr(screenshots[lang]) + '" alt="Preview of ' + escAttr(node.title || node.slug) + '" loading="lazy">';
+      return '<img src="' + escAttr(screenshotUrl(screenshots[lang])) + '" alt="Preview of ' + escAttr(node.title || node.slug) + '" loading="lazy">';
     }
     return '<div class="evo-fallback"><div><span class="evo-fallback-mark">Vextreme · preview pending</span><span class="evo-fallback-title">' + esc(node.title || node.slug) + '</span></div></div>';
   }
@@ -2712,7 +2716,7 @@
         '<div class="screen-lang-toggle" id="screenLangToggle">' +
           langs.map(function (l) { return '<button data-lang="' + l + '" aria-pressed="' + (l === panelLang) + '">' + l.toUpperCase() + '</button>'; }).join('') +
         '</div>' +
-        '<div class="screen-thumb-frame"><img id="screenThumb" src="' + BASE + '/' + p.screenshots[panelLang] + '" alt="' + esc(p.title) + ' screenshot"></div>' +
+        '<div class="screen-thumb-frame"><img id="screenThumb" src="' + screenshotUrl(p.screenshots[panelLang]) + '" alt="' + esc(p.title) + ' screenshot"></div>' +
       '</div>'
       : '<div class="field"><div class="field-label">Real screenshot</div><div class="field-empty">none captured yet — run scripts/screenshot-page.js and rebuild</div></div>';
 
@@ -2737,7 +2741,7 @@
         btn.addEventListener('click', function () {
           panelLang = btn.getAttribute('data-lang');
           Array.prototype.forEach.call(toggle.querySelectorAll('button'), function (b) { b.setAttribute('aria-pressed', String(b === btn)); });
-          document.getElementById('screenThumb').src = BASE + '/' + p.screenshots[panelLang];
+          document.getElementById('screenThumb').src = screenshotUrl(p.screenshots[panelLang]);
         });
       });
     }
@@ -2760,7 +2764,7 @@
         '<div class="screen-lang-toggle" id="screenLangToggle">' +
           langs.map(function (l) { return '<button data-lang="' + l + '" aria-pressed="' + (l === panelLang) + '">' + l.toUpperCase() + '</button>'; }).join('') +
         '</div>' +
-        '<div class="screen-thumb-frame"><img id="screenThumb" src="' + BASE + '/' + s.screenshots[panelLang] + '" alt="' + esc(s.title) + ' screenshot"></div>' +
+        '<div class="screen-thumb-frame"><img id="screenThumb" src="' + screenshotUrl(s.screenshots[panelLang]) + '" alt="' + esc(s.title) + ' screenshot"></div>' +
       '</div>' +
       '<a class="visit-btn" href="' + s.liveUrl + '" target="_blank" rel="noopener">Open live page &#8599;</a>' +
       '<div class="field"><div class="field-label">Arcs</div>' + listOrEmpty(s.arcKeys, 'belongs to', s.id) + '</div>' +
@@ -2772,7 +2776,7 @@
       btn.addEventListener('click', function () {
         panelLang = btn.getAttribute('data-lang');
         Array.prototype.forEach.call(toggle.querySelectorAll('button'), function (b) { b.setAttribute('aria-pressed', String(b === btn)); });
-        document.getElementById('screenThumb').src = BASE + '/' + s.screenshots[panelLang];
+        document.getElementById('screenThumb').src = screenshotUrl(s.screenshots[panelLang]);
       });
     });
     wireJourneyControls(panel);
