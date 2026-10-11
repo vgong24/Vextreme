@@ -423,8 +423,10 @@ test('TERRAIN-VIEW: one physical wheel gesture can cross at most one Content sem
   const shelf = source.match(/function handleEvolutionShelfWheel\(ev\) \{[\s\S]*?\n  \}/);
   const reader = source.match(/function handleEvolutionReaderWheel\(ev\) \{[\s\S]*?\n  \}/);
   assert.ok(shelf && reader);
-  assert.match(shelf[0], /var outwardLocked = sustainOutwardWheelGesture\(\);/);
-  assert.match(reader[0], /var outwardLocked = sustainOutwardWheelGesture\(\);/);
+  assert.match(shelf[0], /var outwardLocked = direction > 0 && sustainOutwardWheelGesture\(\);/);
+  assert.match(reader[0], /var outwardLocked = direction > 0 && sustainOutwardWheelGesture\(\);/);
+  assert.match(source, /if \(ev\.deltaY > 0 && sustainOutwardWheelGesture\(\)\)/,
+    'the outer map consumes continuing outward momentum after the inner surface disappears');
   assert.match(shelf[0], /if \(outwardLocked\) \{[\s\S]*?return;/);
   assert.match(reader[0], /if \(outwardLocked\) \{[\s\S]*?return;/);
   assert.match(shelf[0], /lockOutwardWheelGesture\(\);[\s\S]*?enterLevel\(1, \{\}\);/);
