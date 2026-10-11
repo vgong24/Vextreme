@@ -16,7 +16,7 @@ test('TESTIMONY CURRENT GENERATION: repository page is Forge-owned without the n
   assert.match(page, /\.\.\/dist\/vextreme-the-testimony-of-victor-gong\.js/);
   assert.doesNotMatch(page, /<script[^>]+shell\.js/);
   assert.doesNotMatch(page, /\/__vex\/missing-asset\.svg/);
-  assert.match(page, /https:\\/\\/raw\\.githubusercontent\\.com\\/vgong24\\/Vextreme-Assets\\/cc9444aab70c9f5680e207b3602ba7277032640d\\/__assets\\/36076a38a645649d62eb61dead2e8fc936c896a4a4b1ec0e2e1a9257e1132c23\\.jpg/);
+  assert.ok(page.includes('https://raw.githubusercontent.com/vgong24/Vextreme-Assets/cc9444aab70c9f5680e207b3602ba7277032640d/__assets/36076a38a645649d62eb61dead2e8fc936c896a4a4b1ec0e2e1a9257e1132c23.jpg'));
   assert.doesNotMatch(page, /xGong_Victor_5840224_SM-1\\.jpg\\.pagespeed/);
   assert.match(page, /https:\/\/github\.com\/vgong24\/Vextreme\/blob\/034a5c4b520de762e04198feca6e483fb40d8334\/docs\/ingestion\/source-pages\/part-022\/victor-gongs-testimony\.html/);
   assert.match(page, /The raw witness is preserved\. The testimony is sealed\. The covenant is complete\./);
