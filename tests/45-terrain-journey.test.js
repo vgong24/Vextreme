@@ -143,6 +143,13 @@ test('TERRAIN-JOURNEY: threshold rail projects semantic depth and exposes only a
   assert.match(source, /zoomControls\.addEventListener\('mouseenter', revealDepthRail\)/);
   assert.match(source, /zoomControls\.addEventListener\('focusin', revealDepthRail\)/);
 
+  assert.match(source, /@media \(min-width:721px\)\{[\s\S]*\.zoom-controls\{[\s\S]*opacity:0; pointer-events:none;[\s\S]*transform:translateY\(-4px\)/,
+    'desktop controls are visually and pointer inactive while the depth rail is idle');
+  assert.match(source, /\.level-readout\.is-active ~ \.zoom-controls,[\s\S]*\.zoom-controls:focus-within\{[\s\S]*opacity:1; pointer-events:auto; transform:translateY\(0\)/,
+    'rail engagement or keyboard focus reveals the desktop control stack');
+  assert.match(source, /@media \(max-width:720px\)\{[\s\S]*\.zoom-controls\{ right:12px; bottom:12px; \}/,
+    'mobile placement remains unchanged for the separate responsive investigation');
+
   assert.match(source, /id="zoomIn" aria-label="Zoom in"/);
   assert.match(source, /id="zoomOut" aria-label="Zoom out"/);
   assert.match(source, /id="zoomReset" aria-label="Reset view"/);
