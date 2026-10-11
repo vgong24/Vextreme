@@ -189,5 +189,7 @@ test('LOCALIZATION-SCALE: Assets-bound screenshot evidence binds clean source be
   assert.ok(bind >= 0, 'clean source binding must exist');
   assert.ok(render > bind, 'clean source binding must happen before browser/server render begins');
   assert.match(src, /git', \['status', '--porcelain', '--untracked-files=all'\]/);
-  assert.match(src, /requires a clean Vextreme worktree so sourceCommit matches rendered bytes/);
+  assert.match(src, /requires clean render source so sourceCommit matches rendered bytes/);
+  assert.match(src, /data\/strings\/batches\//);
+  assert.match(src, /line\.startsWith\('\?\? '\)/);
 });
