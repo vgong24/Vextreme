@@ -11,7 +11,10 @@
     "current-work": "node lib/current-work.js",
     "work-coordination:check": "node lib/work-coordination.js --check-config",
     "institutional-surfaces:check": "node lib/check-institutional-surfaces.js",
-    "institutional-surfaces:screenshots": "node scripts/screenshot-institutional.js"
+    "institutional-surfaces:screenshots": "node scripts/screenshot-institutional.js",
+    "translation:export": "node lib/strings-export.js",
+    "translation:import": "node lib/strings-import.js",
+    "localization:screenshots": "node scripts/screenshot-localization.js"
   },
   "engines": {
     "node": ">=18.19.0"
