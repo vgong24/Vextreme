@@ -125,6 +125,24 @@ test('ASSEMBLER: widgets/fab-lang.js actually reads window.VEX_SUPPORTED_LANGS �
     'loadSupportedLangs() must check window.VEX_SUPPORTED_LANGS before falling back to cache/network');
 });
 
+test('LANGUAGE AUTHORITY: FAB instances synchronize one effective locale across same-origin browsing contexts', () => {
+  const widgetSrc = fs.readFileSync(path.join(ROOT, 'widgets', 'fab-lang.js'), 'utf8');
+  assert.match(widgetSrc, /var LS_LANG\s*=\s*'vex-lang'/,
+    'vex-lang remains the persisted selected-language authority');
+  assert.match(widgetSrc, /var LANG_CHANGE_EVENT\s*=\s*'vextreme:languagechange'/,
+    'the same-document language event must have a stable identity');
+  assert.match(widgetSrc, /window\.addEventListener\('storage'[\s\S]*event\.key !== LS_LANG[\s\S]*fabController\.selectLanguage/,
+    'other same-origin windows/iframes must consume storage changes instead of retaining independent FAB state');
+  assert.match(widgetSrc, /window\.dispatchEvent\(new CustomEvent\(LANG_CHANGE_EVENT/,
+    'the active document must publish the converged language to local consumers such as Terrain');
+  assert.match(widgetSrc, /document\.documentElement\.setAttribute\('lang', lang\)/,
+    'document language metadata must follow the selected locale');
+  assert.match(widgetSrc, /fallback = english && english\.text != null[\s\S]*_sourceText\[key\]/,
+    'partial locales must fall back to immutable EN/source text');
+  assert.match(widgetSrc, /_langStrings = \{\};[\s\S]*God Script optimization/,
+    'a failed locale fetch must not reuse the previous locale bundle');
+});
+
 // ── Session 025: FAB system unification ─────────────────────────────────────
 //
 // spiral-fab/theme/map were reserved Feature slots since Session 013
