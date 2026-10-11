@@ -35,6 +35,7 @@ const {
   findScreenshotEvidence,
   findAssetScreenshotEvidence,
   mergeScreenshotEvidence,
+  exactMatrixEvidence,
   representativeScreenshots,
 } = require('../lib/screenshot-evidence');
 
@@ -159,6 +160,38 @@ test('buildAnalysisIndex: Assets screenshot fallback fills missing locales while
     undefined,
     'Assets fallback records do not masquerade as exact local institutional matrix evidence'
   );
+});
+
+test('buildAnalysisIndex: institutional Assets records remain exact matrix evidence without duplicating local coordinates', () => {
+  const projection = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'screenshot-evidence-assets.json'), 'utf8'));
+  const assets = findAssetScreenshotEvidence(projection);
+  const remote = assets['vextreme-home'];
+  assert.equal(remote.length, 18);
+
+  const remoteOnly = exactMatrixEvidence(remote);
+  assert.equal(remoteOnly.length, 18);
+  assert.ok(remoteOnly.every(record =>
+    record.storage === 'assets' && record.captureKind === 'institutional-localization'
+  ));
+
+  const local = findScreenshotEvidence(['vextreme-home-en-foundation-320.png'])['vextreme-home'];
+  const deduped = exactMatrixEvidence([...(local || []), ...remote]);
+  assert.equal(deduped.length, 18, 'one exact coordinate must not appear twice across custodians');
+  const chosen = deduped.find(record =>
+    record.locale === 'en' && record.theme === 'foundation' && record.viewport === 320
+  );
+  assert.equal(chosen.path, 'docs/screenshots/vextreme-home-en-foundation-320.png',
+    'local custody wins when the exact coordinate exists in both places');
+
+  const screenshots = representativeScreenshots({ 'vextreme-home':remote });
+  const result = buildAnalysisIndex(
+    {}, {}, screenshots, ['vextreme-home'], ['en','ja','zh'],
+    { 'vextreme-home':remote }
+  );
+  assert.equal(result.pages['vextreme-home'].screenshotEvidence.length, 18);
+  assert.ok(result.pages['vextreme-home'].screenshotEvidence.every(record =>
+    /^https:\/\/vgong24\.github\.io\/Vextreme-Assets\/evidence\/screenshots\//.test(record.path)
+  ));
 });
 
 // ── 4. buildAnalysisIndex ─────────────────────────────────────────────────────
