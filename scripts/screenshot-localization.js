@@ -161,6 +161,12 @@ function buildCapturePlan({ indexJson, viewmodels, scopeIndex, requestedLangs, r
   return { supportedLangs: supported, requestedLangs: targets, cells, skipped };
 }
 
+function screenshotArgs(cell, assetsRoot) {
+  const args = [SCREENSHOT_WRITER, cell.slug, cell.locale];
+  if (assetsRoot) args.push('--assets-root', assetsRoot, '--assets-only');
+  return args;
+}
+
 function main(argv = process.argv.slice(2)) {
   const options = parseArgs(argv);
   const indexJson = readJson(INDEX_PATH);
@@ -187,8 +193,7 @@ function main(argv = process.argv.slice(2)) {
   }
 
   for (const cell of plan.cells) {
-    const args = [SCREENSHOT_WRITER, cell.slug, cell.locale];
-    if (options.assetsRoot) args.push('--assets-root', options.assetsRoot);
+    const args = screenshotArgs(cell, options.assetsRoot);
     process.stdout.write(`[screenshot-localization] capture ${cell.slug}/${cell.locale}\n`);
     execFileSync(process.execPath, args, { cwd: ROOT, stdio: 'inherit' });
   }
@@ -221,6 +226,7 @@ module.exports = {
   bundleHasStale,
   localeCoverage,
   buildCapturePlan,
+  screenshotArgs,
   main,
 };
 
