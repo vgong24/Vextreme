@@ -1125,11 +1125,11 @@
     },
     "lib/build-status.js": {
       "role": "system health manifest assembler — reads hand-authored status/*.json plus the strings manifest and key-alignment report, writes data/status.json",
-      "context": "The write side of the 'what's still open' picture: six notice categories (translation debt and contentIntegrity auto-derived, techDebt/enhancements/assumptions/openDiscussions hand-authored) roll up into one artifact pages/ecosystem-hub.html fetches live. Also computes lattice coverage (mapped nodes vs. total eligible .js files in lib/+widgets/) into _meta.lattice, so the hub can show it without re-deriving the eligibility rule. openDiscussions (added Session 015) is deliberately separate from techDebt/enhancements — see data/status/open-discussions.json's _comment for why. contentIntegrity (Session 022) is auto-generated like translation, not hand-authored like the other three. Also Session 022: this generator had been run and committed by hand every session with no CI step actually calling it — now wired into .github/workflows/build-index.yml alongside lib/build-ecosystem-hub.js and the new lib/build-lessons.js. Later, Session 022: _meta.generated (wall-clock timestamp) and _meta.commit (git SHA at build time) removed entirely — neither was consumed anywhere, and both guaranteed a manufactured merge conflict any time two branches independently regenerated this file from identical source data (real incident, PR #50). Output is now content-deterministic: identical input always produces a byte-identical file. See config/lessons/generated-artifacts-must-be-content-deterministic.json.",
+      "context": "The write side of the 'what's still open' picture: six notice categories (translation debt and contentIntegrity auto-derived, techDebt/enhancements/assumptions/openDiscussions hand-authored) roll up into one artifact pages/ecosystem-hub.html fetches live. Also computes lattice coverage (mapped nodes vs. total eligible .js files in lib/+widgets/) into _meta.lattice, so the hub can show it without re-deriving the eligibility rule. openDiscussions (added Session 015) is deliberately separate from techDebt/enhancements — see data/status/open-discussions.json's _comment for why. contentIntegrity (Session 022) is auto-generated like translation, not hand-authored like the other three. Also Session 022: this generator had been run and committed by hand every session with no CI step actually calling it — now wired into .github/workflows/build-index.yml alongside lib/build-ecosystem-hub.js and the new lib/build-lessons.js. Later, Session 022: _meta.generated (wall-clock timestamp) and _meta.commit (git SHA at build time) removed entirely — neither was consumed anywhere, and both guaranteed a manufactured merge conflict any time two branches independently regenerated this file from identical source data (real incident, PR #50). Output is now content-deterministic: identical input always produces a byte-identical file. See config/lessons/generated-artifacts-must-be-content-deterministic.json. Translation debt is no longer expanded against the site-wide language union. Production consumes data/analysis-index.json.elements[*].missingLangs, which is derived from actual page usage + pageLanguageMap demand; this prevents a bounded new locale from manufacturing debt on unrelated pages.",
       "reads": [
         "data/strings/compiled/manifest.json",
         "data/strings/compiled/strings.en.json",
-        "data/index.json",
+        "data/analysis-index.json (per-key missingLangs derived from real page usage + pageLanguageMap demand)",
         "data/strings/compiled/scopes/demo/ (recursive walk for fixture detection)",
         "data/status/tech-debt.json",
         "data/status/planned-enhancements.json",
@@ -1169,6 +1169,12 @@
         ],
         "any new _meta field being considered": [
           "must not vary run-to-run for identical source data (no wall-clock timestamp or git commit SHA) — see config/lessons/generated-artifacts-must-be-content-deterministic.json"
+        ],
+        "translation debt demand source changed": [
+          "lib/build-analysis-index.js (owns production per-key missingLangs projection)",
+          "data/index.json pageLanguageMap.availableLangs (upstream demand source)",
+          "tests/10-build-status.test.js",
+          "docs/architecture/03-data.md"
         ]
       }
     },
@@ -2167,10 +2173,10 @@
     },
     "lib/build-analysis-index.js": {
       "role": "Analysis Mode data-layer write side — composes trace-string usage and shared screenshot evidence into one browser-fetchable artifact",
-      "context": "docs/architecture/15-analysis-mode.md Phase A. Victor asked (2026-07-10) for a live, searchable, exportable interface over real canonical IDs, real forward/reverse mapping, and real screenshot evidence, surfaced through a FAB panel — not a synthetic demo fixture. This resolves that by reusing the compiled string registry, trace-string-usage.js, and the shared screenshot-evidence parser instead of duplicating their logic, and writing one deterministic JSON artifact the FAB panel fetches. Legacy screenshots remain one representative path per locale for the existing UI; institutional matrix evidence also preserves every exact filename.",
+      "context": "docs/architecture/15-analysis-mode.md Phase A. Victor asked (2026-07-10) for a live, searchable, exportable interface over real canonical IDs, real forward/reverse mapping, and real screenshot evidence, surfaced through a FAB panel — not a synthetic demo fixture. This resolves that by reusing the compiled string registry, trace-string-usage.js, and the shared screenshot-evidence parser instead of duplicating their logic, and writing one deterministic JSON artifact the FAB panel fetches. Legacy screenshots remain one representative path per locale for the existing UI; institutional matrix evidence also preserves every exact filename. Missing-language debt is page-demand-aware: root supportedLangs remains aggregate discovery/order, while pageLanguageMap[slug].availableLangs determines which locales a key is actually expected to carry based on the pages that use it.",
       "reads": [
         "data/strings/compiled/manifest.json (per-key language coverage)",
-        "data/index.json (supportedLangs — the language set to compare coverage against)",
+        "data/index.json (supportedLangs aggregate ordering + pageLanguageMap.availableLangs per-page translation demand)",
         "pages/*.html, wip/*.html (data-i18n usage scan, via trace-string-usage.js scanUsages)",
         "docs/screenshots/*.png (directory listing, parsed through lib/screenshot-evidence.js)",
         "lib/trace-string-usage.js (scanUsages, traceKey, tracePage, findOrphanUsages, findUnusedKeys — reused directly, not duplicated)",
@@ -2204,6 +2210,12 @@
           "lib/screenshot-evidence.js (Assets record normalization + local-first representative selection)",
           "tests/36-build-analysis-index.test.js (local-first remote fallback contract)",
           "data/analysis-index.json generated projection"
+        ],
+        "page-aware missing-language demand changed": [
+          "lib/build-index.js (owns pageLanguageMap.availableLangs)",
+          "lib/build-status.js (consumes generated per-key missingLangs rather than root supportedLangs)",
+          "tests/36-build-analysis-index.test.js",
+          "docs/architecture/15-analysis-mode.md"
         ]
       }
     },
