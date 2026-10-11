@@ -138,7 +138,7 @@ test('PROGRAM TIER CONTRACT: every global-core target is first-class in the brow
   const names = fab.slice(namesStart, sortStart);
 
   for (const lang of LANGUAGE_TIERS['global-core']) {
-    const pattern = new RegExp('\\\\n\\\\s*' + lang + ':');
+    const pattern = new RegExp('(^|\\n)\\s*' + lang + ':', 'm');
     assert.match(flags, pattern, `${lang} must have a first-class flag`);
     assert.match(names, pattern, `${lang} must have a first-class display name`);
   }
