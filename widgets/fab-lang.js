@@ -258,6 +258,7 @@
 
   var _langStrings = {};
   var _sourceText = {};
+  var _applyGeneration = 0;
 
   function captureSourceText() {
     var els = document.querySelectorAll('[data-i18n]');
@@ -387,7 +388,11 @@
 
   function applyLang(lang, options) {
     options = options || {};
+    var generation = ++_applyGeneration;
     loadStringsForLang(lang, function () {
+      // A slower prior locale request may finish after a newer selection.
+      // It must not reclaim DOM/storage/event authority.
+      if (generation !== _applyGeneration) return;
       var els = document.querySelectorAll('[data-i18n]');
       for (var i = 0; i < els.length; i++) {
         var key = els[i].getAttribute('data-i18n');
