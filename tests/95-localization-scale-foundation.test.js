@@ -149,6 +149,43 @@ test('LOCALIZATION-SCALE: compiled locale stays hidden until runtime Language re
   }
 });
 
+test('LOCALIZATION-SCALE: staged locale can be measured before runtime release but cannot be captured', () => {
+  const indexJson = { supportedLangs: ['en', 'ja'], slugMap: {
+    alpha: { viewmodel: { scopes: ['pages.alpha'], features: ['lang'] } },
+  } };
+  const scopeIndex = {
+    common: { path: 'system/common', en: 2, fr: 2 },
+    'pages.alpha': { path: 'production/pages/alpha', en: 3, fr: 3 },
+  };
+  const staged = screenshots.buildCapturePlan({
+    indexJson,
+    viewmodels: {},
+    scopeIndex,
+    requestedLangs: ['fr'],
+    requestedSlug: null,
+    staleProbe: () => false,
+    allowStaged: true,
+  });
+  assert.deepEqual(staged.cells, [
+    { slug: 'alpha', locale: 'fr', requiredScopes: ['common', 'pages.alpha'] },
+  ]);
+  assert.equal(staged.stagedMode, true);
+
+  const liveOnly = screenshots.buildCapturePlan({
+    indexJson,
+    viewmodels: {},
+    scopeIndex,
+    requestedLangs: ['fr'],
+    requestedSlug: null,
+    staleProbe: () => false,
+  });
+  assert.ok(liveOnly.skipped.some(x => x.locale === 'fr' && x.reason === 'locale-not-live-in-index'));
+  assert.throws(
+    () => screenshots.parseArgs(['--capture', '--langs', 'fr', '--staged']),
+    /planning-only/
+  );
+});
+
 test('LOCALIZATION-SCALE: screenshot plan emits only live, complete, non-stale page-locale cells', () => {
   const indexJson = {
     supportedLangs: ['en', 'ja', 'fr'],
