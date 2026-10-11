@@ -3683,11 +3683,6 @@
       ev.stopPropagation();
     }, true);
     mapWrap.addEventListener('click', function () { if (pinnedId) togglePin(pinnedId); });
-    mapWrap.addEventListener('pointermove', function (ev) {
-      var rect = mapWrap.getBoundingClientRect();
-      if (ev.clientX - rect.left < 96 && ev.clientY - rect.top < 330) revealDepthRail();
-    });
-
     var zoomControls = document.querySelector('.zoom-controls');
     if (zoomControls) {
       zoomControls.addEventListener('mouseenter', revealDepthRail);
