@@ -1154,7 +1154,8 @@
       hideEvolutionLayer();
     }
 
-    if (DATA && currentWorld === 'content' && currentProfile === 'evolution-v2' && levelIndex === 0) {
+    if (DATA && currentWorld === 'content' && currentProfile === 'evolution-v2'
+      && (levelIndex !== 1 || (levelCtx && typeof levelCtx.stageIdx === 'number'))) {
       pinnedId = null; focusId = null; renderPanel(null);
       enterLevel(1, {});
     } else if (DATA && currentWorld === 'content' && currentProfile === 'evolution-v1' && levelIndex === 2) {
