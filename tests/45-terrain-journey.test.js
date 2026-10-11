@@ -138,10 +138,19 @@ test('TERRAIN-JOURNEY: threshold rail projects semantic depth and exposes only a
     'zoom controls are physically grouped beneath the depth rail');
   assert.doesNotMatch(source, /\.zoom-controls\{[^}]*right:356px/,
     'legacy far-side zoom-control island must remain removed');
-  assert.match(source, /ev\.clientX - rect\.left < 96 && ev\.clientY - rect\.top < 330/,
-    'depth-rail reveal zone includes the relocated controls');
+  assert.doesNotMatch(source, /mapWrap\.addEventListener\('pointermove'[\s\S]*revealDepthRail\(\)/,
+    'desktop tile navigation must not be covered by a broad invisible depth-control hot zone');
+  assert.match(source, /readout\.addEventListener\('mouseenter', revealDepthRail\)/,
+    'the actual semantic-depth rail remains the pointer reveal owner');
   assert.match(source, /zoomControls\.addEventListener\('mouseenter', revealDepthRail\)/);
   assert.match(source, /zoomControls\.addEventListener\('focusin', revealDepthRail\)/);
+
+  assert.match(source, /@media \(min-width:721px\)\{[\s\S]*\.zoom-controls\{[\s\S]*opacity:0; pointer-events:none;[\s\S]*transform:translateY\(-4px\)/,
+    'desktop controls are visually and pointer inactive while the depth rail is idle');
+  assert.match(source, /\.level-readout\.is-active ~ \.zoom-controls,[\s\S]*\.zoom-controls:focus-within\{[\s\S]*opacity:1; pointer-events:auto; transform:translateY\(0\)/,
+    'rail engagement or keyboard focus reveals the desktop control stack');
+  assert.match(source, /@media \(max-width:720px\)\{[\s\S]*\.zoom-controls\{ right:12px; bottom:12px; \}/,
+    'mobile placement remains unchanged for the separate responsive investigation');
 
   assert.match(source, /id="zoomIn" aria-label="Zoom in"/);
   assert.match(source, /id="zoomOut" aria-label="Zoom out"/);
