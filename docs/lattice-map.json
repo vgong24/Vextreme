@@ -180,7 +180,8 @@
         "lib/vex-config.js"
       ],
       "writes": [
-        "data/index.json"
+        "data/index.json",
+        "data/index.json.pageLanguageMap (per-page availableLangs + completeLangs projection)"
       ],
       "loadedBy": [
         "lib/vextreme-index-v2.js (browser reads index.json via CDN)",
@@ -256,7 +257,7 @@
     },
     "lib/build-vextreme.js": {
       "role": "God Script assembler — reads index + string bundles, writes one self-contained dist/ file per page",
-      "context": "The write side of the page delivery pipeline. Inlines EN strings, bakes in viewmodel, includes feature widgets. Once a God Script is loaded by a page, it needs zero additional fetches for EN. Run after build-index.js and strings-compile.js. Session 025 FAB unification: spiral-fab and theme have real filenames now (vex-fab.js, fab-theme.js) after sitting reserved-but-unbuilt (filename: null) since Session 013; a new map feature (fab-map.js) was added alongside them. FEATURES object key order was changed so spiral-fab registers before lang/theme/map — that order is the script concatenation order, which is also the DOMContentLoaded firing order in the browser, and vex-fab.js's #vex-spiral-group container must exist before the other three widgets look for it on mount. Honest caveat found while building this: as of Session 025, ZERO live pages actually load a God Script (node lib/audit-pages.js reports 0 wired) — every real page still uses old standalone <script src=CDN> tags, so this feature (and the VEX_SUPPORTED_LANGS fix before it) is correct, tested infrastructure with no live effect until a page's script tags are actually switched over to its dist/ file. Not yet decided whether/when that wiring happens.",
+      "context": "The write side of the page delivery pipeline. Inlines EN strings, bakes in viewmodel, includes feature widgets. Once a God Script is loaded by a page, it needs zero additional fetches for EN. Run after build-index.js and strings-compile.js. Session 025 FAB unification: spiral-fab and theme have real filenames now (vex-fab.js, fab-theme.js) after sitting reserved-but-unbuilt (filename: null) since Session 013; a new map feature (fab-map.js) was added alongside them. FEATURES object key order was changed so spiral-fab registers before lang/theme/map — that order is the script concatenation order, which is also the DOMContentLoaded firing order in the browser, and vex-fab.js's #vex-spiral-group container must exist before the other three widgets look for it on mount. Honest caveat found while building this: as of Session 025, ZERO live pages actually load a God Script (node lib/audit-pages.js reports 0 wired) — every real page still uses old standalone <script src=CDN> tags, so this feature (and the VEX_SUPPORTED_LANGS fix before it) is correct, tested infrastructure with no live effect until a page's script tags are actually switched over to its dist/ file. Not yet decided whether/when that wiring happens. Page-local locale options now come from data/index.json.pageLanguageMap[slug].availableLangs; root supportedLangs is compatibility fallback only.",
       "reads": [
         "data/index.json",
         "data/viewmodels.json",
@@ -304,6 +305,12 @@
         "dist/ output filenames": [
           "lib/build-sw.js (PRECACHE_URLS — sw.js must include new filenames)",
           "pages/*.html (each page references its dist/ file by name)"
+        ],
+        "page-aware supported-language projection": [
+          "lib/build-index.js (owns pageLanguageMap derivation from scope counts)",
+          "widgets/fab-lang.js (consumes VEX_SUPPORTED_LANGS fast path)",
+          "tests/08-build-vextreme.test.js",
+          "docs/architecture/06-i18n.md"
         ]
       }
     },
