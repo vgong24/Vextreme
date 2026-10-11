@@ -198,6 +198,8 @@ test('TERRAIN-JOURNEY: Evolution A gives scrollable content priority and makes c
   assert.match(reader, /boundaryGestureReady\('reader-outward:' \+ readerKey, direction\)/);
   assert.doesNotMatch(reader, /reader-next:|reader-end:/, 'wheel boundary must not implicitly advance to another page');
   assert.match(reader, /if \(activeEntrySlug \|\| \(!activeReaderId && !activeGroupHomeKey\)\) return;/);
+  assert.match(reader, /activeReaderReturnKind === 'curiosity-overview'/,
+    'reader boundary messaging must distinguish direct overview origins from collection origins');
 
   assert.match(source, /BOUNDARY_GESTURE_IDLE_MS = 220/);
   assert.match(source, /BOUNDARY_GESTURE_RESET_MS = 3000/);
@@ -304,6 +306,7 @@ test('TERRAIN-JOURNEY: shipped collection and reader wheel handlers execute outw
       "var activeEntrySlug = null;",
       "var activeReaderId = 'node-a';",
       "var activeGroupHomeKey = null;",
+      "var activeReaderReturnKind = 'collection';",
       "var evolutionReaderFrame = { contentDocument: {} };",
       readerMatch[0],
       "return handleEvolutionReaderWheel;"
