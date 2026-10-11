@@ -55,7 +55,8 @@ test('TERRAIN-VIEW: Content presentation is accepted while the legacy Live geome
   assert.equal(value.profiles['evolution-v1'].status, 'accepted-reference');
   assert.equal(value.profiles['evolution-v1'].label, 'Content');
   assert.equal(value.profiles['evolution-v1'].inherits, 'live');
-  assert.ok(value.profiles['evolution-v1'].declaredDeltas.length >= 6);
+  assert.ok(value.profiles['evolution-v1'].declaredDeltas.some(delta => /curiosity previews/.test(delta)));
+  assert.ok(value.profiles['evolution-v1'].declaredDeltas.length >= 7);
   assert.equal(value.profiles['evolution-v1'].levels.group.renderer, 'content-preview-shelf');
   assert.equal(value.profiles['evolution-v1'].levels.node.renderer, 'preview-card');
   assert.equal(value.profiles['evolution-v1'].levels.node.readerRenderer, 'embedded-page');
@@ -65,8 +66,8 @@ test('TERRAIN-VIEW: Content presentation is accepted while the legacy Live geome
   );
   assert.equal(value.profiles['evolution-v2'].status, 'experimental');
   assert.equal(value.profiles['evolution-v2'].label, 'Evolution');
-  assert.equal(value.profiles['evolution-v2'].inherits, 'live');
-  assert.ok(value.profiles['evolution-v2'].declaredDeltas.length >= 4);
+  assert.equal(value.profiles['evolution-v2'].inherits, 'evolution-v1');
+  assert.ok(value.profiles['evolution-v2'].declaredDeltas.length >= 3);
   assert.equal(value.profiles['evolution-v2'].levels.group.renderer, 'adaptive-group-cards+curiosity-peek');
 });
 
@@ -162,6 +163,11 @@ test('TERRAIN-VIEW: accepted Content remains the no-query default while Evolutio
   assert.match(source, /id="contentProfile"/);
   assert.match(source, /<option value="evolution-v1">Content<\/option>/);
   assert.match(source, /<option value="evolution-v2">Evolution<\/option>/);
+  assert.match(source, /<span class="content-view-split">[\s\S]*data-world="content"[\s\S]*id="contentProfileWrap"[\s\S]*id="contentProfile"[\s\S]*<\/span>/,
+    'presentation profile belongs inside the Content half of the View control');
+  assert.match(source, /\.terrain-content-quiet \.lens,[\s\S]*\.terrain-content-quiet \.legend\{ display:none; \}/);
+  assert.match(source, /\.terrain-content-quiet\.terrain-inspect-open \.lens,[\s\S]*\.terrain-content-quiet\.terrain-inspect-open \.legend\{ display:flex; \}/,
+    'Inspect owns reveal of the View/profile control in accepted Content');
   assert.doesNotMatch(source, />Evolution A</);
   assert.match(source, /id="evolutionLayer"/);
   assert.match(source, /function readInitialRoute\(\)/);
@@ -476,28 +482,30 @@ test('TERRAIN-VIEW: Content groups no longer imply a linear sequence with Stage 
   assert.match(source, /class:'stage-arrow pop-in'/);
 });
 
-test('TERRAIN-VIEW: bounded Content curiosity peek expands the existing overview without creating a new semantic level', () => {
+test('TERRAIN-VIEW: accepted Content curiosity peek expands every real group without creating a new semantic level', () => {
   const source = pageSource();
-  assert.match(source, /CONTENT_TILE_PEEK_STAGE_KEYS = \{ liberation:true, records:true \}/);
+  assert.doesNotMatch(source, /CONTENT_TILE_PEEK_STAGE_KEYS/);
   assert.match(source, /CONTENT_TILE_PEEK_DELAY_MS = 200/);
   assert.match(source, /CONTENT_TILE_PEEK_SHELF_HEIGHT = 176/);
+  assert.match(source, /function contentTilePeekEnabledFor\(stage\) \{[\s\S]*stageMembers\(stage\)\.length/);
+  assert.match(source, /function contentTilePeekProfileEnabled\(\) \{[\s\S]*currentProfile === 'evolution-v1'[\s\S]*currentProfile === 'evolution-v2'/);
   assert.match(source, /function openContentTilePeek\(stageIndex\)/);
-  assert.match(source, /currentWorld !== 'content' \|\| currentProfile !== 'evolution-v2' \|\| levelIndex !== 1/);
-  assert.match(source, /var curiosityPrototype = currentWorld === 'content'[\s\S]*currentProfile === 'evolution-v2'/);
+  assert.match(source, /if \(!contentTilePeekProfileEnabled\(\) \|\| levelIndex !== 1\) return/);
+  assert.match(source, /var curiosityOverview = contentTilePeekProfileEnabled\(\)/);
   assert.match(source, /if \(levelCtx && typeof levelCtx\.stageIdx === 'number'\) return/);
-  assert.match(source, /stageMembers\(stage\)/);
+  assert.match(source, /var representative = stageMembers\(stage\)\.filter\(hasEvolutionPreview\)\[0\] \|\| null/);
+  assert.match(source, /class:'stage-curiosity-thumb'/);
   assert.match(source, /members\.map\(contentTilePeekItemHtml\)\.join\(''\)/);
   assert.match(source, /item\.rect\.y <= activeItem\.rect\.y/);
   assert.match(source, /candidate\.style\.transform = 'translateY\(' \+ shift \+ 'px\)'/);
   assert.match(source, /stage-curiosity-track/);
   assert.match(source, /translate3d\(-' \+ \(contentTilePeekCycleIndex \* \(width \+ 10\)\)/);
+  assert.match(source, /prefers-reduced-motion: reduce/);
   assert.match(source, /g\.addEventListener\('mouseenter', function \(\) \{ scheduleContentTilePeekOpen\(i\); \}\)/);
   assert.match(source, /g\.addEventListener\('focusin', function \(\) \{ scheduleContentTilePeekOpen\(i\); \}\)/);
   assert.match(source, /g\.addEventListener\('click',function\(ev\)\{ ev\.stopPropagation\(\); activateStage\(i\); \}\)/);
   assert.match(source, /g\.addEventListener\('keydown',function\(ev\)\{ if\(ev\.key==='Enter'\|\|ev\.key===' '\)\{/);
-  assert.match(source, /closeContentTilePeek\(true\);[\s\S]*?currentProfile === 'evolution-v1'/);
   assert.doesNotMatch(source, /curiosity-peek[^\n]*semanticLevel/i);
-  assert.doesNotMatch(source, /currentProfile === 'evolution-v1'[\s\S]{0,120}contentTilePeekEnabledFor/);
 });
 
 test('TERRAIN-VIEW: every shipped inline JavaScript block still parses after contract extraction', () => {
