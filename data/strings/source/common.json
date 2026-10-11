@@ -26,7 +26,11 @@
         "text": "← 前へ",
         "aria-label": "前のページ"
       }
-    }
+    ,
+      "fr": {
+        "text": "← préc.",
+        "aria-label": "Page précédente"
+      }}
   },
   "common.nav.next": {
     "strings": {
@@ -156,7 +160,10 @@
       "ja": {
         "text": "残り{count}ページ"
       }
-    }
+    ,
+      "fr": {
+        "text": "{count, plural, one {# restant} other {# restants}}"
+      }}
   },
   "common.status.built-on": {
     "strings": {
