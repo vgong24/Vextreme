@@ -14,6 +14,7 @@ const { parseCSV } = require('../lib/strings-import');
 const {
   parseCampaignArgs,
   needsTranslation,
+  compareCanonicalText,
   collectCampaignCandidatesFromSources,
   selectCampaignWindow,
   campaignBatchId,
@@ -162,6 +163,29 @@ test('CAMPAIGN CURSOR: after-key is stable when earlier translated candidates di
   assert.deepEqual(
     selectCampaignWindow(afterImport, { afterKey: 'b', limit: 2 }).selected.map(x => x.key),
     ['c', 'd']
+  );
+});
+
+test('CAMPAIGN ORDER: canonical key sort and after-key cursor share one locale-independent comparator', () => {
+  const sources = [{
+    rel: 'punctuation.json',
+    scope: 'punctuation',
+    htmlContextMap: {},
+    raw: {
+      _meta: { scope: 'punctuation' },
+      'a_b': { strings: { en: { text: 'underscore' } } },
+      'a-b': { strings: { en: { text: 'hyphen' } } },
+      'a.b': { strings: { en: { text: 'dot' } } },
+    },
+  }];
+
+  const candidates = collectCampaignCandidatesFromSources(sources, 'fr');
+  assert.deepEqual(candidates.map(candidate => candidate.key), ['a-b', 'a.b', 'a_b']);
+  assert.ok(compareCanonicalText('a-b', 'a.b') < 0);
+  assert.ok(compareCanonicalText('a.b', 'a_b') < 0);
+  assert.deepEqual(
+    selectCampaignWindow(candidates, { afterKey: 'a.b', limit: 10 }).selected.map(candidate => candidate.key),
+    ['a_b']
   );
 });
 
