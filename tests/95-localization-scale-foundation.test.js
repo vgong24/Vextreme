@@ -2,6 +2,7 @@
 'use strict';
 
 const assert = require('assert');
+const fs = require('fs');
 const test = require('node:test');
 const path = require('path');
 const { execFileSync } = require('child_process');
@@ -179,4 +180,14 @@ test('LOCALIZATION-SCALE: general screenshot writer remains syntactically valid'
   execFileSync(process.execPath, ['--check', path.join(__dirname, '..', 'scripts', 'screenshot-page.js')], {
     stdio: 'pipe',
   });
+});
+
+test('LOCALIZATION-SCALE: Assets-bound screenshot evidence binds clean source before render', () => {
+  const src = fs.readFileSync(path.join(__dirname, '..', 'scripts', 'screenshot-page.js'), 'utf8');
+  const bind = src.indexOf('evidenceSourceCommit = bindCleanSourceCommitForAssets()');
+  const render = src.indexOf('const { server, port } = await startServer();');
+  assert.ok(bind >= 0, 'clean source binding must exist');
+  assert.ok(render > bind, 'clean source binding must happen before browser/server render begins');
+  assert.match(src, /git', \['status', '--porcelain', '--untracked-files=all'\]/);
+  assert.match(src, /requires a clean Vextreme worktree so sourceCommit matches rendered bytes/);
 });
