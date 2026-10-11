@@ -27,6 +27,7 @@
  *   reads     : window.VEX_STRING_SCOPES
  *               window.VEX_STRING_CATEGORY
  *               window.VEX_SUPPORTED_LANGS
+ *               data/index.json.pageLanguageMap / supportedLangs via cache or CDN fallback
  *               window.VEX_STRING_ARC_BUNDLE (arc-chunked bundling pilot, checked before the scope path)
  *               window.VEX_STRINGS_EN (God Script EN/source fallback)
  *               data/strings/compiled/scopes/{category}/{scope}.{lang}.json via CDN
@@ -69,6 +70,11 @@
  *     partial-locale EN/source fallback or apply ordering:
  *       - tests/08-build-vextreme.test.js (fallback + stale-request guard)
  *       - localized browser acceptance before screenshot evidence is trusted
+ *     page-aware language availability:
+ *       - lib/build-index.js (produces pageLanguageMap)
+ *       - lib/build-vextreme.js (bakes page-local availableLangs into VEX_SUPPORTED_LANGS)
+ *       - tests/08-build-vextreme.test.js
+ *       - docs/architecture/06-i18n.md
  * LATTICE:END
  */
 
