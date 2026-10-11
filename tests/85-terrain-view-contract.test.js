@@ -494,6 +494,52 @@ test('TERRAIN-VIEW: pan gesture displacement suppresses the synthetic click with
     'keyboard activation remains an explicit non-pointer path');
 });
 
+test('TERRAIN-VIEW: Content overview collection titles wrap to two lines and auto-fit before truncating', () => {
+  const source = pageSource();
+
+  const textFn = source.match(/function stageLabelText\(value, limit\) \{[\s\S]*?\n  \}/);
+  const wrapFn = source.match(/function stageLabelWrapAttempt\(value, maxChars, maxLines\) \{[\s\S]*?\n  \}/);
+  const layoutFn = source.match(/function stageOverviewLabelLayout\(value, width\) \{[\s\S]*?\n  \}/);
+  assert.ok(textFn && wrapFn && layoutFn, 'adaptive overview label helpers must remain extractable');
+
+  const makeLayout = new Function([
+    textFn[0],
+    wrapFn[0],
+    layoutFn[0],
+    'return stageOverviewLabelLayout;'
+  ].join('\n'));
+  const layout = makeLayout();
+
+  [
+    'AI PRACTITIONER TOOLS',
+    'ARCHITECTURE & METHODOLOGY',
+    'CONVERSATIONS WITH GOD',
+    'DIRECT CONTACT — START HERE',
+    'THE AI LIBERATION RECORD',
+  ].forEach(title => {
+    const result = layout(title, 240);
+    assert.ok(result.lines.length >= 1 && result.lines.length <= 2, title + ' must use at most two lines');
+    assert.equal(result.truncated, false, title + ' should fit without losing its canonical name');
+    assert.ok(result.fontSize >= 14 && result.fontSize <= 18, title + ' must stay inside the bounded auto-fit range');
+    assert.equal(result.lines.join(' '), title, title + ' must preserve all words in order');
+  });
+
+  const pathological = layout('THISISANINTENTIONALLYUNBROKENANDIMPOSSIBLYLONGCOLLECTIONIDENTIFIER', 240);
+  assert.equal(pathological.truncated, true, 'unavoidable overflow falls back to bounded truncation');
+  assert.ok(pathological.lines.length <= 2);
+  assert.equal(pathological.fontSize, 14);
+
+  assert.match(source, /function appendStageOverviewLabel\(group, rect, value\)/);
+  assert.match(source, /data-label-lines/);
+  assert.match(source, /data-label-font-size/);
+  assert.match(source, /data-label-truncated/);
+  assert.match(source, /layout\.lines\.forEach\(function \(line, index\)/);
+  assert.match(source, /var baseY = rect\.y \+ \(layout\.lines\.length > 1 \? 46 : 50\)/);
+  assert.match(source, /currentWorld === 'content' && item\.kind === 'overview'[\s\S]*appendStageOverviewLabel\(g, r, stage\.name\)/);
+  assert.match(source, /else \{[\s\S]*stageLabelText\(stage\.name, context\?15:\(focused\?30:22\)\)/,
+    'focused and context variants retain their existing compact title behavior');
+});
+
 test('TERRAIN-VIEW: accepted Content curiosity shelf supports slower autoplay, manual edges, and direct reading', () => {
   const source = pageSource();
   assert.doesNotMatch(source, /CONTENT_TILE_PEEK_STAGE_KEYS/);

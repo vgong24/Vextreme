@@ -2217,6 +2217,86 @@
     var chars = Array.from(String(value || ''));
     return chars.length > limit ? chars.slice(0, Math.max(1, limit - 1)).join('') + '…' : chars.join('');
   }
+
+  function stageLabelWrapAttempt(value, maxChars, maxLines) {
+    var text = String(value || '').trim().replace(/\s+/g, ' ');
+    if (!text) return [''];
+    var words = text.split(' ');
+    var lines = [];
+    var current = '';
+    for (var i = 0; i < words.length; i += 1) {
+      var word = words[i];
+      if (Array.from(word).length > maxChars) return null;
+      var candidate = current ? current + ' ' + word : word;
+      if (Array.from(candidate).length <= maxChars) {
+        current = candidate;
+        continue;
+      }
+      if (current) lines.push(current);
+      current = word;
+      if (lines.length >= maxLines) return null;
+    }
+    if (current) lines.push(current);
+    return lines.length <= maxLines ? lines : null;
+  }
+
+  function stageOverviewLabelLayout(value, width) {
+    var text = String(value || '').trim().replace(/\s+/g, ' ');
+    var maxFontSize = 18;
+    var minFontSize = 14;
+    var maxLines = 2;
+    var availableWidth = Math.max(80, Number(width || 0) - 28);
+
+    for (var fontSize = maxFontSize; fontSize >= minFontSize; fontSize -= 1) {
+      var charWidth = fontSize * 0.66;
+      var maxChars = Math.max(8, Math.floor(availableWidth / charWidth));
+      var lines = stageLabelWrapAttempt(text, maxChars, maxLines);
+      if (lines) {
+        return {
+          lines:lines,
+          fontSize:fontSize,
+          lineHeight:Math.max(15, Math.round(fontSize)),
+          truncated:false
+        };
+      }
+    }
+
+    var fallbackChars = Math.max(8, Math.floor(availableWidth / (minFontSize * 0.66)));
+    var fallbackText = stageLabelText(text, fallbackChars * maxLines);
+    return {
+      lines:[
+        Array.from(fallbackText).slice(0, fallbackChars).join('').trim(),
+        Array.from(fallbackText).slice(fallbackChars).join('').trim()
+      ].filter(Boolean),
+      fontSize:minFontSize,
+      lineHeight:Math.max(15, minFontSize),
+      truncated:true
+    };
+  }
+
+  function appendStageOverviewLabel(group, rect, value) {
+    var layout = stageOverviewLabelLayout(value, rect.width);
+    var baseY = rect.y + (layout.lines.length > 1 ? 46 : 50);
+    var label = el('text',{
+      x:rect.x+14,
+      y:baseY,
+      class:'stage-label',
+      style:'font-size:' + layout.fontSize + 'px',
+      'data-label-lines':String(layout.lines.length),
+      'data-label-font-size':String(layout.fontSize),
+      'data-label-truncated':String(layout.truncated)
+    });
+    layout.lines.forEach(function (line, index) {
+      var span = el('tspan',{
+        x:rect.x+14,
+        y:baseY + index * layout.lineHeight
+      });
+      span.textContent = line;
+      label.appendChild(span);
+    });
+    group.appendChild(label);
+    return layout;
+  }
   function stageCompositionLayout(ctx) {
     var profile = LIVE_VIEW.levels.group;
     var overview = profile.overview;
@@ -2622,8 +2702,12 @@
       if (currentWorld === 'content' && !context) {
         var kind=el('text',{x:r.x+14,y:r.y+(focused?35:24),class:'stage-kind'}); kind.textContent=kindText; g.appendChild(kind);
       }
-      var label=el('text',{x:r.x+14,y:r.y+(context?25:(currentWorld === 'content' ? (focused?70:50) : 31)),class:'stage-label'});
-      label.textContent=stageLabelText(stage.name, context?15:(focused?30:22)); g.appendChild(label);
+      if (currentWorld === 'content' && item.kind === 'overview') {
+        appendStageOverviewLabel(g, r, stage.name);
+      } else {
+        var label=el('text',{x:r.x+14,y:r.y+(context?25:(currentWorld === 'content' ? (focused?70:50) : 31)),class:'stage-label'});
+        label.textContent=stageLabelText(stage.name, context?15:(focused?30:22)); g.appendChild(label);
+      }
       if (!context && currentWorld !== 'content') {
         var sub=el('text',{x:r.x+14,y:r.y+(focused?57:52),class:'stage-sub'}); sub.textContent=stageLabelText(stage.sub, focused?48:34); g.appendChild(sub);
       }
