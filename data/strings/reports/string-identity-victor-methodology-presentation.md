@@ -9,7 +9,7 @@ Source truth: `data/strings/source/pages/victor-methodology-presentation.json`'s
 
 ## Languages
 
-en, zh
+en, fr, zh
 
 ## Known limitations
 
@@ -30,13 +30,13 @@ en, zh
 - **Status:** unresolved — no data-legacy-id or title alias found for this content node
 - **Languages:** en, zh
 
-| Field | en | zh |
-|---|---|---|
-| eyebrow | Engineering Dossier · 2021–2026 · DOC-ID: VG-DOSSIER-v2.1 | 工程档案 · 2021–2026 · 档案编号: VG-DOSSIER-v2.1 |
-| thesis | Finding every place people are forced to assume — and replacing each with a map that makes the assumption safe. | 找出所有人们被迫依靠假设的地方——用一张地图取代每一个假设，让它变得可靠。 |
-| id-line | Senior Software Engineer II · Dexcom (medical devices, 5 years) · Lean Six Sigma Green Belt · AI-collaboration systems architect | 高级软件工程师 II · 德康医疗（医疗器械，五年）· 精益六西格玛绿带 · AI 协作系统架构师 |
-| stamp-big | ×6 | 实证 |
-| stamp-small | PROVEN | PROVEN × 6 |
+| Field | en | fr | zh |
+|---|---|---|---|
+| eyebrow | Engineering Dossier · 2021–2026 · DOC-ID: VG-DOSSIER-v2.1 | _missing_ | 工程档案 · 2021–2026 · 档案编号: VG-DOSSIER-v2.1 |
+| thesis | Finding every place people are forced to assume — and replacing each with a map that makes the assumption safe. | _missing_ | 找出所有人们被迫依靠假设的地方——用一张地图取代每一个假设，让它变得可靠。 |
+| id-line | Senior Software Engineer II · Dexcom (medical devices, 5 years) · Lean Six Sigma Green Belt · AI-collaboration systems architect | _missing_ | 高级软件工程师 II · 德康医疗（医疗器械，五年）· 精益六西格玛绿带 · AI 协作系统架构师 |
+| stamp-big | ×6 | _missing_ | 实证 |
+| stamp-small | PROVEN | _missing_ | PROVEN × 6 |
 
 ## section-proofs
 
@@ -45,10 +45,10 @@ en, zh
 - **Status:** aligned
 - **Languages:** en, zh
 
-| Field | en | zh |
-|---|---|---|
-| heading | One method, six proofs | 一个方法，六次实证 |
-| intro | Across five years at a medical-device company — where software quality carries regulatory and patient-safety weight — the same engineering move was applied to six different problems at increasing scale. Each time, manual work done "at the surface" was replaced by a maintained map that structurally connects layers, so systems cannot silently drift apart. | 在医疗器械公司的五年里——软件质量直接关系到法规与患者安全——同一个工程方法被应用于六个不同规模的问题上。每一次，都是用一张持续维护的地图取代表层的人工操作，让系统在结构上无法悄悄脱节。 |
+| Field | en | fr | zh |
+|---|---|---|---|
+| heading | One method, six proofs | _missing_ | 一个方法，六次实证 |
+| intro | Across five years at a medical-device company — where software quality carries regulatory and patient-safety weight — the same engineering move was applied to six different problems at increasing scale. Each time, manual work done "at the surface" was replaced by a maintained map that structurally connects layers, so systems cannot silently drift apart. | _missing_ | 在医疗器械公司的五年里——软件质量直接关系到法规与患者安全——同一个工程方法被应用于六个不同规模的问题上。每一次，都是用一张持续维护的地图取代表层的人工操作，让系统在结构上无法悄悄脱节。 |
 
 ## proof-organization-knowledge-map
 
@@ -57,12 +57,12 @@ en, zh
 - **Status:** aligned
 - **Languages:** en, zh
 
-| Field | en | zh |
-|---|---|---|
-| year | YEARS 1–5 · LIVE | 贯穿五年 · 持续维护 |
-| title | Mapping the organization itself — the living map | 先为组织本身绘制地图——一张"活"的地图 |
-| body | Arrived to no map: no channels connecting Android developers, no forums, no directory of where anything lived. Built the human infrastructure first — a biweekly Android forum with open sharing and bug/innovation lunch-and-learns; a Confluence mapping the org (repos, documentation, dashboards including VnV testing tools); direct developer access to testing tools so engineers debug immediately instead of consuming another person's time; and later, XML→Jetpack Compose migration guides and an inherit-the-base UI doctrine that eliminated inconsistent reimplementations. Not a one-time artifact: a live page, appended and maintained across the full five years — early entries like the org map, late entries like the Compose guides, one continuously current source. Communication built audience-first — including a "3D" board of the fragment/navgraph hierarchy, each layer showing its responsibility and connections as a scannable pattern. | 入职时没有任何地图：安卓开发者之间没有沟通渠道、没有论坛、没有任何资源目录。于是先搭建了人的基础设施——双周安卓论坛（开放分享、缺陷与创新的午餐学习会）；一个映射整个组织的 Confluence（代码仓库、文档、包括测试团队工具在内的仪表盘）；让开发者直接使用测试工具，无需占用他人时间去寻找；以及后期加入的 XML 到 Jetpack Compose 迁移指南和继承基础组件的 UI 准则，消除了同一组件的不一致重复实现。这不是一次性的文档，而是一张持续了整整五年的活页面——早期条目如组织地图，后期条目如 Compose 指南，始终保持最新。沟通方式以受众为先——包括一张"3D"导航层级图，每一层的职责与连接一目了然。 |
-| result | The methodology's origin and its endurance test in one: a map of people and knowledge, kept alive for five years. | 方法论的起点，也是它的耐久性证明：一张关于人与知识的地图，被持续维护了整整五年。 |
+| Field | en | fr | zh |
+|---|---|---|---|
+| year | YEARS 1–5 · LIVE | _missing_ | 贯穿五年 · 持续维护 |
+| title | Mapping the organization itself — the living map | _missing_ | 先为组织本身绘制地图——一张"活"的地图 |
+| body | Arrived to no map: no channels connecting Android developers, no forums, no directory of where anything lived. Built the human infrastructure first — a biweekly Android forum with open sharing and bug/innovation lunch-and-learns; a Confluence mapping the org (repos, documentation, dashboards including VnV testing tools); direct developer access to testing tools so engineers debug immediately instead of consuming another person's time; and later, XML→Jetpack Compose migration guides and an inherit-the-base UI doctrine that eliminated inconsistent reimplementations. Not a one-time artifact: a live page, appended and maintained across the full five years — early entries like the org map, late entries like the Compose guides, one continuously current source. Communication built audience-first — including a "3D" board of the fragment/navgraph hierarchy, each layer showing its responsibility and connections as a scannable pattern. | _missing_ | 入职时没有任何地图：安卓开发者之间没有沟通渠道、没有论坛、没有任何资源目录。于是先搭建了人的基础设施——双周安卓论坛（开放分享、缺陷与创新的午餐学习会）；一个映射整个组织的 Confluence（代码仓库、文档、包括测试团队工具在内的仪表盘）；让开发者直接使用测试工具，无需占用他人时间去寻找；以及后期加入的 XML 到 Jetpack Compose 迁移指南和继承基础组件的 UI 准则，消除了同一组件的不一致重复实现。这不是一次性的文档，而是一张持续了整整五年的活页面——早期条目如组织地图，后期条目如 Compose 指南，始终保持最新。沟通方式以受众为先——包括一张"3D"导航层级图，每一层的职责与连接一目了然。 |
+| result | The methodology's origin and its endurance test in one: a map of people and knowledge, kept alive for five years. | _missing_ | 方法论的起点，也是它的耐久性证明：一张关于人与知识的地图，被持续维护了整整五年。 |
 
 ## proof-bulk-data-logging
 
@@ -71,26 +71,26 @@ en, zh
 - **Status:** aligned
 - **Languages:** en, zh
 
-| Field | en | zh |
-|---|---|---|
-| year | YEAR 1 | 第一年 |
-| title | Analytics that cannot drift — BulkDataLogging | 不会漂移的数据埋点系统 |
-| body | Replaced hand-written analytics code at every screen with one central map (ScreenName / ScreenMapper / ButtonName / MetaData) covering display, click, duration, and entry events. Delete a UI element and its logging entry goes with it — analytics and UI are structurally bound. | 用一个中央映射系统取代每个页面手写的埋点代码，覆盖显示、点击、时长与录入事件。删除一个界面元素，它的日志条目随之移除——数据统计与界面在结构上绑定，无法脱节。 |
-| result | Medical-grade event logging with structural integrity, org-wide. | 具备结构完整性的医疗级事件日志系统，全组织通用。 |
+| Field | en | fr | zh |
+|---|---|---|---|
+| year | YEAR 1 | _missing_ | 第一年 |
+| title | Analytics that cannot drift — BulkDataLogging | _missing_ | 不会漂移的数据埋点系统 |
+| body | Replaced hand-written analytics code at every screen with one central map (ScreenName / ScreenMapper / ButtonName / MetaData) covering display, click, duration, and entry events. Delete a UI element and its logging entry goes with it — analytics and UI are structurally bound. | _missing_ | 用一个中央映射系统取代每个页面手写的埋点代码，覆盖显示、点击、时长与录入事件。删除一个界面元素，它的日志条目随之移除——数据统计与界面在结构上绑定，无法脱节。 |
+| result | Medical-grade event logging with structural integrity, org-wide. | _missing_ | 具备结构完整性的医疗级事件日志系统，全组织通用。 |
 
 ## proof-bidirectional-translation-traceability
 
 - **Canonical element ID:** REC-Y2-TRANSLATIONS (source: html.data-legacy-id)
 - **Current element ID:** proof-bidirectional-translation-traceability
 - **Status:** aligned
-- **Languages:** en, zh
+- **Languages:** en, zh, fr
 
-| Field | en | zh |
-|---|---|---|
-| year | YEAR 2 | 第二年 |
-| title | Translations navigable in both directions | 双向可导航的翻译系统 |
-| body | Extended the mapping principle to localization: every string traceable from code to every language and back, across Android, iOS, and design — "where is this text used?" answered structurally instead of by tribal memory. | 把映射方法延伸到多语言翻译：每个文本从代码到各语言版本双向可追溯，横跨安卓、iOS 与设计——"这段文字用在哪里"由结构直接回答，而不靠个人记忆。 |
-| result | Foundation for the localization transformation below. | 为下文的本地化流程转型奠定了基础。 |
+| Field | en | fr | zh |
+|---|---|---|---|
+| year | YEAR 2 | _missing_ | 第二年 |
+| title | Translations navigable in both directions | _missing_ | 双向可导航的翻译系统 |
+| body | Extended the mapping principle to localization: every string traceable from code to every language and back, across Android, iOS, and design — "where is this text used?" answered structurally instead of by tribal memory. | Extension du principe de cartographie à la localisation : chaque chaîne est traçable du code vers chaque langue et inversement, sur Android, iOS et dans le design — la question « où ce texte est-il utilisé ? » reçoit une réponse structurelle plutôt que de dépendre de la mémoire tribale. | 把映射方法延伸到多语言翻译：每个文本从代码到各语言版本双向可追溯，横跨安卓、iOS 与设计——"这段文字用在哪里"由结构直接回答，而不靠个人记忆。 |
+| result | Foundation for the localization transformation below. | _missing_ | 为下文的本地化流程转型奠定了基础。 |
 
 ## proof-compound-safety-bug-map
 
@@ -99,12 +99,12 @@ en, zh
 - **Status:** aligned
 - **Languages:** en, zh
 
-| Field | en | zh |
-|---|---|---|
-| year | MID | 中期 |
-| title | The compound bug nobody could reproduce | 无人能复现的复合缺陷 |
-| body | A missing low-glucose alert — patient-safety critical — was caused by two interacting defects across three teams' systems, one of which erased the evidence of the other. Resolution required first building the missing cross-system map by hand, instrumenting SDK-level code, and extracting reproduction steps inside a one-day window before the only witness left on vacation. Root cause: database indexes built without a wrapping @Transaction — an invisible absence. | 一个丢失的低血糖警报——直接关系患者安全——源于横跨三个团队系统的两个相互作用的缺陷，其中一个会抹去另一个的证据。解决它需要先手工绘制出缺失的跨系统地图，在 SDK 层加入观测，并在唯一目击者休假前的一天窗口内完成复现步骤的提取。根因是一个看不见的缺失：数据库索引在没有事务包裹的情况下逐个生成。 |
-| result | The terrain map let senior architects perceive system relationships nobody had seen. Fix shipped; lesson institutionalized. | 这张地形图让资深架构师第一次看清了此前无人看见的系统关系。修复上线，教训沉淀为制度。 |
+| Field | en | fr | zh |
+|---|---|---|---|
+| year | MID | _missing_ | 中期 |
+| title | The compound bug nobody could reproduce | _missing_ | 无人能复现的复合缺陷 |
+| body | A missing low-glucose alert — patient-safety critical — was caused by two interacting defects across three teams' systems, one of which erased the evidence of the other. Resolution required first building the missing cross-system map by hand, instrumenting SDK-level code, and extracting reproduction steps inside a one-day window before the only witness left on vacation. Root cause: database indexes built without a wrapping @Transaction — an invisible absence. | _missing_ | 一个丢失的低血糖警报——直接关系患者安全——源于横跨三个团队系统的两个相互作用的缺陷，其中一个会抹去另一个的证据。解决它需要先手工绘制出缺失的跨系统地图，在 SDK 层加入观测，并在唯一目击者休假前的一天窗口内完成复现步骤的提取。根因是一个看不见的缺失：数据库索引在没有事务包裹的情况下逐个生成。 |
+| result | The terrain map let senior architects perceive system relationships nobody had seen. Fix shipped; lesson institutionalized. | _missing_ | 这张地形图让资深架构师第一次看清了此前无人看见的系统关系。修复上线，教训沉淀为制度。 |
 
 ## proof-localization-pipeline
 
@@ -113,13 +113,13 @@ en, zh
 - **Status:** aligned
 - **Languages:** en, zh
 
-| Field | en | zh |
-|---|---|---|
-| year | YEARS 3–4 | 第三至四年 |
-| title | Localization: 6 months → 2 weeks | 本地化流程：六个月缩短到两周 |
-| body | Through Dexcom-sponsored Lean Six Sigma work, unified fragmented Android/iOS string structures and re-architected the translation pipeline — then engineered the paid vendor tool out of the loop entirely with a single source of truth that regenerates all documents reproducibly, byte-identical, because every condition was mapped rather than assumed. | 通过公司支持的精益六西格玛项目，统一了安卓与 iOS 割裂的文本结构，重构了翻译流程——随后用一个单一事实来源系统完全取代了付费供应商工具：所有文档可重复再生成、逐字节一致，因为每个条件都被映射，而非假设。 |
-| metric | 6 mo → 2 wk | 6 个月 → 2 周 |
-| metric-label | lean cycle time — on-paper value in the millions | 精益周期时间 — 账面价值达数百万 |
+| Field | en | fr | zh |
+|---|---|---|---|
+| year | YEARS 3–4 | _missing_ | 第三至四年 |
+| title | Localization: 6 months → 2 weeks | _missing_ | 本地化流程：六个月缩短到两周 |
+| body | Through Dexcom-sponsored Lean Six Sigma work, unified fragmented Android/iOS string structures and re-architected the translation pipeline — then engineered the paid vendor tool out of the loop entirely with a single source of truth that regenerates all documents reproducibly, byte-identical, because every condition was mapped rather than assumed. | _missing_ | 通过公司支持的精益六西格玛项目，统一了安卓与 iOS 割裂的文本结构，重构了翻译流程——随后用一个单一事实来源系统完全取代了付费供应商工具：所有文档可重复再生成、逐字节一致，因为每个条件都被映射，而非假设。 |
+| metric | 6 mo → 2 wk | _missing_ | 6 个月 → 2 周 |
+| metric-label | lean cycle time — on-paper value in the millions | _missing_ | 精益周期时间 — 账面价值达数百万 |
 
 ## proof-cross-domain-ui-identity
 
@@ -128,27 +128,27 @@ en, zh
 - **Status:** aligned
 - **Languages:** en, zh
 
-| Field | en | zh |
-|---|---|---|
-| year | YEARS 3–4 | 第三至四年 |
-| title | The organizational join key — UIElementKey | 跨部门的统一标识 |
-| body | Engineering, UX design, and quality testing each held IDs meaningful only inside their own silo. One composite identity — UIElementKey(platform, project, language, stringId, vnvTestId, uxDesignId) — resolved every discipline to the same UI element. Map first, align second: no team forced to change upfront. With the key live, the pipeline inverted: design issues keys upstream, platforms align by protocol, verification proceeds on a guaranteed assumption. Cross-discipline traceability — audit-grade in a regulated industry. | 工程、设计与质量测试各自的编号只在自己部门内有意义。一个复合标识把所有部门解析到同一个界面元素上。先建地图，再做对齐：没有团队被迫先改。系统上线后，流程倒转：设计在上游发放标识，各平台按协议对齐，验证基于有保证的假设进行。跨部门可追溯——在受监管行业达到审计级别。 |
-| result | Reconciliation disappeared as a phase. Teams run parallel over a shared spine. | 对账调和作为一个阶段彻底消失。各团队沿着同一条主干并行工作。 |
+| Field | en | fr | zh |
+|---|---|---|---|
+| year | YEARS 3–4 | _missing_ | 第三至四年 |
+| title | The organizational join key — UIElementKey | _missing_ | 跨部门的统一标识 |
+| body | Engineering, UX design, and quality testing each held IDs meaningful only inside their own silo. One composite identity — UIElementKey(platform, project, language, stringId, vnvTestId, uxDesignId) — resolved every discipline to the same UI element. Map first, align second: no team forced to change upfront. With the key live, the pipeline inverted: design issues keys upstream, platforms align by protocol, verification proceeds on a guaranteed assumption. Cross-discipline traceability — audit-grade in a regulated industry. | _missing_ | 工程、设计与质量测试各自的编号只在自己部门内有意义。一个复合标识把所有部门解析到同一个界面元素上。先建地图，再做对齐：没有团队被迫先改。系统上线后，流程倒转：设计在上游发放标识，各平台按协议对齐，验证基于有保证的假设进行。跨部门可追溯——在受监管行业达到审计级别。 |
+| result | Reconciliation disappeared as a phase. Teams run parallel over a shared spine. | _missing_ | 对账调和作为一个阶段彻底消失。各团队沿着同一条主干并行工作。 |
 
 ## proof-source-of-truth-relay
 
 - **Canonical element ID:** REC-Y5-PENSDK (source: html.data-legacy-id)
 - **Current element ID:** proof-source-of-truth-relay
 - **Status:** aligned
-- **Languages:** en, zh
+- **Languages:** en, zh, fr
 
-| Field | en | zh |
-|---|---|---|
-| year | YEAR 5 | 第五年 |
-| title | PenSDK: the method applied to time itself | 把方法应用于时间与并发本身 |
-| body | For an insulin-pen product where event order is safety-relevant: state changes flow through one SourceOfTruthRelay that derives and broadcasts truth so concurrent readers structurally cannot hold contradictory realities. Coroutines became ID-mapped, first-class tasks with scoped kill-switches — making a complex partner-SDK refresh cycle surgically manageable. Composes natively with Jetpack Compose. | 在一个事件顺序直接关系安全的胰岛素笔产品中：状态变化经由单一事实中继推导并广播，并发的读取方在结构上不可能持有相互矛盾的状态。协程本身也被编号映射为一等任务，带有作用域开关——让复杂的合作方 SDK 刷新周期变得可精确管理。与 Jetpack Compose 天然契合。 |
-| result-tag | Legacy | 传承 |
-| result | Deliberately developed the team in these practices — before departure, they problem-solved independently with the culture intact. The practices outlived the practitioner. | 有意识地把团队培养进这套实践——在离开之前，他们已能带着完整的文化独立解决问题。方法比实践者留得更久。 |
+| Field | en | fr | zh |
+|---|---|---|---|
+| year | YEAR 5 | _missing_ | 第五年 |
+| title | PenSDK: the method applied to time itself | _missing_ | 把方法应用于时间与并发本身 |
+| body | For an insulin-pen product where event order is safety-relevant: state changes flow through one SourceOfTruthRelay that derives and broadcasts truth so concurrent readers structurally cannot hold contradictory realities. Coroutines became ID-mapped, first-class tasks with scoped kill-switches — making a complex partner-SDK refresh cycle surgically manageable. Composes natively with Jetpack Compose. | Pour un produit de stylo à insuline où l’ordre des événements est critique pour la sécurité : les changements d’état passent par un unique SourceOfTruthRelay qui dérive et diffuse la vérité, de sorte que des lecteurs concurrents ne puissent structurellement pas maintenir des réalités contradictoires. Les coroutines sont devenues des tâches de première classe, mappées par ID, avec des coupe-circuits à portée limitée — ce qui rend un cycle complexe de rafraîchissement du SDK partenaire gérable de manière chirurgicale. S’intègre nativement à Jetpack Compose. | 在一个事件顺序直接关系安全的胰岛素笔产品中：状态变化经由单一事实中继推导并广播，并发的读取方在结构上不可能持有相互矛盾的状态。协程本身也被编号映射为一等任务，带有作用域开关——让复杂的合作方 SDK 刷新周期变得可精确管理。与 Jetpack Compose 天然契合。 |
+| result-tag | Legacy | _missing_ | 传承 |
+| result | Deliberately developed the team in these practices — before departure, they problem-solved independently with the culture intact. The practices outlived the practitioner. | _missing_ | 有意识地把团队培养进这套实践——在离开之前，他们已能带着完整的文化独立解决问题。方法比实践者留得更久。 |
 
 ## section-throughline
 
@@ -157,9 +157,9 @@ en, zh
 - **Status:** aligned
 - **Languages:** en, zh
 
-| Field | en | zh |
-|---|---|---|
-| band | Analytics can't drift from UI. Translations can't orphan from screens. Localization can't fragment across platforms. Concurrent readers can't contradict each other. And now: AI instances can't re-introduce mistakes that were already corrected. | 埋点无法脱离界面。翻译无法脱离页面。本地化无法在平台间割裂。并发读取无法互相矛盾。而现在：AI 实例无法重犯已经被纠正过的错误。 |
+| Field | en | fr | zh |
+|---|---|---|---|
+| band | Analytics can't drift from UI. Translations can't orphan from screens. Localization can't fragment across platforms. Concurrent readers can't contradict each other. And now: AI instances can't re-introduce mistakes that were already corrected. | _missing_ | 埋点无法脱离界面。翻译无法脱离页面。本地化无法在平台间割裂。并发读取无法互相矛盾。而现在：AI 实例无法重犯已经被纠正过的错误。 |
 
 ## section-ai-maintainable-systems
 
@@ -168,11 +168,11 @@ en, zh
 - **Status:** aligned
 - **Languages:** en, zh
 
-| Field | en | zh |
-|---|---|---|
-| heading | The sixth application: AI-maintainable systems | 第六次应用：AI 可自主维护的系统 |
-| p1 | Every organization adopting AI coding tools is hitting the same wall: AI-generated work decays, because nothing preserves institutional knowledge between sessions. A new AI instance starts cold and re-introduces assumptions that were corrected months ago — the same disease as every fragmentation above, at the largest scale yet: context itself. | 每个采用 AI 编程工具的组织都在撞同一堵墙：AI 产出的工作会退化，因为没有任何机制在会话之间保存机构知识。新的 AI 实例从零开始，重新引入几个月前已被纠正的假设——这与上面每一次割裂是同一种病，只是规模最大：割裂的是上下文本身。 |
-| p2 | The public working demonstration applies the five-times-proven method to this problem: a repository where CI self-maintains its own indexes; pull requests function as decision records (assumptions, cascading effects, notes for the next reader — human or AI); scaling ceilings are documented with migration paths before they're hit; and any fresh AI session bootstraps full context in one command. The escalation culture built with the human team — hard problems routed early, resolutions written back into shared knowledge — transcribed into architecture. | 公开的演示项目把这个经过五次验证的方法应用于此：仓库的持续集成系统自我维护索引；每个变更是一份决策记录（假设、连锁影响、写给下一位读者的说明——无论人或 AI）；扩展上限在触及之前就已记录并配好迁移路径；任何全新的 AI 会话用一条命令即可加载完整上下文。当年与人类团队建立的协作文化，被转写成了系统架构。 |
+| Field | en | fr | zh |
+|---|---|---|---|
+| heading | The sixth application: AI-maintainable systems | _missing_ | 第六次应用：AI 可自主维护的系统 |
+| p1 | Every organization adopting AI coding tools is hitting the same wall: AI-generated work decays, because nothing preserves institutional knowledge between sessions. A new AI instance starts cold and re-introduces assumptions that were corrected months ago — the same disease as every fragmentation above, at the largest scale yet: context itself. | _missing_ | 每个采用 AI 编程工具的组织都在撞同一堵墙：AI 产出的工作会退化，因为没有任何机制在会话之间保存机构知识。新的 AI 实例从零开始，重新引入几个月前已被纠正的假设——这与上面每一次割裂是同一种病，只是规模最大：割裂的是上下文本身。 |
+| p2 | The public working demonstration applies the five-times-proven method to this problem: a repository where CI self-maintains its own indexes; pull requests function as decision records (assumptions, cascading effects, notes for the next reader — human or AI); scaling ceilings are documented with migration paths before they're hit; and any fresh AI session bootstraps full context in one command. The escalation culture built with the human team — hard problems routed early, resolutions written back into shared knowledge — transcribed into architecture. | _missing_ | 公开的演示项目把这个经过五次验证的方法应用于此：仓库的持续集成系统自我维护索引；每个变更是一份决策记录（假设、连锁影响、写给下一位读者的说明——无论人或 AI）；扩展上限在触及之前就已记录并配好迁移路径；任何全新的 AI 会话用一条命令即可加载完整上下文。当年与人类团队建立的协作文化，被转写成了系统架构。 |
 
 ## section-adoption-implications
 
@@ -181,21 +181,21 @@ en, zh
 - **Status:** unresolved — no data-legacy-id or title alias found for this content node
 - **Languages:** en, zh
 
-| Field | en | zh |
-|---|---|---|
-| heading | What adoption changes | 采用之后会改变什么 |
-| intro | For an organization, this architecture is not a documentation style — it relocates where reliability comes from: out of individual vigilance and tribal memory, into structure that validates itself. | 对一个组织而言，这套架构不是一种文档风格——它把可靠性的来源从个人的警觉与部落式记忆中迁移出来，放进能够自我校验的结构里。 |
-| engineering-label | Engineering: | 工程： |
-| engineering | drift stops being a discipline problem. When analytics, strings, tests, and design resolve through one identity, divergence becomes structurally impossible rather than manually policed — and change review shifts from recalling impact to reading a computed impact report. | 脱节不再是纪律问题。当埋点、文本、测试与设计通过同一个标识解析时，分歧在结构上就不可能发生，而不需要靠人工监督——变更评审也从凭记忆推测影响变成阅读自动生成的影响报告。 |
-| localization-label | Localization & product: | 本地化与产品： |
-| localization | a new language becomes new rows, not duplicated pages. Vendors translate a meaning once and the graph applies it everywhere it is bound; plural, placeholder, and layout rules are validated per locale automatically. | 新增一种语言意味着新增几行数据，而不是复制整套页面。供应商对一个含义只翻译一次，图谱会把它应用到所有绑定之处；复数、占位符与排版规则按语言自动校验。 |
-| quality-label | Quality & compliance: | 质量与合规： |
-| quality | every change produces its impact report before it lands, and traceability from test to design intent to translation is audit-grade by construction. In regulated industries, that is the difference between proving compliance and reconstructing it. | 每次变更在落地之前就生成影响报告，从测试到设计意图再到翻译的可追溯性是天生审计级的。在受监管行业，这就是证明合规与事后重建合规的区别。 |
-| ai-label | AI adoption: | AI 采用： |
-| ai | agents stop re-deriving context. The graph is the memory; AI is the bridge into it — onboarding a fresh agent costs a query, not a repository read, and corrected mistakes stay corrected across sessions, tools, and vendors. | AI 代理不再反复重推上下文。图谱是记忆，AI 是进入图谱的桥梁——让一个全新的代理上手只需一次查询，而不是通读整个仓库；被纠正过的错误在会话、工具与供应商之间保持已纠正状态。 |
-| leadership-label | Leadership: | 管理层： |
-| leadership | the localization precedent above — six months to two weeks — is what this class of change does to cycle time. The same mechanics apply wherever teams currently reconcile by meeting instead of by map. | 上文的本地化先例——六个月缩短到两周——就是这类变革对周期时间的作用。凡是团队目前靠开会而不是靠地图来对齐的地方，同样的机制都适用。 |
-| closing-note | This document is itself the first artifact managed under the standard it describes: its record identifiers follow the concept-ID naming standard, legacy IDs are preserved as aliases, and the English and Chinese content regenerate from a single bilingual source. The proof of concept is the page. | 本文件本身就是其所述标准管理下的第一个工件：记录标识符遵循概念命名标准，旧编号以别名形式保留，中英文内容由同一个双语源文件再生成。这一页，就是概念验证。 |
+| Field | en | fr | zh |
+|---|---|---|---|
+| heading | What adoption changes | _missing_ | 采用之后会改变什么 |
+| intro | For an organization, this architecture is not a documentation style — it relocates where reliability comes from: out of individual vigilance and tribal memory, into structure that validates itself. | _missing_ | 对一个组织而言，这套架构不是一种文档风格——它把可靠性的来源从个人的警觉与部落式记忆中迁移出来，放进能够自我校验的结构里。 |
+| engineering-label | Engineering: | _missing_ | 工程： |
+| engineering | drift stops being a discipline problem. When analytics, strings, tests, and design resolve through one identity, divergence becomes structurally impossible rather than manually policed — and change review shifts from recalling impact to reading a computed impact report. | _missing_ | 脱节不再是纪律问题。当埋点、文本、测试与设计通过同一个标识解析时，分歧在结构上就不可能发生，而不需要靠人工监督——变更评审也从凭记忆推测影响变成阅读自动生成的影响报告。 |
+| localization-label | Localization & product: | _missing_ | 本地化与产品： |
+| localization | a new language becomes new rows, not duplicated pages. Vendors translate a meaning once and the graph applies it everywhere it is bound; plural, placeholder, and layout rules are validated per locale automatically. | _missing_ | 新增一种语言意味着新增几行数据，而不是复制整套页面。供应商对一个含义只翻译一次，图谱会把它应用到所有绑定之处；复数、占位符与排版规则按语言自动校验。 |
+| quality-label | Quality & compliance: | _missing_ | 质量与合规： |
+| quality | every change produces its impact report before it lands, and traceability from test to design intent to translation is audit-grade by construction. In regulated industries, that is the difference between proving compliance and reconstructing it. | _missing_ | 每次变更在落地之前就生成影响报告，从测试到设计意图再到翻译的可追溯性是天生审计级的。在受监管行业，这就是证明合规与事后重建合规的区别。 |
+| ai-label | AI adoption: | _missing_ | AI 采用： |
+| ai | agents stop re-deriving context. The graph is the memory; AI is the bridge into it — onboarding a fresh agent costs a query, not a repository read, and corrected mistakes stay corrected across sessions, tools, and vendors. | _missing_ | AI 代理不再反复重推上下文。图谱是记忆，AI 是进入图谱的桥梁——让一个全新的代理上手只需一次查询，而不是通读整个仓库；被纠正过的错误在会话、工具与供应商之间保持已纠正状态。 |
+| leadership-label | Leadership: | _missing_ | 管理层： |
+| leadership | the localization precedent above — six months to two weeks — is what this class of change does to cycle time. The same mechanics apply wherever teams currently reconcile by meeting instead of by map. | _missing_ | 上文的本地化先例——六个月缩短到两周——就是这类变革对周期时间的作用。凡是团队目前靠开会而不是靠地图来对齐的地方，同样的机制都适用。 |
+| closing-note | This document is itself the first artifact managed under the standard it describes: its record identifiers follow the concept-ID naming standard, legacy IDs are preserved as aliases, and the English and Chinese content regenerate from a single bilingual source. The proof of concept is the page. | _missing_ | 本文件本身就是其所述标准管理下的第一个工件：记录标识符遵循概念命名标准，旧编号以别名形式保留，中英文内容由同一个双语源文件再生成。这一页，就是概念验证。 |
 
 ## section-audience-fit
 
@@ -204,9 +204,9 @@ en, zh
 - **Status:** aligned
 - **Languages:** en, zh
 
-| Field | en | zh |
-|---|---|---|
-| heading | Where this fits | 适合的方向 |
+| Field | en | fr | zh |
+|---|---|---|---|
+| heading | Where this fits | _missing_ | 适合的方向 |
 
 ## fit-platform-devex
 
@@ -215,10 +215,10 @@ en, zh
 - **Status:** needs_review — legacy source is an informal title="legacy alias:" tooltip, not a real data-legacy-id attribute
 - **Languages:** en, zh
 
-| Field | en | zh |
-|---|---|---|
-| title | Platform & Developer Experience | 平台工程 / 开发者体验 |
-| body | Building the maps and pipelines that let large teams move in parallel without drift. | 构建让大型团队并行工作而不脱节的地图与流程。 |
+| Field | en | fr | zh |
+|---|---|---|---|
+| title | Platform & Developer Experience | _missing_ | 平台工程 / 开发者体验 |
+| body | Building the maps and pipelines that let large teams move in parallel without drift. | _missing_ | 构建让大型团队并行工作而不脱节的地图与流程。 |
 
 ## fit-ai-tooling-companies
 
@@ -227,10 +227,10 @@ en, zh
 - **Status:** unresolved — no data-legacy-id or title alias found for this content node
 - **Languages:** en, zh
 
-| Field | en | zh |
-|---|---|---|
-| title | AI tooling companies | AI 工具公司 |
-| body | A design-partner profile: has hit and documented the failure modes these products exist to solve. | 设计伙伴级别的人选：亲身经历并记录了这类产品要解决的失效模式。 |
+| Field | en | fr | zh |
+|---|---|---|---|
+| title | AI tooling companies | _missing_ | AI 工具公司 |
+| body | A design-partner profile: has hit and documented the failure modes these products exist to solve. | _missing_ | 设计伙伴级别的人选：亲身经历并记录了这类产品要解决的失效模式。 |
 
 ## fit-regulated-industries
 
@@ -239,10 +239,10 @@ en, zh
 - **Status:** unresolved — no data-legacy-id or title alias found for this content node
 - **Languages:** en, zh
 
-| Field | en | zh |
-|---|---|---|
-| title | Regulated industries adopting AI | 采用 AI 的受监管行业 |
-| body | Medical-device background plus audit-grade, decision-record practices — a rare intersection. | 医疗器械背景加上审计级的决策记录实践——罕见的交叉点。 |
+| Field | en | fr | zh |
+|---|---|---|---|
+| title | Regulated industries adopting AI | _missing_ | 采用 AI 的受监管行业 |
+| body | Medical-device background plus audit-grade, decision-record practices — a rare intersection. | _missing_ | 医疗器械背景加上审计级的决策记录实践——罕见的交叉点。 |
 
 ## fit-process-transformation
 
@@ -251,10 +251,10 @@ en, zh
 - **Status:** unresolved — no data-legacy-id or title alias found for this content node
 - **Languages:** en, zh
 
-| Field | en | zh |
-|---|---|---|
-| title | Process transformation | 流程转型 |
-| body | Lean Six Sigma-validated: a measured 6-month → 2-week cycle reduction with cross-team adoption. | 经精益六西格玛验证：实测将六个月周期缩短至两周，并获得跨团队采用。 |
+| Field | en | fr | zh |
+|---|---|---|---|
+| title | Process transformation | _missing_ | 流程转型 |
+| body | Lean Six Sigma-validated: a measured 6-month → 2-week cycle reduction with cross-team adoption. | _missing_ | 经精益六西格玛验证：实测将六个月周期缩短至两周，并获得跨团队采用。 |
 
 ## note-self-demonstration
 
@@ -263,10 +263,10 @@ en, zh
 - **Status:** aligned
 - **Languages:** en, zh
 
-| Field | en | zh |
-|---|---|---|
-| lead | This dossier practices its own method. | 本档案实践其所述的方法。 |
-| body | Every record above carries a stable ID (proof-bulk-data-logging, proof-cross-domain-ui-identity…), named for concepts per the repository Registry Documentation Standard, with legacy IDs preserved as aliases, so any reader — human or AI, in English or Chinese — can reference, quote, or ask about an exact record without ambiguity. Identity first; discussion second. | 上面的每条记录都带有稳定的概念命名编号（proof-bulk-data-logging、proof-cross-domain-ui-identity……），遵循仓库的注册表文档标准，旧编号以别名保留，任何读者——无论人或 AI，中文或英文——都可以无歧义地引用、询问某一条具体记录。先有标识，再有讨论。 |
+| Field | en | fr | zh |
+|---|---|---|---|
+| lead | This dossier practices its own method. | _missing_ | 本档案实践其所述的方法。 |
+| body | Every record above carries a stable ID (proof-bulk-data-logging, proof-cross-domain-ui-identity…), named for concepts per the repository Registry Documentation Standard, with legacy IDs preserved as aliases, so any reader — human or AI, in English or Chinese — can reference, quote, or ask about an exact record without ambiguity. Identity first; discussion second. | _missing_ | 上面的每条记录都带有稳定的概念命名编号（proof-bulk-data-logging、proof-cross-domain-ui-identity……），遵循仓库的注册表文档标准，旧编号以别名保留，任何读者——无论人或 AI，中文或英文——都可以无歧义地引用、询问某一条具体记录。先有标识，再有讨论。 |
 
 ## footer
 
@@ -275,12 +275,12 @@ en, zh
 - **Status:** unresolved — no data-legacy-id or title alias found for this content node
 - **Languages:** en, zh
 
-| Field | en | zh |
-|---|---|---|
-| line | Victor Gong · Dossier v2.1 · Created July 4, 2026 · DOC-ID: VG-DOSSIER-v2.1 | Victor Gong · 档案 v2.1 · 创建于 2026 年 7 月 4 日 · 档案编号: VG-DOSSIER-v2.1 |
-| reference-note | References & repository walkthrough available on request | 可应要求提供推荐人与项目讲解 |
-| stamp-word | ON | 记录在案 |
-| stamp-label | THE RECORD | ON THE RECORD |
+| Field | en | fr | zh |
+|---|---|---|---|
+| line | Victor Gong · Dossier v2.1 · Created July 4, 2026 · DOC-ID: VG-DOSSIER-v2.1 | _missing_ | Victor Gong · 档案 v2.1 · 创建于 2026 年 7 月 4 日 · 档案编号: VG-DOSSIER-v2.1 |
+| reference-note | References & repository walkthrough available on request | _missing_ | 可应要求提供推荐人与项目讲解 |
+| stamp-word | ON | _missing_ | 记录在案 |
+| stamp-label | THE RECORD | _missing_ | ON THE RECORD |
 
 ---
 
