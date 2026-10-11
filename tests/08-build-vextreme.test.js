@@ -557,9 +557,18 @@ test('LANG-FAB: a URL ?lang= param wins over the stored localStorage preference 
 
 test('LANG-FAB: selecting a language from the wheel updates the URL immediately', () => {
   const source = fs.readFileSync(FAB_IN, 'utf8');
+  const selectStart = source.indexOf('function selectLanguage(lang, options) {');
+  const selectEnd = source.indexOf('// Overflow peek:', selectStart);
+  assert.ok(selectStart >= 0 && selectEnd > selectStart, 'shared selectLanguage() transition owner must exist');
+  const selectLanguage = source.slice(selectStart, selectEnd);
+  assert.ok(selectLanguage.includes('syncUrlLang(lang);'), 'shared language transition must synchronize the URL');
+
   const clickHandler = source.match(/item\.addEventListener\('click', function \(\) \{[\s\S]*?\n\s*\}\);/);
   assert.ok(clickHandler, 'wheel item click handler must exist');
-  assert.ok(clickHandler[0].includes('syncUrlLang(lang)'), 'clicking a language must sync it into the URL, not just apply it in-page');
+  assert.ok(
+    clickHandler[0].includes("selectLanguage(lang, { persist: true, source: 'fab' });"),
+    'wheel clicks must delegate to the shared language transition that synchronizes URL, persistence, and page state'
+  );
 });
 
 // [VXG RealForever]
