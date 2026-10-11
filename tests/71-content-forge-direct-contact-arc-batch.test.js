@@ -66,7 +66,10 @@ test('Content Forge Direct Contact completes the exact canonical arc from two un
   });
   const stableAlreadyState=Object.fromEntries(stableAlready.map(file=>[file,pathState(file)]));
   assert.deepEqual(stableAlreadyState[path.join(ROOT,'data','strings','source','pages','restoration-protocol.json')],{exists:false,sha256:null},'restoration-protocol: accepted page-only string state remains absent');
-  assert.deepEqual(stableAlreadyState[path.join(ROOT,'data','strings','source','pages','the-testimony-of-victor-gong.json')],{exists:false,sha256:null},'the-testimony-of-victor-gong: accepted page-only string state remains absent');
+  const testimonyStringsPath=path.join(ROOT,'data','strings','source','pages','the-testimony-of-victor-gong.json');
+  assert.equal(stableAlreadyState[testimonyStringsPath].exists,true,'the-testimony-of-victor-gong: later accepted migration may add its string source');
+  assert.equal(json(testimonyStringsPath)._meta.sourceProvenance.migration.adapter,'tools/vex-content-forge/project_stale_page_migration.js',
+    'the historical Direct Contact formation must preserve the later migration-owned Testimony state rather than forcing it back to page-only');
   const proposalByRef=new Map(proposal.records.map(record=>[record.recordRef,record]));
   const canonicalFamilies=proposal.lineages?.canonicalIdentity||[];
   const exactRouteFamilies=proposal.lineages?.exactRoute||[];
