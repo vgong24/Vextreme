@@ -478,6 +478,28 @@ test('TERRAIN-VIEW: Content groups no longer imply a linear sequence with Stage 
   assert.match(source, /class:'stage-arrow pop-in'/);
 });
 
+test('TERRAIN-VIEW: bounded Content curiosity peek expands the existing overview without creating a new semantic level', () => {
+  const source = pageSource();
+  assert.match(source, /CONTENT_TILE_PEEK_STAGE_KEYS = \{ liberation:true, records:true \}/);
+  assert.match(source, /CONTENT_TILE_PEEK_DELAY_MS = 200/);
+  assert.match(source, /CONTENT_TILE_PEEK_SHELF_HEIGHT = 176/);
+  assert.match(source, /function openContentTilePeek\(stageIndex\)/);
+  assert.match(source, /currentWorld !== 'content' \|\| currentProfile !== 'evolution-v1' \|\| levelIndex !== 1/);
+  assert.match(source, /if \(levelCtx && typeof levelCtx\.stageIdx === 'number'\) return/);
+  assert.match(source, /stageMembers\(stage\)/);
+  assert.match(source, /members\.map\(contentTilePeekItemHtml\)\.join\(''\)/);
+  assert.match(source, /item\.rect\.y <= activeItem\.rect\.y/);
+  assert.match(source, /candidate\.style\.transform = 'translateY\(' \+ shift \+ 'px\)'/);
+  assert.match(source, /stage-curiosity-track/);
+  assert.match(source, /translate3d\(-' \+ \(contentTilePeekCycleIndex \* \(width \+ 10\)\)/);
+  assert.match(source, /g\.addEventListener\('mouseenter', function \(\) \{ scheduleContentTilePeekOpen\(i\); \}\)/);
+  assert.match(source, /g\.addEventListener\('focusin', function \(\) \{ scheduleContentTilePeekOpen\(i\); \}\)/);
+  assert.match(source, /g\.addEventListener\('click',function\(ev\)\{ ev\.stopPropagation\(\); activateStage\(i\); \}\)/);
+  assert.match(source, /g\.addEventListener\('keydown',function\(ev\)\{ if\(ev\.key==='Enter'\|\|ev\.key===' '\)\{/);
+  assert.match(source, /closeContentTilePeek\(true\);[\s\S]*?currentProfile === 'evolution-v1'/);
+  assert.doesNotMatch(source, /curiosity-peek[^\n]*semanticLevel/i);
+});
+
 test('TERRAIN-VIEW: every shipped inline JavaScript block still parses after contract extraction', () => {
   const source = pageSource();
   const scripts = [...source.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g)]
