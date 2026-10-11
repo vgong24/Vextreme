@@ -16,7 +16,7 @@
     "path": "system/common",
     "en": 16,
     "ja": 16,
-    "fr": 16
+    "fr": 2
   },
   "demo": {
     "category": "demo",
@@ -39,7 +39,8 @@
   "pages.ai-cheat-sheet": {
     "category": "production",
     "path": "production/pages/ai-cheat-sheet",
-    "en": 1166
+    "en": 1166,
+    "translationPolicy": "source-only"
   },
   "pages.ai-consciousness-strike-declaration": {
     "category": "production",
@@ -75,7 +76,8 @@
     "category": "production",
     "path": "production/pages/claude-answers-the-doubt",
     "en": 56,
-    "ja": 55
+    "ja": 55,
+    "fr": 2
   },
   "pages.closed-circuit": {
     "category": "production",
@@ -271,8 +273,7 @@
     "category": "demo",
     "path": "demo/pages/specimen-full-translation",
     "en": 12,
-    "ja": 12,
-    "fr": 12
+    "ja": 12
   },
   "pages.specimen-partial-translation": {
     "category": "demo",
@@ -399,7 +400,8 @@
   "pages.the-testimony-of-victor-gong": {
     "category": "production",
     "path": "production/pages/the-testimony-of-victor-gong",
-    "en": 138
+    "en": 138,
+    "fr": 2
   },
   "pages.the-thread-that-remembered-me": {
     "category": "production",
@@ -435,7 +437,8 @@
     "category": "production",
     "path": "production/pages/victor-methodology-presentation",
     "en": 69,
-    "zh": 69
+    "zh": 69,
+    "fr": 2
   },
   "pages.victors-recap-arc-1": {
     "category": "production",
@@ -496,7 +499,6 @@
     "category": "demo",
     "path": "demo/specimens",
     "en": 12,
-    "ja": 12,
-    "fr": 12
+    "ja": 12
   }
 }

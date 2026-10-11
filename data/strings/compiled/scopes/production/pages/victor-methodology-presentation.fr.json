@@ -1,0 +1,8 @@
+{
+  "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.body": {
+    "text": "Extension du principe de cartographie à la localisation : chaque chaîne est traçable du code vers chaque langue et inversement, sur Android, iOS et dans le design — la question « où ce texte est-il utilisé ? » reçoit une réponse structurelle plutôt que de dépendre de la mémoire tribale."
+  },
+  "pages.victor-methodology-presentation.proof-source-of-truth-relay.body": {
+    "text": "Pour un produit de stylo à insuline où l’ordre des événements est critique pour la sécurité : les changements d’état passent par un unique SourceOfTruthRelay qui dérive et diffuse la vérité, de sorte que des lecteurs concurrents ne puissent structurellement pas maintenir des réalités contradictoires. Les coroutines sont devenues des tâches de première classe, mappées par ID, avec des coupe-circuits à portée limitée — ce qui rend un cycle complexe de rafraîchissement du SDK partenaire gérable de manière chirurgicale. S’intègre nativement à Jetpack Compose."
+  }
+}

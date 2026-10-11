@@ -92,6 +92,42 @@ test('BUILD-STATUS: production gaps sort before fixture gaps', () => {
   }
 });
 
+test('BUILD-STATUS: Analysis demand is the single production owner of page-aware/source-only translation debt', () => {
+  const manifest = {
+    'pages.alpha.body': { enHash: 'a', langs: ['en'] },
+    'pages.beta.body': { enHash: 'b', langs: ['en'] },
+    'pages.ai-cheat-sheet.body.title': { enHash: 'c', langs: ['en'] },
+    'common.shared': { enHash: 'd', langs: ['en', 'fr'] },
+  };
+  const en = {
+    'pages.alpha.body': { text: 'Alpha' },
+    'pages.beta.body': { text: 'Beta' },
+    'pages.ai-cheat-sheet.body.title': { text: 'Huge English-only surface' },
+    'common.shared': { text: 'Shared' },
+  };
+  const analysisElements = {
+    'pages.alpha.body': { missingLangs: ['fr'] },
+    'pages.beta.body': { missingLangs: [] },
+    'pages.ai-cheat-sheet.body.title': { missingLangs: [] },
+    'common.shared': { missingLangs: [] },
+  };
+
+  const result = buildTranslationNotices(manifest, en, analysisElements, []);
+
+  assert.deepEqual(result, [{
+    key: 'pages.alpha.body',
+    lang: 'fr',
+    reason: 'missing_translation',
+    intentional: false,
+    en: 'Alpha',
+  }]);
+  assert.equal(
+    result.some(item => item.key.startsWith('pages.ai-cheat-sheet.')),
+    false,
+    'source-only suppression is inherited from Analysis rather than re-derived by Status'
+  );
+});
+
 // ── 2. buildStatusRollup ─────────────────────────────────────────────────────
 
 const SAMPLE_NOTICES = {

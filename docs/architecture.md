@@ -140,10 +140,11 @@ data/strings/source/** ──┘                       sitemap.xml            (c
                                                  dist/vextreme-{slug}.js (God Scripts, one per page)
                                                  sw.js                  (Service Worker, pre-caches dist/)
 
-data/status/tech-debt.json         ──┐
+data/status/tech-debt.json          ──┐
 data/status/planned-enhancements.json ──┼── lib/build-status.js ──▶  data/status.json
-data/status/assumptions.json       ──┘
-data/strings/compiled/manifest.json ─┘                              (system health manifest)
+data/status/assumptions.json        ──┤
+data/strings/compiled/manifest.json ──┤                              (system health manifest)
+data/analysis-index.json            ──┘  (page-demand-aware missing-language projection)
 ```
 
 **Write side files — content pipeline:**
@@ -182,17 +183,25 @@ Each item: `{ id, title, priority, description, addedSession }`.
 `data/status/assumptions.json` — claims from PR records not yet confirmed live.
 Each item: `{ id, claim, priority, context, addedSession }`.
 
-`data/strings/compiled/manifest.json` — also an input to `build-status.js` for auto-detecting
-string keys missing translations. Demo-category scope keys (under `scopes/demo/`) are marked
-`intentional: true` and excluded from `totalOpen`.
+`data/strings/compiled/manifest.json` — supplies per-key present-language coverage.
+`data/analysis-index.json` — supplies each key's **page-demand-aware** `missingLangs`,
+derived from real HTML usage, `pageLanguageMap[slug].availableLangs`, and source-only policy.
+Status consumes that projection rather than expanding every manifest key against root
+`supportedLangs`. This matters when a new locale begins as a bounded pilot: unrelated
+pages do not become thousands of fake translation-debt records merely because the locale
+exists somewhere. Demo-category scope keys are still marked `intentional: true` and
+excluded from `totalOpen`.
 
-`lib/build-status.js` — assembles `data/status.json` from the three hand-authored write-side
-sources plus the manifest. Run manually: `node lib/build-status.js`. Not yet in CI.
-Exports pure functions for testing: `buildTranslationNotices`, `buildStatusRollup`, `countOpen`.
+`lib/build-status.js` — assembles `data/status.json` from the hand-authored status sources,
+the string manifest/EN bundle, Analysis' per-key missing-language projection, and current
+content-integrity/lattice evidence. Translation demand is not re-derived here. Run manually
+via `node lib/build-status.js`. Exports pure functions for testing:
+`buildTranslationNotices`, `buildStatusRollup`, `countOpen`.
 
-`data/status.json` — generated system health manifest at the same CQRS layer as `index.json`.
-Structure: `{ _meta: { totalOpen, commit, generated }, notices: { translation, techDebt, enhancements, assumptions } }`.
-First consumer: `pages/ecosystem-hub.html` (developer dashboard, runtime fetch).
+`data/status.json` — generated deterministic system health manifest at the same CQRS layer
+as `index.json`. Its `_meta` carries `totalOpen` and lattice coverage; `notices` carries
+translation, tech debt, enhancements, assumptions, open discussions, and content-integrity
+categories. First consumer: `pages/ecosystem-hub.html` (developer dashboard, runtime fetch).
 
 `data/terrain-map.json` — same CQRS split again, one layer up: `lib/build-terrain-map.js`
 computes every mapped lattice node's real status/debts/reads/writes plus a deterministic
@@ -771,6 +780,62 @@ The translator packet is a reversible projection, not translation authority. The
 canonical write side remains `data/strings/source/`; CSVs are temporary work
 surfaces bound back to it by key + EN preimage hash.
 
+### Campaign iteration — normal scaling path
+
+For broad translation population, do **not** hand-pick the next page or manually
+assemble row lists. `lib/translation-campaign.js` is the reusable selector over
+the same canonical source/exporter contract.
+
+```bash
+# first FR window
+npm run translation:campaign -- --lang fr --limit 200
+
+# preferred durable continuation
+npm run translation:campaign -- --lang fr --after-key <last-key> --limit 200
+
+# intentionally narrow one canonical scope
+npm run translation:campaign -- --lang fr --scope pages.some-page --limit 100
+
+# inspect a snapshot without writing packet files
+npm run translation:campaign -- --lang fr --start 200 --limit 200 --dry-run
+```
+
+Campaign eligibility is deterministic:
+
+```text
+canonical source entry has EN
+AND source scope is not translationPolicy=source-only
+AND target locale is missing OR marked _stale
+→ campaign candidate
+```
+
+Candidates are globally sorted by canonical key (with source scope/file only as
+tie-breakers). Duplicate canonical keys fail closed. The selected rows are passed
+through `lib/strings-export.js`'s same `buildTranslatorRow()` owner, so campaign
+packets and ordinary per-scope packets cannot diverge on context, notes, EN hashes,
+or target-only isolation.
+
+Every written campaign produces two deterministic files:
+
+```text
+data/strings/batches/export/campaign/{target}/{batchId}.csv
+data/strings/batches/export/campaign/{target}/{batchId}.manifest.json
+```
+
+The manifest has no timestamp/random ID. It records each key's canonical source
+scope/file, missing-vs-stale state, exact `source_en_hash12`, the selected range,
+and the next `--after-key` command.
+
+**Cursor rule:** `--after-key` is the normal durable resume coordinate. Numeric
+`--start` is useful only to reproduce/inspect an unchanged candidate snapshot,
+because importing earlier rows shrinks the candidate set and changes numeric
+offsets. After completing a full pass, run once again with no cursor to catch any
+new candidate inserted lexically before the previous final key.
+
+This iterator creates no campaign-state database and no second translation
+registry. Translation identity remains locale + canonical key; the existing
+importer remains the only returned-row write path.
+
 ### Translator context projection
 
 A fresh-context EN→FR isolation proof showed that file-level descriptions alone
@@ -809,23 +874,55 @@ prose, create a glossary, promote arc membership into translation ownership, or
 copy unrelated target-language strings into the packet. Existing CSV columns and
 import semantics remain unchanged.
 
+### Source-only translation policy
+
+A string-source file may explicitly opt itself out of target-language work:
+
+```json
+"_meta": {
+  "translationPolicy": "source-only"
+}
+```
+
+This is page/scope-owned metadata, not a central skip list. `source-only` means:
+
+- canonical EN source remains normal and continues compiling/rendering;
+- `strings-export.js` does not form translator batches for that scope;
+- `strings-import.js` rejects translation-bearing rows targeting its keys;
+- `strings-compile.js` defensively emits EN only for that source even if a
+  non-EN value is later hand-added;
+- the generated scope index records `translationPolicy: "source-only"` so
+  read-side coverage/debt tooling can distinguish an intentional opt-out from
+  unfinished translation work.
+
+The first real use is `pages.ai-cheat-sheet`, whose exceptionally large
+translation surface is intentionally kept English-only for now. This policy does
+not exempt the page from normal navigation/runtime quality; its separate
+navigation dead-end is tracked independently in issue #271.
+
 ---
 
 ## Adding a new language
 
 Do not pre-seed blank locale objects merely to make the exporter discover them.
 
-1. Export the desired target directly: `node lib/strings-export.js --lang fr`
-   (add `--scope ...` when intentionally batching a subset).
-2. Translate and import through the hash-bound workflow above; the importer creates
-   the new `strings.fr` values only for accepted rows.
-3. Compile/build normally. Once real FR values exist, the existing bundle/index
-   machinery discovers the locale; no language-specific build-script branch is
-   required.
+1. Start the reusable campaign directly:
+   `npm run translation:campaign -- --lang fr --limit 200`.
+   Use `strings-export.js --scope ... --lang fr` only for an intentionally
+   bounded investigation or one-off scope packet.
+2. Translate only the target columns and import through the hash-bound workflow.
+   The importer creates new `strings.fr` values only for accepted current rows.
+3. Continue from the manifest's `--after-key` cursor and repeat. A later batch
+   never needs the operator to rediscover which rows come next.
+4. Compile/build at the desired population checkpoints. Once real FR values exist,
+   the existing bundle/index machinery discovers the locale; no language-specific
+   build-script branch is required.
+5. After a campaign reaches `hasMore=false`, run one no-cursor pass to catch any
+   newly-added/stale key that sorts before the final cursor.
 
-This keeps language identity `locale + canonical string key`. Arc membership,
-page groupings, and translator shards may select work, but none becomes a second
-owner of the translation.
+This keeps language identity `locale + canonical string key`. Campaign windows,
+arc membership, page groupings, and translator shards may select work, but none
+becomes a second owner of the translation.
 
 → *Connects to 07-registry: the string key system is one instance of the
 registry pattern. The same "flat object, keyed by name, falls back safely"
@@ -1965,9 +2062,10 @@ This resolves the tension both lanes were circling without weakening either boun
 - Vextreme's own compiled string bundles already are a real canonical-ID system.
   `docs/architecture/06-i18n.md` says it outright: "The key registry in
   `data/strings/source/` is not just a string file — it is the element identity layer for
-  the entire UI." Every key (`common.label.page-live`, `pages.victors-recap-arc-1.hero`,
-  etc.) already has real per-language values across `en`/`ja`/`zh` (`data/index.json`'s
-  `supportedLangs`).
+  the entire UI." Root `data/index.json.supportedLangs` is the aggregate locale set and
+  stable ordering/back-compat surface; it is **not** a promise that every key owes every
+  locale. Per-key translation demand is derived from the real pages that use the key and
+  those pages' `pageLanguageMap[slug].availableLangs`.
 - `lib/trace-string-usage.js` already computes reverse usage (`scanUsages`, `traceKey`,
   `tracePage`, `findOrphanUsages`, `findUnusedKeys`) — real forward/reverse mapping,
   today, CLI/stdout-only.
@@ -2016,8 +2114,13 @@ the outputs of `trace-string-usage.js` (reused, not duplicated — `scanUsages`,
 `findOrphanUsages`, `findUnusedKeys`) and `screenshot-evidence.js`'s shared projections into
 one browser-fetchable artifact, `data/analysis-index.json`: every key's canonical id,
 present/missing languages, which page(s) reference it, and per-slug screenshot
-availability. Same CQRS shape as `data/terrain-map.json` (write-side script, deterministic,
-no live compute) — nothing renders yet.
+availability. Missing-language debt is page-demand-aware: Analysis unions
+`availableLangs` only from real `pages/*.html` surfaces that actually reference each key,
+preserves root `supportedLangs` ordering, applies `sourceOnlyScopes`, then subtracts the
+key's present languages. A bounded new locale therefore creates debt only where users can
+actually select it; unrelated/unused/source-only keys do not inherit synthetic debt from the
+site-wide locale union. Same CQRS shape as `data/terrain-map.json` (write-side script,
+deterministic, no live compute) — nothing renders yet.
 
 Known limitation, recorded honestly: staleness detection (EN text changed since a
 translation was last touched) is not included in Phase A — `manifest.json` stores an

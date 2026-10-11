@@ -30,9 +30,10 @@ This resolves the tension both lanes were circling without weakening either boun
 - Vextreme's own compiled string bundles already are a real canonical-ID system.
   `docs/architecture/06-i18n.md` says it outright: "The key registry in
   `data/strings/source/` is not just a string file — it is the element identity layer for
-  the entire UI." Every key (`common.label.page-live`, `pages.victors-recap-arc-1.hero`,
-  etc.) already has real per-language values across `en`/`ja`/`zh` (`data/index.json`'s
-  `supportedLangs`).
+  the entire UI." Root `data/index.json.supportedLangs` is the aggregate locale set and
+  stable ordering/back-compat surface; it is **not** a promise that every key owes every
+  locale. Per-key translation demand is derived from the real pages that use the key and
+  those pages' `pageLanguageMap[slug].availableLangs`.
 - `lib/trace-string-usage.js` already computes reverse usage (`scanUsages`, `traceKey`,
   `tracePage`, `findOrphanUsages`, `findUnusedKeys`) — real forward/reverse mapping,
   today, CLI/stdout-only.
@@ -81,8 +82,13 @@ the outputs of `trace-string-usage.js` (reused, not duplicated — `scanUsages`,
 `findOrphanUsages`, `findUnusedKeys`) and `screenshot-evidence.js`'s shared projections into
 one browser-fetchable artifact, `data/analysis-index.json`: every key's canonical id,
 present/missing languages, which page(s) reference it, and per-slug screenshot
-availability. Same CQRS shape as `data/terrain-map.json` (write-side script, deterministic,
-no live compute) — nothing renders yet.
+availability. Missing-language debt is page-demand-aware: Analysis unions
+`availableLangs` only from real `pages/*.html` surfaces that actually reference each key,
+preserves root `supportedLangs` ordering, applies `sourceOnlyScopes`, then subtracts the
+key's present languages. A bounded new locale therefore creates debt only where users can
+actually select it; unrelated/unused/source-only keys do not inherit synthetic debt from the
+site-wide locale union. Same CQRS shape as `data/terrain-map.json` (write-side script,
+deterministic, no live compute) — nothing renders yet.
 
 Known limitation, recorded honestly: staleness detection (EN text changed since a
 translation was last touched) is not included in Phase A — `manifest.json` stores an

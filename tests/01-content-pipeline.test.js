@@ -26,7 +26,7 @@ const assert   = require('node:assert/strict');
 const { execFileSync } = require('node:child_process');
 const fs       = require('fs');
 const path     = require('path');
-const { contentFingerprint, buildPageLanguageCoverage, buildPageLanguageMap, buildSlugMap, buildArcMap, buildArcMeta, parseDate, findDuplicateSlugs } = require('../lib/build-index');
+const { contentFingerprint, buildPageLanguageCoverage, buildPageLanguageMap, buildSourceOnlyScopes, buildSlugMap, buildArcMap, buildArcMeta, parseDate, findDuplicateSlugs } = require('../lib/build-index');
 
 const nodes   = require('./fixtures/nodes.fixture.json');
 const arcsDef = require('./fixtures/arcs.fixture.json');
@@ -144,6 +144,30 @@ test('I18N COVERAGE: pageLanguageMap covers both content slugs and viewmodel-onl
     availableLangs: ['en', 'ja'],
     completeLangs: ['en'],
   });
+});
+
+test('I18N POLICY: source-only translation scopes project from the compiled scope index without hard-coded page names', () => {
+  const scopeIndex = {
+    common: { category: 'system', path: 'system/common', en: 16 },
+    'pages.ai-cheat-sheet': {
+      category: 'production',
+      path: 'production/pages/ai-cheat-sheet',
+      en: 1166,
+      translationPolicy: 'source-only',
+    },
+    'pages.normal': { category: 'production', path: 'production/pages/normal', en: 4 },
+    'pages.other-source-only': {
+      category: 'production',
+      path: 'production/pages/other-source-only',
+      en: 2,
+      translationPolicy: 'source-only',
+    },
+  };
+
+  assert.deepEqual(buildSourceOnlyScopes(scopeIndex), [
+    'pages.ai-cheat-sheet',
+    'pages.other-source-only',
+  ]);
 });
 
 // ── 2. Invariants ─────────────────────────────────────────────────────────────

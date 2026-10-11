@@ -15,7 +15,7 @@
   /* Scope + category globals for fab-lang compatibility */
   window.VEX_STRING_SCOPES    = ["pages.specimen-full-translation","specimens"];
   window.VEX_STRING_CATEGORY  = "demo";
-  window.VEX_SUPPORTED_LANGS  = ["en","fr","ja"];
+  window.VEX_SUPPORTED_LANGS  = ["en","ja"];
 
 
 
