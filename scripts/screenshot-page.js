@@ -62,6 +62,7 @@
 
 const http   = require('http');
 const fs     = require('fs');
+const os     = require('os');
 const path   = require('path');
 const { execFileSync } = require('child_process');
 
@@ -72,15 +73,18 @@ const CHROMIUM_PATH = process.env.VEX_CHROMIUM_PATH || '/opt/pw-browsers/chromiu
 const { chromium } = require(PLAYWRIGHT_PATH);
 
 const ROOT       = path.join(__dirname, '..');
-const OUT_DIR    = path.join(ROOT, 'docs', 'screenshots');
+const LOCAL_OUT_DIR = path.join(ROOT, 'docs', 'screenshots');
 const CDN_PREFIX = 'https://cdn.jsdelivr.net/gh/vgong24/vextreme@main';
 const VIEWPORT   = { width: 1280, height: 900 };
 
 function parseArgs(argv) {
   const positional = [];
   let assetsRoot = process.env.VEXTREME_ASSETS_ROOT || null;
+  let assetsOnly = false;
   for (let i = 0; i < argv.length; i += 1) {
-    if (argv[i] === '--assets-root') {
+    if (argv[i] === '--assets-only') {
+      assetsOnly = true;
+    } else if (argv[i] === '--assets-root') {
       assetsRoot = argv[++i];
       if (!assetsRoot) throw new Error('--assets-root requires a path');
     } else if (argv[i].startsWith('--')) {
@@ -89,17 +93,27 @@ function parseArgs(argv) {
       positional.push(argv[i]);
     }
   }
-  if (positional.length > 2) throw new Error('usage: node scripts/screenshot-page.js [slug] [lang] [--assets-root <path>]');
+  if (positional.length > 2) throw new Error('usage: node scripts/screenshot-page.js [slug] [lang] [--assets-root <path>] [--assets-only]');
+  if (assetsOnly && !assetsRoot) throw new Error('--assets-only requires --assets-root or VEXTREME_ASSETS_ROOT');
   return {
     slug: positional[0] || 'claude-answers-the-doubt',
     lang: positional[1] || 'ja',
     assetsRoot: assetsRoot ? path.resolve(assetsRoot) : null,
+    assetsOnly,
   };
 }
 
 const options = parseArgs(process.argv.slice(2));
 const slug = options.slug;
 const lang = options.lang;
+const OUT_DIR = options.assetsOnly
+  ? fs.mkdtempSync(path.join(os.tmpdir(), 'vextreme-localization-screenshots-'))
+  : LOCAL_OUT_DIR;
+if (options.assetsOnly) {
+  process.on('exit', () => {
+    try { fs.rmSync(OUT_DIR, { recursive: true, force: true }); } catch (error) { /* best-effort temp cleanup */ }
+  });
+}
 
 // ── MIME types ───────────────────────────────────────────────────────────────
 
@@ -274,8 +288,12 @@ function publishScreenshotEvidence(outPath, locale) {
   server.close();
 
   console.log('\nDone.');
-  console.log(`  EN  : docs/screenshots/${slug}-en.png`);
-  console.log(`  ${lang.toUpperCase()}  : docs/screenshots/${slug}-${lang}.png`);
+  if (options.assetsOnly) {
+    console.log('  Local PNGs: temporary carrier files only (durable custody is Assets)');
+  } else {
+    console.log(`  EN  : docs/screenshots/${slug}-en.png`);
+    console.log(`  ${lang.toUpperCase()}  : docs/screenshots/${slug}-${lang}.png`);
+  }
   if (options.assetsRoot) console.log(`  Assets evidence checkout: ${options.assetsRoot}`);
 })();
 
