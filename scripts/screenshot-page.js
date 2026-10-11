@@ -39,6 +39,7 @@
  *   loaded-by : .github/pull_request_template.md (browser-rendered change evidence instruction)
  *               manual run: node scripts/screenshot-page.js [slug] [lang] [--assets-root <Vextreme-Assets checkout>]
  *               scripts/screenshot-localization-matrix.js (reuses one browser session for the complete page × locale matrix)
+ *               tests/44-page-health.test.js (requires pure CLI/capture helpers; Playwright remains lazy)
  *   tested-by : tests/44-page-health.test.js (capture-engine, CLI compatibility, Assets handoff, and verified locale-switch contract)
  *               review-time browser execution and visual inspection
  *
