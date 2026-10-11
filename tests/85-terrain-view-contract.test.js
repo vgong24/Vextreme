@@ -55,7 +55,7 @@ test('TERRAIN-VIEW: Content presentation is accepted while the legacy Live geome
   assert.equal(value.profiles['evolution-v1'].status, 'accepted-reference');
   assert.equal(value.profiles['evolution-v1'].label, 'Content');
   assert.equal(value.profiles['evolution-v1'].inherits, 'live');
-  assert.ok(value.profiles['evolution-v1'].declaredDeltas.some(delta => /curiosity previews/.test(delta)));
+  assert.ok(value.profiles['evolution-v1'].declaredDeltas.some(delta => /viewport-owned inspection dock/.test(delta)));
   assert.ok(value.profiles['evolution-v1'].declaredDeltas.length >= 7);
   assert.equal(value.profiles['evolution-v1'].levels.group.renderer, 'viewport-curiosity-dock');
   assert.equal(value.profiles['evolution-v1'].levels.node.renderer, 'preview-card');
