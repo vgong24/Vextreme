@@ -482,7 +482,9 @@ test('TERRAIN-VIEW: collection pointer intent cancels pending preview before cli
     'pointer-down on a collection must cancel pending preview work immediately');
   assert.match(source, /g\.addEventListener\('click',function\(ev\)\{ ev\.stopPropagation\(\); activateStage\(i\); \}\)/,
     'click still owns synchronous collection activation');
-  assert.doesNotMatch(source, /g\.addEventListener\('pointerdown'[\s\S]{0,220}(?:preventDefault|stopPropagation)/,
+  const pointerDownBlock = source.match(/g\.addEventListener\('pointerdown', function \(\) \{[\s\S]*?\n      \}\);/);
+  assert.ok(pointerDownBlock, 'collection pointer-down handler must remain extractable');
+  assert.doesNotMatch(pointerDownBlock[0], /preventDefault|stopPropagation/,
     'pointer-down preview cancellation must not steal drag/pan semantics');
   assert.match(source, /g\.addEventListener\('keydown',function\(ev\)\{ if\(ev\.key==='Enter'\|\|ev\.key===' '\)\{ ev\.preventDefault\(\); ev\.stopPropagation\(\); activateStage\(i\); \} \}\)/,
     'keyboard activation remains immediate and preview-independent');
