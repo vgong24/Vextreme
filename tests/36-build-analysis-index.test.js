@@ -55,6 +55,46 @@ test('computeMissingLangs: empty supportedLangs yields empty result', () => {
   assert.deepEqual(computeMissingLangs(['en'], []), []);
 });
 
+test('computeMissingLangs: source-only scope keys carry no missing-language debt', () => {
+  assert.deepEqual(
+    computeMissingLangs(
+      ['en'],
+      ['en', 'fr', 'ja'],
+      'pages.ai-cheat-sheet.body.title',
+      ['pages.ai-cheat-sheet']
+    ),
+    []
+  );
+  assert.deepEqual(
+    computeMissingLangs(
+      ['en'],
+      ['en', 'fr'],
+      'pages.normal.body',
+      ['pages.ai-cheat-sheet']
+    ),
+    ['fr']
+  );
+});
+
+test('buildElementIndex: source-only keys retain language facts but suppress missingLangs', () => {
+  const manifest = {
+    'pages.ai-cheat-sheet.body.title': { enHash: 'x', langs: ['en'] },
+  };
+  const elements = buildElementIndex(
+    {},
+    manifest,
+    ['en', 'fr', 'ja'],
+    ['pages.ai-cheat-sheet']
+  );
+  assert.deepEqual(elements['pages.ai-cheat-sheet.body.title'], {
+    key: 'pages.ai-cheat-sheet.body.title',
+    usedIn: [],
+    inManifest: true,
+    langs: ['en'],
+    missingLangs: [],
+  });
+});
+
 // ── 2. buildElementIndex ──────────────────────────────────────────────────────
 
 test('buildElementIndex: includes a manifest key with no HTML usage', () => {
