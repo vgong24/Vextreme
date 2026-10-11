@@ -48,11 +48,13 @@ function parseArgs(argv) {
     langs: null,
     slug: null,
     assetsRoot: process.env.VEXTREME_ASSETS_ROOT || null,
+    staged: false,
   };
   for (let i = 0; i < argv.length; i += 1) {
     const token = argv[i];
     if (token === '--capture') options.capture = true;
     else if (token === '--plan') options.plan = true;
+    else if (token === '--staged') options.staged = true;
     else if (token === '--langs' || token === '--slug' || token === '--assets-root') {
       const value = argv[++i];
       if (!value || value.startsWith('--')) throw new Error(token + ' requires a value');
@@ -64,6 +66,9 @@ function parseArgs(argv) {
     }
   }
   if (options.capture && options.plan) throw new Error('choose --plan or --capture, not both');
+  if (options.capture && options.staged) {
+    throw new Error('--staged is planning-only; release the locale before real FAB capture');
+  }
   if (!options.capture) options.plan = true;
   if (options.capture && options.assetsRoot && !fs.existsSync(options.assetsRoot)) {
     throw new Error('assets root does not exist: ' + options.assetsRoot);
@@ -128,10 +133,10 @@ function localeCoverage(page, locale, scopeIndex, staleProbe) {
   };
 }
 
-function buildCapturePlan({ indexJson, viewmodels, scopeIndex, requestedLangs, requestedSlug, staleProbe }) {
+function buildCapturePlan({ indexJson, viewmodels, scopeIndex, requestedLangs, requestedSlug, staleProbe, allowStaged = false }) {
   const supported = (indexJson.supportedLangs || []).filter(lang => lang !== 'en');
   const targets = requestedLangs && requestedLangs.length ? requestedLangs : supported;
-  const unsupported = targets.filter(lang => !supported.includes(lang));
+  const unsupported = allowStaged ? [] : targets.filter(lang => !supported.includes(lang));
   const pages = resolvePages(indexJson, viewmodels);
   const cells = [];
   const skipped = [];
@@ -158,7 +163,7 @@ function buildCapturePlan({ indexJson, viewmodels, scopeIndex, requestedLangs, r
     throw new Error('unknown page slug: ' + requestedSlug);
   }
 
-  return { supportedLangs: supported, requestedLangs: targets, cells, skipped };
+  return { supportedLangs: supported, requestedLangs: targets, stagedMode: allowStaged, cells, skipped };
 }
 
 function screenshotArgs(cell, assetsRoot) {
@@ -180,6 +185,7 @@ function main(argv = process.argv.slice(2)) {
     requestedLangs: options.langs,
     requestedSlug: options.slug,
     staleProbe,
+    allowStaged: options.staged,
   });
 
   process.stdout.write(
