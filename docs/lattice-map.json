@@ -2402,7 +2402,8 @@
       "loadedBy": [
         ".github/pull_request_template.md (browser-rendered change evidence instruction)",
         "manual run: node scripts/screenshot-page.js [slug] [lang] [--assets-root <Vextreme-Assets checkout>]",
-        "scripts/screenshot-localization-matrix.js (reuses one browser session for the complete page × locale matrix)"
+        "scripts/screenshot-localization-matrix.js (reuses one browser session for the complete page × locale matrix)",
+        "tests/44-page-health.test.js (requires pure CLI/capture helpers; Playwright remains lazy)"
       ],
       "testedBy": [
         "tests/44-page-health.test.js (capture-engine, CLI compatibility, Assets handoff, and verified locale-switch contract)",
@@ -2430,42 +2431,6 @@
           "tests/44-page-health.test.js (bridge contract)",
           "scripts/screenshot-localization-matrix.js (site-scale consumer)",
           "lib/screenshot-evidence.js / Page Health / Analysis / Terrain remain readers of pinned/local evidence"
-        ]
-      }
-    },
-    "scripts/screenshot-localization-matrix.js": {
-      "role": "page × complete-locale screenshot matrix orchestrator — derives eligible evidence cells from pageLanguageMap and reuses the general screenshot engine",
-      "context": "The site-scale localization screenshot formation layer. It does not own locale support or screenshot custody: pageLanguageMap.completeLangs comes from the index projection, real screen identity comes from audit-pages, browser capture comes from scripts/screenshot-page.js, and final evidence custody remains the Vextreme-Assets ingest contract. Dry-run is read-only. Real execution requires an explicitly supplied Assets checkout, captures into OS temp storage, reuses one Chromium process, gives each cell a fresh browser context, validates the Assets manifest, and removes temporary PNGs.",
-      "reads": [
-        "data/index.json (pageLanguageMap[slug].completeLangs)",
-        "lib/audit-pages.js (getPageSlugs real screen inventory)",
-        "scripts/screenshot-page.js (shared browser/session + verified locale capture engine)",
-        "explicit Vextreme-Assets/scripts/ingest-screenshot-evidence.mjs contract"
-      ],
-      "writes": [
-        "temporary PNG captures under the OS temp directory (removed after ingestion)",
-        "Vextreme-Assets structured screenshot evidence through the Assets-owned ingest contract"
-      ],
-      "loadedBy": [
-        "package.json localization:screenshots command",
-        "manual run: node scripts/screenshot-localization-matrix.js [--dry-run|--assets-root <checkout>]"
-      ],
-      "testedBy": [
-        "tests/44-page-health.test.js (matrix formation, complete-locale gate, and Assets-first execution contract)"
-      ],
-      "changeMap": {
-        "pageLanguageMap or completeLangs schema changed": [
-          "lib/build-index.js (projection owner)",
-          "docs/architecture/06-i18n.md",
-          "tests/01-content-pipeline.test.js"
-        ],
-        "capture engine contract changed": [
-          "scripts/screenshot-page.js",
-          "tests/44-page-health.test.js"
-        ],
-        "Vextreme-Assets ingest arguments or evidence schema changed": [
-          "Vextreme-Assets/scripts/ingest-screenshot-evidence.mjs (custody owner)",
-          "scripts/screenshot-page.js (per-cell handoff)"
         ]
       }
     }
