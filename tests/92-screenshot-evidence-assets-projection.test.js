@@ -2,12 +2,17 @@
 
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const os = require('node:os');
 const path = require('node:path');
+const { execFileSync } = require('node:child_process');
 
 const {
   PROJECTION_SCHEMA,
   ASSET_MANIFEST_SCHEMA,
+  ASSET_MANIFEST_PATH,
   buildProjection,
+  readManifestAtCommit,
   parseArgs,
   stableJson,
 } = require('../scripts/refresh-screenshot-evidence-assets.js');
@@ -27,6 +32,19 @@ function manifest(records = {}) {
     repository: 'vgong24/Vextreme-Assets',
     records,
   };
+}
+
+function initAssetsRepo(initialManifest) {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'vextreme-assets-projection-'));
+  fs.mkdirSync(path.join(root, path.dirname(ASSET_MANIFEST_PATH)), { recursive: true });
+  fs.writeFileSync(path.join(root, ASSET_MANIFEST_PATH), JSON.stringify(initialManifest, null, 2) + '\n');
+  execFileSync('git', ['init'], { cwd: root, stdio: 'ignore' });
+  execFileSync('git', ['config', 'user.email', 'test@example.invalid'], { cwd: root });
+  execFileSync('git', ['config', 'user.name', 'Vextreme Test'], { cwd: root });
+  execFileSync('git', ['add', ASSET_MANIFEST_PATH], { cwd: root });
+  execFileSync('git', ['commit', '-m', 'manifest'], { cwd: root, stdio: 'ignore' });
+  const commit = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim();
+  return { root, commit };
 }
 
 test('SCREENSHOT-ASSETS-PROJECTION: deterministic writer preserves exact records and bindings', () => {
@@ -107,18 +125,60 @@ test('SCREENSHOT-ASSETS-PROJECTION: rejects wrong source identity instead of sil
   );
 });
 
-test('SCREENSHOT-ASSETS-PROJECTION: command binding requires exact manifest + commit', () => {
+test('SCREENSHOT-ASSETS-PROJECTION: command binding requires exact Assets root + commit', () => {
   assert.deepEqual(
-    parseArgs(['--manifest', '../Vextreme-Assets/evidence/screenshots/manifest.json', '--commit', '1'.repeat(40), '--check']),
+    parseArgs(['--assets-root', '../Vextreme-Assets', '--commit', '1'.repeat(40), '--check']),
     {
       check: true,
-      manifest: '../Vextreme-Assets/evidence/screenshots/manifest.json',
+      assetsRoot: '../Vextreme-Assets',
       output: path.join(__dirname, '..', 'data', 'screenshot-evidence-assets.json'),
       commit: '1'.repeat(40),
     }
   );
-  assert.throws(() => parseArgs(['--manifest', 'manifest.json']), /--commit is required/);
-  assert.throws(() => parseArgs(['--commit', '1'.repeat(40)]), /--manifest is required/);
+  assert.throws(() => parseArgs(['--assets-root', '../Vextreme-Assets']), /--commit is required/);
+  assert.throws(() => parseArgs(['--commit', '1'.repeat(40)]), /--assets-root is required/);
+});
+
+test('SCREENSHOT-ASSETS-PROJECTION: manifest bytes are read from the declared Git commit, not the mutable worktree', () => {
+  const committed = manifest({
+    'vextreme/committed/en/default/1280': {
+      namespace: 'vextreme',
+      slug: 'committed',
+      locale: 'en',
+      theme: 'default',
+      viewport: 1280,
+      sha256: 'c'.repeat(64),
+      path: 'evidence/screenshots/vextreme/committed/en/default/1280/' + 'c'.repeat(64) + '.png',
+      source: { repository: 'vgong24/Vextreme', commit: '3'.repeat(40), path: 'pages/committed.html' },
+      captureKind: 'localization',
+    },
+  });
+  const repo = initAssetsRepo(committed);
+  try {
+    const dirty = manifest({
+      'vextreme/dirty/en/default/1280': {
+        namespace: 'vextreme',
+        slug: 'dirty',
+        locale: 'en',
+        theme: 'default',
+        viewport: 1280,
+        sha256: 'd'.repeat(64),
+        path: 'evidence/screenshots/vextreme/dirty/en/default/1280/' + 'd'.repeat(64) + '.png',
+        source: { repository: 'vgong24/Vextreme', commit: '4'.repeat(40), path: 'pages/dirty.html' },
+        captureKind: 'localization',
+      },
+    });
+    fs.writeFileSync(path.join(repo.root, ASSET_MANIFEST_PATH), JSON.stringify(dirty, null, 2) + '\n');
+
+    assert.deepEqual(readManifestAtCommit(repo.root, repo.commit), committed,
+      'dirty worktree manifest must not be mistaken for the declared commit bytes');
+    assert.throws(
+      () => readManifestAtCommit(repo.root, 'f'.repeat(40)),
+      /cannot read .* exact Assets commit/
+    );
+  } finally {
+    fs.rmSync(repo.root, { recursive: true, force: true });
+  }
 });
 
 test('SCREENSHOT-ASSETS-PROJECTION: committed projection retains the historical support matrix', () => {
