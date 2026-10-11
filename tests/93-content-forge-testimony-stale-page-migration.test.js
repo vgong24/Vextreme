@@ -15,6 +15,11 @@ const FORMATION_REL = path.join(
   'docs','ingestion','workmaps',
   'content-forge-testimony-stale-page-migration-formation.json'
 );
+const STALE_PAGE_FIXTURE_REL = path.join(
+  'fixtures','content-forge',
+  'the-testimony-of-victor-gong-stale-preimage.html'
+);
+const STALE_PAGE_DESTINATION_REL = path.join('pages','the-testimony-of-victor-gong.html');
 const REQUIRED = [
   FORMATION_REL,
   path.join('data','nodes.json'),
@@ -23,7 +28,6 @@ const REQUIRED = [
   path.join('config','content-assets.json'),
   path.join('data','viewmodels.json'),
   path.join('docs','ingestion','source-pages','part-024','the-testimony-of-victor-gong.html'),
-  path.join('pages','the-testimony-of-victor-gong.html'),
 ];
 const hash = value => crypto.createHash('sha256').update(value).digest('hex');
 
@@ -35,6 +39,9 @@ function fixture() {
     fs.mkdirSync(path.dirname(to), { recursive: true });
     fs.copyFileSync(from, to);
   }
+  const destination = path.join(root, STALE_PAGE_DESTINATION_REL);
+  fs.mkdirSync(path.dirname(destination), { recursive: true });
+  fs.copyFileSync(path.join(ROOT, STALE_PAGE_FIXTURE_REL), destination);
   return root;
 }
 function read(root, rel) {
@@ -56,6 +63,8 @@ test('Content Forge stale-page adapter migrates the exact Testimony preimage thr
     const oldPage = read(root, pageRel);
     const viewmodelsBefore = json(root, viewmodelsRel);
 
+    assert.equal(projector.gitBlobSha(read(ROOT, STALE_PAGE_FIXTURE_REL)), formation.migration.expectedDestinationGitBlob,
+      'historical fixture must remain the exact stale destination preimage');
     assert.equal(projector.gitBlobSha(oldPage), formation.migration.expectedDestinationGitBlob);
     assert.equal(projector.gitBlobSha(sourceBefore), formation.members[0].sourceGitBlob);
     assert.equal(projector.sha256(sourceBefore), formation.members[0].preservedHtmlSha256);
