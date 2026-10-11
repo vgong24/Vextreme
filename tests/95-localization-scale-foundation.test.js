@@ -19,6 +19,7 @@ test('LOCALIZATION-SCALE: explicit new target locale exports even when source ha
   assert.deepEqual(exporter.targetLanguages(raw, 'fr'), ['fr']);
   const csv = exporter.renderScopeCsv(raw, 'fr');
   assert.match(csv, /source_en_hash/);
+  assert.match(csv, /source_context_hash/);
   assert.match(csv, /fr_text/);
   assert.match(csv, /Paired question: ""Why\?""/);
   assert.equal(csv.includes(',ja_text,'), false);
@@ -34,13 +35,16 @@ test('LOCALIZATION-SCALE: EN hash binds text plus aria-label', () => {
 test('LOCALIZATION-SCALE: import accepts exact EN preimage and rejects stale return', () => {
   const key = 'common.nav.open';
   const en = { text: 'Open', 'aria-label': 'Open menu' };
+  const raw = { [key]: { strings: { en } } };
   const source = {
-    [key]: { value: { strings: { en } }, file: '/tmp/common.json' },
+    [key]: { value: raw[key], file: '/tmp/common.json', raw },
   };
   const hash = importer.contentHash(en);
+  const context = exporter.buildContext({}, key, raw[key], raw);
+  const ctxHash = exporter.contextHash(context);
   const csv = [
-    'key,source_en_hash,context,en_text,en_aria_label,fr_text,fr_aria_label,notes',
-    `${key},${hash},nav,Open,Open menu,Ouvrir,Ouvrir le menu,`,
+    'key,source_en_hash,source_context_hash,context,en_text,en_aria_label,fr_text,fr_aria_label,notes',
+    `${key},${hash},${ctxHash},${context},Open,Open menu,Ouvrir,Ouvrir le menu,`,
   ].join('\n');
 
   const operations = importer.planCsvImport({ csvFile: 'common.fr.csv', csvText: csv, source });
@@ -48,7 +52,11 @@ test('LOCALIZATION-SCALE: import accepts exact EN preimage and rejects stale ret
   assert.deepEqual(operations[0].translation, { text: 'Ouvrir', 'aria-label': 'Ouvrir le menu' });
 
   const staleSource = {
-    [key]: { value: { strings: { en: { text: 'Open now', 'aria-label': 'Open menu' } } }, file: '/tmp/common.json' },
+    [key]: {
+      value: { strings: { en: { text: 'Open now', 'aria-label': 'Open menu' } } },
+      file: '/tmp/common.json',
+      raw,
+    },
   };
   assert.throws(
     () => importer.planCsvImport({ csvFile: 'common.fr.csv', csvText: csv, source: staleSource }),
@@ -60,11 +68,14 @@ test('LOCALIZATION-SCALE: import rejects duplicate translated locale/key rows', 
   const key = 'common.nav.open';
   const en = { text: 'Open' };
   const hash = importer.contentHash(en);
-  const source = { [key]: { value: { strings: { en } }, file: '/tmp/common.json' } };
+  const raw = { [key]: { strings: { en } } };
+  const source = { [key]: { value: raw[key], file: '/tmp/common.json', raw } };
+  const context = exporter.buildContext({}, key, raw[key], raw);
+  const ctxHash = exporter.contextHash(context);
   const csv = [
-    'key,source_en_hash,context,en_text,en_aria_label,fr_text,fr_aria_label,notes',
-    `${key},${hash},nav,Open,,Ouvrir,,,`,
-    `${key},${hash},nav,Open,,Ouvrir encore,,,`,
+    'key,source_en_hash,source_context_hash,context,en_text,en_aria_label,fr_text,fr_aria_label,notes',
+    `${key},${hash},${ctxHash},${context},Open,,Ouvrir,,,`,
+    `${key},${hash},${ctxHash},${context},Open,,Ouvrir encore,,,`,
   ].join('\n');
   assert.throws(
     () => importer.planCsvImport({ csvFile: 'common.fr.csv', csvText: csv, source }),
@@ -75,8 +86,8 @@ test('LOCALIZATION-SCALE: import rejects duplicate translated locale/key rows', 
 
 test('LOCALIZATION-SCALE: CSV parser preserves quoted multi-line translator fields', () => {
   const parsed = importer.parseCSV(
-    'key,source_en_hash,fr_text,fr_aria_label\n' +
-    'k,aaaaaaaaaaaa,"ligne 1\nligne 2","ouvrir, menu"\n'
+    'key,source_en_hash,source_context_hash,fr_text,fr_aria_label\n' +
+    'k,aaaaaaaaaaaa,bbbbbbbbbbbb,"ligne 1\nligne 2","ouvrir, menu"\n'
   );
   assert.equal(parsed.rows.length, 1);
   assert.equal(parsed.rows[0].fr_text, 'ligne 1\nligne 2');
@@ -94,6 +105,28 @@ test('LOCALIZATION-SCALE: derived nearby structural label can carry explicit spe
     exporter.buildContext({}, 'pages.test.body.div024.div002.p001.text001',
       raw['pages.test.body.div024.div002.p001.text001'], raw),
     /Vex Speaks/
+  );
+});
+
+test('LOCALIZATION-SCALE: import rejects return when translation context changed but EN did not', () => {
+  const key = 'pages.test.qa.01.answer';
+  const raw = {
+    _meta: { description: 'Test Q/A.' },
+    'pages.test.qa.01.question': { strings: { en: { text: 'Old question?' } } },
+    [key]: { strings: { en: { text: 'Same answer.' } } },
+  };
+  const source = { [key]: { value: raw[key], file: '/tmp/test.json', raw } };
+  const enHash = exporter.contentHash(raw[key].strings.en);
+  const oldContext = exporter.buildContext(raw._meta, key, raw[key], raw);
+  const oldContextHash = exporter.contextHash(oldContext);
+  const csv = [
+    'key,source_en_hash,source_context_hash,context,en_text,en_aria_label,fr_text,fr_aria_label,notes',
+    `${key},${enHash},${oldContextHash},${JSON.stringify(oldContext)},Same answer.,,Même réponse.,,`,
+  ].join('\n');
+  raw['pages.test.qa.01.question'].strings.en.text = 'New question?';
+  assert.throws(
+    () => importer.planCsvImport({ csvFile: 'test.fr.csv', csvText: csv, source }),
+    /stale translation context/
   );
 });
 
