@@ -1023,7 +1023,7 @@
     originViewX:0,
     originViewY:0,
     suppressClick:false,
-    suppressTimer:null
+    suppressFrame:null
   };
   var MAP_DRAG_THRESHOLD_PX = 5;
   var BOUNDARY_GESTURE_IDLE_MS = 220, BOUNDARY_GESTURE_RESET_MS = 3000, OUTWARD_WHEEL_RELEASE_MS = 520;
@@ -1390,15 +1390,15 @@
   }
 
   function clearMapDragClickSuppression() {
-    if (mapPointerGesture.suppressTimer) window.clearTimeout(mapPointerGesture.suppressTimer);
-    mapPointerGesture.suppressTimer = null;
+    if (mapPointerGesture.suppressFrame) window.cancelAnimationFrame(mapPointerGesture.suppressFrame);
+    mapPointerGesture.suppressFrame = null;
     mapPointerGesture.suppressClick = false;
   }
 
   function armMapDragClickSuppression() {
     clearMapDragClickSuppression();
     mapPointerGesture.suppressClick = true;
-    mapPointerGesture.suppressTimer = window.setTimeout(clearMapDragClickSuppression, 160);
+    mapPointerGesture.suppressFrame = window.requestAnimationFrame(clearMapDragClickSuppression);
   }
 
   function consumeMapDragClickSuppression() {
