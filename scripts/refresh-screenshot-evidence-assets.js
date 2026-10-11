@@ -26,6 +26,7 @@ const ROOT = path.join(__dirname, '..');
 const DEFAULT_OUTPUT = path.join(ROOT, 'data', 'screenshot-evidence-assets.json');
 const CONTENT_ASSETS_PATH = path.join(ROOT, 'config', 'content-assets.json');
 const PROJECTION_SCHEMA = 'vextreme.screenshot-evidence-assets-projection/v1';
+const ASSET_MANIFEST_SCHEMA = 'vextreme-assets.screenshot-evidence/v1';
 
 function readJson(file) {
   return JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -52,7 +53,6 @@ function buildProjection({ manifest, sourceCommit, contentAssets }) {
 
   const provider = contentAssets.provider || {};
   const expectedRepository = provider.repository;
-  const expectedSchema = provider.manifestSchemaVersion;
   const publicOrigin = contentAssets.baseUrl;
 
   if (manifest.repository !== expectedRepository) {
@@ -61,10 +61,10 @@ function buildProjection({ manifest, sourceCommit, contentAssets }) {
       String(expectedRepository) + ', got ' + String(manifest.repository)
     );
   }
-  if (manifest.schemaVersion !== expectedSchema) {
+  if (manifest.schemaVersion !== ASSET_MANIFEST_SCHEMA) {
     throw new Error(
       'Assets screenshot manifest schema mismatch: expected ' +
-      String(expectedSchema) + ', got ' + String(manifest.schemaVersion)
+      ASSET_MANIFEST_SCHEMA + ', got ' + String(manifest.schemaVersion)
     );
   }
   if (typeof publicOrigin !== 'string' || !/^https:\/\//.test(publicOrigin)) {
@@ -158,6 +158,7 @@ if (require.main === module) {
 
 module.exports = {
   PROJECTION_SCHEMA,
+  ASSET_MANIFEST_SCHEMA,
   buildProjection,
   parseArgs,
   stableJson,
