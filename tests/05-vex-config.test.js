@@ -21,6 +21,9 @@ const {
   Category,
   DEFAULT_CATEGORY,
   Language,
+  TranslationPolicy,
+  translationPolicy,
+  isSourceOnlyTranslation,
   DEFAULT_LANGUAGE,
   Scope,
   CDN_BASE,
@@ -53,6 +56,15 @@ test('CONFIG: Language constants have correct string values', () => {
 test('CONFIG: DEFAULT_LANGUAGE is EN', () => {
   assert.equal(DEFAULT_LANGUAGE, Language.EN);
 });
+test('CONFIG: translation policy defaults to translate and supports explicit source-only opt-out', () => {
+  assert.equal(TranslationPolicy.TRANSLATE, 'translate');
+  assert.equal(TranslationPolicy.SOURCE_ONLY, 'source-only');
+  assert.equal(translationPolicy({}), TranslationPolicy.TRANSLATE);
+  assert.equal(translationPolicy({ translationPolicy: 'source-only' }), TranslationPolicy.SOURCE_ONLY);
+  assert.equal(isSourceOnlyTranslation({ translationPolicy: 'source-only' }), true);
+  assert.equal(isSourceOnlyTranslation({}), false);
+});
+
 
 test('CONFIG: Scope constants have correct string values', () => {
   assert.equal(Scope.COMMON,    'common');
