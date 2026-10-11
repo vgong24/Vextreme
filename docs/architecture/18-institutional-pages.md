@@ -131,11 +131,17 @@ active entry, proves these projections together:
    not appear in rendered route text or attributes. Payment activation must
    change this contract in its own reviewed row; renaming a held state to
    `ACTIVE` cannot bypass it.
-7. Every required locale × declared theme × declared viewport cell exists as
-   `docs/screenshots/{slug}-{locale}-{theme}-{viewport}.png` with a PNG
-   signature, valid chunk boundaries, positive dimensions, IDAT/IEND chunks,
-   and valid chunk CRCs. Structural validity does not replace reviewer
-   inspection of what the image actually shows.
+7. Every required locale × declared theme × declared viewport cell is
+   evidenced either by a structurally valid local
+   `docs/screenshots/{slug}-{locale}-{theme}-{viewport}.png` **or**, when that
+   local cell is absent, by an exact record in the pinned
+   `data/screenshot-evidence-assets.json` projection. Assets fallback records
+   qualify only when they are `captureKind=institutional-localization`, carry
+   the exact locale/theme/viewport coordinate, bind
+   `source.repository=vgong24/Vextreme` and `source.path=pages/{slug}.html`,
+   and preserve an exact source commit plus SHA-256 byte identity. Local valid
+   PNGs remain first priority. Structural/custody validity does not replace
+   reviewer inspection of what the image actually shows.
 8. It does not load `shell.js` or a God Script.
 9. No `dist/vextreme-{slug}.js` artifact exists.
 10. The slug is absent from `data/nodes.json`, every arc in
@@ -162,11 +168,15 @@ list nor another authored copy of the label. A new active surface therefore
 becomes discoverable through the same registry and string authorities that
 admit its page.
 
-`lib/screenshot-evidence.js` owns both the legacy `{slug}-{locale}.png` name
-and the institutional locale/theme/viewport matrix name. Page Health, Terrain,
-and Analysis retain their existing per-locale representative image while also
-preserving every exact matrix filename in their derived data. Page Health also
-consumes the institutional registry directly, so intentional absence from
+`lib/screenshot-evidence.js` owns the local screenshot naming grammar and
+normalizes the pinned Vextreme-Assets screenshot projection into the same
+evidence-record model. Representative readers remain local-first. Institutional
+activation and Page Health accept Assets records as **matrix-grade** only when
+the capture kind and source/coordinate provenance satisfy the stricter rule
+above; ordinary localization screenshots never become activation proof merely
+because they live in Assets. Analysis preserves its current local exact-matrix
+projection until separately migrated. Page Health also consumes the
+institutional registry directly, so intentional absence from
 record placement and God-Script/FAB delivery is classified as an institutional
 invariant rather than reported as generic page debt. The inverse is fail-closed:
 if an institutional page is ever delivered through `shell.js` or a generated
