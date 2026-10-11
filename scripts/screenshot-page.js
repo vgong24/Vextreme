@@ -185,13 +185,28 @@ function sourceCommit() {
   return commit.toLowerCase();
 }
 
+function bindCleanSourceCommitForAssets() {
+  const status = execFileSync('git', ['status', '--porcelain', '--untracked-files=all'], {
+    cwd: ROOT,
+    encoding: 'utf8',
+  }).trim();
+  if (status) {
+    throw new Error(
+      'Assets-bound screenshot evidence requires a clean Vextreme worktree so sourceCommit matches rendered bytes'
+    );
+  }
+  return sourceCommit();
+}
+
+let evidenceSourceCommit = null;
+
 function publishScreenshotEvidence(outPath, locale) {
   if (!options.assetsRoot) return;
   const ingest = path.join(options.assetsRoot, 'scripts', 'ingest-screenshot-evidence.mjs');
   if (!fs.existsSync(ingest)) {
     throw new Error('Vextreme-Assets screenshot ingest contract not found: ' + ingest);
   }
-  const commit = sourceCommit();
+  const commit = evidenceSourceCommit || sourceCommit();
   execFileSync(process.execPath, [
     ingest,
     '--file', outPath,
@@ -211,6 +226,10 @@ function publishScreenshotEvidence(outPath, locale) {
 // ── Main ──────────────────────────────────────────────────────────────────────
 
 (async () => {
+  if (options.assetsRoot) {
+    evidenceSourceCommit = bindCleanSourceCommitForAssets();
+    console.log(`[assets] source commit bound before render: ${evidenceSourceCommit}`);
+  }
   fs.mkdirSync(OUT_DIR, { recursive: true });
 
   const { server, port } = await startServer();
