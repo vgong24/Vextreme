@@ -735,14 +735,16 @@
         "tests/03-browser-nav.test.js",
         "tests/07-viewmodel.test.js",
         "tests/08-build-vextreme.test.js (FAB SYSTEM propagation tests — calls buildViewmodel directly)",
-        "tests/15-departments.test.js"
+        "tests/15-departments.test.js",
+        "tests/95-localization-scale-foundation.test.js"
       ],
       "testedBy": [
         "tests/01-content-pipeline.test.js",
         "tests/03-browser-nav.test.js",
         "tests/07-viewmodel.test.js",
         "tests/15-departments.test.js",
-        "tests/16-auto-discover-nodes.test.js"
+        "tests/16-auto-discover-nodes.test.js",
+        "tests/95-localization-scale-foundation.test.js"
       ],
       "debts": [
         "td-004",
