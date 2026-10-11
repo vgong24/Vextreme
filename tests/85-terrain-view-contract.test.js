@@ -322,30 +322,21 @@ test('TERRAIN-VIEW: Content prefers explicit cover art without claiming screensh
   assert.match(source, /screenshots = node\.screenshots \|\| \{\}/);
 });
 
-test('TERRAIN-VIEW: Content visual windows are bounded, image-backed, order-preserving reader entries', () => {
+test('TERRAIN-VIEW: selected Content collection does not duplicate overview curiosity with a Visual Windows strip', () => {
   const source = pageSource();
 
-  assert.match(source, /function hasEvolutionPreview\(node\)/);
-  assert.match(source, /node\.preview && node\.preview\.kind === 'cover' && node\.preview\.src/);
-  assert.match(source, /Object\.keys\(node\.screenshots \|\| \{\}\)\.length > 0/);
-  assert.match(source, /function evolutionVisualWindowNodes\(members\)/);
-  assert.match(source, /members\.filter\(hasEvolutionPreview\)\.slice\(0, 3\)/,
-    'visual windows must preserve collection order and cap themselves at three without ranking metadata');
+  assert.match(source, /function hasEvolutionPreview\(node\)/,
+    'shared preview capability remains available for overview curiosity');
+  assert.match(source, /class="evo-preview"/,
+    'ordinary member cards retain their own page preview');
+  assert.match(source, /var memberCards = members\.map\(function \(node\) \{/);
 
-  assert.match(source, /class="evo-windows"/);
-  assert.match(source, /class="evo-windows-title">Visual windows<\/span>/);
-  assert.match(source, /kept in collection order\./);
-  assert.match(source, /class="evo-window" type="button" data-evo-reader=/,
-    'visual windows must enter the existing Terrain reader rather than creating a second viewer');
-
-  assert.match(source, /\.evo-windows-track\{ display:grid; grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/);
-  assert.match(source, /\.evo-windows-track\{ display:flex; gap:10px; overflow-x:auto; scroll-snap-type:x proximity;/,
-    'narrow screens should use manual horizontal scrolling rather than autoplay or microscopic tiles');
-
-  const visualBlock = source.match(/var visualWindows = visualWindowNodes\.length[\s\S]*?: '';/);
-  assert.ok(visualBlock, 'visual-window renderer must remain present');
-  assert.doesNotMatch(visualBlock[0], /setInterval|setTimeout|autoplay|top|featured/i,
-    'visual invitation must not silently become ranking or timed carousel behavior');
+  assert.doesNotMatch(source, /function evolutionVisualWindowNodes\(members\)/);
+  assert.doesNotMatch(source, /class="evo-windows"/);
+  assert.doesNotMatch(source, /Visual windows/);
+  assert.doesNotMatch(source, /class="evo-window"/);
+  assert.doesNotMatch(source, /\.evo-windows(?:-|\{)/,
+    'removed Visual Windows styling must not survive as unused presentation baggage');
 });
 
 test('TERRAIN-VIEW: screenshot rendering accepts local repository paths and absolute Assets evidence URLs', () => {
