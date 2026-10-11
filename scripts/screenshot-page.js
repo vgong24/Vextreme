@@ -65,8 +65,10 @@ const fs     = require('fs');
 const path   = require('path');
 const { execFileSync } = require('child_process');
 
-// Resolve Playwright from its global install location
-const PLAYWRIGHT_PATH = '/opt/node22/lib/node_modules/playwright';
+// The institutional screenshot harness already exposes these host bindings.
+// Reuse them here so the general localization writer is not tied to one Linux image.
+const PLAYWRIGHT_PATH = process.env.VEX_PLAYWRIGHT_PATH || '/opt/node22/lib/node_modules/playwright';
+const CHROMIUM_PATH = process.env.VEX_CHROMIUM_PATH || '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
 const { chromium } = require(PLAYWRIGHT_PATH);
 
 const ROOT       = path.join(__dirname, '..');
@@ -202,10 +204,11 @@ function publishScreenshotEvidence(outPath, locale) {
   const { server, port } = await startServer();
   const baseUrl = `http://127.0.0.1:${port}`;
 
-  const browser = await chromium.launch({
-    executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome',
-    args: ['--no-sandbox'],
-  });
+  const launchOptions = { executablePath: CHROMIUM_PATH };
+  // The accepted container browser requires --no-sandbox; native hosts can set
+  // VEX_CHROMIUM_PATH and use their normal Playwright launch posture.
+  if (!process.env.VEX_CHROMIUM_PATH) launchOptions.args = ['--no-sandbox'];
+  const browser = await chromium.launch(launchOptions);
 
   const context = await browser.newContext({
     viewport: VIEWPORT,
