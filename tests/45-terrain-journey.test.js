@@ -402,12 +402,19 @@ test('TERRAIN-JOURNEY: reader history preserves the real return surface instead 
   assert.match(source, /history\.back\(\)/);
   assert.match(source, /restoreEvolutionPresentationFromHistory\(event\.state\)/);
 
-  assert.match(source, /presentationHistoryState\('curiosity-overview', \{[\s\S]*stageKey:stage\.key,[\s\S]*step:contentTilePeekCycleIndex,[\s\S]*manual:contentTilePeekManual/);
+  assert.match(source, /presentationHistoryState\('curiosity-overview', \{[\s\S]*stageKey:stage\.key,[\s\S]*step:contentTilePeekCycleIndex,[\s\S]*manual:contentTilePeekManual,[\s\S]*camera:capturePresentationCamera\(\)/);
+  assert.match(source, /function capturePresentationCamera\(\) \{[\s\S]*x:view\.x,[\s\S]*y:view\.y,[\s\S]*scale:view\.scale/);
+  assert.match(source, /function restorePresentationCamera\(camera\)/);
+  assert.match(source, /world\.classList\.remove\('snapping'\)/,
+    'camera return must cancel the temporary semantic refit animation before applying the preserved view');
+  assert.match(source, /view\.x = camera\.x;[\s\S]*view\.y = camera\.y;[\s\S]*view\.scale = camera\.scale;[\s\S]*applyTransform\(\);[\s\S]*updateReadout\(\)/);
   assert.match(source, /history\.replaceState\(returnState, '', window\.location\.href\)/,
     'direct overview entry rewrites only the current presentation coordinate before pushing the reader');
   assert.match(source, /returnKind:'curiosity-overview'/);
   assert.match(source, /activeReaderReturnKind === 'curiosity-overview' \? '← Overview' : '← Collection'/);
   assert.match(source, /kind === 'curiosity-overview'/);
+  assert.match(source, /kind === 'curiosity-overview'[\s\S]*restorePresentationCamera\(presentation\.camera\)[\s\S]*openContentTilePeek\(overviewStageIdx, \{/,
+    'Back restores the presentation camera before reopening the curiosity shelf');
   assert.match(source, /openContentTilePeek\(overviewStageIdx, \{[\s\S]*step:Number\.isInteger\(presentation\.step\)[\s\S]*manual:presentation\.manual === true/);
   assert.match(source, /returnKind:presentation && presentation\.returnKind \? presentation\.returnKind : 'collection'/,
     'browser Forward restores the reader with its original return contract');
