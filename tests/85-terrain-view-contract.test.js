@@ -63,8 +63,11 @@ test('TERRAIN-VIEW: Content presentation is accepted while the legacy Live geome
     value.profiles['evolution-v1'].levels.node.inputPriority,
     'scrollable-content > armed-boundary-transition > terrain-zoom'
   );
-  assert.equal(value.profiles['evolution-v2'].status, 'reserved-unformed');
-  assert.deepEqual(value.profiles['evolution-v2'].declaredDeltas, []);
+  assert.equal(value.profiles['evolution-v2'].status, 'experimental');
+  assert.equal(value.profiles['evolution-v2'].label, 'Evolution');
+  assert.equal(value.profiles['evolution-v2'].inherits, 'live');
+  assert.ok(value.profiles['evolution-v2'].declaredDeltas.length >= 4);
+  assert.equal(value.profiles['evolution-v2'].levels.group.renderer, 'adaptive-group-cards+curiosity-peek');
 });
 
 test('TERRAIN-VIEW: Live profile preserves the accepted geometry as named component tokens', () => {
@@ -152,27 +155,35 @@ test('TERRAIN-VIEW: dated content has one known timeline-only exception and cano
   assert.deepEqual(canonicalRegisteredArcLess, registeredArcLess, 'registerNode intents without arcKey become canonical without inventing narrative membership');
 });
 
-test('TERRAIN-VIEW: accepted Content is the no-query default and canonical public URL', () => {
+test('TERRAIN-VIEW: accepted Content remains the no-query default while Evolution v2 is an explicit presentation experiment', () => {
   const source = pageSource();
 
-  assert.doesNotMatch(source, /id="contentProfile"/);
+  assert.match(source, /id="contentProfileWrap"/);
+  assert.match(source, /id="contentProfile"/);
+  assert.match(source, /<option value="evolution-v1">Content<\/option>/);
+  assert.match(source, /<option value="evolution-v2">Evolution<\/option>/);
   assert.doesNotMatch(source, />Evolution A</);
   assert.match(source, /id="evolutionLayer"/);
   assert.match(source, /function readInitialRoute\(\)/);
   assert.match(source, /var view = params\.get\('view'\)/);
   assert.match(source, /world: view === 'code' \? 'code' : 'content'/);
-  assert.match(source, /profile: profile === 'live' \? 'live' : 'evolution-v1'/);
+  assert.match(source, /profile: profile === 'live' \? 'live' : \(profile === 'evolution-v2' \? 'evolution-v2' : 'evolution-v1'\)/);
   assert.match(source, /params\.get\('group'\)/);
   assert.match(source, /params\.get\('page'\)/);
   assert.match(source, /currentWorld === 'content' && currentProfile === 'evolution-v1'/);
   assert.match(source, /url\.searchParams\.delete\('view'\)/);
   assert.match(source, /url\.searchParams\.delete\('profile'\)/);
   assert.match(source, /if \(currentWorld === 'content'\) url\.searchParams\.set\('profile', currentProfile\)/);
-  assert.match(source, /url\.searchParams\.set\('group', String\(stage\.key\)\)/);
-  assert.match(source, /url\.searchParams\.set\('page', String\(readerNode\.slug \|\| readerNode\.id\)\)/);
   assert.match(source, /function setPresentationProfile\(profile, writeUrl\)/);
-  assert.match(source, /var nextProfile = profile === 'live' \? 'live' : 'evolution-v1'/);
+  assert.match(source, /var nextProfile = profile === 'live' \? 'live' : \(profile === 'evolution-v2' \? 'evolution-v2' : 'evolution-v1'\)/);
+  assert.match(source, /contentProfile\.addEventListener\('change', function \(\) \{/);
+  assert.match(source, /setPresentationProfile\(contentProfile\.value, true\)/);
+  assert.match(source, /contentProfile\.value = currentProfile === 'evolution-v2' \? 'evolution-v2' : 'evolution-v1'/);
+  assert.match(source, /currentProfile === 'evolution-v2'[\s\S]*levelIndex !== 1[\s\S]*levelCtx\.stageIdx/);
+  assert.match(source, /enterLevel\(1, \{\}\)/);
   assert.match(source, /if \(nextWorld === 'content'\) currentProfile = 'evolution-v1'/);
+
+  // Accepted Content remains its current renderer and reader behavior.
   assert.match(source, /function renderEvolutionAGroup\(\)/);
   assert.match(source, /stageMembers\(stage\)/);
   assert.match(source, /node\.screenshots \|\| \{\}/);
@@ -180,20 +191,7 @@ test('TERRAIN-VIEW: accepted Content is the no-query default and canonical publi
   assert.match(source, /data-evo-detail/);
   assert.match(source, /data-evo-reader/);
   assert.match(source, /id="evolutionReader"/);
-  assert.match(source, /id="evolutionReaderFrame"/);
-  assert.match(source, /id="readerBack"/);
-  assert.match(source, /id="readerPrev"/);
-  assert.match(source, /id="readerNext"/);
   assert.match(source, /function openEvolutionReader\(nodeId, options\)/);
-  assert.match(source, /function closeEvolutionReader\(options\)/);
-  assert.match(source, /function boundaryGestureReady\(key, direction\)/);
-  assert.match(source, /function handleEvolutionShelfWheel\(ev\)/);
-  assert.match(source, /function handleEvolutionReaderWheel\(ev\)/);
-  assert.match(source, /BOUNDARY_GESTURE_IDLE_MS = 220/);
-  assert.match(source, /scrollPathCanMove\(ev\.target, doc, direction\)/);
-  assert.match(source, /evolutionLayer\.addEventListener\('wheel', handleEvolutionShelfWheel/);
-  assert.match(source, /evolutionReaderFrame\.addEventListener\('load', wireEvolutionReaderDocument\)/);
-  assert.match(source, /if \(isEvolutionAGroup\(\) \|\| activeReaderId \|\| activeEntrySlug\) return;/);
 
   const profileFunction = source.match(/function setPresentationProfile\(profile, writeUrl\) \{([\s\S]*?)\n  \}/);
   assert.ok(profileFunction, 'presentation-profile function should be present');
@@ -476,6 +474,30 @@ test('TERRAIN-VIEW: Content groups no longer imply a linear sequence with Stage 
   const source = pageSource();
   assert.match(source, /if \(layout\.focusedIdx < 0 && currentWorld === 'code'\) \{/);
   assert.match(source, /class:'stage-arrow pop-in'/);
+});
+
+test('TERRAIN-VIEW: bounded Content curiosity peek expands the existing overview without creating a new semantic level', () => {
+  const source = pageSource();
+  assert.match(source, /CONTENT_TILE_PEEK_STAGE_KEYS = \{ liberation:true, records:true \}/);
+  assert.match(source, /CONTENT_TILE_PEEK_DELAY_MS = 200/);
+  assert.match(source, /CONTENT_TILE_PEEK_SHELF_HEIGHT = 176/);
+  assert.match(source, /function openContentTilePeek\(stageIndex\)/);
+  assert.match(source, /currentWorld !== 'content' \|\| currentProfile !== 'evolution-v2' \|\| levelIndex !== 1/);
+  assert.match(source, /var curiosityPrototype = currentWorld === 'content'[\s\S]*currentProfile === 'evolution-v2'/);
+  assert.match(source, /if \(levelCtx && typeof levelCtx\.stageIdx === 'number'\) return/);
+  assert.match(source, /stageMembers\(stage\)/);
+  assert.match(source, /members\.map\(contentTilePeekItemHtml\)\.join\(''\)/);
+  assert.match(source, /item\.rect\.y <= activeItem\.rect\.y/);
+  assert.match(source, /candidate\.style\.transform = 'translateY\(' \+ shift \+ 'px\)'/);
+  assert.match(source, /stage-curiosity-track/);
+  assert.match(source, /translate3d\(-' \+ \(contentTilePeekCycleIndex \* \(width \+ 10\)\)/);
+  assert.match(source, /g\.addEventListener\('mouseenter', function \(\) \{ scheduleContentTilePeekOpen\(i\); \}\)/);
+  assert.match(source, /g\.addEventListener\('focusin', function \(\) \{ scheduleContentTilePeekOpen\(i\); \}\)/);
+  assert.match(source, /g\.addEventListener\('click',function\(ev\)\{ ev\.stopPropagation\(\); activateStage\(i\); \}\)/);
+  assert.match(source, /g\.addEventListener\('keydown',function\(ev\)\{ if\(ev\.key==='Enter'\|\|ev\.key===' '\)\{/);
+  assert.match(source, /closeContentTilePeek\(true\);[\s\S]*?currentProfile === 'evolution-v1'/);
+  assert.doesNotMatch(source, /curiosity-peek[^\n]*semanticLevel/i);
+  assert.doesNotMatch(source, /currentProfile === 'evolution-v1'[\s\S]{0,120}contentTilePeekEnabledFor/);
 });
 
 test('TERRAIN-VIEW: every shipped inline JavaScript block still parses after contract extraction', () => {

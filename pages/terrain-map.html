@@ -405,6 +405,42 @@
   .stage-card[data-context="true"] .stage-label{ font-size:17px; }
   .stage-density-track{ fill:var(--line); }
   .stage-density-fill{ fill:var(--accent); opacity:.72; }
+  .stage-curiosity-thumb{ pointer-events:none; opacity:.86; }
+  .stage-curiosity-thumb-frame{ fill:none; stroke:var(--line-strong); stroke-width:1; pointer-events:none; }
+  .stage-curiosity-shelf{ pointer-events:auto; }
+  .stage-curiosity-foreign{ overflow:visible; }
+  .stage-curiosity-shell{
+    height:100%; box-sizing:border-box; padding:10px 12px 12px; border:1px solid var(--line-strong);
+    border-radius:14px; background:color-mix(in srgb,var(--panel) 96%,var(--ground));
+    box-shadow:0 12px 30px color-mix(in srgb,var(--ink) 10%,transparent); color:var(--ink);
+    font-family:var(--sans); overflow:hidden;
+  }
+  .stage-curiosity-head{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin-bottom:8px; }
+  .stage-curiosity-title{ color:var(--ink); font:700 10px/1.2 var(--mono); letter-spacing:.11em; text-transform:uppercase; }
+  .stage-curiosity-note{ min-width:0; color:var(--ink-faint); font:9px/1.3 var(--mono); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .stage-curiosity-viewport{ overflow:hidden; }
+  .stage-curiosity-track{
+    display:flex; gap:10px; transform:translate3d(0,0,0);
+    transition:transform .42s cubic-bezier(.2,.72,.25,1);
+  }
+  .stage-curiosity-item{
+    position:relative; flex:0 0 calc((100% - 20px)/3); height:124px; overflow:hidden;
+    border:1px solid var(--line); border-radius:10px; background:var(--panel-2); color:#fff;
+  }
+  .stage-curiosity-item img{ width:100%; height:100%; display:block; object-fit:cover; object-position:top; }
+  .stage-curiosity-item img.cover{ object-position:center; }
+  .stage-curiosity-shade{ position:absolute; inset:40% 0 0; background:linear-gradient(180deg,transparent,rgba(0,0,0,.78)); }
+  .stage-curiosity-item-title{
+    position:absolute; z-index:1; left:10px; right:10px; bottom:8px; overflow:hidden; text-overflow:ellipsis;
+    white-space:nowrap; color:#fff; text-shadow:0 1px 3px rgba(0,0,0,.7); font:650 12px/1.2 var(--sans);
+  }
+  .stage-curiosity-fallback{ height:100%; display:grid; place-items:center; padding:14px; box-sizing:border-box; text-align:center; }
+  .stage-curiosity-fallback span{ color:var(--ink-muted); font:600 11px/1.35 var(--sans); }
+  .stage-card{ transition:transform .24s cubic-bezier(.2,.72,.25,1); }
+
+  @media (prefers-reduced-motion:reduce){
+    .stage-card, .stage-curiosity-track{ transition:none !important; }
+  }
 
   .edge{ stroke:var(--line-strong); stroke-width:1; opacity:.55; }
   .edge.cross{ stroke:var(--accent); opacity:.35; }
@@ -521,6 +557,12 @@
       <div class="sub" id="subline">Loading…</div>
     </div>
     <button class="terrain-inspect-toggle" id="terrainInspectToggle" type="button" aria-expanded="false">Inspect</button>
+    <label class="content-profile-wrap" id="contentProfileWrap" hidden>
+      <select class="content-profile" id="contentProfile" aria-label="Content presentation">
+        <option value="evolution-v1">Content</option>
+        <option value="evolution-v2">Evolution</option>
+      </select>
+    </label>
     <div class="lens">
       <span class="lens-label">View</span>
       <div class="lens-toggle" role="group" aria-label="Code or content" id="worldBar">
@@ -750,10 +792,21 @@
       }
     },
     "evolution-v2": {
-      "status": "reserved-unformed",
-      "label": "Evolution v2",
+      "status": "experimental",
+      "label": "Evolution",
       "inherits": "live",
-      "declaredDeltas": []
+      "declaredDeltas": [
+        "The accepted Content collection overview remains the canvas; curiosity is disclosed on the existing group tile instead of navigating to a second preview renderer.",
+        "A bounded prototype subset shows one representative visual at rest and opens a row-local ordered member preview after intentional hover or keyboard focus.",
+        "Opening a curiosity shelf shifts lower overview rows down instead of covering them, while click and keyboard activation retain the existing collection navigation semantics.",
+        "Preview motion is presentation-only, respects reduced motion, and does not create a Journey step or canonical content relationship."
+      ],
+      "levels": {
+        "group": {
+          "component": "terrain.group-card",
+          "renderer": "adaptive-group-cards+curiosity-peek"
+        }
+      }
     }
   }
 }
@@ -876,6 +929,7 @@
   var TERRAIN_VIEW_CONTRACT = JSON.parse(document.getElementById('terrain-view-contract').textContent);
   var LIVE_VIEW = TERRAIN_VIEW_CONTRACT.profiles.live;
   var EVOLUTION_A_VIEW = TERRAIN_VIEW_CONTRACT.profiles['evolution-v1'];
+  var EVOLUTION_B_VIEW = TERRAIN_VIEW_CONTRACT.profiles['evolution-v2'];
   var CONTENT_GROUP_RELATION = TERRAIN_VIEW_CONTRACT.relationships.contentGroup;
   var TERRAIN_ENTRY_CONTRACT = JSON.parse(document.getElementById('terrain-entry-contract').textContent);
 
@@ -890,6 +944,8 @@
 
   var appRoot = document.querySelector('.app');
   var terrainInspectToggle = document.getElementById('terrainInspectToggle');
+  var contentProfileWrap = document.getElementById('contentProfileWrap');
+  var contentProfile = document.getElementById('contentProfile');
   var svg = document.getElementById('svg');
   var world = document.getElementById('world');
   var mapWrap = document.getElementById('mapWrap');
@@ -1017,7 +1073,7 @@
     var profile = params.get('profile');
     return {
       world: view === 'code' ? 'code' : 'content',
-      profile: profile === 'live' ? 'live' : 'evolution-v1',
+      profile: profile === 'live' ? 'live' : (profile === 'evolution-v2' ? 'evolution-v2' : 'evolution-v1'),
       group: params.get('group') || null,
       page: params.get('page') || null,
       explicit: params.has('view') || params.has('profile') || params.has('group') || params.has('page')
@@ -1025,8 +1081,8 @@
   }
 
   function syncTerrainChrome() {
-    var quiet = currentWorld === 'content' && currentProfile === 'evolution-v1';
-    var reading = quiet && evolutionReader && !evolutionReader.hidden;
+    var quiet = currentWorld === 'content' && (currentProfile === 'evolution-v1' || currentProfile === 'evolution-v2');
+    var reading = currentWorld === 'content' && currentProfile === 'evolution-v1' && evolutionReader && !evolutionReader.hidden;
     appRoot.classList.toggle('terrain-content-quiet', quiet);
     appRoot.classList.toggle('terrain-reader-quiet', reading);
     terrainInspectToggle.hidden = !quiet || reading;
@@ -1039,6 +1095,10 @@
 
   function syncProfileControl() {
     syncTerrainChrome();
+    if (!contentProfileWrap || !contentProfile) return;
+    var visible = currentWorld === 'content' && !(activeReaderId || activeEntrySlug || activeGroupHomeKey);
+    contentProfileWrap.hidden = !visible;
+    if (visible) contentProfile.value = currentProfile === 'evolution-v2' ? 'evolution-v2' : 'evolution-v1';
   }
 
   function presentationHistoryState(kind) {
@@ -1084,7 +1144,7 @@
   }
 
   function setPresentationProfile(profile, writeUrl) {
-    var nextProfile = profile === 'live' ? 'live' : 'evolution-v1';
+    var nextProfile = profile === 'live' ? 'live' : (profile === 'evolution-v2' ? 'evolution-v2' : 'evolution-v1');
     var priorPinned = pinnedId;
     currentProfile = nextProfile;
     mapWrap.setAttribute('data-terrain-profile', currentProfile);
@@ -1094,7 +1154,11 @@
       hideEvolutionLayer();
     }
 
-    if (DATA && currentWorld === 'content' && currentProfile === 'evolution-v1' && levelIndex === 2) {
+    if (DATA && currentWorld === 'content' && currentProfile === 'evolution-v2'
+      && (levelIndex !== 1 || (levelCtx && typeof levelCtx.stageIdx === 'number'))) {
+      pinnedId = null; focusId = null; renderPanel(null);
+      enterLevel(1, {});
+    } else if (DATA && currentWorld === 'content' && currentProfile === 'evolution-v1' && levelIndex === 2) {
       var stageIdx = levelCtx.stageIdx;
       pinnedId = null; focusId = null; renderPanel(null);
       enterLevel(1, { stageIdx:stageIdx });
@@ -1599,6 +1663,168 @@
     return '<div class="evo-fallback"><div><span class="evo-fallback-mark">Vextreme · preview pending</span><span class="evo-fallback-title">' + esc(node.title || node.slug) + '</span></div></div>';
   }
 
+  function evolutionPreviewSource(node) {
+    if (node.preview && node.preview.kind === 'cover' && node.preview.src) {
+      return { src:node.preview.src, cover:true };
+    }
+    var screenshots = node.screenshots || {};
+    var languages = Object.keys(screenshots);
+    if (!languages.length) return null;
+    var lang = languages.indexOf('en') !== -1 ? 'en' : languages[0];
+    return { src:screenshotUrl(screenshots[lang]), cover:false };
+  }
+
+  var CONTENT_TILE_PEEK_STAGE_KEYS = { liberation:true, records:true };
+  var CONTENT_TILE_PEEK_DELAY_MS = 200;
+  var CONTENT_TILE_PEEK_CLOSE_MS = 180;
+  var CONTENT_TILE_PEEK_STEP_MS = 1500;
+  var CONTENT_TILE_PEEK_SHELF_HEIGHT = 176;
+  var CONTENT_TILE_PEEK_SHELF_GAP = 16;
+  var contentTilePeekStageIndex = null;
+  var contentTilePeekShelf = null;
+  var contentTilePeekOpenTimer = null;
+  var contentTilePeekCloseTimer = null;
+  var contentTilePeekCycleTimer = null;
+  var contentTilePeekCycleIndex = 0;
+
+  function contentTilePeekHoverCapable() {
+    return !window.matchMedia || window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  }
+
+  function contentTilePeekEnabledFor(stage) {
+    return !!(stage && CONTENT_TILE_PEEK_STAGE_KEYS[stage.key]);
+  }
+
+  function cancelContentTilePeekOpen() {
+    if (contentTilePeekOpenTimer) clearTimeout(contentTilePeekOpenTimer);
+    contentTilePeekOpenTimer = null;
+  }
+
+  function cancelContentTilePeekClose() {
+    if (contentTilePeekCloseTimer) clearTimeout(contentTilePeekCloseTimer);
+    contentTilePeekCloseTimer = null;
+  }
+
+  function stopContentTilePeekCycle() {
+    if (contentTilePeekCycleTimer) clearInterval(contentTilePeekCycleTimer);
+    contentTilePeekCycleTimer = null;
+    contentTilePeekCycleIndex = 0;
+  }
+
+  function closeContentTilePeek(immediate) {
+    cancelContentTilePeekOpen();
+    cancelContentTilePeekClose();
+    stopContentTilePeekCycle();
+    world.querySelectorAll('.stage-card').forEach(function (candidate) {
+      candidate.style.transform = '';
+    });
+    if (contentTilePeekShelf && contentTilePeekShelf.parentNode) contentTilePeekShelf.parentNode.removeChild(contentTilePeekShelf);
+    contentTilePeekShelf = null;
+    contentTilePeekStageIndex = null;
+  }
+
+  function scheduleContentTilePeekClose() {
+    cancelContentTilePeekOpen();
+    cancelContentTilePeekClose();
+    contentTilePeekCloseTimer = setTimeout(function () { closeContentTilePeek(false); }, CONTENT_TILE_PEEK_CLOSE_MS);
+  }
+
+  function contentTilePeekItemHtml(node) {
+    var visual = evolutionPreviewSource(node);
+    var title = esc(node.title || node.slug || node.id);
+    if (!visual) {
+      return '<div class="stage-curiosity-item"><div class="stage-curiosity-fallback"><span>' + title + '<br>preview pending</span></div></div>';
+    }
+    return '<div class="stage-curiosity-item">'
+      + '<img' + (visual.cover ? ' class="cover"' : '') + ' src="' + escAttr(visual.src) + '" alt="" loading="lazy">'
+      + '<span class="stage-curiosity-shade" aria-hidden="true"></span>'
+      + '<span class="stage-curiosity-item-title">' + title + '</span>'
+      + '</div>';
+  }
+
+  function startContentTilePeekCycle(shell, memberCount) {
+    stopContentTilePeekCycle();
+    if (memberCount <= 3) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var track = shell.querySelector('.stage-curiosity-track');
+    var first = shell.querySelector('.stage-curiosity-item');
+    if (!track || !first) return;
+    var maxStep = Math.max(0, memberCount - 3);
+    contentTilePeekCycleTimer = setInterval(function () {
+      if (!contentTilePeekShelf || !contentTilePeekShelf.parentNode) {
+        stopContentTilePeekCycle();
+        return;
+      }
+      contentTilePeekCycleIndex = contentTilePeekCycleIndex >= maxStep ? 0 : contentTilePeekCycleIndex + 1;
+      var width = first.offsetWidth;
+      track.style.transform = 'translate3d(-' + (contentTilePeekCycleIndex * (width + 10)) + 'px,0,0)';
+    }, CONTENT_TILE_PEEK_STEP_MS);
+  }
+
+  function openContentTilePeek(stageIndex) {
+    if (currentWorld !== 'content' || currentProfile !== 'evolution-v2' || levelIndex !== 1) return;
+    if (levelCtx && typeof levelCtx.stageIdx === 'number') return;
+    var stage = STAGES[stageIndex];
+    if (!contentTilePeekEnabledFor(stage) || !contentTilePeekHoverCapable()) return;
+
+    var layout = stageCompositionLayout(levelCtx || {});
+    var activeItem = layout.items.find(function (item) { return item.index === stageIndex; });
+    if (!activeItem || activeItem.kind !== 'overview') return;
+
+    closeContentTilePeek(true);
+    contentTilePeekStageIndex = stageIndex;
+
+    var shift = CONTENT_TILE_PEEK_SHELF_HEIGHT + CONTENT_TILE_PEEK_SHELF_GAP;
+    layout.items.forEach(function (item) {
+      if (item.rect.y <= activeItem.rect.y) return;
+      var candidate = world.querySelector('.stage-card[data-stage-index="' + item.index + '"]');
+      if (candidate) candidate.style.transform = 'translateY(' + shift + 'px)';
+    });
+
+    var overview = LIVE_VIEW.levels.group.overview;
+    var cols = Math.min(overview.maxColumns, Math.max(1, STAGES.length));
+    var gridWidth = cols * overview.cardWidth + (cols - 1) * overview.gap;
+    var shelfY = activeItem.rect.y + activeItem.rect.height + CONTENT_TILE_PEEK_SHELF_GAP;
+    var members = stageMembers(stage);
+
+    var shelf = el('g', {
+      class:'stage-curiosity-shelf pop-in',
+      'data-curiosity-stage-key':stage.key,
+      'aria-label':'Preview ' + stage.name
+    });
+    var foreign = el('foreignObject', {
+      x:0,
+      y:shelfY,
+      width:gridWidth,
+      height:CONTENT_TILE_PEEK_SHELF_HEIGHT,
+      class:'stage-curiosity-foreign'
+    });
+    foreign.innerHTML = '<div xmlns="http://www.w3.org/1999/xhtml" class="stage-curiosity-shell">'
+      + '<div class="stage-curiosity-head"><span class="stage-curiosity-title">' + esc(stage.name) + ' · preview</span>'
+      + '<span class="stage-curiosity-note">' + members.length + ' members · collection order · hover to keep open · click tile to enter</span></div>'
+      + '<div class="stage-curiosity-viewport"><div class="stage-curiosity-track">'
+      + members.map(contentTilePeekItemHtml).join('')
+      + '</div></div></div>';
+    shelf.appendChild(foreign);
+    shelf.addEventListener('mouseenter', cancelContentTilePeekClose);
+    shelf.addEventListener('mouseleave', scheduleContentTilePeekClose);
+    world.appendChild(shelf);
+    contentTilePeekShelf = shelf;
+
+    var shell = foreign.querySelector('.stage-curiosity-shell');
+    if (shell) startContentTilePeekCycle(shell, members.length);
+  }
+
+  function scheduleContentTilePeekOpen(stageIndex) {
+    cancelContentTilePeekOpen();
+    cancelContentTilePeekClose();
+    if (contentTilePeekStageIndex === stageIndex && contentTilePeekShelf) return;
+    contentTilePeekOpenTimer = setTimeout(function () {
+      contentTilePeekOpenTimer = null;
+      openContentTilePeek(stageIndex);
+    }, CONTENT_TILE_PEEK_DELAY_MS);
+  }
+
   function renderEvolutionAGroup() {
     hideStageOrientation();
     clearWorld();
@@ -2074,7 +2300,7 @@
   }
 
   function renderStageOrientation(layout) {
-    if (!stageOrientation || currentWorld !== 'content' || currentProfile === 'evolution-v1' || layout.focusedIdx >= 0) {
+    if (!stageOrientation || currentWorld !== 'content' || currentProfile !== 'live' || layout.focusedIdx >= 0) {
       hideStageOrientation();
       return;
     }
@@ -2142,6 +2368,7 @@
 
   function activateStage(index) {
     if (levelIndex !== 1 || !STAGES[index]) return;
+    closeContentTilePeek(true);
     if (currentWorld === 'content' && currentProfile === 'evolution-v1') {
       if (levelCtx.stageIdx !== index) {
         enterLevel(1, { stageIdx:index });
@@ -2172,8 +2399,13 @@
     clearWorld();
     var layout = stageCompositionLayout(levelCtx || {});
     renderStageOrientation(layout);
+    var curiosityPrototype = currentWorld === 'content'
+      && currentProfile === 'evolution-v2'
+      && layout.focusedIdx < 0
+      && contentTilePeekHoverCapable();
     layout.items.sort(function (a,b) { return a.index - b.index; }).forEach(function (item) {
       var stage=item.stage, i=item.index, r=item.rect, summary=stageSummary(stage);
+      var curiosityEnabled = curiosityPrototype && contentTilePeekEnabledFor(stage);
       var unit = currentWorld === 'content' ? 'member' : (stage.key === SCREENS_KEY ? 'evidence surface' : 'file');
       var focused = item.kind === 'focus', context = item.kind === 'context';
       var countText = summary.membershipCount + ' ' + unit + (summary.membershipCount === 1 ? '' : 's');
@@ -2203,6 +2435,31 @@
         'aria-label':aria
       });
       var halo=el('rect',{x:r.x,y:r.y,width:r.width,height:r.height,rx:focused?22:14,class:'stage-halo'}); g.appendChild(halo);
+      if (curiosityEnabled) {
+        var representative = stageMembers(stage).filter(hasEvolutionPreview)[0] || null;
+        var representativeVisual = representative ? evolutionPreviewSource(representative) : null;
+        if (representativeVisual) {
+          g.appendChild(el('image',{
+            x:r.x+r.width-73,
+            y:r.y+r.height-54,
+            width:58,
+            height:34,
+            href:representativeVisual.src,
+            preserveAspectRatio:'xMidYMid slice',
+            class:'stage-curiosity-thumb',
+            'aria-hidden':'true'
+          }));
+          g.appendChild(el('rect',{
+            x:r.x+r.width-73,
+            y:r.y+r.height-54,
+            width:58,
+            height:34,
+            rx:6,
+            class:'stage-curiosity-thumb-frame',
+            'aria-hidden':'true'
+          }));
+        }
+      }
       if (currentWorld === 'content' && !context) {
         var kind=el('text',{x:r.x+14,y:r.y+(focused?35:24),class:'stage-kind'}); kind.textContent=kindText; g.appendChild(kind);
       }
@@ -2267,6 +2524,12 @@
       }
       g.addEventListener('click',function(ev){ ev.stopPropagation(); activateStage(i); });
       g.addEventListener('keydown',function(ev){ if(ev.key==='Enter'||ev.key===' '){ ev.preventDefault(); ev.stopPropagation(); activateStage(i); } });
+      if (curiosityEnabled) {
+        g.addEventListener('mouseenter', function () { scheduleContentTilePeekOpen(i); });
+        g.addEventListener('mouseleave', scheduleContentTilePeekClose);
+        g.addEventListener('focusin', function () { scheduleContentTilePeekOpen(i); });
+        g.addEventListener('focusout', function () { scheduleContentTilePeekClose(); });
+      }
       world.appendChild(g);
     });
     if (layout.focusedIdx < 0 && currentWorld === 'code') {
@@ -2278,7 +2541,12 @@
     }
   }
 
-  function clearWorld() { while (world.firstChild) world.removeChild(world.firstChild); renderedNodes = {}; renderedEdges = {}; }
+  function clearWorld() {
+    closeContentTilePeek(true);
+    while (world.firstChild) world.removeChild(world.firstChild);
+    renderedNodes = {};
+    renderedEdges = {};
+  }
 
   function inLens(n) {
     if (n.kind === 'screen') return true; // lenses are a code-role concept; screens stay visible to everyone
@@ -2916,6 +3184,9 @@
   }
 
   function wireControls() {
+    contentProfile.addEventListener('change', function () {
+      setPresentationProfile(contentProfile.value, true);
+    });
     terrainInspectToggle.addEventListener('click', function () {
       var open = appRoot.classList.toggle('terrain-inspect-open');
       terrainInspectToggle.setAttribute('aria-expanded', String(open));
