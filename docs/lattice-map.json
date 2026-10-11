@@ -739,30 +739,36 @@
       "changeMap": {}
     },
     "widgets/fab-lang.js": {
-      "role": "browser language switcher FAB — fetches JA/ZH scope or arc bundles, applies [data-i18n] swaps",
-      "context": "The runtime i18n engine. On language switch, constructs scope bundle URLs using the same scopeRelPath rule as strings-compile.js (build time) — these MUST stay in sync. Session 025 correction: fetched strings are held only in the in-memory _langStrings variable, not cached in localStorage — only the selected language preference (LS_LANG) persists there; a fresh fetch happens on every switch. Reads VEX_STRING_SCOPES, VEX_STRING_CATEGORY from window (set by God Script). Session 025 also added an arc-chunked bundle path (od-001/td-006 pilot): if window.VEX_STRING_ARC_BUNDLE is set, fetches the one merged arc bundle instead of the per-scope fan-out below. Session 025 (continued) — real bug found: lib/build-vextreme.js has baked window.VEX_SUPPORTED_LANGS into every God Script since it was introduced (verified: dossier's God Script correctly emits [\"en\",\"ja\",\"zh\"]), but loadSupportedLangs() here never read it — it went straight to a localStorage blob written by a DIFFERENT widget (vextreme-index-v2.js's LS_DATA cache) or a live index.json fetch, neither of which is guaranteed to reflect what THIS page's God Script actually has (a browser that cached LS_DATA before a language was added never sees the addition until that shared key happens to be overwritten). This is the same shape as PR #76's ARC_ORDER gap — real data existing while a separate consumption path silently doesn't know about it. loadSupportedLangs() now checks window.VEX_SUPPORTED_LANGS first, matching the existing VEX_STRINGS_EN fast-path pattern. Session 025 (continued again) — Victor asked to make the effective language shareable via URL: forwarding a link with ?lang=zh shouldn't require the recipient to already have zh saved locally or to find the language wheel themselves. computeLangSearch() is the pure query-string logic (English is represented by the param's ABSENCE, every other language explicit); getUrlLang()/syncUrlLang() are the location/history side effects around it. ?lang= wins over localStorage on load, and mount() always calls syncUrlLang() once resolved (from URL, localStorage, or default) so the address bar reflects the actual on-screen language even when no manual switch happened this visit.",
+      "role": "browser selected-language authority + switcher FAB — resolves effective locale, fetches scoped/arc bundles, applies [data-i18n] swaps, and synchronizes same-origin browsing contexts",
+      "context": "The runtime i18n engine and selected-language owner for both God-Script and shell-era pages. URL ?lang= remains the explicit initial override when supported; localStorage key vex-lang is the persisted same-origin preference; the storage event synchronizes parent/iframe/sibling browsing contexts; and vextreme:languagechange is the same-document notification consumed by surfaces such as Terrain. Each applied locale also updates <html lang>. Partial locales restore immutable EN/source text for missing keys instead of leaving text from the previously selected non-EN locale, and an apply generation guard prevents a slower stale locale request from reclaiming DOM/storage/event authority. Bundle lookup still follows the existing VEX_STRING_ARC_BUNDLE pilot first, then per-scope/flat fallback; fetched translation payloads remain in-memory only.",
       "reads": [
         "window.VEX_STRING_SCOPES",
         "window.VEX_STRING_CATEGORY",
         "window.VEX_SUPPORTED_LANGS",
         "window.VEX_STRING_ARC_BUNDLE (arc-chunked bundling pilot, checked before the scope path)",
+        "window.VEX_STRINGS_EN (God Script EN/source fallback)",
         "data/strings/compiled/scopes/{category}/{scope}.{lang}.json via CDN",
         "data/strings/compiled/arcs/{arc}.{lang}.json via CDN (when VEX_STRING_ARC_BUNDLE is set)",
-        "localStorage (LS_LANG — the selected language preference only, not fetched string content)",
-        "DOM: #vex-spiral-group (widgets/vex-fab.js — Session 025 FAB unification, nests its orb there if present)",
-        "location.search (?lang= param — explicit override for the effective language, wins over localStorage)"
+        "localStorage (vex-lang selected-language preference; vex-index-v2-data language-list fallback)",
+        "window storage event (same-origin selected-language changes from another browsing context)",
+        "DOM: [data-i18n] authored source text and #vex-spiral-group",
+        "location.search (?lang= explicit initial override)"
       ],
       "writes": [
-        "innerHTML / textContent of [data-i18n] elements",
-        "localStorage (LS_LANG — selected language preference)",
-        "location/history (history.replaceState — reflects the effective language into ?lang= so the current URL is always forwardable)"
+        "textContent of [data-i18n] elements",
+        "document.documentElement lang attribute",
+        "localStorage (vex-lang selected-language preference)",
+        "location/history (history.replaceState reflects effective language into ?lang=)",
+        "window event vextreme:languagechange (same-document selected-language notification)"
       ],
       "loadedBy": [
         "lib/build-vextreme.js (inlined as lang feature in God Scripts)",
-        "legacy pages via direct CDN script tag (pre-God-Script pattern)"
+        "lib/vextreme.js shell-era FAB auto-loader"
       ],
       "testedBy": [
-        "tests/08-build-vextreme.test.js (structural guard: loadSupportedLangs() must read window.VEX_SUPPORTED_LANGS)"
+        "tests/08-build-vextreme.test.js (supported-language source + selected-language authority/synchronization/fallback guards)",
+        "tests/41-vextreme-fab-autoload.test.js (shell-era loading/cache coherence)",
+        "tests/85-terrain-view-contract.test.js (Terrain consumes the shared language contract)"
       ],
       "changeMap": {
         "arc-chunked bundling pilot (VEX_STRING_ARC_BUNDLE, od-001/td-006)": [
@@ -783,6 +789,16 @@
         ],
         "URL ?lang= param name": [
           "any future feature that reads/writes page query params — must not collide with 'lang'; grep pages/*.html for location.search/URLSearchParams usage before introducing a new param name"
+        ],
+        "selected-language authority (vex-lang / vextreme:languagechange / storage sync)": [
+          "pages/terrain-map.html (embedded reader + locale screenshot consumption)",
+          "docs/architecture/06-i18n.md (runtime authority contract and screenshot ordering)",
+          "tests/08-build-vextreme.test.js (FAB synchronization/fallback/race guards)",
+          "tests/85-terrain-view-contract.test.js (Terrain effective-language consumption)"
+        ],
+        "partial-locale EN/source fallback or apply ordering": [
+          "tests/08-build-vextreme.test.js (fallback + stale-request guard)",
+          "localized browser acceptance before screenshot evidence is trusted"
         ]
       }
     },
@@ -1514,10 +1530,13 @@
     },
     "pages/terrain-map.html": {
       "role": "the terrain map's read side — a navigable health/dependency atlas, live-fetches data/terrain-map.json",
-      "context": "Hand-authored Terrain read side over generated data/terrain-map.json. The accepted interaction grammar now separates Terrain-owned semantic transitions from same-origin document reading: Evolution A system level renders an ordered Vex Life arrival, Receive God opens a repository-hosted entry document inside the existing reader, Take a Walk remains downstream inside that document sequence, Explore the Archives advances to Terrain's group overview without a page hop, and a disabled For VexSystem slot reserves a future extension seam without claiming a route. Shared Spiral FAB ownership remains in widgets/vex-fab.js; Terrain only disables the redundant map child. The semantic-depth rail remains a passive projection of the existing level/threshold truth and fades when idle.",
+      "context": "Hand-authored Terrain read side over generated data/terrain-map.json. The accepted Content reader can embed same-origin repository pages inside Terrain while preserving semantic Journey state. Terrain now consumes the shared selected-language contract rather than owning a second locale: it resolves ?lang= then localStorage['vex-lang'], carries the effective locale into embedded/standalone reader URLs, listens to vextreme:languagechange from the parent FAB, and chooses locale-keyed screenshot evidence for previews/panels with EN/available fallback. Explicit content cover art remains a separate preview class and is not relabeled as screenshot evidence. Shared Spiral FAB ownership remains in widgets/vex-fab.js; Terrain only disables the redundant map child.",
       "reads": [
         "data/terrain-map.json (live fetch, browser)",
-        "lib/terrain-journey.js (namespaced semantic-history snapshots and journey transitions)"
+        "lib/terrain-journey.js (namespaced semantic-history snapshots and journey transitions)",
+        "localStorage['vex-lang'] and location.search ?lang= (effective selected language)",
+        "window event vextreme:languagechange (same-document parent FAB notification)",
+        "page/screens screenshot evidence keyed by locale from data/terrain-map.json"
       ],
       "writes": [],
       "loadedBy": [
@@ -1526,7 +1545,7 @@
       "testedBy": [
         "tests/43-runtime-chrome-composition.test.js",
         "tests/45-terrain-journey.test.js",
-        "tests/85-terrain-view-contract.test.js"
+        "tests/85-terrain-view-contract.test.js (embedded-reader + locale-evidence contract)"
       ],
       "changeMap": {
         "data/terrain-map.json schema changed (nodes/edges/stages/screens shape)": [
@@ -1552,6 +1571,12 @@
         "semantic depth rail presentation changed": [
           "tests/45-terrain-journey.test.js (passive projection / threshold ownership)",
           "desktop + narrow rendered evidence, including reduced-motion behavior"
+        ],
+        "selected-language or locale screenshot selection changed": [
+          "widgets/fab-lang.js (authority/event/storage contract)",
+          "lib/screenshot-evidence.js and scripts/screenshot-page.js (locale identity of captured evidence)",
+          "tests/85-terrain-view-contract.test.js",
+          "desktop + narrow rendered parent/embedded-reader language synchronization proof"
         ]
       }
     },

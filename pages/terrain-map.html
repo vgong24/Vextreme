@@ -973,7 +973,42 @@
   var levelIndex = 0, levelBaseScale = 1, levelCtx = {};
   var ENTER_RATIO = 3.0, EXIT_RATIO = 0.55, MAX_NODE_RATIO = 7;
   var FULL_RECT = null, COL_W = 340;
-  var panelLang = 'en';
+  var LANG_STORAGE_KEY = 'vex-lang';
+  var LANG_CHANGE_EVENT = 'vextreme:languagechange';
+
+  function readEffectiveLanguage() {
+    try {
+      var explicit = new URLSearchParams(window.location.search).get('lang');
+      if (explicit) return explicit;
+    } catch (e) {}
+    try { return localStorage.getItem(LANG_STORAGE_KEY) || 'en'; }
+    catch (e) { return 'en'; }
+  }
+
+  function languageAwareUrl(url, lang) {
+    if (!url || url === 'about:blank') return url;
+    try {
+      var target = new URL(url, window.location.href);
+      if (target.origin !== window.location.origin) return target.href;
+      if (!lang || lang === 'en') target.searchParams.delete('lang');
+      else target.searchParams.set('lang', lang);
+      return target.href;
+    } catch (e) {
+      return url;
+    }
+  }
+
+  function preferredScreenshotLanguage(screenshots) {
+    var languages = Object.keys(screenshots || {});
+    if (!languages.length) return null;
+    if (languages.indexOf(activeLanguage) !== -1) return activeLanguage;
+    if (languages.indexOf('en') !== -1) return 'en';
+    return languages[0];
+  }
+
+  var activeLanguage = readEffectiveLanguage();
+  var panelLang = activeLanguage;
+  var panelNodeId = null;
   var Journey = window.VextremeTerrainJourney;
   var TerrainSearch = window.VextremeTerrainSearch;
   var searchState = { query: '', matches: [], cursor: -1 };
@@ -1421,7 +1456,7 @@
     document.getElementById('readerTitle').textContent = node.title || node.slug;
     document.getElementById('readerMeta').textContent =
       (stage ? stage.name + ' · ' : '') + (index >= 0 ? ('page ' + (index + 1) + ' of ' + members.length) : 'page reader');
-    document.getElementById('readerStandalone').href = node.liveUrl;
+    document.getElementById('readerStandalone').href = languageAwareUrl(node.liveUrl, activeLanguage);
     document.getElementById('readerPrev').disabled = !readerNeighbor(-1);
     document.getElementById('readerNext').disabled = !readerNeighbor(1);
   }
@@ -1441,13 +1476,13 @@
     document.getElementById('readerBack').textContent = '← Vex Life';
     document.getElementById('readerTitle').textContent = entry.label;
     document.getElementById('readerMeta').textContent = 'Vex Life · ordered entry';
-    document.getElementById('readerStandalone').href = entry.path;
+    document.getElementById('readerStandalone').href = languageAwareUrl(entry.path, activeLanguage);
     document.getElementById('readerPrev').hidden = true;
     document.getElementById('readerNext').hidden = true;
   }
 
   function replaceEvolutionReaderDocument(url) {
-    var target = url === 'about:blank' ? url : new URL(url, window.location.href).href;
+    var target = languageAwareUrl(url, activeLanguage);
     if (!evolutionReaderFrame.contentWindow) return;
     evolutionReaderFrame.contentWindow.location.replace(target);
   }
@@ -1584,7 +1619,7 @@
     document.getElementById('readerBack').textContent = '← Collection';
     document.getElementById('readerTitle').textContent = parent.title || stage.name || 'Group home';
     document.getElementById('readerMeta').textContent = stage.name + ' · group home';
-    document.getElementById('readerStandalone').href = parent.url;
+    document.getElementById('readerStandalone').href = languageAwareUrl(parent.url, activeLanguage);
     document.getElementById('readerPrev').hidden = true;
     document.getElementById('readerNext').hidden = true;
   }
@@ -1845,9 +1880,8 @@
       return '<img class="evo-cover-image" src="' + escAttr(node.preview.src) + '" alt="' + escAttr(node.preview.alt || ('Cover art for ' + (node.title || node.slug))) + '" loading="lazy">';
     }
     var screenshots = node.screenshots || {};
-    var languages = Object.keys(screenshots);
-    if (languages.length) {
-      var lang = languages.indexOf('en') !== -1 ? 'en' : languages[0];
+    var lang = preferredScreenshotLanguage(screenshots);
+    if (lang) {
       return '<img src="' + escAttr(screenshotUrl(screenshots[lang])) + '" alt="Preview of ' + escAttr(node.title || node.slug) + '" loading="lazy">';
     }
     return '<div class="evo-fallback"><div><span class="evo-fallback-mark">Vextreme · preview pending</span><span class="evo-fallback-title">' + esc(node.title || node.slug) + '</span></div></div>';
@@ -1858,10 +1892,24 @@
       return { src:node.preview.src, cover:true };
     }
     var screenshots = node.screenshots || {};
-    var languages = Object.keys(screenshots);
-    if (!languages.length) return null;
-    var lang = languages.indexOf('en') !== -1 ? 'en' : languages[0];
+    var lang = preferredScreenshotLanguage(screenshots);
+    if (!lang) return null;
     return { src:screenshotUrl(screenshots[lang]), cover:false };
+  }
+
+  function refreshLocalizedPreviewImages() {
+    document.querySelectorAll('.evo-card[data-node-id]').forEach(function (card) {
+      var node = byId[card.getAttribute('data-node-id')];
+      var image = card.querySelector('.evo-preview img:not(.evo-cover-image)');
+      var visual = node && evolutionPreviewSource(node);
+      if (image && visual && !visual.cover) image.src = visual.src;
+    });
+    document.querySelectorAll('.stage-curiosity-item[data-preview-node-id]').forEach(function (item) {
+      var node = byId[item.getAttribute('data-preview-node-id')];
+      var image = item.querySelector('img:not(.cover)');
+      var visual = node && evolutionPreviewSource(node);
+      if (image && visual && !visual.cover) image.src = visual.src;
+    });
   }
 
   var CONTENT_TILE_PEEK_DELAY_MS = 200;
@@ -1932,8 +1980,8 @@
     var title = esc(node.title || node.slug || node.id);
     var direct = contentTilePeekProfileEnabled() && node.live && node.liveUrl;
     var open = direct
-      ? '<button class="stage-curiosity-item" type="button" data-curiosity-reader="' + escAttr(node.id) + '" aria-label="Read ' + escAttr(node.title || node.slug) + ' directly">'
-      : '<div class="stage-curiosity-item">';
+      ? '<button class="stage-curiosity-item" type="button" data-preview-node-id="' + escAttr(node.id) + '" data-curiosity-reader="' + escAttr(node.id) + '" aria-label="Read ' + escAttr(node.title || node.slug) + ' directly">'
+      : '<div class="stage-curiosity-item" data-preview-node-id="' + escAttr(node.id) + '">';
     var close = direct ? '</button>' : '</div>';
     if (!visual) {
       return open + '<div class="stage-curiosity-fallback"><span>' + title + '<br>preview pending</span></div>' + close;
@@ -3296,9 +3344,11 @@
   function renderPanel(n) {
     var panel = document.getElementById('panel');
     if (!n) {
+      panelNodeId = null;
       panel.classList.remove('show'); // slide the drawer away — the map reclaims the full viewport, not just visually
       return;
     }
+    panelNodeId = n.id;
     panel.classList.add('show');
     if (n.kind === 'screen') { renderScreenPanel(n); return; }
     if (n.kind === 'page') { renderContentPagePanel(n); return; }
@@ -3345,7 +3395,7 @@
   function renderContentPagePanel(p) {
     var panel = document.getElementById('panel');
     var langs = Object.keys(p.screenshots || {});
-    if (langs.length && langs.indexOf(panelLang) === -1) panelLang = langs[0];
+    if (langs.length) panelLang = preferredScreenshotLanguage(p.screenshots) || langs[0];
 
     var statusLine = !p.live
       ? '<span class="status-pill status-critical"><span class="dot" style="background:var(--critical)"></span>Not yet ported — no pages/*.html file</span>'
@@ -3407,7 +3457,7 @@
   function renderScreenPanel(s) {
     var panel = document.getElementById('panel');
     var langs = Object.keys(s.screenshots);
-    if (langs.indexOf(panelLang) === -1) panelLang = langs[0];
+    panelLang = preferredScreenshotLanguage(s.screenshots) || langs[0];
 
     panel.innerHTML =
       (pinnedId === s.id ? '<button class="unpin-btn" onclick="window.__vexUnpin && window.__vexUnpin()">✕ unpin</button>' : '') +
@@ -3778,6 +3828,22 @@
       if (searchPopoverOpen && searchRegion && !searchRegion.contains(ev.target)) dismissEvolutionSearchResults();
     });
 
+    window.addEventListener(LANG_CHANGE_EVENT, function (event) {
+      var lang = event && event.detail && event.detail.lang;
+      if (!lang) return;
+      activeLanguage = lang;
+      panelLang = lang;
+      refreshLocalizedPreviewImages();
+      if (panelNodeId && byId[panelNodeId]) renderPanel(byId[panelNodeId]);
+      if (activeReaderId && byId[activeReaderId]) updateReaderChrome(byId[activeReaderId]);
+      else if (activeGroupHomeKey) {
+        var groupStage = STAGES.find(function (stage) { return stage.key === activeGroupHomeKey; });
+        if (groupStage) updateGroupHomeReaderChrome(groupStage);
+      } else if (activeEntrySlug) {
+        updateEntryReaderChrome(activeEntrySlug);
+      }
+    });
+
     window.addEventListener('resize', handleTerrainResize);
     window.addEventListener('popstate', function (event) {
       var snapshot = Journey && Journey.unwrap(event.state);
@@ -3806,6 +3872,6 @@ window.VEXTREME_OVERRIDE = {
   }]
 };
 </script>
-<script src="../lib/shell.js?v=11"></script>
+<script src="../lib/shell.js?v=12"></script>
 </body>
 </html>

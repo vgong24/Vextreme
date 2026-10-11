@@ -2032,7 +2032,10 @@
       "role": "the terrain map's read side — a navigable health/dependency atlas, live-fetches data/terrain-map.json",
       "reads": [
         "data/terrain-map.json (live fetch, browser)",
-        "lib/terrain-journey.js (namespaced semantic-history snapshots and journey transitions)"
+        "lib/terrain-journey.js (namespaced semantic-history snapshots and journey transitions)",
+        "localStorage['vex-lang'] and location.search ?lang= (effective selected language)",
+        "window event vextreme:languagechange (same-document parent FAB notification)",
+        "page/screens screenshot evidence keyed by locale from data/terrain-map.json"
       ],
       "writes": [],
       "loadedBy": [
@@ -2041,7 +2044,7 @@
       "testedBy": [
         "tests/43-runtime-chrome-composition.test.js",
         "tests/45-terrain-journey.test.js",
-        "tests/85-terrain-view-contract.test.js"
+        "tests/85-terrain-view-contract.test.js (embedded-reader + locale-evidence contract)"
       ],
       "debts": [],
       "status": "good",
@@ -2176,29 +2179,35 @@
       "stageName": "RUNTIME",
       "x": 1760,
       "y": 150,
-      "role": "browser language switcher FAB — fetches JA/ZH scope or arc bundles, applies [data-i18n] swaps",
+      "role": "browser selected-language authority + switcher FAB — resolves effective locale, fetches scoped/arc bundles, applies [data-i18n] swaps, and synchronizes same-origin browsing contexts",
       "reads": [
         "window.VEX_STRING_SCOPES",
         "window.VEX_STRING_CATEGORY",
         "window.VEX_SUPPORTED_LANGS",
         "window.VEX_STRING_ARC_BUNDLE (arc-chunked bundling pilot, checked before the scope path)",
+        "window.VEX_STRINGS_EN (God Script EN/source fallback)",
         "data/strings/compiled/scopes/{category}/{scope}.{lang}.json via CDN",
         "data/strings/compiled/arcs/{arc}.{lang}.json via CDN (when VEX_STRING_ARC_BUNDLE is set)",
-        "localStorage (LS_LANG — the selected language preference only, not fetched string content)",
-        "DOM: #vex-spiral-group (widgets/vex-fab.js — Session 025 FAB unification, nests its orb there if present)",
-        "location.search (?lang= param — explicit override for the effective language, wins over localStorage)"
+        "localStorage (vex-lang selected-language preference; vex-index-v2-data language-list fallback)",
+        "window storage event (same-origin selected-language changes from another browsing context)",
+        "DOM: [data-i18n] authored source text and #vex-spiral-group",
+        "location.search (?lang= explicit initial override)"
       ],
       "writes": [
-        "innerHTML / textContent of [data-i18n] elements",
-        "localStorage (LS_LANG — selected language preference)",
-        "location/history (history.replaceState — reflects the effective language into ?lang= so the current URL is always forwardable)"
+        "textContent of [data-i18n] elements",
+        "document.documentElement lang attribute",
+        "localStorage (vex-lang selected-language preference)",
+        "location/history (history.replaceState reflects effective language into ?lang=)",
+        "window event vextreme:languagechange (same-document selected-language notification)"
       ],
       "loadedBy": [
         "lib/build-vextreme.js (inlined as lang feature in God Scripts)",
-        "legacy pages via direct CDN script tag (pre-God-Script pattern)"
+        "lib/vextreme.js shell-era FAB auto-loader"
       ],
       "testedBy": [
-        "tests/08-build-vextreme.test.js (structural guard: loadSupportedLangs() must read window.VEX_SUPPORTED_LANGS)"
+        "tests/08-build-vextreme.test.js (supported-language source + selected-language authority/synchronization/fallback guards)",
+        "tests/41-vextreme-fab-autoload.test.js (shell-era loading/cache coherence)",
+        "tests/85-terrain-view-contract.test.js (Terrain consumes the shared language contract)"
       ],
       "debts": [
         "td-002",
@@ -2897,6 +2906,10 @@
     [
       "lib/vextreme.js",
       "lib/archive-renderer.js"
+    ],
+    [
+      "pages/terrain-map.html",
+      "lib/vextreme.js"
     ],
     [
       "scripts/screenshot-institutional.js",

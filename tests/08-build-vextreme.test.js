@@ -125,6 +125,40 @@ test('ASSEMBLER: widgets/fab-lang.js actually reads window.VEX_SUPPORTED_LANGS �
     'loadSupportedLangs() must check window.VEX_SUPPORTED_LANGS before falling back to cache/network');
 });
 
+test('LANGUAGE AUTHORITY: FAB instances synchronize one effective locale across same-origin browsing contexts', () => {
+  const widgetSrc = fs.readFileSync(path.join(ROOT, 'widgets', 'fab-lang.js'), 'utf8');
+  assert.match(widgetSrc, /var LS_LANG\s*=\s*'vex-lang'/,
+    'vex-lang remains the persisted selected-language authority');
+  assert.match(widgetSrc, /var LANG_CHANGE_EVENT\s*=\s*'vextreme:languagechange'/,
+    'the same-document language event must have a stable identity');
+  assert.match(widgetSrc, /window\.addEventListener\('storage'[\s\S]*event\.key !== LS_LANG[\s\S]*fabController\.selectLanguage/,
+    'other same-origin windows/iframes must consume storage changes instead of retaining independent FAB state');
+  assert.match(widgetSrc, /window\.dispatchEvent\(new CustomEvent\(LANG_CHANGE_EVENT/,
+    'the active document must publish the converged language to local consumers such as Terrain');
+  assert.match(widgetSrc, /document\.documentElement\.setAttribute\('lang', lang\)/,
+    'document language metadata must follow the selected locale');
+  assert.match(widgetSrc, /fallback = english && english\.text != null[\s\S]*_sourceText\[key\]/,
+    'partial locales must fall back to immutable EN/source text');
+  assert.match(widgetSrc, /_langStrings = \{\};[\s\S]*God Script optimization/,
+    'a failed locale fetch must not reuse the previous locale bundle');
+  assert.match(widgetSrc, /var generation = \+\+_applyGeneration[\s\S]*generation !== _applyGeneration/,
+    'a slower stale locale request must not reclaim DOM/storage/event authority');
+});
+
+test('LANGUAGE AUTHORITY: live repository pages no longer load the legacy lang-fab engine directly', () => {
+  const legacyRef = 'widgets/' + 'lang-fab.js';
+  const pageFiles = fs.readdirSync(PAGES_DIR).filter(name => name.endsWith('.html'));
+  const offenders = pageFiles.filter(name => fs.readFileSync(path.join(PAGES_DIR, name), 'utf8').includes(legacyRef));
+  assert.deepEqual(offenders, [],
+    'live pages must consume canonical widgets/fab-lang.js (directly, via shell, or via God Script), not a second language engine');
+
+  const demoBuilder = fs.readFileSync(path.join(ROOT, 'lib', 'build-demo.js'), 'utf8');
+  assert.ok(demoBuilder.includes('widgets/fab-lang.js'));
+  assert.ok(demoBuilder.includes('widgets/fab-demo.js'));
+  assert.ok(!demoBuilder.includes(legacyRef),
+    'the generator must not reintroduce the legacy language engine on rebuild');
+});
+
 // ── Session 025: FAB system unification ─────────────────────────────────────
 //
 // spiral-fab/theme/map were reserved Feature slots since Session 013
@@ -523,9 +557,18 @@ test('LANG-FAB: a URL ?lang= param wins over the stored localStorage preference 
 
 test('LANG-FAB: selecting a language from the wheel updates the URL immediately', () => {
   const source = fs.readFileSync(FAB_IN, 'utf8');
+  const selectStart = source.indexOf('function selectLanguage(lang, options) {');
+  const selectEnd = source.indexOf('// Overflow peek:', selectStart);
+  assert.ok(selectStart >= 0 && selectEnd > selectStart, 'shared selectLanguage() transition owner must exist');
+  const selectLanguage = source.slice(selectStart, selectEnd);
+  assert.ok(selectLanguage.includes('syncUrlLang(lang);'), 'shared language transition must synchronize the URL');
+
   const clickHandler = source.match(/item\.addEventListener\('click', function \(\) \{[\s\S]*?\n\s*\}\);/);
   assert.ok(clickHandler, 'wheel item click handler must exist');
-  assert.ok(clickHandler[0].includes('syncUrlLang(lang)'), 'clicking a language must sync it into the URL, not just apply it in-page');
+  assert.ok(
+    clickHandler[0].includes("selectLanguage(lang, { persist: true, source: 'fab' });"),
+    'wheel clicks must delegate to the shared language transition that synchronizes URL, persistence, and page state'
+  );
 });
 
 // [VXG RealForever]

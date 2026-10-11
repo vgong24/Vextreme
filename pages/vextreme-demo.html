@@ -133,7 +133,7 @@
   var FAILED_TEXT = "Live fetch failed — showing build-time values instead.";
 
   // note.removeAttribute('data-i18n') below is load-bearing: once this div shows
-  // live-fetched content, widgets/lang-fab.js's [data-i18n] sweep on language
+  // live-fetched content, widgets/fab-lang.js's [data-i18n] sweep on language
   // switch would otherwise overwrite it back to the static "loading" translation,
   // silently reverting the page's "this is live, not baked" claim.
   var req = new XMLHttpRequest();
@@ -163,13 +163,13 @@
 
 <script>
   // Demo pages live in the 'demo' category — scopes compile to
-  // scopes/demo/ instead of scopes/production/. lang-fab reads this to
+  // scopes/demo/ instead of scopes/production/. fab-lang reads this to
   // construct the correct fetch URL without a runtime lookup table.
   window.VEX_STRING_CATEGORY = 'demo';
   window.VEX_STRING_SCOPES = ['demo'];
 </script>
-<script src="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/widgets/lang-fab.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/widgets/demo-fab.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/widgets/fab-lang.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/vgong24/vextreme@main/widgets/fab-demo.js"></script>
 
 </body>
 </html>
