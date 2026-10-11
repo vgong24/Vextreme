@@ -141,6 +141,8 @@ test('LANGUAGE AUTHORITY: FAB instances synchronize one effective locale across 
     'partial locales must fall back to immutable EN/source text');
   assert.match(widgetSrc, /_langStrings = \{\};[\s\S]*God Script optimization/,
     'a failed locale fetch must not reuse the previous locale bundle');
+  assert.match(widgetSrc, /var generation = \+\+_applyGeneration[\s\S]*generation !== _applyGeneration/,
+    'a slower stale locale request must not reclaim DOM/storage/event authority');
 });
 
 // ── Session 025: FAB system unification ─────────────────────────────────────
