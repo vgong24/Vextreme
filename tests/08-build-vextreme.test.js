@@ -322,6 +322,37 @@ test('ASSEMBLER: every resolved entry has a viewmodel', () => {
   }
 });
 
+test('ASSEMBLER: resolveAllSlugs carries page-local language coverage when the index provides it', () => {
+  const index = {
+    slugMap: {
+      alpha: { viewmodel: { category: 'production', scopes: ['pages.alpha'], features: ['lang'] } },
+    },
+    pageLanguageMap: {
+      alpha: { availableLangs: ['en', 'fr'], completeLangs: ['en'] },
+      demo: { availableLangs: ['en', 'ja'], completeLangs: ['en'] },
+    },
+  };
+  const vms = {
+    demo: { category: 'demo', scopes: ['demo'], features: ['lang'] },
+  };
+
+  const bySlug = Object.fromEntries(resolveAllSlugs(index, vms).map(entry => [entry.slug, entry]));
+  assert.deepEqual(bySlug.alpha.languageCoverage, index.pageLanguageMap.alpha);
+  assert.deepEqual(bySlug.demo.languageCoverage, index.pageLanguageMap.demo);
+});
+
+test('ASSEMBLER: page-local available languages are suitable for VEX_SUPPORTED_LANGS without exposing incomplete-only global locales', () => {
+  const pageCoverage = { availableLangs: ['en', 'fr'], completeLangs: ['en'] };
+  const script = assembleGodScript('test-slug', DEMO_VIEWMODEL, {
+    includeSourceComment: false,
+    supportedLangs: pageCoverage.availableLangs,
+  });
+  const supportedLine = script.split('\n').find(line => line.includes('window.VEX_SUPPORTED_LANGS'));
+  assert.ok(supportedLine);
+  assert.match(supportedLine, /\["en","fr"\]/);
+  assert.doesNotMatch(supportedLine, /ja|zh/);
+});
+
 // ── 5. checkKeyAlignment ─────────────────────────────────────────────────────
 
 test('KEY-ALIGNMENT: returns nodes and arcs report', () => {
