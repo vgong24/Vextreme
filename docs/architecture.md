@@ -771,6 +771,44 @@ The translator packet is a reversible projection, not translation authority. The
 canonical write side remains `data/strings/source/`; CSVs are temporary work
 surfaces bound back to it by key + EN preimage hash.
 
+### Translator context projection
+
+A fresh-context EN→FR isolation proof showed that file-level descriptions alone
+are too coarse for several real string families. The production exporter therefore
+fills the existing `context` / `notes` columns from facts already owned by the
+repository; it does not introduce a context sidecar or new semantic registry.
+
+For page scopes, `lib/strings-export.js` parses the current `pages/{slug}.html`
+with the repository's existing `parse5` dependency and combines that read-side
+structure with canonical string source. When the evidence exists, a row may carry
+bounded signals such as:
+
+```text
+role=answer ; paired-question="…" ; nearest-heading=…
+role=record-body ; record-heading=… ; canonical-element-id=…
+role=part-title ; paired-part-label=Part Seven
+role=speaker-authored-body ; speaker-label=Vex Speaks ; container-class=voice-block voice-vex …
+provenance=docs/ingestion/source-pages/…
+source-syntax=ICU-style plural/message placeholders {count}/#
+```
+
+The projection follows these authority boundaries:
+
+- paired Q/A text comes from canonical sibling string keys;
+- record heading/identity comes from the entry's already-committed `identity`
+  block plus sibling fields on the same content node;
+- structural roles, nearby headings, and adjacent authored labels come from the
+  current page HTML's classes/bindings;
+- preserved-source provenance is copied only as a pointer from source `_meta`;
+- placeholder and unusual internal self-reference capitalization notes are
+  mechanical preservation hints derived from the EN source itself.
+
+If strong row-local evidence is absent, common/generic rows may fall back to the
+source file description. The exporter does not infer a canonical speaker from
+prose, create a glossary, promote arc membership into translation ownership, or
+copy unrelated target-language strings into the packet. Existing CSV columns and
+import semantics remain unchanged.
+
 ---
 
 ## Adding a new language
