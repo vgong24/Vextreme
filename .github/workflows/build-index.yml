@@ -8,6 +8,7 @@ on:
       - 'data/nodes.json'
       - 'data/arcs-v2.json'
       - 'data/viewmodels.json'
+      - 'data/screenshot-evidence-assets.json'
       - 'data/departments.json'
       - 'data/strings/**'
       - 'data/support-routes.json'

@@ -1328,7 +1328,8 @@
         "lib/screenshot-evidence.js (shared legacy and locale/theme/viewport evidence discovery)",
         "lib/audit-pages.js (page inventory and God Script wiring)",
         "lib/audit-nav.js (navigation classification)",
-        "lib/audit-fab.js (theme ownership and opt-out classification)"
+        "lib/audit-fab.js (theme ownership and opt-out classification)",
+        "data/screenshot-evidence-assets.json (pinned Vextreme-Assets fallback screenshot evidence projection; local docs/screenshots remain priority)"
       ],
       "writes": [
         "data/page-health.json"
@@ -1355,6 +1356,11 @@
         ],
         "metaDescriptionText() signature or export removed": [
           "lib/check-description-freshness.js (imports it directly, not through the page-health projection)"
+        ],
+        "pinned Assets screenshot projection changed": [
+          "lib/screenshot-evidence.js (Assets record normalization + local-first merge semantics)",
+          "tests/44-page-health.test.js (remote fallback without weakening institutional matrix proof)",
+          "data/page-health.json generated projection"
         ]
       }
     },
@@ -2118,7 +2124,8 @@
         "docs/screenshots/*.png (directory listing, parsed through lib/screenshot-evidence.js)",
         "lib/trace-string-usage.js (scanUsages, traceKey, tracePage, findOrphanUsages, findUnusedKeys — reused directly, not duplicated)",
         "lib/screenshot-evidence.js (representative screenshots plus exact matrix evidence records)",
-        "lib/audit-pages.js (getPageSlugs — real page files, for the per-page index)"
+        "lib/audit-pages.js (getPageSlugs — real page files, for the per-page index)",
+        "data/screenshot-evidence-assets.json (pinned Vextreme-Assets fallback screenshot evidence projection; local docs/screenshots remain priority)"
       ],
       "writes": [
         "data/analysis-index.json"
@@ -2141,6 +2148,11 @@
         "data/analysis-index.json schema changed (supportedLangs/elements/pages/summary shape)": [
           "widgets/fab-analysis.js (Phase B, not yet built — will be the first live consumer)",
           "tests/36-build-analysis-index.test.js"
+        ],
+        "pinned Assets screenshot projection changed": [
+          "lib/screenshot-evidence.js (Assets record normalization + local-first representative selection)",
+          "tests/36-build-analysis-index.test.js (local-first remote fallback contract)",
+          "data/analysis-index.json generated projection"
         ]
       }
     },

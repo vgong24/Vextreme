@@ -30,7 +30,13 @@ const {
   buildPageIndex,
   buildAnalysisIndex,
 } = require('../lib/build-analysis-index');
-const { findScreenshots, findScreenshotEvidence } = require('../lib/screenshot-evidence');
+const {
+  findScreenshots,
+  findScreenshotEvidence,
+  findAssetScreenshotEvidence,
+  mergeScreenshotEvidence,
+  representativeScreenshots,
+} = require('../lib/screenshot-evidence');
 
 const ROOT = path.join(__dirname, '..');
 
@@ -119,6 +125,39 @@ test('buildAnalysisIndex: matrix-only evidence remains reachable by representati
   assert.deepEqual(
     result.pages['vex-test'].screenshotEvidence.map(record => record.path),
     files.slice().sort().map(file => `docs/screenshots/${file}`)
+  );
+});
+
+test('buildAnalysisIndex: Assets screenshot fallback fills missing locales while local representatives remain first', () => {
+  const projection = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'screenshot-evidence-assets.json'), 'utf8'));
+  const local = findScreenshotEvidence(['specimen-full-translation-en.png']);
+  const assets = findAssetScreenshotEvidence(projection);
+  const merged = mergeScreenshotEvidence(local, assets);
+  const screenshots = representativeScreenshots(merged);
+
+  const result = buildAnalysisIndex(
+    {},
+    {},
+    screenshots,
+    ['specimen-full-translation'],
+    ['en', 'ja'],
+    merged
+  );
+
+  assert.equal(
+    result.pages['specimen-full-translation'].screenshots.en,
+    'docs/screenshots/specimen-full-translation-en.png',
+    'local evidence remains the representative while present'
+  );
+  assert.match(
+    result.pages['specimen-full-translation'].screenshots.ja,
+    /^https:\/\/vgong24\.github\.io\/Vextreme-Assets\/evidence\/screenshots\/.*\.png$/,
+    'Assets custody fills the otherwise-missing locale'
+  );
+  assert.equal(
+    result.pages['specimen-full-translation'].screenshotEvidence,
+    undefined,
+    'Assets fallback records do not masquerade as exact local institutional matrix evidence'
   );
 });
 
