@@ -26,7 +26,7 @@ const assert   = require('node:assert/strict');
 const { execFileSync } = require('node:child_process');
 const fs       = require('fs');
 const path     = require('path');
-const { contentFingerprint, buildPageLanguageCoverage, buildSlugMap, buildArcMap, buildArcMeta, parseDate, findDuplicateSlugs } = require('../lib/build-index');
+const { contentFingerprint, buildPageLanguageCoverage, buildPageLanguageMap, buildSlugMap, buildArcMap, buildArcMeta, parseDate, findDuplicateSlugs } = require('../lib/build-index');
 
 const nodes   = require('./fixtures/nodes.fixture.json');
 const arcsDef = require('./fixtures/arcs.fixture.json');
@@ -119,6 +119,31 @@ test('I18N COVERAGE: EN remains available and complete when a page has no compil
   });
   assert.deepEqual(coverage.availableLangs, ['en']);
   assert.deepEqual(coverage.completeLangs, ['en']);
+});
+
+test('I18N COVERAGE: pageLanguageMap covers both content slugs and viewmodel-only pages without changing viewmodel ownership', () => {
+  const slugMap = {
+    'content-page': { viewmodel: { scopes: ['pages.content-page'] } },
+  };
+  const viewmodels = {
+    'content-page': { scopes: ['pages.content-page'] },
+    'demo-only': { scopes: ['demo'] },
+  };
+  const scopeIndex = {
+    common: { category: 'system', path: 'system/common', en: 2, fr: 2 },
+    'pages.content-page': { category: 'production', path: 'production/pages/content-page', en: 3, fr: 3 },
+    demo: { category: 'demo', path: 'demo/demo', en: 4, ja: 2 },
+  };
+
+  const map = buildPageLanguageMap(slugMap, viewmodels, scopeIndex);
+  assert.deepEqual(map['content-page'], {
+    availableLangs: ['en', 'fr'],
+    completeLangs: ['en', 'fr'],
+  });
+  assert.deepEqual(map['demo-only'], {
+    availableLangs: ['en', 'ja'],
+    completeLangs: ['en'],
+  });
 });
 
 // ── 2. Invariants ─────────────────────────────────────────────────────────────
