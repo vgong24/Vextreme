@@ -12,6 +12,9 @@
       },
       "ja": {
         "text": "標本"
+      },
+      "fr": {
+        "text": "Spécimens"
       }
     }
   },
@@ -22,6 +25,9 @@
       },
       "ja": {
         "text": "3つの小さな固定ページです — 実際のコンテンツではなく — それぞれが1つのローカライズ状態と、それを生み出す、あるいは検出するパイプライン段階を切り出しています。アーキテクチャの説明と実際の進捗トラッカーの中間に位置し、どちらよりも小さく、1分で読めることを意図しています。"
+      },
+      "fr": {
+        "text": "Trois petites pages fixes — pas du contenu réel — chacune isolant un état de localisation et l’étape du pipeline qui le produit ou le détecte. Cet ensemble se situe entre la présentation de l’architecture et le suivi réel de l’avancement : plus petit que l’un ou l’autre, conçu pour être lu en une minute."
       }
     }
   },
@@ -32,6 +38,9 @@
       },
       "ja": {
         "text": "完全翻訳"
+      },
+      "fr": {
+        "text": "Traduction complète"
       }
     }
   },
@@ -42,6 +51,9 @@
       },
       "ja": {
         "text": "部分翻訳"
+      },
+      "fr": {
+        "text": "Traduction partielle"
       }
     }
   },
@@ -52,6 +64,9 @@
       },
       "ja": {
         "text": "最小の見落とし"
+      },
+      "fr": {
+        "text": "La plus petite omission"
       }
     }
   },
@@ -62,6 +77,9 @@
       },
       "ja": {
         "text": "すべての文字列が翻訳済みです。テストスイートが各パイプライン段階で何を検証しているかを示します — 単に合格したという事実だけではありません。"
+      },
+      "fr": {
+        "text": "Chaque chaîne est traduite. Montre ce que la suite de tests vérifie à chaque étape du pipeline — pas seulement qu’elle a réussi."
       }
     }
   },
@@ -72,6 +90,9 @@
       },
       "ja": {
         "text": "1つの文字列を意図的に未翻訳のまま残しています — claude-answers-the-doubtに実際にある空白と同じものです。それを検出するスクリーンショット検証プロセスを示します。"
+      },
+      "fr": {
+        "text": "Une chaîne est délibérément laissée non traduite — le même manque que claude-answers-the-doubt présente réellement. Montre le processus de vérification par captures d’écran qui le détecterait."
       }
     }
   },
@@ -82,6 +103,9 @@
       },
       "ja": {
         "text": "1行の英語が、日本語訳が書かれた後に変更され、自動的にstale（古い）と判定されました。それを検出した整合性チェックを示します。"
+      },
+      "fr": {
+        "text": "Une ligne d’anglais, modifiée après la rédaction de sa traduction japonaise — automatiquement signalée comme obsolète. Montre le contrôle d’intégrité qui l’a détectée."
       }
     }
   },
@@ -94,6 +118,10 @@
       "ja": {
         "text": "標本を見る →",
         "aria-label": "この標本ページを見る"
+      },
+      "fr": {
+        "text": "Voir le spécimen →",
+        "aria-label": "Voir cette page de spécimen"
       }
     }
   },
@@ -106,6 +134,10 @@
       "ja": {
         "text": "← 標本一覧に戻る",
         "aria-label": "標本ダッシュボードに戻る"
+      },
+      "fr": {
+        "text": "← Retour aux spécimens",
+        "aria-label": "Retour au tableau de bord des spécimens"
       }
     }
   },
@@ -118,6 +150,10 @@
       "ja": {
         "text": "← アーキテクチャデモに戻る",
         "aria-label": "アーキテクチャデモページに戻る"
+      },
+      "fr": {
+        "text": "← Retour à la démo d’architecture",
+        "aria-label": "Retour à la page de démonstration de l’architecture"
       }
     }
   },
@@ -130,6 +166,10 @@
       "ja": {
         "text": "ビルド健全性で実際の進行中の翻訳カバレッジを見る →",
         "aria-label": "実際の翻訳進捗を見るためにビルド健全性を表示"
+      },
+      "fr": {
+        "text": "Voir la couverture de traduction réelle, en cours, dans Santé du build →",
+        "aria-label": "Voir Santé du build pour suivre la progression réelle des traductions"
       }
     }
   }
