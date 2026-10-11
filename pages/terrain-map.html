@@ -405,15 +405,30 @@
   .stage-curiosity-head{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin-bottom:8px; }
   .stage-curiosity-title{ color:var(--ink); font:700 10px/1.2 var(--mono); letter-spacing:.11em; text-transform:uppercase; }
   .stage-curiosity-note{ min-width:0; color:var(--ink-faint); font:9px/1.3 var(--mono); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .stage-curiosity-viewport{ overflow:hidden; }
+  .stage-curiosity-viewport{ position:relative; overflow:hidden; }
   .stage-curiosity-track{
     display:flex; gap:10px; transform:translate3d(0,0,0);
     transition:transform .42s cubic-bezier(.2,.72,.25,1);
   }
+  .stage-curiosity-nav{
+    position:absolute; top:50%; z-index:3; width:30px; height:58px; transform:translateY(-50%);
+    border:1px solid color-mix(in srgb,var(--line-strong) 78%,transparent); border-radius:9px;
+    background:color-mix(in srgb,var(--panel) 88%,transparent); color:var(--ink);
+    box-shadow:0 5px 16px color-mix(in srgb,var(--ink) 10%,transparent);
+    font:600 22px/1 var(--sans); cursor:pointer; backdrop-filter:blur(6px);
+  }
+  .stage-curiosity-nav.prev{ left:5px; }
+  .stage-curiosity-nav.next{ right:5px; }
+  .stage-curiosity-nav:hover:not(:disabled), .stage-curiosity-nav:focus-visible{
+    border-color:var(--accent); color:var(--accent); outline:none;
+  }
+  .stage-curiosity-nav:disabled{ opacity:.24; cursor:default; }
   .stage-curiosity-item{
     position:relative; flex:0 0 calc((100% - 20px)/3); height:124px; overflow:hidden;
     border:1px solid var(--line); border-radius:10px; background:var(--panel-2); color:#fff;
   }
+  button.stage-curiosity-item{ appearance:none; padding:0; font:inherit; text-align:left; cursor:pointer; }
+  button.stage-curiosity-item:hover, button.stage-curiosity-item:focus-visible{ border-color:var(--accent); outline:none; }
   .stage-curiosity-item img{ width:100%; height:100%; display:block; object-fit:cover; object-position:top; }
   .stage-curiosity-item img.cover{ object-position:center; }
   .stage-curiosity-shade{ position:absolute; inset:40% 0 0; background:linear-gradient(180deg,transparent,rgba(0,0,0,.78)); }
@@ -961,6 +976,7 @@
   var PRESENTATION_HISTORY_KEY = 'vextremeTerrainPresentation';
   var currentProfile = 'evolution-v1';
   var activeReaderId = null, hoveredEvolutionNodeId = null, activeEntrySlug = null, activeGroupHomeKey = null;
+  var activeReaderReturnKind = 'collection';
   var boundaryGesture = { key:null, direction:0, lastAt:0 };
   var outwardWheelGesture = { active:false, timer:null };
   var terrainOutwardTransition = { active:false, timer:null };
@@ -1102,19 +1118,24 @@
     if (visible) contentProfile.value = currentProfile === 'evolution-v2' ? 'evolution-v2' : 'evolution-v1';
   }
 
-  function presentationHistoryState(kind) {
+  function presentationHistoryState(kind, details) {
     var state = history.state && typeof history.state === 'object' ? Object.assign({}, history.state) : {};
-    if (kind) state[PRESENTATION_HISTORY_KEY] = { version:1, kind:kind };
+    if (kind) state[PRESENTATION_HISTORY_KEY] = Object.assign({ version:1, kind:kind }, details || {});
     else delete state[PRESENTATION_HISTORY_KEY];
     return state;
   }
 
-  function presentationHistoryKind(state) {
+  function presentationHistoryValue(state) {
     var value = state && state[PRESENTATION_HISTORY_KEY];
-    return value && value.version === 1 ? value.kind : null;
+    return value && value.version === 1 ? value : null;
   }
 
-  function syncPresentationUrl(mode, presentationKind) {
+  function presentationHistoryKind(state) {
+    var value = presentationHistoryValue(state);
+    return value ? value.kind : null;
+  }
+
+  function syncPresentationUrl(mode, presentationKind, presentationDetails) {
     mode = mode === 'push' ? 'push' : 'replace';
     var url = new URL(window.location.href);
     if (currentWorld === 'content' && currentProfile === 'evolution-v1') {
@@ -1139,7 +1160,7 @@
       url.searchParams.delete('group');
       url.searchParams.delete('page');
     }
-    var state = presentationHistoryState(presentationKind || null);
+    var state = presentationHistoryState(presentationKind || null, presentationDetails || null);
     if (mode === 'push') history.pushState(state, '', url.toString());
     else history.replaceState(state, '', url.toString());
   }
@@ -1176,8 +1197,25 @@
   }
 
   function restoreEvolutionPresentationFromHistory(state) {
-    var kind = presentationHistoryKind(state);
-    if ((kind !== 'reader' && kind !== 'group-home') || currentWorld !== 'content' || currentProfile !== 'evolution-v1') return;
+    var presentation = presentationHistoryValue(state);
+    var kind = presentation ? presentation.kind : null;
+    if (currentWorld !== 'content' || currentProfile !== 'evolution-v1') return;
+
+    if (kind === 'curiosity-overview') {
+      var overviewStageIdx = STAGES.findIndex(function (stage) { return String(stage.key) === String(presentation.stageKey); });
+      if (overviewStageIdx < 0) return;
+      if (levelIndex !== 1 || (levelCtx && typeof levelCtx.stageIdx === 'number')) enterLevel(1, {});
+      activeReaderReturnKind = 'collection';
+      window.requestAnimationFrame(function () {
+        openContentTilePeek(overviewStageIdx, {
+          step:Number.isInteger(presentation.step) ? presentation.step : 0,
+          manual:presentation.manual === true
+        });
+      });
+      return;
+    }
+
+    if (kind !== 'reader' && kind !== 'group-home') return;
     var route = readInitialRoute();
     if (!route.group || !route.page) return;
     var stageIdx = STAGES.findIndex(function (stage) { return String(stage.key) === String(route.group); });
@@ -1189,7 +1227,10 @@
       return;
     }
     var node = ALL.find(function (candidate) { return candidate.slug === route.page || candidate.id === route.page; });
-    if (node && node.live) openEvolutionReader(node.id, { writeUrl:false });
+    if (node && node.live) openEvolutionReader(node.id, {
+      writeUrl:false,
+      returnKind:presentation && presentation.returnKind ? presentation.returnKind : 'collection'
+    });
   }
 
   function isEvolutionAGroup() {
@@ -1306,7 +1347,7 @@
   }
 
   function updateReaderChrome(node) {
-    document.getElementById('readerBack').textContent = '← Collection';
+    document.getElementById('readerBack').textContent = activeReaderReturnKind === 'curiosity-overview' ? '← Overview' : '← Collection';
     document.getElementById('readerPrev').hidden = false;
     document.getElementById('readerNext').hidden = false;
     var members = evolutionReaderMembers();
@@ -1351,6 +1392,7 @@
     if (!entry || currentWorld !== 'content' || currentProfile !== 'evolution-v1' || levelIndex !== 0) return;
     activeReaderId = null;
     activeGroupHomeKey = null;
+    activeReaderReturnKind = 'collection';
     hoveredEvolutionNodeId = null;
     activeEntrySlug = null;
     activeEntrySlug = slug;
@@ -1508,6 +1550,9 @@
     if (!node || !node.live || !node.liveUrl || currentWorld !== 'content' || currentProfile !== 'evolution-v1') return;
     if (!evolutionReaderMembers().some(function (member) { return member.id === node.id; })) return;
 
+    if (options.returnKind) activeReaderReturnKind = options.returnKind;
+    else if (options.historyMode !== 'replace') activeReaderReturnKind = 'collection';
+
     activeEntrySlug = null;
     activeGroupHomeKey = null;
     activeReaderId = node.id;
@@ -1523,7 +1568,9 @@
     updateReaderChrome(node);
     evolutionReaderFrame.title = 'Reading ' + (node.title || node.slug) + ' inside Terrain';
     replaceEvolutionReaderDocument(node.liveUrl);
-    if (options.writeUrl !== false) syncPresentationUrl(options.historyMode || 'push', 'reader');
+    if (options.writeUrl !== false) syncPresentationUrl(options.historyMode || 'push', 'reader', {
+      returnKind:activeReaderReturnKind
+    });
   }
 
   function closeEvolutionReader(options) {
@@ -1534,6 +1581,7 @@
     }
     activeReaderId = null;
     activeGroupHomeKey = null;
+    activeReaderReturnKind = 'collection';
     resetBoundaryGesture();
     hideGestureHint();
     evolutionReader.hidden = true;
@@ -1630,10 +1678,15 @@
     var readerKey = activeReaderId || ('group:' + activeGroupHomeKey);
     if (boundaryGestureReady('reader-outward:' + readerKey, direction)) {
       lockOutwardWheelGesture();
+      var returnsToOverview = activeReaderReturnKind === 'curiosity-overview';
       closeEvolutionReader();
-      showGestureHint('Collection reached · release, then scroll again to return to groups');
+      showGestureHint(returnsToOverview
+        ? 'Overview reached · returned to where you entered'
+        : 'Collection reached · release, then scroll again to return to groups');
     } else {
-      showGestureHint('End reached · pause, then scroll down again to return to the collection');
+      showGestureHint(activeReaderReturnKind === 'curiosity-overview'
+        ? 'End reached · pause, then scroll down again to return to the overview'
+        : 'End reached · pause, then scroll down again to return to the collection');
     }
   }
 
@@ -1698,7 +1751,7 @@
 
   var CONTENT_TILE_PEEK_DELAY_MS = 200;
   var CONTENT_TILE_PEEK_CLOSE_MS = 180;
-  var CONTENT_TILE_PEEK_STEP_MS = 1500;
+  var CONTENT_TILE_PEEK_STEP_MS = 3200;
   var CONTENT_TILE_PEEK_SHELF_HEIGHT = 176;
   var CONTENT_TILE_PEEK_SHELF_GAP = 16;
   var contentTilePeekStageIndex = null;
@@ -1707,6 +1760,7 @@
   var contentTilePeekCloseTimer = null;
   var contentTilePeekCycleTimer = null;
   var contentTilePeekCycleIndex = 0;
+  var contentTilePeekManual = false;
 
   function contentTilePeekHoverCapable() {
     return !window.matchMedia || window.matchMedia('(hover: hover) and (pointer: fine)').matches;
@@ -1731,16 +1785,17 @@
     contentTilePeekCloseTimer = null;
   }
 
-  function stopContentTilePeekCycle() {
+  function stopContentTilePeekCycle(resetIndex) {
     if (contentTilePeekCycleTimer) clearInterval(contentTilePeekCycleTimer);
     contentTilePeekCycleTimer = null;
-    contentTilePeekCycleIndex = 0;
+    if (resetIndex !== false) contentTilePeekCycleIndex = 0;
   }
 
   function closeContentTilePeek(immediate) {
     cancelContentTilePeekOpen();
     cancelContentTilePeekClose();
     stopContentTilePeekCycle();
+    contentTilePeekManual = false;
     world.querySelectorAll('.stage-card').forEach(function (candidate) {
       candidate.style.transform = '';
     });
@@ -1758,36 +1813,86 @@
   function contentTilePeekItemHtml(node) {
     var visual = evolutionPreviewSource(node);
     var title = esc(node.title || node.slug || node.id);
+    var direct = currentProfile === 'evolution-v1' && node.live && node.liveUrl;
+    var open = direct
+      ? '<button class="stage-curiosity-item" type="button" data-curiosity-reader="' + escAttr(node.id) + '" aria-label="Read ' + escAttr(node.title || node.slug) + ' directly">'
+      : '<div class="stage-curiosity-item">';
+    var close = direct ? '</button>' : '</div>';
     if (!visual) {
-      return '<div class="stage-curiosity-item"><div class="stage-curiosity-fallback"><span>' + title + '<br>preview pending</span></div></div>';
+      return open + '<div class="stage-curiosity-fallback"><span>' + title + '<br>preview pending</span></div>' + close;
     }
-    return '<div class="stage-curiosity-item">'
+    return open
       + '<img' + (visual.cover ? ' class="cover"' : '') + ' src="' + escAttr(visual.src) + '" alt="" loading="lazy">'
       + '<span class="stage-curiosity-shade" aria-hidden="true"></span>'
       + '<span class="stage-curiosity-item-title">' + title + '</span>'
-      + '</div>';
+      + close;
   }
 
-  function startContentTilePeekCycle(shell, memberCount) {
-    stopContentTilePeekCycle();
-    if (memberCount <= 3) return;
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  function updateContentTilePeekNav(shell, memberCount) {
+    var maxStep = Math.max(0, memberCount - 3);
+    var prev = shell.querySelector('[data-curiosity-shift="-1"]');
+    var next = shell.querySelector('[data-curiosity-shift="1"]');
+    if (prev) prev.disabled = contentTilePeekCycleIndex <= 0;
+    if (next) next.disabled = contentTilePeekCycleIndex >= maxStep;
+  }
+
+  function setContentTilePeekStep(shell, memberCount, nextIndex) {
     var track = shell.querySelector('.stage-curiosity-track');
     var first = shell.querySelector('.stage-curiosity-item');
     if (!track || !first) return;
+    var maxStep = Math.max(0, memberCount - 3);
+    contentTilePeekCycleIndex = Math.max(0, Math.min(maxStep, nextIndex));
+    var width = first.offsetWidth;
+    track.style.transform = 'translate3d(-' + (contentTilePeekCycleIndex * (width + 10)) + 'px,0,0)';
+    updateContentTilePeekNav(shell, memberCount);
+  }
+
+  function manuallyStepContentTilePeek(shell, memberCount, delta) {
+    contentTilePeekManual = true;
+    stopContentTilePeekCycle(false);
+    setContentTilePeekStep(shell, memberCount, contentTilePeekCycleIndex + delta);
+  }
+
+  function startContentTilePeekCycle(shell, memberCount) {
+    stopContentTilePeekCycle(false);
+    if (contentTilePeekManual || memberCount <= 3) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     var maxStep = Math.max(0, memberCount - 3);
     contentTilePeekCycleTimer = setInterval(function () {
       if (!contentTilePeekShelf || !contentTilePeekShelf.parentNode) {
         stopContentTilePeekCycle();
         return;
       }
-      contentTilePeekCycleIndex = contentTilePeekCycleIndex >= maxStep ? 0 : contentTilePeekCycleIndex + 1;
-      var width = first.offsetWidth;
-      track.style.transform = 'translate3d(-' + (contentTilePeekCycleIndex * (width + 10)) + 'px,0,0)';
+      var nextIndex = contentTilePeekCycleIndex >= maxStep ? 0 : contentTilePeekCycleIndex + 1;
+      setContentTilePeekStep(shell, memberCount, nextIndex);
     }, CONTENT_TILE_PEEK_STEP_MS);
   }
 
-  function openContentTilePeek(stageIndex) {
+  function openContentTilePeekReader(stageIndex, nodeId) {
+    if (currentProfile !== 'evolution-v1') return;
+    var stage = STAGES[stageIndex];
+    var node = byId[nodeId];
+    if (!stage || !node || !node.live || !node.liveUrl) return;
+    if (!stageMembers(stage).some(function (member) { return member.id === node.id; })) return;
+
+    var returnState = presentationHistoryState('curiosity-overview', {
+      stageKey:stage.key,
+      step:contentTilePeekCycleIndex,
+      manual:contentTilePeekManual
+    });
+    history.replaceState(returnState, '', window.location.href);
+
+    stopContentTilePeekCycle(false);
+    levelIndex = 1;
+    levelCtx = { stageIdx:stageIndex };
+    openEvolutionReader(node.id, {
+      historyMode:'push',
+      returnKind:'curiosity-overview'
+    });
+  }
+
+  function openContentTilePeek(stageIndex, options) {
+    options = options || {};
     if (!contentTilePeekProfileEnabled() || levelIndex !== 1) return;
     if (levelCtx && typeof levelCtx.stageIdx === 'number') return;
     var stage = STAGES[stageIndex];
@@ -1799,6 +1904,8 @@
 
     closeContentTilePeek(true);
     contentTilePeekStageIndex = stageIndex;
+    contentTilePeekManual = options.manual === true;
+    contentTilePeekCycleIndex = Number.isInteger(options.step) ? options.step : 0;
 
     var shift = CONTENT_TILE_PEEK_SHELF_HEIGHT + CONTENT_TILE_PEEK_SHELF_GAP;
     layout.items.forEach(function (item) {
@@ -1825,12 +1932,16 @@
       height:CONTENT_TILE_PEEK_SHELF_HEIGHT,
       class:'stage-curiosity-foreign'
     });
+    var navControls = members.length > 3
+      ? '<button class="stage-curiosity-nav prev" type="button" data-curiosity-shift="-1" aria-label="Previous previews">‹</button>'
+        + '<button class="stage-curiosity-nav next" type="button" data-curiosity-shift="1" aria-label="Next previews">›</button>'
+      : '';
     foreign.innerHTML = '<div xmlns="http://www.w3.org/1999/xhtml" class="stage-curiosity-shell">'
       + '<div class="stage-curiosity-head"><span class="stage-curiosity-title">' + esc(stage.name) + ' · preview</span>'
-      + '<span class="stage-curiosity-note">' + members.length + ' members · collection order · hover to keep open · click tile to enter</span></div>'
+      + '<span class="stage-curiosity-note">' + members.length + ' members · collection order · select a preview to read directly</span></div>'
       + '<div class="stage-curiosity-viewport"><div class="stage-curiosity-track">'
       + members.map(contentTilePeekItemHtml).join('')
-      + '</div></div></div>';
+      + '</div>' + navControls + '</div></div>';
     shelf.appendChild(foreign);
     shelf.addEventListener('mouseenter', cancelContentTilePeekClose);
     shelf.addEventListener('mouseleave', scheduleContentTilePeekClose);
@@ -1838,7 +1949,24 @@
     contentTilePeekShelf = shelf;
 
     var shell = foreign.querySelector('.stage-curiosity-shell');
-    if (shell) startContentTilePeekCycle(shell, members.length);
+    if (shell) {
+      setContentTilePeekStep(shell, members.length, contentTilePeekCycleIndex);
+      shell.querySelectorAll('[data-curiosity-shift]').forEach(function (button) {
+        button.addEventListener('click', function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+          manuallyStepContentTilePeek(shell, members.length, Number(button.getAttribute('data-curiosity-shift')));
+        });
+      });
+      shell.querySelectorAll('[data-curiosity-reader]').forEach(function (button) {
+        button.addEventListener('click', function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+          openContentTilePeekReader(stageIndex, button.getAttribute('data-curiosity-reader'));
+        });
+      });
+      startContentTilePeekCycle(shell, members.length);
+    }
   }
 
   function scheduleContentTilePeekOpen(stageIndex) {
@@ -1859,6 +1987,7 @@
     mapWrap.classList.remove('evolution-reader-active', 'evolution-arrival-active');
     activeReaderId = null;
     activeGroupHomeKey = null;
+    activeReaderReturnKind = 'collection';
     evolutionReader.hidden = true;
     replaceEvolutionReaderDocument('about:blank');
     evolutionLayer.hidden = false;
@@ -3129,8 +3258,13 @@
     }
 
     if (activeReaderId || activeGroupHomeKey) {
-      closeEvolutionReader({ history:false });
-      showGestureHint('Collection reached · release, then scroll again to return to groups');
+      if (activeReaderId && activeReaderReturnKind === 'curiosity-overview' && presentationHistoryKind(history.state) === 'reader') {
+        closeEvolutionReader();
+        showGestureHint('Overview reached · release, then continue from where you entered');
+      } else {
+        closeEvolutionReader({ history:false });
+        showGestureHint('Collection reached · release, then scroll again to return to groups');
+      }
       return true;
     }
 
