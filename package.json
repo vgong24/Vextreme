@@ -12,7 +12,8 @@
     "work-coordination:check": "node lib/work-coordination.js --check-config",
     "institutional-surfaces:check": "node lib/check-institutional-surfaces.js",
     "institutional-surfaces:screenshots": "node scripts/screenshot-institutional.js",
-    "localization:screenshots": "node scripts/screenshot-localization-matrix.js"
+    "localization:screenshots": "node scripts/screenshot-localization-matrix.js",
+    "translation:campaign": "node lib/translation-campaign.js"
   },
   "engines": {
     "node": ">=18.19.0"
