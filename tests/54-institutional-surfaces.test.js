@@ -230,6 +230,57 @@ function writeActiveAcceptance(root, slug, surfaceEntry) {
   }
 }
 
+function removeLocalEvidence(root, slug, surfaceEntry) {
+  for (const locale of surfaceEntry.strings.requiredLocales) {
+    for (const theme of surfaceEntry.evidence.themes) {
+      for (const viewport of surfaceEntry.evidence.viewports) {
+        const file = path.join(root, 'docs', 'screenshots', `${slug}-${locale}-${theme}-${viewport}.png`);
+        if (fs.existsSync(file)) fs.unlinkSync(file);
+      }
+    }
+  }
+}
+
+function writeAssetEvidenceProjection(root, slug, surfaceEntry, mutateRecord = null) {
+  const records = {};
+  for (const locale of surfaceEntry.strings.requiredLocales) {
+    for (const theme of surfaceEntry.evidence.themes) {
+      for (const viewport of surfaceEntry.evidence.viewports) {
+        const key = `vextreme/${slug}/${locale}/${theme}/${viewport}`;
+        const record = {
+          namespace: 'vextreme',
+          slug,
+          locale,
+          theme,
+          viewport,
+          sha256: '0'.repeat(64),
+          path: `evidence/screenshots/vextreme/${slug}/${locale}/${theme}/${viewport}/${'0'.repeat(64)}.png`,
+          source: {
+            repository: 'vgong24/Vextreme',
+            commit: '0'.repeat(40),
+            path: `pages/${slug}.html`,
+          },
+          captureKind: 'institutional-localization',
+        };
+        records[key] = mutateRecord ? mutateRecord({ ...record, source: { ...record.source } }, key) : record;
+      }
+    }
+  }
+  fs.writeFileSync(
+    path.join(root, 'data', 'screenshot-evidence-assets.json'),
+    JSON.stringify({
+      schemaVersion: 'vextreme.screenshot-evidence-assets-projection/v1',
+      source: {
+        repository: 'vgong24/Vextreme-Assets',
+        commit: '1'.repeat(40),
+        publicOrigin: 'https://vgong24.github.io/Vextreme-Assets',
+        manifestSchemaVersion: 'vextreme-assets.screenshot-evidence/v1',
+      },
+      records,
+    }, null, 2) + '\n'
+  );
+}
+
 function supportRouteFixture(routeBlock, { candidateUrl = null } = {}) {
   const root = makeRoot();
   const activeEntry = entry({
@@ -485,6 +536,71 @@ test('INSTITUTIONAL-SURFACES: active requires every locale binding and declared 
   const bundlePath = path.join(root, 'data', 'strings', 'compiled', 'scopes', 'system', 'institution.en.json');
   fs.writeFileSync(bundlePath, '{}\n');
   assert.ok(validateRegistry(active, root).some(issue => issue.check === 'required-locale-key'));
+});
+
+test('INSTITUTIONAL-SURFACES: exact pinned Assets matrix can satisfy activation when local cells are absent', () => {
+  const root = makeRoot();
+  const activeEntry = entry({ state: 'active' });
+  fs.writeFileSync(path.join(root, 'pages', 'vex-test.html'), activeHtml());
+  writeActiveAcceptance(root, 'vex-test', activeEntry);
+  removeLocalEvidence(root, 'vex-test', activeEntry);
+  writeAssetEvidenceProjection(root, 'vex-test', activeEntry);
+
+  const issues = validateRegistry(
+    { schemaVersion: SCHEMA_VERSION, surfaces: { 'vex-test': activeEntry } },
+    root
+  );
+  assert.equal(issues.some(issue => issue.check === 'evidence-matrix'), false);
+});
+
+test('INSTITUTIONAL-SURFACES: ordinary Assets localization screenshots cannot satisfy the institutional matrix', () => {
+  const root = makeRoot();
+  const activeEntry = entry({ state: 'active' });
+  fs.writeFileSync(path.join(root, 'pages', 'vex-test.html'), activeHtml());
+  writeActiveAcceptance(root, 'vex-test', activeEntry);
+  removeLocalEvidence(root, 'vex-test', activeEntry);
+  writeAssetEvidenceProjection(root, 'vex-test', activeEntry, record => ({ ...record, captureKind:'localization' }));
+
+  assert.ok(validateRegistry(
+    { schemaVersion: SCHEMA_VERSION, surfaces: { 'vex-test': activeEntry } },
+    root
+  ).some(issue => issue.check === 'evidence-matrix'));
+});
+
+test('INSTITUTIONAL-SURFACES: Assets matrix proof requires the exact Vextreme page source identity', () => {
+  const root = makeRoot();
+  const activeEntry = entry({ state: 'active' });
+  fs.writeFileSync(path.join(root, 'pages', 'vex-test.html'), activeHtml());
+  writeActiveAcceptance(root, 'vex-test', activeEntry);
+  removeLocalEvidence(root, 'vex-test', activeEntry);
+  writeAssetEvidenceProjection(root, 'vex-test', activeEntry, record => ({
+    ...record,
+    source: { ...record.source, path:'pages/not-vex-test.html' },
+  }));
+
+  assert.ok(validateRegistry(
+    { schemaVersion: SCHEMA_VERSION, surfaces: { 'vex-test': activeEntry } },
+    root
+  ).some(issue => issue.check === 'evidence-matrix'));
+});
+
+test('INSTITUTIONAL-SURFACES: Assets activation fallback remains an exact complete matrix', () => {
+  const root = makeRoot();
+  const activeEntry = entry({ state: 'active' });
+  fs.writeFileSync(path.join(root, 'pages', 'vex-test.html'), activeHtml());
+  writeActiveAcceptance(root, 'vex-test', activeEntry);
+  removeLocalEvidence(root, 'vex-test', activeEntry);
+  writeAssetEvidenceProjection(root, 'vex-test', activeEntry);
+
+  const projectionPath = path.join(root, 'data', 'screenshot-evidence-assets.json');
+  const projection = JSON.parse(fs.readFileSync(projectionPath, 'utf8'));
+  delete projection.records['vextreme/vex-test/en/foundation/320'];
+  fs.writeFileSync(projectionPath, JSON.stringify(projection, null, 2) + '\n');
+
+  assert.ok(validateRegistry(
+    { schemaVersion: SCHEMA_VERSION, surfaces: { 'vex-test': activeEntry } },
+    root
+  ).some(issue => issue.check === 'evidence-matrix'));
 });
 
 test('INSTITUTIONAL-SURFACES: accessibility bindings and string category are activation contracts', () => {
