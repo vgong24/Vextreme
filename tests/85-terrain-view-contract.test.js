@@ -482,6 +482,25 @@ test('TERRAIN-VIEW: Content groups no longer imply a linear sequence with Stage 
   assert.match(source, /class:'stage-arrow pop-in'/);
 });
 
+test('TERRAIN-VIEW: pan gesture displacement suppresses the synthetic click without changing keyboard activation', () => {
+  const source = pageSource();
+  assert.match(source, /MAP_DRAG_THRESHOLD_PX = 5/);
+  assert.match(source, /var mapPointerGesture = \{[\s\S]*suppressClick:false/);
+  assert.match(source, /function armMapDragClickSuppression\(\)/);
+  assert.match(source, /function consumeMapDragClickSuppression\(\)/);
+  assert.match(source, /Math\.hypot\(dx, dy\) < MAP_DRAG_THRESHOLD_PX/);
+  assert.match(source, /view\.x = mapPointerGesture\.originViewX \+ dx/);
+  assert.match(source, /view\.y = mapPointerGesture\.originViewY \+ dy/);
+  assert.match(source, /if \(mapPointerGesture\.moved\) armMapDragClickSuppression\(\)/);
+  assert.match(source, /mapWrap\.addEventListener\('click', function \(ev\) \{[\s\S]*consumeMapDragClickSuppression\(\)[\s\S]*ev\.stopPropagation\(\);[\s\S]*\}, true\)/,
+    'drag-generated click must be intercepted in capture phase before a stage-card click handler can run');
+  assert.match(source, /ev\.target\.closest\('#levelReadout'\)/,
+    'the side depth rail is not itself treated as a map-pan origin');
+  assert.match(source, /g\.addEventListener\('click',function\(ev\)\{ ev\.stopPropagation\(\); activateStage\(i\); \}\)/);
+  assert.match(source, /g\.addEventListener\('keydown',function\(ev\)\{ if\(ev\.key==='Enter'\|\|ev\.key===' '\)\{/,
+    'keyboard activation remains an explicit non-pointer path');
+});
+
 test('TERRAIN-VIEW: accepted Content curiosity peek expands every real group without creating a new semantic level', () => {
   const source = pageSource();
   assert.doesNotMatch(source, /CONTENT_TILE_PEEK_STAGE_KEYS/);
