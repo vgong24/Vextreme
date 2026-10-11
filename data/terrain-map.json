@@ -4442,23 +4442,21 @@
         "health": {
           "state": "attention",
           "gaps": [
-            "identity",
-            "screenshot",
-            "theme-effect"
+            "screenshot"
           ],
           "blockers": []
         },
         "placement": "sorted",
-        "fab": "shell",
+        "fab": "god-script",
         "theme": {
-          "control": "shared",
+          "control": "none",
           "visibleStyles": false
         },
-        "identityKeys": 0,
+        "identityKeys": 138,
         "analysisIndexed": true,
-        "analysisControl": false,
+        "analysisControl": true,
         "evidenceLanguages": [],
-        "metaDescription": ""
+        "metaDescription": "The Testimony of Victor Gong — repository-native preserved content."
       },
       "curated": true
     },

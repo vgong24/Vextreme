@@ -7,9 +7,9 @@
     "critical": 7,
     "sorted": 89,
     "withFab": 115,
-    "withIdentity": 96,
+    "withIdentity": 97,
     "withScreenshots": 11,
-    "withMetaDescription": 97
+    "withMetaDescription": 98
   },
   "pages": {
     "a-conversation-with-pastor-jacob": {
@@ -5922,49 +5922,47 @@
         ]
       },
       "runtime": {
-        "shell": true,
-        "godScript": false
+        "shell": false,
+        "godScript": true
       },
       "navigation": {
         "navigable": true,
         "staticHubLinks": 0,
-        "shell": true,
-        "fab": false
+        "shell": false,
+        "fab": true
       },
       "fab": {
-        "delivery": "shell"
+        "delivery": "god-script"
       },
       "theme": {
-        "control": "shared",
+        "control": "none",
         "visibleStyles": false
       },
       "identity": {
-        "keyCount": 0,
+        "keyCount": 138,
         "languages": {
           "en": {
-            "translated": 0,
-            "total": 0,
-            "state": "none"
+            "translated": 138,
+            "total": 138,
+            "state": "full"
           }
         }
       },
       "analysis": {
         "indexed": true,
-        "control": false
+        "control": true
       },
       "evidence": {
         "screenshotLanguages": []
       },
       "discovery": {
-        "metaDescription": ""
+        "metaDescription": "The Testimony of Victor Gong — repository-native preserved content."
       },
       "health": {
         "state": "attention",
         "blockers": [],
         "gaps": [
-          "identity",
-          "screenshot",
-          "theme-effect"
+          "screenshot"
         ]
       }
     },
