@@ -421,6 +421,8 @@
         "lib/build-vextreme.js (loads its output data/strings/compiled/scopes bundles for God Script assembly)",
         "widgets/fab-lang.js (fetches its output data/strings/compiled/scopes bundles at runtime for JA)",
         "lib/strings-check.js (reads its output data/strings/compiled/manifest.json for stale detection)",
+        "lib/strings-export.js (reuses contentHash for translator source preimage binding)",
+        "lib/strings-import.js (reuses contentHash for returned-translation preimage verification)",
         "tests/02-strings-pipeline.test.js"
       ],
       "testedBy": [
