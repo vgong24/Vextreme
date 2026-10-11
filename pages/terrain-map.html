@@ -396,6 +396,21 @@
   .stage-curiosity-thumb-frame{ fill:none; stroke:var(--line-strong); stroke-width:1; pointer-events:none; }
   .stage-curiosity-shelf{ pointer-events:auto; }
   .stage-curiosity-foreign{ overflow:visible; }
+  .terrain-curiosity-dock-mode .map-wrap{ bottom:190px; }
+  .stage-curiosity-dock{
+    position:absolute; left:0; right:0; bottom:0; z-index:7; height:190px;
+    box-sizing:border-box; padding:10px 18px 14px 92px;
+    border-top:1px solid var(--line); background:color-mix(in srgb,var(--ground) 96%,var(--panel));
+    box-shadow:0 -12px 28px color-mix(in srgb,var(--ink) 5%,transparent);
+  }
+  .stage-curiosity-dock[hidden]{ display:none; }
+  .stage-curiosity-dock .stage-curiosity-shell{ width:min(1180px,100%); margin:0 auto; box-shadow:none; }
+  .stage-curiosity-dock-empty{
+    height:100%; display:flex; align-items:center; justify-content:space-between; gap:20px;
+    padding:0 10px; color:var(--ink-faint); font:10px/1.45 var(--mono);
+  }
+  .stage-curiosity-dock-empty strong{ color:var(--ink-muted); font-weight:700; letter-spacing:.07em; text-transform:uppercase; }
+  .stage-curiosity-dock-empty span:last-child{ text-align:right; }
   .stage-curiosity-shell{
     height:100%; box-sizing:border-box; padding:10px 12px 12px; border:1px solid var(--line-strong);
     border-radius:14px; background:color-mix(in srgb,var(--panel) 96%,var(--ground));
@@ -642,6 +657,12 @@
         <button class="zoom-btn" id="zoomReset" aria-label="Reset view" style="font-size:12px">&#8635;</button>
       </div>
     </div>
+    <aside class="stage-curiosity-dock" id="contentCuriosityDock" aria-label="Collection preview dock" hidden>
+      <div class="stage-curiosity-dock-empty">
+        <strong>Collection preview</strong>
+        <span>Hover or focus a collection to inspect it without moving the Terrain grid.</span>
+      </div>
+    </aside>
     <div class="panel" id="panel" data-terrain-component="terrain.detail-drawer" data-terrain-variant="overlay">
       <div class="panel-empty">
         <span class="glyph">&#8982;</span>
@@ -801,13 +822,14 @@
       "inherits": "evolution-v1",
       "declaredDeltas": [
         "Evolution starts from accepted Content rather than from the legacy Live renderer.",
-        "The collection overview keeps the accepted curiosity-preview behavior, while explicit collection activation remains available for alternate depth experiments without changing canonical content or Journey state.",
+        "The collection overview reserves a viewport-owned inspection dock before hover, so preview disclosure never changes collection-tile coordinates.",
+        "The preview dock reuses accepted collection ordering, preview evidence, direct reading, manual navigation, and presentation-history continuity without becoming a Journey level.",
         "Renderer choice is presentation state and remains directly addressable by URL for human comparison."
       ],
       "levels": {
         "group": {
           "component": "terrain.group-card",
-          "renderer": "adaptive-group-cards+curiosity-peek"
+          "renderer": "viewport-curiosity-dock"
         }
       }
     }
@@ -958,6 +980,7 @@
   var evolutionReader = document.getElementById('evolutionReader');
   var evolutionReaderFrame = document.getElementById('evolutionReaderFrame');
   var evolutionGestureHint = document.getElementById('evolutionGestureHint');
+  var contentCuriosityDock = document.getElementById('contentCuriosityDock');
 
   var DATA = null, ALL = [], byId = {}, neighborsOf = {}, STAGES = [], currentWorld = 'content';
   var renderedNodes = {}, renderedEdges = {};
@@ -1072,7 +1095,7 @@
       if (initialStageIdx >= 0) enterLevel(1, { stageIdx: initialStageIdx });
     }
     initializeJourneyHistory(initialRoute.explicit);
-    if (currentWorld === 'content' && currentProfile === 'evolution-v1' && initialRoute.page) {
+    if (currentWorld === 'content' && (currentProfile === 'evolution-v1' || currentProfile === 'evolution-v2') && initialRoute.page) {
       var initialStage = typeof levelCtx.stageIdx === 'number' ? STAGES[levelCtx.stageIdx] : null;
       if (initialStage && initialStage.parent && initialStage.parent.live && initialStage.parent.pageSlug === initialRoute.page) {
         openEvolutionGroupHome(initialStage, { writeUrl:false });
@@ -1099,7 +1122,7 @@
 
   function syncTerrainChrome() {
     var quiet = currentWorld === 'content' && (currentProfile === 'evolution-v1' || currentProfile === 'evolution-v2');
-    var reading = currentWorld === 'content' && currentProfile === 'evolution-v1' && evolutionReader && !evolutionReader.hidden;
+    var reading = currentWorld === 'content' && (currentProfile === 'evolution-v1' || currentProfile === 'evolution-v2') && evolutionReader && !evolutionReader.hidden;
     appRoot.classList.toggle('terrain-content-quiet', quiet);
     appRoot.classList.toggle('terrain-reader-quiet', reading);
     terrainInspectToggle.hidden = !quiet || reading;
@@ -1108,6 +1131,32 @@
       terrainInspectToggle.setAttribute('aria-expanded', 'false');
     }
     renderEvolutionSearchResults();
+  }
+
+  function contentCuriosityDockModeEnabled() {
+    return currentWorld === 'content'
+      && currentProfile === 'evolution-v2'
+      && levelIndex === 1
+      && !(levelCtx && typeof levelCtx.stageIdx === 'number')
+      && !activeReaderId
+      && !activeEntrySlug
+      && !activeGroupHomeKey;
+  }
+
+  function renderContentCuriosityDockEmpty() {
+    if (!contentCuriosityDock) return;
+    contentCuriosityDock.innerHTML = '<div class="stage-curiosity-dock-empty">'
+      + '<strong>Collection preview</strong>'
+      + '<span>Hover or focus a collection to inspect it without moving the Terrain grid.</span>'
+      + '</div>';
+  }
+
+  function syncContentCuriosityDockMode() {
+    if (!contentCuriosityDock) return;
+    var enabled = contentCuriosityDockModeEnabled();
+    appRoot.classList.toggle('terrain-curiosity-dock-mode', enabled);
+    contentCuriosityDock.hidden = !enabled;
+    if (enabled && !contentTilePeekStageIndex) renderContentCuriosityDockEmpty();
   }
 
   function syncProfileControl() {
@@ -1187,15 +1236,25 @@
   function setPresentationProfile(profile, writeUrl) {
     var nextProfile = profile === 'live' ? 'live' : (profile === 'evolution-v2' ? 'evolution-v2' : 'evolution-v1');
     var priorPinned = pinnedId;
+    var priorProfile = currentProfile;
     currentProfile = nextProfile;
     mapWrap.setAttribute('data-terrain-profile', currentProfile);
     syncProfileControl();
+    syncContentCuriosityDockMode();
 
-    if (currentProfile !== 'evolution-v1' && (activeReaderId || activeEntrySlug || activeGroupHomeKey)) {
+    if (currentProfile !== 'evolution-v1' && currentProfile !== 'evolution-v2'
+      && (activeReaderId || activeEntrySlug || activeGroupHomeKey)) {
       hideEvolutionLayer();
     }
 
-    if (DATA && currentWorld === 'content' && currentProfile === 'evolution-v2'
+    if (DATA && currentWorld === 'content'
+      && priorProfile !== currentProfile
+      && levelIndex === 1
+      && !(levelCtx && typeof levelCtx.stageIdx === 'number')
+      && (currentProfile === 'evolution-v1' || currentProfile === 'evolution-v2')) {
+      pinnedId = null; focusId = null; renderPanel(null);
+      enterLevel(1, {});
+    } else if (DATA && currentWorld === 'content' && currentProfile === 'evolution-v2'
       && (levelIndex !== 1 || (levelCtx && typeof levelCtx.stageIdx === 'number'))) {
       pinnedId = null; focusId = null; renderPanel(null);
       enterLevel(1, {});
@@ -1218,7 +1277,7 @@
   function restoreEvolutionPresentationFromHistory(state) {
     var presentation = presentationHistoryValue(state);
     var kind = presentation ? presentation.kind : null;
-    if (currentWorld !== 'content' || currentProfile !== 'evolution-v1') return;
+    if (currentWorld !== 'content' || (currentProfile !== 'evolution-v1' && currentProfile !== 'evolution-v2')) return;
 
     if (kind === 'curiosity-overview') {
       var overviewStageIdx = STAGES.findIndex(function (stage) { return String(stage.key) === String(presentation.stageKey); });
@@ -1420,6 +1479,7 @@
     hideGestureHint();
     evolutionLayer.hidden = true;
     evolutionReader.hidden = false;
+    evolutionReader.setAttribute('data-terrain-profile', currentProfile);
     svg.style.visibility = 'hidden';
     mapWrap.classList.remove('evolution-arrival-active');
     mapWrap.classList.add('evolution-a-active', 'evolution-reader-active');
@@ -1567,7 +1627,7 @@
   function openEvolutionReader(nodeId, options) {
     options = options || {};
     var node = byId[nodeId];
-    if (!node || !node.live || !node.liveUrl || currentWorld !== 'content' || currentProfile !== 'evolution-v1') return;
+    if (!node || !node.live || !node.liveUrl || !contentTilePeekProfileEnabled()) return;
     if (!evolutionReaderMembers().some(function (member) { return member.id === node.id; })) return;
 
     if (options.returnKind) activeReaderReturnKind = options.returnKind;
@@ -1822,18 +1882,20 @@
     if (contentTilePeekShelf && contentTilePeekShelf.parentNode) contentTilePeekShelf.parentNode.removeChild(contentTilePeekShelf);
     contentTilePeekShelf = null;
     contentTilePeekStageIndex = null;
+    if (contentCuriosityDockModeEnabled()) renderContentCuriosityDockEmpty();
   }
 
   function scheduleContentTilePeekClose() {
     cancelContentTilePeekOpen();
     cancelContentTilePeekClose();
-    contentTilePeekCloseTimer = setTimeout(function () { closeContentTilePeek(false); }, CONTENT_TILE_PEEK_CLOSE_MS);
+    var delay = currentProfile === 'evolution-v2' ? 520 : CONTENT_TILE_PEEK_CLOSE_MS;
+    contentTilePeekCloseTimer = setTimeout(function () { closeContentTilePeek(false); }, delay);
   }
 
   function contentTilePeekItemHtml(node) {
     var visual = evolutionPreviewSource(node);
     var title = esc(node.title || node.slug || node.id);
-    var direct = currentProfile === 'evolution-v1' && node.live && node.liveUrl;
+    var direct = contentTilePeekProfileEnabled() && node.live && node.liveUrl;
     var open = direct
       ? '<button class="stage-curiosity-item" type="button" data-curiosity-reader="' + escAttr(node.id) + '" aria-label="Read ' + escAttr(node.title || node.slug) + ' directly">'
       : '<div class="stage-curiosity-item">';
@@ -1889,7 +1951,7 @@
   }
 
   function openContentTilePeekReader(stageIndex, nodeId) {
-    if (currentProfile !== 'evolution-v1') return;
+    if (!contentTilePeekProfileEnabled()) return;
     var stage = STAGES[stageIndex];
     var node = byId[nodeId];
     if (!stage || !node || !node.live || !node.liveUrl) return;
@@ -1906,10 +1968,59 @@
     stopContentTilePeekCycle(false);
     levelIndex = 1;
     levelCtx = { stageIdx:stageIndex };
+    syncContentCuriosityDockMode();
     openEvolutionReader(node.id, {
       historyMode:'push',
       returnKind:'curiosity-overview'
     });
+  }
+
+  function wireContentTilePeekSurface(shell, members, stageIndex) {
+    if (!shell) return;
+    setContentTilePeekStep(shell, members.length, contentTilePeekCycleIndex);
+    shell.querySelectorAll('[data-curiosity-shift]').forEach(function (button) {
+      button.addEventListener('click', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        manuallyStepContentTilePeek(shell, members.length, Number(button.getAttribute('data-curiosity-shift')));
+      });
+    });
+    shell.querySelectorAll('[data-curiosity-reader]').forEach(function (button) {
+      button.addEventListener('click', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        openContentTilePeekReader(stageIndex, button.getAttribute('data-curiosity-reader'));
+      });
+    });
+    startContentTilePeekCycle(shell, members.length);
+  }
+
+  function openContentCuriosityDock(stageIndex, options) {
+    options = options || {};
+    if (!contentCuriosityDockModeEnabled()) return;
+    var stage = STAGES[stageIndex];
+    if (!contentTilePeekEnabledFor(stage) || !contentTilePeekHoverCapable()) return;
+
+    closeContentTilePeek(true);
+    contentTilePeekStageIndex = stageIndex;
+    contentTilePeekManual = options.manual === true;
+    contentTilePeekCycleIndex = Number.isInteger(options.step) ? options.step : 0;
+
+    var members = stageMembers(stage);
+    var navControls = members.length > 3
+      ? '<button class="stage-curiosity-nav prev" type="button" data-curiosity-shift="-1" aria-label="Previous previews">‹</button>'
+        + '<button class="stage-curiosity-nav next" type="button" data-curiosity-shift="1" aria-label="Next previews">›</button>'
+      : '';
+    contentCuriosityDock.innerHTML = '<div class="stage-curiosity-shell" data-curiosity-dock-shell="true">'
+      + '<div class="stage-curiosity-head"><span class="stage-curiosity-title">' + esc(stage.name) + ' · preview</span>'
+      + '<span class="stage-curiosity-note">' + members.length + ' members · stable dock · select a preview to read directly</span></div>'
+      + '<div class="stage-curiosity-viewport"><div class="stage-curiosity-track">'
+      + members.map(contentTilePeekItemHtml).join('')
+      + '</div>' + navControls + '</div></div>';
+
+    var shell = contentCuriosityDock.querySelector('[data-curiosity-dock-shell]');
+    contentTilePeekShelf = shell;
+    wireContentTilePeekSurface(shell, members, stageIndex);
   }
 
   function openContentTilePeek(stageIndex, options) {
@@ -1918,6 +2029,10 @@
     if (levelCtx && typeof levelCtx.stageIdx === 'number') return;
     var stage = STAGES[stageIndex];
     if (!contentTilePeekEnabledFor(stage) || !contentTilePeekHoverCapable()) return;
+    if (currentProfile === 'evolution-v2') {
+      openContentCuriosityDock(stageIndex, options);
+      return;
+    }
 
     var layout = stageCompositionLayout(levelCtx || {});
     var activeItem = layout.items.find(function (item) { return item.index === stageIndex; });
@@ -1970,24 +2085,7 @@
     contentTilePeekShelf = shelf;
 
     var shell = foreign.querySelector('.stage-curiosity-shell');
-    if (shell) {
-      setContentTilePeekStep(shell, members.length, contentTilePeekCycleIndex);
-      shell.querySelectorAll('[data-curiosity-shift]').forEach(function (button) {
-        button.addEventListener('click', function (event) {
-          event.preventDefault();
-          event.stopPropagation();
-          manuallyStepContentTilePeek(shell, members.length, Number(button.getAttribute('data-curiosity-shift')));
-        });
-      });
-      shell.querySelectorAll('[data-curiosity-reader]').forEach(function (button) {
-        button.addEventListener('click', function (event) {
-          event.preventDefault();
-          event.stopPropagation();
-          openContentTilePeekReader(stageIndex, button.getAttribute('data-curiosity-reader'));
-        });
-      });
-      startContentTilePeekCycle(shell, members.length);
-    }
+    wireContentTilePeekSurface(shell, members, stageIndex);
   }
 
   function scheduleContentTilePeekOpen(stageIndex) {
@@ -2415,6 +2513,7 @@
   }
   function enterLevel(idx, ctx) {
     levelIndex = idx; levelCtx = ctx || {};
+    syncContentCuriosityDockMode();
     revealDepthRail();
     var fit = fitRectToView(OVERVIEW_LEVELS[idx].rect(levelCtx), OVERVIEW_LEVELS[idx].fill);
     levelBaseScale = fit.scale;
@@ -3495,6 +3594,8 @@
   }
 
   function wireControls() {
+    contentCuriosityDock.addEventListener('mouseenter', cancelContentTilePeekClose);
+    contentCuriosityDock.addEventListener('mouseleave', scheduleContentTilePeekClose);
     contentProfile.addEventListener('change', function () {
       setPresentationProfile(contentProfile.value, true);
     });
