@@ -11,7 +11,7 @@
  *
  * Usage:
  *   node scripts/refresh-screenshot-evidence-assets.js \
- *     --manifest ../Vextreme-Assets/evidence/screenshots/manifest.json \
+ *     --assets-root ../Vextreme-Assets \
  *     --commit <exact-40-hex-assets-commit>
  *
  * Optional:
@@ -21,12 +21,14 @@
 
 const fs = require('fs');
 const path = require('path');
+const { execFileSync } = require('child_process');
 
 const ROOT = path.join(__dirname, '..');
 const DEFAULT_OUTPUT = path.join(ROOT, 'data', 'screenshot-evidence-assets.json');
 const CONTENT_ASSETS_PATH = path.join(ROOT, 'config', 'content-assets.json');
 const PROJECTION_SCHEMA = 'vextreme.screenshot-evidence-assets-projection/v1';
 const ASSET_MANIFEST_SCHEMA = 'vextreme-assets.screenshot-evidence/v1';
+const ASSET_MANIFEST_PATH = 'evidence/screenshots/manifest.json';
 
 function readJson(file) {
   return JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -41,6 +43,36 @@ function requireExactCommit(commit) {
     throw new Error('expected exact 40-hex Vextreme-Assets commit');
   }
   return commit.toLowerCase();
+}
+
+function readManifestAtCommit(assetsRoot, sourceCommit) {
+  if (typeof assetsRoot !== 'string' || !assetsRoot.trim()) {
+    throw new Error('--assets-root is required');
+  }
+  const exactCommit = requireExactCommit(sourceCommit);
+  const root = path.resolve(assetsRoot);
+  let text;
+  try {
+    text = execFileSync(
+      'git',
+      ['-C', root, 'show', exactCommit + ':' + ASSET_MANIFEST_PATH],
+      { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], maxBuffer: 50 * 1024 * 1024 }
+    );
+  } catch (error) {
+    const detail = error && error.stderr ? String(error.stderr).trim() : '';
+    throw new Error(
+      'cannot read ' + ASSET_MANIFEST_PATH + ' from exact Assets commit ' +
+      exactCommit + (detail ? ': ' + detail : '')
+    );
+  }
+  try {
+    return JSON.parse(text);
+  } catch (error) {
+    throw new Error(
+      'invalid JSON in ' + ASSET_MANIFEST_PATH + ' at exact Assets commit ' +
+      exactCommit + ': ' + error.message
+    );
+  }
 }
 
 function buildProjection({ manifest, sourceCommit, contentAssets }) {
@@ -92,17 +124,17 @@ function buildProjection({ manifest, sourceCommit, contentAssets }) {
 }
 
 function parseArgs(argv) {
-  const args = { check: false, manifest: null, output: DEFAULT_OUTPUT, commit: null };
+  const args = { check: false, assetsRoot: null, output: DEFAULT_OUTPUT, commit: null };
   for (let i = 0; i < argv.length; i += 1) {
     const token = argv[i];
     if (token === '--check') {
       args.check = true;
       continue;
     }
-    if (token === '--manifest' || token === '--commit' || token === '--output') {
+    if (token === '--assets-root' || token === '--commit' || token === '--output') {
       const value = argv[i + 1];
       if (!value || value.startsWith('--')) throw new Error(token + ' requires a value');
-      if (token === '--manifest') args.manifest = value;
+      if (token === '--assets-root') args.assetsRoot = value;
       if (token === '--commit') args.commit = value;
       if (token === '--output') args.output = value;
       i += 1;
@@ -110,17 +142,16 @@ function parseArgs(argv) {
     }
     throw new Error('unknown argument: ' + token);
   }
-  if (!args.manifest) throw new Error('--manifest is required');
+  if (!args.assetsRoot) throw new Error('--assets-root is required');
   if (!args.commit) throw new Error('--commit is required');
   return args;
 }
 
 function main(argv = process.argv.slice(2)) {
   const args = parseArgs(argv);
-  const manifestPath = path.resolve(args.manifest);
   const outputPath = path.resolve(args.output);
   const projection = buildProjection({
-    manifest: readJson(manifestPath),
+    manifest: readManifestAtCommit(args.assetsRoot, args.commit),
     sourceCommit: args.commit,
     contentAssets: readJson(CONTENT_ASSETS_PATH),
   });
@@ -159,7 +190,9 @@ if (require.main === module) {
 module.exports = {
   PROJECTION_SCHEMA,
   ASSET_MANIFEST_SCHEMA,
+  ASSET_MANIFEST_PATH,
   buildProjection,
+  readManifestAtCommit,
   parseArgs,
   stableJson,
   main,
