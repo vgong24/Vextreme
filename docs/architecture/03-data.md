@@ -12,10 +12,11 @@ data/strings/source/** ──┘                       sitemap.xml            (c
                                                  dist/vextreme-{slug}.js (God Scripts, one per page)
                                                  sw.js                  (Service Worker, pre-caches dist/)
 
-data/status/tech-debt.json         ──┐
+data/status/tech-debt.json          ──┐
 data/status/planned-enhancements.json ──┼── lib/build-status.js ──▶  data/status.json
-data/status/assumptions.json       ──┘
-data/strings/compiled/manifest.json ─┘                              (system health manifest)
+data/status/assumptions.json        ──┤
+data/strings/compiled/manifest.json ──┤                              (system health manifest)
+data/analysis-index.json            ──┘  (page-demand-aware missing-language projection)
 ```
 
 **Write side files — content pipeline:**
@@ -54,17 +55,25 @@ Each item: `{ id, title, priority, description, addedSession }`.
 `data/status/assumptions.json` — claims from PR records not yet confirmed live.
 Each item: `{ id, claim, priority, context, addedSession }`.
 
-`data/strings/compiled/manifest.json` — also an input to `build-status.js` for auto-detecting
-string keys missing translations. Demo-category scope keys (under `scopes/demo/`) are marked
-`intentional: true` and excluded from `totalOpen`.
+`data/strings/compiled/manifest.json` — supplies per-key present-language coverage.
+`data/analysis-index.json` — supplies each key's **page-demand-aware** `missingLangs`,
+derived from real HTML usage, `pageLanguageMap[slug].availableLangs`, and source-only policy.
+Status consumes that projection rather than expanding every manifest key against root
+`supportedLangs`. This matters when a new locale begins as a bounded pilot: unrelated
+pages do not become thousands of fake translation-debt records merely because the locale
+exists somewhere. Demo-category scope keys are still marked `intentional: true` and
+excluded from `totalOpen`.
 
-`lib/build-status.js` — assembles `data/status.json` from the three hand-authored write-side
-sources plus the manifest. Run manually: `node lib/build-status.js`. Not yet in CI.
-Exports pure functions for testing: `buildTranslationNotices`, `buildStatusRollup`, `countOpen`.
+`lib/build-status.js` — assembles `data/status.json` from the hand-authored status sources,
+the string manifest/EN bundle, Analysis' per-key missing-language projection, and current
+content-integrity/lattice evidence. Translation demand is not re-derived here. Run manually
+via `node lib/build-status.js`. Exports pure functions for testing:
+`buildTranslationNotices`, `buildStatusRollup`, `countOpen`.
 
-`data/status.json` — generated system health manifest at the same CQRS layer as `index.json`.
-Structure: `{ _meta: { totalOpen, commit, generated }, notices: { translation, techDebt, enhancements, assumptions } }`.
-First consumer: `pages/ecosystem-hub.html` (developer dashboard, runtime fetch).
+`data/status.json` — generated deterministic system health manifest at the same CQRS layer
+as `index.json`. Its `_meta` carries `totalOpen` and lattice coverage; `notices` carries
+translation, tech debt, enhancements, assumptions, open discussions, and content-integrity
+categories. First consumer: `pages/ecosystem-hub.html` (developer dashboard, runtime fetch).
 
 `data/terrain-map.json` — same CQRS split again, one layer up: `lib/build-terrain-map.js`
 computes every mapped lattice node's real status/debts/reads/writes plus a deterministic

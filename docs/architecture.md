@@ -140,10 +140,11 @@ data/strings/source/** ──┘                       sitemap.xml            (c
                                                  dist/vextreme-{slug}.js (God Scripts, one per page)
                                                  sw.js                  (Service Worker, pre-caches dist/)
 
-data/status/tech-debt.json         ──┐
+data/status/tech-debt.json          ──┐
 data/status/planned-enhancements.json ──┼── lib/build-status.js ──▶  data/status.json
-data/status/assumptions.json       ──┘
-data/strings/compiled/manifest.json ─┘                              (system health manifest)
+data/status/assumptions.json        ──┤
+data/strings/compiled/manifest.json ──┤                              (system health manifest)
+data/analysis-index.json            ──┘  (page-demand-aware missing-language projection)
 ```
 
 **Write side files — content pipeline:**
@@ -182,17 +183,25 @@ Each item: `{ id, title, priority, description, addedSession }`.
 `data/status/assumptions.json` — claims from PR records not yet confirmed live.
 Each item: `{ id, claim, priority, context, addedSession }`.
 
-`data/strings/compiled/manifest.json` — also an input to `build-status.js` for auto-detecting
-string keys missing translations. Demo-category scope keys (under `scopes/demo/`) are marked
-`intentional: true` and excluded from `totalOpen`.
+`data/strings/compiled/manifest.json` — supplies per-key present-language coverage.
+`data/analysis-index.json` — supplies each key's **page-demand-aware** `missingLangs`,
+derived from real HTML usage, `pageLanguageMap[slug].availableLangs`, and source-only policy.
+Status consumes that projection rather than expanding every manifest key against root
+`supportedLangs`. This matters when a new locale begins as a bounded pilot: unrelated
+pages do not become thousands of fake translation-debt records merely because the locale
+exists somewhere. Demo-category scope keys are still marked `intentional: true` and
+excluded from `totalOpen`.
 
-`lib/build-status.js` — assembles `data/status.json` from the three hand-authored write-side
-sources plus the manifest. Run manually: `node lib/build-status.js`. Not yet in CI.
-Exports pure functions for testing: `buildTranslationNotices`, `buildStatusRollup`, `countOpen`.
+`lib/build-status.js` — assembles `data/status.json` from the hand-authored status sources,
+the string manifest/EN bundle, Analysis' per-key missing-language projection, and current
+content-integrity/lattice evidence. Translation demand is not re-derived here. Run manually
+via `node lib/build-status.js`. Exports pure functions for testing:
+`buildTranslationNotices`, `buildStatusRollup`, `countOpen`.
 
-`data/status.json` — generated system health manifest at the same CQRS layer as `index.json`.
-Structure: `{ _meta: { totalOpen, commit, generated }, notices: { translation, techDebt, enhancements, assumptions } }`.
-First consumer: `pages/ecosystem-hub.html` (developer dashboard, runtime fetch).
+`data/status.json` — generated deterministic system health manifest at the same CQRS layer
+as `index.json`. Its `_meta` carries `totalOpen` and lattice coverage; `notices` carries
+translation, tech debt, enhancements, assumptions, open discussions, and content-integrity
+categories. First consumer: `pages/ecosystem-hub.html` (developer dashboard, runtime fetch).
 
 `data/terrain-map.json` — same CQRS split again, one layer up: `lib/build-terrain-map.js`
 computes every mapped lattice node's real status/debts/reads/writes plus a deterministic
@@ -1991,9 +2000,10 @@ This resolves the tension both lanes were circling without weakening either boun
 - Vextreme's own compiled string bundles already are a real canonical-ID system.
   `docs/architecture/06-i18n.md` says it outright: "The key registry in
   `data/strings/source/` is not just a string file — it is the element identity layer for
-  the entire UI." Every key (`common.label.page-live`, `pages.victors-recap-arc-1.hero`,
-  etc.) already has real per-language values across `en`/`ja`/`zh` (`data/index.json`'s
-  `supportedLangs`).
+  the entire UI." Root `data/index.json.supportedLangs` is the aggregate locale set and
+  stable ordering/back-compat surface; it is **not** a promise that every key owes every
+  locale. Per-key translation demand is derived from the real pages that use the key and
+  those pages' `pageLanguageMap[slug].availableLangs`.
 - `lib/trace-string-usage.js` already computes reverse usage (`scanUsages`, `traceKey`,
   `tracePage`, `findOrphanUsages`, `findUnusedKeys`) — real forward/reverse mapping,
   today, CLI/stdout-only.
@@ -2042,8 +2052,13 @@ the outputs of `trace-string-usage.js` (reused, not duplicated — `scanUsages`,
 `findOrphanUsages`, `findUnusedKeys`) and `screenshot-evidence.js`'s shared projections into
 one browser-fetchable artifact, `data/analysis-index.json`: every key's canonical id,
 present/missing languages, which page(s) reference it, and per-slug screenshot
-availability. Same CQRS shape as `data/terrain-map.json` (write-side script, deterministic,
-no live compute) — nothing renders yet.
+availability. Missing-language debt is page-demand-aware: Analysis unions
+`availableLangs` only from real `pages/*.html` surfaces that actually reference each key,
+preserves root `supportedLangs` ordering, applies `sourceOnlyScopes`, then subtracts the
+key's present languages. A bounded new locale therefore creates debt only where users can
+actually select it; unrelated/unused/source-only keys do not inherit synthetic debt from the
+site-wide locale union. Same CQRS shape as `data/terrain-map.json` (write-side script,
+deterministic, no live compute) — nothing renders yet.
 
 Known limitation, recorded honestly: staleness detection (EN text changed since a
 translation was last touched) is not included in Phase A — `manifest.json` stores an
