@@ -179,7 +179,7 @@ test('TERRAIN-VIEW: accepted Content remains the no-query default while Evolutio
   assert.match(source, /contentProfile\.addEventListener\('change', function \(\) \{/);
   assert.match(source, /setPresentationProfile\(contentProfile\.value, true\)/);
   assert.match(source, /contentProfile\.value = currentProfile === 'evolution-v2' \? 'evolution-v2' : 'evolution-v1'/);
-  assert.match(source, /currentProfile === 'evolution-v2' && levelIndex === 0/);
+  assert.match(source, /currentProfile === 'evolution-v2'[\s\S]*levelIndex !== 1[\s\S]*levelCtx\.stageIdx/);
   assert.match(source, /enterLevel\(1, \{\}\)/);
   assert.match(source, /if \(nextWorld === 'content'\) currentProfile = 'evolution-v1'/);
 
