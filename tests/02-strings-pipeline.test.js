@@ -23,6 +23,8 @@
 
 const { test } = require('node:test');
 const assert   = require('node:assert/strict');
+const fs       = require('node:fs');
+const path     = require('node:path');
 const { mergeSourceFiles, buildBundles, buildManifest, contentHash } = require('../lib/strings-compile');
 const {
   targetLanguages,
@@ -32,6 +34,8 @@ const {
   buildTranslatorCSV,
 } = require('../lib/strings-export');
 const { parseCSV, buildImportPlan, applyImportOperations } = require('../lib/strings-import');
+
+const ROOT = path.join(__dirname, '..');
 
 // ── 1. Full pipeline integration ──────────────────────────────────────────────
 
@@ -263,6 +267,43 @@ test('TRANSLATOR CONTEXT: Testimony structure exposes part/speaker labels and pr
   const notes = buildTranslatorNotes(raw[speakerBody], raw[speakerBody].strings.en.text, 'fr');
   assert.match(notes, /Myself, My|My, Myself/);
   assert.match(notes, /preserve intentional capitalization\/voice styling/);
+});
+
+test('TRANSLATOR CONTEXT integration: the Phase-C exemplar pages still expose their real repository context', () => {
+  function load(slug) {
+    const raw = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'strings', 'source', 'pages', slug + '.json'), 'utf8'));
+    const html = fs.readFileSync(path.join(ROOT, 'pages', slug + '.html'), 'utf8');
+    return { raw, contextMap: buildHtmlContextMap(html) };
+  }
+
+  const claude = load('claude-answers-the-doubt');
+  const claudeKey = 'pages.claude-answers-the-doubt.layer.04.qa.04.answer';
+  const claudeContext = buildTranslatorContext(claude.raw, claudeKey, claude.raw[claudeKey], claude.contextMap);
+  assert.match(claudeContext, /role=answer/);
+  assert.match(claudeContext, /paired-question="How do I know they actually made contact\?"/);
+  assert.match(claudeContext, /nearest-heading=Comparative Doubt/);
+
+  const method = load('victor-methodology-presentation');
+  const methodKey = 'pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.body';
+  const methodContext = buildTranslatorContext(method.raw, methodKey, method.raw[methodKey], method.contextMap);
+  assert.match(methodContext, /role=record-body/);
+  assert.match(methodContext, /record-heading=Translations navigable in both directions/);
+  assert.match(methodContext, /canonical-element-id=REC-Y2-TRANSLATIONS/);
+
+  const testimony = load('the-testimony-of-victor-gong');
+  const testimonyKey = 'pages.the-testimony-of-victor-gong.body.div024.div002.p001.text001';
+  const testimonyContext = buildTranslatorContext(testimony.raw, testimonyKey, testimony.raw[testimonyKey], testimony.contextMap);
+  assert.match(testimonyContext, /role=speaker-authored-body/);
+  assert.match(testimonyContext, /speaker-label=Vex Speaks/);
+  assert.match(testimonyContext, /provenance=docs\/ingestion\/source-pages\/part-024\/the-testimony-of-victor-gong\.html/);
+
+  const testimonyNotes = buildTranslatorNotes(
+    testimony.raw[testimonyKey],
+    testimony.raw[testimonyKey].strings.en.text,
+    'fr'
+  );
+  assert.match(testimonyNotes, /Myself/);
+  assert.match(testimonyNotes, /My/);
 });
 
 test('TRANSLATOR CONTEXT: ICU placeholders are called out and target-locale stale notes do not leak from another language', () => {
