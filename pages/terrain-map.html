@@ -2875,6 +2875,10 @@
           g.appendChild(hint);
         }
       }
+      g.addEventListener('pointerdown', function () {
+        cancelContentTilePeekOpen();
+        cancelContentTilePeekClose();
+      });
       g.addEventListener('click',function(ev){ ev.stopPropagation(); activateStage(i); });
       g.addEventListener('keydown',function(ev){ if(ev.key==='Enter'||ev.key===' '){ ev.preventDefault(); ev.stopPropagation(); activateStage(i); } });
       if (curiosityEnabled) {

@@ -475,6 +475,26 @@ test('TERRAIN-VIEW: Content groups no longer imply a linear sequence with Stage 
   assert.match(source, /class:'stage-arrow pop-in'/);
 });
 
+test('TERRAIN-VIEW: collection pointer intent cancels pending preview before click activation', () => {
+  const source = pageSource();
+
+  assert.match(source, /g\.addEventListener\('pointerdown', function \(\) \{[\s\S]*cancelContentTilePeekOpen\(\);[\s\S]*cancelContentTilePeekClose\(\);[\s\S]*\}\);/,
+    'pointer-down on a collection must cancel pending preview work immediately');
+  assert.match(source, /g\.addEventListener\('click',function\(ev\)\{ ev\.stopPropagation\(\); activateStage\(i\); \}\)/,
+    'click still owns synchronous collection activation');
+  const pointerDownBlock = source.match(/g\.addEventListener\('pointerdown', function \(\) \{[\s\S]*?\n      \}\);/);
+  assert.ok(pointerDownBlock, 'collection pointer-down handler must remain extractable');
+  assert.doesNotMatch(pointerDownBlock[0], /preventDefault|stopPropagation/,
+    'pointer-down preview cancellation must not steal drag/pan semantics');
+  assert.match(source, /g\.addEventListener\('keydown',function\(ev\)\{ if\(ev\.key==='Enter'\|\|ev\.key===' '\)\{ ev\.preventDefault\(\); ev\.stopPropagation\(\); activateStage\(i\); \} \}\)/,
+    'keyboard activation remains immediate and preview-independent');
+
+  const activationBlock = source.match(/g\.addEventListener\('pointerdown'[\s\S]*?world\.appendChild\(g\);/);
+  assert.ok(activationBlock, 'stage-card activation block must remain extractable');
+  assert.doesNotMatch(activationBlock[0], /load|await|decode\(|onload|addEventListener\('load'/,
+    'tile activation must not depend on preview image readiness');
+});
+
 test('TERRAIN-VIEW: pan suppresses only the drag-sequence click; a later tile click is immediately ready', () => {
   const source = pageSource();
   assert.match(source, /MAP_DRAG_THRESHOLD_PX = 5/);
