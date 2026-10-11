@@ -55,9 +55,9 @@ test('TERRAIN-VIEW: Content presentation is accepted while the legacy Live geome
   assert.equal(value.profiles['evolution-v1'].status, 'accepted-reference');
   assert.equal(value.profiles['evolution-v1'].label, 'Content');
   assert.equal(value.profiles['evolution-v1'].inherits, 'live');
-  assert.ok(value.profiles['evolution-v1'].declaredDeltas.some(delta => /curiosity previews/.test(delta)));
+  assert.ok(value.profiles['evolution-v1'].declaredDeltas.some(delta => /viewport-owned inspection dock/.test(delta)));
   assert.ok(value.profiles['evolution-v1'].declaredDeltas.length >= 7);
-  assert.equal(value.profiles['evolution-v1'].levels.group.renderer, 'content-preview-shelf');
+  assert.equal(value.profiles['evolution-v1'].levels.group.renderer, 'viewport-curiosity-dock');
   assert.equal(value.profiles['evolution-v1'].levels.node.renderer, 'preview-card');
   assert.equal(value.profiles['evolution-v1'].levels.node.readerRenderer, 'embedded-page');
   assert.equal(
@@ -65,10 +65,10 @@ test('TERRAIN-VIEW: Content presentation is accepted while the legacy Live geome
     'scrollable-content > armed-boundary-transition > terrain-zoom'
   );
   assert.equal(value.profiles['evolution-v2'].status, 'experimental');
-  assert.equal(value.profiles['evolution-v2'].label, 'Evolution');
+  assert.equal(value.profiles['evolution-v2'].label, 'Reflow shelf');
   assert.equal(value.profiles['evolution-v2'].inherits, 'evolution-v1');
   assert.ok(value.profiles['evolution-v2'].declaredDeltas.length >= 4);
-  assert.equal(value.profiles['evolution-v2'].levels.group.renderer, 'viewport-curiosity-dock');
+  assert.equal(value.profiles['evolution-v2'].levels.group.renderer, 'content-preview-shelf-reflow');
 });
 
 test('TERRAIN-VIEW: Live profile preserves the accepted geometry as named component tokens', () => {
@@ -162,7 +162,7 @@ test('TERRAIN-VIEW: accepted Content remains the no-query default while Evolutio
   assert.match(source, /id="contentProfileWrap"/);
   assert.match(source, /id="contentProfile"/);
   assert.match(source, /<option value="evolution-v1">Content<\/option>/);
-  assert.match(source, /<option value="evolution-v2">Evolution<\/option>/);
+  assert.match(source, /<option value="evolution-v2">Reflow shelf<\/option>/);
   assert.match(source, /<span class="content-view-split">[\s\S]*data-world="content"[\s\S]*id="contentProfileWrap"[\s\S]*id="contentProfile"[\s\S]*<\/span>/,
     'presentation profile belongs inside the Content half of the View control');
   assert.match(source, /\.terrain-content-quiet \.lens,[\s\S]*\.terrain-content-quiet \.legend\{ display:none; \}/);
@@ -540,56 +540,43 @@ test('TERRAIN-VIEW: Content overview collection titles wrap to two lines and aut
     'focused and context variants retain their existing compact title behavior');
 });
 
-test('TERRAIN-VIEW: Evolution v2 reserves a stable viewport preview dock instead of reflowing collection tiles', () => {
+test('TERRAIN-VIEW: accepted Content reserves the stable viewport dock while Reflow shelf is Inspect-only comparison', () => {
   const source = pageSource();
 
   assert.match(source, /id="contentCuriosityDock"/);
   assert.match(source, /class="stage-curiosity-dock"/);
-  assert.match(source, /\.terrain-curiosity-dock-mode \.map-wrap\{ bottom:190px; \}/,
-    'Evolution reserves dock height before hover rather than covering the map');
-  assert.match(source, /\.stage-curiosity-dock\{[\s\S]*height:190px/);
-  assert.match(source, /function contentCuriosityDockModeEnabled\(\)/);
-  assert.match(source, /currentProfile === 'evolution-v2'[\s\S]*levelIndex === 1[\s\S]*typeof levelCtx\.stageIdx === 'number'/);
+  assert.match(source, /\.terrain-curiosity-dock-mode \.map-wrap\{ bottom:190px; \}/);
+  assert.match(source, /function contentCuriosityDockModeEnabled\(\) \{[\s\S]*currentProfile === 'evolution-v1'[\s\S]*levelIndex === 1/);
   assert.match(source, /function syncContentCuriosityDockMode\(\)/);
   assert.match(source, /appRoot\.classList\.toggle\('terrain-curiosity-dock-mode', enabled\)/);
   assert.match(source, /contentCuriosityDock\.hidden = !enabled/);
-  assert.match(source, /function renderContentCuriosityDockEmpty\(\)/);
 
   const dockRenderer = source.match(/function openContentCuriosityDock\(stageIndex, options\) \{[\s\S]*?\n  \}/);
-  assert.ok(dockRenderer, 'Evolution dock renderer must remain extractable');
-  assert.match(dockRenderer[0], /contentCuriosityDock\.innerHTML/);
-  assert.match(dockRenderer[0], /members\.map\(contentTilePeekItemHtml\)\.join\(''\)/);
-  assert.match(dockRenderer[0], /wireContentTilePeekSurface\(shell, members, stageIndex\)/);
+  assert.ok(dockRenderer, 'accepted dock renderer must remain extractable');
   assert.doesNotMatch(dockRenderer[0], /candidate\.style\.transform|translateY\(/,
-    'dock preview must never move collection tiles');
+    'accepted Content dock must never move collection tiles');
 
   const sharedPeek = source.match(/function openContentTilePeek\(stageIndex, options\) \{[\s\S]*?\n  \}/);
   assert.ok(sharedPeek, 'shared curiosity entry point must remain extractable');
-  assert.match(sharedPeek[0], /currentProfile === 'evolution-v2'[\s\S]*openContentCuriosityDock\(stageIndex, options\)[\s\S]*return;/,
-    'Evolution branches to dock before accepted in-flow reflow logic');
+  assert.match(sharedPeek[0], /currentProfile === 'evolution-v1'[\s\S]*openContentCuriosityDock\(stageIndex, options\)[\s\S]*return;/,
+    'public no-query Content must branch to the stable dock before any reflow logic');
   assert.match(sharedPeek[0], /candidate\.style\.transform = 'translateY\(' \+ shift \+ 'px\)'/,
-    'accepted Content keeps its current in-flow shelf for A\/B comparison');
+    'old row-translation shelf remains available only through the comparison profile');
 
-  assert.match(source, /var direct = contentTilePeekProfileEnabled\(\) && node\.live && node\.liveUrl/,
-    'dock previews retain the direct-reader affordance');
-  assert.match(source, /function openContentTilePeekReader\(stageIndex, nodeId\) \{[\s\S]*syncContentCuriosityDockMode\(\)[\s\S]*openEvolutionReader\(node\.id/);
-  assert.match(source, /function openEvolutionReader\(nodeId, options\) \{[\s\S]*!contentTilePeekProfileEnabled\(\)/,
-    'embedded reading is available from both Content presentation profiles');
-  assert.match(source, /var reading = currentWorld === 'content' && \(currentProfile === 'evolution-v1' \|\| currentProfile === 'evolution-v2'\)/);
-  assert.match(source, /currentWorld !== 'content' \|\| \(currentProfile !== 'evolution-v1' && currentProfile !== 'evolution-v2'\)/,
-    'Back\/Forward presentation restoration accepts the Evolution profile too');
+  assert.match(source, /currentProfile === 'evolution-v1' \? 520 : CONTENT_TILE_PEEK_CLOSE_MS/,
+    'accepted dock keeps enough hover grace to reach the inspection band');
+  assert.match(source, /<option value="evolution-v1">Content<\/option>[\s\S]*<option value="evolution-v2">Reflow shelf<\/option>/);
+  assert.match(source, /profile: profile === 'live' \? 'live' : \(profile === 'evolution-v2' \? 'evolution-v2' : 'evolution-v1'\)/,
+    'no-query Content remains the accepted dock profile');
+  assert.match(source, /if \(currentWorld === 'content' && currentProfile === 'evolution-v1'\) \{[\s\S]*url\.searchParams\.delete\('profile'\)/,
+    'accepted dock stays canonical without a profile query parameter');
 
-  assert.match(source, /contentCuriosityDock\.addEventListener\('mouseenter', cancelContentTilePeekClose\)/);
-  assert.match(source, /contentCuriosityDock\.addEventListener\('mouseleave', scheduleContentTilePeekClose\)/);
-  assert.match(source, /currentProfile === 'evolution-v2' \? 520 : CONTENT_TILE_PEEK_CLOSE_MS/,
-    'dock receives enough hover grace for the pointer to travel from tile field to dock');
-  assert.match(source, /function enterLevel\(idx, ctx\) \{[\s\S]*syncContentCuriosityDockMode\(\)[\s\S]*fitRectToView/,
-    'reserved dock geometry is established before Terrain computes a fit');
-  assert.match(source, /priorProfile !== currentProfile[\s\S]*levelIndex === 1[\s\S]*enterLevel\(1, \{\}\)/,
-    'switching Content\/Evolution performs one deliberate refit for the different viewport height');
+  assert.doesNotMatch(source, /class="map-hint"/);
+  assert.match(source, /\.zoom-controls\{[\s\S]*left:34px;[\s\S]*top:214px;/,
+    'promotion must preserve the corrected left-side navigation chrome');
 });
 
-test('TERRAIN-VIEW: accepted Content curiosity shelf supports slower autoplay, manual edges, and direct reading', () => {
+test('TERRAIN-VIEW: accepted Content curiosity previews support slower autoplay, manual edges, and direct reading', () => {
   const source = pageSource();
   assert.doesNotMatch(source, /CONTENT_TILE_PEEK_STAGE_KEYS/);
   assert.match(source, /CONTENT_TILE_PEEK_DELAY_MS = 200/);
