@@ -557,6 +557,12 @@
       <div class="sub" id="subline">Loading…</div>
     </div>
     <button class="terrain-inspect-toggle" id="terrainInspectToggle" type="button" aria-expanded="false">Inspect</button>
+    <label class="content-profile-wrap" id="contentProfileWrap" hidden>
+      <select class="content-profile" id="contentProfile" aria-label="Content presentation">
+        <option value="evolution-v1">Content</option>
+        <option value="evolution-v2">Evolution</option>
+      </select>
+    </label>
     <div class="lens">
       <span class="lens-label">View</span>
       <div class="lens-toggle" role="group" aria-label="Code or content" id="worldBar">
@@ -786,10 +792,21 @@
       }
     },
     "evolution-v2": {
-      "status": "reserved-unformed",
-      "label": "Evolution v2",
+      "status": "experimental",
+      "label": "Evolution",
       "inherits": "live",
-      "declaredDeltas": []
+      "declaredDeltas": [
+        "The accepted Content collection overview remains the canvas; curiosity is disclosed on the existing group tile instead of navigating to a second preview renderer.",
+        "A bounded prototype subset shows one representative visual at rest and opens a row-local ordered member preview after intentional hover or keyboard focus.",
+        "Opening a curiosity shelf shifts lower overview rows down instead of covering them, while click and keyboard activation retain the existing collection navigation semantics.",
+        "Preview motion is presentation-only, respects reduced motion, and does not create a Journey step or canonical content relationship."
+      ],
+      "levels": {
+        "group": {
+          "component": "terrain.group-card",
+          "renderer": "adaptive-group-cards+curiosity-peek"
+        }
+      }
     }
   }
 }
@@ -912,6 +929,7 @@
   var TERRAIN_VIEW_CONTRACT = JSON.parse(document.getElementById('terrain-view-contract').textContent);
   var LIVE_VIEW = TERRAIN_VIEW_CONTRACT.profiles.live;
   var EVOLUTION_A_VIEW = TERRAIN_VIEW_CONTRACT.profiles['evolution-v1'];
+  var EVOLUTION_B_VIEW = TERRAIN_VIEW_CONTRACT.profiles['evolution-v2'];
   var CONTENT_GROUP_RELATION = TERRAIN_VIEW_CONTRACT.relationships.contentGroup;
   var TERRAIN_ENTRY_CONTRACT = JSON.parse(document.getElementById('terrain-entry-contract').textContent);
 
@@ -926,6 +944,8 @@
 
   var appRoot = document.querySelector('.app');
   var terrainInspectToggle = document.getElementById('terrainInspectToggle');
+  var contentProfileWrap = document.getElementById('contentProfileWrap');
+  var contentProfile = document.getElementById('contentProfile');
   var svg = document.getElementById('svg');
   var world = document.getElementById('world');
   var mapWrap = document.getElementById('mapWrap');
@@ -1053,7 +1073,7 @@
     var profile = params.get('profile');
     return {
       world: view === 'code' ? 'code' : 'content',
-      profile: profile === 'live' ? 'live' : 'evolution-v1',
+      profile: profile === 'live' ? 'live' : (profile === 'evolution-v2' ? 'evolution-v2' : 'evolution-v1'),
       group: params.get('group') || null,
       page: params.get('page') || null,
       explicit: params.has('view') || params.has('profile') || params.has('group') || params.has('page')
@@ -1061,8 +1081,8 @@
   }
 
   function syncTerrainChrome() {
-    var quiet = currentWorld === 'content' && currentProfile === 'evolution-v1';
-    var reading = quiet && evolutionReader && !evolutionReader.hidden;
+    var quiet = currentWorld === 'content' && (currentProfile === 'evolution-v1' || currentProfile === 'evolution-v2');
+    var reading = currentWorld === 'content' && currentProfile === 'evolution-v1' && evolutionReader && !evolutionReader.hidden;
     appRoot.classList.toggle('terrain-content-quiet', quiet);
     appRoot.classList.toggle('terrain-reader-quiet', reading);
     terrainInspectToggle.hidden = !quiet || reading;
@@ -1075,6 +1095,10 @@
 
   function syncProfileControl() {
     syncTerrainChrome();
+    if (!contentProfileWrap || !contentProfile) return;
+    var visible = currentWorld === 'content' && !(activeReaderId || activeEntrySlug || activeGroupHomeKey);
+    contentProfileWrap.hidden = !visible;
+    if (visible) contentProfile.value = currentProfile === 'evolution-v2' ? 'evolution-v2' : 'evolution-v1';
   }
 
   function presentationHistoryState(kind) {
@@ -1120,7 +1144,7 @@
   }
 
   function setPresentationProfile(profile, writeUrl) {
-    var nextProfile = profile === 'live' ? 'live' : 'evolution-v1';
+    var nextProfile = profile === 'live' ? 'live' : (profile === 'evolution-v2' ? 'evolution-v2' : 'evolution-v1');
     var priorPinned = pinnedId;
     currentProfile = nextProfile;
     mapWrap.setAttribute('data-terrain-profile', currentProfile);
@@ -1130,7 +1154,10 @@
       hideEvolutionLayer();
     }
 
-    if (DATA && currentWorld === 'content' && currentProfile === 'evolution-v1' && levelIndex === 2) {
+    if (DATA && currentWorld === 'content' && currentProfile === 'evolution-v2' && levelIndex === 0) {
+      pinnedId = null; focusId = null; renderPanel(null);
+      enterLevel(1, {});
+    } else if (DATA && currentWorld === 'content' && currentProfile === 'evolution-v1' && levelIndex === 2) {
       var stageIdx = levelCtx.stageIdx;
       pinnedId = null; focusId = null; renderPanel(null);
       enterLevel(1, { stageIdx:stageIdx });
@@ -1734,7 +1761,7 @@
   }
 
   function openContentTilePeek(stageIndex) {
-    if (currentWorld !== 'content' || currentProfile !== 'evolution-v1' || levelIndex !== 1) return;
+    if (currentWorld !== 'content' || currentProfile !== 'evolution-v2' || levelIndex !== 1) return;
     if (levelCtx && typeof levelCtx.stageIdx === 'number') return;
     var stage = STAGES[stageIndex];
     if (!contentTilePeekEnabledFor(stage) || !contentTilePeekHoverCapable()) return;
@@ -2272,7 +2299,7 @@
   }
 
   function renderStageOrientation(layout) {
-    if (!stageOrientation || currentWorld !== 'content' || currentProfile === 'evolution-v1' || layout.focusedIdx >= 0) {
+    if (!stageOrientation || currentWorld !== 'content' || currentProfile !== 'live' || layout.focusedIdx >= 0) {
       hideStageOrientation();
       return;
     }
@@ -2372,7 +2399,7 @@
     var layout = stageCompositionLayout(levelCtx || {});
     renderStageOrientation(layout);
     var curiosityPrototype = currentWorld === 'content'
-      && currentProfile === 'evolution-v1'
+      && currentProfile === 'evolution-v2'
       && layout.focusedIdx < 0
       && contentTilePeekHoverCapable();
     layout.items.sort(function (a,b) { return a.index - b.index; }).forEach(function (item) {
@@ -3156,6 +3183,9 @@
   }
 
   function wireControls() {
+    contentProfile.addEventListener('change', function () {
+      setPresentationProfile(contentProfile.value, true);
+    });
     terrainInspectToggle.addEventListener('click', function () {
       var open = appRoot.classList.toggle('terrain-inspect-open');
       terrainInspectToggle.setAttribute('aria-expanded', String(open));
