@@ -718,8 +718,10 @@ test('TERRAIN-VIEW: accepted Content reserves the stable viewport dock while Ref
     'accepted dock stays canonical without a profile query parameter');
 
   assert.doesNotMatch(source, /class="map-hint"/);
-  assert.match(source, /\.zoom-controls\{[\s\S]*left:34px;[\s\S]*top:214px;/,
-    'promotion must preserve the corrected left-side navigation chrome');
+  assert.doesNotMatch(source, /zoom-controls|zoom-btn|zoomIn|zoomOut|zoomReset/,
+    'accepted dock remains intact while the manual zoom-button stack is removed for diagnosis');
+  assert.match(source, /mapWrap\.addEventListener\('wheel', function \(ev\) \{/,
+    'wheel navigation remains available during the zoom-control diagnostic');
 });
 
 test('TERRAIN-VIEW: accepted Content curiosity previews support slower autoplay, manual edges, and direct reading', () => {

@@ -171,26 +171,6 @@
   .threshold-step[data-relation="next"]{ color:var(--ink); }
   .threshold-meter{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); clip-path:inset(50%); white-space:nowrap; }
   .level-order{ margin-top:8px; width:100%; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:8px; line-height:1; text-align:center; letter-spacing:.02em; color:var(--ink-faint); }
-  .zoom-controls{
-    position:absolute; left:34px; top:214px; z-index:12;
-    display:flex; flex-direction:column; gap:6px;
-  }
-  .zoom-btn{
-    width:28px; height:28px; border-radius:7px; border:1px solid var(--line-strong);
-    background:color-mix(in srgb,var(--panel) 88%,transparent); color:var(--ink); font-size:15px;
-    cursor:pointer; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(8px);
-  }
-  .zoom-btn:hover, .zoom-btn:focus-visible{ background:var(--panel-2); border-color:var(--accent); outline:none; }
-  @media (min-width:721px){
-    .zoom-controls{
-      opacity:0; pointer-events:none; transform:translateY(-4px);
-      transition:opacity .16s ease, transform .16s ease;
-    }
-    .level-readout.is-active ~ .zoom-controls,
-    .zoom-controls:focus-within{
-      opacity:1; pointer-events:auto; transform:translateY(0);
-    }
-  }
   .load-state{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:var(--ink-muted); font-family:var(--mono); font-size:13px; z-index:3; background:var(--ground); }
   .stage-orientation{
     position:absolute; top:14px; left:104px; right:18px; z-index:5; display:flex; align-items:center; gap:14px;
@@ -234,7 +214,6 @@
   .entry-card:disabled .entry-state{ color:var(--ink-faint); }
 
   .evolution-layer[hidden]{ display:none; }
-  .evolution-a-active .zoom-controls{ display:none; }
   .evo-shell{ width:min(1180px, 100%); margin:0 auto; }
   .evo-context{
     position:sticky; top:0; z-index:3; background:color-mix(in srgb, var(--ground) 92%, transparent);
@@ -348,7 +327,7 @@
   .reader-side.reader-next{ right:5px; }
   .reader-side-arrow{ font:400 28px/1 var(--sans); }
   .reader-side-label{ writing-mode:vertical-rl; transform:rotate(180deg); letter-spacing:.08em; text-transform:uppercase; }
-  .evolution-reader-active .zoom-controls, .evolution-reader-active .level-readout{ display:none; }
+  .evolution-reader-active .level-readout{ display:none; }
 
   @media (max-width:720px){
     .stage-orientation{ left:88px; right:10px; top:10px; display:block; min-height:0; padding:8px 10px; }
@@ -569,10 +548,9 @@
     .threshold-track, .threshold-marker{ left:9px; }
     .threshold-step{ left:19px; max-width:31px; font-size:7px; }
     .level-order{ font-size:7px; }
-    .zoom-controls{ right:12px; bottom:12px; }
   }
   @media (prefers-reduced-motion:reduce){
-    #world, #world.snapping, .panel, .threshold-marker, .level-readout, .zoom-controls,
+    #world, #world.snapping, .panel, .threshold-marker, .level-readout,
     .evolution-layer, .evolution-reader{ transition:none !important; }
     .pop-in{ animation:none !important; }
   }
@@ -662,11 +640,6 @@
       </div>
       <div class="evo-gesture-hint" id="evolutionGestureHint" role="status" aria-live="polite" hidden></div>
       <div id="loadState" class="load-state">Fetching data/terrain-map.json…</div>
-      <div class="zoom-controls">
-        <button class="zoom-btn" id="zoomIn" aria-label="Zoom in">+</button>
-        <button class="zoom-btn" id="zoomOut" aria-label="Zoom out">&minus;</button>
-        <button class="zoom-btn" id="zoomReset" aria-label="Reset view" style="font-size:12px">&#8635;</button>
-      </div>
     </div>
     <aside class="stage-curiosity-dock" id="contentCuriosityDock" aria-label="Collection preview dock" hidden>
       <div class="stage-curiosity-dock-empty">
@@ -3744,18 +3717,6 @@
       ev.stopPropagation();
     }, true);
     mapWrap.addEventListener('click', function () { if (pinnedId) togglePin(pinnedId); });
-    var zoomControls = document.querySelector('.zoom-controls');
-    if (zoomControls) {
-      zoomControls.addEventListener('mouseenter', revealDepthRail);
-      zoomControls.addEventListener('focusin', revealDepthRail);
-    }
-    document.getElementById('zoomIn').addEventListener('click', function () { revealDepthRail(); var vp = viewportSize(); handleZoomAt(vp.w / 2, vp.h / 2, view.scale * 1.3); });
-    document.getElementById('zoomOut').addEventListener('click', function () { revealDepthRail(); var vp = viewportSize(); handleZoomAt(vp.w / 2, vp.h / 2, view.scale * 0.75); });
-    document.getElementById('zoomReset').addEventListener('click', function () {
-      resetView();
-      commitSemanticState({ label: 'VEXTREME', relationship: 'reset to', reason: 'reset control' });
-    });
-
     document.querySelectorAll('#lensBar .lens-btn').forEach(function (btn) {
       btn.addEventListener('click', function () {
         document.querySelectorAll('#lensBar .lens-btn').forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });

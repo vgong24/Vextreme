@@ -134,30 +134,17 @@ test('TERRAIN-JOURNEY: threshold rail projects semantic depth and exposes only a
   assert.doesNotMatch(source, /\.map-hint\{/);
   assert.doesNotMatch(source, /scroll to zoom \(levels snap to their own framing\)/);
 
-  assert.match(source, /\.zoom-controls\{[\s\S]*left:34px;[\s\S]*top:214px;[\s\S]*z-index:12;/,
-    'zoom controls are physically grouped beneath the depth rail');
-  assert.doesNotMatch(source, /\.zoom-controls\{[^}]*right:356px/,
-    'legacy far-side zoom-control island must remain removed');
+  assert.doesNotMatch(source, /zoom-controls|zoom-btn|zoomIn|zoomOut|zoomReset/,
+    'diagnostic build removes the entire manual zoom/reset control stack');
   assert.doesNotMatch(source, /mapWrap\.addEventListener\('pointermove'[\s\S]*revealDepthRail\(\)/,
-    'desktop tile navigation must not be covered by a broad invisible depth-control hot zone');
+    'desktop tile navigation remains free of a broad invisible depth-control hot zone');
   assert.match(source, /readout\.addEventListener\('mouseenter', revealDepthRail\)/,
-    'the actual semantic-depth rail remains the pointer reveal owner');
-  assert.match(source, /zoomControls\.addEventListener\('mouseenter', revealDepthRail\)/);
-  assert.match(source, /zoomControls\.addEventListener\('focusin', revealDepthRail\)/);
+    'the semantic depth rail remains the only visible/manual navigation instrument');
 
-  assert.match(source, /@media \(min-width:721px\)\{[\s\S]*\.zoom-controls\{[\s\S]*opacity:0; pointer-events:none;[\s\S]*transform:translateY\(-4px\)/,
-    'desktop controls are visually and pointer inactive while the depth rail is idle');
-  assert.match(source, /\.level-readout\.is-active ~ \.zoom-controls,[\s\S]*\.zoom-controls:focus-within\{[\s\S]*opacity:1; pointer-events:auto; transform:translateY\(0\)/,
-    'rail engagement or keyboard focus reveals the desktop control stack');
-  assert.match(source, /@media \(max-width:720px\)\{[\s\S]*\.zoom-controls\{ right:12px; bottom:12px; \}/,
-    'mobile placement remains unchanged for the separate responsive investigation');
-
-  assert.match(source, /id="zoomIn" aria-label="Zoom in"/);
-  assert.match(source, /id="zoomOut" aria-label="Zoom out"/);
-  assert.match(source, /id="zoomReset" aria-label="Reset view"/);
-  assert.match(source, /handleZoomAt\(vp\.w \/ 2, vp\.h \/ 2, view\.scale \* 1\.3\)/);
-  assert.match(source, /handleZoomAt\(vp\.w \/ 2, vp\.h \/ 2, view\.scale \* 0\.75\)/);
-  assert.match(source, /reason: 'reset control'/);
+  assert.match(source, /mapWrap\.addEventListener\('wheel', function \(ev\) \{/,
+    'wheel-to-zoom remains available so this change isolates only the button stack');
+  assert.match(source, /handleZoomAt\(ev\.clientX - rect\.left, ev\.clientY - rect\.top, view\.scale \* Math\.pow\(1\.0015, -ev\.deltaY\)\)/,
+    'wheel zoom math remains unchanged for the diagnostic');
 });
 
 
