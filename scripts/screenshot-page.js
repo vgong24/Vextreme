@@ -31,7 +31,8 @@
  *   role      : reusable Playwright localization screenshot engine + backwards-compatible one-page review CLI
  *   reads     : pages/{slug}.html (page under test, served from the branch-local repository)
  *               repository assets requested by the rendered page (local server/CDN interception)
- *               widgets/fab-lang.js runtime contract (#vex-lang-fab-btn / .vex-lang-item / localStorage vex-lang verification)
+ *               widgets/vex-fab.js runtime contract (#vex-spiral-trigger / #vex-spiral-group visibility + aria-expanded)
+ *               widgets/fab-lang.js runtime contract (#vex-lang-fab-btn / .vex-lang-item / localStorage vex-lang + <html lang> verification)
  *               optional sibling Vextreme-Assets/scripts/ingest-screenshot-evidence.mjs when --assets-root or VEXTREME_ASSETS_ROOT is explicitly supplied
  *               git HEAD (exact Vextreme source commit attached to optional Assets evidence)
  *   writes    : caller-selected local PNG path (legacy CLI defaults to docs/screenshots/{slug}-{locale}.png)
@@ -248,8 +249,32 @@ async function createCaptureSession(defaultSlug) {
 async function switchLocale(page, locale) {
   const fabBtn = page.locator('#vex-lang-fab-btn');
   const fabExists = await fabBtn.count();
-  if (!fabExists) {
+  if (fabExists !== 1) {
     throw new Error('FAB button not found — refusing to label a localization screenshot without a verified language switch');
+  }
+
+  // Current chrome nests the language orb inside the shared Spiral group.
+  // The group is intentionally display:none until a real user opens the
+  // Spiral. Follow that visible interaction path rather than force-clicking a
+  // hidden descendant. Standalone pages keep their existing direct path.
+  if (!await fabBtn.isVisible()) {
+    const spiralTrigger = page.locator('#vex-spiral-trigger');
+    const spiralGroup = page.locator('#vex-spiral-group');
+    if (await spiralTrigger.count() !== 1 || await spiralGroup.count() !== 1) {
+      throw new Error('Language FAB exists but is hidden and no usable Spiral trigger/group exists');
+    }
+
+    await spiralTrigger.click();
+    await page.waitForFunction(() => {
+      const trigger = document.getElementById('vex-spiral-trigger');
+      const group = document.getElementById('vex-spiral-group');
+      const langButton = document.getElementById('vex-lang-fab-btn');
+      if (!trigger || !group || !langButton) return false;
+      const visible = !!(langButton.offsetWidth || langButton.offsetHeight || langButton.getClientRects().length);
+      return trigger.getAttribute('aria-expanded') === 'true'
+        && group.classList.contains('open')
+        && visible;
+    });
   }
 
   await fabBtn.click();
@@ -263,7 +288,12 @@ async function switchLocale(page, locale) {
 
   await langItem.click();
   await page.waitForFunction((expected) => {
-    try { return localStorage.getItem('vex-lang') === expected; } catch (error) { return false; }
+    try {
+      return localStorage.getItem('vex-lang') === expected
+        && document.documentElement.lang === expected;
+    } catch (error) {
+      return false;
+    }
   }, locale);
   await page.waitForTimeout(250);
 }
