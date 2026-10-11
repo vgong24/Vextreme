@@ -475,18 +475,61 @@ test('TERRAIN-VIEW: Content groups no longer imply a linear sequence with Stage 
   assert.match(source, /class:'stage-arrow pop-in'/);
 });
 
-test('TERRAIN-VIEW: pan gesture displacement suppresses the synthetic click without changing keyboard activation', () => {
+test('TERRAIN-VIEW: pan suppresses only the drag-sequence click; a later tile click is immediately ready', () => {
   const source = pageSource();
   assert.match(source, /MAP_DRAG_THRESHOLD_PX = 5/);
-  assert.match(source, /var mapPointerGesture = \{[\s\S]*suppressClick:false/);
+  assert.match(source, /var mapPointerGesture = \{[\s\S]*suppressClick:false,[\s\S]*suppressFrame:null/);
   assert.match(source, /function armMapDragClickSuppression\(\)/);
   assert.match(source, /function consumeMapDragClickSuppression\(\)/);
   assert.match(source, /Math\.hypot\(dx, dy\) < MAP_DRAG_THRESHOLD_PX/);
   assert.match(source, /view\.x = mapPointerGesture\.originViewX \+ dx/);
   assert.match(source, /view\.y = mapPointerGesture\.originViewY \+ dy/);
   assert.match(source, /if \(mapPointerGesture\.moved\) armMapDragClickSuppression\(\)/);
+
+  assert.match(source, /mapPointerGesture\.suppressFrame = window\.requestAnimationFrame\(clearMapDragClickSuppression\)/,
+    'drag suppression expires at the next paint boundary rather than after an arbitrary click-blocking timeout');
+  assert.match(source, /window\.cancelAnimationFrame\(mapPointerGesture\.suppressFrame\)/);
+  assert.doesNotMatch(source, /window\.setTimeout\(clearMapDragClickSuppression,\s*160\)/,
+    'a fresh user click must not remain blocked for the old 160ms window');
+
   assert.match(source, /mapWrap\.addEventListener\('click', function \(ev\) \{[\s\S]*consumeMapDragClickSuppression\(\)[\s\S]*ev\.stopPropagation\(\);[\s\S]*\}, true\)/,
-    'drag-generated click must be intercepted in capture phase before a stage-card click handler can run');
+    'the immediate drag-generated click is still intercepted before a stage-card handler can run');
+
+  const clearFn = source.match(/function clearMapDragClickSuppression\(\) \{[\s\S]*?\n  \}/);
+  const armFn = source.match(/function armMapDragClickSuppression\(\) \{[\s\S]*?\n  \}/);
+  const consumeFn = source.match(/function consumeMapDragClickSuppression\(\) \{[\s\S]*?\n  \}/);
+  assert.ok(clearFn && armFn && consumeFn, 'drag suppression helpers must remain extractable');
+
+  const makeHarness = new Function('window', [
+    "var mapPointerGesture = { suppressClick:false, suppressFrame:null };",
+    clearFn[0],
+    armFn[0],
+    consumeFn[0],
+    "return { state:mapPointerGesture, arm:armMapDragClickSuppression, consume:consumeMapDragClickSuppression };"
+  ].join('\n'));
+
+  var queued = null;
+  var cancelled = [];
+  const fakeWindow = {
+    requestAnimationFrame(fn) { queued = fn; return 77; },
+    cancelAnimationFrame(id) { cancelled.push(id); }
+  };
+  const harness = makeHarness(fakeWindow);
+
+  harness.arm();
+  assert.equal(harness.state.suppressClick, true);
+  assert.equal(harness.state.suppressFrame, 77);
+  assert.equal(harness.consume(), true, 'same-sequence synthetic click is consumed once');
+  assert.equal(harness.state.suppressClick, false);
+  assert.deepEqual(cancelled, [77]);
+
+  cancelled.length = 0;
+  harness.arm();
+  assert.ok(queued, 'suppression schedules an automatic next-frame release');
+  queued();
+  assert.equal(harness.state.suppressClick, false, 'no synthetic click means the guard expires by the next frame');
+  assert.equal(harness.consume(), false, 'a later independent click is immediately eligible');
+
   assert.match(source, /ev\.target\.closest\('#levelReadout'\)/,
     'the side depth rail is not itself treated as a map-pan origin');
   assert.match(source, /g\.addEventListener\('click',function\(ev\)\{ ev\.stopPropagation\(\); activateStage\(i\); \}\)/);
