@@ -459,28 +459,28 @@
         "text": "{total}ページ中{ported}ページ公開中"
       },
       "zh": {
-        "text": "{total} 个页面中已有 {ported} 个上线"
+        "text": "{ported, plural, one {# / {total} 个页面已上线} other {# / {total} 个页面已上线}}"
       },
       "ko": {
-        "text": "전체 {total}페이지 중 {ported}페이지 공개됨"
+        "text": "{ported, plural, one {전체 {total}페이지 중 #페이지 공개됨} other {전체 {total}페이지 중 #페이지 공개됨}}"
       },
       "fr": {
-        "text": "{ported} pages en ligne sur {total}"
+        "text": "{ported, plural, one {# page en ligne sur {total}} other {# pages en ligne sur {total}}}"
       },
       "de": {
-        "text": "{ported} von {total} Seiten live"
+        "text": "{ported, plural, one {# von {total} Seite live} other {# von {total} Seiten live}}"
       },
       "es": {
-        "text": "{ported} de {total} páginas publicadas"
+        "text": "{ported, plural, one {# de {total} página publicada} other {# de {total} páginas publicadas}}"
       },
       "pt": {
-        "text": "{ported} de {total} páginas no ar"
+        "text": "{ported, plural, one {# de {total} página no ar} other {# de {total} páginas no ar}}"
       },
       "ar": {
-        "text": "{ported} من أصل {total} صفحة منشورة"
+        "text": "{ported, plural, one {# من أصل {total} صفحة منشورة} other {# من أصل {total} صفحات منشورة}}"
       },
       "hi": {
-        "text": "कुल {total} में से {ported} पेज लाइव"
+        "text": "{ported, plural, one {कुल {total} में से # पेज लाइव} other {कुल {total} में से # पेज लाइव}}"
       }
     }
   },
@@ -496,25 +496,25 @@
         "text": "{count, plural, one {# restant} other {# restants}}"
       },
       "zh": {
-        "text": "剩余 {count} 个"
+        "text": "{count, plural, one {剩余 # 个} other {剩余 # 个}}"
       },
       "ko": {
-        "text": "{count}개 남음"
+        "text": "{count, plural, one {#개 남음} other {#개 남음}}"
       },
       "de": {
-        "text": "{count} übrig"
+        "text": "{count, plural, one {# übrig} other {# übrig}}"
       },
       "es": {
-        "text": "{count} restantes"
+        "text": "{count, plural, one {# restante} other {# restantes}}"
       },
       "pt": {
-        "text": "{count} restantes"
+        "text": "{count, plural, one {# restante} other {# restantes}}"
       },
       "ar": {
-        "text": "متبقٍ {count}"
+        "text": "{count, plural, one {متبقٍ #} other {متبقٍ #}}"
       },
       "hi": {
-        "text": "{count} शेष"
+        "text": "{count, plural, one {# शेष} other {# शेष}}"
       }
     }
   },
