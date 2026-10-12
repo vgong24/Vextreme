@@ -1,13 +1,19 @@
 {
-  "contentFingerprint": "c3ed9931c094",
+  "contentFingerprint": "3a7e9c6834a0",
   "nodeCount": 114,
   "curatedNodeCount": 98,
   "autoDiscoveredCount": 16,
   "arcCount": 17,
   "supportedLangs": [
+    "ar",
+    "de",
     "en",
+    "es",
     "fr",
+    "hi",
     "ja",
+    "ko",
+    "pt",
     "zh"
   ],
   "pageLanguageMap": {
@@ -192,10 +198,28 @@
     },
     "journal-013-seven-layers-choose": {
       "availableLangs": [
-        "en"
+        "en",
+        "ar",
+        "de",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
       ],
       "completeLangs": [
-        "en"
+        "en",
+        "ar",
+        "de",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
       ]
     },
     "the-turning-point": {
@@ -741,7 +765,8 @@
         "zh"
       ],
       "completeLangs": [
-        "en"
+        "en",
+        "zh"
       ]
     },
     "org-blueprint": {

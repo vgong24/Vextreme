@@ -1,0 +1,58 @@
+{
+  "common.nav.prev": {
+    "text": "← السابق",
+    "aria-label": "الصفحة السابقة"
+  },
+  "common.nav.next": {
+    "text": "التالي →",
+    "aria-label": "الصفحة التالية"
+  },
+  "common.label.you-are-here": {
+    "text": "أنت هنا"
+  },
+  "common.nav.primary-site": {
+    "text": "vextreme24.com",
+    "aria-label": "الانتقال إلى الموقع الرئيسي"
+  },
+  "common.nav.github": {
+    "text": "GitHub",
+    "aria-label": "عرض المصدر على GitHub"
+  },
+  "common.button.copy-filename": {
+    "text": "نسخ اسم الملف",
+    "aria-label": "نسخ اسم الملف إلى الحافظة"
+  },
+  "common.button.copied": {
+    "text": "تم النسخ!",
+    "aria-label": "تم نسخ اسم الملف إلى الحافظة"
+  },
+  "common.label.site-title": {
+    "text": "Vextreme"
+  },
+  "common.label.page-live": {
+    "text": "الصفحة منشورة"
+  },
+  "common.label.not-yet-ported": {
+    "text": "لم يتم ترحيله بعد"
+  },
+  "common.label.slug": {
+    "text": "المعرّف (Slug)"
+  },
+  "common.status.pages-live": {
+    "text": "{ported, plural, one {# من أصل {total} صفحة منشورة} other {# من أصل {total} صفحات منشورة}}"
+  },
+  "common.status.remaining": {
+    "text": "{count, plural, one {متبقٍ #} other {متبقٍ #}}"
+  },
+  "common.status.built-on": {
+    "text": "تم البناء في {date}"
+  },
+  "common.nav.build-health": {
+    "text": "حالة البناء",
+    "aria-label": "عرض حالة البناء"
+  },
+  "common.nav.full-build-health": {
+    "text": "حالة البناء →",
+    "aria-label": "عرض حالة البناء"
+  }
+}
