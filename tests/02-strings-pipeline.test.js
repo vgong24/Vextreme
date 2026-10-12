@@ -24,6 +24,8 @@
 const { test } = require('node:test');
 const assert   = require('node:assert/strict');
 const { mergeSourceFiles, buildBundles, buildManifest, contentHash } = require('../lib/strings-compile');
+const { targetLanguages, buildTranslatorCSV } = require('../lib/strings-export');
+const { parseCSV, buildImportPlan, applyImportOperations } = require('../lib/strings-import');
 
 // ── 1. Full pipeline integration ──────────────────────────────────────────────
 
@@ -127,6 +129,125 @@ test('EDGE: key with no EN translation gets null enHash — strings-check.js tre
   // The two failure modes must be distinguishable: null = "no EN at all", hash mismatch = "EN changed".
   const manifest = buildManifest({ 'ja-only': { strings: { ja: { text: '日本語のみ' } } } });
   assert.equal(manifest['ja-only'].enHash, null);
+});
+
+
+test('TRANSLATOR EXPORT: an explicit new target locale bootstraps from EN without leaking existing non-EN text', () => {
+  const en = { text: '← prev', 'aria-label': 'Previous page' };
+  const raw = {
+    _meta: { scope: 'common', description: 'Globally reusable UI string' },
+    'common.nav.prev': {
+      strings: {
+        en,
+        ja: { text: '← 前へ', 'aria-label': '前のページ' },
+      },
+    },
+  };
+
+  assert.deepEqual(targetLanguages(raw, 'fr'), ['fr']);
+
+  const csv = buildTranslatorCSV(raw, 'fr');
+  const rows = parseCSV(csv);
+
+  assert.equal(rows.length, 1);
+  assert.equal(rows[0].key, 'common.nav.prev');
+  assert.equal(rows[0].en_text, '← prev');
+  assert.equal(rows[0].en_aria_label, 'Previous page');
+  assert.equal(rows[0].source_en_hash12, contentHash(JSON.stringify(en)));
+  assert.equal(rows[0].fr_text, '');
+  assert.equal(rows[0].fr_aria_label, '');
+  assert.equal(rows[0].ja_text, undefined);
+  assert.doesNotMatch(csv, /前へ|前のページ/, 'translator view must remain source language + one target only');
+});
+
+test('TRANSLATOR CSV: parser preserves quoted commas and embedded newlines in translated text', () => {
+  const rows = parseCSV([
+    'key,source_en_hash12,fr_text,fr_aria_label',
+    'example.key,abc123def456,"Bonjour, monde\\nDeuxième ligne","Action, suivante"',
+    '',
+  ].join('\n').replace('\\n', '\n'));
+
+  assert.equal(rows.length, 1);
+  assert.equal(rows[0].fr_text, 'Bonjour, monde\nDeuxième ligne');
+  assert.equal(rows[0].fr_aria_label, 'Action, suivante');
+});
+
+test('TRANSLATOR IMPORT: a matching EN preimage can add a brand-new target locale', () => {
+  const file = '/virtual/common.json';
+  const raw = {
+    _meta: { scope: 'common' },
+    'common.nav.prev': {
+      strings: {
+        en: { text: '← prev', 'aria-label': 'Previous page' },
+        ja: { text: '← 前へ' },
+      },
+    },
+  };
+  const source = {
+    'common.nav.prev': {
+      value: raw['common.nav.prev'],
+      file,
+    },
+  };
+  const hash = contentHash(JSON.stringify(raw['common.nav.prev'].strings.en));
+  const plan = buildImportPlan([{
+    key: 'common.nav.prev',
+    source_en_hash12: hash,
+    fr_text: '← précédent',
+    fr_aria_label: 'Page précédente',
+  }], 'fr', source, 'common.fr.csv');
+
+  assert.deepEqual(plan.errors, []);
+  assert.equal(plan.operations.length, 1);
+  assert.equal(raw['common.nav.prev'].strings.fr, undefined, 'preflight must be side-effect free');
+
+  const fileCache = { [file]: raw };
+  const touched = applyImportOperations(plan.operations, fileCache);
+  assert.deepEqual(Array.from(touched), [file]);
+  assert.deepEqual(raw['common.nav.prev'].strings.fr, {
+    text: '← précédent',
+    'aria-label': 'Page précédente',
+  });
+});
+
+test('TRANSLATOR IMPORT: any stale or unbound row blocks preflight without mutating canonical source', () => {
+  const file = '/virtual/page.json';
+  const raw = {
+    _meta: { scope: 'pages.example' },
+    'pages.example.first': { strings: { en: { text: 'First' } } },
+    'pages.example.second': { strings: { en: { text: 'Second', 'aria-label': 'Second action' } } },
+    'pages.example.third': { strings: { en: { text: 'Third' } } },
+  };
+  const source = Object.fromEntries(
+    Object.entries(raw)
+      .filter(([key]) => key !== '_meta')
+      .map(([key, value]) => [key, { value, file }])
+  );
+  const before = JSON.stringify(raw);
+  const plan = buildImportPlan([
+    {
+      key: 'pages.example.first',
+      source_en_hash12: contentHash(JSON.stringify(raw['pages.example.first'].strings.en)),
+      fr_text: 'Premier',
+      fr_aria_label: '',
+    },
+    {
+      key: 'pages.example.second',
+      source_en_hash12: '000000000000',
+      fr_text: 'Deuxième',
+      fr_aria_label: 'Deuxième action',
+    },
+    {
+      key: 'pages.example.third',
+      source_en_hash12: '',
+      fr_text: 'Troisième',
+      fr_aria_label: '',
+    },
+  ], 'fr', source, 'pages.example.fr.csv');
+
+  assert.ok(plan.errors.some(error => error.includes('is stale')));
+  assert.ok(plan.errors.some(error => error.includes('has no source_en_hash12 binding')));
+  assert.equal(JSON.stringify(raw), before, 'planning a rejected return must not mutate canonical strings');
 });
 
 // [VXG RealForever]
