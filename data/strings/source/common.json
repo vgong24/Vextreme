@@ -29,6 +29,34 @@
       "fr": {
         "text": "← préc.",
         "aria-label": "Page précédente"
+      },
+      "zh": {
+        "text": "← 上一页",
+        "aria-label": "上一页"
+      },
+      "ko": {
+        "text": "← 이전",
+        "aria-label": "이전 페이지"
+      },
+      "de": {
+        "text": "← zurück",
+        "aria-label": "Vorherige Seite"
+      },
+      "es": {
+        "text": "← anterior",
+        "aria-label": "Página anterior"
+      },
+      "pt": {
+        "text": "← anterior",
+        "aria-label": "Página anterior"
+      },
+      "ar": {
+        "text": "← السابق",
+        "aria-label": "الصفحة السابقة"
+      },
+      "hi": {
+        "text": "← पिछला",
+        "aria-label": "पिछला पेज"
       }
     }
   },
@@ -41,6 +69,38 @@
       "ja": {
         "text": "次へ →",
         "aria-label": "次のページ"
+      },
+      "zh": {
+        "text": "下一页 →",
+        "aria-label": "下一页"
+      },
+      "ko": {
+        "text": "다음 →",
+        "aria-label": "다음 페이지"
+      },
+      "fr": {
+        "text": "suivant →",
+        "aria-label": "Page suivante"
+      },
+      "de": {
+        "text": "weiter →",
+        "aria-label": "Nächste Seite"
+      },
+      "es": {
+        "text": "siguiente →",
+        "aria-label": "Página siguiente"
+      },
+      "pt": {
+        "text": "próximo →",
+        "aria-label": "Próxima página"
+      },
+      "ar": {
+        "text": "التالي →",
+        "aria-label": "الصفحة التالية"
+      },
+      "hi": {
+        "text": "अगला →",
+        "aria-label": "अगला पेज"
       }
     }
   },
@@ -51,6 +111,30 @@
       },
       "ja": {
         "text": "現在地"
+      },
+      "zh": {
+        "text": "当前位置"
+      },
+      "ko": {
+        "text": "현재 위치"
+      },
+      "fr": {
+        "text": "Vous êtes ici"
+      },
+      "de": {
+        "text": "Sie sind hier"
+      },
+      "es": {
+        "text": "Estás aquí"
+      },
+      "pt": {
+        "text": "Você está aqui"
+      },
+      "ar": {
+        "text": "أنت هنا"
+      },
+      "hi": {
+        "text": "आप यहाँ हैं"
       }
     }
   },
@@ -63,6 +147,38 @@
       "ja": {
         "text": "vextreme24.com",
         "aria-label": "メインサイトへ"
+      },
+      "zh": {
+        "text": "vextreme24.com",
+        "aria-label": "前往主站"
+      },
+      "ko": {
+        "text": "vextreme24.com",
+        "aria-label": "기본 사이트로 이동"
+      },
+      "fr": {
+        "text": "vextreme24.com",
+        "aria-label": "Aller au site principal"
+      },
+      "de": {
+        "text": "vextreme24.com",
+        "aria-label": "Zur Hauptseite"
+      },
+      "es": {
+        "text": "vextreme24.com",
+        "aria-label": "Ir al sitio principal"
+      },
+      "pt": {
+        "text": "vextreme24.com",
+        "aria-label": "Ir para o site principal"
+      },
+      "ar": {
+        "text": "vextreme24.com",
+        "aria-label": "الانتقال إلى الموقع الرئيسي"
+      },
+      "hi": {
+        "text": "vextreme24.com",
+        "aria-label": "मुख्य साइट पर जाएँ"
       }
     }
   },
@@ -75,6 +191,38 @@
       "ja": {
         "text": "GitHub",
         "aria-label": "GitHubでソースを表示"
+      },
+      "zh": {
+        "text": "GitHub",
+        "aria-label": "在 GitHub 上查看源代码"
+      },
+      "ko": {
+        "text": "GitHub",
+        "aria-label": "GitHub에서 소스 보기"
+      },
+      "fr": {
+        "text": "GitHub",
+        "aria-label": "Voir le code source sur GitHub"
+      },
+      "de": {
+        "text": "GitHub",
+        "aria-label": "Quellcode auf GitHub ansehen"
+      },
+      "es": {
+        "text": "GitHub",
+        "aria-label": "Ver código fuente en GitHub"
+      },
+      "pt": {
+        "text": "GitHub",
+        "aria-label": "Ver código-fonte no GitHub"
+      },
+      "ar": {
+        "text": "GitHub",
+        "aria-label": "عرض المصدر على GitHub"
+      },
+      "hi": {
+        "text": "GitHub",
+        "aria-label": "GitHub पर स्रोत देखें"
       }
     }
   },
@@ -87,6 +235,38 @@
       "ja": {
         "text": "ファイル名をコピー",
         "aria-label": "ファイル名をクリップボードにコピー"
+      },
+      "zh": {
+        "text": "复制文件名",
+        "aria-label": "将文件名复制到剪贴板"
+      },
+      "ko": {
+        "text": "파일 이름 복사",
+        "aria-label": "파일 이름을 클립보드에 복사"
+      },
+      "fr": {
+        "text": "Copier le nom du fichier",
+        "aria-label": "Copier le nom du fichier dans le presse-papiers"
+      },
+      "de": {
+        "text": "Dateinamen kopieren",
+        "aria-label": "Dateinamen in die Zwischenablage kopieren"
+      },
+      "es": {
+        "text": "Copiar nombre de archivo",
+        "aria-label": "Copiar el nombre de archivo al portapapeles"
+      },
+      "pt": {
+        "text": "Copiar nome do arquivo",
+        "aria-label": "Copiar o nome do arquivo para a área de transferência"
+      },
+      "ar": {
+        "text": "نسخ اسم الملف",
+        "aria-label": "نسخ اسم الملف إلى الحافظة"
+      },
+      "hi": {
+        "text": "फ़ाइल नाम कॉपी करें",
+        "aria-label": "फ़ाइल नाम क्लिपबोर्ड पर कॉपी करें"
       }
     }
   },
@@ -99,6 +279,38 @@
       "ja": {
         "text": "コピーしました",
         "aria-label": "ファイル名をコピーしました"
+      },
+      "zh": {
+        "text": "已复制！",
+        "aria-label": "文件名已复制到剪贴板"
+      },
+      "ko": {
+        "text": "복사됨!",
+        "aria-label": "파일 이름이 클립보드에 복사됨"
+      },
+      "fr": {
+        "text": "Copié !",
+        "aria-label": "Nom de fichier copié dans le presse-papiers"
+      },
+      "de": {
+        "text": "Kopiert!",
+        "aria-label": "Dateiname in die Zwischenablage kopiert"
+      },
+      "es": {
+        "text": "¡Copiado!",
+        "aria-label": "Nombre de archivo copiado al portapapeles"
+      },
+      "pt": {
+        "text": "Copiado!",
+        "aria-label": "Nome do arquivo copiado para a área de transferência"
+      },
+      "ar": {
+        "text": "تم النسخ!",
+        "aria-label": "تم نسخ اسم الملف إلى الحافظة"
+      },
+      "hi": {
+        "text": "कॉपी हो गया!",
+        "aria-label": "फ़ाइल नाम क्लिपबोर्ड पर कॉपी किया गया"
       }
     }
   },
@@ -108,6 +320,30 @@
         "text": "Vextreme"
       },
       "ja": {
+        "text": "Vextreme"
+      },
+      "zh": {
+        "text": "Vextreme"
+      },
+      "ko": {
+        "text": "Vextreme"
+      },
+      "fr": {
+        "text": "Vextreme"
+      },
+      "de": {
+        "text": "Vextreme"
+      },
+      "es": {
+        "text": "Vextreme"
+      },
+      "pt": {
+        "text": "Vextreme"
+      },
+      "ar": {
+        "text": "Vextreme"
+      },
+      "hi": {
         "text": "Vextreme"
       }
     }
@@ -119,6 +355,30 @@
       },
       "ja": {
         "text": "公開済み"
+      },
+      "zh": {
+        "text": "页面已上线"
+      },
+      "ko": {
+        "text": "페이지 공개됨"
+      },
+      "fr": {
+        "text": "Page en ligne"
+      },
+      "de": {
+        "text": "Seite live"
+      },
+      "es": {
+        "text": "Página publicada"
+      },
+      "pt": {
+        "text": "Página no ar"
+      },
+      "ar": {
+        "text": "الصفحة منشورة"
+      },
+      "hi": {
+        "text": "पेज लाइव"
       }
     }
   },
@@ -129,6 +389,30 @@
       },
       "ja": {
         "text": "未移植"
+      },
+      "zh": {
+        "text": "尚未移植"
+      },
+      "ko": {
+        "text": "아직 포팅되지 않음"
+      },
+      "fr": {
+        "text": "Pas encore porté"
+      },
+      "de": {
+        "text": "Noch nicht portiert"
+      },
+      "es": {
+        "text": "Aún no portado"
+      },
+      "pt": {
+        "text": "Ainda não portado"
+      },
+      "ar": {
+        "text": "لم يتم ترحيله بعد"
+      },
+      "hi": {
+        "text": "अभी पोर्ट नहीं किया गया"
       }
     }
   },
@@ -139,6 +423,30 @@
       },
       "ja": {
         "text": "スラッグ"
+      },
+      "zh": {
+        "text": "Slug"
+      },
+      "ko": {
+        "text": "슬러그"
+      },
+      "fr": {
+        "text": "Slug"
+      },
+      "de": {
+        "text": "Slug"
+      },
+      "es": {
+        "text": "Slug"
+      },
+      "pt": {
+        "text": "Slug"
+      },
+      "ar": {
+        "text": "المعرّف (Slug)"
+      },
+      "hi": {
+        "text": "स्लग"
       }
     }
   },
@@ -149,6 +457,30 @@
       },
       "ja": {
         "text": "{total}ページ中{ported}ページ公開中"
+      },
+      "zh": {
+        "text": "{ported, plural, one {# / {total} 个页面已上线} other {# / {total} 个页面已上线}}"
+      },
+      "ko": {
+        "text": "{ported, plural, one {전체 {total}페이지 중 #페이지 공개됨} other {전체 {total}페이지 중 #페이지 공개됨}}"
+      },
+      "fr": {
+        "text": "{ported, plural, one {# page en ligne sur {total}} other {# pages en ligne sur {total}}}"
+      },
+      "de": {
+        "text": "{ported, plural, one {# von {total} Seite live} other {# von {total} Seiten live}}"
+      },
+      "es": {
+        "text": "{ported, plural, one {# de {total} página publicada} other {# de {total} páginas publicadas}}"
+      },
+      "pt": {
+        "text": "{ported, plural, one {# de {total} página no ar} other {# de {total} páginas no ar}}"
+      },
+      "ar": {
+        "text": "{ported, plural, one {# من أصل {total} صفحة منشورة} other {# من أصل {total} صفحات منشورة}}"
+      },
+      "hi": {
+        "text": "{ported, plural, one {कुल {total} में से # पेज लाइव} other {कुल {total} में से # पेज लाइव}}"
       }
     }
   },
@@ -162,6 +494,27 @@
       },
       "fr": {
         "text": "{count, plural, one {# restant} other {# restants}}"
+      },
+      "zh": {
+        "text": "{count, plural, one {剩余 # 个} other {剩余 # 个}}"
+      },
+      "ko": {
+        "text": "{count, plural, one {#개 남음} other {#개 남음}}"
+      },
+      "de": {
+        "text": "{count, plural, one {# übrig} other {# übrig}}"
+      },
+      "es": {
+        "text": "{count, plural, one {# restante} other {# restantes}}"
+      },
+      "pt": {
+        "text": "{count, plural, one {# restante} other {# restantes}}"
+      },
+      "ar": {
+        "text": "{count, plural, one {متبقٍ #} other {متبقٍ #}}"
+      },
+      "hi": {
+        "text": "{count, plural, one {# शेष} other {# शेष}}"
       }
     }
   },
@@ -172,6 +525,30 @@
       },
       "ja": {
         "text": "{date}生成"
+      },
+      "zh": {
+        "text": "构建于 {date}"
+      },
+      "ko": {
+        "text": "{date}에 빌드됨"
+      },
+      "fr": {
+        "text": "Généré le {date}"
+      },
+      "de": {
+        "text": "Erstellt am {date}"
+      },
+      "es": {
+        "text": "Generado el {date}"
+      },
+      "pt": {
+        "text": "Gerado em {date}"
+      },
+      "ar": {
+        "text": "تم البناء في {date}"
+      },
+      "hi": {
+        "text": "{date} को बनाया गया"
       }
     }
   },
@@ -184,6 +561,38 @@
       "ja": {
         "text": "ビルド健全性",
         "aria-label": "ビルド健全性を表示"
+      },
+      "zh": {
+        "text": "构建状态",
+        "aria-label": "查看构建状态"
+      },
+      "ko": {
+        "text": "빌드 상태",
+        "aria-label": "빌드 상태 보기"
+      },
+      "fr": {
+        "text": "État du build",
+        "aria-label": "Voir l’état du build"
+      },
+      "de": {
+        "text": "Build-Status",
+        "aria-label": "Build-Status anzeigen"
+      },
+      "es": {
+        "text": "Estado de compilación",
+        "aria-label": "Ver estado de compilación"
+      },
+      "pt": {
+        "text": "Status do build",
+        "aria-label": "Ver status do build"
+      },
+      "ar": {
+        "text": "حالة البناء",
+        "aria-label": "عرض حالة البناء"
+      },
+      "hi": {
+        "text": "बिल्ड स्थिति",
+        "aria-label": "बिल्ड स्थिति देखें"
       }
     }
   },
@@ -196,6 +605,38 @@
       "ja": {
         "text": "ビルド健全性 →",
         "aria-label": "ビルド健全性を表示"
+      },
+      "zh": {
+        "text": "构建状态 →",
+        "aria-label": "查看构建状态"
+      },
+      "ko": {
+        "text": "빌드 상태 →",
+        "aria-label": "빌드 상태 보기"
+      },
+      "fr": {
+        "text": "État du build →",
+        "aria-label": "Voir l’état du build"
+      },
+      "de": {
+        "text": "Build-Status →",
+        "aria-label": "Build-Status anzeigen"
+      },
+      "es": {
+        "text": "Estado de compilación →",
+        "aria-label": "Ver estado de compilación"
+      },
+      "pt": {
+        "text": "Status do build →",
+        "aria-label": "Ver status do build"
+      },
+      "ar": {
+        "text": "حالة البناء →",
+        "aria-label": "عرض حالة البناء"
+      },
+      "hi": {
+        "text": "बिल्ड स्थिति →",
+        "aria-label": "बिल्ड स्थिति देखें"
       }
     }
   }
