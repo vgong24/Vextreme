@@ -1,0 +1,87 @@
+name: Localization Generated Materialize
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/localization-generated-materialize.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact PR head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Materialize accepted deterministic build
+        run: |
+          node lib/strings-compile.js
+          node lib/build-string-identity-index.js
+          node lib/build-arc-bundles.js
+          node lib/build-index.js
+          node lib/bump-fab-version.js
+          node lib/build-vextreme.js
+          node lib/build-sw.js
+          node lib/build-analysis-index.js
+          node lib/build-page-health.js
+          node lib/build-archives.js
+          node lib/build-demo.js
+          node lib/build-specimens.js
+          node lib/build-sitemap.js
+          node lib/build-index-page.js
+          node lib/build-lessons.js
+          node lib/build-status.js
+          node lib/build-roles.js
+          node lib/build-ecosystem-hub.js
+          node lib/build-roles-page.js
+          node lib/build-terrain-map.js
+
+      - name: Commit deterministic outputs and remove helper
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rm -- .github/workflows/localization-generated-materialize.yml
+          git add -- \
+            data/strings/compiled \
+            data/strings/reports \
+            data/index.json \
+            data/analysis-index.json \
+            data/lessons.json \
+            data/roles.json \
+            data/status.json \
+            data/page-health.json \
+            data/terrain-map.json \
+            dist \
+            sw.js \
+            pages/build-health.html \
+            pages/archives.html \
+            pages/vextreme-demo.html \
+            pages/specimens.html \
+            pages/specimen-*.html \
+            pages/ecosystem-hub.html \
+            pages/roles-index.html \
+            sitemap.xml \
+            index.html \
+            widgets/fab-lang.js
+          git config user.name "VexGPT"
+          git config user.email "victor.gong@vextreme24.com"
+          if git diff --cached --quiet; then
+            echo "No deterministic output delta."
+            exit 0
+          fi
+          git commit -m "[VexSite Localization] Materialize 72/N Turning Point Global Core generated truth" -m "[VXG RealForever]"
+          git push origin HEAD:${{ github.head_ref }}
