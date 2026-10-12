@@ -265,9 +265,17 @@ test('SCREENSHOT-EVIDENCE: general localization crawler keeps local evidence and
     'Assets evidence must bind to an exact source commit, not a mutable branch name');
 
   assert.match(source, /FAB button not found — refusing to label a localization screenshot/);
+  assert.match(source, /#vex-spiral-trigger/,
+    'nested language capture must use the visible Spiral trigger rather than force-clicking a hidden orb');
+  assert.match(source, /#vex-spiral-group/);
+  assert.match(source, /aria-expanded/);
+  assert.match(source, /fabBtn\.isVisible\(\)/,
+    'standalone-visible language FABs must retain their direct interaction path');
   assert.match(source, /No FAB item found for lang=/);
   assert.match(source, /localStorage\.getItem\('vex-lang'\) === expected/,
-    'requested locale must be behaviorally observed before the localized screenshot is accepted');
+    'requested locale must be persisted before the localized screenshot is accepted');
+  assert.match(source, /document\.documentElement\.lang === expected/,
+    'requested locale must also be observed on the rendered document before capture');
 
   assert.match(source, /'\.png':\s+'image\/png'/);
   assert.match(source, /'\.woff2':\s+'font\/woff2'/);

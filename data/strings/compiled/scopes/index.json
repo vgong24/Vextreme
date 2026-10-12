@@ -27,6 +27,7 @@
   "institution": {
     "category": "system",
     "path": "system/institution",
+    "translationPolicy": "English remains the static no-JavaScript fallback. JA/ZH values may become required and selectable only after separate exact-source TRANSLATION_CLEAR_JA and TRANSLATION_CLEAR_ZH receipts are bound to this complete source file; every locale must cover every English-bearing institutional key, including Victor's attributed first-person support testimony.",
     "en": 151,
     "ja": 151,
     "zh": 151
@@ -39,8 +40,8 @@
   "pages.ai-cheat-sheet": {
     "category": "production",
     "path": "production/pages/ai-cheat-sheet",
-    "en": 1166,
-    "translationPolicy": "source-only"
+    "translationPolicy": "source-only",
+    "en": 1166
   },
   "pages.ai-consciousness-strike-declaration": {
     "category": "production",

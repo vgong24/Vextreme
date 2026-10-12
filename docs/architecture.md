@@ -507,19 +507,30 @@ only appears in one place is a false signal — scope it to where it lives.
 The selected locale is one same-origin state, not one preference per FAB instance.
 
 ```text
-explicit shared URL ?lang=  -> initial override when supported
-localStorage["vex-lang"]    -> persisted same-origin selected language
-vextreme:languagechange     -> same-document notification after convergence
-storage("vex-lang")         -> parent/iframe/sibling browsing-context synchronization
+explicit shared URL ?lang=        -> initial override when supported
+localStorage["vex-lang"]          -> persisted same-origin selected language
+vextreme:languagechange           -> same-document notification after convergence
+storage("vex-lang")               -> normal parent/iframe/sibling synchronization
+vextreme:languagechange/v1 message -> child->parent notification fallback
 ```
 
 `widgets/fab-lang.js` owns this runtime contract for both God-Script pages and
 the shell-era auto-loader. A language change updates the FAB's visible state,
 the current document URL, `<html lang>`, translated `data-i18n` text, and
-the persisted `vex-lang` value. Other same-origin browsing contexts consume
-the storage event and apply the same language; local consumers such as Terrain
-listen to `vextreme:languagechange`. This keeps an embedded reader and its
-parent FAB from becoming independent language stores.
+the persisted `vex-lang` value. Other same-origin browsing contexts normally
+consume the storage event and apply the same language; local consumers such as
+Terrain listen to `vextreme:languagechange`.
+
+A real embedded-reader observation showed that relying on storage-event delivery
+alone could leave a child FAB visibly changed while its parent FAB remained on
+the prior locale. A direct child FAB selection therefore also posts the
+same-origin `vextreme:languagechange/v1` notification upward. The parent
+validates origin + supported locale and applies the already-persisted
+`vex-lang` value locally. The message is **notification only**: it does not
+create a second selected-language store, and storage-driven changes do not echo
+another message upward. This keeps an embedded reader and its parent FAB from
+becoming independent language stores even when the storage event is delayed or
+missed in a real browser/session.
 
 Partial translation fallback is deterministic: each page captures its authored
 English/source text before the first swap. Switching from one non-English

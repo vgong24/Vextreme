@@ -145,6 +145,93 @@ test('LANGUAGE AUTHORITY: FAB instances synchronize one effective locale across 
     'a slower stale locale request must not reclaim DOM/storage/event authority');
 });
 
+test('LANGUAGE AUTHORITY: child selection explicitly notifies and converges the same-origin parent', () => {
+  const widgetSrc = fs.readFileSync(FAB_IN, 'utf8');
+
+  const notifyMatch = widgetSrc.match(/function notifyParentLanguage\(lang, source\) \{([\s\S]*?)\n  \}/);
+  assert.ok(notifyMatch, 'notifyParentLanguage() must remain extractable');
+  const notifyParentLanguage = new Function(
+    'window',
+    'LANG_BRIDGE_MESSAGE',
+    'lang',
+    'source',
+    notifyMatch[1]
+  );
+
+  const posted = [];
+  const parentWindow = {
+    postMessage(payload, origin) {
+      posted.push({ payload, origin });
+    },
+  };
+  const childWindow = {
+    parent: parentWindow,
+    location: { origin: 'https://example.test' },
+  };
+
+  notifyParentLanguage(childWindow, 'vextreme:languagechange/v1', 'zh', 'fab');
+  assert.deepEqual(posted, [{
+    payload: { type: 'vextreme:languagechange/v1', lang: 'zh' },
+    origin: 'https://example.test',
+  }], 'a direct child FAB selection must notify the same-origin parent');
+
+  notifyParentLanguage(childWindow, 'vextreme:languagechange/v1', 'ja', 'storage');
+  assert.equal(posted.length, 1,
+    'storage-driven convergence must not echo another parent notification');
+
+  childWindow.parent = childWindow;
+  notifyParentLanguage(childWindow, 'vextreme:languagechange/v1', 'fr', 'fab');
+  assert.equal(posted.length, 1,
+    'a top-level FAB must not post a language message to itself');
+
+  const messageMatch = widgetSrc.match(
+    /window\.addEventListener\('message', function \(event\) \{([\s\S]*?)\n      \}\);/
+  );
+  assert.ok(messageMatch, 'parent language message listener must remain extractable');
+  const consumeMessage = new Function(
+    'event',
+    'window',
+    'langs',
+    'fabController',
+    'LANG_BRIDGE_MESSAGE',
+    messageMatch[1]
+  );
+
+  const selections = [];
+  const parentRuntime = { location: { origin: 'https://example.test' } };
+  const childSource = {};
+  const controller = {
+    selectLanguage(lang, options) {
+      selections.push({ lang, options });
+    },
+  };
+
+  consumeMessage({
+    origin: 'https://example.test',
+    source: childSource,
+    data: { type: 'vextreme:languagechange/v1', lang: 'zh' },
+  }, parentRuntime, ['en', 'ja', 'zh'], controller, 'vextreme:languagechange/v1');
+
+  assert.deepEqual(selections, [{
+    lang: 'zh',
+    options: { persist: false, source: 'child-message' },
+  }], 'same-origin supported child selection must apply in the parent FAB');
+
+  consumeMessage({
+    origin: 'https://evil.test',
+    source: childSource,
+    data: { type: 'vextreme:languagechange/v1', lang: 'ja' },
+  }, parentRuntime, ['en', 'ja', 'zh'], controller, 'vextreme:languagechange/v1');
+  consumeMessage({
+    origin: 'https://example.test',
+    source: childSource,
+    data: { type: 'vextreme:languagechange/v1', lang: 'ko' },
+  }, parentRuntime, ['en', 'ja', 'zh'], controller, 'vextreme:languagechange/v1');
+
+  assert.equal(selections.length, 1,
+    'cross-origin or locally unsupported child language messages must fail closed');
+});
+
 test('LANGUAGE AUTHORITY: live repository pages no longer load the legacy lang-fab engine directly', () => {
   const legacyRef = 'widgets/' + 'lang-fab.js';
   const pageFiles = fs.readdirSync(PAGES_DIR).filter(name => name.endsWith('.html'));
