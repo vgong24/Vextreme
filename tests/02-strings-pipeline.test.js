@@ -31,6 +31,9 @@ const {
   buildHtmlContextMap,
   buildTranslatorContext,
   buildTranslatorNotes,
+  buildTranslatorRow,
+  buildTranslatorRows,
+  renderTranslatorCSV,
   buildTranslatorCSV,
 } = require('../lib/strings-export');
 const { parseCSV, buildImportPlan, applyImportOperations } = require('../lib/strings-import');
@@ -168,6 +171,30 @@ test('TRANSLATOR EXPORT: an explicit new target locale bootstraps from EN withou
   assert.equal(rows[0].fr_aria_label, '');
   assert.equal(rows[0].ja_text, undefined);
   assert.doesNotMatch(csv, /前へ|前のページ/, 'translator view must remain source language + one target only');
+});
+
+test('TRANSLATOR EXPORT: ordinary CSV and campaign row rendering share the same row owner', () => {
+  const raw = {
+    _meta: { scope: 'common', description: 'Common UI' },
+    'common.alpha': {
+      strings: {
+        en: { text: 'Alpha', 'aria-label': 'Alpha action' },
+        ja: { text: 'アルファ' },
+      },
+    },
+  };
+
+  const rows = buildTranslatorRows(raw, 'fr');
+  assert.equal(rows.length, 1);
+  assert.deepEqual(
+    rows[0],
+    buildTranslatorRow(raw, 'common.alpha', raw['common.alpha'], 'fr')
+  );
+  assert.equal(
+    buildTranslatorCSV(raw, 'fr'),
+    renderTranslatorCSV(rows, 'fr'),
+    'per-scope export and campaign export must not drift on hashes/context/notes'
+  );
 });
 
 test('TRANSLATOR CONTEXT: Q/A answer carries paired question and nearest heading from current source/HTML', () => {
