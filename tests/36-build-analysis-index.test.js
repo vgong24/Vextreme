@@ -26,6 +26,8 @@ const path      = require('path');
 
 const {
   computeMissingLangs,
+  pageSlugFromUsage,
+  expectedLangsForUsage,
   buildElementIndex,
   buildPageIndex,
   buildAnalysisIndex,
@@ -84,6 +86,7 @@ test('buildElementIndex: source-only keys retain language facts but suppress mis
     {},
     manifest,
     ['en', 'fr', 'ja'],
+    null,
     ['pages.ai-cheat-sheet']
   );
   assert.deepEqual(elements['pages.ai-cheat-sheet.body.title'], {
@@ -93,6 +96,43 @@ test('buildElementIndex: source-only keys retain language facts but suppress mis
     langs: ['en'],
     missingLangs: [],
   });
+});
+
+test('pageSlugFromUsage: only real top-level pages become page-language demand', () => {
+  assert.equal(pageSlugFromUsage('pages/alpha.html'), 'alpha');
+  assert.equal(pageSlugFromUsage('wip/alpha.html'), null);
+  assert.equal(pageSlugFromUsage('pages/nested/alpha.html'), null);
+});
+
+test('expectedLangsForUsage: debt follows locales advertised by pages that actually use the key', () => {
+  const pageLanguageMap = {
+    alpha: { availableLangs: ['en', 'fr'] },
+    beta: { availableLangs: ['en', 'ja'] },
+  };
+  const supported = ['en', 'fr', 'ja', 'zh'];
+
+  assert.deepEqual(
+    expectedLangsForUsage(['pages/alpha.html'], supported, pageLanguageMap),
+    ['en', 'fr']
+  );
+  assert.deepEqual(
+    expectedLangsForUsage(['pages/beta.html'], supported, pageLanguageMap),
+    ['en', 'ja']
+  );
+  assert.deepEqual(
+    expectedLangsForUsage(['pages/alpha.html', 'pages/beta.html'], supported, pageLanguageMap),
+    ['en', 'fr', 'ja']
+  );
+  assert.deepEqual(
+    expectedLangsForUsage([], supported, pageLanguageMap),
+    ['en'],
+    'unused keys do not inherit target-language debt merely because a locale exists elsewhere'
+  );
+  assert.deepEqual(
+    expectedLangsForUsage(['pages/alpha.html'], supported, null),
+    supported,
+    'omitting pageLanguageMap preserves the legacy pure-caller behavior'
+  );
 });
 
 // ── 2. buildElementIndex ──────────────────────────────────────────────────────
@@ -108,6 +148,43 @@ test('buildElementIndex: includes a manifest key with no HTML usage', () => {
     langs: ['en'],
     missingLangs: ['ja'],
   });
+});
+
+test('buildElementIndex: page demand prevents one pilot locale from becoming unrelated site-wide debt', () => {
+  const usages = {
+    'pages.alpha.body': ['pages/alpha.html'],
+    'pages.beta.body': ['pages/beta.html'],
+    'common.shared': ['pages/alpha.html', 'pages/beta.html'],
+    'unused.key': [],
+    'pages.ai-cheat-sheet.body': ['pages/ai-cheat-sheet.html'],
+  };
+  const manifest = {
+    'pages.alpha.body': { enHash: 'a', langs: ['en'] },
+    'pages.beta.body': { enHash: 'b', langs: ['en'] },
+    'common.shared': { enHash: 'c', langs: ['en', 'fr'] },
+    'unused.key': { enHash: 'd', langs: ['en'] },
+    'pages.ai-cheat-sheet.body': { enHash: 'e', langs: ['en'] },
+  };
+  const pageLanguageMap = {
+    alpha: { availableLangs: ['en', 'fr'] },
+    beta: { availableLangs: ['en'] },
+    'ai-cheat-sheet': { availableLangs: ['en', 'fr'] },
+  };
+
+  const elements = buildElementIndex(
+    usages,
+    manifest,
+    ['en', 'fr', 'ja', 'zh'],
+    pageLanguageMap,
+    ['pages.ai-cheat-sheet']
+  );
+
+  assert.deepEqual(elements['pages.alpha.body'].missingLangs, ['fr']);
+  assert.deepEqual(elements['pages.beta.body'].missingLangs, []);
+  assert.deepEqual(elements['common.shared'].missingLangs, []);
+  assert.deepEqual(elements['unused.key'].missingLangs, []);
+  assert.deepEqual(elements['pages.ai-cheat-sheet.body'].missingLangs, [],
+    'source-only policy wins even if a page advertises another locale');
 });
 
 test('buildElementIndex: includes an HTML-used key missing from the manifest (orphan)', () => {

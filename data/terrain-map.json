@@ -542,7 +542,7 @@
       "role": "Analysis Mode data-layer write side — composes trace-string usage and shared screenshot evidence into one browser-fetchable artifact",
       "reads": [
         "data/strings/compiled/manifest.json (per-key language coverage)",
-        "data/index.json (supportedLangs — the language set to compare coverage against)",
+        "data/index.json (supportedLangs aggregate ordering + pageLanguageMap.availableLangs per-page demand + sourceOnlyScopes policy)",
         "pages/*.html, wip/*.html (data-i18n usage scan, via trace-string-usage.js scanUsages)",
         "docs/screenshots/*.png (directory listing, parsed through lib/screenshot-evidence.js)",
         "lib/trace-string-usage.js (scanUsages, traceKey, tracePage, findOrphanUsages, findUnusedKeys — reused directly, not duplicated)",
@@ -958,7 +958,7 @@
       "reads": [
         "data/strings/compiled/manifest.json",
         "data/strings/compiled/strings.en.json",
-        "data/index.json",
+        "data/analysis-index.json (per-key missingLangs derived from real page demand + source-only policy)",
         "data/strings/compiled/scopes/demo/ (recursive walk for fixture detection)",
         "data/status/tech-debt.json",
         "data/status/planned-enhancements.json",
