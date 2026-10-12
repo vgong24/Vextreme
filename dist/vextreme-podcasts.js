@@ -15,7 +15,7 @@
   /* Scope + category globals for fab-lang compatibility */
   window.VEX_STRING_SCOPES    = ["pages.podcasts"];
   window.VEX_STRING_CATEGORY  = "production";
-  window.VEX_SUPPORTED_LANGS  = ["en","ja","zh"];
+  window.VEX_SUPPORTED_LANGS  = ["en"];
 
 
 
@@ -290,8 +290,8 @@
  * Floating language-selector button. Determines the language list to offer
  * from, in order: window.VEX_SUPPORTED_LANGS (baked in at build time by
  * lib/build-vextreme.js — the ground truth for what THIS page's God Script
- * actually has), then a cached index.json blob in localStorage, then a live
- * fetch of index.json. Shows only when 2 or more languages are available.
+ * actually has), then this page's data/index.json.pageLanguageMap projection
+ * from cache/network, then the site-wide supportedLangs compatibility fallback.
  * Opens an iOS-style scroll wheel of emoji flags; picking a flag swaps all
  * [data-i18n] elements on the page and persists the choice to localStorage.
  *
@@ -313,6 +313,7 @@
  *   reads     : window.VEX_STRING_SCOPES
  *               window.VEX_STRING_CATEGORY
  *               window.VEX_SUPPORTED_LANGS
+ *               data/index.json.pageLanguageMap / supportedLangs via cache or CDN fallback
  *               window.VEX_STRING_ARC_BUNDLE (arc-chunked bundling pilot, checked before the scope path)
  *               window.VEX_STRINGS_EN (God Script EN/source fallback)
  *               data/strings/compiled/scopes/{category}/{scope}.{lang}.json via CDN
@@ -355,6 +356,11 @@
  *     partial-locale EN/source fallback or apply ordering:
  *       - tests/08-build-vextreme.test.js (fallback + stale-request guard)
  *       - localized browser acceptance before screenshot evidence is trusted
+ *     page-aware language availability:
+ *       - lib/build-index.js (produces pageLanguageMap)
+ *       - lib/build-vextreme.js (bakes page-local availableLangs into VEX_SUPPORTED_LANGS)
+ *       - tests/08-build-vextreme.test.js
+ *       - docs/architecture/06-i18n.md
  * LATTICE:END
  */
 
@@ -495,6 +501,29 @@
     return [LANG_DEFAULT].concat(rest);
   }
 
+  // Slug detection follows the same "final path segment minus .html" contract
+  // as the canonical index/navigation runtime, with VEX_SLUG retained for test
+  // and embedded-page overrides.
+  function detectPageSlug() {
+    if (window.VEX_SLUG) return window.VEX_SLUG;
+    var pathname = window.location && window.location.pathname;
+    if (!pathname) return '';
+    var parts = pathname.split('/').filter(Boolean);
+    var last = parts[parts.length - 1] || '';
+    return last.replace(/\.html$/, '');
+  }
+
+  function supportedLangsForPage(indexData) {
+    var data = indexData || {};
+    var slug = detectPageSlug();
+    var pageCoverage = data.pageLanguageMap && slug ? data.pageLanguageMap[slug] : null;
+    if (pageCoverage && pageCoverage.availableLangs && pageCoverage.availableLangs.length) {
+      return pageCoverage.availableLangs;
+    }
+    if (data.supportedLangs && data.supportedLangs.length) return data.supportedLangs;
+    return [LANG_DEFAULT];
+  }
+
   // ── Index loading (God Script global first, then cache, then network) ────────
   //
   // God Script optimization: lib/build-vextreme.js bakes window.VEX_SUPPORTED_LANGS
@@ -518,9 +547,7 @@
       var raw = localStorage.getItem(LS_DATA);
       if (raw) {
         var cached = JSON.parse(raw);
-        if (cached.supportedLangs && cached.supportedLangs.length) {
-          cachedLangs = cached.supportedLangs;
-        }
+        cachedLangs = supportedLangsForPage(cached);
       }
     } catch (e) { /* storage unavailable */ }
 
@@ -530,7 +557,7 @@
       if (req.status === 200) {
         try {
           var data = JSON.parse(req.responseText);
-          onReady(data.supportedLangs || [LANG_DEFAULT]);
+          onReady(supportedLangsForPage(data));
         } catch (e) {
           _logger.warn({ code: 'LANG_FAB_INDEX_PARSE_FAILED', message: 'Failed to parse index.json for lang list' });
           onReady(cachedLangs || [LANG_DEFAULT]);

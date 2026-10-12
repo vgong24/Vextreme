@@ -26,7 +26,7 @@ const assert   = require('node:assert/strict');
 const { execFileSync } = require('node:child_process');
 const fs       = require('fs');
 const path     = require('path');
-const { contentFingerprint, buildSlugMap, buildArcMap, buildArcMeta, parseDate, findDuplicateSlugs } = require('../lib/build-index');
+const { contentFingerprint, buildPageLanguageCoverage, buildPageLanguageMap, buildSlugMap, buildArcMap, buildArcMeta, parseDate, findDuplicateSlugs } = require('../lib/build-index');
 
 const nodes   = require('./fixtures/nodes.fixture.json');
 const arcsDef = require('./fixtures/arcs.fixture.json');
@@ -80,6 +80,70 @@ test('PIPELINE: given valid nodes and arcs, the index contains every slug, every
   assert.equal(fakeUrl(flatSlugs[pos + 1]), '/pages/gamma.html', 'next of beta should be gamma');
   assert.equal(index.arcMeta['arc_a'].renderMode, 'dots');
   assert.equal(index.arcMeta['arc_b'].renderMode, 'position');
+});
+
+test('I18N COVERAGE: common-only translation never makes an unrelated content page advertise that locale', () => {
+  const scopeIndex = {
+    common: { category: 'system', path: 'system/common', en: 10, ja: 10 },
+    'pages.example': { category: 'production', path: 'production/pages/example', en: 4 },
+  };
+  const coverage = buildPageLanguageCoverage(['pages.example'], scopeIndex);
+  assert.deepEqual(coverage.availableLangs, ['en']);
+  assert.deepEqual(coverage.completeLangs, ['en']);
+});
+
+test('I18N COVERAGE: partial page translation is available but not complete', () => {
+  const scopeIndex = {
+    common: { category: 'system', path: 'system/common', en: 10, ja: 10, fr: 10 },
+    'pages.example': { category: 'production', path: 'production/pages/example', en: 4, ja: 2, fr: 4 },
+  };
+  const coverage = buildPageLanguageCoverage(['pages.example'], scopeIndex);
+  assert.deepEqual(coverage.availableLangs, ['en', 'fr', 'ja']);
+  assert.deepEqual(coverage.completeLangs, ['en', 'fr']);
+});
+
+test('I18N COVERAGE: every declared runtime scope must be complete before a locale is capture-ready', () => {
+  const scopeIndex = {
+    common: { category: 'system', path: 'system/common', en: 3, ja: 3, zh: 3 },
+    'pages.example': { category: 'production', path: 'production/pages/example', en: 4, ja: 4, zh: 4 },
+    shared: { category: 'production', path: 'production/shared', en: 2, ja: 1, zh: 2 },
+  };
+  const coverage = buildPageLanguageCoverage(['pages.example', 'shared'], scopeIndex);
+  assert.deepEqual(coverage.availableLangs, ['en', 'ja', 'zh']);
+  assert.deepEqual(coverage.completeLangs, ['en', 'zh']);
+});
+
+test('I18N COVERAGE: EN remains available and complete when a page has no compiled localization scope yet', () => {
+  const coverage = buildPageLanguageCoverage(['pages.not-yet-localized'], {
+    common: { category: 'system', path: 'system/common', en: 3, ja: 3 },
+  });
+  assert.deepEqual(coverage.availableLangs, ['en']);
+  assert.deepEqual(coverage.completeLangs, ['en']);
+});
+
+test('I18N COVERAGE: pageLanguageMap covers both content slugs and viewmodel-only pages without changing viewmodel ownership', () => {
+  const slugMap = {
+    'content-page': { viewmodel: { scopes: ['pages.content-page'] } },
+  };
+  const viewmodels = {
+    'content-page': { scopes: ['pages.content-page'] },
+    'demo-only': { scopes: ['demo'] },
+  };
+  const scopeIndex = {
+    common: { category: 'system', path: 'system/common', en: 2, fr: 2 },
+    'pages.content-page': { category: 'production', path: 'production/pages/content-page', en: 3, fr: 3 },
+    demo: { category: 'demo', path: 'demo/demo', en: 4, ja: 2 },
+  };
+
+  const map = buildPageLanguageMap(slugMap, viewmodels, scopeIndex);
+  assert.deepEqual(map['content-page'], {
+    availableLangs: ['en', 'fr'],
+    completeLangs: ['en', 'fr'],
+  });
+  assert.deepEqual(map['demo-only'], {
+    availableLangs: ['en', 'ja'],
+    completeLangs: ['en'],
+  });
 });
 
 // ── 2. Invariants ─────────────────────────────────────────────────────────────

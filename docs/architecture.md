@@ -530,10 +530,23 @@ FAB selection by itself is not proof that a page has translated strings; do
 not label an English fallback render as localized screenshot evidence merely
 because `vex-lang` was set.
 
-This does **not** remove the separate page-aware availability gap described
-below: `data/index.json.supportedLangs` is still site-wide. A page can therefore
-offer a language for which it has zero translated keys. That is a coverage/
-discovery question, not a second selected-language authority.
+Language **availability** is now page-aware without becoming a second selected-language
+authority. `lib/build-index.js` combines each page's declared viewmodel scopes
+with `data/strings/compiled/scopes/index.json` and emits
+`data/index.json.pageLanguageMap[slug]`:
+
+- `availableLangs` = EN plus target locales that have at least one translated key
+  in one of that page's declared content scopes. Translation of `common` UI alone
+  does not make an unrelated page advertise a locale.
+- `completeLangs` = EN plus target locales whose every runtime-required scope
+  (`common` + that page's declared scopes) has the same key count as EN.
+
+The user-facing FAB consumes `availableLangs`, so useful partial translations
+remain reachable and missing keys still fall back deterministically to EN/source.
+Localized screenshot automation consumes the stricter `completeLangs`; a partial
+page may never be filed as fully localized evidence merely because the FAB can
+select that locale. `data/index.json.supportedLangs` remains the site-wide
+aggregate and backwards-compatibility fallback, not the default page truth.
 
 ---
 
@@ -557,6 +570,9 @@ data/strings/compiled/        — generated bundles (committed as artifacts)
   manifest.json               — { key → { enHash, langs } } for stale detection
   scopes/{scope}.{lang}.json  — same shape, one scope's keys only (see below)
   scopes/index.json           — { scope → { lang → keyCount } }, discovery without fetching every file
+
+lib/build-index.js             — derives pageLanguageMap from page scopes + scope counts
+data/index.json                — pageLanguageMap[slug].availableLangs / completeLangs
 
 data/strings/migrations.json  — append-only key rename log (never delete entries)
 data/strings/batches/export/  — CSV batches sent to translators
@@ -643,17 +659,18 @@ unproven, whole-site migration for a change one new page motivated. Migrating
 a second arc means adding one field to its `data/arcs-v2.json` entry — the
 mechanism already generalizes; only the *scope* of adoption is one arc.
 
-**Known limitation, recorded honestly, not hidden:** `supportedLangs` in
-`data/index.json` is site-wide, computed from the flat `strings.{lang}.json`
-bundle (any lang with at least one key, anywhere). Adding `zh` content to one
-page makes 🇨🇳 selectable on *every* page site-wide, including ones with zero
-zh translations. This degrades safely — `fab-lang.js`'s `data-i18n` swap
-leaves an element's original (English) text untouched when a key has no
-entry for the selected language, the same missing-key fallback every other
-page already relies on for partial JA coverage — but a user can still pick a
-language that visibly does nothing on most pages. Making `supportedLangs`
-page-aware, or hiding the FAB entry for languages a given page has zero keys
-for, is unbuilt follow-up work, not a hidden defect.
+**Page-aware availability is derived from scopes, not arcs.** Arc-chunked
+bundles remain a transport optimization: whether a page may offer or certify a
+locale is computed from the underlying scope counts that the page actually
+declares. `lib/build-vextreme.js` bakes the page's `availableLangs` into
+`window.VEX_SUPPORTED_LANGS`; standalone `fab-lang.js` resolves the same
+`pageLanguageMap` by the canonical page slug before falling back to the
+site-wide aggregate for older/unmapped index data.
+
+This keeps partial translation useful without overstating completeness. For
+example, the current `victor_dossier` arc bundle can carry JA/ZH keys while
+those locales remain outside `completeLangs` until every required scope reaches
+EN parity.
 
 ---
 

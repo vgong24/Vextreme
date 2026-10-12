@@ -173,6 +173,7 @@
         "data/arcs-v2.json",
         "data/viewmodels.json",
         "data/departments.json",
+        "data/strings/compiled/scopes/index.json (per-scope per-locale key counts for page-aware language coverage)",
         "pages/*.html (via lib/auto-discover-nodes.js, for any slug with no nodes.json entry)",
         "lib/audit-pages.js (AUTO_DISCOVERY_EXCLUSIONS, getPageSlugs)",
         "lib/auto-discover-nodes.js (discoverOrphanNodes, readPageFromDisk)",
@@ -241,12 +242,21 @@
           "lib/build-archives.js (calls the same function independently — see pe-011, tracked to collapse this someday)",
           "tests/16-auto-discover-nodes.test.js",
           "tests/15-departments.test.js (its integration test replicates the allNodes computation)"
+        ],
+        "page locale coverage fields": [
+          "data/strings/compiled/scopes/index.json (source projection consumed; not a second translation owner)",
+          "lib/build-vextreme.js (passes page-local availableLangs into window.VEX_SUPPORTED_LANGS)",
+          "widgets/fab-lang.js (standalone index fallback selects current slug's availableLangs)",
+          "tests/01-content-pipeline.test.js",
+          "tests/07-viewmodel.test.js",
+          "tests/08-build-vextreme.test.js",
+          "localized screenshot orchestration (consume completeLangs only)"
         ]
       }
     },
     "lib/build-vextreme.js": {
       "role": "God Script assembler — reads index + string bundles, writes one self-contained dist/ file per page",
-      "context": "The write side of the page delivery pipeline. Inlines EN strings, bakes in viewmodel, includes feature widgets. Once a God Script is loaded by a page, it needs zero additional fetches for EN. Run after build-index.js and strings-compile.js. Session 025 FAB unification: spiral-fab and theme have real filenames now (vex-fab.js, fab-theme.js) after sitting reserved-but-unbuilt (filename: null) since Session 013; a new map feature (fab-map.js) was added alongside them. FEATURES object key order was changed so spiral-fab registers before lang/theme/map — that order is the script concatenation order, which is also the DOMContentLoaded firing order in the browser, and vex-fab.js's #vex-spiral-group container must exist before the other three widgets look for it on mount. Honest caveat found while building this: as of Session 025, ZERO live pages actually load a God Script (node lib/audit-pages.js reports 0 wired) — every real page still uses old standalone <script src=CDN> tags, so this feature (and the VEX_SUPPORTED_LANGS fix before it) is correct, tested infrastructure with no live effect until a page's script tags are actually switched over to its dist/ file. Not yet decided whether/when that wiring happens.",
+      "context": "The write side of the page delivery pipeline. Inlines EN strings, bakes in viewmodel, includes feature widgets. Once a God Script is loaded by a page, it needs zero additional fetches for EN. Run after build-index.js and strings-compile.js. Session 025 FAB unification: spiral-fab and theme have real filenames now (vex-fab.js, fab-theme.js) after sitting reserved-but-unbuilt (filename: null) since Session 013; a new map feature (fab-map.js) was added alongside them. FEATURES object key order was changed so spiral-fab registers before lang/theme/map — that order is the script concatenation order, which is also the DOMContentLoaded firing order in the browser, and vex-fab.js's #vex-spiral-group container must exist before the other three widgets look for it on mount. Honest caveat found while building this: as of Session 025, ZERO live pages actually load a God Script (node lib/audit-pages.js reports 0 wired) — every real page still uses old standalone <script src=CDN> tags, so this feature (and the VEX_SUPPORTED_LANGS fix before it) is correct, tested infrastructure with no live effect until a page's script tags are actually switched over to its dist/ file. Not yet decided whether/when that wiring happens. Page-local locale options now come from data/index.json.pageLanguageMap[slug].availableLangs; root supportedLangs is compatibility fallback only.",
       "reads": [
         "data/index.json",
         "data/viewmodels.json",
@@ -294,6 +304,12 @@
         "dist/ output filenames": [
           "lib/build-sw.js (PRECACHE_URLS — sw.js must include new filenames)",
           "pages/*.html (each page references its dist/ file by name)"
+        ],
+        "page-aware supported-language projection": [
+          "lib/build-index.js (owns pageLanguageMap derivation from scope counts)",
+          "widgets/fab-lang.js (consumes VEX_SUPPORTED_LANGS fast path)",
+          "tests/08-build-vextreme.test.js",
+          "docs/architecture/06-i18n.md"
         ]
       }
     },
@@ -742,11 +758,12 @@
     },
     "widgets/fab-lang.js": {
       "role": "browser selected-language authority + switcher FAB — resolves effective locale, fetches scoped/arc bundles, applies [data-i18n] swaps, and synchronizes same-origin browsing contexts",
-      "context": "The runtime i18n engine and selected-language owner for both God-Script and shell-era pages. URL ?lang= remains the explicit initial override when supported; localStorage key vex-lang is the persisted same-origin preference; the storage event synchronizes parent/iframe/sibling browsing contexts; and vextreme:languagechange is the same-document notification consumed by surfaces such as Terrain. Each applied locale also updates <html lang>. Partial locales restore immutable EN/source text for missing keys instead of leaving text from the previously selected non-EN locale, and an apply generation guard prevents a slower stale locale request from reclaiming DOM/storage/event authority. Bundle lookup still follows the existing VEX_STRING_ARC_BUNDLE pilot first, then per-scope/flat fallback; fetched translation payloads remain in-memory only.",
+      "context": "The runtime i18n engine and selected-language owner for both God-Script and shell-era pages. URL ?lang= remains the explicit initial override when supported; localStorage key vex-lang is the persisted same-origin preference; the storage event synchronizes parent/iframe/sibling browsing contexts; and vextreme:languagechange is the same-document notification consumed by surfaces such as Terrain. Each applied locale also updates <html lang>. Partial locales restore immutable EN/source text for missing keys instead of leaving text from the previously selected non-EN locale, and an apply generation guard prevents a slower stale locale request from reclaiming DOM/storage/event authority. Bundle lookup still follows the existing VEX_STRING_ARC_BUNDLE pilot first, then per-scope/flat fallback; fetched translation payloads remain in-memory only. When no God-Script VEX_SUPPORTED_LANGS global is present, standalone loading now resolves the current slug against data/index.json.pageLanguageMap and only falls back to site-wide supportedLangs for older/unmapped index data.",
       "reads": [
         "window.VEX_STRING_SCOPES",
         "window.VEX_STRING_CATEGORY",
         "window.VEX_SUPPORTED_LANGS",
+        "data/index.json.pageLanguageMap / supportedLangs via cache or CDN fallback",
         "window.VEX_STRING_ARC_BUNDLE (arc-chunked bundling pilot, checked before the scope path)",
         "window.VEX_STRINGS_EN (God Script EN/source fallback)",
         "data/strings/compiled/scopes/{category}/{scope}.{lang}.json via CDN",
@@ -801,6 +818,12 @@
         "partial-locale EN/source fallback or apply ordering": [
           "tests/08-build-vextreme.test.js (fallback + stale-request guard)",
           "localized browser acceptance before screenshot evidence is trusted"
+        ],
+        "page-aware language availability": [
+          "lib/build-index.js (produces pageLanguageMap)",
+          "lib/build-vextreme.js (bakes page-local availableLangs into VEX_SUPPORTED_LANGS)",
+          "tests/08-build-vextreme.test.js",
+          "docs/architecture/06-i18n.md"
         ]
       }
     },
