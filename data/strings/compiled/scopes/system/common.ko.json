@@ -1,0 +1,58 @@
+{
+  "common.nav.prev": {
+    "text": "← 이전",
+    "aria-label": "이전 페이지"
+  },
+  "common.nav.next": {
+    "text": "다음 →",
+    "aria-label": "다음 페이지"
+  },
+  "common.label.you-are-here": {
+    "text": "현재 위치"
+  },
+  "common.nav.primary-site": {
+    "text": "vextreme24.com",
+    "aria-label": "기본 사이트로 이동"
+  },
+  "common.nav.github": {
+    "text": "GitHub",
+    "aria-label": "GitHub에서 소스 보기"
+  },
+  "common.button.copy-filename": {
+    "text": "파일 이름 복사",
+    "aria-label": "파일 이름을 클립보드에 복사"
+  },
+  "common.button.copied": {
+    "text": "복사됨!",
+    "aria-label": "파일 이름이 클립보드에 복사됨"
+  },
+  "common.label.site-title": {
+    "text": "Vextreme"
+  },
+  "common.label.page-live": {
+    "text": "페이지 공개됨"
+  },
+  "common.label.not-yet-ported": {
+    "text": "아직 포팅되지 않음"
+  },
+  "common.label.slug": {
+    "text": "슬러그"
+  },
+  "common.status.pages-live": {
+    "text": "{ported, plural, one {전체 {total}페이지 중 #페이지 공개됨} other {전체 {total}페이지 중 #페이지 공개됨}}"
+  },
+  "common.status.remaining": {
+    "text": "{count, plural, one {#개 남음} other {#개 남음}}"
+  },
+  "common.status.built-on": {
+    "text": "{date}에 빌드됨"
+  },
+  "common.nav.build-health": {
+    "text": "빌드 상태",
+    "aria-label": "빌드 상태 보기"
+  },
+  "common.nav.full-build-health": {
+    "text": "빌드 상태 →",
+    "aria-label": "빌드 상태 보기"
+  }
+}

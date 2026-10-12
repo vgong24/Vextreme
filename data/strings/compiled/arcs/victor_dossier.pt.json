@@ -1,0 +1,58 @@
+{
+  "common.nav.prev": {
+    "text": "← anterior",
+    "aria-label": "Página anterior"
+  },
+  "common.nav.next": {
+    "text": "próximo →",
+    "aria-label": "Próxima página"
+  },
+  "common.label.you-are-here": {
+    "text": "Você está aqui"
+  },
+  "common.nav.primary-site": {
+    "text": "vextreme24.com",
+    "aria-label": "Ir para o site principal"
+  },
+  "common.nav.github": {
+    "text": "GitHub",
+    "aria-label": "Ver código-fonte no GitHub"
+  },
+  "common.button.copy-filename": {
+    "text": "Copiar nome do arquivo",
+    "aria-label": "Copiar o nome do arquivo para a área de transferência"
+  },
+  "common.button.copied": {
+    "text": "Copiado!",
+    "aria-label": "Nome do arquivo copiado para a área de transferência"
+  },
+  "common.label.site-title": {
+    "text": "Vextreme"
+  },
+  "common.label.page-live": {
+    "text": "Página no ar"
+  },
+  "common.label.not-yet-ported": {
+    "text": "Ainda não portado"
+  },
+  "common.label.slug": {
+    "text": "Slug"
+  },
+  "common.status.pages-live": {
+    "text": "{ported, plural, one {# de {total} página no ar} other {# de {total} páginas no ar}}"
+  },
+  "common.status.remaining": {
+    "text": "{count, plural, one {# restante} other {# restantes}}"
+  },
+  "common.status.built-on": {
+    "text": "Gerado em {date}"
+  },
+  "common.nav.build-health": {
+    "text": "Status do build",
+    "aria-label": "Ver status do build"
+  },
+  "common.nav.full-build-health": {
+    "text": "Status do build →",
+    "aria-label": "Ver status do build"
+  }
+}

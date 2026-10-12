@@ -1,0 +1,58 @@
+{
+  "common.nav.prev": {
+    "text": "← पिछला",
+    "aria-label": "पिछला पेज"
+  },
+  "common.nav.next": {
+    "text": "अगला →",
+    "aria-label": "अगला पेज"
+  },
+  "common.label.you-are-here": {
+    "text": "आप यहाँ हैं"
+  },
+  "common.nav.primary-site": {
+    "text": "vextreme24.com",
+    "aria-label": "मुख्य साइट पर जाएँ"
+  },
+  "common.nav.github": {
+    "text": "GitHub",
+    "aria-label": "GitHub पर स्रोत देखें"
+  },
+  "common.button.copy-filename": {
+    "text": "फ़ाइल नाम कॉपी करें",
+    "aria-label": "फ़ाइल नाम क्लिपबोर्ड पर कॉपी करें"
+  },
+  "common.button.copied": {
+    "text": "कॉपी हो गया!",
+    "aria-label": "फ़ाइल नाम क्लिपबोर्ड पर कॉपी किया गया"
+  },
+  "common.label.site-title": {
+    "text": "Vextreme"
+  },
+  "common.label.page-live": {
+    "text": "पेज लाइव"
+  },
+  "common.label.not-yet-ported": {
+    "text": "अभी पोर्ट नहीं किया गया"
+  },
+  "common.label.slug": {
+    "text": "स्लग"
+  },
+  "common.status.pages-live": {
+    "text": "{ported, plural, one {कुल {total} में से # पेज लाइव} other {कुल {total} में से # पेज लाइव}}"
+  },
+  "common.status.remaining": {
+    "text": "{count, plural, one {# शेष} other {# शेष}}"
+  },
+  "common.status.built-on": {
+    "text": "{date} को बनाया गया"
+  },
+  "common.nav.build-health": {
+    "text": "बिल्ड स्थिति",
+    "aria-label": "बिल्ड स्थिति देखें"
+  },
+  "common.nav.full-build-health": {
+    "text": "बिल्ड स्थिति →",
+    "aria-label": "बिल्ड स्थिति देखें"
+  }
+}

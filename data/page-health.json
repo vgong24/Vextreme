@@ -760,13 +760,33 @@
       "identity": {
         "keyCount": 12,
         "languages": {
+          "ar": {
+            "translated": 7,
+            "total": 12,
+            "state": "partial"
+          },
+          "de": {
+            "translated": 7,
+            "total": 12,
+            "state": "partial"
+          },
           "en": {
             "translated": 12,
             "total": 12,
             "state": "full"
           },
+          "es": {
+            "translated": 7,
+            "total": 12,
+            "state": "partial"
+          },
           "fr": {
-            "translated": 1,
+            "translated": 7,
+            "total": 12,
+            "state": "partial"
+          },
+          "hi": {
+            "translated": 7,
             "total": 12,
             "state": "partial"
           },
@@ -774,6 +794,21 @@
             "translated": 12,
             "total": 12,
             "state": "full"
+          },
+          "ko": {
+            "translated": 7,
+            "total": 12,
+            "state": "partial"
+          },
+          "pt": {
+            "translated": 7,
+            "total": 12,
+            "state": "partial"
+          },
+          "zh": {
+            "translated": 7,
+            "total": 12,
+            "state": "partial"
           }
         }
       },
@@ -3049,7 +3084,52 @@
       "identity": {
         "keyCount": 353,
         "languages": {
+          "ar": {
+            "translated": 353,
+            "total": 353,
+            "state": "full"
+          },
+          "de": {
+            "translated": 353,
+            "total": 353,
+            "state": "full"
+          },
           "en": {
+            "translated": 353,
+            "total": 353,
+            "state": "full"
+          },
+          "es": {
+            "translated": 353,
+            "total": 353,
+            "state": "full"
+          },
+          "fr": {
+            "translated": 353,
+            "total": 353,
+            "state": "full"
+          },
+          "hi": {
+            "translated": 353,
+            "total": 353,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 353,
+            "total": 353,
+            "state": "full"
+          },
+          "ko": {
+            "translated": 353,
+            "total": 353,
+            "state": "full"
+          },
+          "pt": {
+            "translated": 353,
+            "total": 353,
+            "state": "full"
+          },
+          "zh": {
             "translated": 353,
             "total": 353,
             "state": "full"
@@ -4261,15 +4341,55 @@
       "identity": {
         "keyCount": 2,
         "languages": {
+          "ar": {
+            "translated": 1,
+            "total": 2,
+            "state": "partial"
+          },
+          "de": {
+            "translated": 1,
+            "total": 2,
+            "state": "partial"
+          },
           "en": {
             "translated": 2,
             "total": 2,
             "state": "full"
           },
+          "es": {
+            "translated": 1,
+            "total": 2,
+            "state": "partial"
+          },
+          "fr": {
+            "translated": 1,
+            "total": 2,
+            "state": "partial"
+          },
+          "hi": {
+            "translated": 1,
+            "total": 2,
+            "state": "partial"
+          },
           "ja": {
             "translated": 2,
             "total": 2,
             "state": "full"
+          },
+          "ko": {
+            "translated": 1,
+            "total": 2,
+            "state": "partial"
+          },
+          "pt": {
+            "translated": 1,
+            "total": 2,
+            "state": "partial"
+          },
+          "zh": {
+            "translated": 1,
+            "total": 2,
+            "state": "partial"
           }
         }
       },
@@ -4320,15 +4440,55 @@
       "identity": {
         "keyCount": 14,
         "languages": {
+          "ar": {
+            "translated": 1,
+            "total": 14,
+            "state": "partial"
+          },
+          "de": {
+            "translated": 1,
+            "total": 14,
+            "state": "partial"
+          },
           "en": {
             "translated": 14,
             "total": 14,
             "state": "full"
           },
+          "es": {
+            "translated": 1,
+            "total": 14,
+            "state": "partial"
+          },
+          "fr": {
+            "translated": 1,
+            "total": 14,
+            "state": "partial"
+          },
+          "hi": {
+            "translated": 1,
+            "total": 14,
+            "state": "partial"
+          },
           "ja": {
             "translated": 14,
             "total": 14,
             "state": "full"
+          },
+          "ko": {
+            "translated": 1,
+            "total": 14,
+            "state": "partial"
+          },
+          "pt": {
+            "translated": 1,
+            "total": 14,
+            "state": "partial"
+          },
+          "zh": {
+            "translated": 1,
+            "total": 14,
+            "state": "partial"
           }
         }
       },
@@ -4381,13 +4541,53 @@
       "identity": {
         "keyCount": 15,
         "languages": {
+          "ar": {
+            "translated": 1,
+            "total": 15,
+            "state": "partial"
+          },
+          "de": {
+            "translated": 1,
+            "total": 15,
+            "state": "partial"
+          },
           "en": {
             "translated": 15,
             "total": 15,
             "state": "full"
           },
+          "es": {
+            "translated": 1,
+            "total": 15,
+            "state": "partial"
+          },
+          "fr": {
+            "translated": 1,
+            "total": 15,
+            "state": "partial"
+          },
+          "hi": {
+            "translated": 1,
+            "total": 15,
+            "state": "partial"
+          },
           "ja": {
             "translated": 14,
+            "total": 15,
+            "state": "partial"
+          },
+          "ko": {
+            "translated": 1,
+            "total": 15,
+            "state": "partial"
+          },
+          "pt": {
+            "translated": 1,
+            "total": 15,
+            "state": "partial"
+          },
+          "zh": {
+            "translated": 1,
             "total": 15,
             "state": "partial"
           }
@@ -4442,15 +4642,55 @@
       "identity": {
         "keyCount": 15,
         "languages": {
+          "ar": {
+            "translated": 1,
+            "total": 15,
+            "state": "partial"
+          },
+          "de": {
+            "translated": 1,
+            "total": 15,
+            "state": "partial"
+          },
           "en": {
             "translated": 15,
             "total": 15,
             "state": "full"
           },
+          "es": {
+            "translated": 1,
+            "total": 15,
+            "state": "partial"
+          },
+          "fr": {
+            "translated": 1,
+            "total": 15,
+            "state": "partial"
+          },
+          "hi": {
+            "translated": 1,
+            "total": 15,
+            "state": "partial"
+          },
           "ja": {
             "translated": 15,
             "total": 15,
             "state": "full"
+          },
+          "ko": {
+            "translated": 1,
+            "total": 15,
+            "state": "partial"
+          },
+          "pt": {
+            "translated": 1,
+            "total": 15,
+            "state": "partial"
+          },
+          "zh": {
+            "translated": 1,
+            "total": 15,
+            "state": "partial"
           }
         }
       },
@@ -4503,15 +4743,55 @@
       "identity": {
         "keyCount": 12,
         "languages": {
+          "ar": {
+            "translated": 1,
+            "total": 12,
+            "state": "partial"
+          },
+          "de": {
+            "translated": 1,
+            "total": 12,
+            "state": "partial"
+          },
           "en": {
             "translated": 12,
             "total": 12,
             "state": "full"
           },
+          "es": {
+            "translated": 1,
+            "total": 12,
+            "state": "partial"
+          },
+          "fr": {
+            "translated": 1,
+            "total": 12,
+            "state": "partial"
+          },
+          "hi": {
+            "translated": 1,
+            "total": 12,
+            "state": "partial"
+          },
           "ja": {
             "translated": 12,
             "total": 12,
             "state": "full"
+          },
+          "ko": {
+            "translated": 1,
+            "total": 12,
+            "state": "partial"
+          },
+          "pt": {
+            "translated": 1,
+            "total": 12,
+            "state": "partial"
+          },
+          "zh": {
+            "translated": 1,
+            "total": 12,
+            "state": "partial"
           }
         }
       },
@@ -6593,13 +6873,53 @@
       "identity": {
         "keyCount": 31,
         "languages": {
+          "ar": {
+            "translated": 1,
+            "total": 31,
+            "state": "partial"
+          },
+          "de": {
+            "translated": 1,
+            "total": 31,
+            "state": "partial"
+          },
           "en": {
             "translated": 31,
             "total": 31,
             "state": "full"
           },
+          "es": {
+            "translated": 1,
+            "total": 31,
+            "state": "partial"
+          },
+          "fr": {
+            "translated": 1,
+            "total": 31,
+            "state": "partial"
+          },
+          "hi": {
+            "translated": 1,
+            "total": 31,
+            "state": "partial"
+          },
           "ja": {
             "translated": 30,
+            "total": 31,
+            "state": "partial"
+          },
+          "ko": {
+            "translated": 1,
+            "total": 31,
+            "state": "partial"
+          },
+          "pt": {
+            "translated": 1,
+            "total": 31,
+            "state": "partial"
+          },
+          "zh": {
+            "translated": 1,
             "total": 31,
             "state": "partial"
           }
