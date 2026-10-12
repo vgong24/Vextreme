@@ -1,7 +1,9 @@
 name: Localization Generated Materialize
 
 on:
-  pull_request:
+  push:
+    branches:
+      - 'VXG-101126-chatgpt-journal013-global-core-generated'
     paths:
       - '.github/workflows/localization-generated-materialize.yml'
 
@@ -10,13 +12,12 @@ permissions:
 
 jobs:
   materialize:
-    if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
       - name: Checkout exact PR head
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.head_ref }}
+          ref: ${{ github.ref_name }}
           fetch-depth: 0
 
       - name: Setup Node
@@ -63,4 +64,4 @@ jobs:
             exit 0
           fi
           git commit -m "[VexSite Localization] Materialize 70/N Journal 013 Global Core generated truth" -m "[VXG RealForever]"
-          git push origin HEAD:${{ github.head_ref }}
+          git push origin HEAD:${{ github.ref_name }}
