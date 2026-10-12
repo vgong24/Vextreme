@@ -48,6 +48,57 @@ function outputMain(document,slug){
   return main;
 }
 
+test('Content Forge preserves target-locale overlays across reprojection and marks them stale when EN changes',()=> {
+  const generated = {
+    _meta: { scope: 'pages.example' },
+    'pages.example.same': { strings: { en: { text: 'Same' } } },
+    'pages.example.changed': { strings: { en: { text: 'New' } } },
+    'pages.example.new': { strings: { en: { text: 'Brand new' } } },
+  };
+  const existing = {
+    _meta: { scope: 'pages.example', historical: true },
+    'pages.example.same': {
+      strings: {
+        en: { text: 'Same' },
+        fr: { text: 'Même' },
+        ja: { text: '同じ', _stale: true },
+      },
+    },
+    'pages.example.changed': {
+      strings: {
+        en: { text: 'Old' },
+        fr: { text: 'Ancien' },
+      },
+    },
+    'pages.example.removed': {
+      strings: {
+        en: { text: 'Removed' },
+        fr: { text: 'Supprimé' },
+      },
+    },
+  };
+
+  const merged = projector.preserveLocalizationOverlays(generated, existing);
+
+  assert.deepEqual(merged._meta, generated._meta, 'projector metadata remains generated/source-owned');
+  assert.deepEqual(merged['pages.example.same'].strings, {
+    en: { text: 'Same' },
+    fr: { text: 'Même' },
+    ja: { text: '同じ', _stale: true },
+  }, 'unchanged EN preserves target objects byte-semantically');
+  assert.deepEqual(merged['pages.example.changed'].strings, {
+    en: { text: 'New' },
+    fr: { text: 'Ancien', _stale: true },
+  }, 'changed EN keeps translation visible but marks it stale');
+  assert.deepEqual(merged['pages.example.new'].strings, {
+    en: { text: 'Brand new' },
+  }, 'new canonical key begins EN-only');
+  assert.equal(merged['pages.example.removed'], undefined,
+    'removed canonical key cannot be resurrected by a translation overlay');
+  assert.equal(existing['pages.example.changed'].strings.fr._stale, undefined,
+    'merge helper does not mutate the existing source object');
+});
+
 test('Content Forge closes the seven remaining Liberation lineages as one source-closed semantic batch',()=>{
   const formation=json(FORMATION),nodes=json(NODES),nodesBySlug=new Map(nodes.map(node=>[node.slug,node])),arcs=json(ARCS),proposal=json(PROPOSAL),vmBefore=json(VIEWMODELS);
   assert.equal(formation.ownerRef,'github.issue.vextreme.159');

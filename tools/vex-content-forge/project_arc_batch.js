@@ -241,6 +241,33 @@ function sourceStrings(member, node, sourceHash, body, fixed, stats) {
   for (const [key, text] of Object.entries({ ...fixed, ...body })) output[key] = { strings: { en: { text } } };
   return output;
 }
+function preserveLocalizationOverlays(generated, existing) {
+  // The projector owns canonical EN/provenance. Translation identity remains
+  // locale + canonical key, so a later target-locale overlay must survive an
+  // ordinary reprojection when the serialized EN preimage is unchanged.
+  //
+  // If EN changed, preserve the target value but mark it stale; strings-check
+  // and the translation campaign already own that repository-wide state.
+  const output = JSON.parse(JSON.stringify(generated));
+  if (!existing || typeof existing !== 'object') return output;
+
+  for (const [key, entry] of Object.entries(output)) {
+    if (key === '_meta' || !entry?.strings?.en) continue;
+    const priorStrings = existing[key]?.strings;
+    if (!priorStrings || typeof priorStrings !== 'object') continue;
+
+    const enUnchanged = JSON.stringify(priorStrings.en) === JSON.stringify(entry.strings.en);
+    for (const [lang, target] of Object.entries(priorStrings)) {
+      if (lang === 'en' || target == null) continue;
+      const preserved = JSON.parse(JSON.stringify(target));
+      if (!enUnchanged && preserved && typeof preserved === 'object') preserved._stale = true;
+      entry.strings[lang] = preserved;
+    }
+  }
+
+  return output;
+}
+
 function validatePage(page, strings, member) {
   for (const marker of ['window.__RESCUE_SOURCE','/__rescue/','data-sqsp-','data-vex-id=','vex-generated:','vexsite-provider-shell','common.nav.']) {
     invariant(!page.includes(marker), 'FORBIDDEN_SOURCE_IDENTITY', `${member.slug}: ${marker}`);
@@ -296,13 +323,17 @@ function projectMember(root, member, nodesBySlug, assetCatalog) {
   }
   const stats = { adapterClass: member.adapterClass, authoredTextLeafCount: leaves.length };
   if (synthesizeCanonicalHeading) stats.canonicalHeadingSynthesized = true;
-  const strings = sourceStrings(member, node, sha256(source), bodyStrings, fixed, stats);
+  const stringsPath = path.join(root, 'data', 'strings', 'source', 'pages', `${member.slug}.json`);
+  const projectedStrings = sourceStrings(member, node, sha256(source), bodyStrings, fixed, stats);
+  const strings = fs.existsSync(stringsPath)
+    ? preserveLocalizationOverlays(projectedStrings, readJson(stringsPath))
+    : projectedStrings;
   const style = member.adapterClass === 'SQS_AUTHORED_BODY' ? GENERIC_STYLE : `${AUTHORED_STYLE}\n${styles.join('\n')}`;
   const page = `${pageHead(node.title, scope, `${node.title} — repository-native preserved content.`, style)}<body data-content-forge-generator="${GENERATOR_REF}"><!-- Source-managed ${member.adapterClass} projection of ${member.sourcePath}. -->${body}<script src="../dist/vextreme-${member.slug}.js"></script></body></html>`;
   validatePage(page, strings, member);
   return {
     page, strings, viewmodel: { title: node.title, category: 'production', template: 'page', scopes: [scope], features: ['lang','spiral-fab','theme','map','analysis','arc-nav'] },
-    pagePath: path.join(root, 'pages', `${member.slug}.html`), stringsPath: path.join(root, 'data', 'strings', 'source', 'pages', `${member.slug}.json`),
+    pagePath: path.join(root, 'pages', `${member.slug}.html`), stringsPath,
   };
 }
 
@@ -420,4 +451,4 @@ if (require.main === module) {
   try { process.exitCode = main(cliOptions()).accounting.complete ? 0 : 1; }
   catch (error) { process.stderr.write(`${error.stack || error.message}\n`); process.exitCode = 1; }
 }
-module.exports = { ASSET_CATALOG_REL, ASSET_FILENAME, DEFAULT_ROOT, FORMATION_REL, GENERATOR_REF, ROOT_RELATIVE_ASSET_REF, ProjectionInvariantError, attrs, cliOptions, externalizeAssetReferences, findAll, findFirst, gitBlobSha, loadAssetCatalog, main, rawText, resolveAssetReference, rewriteAssetText, selectAuthoredMain, selectSqsBody, sha256, textLeaves, validateFormation };
+module.exports = { ASSET_CATALOG_REL, ASSET_FILENAME, DEFAULT_ROOT, FORMATION_REL, GENERATOR_REF, ROOT_RELATIVE_ASSET_REF, ProjectionInvariantError, attrs, cliOptions, externalizeAssetReferences, findAll, findFirst, gitBlobSha, loadAssetCatalog, main, preserveLocalizationOverlays, rawText, resolveAssetReference, rewriteAssetText, selectAuthoredMain, selectSqsBody, sha256, textLeaves, validateFormation };
