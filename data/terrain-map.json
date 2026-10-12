@@ -2098,7 +2098,7 @@
       "stageName": "OUTPUT",
       "x": 1420,
       "y": 270,
-      "role": "legacy general Playwright localization screenshot writer — serves branch-local page/assets, captures verified default/language-switched PNG evidence, and optionally hands identical bytes to Vextreme-Assets structured screenshot custody",
+      "role": "reusable Playwright localization screenshot engine + backwards-compatible one-page review CLI",
       "reads": [
         "pages/{slug}.html (page under test, served from the branch-local repository)",
         "repository assets requested by the rendered page (local server/CDN interception)",
@@ -2107,16 +2107,17 @@
         "git HEAD (exact Vextreme source commit attached to optional Assets evidence)"
       ],
       "writes": [
-        "docs/screenshots/{slug}-en.png",
-        "docs/screenshots/{slug}-{lang}.png",
+        "caller-selected local PNG path (legacy CLI defaults to docs/screenshots/{slug}-{locale}.png)",
         "optional Vextreme-Assets evidence/screenshots/vextreme/{slug}/{locale}/default/1280/{sha256}.png + manifest via the Assets-owned ingest contract"
       ],
       "loadedBy": [
         ".github/pull_request_template.md (browser-rendered change evidence instruction)",
-        "manual run: node scripts/screenshot-page.js [slug] [lang] [--assets-root <Vextreme-Assets checkout>]"
+        "manual run: node scripts/screenshot-page.js [slug] [lang] [--assets-root <Vextreme-Assets checkout>]",
+        "scripts/screenshot-localization-matrix.js (reuses one browser session for the complete page × locale matrix)",
+        "tests/44-page-health.test.js (requires pure CLI/capture helpers; Playwright remains lazy)"
       ],
       "testedBy": [
-        "tests/44-page-health.test.js (source contract for additive Assets handoff + verified locale switch)",
+        "tests/44-page-health.test.js (capture-engine, CLI compatibility, Assets handoff, and verified locale-switch contract)",
         "review-time browser execution and visual inspection"
       ],
       "debts": [],

@@ -548,6 +548,51 @@ page may never be filed as fully localized evidence merely because the FAB can
 select that locale. `data/index.json.supportedLangs` remains the site-wide
 aggregate and backwards-compatibility fallback, not the default page truth.
 
+### Page × locale screenshot matrix
+
+`scripts/screenshot-page.js` remains the focused one-page review tool, but its
+browser/server/verified-locale capture path is also reusable. The site-scale
+orchestrator is `scripts/screenshot-localization-matrix.js`:
+
+```bash
+# inspect the exact eligible cells; no browser and no writes
+npm run localization:screenshots -- --dry-run
+
+# optionally narrow the proof
+npm run localization:screenshots -- --dry-run --slug specimen-full-translation --locale ja
+
+# capture all currently complete cells into the explicit Assets checkout
+npm run localization:screenshots -- --assets-root ../Vextreme-Assets
+```
+
+Matrix formation is deterministic:
+
+```text
+real pages/*.html
+  INTERSECT
+data/index.json.pageLanguageMap[slug].completeLangs
+  -> [{ page, locale }, ...]
+```
+
+A real matrix run requires an explicitly supplied Vextreme-Assets checkout. It
+starts one Chromium process for the crawl, gives every cell a fresh browser
+context, serves the branch-local repository, and behaviorally verifies every
+non-EN locale through the current FAB before capture. PNGs live only in OS temp
+storage during the crawl. Each successful cell is immediately handed to
+`Vextreme-Assets/scripts/ingest-screenshot-evidence.mjs`, preserving the
+existing canonical coordinate:
+
+```text
+evidence/screenshots/vextreme/{slug}/{locale}/default/1280/{sha256}.png
+```
+
+The Assets record remains bound to the exact Vextreme commit and
+`pages/{slug}.html`; the matrix runner does not own or duplicate that schema.
+After the crawl it runs the Assets manifest check and removes its temporary PNGs.
+This makes screenshot scale a consequence of translation completeness: as
+hash-bound translations are accepted and a page's `completeLangs` grows, the
+next matrix run automatically gains the new page/locale cells.
+
 ---
 
 ## Pipeline

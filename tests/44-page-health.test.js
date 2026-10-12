@@ -19,6 +19,14 @@ const {
   loadInputs,
 } = require('../lib/build-page-health');
 
+const {
+  buildCaptureMatrix,
+  parseArgs: parseMatrixArgs,
+} = require('../scripts/screenshot-localization-matrix');
+const {
+  parseArgs: parseScreenshotArgs,
+} = require('../scripts/screenshot-page');
+
 const ROOT = path.join(__dirname, '..');
 
 test('PAGE-HEALTH: identity keys and language completeness are source-derived', () => {
@@ -266,6 +274,70 @@ test('SCREENSHOT-EVIDENCE: general localization crawler keeps local evidence and
   assert.match(source, /'\.ttf':\s+'font\/ttf'/,
     'local screenshot fidelity must serve retained visual/font dependencies with browser-appropriate MIME types');
 });
+test('LOCALIZATION-SCREENSHOT: legacy one-page CLI and single-cell mode share one parser without ambiguity', () => {
+  const legacy = parseScreenshotArgs(['example-page', 'ja', '--assets-root', '../Vextreme-Assets']);
+  assert.equal(legacy.slug, 'example-page');
+  assert.equal(legacy.lang, 'ja');
+  assert.equal(legacy.locale, null);
+  assert.ok(legacy.assetsRoot.endsWith(path.join('Vextreme-Assets')));
+
+  const single = parseScreenshotArgs(['example-page', '--locale', 'fr', '--out-dir', './tmp-captures']);
+  assert.equal(single.slug, 'example-page');
+  assert.equal(single.locale, 'fr');
+  assert.ok(single.outDir.endsWith(path.join('tmp-captures')));
+
+  assert.throws(
+    () => parseScreenshotArgs(['example-page', 'ja', '--locale', 'fr']),
+    /either positional \[lang\] pair mode or --locale single-cell mode/
+  );
+});
+
+test('LOCALIZATION-SCREENSHOT: matrix uses completeLangs only and intersects with real pages', () => {
+  const index = {
+    pageLanguageMap: {
+      alpha: { availableLangs: ['en', 'fr', 'ja'], completeLangs: ['en', 'fr'] },
+      beta: { availableLangs: ['en', 'ja'], completeLangs: ['en'] },
+      missing: { availableLangs: ['en', 'ja'], completeLangs: ['en', 'ja'] },
+    },
+  };
+
+  assert.deepEqual(buildCaptureMatrix(index, ['beta', 'alpha']), [
+    { slug: 'alpha', locale: 'en' },
+    { slug: 'alpha', locale: 'fr' },
+    { slug: 'beta', locale: 'en' },
+  ], 'partial JA and non-existent pages must never become evidence cells');
+
+  assert.deepEqual(buildCaptureMatrix(index, ['alpha', 'beta'], { slug: 'alpha', locale: 'fr' }), [
+    { slug: 'alpha', locale: 'fr' },
+  ]);
+});
+
+test('LOCALIZATION-SCREENSHOT: dry-run may inspect the matrix without an Assets checkout', () => {
+  const options = parseMatrixArgs(['--dry-run', '--slug', 'specimen-full-translation', '--locale', 'ja']);
+  assert.equal(options.dryRun, true);
+  assert.equal(options.slug, 'specimen-full-translation');
+  assert.equal(options.locale, 'ja');
+  assert.equal(options.assetsRoot, null);
+  assert.throws(() => parseMatrixArgs(['--slug', '../unsafe']), /safe page slug/);
+});
+
+test('LOCALIZATION-SCREENSHOT: matrix execution is Assets-first and reuses the shared capture engine', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'scripts', 'screenshot-localization-matrix.js'), 'utf8').replace(/\r\n/g, '\n');
+  assert.match(source, /pageLanguageMap/);
+  assert.match(source, /completeLangs/);
+  assert.match(source, /getPageSlugs/);
+  assert.match(source, /createCaptureSession/);
+  assert.match(source, /captureLocaleCell/);
+  assert.match(source, /mkdtempSync/);
+  assert.match(source, /rmSync\(tempRoot, \{ recursive: true, force: true \}\)/);
+  assert.match(source, /real matrix capture requires --assets-root/);
+  assert.match(source, /ingest-screenshot-evidence\.mjs/);
+  assert.match(source, /'--check', '--root', assetsRoot/);
+
+  const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8'));
+  assert.equal(pkg.scripts['localization:screenshots'], 'node scripts/screenshot-localization-matrix.js');
+});
+
 test('PAGE-HEALTH integration: committed projection equals fresh source computation', () => {
   const committed = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'page-health.json'), 'utf8'));
   assert.deepEqual(committed, buildPageHealth(loadInputs()));
