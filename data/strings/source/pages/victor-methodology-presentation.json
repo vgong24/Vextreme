@@ -327,6 +327,9 @@
       },
       "zh": {
         "text": "把映射方法延伸到多语言翻译：每个文本从代码到各语言版本双向可追溯，横跨安卓、iOS 与设计——\"这段文字用在哪里\"由结构直接回答，而不靠个人记忆。"
+      },
+      "fr": {
+        "text": "Extension du principe de cartographie à la localisation : chaque chaîne est traçable du code vers chaque langue et inversement, sur Android, iOS et dans le design — la question « où ce texte est-il utilisé ? » reçoit une réponse structurelle plutôt que de dépendre de la mémoire tribale."
       }
     },
     "identity": {
@@ -633,6 +636,9 @@
       },
       "zh": {
         "text": "在一个事件顺序直接关系安全的胰岛素笔产品中：状态变化经由单一事实中继推导并广播，并发的读取方在结构上不可能持有相互矛盾的状态。协程本身也被编号映射为一等任务，带有作用域开关——让复杂的合作方 SDK 刷新周期变得可精确管理。与 Jetpack Compose 天然契合。"
+      },
+      "fr": {
+        "text": "Pour un produit de stylo à insuline où l’ordre des événements est critique pour la sécurité : les changements d’état passent par un unique SourceOfTruthRelay qui dérive et diffuse la vérité, de sorte que des lecteurs concurrents ne puissent structurellement pas maintenir des réalités contradictoires. Les coroutines sont devenues des tâches de première classe, mappées par ID, avec des coupe-circuits à portée limitée — ce qui rend un cycle complexe de rafraîchissement du SDK partenaire gérable de manière chirurgicale. S’intègre nativement à Jetpack Compose."
       }
     },
     "identity": {
