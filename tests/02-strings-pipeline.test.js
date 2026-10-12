@@ -327,6 +327,65 @@ test('TRANSLATOR CONTEXT: ICU placeholders are called out and target-locale stal
   assert.doesNotMatch(csv, /件/, 'existing JA text must remain absent from the FR translator view');
 });
 
+test('TRANSLATOR POLICY: source-only scope cannot form a translator batch', () => {
+  const raw = {
+    _meta: {
+      scope: 'pages.massive',
+      translationPolicy: 'source-only',
+    },
+    'pages.massive.title': {
+      strings: { en: { text: 'English only' } },
+    },
+  };
+
+  assert.throws(
+    () => buildTranslatorCSV(raw, 'fr'),
+    /source-only and cannot form a translator batch/
+  );
+});
+
+test('TRANSLATOR POLICY: importer rejects translation-bearing rows for source-only canonical entries', () => {
+  const source = {
+    'pages.massive.title': {
+      value: { strings: { en: { text: 'English only' } } },
+      file: '/virtual/pages.massive.json',
+      translationPolicy: 'source-only',
+    },
+  };
+  const hash = contentHash(JSON.stringify(source['pages.massive.title'].value.strings.en));
+  const plan = buildImportPlan([{
+    key: 'pages.massive.title',
+    source_en_hash12: hash,
+    fr_text: 'Français interdit ici',
+    fr_aria_label: '',
+  }], 'fr', source, 'pages.massive.fr.csv');
+
+  assert.equal(plan.operations.length, 0);
+  assert.ok(plan.errors.some(error => error.includes('source-only translation scope')));
+});
+
+test('TRANSLATOR POLICY: compiler keeps source-only scope EN-only even if a target value is hand-added', () => {
+  const raw = {
+    _meta: {
+      scope: 'pages.massive',
+      translationPolicy: 'source-only',
+    },
+    'pages.massive.title': {
+      strings: {
+        en: { text: 'English only' },
+        fr: { text: 'Should never ship' },
+      },
+    },
+  };
+
+  const merged = mergeSourceFiles([raw]);
+  assert.deepEqual(Object.keys(merged['pages.massive.title'].strings), ['en']);
+
+  const bundles = buildBundles(merged);
+  assert.equal(bundles.fr, undefined);
+  assert.equal(bundles.en['pages.massive.title'].text, 'English only');
+});
+
 test('TRANSLATOR CSV: parser preserves quoted commas and embedded newlines in translated text', () => {
   const rows = parseCSV([
     'key,source_en_hash12,fr_text,fr_aria_label',
