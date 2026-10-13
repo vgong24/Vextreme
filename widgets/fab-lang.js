@@ -36,11 +36,13 @@
  *               window storage event (same-origin selected-language changes from another browsing context)
  *               DOM: [data-i18n] authored source text and #vex-spiral-group
  *               location.search (?lang= explicit initial override)
+ *               window event vextreme:languagesurfacechange (explicit parent surface language-context projection)
  *   writes    : textContent of [data-i18n] elements
  *               document.documentElement lang attribute
  *               localStorage (vex-lang selected-language preference)
  *               location/history (history.replaceState reflects effective language into ?lang=)
  *               window event vextreme:languagechange (same-document selected-language notification)
+ *               window.parent postMessage vextreme:languagecontext/v1 (child mounted complete-language context)
  *   loaded-by : lib/build-vextreme.js (inlined as lang feature in God Scripts)
  *               lib/vextreme.js shell-era FAB auto-loader
  *   tested-by : tests/08-build-vextreme.test.js (supported-language source + selected-language authority/synchronization/fallback guards)
@@ -63,10 +65,10 @@
  *     URL ?lang= param name:
  *       - any future feature that reads/writes page query params — must not collide with 'lang'; grep pages∕*.html for location.search/URLSearchParams usage before introducing a new param name
  *     selected-language authority (vex-lang / vextreme:languagechange / storage sync):
- *       - pages/terrain-map.html (embedded reader + locale screenshot consumption)
- *       - docs/architecture/06-i18n.md (runtime authority contract and screenshot ordering)
- *       - tests/08-build-vextreme.test.js (FAB synchronization/fallback/race guards)
- *       - tests/85-terrain-view-contract.test.js (Terrain effective-language consumption)
+ *       - pages/terrain-map.html (validates active reader child context and projects the parent proxy wheel)
+ *       - docs/architecture/06-i18n.md (runtime authority + surface-context contract)
+ *       - tests/08-build-vextreme.test.js (FAB synchronization/fallback/context guards)
+ *       - tests/85-terrain-view-contract.test.js (Terrain child-context validation and parent FAB persistence)
  *     partial-locale EN/source fallback or apply ordering:
  *       - tests/08-build-vextreme.test.js (fallback + stale-request guard)
  *       - localized browser acceptance before screenshot evidence is trusted

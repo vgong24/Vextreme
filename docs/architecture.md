@@ -575,11 +575,16 @@ for older indexes that predate page-aware coverage. This prevents an unmapped
 surface such as Terrain from claiming every language supported somewhere on the
 site.
 
-When Terrain is hosting an embedded reader, Terrain hides its own outer language
-orb and the child page's page-local FAB is the visible language control. The
-existing `vex-lang` storage/event bridge still synchronizes the effective
-selection; hiding the outer orb changes presentation ownership, not selected-
-language authority.
+When Terrain is hosting an embedded reader, its stable parent language FAB
+remains visible. The embedded child reports the exact language set its own FAB
+mounted from page-local `completeLangs`; Terrain validates that the message came
+from the active reader iframe and projects that set into the parent FAB as a
+proxy context. Selecting the parent proxy still writes the existing `vex-lang`
+preference and converges to the child through the existing storage/event bridge,
+but it does not pretend Terrain's own English chrome has become translated.
+When the reader closes, the parent wheel returns to Terrain's EN-only surface
+without erasing the persisted preference. This adds runtime context, not a
+second language registry.
 
 Localized screenshot automation also consumes `completeLangs`; a partial page
 may never be filed as fully localized evidence merely because some target strings
