@@ -238,6 +238,14 @@ test('TERRAIN-VIEW: accepted Content quiet chrome and wheel boundaries preserve 
   assert.match(source, /return to the collection/);
 });
 
+test('TERRAIN-VIEW: embedded reader leaves page-local language choice to the child surface', () => {
+  const source = pageSource();
+  assert.match(source, /html\.terrain-embedded-reader-active #vex-lang-fab\{ display:none !important; \}/,
+    'Terrain outer language orb must be hidden while an embedded page is the active reading surface');
+  assert.match(source, /document\.documentElement\.classList\.toggle\('terrain-embedded-reader-active', reading\)/,
+    'reader visibility must own the Terrain-level language-orb suppression class');
+});
+
 test('TERRAIN-VIEW: public Content hides engineering evidence until the existing Inspect state is opened', () => {
   const source = pageSource();
 
