@@ -14,7 +14,8 @@
     "institutional-surfaces:screenshots": "node scripts/screenshot-institutional.js",
     "localization:screenshots": "node scripts/screenshot-localization-matrix.js",
     "translation:campaign": "node lib/translation-campaign.js",
-    "translation:program": "node lib/translation-program.js"
+    "translation:program": "node lib/translation-program.js",
+    "translation:cycle": "node lib/translation-cycle.js"
   },
   "engines": {
     "node": ">=18.19.0"
