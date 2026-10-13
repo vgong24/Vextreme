@@ -223,7 +223,11 @@ test('LANGUAGE AUTHORITY: child selection explicitly notifies and converges the 
   const selections = [];
   const parentRuntime = { location: { origin: 'https://example.test' } };
   const childSource = {};
+  const supported = ['en', 'ja', 'zh'];
   const controller = {
+    supportsLanguage(lang) {
+      return supported.indexOf(lang) >= 0;
+    },
     selectLanguage(lang, options) {
       selections.push({ lang, options });
     },
@@ -711,7 +715,7 @@ test('LANG-FAB: a URL ?lang= param wins over the stored localStorage preference 
 test('LANG-FAB: selecting a language from the wheel updates the URL immediately', () => {
   const source = fs.readFileSync(FAB_IN, 'utf8');
   const selectStart = source.indexOf('function selectLanguage(lang, options) {');
-  const selectEnd = source.indexOf('// Overflow peek:', selectStart);
+  const selectEnd = source.indexOf('function setSupportedLangs(nextLangs, preferredLang, options) {', selectStart);
   assert.ok(selectStart >= 0 && selectEnd > selectStart, 'shared selectLanguage() transition owner must exist');
   const selectLanguage = source.slice(selectStart, selectEnd);
   assert.ok(selectLanguage.includes('syncUrlLang(lang);'), 'shared language transition must synchronize the URL');
