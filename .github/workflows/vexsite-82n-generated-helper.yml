@@ -53,7 +53,7 @@ jobs:
           HELPER_BRANCH: VXG-101326-chatgpt-82n-generated-helper-a001
         run: |
           set -euo pipefail
-          git rm .github/workflows/vexsite-82n-generated-helper.yml
+          rm -f .github/workflows/vexsite-82n-generated-helper.yml
 
           cat > /tmp/expected-paths.txt <<'EOF'
           data/analysis-index.json
