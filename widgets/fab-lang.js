@@ -71,8 +71,8 @@
  *       - tests/08-build-vextreme.test.js (fallback + stale-request guard)
  *       - localized browser acceptance before screenshot evidence is trusted
  *     page-aware language availability:
- *       - lib/build-index.js (produces pageLanguageMap)
- *       - lib/build-vextreme.js (bakes page-local availableLangs into VEX_SUPPORTED_LANGS)
+ *       - lib/build-index.js (produces pageLanguageMap availableLangs + completeLangs)
+ *       - lib/build-vextreme.js (bakes page-local completeLangs into VEX_SUPPORTED_LANGS)
  *       - tests/08-build-vextreme.test.js
  *       - docs/architecture/06-i18n.md
  * LATTICE:END
