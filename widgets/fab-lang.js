@@ -739,7 +739,8 @@
     return {
       element: container,
       selectLanguage: selectLanguage,
-      setSupportedLangs: setSupportedLangs
+      setSupportedLangs: setSupportedLangs,
+      supportsLanguage: function (lang) { return langs.indexOf(lang) >= 0; }
     };
   }
 
@@ -826,7 +827,7 @@
       // localStorage is the persisted same-origin language authority. Storage
       // events remain the normal cross-context convergence path.
       window.addEventListener('storage', function (event) {
-        if (event.key !== LS_LANG || !event.newValue || langs.indexOf(event.newValue) < 0) return;
+        if (event.key !== LS_LANG || !event.newValue || !fabController.supportsLanguage(event.newValue)) return;
         fabController.selectLanguage(event.newValue, {
           persist: false,
           source: 'storage',
@@ -841,7 +842,7 @@
         if (event.origin !== window.location.origin || event.source === window) return;
         var data = event && event.data;
         if (!data || data.type !== LANG_BRIDGE_MESSAGE || typeof data.lang !== 'string') return;
-        if (langs.indexOf(data.lang) < 0) return;
+        if (!fabController.supportsLanguage(data.lang)) return;
         fabController.selectLanguage(data.lang, {
           persist: false,
           source: 'child-message'

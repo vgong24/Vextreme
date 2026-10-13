@@ -1562,6 +1562,7 @@
     evolutionReader.hidden = true;
     replaceEvolutionReaderDocument('about:blank');
     mapWrap.classList.remove('evolution-reader-active');
+    syncTerrainChrome();
     renderEvolutionAArrival();
     updateReadout();
   }
@@ -1582,6 +1583,7 @@
     evolutionReader.hidden = true;
     replaceEvolutionReaderDocument('about:blank');
     mapWrap.classList.remove('evolution-reader-active', 'evolution-arrival-active');
+    syncTerrainChrome();
     enterLevel(1, {});
     syncPresentationUrl();
     commitSemanticState({ label:'GROUPS', relationship:'entered', reason:'Explore Archives arrival choice' });

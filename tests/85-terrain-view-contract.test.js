@@ -252,6 +252,10 @@ test('TERRAIN-VIEW: parent language FAB stays visible and mirrors the active emb
   assert.match(source, /function resetTerrainLanguageSurfaceContext\(\)[\s\S]*langs: \['en'\][\s\S]*applyFallback: true/,
     'reader exit must return the parent FAB to Terrain EN without deleting the stored preference');
   assert.match(source, /window\.addEventListener\('message', handleEmbeddedLanguageContext\)/);
+  assert.match(source, /function closeEntryReader\(\)[\s\S]*syncTerrainChrome\(\)/,
+    'entry-reader close must restore the Terrain parent language context');
+  assert.match(source, /function enterArchivesFromArrival\(\)[\s\S]*syncTerrainChrome\(\)/,
+    'entry-to-archives transition must not retain the embedded child language context');
 });
 
 test('TERRAIN-VIEW: public Content hides engineering evidence until the existing Inspect state is opened', () => {

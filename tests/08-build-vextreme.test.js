@@ -154,6 +154,12 @@ test('LANGUAGE SURFACE: child reports exact mounted locale capability for an exp
     'child capability notification must carry the exact mounted language list');
   assert.match(widgetSrc, /setSupportedLangs: setSupportedLangs/,
     'FAB controller must be able to replace its wheel without remounting');
+  assert.match(widgetSrc, /supportsLanguage: function \(lang\) \{ return langs\.indexOf\(lang\) >= 0; \}/,
+    'cross-context synchronization must query the controller\'s live language set after proxy changes');
+  assert.match(widgetSrc, /fabController\.supportsLanguage\(event\.newValue\)/,
+    'storage convergence must accept languages added by an active child context');
+  assert.match(widgetSrc, /fabController\.supportsLanguage\(data\.lang\)/,
+    'child-message convergence must accept languages added by an active child context');
   assert.match(widgetSrc, /window\.addEventListener\(LANG_SURFACE_EVENT,[\s\S]*applyLanguageSurfaceContext/,
     'parent capability mirroring must require an explicit same-document surface event');
   assert.match(widgetSrc, /window\.VEXTREME_LANGUAGE_SURFACE_CONTEXT/,
