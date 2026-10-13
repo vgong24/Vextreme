@@ -36,11 +36,13 @@
  *               window storage event (same-origin selected-language changes from another browsing context)
  *               DOM: [data-i18n] authored source text and #vex-spiral-group
  *               location.search (?lang= explicit initial override)
+ *               window event vextreme:languagesurfacechange (explicit parent surface language-context projection)
  *   writes    : textContent of [data-i18n] elements
  *               document.documentElement lang attribute
  *               localStorage (vex-lang selected-language preference)
  *               location/history (history.replaceState reflects effective language into ?lang=)
  *               window event vextreme:languagechange (same-document selected-language notification)
+ *               window.parent postMessage vextreme:languagecontext/v1 (child mounted complete-language context)
  *   loaded-by : lib/build-vextreme.js (inlined as lang feature in God Scripts)
  *               lib/vextreme.js shell-era FAB auto-loader
  *   tested-by : tests/08-build-vextreme.test.js (supported-language source + selected-language authority/synchronization/fallback guards)
@@ -63,10 +65,10 @@
  *     URL ?lang= param name:
  *       - any future feature that reads/writes page query params — must not collide with 'lang'; grep pages∕*.html for location.search/URLSearchParams usage before introducing a new param name
  *     selected-language authority (vex-lang / vextreme:languagechange / storage sync):
- *       - pages/terrain-map.html (embedded reader + locale screenshot consumption)
- *       - docs/architecture/06-i18n.md (runtime authority contract and screenshot ordering)
- *       - tests/08-build-vextreme.test.js (FAB synchronization/fallback/race guards)
- *       - tests/85-terrain-view-contract.test.js (Terrain effective-language consumption)
+ *       - pages/terrain-map.html (validates active reader child context and projects the parent proxy wheel)
+ *       - docs/architecture/06-i18n.md (runtime authority + surface-context contract)
+ *       - tests/08-build-vextreme.test.js (FAB synchronization/fallback/context guards)
+ *       - tests/85-terrain-view-contract.test.js (Terrain child-context validation and parent FAB persistence)
  *     partial-locale EN/source fallback or apply ordering:
  *       - tests/08-build-vextreme.test.js (fallback + stale-request guard)
  *       - localized browser acceptance before screenshot evidence is trusted
@@ -96,6 +98,8 @@
   var LS_DATA    = 'vex-index-v2-data';
   var LANG_CHANGE_EVENT = 'vextreme:languagechange';
   var LANG_BRIDGE_MESSAGE = 'vextreme:languagechange/v1';
+  var LANG_CONTEXT_MESSAGE = 'vextreme:languagecontext/v1';
+  var LANG_SURFACE_EVENT = 'vextreme:languagesurfacechange';
 
   // ── Config constants (mirrors lib/vex-config.js) ─────────────────────────────
   var CATEGORY_SYSTEM     = 'system';
@@ -433,8 +437,25 @@
     } catch (e) { /* parent unavailable or cross-origin */ }
   }
 
-  function publishLanguageChange(lang, source) {
-    try { document.documentElement.setAttribute('lang', lang); } catch (e) {}
+  function notifyParentLanguageContext(lang, langs) {
+    // A child page may expose a narrower completed-locale set than its parent
+    // browsing surface. Report the exact mounted FAB context upward; parents
+    // must explicitly opt in and validate event.source before consuming it.
+    try {
+      if (!window.parent || window.parent === window) return;
+      window.parent.postMessage({
+        type: LANG_CONTEXT_MESSAGE,
+        lang: lang,
+        langs: langs.slice()
+      }, window.location.origin);
+    } catch (e) { /* parent unavailable or cross-origin */ }
+  }
+
+  function publishLanguageChange(lang, source, options) {
+    options = options || {};
+    if (options.documentLang !== false) {
+      try { document.documentElement.setAttribute('lang', lang); } catch (e) {}
+    }
     try {
       window.dispatchEvent(new CustomEvent(LANG_CHANGE_EVENT, {
         detail: { lang: lang, source: source || 'fab' }
@@ -471,7 +492,11 @@
         }
       }
       if (options.persist !== false) persistLanguage(lang);
-      publishLanguageChange(lang, options.source || 'fab');
+      if (options.publish !== false) {
+        publishLanguageChange(lang, options.source || 'fab', options);
+      } else if (options.documentLang !== false) {
+        try { document.documentElement.setAttribute('lang', lang); } catch (e) {}
+      }
       if (typeof options.onApplied === 'function') options.onApplied();
     });
   }
@@ -581,7 +606,10 @@
     document.head.appendChild(style);
   }
 
-  function buildFAB(langs, currentLang) {
+  function buildFAB(initialLangs, currentLang) {
+    var langs = sortLangs((initialLangs || []).slice());
+    var proxySurface = false;
+
     var container = document.createElement('div');
     container.id = 'vex-lang-fab';
 
@@ -593,12 +621,44 @@
     var wheel = document.createElement('div');
     wheel.id = 'vex-lang-wheel';
 
+    var mask = document.createElement('div');
+    mask.id = 'vex-lang-wheel-mask';
+
+    var track = document.createElement('div');
+    track.id = 'vex-lang-wheel-track';
+
     function renderCurrentLanguage(lang) {
       btn.textContent = flagFor(lang);
       var items = wheel.querySelectorAll('.vex-lang-item');
       for (var j = 0; j < items.length; j++) {
         items[j].classList.toggle('vex-lang-current', items[j].getAttribute('data-lang') === lang);
       }
+    }
+
+    function layoutWheel() {
+      var visibleItems = Math.min(langs.length, WHEEL_VISIBLE_ITEMS);
+      var hasOverflow = langs.length > visibleItems;
+      var wheelHeight = (hasOverflow ? visibleItems + WHEEL_PEEK_FRACTION : visibleItems) * WHEEL_ITEM_HEIGHT;
+      wheel.style.height = wheelHeight + 'px';
+    }
+
+    function renderWheelItems() {
+      while (track.firstChild) track.removeChild(track.firstChild);
+      layoutWheel();
+      for (var i = 0; i < langs.length; i++) {
+        (function (lang) {
+          var item = document.createElement('div');
+          item.className = 'vex-lang-item' + (lang === currentLang ? ' vex-lang-current' : '');
+          item.textContent = flagFor(lang);
+          item.setAttribute('data-lang', lang);
+          item.setAttribute('title', lang);
+          item.addEventListener('click', function () {
+            selectLanguage(lang, { persist: true, source: 'fab' });
+          });
+          track.appendChild(item);
+        })(langs[i]);
+      }
+      renderCurrentLanguage(currentLang);
     }
 
     function selectLanguage(lang, options) {
@@ -609,6 +669,14 @@
       renderCurrentLanguage(lang);
       wheel.classList.remove('open');
       syncUrlLang(lang);
+
+      if (proxySurface) {
+        if (options.persist !== false) persistLanguage(lang);
+        publishLanguageChange(lang, options.source || 'fab', { documentLang: false });
+        if (typeof options.onApplied === 'function') options.onApplied();
+        return;
+      }
+
       if (changed || options.forceApply === true) {
         applyLang(lang, {
           persist: options.persist !== false,
@@ -620,40 +688,44 @@
       }
     }
 
-    // Overflow peek: show WHEEL_VISIBLE_ITEMS full rows; if there are more
-    // languages than that, clip the wheel's height mid-row so the next item
-    // is visibly cut off (a "peek") instead of hidden entirely — the visual
-    // signal that more languages are reachable by scrolling. When everything
-    // fits, no clipping happens and there's nothing to scroll.
-    var visibleItems = Math.min(langs.length, WHEEL_VISIBLE_ITEMS);
-    var hasOverflow   = langs.length > visibleItems;
-    var wheelHeight   = (hasOverflow ? visibleItems + WHEEL_PEEK_FRACTION : visibleItems) * WHEEL_ITEM_HEIGHT;
-    wheel.style.height = wheelHeight + 'px';
+    function setSupportedLangs(nextLangs, preferredLang, options) {
+      options = options || {};
+      var unique = [];
+      (nextLangs || []).forEach(function (lang) {
+        if (typeof lang === 'string' && lang && unique.indexOf(lang) < 0) unique.push(lang);
+      });
+      if (!unique.length) unique = [LANG_DEFAULT];
 
-    var mask = document.createElement('div');
-    mask.id = 'vex-lang-wheel-mask';
+      langs = sortLangs(unique);
+      proxySurface = options.proxySurface === true;
 
-    var track = document.createElement('div');
-    track.id = 'vex-lang-wheel-track';
+      var nextCurrent = langs.indexOf(preferredLang) >= 0
+        ? preferredLang
+        : (langs.indexOf(currentLang) >= 0 ? currentLang : langs[0]);
+      var changed = nextCurrent !== currentLang;
+      currentLang = nextCurrent;
+      renderWheelItems();
+      wheel.classList.remove('open');
+      syncUrlLang(currentLang);
 
-    for (var i = 0; i < langs.length; i++) {
-      (function (lang) {
-        var item = document.createElement('div');
-        item.className = 'vex-lang-item' + (lang === currentLang ? ' vex-lang-current' : '');
-        item.textContent = flagFor(lang);
-        item.setAttribute('data-lang', lang);
-        item.setAttribute('title', lang);
-        item.addEventListener('click', function () {
-          selectLanguage(lang, { persist: true, source: 'fab' });
+      // Returning from a proxied child to a page-local EN-only surface must
+      // restore the parent's own DOM without erasing the persisted preference
+      // or publishing a fake global language transition.
+      if (changed && options.applyFallback === true && proxySurface === false) {
+        applyLang(currentLang, {
+          persist: false,
+          publish: false,
+          documentLang: true,
+          source: 'surface-context'
         });
-        track.appendChild(item);
-      })(langs[i]);
+      }
     }
 
     wheel.appendChild(mask);
     wheel.appendChild(track);
     container.appendChild(btn);
     container.appendChild(wheel);
+    renderWheelItems();
 
     btn.addEventListener('click', function (e) {
       e.stopPropagation();
@@ -666,7 +738,9 @@
 
     return {
       element: container,
-      selectLanguage: selectLanguage
+      selectLanguage: selectLanguage,
+      setSupportedLangs: setSupportedLangs,
+      supportsLanguage: function (lang) { return langs.indexOf(lang) >= 0; }
     };
   }
 
@@ -725,10 +799,35 @@
         document.body.appendChild(fab);
       }
 
+      // An embedding surface such as Terrain may deliberately proxy its
+      // stable parent FAB to the active child's exact completed-locale set.
+      // The child capability is still owned by the child FAB; the parent only
+      // changes its wheel after an explicit same-document surface event.
+      function applyLanguageSurfaceContext(context) {
+        if (!context || !Array.isArray(context.langs) || !context.langs.length) return;
+        var preferred = context.lang;
+        if (typeof preferred !== 'string' || !preferred) {
+          try { preferred = localStorage.getItem(LS_LANG) || LANG_DEFAULT; }
+          catch (e) { preferred = LANG_DEFAULT; }
+        }
+        fabController.setSupportedLangs(context.langs, preferred, {
+          proxySurface: context.proxySurface === true,
+          applyFallback: context.applyFallback === true
+        });
+      }
+
+      window.addEventListener(LANG_SURFACE_EVENT, function (event) {
+        applyLanguageSurfaceContext(event && event.detail);
+      });
+
+      if (window.VEXTREME_LANGUAGE_SURFACE_CONTEXT) {
+        applyLanguageSurfaceContext(window.VEXTREME_LANGUAGE_SURFACE_CONTEXT);
+      }
+
       // localStorage is the persisted same-origin language authority. Storage
       // events remain the normal cross-context convergence path.
       window.addEventListener('storage', function (event) {
-        if (event.key !== LS_LANG || !event.newValue || langs.indexOf(event.newValue) < 0) return;
+        if (event.key !== LS_LANG || !event.newValue || !fabController.supportsLanguage(event.newValue)) return;
         fabController.selectLanguage(event.newValue, {
           persist: false,
           source: 'storage',
@@ -743,12 +842,16 @@
         if (event.origin !== window.location.origin || event.source === window) return;
         var data = event && event.data;
         if (!data || data.type !== LANG_BRIDGE_MESSAGE || typeof data.lang !== 'string') return;
-        if (langs.indexOf(data.lang) < 0) return;
+        if (!fabController.supportsLanguage(data.lang)) return;
         fabController.selectLanguage(data.lang, {
           persist: false,
           source: 'child-message'
         });
       });
+
+      // Report the child's exact completed-language context after its FAB is
+      // mounted. Parents must explicitly validate and proxy this information.
+      notifyParentLanguageContext(savedLang, langs);
 
       // Apply persisted locale on load. EN needs no bundle fetch when the
       // authored DOM is already EN, but it still publishes the effective

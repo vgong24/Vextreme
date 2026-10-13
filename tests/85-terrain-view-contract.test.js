@@ -238,12 +238,24 @@ test('TERRAIN-VIEW: accepted Content quiet chrome and wheel boundaries preserve 
   assert.match(source, /return to the collection/);
 });
 
-test('TERRAIN-VIEW: embedded reader leaves page-local language choice to the child surface', () => {
+test('TERRAIN-VIEW: parent language FAB stays visible and mirrors the active embedded child context', () => {
   const source = pageSource();
-  assert.match(source, /html\.terrain-embedded-reader-active #vex-lang-fab\{ display:none !important; \}/,
-    'Terrain outer language orb must be hidden while an embedded page is the active reading surface');
-  assert.match(source, /document\.documentElement\.classList\.toggle\('terrain-embedded-reader-active', reading\)/,
-    'reader visibility must own the Terrain-level language-orb suppression class');
+  assert.doesNotMatch(source, /#vex-lang-fab\{ display:none !important; \}/,
+    'Terrain must not remove the stable parent language control while reading');
+  assert.match(source, /var LANG_CONTEXT_MESSAGE = 'vextreme:languagecontext\/v1'/);
+  assert.match(source, /var LANG_SURFACE_EVENT = 'vextreme:languagesurfacechange'/);
+  assert.match(source, /function handleEmbeddedLanguageContext\(event\)/);
+  assert.match(source, /event\.source !== evolutionReaderFrame\.contentWindow/,
+    'only the active reader iframe may project child language capability');
+  assert.match(source, /publishLanguageSurfaceContext\(\{[\s\S]*proxySurface: true/,
+    'child capability must be projected into the parent FAB as a proxy surface');
+  assert.match(source, /function resetTerrainLanguageSurfaceContext\(\)[\s\S]*langs: \['en'\][\s\S]*applyFallback: true/,
+    'reader exit must return the parent FAB to Terrain EN without deleting the stored preference');
+  assert.match(source, /window\.addEventListener\('message', handleEmbeddedLanguageContext\)/);
+  assert.match(source, /function closeEntryReader\(\)[\s\S]*syncTerrainChrome\(\)/,
+    'entry-reader close must restore the Terrain parent language context');
+  assert.match(source, /function enterArchivesFromArrival\(\)[\s\S]*syncTerrainChrome\(\)/,
+    'entry-to-archives transition must not retain the embedded child language context');
 });
 
 test('TERRAIN-VIEW: public Content hides engineering evidence until the existing Inspect state is opened', () => {

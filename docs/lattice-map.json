@@ -760,7 +760,7 @@
     },
     "widgets/fab-lang.js": {
       "role": "browser selected-language authority + switcher FAB — resolves effective locale, fetches scoped/arc bundles, applies [data-i18n] swaps, and synchronizes same-origin browsing contexts",
-      "context": "The runtime i18n engine and selected-language owner for both God-Script and shell-era pages. URL ?lang= remains the explicit initial override when supported; localStorage key vex-lang is the persisted same-origin preference; the storage event synchronizes parent/iframe/sibling browsing contexts; and vextreme:languagechange is the same-document notification consumed by surfaces such as Terrain. Each applied locale also updates <html lang>. Partial locales still restore immutable EN/source text for missing keys as a safety net, but the normal FAB now advertises only page-local completeLangs. Standalone loading resolves the current slug against data/index.json.pageLanguageMap; when a modern pageLanguageMap exists but the surface is unmapped it fails closed to EN, and only legacy index data without pageLanguageMap may fall back to site-wide supportedLangs. Bundle lookup still follows the existing VEX_STRING_ARC_BUNDLE pilot first, then per-scope/flat fallback; fetched translation payloads remain in-memory only.",
+      "context": "The runtime i18n engine and selected-language owner for both God-Script and shell-era pages. URL ?lang= remains the explicit initial override when supported; localStorage key vex-lang is the persisted same-origin preference; the storage event synchronizes parent/iframe/sibling browsing contexts; and vextreme:languagechange is the same-document notification consumed by surfaces such as Terrain. Each applied locale also updates <html lang>. Partial locales still restore immutable EN/source text for missing keys as a safety net, but the normal FAB advertises only page-local completeLangs. An embedded child may report its exact mounted completed-language context upward via vextreme:languagecontext/v1; only an explicit parent surface (Terrain) validates that child and dispatches vextreme:languagesurfacechange so its stable parent FAB can proxy the child's list without becoming a second language registry. Standalone loading resolves the current slug against data/index.json.pageLanguageMap; when a modern pageLanguageMap exists but the surface is unmapped it fails closed to EN, and only legacy index data without pageLanguageMap may fall back to site-wide supportedLangs.",
       "reads": [
         "window.VEX_STRING_SCOPES",
         "window.VEX_STRING_CATEGORY",
@@ -773,14 +773,16 @@
         "localStorage (vex-lang selected-language preference; vex-index-v2-data language-list fallback)",
         "window storage event (same-origin selected-language changes from another browsing context)",
         "DOM: [data-i18n] authored source text and #vex-spiral-group",
-        "location.search (?lang= explicit initial override)"
+        "location.search (?lang= explicit initial override)",
+        "window event vextreme:languagesurfacechange (explicit parent surface language-context projection)"
       ],
       "writes": [
         "textContent of [data-i18n] elements",
         "document.documentElement lang attribute",
         "localStorage (vex-lang selected-language preference)",
         "location/history (history.replaceState reflects effective language into ?lang=)",
-        "window event vextreme:languagechange (same-document selected-language notification)"
+        "window event vextreme:languagechange (same-document selected-language notification)",
+        "window.parent postMessage vextreme:languagecontext/v1 (child mounted complete-language context)"
       ],
       "loadedBy": [
         "lib/build-vextreme.js (inlined as lang feature in God Scripts)",
@@ -812,10 +814,10 @@
           "any future feature that reads/writes page query params — must not collide with 'lang'; grep pages/*.html for location.search/URLSearchParams usage before introducing a new param name"
         ],
         "selected-language authority (vex-lang / vextreme:languagechange / storage sync)": [
-          "pages/terrain-map.html (embedded reader + locale screenshot consumption)",
-          "docs/architecture/06-i18n.md (runtime authority contract and screenshot ordering)",
-          "tests/08-build-vextreme.test.js (FAB synchronization/fallback/race guards)",
-          "tests/85-terrain-view-contract.test.js (Terrain effective-language consumption)"
+          "pages/terrain-map.html (validates active reader child context and projects the parent proxy wheel)",
+          "docs/architecture/06-i18n.md (runtime authority + surface-context contract)",
+          "tests/08-build-vextreme.test.js (FAB synchronization/fallback/context guards)",
+          "tests/85-terrain-view-contract.test.js (Terrain child-context validation and parent FAB persistence)"
         ],
         "partial-locale EN/source fallback or apply ordering": [
           "tests/08-build-vextreme.test.js (fallback + stale-request guard)",
@@ -1563,15 +1565,18 @@
     },
     "pages/terrain-map.html": {
       "role": "the terrain map's read side — a navigable health/dependency atlas, live-fetches data/terrain-map.json",
-      "context": "Hand-authored Terrain read side over generated data/terrain-map.json. The accepted Content reader can embed same-origin repository pages inside Terrain while preserving semantic Journey state. Terrain consumes the shared selected-language contract rather than owning a second locale: it resolves ?lang= then localStorage['vex-lang'], carries the effective locale into embedded/standalone reader URLs, listens to vextreme:languagechange from the page-level FAB, and chooses locale-keyed screenshot evidence for previews/panels with EN/available fallback. Terrain itself is an unmapped modern surface and therefore receives the standalone FAB's EN-only fallback; while an embedded page reader is open, Terrain hides its outer language orb so the child's page-local completeLangs FAB is the visible language control. Explicit content cover art remains a separate preview class and is not relabeled as screenshot evidence. Shared Spiral FAB ownership remains in widgets/vex-fab.js; Terrain only disables the redundant map child.",
+      "context": "Hand-authored Terrain read side over generated data/terrain-map.json. The accepted Content reader can embed same-origin repository pages inside Terrain while preserving semantic Journey state. Terrain consumes the shared selected-language contract rather than owning a second locale: Terrain itself remains an EN-only unmapped surface, while an active embedded child reports the exact completed-language set mounted by its own FAB. Terrain validates origin + active iframe source, then projects that list into the stable parent FAB through the same-document vextreme:languagesurfacechange event. The parent remains visible, acts as a proxy for the active child, persists the existing vex-lang preference, and returns to Terrain EN on reader exit without deleting that preference. Screenshot evidence continues to follow the effective selected language with EN/available fallback.",
       "reads": [
         "data/terrain-map.json (live fetch, browser)",
         "lib/terrain-journey.js (namespaced semantic-history snapshots and journey transitions)",
         "localStorage['vex-lang'] and location.search ?lang= (effective selected language)",
         "window event vextreme:languagechange (same-document parent FAB notification)",
-        "page/screens screenshot evidence keyed by locale from data/terrain-map.json"
+        "page/screens screenshot evidence keyed by locale from data/terrain-map.json",
+        "window message vextreme:languagecontext/v1 from the active embedded reader"
       ],
-      "writes": [],
+      "writes": [
+        "window.VEXTREME_LANGUAGE_SURFACE_CONTEXT + vextreme:languagesurfacechange event (parent FAB proxy context)"
+      ],
       "loadedBy": [
         "manual browsing only — not embedded elsewhere yet"
       ],

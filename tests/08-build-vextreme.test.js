@@ -145,6 +145,29 @@ test('LANGUAGE AUTHORITY: FAB instances synchronize one effective locale across 
     'a slower stale locale request must not reclaim DOM/storage/event authority');
 });
 
+test('LANGUAGE SURFACE: child reports exact mounted locale capability for an explicit parent proxy', () => {
+  const widgetSrc = fs.readFileSync(FAB_IN, 'utf8');
+  assert.match(widgetSrc, /var LANG_CONTEXT_MESSAGE\s*=\s*'vextreme:languagecontext\/v1'/);
+  assert.match(widgetSrc, /var LANG_SURFACE_EVENT\s*=\s*'vextreme:languagesurfacechange'/);
+  assert.match(widgetSrc, /function notifyParentLanguageContext\(lang, langs\)/);
+  assert.match(widgetSrc, /type: LANG_CONTEXT_MESSAGE,[\s\S]*langs: langs\.slice\(\)/,
+    'child capability notification must carry the exact mounted language list');
+  assert.match(widgetSrc, /setSupportedLangs: setSupportedLangs/,
+    'FAB controller must be able to replace its wheel without remounting');
+  assert.match(widgetSrc, /supportsLanguage: function \(lang\) \{ return langs\.indexOf\(lang\) >= 0; \}/,
+    'cross-context synchronization must query the controller\'s live language set after proxy changes');
+  assert.match(widgetSrc, /fabController\.supportsLanguage\(event\.newValue\)/,
+    'storage convergence must accept languages added by an active child context');
+  assert.match(widgetSrc, /fabController\.supportsLanguage\(data\.lang\)/,
+    'child-message convergence must accept languages added by an active child context');
+  assert.match(widgetSrc, /window\.addEventListener\(LANG_SURFACE_EVENT,[\s\S]*applyLanguageSurfaceContext/,
+    'parent capability mirroring must require an explicit same-document surface event');
+  assert.match(widgetSrc, /window\.VEXTREME_LANGUAGE_SURFACE_CONTEXT/,
+    'late parent FAB mounting must recover the current surface context');
+  assert.match(widgetSrc, /proxySurface[\s\S]*publishLanguageChange\(lang, options\.source \|\| 'fab', \{ documentLang: false \}\)/,
+    'a proxied parent selection must change preference/event authority without pretending the parent DOM is translated');
+});
+
 test('LANGUAGE AUTHORITY: child selection explicitly notifies and converges the same-origin parent', () => {
   const widgetSrc = fs.readFileSync(FAB_IN, 'utf8');
 
@@ -200,7 +223,11 @@ test('LANGUAGE AUTHORITY: child selection explicitly notifies and converges the 
   const selections = [];
   const parentRuntime = { location: { origin: 'https://example.test' } };
   const childSource = {};
+  const supported = ['en', 'ja', 'zh'];
   const controller = {
+    supportsLanguage(lang) {
+      return supported.indexOf(lang) >= 0;
+    },
     selectLanguage(lang, options) {
       selections.push({ lang, options });
     },
@@ -688,7 +715,7 @@ test('LANG-FAB: a URL ?lang= param wins over the stored localStorage preference 
 test('LANG-FAB: selecting a language from the wheel updates the URL immediately', () => {
   const source = fs.readFileSync(FAB_IN, 'utf8');
   const selectStart = source.indexOf('function selectLanguage(lang, options) {');
-  const selectEnd = source.indexOf('// Overflow peek:', selectStart);
+  const selectEnd = source.indexOf('function setSupportedLangs(nextLangs, preferredLang, options) {', selectStart);
   assert.ok(selectStart >= 0 && selectEnd > selectStart, 'shared selectLanguage() transition owner must exist');
   const selectLanguage = source.slice(selectStart, selectEnd);
   assert.ok(selectLanguage.includes('syncUrlLang(lang);'), 'shared language transition must synchronize the URL');
