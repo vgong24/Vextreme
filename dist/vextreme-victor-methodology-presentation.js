@@ -15,7 +15,7 @@
   /* Scope + category globals for fab-lang compatibility */
   window.VEX_STRING_SCOPES    = ["pages.victor-methodology-presentation"];
   window.VEX_STRING_CATEGORY  = "production";
-  window.VEX_SUPPORTED_LANGS  = ["en","fr","zh"];
+  window.VEX_SUPPORTED_LANGS  = ["en","zh"];
 
   /* Arc-chunked bundling pilot (od-001/td-006) — one fetch per language
      instead of an N-way scope fan-out. fab-lang.js checks this first. */
@@ -289,9 +289,9 @@
  *
  * Floating language-selector button. Determines the language list to offer
  * from, in order: window.VEX_SUPPORTED_LANGS (baked in at build time by
- * lib/build-vextreme.js — the ground truth for what THIS page's God Script
- * actually has), then this page's data/index.json.pageLanguageMap projection
- * from cache/network, then the site-wide supportedLangs compatibility fallback.
+ * lib/build-vextreme.js — the complete locale set THIS page can truthfully
+ * offer), then this page's data/index.json.pageLanguageMap projection from
+ * cache/network, then the site-wide supportedLangs legacy compatibility fallback.
  * Opens an iOS-style scroll wheel of emoji flags; picking a flag swaps all
  * [data-i18n] elements on the page and persists the choice to localStorage.
  *
@@ -357,8 +357,8 @@
  *       - tests/08-build-vextreme.test.js (fallback + stale-request guard)
  *       - localized browser acceptance before screenshot evidence is trusted
  *     page-aware language availability:
- *       - lib/build-index.js (produces pageLanguageMap)
- *       - lib/build-vextreme.js (bakes page-local availableLangs into VEX_SUPPORTED_LANGS)
+ *       - lib/build-index.js (produces pageLanguageMap availableLangs + completeLangs)
+ *       - lib/build-vextreme.js (bakes page-local completeLangs into VEX_SUPPORTED_LANGS)
  *       - tests/08-build-vextreme.test.js
  *       - docs/architecture/06-i18n.md
  * LATTICE:END
@@ -391,12 +391,9 @@
 
   // Wheel sizing (Session 025 continued — overflow peek affordance). Full
   // items visible at once before the wheel starts clipping the trailing item
-  // into a partial "there's more, scroll" peek. Set to 2 deliberately while
-  // this system only ships 3 languages (en/ja/zh) — that's the minimum count
-  // where the peek behavior is actually exercised and can be verified live,
-  // rather than sized for a 5-language future that doesn't exist yet. Raise
-  // toward 5 as more languages ship and 2 stops being a meaningful test of
-  // the affordance; the constant is the single place that needs to change.
+  // into a partial "there's more, scroll" peek. Set to 2 deliberately so even
+  // a small multi-locale page communicates that more complete locales are
+  // reachable; fully translated pages may expose a much larger wheel.
   var WHEEL_VISIBLE_ITEMS = 2;
   var WHEEL_ITEM_HEIGHT   = 52;
   var WHEEL_PEEK_FRACTION = 0.5;
@@ -518,9 +515,15 @@
     var data = indexData || {};
     var slug = detectPageSlug();
     var pageCoverage = data.pageLanguageMap && slug ? data.pageLanguageMap[slug] : null;
-    if (pageCoverage && pageCoverage.availableLangs && pageCoverage.availableLangs.length) {
-      return pageCoverage.availableLangs;
+    if (pageCoverage && pageCoverage.completeLangs && pageCoverage.completeLangs.length) {
+      return pageCoverage.completeLangs;
     }
+    // A modern pageLanguageMap with no entry for this surface means there is
+    // no page-local completion claim to advertise. Fail closed to EN rather
+    // than making the site-wide language union look like this screen's truth.
+    if (data.pageLanguageMap) return [LANG_DEFAULT];
+    // Legacy indexes without pageLanguageMap retain the historical aggregate
+    // fallback so old deployments still have a bounded compatibility path.
     if (data.supportedLangs && data.supportedLangs.length) return data.supportedLangs;
     return [LANG_DEFAULT];
   }
