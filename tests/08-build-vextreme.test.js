@@ -145,6 +145,23 @@ test('LANGUAGE AUTHORITY: FAB instances synchronize one effective locale across 
     'a slower stale locale request must not reclaim DOM/storage/event authority');
 });
 
+test('LANGUAGE SURFACE: child reports exact mounted locale capability for an explicit parent proxy', () => {
+  const widgetSrc = fs.readFileSync(FAB_IN, 'utf8');
+  assert.match(widgetSrc, /var LANG_CONTEXT_MESSAGE\s*=\s*'vextreme:languagecontext\/v1'/);
+  assert.match(widgetSrc, /var LANG_SURFACE_EVENT\s*=\s*'vextreme:languagesurfacechange'/);
+  assert.match(widgetSrc, /function notifyParentLanguageContext\(lang, langs\)/);
+  assert.match(widgetSrc, /type: LANG_CONTEXT_MESSAGE,[\s\S]*langs: langs\.slice\(\)/,
+    'child capability notification must carry the exact mounted language list');
+  assert.match(widgetSrc, /setSupportedLangs: setSupportedLangs/,
+    'FAB controller must be able to replace its wheel without remounting');
+  assert.match(widgetSrc, /window\.addEventListener\(LANG_SURFACE_EVENT,[\s\S]*applyLanguageSurfaceContext/,
+    'parent capability mirroring must require an explicit same-document surface event');
+  assert.match(widgetSrc, /window\.VEXTREME_LANGUAGE_SURFACE_CONTEXT/,
+    'late parent FAB mounting must recover the current surface context');
+  assert.match(widgetSrc, /proxySurface[\s\S]*publishLanguageChange\(lang, options\.source \|\| 'fab', \{ documentLang: false \}\)/,
+    'a proxied parent selection must change preference/event authority without pretending the parent DOM is translated');
+});
+
 test('LANGUAGE AUTHORITY: child selection explicitly notifies and converges the same-origin parent', () => {
   const widgetSrc = fs.readFileSync(FAB_IN, 'utf8');
 
