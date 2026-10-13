@@ -53,7 +53,6 @@ jobs:
           HELPER_BRANCH: VXG-101326-chatgpt-82n-generated-helper-a001
         run: |
           set -euo pipefail
-
           git rm .github/workflows/vexsite-82n-generated-helper.yml
 
           cat > /tmp/expected-paths.txt <<'EOF'
@@ -84,7 +83,6 @@ jobs:
           pages/build-health.html
           sw.js
           EOF
-          sed -i 's/^          //' /tmp/expected-paths.txt
           sort -u /tmp/expected-paths.txt -o /tmp/expected-paths.txt
 
           git add -A -- \
@@ -125,10 +123,8 @@ jobs:
           fi
 
           git config user.name "VexGPT"
-          git config user.email "174306002+VexGPT@users.noreply.github.com"
-          git commit -m "[VexSite Localization][82/N] Materialize Liberation Protocol generated currentness
-
-Repository-owned generators only; exact 26-path generated membrane.
-
-[VXG RealForever]"
+          git config user.email "victor.gong@vextreme24.com"
+          git commit -m "[VexSite Localization][82/N] Materialize Liberation Protocol generated currentness" \
+            -m "Repository-owned generators only; exact 26-path generated membrane." \
+            -m "[VXG RealForever]"
           git push origin "HEAD:$HELPER_BRANCH"
