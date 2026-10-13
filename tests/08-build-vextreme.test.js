@@ -428,16 +428,20 @@ test('ASSEMBLER: resolveAllSlugs carries page-local language coverage when the i
   assert.deepEqual(bySlug.demo.languageCoverage, index.pageLanguageMap.demo);
 });
 
-test('ASSEMBLER: page-local available languages are suitable for VEX_SUPPORTED_LANGS without exposing incomplete-only global locales', () => {
+test('ASSEMBLER: normal page FAB projection uses completeLangs rather than partial availability', () => {
   const pageCoverage = { availableLangs: ['en', 'fr'], completeLangs: ['en'] };
   const script = assembleGodScript('test-slug', DEMO_VIEWMODEL, {
     includeSourceComment: false,
-    supportedLangs: pageCoverage.availableLangs,
+    supportedLangs: pageCoverage.completeLangs,
   });
   const supportedLine = script.split('\n').find(line => line.includes('window.VEX_SUPPORTED_LANGS'));
   assert.ok(supportedLine);
-  assert.match(supportedLine, /\["en","fr"\]/);
-  assert.doesNotMatch(supportedLine, /ja|zh/);
+  assert.match(supportedLine, /\["en"\]/);
+  assert.doesNotMatch(supportedLine, /fr|ja|zh/);
+
+  const assemblerSource = fs.readFileSync(path.join(ROOT, 'lib', 'build-vextreme.js'), 'utf8');
+  assert.match(assemblerSource, /Array\.isArray\(languageCoverage\.completeLangs\)[\s\S]*\? languageCoverage\.completeLangs/,
+    'God Script assembly must derive the selectable language list from completeLangs');
 });
 
 // ── 5. checkKeyAlignment ─────────────────────────────────────────────────────
@@ -561,10 +565,12 @@ test('LANG-FAB: standalone widget refreshes page-aware language coverage before 
   assert.ok(cacheRead < requestOpen, 'cached page-aware langs should be available as fetch fallback');
   assert.match(source, /data\.pageLanguageMap && slug \? data\.pageLanguageMap\[slug\] : null/,
     'standalone fallback must resolve the current slug through pageLanguageMap');
-  assert.match(source, /pageCoverage\.availableLangs/,
-    'standalone fallback must consume page-local availableLangs');
+  assert.match(source, /pageCoverage\.completeLangs/,
+    'standalone fallback must consume page-local completeLangs');
+  assert.match(source, /if \(data\.pageLanguageMap\) return \[LANG_DEFAULT\]/,
+    'a modern unmapped surface must fail closed to English rather than inherit the site-wide union');
   assert.match(source, /data\.supportedLangs && data\.supportedLangs\.length/,
-    'site-wide supportedLangs remains compatibility fallback, not primary page truth');
+    'site-wide supportedLangs remains legacy compatibility fallback only when pageLanguageMap is absent');
   assert.equal(source.indexOf('onReady(cached.supportedLangs)'), -1,
     'cached site-wide supportedLangs must not short-circuit page-aware resolution');
 });
