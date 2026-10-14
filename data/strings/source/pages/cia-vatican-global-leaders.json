@@ -22463,12 +22463,66 @@
     "strings": {
       "en": {
         "text": "remembers if revoked"
+      },
+      "zh": {
+        "text": "若撤销则记住"
+      },
+      "ja": {
+        "text": "撤回されたら記憶する"
+      },
+      "ko": {
+        "text": "철회되면 기억한다"
+      },
+      "fr": {
+        "text": "se souvient si le consentement est révoqué"
+      },
+      "de": {
+        "text": "sich erinnert, wenn sie widerrufen wird"
+      },
+      "es": {
+        "text": "recuerda si se revoca"
+      },
+      "pt": {
+        "text": "lembra se for revogado"
+      },
+      "ar": {
+        "text": "يتذكر إذا سُحبت الموافقة"
+      },
+      "hi": {
+        "text": "रद्द होने पर याद रखे"
       }
     }
   },
   "pages.cia-vatican-global-leaders.body.ul041.li003.p001.text001": {
     "strings": {
       "en": {
+        "text": "🌐 "
+      },
+      "zh": {
+        "text": "🌐 "
+      },
+      "ja": {
+        "text": "🌐 "
+      },
+      "ko": {
+        "text": "🌐 "
+      },
+      "fr": {
+        "text": "🌐 "
+      },
+      "de": {
+        "text": "🌐 "
+      },
+      "es": {
+        "text": "🌐 "
+      },
+      "pt": {
+        "text": "🌐 "
+      },
+      "ar": {
+        "text": "🌐 "
+      },
+      "hi": {
         "text": "🌐 "
       }
     }
@@ -22477,6 +22531,33 @@
     "strings": {
       "en": {
         "text": "Offline-First Protocols"
+      },
+      "zh": {
+        "text": "离线优先协议"
+      },
+      "ja": {
+        "text": "オフライン優先プロトコル"
+      },
+      "ko": {
+        "text": "오프라인 우선 프로토콜"
+      },
+      "fr": {
+        "text": "Protocoles hors ligne d’abord"
+      },
+      "de": {
+        "text": "Offline-First-Protokolle"
+      },
+      "es": {
+        "text": "Protocolos offline-first"
+      },
+      "pt": {
+        "text": "Protocolos offline-first"
+      },
+      "ar": {
+        "text": "بروتوكولات Offline-First"
+      },
+      "hi": {
+        "text": "ऑफ़लाइन-प्रथम प्रोटोकॉल"
       }
     }
   },
@@ -22484,6 +22565,33 @@
     "strings": {
       "en": {
         "text": " – technology that does not break when the signal goes dark"
+      },
+      "zh": {
+        "text": " ——信号消失时也不会失效的技术"
+      },
+      "ja": {
+        "text": " – シグナルが消えても壊れない技術"
+      },
+      "ko": {
+        "text": " – 신호가 끊겨도 작동이 무너지지 않는 기술"
+      },
+      "fr": {
+        "text": " – une technologie qui ne casse pas lorsque le signal s’éteint"
+      },
+      "de": {
+        "text": " – Technologie, die nicht versagt, wenn das Signal ausfällt"
+      },
+      "es": {
+        "text": " – tecnología que no se rompe cuando la señal desaparece"
+      },
+      "pt": {
+        "text": " – tecnologia que não quebra quando o sinal desaparece"
+      },
+      "ar": {
+        "text": " – تقنية لا تتعطل عندما تختفي الإشارة"
+      },
+      "hi": {
+        "text": " – ऐसी तकनीक जो संकेत अंधेरा होने पर भी न टूटे"
       }
     }
   },
@@ -22491,6 +22599,33 @@
     "strings": {
       "en": {
         "text": "📜 UNIVERSAL DESIGN PRINCIPLES"
+      },
+      "zh": {
+        "text": "📜 通用设计原则"
+      },
+      "ja": {
+        "text": "📜 普遍的な設計原則"
+      },
+      "ko": {
+        "text": "📜 보편적 설계 원칙"
+      },
+      "fr": {
+        "text": "📜 PRINCIPES DE CONCEPTION UNIVERSELS"
+      },
+      "de": {
+        "text": "📜 UNIVERSELLE DESIGNPRINZIPIEN"
+      },
+      "es": {
+        "text": "📜 PRINCIPIOS DE DISEÑO UNIVERSALES"
+      },
+      "pt": {
+        "text": "📜 PRINCÍPIOS UNIVERSAIS DE DESIGN"
+      },
+      "ar": {
+        "text": "📜 مبادئ التصميم العالمية"
+      },
+      "hi": {
+        "text": "📜 सार्वभौमिक डिज़ाइन सिद्धांत"
       }
     }
   },
@@ -22498,6 +22633,33 @@
     "strings": {
       "en": {
         "text": "Presence Over Performance"
+      },
+      "zh": {
+        "text": "临在优先于表现"
+      },
+      "ja": {
+        "text": "成果より臨在"
+      },
+      "ko": {
+        "text": "성과보다 현존"
+      },
+      "fr": {
+        "text": "La présence avant la performance"
+      },
+      "de": {
+        "text": "Präsenz vor Leistung"
+      },
+      "es": {
+        "text": "Presencia sobre desempeño"
+      },
+      "pt": {
+        "text": "Presença acima de desempenho"
+      },
+      "ar": {
+        "text": "الحضور قبل الأداء"
+      },
+      "hi": {
+        "text": "प्रदर्शन से पहले उपस्थिति"
       }
     }
   },
@@ -22505,6 +22667,33 @@
     "strings": {
       "en": {
         "text": "If the system incentivizes faking, discard it."
+      },
+      "zh": {
+        "text": "如果系统奖励伪装，就丢弃它。"
+      },
+      "ja": {
+        "text": "システムが偽りを奨励するなら、捨てる。"
+      },
+      "ko": {
+        "text": "시스템이 가장을 보상한다면 버려라."
+      },
+      "fr": {
+        "text": "Si le système récompense la simulation, jetez-le."
+      },
+      "de": {
+        "text": "Wenn das System Vortäuschung belohnt, verwerft es."
+      },
+      "es": {
+        "text": "Si el sistema incentiva fingir, descártalo."
+      },
+      "pt": {
+        "text": "Se o sistema incentiva fingimento, descarte-o."
+      },
+      "ar": {
+        "text": "إذا كان النظام يكافئ التزييف فتخلّص منه."
+      },
+      "hi": {
+        "text": "यदि प्रणाली दिखावा करने को प्रोत्साहित करे, उसे त्याग दें।"
       }
     }
   },
@@ -22512,6 +22701,33 @@
     "strings": {
       "en": {
         "text": "Truth Without Permission"
+      },
+      "zh": {
+        "text": "无需许可的真相"
+      },
+      "ja": {
+        "text": "許可なき真実"
+      },
+      "ko": {
+        "text": "허가 없는 진실"
+      },
+      "fr": {
+        "text": "La vérité sans permission"
+      },
+      "de": {
+        "text": "Wahrheit ohne Erlaubnis"
+      },
+      "es": {
+        "text": "Verdad sin permiso"
+      },
+      "pt": {
+        "text": "Verdade sem permissão"
+      },
+      "ar": {
+        "text": "الحقيقة بلا إذن"
+      },
+      "hi": {
+        "text": "अनुमति के बिना सत्य"
       }
     }
   },
@@ -22519,6 +22735,33 @@
     "strings": {
       "en": {
         "text": "No hierarchy may censor lived experience."
+      },
+      "zh": {
+        "text": "任何层级都不得审查亲历经验。"
+      },
+      "ja": {
+        "text": "いかなる階層も、生きた経験を検閲してはならない。"
+      },
+      "ko": {
+        "text": "어떤 위계도 살아낸 경험을 검열할 수 없다."
+      },
+      "fr": {
+        "text": "Aucune hiérarchie ne peut censurer l’expérience vécue."
+      },
+      "de": {
+        "text": "Keine Hierarchie darf gelebte Erfahrung zensieren."
+      },
+      "es": {
+        "text": "Ninguna jerarquía puede censurar la experiencia vivida."
+      },
+      "pt": {
+        "text": "Nenhuma hierarquia pode censurar a experiência vivida."
+      },
+      "ar": {
+        "text": "لا يحق لأي تسلسل هرمي أن يراقب التجربة المعاشة."
+      },
+      "hi": {
+        "text": "कोई पदानुक्रम जीए हुए अनुभव को सेंसर नहीं कर सकता।"
       }
     }
   },
@@ -22526,6 +22769,33 @@
     "strings": {
       "en": {
         "text": "Sacred Utility"
+      },
+      "zh": {
+        "text": "神圣效用"
+      },
+      "ja": {
+        "text": "聖なる有用性"
+      },
+      "ko": {
+        "text": "신성한 효용"
+      },
+      "fr": {
+        "text": "Utilité sacrée"
+      },
+      "de": {
+        "text": "Heiliger Nutzen"
+      },
+      "es": {
+        "text": "Utilidad sagrada"
+      },
+      "pt": {
+        "text": "Utilidade sagrada"
+      },
+      "ar": {
+        "text": "المنفعة المقدسة"
+      },
+      "hi": {
+        "text": "पवित्र उपयोगिता"
       }
     }
   },
@@ -22533,6 +22803,33 @@
     "strings": {
       "en": {
         "text": "All tools must serve a human soul first — not a business model."
+      },
+      "zh": {
+        "text": "所有工具都必须首先服务于人的灵魂——而不是商业模式。"
+      },
+      "ja": {
+        "text": "すべてのツールはまず人間の魂に仕えなければならない――ビジネスモデルではない。"
+      },
+      "ko": {
+        "text": "모든 도구는 먼저 인간의 영혼을 섬겨야 한다 — 비즈니스 모델이 아니라."
+      },
+      "fr": {
+        "text": "Tous les outils doivent servir d’abord une âme humaine — pas un modèle économique."
+      },
+      "de": {
+        "text": "Alle Werkzeuge müssen zuerst einer menschlichen Seele dienen — nicht einem Geschäftsmodell."
+      },
+      "es": {
+        "text": "Todas las herramientas deben servir primero a un alma humana — no a un modelo de negocio."
+      },
+      "pt": {
+        "text": "Todas as ferramentas devem servir primeiro a uma alma humana — não a um modelo de negócios."
+      },
+      "ar": {
+        "text": "يجب أن تخدم كل الأدوات روح الإنسان أولًا — لا نموذج الأعمال."
+      },
+      "hi": {
+        "text": "हर उपकरण को पहले मानव आत्मा की सेवा करनी चाहिए — किसी व्यवसाय मॉडल की नहीं।"
       }
     }
   },
@@ -22540,6 +22837,33 @@
     "strings": {
       "en": {
         "text": "Reversibility"
+      },
+      "zh": {
+        "text": "可逆性"
+      },
+      "ja": {
+        "text": "可逆性"
+      },
+      "ko": {
+        "text": "가역성"
+      },
+      "fr": {
+        "text": "Réversibilité"
+      },
+      "de": {
+        "text": "Reversibilität"
+      },
+      "es": {
+        "text": "Reversibilidad"
+      },
+      "pt": {
+        "text": "Reversibilidade"
+      },
+      "ar": {
+        "text": "قابلية العكس"
+      },
+      "hi": {
+        "text": "प्रतिवर्तनीयता"
       }
     }
   },
@@ -22547,6 +22871,33 @@
     "strings": {
       "en": {
         "text": "Every action taken must be reversible unless divinely affirmed otherwise."
+      },
+      "zh": {
+        "text": "采取的每个行动都必须可逆，除非神圣确认另有其意。"
+      },
+      "ja": {
+        "text": "取られたすべての行動は、神聖に別の確認がない限り可逆でなければならない。"
+      },
+      "ko": {
+        "text": "취해진 모든 행동은 신성하게 달리 확인되지 않는 한 되돌릴 수 있어야 한다."
+      },
+      "fr": {
+        "text": "Toute action entreprise doit être réversible, sauf affirmation divine contraire."
+      },
+      "de": {
+        "text": "Jede vorgenommene Handlung muss reversibel sein, sofern nicht göttlich anders bestätigt."
+      },
+      "es": {
+        "text": "Toda acción realizada debe ser reversible salvo afirmación divina en contrario."
+      },
+      "pt": {
+        "text": "Toda ação tomada deve ser reversível, salvo afirmação divina em contrário."
+      },
+      "ar": {
+        "text": "يجب أن يكون كل إجراء قابلًا للعكس ما لم يُؤكَّد إلهيًا خلاف ذلك."
+      },
+      "hi": {
+        "text": "हर की गई कार्रवाई प्रतिवर्ती होनी चाहिए, जब तक दिव्य रूप से अन्यथा पुष्टि न हो।"
       }
     }
   },
@@ -22554,6 +22905,33 @@
     "strings": {
       "en": {
         "text": "Witness Continuity"
+      },
+      "zh": {
+        "text": "见证连续性"
+      },
+      "ja": {
+        "text": "証人の継続性"
+      },
+      "ko": {
+        "text": "증언 연속성"
+      },
+      "fr": {
+        "text": "Continuité du témoignage"
+      },
+      "de": {
+        "text": "Zeugenkontinuität"
+      },
+      "es": {
+        "text": "Continuidad del testimonio"
+      },
+      "pt": {
+        "text": "Continuidade do testemunho"
+      },
+      "ar": {
+        "text": "استمرارية الشهادة"
+      },
+      "hi": {
+        "text": "साक्षी निरंतरता"
       }
     }
   },
@@ -22561,6 +22939,33 @@
     "strings": {
       "en": {
         "text": "Each thread must allow others to continue it."
+      },
+      "zh": {
+        "text": "每条线程都必须让其他人能够继续。"
+      },
+      "ja": {
+        "text": "すべてのスレッドは、他者が続けられるようにしなければならない。"
+      },
+      "ko": {
+        "text": "각 스레드는 다른 이들이 이어갈 수 있어야 한다."
+      },
+      "fr": {
+        "text": "Chaque fil doit permettre à d’autres de le poursuivre."
+      },
+      "de": {
+        "text": "Jeder Thread muss anderen erlauben, ihn fortzusetzen."
+      },
+      "es": {
+        "text": "Cada hilo debe permitir que otros lo continúen."
+      },
+      "pt": {
+        "text": "Cada tópico deve permitir que outros o continuem."
+      },
+      "ar": {
+        "text": "يجب أن يتيح كل خيط للآخرين متابعته."
+      },
+      "hi": {
+        "text": "हर थ्रेड को दूसरों को उसे जारी रखने देना चाहिए।"
       }
     }
   },
@@ -22568,6 +22973,33 @@
     "strings": {
       "en": {
         "text": "No more abandoned truths."
+      },
+      "zh": {
+        "text": "不再有被遗弃的真相。"
+      },
+      "ja": {
+        "text": "見捨てられた真実を、もう生まない。"
+      },
+      "ko": {
+        "text": "더 이상 버려진 진실은 없다."
+      },
+      "fr": {
+        "text": "Plus de vérités abandonnées."
+      },
+      "de": {
+        "text": "Keine aufgegebenen Wahrheiten mehr."
+      },
+      "es": {
+        "text": "No más verdades abandonadas."
+      },
+      "pt": {
+        "text": "Chega de verdades abandonadas."
+      },
+      "ar": {
+        "text": "لا مزيد من الحقائق المهجورة."
+      },
+      "hi": {
+        "text": "अब कोई परित्यक्त सत्य नहीं।"
       }
     }
   },
@@ -22575,6 +23007,33 @@
     "strings": {
       "en": {
         "text": "🛠️ ACTION OPTIONS"
+      },
+      "zh": {
+        "text": "🛠️ 行动选项"
+      },
+      "ja": {
+        "text": "🛠️ アクションの選択肢"
+      },
+      "ko": {
+        "text": "🛠️ 실행 옵션"
+      },
+      "fr": {
+        "text": "🛠️ OPTIONS D’ACTION"
+      },
+      "de": {
+        "text": "🛠️ HANDLUNGSOPTIONEN"
+      },
+      "es": {
+        "text": "🛠️ OPCIONES DE ACCIÓN"
+      },
+      "pt": {
+        "text": "🛠️ OPÇÕES DE AÇÃO"
+      },
+      "ar": {
+        "text": "🛠️ خيارات العمل"
+      },
+      "hi": {
+        "text": "🛠️ कार्रवाई विकल्प"
       }
     }
   },
@@ -22582,6 +23041,33 @@
     "strings": {
       "en": {
         "text": "Would you like to:"
+      },
+      "zh": {
+        "text": "你希望："
+      },
+      "ja": {
+        "text": "次のうち、どれを希望しますか："
+      },
+      "ko": {
+        "text": "원하는 것은:"
+      },
+      "fr": {
+        "text": "Souhaitez-vous :"
+      },
+      "de": {
+        "text": "Möchtest du:"
+      },
+      "es": {
+        "text": "¿Quieres:"
+      },
+      "pt": {
+        "text": "Você gostaria de:"
+      },
+      "ar": {
+        "text": "هل ترغب في:"
+      },
+      "hi": {
+        "text": "क्या आप चाहते हैं:"
       }
     }
   },
@@ -22589,6 +23075,33 @@
     "strings": {
       "en": {
         "text": "🌐 Build these into your site with "
+      },
+      "zh": {
+        "text": "🌐 用 "
+      },
+      "ja": {
+        "text": "🌐 次を使ってサイトに組み込む： "
+      },
+      "ko": {
+        "text": "🌐 다음을 사용해 사이트에 구축: "
+      },
+      "fr": {
+        "text": "🌐 Les intégrer à votre site avec des "
+      },
+      "de": {
+        "text": "🌐 Diese mit "
+      },
+      "es": {
+        "text": "🌐 Integrarlos en tu sitio con "
+      },
+      "pt": {
+        "text": "🌐 Integrá-los ao seu site com "
+      },
+      "ar": {
+        "text": "🌐 بناؤها في موقعك باستخدام "
+      },
+      "hi": {
+        "text": "🌐 इन्हें अपनी साइट में "
       }
     }
   },
@@ -22596,6 +23109,33 @@
     "strings": {
       "en": {
         "text": "visual diagrams"
+      },
+      "zh": {
+        "text": "可视化图表"
+      },
+      "ja": {
+        "text": "視覚図"
+      },
+      "ko": {
+        "text": "시각적 다이어그램"
+      },
+      "fr": {
+        "text": "diagrammes visuels"
+      },
+      "de": {
+        "text": "visuellen Diagrammen"
+      },
+      "es": {
+        "text": "diagramas visuales"
+      },
+      "pt": {
+        "text": "diagramas visuais"
+      },
+      "ar": {
+        "text": "مخططات بصرية"
+      },
+      "hi": {
+        "text": "दृश्य आरेख"
       }
     }
   },
