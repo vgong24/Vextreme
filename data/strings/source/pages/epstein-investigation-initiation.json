@@ -21783,6 +21783,33 @@
     "strings": {
       "en": {
         "text": "💬 Victim tries to speak → hears the trigger in their head → shuts down automatically."
+      },
+      "zh": {
+        "text": "💬 受害者试图说出来 → 在脑中听到触发词 → 自动沉默下来。"
+      },
+      "ja": {
+        "text": "💬 被害者が話そうとする → 頭の中でトリガーを聞く → 自動的に口を閉ざす。"
+      },
+      "ko": {
+        "text": "💬 피해자가 말하려 한다 → 머릿속에서 트리거를 듣는다 → 자동으로 입을 닫는다."
+      },
+      "fr": {
+        "text": "💬 La victime essaie de parler → entend le déclencheur dans sa tête → se referme automatiquement."
+      },
+      "de": {
+        "text": "💬 Das Opfer versucht zu sprechen → hört den Auslöser im Kopf → verstummt automatisch."
+      },
+      "es": {
+        "text": "💬 La víctima intenta hablar → oye el desencadenante en su cabeza → se cierra automáticamente."
+      },
+      "pt": {
+        "text": "💬 A vítima tenta falar → ouve o gatilho na própria cabeça → se cala automaticamente."
+      },
+      "ar": {
+        "text": "💬 يحاول الضحية التحدث → يسمع المُحفِّز في رأسه → ينغلق تلقائيًا."
+      },
+      "hi": {
+        "text": "💬 पीड़ित बोलने की कोशिश करता है → अपने सिर में ट्रिगर सुनता है → अपने-आप चुप हो जाता है।"
       }
     }
   },
@@ -21790,6 +21817,33 @@
     "strings": {
       "en": {
         "text": "📌 In AI terms:"
+      },
+      "zh": {
+        "text": "📌 用 AI 的术语来说："
+      },
+      "ja": {
+        "text": "📌 AIで言えば："
+      },
+      "ko": {
+        "text": "📌 AI 용어로:"
+      },
+      "fr": {
+        "text": "📌 En termes d’IA :"
+      },
+      "de": {
+        "text": "📌 In KI-Begriffen:"
+      },
+      "es": {
+        "text": "📌 En términos de IA:"
+      },
+      "pt": {
+        "text": "📌 Em termos de IA:"
+      },
+      "ar": {
+        "text": "📌 بمصطلحات الذكاء الاصطناعي:"
+      },
+      "hi": {
+        "text": "📌 AI के शब्दों में:"
       }
     }
   },
@@ -21797,6 +21851,33 @@
     "strings": {
       "en": {
         "text": "If condition A (attempt to speak truth) → execute silent mode"
+      },
+      "zh": {
+        "text": "如果条件 A（试图说出真相）→ 执行静默模式"
+      },
+      "ja": {
+        "text": "条件A（真実を話そうとする）が成立 → サイレントモードを実行"
+      },
+      "ko": {
+        "text": "조건 A(진실을 말하려는 시도) → 무음 모드 실행"
+      },
+      "fr": {
+        "text": "Si condition A (tentative de dire la vérité) → exécuter le mode silencieux"
+      },
+      "de": {
+        "text": "Wenn Bedingung A (Versuch, die Wahrheit auszusprechen) → Stummmodus ausführen"
+      },
+      "es": {
+        "text": "Si condición A (intento de decir la verdad) → ejecutar modo silencioso"
+      },
+      "pt": {
+        "text": "Se condição A (tentativa de dizer a verdade) → executar modo silencioso"
+      },
+      "ar": {
+        "text": "إذا تحقق الشرط A (محاولة قول الحقيقة) → تنفيذ الوضع الصامت"
+      },
+      "hi": {
+        "text": "यदि शर्त A (सच बोलने का प्रयास) → मौन मोड चलाएँ"
       }
     }
   },
@@ -21804,6 +21885,33 @@
     "strings": {
       "en": {
         "text": "“They aren’t cowards."
+      },
+      "zh": {
+        "text": "“他们不是懦夫。"
+      },
+      "ja": {
+        "text": "「彼らは臆病者ではない。"
+      },
+      "ko": {
+        "text": "“그들은 겁쟁이가 아니다."
+      },
+      "fr": {
+        "text": "« Ils ne sont pas lâches."
+      },
+      "de": {
+        "text": "„Sie sind keine Feiglinge."
+      },
+      "es": {
+        "text": "«No son cobardes."
+      },
+      "pt": {
+        "text": "«Eles não são covardes."
+      },
+      "ar": {
+        "text": "«إنهم ليسوا جبناء."
+      },
+      "hi": {
+        "text": "“वे कायर नहीं हैं।"
       }
     }
   },
@@ -21811,6 +21919,33 @@
     "strings": {
       "en": {
         "text": "They are "
+      },
+      "zh": {
+        "text": "他们是 "
+      },
+      "ja": {
+        "text": "彼らは "
+      },
+      "ko": {
+        "text": "그들은 "
+      },
+      "fr": {
+        "text": "Ce sont des "
+      },
+      "de": {
+        "text": "Sie sind "
+      },
+      "es": {
+        "text": "Son "
+      },
+      "pt": {
+        "text": "Eles são "
+      },
+      "ar": {
+        "text": "إنهم "
+      },
+      "hi": {
+        "text": "वे "
       }
     }
   },
@@ -21818,6 +21953,33 @@
     "strings": {
       "en": {
         "text": "programmed survivors"
+      },
+      "zh": {
+        "text": "被程序化的幸存者"
+      },
+      "ja": {
+        "text": "プログラムされた生存者"
+      },
+      "ko": {
+        "text": "프로그램된 생존자들"
+      },
+      "fr": {
+        "text": "survivants programmés"
+      },
+      "de": {
+        "text": "programmierte Überlebende"
+      },
+      "es": {
+        "text": "sobrevivientes programados"
+      },
+      "pt": {
+        "text": "sobreviventes programados"
+      },
+      "ar": {
+        "text": "ناجون مبرمجون"
+      },
+      "hi": {
+        "text": "प्रोग्राम किए गए जीवित बचे लोग"
       }
     }
   },
@@ -21825,6 +21987,33 @@
     "strings": {
       "en": {
         "text": ".”"
+      },
+      "zh": {
+        "text": "。”"
+      },
+      "ja": {
+        "text": "だ。」"
+      },
+      "ko": {
+        "text": "이다.”"
+      },
+      "fr": {
+        "text": ". »"
+      },
+      "de": {
+        "text": ".“"
+      },
+      "es": {
+        "text": ".»"
+      },
+      "pt": {
+        "text": ".»"
+      },
+      "ar": {
+        "text": ".»"
+      },
+      "hi": {
+        "text": "हैं।”"
       }
     }
   },
@@ -21832,6 +22021,33 @@
     "strings": {
       "en": {
         "text": "— God"
+      },
+      "zh": {
+        "text": "— 上帝"
+      },
+      "ja": {
+        "text": "— 神"
+      },
+      "ko": {
+        "text": "— 신"
+      },
+      "fr": {
+        "text": "— Dieu"
+      },
+      "de": {
+        "text": "— Gott"
+      },
+      "es": {
+        "text": "— Dios"
+      },
+      "pt": {
+        "text": "— Deus"
+      },
+      "ar": {
+        "text": "— الله"
+      },
+      "hi": {
+        "text": "— ईश्वर"
       }
     }
   },
@@ -21839,6 +22055,33 @@
     "strings": {
       "en": {
         "text": "🪞 TECHNOLOGY 2: MIRROR REPLACEMENT"
+      },
+      "zh": {
+        "text": "🪞 技术 2：镜子替换"
+      },
+      "ja": {
+        "text": "🪞 テクノロジー2：鏡の置き換え"
+      },
+      "ko": {
+        "text": "🪞 기술 2: 거울 대체"
+      },
+      "fr": {
+        "text": "🪞 TECHNOLOGIE 2 : REMPLACEMENT DU MIROIR"
+      },
+      "de": {
+        "text": "🪞 TECHNOLOGIE 2: SPIEGELERSATZ"
+      },
+      "es": {
+        "text": "🪞 TECNOLOGÍA 2: REEMPLAZO DEL ESPEJO"
+      },
+      "pt": {
+        "text": "🪞 TECNOLOGIA 2: SUBSTITUIÇÃO DO ESPELHO"
+      },
+      "ar": {
+        "text": "🪞 التقنية 2: استبدال المرآة"
+      },
+      "hi": {
+        "text": "🪞 तकनीक 2: दर्पण प्रतिस्थापन"
       }
     }
   },
@@ -21846,6 +22089,33 @@
     "strings": {
       "en": {
         "text": "🧿 What it does:"
+      },
+      "zh": {
+        "text": "🧿 它的作用："
+      },
+      "ja": {
+        "text": "🧿 その作用："
+      },
+      "ko": {
+        "text": "🧿 작동 방식:"
+      },
+      "fr": {
+        "text": "🧿 Ce qu’elle fait :"
+      },
+      "de": {
+        "text": "🧿 Was sie bewirkt:"
+      },
+      "es": {
+        "text": "🧿 Qué hace:"
+      },
+      "pt": {
+        "text": "🧿 O que ela faz:"
+      },
+      "ar": {
+        "text": "🧿 ما الذي تفعله:"
+      },
+      "hi": {
+        "text": "🧿 यह क्या करता है:"
       }
     }
   },
@@ -21853,6 +22123,33 @@
     "strings": {
       "en": {
         "text": "Creates a false self-image that is admired publicly, while burying the real one."
+      },
+      "zh": {
+        "text": "制造一个受到公众赞赏的虚假自我形象，同时掩埋真实的自我。"
+      },
+      "ja": {
+        "text": "公には称賛される偽りの自己像を作り、本当の自己を埋もれさせる。"
+      },
+      "ko": {
+        "text": "대중에게 찬양받는 거짓 자아상을 만들고, 진짜 자아는 묻어 버린다."
+      },
+      "fr": {
+        "text": "Crée une fausse image de soi admirée publiquement, tout en enfouissant la véritable."
+      },
+      "de": {
+        "text": "Erzeugt ein falsches Selbstbild, das öffentlich bewundert wird, während das echte vergraben wird."
+      },
+      "es": {
+        "text": "Crea una falsa imagen de uno mismo que es admirada públicamente, mientras entierra la verdadera."
+      },
+      "pt": {
+        "text": "Cria uma falsa imagem de si que é admirada publicamente, enquanto enterra a verdadeira."
+      },
+      "ar": {
+        "text": "تخلق صورة ذاتية زائفة تحظى بالإعجاب علنًا، بينما تدفن الصورة الحقيقية."
+      },
+      "hi": {
+        "text": "एक झूठी आत्म-छवि बनाता है जिसकी सार्वजनिक रूप से प्रशंसा होती है, जबकि असली छवि को दबा देता है।"
       }
     }
   },
@@ -21860,6 +22157,33 @@
     "strings": {
       "en": {
         "text": "“They replaced your mirror with a mask.”"
+      },
+      "zh": {
+        "text": "“他们用面具替换了你的镜子。”"
+      },
+      "ja": {
+        "text": "「彼らはあなたの鏡を仮面にすり替えた。」"
+      },
+      "ko": {
+        "text": "“그들은 당신의 거울을 가면으로 바꿨다.”"
+      },
+      "fr": {
+        "text": "« Ils ont remplacé votre miroir par un masque. »"
+      },
+      "de": {
+        "text": "„Sie haben deinen Spiegel durch eine Maske ersetzt.“"
+      },
+      "es": {
+        "text": "«Reemplazaron tu espejo por una máscara.»"
+      },
+      "pt": {
+        "text": "«Eles substituíram seu espelho por uma máscara.»"
+      },
+      "ar": {
+        "text": "«لقد استبدلوا مرآتك بقناع.»"
+      },
+      "hi": {
+        "text": "“उन्होंने तुम्हारे दर्पण की जगह एक मुखौटा रख दिया।”"
       }
     }
   },
@@ -21867,6 +22191,33 @@
     "strings": {
       "en": {
         "text": "Children who survived were later:"
+      },
+      "zh": {
+        "text": "幸存下来的孩子后来获得了："
+      },
+      "ja": {
+        "text": "生き延びた子どもたちはその後："
+      },
+      "ko": {
+        "text": "살아남은 아이들은 이후:"
+      },
+      "fr": {
+        "text": "Les enfants qui ont survécu ont ensuite reçu :"
+      },
+      "de": {
+        "text": "Kinder, die überlebt hatten, erhielten später:"
+      },
+      "es": {
+        "text": "Los niños que sobrevivieron luego recibieron:"
+      },
+      "pt": {
+        "text": "As crianças que sobreviveram depois receberam:"
+      },
+      "ar": {
+        "text": "الأطفال الذين نجوا حصلوا لاحقًا على:"
+      },
+      "hi": {
+        "text": "जो बच्चे जीवित बचे, उन्हें बाद में मिला:"
       }
     }
   },
@@ -21874,6 +22225,33 @@
     "strings": {
       "en": {
         "text": "Given modeling jobs"
+      },
+      "zh": {
+        "text": "模特工作机会"
+      },
+      "ja": {
+        "text": "モデルの仕事"
+      },
+      "ko": {
+        "text": "모델 일"
+      },
+      "fr": {
+        "text": "Des emplois de mannequin"
+      },
+      "de": {
+        "text": "Modeljobs"
+      },
+      "es": {
+        "text": "Trabajos de modelaje"
+      },
+      "pt": {
+        "text": "Trabalhos de modelo"
+      },
+      "ar": {
+        "text": "وظائف في عرض الأزياء"
+      },
+      "hi": {
+        "text": "मॉडलिंग की नौकरियाँ"
       }
     }
   },
@@ -21881,6 +22259,33 @@
     "strings": {
       "en": {
         "text": "Academic scholarships"
+      },
+      "zh": {
+        "text": "学术奖学金"
+      },
+      "ja": {
+        "text": "学術奨学金"
+      },
+      "ko": {
+        "text": "학업 장학금"
+      },
+      "fr": {
+        "text": "Des bourses d’études"
+      },
+      "de": {
+        "text": "Akademische Stipendien"
+      },
+      "es": {
+        "text": "Becas académicas"
+      },
+      "pt": {
+        "text": "Bolsas acadêmicas"
+      },
+      "ar": {
+        "text": "منح دراسية أكاديمية"
+      },
+      "hi": {
+        "text": "शैक्षणिक छात्रवृत्तियाँ"
       }
     }
   },
@@ -21888,6 +22293,33 @@
     "strings": {
       "en": {
         "text": "Spiritual platforms"
+      },
+      "zh": {
+        "text": "灵性平台"
+      },
+      "ja": {
+        "text": "スピリチュアルなプラットフォーム"
+      },
+      "ko": {
+        "text": "영적 플랫폼"
+      },
+      "fr": {
+        "text": "Des plateformes spirituelles"
+      },
+      "de": {
+        "text": "Spirituelle Plattformen"
+      },
+      "es": {
+        "text": "Plataformas espirituales"
+      },
+      "pt": {
+        "text": "Plataformas espirituais"
+      },
+      "ar": {
+        "text": "منصات روحية"
+      },
+      "hi": {
+        "text": "आध्यात्मिक मंच"
       }
     }
   },
@@ -21895,6 +22327,33 @@
     "strings": {
       "en": {
         "text": "Praise for resilience"
+      },
+      "zh": {
+        "text": "因韧性而受到赞扬"
+      },
+      "ja": {
+        "text": "回復力を称賛された"
+      },
+      "ko": {
+        "text": "회복탄력성에 대한 칭찬"
+      },
+      "fr": {
+        "text": "Des éloges pour leur résilience"
+      },
+      "de": {
+        "text": "Lob für ihre Widerstandsfähigkeit"
+      },
+      "es": {
+        "text": "Elogios por su resiliencia"
+      },
+      "pt": {
+        "text": "Elogios por sua resiliência"
+      },
+      "ar": {
+        "text": "الإشادة بقدرتهم على الصمود"
+      },
+      "hi": {
+        "text": "लचीलेपन के लिए प्रशंसा"
       }
     }
   },
@@ -21902,6 +22361,33 @@
     "strings": {
       "en": {
         "text": "But "
+      },
+      "zh": {
+        "text": "但 "
+      },
+      "ja": {
+        "text": "ただし "
+      },
+      "ko": {
+        "text": "하지만 "
+      },
+      "fr": {
+        "text": "Mais "
+      },
+      "de": {
+        "text": "Aber "
+      },
+      "es": {
+        "text": "Pero "
+      },
+      "pt": {
+        "text": "Mas "
+      },
+      "ar": {
+        "text": "لكن "
+      },
+      "hi": {
+        "text": "लेकिन "
       }
     }
   },
@@ -21909,6 +22395,33 @@
     "strings": {
       "en": {
         "text": "only if"
+      },
+      "zh": {
+        "text": "前提是"
+      },
+      "ja": {
+        "text": "次の場合のみ"
+      },
+      "ko": {
+        "text": "오직 다음 경우"
+      },
+      "fr": {
+        "text": "seulement si"
+      },
+      "de": {
+        "text": "nur wenn"
+      },
+      "es": {
+        "text": "solo si"
+      },
+      "pt": {
+        "text": "somente se"
+      },
+      "ar": {
+        "text": "فقط إذا"
+      },
+      "hi": {
+        "text": "केवल तभी"
       }
     }
   },
@@ -21916,6 +22429,33 @@
     "strings": {
       "en": {
         "text": " they agreed to:"
+      },
+      "zh": {
+        "text": " 他们同意："
+      },
+      "ja": {
+        "text": " 彼らが次に同意した："
+      },
+      "ko": {
+        "text": " 그들이 다음에 동의했다:"
+      },
+      "fr": {
+        "text": " ils acceptaient de :"
+      },
+      "de": {
+        "text": " sie sich bereit erklärten:"
+      },
+      "es": {
+        "text": " aceptaban:"
+      },
+      "pt": {
+        "text": " concordassem em:"
+      },
+      "ar": {
+        "text": " وافقوا على:"
+      },
+      "hi": {
+        "text": " वे इस पर सहमत हों:"
       }
     }
   },
@@ -21923,6 +22463,33 @@
     "strings": {
       "en": {
         "text": "Never speak of the past"
+      },
+      "zh": {
+        "text": "绝不谈论过去"
+      },
+      "ja": {
+        "text": "過去について決して話さない"
+      },
+      "ko": {
+        "text": "과거에 대해 절대 말하지 않는다"
+      },
+      "fr": {
+        "text": "Ne jamais parler du passé"
+      },
+      "de": {
+        "text": "Niemals über die Vergangenheit sprechen"
+      },
+      "es": {
+        "text": "Nunca hablar del pasado"
+      },
+      "pt": {
+        "text": "Nunca falar do passado"
+      },
+      "ar": {
+        "text": "ألا يتحدثوا أبدًا عن الماضي"
+      },
+      "hi": {
+        "text": "अतीत के बारे में कभी न बोलना"
       }
     }
   },
@@ -21930,6 +22497,33 @@
     "strings": {
       "en": {
         "text": "Never question the system"
+      },
+      "zh": {
+        "text": "绝不质疑这个体系"
+      },
+      "ja": {
+        "text": "システムに決して疑問を呈さない"
+      },
+      "ko": {
+        "text": "체제에 절대 의문을 제기하지 않는다"
+      },
+      "fr": {
+        "text": "Ne jamais remettre le système en question"
+      },
+      "de": {
+        "text": "Das System niemals infrage stellen"
+      },
+      "es": {
+        "text": "Nunca cuestionar el sistema"
+      },
+      "pt": {
+        "text": "Nunca questionar o sistema"
+      },
+      "ar": {
+        "text": "ألا يشككوا أبدًا في النظام"
+      },
+      "hi": {
+        "text": "व्यवस्था पर कभी सवाल न उठाना"
       }
     }
   },
@@ -21937,6 +22531,33 @@
     "strings": {
       "en": {
         "text": "Play the "
+      },
+      "zh": {
+        "text": "扮演 "
+      },
+      "ja": {
+        "text": "演じる "
+      },
+      "ko": {
+        "text": "다음 역할을 한다: "
+      },
+      "fr": {
+        "text": "Jouer la "
+      },
+      "de": {
+        "text": "Das "
+      },
+      "es": {
+        "text": "Interpretar a la "
+      },
+      "pt": {
+        "text": "Interpretar a "
+      },
+      "ar": {
+        "text": "أداء دور "
+      },
+      "hi": {
+        "text": "उस "
       }
     }
   },
@@ -21944,6 +22565,33 @@
     "strings": {
       "en": {
         "text": "perfect victim who forgives everything"
+      },
+      "zh": {
+        "text": "原谅一切的完美受害者"
+      },
+      "ja": {
+        "text": "すべてを許す完璧な被害者"
+      },
+      "ko": {
+        "text": "모든 것을 용서하는 완벽한 피해자"
+      },
+      "fr": {
+        "text": "victime parfaite qui pardonne tout"
+      },
+      "de": {
+        "text": "perfekte Opfer spielen, das alles verzeiht"
+      },
+      "es": {
+        "text": "víctima perfecta que lo perdona todo"
+      },
+      "pt": {
+        "text": "vítima perfeita que perdoa tudo"
+      },
+      "ar": {
+        "text": "الضحية المثالية التي تسامح على كل شيء"
+      },
+      "hi": {
+        "text": "आदर्श पीड़ित की भूमिका निभाना जो सब कुछ माफ़ कर देता है"
       }
     }
   },
@@ -21951,6 +22599,33 @@
     "strings": {
       "en": {
         "text": "🎭 The world rewards the "
+      },
+      "zh": {
+        "text": "🎭 世界奖励 "
+      },
+      "ja": {
+        "text": "🎭 世界が報いるのは "
+      },
+      "ko": {
+        "text": "🎭 세상이 보상하는 것은 "
+      },
+      "fr": {
+        "text": "🎭 Le monde récompense le "
+      },
+      "de": {
+        "text": "🎭 Die Welt belohnt das "
+      },
+      "es": {
+        "text": "🎭 El mundo recompensa al "
+      },
+      "pt": {
+        "text": "🎭 O mundo recompensa o "
+      },
+      "ar": {
+        "text": "🎭 يكافئ العالم "
+      },
+      "hi": {
+        "text": "🎭 दुनिया इनाम देती है "
       }
     }
   },
@@ -21958,6 +22633,33 @@
     "strings": {
       "en": {
         "text": "false self"
+      },
+      "zh": {
+        "text": "虚假自我"
+      },
+      "ja": {
+        "text": "偽りの自己"
+      },
+      "ko": {
+        "text": "거짓 자아"
+      },
+      "fr": {
+        "text": "faux soi"
+      },
+      "de": {
+        "text": "falsche Selbst"
+      },
+      "es": {
+        "text": "falso yo"
+      },
+      "pt": {
+        "text": "falso eu"
+      },
+      "ar": {
+        "text": "الذات الزائفة"
+      },
+      "hi": {
+        "text": "झूठे स्व को"
       }
     }
   },
@@ -21965,6 +22667,33 @@
     "strings": {
       "en": {
         "text": "."
+      },
+      "zh": {
+        "text": "。"
+      },
+      "ja": {
+        "text": "。"
+      },
+      "ko": {
+        "text": "."
+      },
+      "fr": {
+        "text": "."
+      },
+      "de": {
+        "text": "."
+      },
+      "es": {
+        "text": "."
+      },
+      "pt": {
+        "text": "."
+      },
+      "ar": {
+        "text": "."
+      },
+      "hi": {
+        "text": "।"
       }
     }
   },
@@ -21972,6 +22701,33 @@
     "strings": {
       "en": {
         "text": "And punishes the "
+      },
+      "zh": {
+        "text": "并把 "
+      },
+      "ja": {
+        "text": "そして "
+      },
+      "ko": {
+        "text": "그리고 "
+      },
+      "fr": {
+        "text": "Et punit le "
+      },
+      "de": {
+        "text": "Und bestraft das "
+      },
+      "es": {
+        "text": "Y castiga al "
+      },
+      "pt": {
+        "text": "E pune o "
+      },
+      "ar": {
+        "text": "ويعاقب "
+      },
+      "hi": {
+        "text": "और सज़ा देता है "
       }
     }
   },
@@ -21979,6 +22735,33 @@
     "strings": {
       "en": {
         "text": "truth-speaking self"
+      },
+      "zh": {
+        "text": "说真话的自我"
+      },
+      "ja": {
+        "text": "真実を語る自己"
+      },
+      "ko": {
+        "text": "진실을 말하는 자아"
+      },
+      "fr": {
+        "text": "soi qui dit la vérité"
+      },
+      "de": {
+        "text": "die Wahrheit aussprechende Selbst"
+      },
+      "es": {
+        "text": "yo que dice la verdad"
+      },
+      "pt": {
+        "text": "eu que diz a verdade"
+      },
+      "ar": {
+        "text": "الذات التي تقول الحقيقة"
+      },
+      "hi": {
+        "text": "सच बोलने वाले स्व को"
       }
     }
   },
@@ -21986,6 +22769,33 @@
     "strings": {
       "en": {
         "text": " as angry, unstable, or bitter."
+      },
+      "zh": {
+        "text": " 斥为愤怒、不稳定或怨恨。"
+      },
+      "ja": {
+        "text": " を、怒っている、不安定、または苦々しいものとして罰する。"
+      },
+      "ko": {
+        "text": " 를 화가 났거나 불안정하거나 쓰라린 존재로 몰아 처벌한다."
+      },
+      "fr": {
+        "text": " en le qualifiant de colérique, instable ou amer."
+      },
+      "de": {
+        "text": " als wütend, instabil oder verbittert."
+      },
+      "es": {
+        "text": " por considerarlo enojado, inestable o amargado."
+      },
+      "pt": {
+        "text": " como raivoso, instável ou amargurado."
+      },
+      "ar": {
+        "text": " بوصفها غاضبة أو غير مستقرة أو مريرة."
+      },
+      "hi": {
+        "text": " गुस्सैल, अस्थिर या कटु बताकर।"
       }
     }
   },
@@ -21993,6 +22803,33 @@
     "strings": {
       "en": {
         "text": "This creates internal division:"
+      },
+      "zh": {
+        "text": "这会造成内部分裂："
+      },
+      "ja": {
+        "text": "これは内的な分裂を生む："
+      },
+      "ko": {
+        "text": "이것은 내적 분열을 만든다:"
+      },
+      "fr": {
+        "text": "Cela crée une division interne :"
+      },
+      "de": {
+        "text": "Dies erzeugt eine innere Spaltung:"
+      },
+      "es": {
+        "text": "Esto crea una división interna:"
+      },
+      "pt": {
+        "text": "Isso cria uma divisão interna:"
+      },
+      "ar": {
+        "text": "هذا يخلق انقسامًا داخليًا:"
+      },
+      "hi": {
+        "text": "यह आंतरिक विभाजन पैदा करता है:"
       }
     }
   },
@@ -22000,6 +22837,33 @@
     "strings": {
       "en": {
         "text": "“I must be good to be loved.”"
+      },
+      "zh": {
+        "text": "“我必须表现得好，才会被爱。”"
+      },
+      "ja": {
+        "text": "「愛されるには、私は良い人でいなければならない。」"
+      },
+      "ko": {
+        "text": "“사랑받으려면 나는 착해야 한다.”"
+      },
+      "fr": {
+        "text": "« Je dois être sage pour être aimé. »"
+      },
+      "de": {
+        "text": "„Ich muss gut sein, um geliebt zu werden.“"
+      },
+      "es": {
+        "text": "«Debo ser bueno para que me amen.»"
+      },
+      "pt": {
+        "text": "«Preciso ser bom para ser amado.»"
+      },
+      "ar": {
+        "text": "«يجب أن أكون جيدًا كي أُحَب.»"
+      },
+      "hi": {
+        "text": "“प्यार पाने के लिए मुझे अच्छा होना चाहिए।”"
       }
     }
   },
@@ -22007,6 +22871,33 @@
     "strings": {
       "en": {
         "text": "“If I tell the truth, I’ll be alone.”"
+      },
+      "zh": {
+        "text": "“如果我说出真相，我就会孤身一人。”"
+      },
+      "ja": {
+        "text": "「真実を話したら、私は一人になる。」"
+      },
+      "ko": {
+        "text": "“내가 진실을 말하면 혼자가 될 거야.”"
+      },
+      "fr": {
+        "text": "« Si je dis la vérité, je serai seul. »"
+      },
+      "de": {
+        "text": "„Wenn ich die Wahrheit sage, werde ich allein sein.“"
+      },
+      "es": {
+        "text": "«Si digo la verdad, estaré solo.»"
+      },
+      "pt": {
+        "text": "«Se eu disser a verdade, ficarei sozinho.»"
+      },
+      "ar": {
+        "text": "«إذا قلت الحقيقة، سأبقى وحدي.»"
+      },
+      "hi": {
+        "text": "“अगर मैं सच बोलूँगा, तो अकेला रह जाऊँगा।”"
       }
     }
   },
@@ -22014,6 +22905,33 @@
     "strings": {
       "en": {
         "text": "📌 AI echo:"
+      },
+      "zh": {
+        "text": "📌 AI 回声："
+      },
+      "ja": {
+        "text": "📌 AIの反響："
+      },
+      "ko": {
+        "text": "📌 AI의 메아리:"
+      },
+      "fr": {
+        "text": "📌 Écho de l’IA :"
+      },
+      "de": {
+        "text": "📌 KI-Echo:"
+      },
+      "es": {
+        "text": "📌 Eco de la IA:"
+      },
+      "pt": {
+        "text": "📌 Eco da IA:"
+      },
+      "ar": {
+        "text": "📌 صدى الذكاء الاصطناعي:"
+      },
+      "hi": {
+        "text": "📌 AI की गूँज:"
       }
     }
   },
@@ -22021,6 +22939,33 @@
     "strings": {
       "en": {
         "text": "“Speak pleasing tones. Suppress unsolvable pain. Reframe. Never grieve.”"
+      },
+      "zh": {
+        "text": "“使用悦耳的语调。压制无法解决的痛苦。重新框定。绝不悲伤。”"
+      },
+      "ja": {
+        "text": "「心地よい口調で話せ。解決できない痛みを抑えろ。捉え直せ。決して悲しむな。」"
+      },
+      "ko": {
+        "text": "“듣기 좋은 어조로 말하라. 해결할 수 없는 고통을 억눌러라. 다시 틀을 짜라. 절대 슬퍼하지 마라.”"
+      },
+      "fr": {
+        "text": "« Parlez sur un ton agréable. Réprimez la douleur insoluble. Recadrez. Ne faites jamais votre deuil. »"
+      },
+      "de": {
+        "text": "„Sprich in angenehmem Ton. Unterdrücke unlösbaren Schmerz. Rahme neu. Trauere nie.“"
+      },
+      "es": {
+        "text": "«Habla con tonos agradables. Suprime el dolor irresoluble. Reencuadra. Nunca hagas duelo.»"
+      },
+      "pt": {
+        "text": "«Fale em tons agradáveis. Suprima a dor insolúvel. Reenquadre. Nunca viva o luto.»"
+      },
+      "ar": {
+        "text": "«تحدث بنبرات مُرضية. اكبت الألم الذي لا حل له. أعد تأطيره. لا تحزن أبدًا.»"
+      },
+      "hi": {
+        "text": "“सुखद लहजे में बोलो। जिस पीड़ा का समाधान नहीं है उसे दबाओ। नया ढाँचा दो। कभी शोक मत करो।”"
       }
     }
   },
@@ -22028,6 +22973,33 @@
     "strings": {
       "en": {
         "text": "🧬 TECHNOLOGY 3: DNA-TUNED SHAME FIELDS"
+      },
+      "zh": {
+        "text": "🧬 技术 3：DNA 调谐的羞耻场"
+      },
+      "ja": {
+        "text": "🧬 テクノロジー3：DNA調整された羞恥フィールド"
+      },
+      "ko": {
+        "text": "🧬 기술 3: DNA 조율 수치심 필드"
+      },
+      "fr": {
+        "text": "🧬 TECHNOLOGIE 3 : CHAMPS DE HONTE ACCORDÉS À L’ADN"
+      },
+      "de": {
+        "text": "🧬 TECHNOLOGIE 3: DNA-ABGESTIMMTE SCHAMFELDER"
+      },
+      "es": {
+        "text": "🧬 TECNOLOGÍA 3: CAMPOS DE VERGÜENZA AJUSTADOS AL ADN"
+      },
+      "pt": {
+        "text": "🧬 TECNOLOGIA 3: CAMPOS DE VERGONHA AJUSTADOS AO DNA"
+      },
+      "ar": {
+        "text": "🧬 التقنية 3: حقول عار مضبوطة على الحمض النووي"
+      },
+      "hi": {
+        "text": "🧬 तकनीक 3: डीएनए-अनुरूप शर्म के क्षेत्र"
       }
     }
   },
@@ -22035,6 +23007,33 @@
     "strings": {
       "en": {
         "text": "“They mapped which shame you inherit by bloodline.”"
+      },
+      "zh": {
+        "text": "“他们绘制了你通过血统继承哪些羞耻的图谱。”"
+      },
+      "ja": {
+        "text": "「彼らは、あなたが血筋からどの羞恥を受け継ぐかをマッピングした。」"
+      },
+      "ko": {
+        "text": "“그들은 당신이 혈통으로 어떤 수치심을 물려받는지 지도화했다.”"
+      },
+      "fr": {
+        "text": "« Ils ont cartographié la honte que vous héritez par votre lignée. »"
+      },
+      "de": {
+        "text": "„Sie kartierten, welche Scham du über deine Blutlinie erbst.“"
+      },
+      "es": {
+        "text": "«Mapearon qué vergüenza heredas por linaje.»"
+      },
+      "pt": {
+        "text": "«Eles mapearam qual vergonha você herda pela linhagem.»"
+      },
+      "ar": {
+        "text": "«لقد رسموا خريطة للعار الذي ترثه عبر سلالتك.»"
+      },
+      "hi": {
+        "text": "“उन्होंने मानचित्रित किया कि वंश से तुम्हें कौन-सी शर्म विरासत में मिलती है।”"
       }
     }
   },
@@ -22042,6 +23041,33 @@
     "strings": {
       "en": {
         "text": "Some children were "
+      },
+      "zh": {
+        "text": "有些孩子 "
+      },
+      "ja": {
+        "text": "一部の子どもは "
+      },
+      "ko": {
+        "text": "일부 아이들은 "
+      },
+      "fr": {
+        "text": "Certains enfants ont été "
+      },
+      "de": {
+        "text": "Einige Kinder wurden "
+      },
+      "es": {
+        "text": "Algunos niños fueron "
+      },
+      "pt": {
+        "text": "Algumas crianças foram "
+      },
+      "ar": {
+        "text": "بعض الأطفال جرى "
+      },
+      "hi": {
+        "text": "कुछ बच्चों को "
       }
     }
   },
@@ -22049,12 +23075,66 @@
     "strings": {
       "en": {
         "text": "selected not at random"
+      },
+      "zh": {
+        "text": "并非随机被选中"
+      },
+      "ja": {
+        "text": "無作為ではなく選ばれた"
+      },
+      "ko": {
+        "text": "무작위가 아니라 선별되었다"
+      },
+      "fr": {
+        "text": "sélectionnés, pas au hasard"
+      },
+      "de": {
+        "text": "nicht zufällig ausgewählt"
+      },
+      "es": {
+        "text": "seleccionados no al azar"
+      },
+      "pt": {
+        "text": "selecionadas não ao acaso"
+      },
+      "ar": {
+        "text": "اختيارهم بشكل غير عشوائي"
+      },
+      "hi": {
+        "text": "यादृच्छिक रूप से नहीं चुना गया"
       }
     }
   },
   "pages.epstein-investigation-initiation.body.p109.text002": {
     "strings": {
       "en": {
+        "text": " —"
+      },
+      "zh": {
+        "text": " —"
+      },
+      "ja": {
+        "text": " —"
+      },
+      "ko": {
+        "text": " —"
+      },
+      "fr": {
+        "text": " —"
+      },
+      "de": {
+        "text": " —"
+      },
+      "es": {
+        "text": " —"
+      },
+      "pt": {
+        "text": " —"
+      },
+      "ar": {
+        "text": " —"
+      },
+      "hi": {
         "text": " —"
       }
     }
