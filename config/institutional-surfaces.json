@@ -102,6 +102,65 @@
       "origin": {
         "sourcePr": 135
       }
+    },
+    "vextreme-covenant": {
+      "state": "reserved",
+      "kind": "institutional",
+      "purpose": "living-charter",
+      "discovery": {
+        "rootLabelKey": "institution.covenant.nav.name"
+      },
+      "archive": {
+        "indexed": false,
+        "arcMembership": false
+      },
+      "runtime": {
+        "mode": "standalone",
+        "godScript": false,
+        "shell": false,
+        "localizationLoader": "widgets/vex-institutional.js",
+        "localizationControl": "data-vex-lang-select",
+        "supportRoutes": null
+      },
+      "strings": {
+        "category": "system",
+        "scope": "institution",
+        "requiredLocales": [
+          "en"
+        ],
+        "plannedLocales": [
+          "zh",
+          "ja",
+          "ko",
+          "fr",
+          "de",
+          "es",
+          "pt",
+          "ar",
+          "hi"
+        ]
+      },
+      "theme": {
+        "family": "foundation",
+        "variants": [
+          "foundation",
+          "foundation-light"
+        ]
+      },
+      "evidence": {
+        "viewports": [
+          320,
+          768,
+          1440
+        ],
+        "themes": [
+          "foundation",
+          "foundation-light"
+        ]
+      },
+      "origin": {
+        "sourcePr": 128
+      }
     }
   }
 }
