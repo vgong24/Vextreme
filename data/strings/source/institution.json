@@ -4913,12 +4913,5 @@
         "text": "Design Foundation residuals are promoted only when current source lacks the same capability"
       }
     }
-  },
-  "institution.covenant.document.t001": {
-    "strings": {
-      "en": {
-        "text": " /* Minimal, purposeful JS. Everything on this page works without it. */ (function () { 'use strict'; document.body.classList.add('js'); /* Copy-link-to-article: progressive enhancement on every anchored heading */ var heads = document.querySelectorAll('section[id] h2, article[id] h3'); Array.prototype.forEach.call(heads, function (h) { var host = h.closest('section[id], article[id]'); if (!host) return; var btn = document.createElement('button'); btn.className = 'copy-link'; btn.type = 'button'; btn.textContent = '§'; btn.setAttribute('aria-label', 'Copy link to this section'); btn.addEventListener('click', function () { var url = location.origin + location.pathname + '#' + host.id; function done() { btn.textContent = 'copied'; btn.classList.add('copied'); setTimeout(function () { btn.textContent = '§'; btn.classList.remove('copied'); }, 1600); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(url).then(done, function () { location.hash = host.id; done(); }); } else { location.hash = host.id; done(); } }); h.appendChild(btn); }); /* Print: open every article thread so the charter version is complete, then restore each thread's prior state afterward */ var openedForPrint = []; window.addEventListener('beforeprint', function () { openedForPrint = []; Array.prototype.forEach.call(document.querySelectorAll('details.thread:not([open])'), function (d) { d.setAttribute('open', ''); openedForPrint.push(d); }); }); window.addEventListener('afterprint', function () { openedForPrint.forEach(function (d) { d.removeAttribute('open'); }); openedForPrint = []; }); })(); "
-      }
-    }
   }
 }
