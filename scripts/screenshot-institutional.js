@@ -720,7 +720,10 @@ async function renderCell(browser, baseUrl, surface, locale, theme, viewport, ve
     if (runtimeErrors.length) throw new Error(`runtime error(s): ${runtimeErrors.join(' | ')}`);
 
     const documentHeight = await page.evaluate(() => document.documentElement.scrollHeight);
-    if (documentHeight > 25000) throw new Error(`full-page evidence height ${documentHeight}px exceeds the renderer bound`);
+    // Long-form institutional documents may legitimately exceed the original 25k
+    // guard while remaining bounded and browser-safe. Keep a finite ceiling just
+    // below the common 32K image-dimension edge.
+    if (documentHeight > 32000) throw new Error(`full-page evidence height ${documentHeight}px exceeds the renderer bound`);
     await page.setViewportSize({ width: viewport, height: documentHeight });
     await page.evaluate(() => new Promise(resolve => {
       window.scrollTo(0, 0);
