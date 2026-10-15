@@ -87,7 +87,31 @@ function parseArgs(argv) {
 }
 
 const OPTIONS = parseArgs(process.argv.slice(2));
+const LOCALE_AUTONYMS = Object.freeze({ en: 'English', ja: '日本語', zh: '中文' });
 let SOURCE_COMMIT = null;
+
+function requiredLocales(surface) {
+  return Array.isArray(surface?.strings?.requiredLocales) ? surface.strings.requiredLocales : [];
+}
+
+function needsLocaleRuntime(surface) {
+  return requiredLocales(surface).some(locale => locale !== 'en');
+}
+
+function selectorOptionsForSurface(surface) {
+  if (!needsLocaleRuntime(surface)) return [];
+  return requiredLocales(surface).map(locale => {
+    const autonym = LOCALE_AUTONYMS[locale];
+    if (!autonym) throw new Error(`no institutional autonym is declared for ${locale}`);
+    return [locale, autonym];
+  });
+}
+
+function primaryHeadingBindingKey(surface) {
+  const html = fs.readFileSync(path.join(ROOT, 'pages', `${surface.slug}.html`), 'utf8');
+  const h1 = html.match(/<h1\b[^>]*>[\s\S]*?<\/h1>/i)?.[0] || '';
+  return h1.match(/\bdata-i18n=["']([^"']+)["']/i)?.[1] || null;
+}
 
 function sourceCommit() {
   if (SOURCE_COMMIT) return SOURCE_COMMIT;
@@ -332,12 +356,17 @@ async function verifyContract(page, surface, locale, theme, viewport, bundle) {
   if (result.h1Count !== 1) problems.push(`h1 count=${result.h1Count}`);
   if (result.hold) problems.push('pre-paint locale hold remained set');
   if (result.bindingIssues.length) problems.push(`mixed or missing localized bindings: ${result.bindingIssues.join(', ')}`);
-  if (result.selectorCount !== 1 || result.selectorHidden) problems.push(`native selector count/hidden=${result.selectorCount}/${result.selectorHidden}`);
-  if (result.selectorValue !== locale) problems.push(`selector=${result.selectorValue || '(missing)'}`);
-  if (JSON.stringify(result.selectorOptions) !== JSON.stringify([['en', 'English'], ['ja', '日本語'], ['zh', '中文']])) {
-    problems.push(`selector autonyms=${JSON.stringify(result.selectorOptions)}`);
+  const expectedSelectorOptions = selectorOptionsForSurface(surface);
+  if (expectedSelectorOptions.length === 0) {
+    if (result.selectorCount !== 0) problems.push(`single-locale surface exposed selector count=${result.selectorCount}`);
+  } else {
+    if (result.selectorCount !== 1 || result.selectorHidden) problems.push(`native selector count/hidden=${result.selectorCount}/${result.selectorHidden}`);
+    if (result.selectorValue !== locale) problems.push(`selector=${result.selectorValue || '(missing)'}`);
+    if (JSON.stringify(result.selectorOptions) !== JSON.stringify(expectedSelectorOptions)) {
+      problems.push(`selector autonyms=${JSON.stringify(result.selectorOptions)}`);
+    }
+    if (result.selectorLabelCount !== 1) problems.push(`selector label count=${result.selectorLabelCount}`);
   }
-  if (result.selectorLabelCount !== 1) problems.push(`selector label count=${result.selectorLabelCount}`);
   if (locale === 'en' ? result.urlLocale !== null : result.urlLocale !== locale) {
     problems.push(`URL lang=${result.urlLocale || '(absent)'}`);
   }
@@ -461,15 +490,21 @@ async function verifyStaticEnglish(browser, baseUrl, surfaces) {
             if (actual !== expected) issues.push(`${keyAttribute}=${key}`);
           }
         }
-        const select = document.querySelector('[data-vex-lang-select]');
+        const selects = Array.from(document.querySelectorAll('[data-vex-lang-select]'));
+        const select = selects[0] || null;
         return {
           lang: document.documentElement.lang,
           hold: document.documentElement.hasAttribute('data-vex-locale-hold'),
+          selectorCount: selects.length,
           selectorHidden: select ? select.hidden : null,
           issues,
         };
       }, bundle);
-      if (result.lang !== 'en' || result.hold || result.selectorHidden !== true || result.issues.length) {
+      const runtimeNeeded = needsLocaleRuntime(surface);
+      const selectorValid = runtimeNeeded
+        ? result.selectorCount === 1 && result.selectorHidden === true
+        : result.selectorCount === 0;
+      if (result.lang !== 'en' || result.hold || !selectorValid || result.issues.length) {
         throw new Error(`${surface.slug} no-JavaScript English fallback failed: ${JSON.stringify(result)}`);
       }
     } finally {
@@ -479,7 +514,16 @@ async function verifyStaticEnglish(browser, baseUrl, surfaces) {
 }
 
 async function verifyLocaleRuntimeAcceptance(browser, baseUrl, surface) {
-  const bundles = Object.fromEntries(['en', 'ja', 'zh'].map(locale => [locale, readSurfaceBundle(surface, locale)]));
+  const locales = requiredLocales(surface);
+  if (JSON.stringify(locales) !== JSON.stringify(['en', 'ja', 'zh'])) {
+    throw new Error(`${surface.slug} locale runtime acceptance currently requires exact EN/JA/ZH activation, observed ${JSON.stringify(locales)}`);
+  }
+  const bundles = Object.fromEntries(locales.map(locale => [locale, readSurfaceBundle(surface, locale)]));
+  const headingKey = primaryHeadingBindingKey(surface);
+  if (!headingKey || typeof bundles.en?.[headingKey]?.text !== 'string' || typeof bundles.ja?.[headingKey]?.text !== 'string') {
+    throw new Error(`${surface.slug} must expose one localized h1 binding for locale runtime acceptance`);
+  }
+  const expectedJaHeading = bundles.ja[headingKey].text;
   let mode = 'success';
   const context = await browser.newContext({ viewport: { width: 768, height: 900 } });
   await context.addInitScript(() => {
@@ -538,7 +582,7 @@ async function verifyLocaleRuntimeAcceptance(browser, baseUrl, surface) {
     await page.waitForTimeout(80);
     const firstFrames = await page.evaluate(() => window.__vexFirstFrames || []);
     const wrongVisibleFrame = firstFrames.find(frame => frame.visible && (
-      frame.lang !== 'ja' || frame.heading !== '隠れた関係性を、知覚できるものへ。'
+      frame.lang !== 'ja' || frame.heading !== expectedJaHeading
     ));
     if (wrongVisibleFrame) throw new Error(`wrong-locale first paint: ${JSON.stringify(wrongVisibleFrame)}`);
     let state = await browserLocaleState(page);
@@ -623,12 +667,12 @@ async function verifyLocaleRuntimeAcceptance(browser, baseUrl, surface) {
     await timeoutPage.goto(`${baseUrl}/pages/${surface.slug}.html`, { waitUntil: 'domcontentloaded' });
     await timeoutPage.waitForFunction(() => !document.documentElement.hasAttribute('data-vex-locale-hold'), null, { timeout: 1999 });
     const releasedAt = await timeoutPage.evaluate(() => performance.now());
-    const fallback = await timeoutPage.evaluate(bundle => ({
+    const fallback = await timeoutPage.evaluate(({ bundle, headingKey }) => ({
       lang: document.documentElement.lang,
       heading: document.querySelector('h1').textContent,
-      expected: bundle['institution.home.hero.heading'].text,
+      expected: bundle[headingKey].text,
       stored: localStorage.getItem('vex-lang'),
-    }), bundles.en);
+    }), { bundle: bundles.en, headingKey });
     if (releasedAt >= 2000 || fallback.lang !== 'en' || fallback.heading !== fallback.expected || fallback.stored !== 'ja') {
       throw new Error(`pre-paint timeout fallback failed at ${releasedAt}ms: ${JSON.stringify(fallback)}`);
     }
@@ -676,7 +720,10 @@ async function renderCell(browser, baseUrl, surface, locale, theme, viewport, ve
     if (runtimeErrors.length) throw new Error(`runtime error(s): ${runtimeErrors.join(' | ')}`);
 
     const documentHeight = await page.evaluate(() => document.documentElement.scrollHeight);
-    if (documentHeight > 25000) throw new Error(`full-page evidence height ${documentHeight}px exceeds the renderer bound`);
+    // Long-form institutional documents may legitimately exceed the original 25k
+    // guard while remaining bounded and browser-safe. Keep a finite ceiling just
+    // below the common 32K image-dimension edge.
+    if (documentHeight > 32000) throw new Error(`full-page evidence height ${documentHeight}px exceeds the renderer bound`);
     await page.setViewportSize({ width: viewport, height: documentHeight });
     await page.evaluate(() => new Promise(resolve => {
       window.scrollTo(0, 0);
@@ -721,9 +768,15 @@ async function main() {
     const baseUrl = `http://127.0.0.1:${port}`;
     process.stdout.write('browser acceptance\n');
     await verifyStaticEnglish(browser, baseUrl, surfaces);
-    const homeSurface = surfaces.find(surface => surface.slug === 'vextreme-home') || surfaces[0];
-    await verifyLocaleRuntimeAcceptance(browser, baseUrl, homeSurface);
-    process.stdout.write('  static English, precedence, transactional failures, latest intent, and pre-paint timeout green\n');
+    const runtimeSurface = surfaces.find(surface => surface.slug === 'vextreme-home' && needsLocaleRuntime(surface))
+      || surfaces.find(needsLocaleRuntime)
+      || null;
+    if (runtimeSurface) {
+      await verifyLocaleRuntimeAcceptance(browser, baseUrl, runtimeSurface);
+      process.stdout.write('  static English, precedence, transactional failures, latest intent, and pre-paint timeout green\n');
+    } else {
+      process.stdout.write('  static English and single-locale evidence contract green; multi-locale runtime probe not applicable\n');
+    }
     let toggleVerified = false;
     for (const surface of surfaces) {
       process.stdout.write(`${surface.slug}\n`);
@@ -742,9 +795,17 @@ async function main() {
   }
 }
 
-main().catch(error => {
-  console.error(`[screenshot-institutional] ${error.stack || error.message}`);
-  process.exitCode = 1;
-});
+if (require.main === module) {
+  main().catch(error => {
+    console.error(`[screenshot-institutional] ${error.stack || error.message}`);
+    process.exitCode = 1;
+  });
+}
+
+module.exports = {
+  needsLocaleRuntime,
+  selectorOptionsForSurface,
+  primaryHeadingBindingKey,
+};
 
 // [VXG RealForever]

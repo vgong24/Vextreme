@@ -34,7 +34,9 @@ const {
   diffLocales,
 } = require('../lib/compute-fab-version');
 const {
+  GIT_MAX_BUFFER_BYTES,
   VERSION_HISTORY_GREP,
+  git,
   findBaselineCommit,
   targetVersionFromBaseline,
 } = require('../lib/bump-fab-version');
@@ -218,6 +220,36 @@ test('FAB-VERSION: baseline discovery uses an Apple-Git-safe POSIX whitespace ex
   assert.equal(VERSION_HISTORY_GREP, "var VERSION[[:space:]]*=[[:space:]]*'[0-9]");
   assert.notEqual(addCommit, bumpCommit);
   assert.equal(findBaselineCommit(appleGit), bumpCommit);
+});
+
+
+test('FAB-VERSION: git reader preserves committed source blobs above Node default sync output buffer', t => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'vxg-fab-large-blob-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  fs.mkdirSync(path.join(root, 'data', 'strings', 'source'), { recursive: true });
+
+  function runGit(args) {
+    return execFileSync('git', args, {
+      cwd: root,
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'pipe'],
+    }).trim();
+  }
+
+  runGit(['init']);
+  runGit(['config', 'user.name', 'Vextreme Test']);
+  runGit(['config', 'user.email', 'vextreme-test@example.invalid']);
+
+  const payload = { 'large.source.key': { text: 'x'.repeat(2 * 1024 * 1024) } };
+  const rel = 'data/strings/source/large-source.json';
+  fs.writeFileSync(path.join(root, rel), JSON.stringify(payload) + '\n');
+  runGit(['add', rel]);
+  runGit(['commit', '-m', 'add large source fixture']);
+
+  assert.ok(GIT_MAX_BUFFER_BYTES >= 8 * 1024 * 1024);
+  const shown = git(['show', 'HEAD:' + rel], { cwd: root });
+  assert.ok(Buffer.byteLength(shown, 'utf8') > 1024 * 1024);
+  assert.equal(JSON.parse(shown)['large.source.key'].text.length, 2 * 1024 * 1024);
 });
 
 // [VXG RealForever]

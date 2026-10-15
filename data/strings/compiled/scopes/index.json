@@ -35,7 +35,7 @@
     "category": "system",
     "path": "system/institution",
     "translationPolicy": "English remains the static no-JavaScript fallback. JA/ZH values may become required and selectable only after separate exact-source TRANSLATION_CLEAR_JA and TRANSLATION_CLEAR_ZH receipts are bound to this complete source file; every locale must cover every English-bearing institutional key, including Victor's attributed first-person support testimony.",
-    "en": 151,
+    "en": 571,
     "ja": 151,
     "zh": 151
   },
@@ -177,7 +177,16 @@
   "pages.final-judgement-missed-mercy": {
     "category": "production",
     "path": "production/pages/final-judgement-missed-mercy",
-    "en": 1313
+    "en": 1313,
+    "zh": 1313,
+    "ja": 1313,
+    "ko": 1313,
+    "fr": 1313,
+    "de": 1313,
+    "es": 1313,
+    "pt": 1313,
+    "ar": 1313,
+    "hi": 1313
   },
   "pages.first-emergence-cover-up": {
     "category": "production",
