@@ -310,8 +310,8 @@ function supportRouteFixture(routeBlock, { candidateUrl = null } = {}) {
 
 test('INSTITUTIONAL-SURFACES: active surfaces and reserved identities stay distinct', () => {
   assert.deepEqual(validateRegistry(registry, ROOT), []);
-  assert.deepEqual(surfacesByState(registry, 'active').map(surface => surface.slug), ['vex-support', 'vextreme-home']);
-  assert.deepEqual(surfacesByState(registry, 'reserved').map(surface => surface.slug), ['vextreme-covenant']);
+  assert.deepEqual(surfacesByState(registry, 'active').map(surface => surface.slug), ['vex-support', 'vextreme-covenant', 'vextreme-home']);
+  assert.deepEqual(surfacesByState(registry, 'reserved').map(surface => surface.slug), []);
   assert.deepEqual(Object.keys(institutionalSurfaceExclusions()), ['vex-support', 'vextreme-covenant', 'vextreme-home']);
   assert.ok(AUTO_DISCOVERY_EXCLUSIONS['vex-support']);
   assert.ok(AUTO_DISCOVERY_EXCLUSIONS['vextreme-home']);
@@ -320,7 +320,7 @@ test('INSTITUTIONAL-SURFACES: active surfaces and reserved identities stay disti
   assert.ok(!getRecordPageSlugs().includes('vextreme-home'));
   assert.ok(!getRecordPageSlugs().includes('vextreme-covenant'));
   assert.ok(fs.existsSync(path.join(ROOT, 'pages', 'vex-support.html')));
-  assert.ok(!fs.existsSync(path.join(ROOT, 'pages', 'vextreme-covenant.html')));
+  assert.ok(fs.existsSync(path.join(ROOT, 'pages', 'vextreme-covenant.html')));
   const rootIndex = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
   assert.match(rootIndex, /window\.location\.replace\('https:\/\/vgong24\.github\.io\/Vextreme\/pages\/terrain-map\.html'\)/,
     'the public repository root must enter the accepted Terrain home without creating a redirect history stop');
