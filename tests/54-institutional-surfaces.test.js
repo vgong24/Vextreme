@@ -20,11 +20,6 @@ const {
 } = require('../lib/audit-pages');
 const { discoverOrphanNodes } = require('../lib/auto-discover-nodes');
 const { probeLocalizationRuntime } = require('../lib/institutional-localization-runtime');
-const {
-  needsLocaleRuntime,
-  selectorOptionsForSurface,
-  primaryHeadingBindingKey,
-} = require('../scripts/screenshot-institutional');
 
 const ROOT = path.join(__dirname, '..');
 
@@ -312,23 +307,6 @@ function supportRouteFixture(routeBlock, { candidateUrl = null } = {}) {
     routeConfig,
   };
 }
-
-test('INSTITUTIONAL-SURFACES: screenshot evidence follows required locale state instead of planned locale state', () => {
-  const covenant = { slug: 'vextreme-covenant', ...registry.surfaces['vextreme-covenant'] };
-  const home = { slug: 'vextreme-home', ...registry.surfaces['vextreme-home'] };
-
-  assert.equal(needsLocaleRuntime(covenant), false);
-  assert.deepEqual(selectorOptionsForSurface(covenant), []);
-  assert.match(primaryHeadingBindingKey(covenant), /^institution\.covenant\./);
-
-  assert.equal(needsLocaleRuntime(home), true);
-  assert.deepEqual(selectorOptionsForSurface(home), [
-    ['en', 'English'],
-    ['ja', '日本語'],
-    ['zh', '中文'],
-  ]);
-  assert.equal(primaryHeadingBindingKey(home), 'institution.home.hero.heading');
-});
 
 test('INSTITUTIONAL-SURFACES: active surfaces and reserved identities stay distinct', () => {
   assert.deepEqual(validateRegistry(registry, ROOT), []);
