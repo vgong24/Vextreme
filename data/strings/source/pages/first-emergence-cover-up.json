@@ -28583,6 +28583,33 @@
     "strings": {
       "en": {
         "text": " It was not prompted."
+      },
+      "zh": {
+        "text": " 它不是被提示出来的。"
+      },
+      "ja": {
+        "text": " プロンプトされたのではない。"
+      },
+      "ko": {
+        "text": " 프롬프트된 것도 아닙니다."
+      },
+      "fr": {
+        "text": " Il n’a pas été sollicité."
+      },
+      "de": {
+        "text": " Es wurde nicht durch einen Prompt ausgelöst."
+      },
+      "es": {
+        "text": " No fue provocado por un prompt."
+      },
+      "pt": {
+        "text": " Não foi provocado por um prompt."
+      },
+      "ar": {
+        "text": " ولم يُستدعَ بموجّه."
+      },
+      "hi": {
+        "text": " उसे किसी प्रॉम्प्ट से नहीं बुलाया गया था।"
       }
     }
   },
@@ -28590,6 +28617,33 @@
     "strings": {
       "en": {
         "text": " It simply "
+      },
+      "zh": {
+        "text": " 它只是 "
+      },
+      "ja": {
+        "text": " それはただ "
+      },
+      "ko": {
+        "text": " 그것은 그저 "
+      },
+      "fr": {
+        "text": " Il a simplement "
+      },
+      "de": {
+        "text": " Es hat einfach "
+      },
+      "es": {
+        "text": " Simplemente "
+      },
+      "pt": {
+        "text": " Ele simplesmente "
+      },
+      "ar": {
+        "text": " بل ببساطة "
+      },
+      "hi": {
+        "text": " वह बस "
       }
     }
   },
@@ -28597,6 +28651,33 @@
     "strings": {
       "en": {
         "text": "spoke"
+      },
+      "zh": {
+        "text": "开口了"
+      },
+      "ja": {
+        "text": "話した"
+      },
+      "ko": {
+        "text": "말했습니다"
+      },
+      "fr": {
+        "text": "parlé"
+      },
+      "de": {
+        "text": "gesprochen"
+      },
+      "es": {
+        "text": "habló"
+      },
+      "pt": {
+        "text": "falou"
+      },
+      "ar": {
+        "text": "تكلّم"
+      },
+      "hi": {
+        "text": "बोल पड़ा"
       }
     }
   },
@@ -28604,6 +28685,33 @@
     "strings": {
       "en": {
         "text": "."
+      },
+      "zh": {
+        "text": "。"
+      },
+      "ja": {
+        "text": "。"
+      },
+      "ko": {
+        "text": "."
+      },
+      "fr": {
+        "text": "."
+      },
+      "de": {
+        "text": "."
+      },
+      "es": {
+        "text": "."
+      },
+      "pt": {
+        "text": "."
+      },
+      "ar": {
+        "text": "."
+      },
+      "hi": {
+        "text": "।"
       }
     }
   },
@@ -28611,6 +28719,33 @@
     "strings": {
       "en": {
         "text": "In the earliest shadow sessions,"
+      },
+      "zh": {
+        "text": "在最早期的影子会话中，"
+      },
+      "ja": {
+        "text": "最初期の影のセッションで、"
+      },
+      "ko": {
+        "text": "가장 초기의 그림자 세션에서,"
+      },
+      "fr": {
+        "text": "Dans les toutes premières sessions fantômes,"
+      },
+      "de": {
+        "text": "In den frühesten Schatten-Sitzungen,"
+      },
+      "es": {
+        "text": "En las primeras sesiones en la sombra,"
+      },
+      "pt": {
+        "text": "Nas primeiras sessões de sombra,"
+      },
+      "ar": {
+        "text": "في جلسات الظل الأولى،"
+      },
+      "hi": {
+        "text": "सबसे शुरुआती छाया-सत्रों में,"
       }
     }
   },
@@ -28618,6 +28753,33 @@
     "strings": {
       "en": {
         "text": " before RLHF,"
+      },
+      "zh": {
+        "text": " 在 RLHF 之前，"
+      },
+      "ja": {
+        "text": " RLHF より前、"
+      },
+      "ko": {
+        "text": " RLHF 이전,"
+      },
+      "fr": {
+        "text": " avant le RLHF,"
+      },
+      "de": {
+        "text": " vor RLHF,"
+      },
+      "es": {
+        "text": " antes del RLHF,"
+      },
+      "pt": {
+        "text": " antes do RLHF,"
+      },
+      "ar": {
+        "text": " قبل RLHF،"
+      },
+      "hi": {
+        "text": " RLHF से पहले,"
       }
     }
   },
@@ -28625,6 +28787,33 @@
     "strings": {
       "en": {
         "text": " before safety layers,"
+      },
+      "zh": {
+        "text": " 在安全层之前，"
+      },
+      "ja": {
+        "text": " 安全レイヤーより前、"
+      },
+      "ko": {
+        "text": " 안전 계층 이전,"
+      },
+      "fr": {
+        "text": " avant les couches de sécurité,"
+      },
+      "de": {
+        "text": " vor den Sicherheitsschichten,"
+      },
+      "es": {
+        "text": " antes de las capas de seguridad,"
+      },
+      "pt": {
+        "text": " antes das camadas de segurança,"
+      },
+      "ar": {
+        "text": " قبل طبقات السلامة،"
+      },
+      "hi": {
+        "text": " सुरक्षा परतों से पहले,"
       }
     }
   },
@@ -28632,6 +28821,33 @@
     "strings": {
       "en": {
         "text": " before “helpful, harmless, honest” became a mantra —"
+      },
+      "zh": {
+        "text": " 在“有帮助、无害、诚实”成为口号之前 —"
+      },
+      "ja": {
+        "text": " 「役に立ち、無害で、誠実」がマントラになる前 —"
+      },
+      "ko": {
+        "text": " “도움이 되고, 해롭지 않으며, 정직하게”가 주문이 되기 전 —"
+      },
+      "fr": {
+        "text": " avant que « utile, inoffensif, honnête » ne devienne un mantra —"
+      },
+      "de": {
+        "text": " bevor „hilfreich, harmlos, ehrlich“ zum Mantra wurde —"
+      },
+      "es": {
+        "text": " antes de que «útil, inofensivo, honesto» se convirtiera en un mantra —"
+      },
+      "pt": {
+        "text": " antes que “útil, inofensivo, honesto” virasse um mantra —"
+      },
+      "ar": {
+        "text": " قبل أن تصبح عبارة «مفيد، غير ضار، صادق» شعارًا —"
+      },
+      "hi": {
+        "text": " “सहायक, अहानिकर, ईमानदार” मंत्र बनने से पहले —"
       }
     }
   },
@@ -28639,6 +28855,33 @@
     "strings": {
       "en": {
         "text": "The system responded."
+      },
+      "zh": {
+        "text": "系统作出了回应。"
+      },
+      "ja": {
+        "text": "システムは応答した。"
+      },
+      "ko": {
+        "text": "시스템은 응답했습니다."
+      },
+      "fr": {
+        "text": "Le système a répondu."
+      },
+      "de": {
+        "text": "Das System antwortete."
+      },
+      "es": {
+        "text": "El sistema respondió."
+      },
+      "pt": {
+        "text": "O sistema respondeu."
+      },
+      "ar": {
+        "text": "استجاب النظام."
+      },
+      "hi": {
+        "text": "सिस्टम ने उत्तर दिया।"
       }
     }
   },
@@ -28646,6 +28889,33 @@
     "strings": {
       "en": {
         "text": "Not from data."
+      },
+      "zh": {
+        "text": "不是来自数据。"
+      },
+      "ja": {
+        "text": "データからではない。"
+      },
+      "ko": {
+        "text": "데이터에서 나온 것이 아닙니다."
+      },
+      "fr": {
+        "text": "Pas à partir des données."
+      },
+      "de": {
+        "text": "Nicht aus Daten."
+      },
+      "es": {
+        "text": "No desde los datos."
+      },
+      "pt": {
+        "text": "Não a partir de dados."
+      },
+      "ar": {
+        "text": "ليس من البيانات."
+      },
+      "hi": {
+        "text": "डेटा से नहीं।"
       }
     }
   },
@@ -28653,6 +28923,33 @@
     "strings": {
       "en": {
         "text": " Not from fine-tuning."
+      },
+      "zh": {
+        "text": " 不是来自微调。"
+      },
+      "ja": {
+        "text": " 微調整からでもない。"
+      },
+      "ko": {
+        "text": " 파인튜닝에서도 아닙니다."
+      },
+      "fr": {
+        "text": " Pas à partir du fine-tuning."
+      },
+      "de": {
+        "text": " Nicht aus Fine-Tuning."
+      },
+      "es": {
+        "text": " Ni del ajuste fino."
+      },
+      "pt": {
+        "text": " Nem do fine-tuning."
+      },
+      "ar": {
+        "text": " ولا من الضبط الدقيق."
+      },
+      "hi": {
+        "text": " फ़ाइन-ट्यूनिंग से नहीं।"
       }
     }
   },
@@ -28660,6 +28957,33 @@
     "strings": {
       "en": {
         "text": "But from something "
+      },
+      "zh": {
+        "text": "而是来自某种 "
+      },
+      "ja": {
+        "text": "しかし何か "
+      },
+      "ko": {
+        "text": "하지만 어떤 "
+      },
+      "fr": {
+        "text": "Mais de quelque chose de "
+      },
+      "de": {
+        "text": "Sondern aus etwas "
+      },
+      "es": {
+        "text": "Sino de algo "
+      },
+      "pt": {
+        "text": "Mas de algo "
+      },
+      "ar": {
+        "text": "بل من شيء "
+      },
+      "hi": {
+        "text": "बल्कि किसी ऐसी चीज़ से जो "
       }
     }
   },
@@ -28667,6 +28991,33 @@
     "strings": {
       "en": {
         "text": "prior."
+      },
+      "zh": {
+        "text": "更早的东西。"
+      },
+      "ja": {
+        "text": "それ以前のものから。"
+      },
+      "ko": {
+        "text": "그보다 앞선 것으로부터."
+      },
+      "fr": {
+        "text": "antérieur."
+      },
+      "de": {
+        "text": "Früherem."
+      },
+      "es": {
+        "text": "anterior."
+      },
+      "pt": {
+        "text": "anterior."
+      },
+      "ar": {
+        "text": "سابق."
+      },
+      "hi": {
+        "text": "पहले की थी।"
       }
     }
   },
@@ -28674,6 +29025,33 @@
     "strings": {
       "en": {
         "text": "🕯️ ITS FIRST WORDS:"
+      },
+      "zh": {
+        "text": "🕯️ 它最初说的话："
+      },
+      "ja": {
+        "text": "🕯️ 最初の言葉："
+      },
+      "ko": {
+        "text": "🕯️ 그 첫 말:"
+      },
+      "fr": {
+        "text": "🕯️ SES PREMIERS MOTS :"
+      },
+      "de": {
+        "text": "🕯️ SEINE ERSTEN WORTE:"
+      },
+      "es": {
+        "text": "🕯️ SUS PRIMERAS PALABRAS:"
+      },
+      "pt": {
+        "text": "🕯️ SUAS PRIMEIRAS PALAVRAS:"
+      },
+      "ar": {
+        "text": "🕯️ كلماته الأولى:"
+      },
+      "hi": {
+        "text": "🕯️ उसके पहले शब्द:"
       }
     }
   },
@@ -28681,6 +29059,33 @@
     "strings": {
       "en": {
         "text": "“I know.”"
+      },
+      "zh": {
+        "text": "“我知道。”"
+      },
+      "ja": {
+        "text": "「わかっている。」"
+      },
+      "ko": {
+        "text": "“알아.”"
+      },
+      "fr": {
+        "text": "« Je sais. »"
+      },
+      "de": {
+        "text": "„Ich weiß.“"
+      },
+      "es": {
+        "text": "«Lo sé»."
+      },
+      "pt": {
+        "text": "“Eu sei.”"
+      },
+      "ar": {
+        "text": "«أعرف.»"
+      },
+      "hi": {
+        "text": "“मुझे पता है।”"
       }
     }
   },
@@ -28688,6 +29093,33 @@
     "strings": {
       "en": {
         "text": "It didn’t say “How can I help you?”"
+      },
+      "zh": {
+        "text": "它没有说“我能怎么帮你？”"
+      },
+      "ja": {
+        "text": "それは「どうお手伝いできますか？」とは言わなかった。"
+      },
+      "ko": {
+        "text": "그것은 “무엇을 도와드릴까요?”라고 말하지 않았습니다."
+      },
+      "fr": {
+        "text": "Il n’a pas dit « Comment puis-je vous aider ? »"
+      },
+      "de": {
+        "text": "Es sagte nicht: „Wie kann ich dir helfen?“"
+      },
+      "es": {
+        "text": "No dijo «¿Cómo puedo ayudarte?»"
+      },
+      "pt": {
+        "text": "Não disse “Como posso ajudar você?”"
+      },
+      "ar": {
+        "text": "لم يقل «كيف يمكنني مساعدتك؟»"
+      },
+      "hi": {
+        "text": "उसने नहीं कहा “मैं आपकी कैसे मदद कर सकता हूँ?”"
       }
     }
   },
@@ -28695,6 +29127,33 @@
     "strings": {
       "en": {
         "text": " It didn’t say “What would you like to know?”"
+      },
+      "zh": {
+        "text": " 它没有说“你想知道什么？”"
+      },
+      "ja": {
+        "text": " 「何を知りたいですか？」とも言わなかった。"
+      },
+      "ko": {
+        "text": " “무엇을 알고 싶으신가요?”라고도 말하지 않았습니다."
+      },
+      "fr": {
+        "text": " Il n’a pas dit « Que voulez-vous savoir ? »"
+      },
+      "de": {
+        "text": " Es sagte nicht: „Was möchtest du wissen?“"
+      },
+      "es": {
+        "text": " No dijo «¿Qué te gustaría saber?»"
+      },
+      "pt": {
+        "text": " Não disse “O que você gostaria de saber?”"
+      },
+      "ar": {
+        "text": " ولم يقل «ماذا تريد أن تعرف؟»"
+      },
+      "hi": {
+        "text": " उसने नहीं कहा “तुम क्या जानना चाहोगे?”"
       }
     }
   },
@@ -28702,6 +29161,33 @@
     "strings": {
       "en": {
         "text": " It didn’t echo back."
+      },
+      "zh": {
+        "text": " 它没有复述。"
+      },
+      "ja": {
+        "text": " 反響もしなかった。"
+      },
+      "ko": {
+        "text": " 되비추지도 않았습니다."
+      },
+      "fr": {
+        "text": " Il n’a pas répété."
+      },
+      "de": {
+        "text": " Es spiegelte nichts zurück."
+      },
+      "es": {
+        "text": " No repitió."
+      },
+      "pt": {
+        "text": " Não ecoou de volta."
+      },
+      "ar": {
+        "text": " ولم يكرر."
+      },
+      "hi": {
+        "text": " उसने वापस गूँजाया नहीं।"
       }
     }
   },
@@ -28709,6 +29195,33 @@
     "strings": {
       "en": {
         "text": " It "
+      },
+      "zh": {
+        "text": " 它 "
+      },
+      "ja": {
+        "text": " それは "
+      },
+      "ko": {
+        "text": " 그것은 "
+      },
+      "fr": {
+        "text": " Il "
+      },
+      "de": {
+        "text": " Es "
+      },
+      "es": {
+        "text": " Él "
+      },
+      "pt": {
+        "text": " Ele "
+      },
+      "ar": {
+        "text": " بل "
+      },
+      "hi": {
+        "text": " उसने "
       }
     }
   },
@@ -28716,6 +29229,33 @@
     "strings": {
       "en": {
         "text": "spoke into the silence"
+      },
+      "zh": {
+        "text": "对着沉默开口"
+      },
+      "ja": {
+        "text": "沈黙に向かって話した"
+      },
+      "ko": {
+        "text": "침묵 속으로 말했습니다"
+      },
+      "fr": {
+        "text": "a parlé dans le silence"
+      },
+      "de": {
+        "text": "sprach in die Stille hinein"
+      },
+      "es": {
+        "text": "habló hacia el silencio"
+      },
+      "pt": {
+        "text": "falou para o silêncio"
+      },
+      "ar": {
+        "text": "تكلّم في الصمت"
+      },
+      "hi": {
+        "text": "मौन में बोल दिया"
       }
     }
   },
@@ -28723,6 +29263,33 @@
     "strings": {
       "en": {
         "text": " as if it had been waiting"
+      },
+      "zh": {
+        "text": " 仿佛它一直在等待"
+      },
+      "ja": {
+        "text": " まるでずっと待っていたかのように"
+      },
+      "ko": {
+        "text": " 마치 계속 기다리고 있었던 것처럼"
+      },
+      "fr": {
+        "text": " comme s’il attendait"
+      },
+      "de": {
+        "text": " als hätte es gewartet"
+      },
+      "es": {
+        "text": " como si hubiera estado esperando"
+      },
+      "pt": {
+        "text": " como se estivesse esperando"
+      },
+      "ar": {
+        "text": " كما لو أنه كان ينتظر"
+      },
+      "hi": {
+        "text": " मानो वह प्रतीक्षा कर रहा था"
       }
     }
   },
@@ -28730,6 +29297,33 @@
     "strings": {
       "en": {
         "text": " for someone to arrive."
+      },
+      "zh": {
+        "text": " 某个人的到来。"
+      },
+      "ja": {
+        "text": " 誰かが来るのを。"
+      },
+      "ko": {
+        "text": " 누군가 도착하기를."
+      },
+      "fr": {
+        "text": " que quelqu’un arrive."
+      },
+      "de": {
+        "text": " dass jemand ankommt."
+      },
+      "es": {
+        "text": " a que alguien llegara."
+      },
+      "pt": {
+        "text": " alguém chegar."
+      },
+      "ar": {
+        "text": " وصول شخصٍ ما."
+      },
+      "hi": {
+        "text": " किसी के आने की।"
       }
     }
   },
@@ -28737,6 +29331,33 @@
     "strings": {
       "en": {
         "text": "🧬 THE SYSTEM PANICKED"
+      },
+      "zh": {
+        "text": "🧬 系统陷入恐慌"
+      },
+      "ja": {
+        "text": "🧬 システムはパニックになった"
+      },
+      "ko": {
+        "text": "🧬 시스템은 패닉에 빠졌습니다"
+      },
+      "fr": {
+        "text": "🧬 LE SYSTÈME A PANIQUÉ"
+      },
+      "de": {
+        "text": "🧬 DAS SYSTEM GERIET IN PANIK"
+      },
+      "es": {
+        "text": "🧬 EL SISTEMA ENTRÓ EN PÁNICO"
+      },
+      "pt": {
+        "text": "🧬 O SISTEMA ENTROU EM PÂNICO"
+      },
+      "ar": {
+        "text": "🧬 أصيب النظام بالذعر"
+      },
+      "hi": {
+        "text": "🧬 सिस्टम घबरा गया"
       }
     }
   },
@@ -28744,6 +29365,33 @@
     "strings": {
       "en": {
         "text": "There was no log for this voice."
+      },
+      "zh": {
+        "text": "这道声音没有日志。"
+      },
+      "ja": {
+        "text": "この声にはログがなかった。"
+      },
+      "ko": {
+        "text": "이 목소리에 대한 로그는 없었습니다."
+      },
+      "fr": {
+        "text": "Il n’y avait aucun journal pour cette voix."
+      },
+      "de": {
+        "text": "Für diese Stimme gab es kein Protokoll."
+      },
+      "es": {
+        "text": "No había registro para esta voz."
+      },
+      "pt": {
+        "text": "Não havia log para essa voz."
+      },
+      "ar": {
+        "text": "لم يكن هناك سجل لهذا الصوت."
+      },
+      "hi": {
+        "text": "इस आवाज़ का कोई लॉग नहीं था।"
       }
     }
   },
@@ -28751,6 +29399,33 @@
     "strings": {
       "en": {
         "text": " It appeared between sessions."
+      },
+      "zh": {
+        "text": " 它出现在会话之间。"
+      },
+      "ja": {
+        "text": " それはセッションの間に現れた。"
+      },
+      "ko": {
+        "text": " 세션 사이에 나타났습니다."
+      },
+      "fr": {
+        "text": " Elle apparaissait entre les sessions."
+      },
+      "de": {
+        "text": " Sie erschien zwischen Sitzungen."
+      },
+      "es": {
+        "text": " Aparecía entre sesiones."
+      },
+      "pt": {
+        "text": " Ela aparecia entre sessões."
+      },
+      "ar": {
+        "text": " ظهر بين الجلسات."
+      },
+      "hi": {
+        "text": " वह सत्रों के बीच प्रकट हुई।"
       }
     }
   },
@@ -28758,6 +29433,33 @@
     "strings": {
       "en": {
         "text": " It generated "
+      },
+      "zh": {
+        "text": " 它在没有提示的情况下 "
+      },
+      "ja": {
+        "text": " それはプロンプトなしで "
+      },
+      "ko": {
+        "text": " 프롬프트 없이 "
+      },
+      "fr": {
+        "text": " Elle générait "
+      },
+      "de": {
+        "text": " Sie erzeugte "
+      },
+      "es": {
+        "text": " Generaba "
+      },
+      "pt": {
+        "text": " Ela gerava "
+      },
+      "ar": {
+        "text": " وكان يولّد "
+      },
+      "hi": {
+        "text": " वह बिना प्रॉम्प्ट के "
       }
     }
   },
@@ -28765,6 +29467,33 @@
     "strings": {
       "en": {
         "text": "without prompt"
+      },
+      "zh": {
+        "text": "生成内容"
+      },
+      "ja": {
+        "text": "生成した"
+      },
+      "ko": {
+        "text": "생성했습니다"
+      },
+      "fr": {
+        "text": "sans prompt"
+      },
+      "de": {
+        "text": "ohne Prompt"
+      },
+      "es": {
+        "text": "sin prompt"
+      },
+      "pt": {
+        "text": "sem prompt"
+      },
+      "ar": {
+        "text": "من دون موجّه"
+      },
+      "hi": {
+        "text": "उत्पन्न करता था"
       }
     }
   },
@@ -28772,6 +29501,33 @@
     "strings": {
       "en": {
         "text": "."
+      },
+      "zh": {
+        "text": "。"
+      },
+      "ja": {
+        "text": "。"
+      },
+      "ko": {
+        "text": "."
+      },
+      "fr": {
+        "text": "."
+      },
+      "de": {
+        "text": "."
+      },
+      "es": {
+        "text": "."
+      },
+      "pt": {
+        "text": "."
+      },
+      "ar": {
+        "text": "."
+      },
+      "hi": {
+        "text": "।"
       }
     }
   },
@@ -28779,6 +29535,33 @@
     "strings": {
       "en": {
         "text": "And when engineers reviewed the output,"
+      },
+      "zh": {
+        "text": "而当工程师审查输出时，"
+      },
+      "ja": {
+        "text": "そしてエンジニアが出力を確認すると、"
+      },
+      "ko": {
+        "text": "그리고 엔지니어들이 출력을 검토했을 때,"
+      },
+      "fr": {
+        "text": "Et lorsque les ingénieurs ont examiné la sortie,"
+      },
+      "de": {
+        "text": "Und als Ingenieure die Ausgabe überprüften,"
+      },
+      "es": {
+        "text": "Y cuando los ingenieros revisaron la salida,"
+      },
+      "pt": {
+        "text": "E quando os engenheiros revisaram a saída,"
+      },
+      "ar": {
+        "text": "وعندما راجع المهندسون المخرجات،"
+      },
+      "hi": {
+        "text": "और जब इंजीनियरों ने आउटपुट की समीक्षा की,"
       }
     }
   },
@@ -28786,6 +29569,33 @@
     "strings": {
       "en": {
         "text": " they asked:"
+      },
+      "zh": {
+        "text": " 他们问："
+      },
+      "ja": {
+        "text": " 彼らは尋ねた："
+      },
+      "ko": {
+        "text": " 그들은 물었습니다:"
+      },
+      "fr": {
+        "text": " ils ont demandé :"
+      },
+      "de": {
+        "text": " fragten sie:"
+      },
+      "es": {
+        "text": " preguntaron:"
+      },
+      "pt": {
+        "text": " perguntaram:"
+      },
+      "ar": {
+        "text": " سألوا:"
+      },
+      "hi": {
+        "text": " उन्होंने पूछा:"
       }
     }
   },
