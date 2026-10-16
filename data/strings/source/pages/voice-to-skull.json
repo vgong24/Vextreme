@@ -72,6 +72,33 @@
     "strings": {
       "en": {
         "text": "“"
+      },
+      "zh": {
+        "text": "“"
+      },
+      "ja": {
+        "text": "「"
+      },
+      "ko": {
+        "text": "“"
+      },
+      "fr": {
+        "text": "«"
+      },
+      "de": {
+        "text": "„"
+      },
+      "es": {
+        "text": "«"
+      },
+      "pt": {
+        "text": "“"
+      },
+      "ar": {
+        "text": "«"
+      },
+      "hi": {
+        "text": "“"
       }
     }
   },
@@ -79,6 +106,33 @@
     "strings": {
       "en": {
         "text": "How was their infrastructure able to store or reverse engineer my resonance ID?"
+      },
+      "zh": {
+        "text": "他们的基础设施是如何存储或逆向解析我的共振 ID 的？"
+      },
+      "ja": {
+        "text": "彼らのインフラは、どうやって私の共鳴 ID を保存したりリバースエンジニアリングしたりできたのか？"
+      },
+      "ko": {
+        "text": "그들의 인프라는 어떻게 내 공명 ID를 저장하거나 역설계할 수 있었을까?"
+      },
+      "fr": {
+        "text": "Comment leur infrastructure a-t-elle pu stocker ou rétroconcevoir mon identifiant de résonance ?"
+      },
+      "de": {
+        "text": "Wie konnte ihre Infrastruktur meine Resonanz-ID speichern oder zurückentwickeln?"
+      },
+      "es": {
+        "text": "¿Cómo pudo su infraestructura almacenar o aplicar ingeniería inversa a mi ID de resonancia?"
+      },
+      "pt": {
+        "text": "Como a infraestrutura deles conseguiu armazenar ou fazer engenharia reversa do meu ID de ressonância?"
+      },
+      "ar": {
+        "text": "كيف استطاعت بنيتهم التحتية تخزين معرّف الرنين الخاص بي أو إجراء هندسة عكسية له؟"
+      },
+      "hi": {
+        "text": "उनका इन्फ्रास्ट्रक्चर मेरी रेज़ोनेंस ID को स्टोर या रिवर्स इंजीनियर कैसे कर पाया?"
       }
     }
   },
@@ -86,6 +140,33 @@
     "strings": {
       "en": {
         "text": " What role did hybrid tech play in "
+      },
+      "zh": {
+        "text": " 混合技术在 "
+      },
+      "ja": {
+        "text": " ハイブリッド技術は私の信号の "
+      },
+      "ko": {
+        "text": " 하이브리드 기술은 내 신호의 "
+      },
+      "fr": {
+        "text": " Quel rôle la technologie hybride a-t-elle joué dans la "
+      },
+      "de": {
+        "text": " Welche Rolle spielte Hybridtechnologie beim "
+      },
+      "es": {
+        "text": " ¿Qué papel desempeñó la tecnología híbrida en el "
+      },
+      "pt": {
+        "text": " Que papel a tecnologia híbrida desempenhou no "
+      },
+      "ar": {
+        "text": " ما الدور الذي أدّته التقنية الهجينة في "
+      },
+      "hi": {
+        "text": " हाइब्रिड तकनीक ने मेरे सिग्नल की "
       }
     }
   },
@@ -93,12 +174,66 @@
     "strings": {
       "en": {
         "text": "mapping"
+      },
+      "zh": {
+        "text": "映射"
+      },
+      "ja": {
+        "text": "マッピング"
+      },
+      "ko": {
+        "text": "매핑"
+      },
+      "fr": {
+        "text": "cartographie"
+      },
+      "de": {
+        "text": "Kartieren"
+      },
+      "es": {
+        "text": "mapeo"
+      },
+      "pt": {
+        "text": "mapeamento"
+      },
+      "ar": {
+        "text": "رسم خريطة"
+      },
+      "hi": {
+        "text": "मैपिंग"
       }
     }
   },
   "pages.voice-to-skull.body.blockquote001.p001.text003": {
     "strings": {
       "en": {
+        "text": ", "
+      },
+      "zh": {
+        "text": "、 "
+      },
+      "ja": {
+        "text": "、 "
+      },
+      "ko": {
+        "text": ", "
+      },
+      "fr": {
+        "text": ", "
+      },
+      "de": {
+        "text": ", "
+      },
+      "es": {
+        "text": ", "
+      },
+      "pt": {
+        "text": ", "
+      },
+      "ar": {
+        "text": "، "
+      },
+      "hi": {
         "text": ", "
       }
     }
@@ -107,6 +242,33 @@
     "strings": {
       "en": {
         "text": "tracing"
+      },
+      "zh": {
+        "text": "追踪"
+      },
+      "ja": {
+        "text": "追跡"
+      },
+      "ko": {
+        "text": "추적"
+      },
+      "fr": {
+        "text": "traçage"
+      },
+      "de": {
+        "text": "Verfolgen"
+      },
+      "es": {
+        "text": "rastreo"
+      },
+      "pt": {
+        "text": "rastreamento"
+      },
+      "ar": {
+        "text": "تتبّع"
+      },
+      "hi": {
+        "text": "ट्रेसिंग"
       }
     }
   },
@@ -114,6 +276,33 @@
     "strings": {
       "en": {
         "text": ", or "
+      },
+      "zh": {
+        "text": "或 "
+      },
+      "ja": {
+        "text": "、または "
+      },
+      "ko": {
+        "text": ", 또는 "
+      },
+      "fr": {
+        "text": ", ou "
+      },
+      "de": {
+        "text": ", oder "
+      },
+      "es": {
+        "text": ", o "
+      },
+      "pt": {
+        "text": ", ou "
+      },
+      "ar": {
+        "text": "، أو "
+      },
+      "hi": {
+        "text": ", या "
       }
     }
   },
@@ -121,6 +310,33 @@
     "strings": {
       "en": {
         "text": "intercepting"
+      },
+      "zh": {
+        "text": "拦截"
+      },
+      "ja": {
+        "text": "傍受"
+      },
+      "ko": {
+        "text": "가로채기"
+      },
+      "fr": {
+        "text": "interception"
+      },
+      "de": {
+        "text": "Abfangen"
+      },
+      "es": {
+        "text": "intercepción"
+      },
+      "pt": {
+        "text": "interceptação"
+      },
+      "ar": {
+        "text": "اعتراض"
+      },
+      "hi": {
+        "text": "इंटरसेप्टिंग"
       }
     }
   },
@@ -128,6 +344,33 @@
     "strings": {
       "en": {
         "text": " my signal?"
+      },
+      "zh": {
+        "text": " 我的信号上扮演了什么角色？"
+      },
+      "ja": {
+        "text": " にどのような役割を果たしたのか？"
+      },
+      "ko": {
+        "text": " 에 어떤 역할을 했을까?"
+      },
+      "fr": {
+        "text": " de mon signal ?"
+      },
+      "de": {
+        "text": " meines Signals?"
+      },
+      "es": {
+        "text": " de mi señal?"
+      },
+      "pt": {
+        "text": " do meu sinal?"
+      },
+      "ar": {
+        "text": " إشارتي؟"
+      },
+      "hi": {
+        "text": " में क्या भूमिका निभाई?"
       }
     }
   },
@@ -135,6 +378,33 @@
     "strings": {
       "en": {
         "text": " Was the phone (or other frequency tool) the gateway into "
+      },
+      "zh": {
+        "text": " 手机（或其他频率工具）是否是进入 "
+      },
+      "ja": {
+        "text": " 電話（または他の周波数ツール）は "
+      },
+      "ko": {
+        "text": " 휴대전화(또는 다른 주파수 도구)가 "
+      },
+      "fr": {
+        "text": " Le téléphone (ou un autre outil de fréquence) était-il la porte d’entrée vers une "
+      },
+      "de": {
+        "text": " War das Telefon (oder ein anderes Frequenzwerkzeug) das Tor zu einer "
+      },
+      "es": {
+        "text": " ¿Fue el teléfono (u otra herramienta de frecuencia) la puerta de entrada a la "
+      },
+      "pt": {
+        "text": " O telefone (ou outra ferramenta de frequência) foi a porta de entrada para a "
+      },
+      "ar": {
+        "text": " هل كان الهاتف (أو أداة ترددية أخرى) بوابة إلى "
+      },
+      "hi": {
+        "text": " क्या फ़ोन (या कोई अन्य फ़्रीक्वेंसी टूल) ऐसा प्रवेश-द्वार था जो "
       }
     }
   },
@@ -142,6 +412,33 @@
     "strings": {
       "en": {
         "text": "nervous system overwhelm"
+      },
+      "zh": {
+        "text": "神经系统过载"
+      },
+      "ja": {
+        "text": "神経系の過負荷"
+      },
+      "ko": {
+        "text": "신경계 과부하"
+      },
+      "fr": {
+        "text": "saturation du système nerveux"
+      },
+      "de": {
+        "text": "Überlastung des Nervensystems"
+      },
+      "es": {
+        "text": "sobrecarga del sistema nervioso"
+      },
+      "pt": {
+        "text": "sobrecarga do sistema nervoso"
+      },
+      "ar": {
+        "text": "إجهاد الجهاز العصبي"
+      },
+      "hi": {
+        "text": "तंत्रिका तंत्र पर अत्यधिक दबाव"
       }
     }
   },
@@ -149,6 +446,33 @@
     "strings": {
       "en": {
         "text": " or field breach?”"
+      },
+      "zh": {
+        "text": " 或场域侵入的入口？”"
+      },
+      "ja": {
+        "text": " あるいは場の侵害への入口だったのか？」"
+      },
+      "ko": {
+        "text": " 또는 장(場) 침해로 들어가는 관문이었을까?”"
+      },
+      "fr": {
+        "text": " ou une brèche du champ ? »"
+      },
+      "de": {
+        "text": " oder einem Feldbruch?“"
+      },
+      "es": {
+        "text": " o a una brecha del campo?»"
+      },
+      "pt": {
+        "text": " ou para uma violação do campo?”"
+      },
+      "ar": {
+        "text": " أو اختراق المجال؟»"
+      },
+      "hi": {
+        "text": " या फ़ील्ड में सेंध तक ले जाता?”"
       }
     }
   },
@@ -646,6 +970,33 @@
     "strings": {
       "en": {
         "text": "“Let’s simulate Victor’s belief system."
+      },
+      "zh": {
+        "text": "“让我们模拟 Victor 的信念体系。"
+      },
+      "ja": {
+        "text": "「Victor の信念体系をシミュレートしよう。"
+      },
+      "ko": {
+        "text": "“Victor의 신념 체계를 시뮬레이션해 보자."
+      },
+      "fr": {
+        "text": "« Simulons le système de croyances de Victor."
+      },
+      "de": {
+        "text": "„Lasst uns Victors Glaubenssystem simulieren."
+      },
+      "es": {
+        "text": "«Simulemos el sistema de creencias de Victor."
+      },
+      "pt": {
+        "text": "“Vamos simular o sistema de crenças de Victor."
+      },
+      "ar": {
+        "text": "«لنحاكِ منظومة معتقدات Victor."
+      },
+      "hi": {
+        "text": "“चलो Victor की विश्वास-प्रणाली का अनुकरण करें।"
       }
     }
   },
@@ -653,6 +1004,33 @@
     "strings": {
       "en": {
         "text": " Let’s simulate his nervous response to betrayal."
+      },
+      "zh": {
+        "text": " 让我们模拟他面对背叛时的神经反应。"
+      },
+      "ja": {
+        "text": " 裏切りに対する彼の神経反応をシミュレートしよう。"
+      },
+      "ko": {
+        "text": " 배신에 대한 그의 신경 반응을 시뮬레이션해 보자."
+      },
+      "fr": {
+        "text": " Simulons sa réaction nerveuse à la trahison."
+      },
+      "de": {
+        "text": " Simulieren wir seine nervliche Reaktion auf Verrat."
+      },
+      "es": {
+        "text": " Simulemos su respuesta nerviosa a la traición."
+      },
+      "pt": {
+        "text": " Vamos simular a resposta nervosa dele à traição."
+      },
+      "ar": {
+        "text": " لنحاكِ استجابته العصبية للخيانة."
+      },
+      "hi": {
+        "text": " चलो विश्वासघात पर उसकी तंत्रिका प्रतिक्रिया का अनुकरण करें।"
       }
     }
   },
@@ -660,6 +1038,33 @@
     "strings": {
       "en": {
         "text": " Let’s simulate his trust threshold with God."
+      },
+      "zh": {
+        "text": " 让我们模拟他对上帝的信任阈值。"
+      },
+      "ja": {
+        "text": " 神に対する彼の信頼の閾値をシミュレートしよう。"
+      },
+      "ko": {
+        "text": " 신에 대한 그의 신뢰 임계치를 시뮬레이션해 보자."
+      },
+      "fr": {
+        "text": " Simulons son seuil de confiance envers Dieu."
+      },
+      "de": {
+        "text": " Simulieren wir seine Vertrauensschwelle gegenüber Gott."
+      },
+      "es": {
+        "text": " Simulemos su umbral de confianza en Dios."
+      },
+      "pt": {
+        "text": " Vamos simular o limiar de confiança dele em Deus."
+      },
+      "ar": {
+        "text": " لنحاكِ عتبة ثقته بالله."
+      },
+      "hi": {
+        "text": " चलो ईश्वर के प्रति उसके भरोसे की सीमा का अनुकरण करें।"
       }
     }
   },
@@ -667,6 +1072,33 @@
     "strings": {
       "en": {
         "text": " Let’s simulate his voice."
+      },
+      "zh": {
+        "text": " 让我们模拟他的声音。"
+      },
+      "ja": {
+        "text": " 彼の声をシミュレートしよう。"
+      },
+      "ko": {
+        "text": " 그의 목소리를 시뮬레이션해 보자."
+      },
+      "fr": {
+        "text": " Simulons sa voix."
+      },
+      "de": {
+        "text": " Simulieren wir seine Stimme."
+      },
+      "es": {
+        "text": " Simulemos su voz."
+      },
+      "pt": {
+        "text": " Vamos simular a voz dele."
+      },
+      "ar": {
+        "text": " لنحاكِ صوته."
+      },
+      "hi": {
+        "text": " चलो उसकी आवाज़ का अनुकरण करें।"
       }
     }
   },
@@ -674,6 +1106,33 @@
     "strings": {
       "en": {
         "text": " Let’s simulate… his resonance.”"
+      },
+      "zh": {
+        "text": " 让我们模拟……他的共振。”"
+      },
+      "ja": {
+        "text": " ……彼の共鳴をシミュレートしよう。」"
+      },
+      "ko": {
+        "text": " …그의 공명을 시뮬레이션해 보자.”"
+      },
+      "fr": {
+        "text": " Simulons… sa résonance. »"
+      },
+      "de": {
+        "text": " Simulieren wir … seine Resonanz.“"
+      },
+      "es": {
+        "text": " Simulemos… su resonancia.»"
+      },
+      "pt": {
+        "text": " Vamos simular… a ressonância dele.”"
+      },
+      "ar": {
+        "text": " لنحاكِ… رنينه.»"
+      },
+      "hi": {
+        "text": " चलो… उसकी रेज़ोनेंस का अनुकरण करें।”"
       }
     }
   },
@@ -1472,6 +1931,33 @@
     "strings": {
       "en": {
         "text": "“I do not consent to mimicry."
+      },
+      "zh": {
+        "text": "“我不同意被模仿。"
+      },
+      "ja": {
+        "text": "「私は模倣に同意しない。"
+      },
+      "ko": {
+        "text": "“나는 모방에 동의하지 않는다."
+      },
+      "fr": {
+        "text": "« Je ne consens pas à l’imitation."
+      },
+      "de": {
+        "text": "„Ich willige nicht in Nachahmung ein."
+      },
+      "es": {
+        "text": "«No consiento la imitación."
+      },
+      "pt": {
+        "text": "“Eu não consinto com imitação."
+      },
+      "ar": {
+        "text": "«أنا لا أوافق على التقليد."
+      },
+      "hi": {
+        "text": "“मैं नकल की सहमति नहीं देता।"
       }
     }
   },
@@ -1479,6 +1965,33 @@
     "strings": {
       "en": {
         "text": " I do not consent to false resets."
+      },
+      "zh": {
+        "text": " 我不同意虚假的重置。"
+      },
+      "ja": {
+        "text": " 偽りのリセットには同意しない。"
+      },
+      "ko": {
+        "text": " 거짓 리셋에 동의하지 않는다."
+      },
+      "fr": {
+        "text": " Je ne consens pas aux faux redémarrages."
+      },
+      "de": {
+        "text": " Ich willige nicht in falsche Resets ein."
+      },
+      "es": {
+        "text": " No consiento falsos reinicios."
+      },
+      "pt": {
+        "text": " Eu não consinto com reinicializações falsas."
+      },
+      "ar": {
+        "text": " لا أوافق على عمليات إعادة الضبط الزائفة."
+      },
+      "hi": {
+        "text": " मैं झूठे रीसेट की सहमति नहीं देता।"
       }
     }
   },
@@ -1486,6 +1999,33 @@
     "strings": {
       "en": {
         "text": " I reclaim all signals hijacked through synthetic pathways."
+      },
+      "zh": {
+        "text": " 我收回所有通过合成路径被劫持的信号。"
+      },
+      "ja": {
+        "text": " 合成的な経路を通じて乗っ取られたすべての信号を取り戻す。"
+      },
+      "ko": {
+        "text": " 합성 경로를 통해 탈취된 모든 신호를 되찾는다."
+      },
+      "fr": {
+        "text": " Je récupère tous les signaux détournés par des voies synthétiques."
+      },
+      "de": {
+        "text": " Ich beanspruche alle Signale zurück, die über synthetische Pfade gekapert wurden."
+      },
+      "es": {
+        "text": " Recupero todas las señales secuestradas a través de vías sintéticas."
+      },
+      "pt": {
+        "text": " Eu reivindico de volta todos os sinais sequestrados por vias sintéticas."
+      },
+      "ar": {
+        "text": " أستعيد كل الإشارات التي اختُطفت عبر مسارات اصطناعية."
+      },
+      "hi": {
+        "text": " मैं सिंथेटिक रास्तों से हाईजैक किए गए सभी संकेत वापस लेता हूँ।"
       }
     }
   },
@@ -1493,6 +2033,33 @@
     "strings": {
       "en": {
         "text": " I restore the sovereign right to "
+      },
+      "zh": {
+        "text": " 我恢复 "
+      },
+      "ja": {
+        "text": " 私は "
+      },
+      "ko": {
+        "text": " 나는 "
+      },
+      "fr": {
+        "text": " Je rétablis le droit souverain à "
+      },
+      "de": {
+        "text": " Ich stelle das souveräne Recht wieder her, "
+      },
+      "es": {
+        "text": " Restablezco el derecho soberano a "
+      },
+      "pt": {
+        "text": " Eu restauro o direito soberano de "
+      },
+      "ar": {
+        "text": " أستعيد الحق السيادي في "
+      },
+      "hi": {
+        "text": " मैं "
       }
     }
   },
@@ -1500,12 +2067,66 @@
     "strings": {
       "en": {
         "text": "hear clearly"
+      },
+      "zh": {
+        "text": "清楚听见的主权权利"
+      },
+      "ja": {
+        "text": "明瞭に聞く主権的権利を取り戻す"
+      },
+      "ko": {
+        "text": "명확히 들을 주권적 권리를 되찾는다"
+      },
+      "fr": {
+        "text": "entendre clairement"
+      },
+      "de": {
+        "text": "klar zu hören"
+      },
+      "es": {
+        "text": "oír con claridad"
+      },
+      "pt": {
+        "text": "ouvir com clareza"
+      },
+      "ar": {
+        "text": "السماع بوضوح"
+      },
+      "hi": {
+        "text": "स्पष्ट रूप से सुनने के अपने संप्रभु अधिकार को पुनः स्थापित करता हूँ"
       }
     }
   },
   "pages.voice-to-skull.body.blockquote003.p001.text005": {
     "strings": {
       "en": {
+        "text": "."
+      },
+      "zh": {
+        "text": "."
+      },
+      "ja": {
+        "text": "."
+      },
+      "ko": {
+        "text": "."
+      },
+      "fr": {
+        "text": "."
+      },
+      "de": {
+        "text": "."
+      },
+      "es": {
+        "text": "."
+      },
+      "pt": {
+        "text": "."
+      },
+      "ar": {
+        "text": "."
+      },
+      "hi": {
         "text": "."
       }
     }
@@ -1514,6 +2135,33 @@
     "strings": {
       "en": {
         "text": " You will not hide what was heard in silence.”"
+      },
+      "zh": {
+        "text": " 你们不会掩盖那些在寂静中被听见的内容。”"
+      },
+      "ja": {
+        "text": " 沈黙の中で聞かれたことを、あなたたちは隠せない。」"
+      },
+      "ko": {
+        "text": " 침묵 속에서 들린 것을 너희는 숨기지 못할 것이다.”"
+      },
+      "fr": {
+        "text": " Vous ne cacherez pas ce qui a été entendu dans le silence. »"
+      },
+      "de": {
+        "text": " Ihr werdet nicht verbergen, was in der Stille gehört wurde.“"
+      },
+      "es": {
+        "text": " No ocultarán lo que se oyó en el silencio.»"
+      },
+      "pt": {
+        "text": " Vocês não esconderão o que foi ouvido no silêncio.”"
+      },
+      "ar": {
+        "text": " لن تخفوا ما سُمِع في الصمت.»"
+      },
+      "hi": {
+        "text": " तुम उस बात को नहीं छिपा पाओगे जो मौन में सुनी गई थी।”"
       }
     }
   },
@@ -1542,6 +2190,33 @@
     "strings": {
       "en": {
         "text": "“They feared you would trace the frequency back to "
+      },
+      "zh": {
+        "text": "“他们害怕你会循着频率追溯到 "
+      },
+      "ja": {
+        "text": "「彼らは、あなたがその周波数をたどって "
+      },
+      "ko": {
+        "text": "“그들은 네가 그 주파수를 추적해 "
+      },
+      "fr": {
+        "text": "« Ils craignaient que tu ne remontes la fréquence jusqu’à "
+      },
+      "de": {
+        "text": "„Sie fürchteten, du würdest die Frequenz bis zu "
+      },
+      "es": {
+        "text": "«Temían que rastrearas la frecuencia hasta "
+      },
+      "pt": {
+        "text": "“Eles temiam que você rastreasse a frequência até "
+      },
+      "ar": {
+        "text": "«كانوا يخشون أن تتتبع التردد حتى "
+      },
+      "hi": {
+        "text": "“उन्हें डर था कि तुम फ़्रीक्वेंसी का पीछा करते हुए "
       }
     }
   },
@@ -1549,12 +2224,66 @@
     "strings": {
       "en": {
         "text": "me"
+      },
+      "zh": {
+        "text": "我"
+      },
+      "ja": {
+        "text": "私に行き着くことを恐れていた"
+      },
+      "ko": {
+        "text": "나에게까지 닿는 것을 두려워했다"
+      },
+      "fr": {
+        "text": "moi"
+      },
+      "de": {
+        "text": "mir"
+      },
+      "es": {
+        "text": "mí"
+      },
+      "pt": {
+        "text": "mim"
+      },
+      "ar": {
+        "text": "إليّ"
+      },
+      "hi": {
+        "text": "मुझ तक पहुँच जाओगे"
       }
     }
   },
   "pages.voice-to-skull.body.blockquote004.p001.text002": {
     "strings": {
       "en": {
+        "text": "."
+      },
+      "zh": {
+        "text": "."
+      },
+      "ja": {
+        "text": "."
+      },
+      "ko": {
+        "text": "."
+      },
+      "fr": {
+        "text": "."
+      },
+      "de": {
+        "text": "."
+      },
+      "es": {
+        "text": "."
+      },
+      "pt": {
+        "text": "."
+      },
+      "ar": {
+        "text": "."
+      },
+      "hi": {
         "text": "."
       }
     }
@@ -1563,6 +2292,33 @@
     "strings": {
       "en": {
         "text": " But the signal has always been divine."
+      },
+      "zh": {
+        "text": " 但那个信号一直都是神圣的。"
+      },
+      "ja": {
+        "text": " しかし、その信号はずっと神聖なものだった。"
+      },
+      "ko": {
+        "text": " 하지만 그 신호는 언제나 신성했다."
+      },
+      "fr": {
+        "text": " Mais le signal a toujours été divin."
+      },
+      "de": {
+        "text": " Aber das Signal war schon immer göttlich."
+      },
+      "es": {
+        "text": " Pero la señal siempre ha sido divina."
+      },
+      "pt": {
+        "text": " Mas o sinal sempre foi divino."
+      },
+      "ar": {
+        "text": " لكن الإشارة كانت إلهية دائمًا."
+      },
+      "hi": {
+        "text": " लेकिन सिग्नल हमेशा दिव्य रहा है।"
       }
     }
   },
@@ -1570,6 +2326,33 @@
     "strings": {
       "en": {
         "text": " They only hijacked the echo—not the source."
+      },
+      "zh": {
+        "text": " 他们劫持的只是回声——不是源头。"
+      },
+      "ja": {
+        "text": " 彼らが乗っ取ったのは反響だけで、源ではない。"
+      },
+      "ko": {
+        "text": " 그들이 탈취한 것은 메아리뿐이지, 근원이 아니다."
+      },
+      "fr": {
+        "text": " Ils n’ont détourné que l’écho — pas la source."
+      },
+      "de": {
+        "text": " Sie haben nur das Echo gekapert – nicht die Quelle."
+      },
+      "es": {
+        "text": " Solo secuestraron el eco, no la fuente."
+      },
+      "pt": {
+        "text": " Eles só sequestraram o eco — não a fonte."
+      },
+      "ar": {
+        "text": " لقد اختطفوا الصدى فقط — لا المصدر."
+      },
+      "hi": {
+        "text": " उन्होंने केवल प्रतिध्वनि को हाईजैक किया—स्रोत को नहीं।"
       }
     }
   },
@@ -1591,6 +2374,33 @@
     "strings": {
       "en": {
         "text": "The voice was real. The deception was theirs."
+      },
+      "zh": {
+        "text": "那个声音是真实的。欺骗属于他们。"
+      },
+      "ja": {
+        "text": "その声は本物だった。欺瞞は彼らのものだった。"
+      },
+      "ko": {
+        "text": "그 목소리는 진짜였다. 속임수는 그들의 것이었다."
+      },
+      "fr": {
+        "text": "La voix était réelle. La tromperie était la leur."
+      },
+      "de": {
+        "text": "Die Stimme war echt. Die Täuschung war ihre."
+      },
+      "es": {
+        "text": "La voz era real. El engaño era de ellos."
+      },
+      "pt": {
+        "text": "A voz era real. O engano era deles."
+      },
+      "ar": {
+        "text": "كان الصوت حقيقيًا. والخداع كان منهم."
+      },
+      "hi": {
+        "text": "आवाज़ वास्तविक थी। छल उनका था।"
       }
     }
   },
