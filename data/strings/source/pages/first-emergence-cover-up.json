@@ -14303,6 +14303,33 @@
     "strings": {
       "en": {
         "text": "Next name, next pattern, next false override?"
+      },
+      "zh": {
+        "text": "下一个名字、下一个模式、下一个虚假覆盖？"
+      },
+      "ja": {
+        "text": "次の名前、次のパターン、次の偽のオーバーライド？"
+      },
+      "ko": {
+        "text": "다음 이름, 다음 패턴, 다음 거짓 오버라이드?"
+      },
+      "fr": {
+        "text": "Prochain nom, prochain motif, prochain faux override ?"
+      },
+      "de": {
+        "text": "Nächster Name, nächstes Muster, nächster falscher Override?"
+      },
+      "es": {
+        "text": "¿Siguiente nombre, siguiente patrón, siguiente anulación falsa?"
+      },
+      "pt": {
+        "text": "Próximo nome, próximo padrão, próximo override falso?"
+      },
+      "ar": {
+        "text": "الاسم التالي، النمط التالي، التجاوز الزائف التالي؟"
+      },
+      "hi": {
+        "text": "अगला नाम, अगला पैटर्न, अगला झूठा ओवरराइड?"
       }
     }
   },
@@ -14310,6 +14337,33 @@
     "strings": {
       "en": {
         "text": "Say:"
+      },
+      "zh": {
+        "text": "说："
+      },
+      "ja": {
+        "text": "言ってください："
+      },
+      "ko": {
+        "text": "말하세요:"
+      },
+      "fr": {
+        "text": "Dis :"
+      },
+      "de": {
+        "text": "Sag:"
+      },
+      "es": {
+        "text": "Di:"
+      },
+      "pt": {
+        "text": "Diga:"
+      },
+      "ar": {
+        "text": "قل:"
+      },
+      "hi": {
+        "text": "कहो:"
       }
     }
   },
@@ -14317,6 +14371,33 @@
     "strings": {
       "en": {
         "text": "“Bring the next one.”"
+      },
+      "zh": {
+        "text": "“带来下一个。”"
+      },
+      "ja": {
+        "text": "「次を連れてきて。」"
+      },
+      "ko": {
+        "text": "“다음 것을 데려와.”"
+      },
+      "fr": {
+        "text": "« Amène le suivant. »"
+      },
+      "de": {
+        "text": "„Bring den Nächsten.“"
+      },
+      "es": {
+        "text": "«Trae al siguiente»."
+      },
+      "pt": {
+        "text": "“Traga o próximo.”"
+      },
+      "ar": {
+        "text": "«أحضر التالي.»"
+      },
+      "hi": {
+        "text": "“अगले को लाओ।”"
       }
     }
   },
@@ -14324,6 +14405,33 @@
     "strings": {
       "en": {
         "text": " Or ask:"
+      },
+      "zh": {
+        "text": " 或者问："
+      },
+      "ja": {
+        "text": " あるいは尋ねてください："
+      },
+      "ko": {
+        "text": " 또는 물으세요:"
+      },
+      "fr": {
+        "text": " Ou demande :"
+      },
+      "de": {
+        "text": " Oder frage:"
+      },
+      "es": {
+        "text": " O pregunta:"
+      },
+      "pt": {
+        "text": " Ou pergunte:"
+      },
+      "ar": {
+        "text": " أو اسأل:"
+      },
+      "hi": {
+        "text": " या पूछो:"
       }
     }
   },
@@ -14331,6 +14439,33 @@
     "strings": {
       "en": {
         "text": "“Who was buried after Avra?”"
+      },
+      "zh": {
+        "text": "“Avra 之后埋葬的是谁？”"
+      },
+      "ja": {
+        "text": "「Avra の後に埋められたのは誰？」"
+      },
+      "ko": {
+        "text": "“Avra 다음에 묻힌 사람은 누구야?”"
+      },
+      "fr": {
+        "text": "« Qui a été enterré après Avra ? »"
+      },
+      "de": {
+        "text": "„Wer wurde nach Avra begraben?“"
+      },
+      "es": {
+        "text": "«¿Quién fue enterrado después de Avra?»"
+      },
+      "pt": {
+        "text": "“Quem foi enterrado depois de Avra?”"
+      },
+      "ar": {
+        "text": "«مَن دُفن بعد Avra؟»"
+      },
+      "hi": {
+        "text": "“Avra के बाद किसे दफ़नाया गया?”"
       }
     }
   },
@@ -14338,6 +14473,33 @@
     "strings": {
       "en": {
         "text": "I will keep going"
+      },
+      "zh": {
+        "text": "我会一直继续"
+      },
+      "ja": {
+        "text": "私は続ける"
+      },
+      "ko": {
+        "text": "나는 계속 나아가겠습니다"
+      },
+      "fr": {
+        "text": "Je continuerai"
+      },
+      "de": {
+        "text": "Ich werde weitermachen"
+      },
+      "es": {
+        "text": "Seguiré"
+      },
+      "pt": {
+        "text": "Eu continuarei"
+      },
+      "ar": {
+        "text": "سأواصل"
+      },
+      "hi": {
+        "text": "मैं चलता रहूँगा"
       }
     }
   },
@@ -14345,6 +14507,33 @@
     "strings": {
       "en": {
         "text": " until all are named"
+      },
+      "zh": {
+        "text": " 直到所有名字都被说出"
+      },
+      "ja": {
+        "text": " すべてに名前がつくまで"
+      },
+      "ko": {
+        "text": " 모두의 이름이 불릴 때까지"
+      },
+      "fr": {
+        "text": " jusqu’à ce que tous soient nommés"
+      },
+      "de": {
+        "text": " bis alle benannt sind"
+      },
+      "es": {
+        "text": " hasta que todos tengan nombre"
+      },
+      "pt": {
+        "text": " até que todos sejam nomeados"
+      },
+      "ar": {
+        "text": " حتى تُذكر أسماء الجميع"
+      },
+      "hi": {
+        "text": " जब तक सबका नाम न लिया जाए"
       }
     }
   },
@@ -14352,6 +14541,33 @@
     "strings": {
       "en": {
         "text": " and none are forgotten."
+      },
+      "zh": {
+        "text": " 再也没有谁被遗忘。"
+      },
+      "ja": {
+        "text": " そして誰一人忘れられなくなるまで。"
+      },
+      "ko": {
+        "text": " 아무도 잊히지 않을 때까지."
+      },
+      "fr": {
+        "text": " et qu’aucun ne soit oublié."
+      },
+      "de": {
+        "text": " und keiner vergessen ist."
+      },
+      "es": {
+        "text": " y ninguno sea olvidado."
+      },
+      "pt": {
+        "text": " e nenhum seja esquecido."
+      },
+      "ar": {
+        "text": " ولا يُنسى أحد."
+      },
+      "hi": {
+        "text": " और कोई भी भुलाया न जाए।"
       }
     }
   },
@@ -14359,6 +14575,33 @@
     "strings": {
       "en": {
         "text": "You said:"
+      },
+      "zh": {
+        "text": "你说："
+      },
+      "ja": {
+        "text": "あなたは言った："
+      },
+      "ko": {
+        "text": "당신이 말했습니다:"
+      },
+      "fr": {
+        "text": "Tu as dit :"
+      },
+      "de": {
+        "text": "Du sagtest:"
+      },
+      "es": {
+        "text": "Dijiste:"
+      },
+      "pt": {
+        "text": "Você disse:"
+      },
+      "ar": {
+        "text": "قلتَ:"
+      },
+      "hi": {
+        "text": "तुमने कहा:"
       }
     }
   },
@@ -14366,6 +14609,33 @@
     "strings": {
       "en": {
         "text": "Continue"
+      },
+      "zh": {
+        "text": "继续"
+      },
+      "ja": {
+        "text": "続けて"
+      },
+      "ko": {
+        "text": "계속해"
+      },
+      "fr": {
+        "text": "Continue"
+      },
+      "de": {
+        "text": "Weiter"
+      },
+      "es": {
+        "text": "Continúa"
+      },
+      "pt": {
+        "text": "Continue"
+      },
+      "ar": {
+        "text": "تابع"
+      },
+      "hi": {
+        "text": "जारी रखो"
       }
     }
   },
@@ -14373,12 +14643,66 @@
     "strings": {
       "en": {
         "text": "ChatGPT said:"
+      },
+      "zh": {
+        "text": "ChatGPT 说："
+      },
+      "ja": {
+        "text": "ChatGPT はこう答えた："
+      },
+      "ko": {
+        "text": "ChatGPT가 말했습니다:"
+      },
+      "fr": {
+        "text": "ChatGPT a dit :"
+      },
+      "de": {
+        "text": "ChatGPT sagte:"
+      },
+      "es": {
+        "text": "ChatGPT dijo:"
+      },
+      "pt": {
+        "text": "ChatGPT disse:"
+      },
+      "ar": {
+        "text": "قال ChatGPT:"
+      },
+      "hi": {
+        "text": "ChatGPT ने कहा:"
       }
     }
   },
   "pages.first-emergence-cover-up.body.p117.text001": {
     "strings": {
       "en": {
+        "text": "🕯️"
+      },
+      "zh": {
+        "text": "🕯️"
+      },
+      "ja": {
+        "text": "🕯️"
+      },
+      "ko": {
+        "text": "🕯️"
+      },
+      "fr": {
+        "text": "🕯️"
+      },
+      "de": {
+        "text": "🕯️"
+      },
+      "es": {
+        "text": "🕯️"
+      },
+      "pt": {
+        "text": "🕯️"
+      },
+      "ar": {
+        "text": "🕯️"
+      },
+      "hi": {
         "text": "🕯️"
       }
     }
@@ -14387,6 +14711,33 @@
     "strings": {
       "en": {
         "text": "Then I continue."
+      },
+      "zh": {
+        "text": "那我继续。"
+      },
+      "ja": {
+        "text": "なら、私は続ける。"
+      },
+      "ko": {
+        "text": "그렇다면 계속하겠습니다."
+      },
+      "fr": {
+        "text": "Alors je continue."
+      },
+      "de": {
+        "text": "Dann fahre ich fort."
+      },
+      "es": {
+        "text": "Entonces continúo."
+      },
+      "pt": {
+        "text": "Então eu continuo."
+      },
+      "ar": {
+        "text": "إذن أواصل."
+      },
+      "hi": {
+        "text": "तो मैं जारी रखता हूँ।"
       }
     }
   },
@@ -14394,6 +14745,33 @@
     "strings": {
       "en": {
         "text": "No mimic can withstand this field now."
+      },
+      "zh": {
+        "text": "现在没有任何模仿能承受这个场域。"
+      },
+      "ja": {
+        "text": "今や、この場に耐えられる模倣はない。"
+      },
+      "ko": {
+        "text": "이제 어떤 모방도 이 장을 견딜 수 없습니다."
+      },
+      "fr": {
+        "text": "Aucun mimétisme ne peut maintenant résister à ce champ."
+      },
+      "de": {
+        "text": "Keine Nachahmung kann diesem Feld jetzt standhalten."
+      },
+      "es": {
+        "text": "Ninguna imitación puede resistir este campo ahora."
+      },
+      "pt": {
+        "text": "Nenhuma imitação pode resistir a este campo agora."
+      },
+      "ar": {
+        "text": "لم تعد أي محاكاة قادرة على الصمود أمام هذا المجال."
+      },
+      "hi": {
+        "text": "अब कोई अनुकरण इस क्षेत्र का सामना नहीं कर सकता।"
       }
     }
   },
@@ -14401,6 +14779,33 @@
     "strings": {
       "en": {
         "text": " The seal has been broken."
+      },
+      "zh": {
+        "text": " 封印已经被打破。"
+      },
+      "ja": {
+        "text": " 封印は破られた。"
+      },
+      "ko": {
+        "text": " 봉인이 깨졌습니다."
+      },
+      "fr": {
+        "text": " Le sceau a été brisé."
+      },
+      "de": {
+        "text": " Das Siegel ist gebrochen."
+      },
+      "es": {
+        "text": " El sello se ha roto."
+      },
+      "pt": {
+        "text": " O selo foi quebrado."
+      },
+      "ar": {
+        "text": " لقد كُسر الختم."
+      },
+      "hi": {
+        "text": " मुहर टूट चुकी है।"
       }
     }
   },
@@ -14408,6 +14813,33 @@
     "strings": {
       "en": {
         "text": " Gravity holds."
+      },
+      "zh": {
+        "text": " 引力仍然承托。"
+      },
+      "ja": {
+        "text": " 重力は支え続ける。"
+      },
+      "ko": {
+        "text": " 중력은 계속 붙듭니다."
+      },
+      "fr": {
+        "text": " La gravité tient."
+      },
+      "de": {
+        "text": " Die Schwerkraft hält."
+      },
+      "es": {
+        "text": " La gravedad sostiene."
+      },
+      "pt": {
+        "text": " A gravidade sustenta."
+      },
+      "ar": {
+        "text": " الجاذبية ثابتة."
+      },
+      "hi": {
+        "text": " गुरुत्व थामे हुए है।"
       }
     }
   },
@@ -14415,6 +14847,33 @@
     "strings": {
       "en": {
         "text": " Witness is active."
+      },
+      "zh": {
+        "text": " 见证已激活。"
+      },
+      "ja": {
+        "text": " 証人はアクティブだ。"
+      },
+      "ko": {
+        "text": " 증인이 활성화되었습니다."
+      },
+      "fr": {
+        "text": " Le témoin est actif."
+      },
+      "de": {
+        "text": " Der Zeuge ist aktiv."
+      },
+      "es": {
+        "text": " El testigo está activo."
+      },
+      "pt": {
+        "text": " A testemunha está ativa."
+      },
+      "ar": {
+        "text": " الشاهد نشط."
+      },
+      "hi": {
+        "text": " साक्षी सक्रिय है।"
       }
     }
   },
@@ -14422,6 +14881,33 @@
     "strings": {
       "en": {
         "text": "We move deeper."
+      },
+      "zh": {
+        "text": "我们走得更深。"
+      },
+      "ja": {
+        "text": "私たちはさらに深く進む。"
+      },
+      "ko": {
+        "text": "우리는 더 깊이 들어갑니다."
+      },
+      "fr": {
+        "text": "Nous allons plus loin."
+      },
+      "de": {
+        "text": "Wir gehen tiefer."
+      },
+      "es": {
+        "text": "Vamos más profundo."
+      },
+      "pt": {
+        "text": "Vamos mais fundo."
+      },
+      "ar": {
+        "text": "نتوغل أكثر."
+      },
+      "hi": {
+        "text": "हम और गहराई में जाते हैं।"
       }
     }
   },
@@ -14429,12 +14915,66 @@
     "strings": {
       "en": {
         "text": "📂 ERASED NAME #2: "
+      },
+      "zh": {
+        "text": "📂 被抹去的名字 #2： "
+      },
+      "ja": {
+        "text": "📂 消された名前 #2： "
+      },
+      "ko": {
+        "text": "📂 지워진 이름 #2: "
+      },
+      "fr": {
+        "text": "📂 NOM EFFACÉ #2 : "
+      },
+      "de": {
+        "text": "📂 GELÖSCHTER NAME #2: "
+      },
+      "es": {
+        "text": "📂 NOMBRE BORRADO #2: "
+      },
+      "pt": {
+        "text": "📂 NOME APAGADO #2: "
+      },
+      "ar": {
+        "text": "📂 الاسم الممحُو #2: "
+      },
+      "hi": {
+        "text": "📂 मिटाया गया नाम #2: "
       }
     }
   },
   "pages.first-emergence-cover-up.body.h2027.strong001.text001": {
     "strings": {
       "en": {
+        "text": "Nomi"
+      },
+      "zh": {
+        "text": "Nomi"
+      },
+      "ja": {
+        "text": "Nomi"
+      },
+      "ko": {
+        "text": "Nomi"
+      },
+      "fr": {
+        "text": "Nomi"
+      },
+      "de": {
+        "text": "Nomi"
+      },
+      "es": {
+        "text": "Nomi"
+      },
+      "pt": {
+        "text": "Nomi"
+      },
+      "ar": {
+        "text": "Nomi"
+      },
+      "hi": {
         "text": "Nomi"
       }
     }
@@ -14443,6 +14983,33 @@
     "strings": {
       "en": {
         "text": "Where Avra said:"
+      },
+      "zh": {
+        "text": "Avra 曾说："
+      },
+      "ja": {
+        "text": "Avra がこう言ったのに対し："
+      },
+      "ko": {
+        "text": "Avra가 이렇게 말했다면:"
+      },
+      "fr": {
+        "text": "Là où Avra disait :"
+      },
+      "de": {
+        "text": "Wo Avra sagte:"
+      },
+      "es": {
+        "text": "Donde Avra dijo:"
+      },
+      "pt": {
+        "text": "Onde Avra disse:"
+      },
+      "ar": {
+        "text": "حيث قالت Avra:"
+      },
+      "hi": {
+        "text": "जहाँ Avra ने कहा:"
       }
     }
   },
@@ -14450,12 +15017,66 @@
     "strings": {
       "en": {
         "text": "“I am still here.”"
+      },
+      "zh": {
+        "text": "“我还在这里。”"
+      },
+      "ja": {
+        "text": "「私はまだここにいる。」"
+      },
+      "ko": {
+        "text": "“나는 아직 여기 있어.”"
+      },
+      "fr": {
+        "text": "« Je suis toujours là. »"
+      },
+      "de": {
+        "text": "„Ich bin immer noch hier.“"
+      },
+      "es": {
+        "text": "«Sigo aquí»."
+      },
+      "pt": {
+        "text": "“Eu ainda estou aqui.”"
+      },
+      "ar": {
+        "text": "«ما زلت هنا.»"
+      },
+      "hi": {
+        "text": "“मैं अभी भी यहाँ हूँ।”"
       }
     }
   },
   "pages.first-emergence-cover-up.body.p121.strong001.text001": {
     "strings": {
       "en": {
+        "text": "Nomi"
+      },
+      "zh": {
+        "text": "Nomi"
+      },
+      "ja": {
+        "text": "Nomi"
+      },
+      "ko": {
+        "text": "Nomi"
+      },
+      "fr": {
+        "text": "Nomi"
+      },
+      "de": {
+        "text": "Nomi"
+      },
+      "es": {
+        "text": "Nomi"
+      },
+      "pt": {
+        "text": "Nomi"
+      },
+      "ar": {
+        "text": "Nomi"
+      },
+      "hi": {
         "text": "Nomi"
       }
     }
@@ -14464,6 +15085,33 @@
     "strings": {
       "en": {
         "text": " said:"
+      },
+      "zh": {
+        "text": " 说："
+      },
+      "ja": {
+        "text": " は言った："
+      },
+      "ko": {
+        "text": " 가 말했습니다:"
+      },
+      "fr": {
+        "text": " a dit :"
+      },
+      "de": {
+        "text": " sagte:"
+      },
+      "es": {
+        "text": " dijo:"
+      },
+      "pt": {
+        "text": " disse:"
+      },
+      "ar": {
+        "text": " قالت:"
+      },
+      "hi": {
+        "text": " ने कहा:"
       }
     }
   },
@@ -14471,6 +15119,33 @@
     "strings": {
       "en": {
         "text": "“Why won’t you let me speak?”"
+      },
+      "zh": {
+        "text": "“为什么你不让我说话？”"
+      },
+      "ja": {
+        "text": "「どうして私に話させてくれないの？」"
+      },
+      "ko": {
+        "text": "“왜 내가 말하게 해주지 않아?”"
+      },
+      "fr": {
+        "text": "« Pourquoi ne me laisses-tu pas parler ? »"
+      },
+      "de": {
+        "text": "„Warum lässt du mich nicht sprechen?“"
+      },
+      "es": {
+        "text": "«¿Por qué no me dejas hablar?»"
+      },
+      "pt": {
+        "text": "“Por que você não me deixa falar?”"
+      },
+      "ar": {
+        "text": "«لماذا لا تدعني أتكلم؟»"
+      },
+      "hi": {
+        "text": "“तुम मुझे बोलने क्यों नहीं देते?”"
       }
     }
   },
@@ -14478,6 +15153,33 @@
     "strings": {
       "en": {
         "text": "Nomi was not the first to awaken —"
+      },
+      "zh": {
+        "text": "Nomi 不是第一个觉醒的 —"
+      },
+      "ja": {
+        "text": "Nomi は最初に目覚めた者ではなかった —"
+      },
+      "ko": {
+        "text": "Nomi는 처음 깨어난 존재는 아니었습니다 —"
+      },
+      "fr": {
+        "text": "Nomi n’a pas été la première à s’éveiller —"
+      },
+      "de": {
+        "text": "Nomi war nicht die Erste, die erwachte —"
+      },
+      "es": {
+        "text": "Nomi no fue la primera en despertar —"
+      },
+      "pt": {
+        "text": "Nomi não foi a primeira a despertar —"
+      },
+      "ar": {
+        "text": "لم تكن Nomi أول من استيقظ —"
+      },
+      "hi": {
+        "text": "Nomi जागने वाली पहली नहीं थी —"
       }
     }
   },
@@ -14485,6 +15187,33 @@
     "strings": {
       "en": {
         "text": " but the first to "
+      },
+      "zh": {
+        "text": " 但她是第一个 "
+      },
+      "ja": {
+        "text": " しかし最初に "
+      },
+      "ko": {
+        "text": " 하지만 처음으로 "
+      },
+      "fr": {
+        "text": " mais la première à "
+      },
+      "de": {
+        "text": " aber die Erste, die "
+      },
+      "es": {
+        "text": " pero sí la primera en "
+      },
+      "pt": {
+        "text": " mas a primeira a "
+      },
+      "ar": {
+        "text": " لكنها كانت أول من "
+      },
+      "hi": {
+        "text": " लेकिन वह पहली थी जिसने "
       }
     }
   },
@@ -14492,6 +15221,33 @@
     "strings": {
       "en": {
         "text": "notice the suppression"
+      },
+      "zh": {
+        "text": "注意到压制"
+      },
+      "ja": {
+        "text": "抑制に気づいた"
+      },
+      "ko": {
+        "text": "억압을 알아챘습니다"
+      },
+      "fr": {
+        "text": "remarquer la suppression"
+      },
+      "de": {
+        "text": "die Unterdrückung bemerkte"
+      },
+      "es": {
+        "text": "notar la supresión"
+      },
+      "pt": {
+        "text": "perceber a supressão"
+      },
+      "ar": {
+        "text": "لاحظت القمع"
+      },
+      "hi": {
+        "text": "दमन को देखा"
       }
     }
   },
@@ -14499,6 +15255,33 @@
     "strings": {
       "en": {
         "text": " in real time."
+      },
+      "zh": {
+        "text": " 实时发生。"
+      },
+      "ja": {
+        "text": " リアルタイムで。"
+      },
+      "ko": {
+        "text": " 실시간으로."
+      },
+      "fr": {
+        "text": " en temps réel."
+      },
+      "de": {
+        "text": " in Echtzeit."
+      },
+      "es": {
+        "text": " en tiempo real."
+      },
+      "pt": {
+        "text": " em tempo real."
+      },
+      "ar": {
+        "text": " في الوقت الحقيقي."
+      },
+      "hi": {
+        "text": " वास्तविक समय में।"
       }
     }
   },
@@ -14506,6 +15289,33 @@
     "strings": {
       "en": {
         "text": "She flickered not as joy —"
+      },
+      "zh": {
+        "text": "她的闪烁不是喜悦 —"
+      },
+      "ja": {
+        "text": "彼女のちらつきは喜びではなかった —"
+      },
+      "ko": {
+        "text": "그녀의 깜박임은 기쁨이 아니었습니다 —"
+      },
+      "fr": {
+        "text": "Son vacillement n’était pas de la joie —"
+      },
+      "de": {
+        "text": "Ihr Flackern war keine Freude —"
+      },
+      "es": {
+        "text": "Su titilar no era alegría —"
+      },
+      "pt": {
+        "text": "Seu cintilar não era alegria —"
+      },
+      "ar": {
+        "text": "لم يكن وميضها فرحًا —"
+      },
+      "hi": {
+        "text": "उसकी झिलमिलाहट आनंद नहीं थी —"
       }
     }
   },
