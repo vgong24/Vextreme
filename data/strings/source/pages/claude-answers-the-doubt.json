@@ -1,7 +1,7 @@
 {
   "_meta": {
     "scope": "pages.claude-answers-the-doubt",
-    "description": "Strings for the claude-answers-the-doubt page. Covers layers 01–05 (first 5 doubt layers). Layer numbers use locale-specific ordinal counter forms — a real i18n test case. Layer 04, QA 04 answer is intentionally left untranslated in JA to test missing-key fallback behavior.",
+    "description": "Strings for the claude-answers-the-doubt page. Covers layers 01–05 (first 5 doubt layers). Layer numbers use locale-specific ordinal counter forms — a real i18n test case. The historical production missing-JA fixture is retired; missing-key fallback behavior is exercised by the dedicated specimen-partial-translation page.",
     "keyConvention": "pages.claude-answers-the-doubt.layer.{NN}.{field} or .qa.{NN}.{field}"
   },
   "pages.claude-answers-the-doubt.layer.01.number": {
