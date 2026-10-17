@@ -1,5 +1,5 @@
 {
-  "contentFingerprint": "ef9eebb10831",
+  "contentFingerprint": "0509dd5592b1",
   "nodeCount": 114,
   "curatedNodeCount": 98,
   "autoDiscoveredCount": 16,
@@ -317,11 +317,27 @@
     "claude-answers-the-doubt": {
       "availableLangs": [
         "en",
+        "ar",
+        "de",
+        "es",
         "fr",
-        "ja"
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
       ],
       "completeLangs": [
-        "en"
+        "en",
+        "ar",
+        "de",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
       ]
     },
     "scopes-of-god": {
