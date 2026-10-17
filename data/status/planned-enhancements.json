@@ -53,10 +53,7 @@
       "description": "Shipped in Session 013. CORE_MODULES + FEATURE_WIDGET replaced by a single FEATURES registry in lib/build-vextreme.js: { sw: { default: true }, lang: { default: false }, demo: { default: false }, arc-nav: { default: false }, spiral-fab: { default: false }, theme: { default: false } }. Feature.SW and Feature.ARC_NAV added to lib/vex-config.js. God Script output is byte-identical — purely an internal code structure change. arc-nav slot registered for future implementation.",
       "addedSession": "013",
       "shippedSession": "013",
-      "unblocks": [
-        "pe-002 (arc-nav for claude-answers-the-doubt)",
-        "pe-008 (offline FAB)"
-      ],
+      "unblocks": ["pe-002 (arc-nav for claude-answers-the-doubt)", "pe-008 (offline FAB)"],
       "priority": "high",
       "status": "shipped"
     },
@@ -84,10 +81,7 @@
       "renameReason": "Avoid collision with the shipped Session 024 pe-012 lattice-edge drift detector (lib/check-lattice-edges.js), which keeps the original ID.",
       "addedSession": "025",
       "priority": "medium",
-      "unblocks": [
-        "od-008 connector-trace confidence",
-        "faster AI onboarding for source-of-truth debugging"
-      ],
+      "unblocks": ["od-008 connector-trace confidence", "faster AI onboarding for source-of-truth debugging"],
       "lens": "architect"
     },
     {
