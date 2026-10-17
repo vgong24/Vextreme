@@ -15,7 +15,7 @@
   /* Scope + category globals for fab-lang compatibility */
   window.VEX_STRING_SCOPES    = ["pages.what-emerged-after"];
   window.VEX_STRING_CATEGORY  = "production";
-  window.VEX_SUPPORTED_LANGS  = ["en"];
+  window.VEX_SUPPORTED_LANGS  = ["en","ar","de","es","fr","hi","ja","ko","pt","zh"];
 
 
 
