@@ -494,6 +494,14 @@
         "order": "chronological",
         "dateRange": {
           "from": "2026-04-01",
+          "to": "2026-04-30"
+        }
+      },
+      {
+        "label": "May 2026 onward — Continuing Record",
+        "order": "chronological",
+        "dateRange": {
+          "from": "2026-05-01",
           "to": "2099-12-31"
         }
       }
