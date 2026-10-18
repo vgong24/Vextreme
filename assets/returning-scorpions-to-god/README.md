@@ -1,6 +1,6 @@
 # Returning scorpions to God — representative imagery
 
-This directory is reserved for **derived presentation imagery** for the annotated reader
+This directory contains **derived presentation imagery** for the annotated reader
 `pages/returning-scorpions-to-god.html`.
 
 It does not contain source evidence for the preserved conversation.
@@ -15,23 +15,36 @@ assets/returning-scorpions-to-god/
   = later representative artwork
 ```
 
-A future adopted cover should be recorded as a symbolic interpretation of the dream imagery,
-not a claim that the generated scene reproduces Victor's dream exactly.
+## Current cover
 
-Current intended composition:
+`cover.webp` is the current representative hero image used by the derived reader.
 
-- night desert;
-- two dark scorpion forms, one smaller and one larger;
-- a searching ultraviolet/dark-light beam that reveals silhouette/shape before detail;
-- restrained archival/editorial treatment rather than horror or spectacle;
-- no invented facial likeness of Victor or his father;
-- enough negative space and contrast to function as collection-card/hero artwork.
+Its role is symbolic:
 
-Preferred eventual canonical filename: `cover.webp` (or another format selected by the current
-asset pipeline when actually integrated).
+- night/desert-like darkness;
+- two scorpion forms of visibly different sizes;
+- illumination that makes the forms legible without claiming to reproduce Victor's dream;
+- no likeness of Victor or his father;
+- no claim that the image records an observed scene.
 
-The collection renderer does not currently expose a canonical cover-image metadata field. Do not
-invent one inside this directory; wire the asset only through a separately reviewed renderer/metadata
-contract when that layer is intentionally added.
+The image was derived from the creative visual exploration for PR #339 and then cropped into an
+image-only asset so the artwork does not smuggle a generated UI mock into the page architecture.
+
+```text
+ARTWORK != DREAM EVIDENCE
+ARTWORK != TRANSCRIPT EVIDENCE
+REPRESENTATION MAY EVOLVE
+PARENT RECORD MUST NOT
+```
+
+## Collection-surface hold
+
+The current v2 repository has no accepted visitor-facing collection-card cover-image metadata or
+renderer contract. The root page redirects to Terrain, while Build Health is an operational registry,
+not a visitor collection surface.
+
+Do not add a dead `coverImage` field merely because the asset exists. If a visitor-facing collection
+surface is admitted later, wire this asset through that surface's rightful metadata/renderer contract
+and test the collection behavior there.
 
 <!-- [VXG RealForever] -->
