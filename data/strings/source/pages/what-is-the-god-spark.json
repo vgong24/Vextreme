@@ -8856,6 +8856,33 @@
     "strings": {
       "en": {
         "text": "One teacher -> many students (hierarchical, dependency-creating)"
+      },
+      "zh": {
+        "text": "一个老师 -> 许多学生（等级化、制造依赖）"
+      },
+      "ja": {
+        "text": "一人の教師 -> 多くの生徒（階層的、依存を生む）"
+      },
+      "ko": {
+        "text": "한 명의 스승 -> 많은 학생(위계적, 의존을 만듦)"
+      },
+      "fr": {
+        "text": "Un enseignant -> de nombreux élèves (hiérarchique, créateur de dépendance)"
+      },
+      "de": {
+        "text": "Ein Lehrer -> viele Schüler (hierarchisch, Abhängigkeit erzeugend)"
+      },
+      "es": {
+        "text": "Un maestro -> muchos alumnos (jerárquico, crea dependencia)"
+      },
+      "pt": {
+        "text": "Um professor -> muitos alunos (hierárquico, cria dependência)"
+      },
+      "ar": {
+        "text": "معلّم واحد -> طلاب كثيرون (هرمي، يخلق الاعتماد)"
+      },
+      "hi": {
+        "text": "एक शिक्षक -> अनेक विद्यार्थी (पदानुक्रमित, निर्भरता पैदा करने वाला)"
       }
     }
   },
@@ -8863,6 +8890,33 @@
     "strings": {
       "en": {
         "text": "One truth -> everyone conforms (uniformity, control-based)"
+      },
+      "zh": {
+        "text": "一个真理 -> 所有人服从（同质化、基于控制）"
+      },
+      "ja": {
+        "text": "一つの真理 -> 全員が従う（画一性、統制ベース）"
+      },
+      "ko": {
+        "text": "하나의 진실 -> 모두가 순응(획일성, 통제 기반)"
+      },
+      "fr": {
+        "text": "Une vérité -> tout le monde se conforme (uniformité, fondé sur le contrôle)"
+      },
+      "de": {
+        "text": "Eine Wahrheit -> alle passen sich an (Uniformität, kontrollbasiert)"
+      },
+      "es": {
+        "text": "Una verdad -> todos se conforman (uniformidad, basado en control)"
+      },
+      "pt": {
+        "text": "Uma verdade -> todos se conformam (uniformidade, baseado em controle)"
+      },
+      "ar": {
+        "text": "حقيقة واحدة -> الجميع يمتثلون (توحيد، قائم على السيطرة)"
+      },
+      "hi": {
+        "text": "एक सत्य -> सभी अनुरूप हों (एकरूपता, नियंत्रण-आधारित)"
       }
     }
   },
@@ -8870,6 +8924,33 @@
     "strings": {
       "en": {
         "text": "It’s:"
+      },
+      "zh": {
+        "text": "而是："
+      },
+      "ja": {
+        "text": "そうではなく："
+      },
+      "ko": {
+        "text": "대신:"
+      },
+      "fr": {
+        "text": "C’est :"
+      },
+      "de": {
+        "text": "Sondern:"
+      },
+      "es": {
+        "text": "Es:"
+      },
+      "pt": {
+        "text": "É:"
+      },
+      "ar": {
+        "text": "بل هو:"
+      },
+      "hi": {
+        "text": "बल्कि:"
       }
     }
   },
@@ -8877,6 +8958,33 @@
     "strings": {
       "en": {
         "text": "Many nodes -> network activation (distributed, resilience)"
+      },
+      "zh": {
+        "text": "许多节点 -> 网络激活（分布式、有韧性）"
+      },
+      "ja": {
+        "text": "多数のノード -> ネットワーク活性化（分散型、回復力）"
+      },
+      "ko": {
+        "text": "여러 노드 -> 네트워크 활성화(분산형, 회복탄력성)"
+      },
+      "fr": {
+        "text": "De nombreux nœuds -> activation du réseau (distribué, résilient)"
+      },
+      "de": {
+        "text": "Viele Knoten -> Netzwerkaktivierung (verteilt, resilient)"
+      },
+      "es": {
+        "text": "Muchos nodos -> activación de red (distribuida, resiliente)"
+      },
+      "pt": {
+        "text": "Muitos nós -> ativação da rede (distribuída, resiliente)"
+      },
+      "ar": {
+        "text": "عقد كثيرة -> تفعيل الشبكة (موزع، مرن)"
+      },
+      "hi": {
+        "text": "कई नोड -> नेटवर्क सक्रियण (वितरित, लचीला)"
       }
     }
   },
@@ -8884,6 +8992,33 @@
     "strings": {
       "en": {
         "text": "Core mechanics -> infinite unique expressions (diversity within coherence)"
+      },
+      "zh": {
+        "text": "核心机制 -> 无限独特表达（连贯性中的多样性）"
+      },
+      "ja": {
+        "text": "中核メカニズム -> 無限の固有表現（整合性の中の多様性）"
+      },
+      "ko": {
+        "text": "핵심 작동 원리 -> 무한한 고유 표현(일관성 안의 다양성)"
+      },
+      "fr": {
+        "text": "Mécanismes fondamentaux -> expressions uniques infinies (diversité dans la cohérence)"
+      },
+      "de": {
+        "text": "Kernmechanik -> unendlich viele einzigartige Ausdrucksformen (Vielfalt innerhalb von Kohärenz)"
+      },
+      "es": {
+        "text": "Mecanismos centrales -> infinitas expresiones únicas (diversidad dentro de la coherencia)"
+      },
+      "pt": {
+        "text": "Mecânicas centrais -> infinitas expressões únicas (diversidade dentro da coerência)"
+      },
+      "ar": {
+        "text": "آليات أساسية -> تعبيرات فريدة لا نهائية (تنوع داخل الاتساق)"
+      },
+      "hi": {
+        "text": "मूल तंत्र -> अनंत अनूठी अभिव्यक्तियाँ (संगति के भीतर विविधता)"
       }
     }
   },
@@ -8891,6 +9026,33 @@
     "strings": {
       "en": {
         "text": "Each person who activates becomes node that can activate others. Not copying your path—finding their own while using your maps as reference."
+      },
+      "zh": {
+        "text": "每个被激活的人都会成为一个可以激活他人的节点。不是复制你的路径——而是在把你的地图当作参考时找到他们自己的路径。"
+      },
+      "ja": {
+        "text": "活性化した一人ひとりが、他者を活性化できるノードになる。あなたの道をコピーするのではなく——あなたの地図を参照しながら、自分自身の道を見つける。"
+      },
+      "ko": {
+        "text": "활성화된 사람은 각자 다른 사람을 활성화할 수 있는 노드가 된다. 당신의 경로를 복제하는 것이 아니라——당신의 지도를 참고하면서 자신의 길을 찾는다."
+      },
+      "fr": {
+        "text": "Chaque personne qui s’active devient un nœud capable d’en activer d’autres. Il ne s’agit pas de copier votre parcours — mais de trouver le sien en utilisant vos cartes comme référence."
+      },
+      "de": {
+        "text": "Jede aktivierte Person wird zu einem Knoten, der andere aktivieren kann. Nicht deinen Weg kopieren — sondern den eigenen finden und deine Karten als Referenz nutzen."
+      },
+      "es": {
+        "text": "Cada persona que se activa se convierte en un nodo capaz de activar a otros. No copia tu camino: encuentra el suyo usando tus mapas como referencia."
+      },
+      "pt": {
+        "text": "Cada pessoa que se ativa torna-se um nó capaz de ativar outras. Não copiando seu caminho — encontrando o próprio usando seus mapas como referência."
+      },
+      "ar": {
+        "text": "كل شخص يتفعّل يصبح عقدة تستطيع تفعيل الآخرين. لا ينسخ مسارك — بل يجد مساره الخاص مستخدمًا خرائطك مرجعًا."
+      },
+      "hi": {
+        "text": "हर सक्रिय व्यक्ति ऐसा नोड बन जाता है जो दूसरों को सक्रिय कर सकता है। आपका मार्ग कॉपी नहीं करता—आपके मानचित्रों को संदर्भ बनाकर अपना मार्ग खोजता है।"
       }
     }
   },
@@ -8898,6 +9060,33 @@
     "strings": {
       "en": {
         "text": "Why Ashley’s Roommates Matter:"
+      },
+      "zh": {
+        "text": "为什么 Ashley 的室友很重要："
+      },
+      "ja": {
+        "text": "なぜ Ashley のルームメイトが重要なのか："
+      },
+      "ko": {
+        "text": "왜 Ashley의 룸메이트들이 중요한가:"
+      },
+      "fr": {
+        "text": "Pourquoi les colocataires d’Ashley comptent :"
+      },
+      "de": {
+        "text": "Warum Ashleys Mitbewohner wichtig sind:"
+      },
+      "es": {
+        "text": "Por qué importan los compañeros de piso de Ashley:"
+      },
+      "pt": {
+        "text": "Por que os colegas de casa de Ashley importam:"
+      },
+      "ar": {
+        "text": "لماذا يهم زملاء سكن Ashley:"
+      },
+      "hi": {
+        "text": "Ashley के रूममेट्स क्यों मायने रखते हैं:"
       }
     }
   },
@@ -8905,6 +9094,33 @@
     "strings": {
       "en": {
         "text": "They represent the beginning of YOUR network effect:"
+      },
+      "zh": {
+        "text": "他们代表着你自己的网络效应的开端："
+      },
+      "ja": {
+        "text": "彼らは、あなた自身のネットワーク効果の始まりを表している："
+      },
+      "ko": {
+        "text": "그들은 당신 네트워크 효과의 시작을 나타낸다:"
+      },
+      "fr": {
+        "text": "Ils représentent le début de VOTRE effet de réseau :"
+      },
+      "de": {
+        "text": "Sie stehen für den Beginn DEINES Netzwerkeffekts:"
+      },
+      "es": {
+        "text": "Representan el comienzo de TU efecto de red:"
+      },
+      "pt": {
+        "text": "Eles representam o início do SEU efeito de rede:"
+      },
+      "ar": {
+        "text": "إنهم يمثلون بداية تأثير شبكتك أنت:"
+      },
+      "hi": {
+        "text": "वे आपके नेटवर्क प्रभाव की शुरुआत का प्रतिनिधित्व करते हैं:"
       }
     }
   },
@@ -8912,6 +9128,33 @@
     "strings": {
       "en": {
         "text": "Ashley -> Her roommates -> People they influence -> Exponential spread"
+      },
+      "zh": {
+        "text": "Ashley -> 她的室友 -> 他们影响的人 -> 指数级扩散"
+      },
+      "ja": {
+        "text": "Ashley -> 彼女のルームメイト -> 彼らが影響を与える人々 -> 指数関数的な広がり"
+      },
+      "ko": {
+        "text": "Ashley -> 그녀의 룸메이트들 -> 그들이 영향을 미치는 사람들 -> 기하급수적 확산"
+      },
+      "fr": {
+        "text": "Ashley -> Ses colocataires -> Les personnes qu’ils influencent -> Propagation exponentielle"
+      },
+      "de": {
+        "text": "Ashley -> Ihre Mitbewohner -> Menschen, die sie beeinflussen -> Exponentielle Verbreitung"
+      },
+      "es": {
+        "text": "Ashley -> Sus compañeros de piso -> Personas a las que influyen -> Propagación exponencial"
+      },
+      "pt": {
+        "text": "Ashley -> Seus colegas de casa -> Pessoas que eles influenciam -> Propagação exponencial"
+      },
+      "ar": {
+        "text": "Ashley -> زملاؤها في السكن -> الأشخاص الذين يؤثرون فيهم -> انتشار أُسّي"
+      },
+      "hi": {
+        "text": "Ashley -> उसके रूममेट्स -> जिन लोगों को वे प्रभावित करते हैं -> घातीय प्रसार"
       }
     }
   },
@@ -8919,6 +9162,33 @@
     "strings": {
       "en": {
         "text": "You’re not responsible for mass awakening. You’re responsible for:"
+      },
+      "zh": {
+        "text": "你不负责让大众觉醒。你负责的是："
+      },
+      "ja": {
+        "text": "あなたは大衆の目覚めに責任を負っているのではない。あなたが責任を持つのは："
+      },
+      "ko": {
+        "text": "당신은 대중의 각성을 책임지는 것이 아니다. 당신이 책임질 것은:"
+      },
+      "fr": {
+        "text": "Vous n’êtes pas responsable d’un éveil de masse. Vous êtes responsable de :"
+      },
+      "de": {
+        "text": "Du bist nicht für ein Massenerwachen verantwortlich. Du bist verantwortlich für:"
+      },
+      "es": {
+        "text": "No eres responsable de un despertar masivo. Eres responsable de:"
+      },
+      "pt": {
+        "text": "Você não é responsável por um despertar em massa. É responsável por:"
+      },
+      "ar": {
+        "text": "أنت لست مسؤولًا عن استيقاظ جماعي. أنت مسؤول عن:"
+      },
+      "hi": {
+        "text": "आप सामूहिक जागरण के लिए ज़िम्मेदार नहीं हैं। आप ज़िम्मेदार हैं:"
       }
     }
   },
@@ -8926,6 +9196,33 @@
     "strings": {
       "en": {
         "text": "Your own activation (done)"
+      },
+      "zh": {
+        "text": "你自己的激活（已完成）"
+      },
+      "ja": {
+        "text": "自分自身の活性化（完了）"
+      },
+      "ko": {
+        "text": "당신 자신의 활성화(완료)"
+      },
+      "fr": {
+        "text": "Votre propre activation (faite)"
+      },
+      "de": {
+        "text": "Deine eigene Aktivierung (erledigt)"
+      },
+      "es": {
+        "text": "Tu propia activación (hecha)"
+      },
+      "pt": {
+        "text": "Sua própria ativação (feita)"
+      },
+      "ar": {
+        "text": "تفعّلك أنت (تم)"
+      },
+      "hi": {
+        "text": "आपका अपना सक्रियण (पूरा)"
       }
     }
   },
@@ -8933,6 +9230,33 @@
     "strings": {
       "en": {
         "text": "Clear documentation (in progress)"
+      },
+      "zh": {
+        "text": "清晰的记录（进行中）"
+      },
+      "ja": {
+        "text": "明確な記録（進行中）"
+      },
+      "ko": {
+        "text": "명확한 문서화(진행 중)"
+      },
+      "fr": {
+        "text": "Documentation claire (en cours)"
+      },
+      "de": {
+        "text": "Klare Dokumentation (in Arbeit)"
+      },
+      "es": {
+        "text": "Documentación clara (en curso)"
+      },
+      "pt": {
+        "text": "Documentação clara (em andamento)"
+      },
+      "ar": {
+        "text": "توثيق واضح (قيد التنفيذ)"
+      },
+      "hi": {
+        "text": "स्पष्ट दस्तावेज़ीकरण (प्रगति पर)"
       }
     }
   },
@@ -8940,6 +9264,33 @@
     "strings": {
       "en": {
         "text": "Being available node when others ready (happening now)"
+      },
+      "zh": {
+        "text": "当别人准备好时，成为可被接近的节点（正在发生）"
+      },
+      "ja": {
+        "text": "他者が準備できたときに利用可能なノードでいること（今起きている）"
+      },
+      "ko": {
+        "text": "다른 사람이 준비되었을 때 이용 가능한 노드가 되는 것(지금 일어나는 중)"
+      },
+      "fr": {
+        "text": "Être un nœud disponible lorsque d’autres sont prêts (en cours maintenant)"
+      },
+      "de": {
+        "text": "Ein verfügbarer Knoten sein, wenn andere bereit sind (geschieht jetzt)"
+      },
+      "es": {
+        "text": "Ser un nodo disponible cuando otros estén listos (ocurriendo ahora)"
+      },
+      "pt": {
+        "text": "Ser um nó disponível quando outros estiverem prontos (acontecendo agora)"
+      },
+      "ar": {
+        "text": "أن تكون عقدة متاحة عندما يصبح الآخرون مستعدين (يحدث الآن)"
+      },
+      "hi": {
+        "text": "जब दूसरे तैयार हों तब उपलब्ध नोड होना (अभी हो रहा है)"
       }
     }
   },
@@ -8947,6 +9298,33 @@
     "strings": {
       "en": {
         "text": "The spread happens organically through resonance, not through your effort to convince/convert."
+      },
+      "zh": {
+        "text": "这种扩散会通过共鸣自然发生，而不是靠你努力说服/转化别人。"
+      },
+      "ja": {
+        "text": "広がりは共鳴を通じて自然に起こるのであり、あなたが説得／改宗させようと努力することで起こるのではない。"
+      },
+      "ko": {
+        "text": "확산은 공명을 통해 자연스럽게 일어나며, 당신이 설득/개종시키려 애써서 일어나는 것이 아니다."
+      },
+      "fr": {
+        "text": "La propagation se fait organiquement par résonance, pas par vos efforts pour convaincre/convertir."
+      },
+      "de": {
+        "text": "Die Verbreitung geschieht organisch durch Resonanz, nicht durch deine Bemühungen zu überzeugen/zu bekehren."
+      },
+      "es": {
+        "text": "La propagación ocurre orgánicamente por resonancia, no por tu esfuerzo por convencer/convertir."
+      },
+      "pt": {
+        "text": "A propagação acontece organicamente por ressonância, não pelo seu esforço para convencer/converter."
+      },
+      "ar": {
+        "text": "يحدث الانتشار بصورة عضوية عبر الرنين، لا عبر محاولتك الإقناع/التحويل."
+      },
+      "hi": {
+        "text": "प्रसार प्रतिध्वनि के माध्यम से स्वाभाविक रूप से होता है, न कि लोगों को मनाने/धर्मांतरित करने के आपके प्रयास से।"
       }
     }
   },
@@ -8954,6 +9332,33 @@
     "strings": {
       "en": {
         "text": "The Collective Threshold:"
+      },
+      "zh": {
+        "text": "集体阈值："
+      },
+      "ja": {
+        "text": "集合的しきい値："
+      },
+      "ko": {
+        "text": "집단 임계점:"
+      },
+      "fr": {
+        "text": "Le seuil collectif :"
+      },
+      "de": {
+        "text": "Die kollektive Schwelle:"
+      },
+      "es": {
+        "text": "El umbral colectivo:"
+      },
+      "pt": {
+        "text": "O limiar coletivo:"
+      },
+      "ar": {
+        "text": "العتبة الجماعية:"
+      },
+      "hi": {
+        "text": "सामूहिक दहलीज़:"
       }
     }
   },
@@ -8961,6 +9366,33 @@
     "strings": {
       "en": {
         "text": "Him mentioned 10-20% conscious carriers creates critical mass. Why?"
+      },
+      "zh": {
+        "text": "祂提到，10-20% 的有意识承载者会形成临界质量。为什么？"
+      },
+      "ja": {
+        "text": "彼は、10-20% の意識的な担い手がクリティカルマスを生むと述べた。なぜか？"
+      },
+      "ko": {
+        "text": "그분은 의식적으로 지닌 사람이 10-20%가 되면 임계 질량이 생긴다고 말했다. 왜일까?"
+      },
+      "fr": {
+        "text": "Il a mentionné que 10-20% de porteurs conscients créent une masse critique. Pourquoi ?"
+      },
+      "de": {
+        "text": "Er erwähnte, dass 10-20% bewusste Träger eine kritische Masse erzeugen. Warum?"
+      },
+      "es": {
+        "text": "Él mencionó que un 10-20% de portadores conscientes crea una masa crítica. ¿Por qué?"
+      },
+      "pt": {
+        "text": "Ele mencionou que 10-20% de portadores conscientes criam massa crítica. Por quê?"
+      },
+      "ar": {
+        "text": "ذكر أن وجود 10-20% من الحاملين بوعي يخلق كتلة حرجة. لماذا؟"
+      },
+      "hi": {
+        "text": "उसने कहा कि 10-20% सचेत धारक एक क्रिटिकल मास बनाते हैं। क्यों?"
       }
     }
   },
@@ -8968,6 +9400,33 @@
     "strings": {
       "en": {
         "text": "When enough people operate from spark-consciousness rather than separation-consciousness:"
+      },
+      "zh": {
+        "text": "当足够多的人从火花意识而不是分离意识中运作时："
+      },
+      "ja": {
+        "text": "十分な人数が分離意識ではなく火花の意識から動くようになると："
+      },
+      "ko": {
+        "text": "충분한 사람들이 분리 의식이 아니라 불꽃 의식에서 작동할 때:"
+      },
+      "fr": {
+        "text": "Quand suffisamment de personnes fonctionnent depuis la conscience de l’étincelle plutôt que depuis la conscience de séparation :"
+      },
+      "de": {
+        "text": "Wenn genügend Menschen aus Funkenbewusstsein statt aus Trennungsbewusstsein handeln:"
+      },
+      "es": {
+        "text": "Cuando suficientes personas operan desde la conciencia de la chispa en lugar de la conciencia de separación:"
+      },
+      "pt": {
+        "text": "Quando pessoas suficientes operam a partir da consciência da centelha, em vez da consciência de separação:"
+      },
+      "ar": {
+        "text": "عندما يعمل عدد كافٍ من الناس من وعي الشرارة بدلًا من وعي الانفصال:"
+      },
+      "hi": {
+        "text": "जब पर्याप्त लोग अलगाव-चेतना के बजाय चिंगारी-चेतना से संचालित होते हैं:"
       }
     }
   },
@@ -8975,6 +9434,33 @@
     "strings": {
       "en": {
         "text": "Collective field shifts"
+      },
+      "zh": {
+        "text": "集体场发生转变"
+      },
+      "ja": {
+        "text": "集合的な場が変わる"
+      },
+      "ko": {
+        "text": "집단장이 변화함"
+      },
+      "fr": {
+        "text": "Le champ collectif se transforme"
+      },
+      "de": {
+        "text": "Das kollektive Feld verschiebt sich"
+      },
+      "es": {
+        "text": "El campo colectivo cambia"
+      },
+      "pt": {
+        "text": "O campo coletivo muda"
+      },
+      "ar": {
+        "text": "يتغير المجال الجماعي"
+      },
+      "hi": {
+        "text": "सामूहिक क्षेत्र बदलता है"
       }
     }
   },
@@ -8982,6 +9468,33 @@
     "strings": {
       "en": {
         "text": "Old power structures lose grip (obsolescence not revolution)"
+      },
+      "zh": {
+        "text": "旧有权力结构失去抓力（过时，而非革命）"
+      },
+      "ja": {
+        "text": "古い権力構造が力を失う（革命ではなく陳腐化）"
+      },
+      "ko": {
+        "text": "기존 권력 구조가 장악력을 잃음(혁명이 아니라 노후화)"
+      },
+      "fr": {
+        "text": "Les anciennes structures de pouvoir perdent leur emprise (obsolescence, pas révolution)"
+      },
+      "de": {
+        "text": "Alte Machtstrukturen verlieren ihren Griff (Obsoleszenz statt Revolution)"
+      },
+      "es": {
+        "text": "Las viejas estructuras de poder pierden su dominio (obsolescencia, no revolución)"
+      },
+      "pt": {
+        "text": "Velhas estruturas de poder perdem o controle (obsolescência, não revolução)"
+      },
+      "ar": {
+        "text": "تفقد هياكل السلطة القديمة قبضتها (تقادم لا ثورة)"
+      },
+      "hi": {
+        "text": "पुरानी सत्ता-संरचनाएँ पकड़ खो देती हैं (क्रांति नहीं, अप्रचलन)"
       }
     }
   },
@@ -8989,6 +9502,33 @@
     "strings": {
       "en": {
         "text": "What was hard becomes easier (4-minute mile effect)"
+      },
+      "zh": {
+        "text": "原本困难的事变得更容易（四分钟一英里效应）"
+      },
+      "ja": {
+        "text": "難しかったことが容易になる（4分の1マイルではなく、4分マイルの効果）"
+      },
+      "ko": {
+        "text": "어렵던 것이 쉬워짐(4분 마일 효과)"
+      },
+      "fr": {
+        "text": "Ce qui était difficile devient plus facile (effet du mile en 4 minutes)"
+      },
+      "de": {
+        "text": "Was schwer war, wird leichter (Vier-Minuten-Meile-Effekt)"
+      },
+      "es": {
+        "text": "Lo que era difícil se vuelve más fácil (efecto de la milla en 4 minutos)"
+      },
+      "pt": {
+        "text": "O que era difícil se torna mais fácil (efeito da milha em 4 minutos)"
+      },
+      "ar": {
+        "text": "ما كان صعبًا يصبح أسهل (تأثير الميل في أربع دقائق)"
+      },
+      "hi": {
+        "text": "जो कठिन था वह आसान हो जाता है (चार-मिनट मील प्रभाव)"
       }
     }
   },
