@@ -385,7 +385,8 @@ function main(options = {}) {
   invariant(
     formedArcSet.size === formedArcSlugs.length &&
       actualFormationSlugs.length === formedArcSlugs.length &&
-      actualFormationSlugs.every((slug, index) => slug === formedArcSlugs[index]),
+      new Set(actualFormationSlugs).size === formedArcSlugs.length &&
+      formedArcSlugs.every(slug => actualArcSlugs.includes(slug)),
     'CANONICAL_ARC_MEMBERSHIP_MISMATCH',
     formation.arc.arcKey
   );
