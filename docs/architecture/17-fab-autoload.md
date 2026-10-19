@@ -25,8 +25,8 @@ mode (below) proving the point.
 
 `lib/vextreme.js` (`shell.js`'s loader) already auto-provides nav and body-wrap from one
 script tag — no page hand-authors its own nav HTML. There was no equivalent for the v2
-spiral-FAB system: every page wanting `vex-fab.js` + `fab-lang.js` + `fab-theme.js` +
-`fab-map.js` had to list all four itself. The only place these got assembled automatically
+spiral-FAB system: every page wanting `vex-fab.js` + `fab-read-aloud.js` + `fab-lang.js` + `fab-theme.js` +
+`fab-map.js` had to list the shared set itself. The only place these got assembled automatically
 was `lib/build-vextreme.js`'s God Script build — a heavier process requiring per-slug
 string-scope/viewmodel configuration most standalone pages don't have.
 
@@ -38,7 +38,7 @@ loads, in this exact order — order is load-bearing, `vex-fab.js` must create
 `#vex-spiral-group` before the others look for it:
 
 ```
-widgets/vex-fab.js  → widgets/fab-lang.js → widgets/fab-theme.js → widgets/fab-map.js
+widgets/vex-fab.js → widgets/fab-read-aloud.js → widgets/fab-lang.js → widgets/fab-theme.js → widgets/fab-map.js
 ```
 
 Gated the same way `nav`/`bodyWrap` already are (`cfg.fab`, default `true` on
@@ -100,7 +100,7 @@ not spot-checked:
 
 ### The fix: `fabWidgets`, a per-widget opt-out
 
-`VEXTREME({ fabWidgets: { theme: false } })` (same shape for `lang`/`map`) skips one widget
+`VEXTREME({ fabWidgets: { theme: false } })` (same shape for `readAloud`/`lang`/`map`) skips one widget
 in the auto-loaded set while keeping the rest — `vex-fab.js` (the spiral container itself)
 always loads when `cfg.fab` is true. Applied to the 5 pages above via
 `window.VEXTREME_OVERRIDE = { fabWidgets: { theme: false } }` (the 4 specimen/dashboard
@@ -227,5 +227,56 @@ Current delivery is 28 shell pages plus one God-Script page; ten `pages/*.html`
 surfaces still have neither path. Global rollout is the next bounded PR after
 this composition contract is accepted. Analysis traversal, view profiles, and
 cross-page string navigation remain product direction, not completed behavior.
+
+## Addendum 3 (2026-10-19): Read Aloud becomes site accessibility, not page-local narration
+
+The Returning-scorpions record reader first proved higher-quality Kokoro narration as a
+page-local vertical slice. Lived use then exposed two pressures that were no longer local:
+first-use neural work could make the page unresponsive, and page-local transport could
+not provide a reusable "start reading here and continue" experience across Vextreme.
+That repeated pressure earned a promotion into the existing Spiral widget family.
+
+The promoted owner is:
+
+```text
+widgets/fab-read-aloud.js
+  = generic site accessibility
+  = start-here selection + continuous semantic-block plan
+  = play / pause / stop / previous / next
+  = voice catalog + persisted preference
+  = live neural playback speed
+  = lazy Worker-based Kokoro provider + bounded cache/look-ahead
+  = browser/system speech fallback
+```
+
+Pages do **not** gain a new speech implementation. They expose ordinary readable DOM and
+may declare a source-owned boundary such as `data-narration-language="en"` when the
+spoken source language must remain distinct from presentation/FAB language. The widget
+reads that boundary; it never rewrites source truth.
+
+Read Aloud is default infrastructure in the God-Script feature registry, so every page
+does not need to repeat `read-aloud` in its viewmodel. The neural model remains lazy:
+loading the page/FAB does not load Kokoro. Shell-era pages receive the same widget from
+`loadFabWidgets()`, ordered after the Spiral owner and before `fab-lang.js` so the
+widget's `data-i18n` surface exists when the language FAB applies the selected locale.
+
+The explicit shell escape hatch is:
+
+```js
+window.VEXTREME_OVERRIDE = { fabWidgets: { readAloud: false } };
+```
+
+Use it only for a demonstrated surface conflict; accessibility being optional by default
+would recreate per-page admission debt.
+
+Speed semantics intentionally differ by provider capability. Kokoro synthesizes canonical
+1.0× PCM once and changes `AudioBufferSourceNode.playbackRate` live, so moving the speed
+slider does not restart or regenerate the current block. Browser `speechSynthesis` has no
+portable live-rate mutation contract, so the current bounded block finishes and the new
+rate applies to the next block rather than restarting what the person is hearing.
+
+The Spiral trigger still requires no modification when this orb is added. That unchanged
+owner is the reason the FAB composition remains extensible rather than becoming another
+central switch statement.
 
 <!-- [VXG RealForever] -->

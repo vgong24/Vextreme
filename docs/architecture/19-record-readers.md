@@ -97,10 +97,10 @@ For a record reader, that grammar means:
 | Current truth | What preserved source, media, and later commentary actually exist? |
 | Missing question | What does the reader still need in order to perceive or navigate the record? |
 | Rightful owner | Which source owns original truth, which later source owns witness, and which layer owns presentation? |
-| State | Which phase is active? Where is the viewport? Is narration idle, speaking, or paused? |
-| Control | What may the reader intentionally do: navigate, scroll, auto-scroll, read aloud, pause, choose voice/rate, open source? |
-| Act | What does that control mean semantically: show a phase, start narration, pause narration, open evidence? |
-| Effect | What mechanism realizes the act: DOM change, browser scroll, browser speech, external navigation? |
+| State | Which phase is active? Where is the viewport? Reader-local state stays local; generic spoken accessibility state belongs to the site Read Aloud widget. |
+| Control | What may the record reader intentionally do locally (navigate, scroll, auto-scroll, open source), and what generic accessibility control is delegated to site Read Aloud? |
+| Act | What does the local control mean semantically: show a phase, move the viewport, open evidence? Generic start/pause/voice/rate speech acts belong to site Read Aloud. |
+| Effect | What mechanism realizes the act: DOM change, browser scroll, external navigation, or the shared Read Aloud provider boundary? |
 | Projection / presentation | How are already-owned truths made perceivable without becoming new truth owners? |
 | Human journey | In what order can a person encounter source, witness, media, and controls? |
 | Proof | What evidence can truthfully establish source completeness, behavior, visual form, or lived quality? |
@@ -134,7 +134,8 @@ WitnessCommentary
   = later interpretation owned separately from the preserved record
 
 Read Aloud / narration
-  = reader control over spoken presentation
+  = site accessibility over already-visible content
+  = owned by widgets/fab-read-aloud.js, not by one record-reader page
 ```
 
 Do not let an implementation mechanism become the semantic noun merely because it
@@ -297,14 +298,49 @@ For long source:
 - manual scrolling always remains available;
 - auto-scroll is opt-in and pauses on deliberate reader interaction;
 - phase changes stop/reset phase-local reading state;
-- browser-native Read Aloud is now a proven page-local vertical slice inside
-  `TranscriptTools`; narration state/control remain reader semantics while
-  `speechSynthesis` is only the current effect provider;
-- browser narration remains distinct from Vex voice identity, voice formation, and
-  any future embodied-expression provider.
+- `TranscriptTools` may keep genuinely record-specific aids such as auto-scroll;
+- generic Read Aloud is site accessibility owned by `widgets/fab-read-aloud.js`, which
+  can start from a user-selected readable block and continue through visible content;
+- a record reader may declare a source-owned narration language (for example
+  `data-narration-language="en"`) without owning TTS mechanics;
+- neural/browser providers remain distinct from source truth, Vex voice identity,
+  voice formation, and any future embodied-expression provider.
 
 ---
 
+
+## Site Read Aloud ownership
+
+The Returning-scorpions vertical slice earned a repository-level promotion only after
+lived use exposed pressure that was not specific to preserved records: people needed to
+start speech from arbitrary content, carry the same controls across pages, change neural
+playback speed without restarting, and avoid running model inference on the UI thread.
+
+The ownership boundary is now:
+
+```text
+Page / record source
+  owns visible text + source-language meaning
+        ↓
+widgets/fab-read-aloud.js
+  owns generic spoken accessibility
+  start-here selection / continuous plan / transport / preferences
+        ↓
+provider mechanics
+  Kokoro Worker + PCM playback
+  or browser/system speech fallback
+```
+
+A page must not copy Kokoro, Web Speech, voice catalogs, transport state, or generic
+continuous-reading logic merely because it wants spoken accessibility. Conversely the
+site widget must not infer or rewrite preserved source truth; nearest
+`data-narration-language` / `lang` ownership outranks the presentation locale for what
+language the source should be spoken in.
+
+This is a **site accessibility promotion**, not a repository-wide record-reader
+framework. Record-reader phase/witness/provenance semantics remain local to the reader.
+
+---
 ## Provenance should navigate, not nag
 
 Establish the source/derived distinction clearly, then let the record speak.
@@ -485,8 +521,9 @@ presence of synthesis
 Do not create a repository-wide record-reader framework merely because one page has a
 clean implementation.
 
-A second independent reader may confirm repeated pressure. Extract shared
-`components/` or runtime machinery only when multiple real consumers need the same
-semantic promise and the shared owner becomes clearer than keeping the behavior local.
+Do not extract record-reader structure merely because Read Aloud is now shared. Generic
+spoken accessibility earned its own widget because the same human capability applies to
+ordinary pages as well as records. A second independent reader is still required before
+promoting reader-specific phase/transcript/witness structure into shared components.
 
 <!-- [VXG RealForever] -->
