@@ -186,8 +186,8 @@ test('READER-NARRATION: Kokoro is pinned, lazy, selectable, and system speech re
   );
   assert.match(
     script,
-    /onError:function\(\)\{if\(!BrowserSpeechNarrationProvider\.capability\(\)\.available\).*ReaderNarration\.speakWithBrowser/,
-    'neural preparation/generation failure must fall back to browser speech when available',
+    /onError:function\(\)\{if\(!BrowserSpeechNarrationProvider\.capability\(\)\.available\).*transcriptSpeechVoiceURI=TRANSCRIPT_SPEECH_BEST.*ReaderNarration\.speakWithBrowser/,
+    'neural failure must latch the remaining reading to browser speech instead of retrying Kokoro every segment',
   );
 });
 
