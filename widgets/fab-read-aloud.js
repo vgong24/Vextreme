@@ -884,6 +884,30 @@
     return element && isVisible(element) && normalizedText(element) ? element : null;
   }
 
+  function setPickElement(element, shouldScroll) {
+    if (state.pickElement === element) return;
+    if (state.pickElement) state.pickElement.classList.remove('vex-read-aloud-pick-target');
+    state.pickElement = element || null;
+    if (!state.pickElement) return;
+    state.pickElement.classList.add('vex-read-aloud-pick-target');
+    if (shouldScroll) {
+      try { state.pickElement.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {}
+    }
+  }
+
+  function movePickElement(direction) {
+    var blocks = readableBlocks();
+    if (!blocks.length) return;
+    var index = blocks.indexOf(state.pickElement);
+    if (index < 0) {
+      index = blocks.indexOf(viewportStartElement());
+      if (index < 0) index = 0;
+    } else {
+      index = Math.max(0, Math.min(blocks.length - 1, index + direction));
+    }
+    setPickElement(blocks[index], true);
+  }
+
   function exitPickMode() {
     if (!state.picking) return;
     state.picking = false;
@@ -893,6 +917,7 @@
     if (pickHandlers) {
       document.removeEventListener('pointerover', pickHandlers.over, true);
       document.removeEventListener('click', pickHandlers.click, true);
+      document.removeEventListener('contextmenu', pickHandlers.context, true);
       document.removeEventListener('keydown', pickHandlers.key, true);
     }
     pickHandlers = null;
@@ -907,11 +932,7 @@
 
     pickHandlers = {
       over: function (event) {
-        var candidate = readableTarget(event.target);
-        if (candidate === state.pickElement) return;
-        if (state.pickElement) state.pickElement.classList.remove('vex-read-aloud-pick-target');
-        state.pickElement = candidate;
-        if (candidate) candidate.classList.add('vex-read-aloud-pick-target');
+        setPickElement(readableTarget(event.target), false);
       },
       click: function (event) {
         var candidate = readableTarget(event.target);
@@ -920,15 +941,40 @@
         event.stopPropagation();
         startFromElement(candidate);
       },
+      context: function (event) {
+        var candidate = readableTarget(event.target);
+        if (!candidate) return;
+        event.preventDefault();
+        event.stopPropagation();
+        startFromElement(candidate);
+      },
       key: function (event) {
-        if (event.key !== 'Escape') return;
-        exitPickMode();
-        setMode('idle');
+        if (event.key === 'Escape') {
+          exitPickMode();
+          setMode('idle');
+          return;
+        }
+        if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
+          event.preventDefault();
+          movePickElement(1);
+          return;
+        }
+        if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
+          event.preventDefault();
+          movePickElement(-1);
+          return;
+        }
+        if ((event.key === 'Enter' || event.key === ' ') && state.pickElement) {
+          event.preventDefault();
+          startFromElement(state.pickElement);
+        }
       }
     };
 
+    setPickElement(viewportStartElement(), false);
     document.addEventListener('pointerover', pickHandlers.over, true);
     document.addEventListener('click', pickHandlers.click, true);
+    document.addEventListener('contextmenu', pickHandlers.context, true);
     document.addEventListener('keydown', pickHandlers.key, true);
   }
 

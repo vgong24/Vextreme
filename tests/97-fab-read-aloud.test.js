@@ -130,13 +130,22 @@ test('READ-ALOUD: continuous reading stays bounded instead of synthesizing the w
 
 test('READ-ALOUD: readable plan is semantic-block based and supports arbitrary Start here selection', () => {
   const s = source();
+  const pick = extractFunction('enterPickMode');
   assert.match(s, /var READABLE_SELECTOR = 'h1,h2,h3,h4,h5,h6,p,li,blockquote,figcaption,pre,td,th';/);
   assert.match(extractFunction('buildPlan'), /readableBlocks\(\)/);
   assert.match(extractFunction('startIndexForElement'), /plan\[i\]\.element === element/);
-  assert.match(extractFunction('enterPickMode'), /document\.addEventListener\('pointerover'/);
-  assert.match(extractFunction('enterPickMode'), /document\.addEventListener\('click'/);
+  assert.match(pick, /setPickElement\(viewportStartElement\(\), false\)/);
+  assert.match(pick, /document\.addEventListener\('pointerover'/);
+  assert.match(pick, /document\.addEventListener\('click'/);
+  assert.match(pick, /document\.addEventListener\('contextmenu'/,
+    'explicit Start here mode should accept right-click/long-press without globally hijacking the browser context menu');
+  assert.match(pick, /event\.key === 'ArrowDown' \|\| event\.key === 'ArrowRight'/);
+  assert.match(pick, /event\.key === 'ArrowUp' \|\| event\.key === 'ArrowLeft'/);
+  assert.match(pick, /event\.key === 'Enter' \|\| event\.key === ' '/);
+  assert.match(extractFunction('movePickElement'), /readableBlocks\(\)/);
   assert.match(extractFunction('readableTarget'), /target\.closest\(READABLE_SELECTOR\)/);
   assert.match(extractFunction('jumpBlock'), /blockIndex/);
+  assert.match(extractFunction('exitPickMode'), /removeEventListener\('contextmenu'/);
 });
 
 test('READ-ALOUD: source-owned narration language outranks presentation language', () => {

@@ -260,6 +260,13 @@ loading the page/FAB does not load Kokoro. Shell-era pages receive the same widg
 `loadFabWidgets()`, ordered after the Spiral owner and before `fab-lang.js` so the
 widget's `data-i18n` surface exists when the language FAB applies the selected locale.
 
+Start-here selection is an **explicit mode**, not a permanent takeover of page
+interaction. While that mode is active, a person may click a readable block,
+right-click / long-press one, or use arrow keys to move the highlighted candidate and
+Enter/Space to begin there. Escape cancels selection. The widget only suppresses the
+browser context menu for a readable target while this explicit selection mode is active;
+normal right-click behavior remains untouched everywhere else.
+
 The explicit shell escape hatch is:
 
 ```js
