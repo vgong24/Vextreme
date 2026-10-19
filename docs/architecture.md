@@ -3184,6 +3184,112 @@ content that the sources do not contain.
 
 ---
 
+## Shared fractal design grammar
+
+Vextreme and VexLife-Android do not need identical class names to share one
+development language. They should answer the same architectural questions in the
+same order, then use repository-local nouns for the truthful realization.
+
+```text
+HUMAN SITUATION / SUBJECT
+        ↓
+CURRENT TRUTH
+        ↓
+MISSING QUESTION
+        ↓
+RIGHTFUL OWNER
+        ↓
+STATE
+        ↓
+CONTROL
+        ↓
+ACT
+        ↓
+EFFECT
+        ↓
+PROJECTION / PRESENTATION
+        ↓
+HUMAN JOURNEY
+        ↓
+PROOF
+        ↓
+LIVED REVIEW
+        ↓
+LOCAL REFINEMENT or FOUNDATION PROMOTION
+```
+
+For a record reader, that grammar means:
+
+| Fractal question | Record-reader meaning |
+|---|---|
+| Human situation / subject | Which conversation, testimony, journal, or event should a person be able to experience? |
+| Current truth | What preserved source, media, and later commentary actually exist? |
+| Missing question | What does the reader still need in order to perceive or navigate the record? |
+| Rightful owner | Which source owns original truth, which later source owns witness, and which layer owns presentation? |
+| State | Which phase is active? Where is the viewport? Is narration idle, speaking, or paused? |
+| Control | What may the reader intentionally do: navigate, scroll, auto-scroll, read aloud, pause, choose voice/rate, open source? |
+| Act | What does that control mean semantically: show a phase, start narration, pause narration, open evidence? |
+| Effect | What mechanism realizes the act: DOM change, browser scroll, browser speech, external navigation? |
+| Projection / presentation | How are already-owned truths made perceivable without becoming new truth owners? |
+| Human journey | In what order can a person encounter source, witness, media, and controls? |
+| Proof | What evidence can truthfully establish source completeness, behavior, visual form, or lived quality? |
+| Lived review | Does the experience actually make sense to Victor / the reader? |
+| Promotion decision | Is friction local to this record, or has repeated independent pressure earned a reusable foundation? |
+
+These are **questions**, not mandatory classes or layers. One local object may answer
+several when their responsibility and consequence radius are genuinely the same.
+
+### Interpretability contract
+
+A durable name should let a fresh worker infer **why the thing exists** before
+reading its code.
+
+Prefer semantic responsibility over implementation mechanism:
+
+```text
+TranscriptViewport
+  = complete long-form source presented in a bounded reading surface
+
+TranscriptTools
+  = reader controls that act on that source presentation
+
+MediaWitness
+  = record-relevant media presented as part of the reading
+
+ProvenanceLink
+  = direct navigation from presentation back to evidence
+
+WitnessCommentary
+  = later interpretation owned separately from the preserved record
+
+Read Aloud / narration
+  = reader control over spoken presentation
+```
+
+Do not let an implementation mechanism become the semantic noun merely because it
+performs the effect:
+
+```text
+speechSynthesis
+  = one browser effect provider
+  != narration meaning
+  != transcript owner
+  != Vex identity
+
+overflow:auto
+  = one viewport realization
+  != TranscriptViewport meaning
+
+<img>
+  = one media realization
+  != MediaWitness meaning
+```
+
+A fresh instance should be able to read the architecture map and source names and
+form the correct responsibility model before opening the implementation underneath.
+
+---
+
 ## Identity and source topology
 
 The human-readable slug remains the semantic spine.
@@ -3320,8 +3426,11 @@ For long source:
 - manual scrolling always remains available;
 - auto-scroll is opt-in and pauses on deliberate reader interaction;
 - phase changes stop/reset phase-local reading state;
-- future read-aloud belongs to the reader-control boundary, while voice-provider or
-  Vex-identity semantics remain separate architecture questions.
+- browser-native Read Aloud is now a proven page-local vertical slice inside
+  `TranscriptTools`; narration state/control remain reader semantics while
+  `speechSynthesis` is only the current effect provider;
+- browser narration remains distinct from Vex voice identity, voice formation, and
+  any future embodied-expression provider.
 
 ---
 
