@@ -9,7 +9,7 @@
  * the concrete boundary earned by PR #355:
  *
  *   reader semantics -> ReaderNarration
- *     -> KokoroNarrationProvider -> pinned kokoro-js/model mechanics
+ *     -> KokoroNarrationProvider -> one page-local Worker -> pinned kokoro-js/model mechanics
  *     -> BrowserSpeechNarrationProvider -> Web Speech fallback mechanics
  *
  * and confirms browser-created reader controls receive their text from the
@@ -123,9 +123,10 @@ const CONTROL_STRINGS = [
   ['pages.returning-scorpions-to-god.reader.narration.fallback', 'rs-narration-fallback-template', 'High-quality voice unavailable; using system speech.'],
 ];
 
-test('READER-NARRATION: provider mechanics stay below ReaderNarration', () => {
+test('READER-NARRATION: neural preparation and inference stay off the reader UI thread', () => {
   const script = inlineReaderScript(readPage());
-  const browser = providerBlock(script, 'var BrowserSpeechNarrationProvider=', 'var KokoroNarrationProvider=');
+  const browser = providerBlock(script, 'var BrowserSpeechNarrationProvider=', 'function kokoroNarrationWorkerMain()');
+  const worker = providerBlock(script, 'function kokoroNarrationWorkerMain()', 'var KokoroNarrationProvider=');
   const kokoro = providerBlock(script, 'var KokoroNarrationProvider=', 'var transcriptSpeechRate=1;');
 
   for (const operation of ['speak', 'pause', 'resume', 'cancel']) {
@@ -135,23 +136,26 @@ test('READER-NARRATION: provider mechanics stay below ReaderNarration', () => {
     );
   }
 
-  assert.doesNotMatch(
-    browser.outside,
-    /window\.speechSynthesis/,
-    'reader code outside BrowserSpeechNarrationProvider must not reach Web Speech directly',
-  );
-  assert.doesNotMatch(
-    browser.outside,
-    /new SpeechSynthesisUtterance/,
-    'utterance construction belongs to BrowserSpeechNarrationProvider',
-  );
+  assert.doesNotMatch(browser.outside, /window\.speechSynthesis/,
+    'reader code outside BrowserSpeechNarrationProvider must not reach Web Speech directly');
+  assert.doesNotMatch(browser.outside, /new SpeechSynthesisUtterance/,
+    'utterance construction belongs to BrowserSpeechNarrationProvider');
 
-  assert.match(kokoro.provider, /import\(KOKORO_MODULE_URL\)/);
-  assert.match(kokoro.provider, /dtype:'q8',device:'wasm'/);
-  assert.match(kokoro.provider, /raw\.toBlob\(\)\.arrayBuffer\(\)/);
+  assert.match(worker.provider, /import\(KOKORO_MODULE_URL\)/);
+  assert.match(worker.provider, /from_pretrained\(KOKORO_MODEL_ID,\{dtype:'q8',device:'wasm'\}\)/);
+  assert.match(worker.provider, /var raw=await tts\.generate/);
+  assert.match(worker.provider, /var samples=raw\.data/);
+  assert.match(worker.provider, /\[samples\.buffer\]/,
+    'worker must transfer generated PCM ownership instead of WAV round-tripping');
+
+  assert.match(kokoro.provider, /new Worker\(workerUrl,\{type:'module'/);
+  assert.match(kokoro.provider, /buffer\.copyToChannel\(samples,0\)/);
+  assert.doesNotMatch(kokoro.provider, /from_pretrained|tts\.generate|raw\.toBlob|decodeAudioData/,
+    'model preparation/inference and WAV encoding/decoding must not run on the page thread');
+
   assert.doesNotMatch(
     extractFunction(script, 'readerNarrationCapabilities'),
-    /ensureReady|from_pretrained|import\(/,
+    /ensureWorker|from_pretrained|import\(/,
     'page-load capability inspection must remain cheap and must not prepare the neural model',
   );
 
@@ -169,24 +173,82 @@ test('READER-NARRATION: provider mechanics stay below ReaderNarration', () => {
   }
 });
 
-test('READER-NARRATION: Kokoro is pinned, lazy, selectable, and system speech remains fallback', () => {
+test('READER-NARRATION: queueing is bounded and prepared audio is reused within the page session', () => {
+  const script = inlineReaderScript(readPage());
+
+  assert.match(script, /var MAX_NARRATION_AUDIO_CACHE_ITEMS=24/);
+  assert.match(script, /var NARRATION_LOOKAHEAD=2/);
+  assert.match(script, /audioCache=new Map\(\)/);
+  assert.match(script, /while\(audioCache\.size>MAX_NARRATION_AUDIO_CACHE_ITEMS\)/);
+  assert.match(script, /function prefetchTranscriptSpeech\(section\)/);
+  assert.match(script, /texts\.length<NARRATION_LOOKAHEAD/);
+  assert.match(script, /ReaderNarration\.prefetch\(texts\)/);
+  assert.match(script, /section\._rsSpeech\.segments=collectTranscriptSpeechSegments\(section\)/,
+    'segment plan should be calculated when the transcript finishes loading');
+  assert.doesNotMatch(
+    extractFunction(script, 'finishTranscriptSpeech'),
+    /a\.segments=\[\]/,
+    'finishing playback must retain the precomputed narration plan for replay',
+  );
+  assert.match(script, /workerGeneration\+=1/,
+    'cancel must invalidate stale queued worker jobs without discarding the prepared model');
+});
+
+test('READER-NARRATION: curated voice catalog is small and narration language follows source ownership', () => {
+  const page = readPage();
+  const script = inlineReaderScript(page);
+
+  assert.match(page, /data-reader-template="conversation-witness-reader\/v1" data-narration-language="en"/);
+  assert.match(script, /var MAX_SYSTEM_NARRATION_VOICES=4/);
+
+  const curated = [...script.matchAll(/\{id:'([^']+)',name:'([^']+)',language:'([^']+)',gender:'([^']+)'/g)]
+    .map((match) => ({ id: match[1], name: match[2], language: match[3], gender: match[4] }));
+  assert.deepEqual(
+    curated.map((voice) => voice.name),
+    ['Heart', 'Bella', 'Fenrir', 'Michael'],
+    'English neural catalog should expose four intentional choices',
+  );
+  assert.equal(curated.filter((voice) => voice.gender === 'Female').length, 2);
+  assert.equal(curated.filter((voice) => voice.gender === 'Male').length, 2);
+  assert.doesNotMatch(script, /name:'Nicole'|name:'Emma'/);
+
+  const languageFunction = extractFunction(script, 'transcriptSpeechLanguage');
+  const context = {
+    document: {
+      querySelector() { return { dataset: { narrationLanguage: 'en' } }; },
+      documentElement: { getAttribute() { return 'fr'; } },
+    },
+  };
+  vm.runInNewContext(`${languageFunction}\nresult=transcriptSpeechLanguage();`, context);
+  assert.equal(context.result, 'en',
+    'preserved English transcript narration must not change voice language merely because the FAB changes UI language');
+
+  assert.match(extractFunction(script, 'transcriptSpeechVoices'), /\.slice\(0,MAX_SYSTEM_NARRATION_VOICES\)/,
+    'system voice inventory must stay bounded');
+});
+
+test('READER-NARRATION: voice or rate changes stop stale queued neural work', () => {
+  const script = inlineReaderScript(readPage());
+  assert.match(
+    script,
+    /voice\.addEventListener\('change',function\(\)\{if\(section\._rsSpeech&&section\._rsSpeech\.state!=='idle'\)cancelTranscriptSpeech\(section\);updateTranscriptSpeechVoice/,
+  );
+  assert.match(
+    script,
+    /speechRate\.addEventListener\('input',function\(\)\{if\(section\._rsSpeech&&section\._rsSpeech\.state!=='idle'\)cancelTranscriptSpeech\(section\);updateTranscriptSpeechRate/,
+  );
+});
+
+test('READER-NARRATION: Kokoro remains pinned and system speech remains the fail-closed fallback', () => {
   const script = inlineReaderScript(readPage());
 
   assert.match(script, /kokoro-js@1\.2\.1\/\+esm/);
   assert.match(script, /onnx-community\/Kokoro-82M-v1\.0-ONNX/);
-  assert.match(script, /KOKORO_VOICE_PREFIX='kokoro:'/);
-  assert.match(script, /\{id:'af_heart',name:'Heart'/);
-  assert.match(script, /\{id:'af_bella',name:'Bella'/);
-  assert.match(script, /\{id:'am_fenrir',name:'Fenrir'/);
+  assert.match(script, /execution:'worker-wasm-q8'/);
   assert.match(
     script,
-    /transcriptSpeechVoiceURI=KokoroNarrationProvider\.capability\(\)\.available\?KOKORO_VOICE_PREFIX\+'af_heart':TRANSCRIPT_SPEECH_BEST/,
-    'Heart should be preferred only when the cheap neural capability check succeeds',
-  );
-  assert.match(
-    script,
-    /onError:function\(\)\{if\(!BrowserSpeechNarrationProvider\.capability\(\)\.available\).*transcriptSpeechVoiceURI=TRANSCRIPT_SPEECH_BEST.*ReaderNarration\.speakWithBrowser/,
-    'neural failure must latch the remaining reading to browser speech instead of retrying Kokoro every segment',
+    /transcriptSpeechVoiceURI=TRANSCRIPT_SPEECH_BEST;populateTranscriptSpeechVoices\(\).*ReaderNarration\.speakWithBrowser/,
+    'neural failure must latch the remaining reading to bounded browser speech',
   );
 });
 
@@ -223,9 +285,12 @@ test('READER-NARRATION: Best available prefers same-language quality/local voice
 
   const context = {
     document: {
+      querySelector() {
+        return { dataset: { narrationLanguage: 'en-US' } };
+      },
       documentElement: {
         getAttribute(name) {
-          return name === 'lang' ? 'en-US' : null;
+          return name === 'lang' ? 'fr' : null;
         },
       },
     },
