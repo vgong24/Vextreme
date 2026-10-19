@@ -1,0 +1,225 @@
+'use strict';
+
+/**
+ * FAB-READ-ALOUD — site-level accessibility reader contract.
+ *
+ * Protects the behavior promoted from the Returning-scorpions vertical slice:
+ * one floating owner, arbitrary start position, continuous semantic-block
+ * reading, lazy off-thread neural synthesis, reusable PCM, live neural playback
+ * speed, bounded resource use, language-aware voice selection, and localized UI.
+ */
+
+const { test } = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const vm = require('node:vm');
+
+const ROOT = path.join(__dirname, '..');
+const WIDGET = path.join(ROOT, 'widgets', 'fab-read-aloud.js');
+const COMMON = path.join(ROOT, 'data', 'strings', 'source', 'common.json');
+
+function source() {
+  return fs.readFileSync(WIDGET, 'utf8').replace(/\r\n/g, '\n');
+}
+
+function extractFunction(name) {
+  const s = source();
+  const marker = 'function ' + name + '(';
+  const start = s.indexOf(marker);
+  assert.notEqual(start, -1, name + '() must exist');
+  const bodyStart = s.indexOf('{', start);
+  let depth = 0;
+  let quote = null;
+  let escaped = false;
+  for (let i = bodyStart; i < s.length; i += 1) {
+    const ch = s[i];
+    if (quote) {
+      if (escaped) escaped = false;
+      else if (ch === '\\') escaped = true;
+      else if (ch === quote) quote = null;
+      continue;
+    }
+    if (ch === "'" || ch === '"' || ch === '`') {
+      quote = ch;
+      continue;
+    }
+    if (ch === '{') depth += 1;
+    else if (ch === '}') {
+      depth -= 1;
+      if (depth === 0) return s.slice(start, i + 1);
+    }
+  }
+  assert.fail(name + '() closing brace must exist');
+}
+
+test('READ-ALOUD: source parses and owns exactly eight curated Kokoro English voices', () => {
+  const s = source();
+  assert.doesNotThrow(() => new Function(s));
+  const voices = [...s.matchAll(/\{ id: '([^']+)',\s+name: '([^']+)',\s+language: '([^']+)',\s+gender: '([^']+)',\s+grade: '([^']+)'/g)]
+    .map((match) => ({ id: match[1], name: match[2], language: match[3], gender: match[4], grade: match[5] }));
+  assert.deepEqual(
+    voices.map((voice) => voice.name),
+    ['Heart', 'Bella', 'Nicole', 'Emma', 'Fenrir', 'Michael', 'Puck', 'George'],
+  );
+  assert.equal(voices.filter((voice) => voice.gender === 'Female').length, 4);
+  assert.equal(voices.filter((voice) => voice.gender === 'Male').length, 4);
+  assert.ok(voices.every((voice) => voice.language.startsWith('en-')));
+});
+
+test('READ-ALOUD: system voice inventory is language-filtered and capped at eight', () => {
+  const s = source();
+  assert.match(s, /var MAX_SYSTEM_VOICES = 8;/);
+  const fn = extractFunction('matchingSystemVoices');
+  assert.match(fn, /primaryLanguage\(voice\.lang\) === primary/);
+  assert.match(fn, /\.slice\(0, MAX_SYSTEM_VOICES\)/);
+});
+
+test('READ-ALOUD: neural model preparation and inference live only in one Worker', () => {
+  const s = source();
+  const workerStart = s.indexOf('function kokoroWorkerMain()');
+  const providerStart = s.indexOf('var NeuralNarration =', workerStart);
+  assert.notEqual(workerStart, -1);
+  assert.notEqual(providerStart, -1);
+  const worker = s.slice(workerStart, providerStart);
+  const pageProvider = s.slice(providerStart);
+
+  assert.match(worker, /import\(KOKORO_MODULE_URL\)/);
+  assert.match(worker, /KokoroTTS\.from_pretrained\(KOKORO_MODEL_ID, \{ dtype: 'q8', device: 'wasm' \}\)/);
+  assert.match(worker, /await tts\.generate\(job\.text, \{ voice: job\.voice, speed: 1 \}\)/);
+  assert.match(worker, /var samples = raw\.data;/);
+  assert.match(worker, /\[samples\.buffer\]/);
+
+  assert.equal((pageProvider.match(/new Worker\(/g) || []).length, 1);
+  assert.doesNotMatch(pageProvider, /from_pretrained|tts\.generate|raw\.toBlob|decodeAudioData/);
+});
+
+test('READ-ALOUD: neural audio cache is independent of playback speed', () => {
+  const s = source();
+  assert.match(s, /var MAX_AUDIO_CACHE_ITEMS = 32;/);
+  assert.match(s, /while \(cache\.size > MAX_AUDIO_CACHE_ITEMS\)/);
+
+  const key = extractFunction('key');
+  assert.match(key, /voice \+ '\\u0000' \+ text/);
+  assert.doesNotMatch(key, /rate|speed/);
+
+  const worker = s.slice(s.indexOf('function kokoroWorkerMain()'), s.indexOf('var NeuralNarration ='));
+  assert.match(worker, /speed: 1/);
+});
+
+test('READ-ALOUD: neural speed can change live without restarting or regenerating audio', () => {
+  const s = source();
+  const setRate = extractFunction('setRate');
+  assert.match(setRate, /activeSource\.playbackRate\.setValueAtTime\(clampRate\(rate\), audioContext\.currentTime\)/);
+
+  const rateHandler = s.match(/rate\.addEventListener\('input',[\s\S]*?\n    \}\);/);
+  assert.ok(rateHandler, 'rate input handler must exist');
+  assert.match(rateHandler[0], /NeuralNarration\.setRate\(state\.settings\.rate\)/);
+  assert.doesNotMatch(rateHandler[0], /stopProviders|speakCurrent|cancel\(/,
+    'moving the speed slider must not restart current narration');
+});
+
+test('READ-ALOUD: continuous reading stays bounded instead of synthesizing the whole page', () => {
+  const s = source();
+  assert.match(s, /var LOOKAHEAD = 2;/);
+  const prefetch = extractFunction('prefetchAhead');
+  assert.match(prefetch, /texts\.length < LOOKAHEAD/);
+  assert.match(prefetch, /NeuralNarration\.prefetch\(texts, voice\)/);
+  assert.match(s, /var MAX_AUDIO_CACHE_ITEMS = 32;/);
+});
+
+test('READ-ALOUD: readable plan is semantic-block based and supports arbitrary Start here selection', () => {
+  const s = source();
+  assert.match(s, /var READABLE_SELECTOR = 'h1,h2,h3,h4,h5,h6,p,li,blockquote,figcaption,pre,td,th';/);
+  assert.match(extractFunction('buildPlan'), /readableBlocks\(\)/);
+  assert.match(extractFunction('startIndexForElement'), /plan\[i\]\.element === element/);
+  assert.match(extractFunction('enterPickMode'), /document\.addEventListener\('pointerover'/);
+  assert.match(extractFunction('enterPickMode'), /document\.addEventListener\('click'/);
+  assert.match(extractFunction('readableTarget'), /target\.closest\(READABLE_SELECTOR\)/);
+  assert.match(extractFunction('jumpBlock'), /blockIndex/);
+});
+
+test('READ-ALOUD: source-owned narration language outranks presentation language', () => {
+  const fn = extractFunction('effectiveLanguage');
+  const context = {
+    localStorage: { getItem() { return 'ja'; } },
+    document: {
+      documentElement: { getAttribute() { return 'fr'; } },
+    },
+  };
+  const factory = new Function(
+    'document',
+    'localStorage',
+    fn + '\nreturn effectiveLanguage;'
+  );
+  const effectiveLanguage = factory(context.document, context.localStorage);
+
+  const owner = {
+    getAttribute(name) {
+      if (name === 'data-narration-language') return 'en';
+      if (name === 'lang') return null;
+      return null;
+    },
+  };
+  const element = { closest() { return owner; } };
+  assert.equal(effectiveLanguage(element), 'en');
+});
+
+test('READ-ALOUD: preferences persist across pages by primary language', () => {
+  const s = source();
+  assert.match(s, /var SETTINGS_KEY = 'vex-read-aloud-settings\/v1';/);
+  assert.match(extractFunction('loadSettings'), /localStorage\.getItem\(SETTINGS_KEY\)/);
+  assert.match(extractFunction('saveSettings'), /localStorage\.setItem\(SETTINGS_KEY/);
+  assert.match(extractFunction('voiceStorageKey'), /primaryLanguage\(language\)/);
+});
+
+test('READ-ALOUD: widget mounts into Spiral when present and retains standalone fallback', () => {
+  const s = source();
+  assert.match(s, /getElementById\('vex-spiral-group'\)/);
+  assert.match(s, /group\.appendChild\(root\)/);
+  assert.match(s, /document\.body\.appendChild\(root\)/);
+  assert.match(s, /orb\.className = 'vex-orb'/);
+});
+
+test('READ-ALOUD: overlay copy is owned by common string identities for all Global Core locales', () => {
+  const s = source();
+  const common = JSON.parse(fs.readFileSync(COMMON, 'utf8'));
+  const keys = [
+    'common.button.read-aloud',
+    'common.button.read-aloud-start-here',
+    'common.button.read-aloud-play',
+    'common.button.read-aloud-pause',
+    'common.button.read-aloud-stop',
+    'common.button.read-aloud-previous',
+    'common.button.read-aloud-next',
+    'common.button.read-aloud-close',
+    'common.label.read-aloud-voice',
+    'common.label.read-aloud-speed',
+    'common.status.read-aloud-pick',
+    'common.status.read-aloud-preparing',
+    'common.status.read-aloud-reading',
+    'common.status.read-aloud-done',
+    'common.status.read-aloud-fallback',
+    'common.status.read-aloud-none',
+  ];
+  const langs = ['en','ja','zh','ko','fr','de','es','pt','ar','hi'];
+
+  for (const key of keys) {
+    assert.ok(common[key], key + ' must exist in common source');
+    for (const lang of langs) {
+      assert.ok(common[key].strings[lang] && common[key].strings[lang].text,
+        key + ' must have ' + lang + ' text');
+    }
+    assert.ok(s.includes(key), key + ' must be consumed by the widget');
+  }
+});
+
+test('READ-ALOUD: system speech rate changes are deferred rather than restarting the current utterance', () => {
+  const s = source();
+  const rateHandler = s.match(/rate\.addEventListener\('input',[\s\S]*?\n    \}\);/);
+  assert.ok(rateHandler);
+  assert.match(rateHandler[0], /SpeechSynthesis does not reliably support mid-utterance rate mutation/);
+  assert.doesNotMatch(rateHandler[0], /SystemNarration\.cancel|speechSynthesis\.cancel/);
+});
+
+// [VXG RealForever]
