@@ -316,12 +316,15 @@ test('FAB SYSTEM: spiral-fab -> read-aloud -> lang ordering preserves shared mou
     features: ['lang', 'spiral-fab', 'theme', 'map', 'analysis'],
   }, { includeSourceComment: false });
 
-  const spiralIdx    = script.indexOf('vex-fab.js');
-  const readAloudIdx = script.indexOf('fab-read-aloud.js');
-  const langIdx      = script.indexOf('fab-lang.js');
-  const themeIdx     = script.indexOf('fab-theme.js');
-  const mapIdx       = script.indexOf('fab-map.js');
-  const analysisIdx  = script.indexOf('fab-analysis.js');
+  // Use the assembler-owned feature boundary markers, not raw filename text.
+  // Widget docstrings/lattice headers legitimately mention neighboring widgets,
+  // so filename indexOf() can report a false ordering before the feature begins.
+  const spiralIdx    = script.indexOf('/* === feature: spiral-fab (vex-fab.js) === */');
+  const readAloudIdx = script.indexOf('/* === core: fab-read-aloud.js === */');
+  const langIdx      = script.indexOf('/* === feature: lang (fab-lang.js) === */');
+  const themeIdx     = script.indexOf('/* === feature: theme (fab-theme.js) === */');
+  const mapIdx       = script.indexOf('/* === feature: map (fab-map.js) === */');
+  const analysisIdx  = script.indexOf('/* === feature: analysis (fab-analysis.js) === */');
 
   assert.ok(spiralIdx !== -1 && readAloudIdx !== -1 && langIdx !== -1 && themeIdx !== -1 && mapIdx !== -1 && analysisIdx !== -1,
     'shared FAB sources must all be present in the assembled script');

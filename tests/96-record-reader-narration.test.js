@@ -94,15 +94,21 @@ test('READER-NARRATION-OWNERSHIP: phase transitions reset auto-scroll without ow
 
 test('READER-NARRATION-OWNERSHIP: preserved transcript/witness component identities remain present', () => {
   const page = readPage();
+  const script = inlineReaderScript(page);
+
+  // These identities are structural page markup and remain directly present.
   for (const component of [
     'preserved-record',
     'transcript-viewport',
-    'transcript-tools',
     'witness-commentary',
     'whole-record-witness',
   ]) {
     assert.match(page, new RegExp('data-reader-component="' + component + '"'));
   }
+
+  // transcript-tools is intentionally installed only for a real transcript
+  // section at runtime, alongside the record-specific auto-scroll controls.
+  assert.match(script, /tools\.setAttribute\('data-reader-component','transcript-tools'\)/);
 });
 
 // [VXG RealForever]
