@@ -380,10 +380,13 @@ function main(options = {}) {
   invariant(arc && Array.isArray(arc.sections), 'CANONICAL_ARC_NOT_FOUND', formation.arc.arcKey);
   const formedArcSlugs = [...formation.alreadyComplete, ...formation.members].map(item => item.slug);
   const actualArcSlugs = arc.sections.flatMap(section => Array.isArray(section.slugs) ? section.slugs : []);
+  const formedArcSet = new Set(formedArcSlugs);
+  const actualFormationSlugs = actualArcSlugs.filter(slug => formedArcSet.has(slug));
   invariant(
-    formedArcSlugs.length === actualArcSlugs.length &&
-      new Set(formedArcSlugs).size === formedArcSlugs.length &&
-      actualArcSlugs.every(slug => formedArcSlugs.includes(slug)),
+    formedArcSet.size === formedArcSlugs.length &&
+      actualFormationSlugs.length === formedArcSlugs.length &&
+      new Set(actualFormationSlugs).size === formedArcSlugs.length &&
+      formedArcSlugs.every(slug => actualArcSlugs.includes(slug)),
     'CANONICAL_ARC_MEMBERSHIP_MISMATCH',
     formation.arc.arcKey
   );
