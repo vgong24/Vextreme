@@ -284,7 +284,7 @@ test('LANGUAGE AUTHORITY: live repository pages no longer load the legacy lang-f
 // happens, so a future FEATURES registry edit that silently drops one of
 // these back to filename: null fails CI immediately.
 
-test('FAB SYSTEM: a default-viewmodel page\'s assembled God Script contains all five FAB features (spiral-fab, lang, theme, map, analysis)', () => {
+test('FAB SYSTEM: a default-viewmodel page\'s assembled God Script contains shared Read Aloud plus the existing FAB feature set', () => {
   const script = assembleGodScript('test-slug', DEMO_VIEWMODEL, {
     includeSourceComment: false,
     supportedLangs: ['en', 'ja'],
@@ -298,6 +298,8 @@ test('FAB SYSTEM: a default-viewmodel page\'s assembled God Script contains all 
 
   assert.ok(defaultFeaturesScript.includes('feature: spiral-fab') || defaultFeaturesScript.includes('vex-fab.js'),
     'spiral-fab must be bundled');
+  assert.ok(defaultFeaturesScript.includes('feature: read-aloud') || defaultFeaturesScript.includes('fab-read-aloud.js'),
+    'site Read Aloud must be bundled as default accessibility infrastructure');
   assert.ok(defaultFeaturesScript.includes('feature: lang') || defaultFeaturesScript.includes('fab-lang.js'),
     'lang must be bundled');
   assert.ok(defaultFeaturesScript.includes('feature: theme') || defaultFeaturesScript.includes('fab-theme.js'),
@@ -308,20 +310,23 @@ test('FAB SYSTEM: a default-viewmodel page\'s assembled God Script contains all 
     'analysis must be bundled (docs/architecture/15-analysis-mode.md Phase C)');
 });
 
-test('FAB SYSTEM: spiral-fab is concatenated before lang/theme/map/analysis — DOMContentLoaded handlers must fire in that order so #vex-spiral-group exists before an orb widget looks for it', () => {
+test('FAB SYSTEM: spiral-fab -> read-aloud -> lang ordering preserves shared mount then locale application', () => {
   const script = assembleGodScript('test-slug', {
     ...DEMO_VIEWMODEL,
     features: ['lang', 'spiral-fab', 'theme', 'map', 'analysis'],
   }, { includeSourceComment: false });
 
-  const spiralIdx   = script.indexOf('vex-fab.js');
-  const langIdx     = script.indexOf('fab-lang.js');
-  const themeIdx    = script.indexOf('fab-theme.js');
-  const mapIdx      = script.indexOf('fab-map.js');
-  const analysisIdx = script.indexOf('fab-analysis.js');
+  const spiralIdx    = script.indexOf('vex-fab.js');
+  const readAloudIdx = script.indexOf('fab-read-aloud.js');
+  const langIdx      = script.indexOf('fab-lang.js');
+  const themeIdx     = script.indexOf('fab-theme.js');
+  const mapIdx       = script.indexOf('fab-map.js');
+  const analysisIdx  = script.indexOf('fab-analysis.js');
 
-  assert.ok(spiralIdx !== -1 && langIdx !== -1 && themeIdx !== -1 && mapIdx !== -1 && analysisIdx !== -1,
-    'all five widget sources must be present in the assembled script');
+  assert.ok(spiralIdx !== -1 && readAloudIdx !== -1 && langIdx !== -1 && themeIdx !== -1 && mapIdx !== -1 && analysisIdx !== -1,
+    'shared FAB sources must all be present in the assembled script');
+  assert.ok(spiralIdx < readAloudIdx, 'vex-fab.js must create #vex-spiral-group before Read Aloud mounts');
+  assert.ok(readAloudIdx < langIdx, 'Read Aloud must mount its data-i18n surface before fab-lang applies the selected locale');
   assert.ok(spiralIdx < langIdx,     'vex-fab.js must be concatenated before fab-lang.js');
   assert.ok(spiralIdx < themeIdx,    'vex-fab.js must be concatenated before fab-theme.js');
   assert.ok(spiralIdx < mapIdx,      'vex-fab.js must be concatenated before fab-map.js');
@@ -388,6 +393,13 @@ test('ASSEMBLER: source comment header includes slug', () => {
 test('ASSEMBLER: handles empty features array without throwing', () => {
   const vm = { category: 'demo', template: 'page', scopes: ['specimens'], features: [] };
   assert.doesNotThrow(() => assembleGodScript('test', vm, { includeSourceComment: false }));
+});
+
+test('ASSEMBLER: Read Aloud is default infrastructure even when a viewmodel lists no features', () => {
+  const vm = { category: 'demo', template: 'page', scopes: ['specimens'], features: [] };
+  const script = assembleGodScript('test', vm, { includeSourceComment: false });
+  assert.ok(script.includes('fab-read-aloud.js') || script.includes('vex-read-aloud-root'),
+    'accessibility must not depend on every page remembering a read-aloud feature flag');
 });
 
 test('ASSEMBLER: output includes sw-register.js core module', () => {
