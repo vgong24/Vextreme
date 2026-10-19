@@ -8,7 +8,9 @@
  * This does not promote one reader into shared runtime infrastructure. It protects
  * the concrete boundary earned by PR #355:
  *
- *   reader semantics -> BrowserSpeechNarrationProvider -> Web Speech mechanics
+ *   reader semantics -> ReaderNarration
+ *     -> KokoroNarrationProvider -> pinned kokoro-js/model mechanics
+ *     -> BrowserSpeechNarrationProvider -> Web Speech fallback mechanics
  *
  * and confirms browser-created reader controls receive their text from the
  * page-local string authority rather than duplicate English literals in JS.
@@ -47,11 +49,11 @@ function inlineReaderScript(page) {
   return page.slice(start, end);
 }
 
-function providerBlock(script) {
-  const start = script.indexOf('var BrowserSpeechNarrationProvider=');
-  const end = script.indexOf('var TRANSCRIPT_SPEECH_BEST=', start);
-  assert.notEqual(start, -1, 'BrowserSpeechNarrationProvider must exist');
-  assert.notEqual(end, -1, 'provider end anchor must exist');
+function providerBlock(script, declaration, endAnchor) {
+  const start = script.indexOf(declaration);
+  const end = script.indexOf(endAnchor, start);
+  assert.notEqual(start, -1, declaration + ' must exist');
+  assert.notEqual(end, -1, endAnchor + ' must exist');
   return {
     provider: script.slice(start, end),
     outside: script.slice(0, start) + script.slice(end),
@@ -115,39 +117,77 @@ const CONTROL_STRINGS = [
   ['pages.returning-scorpions-to-god.reader.narration.speed', 'rs-narration-speed-template', 'Narration speed'],
   ['pages.returning-scorpions-to-god.reader.narration.best-available', 'rs-narration-best-template', 'Best available'],
   ['pages.returning-scorpions-to-god.reader.narration.system-voice', 'rs-narration-system-template', 'System voice'],
+  ['pages.returning-scorpions-to-god.reader.narration.neural-group', 'rs-narration-neural-group-template', 'High-quality neural voices'],
+  ['pages.returning-scorpions-to-god.reader.narration.system-group', 'rs-narration-system-group-template', 'System voices'],
+  ['pages.returning-scorpions-to-god.reader.narration.preparing', 'rs-narration-preparing-template', 'Preparing high-quality voice…'],
+  ['pages.returning-scorpions-to-god.reader.narration.fallback', 'rs-narration-fallback-template', 'High-quality voice unavailable; using system speech.'],
 ];
 
-test('READER-NARRATION: Web Speech mechanics stay inside BrowserSpeechNarrationProvider', () => {
+test('READER-NARRATION: provider mechanics stay below ReaderNarration', () => {
   const script = inlineReaderScript(readPage());
-  const { provider, outside } = providerBlock(script);
+  const browser = providerBlock(script, 'var BrowserSpeechNarrationProvider=', 'var KokoroNarrationProvider=');
+  const kokoro = providerBlock(script, 'var KokoroNarrationProvider=', 'var transcriptSpeechRate=1;');
 
   for (const operation of ['speak', 'pause', 'resume', 'cancel']) {
     assert.match(
-      provider,
-      new RegExp(`window\\.speechSynthesis\\.${operation}\\(`),
-      `provider must directly implement ${operation}`,
-    );
-    assert.doesNotMatch(
-      provider,
-      new RegExp(`BrowserSpeechNarrationProvider\\.${operation}\\(`),
-      `provider ${operation} must not recurse through itself`,
-    );
-    assert.match(
-      outside,
-      new RegExp(`BrowserSpeechNarrationProvider\\.${operation}\\(`),
-      `reader must route ${operation} through the provider`,
+      browser.provider,
+      new RegExp(`window\\\\.speechSynthesis\\\\.${operation}\\\\(`),
+      `browser provider must directly implement ${operation}`,
     );
   }
 
   assert.doesNotMatch(
-    outside,
+    browser.outside,
     /window\.speechSynthesis/,
-    'reader code outside the provider must not reach Web Speech directly',
+    'reader code outside BrowserSpeechNarrationProvider must not reach Web Speech directly',
   );
   assert.doesNotMatch(
-    outside,
+    browser.outside,
     /new SpeechSynthesisUtterance/,
-    'utterance construction belongs to the provider mechanics',
+    'utterance construction belongs to BrowserSpeechNarrationProvider',
+  );
+
+  assert.match(kokoro.provider, /import\(KOKORO_MODULE_URL\)/);
+  assert.match(kokoro.provider, /dtype:'q8',device:'wasm'/);
+  assert.match(kokoro.provider, /raw\.toBlob\(\)\.arrayBuffer\(\)/);
+  assert.doesNotMatch(
+    extractFunction(script, 'readerNarrationCapabilities'),
+    /ensureReady|from_pretrained|import\(/,
+    'page-load capability inspection must remain cheap and must not prepare the neural model',
+  );
+
+  for (const functionName of [
+    'speakTranscriptSegment',
+    'cancelTranscriptSpeech',
+    'startTranscriptSpeech',
+    'pauseTranscriptSpeech',
+    'resumeTranscriptSpeech',
+  ]) {
+    const fn = extractFunction(script, functionName);
+    assert.match(fn, /ReaderNarration\./, `${functionName} must route through ReaderNarration`);
+    assert.doesNotMatch(fn, /BrowserSpeechNarrationProvider\.|KokoroNarrationProvider\./,
+      `${functionName} must not bypass ReaderNarration`);
+  }
+});
+
+test('READER-NARRATION: Kokoro is pinned, lazy, selectable, and system speech remains fallback', () => {
+  const script = inlineReaderScript(readPage());
+
+  assert.match(script, /kokoro-js@1\.2\.1\/\+esm/);
+  assert.match(script, /onnx-community\/Kokoro-82M-v1\.0-ONNX/);
+  assert.match(script, /KOKORO_VOICE_PREFIX='kokoro:'/);
+  assert.match(script, /\{id:'af_heart',name:'Heart'/);
+  assert.match(script, /\{id:'af_bella',name:'Bella'/);
+  assert.match(script, /\{id:'am_fenrir',name:'Fenrir'/);
+  assert.match(
+    script,
+    /transcriptSpeechVoiceURI=KokoroNarrationProvider\.capability\(\)\.available\?KOKORO_VOICE_PREFIX\+'af_heart':TRANSCRIPT_SPEECH_BEST/,
+    'Heart should be preferred only when the cheap neural capability check succeeds',
+  );
+  assert.match(
+    script,
+    /onError:function\(\)\{if\(!BrowserSpeechNarrationProvider\.capability\(\)\.available\).*ReaderNarration\.speakWithBrowser/,
+    'neural preparation/generation failure must fall back to browser speech when available',
   );
 });
 
@@ -210,8 +250,8 @@ test('READER-NARRATION: Best available prefers same-language quality/local voice
 
   assert.match(
     script,
-    /transcriptSpeechVoiceURI=TRANSCRIPT_SPEECH_BEST/,
-    'Best available must remain the browser-native default',
+    /var TRANSCRIPT_SPEECH_BEST=BROWSER_VOICE_PREFIX\+'best'/,
+    'Best available remains the browser-native fallback choice',
   );
 });
 

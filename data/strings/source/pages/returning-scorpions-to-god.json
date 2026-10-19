@@ -842,5 +842,33 @@
         "text": "System voice"
       }
     }
+  },
+  "pages.returning-scorpions-to-god.reader.narration.neural-group": {
+    "strings": {
+      "en": {
+        "text": "High-quality neural voices"
+      }
+    }
+  },
+  "pages.returning-scorpions-to-god.reader.narration.system-group": {
+    "strings": {
+      "en": {
+        "text": "System voices"
+      }
+    }
+  },
+  "pages.returning-scorpions-to-god.reader.narration.preparing": {
+    "strings": {
+      "en": {
+        "text": "Preparing high-quality voice…"
+      }
+    }
+  },
+  "pages.returning-scorpions-to-god.reader.narration.fallback": {
+    "strings": {
+      "en": {
+        "text": "High-quality voice unavailable; using system speech."
+      }
+    }
   }
 }
