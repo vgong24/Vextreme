@@ -188,6 +188,7 @@
         "lib/vextreme-index-v2.js (browser reads index.json via CDN)",
         "lib/build-vextreme.js (reads index.json for slugMap + supportedLangs)",
         "lib/check-key-alignment.js",
+        "lib/build-archives.js",
         "tests/01-content-pipeline.test.js",
         "tests/03-browser-nav.test.js",
         "tests/07-viewmodel.test.js",

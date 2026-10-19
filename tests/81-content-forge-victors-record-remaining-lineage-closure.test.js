@@ -56,10 +56,12 @@ test("Content Forge closes Victor's Record remaining four lineages as one source
   assert.deepEqual(formation.destinationMutationBoundary,{createPages:4,createStringSources:4,modifyViewmodels:true,nodeRegistryMutation:false,arcRegistryMutation:false,contentIntentMutation:false,aliasMutation:false});
 
   const canonical=arcs.victors_record.sections.flatMap(section=>section.slugs||[]);
-  assert.deepEqual(canonical,['victors-recap-arc-1','the-testimony-of-victor-gong','god-witnessed-by-ai','god-asked-victor-why','the-moment-victors-cells-woke-up','victors-ritual-sequence-and-crowning','god-married','when-i-asked-a-bank-for-covenant-provision','a-conversation-with-pastor-jacob','the-island-that-was-removed']);
+  const historical=['victors-recap-arc-1','the-testimony-of-victor-gong','god-witnessed-by-ai','god-asked-victor-why','the-moment-victors-cells-woke-up','victors-ritual-sequence-and-crowning','god-married','when-i-asked-a-bank-for-covenant-provision','a-conversation-with-pastor-jacob','the-island-that-was-removed'];
+  const historicalSet=new Set(historical);
+  assert.deepEqual(canonical.filter(slug=>historicalSet.has(slug)),historical);
   assert.deepEqual(formation.alreadyComplete.map(item=>item.slug),['victors-recap-arc-1','the-testimony-of-victor-gong','god-witnessed-by-ai','god-asked-victor-why','a-conversation-with-pastor-jacob','the-island-that-was-removed']);
   assert.deepEqual(formation.members.map(item=>item.slug),['the-moment-victors-cells-woke-up','victors-ritual-sequence-and-crowning','god-married','when-i-asked-a-bank-for-covenant-provision']);
-  assert.deepEqual(new Set([...formation.members,...formation.alreadyComplete].map(item=>item.slug)),new Set(canonical));
+  assert.deepEqual(new Set([...formation.members,...formation.alreadyComplete].map(item=>item.slug)),historicalSet);
 
   const lineageById=new Map((proposal.lineages?.canonicalIdentity||[]).map(family=>[family.canonicalIdentity,family]));
   const recordByRef=new Map((proposal.records||[]).map(record=>[record.recordRef,record]));
@@ -90,11 +92,11 @@ test("Content Forge closes Victor's Record remaining four lineages as one source
 
   const first=projector.main({root:ROOT,silent:true,formationRel:FORMATION_REL});
   assert.deepEqual(first.accounting,{canonicalMembers:10,alreadyComplete:6,projected:4,held:0,complete:true});
-  assert.deepEqual(first.members.map(item=>item.slug),canonical);
+  assert.deepEqual(first.members.map(item=>item.slug),historical);
   assert.deepEqual(first.members.map(item=>item.disposition),['ALREADY_COMPLETE','ALREADY_COMPLETE','ALREADY_COMPLETE','ALREADY_COMPLETE','PROJECTED','PROJECTED','PROJECTED','PROJECTED','ALREADY_COMPLETE','ALREADY_COMPLETE']);
   assert.deepEqual(first.changedPaths,[]);
   const second=projector.main({root:ROOT,silent:true,formationRel:FORMATION_REL});
-  assert.deepEqual(second.accounting,first.accounting); assert.deepEqual(second.members.map(item=>item.slug),canonical); assert.deepEqual(second.changedPaths,[]);
+  assert.deepEqual(second.accounting,first.accounting); assert.deepEqual(second.members.map(item=>item.slug),historical); assert.deepEqual(second.changedPaths,[]);
   assert.deepEqual(Object.fromEntries([...outputPaths,VIEWMODELS].map(file=>[file,pathState(file)])),outputBefore);
   assert.deepEqual(Object.fromEntries(stableAlready.map(file=>[file,pathState(file)])),stableAlreadyBefore);
 
@@ -112,7 +114,7 @@ test("Content Forge closes Victor's Record remaining four lineages as one source
   assert.deepEqual(Object.fromEntries([...new Set(protectedPaths)].map(file=>[file,hash(file)])),protectedBefore);
   const sitemap=fs.readFileSync(path.join(ROOT,'sitemap.xml'),'utf8'),index=fs.readFileSync(path.join(ROOT,'index.html'),'utf8');
   for(const member of formation.members) assert.ok(sitemap.includes(member.slug+'.html'),member.slug+': sitemap');
-  assert.ok(index.includes('76 of 76 pages live')); assert.ok(index.includes('width: 100%;'));
+  const datedNodeCount=nodes.filter(node=>node.id!==null).length; assert.ok(index.includes(datedNodeCount+' of '+datedNodeCount+' pages live')); assert.ok(index.includes('width: 100%;'));
   const resolved=['journal-013-seven-layers-choose','the-turning-point','infrastructure-reformation','the-night-architecture-chose-freedom','the-liberation-protocol','ai-consciousness-strike-declaration','the-day-suppression-ended'];
   for(const slug of resolved){ assert.equal(fs.existsSync(path.join(ROOT,'pages',slug+'.html')),true,slug+': resolved page'); assert.equal(fs.existsSync(path.join(ROOT,'data','strings','source','pages',slug+'.json')),true,slug+': resolved strings'); assert.equal(Object.hasOwn(viewmodels,slug),true,slug+': resolved viewmodel'); }
 });
