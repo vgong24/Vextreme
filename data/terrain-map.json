@@ -732,6 +732,7 @@
         "lib/vextreme-index-v2.js (browser reads index.json via CDN)",
         "lib/build-vextreme.js (reads index.json for slugMap + supportedLangs)",
         "lib/check-key-alignment.js",
+        "lib/build-archives.js",
         "tests/01-content-pipeline.test.js",
         "tests/03-browser-nav.test.js",
         "tests/07-viewmodel.test.js",
@@ -2501,10 +2502,6 @@
       "data/viewmodels.json"
     ],
     [
-      "lib/build-archives.js",
-      "lib/build-index.js"
-    ],
-    [
       "lib/build-ecosystem-hub.js",
       "data/council-kernel.json"
     ],
@@ -2543,6 +2540,10 @@
     [
       "lib/build-index.js",
       "lib/auto-discover-nodes.js"
+    ],
+    [
+      "lib/build-index.js",
+      "lib/build-archives.js"
     ],
     [
       "lib/build-index.js",
@@ -3616,12 +3617,12 @@
       "key": "convos_with_god",
       "name": "Conversations with God",
       "sub": "priority 1",
-      "count": 12,
+      "count": 13,
       "rect": {
         "x": 1370,
         "y": 40,
         "width": 300,
-        "height": 810
+        "height": 870
       },
       "parent": {
         "title": "Conversations with God",
@@ -7809,6 +7810,51 @@
         "analysisControl": false,
         "evidenceLanguages": [],
         "metaDescription": ""
+      },
+      "curated": true
+    },
+    {
+      "id": "returning-scorpions-to-god",
+      "slug": "returning-scorpions-to-god",
+      "title": "Returning scorpions to God",
+      "arcKeys": [
+        "convos_with_god",
+        "victors_record",
+        "full_timeline"
+      ],
+      "arc": "convos_with_god",
+      "arcName": "Conversations with God",
+      "x": 1420,
+      "y": 810,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/returning-scorpions-to-god.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "preview": {
+        "kind": "cover",
+        "src": "https://vgong24.github.io/Vextreme/assets/returning-scorpions-to-god/cover.webp?v=d78bbeb4add0",
+        "alt": "Returning scorpions to God — representative cover art"
+      },
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "page-owned",
+          "visibleStyles": true
+        },
+        "identityKeys": 101,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "A repository-native annotated witness reading of the preserved Returning scorpions to God conversation."
       },
       "curated": true
     },

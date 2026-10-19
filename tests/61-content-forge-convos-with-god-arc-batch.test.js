@@ -120,10 +120,12 @@ test('Content Forge convos_with_god arc batch is exact, deterministic, and fully
   assert.equal(formation.lifecycle.mergeAuthority, false);
   assert.equal(formation.lifecycle.rawProviderPublicationAuthority, false);
   const expectedArcSlugs = [...formation.alreadyComplete, ...formation.members].map(item => item.slug);
+  const currentArcSlugs = arcs[formation.arc.arcKey].sections.flatMap(section => section.slugs || []);
+  const expectedArcSlugSet = new Set(expectedArcSlugs);
   assert.deepEqual(
-    arcs[formation.arc.arcKey].sections.flatMap(section => section.slugs || []),
+    currentArcSlugs.filter(slug => expectedArcSlugSet.has(slug)),
     expectedArcSlugs,
-    'canonical arc registry membership/order',
+    'historical formation membership/order remains intact inside the current growing arc',
   );
 
   const first = projector.main({ root: ROOT, silent: true });

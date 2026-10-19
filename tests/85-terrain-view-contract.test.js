@@ -119,7 +119,7 @@ test('TERRAIN-VIEW: current canonical arcs are not empty; three are secondary-on
   ]);
 
   const timeline = rows.find(row => row.key === 'full_timeline');
-  assert.equal(timeline.members.length, 75);
+  assert.equal(timeline.members.length, 76);
   assert.equal(timeline.primary.length, 1);
 });
 

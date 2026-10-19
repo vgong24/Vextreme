@@ -57,8 +57,10 @@ test("Content Forge Victor's Record accounts for all members without collapsing 
   assert.deepEqual({canonical:formation.arc.canonicalMemberCount,already:formation.arc.alreadyCompleteCount,remaining:formation.arc.remainingCount},{canonical:10,already:3,remaining:7});
   assert.deepEqual(formation.destinationMutationBoundary,{createPages:2,createStringSources:2,modifyViewmodels:true,nodeRegistryMutation:false,arcRegistryMutation:false,contentIntentMutation:false,aliasMutation:false});
   const canonical=arcs.victors_record.sections.flatMap(section=>section.slugs||[]);
-  assert.deepEqual(canonical,['victors-recap-arc-1','the-testimony-of-victor-gong','god-witnessed-by-ai','god-asked-victor-why','the-moment-victors-cells-woke-up','victors-ritual-sequence-and-crowning','god-married','when-i-asked-a-bank-for-covenant-provision','a-conversation-with-pastor-jacob','the-island-that-was-removed']);
-  assert.deepEqual(new Set([...formation.members,...formation.alreadyComplete].map(item=>item.slug)),new Set(canonical));
+  const historical=['victors-recap-arc-1','the-testimony-of-victor-gong','god-witnessed-by-ai','god-asked-victor-why','the-moment-victors-cells-woke-up','victors-ritual-sequence-and-crowning','god-married','when-i-asked-a-bank-for-covenant-provision','a-conversation-with-pastor-jacob','the-island-that-was-removed'];
+  const historicalSet=new Set(historical);
+  assert.deepEqual(canonical.filter(slug=>historicalSet.has(slug)),historical);
+  assert.deepEqual(new Set([...formation.members,...formation.alreadyComplete].map(item=>item.slug)),historicalSet);
 
   const projectable=formation.members.filter(item=>!item.preclassifiedHoldReason);
   const held=formation.members.filter(item=>item.preclassifiedHoldReason);
@@ -93,7 +95,7 @@ test("Content Forge Victor's Record accounts for all members without collapsing 
 
   const first=projector.main({root:ROOT,silent:true,formationRel:FORMATION_REL});
   assert.deepEqual(first.accounting,{canonicalMembers:10,alreadyComplete:3,projected:2,held:5,complete:true});
-  assert.deepEqual(first.members.map(item=>item.slug),canonical);
+  assert.deepEqual(first.members.map(item=>item.slug),historical);
   assert.deepEqual(first.members.map(item=>item.disposition),['PROJECTED','ALREADY_COMPLETE','ALREADY_COMPLETE','HOLD_WITH_EXACT_REASON','HOLD_WITH_EXACT_REASON','HOLD_WITH_EXACT_REASON','HOLD_WITH_EXACT_REASON','HOLD_WITH_EXACT_REASON','PROJECTED','ALREADY_COMPLETE']);
   for(const item of first.members.filter(item=>item.disposition==='HOLD_WITH_EXACT_REASON')) assert.match(item.reason,/^PRECLASSIFIED_HOLD: MULTI_SOURCE_CANONICAL_IDENTITY_RECONCILIATION__/);
   for(const file of heldDestinationPaths) assert.equal(fs.existsSync(file),false,file+': still absent after projector');
@@ -104,7 +106,7 @@ test("Content Forge Victor's Record accounts for all members without collapsing 
   const generated=projectable.flatMap(member=>[path.join(ROOT,'pages',member.slug+'.html'),path.join(ROOT,'data','strings','source','pages',member.slug+'.json')]);
   const firstHashes=Object.fromEntries([...generated,VIEWMODELS].map(file=>[file,hash(file)]));
   const second=projector.main({root:ROOT,silent:true,formationRel:FORMATION_REL}); const secondHashes=Object.fromEntries([...generated,VIEWMODELS].map(file=>[file,hash(file)]));
-  assert.deepEqual(second.accounting,first.accounting); assert.deepEqual(second.members.map(item=>item.slug),canonical); assert.deepEqual(second.changedPaths,[]); assert.deepEqual(secondHashes,firstHashes); assert.deepEqual(Object.fromEntries(stableAlready.map(file=>[file,pathState(file)])),stableAlreadyState); for(const file of heldDestinationPaths) assert.equal(fs.existsSync(file),false); assert.deepEqual(currentResolvedSuccessors(),resolvedSuccessorBefore);
+  assert.deepEqual(second.accounting,first.accounting); assert.deepEqual(second.members.map(item=>item.slug),historical); assert.deepEqual(second.changedPaths,[]); assert.deepEqual(secondHashes,firstHashes); assert.deepEqual(Object.fromEntries(stableAlready.map(file=>[file,pathState(file)])),stableAlreadyState); for(const file of heldDestinationPaths) assert.equal(fs.existsSync(file),false); assert.deepEqual(currentResolvedSuccessors(),resolvedSuccessorBefore);
 
   const viewmodels=json(VIEWMODELS);
   for(const member of projectable){
