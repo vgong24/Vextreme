@@ -129,9 +129,8 @@ test('READER-NARRATION: provider mechanics stay below ReaderNarration', () => {
   const kokoro = providerBlock(script, 'var KokoroNarrationProvider=', 'var transcriptSpeechRate=1;');
 
   for (const operation of ['speak', 'pause', 'resume', 'cancel']) {
-    assert.match(
-      browser.provider,
-      new RegExp(`window\\\\.speechSynthesis\\\\.${operation}\\\\(`),
+    assert.ok(
+      browser.provider.includes(`window.speechSynthesis.${operation}(`),
       `browser provider must directly implement ${operation}`,
     );
   }
