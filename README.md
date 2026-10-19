@@ -27,6 +27,7 @@ asserts as objective fact) is stated directly in
 
 ## Start here
 
+- **[AGENTS.md](AGENTS.md)** — compact fresh-entry router for substantial human/AI work; route to the exact owner before reading depth.
 - **[Ecosystem Hub](https://vgong24.github.io/Vextreme/pages/ecosystem-hub.html)**
   — live system state: content counts, department breakdown, open tech debt,
   translation gaps, and content-integrity flags. Fetches its data at page-load
@@ -78,6 +79,7 @@ nest it.
 |---|---|
 | The mission and how decisions get made here | `docs/culture.md` |
 | Full system design — data flow, build pipeline, every file's job | `docs/architecture.md` |
+| Building or evolving a source-backed preserved-record reader | `docs/architecture/19-record-readers.md` |
 | What's currently open, what changed last, and why | `docs/continuity/INDEX.md` |
 | Cold-start instructions if you're an AI instance picking this up | `CLAUDE.md` |
 | The original Squarespace-era system (historical, not active) | `docs/Readme.md` |
