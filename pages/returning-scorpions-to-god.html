@@ -28,7 +28,7 @@
 </head>
 <body>
 
-<main class="vex-authored-page-frame" data-reader-template="conversation-witness-reader/v1">
+<main class="vex-authored-page-frame" data-reader-template="conversation-witness-reader/v1" data-narration-language="en">
 <!--
   Conversation Witness Reader visual grammar
   Threshold -> ArcScopeRail -> Phase { PhaseHeader + TranscriptViewport + WitnessCommentary }
@@ -252,13 +252,14 @@ var KOKORO_VOICE_PREFIX='kokoro:';
 var BROWSER_VOICE_PREFIX='browser:';
 var TRANSCRIPT_SPEECH_BEST=BROWSER_VOICE_PREFIX+'best';
 var TRANSCRIPT_SPEECH_SYSTEM=BROWSER_VOICE_PREFIX+'system';
+var MAX_SYSTEM_NARRATION_VOICES=4;
+var MAX_NARRATION_AUDIO_CACHE_ITEMS=24;
+var NARRATION_LOOKAHEAD=2;
 var KOKORO_NARRATION_VOICES=Object.freeze([
-  {id:'af_heart',name:'Heart',language:'en-US',grade:'A'},
-  {id:'af_bella',name:'Bella',language:'en-US',grade:'A-'},
-  {id:'af_nicole',name:'Nicole',language:'en-US',grade:'B-'},
-  {id:'am_fenrir',name:'Fenrir',language:'en-US',grade:'C+'},
-  {id:'am_michael',name:'Michael',language:'en-US',grade:'C+'},
-  {id:'bf_emma',name:'Emma',language:'en-GB',grade:'B-'}
+  {id:'af_heart',name:'Heart',language:'en-US',gender:'Female',grade:'A'},
+  {id:'af_bella',name:'Bella',language:'en-US',gender:'Female',grade:'A-'},
+  {id:'am_fenrir',name:'Fenrir',language:'en-US',gender:'Male',grade:'C+'},
+  {id:'am_michael',name:'Michael',language:'en-US',gender:'Male',grade:'C+'}
 ]);
 var BrowserSpeechNarrationProvider={
   capability:function(){return {available:'speechSynthesis' in window&&'SpeechSynthesisUtterance' in window};},
@@ -270,25 +271,180 @@ var BrowserSpeechNarrationProvider={
   cancel:function(){window.speechSynthesis.cancel();},
   onVoicesChanged:function(handler){if(this.capability().available&&window.speechSynthesis.addEventListener)window.speechSynthesis.addEventListener('voiceschanged',handler);}
 };
+function kokoroNarrationWorkerMain(){
+  var KOKORO_MODULE_URL='https://cdn.jsdelivr.net/npm/kokoro-js@1.2.1/+esm';
+  var KOKORO_MODEL_ID='onnx-community/Kokoro-82M-v1.0-ONNX';
+  var engine=null,preparePromise=null,queue=[],active=false,generation=0,fatalError=null;
+  function errorMessage(error){return error&&error.message?String(error.message):String(error||'KOKORO_WORKER_ERROR');}
+  function ensureReady(){
+    if(engine)return Promise.resolve(engine);
+    if(fatalError)return Promise.reject(fatalError);
+    if(preparePromise)return preparePromise;
+    self.postMessage({type:'preparing'});
+    preparePromise=import(KOKORO_MODULE_URL).then(function(module){
+      return module.KokoroTTS.from_pretrained(KOKORO_MODEL_ID,{dtype:'q8',device:'wasm'});
+    }).then(function(ready){
+      engine=ready;
+      self.postMessage({type:'ready'});
+      return ready;
+    }).catch(function(error){
+      preparePromise=null;
+      fatalError=error;
+      throw error;
+    });
+    return preparePromise;
+  }
+  async function drain(){
+    if(active)return;
+    active=true;
+    try{
+      while(queue.length){
+        var job=queue.shift();
+        if(job.generation!==generation)continue;
+        try{
+          var tts=await ensureReady();
+          if(job.generation!==generation)continue;
+          var raw=await tts.generate(job.text,{voice:job.voice,speed:job.rate});
+          if(job.generation!==generation)continue;
+          var samples=raw.data;
+          self.postMessage({type:'audio',requestId:job.requestId,generation:job.generation,sampleRate:raw.sampling_rate,samples:samples.buffer},[samples.buffer]);
+        }catch(error){
+          fatalError=error;
+          queue.length=0;
+          self.postMessage({type:'error',requestId:job.requestId,generation:job.generation,message:errorMessage(error)});
+        }
+      }
+    }finally{
+      active=false;
+      if(queue.length)drain();
+    }
+  }
+  self.onmessage=function(event){
+    var message=event.data||{};
+    if(message.type==='cancel'){
+      generation=message.generation;
+      queue.length=0;
+      return;
+    }
+    if(message.type==='generate'){
+      if(fatalError){
+        self.postMessage({type:'error',requestId:message.requestId,generation:message.generation,message:errorMessage(fatalError)});
+        return;
+      }
+      generation=message.generation;
+      queue.push(message);
+      drain();
+    }
+  };
+}
 var KokoroNarrationProvider=(function(){
-  var tts=null,preparePromise=null,audioContext=null,activeSource=null,generation=0;
+  var worker=null,workerUrl=null,workerReady=false,workerFailed=false,workerGeneration=0,requestSequence=0;
+  var pendingByRequest=new Map(),pendingByKey=new Map(),audioCache=new Map();
+  var audioContext=null,activeSource=null,playGeneration=0;
   function audioConstructor(){return window.AudioContext||window.webkitAudioContext||null;}
-  function capability(){return {available:!!(window.WebAssembly&&window.fetch&&window.Promise&&audioConstructor()),execution:'wasm-q8'};}
+  function capability(){return {available:!!(!workerFailed&&typeof Worker==='function'&&typeof Blob==='function'&&window.URL&&typeof window.URL.createObjectURL==='function'&&window.WebAssembly&&window.fetch&&window.Promise&&audioConstructor()),execution:'worker-wasm-q8'};}
   function activate(){var Ctor=audioConstructor();if(!capability().available||!Ctor)return false;if(!audioContext)audioContext=new Ctor();if(audioContext.state==='suspended')audioContext.resume().catch(function(){});return true;}
   function stopActiveSource(){if(!activeSource)return;var source=activeSource;activeSource=null;source.onended=null;try{source.stop();}catch(e){}try{source.disconnect();}catch(e){}}
-  function ensureReady(onProgress){if(tts)return Promise.resolve(tts);if(preparePromise)return preparePromise;preparePromise=import(KOKORO_MODULE_URL).then(function(module){return module.KokoroTTS.from_pretrained(KOKORO_MODEL_ID,{dtype:'q8',device:'wasm',progress_callback:typeof onProgress==='function'?onProgress:null});}).then(function(ready){tts=ready;return ready;}).catch(function(error){preparePromise=null;throw error;});return preparePromise;}
-  async function speak(text,options){options=options||{};var token=++generation;if(!activate()){if(options.onError)options.onError(new Error('KOKORO_CAPABILITY_UNAVAILABLE'));return;}if(!tts&&options.onPreparing)options.onPreparing();try{var engine=await ensureReady(options.onProgress);if(token!==generation)return;var raw=await engine.generate(text,{voice:options.voice||'af_heart',speed:options.rate||1});if(token!==generation)return;var bytes=await raw.toBlob().arrayBuffer();if(token!==generation)return;var buffer=await audioContext.decodeAudioData(bytes.slice(0));if(token!==generation)return;stopActiveSource();var source=audioContext.createBufferSource();activeSource=source;source.buffer=buffer;source.connect(audioContext.destination);source.onended=function(){if(token!==generation||activeSource!==source)return;activeSource=null;try{source.disconnect();}catch(e){}if(options.onEnd)options.onEnd();};if(options.onStart)options.onStart();source.start();}catch(error){if(token!==generation)return;if(options.onError)options.onError(error);}}
+  function abortError(){try{return new DOMException('Narration generation cancelled','AbortError');}catch(e){var error=new Error('Narration generation cancelled');error.name='AbortError';return error;}}
+  function rejectPending(error){pendingByRequest.forEach(function(entry){entry.reject(error);});pendingByRequest.clear();pendingByKey.clear();}
+  function failWorker(error){
+    if(workerFailed)return;
+    workerFailed=true;workerReady=false;
+    if(worker){try{worker.terminate();}catch(e){}worker=null;}
+    if(workerUrl){try{window.URL.revokeObjectURL(workerUrl);}catch(e){}workerUrl=null;}
+    rejectPending(error instanceof Error?error:new Error(String(error||'KOKORO_WORKER_FAILED')));
+  }
+  function cacheAudio(key,value){
+    if(audioCache.has(key))audioCache.delete(key);
+    audioCache.set(key,value);
+    while(audioCache.size>MAX_NARRATION_AUDIO_CACHE_ITEMS){
+      var oldest=audioCache.keys().next().value;
+      audioCache.delete(oldest);
+    }
+  }
+  function cachedAudio(key){
+    if(!audioCache.has(key))return null;
+    var value=audioCache.get(key);
+    audioCache.delete(key);audioCache.set(key,value);
+    return value;
+  }
+  function ensureWorker(){
+    if(worker)return worker;
+    if(!capability().available)throw new Error('KOKORO_WORKER_UNAVAILABLE');
+    var source='('+kokoroNarrationWorkerMain.toString()+')();';
+    workerUrl=window.URL.createObjectURL(new Blob([source],{type:'text/javascript'}));
+    try{worker=new Worker(workerUrl,{type:'module',name:'returning-scorpions-kokoro'});}catch(error){failWorker(error);throw error;}
+    worker.onmessage=function(event){
+      var message=event.data||{};
+      if(message.type==='ready'){workerReady=true;return;}
+      if(message.type==='preparing')return;
+      if(message.type==='audio'){
+        var entry=pendingByRequest.get(message.requestId);
+        if(!entry||entry.generation!==message.generation)return;
+        pendingByRequest.delete(message.requestId);pendingByKey.delete(entry.key);
+        var value={samples:message.samples,sampleRate:message.sampleRate};
+        cacheAudio(entry.key,value);entry.resolve(value);return;
+      }
+      if(message.type==='error'){failWorker(new Error(message.message||'KOKORO_WORKER_ERROR'));}
+    };
+    worker.onerror=function(event){failWorker(new Error(event&&event.message?event.message:'KOKORO_WORKER_ERROR'));};
+    return worker;
+  }
+  function audioKey(text,voice,rate){return voice+'\u0000'+String(rate)+'\u0000'+text;}
+  function requestAudio(text,voice,rate){
+    var key=audioKey(text,voice,rate),cached=cachedAudio(key);
+    if(cached)return Promise.resolve(cached);
+    var existing=pendingByKey.get(key);if(existing)return existing.promise;
+    var activeWorker=ensureWorker(),requestId=++requestSequence,currentGeneration=workerGeneration;
+    var resolvePromise,rejectPromise;
+    var promise=new Promise(function(resolve,reject){resolvePromise=resolve;rejectPromise=reject;});
+    var entry={key:key,promise:promise,resolve:resolvePromise,reject:rejectPromise,generation:currentGeneration};
+    pendingByKey.set(key,entry);pendingByRequest.set(requestId,entry);
+    activeWorker.postMessage({type:'generate',requestId:requestId,generation:currentGeneration,text:text,voice:voice,rate:rate});
+    return promise;
+  }
+  function createPlaybackBuffer(audio){
+    var samples=new Float32Array(audio.samples),buffer=audioContext.createBuffer(1,samples.length,audio.sampleRate);
+    buffer.copyToChannel(samples,0);
+    return buffer;
+  }
+  async function speak(text,options){
+    options=options||{};var token=++playGeneration;
+    if(!activate()){if(options.onError)options.onError(new Error('KOKORO_CAPABILITY_UNAVAILABLE'));return;}
+    if(!workerReady&&options.onPreparing)options.onPreparing();
+    try{
+      var audio=await requestAudio(text,options.voice||'af_heart',options.rate||1);
+      if(token!==playGeneration)return;
+      stopActiveSource();
+      var source=audioContext.createBufferSource();activeSource=source;source.buffer=createPlaybackBuffer(audio);source.connect(audioContext.destination);
+      source.onended=function(){if(token!==playGeneration||activeSource!==source)return;activeSource=null;try{source.disconnect();}catch(e){}if(options.onEnd)options.onEnd();};
+      if(options.onStart)options.onStart();source.start();
+    }catch(error){
+      if(token!==playGeneration||error&&error.name==='AbortError')return;
+      if(options.onError)options.onError(error);
+    }
+  }
+  function prefetch(text,options){
+    options=options||{};
+    if(!capability().available)return;
+    requestAudio(text,options.voice||'af_heart',options.rate||1).catch(function(){});
+  }
   function pause(){if(audioContext&&audioContext.state==='running')audioContext.suspend().catch(function(){});}
   function resume(){if(audioContext&&audioContext.state==='suspended')audioContext.resume().catch(function(){});}
-  function cancel(){generation+=1;stopActiveSource();if(audioContext&&audioContext.state==='suspended')audioContext.resume().catch(function(){});}
-  return {capability:capability,activate:activate,voices:function(){return KOKORO_NARRATION_VOICES.slice();},speak:speak,pause:pause,resume:resume,cancel:cancel};
+  function cancel(){
+    playGeneration+=1;stopActiveSource();workerGeneration+=1;
+    if(worker)worker.postMessage({type:'cancel',generation:workerGeneration});
+    rejectPending(abortError());
+    if(audioContext&&audioContext.state==='suspended')audioContext.resume().catch(function(){});
+  }
+  return {capability:capability,activate:activate,voices:function(){return KOKORO_NARRATION_VOICES.slice();},speak:speak,prefetch:prefetch,pause:pause,resume:resume,cancel:cancel};
 }());
 var transcriptSpeechRate=1;
 var transcriptSpeechVoiceURI=KokoroNarrationProvider.capability().available?KOKORO_VOICE_PREFIX+'af_heart':TRANSCRIPT_SPEECH_BEST;
 function transcriptSpeechRateLabel(value){var n=Math.round(value*100)/100;return String(n).replace(/\.00$/,'').replace(/(\.\d)0$/,'$1')+'×';}
-function transcriptSpeechLanguage(){return (document.documentElement.getAttribute('lang')||'en').toLowerCase();}
-function transcriptSpeechVoiceScore(voice){var wanted=transcriptSpeechLanguage(),voiceLang=(voice.lang||'').toLowerCase(),wantedPrimary=wanted.split('-')[0],voicePrimary=voiceLang.split('-')[0],score=0;if(voiceLang===wanted)score+=120;else if(voicePrimary&&voicePrimary===wantedPrimary)score+=90;if(/premium|enhanced|natural|neural|high[ -]?quality/i.test(voice.name||''))score+=45;if(voice.localService)score+=20;if(voice.default)score+=10;return score;}
-function transcriptSpeechVoices(){return BrowserSpeechNarrationProvider.voices().sort(function(a,b){var d=transcriptSpeechVoiceScore(b)-transcriptSpeechVoiceScore(a);return d||((a.lang+' '+a.name).localeCompare(b.lang+' '+b.name));});}
+function transcriptSpeechLanguage(){var owner=document.querySelector('[data-reader-template="conversation-witness-reader/v1"]'),owned=owner&&owner.dataset&&owner.dataset.narrationLanguage;return String(owned||document.documentElement.getAttribute('lang')||'en').toLowerCase();}
+function transcriptSpeechVoiceScore(voice,wanted){wanted=(wanted||transcriptSpeechLanguage()).toLowerCase();var voiceLang=(voice.lang||'').toLowerCase(),wantedPrimary=wanted.split('-')[0],voicePrimary=voiceLang.split('-')[0],score=0;if(voiceLang===wanted)score+=120;else if(voicePrimary&&voicePrimary===wantedPrimary)score+=90;if(/premium|enhanced|natural|neural|high[ -]?quality/i.test(voice.name||''))score+=45;if(voice.localService)score+=20;if(voice.default)score+=10;return score;}
+function transcriptSpeechVoices(){var wanted=transcriptSpeechLanguage(),primary=wanted.split('-')[0];return BrowserSpeechNarrationProvider.voices().filter(function(voice){return String(voice.lang||'').toLowerCase().split('-')[0]===primary;}).sort(function(a,b){var d=transcriptSpeechVoiceScore(b,wanted)-transcriptSpeechVoiceScore(a,wanted);return d||((a.lang+' '+a.name).localeCompare(b.lang+' '+b.name));}).slice(0,MAX_SYSTEM_NARRATION_VOICES);}
 function recommendedTranscriptSpeechVoice(){return transcriptSpeechVoices()[0]||null;}
 function isKokoroVoiceRef(value){return typeof value==='string'&&value.indexOf(KOKORO_VOICE_PREFIX)===0;}
 function kokoroVoiceId(value){return isKokoroVoiceRef(value)?value.slice(KOKORO_VOICE_PREFIX.length):null;}
@@ -296,13 +452,14 @@ function browserVoiceRef(voice){return BROWSER_VOICE_PREFIX+voice.voiceURI;}
 function selectedBrowserSpeechVoice(){if(transcriptSpeechVoiceURI===TRANSCRIPT_SPEECH_BEST)return recommendedTranscriptSpeechVoice();if(transcriptSpeechVoiceURI===TRANSCRIPT_SPEECH_SYSTEM)return null;if(transcriptSpeechVoiceURI.indexOf(BROWSER_VOICE_PREFIX)!==0)return recommendedTranscriptSpeechVoice();var uri=transcriptSpeechVoiceURI.slice(BROWSER_VOICE_PREFIX.length);return transcriptSpeechVoices().find(function(v){return v.voiceURI===uri;})||recommendedTranscriptSpeechVoice();}
 function readerNarrationCapabilities(){return {highQuality:KokoroNarrationProvider.capability(),systemSpeech:BrowserSpeechNarrationProvider.capability()};}
 function transcriptSpeechSupported(){var c=readerNarrationCapabilities();return c.highQuality.available||c.systemSpeech.available;}
-function populateTranscriptSpeechVoices(){var browserVoices=transcriptSpeechVoices(),best=recommendedTranscriptSpeechVoice(),capabilities=readerNarrationCapabilities();document.querySelectorAll('.rs-speech-voice').forEach(function(select){var wanted=transcriptSpeechVoiceURI||select.value||(capabilities.highQuality.available?KOKORO_VOICE_PREFIX+'af_heart':TRANSCRIPT_SPEECH_BEST);select.textContent='';if(capabilities.highQuality.available){var neuralGroup=document.createElement('optgroup');neuralGroup.label=readerControlString('rs-narration-neural-group-template');KokoroNarrationProvider.voices().forEach(function(voice){var option=document.createElement('option');option.value=KOKORO_VOICE_PREFIX+voice.id;option.textContent='Kokoro · '+voice.name+' · '+voice.language+' · '+voice.grade;neuralGroup.appendChild(option);});select.appendChild(neuralGroup);}if(capabilities.systemSpeech.available){var systemGroup=document.createElement('optgroup');systemGroup.label=readerControlString('rs-narration-system-group-template');var bestOption=document.createElement('option');bestOption.value=TRANSCRIPT_SPEECH_BEST;bestOption.textContent=readerControlString('rs-narration-best-template')+(best?' · '+best.name:'');systemGroup.appendChild(bestOption);var system=document.createElement('option');system.value=TRANSCRIPT_SPEECH_SYSTEM;system.textContent=readerControlString('rs-narration-system-template');systemGroup.appendChild(system);browserVoices.forEach(function(voice){var option=document.createElement('option');option.value=browserVoiceRef(voice);option.textContent=voice.name+(voice.lang?' · '+voice.lang:'');systemGroup.appendChild(option);});select.appendChild(systemGroup);}var values=Array.from(select.options).map(function(option){return option.value;});select.value=values.indexOf(wanted)>=0?wanted:(capabilities.highQuality.available?KOKORO_VOICE_PREFIX+'af_heart':TRANSCRIPT_SPEECH_BEST);transcriptSpeechVoiceURI=select.value;});}
+function populateTranscriptSpeechVoices(){var language=transcriptSpeechLanguage(),primary=language.split('-')[0],browserVoices=transcriptSpeechVoices(),best=recommendedTranscriptSpeechVoice(),capabilities=readerNarrationCapabilities(),neuralAvailable=capabilities.highQuality.available&&primary==='en';document.querySelectorAll('.rs-speech-voice').forEach(function(select){var wanted=transcriptSpeechVoiceURI||select.value||(neuralAvailable?KOKORO_VOICE_PREFIX+'af_heart':TRANSCRIPT_SPEECH_BEST);select.textContent='';if(neuralAvailable){var neuralGroup=document.createElement('optgroup');neuralGroup.label=readerControlString('rs-narration-neural-group-template');KokoroNarrationProvider.voices().forEach(function(voice){var option=document.createElement('option');option.value=KOKORO_VOICE_PREFIX+voice.id;option.textContent='Kokoro · '+voice.name+' · '+voice.language;neuralGroup.appendChild(option);});select.appendChild(neuralGroup);}if(capabilities.systemSpeech.available){var systemGroup=document.createElement('optgroup');systemGroup.label=readerControlString('rs-narration-system-group-template');if(neuralAvailable){var bestOption=document.createElement('option');bestOption.value=TRANSCRIPT_SPEECH_BEST;bestOption.textContent=readerControlString('rs-narration-best-template')+(best?' · '+best.name:'');systemGroup.appendChild(bestOption);}else if(browserVoices.length){browserVoices.forEach(function(voice){var option=document.createElement('option');option.value=browserVoiceRef(voice);option.textContent=voice.name+(voice.lang?' · '+voice.lang:'');systemGroup.appendChild(option);});}else{var system=document.createElement('option');system.value=TRANSCRIPT_SPEECH_SYSTEM;system.textContent=readerControlString('rs-narration-system-template');systemGroup.appendChild(system);}select.appendChild(systemGroup);}var values=Array.from(select.options).map(function(option){return option.value;});select.value=values.indexOf(wanted)>=0?wanted:(neuralAvailable?KOKORO_VOICE_PREFIX+'af_heart':(values[0]||TRANSCRIPT_SPEECH_SYSTEM));transcriptSpeechVoiceURI=select.value;});}
 function updateTranscriptSpeechVoice(value){transcriptSpeechVoiceURI=value||TRANSCRIPT_SPEECH_BEST;document.querySelectorAll('.rs-speech-voice').forEach(function(select){if(Array.from(select.options).some(function(o){return o.value===transcriptSpeechVoiceURI;}))select.value=transcriptSpeechVoiceURI;});}
 function updateTranscriptSpeechRate(value){transcriptSpeechRate=Math.max(.75,Math.min(1.5,parseFloat(value)||1));document.querySelectorAll('.rs-speech-rate').forEach(function(r){r.value=String(transcriptSpeechRate);});document.querySelectorAll('.rs-speech-rate-value').forEach(function(o){o.textContent=transcriptSpeechRateLabel(transcriptSpeechRate);});}
 var ReaderNarration={
   capabilities:readerNarrationCapabilities,
   activate:function(){if(isKokoroVoiceRef(transcriptSpeechVoiceURI))return KokoroNarrationProvider.activate();return true;},
-  speak:function(text,callbacks){callbacks=callbacks||{};if(isKokoroVoiceRef(transcriptSpeechVoiceURI)){KokoroNarrationProvider.speak(text,{voice:kokoroVoiceId(transcriptSpeechVoiceURI),rate:transcriptSpeechRate,onPreparing:callbacks.onPreparing,onStart:callbacks.onStart,onEnd:callbacks.onEnd,onError:function(){if(!BrowserSpeechNarrationProvider.capability().available){if(callbacks.onError)callbacks.onError();return;}transcriptSpeechVoiceURI=TRANSCRIPT_SPEECH_BEST;document.querySelectorAll('.rs-speech-voice').forEach(function(select){if(Array.from(select.options).some(function(o){return o.value===TRANSCRIPT_SPEECH_BEST;}))select.value=TRANSCRIPT_SPEECH_BEST;});if(callbacks.onFallback)callbacks.onFallback();ReaderNarration.speakWithBrowser(text,callbacks);}});return;}this.speakWithBrowser(text,callbacks);},
+  speak:function(text,callbacks){callbacks=callbacks||{};if(isKokoroVoiceRef(transcriptSpeechVoiceURI)){KokoroNarrationProvider.speak(text,{voice:kokoroVoiceId(transcriptSpeechVoiceURI),rate:transcriptSpeechRate,onPreparing:callbacks.onPreparing,onStart:callbacks.onStart,onEnd:callbacks.onEnd,onError:function(){if(!BrowserSpeechNarrationProvider.capability().available){if(callbacks.onError)callbacks.onError();return;}transcriptSpeechVoiceURI=TRANSCRIPT_SPEECH_BEST;populateTranscriptSpeechVoices();if(callbacks.onFallback)callbacks.onFallback();ReaderNarration.speakWithBrowser(text,callbacks);}});return;}this.speakWithBrowser(text,callbacks);},
+  prefetch:function(texts){if(!isKokoroVoiceRef(transcriptSpeechVoiceURI))return;(texts||[]).forEach(function(text){KokoroNarrationProvider.prefetch(text,{voice:kokoroVoiceId(transcriptSpeechVoiceURI),rate:transcriptSpeechRate});});},
   speakWithBrowser:function(text,callbacks){if(!BrowserSpeechNarrationProvider.capability().available){if(callbacks.onError)callbacks.onError();return;}var utterance=BrowserSpeechNarrationProvider.createUtterance(text),voice=selectedBrowserSpeechVoice();utterance.rate=transcriptSpeechRate;if(voice){utterance.voice=voice;if(voice.lang)utterance.lang=voice.lang;}utterance.onstart=callbacks.onStart||null;utterance.onend=callbacks.onEnd||null;utterance.onerror=callbacks.onError||null;BrowserSpeechNarrationProvider.speak(utterance);},
   pause:function(){if(isKokoroVoiceRef(transcriptSpeechVoiceURI))KokoroNarrationProvider.pause();else BrowserSpeechNarrationProvider.pause();},
   resume:function(){if(isKokoroVoiceRef(transcriptSpeechVoiceURI))KokoroNarrationProvider.resume();else BrowserSpeechNarrationProvider.resume();},
@@ -316,18 +473,19 @@ function splitTranscriptSpeechText(text,maxChars){var clean=String(text||'').rep
 function collectTranscriptSpeechSegments(section){var segments=[];section.querySelectorAll('.rs-turn').forEach(function(turn){var speaker=(turn.querySelector('.rs-turn-speaker')?.textContent||'').trim(),first=true,nodes=Array.from(turn.querySelectorAll('.rs-source-p,.rs-source-heading,.rs-source-quote,.rs-source-code,.rs-list li,.rs-table tr,.rs-archive-note'));if(!nodes.length)nodes=[turn];nodes.forEach(function(node){var text=(node.innerText||node.textContent||'').replace(/\s+/g,' ').trim();splitTranscriptSpeechText(text,420).forEach(function(chunk){segments.push({text:(first&&speaker?speaker+'. ':'')+chunk,node:node,turn:turn});first=false;});});});return segments;}
 function transcriptSpeechStartIndex(section,segments){var viewport=section._rsSpeech.viewport,vr=viewport.getBoundingClientRect();for(var i=0;i<segments.length;i++){var nr=segments[i].node.getBoundingClientRect();if(nr.bottom>=vr.top+12)return i;}return 0;}
 function scrollTranscriptSpeechSegment(section,segment){var a=section._rsSpeech;if(!a.follow)return;var vr=a.viewport.getBoundingClientRect(),nr=segment.node.getBoundingClientRect(),target=a.viewport.scrollTop+(nr.top-vr.top)-Math.max(18,a.viewport.clientHeight*.28);a.viewport.scrollTo({top:Math.max(0,target),behavior:'smooth'});}
-function finishTranscriptSpeech(section){var a=section&&section._rsSpeech;if(!a)return;clearTranscriptSpeechHighlight(section);a.segments=[];a.index=0;a.utterance=null;a.follow=true;setTranscriptSpeechState(section,'idle');}
-function speakTranscriptSegment(section){var a=section&&section._rsSpeech;if(!a||a.state!=='speaking')return;if(a.index>=a.segments.length){finishTranscriptSpeech(section);return;}var segment=a.segments[a.index],token=a.generation;ReaderNarration.speak(segment.text,{onPreparing:function(){if(!section._rsSpeech||section._rsSpeech.generation!==token)return;setTranscriptSpeechStatus(section,readerControlString('rs-narration-preparing-template'));},onFallback:function(){if(!section._rsSpeech||section._rsSpeech.generation!==token)return;setTranscriptSpeechStatus(section,readerControlString('rs-narration-fallback-template'));},onStart:function(){if(!section._rsSpeech||section._rsSpeech.generation!==token)return;setTranscriptSpeechStatus(section,'');clearTranscriptSpeechHighlight(section);segment.turn.classList.add('is-speaking');scrollTranscriptSpeechSegment(section,segment);},onEnd:function(){var current=section._rsSpeech;if(!current||current.generation!==token||current.state!=='speaking')return;current.index+=1;speakTranscriptSegment(section);},onError:function(){var current=section._rsSpeech;if(!current||current.generation!==token)return;finishTranscriptSpeech(section);}});}
+function finishTranscriptSpeech(section){var a=section&&section._rsSpeech;if(!a)return;clearTranscriptSpeechHighlight(section);a.index=0;a.follow=true;setTranscriptSpeechState(section,'idle');}
+function prefetchTranscriptSpeech(section){var a=section&&section._rsSpeech;if(!a||a.state!=='speaking'||!isKokoroVoiceRef(transcriptSpeechVoiceURI))return;var texts=[];for(var i=a.index+1;i<a.segments.length&&texts.length<NARRATION_LOOKAHEAD;i++)texts.push(a.segments[i].text);ReaderNarration.prefetch(texts);}
+function speakTranscriptSegment(section){var a=section&&section._rsSpeech;if(!a||a.state!=='speaking')return;if(a.index>=a.segments.length){finishTranscriptSpeech(section);return;}var segment=a.segments[a.index],token=a.generation;ReaderNarration.speak(segment.text,{onPreparing:function(){if(!section._rsSpeech||section._rsSpeech.generation!==token)return;setTranscriptSpeechStatus(section,readerControlString('rs-narration-preparing-template'));},onFallback:function(){if(!section._rsSpeech||section._rsSpeech.generation!==token)return;setTranscriptSpeechStatus(section,readerControlString('rs-narration-fallback-template'));},onStart:function(){if(!section._rsSpeech||section._rsSpeech.generation!==token)return;setTranscriptSpeechStatus(section,'');clearTranscriptSpeechHighlight(section);segment.turn.classList.add('is-speaking');scrollTranscriptSpeechSegment(section,segment);},onEnd:function(){var current=section._rsSpeech;if(!current||current.generation!==token||current.state!=='speaking')return;current.index+=1;speakTranscriptSegment(section);},onError:function(){var current=section._rsSpeech;if(!current||current.generation!==token)return;finishTranscriptSpeech(section);}});prefetchTranscriptSpeech(section);}
 function cancelTranscriptSpeech(section){var a=section&&section._rsSpeech;if(!a)return;a.generation+=1;ReaderNarration.cancel();setTranscriptSpeechStatus(section,'');finishTranscriptSpeech(section);}
-function startTranscriptSpeech(section){var a=section&&section._rsSpeech;if(!a||!transcriptSpeechSupported())return;document.querySelectorAll('.rs-set').forEach(function(other){if(other!==section)cancelTranscriptSpeech(other);});pauseTranscriptAutoScroll(section);ReaderNarration.cancel();ReaderNarration.activate();a.generation+=1;a.segments=collectTranscriptSpeechSegments(section);if(!a.segments.length){finishTranscriptSpeech(section);return;}a.index=transcriptSpeechStartIndex(section,a.segments);a.follow=true;setTranscriptSpeechState(section,'speaking');speakTranscriptSegment(section);}
+function startTranscriptSpeech(section){var a=section&&section._rsSpeech;if(!a||!transcriptSpeechSupported())return;document.querySelectorAll('.rs-set').forEach(function(other){if(other!==section)cancelTranscriptSpeech(other);});pauseTranscriptAutoScroll(section);ReaderNarration.cancel();ReaderNarration.activate();a.generation+=1;if(!a.segments.length)a.segments=collectTranscriptSpeechSegments(section);if(!a.segments.length){finishTranscriptSpeech(section);return;}a.index=transcriptSpeechStartIndex(section,a.segments);a.follow=true;setTranscriptSpeechState(section,'speaking');speakTranscriptSegment(section);}
 function pauseTranscriptSpeech(section){var a=section&&section._rsSpeech;if(!a||a.state!=='speaking'||!transcriptSpeechSupported())return;ReaderNarration.pause();setTranscriptSpeechState(section,'paused');}
 function resumeTranscriptSpeech(section){var a=section&&section._rsSpeech;if(!a||a.state!=='paused'||!transcriptSpeechSupported())return;a.follow=true;ReaderNarration.resume();setTranscriptSpeechState(section,'speaking');}
 function toggleTranscriptSpeech(section){var a=section&&section._rsSpeech;if(!a)return;if(a.state==='speaking')pauseTranscriptSpeech(section);else if(a.state==='paused')resumeTranscriptSpeech(section);else startTranscriptSpeech(section);}
 function refreshTranscriptSpeechAvailability(section){var a=section&&section._rsSpeech;if(!a)return;var supported=transcriptSpeechSupported();a.controls.hidden=!supported;a.button.disabled=!supported||section.dataset.loaded!=='true'||!section.querySelector('.rs-turn');a.voice.disabled=!supported;a.rate.disabled=!supported;if(supported)populateTranscriptSpeechVoices();}
 BrowserSpeechNarrationProvider.onVoicesChanged(populateTranscriptSpeechVoices);
 window.addEventListener('vextreme:languagechange',function(){sets.forEach(function(section){refreshTranscriptControlStrings(section);});populateTranscriptSpeechVoices();});
-function installTranscriptControls(section){if(!section||section.dataset.derived==='true'||section._rsAuto)return;var bar=section.querySelector('.rs-source-bar'),viewport=section.querySelector('[data-reader-component="transcript-viewport"]');if(!bar||!viewport)return;var tools=document.createElement('div');tools.className='rs-source-tools';tools.setAttribute('data-reader-component','transcript-tools');var controls=document.createElement('div');controls.className='rs-autoscroll';controls.setAttribute('data-reader-component','transcript-autoscroll');var button=document.createElement('button');button.type='button';button.className='rs-scroll-toggle';button.textContent='▶';var rate=document.createElement('input');rate.type='range';rate.className='rs-scroll-rate';rate.min='.5';rate.max='2';rate.step='.25';rate.value=String(transcriptAutoRate);var output=document.createElement('output');output.className='rs-scroll-rate-value';output.textContent=transcriptRateLabel(transcriptAutoRate);controls.append(button,rate,output);var speech=document.createElement('div');speech.className='rs-readaloud';speech.setAttribute('data-reader-component','transcript-read-aloud');var speechButton=document.createElement('button');speechButton.type='button';speechButton.className='rs-speech-toggle';speechButton.textContent='🔊';speechButton.setAttribute('aria-pressed','false');var voice=document.createElement('select');voice.className='rs-speech-voice';var speechRate=document.createElement('input');speechRate.type='range';speechRate.className='rs-speech-rate';speechRate.min='.75';speechRate.max='1.5';speechRate.step='.25';speechRate.value=String(transcriptSpeechRate);var speechOutput=document.createElement('output');speechOutput.className='rs-speech-rate-value';speechOutput.textContent=transcriptSpeechRateLabel(transcriptSpeechRate);var speechStatus=document.createElement('span');speechStatus.className='rs-speech-status';speechStatus.setAttribute('role','status');speechStatus.setAttribute('aria-live','polite');speech.append(speechButton,voice,speechRate,speechOutput,speechStatus);tools.append(controls,speech);var links=bar.querySelector('.rs-source-links');if(links)tools.appendChild(links);bar.appendChild(tools);section._rsAuto={viewport:viewport,button:button,rate:rate,output:output,running:false,raf:0,last:0,position:viewport.scrollTop};section._rsSpeech={viewport:viewport,controls:speech,button:speechButton,voice:voice,rate:speechRate,output:speechOutput,status:speechStatus,state:'idle',segments:[],index:0,follow:true,generation:0};refreshTranscriptControlStrings(section);button.addEventListener('click',function(){if(section._rsAuto.running)pauseTranscriptAutoScroll(section);else startTranscriptAutoScroll(section);});rate.addEventListener('input',function(){updateTranscriptAutoRate(rate.value);});speechButton.addEventListener('click',function(){toggleTranscriptSpeech(section);});voice.addEventListener('change',function(){updateTranscriptSpeechVoice(voice.value);});speechRate.addEventListener('input',function(){updateTranscriptSpeechRate(speechRate.value);});['wheel','touchstart','pointerdown','keydown'].forEach(function(type){viewport.addEventListener(type,function(){if(section._rsAuto.running)pauseTranscriptAutoScroll(section);if(section._rsSpeech&&section._rsSpeech.state!=='idle')section._rsSpeech.follow=false;},{passive:type!=='keydown'});});refreshTranscriptControlStrings(section);refreshTranscriptSpeechAvailability(section);}
-function loadSet(section){if(section.dataset.derived==='true'){loadWitness(section);return;}installTranscriptControls(section);loadPhaseWitness(section);if(section.dataset.loaded==='true')return;var files=(section.dataset.files||'').split('|').filter(Boolean),from=parseInt(section.dataset.from,10),to=parseInt(section.dataset.to,10),loading=section.querySelector('.rs-transcript-loading'),target=section.querySelector('.rs-transcript');Promise.all(files.map(function(f){return fetch(RAW+f).then(function(r){if(!r.ok)throw new Error(String(r.status));return r.text();});})).then(function(texts){var all=[];texts.forEach(function(raw){all=all.concat(exchanges(raw));});all=all.filter(function(e){return e.n>=from&&e.n<=to;}).sort(function(a,b){return a.n-b.n;});var exchangeLabel=document.getElementById('rs-exchange-label-template').textContent;target.innerHTML=all.map(function(e){return '<article class="rs-exchange" data-reader-component="exchange" data-exchange="'+e.n+'"><div class="rs-exchange-index">'+esc(exchangeLabel)+' '+String(e.n).padStart(2,'0')+'</div>'+renderBody(e.body)+'</article>';}).join('');if(loading)loading.remove();section.dataset.loaded='true';refreshTranscriptSpeechAvailability(section);}).catch(function(){if(loading)loading.textContent=document.getElementById('rs-source-unavailable-template').textContent;});}
+function installTranscriptControls(section){if(!section||section.dataset.derived==='true'||section._rsAuto)return;var bar=section.querySelector('.rs-source-bar'),viewport=section.querySelector('[data-reader-component="transcript-viewport"]');if(!bar||!viewport)return;var tools=document.createElement('div');tools.className='rs-source-tools';tools.setAttribute('data-reader-component','transcript-tools');var controls=document.createElement('div');controls.className='rs-autoscroll';controls.setAttribute('data-reader-component','transcript-autoscroll');var button=document.createElement('button');button.type='button';button.className='rs-scroll-toggle';button.textContent='▶';var rate=document.createElement('input');rate.type='range';rate.className='rs-scroll-rate';rate.min='.5';rate.max='2';rate.step='.25';rate.value=String(transcriptAutoRate);var output=document.createElement('output');output.className='rs-scroll-rate-value';output.textContent=transcriptRateLabel(transcriptAutoRate);controls.append(button,rate,output);var speech=document.createElement('div');speech.className='rs-readaloud';speech.setAttribute('data-reader-component','transcript-read-aloud');var speechButton=document.createElement('button');speechButton.type='button';speechButton.className='rs-speech-toggle';speechButton.textContent='🔊';speechButton.setAttribute('aria-pressed','false');var voice=document.createElement('select');voice.className='rs-speech-voice';var speechRate=document.createElement('input');speechRate.type='range';speechRate.className='rs-speech-rate';speechRate.min='.75';speechRate.max='1.5';speechRate.step='.25';speechRate.value=String(transcriptSpeechRate);var speechOutput=document.createElement('output');speechOutput.className='rs-speech-rate-value';speechOutput.textContent=transcriptSpeechRateLabel(transcriptSpeechRate);var speechStatus=document.createElement('span');speechStatus.className='rs-speech-status';speechStatus.setAttribute('role','status');speechStatus.setAttribute('aria-live','polite');speech.append(speechButton,voice,speechRate,speechOutput,speechStatus);tools.append(controls,speech);var links=bar.querySelector('.rs-source-links');if(links)tools.appendChild(links);bar.appendChild(tools);section._rsAuto={viewport:viewport,button:button,rate:rate,output:output,running:false,raf:0,last:0,position:viewport.scrollTop};section._rsSpeech={viewport:viewport,controls:speech,button:speechButton,voice:voice,rate:speechRate,output:speechOutput,status:speechStatus,state:'idle',segments:[],index:0,follow:true,generation:0};refreshTranscriptControlStrings(section);button.addEventListener('click',function(){if(section._rsAuto.running)pauseTranscriptAutoScroll(section);else startTranscriptAutoScroll(section);});rate.addEventListener('input',function(){updateTranscriptAutoRate(rate.value);});speechButton.addEventListener('click',function(){toggleTranscriptSpeech(section);});voice.addEventListener('change',function(){if(section._rsSpeech&&section._rsSpeech.state!=='idle')cancelTranscriptSpeech(section);updateTranscriptSpeechVoice(voice.value);});speechRate.addEventListener('input',function(){if(section._rsSpeech&&section._rsSpeech.state!=='idle')cancelTranscriptSpeech(section);updateTranscriptSpeechRate(speechRate.value);});['wheel','touchstart','pointerdown','keydown'].forEach(function(type){viewport.addEventListener(type,function(){if(section._rsAuto.running)pauseTranscriptAutoScroll(section);if(section._rsSpeech&&section._rsSpeech.state!=='idle')section._rsSpeech.follow=false;},{passive:type!=='keydown'});});refreshTranscriptControlStrings(section);refreshTranscriptSpeechAvailability(section);}
+function loadSet(section){if(section.dataset.derived==='true'){loadWitness(section);return;}installTranscriptControls(section);loadPhaseWitness(section);if(section.dataset.loaded==='true')return;var files=(section.dataset.files||'').split('|').filter(Boolean),from=parseInt(section.dataset.from,10),to=parseInt(section.dataset.to,10),loading=section.querySelector('.rs-transcript-loading'),target=section.querySelector('.rs-transcript');Promise.all(files.map(function(f){return fetch(RAW+f).then(function(r){if(!r.ok)throw new Error(String(r.status));return r.text();});})).then(function(texts){var all=[];texts.forEach(function(raw){all=all.concat(exchanges(raw));});all=all.filter(function(e){return e.n>=from&&e.n<=to;}).sort(function(a,b){return a.n-b.n;});var exchangeLabel=document.getElementById('rs-exchange-label-template').textContent;target.innerHTML=all.map(function(e){return '<article class="rs-exchange" data-reader-component="exchange" data-exchange="'+e.n+'"><div class="rs-exchange-index">'+esc(exchangeLabel)+' '+String(e.n).padStart(2,'0')+'</div>'+renderBody(e.body)+'</article>';}).join('');if(loading)loading.remove();section.dataset.loaded='true';if(section._rsSpeech)section._rsSpeech.segments=collectTranscriptSpeechSegments(section);refreshTranscriptSpeechAvailability(section);}).catch(function(){if(loading)loading.textContent=document.getElementById('rs-source-unavailable-template').textContent;});}
 var trackScroller=document.querySelector('.rs-track-scroll');
 function railFabClearance(){if(!trackScroller)return 0;var fab=document.getElementById('vex-spiral-trigger');if(!fab)return 0;var sr=trackScroller.getBoundingClientRect(),fr=fab.getBoundingClientRect();if(fr.bottom<=sr.top||fr.top>=sr.bottom||fr.left>=sr.right||fr.right<=sr.left)return 0;return Math.max(0,sr.right-Math.max(sr.left,fr.left-12));}
 function centerActive(smooth){var b=track[current];if(!b||!trackScroller)return;var max=Math.max(0,trackScroller.scrollWidth-trackScroller.clientWidth),usable=Math.max(160,trackScroller.clientWidth-railFabClearance()),start=b.offsetLeft,end=start+b.offsetWidth;if(current===track.length-2&&track[current+1])end=track[current+1].offsetLeft+track[current+1].offsetWidth;var span=end-start,target=start-Math.max(0,(usable-span)/2);trackScroller.scrollTo({left:Math.max(0,Math.min(max,target)),behavior:smooth===false?'auto':'smooth'});}
