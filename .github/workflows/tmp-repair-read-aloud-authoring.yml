@@ -1,0 +1,42 @@
+name: Repair temporary Read Aloud authoring workflow
+
+on:
+  push:
+    branches:
+      - VXG-102026-chatgpt-read-aloud-semantic-containers
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout exact authoring branch
+        uses: actions/checkout@v4
+        with:
+          ref: VXG-102026-chatgpt-read-aloud-semantic-containers
+          fetch-depth: 0
+
+      - name: Repair workflow admission and remove this one-shot repair carrier
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          target = Path('.github/workflows/tmp-read-aloud-semantic-containers.yml')
+          text = target.read_text(encoding='utf-8')
+          broken = "    if: github.event.head_commit.message == 'VXG-102026: stage read-aloud semantic-container authoring [VXG RealForever]'\n"
+          count = text.count(broken)
+          if count != 1:
+              raise SystemExit(f'expected exactly one broken job-level if line, found {count}')
+          target.write_text(text.replace(broken, ''), encoding='utf-8')
+          PY
+          rm -f .github/workflows/tmp-repair-read-aloud-authoring.yml
+          git config user.name 'VexGPT'
+          git config user.email 'victor.gong@vextreme24.com'
+          git add -A
+          git diff --cached --check
+          git commit --signoff -m 'VXG-102026: repair temporary authoring workflow syntax [VXG RealForever]'
+          git push origin HEAD:VXG-102026-chatgpt-read-aloud-semantic-containers
