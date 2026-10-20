@@ -190,6 +190,24 @@ test('FAB-AUTOLOAD: loadFabWidgets never references fab-demo.js or fab-analysis.
   assert.equal(match[0].includes('fab-analysis.js'), false, 'fab-analysis.js needs real per-page data, must stay opt-in via the God-Script build system');
 });
 
+// detectEnv — commit-pinned Githack previews are standalone Vextreme
+// deployments. They need the same nav/FAB eligibility as GitHub Pages so an
+// exact-preview Terrain parent can own the warm Read Aloud runtime broker.
+function detectEnvFor(hostname) {
+  const source = readSource();
+  const match = source.match(/function detectEnv\(\) \{[\s\S]*?\n  \}/);
+  assert.ok(match, 'detectEnv() must exist in lib/vextreme.js');
+  const load = new Function('global', match[0] + '\nreturn detectEnv;');
+  return load({ location: { hostname } })();
+}
+
+test('FAB-AUTOLOAD: exact Githack previews retain standalone site chrome and Read Aloud eligibility', () => {
+  assert.equal(detectEnvFor('rawcdn.githack.com'), 'github_pages');
+  assert.equal(detectEnvFor('raw.githack.com'), 'github_pages');
+  assert.equal(detectEnvFor('vgong24.github.io'), 'github_pages');
+  assert.equal(detectEnvFor('example.com'), 'squarespace');
+});
+
 // resolveConfig — extracted with mocked detectEnv/detectSlug so the `fab`
 // field's real gating logic runs, not just text-matched.
 function loadResolveConfig() {

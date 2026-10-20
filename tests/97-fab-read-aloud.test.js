@@ -117,7 +117,12 @@ test('READ-ALOUD: neural model preparation and inference live only in one Worker
 });
 
 test('READ-ALOUD: ordinary sentences are independent neural synthesis units', () => {
-  const fn = extractFunction('splitText');
+  const s = source();
+  const start = s.indexOf('function splitText(');
+  const end = s.indexOf('\n  function buildPlan(', start);
+  assert.notEqual(start, -1, 'splitText() must exist');
+  assert.notEqual(end, -1, 'buildPlan() must follow splitText()');
+  const fn = s.slice(start, end).trim();
   const splitText = new Function(fn + '\nreturn splitText;')();
 
   assert.deepEqual(
