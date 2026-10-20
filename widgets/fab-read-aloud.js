@@ -336,7 +336,11 @@
             if (job.generation !== generation) continue;
             var raw = await tts.generate(job.text, { voice: job.voice, speed: 1 });
             if (job.generation !== generation) continue;
-            var samples = raw.data;
+            // kokoro-js@1.2.1 returns Transformers.js RawAudio { audio, sampling_rate }.
+            var samples = raw && raw.audio;
+            if (!samples || typeof samples.length !== 'number' || samples.length === 0) {
+              throw new Error('KOKORO_AUDIO_EMPTY');
+            }
             self.postMessage({
               type: 'audio',
               requestId: job.requestId,

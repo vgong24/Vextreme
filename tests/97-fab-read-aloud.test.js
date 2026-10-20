@@ -87,7 +87,9 @@ test('READ-ALOUD: neural model preparation and inference live only in one Worker
   assert.match(worker, /import\(KOKORO_MODULE_URL\)/);
   assert.match(worker, /KokoroTTS\.from_pretrained\(KOKORO_MODEL_ID, \{ dtype: 'q8', device: 'wasm' \}\)/);
   assert.match(worker, /await tts\.generate\(job\.text, \{ voice: job\.voice, speed: 1 \}\)/);
-  assert.match(worker, /var samples = raw\.data;/);
+  assert.match(worker, /var samples = raw && raw\.audio;/);
+  assert.match(worker, /KOKORO_AUDIO_EMPTY/);
+  assert.doesNotMatch(worker, /raw\.data/);
   assert.match(worker, /\[samples\.buffer\]/);
 
   assert.equal((pageProvider.match(/new Worker\(/g) || []).length, 1);
