@@ -4,8 +4,8 @@
  * FAB-READ-ALOUD — site-level accessibility reader contract.
  *
  * Protects the behavior promoted from the Returning-scorpions vertical slice:
- * one floating owner, arbitrary start position, continuous semantic-block
- * reading, lazy off-thread neural synthesis, reusable PCM, live neural playback
+ * one floating owner, arbitrary start position, continuous readable-unit
+ * ownership, lazy off-thread neural synthesis, reusable PCM, live neural playback
  * speed, bounded resource use, language-aware voice selection, and localized UI.
  */
 
@@ -18,6 +18,8 @@ const vm = require('node:vm');
 const ROOT = path.join(__dirname, '..');
 const WIDGET = path.join(ROOT, 'widgets', 'fab-read-aloud.js');
 const COMMON = path.join(ROOT, 'data', 'strings', 'source', 'common.json');
+const TURNING_POINT = path.join(ROOT, 'pages', 'the-turning-point.html');
+const SEVEN_LAYERS = path.join(ROOT, 'pages', 'journal-013-seven-layers-choose.html');
 
 function source() {
   return fs.readFileSync(WIDGET, 'utf8').replace(/\r\n/g, '\n');
@@ -174,13 +176,22 @@ test('READ-ALOUD: continuous reading targets bounded seconds of ready neural aud
   assert.match(s, /var MAX_AUDIO_CACHE_ITEMS = 32;/);
 });
 
-test('READ-ALOUD: readable plan is semantic-block based and supports arbitrary Start here selection', () => {
+
+test('READ-ALOUD: readable plan is text-node owned and supports arbitrary Start here selection', () => {
   const s = source();
   const pick = extractFunction('enterPickMode');
-  assert.match(s, /var READABLE_SELECTOR = 'h1,h2,h3,h4,h5,h6,p,li,blockquote,figcaption,pre,td,th';/);
-  assert.match(extractFunction('buildPlan'), /readableBlocks\(\)/);
+  assert.match(s, /var READABLE_SEMANTIC_SELECTOR = 'h1,h2,h3,h4,h5,h6,p,li,blockquote,figcaption,pre,caption,td,th';/);
+  assert.match(s, /var READABLE_CONTAINER_SELECTOR = '[^']*div[^']*';/);
+  assert.match(s, /var READABLE_EXPLICIT_SELECTOR = '\[data-vex-read-aloud-block\]';/);
+  assert.match(s, /var READABLE_SKIP_SELECTOR = '[^']*data-vex-read-aloud-skip[^']*';/);
+  assert.match(extractFunction('readableUnits'), /document\.createTreeWalker/);
+  assert.match(extractFunction('readableUnits'), /readableOwnerForTextNode\(node\)/);
+  assert.match(extractFunction('readableUnits'), /appendReadableUnit\(units, owner, node\.nodeValue\)/);
+  assert.match(extractFunction('buildPlan'), /readableUnits\(\)/);
+  assert.match(extractFunction('buildPlan'), /unit\.text/);
   assert.match(extractFunction('startIndexForElement'), /plan\[i\]\.element === element/);
-  assert.match(pick, /setPickElement\(viewportStartElement\(\), false\)/);
+  assert.match(pick, /state\.pickBlocks = readableBlocks\(\)/);
+  assert.match(pick, /setPickElement\(viewportStartElement\(state\.pickBlocks\), false\)/);
   assert.match(pick, /document\.addEventListener\('pointerover'/);
   assert.match(pick, /document\.addEventListener\('click'/);
   assert.match(pick, /document\.addEventListener\('contextmenu'/,
@@ -188,10 +199,106 @@ test('READ-ALOUD: readable plan is semantic-block based and supports arbitrary S
   assert.match(pick, /event\.key === 'ArrowDown' \|\| event\.key === 'ArrowRight'/);
   assert.match(pick, /event\.key === 'ArrowUp' \|\| event\.key === 'ArrowLeft'/);
   assert.match(pick, /event\.key === 'Enter' \|\| event\.key === ' '/);
-  assert.match(extractFunction('movePickElement'), /readableBlocks\(\)/);
-  assert.match(extractFunction('readableTarget'), /target\.closest\(READABLE_SELECTOR\)/);
+  assert.match(extractFunction('movePickElement'), /state\.pickBlocks\.length/);
+  assert.match(extractFunction('readableTarget'), /new Set\(blocks\)/);
   assert.match(extractFunction('jumpBlock'), /blockIndex/);
+  assert.match(extractFunction('exitPickMode'), /state\.pickBlocks = \[\]/);
   assert.match(extractFunction('exitPickMode'), /removeEventListener\('contextmenu'/);
+});
+
+test('READ-ALOUD: layout containers own visible field text without parent/child duplication', () => {
+  const s = source();
+  const semanticSelector = s.match(/var READABLE_SEMANTIC_SELECTOR = '([^']+)';/)[1];
+  const containerSelector = s.match(/var READABLE_CONTAINER_SELECTOR = '([^']+)';/)[1];
+  const explicitSelector = s.match(/var READABLE_EXPLICIT_SELECTOR = '([^']+)';/)[1];
+  const documentStub = { body: {}, documentElement: {} };
+  const windowStub = {
+    getComputedStyle(element) {
+      return {
+        display: element.display || 'inline',
+        position: 'static',
+        overflow: 'visible',
+      };
+    },
+  };
+
+  const isReadableContainer = new Function(
+    'READABLE_SEMANTIC_SELECTOR', 'READABLE_CONTAINER_SELECTOR', 'window',
+    extractFunction('isReadableContainer') + '\nreturn isReadableContainer;'
+  )(semanticSelector, containerSelector, windowStub);
+
+  function makeElement(kind, parent, options) {
+    options = options || {};
+    return {
+      parentElement: parent || null,
+      isConnected: true,
+      display: options.display || 'inline',
+      explicit: Boolean(options.explicit),
+      skip: Boolean(options.skip),
+      matches(selector) {
+        if (selector === semanticSelector) return kind === 'semantic';
+        if (selector === containerSelector) return kind === 'container';
+        return false;
+      },
+      closest(selector) {
+        let current = this;
+        while (current && current !== documentStub.body && current !== documentStub.documentElement) {
+          if (selector === explicitSelector && current.explicit) return current;
+          if (selector !== explicitSelector && current.skip) return current;
+          current = current.parentElement;
+        }
+        return null;
+      },
+    };
+  }
+
+  const isVisible = (element) => Boolean(element && !element.skip);
+  const readableOwnerForTextNode = new Function(
+    'document', 'READABLE_EXPLICIT_SELECTOR', 'isVisible', 'isReadableContainer',
+    extractFunction('readableOwnerForTextNode') + '\nreturn readableOwnerForTextNode;'
+  )(documentStub, explicitSelector, isVisible, isReadableContainer);
+
+  const row = makeElement('container', documentStub.body);
+  const rowSpan = makeElement('inline', row);
+  assert.equal(readableOwnerForTextNode({ parentElement: rowSpan, nodeValue: 'Proclamation text' }), row);
+
+  const paragraph = makeElement('semantic', documentStub.body);
+  const strong = makeElement('inline', paragraph);
+  assert.equal(readableOwnerForTextNode({ parentElement: strong, nodeValue: 'emphasis' }), paragraph);
+
+  const compound = makeElement('container', documentStub.body, { explicit: true });
+  const nestedParagraph = makeElement('semantic', compound);
+  assert.equal(readableOwnerForTextNode({ parentElement: nestedParagraph, nodeValue: 'one authored compound block' }), compound);
+
+  const customFlex = makeElement('custom', documentStub.body, { display: 'flex' });
+  const flexSpan = makeElement('inline', customFlex);
+  assert.equal(readableOwnerForTextNode({ parentElement: flexSpan, nodeValue: 'layout-owned field' }), customFlex);
+
+  const appendReadableText = new Function(
+    extractFunction('appendReadableText') + '\nreturn appendReadableText;'
+  )();
+  let joined = appendReadableText('', 'Shorter');
+  joined = appendReadableText(joined, 'Than I would write — I elaborate.');
+  assert.equal(joined, 'Shorter Than I would write — I elaborate.');
+  assert.equal(appendReadableText('Hello', ', world.'), 'Hello, world.');
+
+  const appendReadableUnit = new Function(
+    extractFunction('appendReadableText') + '\n' +
+    extractFunction('appendReadableUnit') + '\nreturn appendReadableUnit;'
+  )();
+  const ownerA = {};
+  const ownerB = {};
+  const units = [];
+  appendReadableUnit(units, ownerA, 'before');
+  appendReadableUnit(units, ownerB, 'middle');
+  appendReadableUnit(units, ownerA, 'after');
+  assert.deepEqual(units.map((unit) => unit.text), ['before', 'middle', 'after'],
+    'an owner interrupted by a nested readable block must resume later rather than pulling trailing text ahead');
+
+  const turningPoint = fs.readFileSync(TURNING_POINT, 'utf8');
+  const sevenLayers = fs.readFileSync(SEVEN_LAYERS, 'utf8');
+  assert.match(turningPoint, /<div class="proclamation-item"><span data-i18n=/);
+  assert.match(sevenLayers, /<div class="credential-row">[\s\S]*?Shorter[\s\S]*?credential-value/);
 });
 
 test('READ-ALOUD: source-owned narration language outranks presentation language', () => {

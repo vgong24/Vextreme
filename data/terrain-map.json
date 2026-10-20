@@ -2266,7 +2266,7 @@
       "y": 270,
       "role": "site-wide Read Aloud accessibility orb + overlay — chooses a readable DOM start point, continuously reads semantic blocks, persists voice/rate preferences, and delegates speech to lazy provider mechanics",
       "reads": [
-        "DOM: visible h1-h6/p/li/blockquote/figcaption/pre/td/th content (excluding nav/widget/hidden surfaces)",
+        "DOM: visible text nodes grouped into ordered units by their nearest explicit data-vex-read-aloud-block, semantic element, or layout container (excluding navigation/control/widget/hidden surfaces)",
         "DOM: nearest data-narration-language or lang source-language boundary",
         "window vextreme:languagechange event from widgets/fab-lang.js",
         "localStorage vex-read-aloud-settings/v1 (persisted rate + voice per primary language)",
