@@ -54,5 +54,61 @@
   "common.nav.full-build-health": {
     "text": "Build-Status →",
     "aria-label": "Build-Status anzeigen"
+  },
+  "common.button.read-aloud": {
+    "text": "Vorlesen",
+    "aria-label": "Vorlesen"
+  },
+  "common.button.read-aloud-start-here": {
+    "text": "Hier starten",
+    "aria-label": "Hier starten"
+  },
+  "common.button.read-aloud-play": {
+    "text": "Abspielen",
+    "aria-label": "Abspielen"
+  },
+  "common.button.read-aloud-pause": {
+    "text": "Pause",
+    "aria-label": "Pause"
+  },
+  "common.button.read-aloud-stop": {
+    "text": "Stopp",
+    "aria-label": "Stopp"
+  },
+  "common.button.read-aloud-previous": {
+    "text": "Zurück",
+    "aria-label": "Zurück"
+  },
+  "common.button.read-aloud-next": {
+    "text": "Weiter",
+    "aria-label": "Weiter"
+  },
+  "common.button.read-aloud-close": {
+    "text": "Schließen",
+    "aria-label": "Schließen"
+  },
+  "common.label.read-aloud-voice": {
+    "text": "Stimme"
+  },
+  "common.label.read-aloud-speed": {
+    "text": "Geschwindigkeit"
+  },
+  "common.status.read-aloud-pick": {
+    "text": "Wählen Sie aus, wo das Vorlesen beginnen soll."
+  },
+  "common.status.read-aloud-preparing": {
+    "text": "Hochwertige Stimme wird vorbereitet…"
+  },
+  "common.status.read-aloud-reading": {
+    "text": "Wird vorgelesen…"
+  },
+  "common.status.read-aloud-done": {
+    "text": "Vorlesen abgeschlossen."
+  },
+  "common.status.read-aloud-fallback": {
+    "text": "Hochwertige Stimme nicht verfügbar; Systemstimme wird verwendet."
+  },
+  "common.status.read-aloud-none": {
+    "text": "Kein vorlesbarer Text gefunden."
   }
 }

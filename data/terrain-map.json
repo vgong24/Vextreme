@@ -64,12 +64,12 @@
       "key": 4,
       "name": "RUNTIME",
       "sub": "loaded by pages in the browser",
-      "count": 6,
+      "count": 7,
       "rect": {
         "x": 1710,
         "y": 40,
         "width": 300,
-        "height": 450
+        "height": 510
       }
     }
   ],
@@ -1107,6 +1107,7 @@
         "data/strings/compiled/scopes/{category}/{scope}.en.json",
         "widgets/sw-register.js",
         "widgets/vex-fab.js",
+        "widgets/fab-read-aloud.js",
         "widgets/fab-lang.js",
         "widgets/fab-theme.js",
         "widgets/fab-map.js",
@@ -1998,6 +1999,7 @@
         "components/section-toggle.js (gated v1 behavior)",
         "components/bc-nav.js (gated v1 behavior)",
         "widgets/vex-fab.js (Spiral trigger/group owner; loaded first)",
+        "widgets/fab-read-aloud.js (default Spiral accessibility child; may opt out with fabWidgets.readAloud:false)",
         "widgets/fab-lang.js (optional Spiral child)",
         "widgets/fab-theme.js (optional Spiral child)",
         "widgets/fab-map.js (optional Spiral child)"
@@ -2256,12 +2258,51 @@
       "auditorRank": 3
     },
     {
-      "id": "widgets/fab-theme.js",
+      "id": "widgets/fab-read-aloud.js",
       "cluster": "widgets",
       "stage": 4,
       "stageName": "RUNTIME",
       "x": 1760,
       "y": 270,
+      "role": "site-wide Read Aloud accessibility orb + overlay — chooses a readable DOM start point, continuously reads semantic blocks, persists voice/rate preferences, and delegates speech to lazy provider mechanics",
+      "reads": [
+        "DOM: visible h1-h6/p/li/blockquote/figcaption/pre/td/th content (excluding nav/widget/hidden surfaces)",
+        "DOM: nearest data-narration-language or lang source-language boundary",
+        "window vextreme:languagechange event from widgets/fab-lang.js",
+        "localStorage vex-read-aloud-settings/v1 (persisted rate + voice per primary language)",
+        "browser speechSynthesis voice inventory (same-language fallback, capped)",
+        "kokoro-js@1.2.1 + onnx-community/Kokoro-82M-v1.0-ONNX (lazy inside module Worker only)",
+        "data/strings/source/common.json via normal compiled/inlined [data-i18n] runtime"
+      ],
+      "writes": [
+        "DOM: #vex-read-aloud-root / #vex-read-aloud-panel and current/start-target highlight classes",
+        "localStorage vex-read-aloud-settings/v1",
+        "AudioContext playback through transferred Float32 PCM",
+        "browser speechSynthesis playback fallback"
+      ],
+      "loadedBy": [
+        "lib/build-vextreme.js (default infrastructure feature; inlined into God Scripts after Spiral owner)",
+        "lib/vextreme.js shell-era FAB auto-loader (after Spiral owner, before language FAB)"
+      ],
+      "testedBy": [
+        "tests/97-fab-read-aloud.test.js",
+        "tests/08-build-vextreme.test.js (God Script default/order)",
+        "tests/41-vextreme-fab-autoload.test.js (shell loading/order/opt-out)",
+        "tests/96-record-reader-narration.test.js (record reader does not duplicate generic TTS)"
+      ],
+      "debts": [],
+      "status": "good",
+      "engineerFocus": false,
+      "auditorFocus": false,
+      "auditorRank": 4
+    },
+    {
+      "id": "widgets/fab-theme.js",
+      "cluster": "widgets",
+      "stage": 4,
+      "stageName": "RUNTIME",
+      "x": 1760,
+      "y": 330,
       "role": "dark/light theme toggle orb — sets document.documentElement's data-theme attribute, persists to localStorage",
       "reads": [
         "localStorage (vex-theme — persisted preference)",
@@ -2282,7 +2323,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 4
+      "auditorRank": 5
     },
     {
       "id": "widgets/sw-register.js",
@@ -2290,7 +2331,7 @@
       "stage": 4,
       "stageName": "RUNTIME",
       "x": 1760,
-      "y": 330,
+      "y": 390,
       "role": "Service Worker registration — activates offline caching, forces an immediate update check, auto-reloads once when a new SW takes control",
       "reads": [
         "navigator.serviceWorker API"
@@ -2310,7 +2351,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 5
+      "auditorRank": 6
     },
     {
       "id": "widgets/vex-fab.js",
@@ -2318,11 +2359,11 @@
       "stage": 4,
       "stageName": "RUNTIME",
       "x": 1760,
-      "y": 390,
+      "y": 450,
       "role": "spiral FAB — trigger button + shared expandable group container that other orb widgets mount into",
       "reads": [],
       "writes": [
-        "DOM: #vex-spiral-fab / #vex-spiral-trigger / #vex-spiral-group (consumed by fab-lang.js, fab-theme.js, fab-map.js)",
+        "DOM: #vex-spiral-fab / #vex-spiral-trigger / #vex-spiral-group (consumed by fab-read-aloud.js, fab-lang.js, fab-theme.js, fab-map.js)",
         "DOM: mounts into #vex-nav-actions when provided by lib/vextreme.js; otherwise appends to document.body"
       ],
       "loadedBy": [
@@ -2659,6 +2700,10 @@
     ],
     [
       "lib/build-vextreme.js",
+      "widgets/fab-read-aloud.js"
+    ],
+    [
+      "lib/build-vextreme.js",
       "widgets/fab-theme.js"
     ],
     [
@@ -2922,6 +2967,10 @@
       "lib/archive-renderer.js"
     ],
     [
+      "lib/vextreme.js",
+      "widgets/fab-read-aloud.js"
+    ],
+    [
       "pages/terrain-map.html",
       "lib/vextreme.js"
     ],
@@ -2978,6 +3027,10 @@
       "lib/vextreme.js"
     ],
     [
+      "widgets/fab-read-aloud.js",
+      "widgets/fab-lang.js"
+    ],
+    [
       "widgets/fab-theme.js",
       "lib/vextreme.js"
     ],
@@ -2996,6 +3049,10 @@
     [
       "widgets/vex-fab.js",
       "widgets/fab-map.js"
+    ],
+    [
+      "widgets/vex-fab.js",
+      "widgets/fab-read-aloud.js"
     ],
     [
       "widgets/vex-fab.js",

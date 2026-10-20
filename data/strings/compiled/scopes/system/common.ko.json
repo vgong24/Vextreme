@@ -54,5 +54,61 @@
   "common.nav.full-build-health": {
     "text": "빌드 상태 →",
     "aria-label": "빌드 상태 보기"
+  },
+  "common.button.read-aloud": {
+    "text": "소리 내어 읽기",
+    "aria-label": "소리 내어 읽기"
+  },
+  "common.button.read-aloud-start-here": {
+    "text": "여기서 시작",
+    "aria-label": "여기서 시작"
+  },
+  "common.button.read-aloud-play": {
+    "text": "재생",
+    "aria-label": "재생"
+  },
+  "common.button.read-aloud-pause": {
+    "text": "일시 정지",
+    "aria-label": "일시 정지"
+  },
+  "common.button.read-aloud-stop": {
+    "text": "중지",
+    "aria-label": "중지"
+  },
+  "common.button.read-aloud-previous": {
+    "text": "이전",
+    "aria-label": "이전"
+  },
+  "common.button.read-aloud-next": {
+    "text": "다음",
+    "aria-label": "다음"
+  },
+  "common.button.read-aloud-close": {
+    "text": "닫기",
+    "aria-label": "닫기"
+  },
+  "common.label.read-aloud-voice": {
+    "text": "음성"
+  },
+  "common.label.read-aloud-speed": {
+    "text": "속도"
+  },
+  "common.status.read-aloud-pick": {
+    "text": "읽기를 시작할 위치를 선택하세요."
+  },
+  "common.status.read-aloud-preparing": {
+    "text": "고품질 음성을 준비하는 중…"
+  },
+  "common.status.read-aloud-reading": {
+    "text": "읽는 중…"
+  },
+  "common.status.read-aloud-done": {
+    "text": "읽기가 완료되었습니다."
+  },
+  "common.status.read-aloud-fallback": {
+    "text": "고품질 음성을 사용할 수 없어 시스템 음성을 사용합니다."
+  },
+  "common.status.read-aloud-none": {
+    "text": "읽을 수 있는 텍스트를 찾지 못했습니다."
   }
 }

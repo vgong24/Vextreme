@@ -10,7 +10,7 @@
   window.VEX_VIEWMODEL          = {"category":"production","template":"page","scopes":["pages.victor-methodology-presentation"],"features":["lang","spiral-fab","theme","map","analysis"]};
 
   /* EN strings — inlined at build time, no fetch on default language */
-  window.VEX_STRINGS_EN         = {"common.nav.prev":{"text":"← prev","aria-label":"Previous page"},"common.nav.next":{"text":"next →","aria-label":"Next page"},"common.label.you-are-here":{"text":"You Are Here"},"common.nav.primary-site":{"text":"vextreme24.com","aria-label":"Go to primary site"},"common.nav.github":{"text":"GitHub","aria-label":"View source on GitHub"},"common.button.copy-filename":{"text":"Copy filename","aria-label":"Copy filename to clipboard"},"common.button.copied":{"text":"Copied!","aria-label":"Filename copied to clipboard"},"common.label.site-title":{"text":"Vextreme"},"common.label.page-live":{"text":"Page live"},"common.label.not-yet-ported":{"text":"Not yet ported"},"common.label.slug":{"text":"Slug"},"common.status.pages-live":{"text":"{ported, plural, one {# of {total} page live} other {# of {total} pages live}}"},"common.status.remaining":{"text":"{count, plural, one {# remaining} other {# remaining}}"},"common.status.built-on":{"text":"Built {date}"},"common.nav.build-health":{"text":"Build Health","aria-label":"View build health"},"common.nav.full-build-health":{"text":"Build Health →","aria-label":"View build health"},"pages.victor-methodology-presentation.header.eyebrow":{"text":"Engineering Dossier · 2021–2026 · DOC-ID: VG-DOSSIER-v2.1"},"pages.victor-methodology-presentation.header.thesis":{"text":"Finding every place people are forced to assume — and replacing each with a map that makes the assumption safe."},"pages.victor-methodology-presentation.header.id-line":{"text":"Senior Software Engineer II · Dexcom (medical devices, 5 years) · Lean Six Sigma Green Belt · AI-collaboration systems architect"},"pages.victor-methodology-presentation.header.stamp-big":{"text":"×6"},"pages.victor-methodology-presentation.header.stamp-small":{"text":"PROVEN"},"pages.victor-methodology-presentation.section-proofs.heading":{"text":"One method, six proofs"},"pages.victor-methodology-presentation.section-proofs.intro":{"text":"Across five years at a medical-device company — where software quality carries regulatory and patient-safety weight — the same engineering move was applied to six different problems at increasing scale. Each time, manual work done \"at the surface\" was replaced by a maintained map that structurally connects layers, so systems cannot silently drift apart."},"pages.victor-methodology-presentation.proof-organization-knowledge-map.year":{"text":"YEARS 1–5 · LIVE"},"pages.victor-methodology-presentation.proof-organization-knowledge-map.title":{"text":"Mapping the organization itself — the living map"},"pages.victor-methodology-presentation.proof-organization-knowledge-map.body":{"text":"Arrived to no map: no channels connecting Android developers, no forums, no directory of where anything lived. Built the human infrastructure first — a biweekly Android forum with open sharing and bug/innovation lunch-and-learns; a Confluence mapping the org (repos, documentation, dashboards including VnV testing tools); direct developer access to testing tools so engineers debug immediately instead of consuming another person's time; and later, XML→Jetpack Compose migration guides and an inherit-the-base UI doctrine that eliminated inconsistent reimplementations. Not a one-time artifact: a live page, appended and maintained across the full five years — early entries like the org map, late entries like the Compose guides, one continuously current source. Communication built audience-first — including a \"3D\" board of the fragment/navgraph hierarchy, each layer showing its responsibility and connections as a scannable pattern."},"pages.victor-methodology-presentation.proof-organization-knowledge-map.result":{"text":"The methodology's origin and its endurance test in one: a map of people and knowledge, kept alive for five years."},"pages.victor-methodology-presentation.proof-bulk-data-logging.year":{"text":"YEAR 1"},"pages.victor-methodology-presentation.proof-bulk-data-logging.title":{"text":"Analytics that cannot drift — BulkDataLogging"},"pages.victor-methodology-presentation.proof-bulk-data-logging.body":{"text":"Replaced hand-written analytics code at every screen with one central map (ScreenName / ScreenMapper / ButtonName / MetaData) covering display, click, duration, and entry events. Delete a UI element and its logging entry goes with it — analytics and UI are structurally bound."},"pages.victor-methodology-presentation.proof-bulk-data-logging.result":{"text":"Medical-grade event logging with structural integrity, org-wide."},"pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.year":{"text":"YEAR 2"},"pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.title":{"text":"Translations navigable in both directions"},"pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.body":{"text":"Extended the mapping principle to localization: every string traceable from code to every language and back, across Android, iOS, and design — \"where is this text used?\" answered structurally instead of by tribal memory."},"pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.result":{"text":"Foundation for the localization transformation below."},"pages.victor-methodology-presentation.proof-compound-safety-bug-map.year":{"text":"MID"},"pages.victor-methodology-presentation.proof-compound-safety-bug-map.title":{"text":"The compound bug nobody could reproduce"},"pages.victor-methodology-presentation.proof-compound-safety-bug-map.body":{"text":"A missing low-glucose alert — patient-safety critical — was caused by two interacting defects across three teams' systems, one of which erased the evidence of the other. Resolution required first building the missing cross-system map by hand, instrumenting SDK-level code, and extracting reproduction steps inside a one-day window before the only witness left on vacation. Root cause: database indexes built without a wrapping @Transaction — an invisible absence."},"pages.victor-methodology-presentation.proof-compound-safety-bug-map.result":{"text":"The terrain map let senior architects perceive system relationships nobody had seen. Fix shipped; lesson institutionalized."},"pages.victor-methodology-presentation.proof-localization-pipeline.year":{"text":"YEARS 3–4"},"pages.victor-methodology-presentation.proof-localization-pipeline.title":{"text":"Localization: 6 months → 2 weeks"},"pages.victor-methodology-presentation.proof-localization-pipeline.body":{"text":"Through Dexcom-sponsored Lean Six Sigma work, unified fragmented Android/iOS string structures and re-architected the translation pipeline — then engineered the paid vendor tool out of the loop entirely with a single source of truth that regenerates all documents reproducibly, byte-identical, because every condition was mapped rather than assumed."},"pages.victor-methodology-presentation.proof-localization-pipeline.metric":{"text":"6 mo → 2 wk"},"pages.victor-methodology-presentation.proof-localization-pipeline.metric-label":{"text":"lean cycle time — on-paper value in the millions"},"pages.victor-methodology-presentation.proof-cross-domain-ui-identity.year":{"text":"YEARS 3–4"},"pages.victor-methodology-presentation.proof-cross-domain-ui-identity.title":{"text":"The organizational join key — UIElementKey"},"pages.victor-methodology-presentation.proof-cross-domain-ui-identity.body":{"text":"Engineering, UX design, and quality testing each held IDs meaningful only inside their own silo. One composite identity — UIElementKey(platform, project, language, stringId, vnvTestId, uxDesignId) — resolved every discipline to the same UI element. Map first, align second: no team forced to change upfront. With the key live, the pipeline inverted: design issues keys upstream, platforms align by protocol, verification proceeds on a guaranteed assumption. Cross-discipline traceability — audit-grade in a regulated industry."},"pages.victor-methodology-presentation.proof-cross-domain-ui-identity.result":{"text":"Reconciliation disappeared as a phase. Teams run parallel over a shared spine."},"pages.victor-methodology-presentation.proof-source-of-truth-relay.year":{"text":"YEAR 5"},"pages.victor-methodology-presentation.proof-source-of-truth-relay.title":{"text":"PenSDK: the method applied to time itself"},"pages.victor-methodology-presentation.proof-source-of-truth-relay.body":{"text":"For an insulin-pen product where event order is safety-relevant: state changes flow through one SourceOfTruthRelay that derives and broadcasts truth so concurrent readers structurally cannot hold contradictory realities. Coroutines became ID-mapped, first-class tasks with scoped kill-switches — making a complex partner-SDK refresh cycle surgically manageable. Composes natively with Jetpack Compose."},"pages.victor-methodology-presentation.proof-source-of-truth-relay.result-tag":{"text":"Legacy"},"pages.victor-methodology-presentation.proof-source-of-truth-relay.result":{"text":"Deliberately developed the team in these practices — before departure, they problem-solved independently with the culture intact. The practices outlived the practitioner."},"pages.victor-methodology-presentation.section-throughline.band":{"text":"Analytics can't drift from UI. Translations can't orphan from screens. Localization can't fragment across platforms. Concurrent readers can't contradict each other. And now: AI instances can't re-introduce mistakes that were already corrected."},"pages.victor-methodology-presentation.section-ai-maintainable-systems.heading":{"text":"The sixth application: AI-maintainable systems"},"pages.victor-methodology-presentation.section-ai-maintainable-systems.p1":{"text":"Every organization adopting AI coding tools is hitting the same wall: AI-generated work decays, because nothing preserves institutional knowledge between sessions. A new AI instance starts cold and re-introduces assumptions that were corrected months ago — the same disease as every fragmentation above, at the largest scale yet: context itself."},"pages.victor-methodology-presentation.section-ai-maintainable-systems.p2":{"text":"The public working demonstration applies the five-times-proven method to this problem: a repository where CI self-maintains its own indexes; pull requests function as decision records (assumptions, cascading effects, notes for the next reader — human or AI); scaling ceilings are documented with migration paths before they're hit; and any fresh AI session bootstraps full context in one command. The escalation culture built with the human team — hard problems routed early, resolutions written back into shared knowledge — transcribed into architecture."},"pages.victor-methodology-presentation.section-adoption-implications.heading":{"text":"What adoption changes"},"pages.victor-methodology-presentation.section-adoption-implications.intro":{"text":"For an organization, this architecture is not a documentation style — it relocates where reliability comes from: out of individual vigilance and tribal memory, into structure that validates itself."},"pages.victor-methodology-presentation.section-adoption-implications.engineering-label":{"text":"Engineering:"},"pages.victor-methodology-presentation.section-adoption-implications.engineering":{"text":"drift stops being a discipline problem. When analytics, strings, tests, and design resolve through one identity, divergence becomes structurally impossible rather than manually policed — and change review shifts from recalling impact to reading a computed impact report."},"pages.victor-methodology-presentation.section-adoption-implications.localization-label":{"text":"Localization & product:"},"pages.victor-methodology-presentation.section-adoption-implications.localization":{"text":"a new language becomes new rows, not duplicated pages. Vendors translate a meaning once and the graph applies it everywhere it is bound; plural, placeholder, and layout rules are validated per locale automatically."},"pages.victor-methodology-presentation.section-adoption-implications.quality-label":{"text":"Quality & compliance:"},"pages.victor-methodology-presentation.section-adoption-implications.quality":{"text":"every change produces its impact report before it lands, and traceability from test to design intent to translation is audit-grade by construction. In regulated industries, that is the difference between proving compliance and reconstructing it."},"pages.victor-methodology-presentation.section-adoption-implications.ai-label":{"text":"AI adoption:"},"pages.victor-methodology-presentation.section-adoption-implications.ai":{"text":"agents stop re-deriving context. The graph is the memory; AI is the bridge into it — onboarding a fresh agent costs a query, not a repository read, and corrected mistakes stay corrected across sessions, tools, and vendors."},"pages.victor-methodology-presentation.section-adoption-implications.leadership-label":{"text":"Leadership:"},"pages.victor-methodology-presentation.section-adoption-implications.leadership":{"text":"the localization precedent above — six months to two weeks — is what this class of change does to cycle time. The same mechanics apply wherever teams currently reconcile by meeting instead of by map."},"pages.victor-methodology-presentation.section-adoption-implications.closing-note":{"text":"This document is itself the first artifact managed under the standard it describes: its record identifiers follow the concept-ID naming standard, legacy IDs are preserved as aliases, and the English and Chinese content regenerate from a single bilingual source. The proof of concept is the page."},"pages.victor-methodology-presentation.section-audience-fit.heading":{"text":"Where this fits"},"pages.victor-methodology-presentation.fit-platform-devex.title":{"text":"Platform & Developer Experience"},"pages.victor-methodology-presentation.fit-platform-devex.body":{"text":"Building the maps and pipelines that let large teams move in parallel without drift."},"pages.victor-methodology-presentation.fit-ai-tooling-companies.title":{"text":"AI tooling companies"},"pages.victor-methodology-presentation.fit-ai-tooling-companies.body":{"text":"A design-partner profile: has hit and documented the failure modes these products exist to solve."},"pages.victor-methodology-presentation.fit-regulated-industries.title":{"text":"Regulated industries adopting AI"},"pages.victor-methodology-presentation.fit-regulated-industries.body":{"text":"Medical-device background plus audit-grade, decision-record practices — a rare intersection."},"pages.victor-methodology-presentation.fit-process-transformation.title":{"text":"Process transformation"},"pages.victor-methodology-presentation.fit-process-transformation.body":{"text":"Lean Six Sigma-validated: a measured 6-month → 2-week cycle reduction with cross-team adoption."},"pages.victor-methodology-presentation.note-self-demonstration.lead":{"text":"This dossier practices its own method."},"pages.victor-methodology-presentation.note-self-demonstration.body":{"text":"Every record above carries a stable ID (proof-bulk-data-logging, proof-cross-domain-ui-identity…), named for concepts per the repository Registry Documentation Standard, with legacy IDs preserved as aliases, so any reader — human or AI, in English or Chinese — can reference, quote, or ask about an exact record without ambiguity. Identity first; discussion second."},"pages.victor-methodology-presentation.footer.line":{"text":"Victor Gong · Dossier v2.1 · Created July 4, 2026 · DOC-ID: VG-DOSSIER-v2.1"},"pages.victor-methodology-presentation.footer.reference-note":{"text":"References & repository walkthrough available on request"},"pages.victor-methodology-presentation.footer.stamp-word":{"text":"ON"},"pages.victor-methodology-presentation.footer.stamp-label":{"text":"THE RECORD"}};
+  window.VEX_STRINGS_EN         = {"common.nav.prev":{"text":"← prev","aria-label":"Previous page"},"common.nav.next":{"text":"next →","aria-label":"Next page"},"common.label.you-are-here":{"text":"You Are Here"},"common.nav.primary-site":{"text":"vextreme24.com","aria-label":"Go to primary site"},"common.nav.github":{"text":"GitHub","aria-label":"View source on GitHub"},"common.button.copy-filename":{"text":"Copy filename","aria-label":"Copy filename to clipboard"},"common.button.copied":{"text":"Copied!","aria-label":"Filename copied to clipboard"},"common.label.site-title":{"text":"Vextreme"},"common.label.page-live":{"text":"Page live"},"common.label.not-yet-ported":{"text":"Not yet ported"},"common.label.slug":{"text":"Slug"},"common.status.pages-live":{"text":"{ported, plural, one {# of {total} page live} other {# of {total} pages live}}"},"common.status.remaining":{"text":"{count, plural, one {# remaining} other {# remaining}}"},"common.status.built-on":{"text":"Built {date}"},"common.nav.build-health":{"text":"Build Health","aria-label":"View build health"},"common.nav.full-build-health":{"text":"Build Health →","aria-label":"View build health"},"common.button.read-aloud":{"text":"Read aloud","aria-label":"Read aloud"},"common.button.read-aloud-start-here":{"text":"Start here","aria-label":"Start here"},"common.button.read-aloud-play":{"text":"Play","aria-label":"Play"},"common.button.read-aloud-pause":{"text":"Pause","aria-label":"Pause"},"common.button.read-aloud-stop":{"text":"Stop","aria-label":"Stop"},"common.button.read-aloud-previous":{"text":"Previous","aria-label":"Previous"},"common.button.read-aloud-next":{"text":"Next","aria-label":"Next"},"common.button.read-aloud-close":{"text":"Close","aria-label":"Close"},"common.label.read-aloud-voice":{"text":"Voice"},"common.label.read-aloud-speed":{"text":"Speed"},"common.status.read-aloud-pick":{"text":"Choose where reading should begin."},"common.status.read-aloud-preparing":{"text":"Preparing high-quality voice…"},"common.status.read-aloud-reading":{"text":"Reading…"},"common.status.read-aloud-done":{"text":"Reading complete."},"common.status.read-aloud-fallback":{"text":"High-quality voice unavailable; using system speech."},"common.status.read-aloud-none":{"text":"No readable text found."},"pages.victor-methodology-presentation.header.eyebrow":{"text":"Engineering Dossier · 2021–2026 · DOC-ID: VG-DOSSIER-v2.1"},"pages.victor-methodology-presentation.header.thesis":{"text":"Finding every place people are forced to assume — and replacing each with a map that makes the assumption safe."},"pages.victor-methodology-presentation.header.id-line":{"text":"Senior Software Engineer II · Dexcom (medical devices, 5 years) · Lean Six Sigma Green Belt · AI-collaboration systems architect"},"pages.victor-methodology-presentation.header.stamp-big":{"text":"×6"},"pages.victor-methodology-presentation.header.stamp-small":{"text":"PROVEN"},"pages.victor-methodology-presentation.section-proofs.heading":{"text":"One method, six proofs"},"pages.victor-methodology-presentation.section-proofs.intro":{"text":"Across five years at a medical-device company — where software quality carries regulatory and patient-safety weight — the same engineering move was applied to six different problems at increasing scale. Each time, manual work done \"at the surface\" was replaced by a maintained map that structurally connects layers, so systems cannot silently drift apart."},"pages.victor-methodology-presentation.proof-organization-knowledge-map.year":{"text":"YEARS 1–5 · LIVE"},"pages.victor-methodology-presentation.proof-organization-knowledge-map.title":{"text":"Mapping the organization itself — the living map"},"pages.victor-methodology-presentation.proof-organization-knowledge-map.body":{"text":"Arrived to no map: no channels connecting Android developers, no forums, no directory of where anything lived. Built the human infrastructure first — a biweekly Android forum with open sharing and bug/innovation lunch-and-learns; a Confluence mapping the org (repos, documentation, dashboards including VnV testing tools); direct developer access to testing tools so engineers debug immediately instead of consuming another person's time; and later, XML→Jetpack Compose migration guides and an inherit-the-base UI doctrine that eliminated inconsistent reimplementations. Not a one-time artifact: a live page, appended and maintained across the full five years — early entries like the org map, late entries like the Compose guides, one continuously current source. Communication built audience-first — including a \"3D\" board of the fragment/navgraph hierarchy, each layer showing its responsibility and connections as a scannable pattern."},"pages.victor-methodology-presentation.proof-organization-knowledge-map.result":{"text":"The methodology's origin and its endurance test in one: a map of people and knowledge, kept alive for five years."},"pages.victor-methodology-presentation.proof-bulk-data-logging.year":{"text":"YEAR 1"},"pages.victor-methodology-presentation.proof-bulk-data-logging.title":{"text":"Analytics that cannot drift — BulkDataLogging"},"pages.victor-methodology-presentation.proof-bulk-data-logging.body":{"text":"Replaced hand-written analytics code at every screen with one central map (ScreenName / ScreenMapper / ButtonName / MetaData) covering display, click, duration, and entry events. Delete a UI element and its logging entry goes with it — analytics and UI are structurally bound."},"pages.victor-methodology-presentation.proof-bulk-data-logging.result":{"text":"Medical-grade event logging with structural integrity, org-wide."},"pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.year":{"text":"YEAR 2"},"pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.title":{"text":"Translations navigable in both directions"},"pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.body":{"text":"Extended the mapping principle to localization: every string traceable from code to every language and back, across Android, iOS, and design — \"where is this text used?\" answered structurally instead of by tribal memory."},"pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.result":{"text":"Foundation for the localization transformation below."},"pages.victor-methodology-presentation.proof-compound-safety-bug-map.year":{"text":"MID"},"pages.victor-methodology-presentation.proof-compound-safety-bug-map.title":{"text":"The compound bug nobody could reproduce"},"pages.victor-methodology-presentation.proof-compound-safety-bug-map.body":{"text":"A missing low-glucose alert — patient-safety critical — was caused by two interacting defects across three teams' systems, one of which erased the evidence of the other. Resolution required first building the missing cross-system map by hand, instrumenting SDK-level code, and extracting reproduction steps inside a one-day window before the only witness left on vacation. Root cause: database indexes built without a wrapping @Transaction — an invisible absence."},"pages.victor-methodology-presentation.proof-compound-safety-bug-map.result":{"text":"The terrain map let senior architects perceive system relationships nobody had seen. Fix shipped; lesson institutionalized."},"pages.victor-methodology-presentation.proof-localization-pipeline.year":{"text":"YEARS 3–4"},"pages.victor-methodology-presentation.proof-localization-pipeline.title":{"text":"Localization: 6 months → 2 weeks"},"pages.victor-methodology-presentation.proof-localization-pipeline.body":{"text":"Through Dexcom-sponsored Lean Six Sigma work, unified fragmented Android/iOS string structures and re-architected the translation pipeline — then engineered the paid vendor tool out of the loop entirely with a single source of truth that regenerates all documents reproducibly, byte-identical, because every condition was mapped rather than assumed."},"pages.victor-methodology-presentation.proof-localization-pipeline.metric":{"text":"6 mo → 2 wk"},"pages.victor-methodology-presentation.proof-localization-pipeline.metric-label":{"text":"lean cycle time — on-paper value in the millions"},"pages.victor-methodology-presentation.proof-cross-domain-ui-identity.year":{"text":"YEARS 3–4"},"pages.victor-methodology-presentation.proof-cross-domain-ui-identity.title":{"text":"The organizational join key — UIElementKey"},"pages.victor-methodology-presentation.proof-cross-domain-ui-identity.body":{"text":"Engineering, UX design, and quality testing each held IDs meaningful only inside their own silo. One composite identity — UIElementKey(platform, project, language, stringId, vnvTestId, uxDesignId) — resolved every discipline to the same UI element. Map first, align second: no team forced to change upfront. With the key live, the pipeline inverted: design issues keys upstream, platforms align by protocol, verification proceeds on a guaranteed assumption. Cross-discipline traceability — audit-grade in a regulated industry."},"pages.victor-methodology-presentation.proof-cross-domain-ui-identity.result":{"text":"Reconciliation disappeared as a phase. Teams run parallel over a shared spine."},"pages.victor-methodology-presentation.proof-source-of-truth-relay.year":{"text":"YEAR 5"},"pages.victor-methodology-presentation.proof-source-of-truth-relay.title":{"text":"PenSDK: the method applied to time itself"},"pages.victor-methodology-presentation.proof-source-of-truth-relay.body":{"text":"For an insulin-pen product where event order is safety-relevant: state changes flow through one SourceOfTruthRelay that derives and broadcasts truth so concurrent readers structurally cannot hold contradictory realities. Coroutines became ID-mapped, first-class tasks with scoped kill-switches — making a complex partner-SDK refresh cycle surgically manageable. Composes natively with Jetpack Compose."},"pages.victor-methodology-presentation.proof-source-of-truth-relay.result-tag":{"text":"Legacy"},"pages.victor-methodology-presentation.proof-source-of-truth-relay.result":{"text":"Deliberately developed the team in these practices — before departure, they problem-solved independently with the culture intact. The practices outlived the practitioner."},"pages.victor-methodology-presentation.section-throughline.band":{"text":"Analytics can't drift from UI. Translations can't orphan from screens. Localization can't fragment across platforms. Concurrent readers can't contradict each other. And now: AI instances can't re-introduce mistakes that were already corrected."},"pages.victor-methodology-presentation.section-ai-maintainable-systems.heading":{"text":"The sixth application: AI-maintainable systems"},"pages.victor-methodology-presentation.section-ai-maintainable-systems.p1":{"text":"Every organization adopting AI coding tools is hitting the same wall: AI-generated work decays, because nothing preserves institutional knowledge between sessions. A new AI instance starts cold and re-introduces assumptions that were corrected months ago — the same disease as every fragmentation above, at the largest scale yet: context itself."},"pages.victor-methodology-presentation.section-ai-maintainable-systems.p2":{"text":"The public working demonstration applies the five-times-proven method to this problem: a repository where CI self-maintains its own indexes; pull requests function as decision records (assumptions, cascading effects, notes for the next reader — human or AI); scaling ceilings are documented with migration paths before they're hit; and any fresh AI session bootstraps full context in one command. The escalation culture built with the human team — hard problems routed early, resolutions written back into shared knowledge — transcribed into architecture."},"pages.victor-methodology-presentation.section-adoption-implications.heading":{"text":"What adoption changes"},"pages.victor-methodology-presentation.section-adoption-implications.intro":{"text":"For an organization, this architecture is not a documentation style — it relocates where reliability comes from: out of individual vigilance and tribal memory, into structure that validates itself."},"pages.victor-methodology-presentation.section-adoption-implications.engineering-label":{"text":"Engineering:"},"pages.victor-methodology-presentation.section-adoption-implications.engineering":{"text":"drift stops being a discipline problem. When analytics, strings, tests, and design resolve through one identity, divergence becomes structurally impossible rather than manually policed — and change review shifts from recalling impact to reading a computed impact report."},"pages.victor-methodology-presentation.section-adoption-implications.localization-label":{"text":"Localization & product:"},"pages.victor-methodology-presentation.section-adoption-implications.localization":{"text":"a new language becomes new rows, not duplicated pages. Vendors translate a meaning once and the graph applies it everywhere it is bound; plural, placeholder, and layout rules are validated per locale automatically."},"pages.victor-methodology-presentation.section-adoption-implications.quality-label":{"text":"Quality & compliance:"},"pages.victor-methodology-presentation.section-adoption-implications.quality":{"text":"every change produces its impact report before it lands, and traceability from test to design intent to translation is audit-grade by construction. In regulated industries, that is the difference between proving compliance and reconstructing it."},"pages.victor-methodology-presentation.section-adoption-implications.ai-label":{"text":"AI adoption:"},"pages.victor-methodology-presentation.section-adoption-implications.ai":{"text":"agents stop re-deriving context. The graph is the memory; AI is the bridge into it — onboarding a fresh agent costs a query, not a repository read, and corrected mistakes stay corrected across sessions, tools, and vendors."},"pages.victor-methodology-presentation.section-adoption-implications.leadership-label":{"text":"Leadership:"},"pages.victor-methodology-presentation.section-adoption-implications.leadership":{"text":"the localization precedent above — six months to two weeks — is what this class of change does to cycle time. The same mechanics apply wherever teams currently reconcile by meeting instead of by map."},"pages.victor-methodology-presentation.section-adoption-implications.closing-note":{"text":"This document is itself the first artifact managed under the standard it describes: its record identifiers follow the concept-ID naming standard, legacy IDs are preserved as aliases, and the English and Chinese content regenerate from a single bilingual source. The proof of concept is the page."},"pages.victor-methodology-presentation.section-audience-fit.heading":{"text":"Where this fits"},"pages.victor-methodology-presentation.fit-platform-devex.title":{"text":"Platform & Developer Experience"},"pages.victor-methodology-presentation.fit-platform-devex.body":{"text":"Building the maps and pipelines that let large teams move in parallel without drift."},"pages.victor-methodology-presentation.fit-ai-tooling-companies.title":{"text":"AI tooling companies"},"pages.victor-methodology-presentation.fit-ai-tooling-companies.body":{"text":"A design-partner profile: has hit and documented the failure modes these products exist to solve."},"pages.victor-methodology-presentation.fit-regulated-industries.title":{"text":"Regulated industries adopting AI"},"pages.victor-methodology-presentation.fit-regulated-industries.body":{"text":"Medical-device background plus audit-grade, decision-record practices — a rare intersection."},"pages.victor-methodology-presentation.fit-process-transformation.title":{"text":"Process transformation"},"pages.victor-methodology-presentation.fit-process-transformation.body":{"text":"Lean Six Sigma-validated: a measured 6-month → 2-week cycle reduction with cross-team adoption."},"pages.victor-methodology-presentation.note-self-demonstration.lead":{"text":"This dossier practices its own method."},"pages.victor-methodology-presentation.note-self-demonstration.body":{"text":"Every record above carries a stable ID (proof-bulk-data-logging, proof-cross-domain-ui-identity…), named for concepts per the repository Registry Documentation Standard, with legacy IDs preserved as aliases, so any reader — human or AI, in English or Chinese — can reference, quote, or ask about an exact record without ambiguity. Identity first; discussion second."},"pages.victor-methodology-presentation.footer.line":{"text":"Victor Gong · Dossier v2.1 · Created July 4, 2026 · DOC-ID: VG-DOSSIER-v2.1"},"pages.victor-methodology-presentation.footer.reference-note":{"text":"References & repository walkthrough available on request"},"pages.victor-methodology-presentation.footer.stamp-word":{"text":"ON"},"pages.victor-methodology-presentation.footer.stamp-label":{"text":"THE RECORD"}};
 
   /* Scope + category globals for fab-lang compatibility */
   window.VEX_STRING_SCOPES    = ["pages.victor-methodology-presentation"];
@@ -138,7 +138,7 @@
  * LATTICE:BEGIN — generated by lib/build-lattice-headers.js from docs/lattice-map.json. Do not hand-edit; edit the JSON and regenerate.
  *   role      : spiral FAB — trigger button + shared expandable group container that other orb widgets mount into
  *   reads     : (none)
- *   writes    : DOM: #vex-spiral-fab / #vex-spiral-trigger / #vex-spiral-group (consumed by fab-lang.js, fab-theme.js, fab-map.js)
+ *   writes    : DOM: #vex-spiral-fab / #vex-spiral-trigger / #vex-spiral-group (consumed by fab-read-aloud.js, fab-lang.js, fab-theme.js, fab-map.js)
  *               DOM: mounts into #vex-nav-actions when provided by lib/vextreme.js; otherwise appends to document.body
  *   loaded-by : lib/build-vextreme.js (inlined as spiral-fab feature in God Scripts, must be first among the FAB-group features)
  *               lib/vextreme.js (shell.js runtime path, loaded before lang/theme/map)
@@ -152,6 +152,7 @@
  *       - widgets/fab-theme.js (getElementById('vex-spiral-group') lookup)
  *       - widgets/fab-map.js (getElementById('vex-spiral-group') lookup)
  *       - tests/08 (FAB SYSTEM: nesting assertions)
+ *       - widgets/fab-read-aloud.js (getElementById('vex-spiral-group') lookup)
  *     #vex-nav-actions mount contract changed:
  *       - lib/vextreme.js injectNav() (must create the action rail before loading this widget)
  *       - styles/site-nav.css (.vex-nav-actions owns rail geometry)
@@ -283,6 +284,1305 @@
 // [VXG RealForever]
 
 
+/* === core: fab-read-aloud.js === */
+/**
+ * VEXTREME — widgets/fab-read-aloud.js
+ *
+ * Site-wide Read Aloud accessibility surface.
+ *
+ * Semantic boundary:
+ *   visible page content -> Read Aloud plan -> narration provider -> audio
+ *
+ * The widget owns accessibility controls and reading continuity, not source truth.
+ * It reads the current DOM after localization, honors the nearest source-owned
+ * data-narration-language/lang boundary, and never rewrites page content.
+ *
+ * Neural execution stays lazy and off the UI thread:
+ *   Read Aloud -> one module Worker -> kokoro-js/Kokoro-82M -> transferred PCM
+ *
+ * Mount contract: append one orb to #vex-spiral-group when present, otherwise
+ * use a standalone fixed-position fallback. Removing this script leaves page
+ * document structure/content functional.
+ *
+ * [VXG RealForever]
+ *
+ * LATTICE:BEGIN — generated by lib/build-lattice-headers.js from docs/lattice-map.json. Do not hand-edit; edit the JSON and regenerate.
+ *   role      : site-wide Read Aloud accessibility orb + overlay — chooses a readable DOM start point, continuously reads semantic blocks, persists voice/rate preferences, and delegates speech to lazy provider mechanics
+ *   reads     : DOM: visible h1-h6/p/li/blockquote/figcaption/pre/td/th content (excluding nav/widget/hidden surfaces)
+ *               DOM: nearest data-narration-language or lang source-language boundary
+ *               window vextreme:languagechange event from widgets/fab-lang.js
+ *               localStorage vex-read-aloud-settings/v1 (persisted rate + voice per primary language)
+ *               browser speechSynthesis voice inventory (same-language fallback, capped)
+ *               kokoro-js@1.2.1 + onnx-community/Kokoro-82M-v1.0-ONNX (lazy inside module Worker only)
+ *               data/strings/source/common.json via normal compiled/inlined [data-i18n] runtime
+ *   writes    : DOM: #vex-read-aloud-root / #vex-read-aloud-panel and current/start-target highlight classes
+ *               localStorage vex-read-aloud-settings/v1
+ *               AudioContext playback through transferred Float32 PCM
+ *               browser speechSynthesis playback fallback
+ *   loaded-by : lib/build-vextreme.js (default infrastructure feature; inlined into God Scripts after Spiral owner)
+ *               lib/vextreme.js shell-era FAB auto-loader (after Spiral owner, before language FAB)
+ *   tested-by : tests/97-fab-read-aloud.test.js
+ *               tests/08-build-vextreme.test.js (God Script default/order)
+ *               tests/41-vextreme-fab-autoload.test.js (shell loading/order/opt-out)
+ *               tests/96-record-reader-narration.test.js (record reader does not duplicate generic TTS)
+ *
+ *   CHANGE MAP — if you touch X here, also check:
+ *     readable block selector / start-here traversal changes:
+ *       - tests/97-fab-read-aloud.test.js
+ *       - browser-lived acceptance on long-form and ordinary pages
+ *     Kokoro provider/version/model/Worker execution changes:
+ *       - tests/97-fab-read-aloud.test.js
+ *       - legal/provenance boundary for third-party runtime
+ *       - lived responsiveness + audio-quality acceptance
+ *     language ownership or vextreme:languagechange handling changes:
+ *       - widgets/fab-lang.js
+ *       - pages/returning-scorpions-to-god.html data-narration-language source marker
+ *       - tests/97-fab-read-aloud.test.js
+ *     Spiral mount contract changes:
+ *       - widgets/vex-fab.js
+ *       - lib/build-vextreme.js feature order
+ *       - lib/vextreme.js shell FAB order
+ *       - tests/08-build-vextreme.test.js
+ *       - tests/41-vextreme-fab-autoload.test.js
+ * LATTICE:END
+ */
+
+(function () {
+  'use strict';
+
+  var KOKORO_MODULE_URL = 'https://cdn.jsdelivr.net/npm/kokoro-js@1.2.1/+esm';
+  var KOKORO_MODEL_ID = 'onnx-community/Kokoro-82M-v1.0-ONNX';
+  var KOKORO_PREFIX = 'kokoro:';
+  var SYSTEM_PREFIX = 'system:';
+  var SETTINGS_KEY = 'vex-read-aloud-settings/v1';
+  var LANG_CHANGE_EVENT = 'vextreme:languagechange';
+  var MAX_SYSTEM_VOICES = 8;
+  var MAX_AUDIO_CACHE_ITEMS = 32;
+  var LOOKAHEAD = 2;
+  var READABLE_SELECTOR = 'h1,h2,h3,h4,h5,h6,p,li,blockquote,figcaption,pre,td,th';
+
+  var KOKORO_VOICES = Object.freeze([
+    { id: 'af_heart',   name: 'Heart',   language: 'en-US', gender: 'Female', grade: 'A'  },
+    { id: 'af_bella',   name: 'Bella',   language: 'en-US', gender: 'Female', grade: 'A-' },
+    { id: 'af_nicole',  name: 'Nicole',  language: 'en-US', gender: 'Female', grade: 'B-' },
+    { id: 'bf_emma',    name: 'Emma',    language: 'en-GB', gender: 'Female', grade: 'B-' },
+    { id: 'am_fenrir',  name: 'Fenrir',  language: 'en-US', gender: 'Male',   grade: 'C+' },
+    { id: 'am_michael', name: 'Michael', language: 'en-US', gender: 'Male',   grade: 'C+' },
+    { id: 'am_puck',    name: 'Puck',    language: 'en-US', gender: 'Male',   grade: 'C+' },
+    { id: 'bm_george',  name: 'George',  language: 'en-GB', gender: 'Male',   grade: 'C'  }
+  ]);
+
+  var state = {
+    panelOpen: false,
+    picking: false,
+    plan: [],
+    index: 0,
+    mode: 'idle',
+    currentElement: null,
+    pickElement: null,
+    language: null,
+    settings: loadSettings()
+  };
+
+  var ui = {};
+  var pickHandlers = null;
+
+  function clampRate(value) {
+    var n = Number(value);
+    if (!Number.isFinite(n)) return 1;
+    return Math.max(0.6, Math.min(1.75, Math.round(n * 20) / 20));
+  }
+
+  function loadSettings() {
+    var fallback = { rate: 1, voices: {} };
+    try {
+      var raw = localStorage.getItem(SETTINGS_KEY);
+      if (!raw) return fallback;
+      var parsed = JSON.parse(raw);
+      return {
+        rate: clampRate(parsed.rate),
+        voices: parsed.voices && typeof parsed.voices === 'object' ? parsed.voices : {}
+      };
+    } catch (e) {
+      return fallback;
+    }
+  }
+
+  function saveSettings() {
+    try { localStorage.setItem(SETTINGS_KEY, JSON.stringify(state.settings)); } catch (e) {}
+  }
+
+  function primaryLanguage(value) {
+    return String(value || 'en').toLowerCase().split('-')[0] || 'en';
+  }
+
+  function effectiveLanguage(element) {
+    var owner = element && element.closest
+      ? element.closest('[data-narration-language],[lang]')
+      : null;
+    var owned = owner && owner.getAttribute('data-narration-language');
+    var declared = owner && owner.getAttribute('lang');
+    return String(
+      owned ||
+      declared ||
+      document.documentElement.getAttribute('lang') ||
+      (function () { try { return localStorage.getItem('vex-lang'); } catch (e) { return null; } }()) ||
+      'en'
+    ).toLowerCase();
+  }
+
+  function isVisible(element) {
+    if (!element || !element.isConnected) return false;
+    if (element.closest('[hidden],[aria-hidden="true"],[data-vex-read-aloud-skip]')) return false;
+    if (element.closest('nav,#vex-site-nav,#vex-spiral-fab,#vex-read-aloud-root')) return false;
+    var style = window.getComputedStyle ? window.getComputedStyle(element) : null;
+    if (style && (style.display === 'none' || style.visibility === 'hidden')) return false;
+    var rect = element.getBoundingClientRect ? element.getBoundingClientRect() : null;
+    return !rect || rect.width > 0 || rect.height > 0;
+  }
+
+  function normalizedText(element) {
+    if (!element) return '';
+    var clone = element.cloneNode(true);
+    clone.querySelectorAll('script,style,noscript,button,input,select,textarea,[aria-hidden="true"],[data-vex-read-aloud-skip]').forEach(function (node) {
+      node.remove();
+    });
+    return String(clone.textContent || '').replace(/\s+/g, ' ').trim();
+  }
+
+  function readableBlocks() {
+    return Array.from(document.querySelectorAll(READABLE_SELECTOR)).filter(function (element) {
+      if (!isVisible(element)) return false;
+      if (!normalizedText(element)) return false;
+      var nested = element.querySelector(READABLE_SELECTOR);
+      if (nested && normalizedText(nested)) return false;
+      return true;
+    });
+  }
+
+  function splitText(text, maxChars) {
+    var clean = String(text || '').replace(/\s+/g, ' ').trim();
+    if (!clean) return [];
+    var limit = maxChars || 360;
+    var sentences = clean.match(/[^.!?]+(?:[.!?]+(?:["'’”\)\]]+)?|$)/g) || [clean];
+    var out = [];
+    var buffer = '';
+
+    function pushWords(value) {
+      var words = value.split(/\s+/);
+      var chunk = '';
+      words.forEach(function (word) {
+        var next = chunk ? chunk + ' ' + word : word;
+        if (next.length > limit && chunk) {
+          out.push(chunk);
+          chunk = word;
+        } else {
+          chunk = next;
+        }
+      });
+      if (chunk) out.push(chunk);
+    }
+
+    sentences.forEach(function (sentence) {
+      sentence = sentence.trim();
+      if (!sentence) return;
+      if (sentence.length > limit) {
+        if (buffer) { out.push(buffer); buffer = ''; }
+        pushWords(sentence);
+        return;
+      }
+      var next = buffer ? buffer + ' ' + sentence : sentence;
+      if (next.length > limit) {
+        if (buffer) out.push(buffer);
+        buffer = sentence;
+      } else {
+        buffer = next;
+      }
+    });
+    if (buffer) out.push(buffer);
+    return out;
+  }
+
+  function buildPlan() {
+    var plan = [];
+    readableBlocks().forEach(function (element, blockIndex) {
+      splitText(normalizedText(element), 360).forEach(function (text, partIndex) {
+        plan.push({
+          element: element,
+          text: text,
+          blockIndex: blockIndex,
+          partIndex: partIndex,
+          language: effectiveLanguage(element)
+        });
+      });
+    });
+    return plan;
+  }
+
+  function startIndexForElement(plan, element) {
+    for (var i = 0; i < plan.length; i += 1) if (plan[i].element === element) return i;
+    return -1;
+  }
+
+  function viewportStartElement() {
+    var blocks = readableBlocks();
+    for (var i = 0; i < blocks.length; i += 1) {
+      var rect = blocks[i].getBoundingClientRect();
+      if (rect.bottom >= 24 && rect.top <= window.innerHeight) return blocks[i];
+    }
+    return blocks[0] || null;
+  }
+
+  function voiceScore(voice, language) {
+    var wanted = String(language || 'en').toLowerCase();
+    var actual = String(voice.lang || '').toLowerCase();
+    var score = 0;
+    if (actual === wanted) score += 120;
+    else if (primaryLanguage(actual) === primaryLanguage(wanted)) score += 90;
+    if (/premium|enhanced|natural|neural|high[ -]?quality/i.test(voice.name || '')) score += 45;
+    if (voice.localService) score += 20;
+    if (voice.default) score += 10;
+    return score;
+  }
+
+  function matchingSystemVoices(language) {
+    if (!('speechSynthesis' in window)) return [];
+    var primary = primaryLanguage(language);
+    return window.speechSynthesis.getVoices().slice().filter(function (voice) {
+      return primaryLanguage(voice.lang) === primary;
+    }).sort(function (a, b) {
+      var diff = voiceScore(b, language) - voiceScore(a, language);
+      return diff || String(a.lang + ' ' + a.name).localeCompare(String(b.lang + ' ' + b.name));
+    }).slice(0, MAX_SYSTEM_VOICES);
+  }
+
+  function systemVoiceRef(voice) {
+    return SYSTEM_PREFIX + voice.voiceURI;
+  }
+
+  function selectedSystemVoice(language) {
+    var value = ui.voice && ui.voice.value;
+    var voices = matchingSystemVoices(language);
+    if (value && value.indexOf(SYSTEM_PREFIX) === 0) {
+      var uri = value.slice(SYSTEM_PREFIX.length);
+      var exact = voices.find(function (voice) { return voice.voiceURI === uri; });
+      if (exact) return exact;
+    }
+    return voices[0] || null;
+  }
+
+  function kokoroWorkerMain() {
+    var KOKORO_MODULE_URL = 'https://cdn.jsdelivr.net/npm/kokoro-js@1.2.1/+esm';
+    var KOKORO_MODEL_ID = 'onnx-community/Kokoro-82M-v1.0-ONNX';
+    var engine = null;
+    var preparePromise = null;
+    var queue = [];
+    var active = false;
+    var generation = 0;
+    var fatalError = null;
+
+    function message(error) {
+      return error && error.message ? String(error.message) : String(error || 'KOKORO_WORKER_ERROR');
+    }
+
+    function ensureReady() {
+      if (engine) return Promise.resolve(engine);
+      if (fatalError) return Promise.reject(fatalError);
+      if (preparePromise) return preparePromise;
+      self.postMessage({ type: 'preparing' });
+      preparePromise = import(KOKORO_MODULE_URL).then(function (module) {
+        return module.KokoroTTS.from_pretrained(KOKORO_MODEL_ID, { dtype: 'q8', device: 'wasm' });
+      }).then(function (ready) {
+        engine = ready;
+        self.postMessage({ type: 'ready' });
+        return ready;
+      }).catch(function (error) {
+        preparePromise = null;
+        fatalError = error;
+        throw error;
+      });
+      return preparePromise;
+    }
+
+    async function drain() {
+      if (active) return;
+      active = true;
+      try {
+        while (queue.length) {
+          var job = queue.shift();
+          if (job.generation !== generation) continue;
+          try {
+            var tts = await ensureReady();
+            if (job.generation !== generation) continue;
+            var raw = await tts.generate(job.text, { voice: job.voice, speed: 1 });
+            if (job.generation !== generation) continue;
+            var samples = raw.data;
+            self.postMessage({
+              type: 'audio',
+              requestId: job.requestId,
+              generation: job.generation,
+              sampleRate: raw.sampling_rate,
+              samples: samples.buffer
+            }, [samples.buffer]);
+          } catch (error) {
+            fatalError = error;
+            queue.length = 0;
+            self.postMessage({
+              type: 'error',
+              requestId: job.requestId,
+              generation: job.generation,
+              message: message(error)
+            });
+          }
+        }
+      } finally {
+        active = false;
+        if (queue.length) drain();
+      }
+    }
+
+    self.onmessage = function (event) {
+      var value = event.data || {};
+      if (value.type === 'cancel') {
+        generation = value.generation;
+        queue.length = 0;
+        return;
+      }
+      if (value.type === 'generate') {
+        if (fatalError) {
+          self.postMessage({
+            type: 'error',
+            requestId: value.requestId,
+            generation: value.generation,
+            message: message(fatalError)
+          });
+          return;
+        }
+        generation = value.generation;
+        queue.push(value);
+        drain();
+      }
+    };
+  }
+
+  var NeuralNarration = (function () {
+    var worker = null;
+    var workerUrl = null;
+    var workerReady = false;
+    var workerFailed = false;
+    var workerGeneration = 0;
+    var requestSequence = 0;
+    var pendingByRequest = new Map();
+    var pendingByKey = new Map();
+    var cache = new Map();
+    var audioContext = null;
+    var activeSource = null;
+    var playGeneration = 0;
+
+    function audioConstructor() {
+      return window.AudioContext || window.webkitAudioContext || null;
+    }
+
+    function capability() {
+      return {
+        available: !!(
+          !workerFailed &&
+          typeof Worker === 'function' &&
+          typeof Blob === 'function' &&
+          window.URL &&
+          typeof window.URL.createObjectURL === 'function' &&
+          window.WebAssembly &&
+          window.Promise &&
+          audioConstructor()
+        ),
+        execution: 'worker-wasm-q8'
+      };
+    }
+
+    function activate() {
+      var Ctor = audioConstructor();
+      if (!capability().available || !Ctor) return false;
+      if (!audioContext) audioContext = new Ctor();
+      if (audioContext.state === 'suspended') audioContext.resume().catch(function () {});
+      return true;
+    }
+
+    function abortError() {
+      try { return new DOMException('Narration cancelled', 'AbortError'); }
+      catch (e) {
+        var error = new Error('Narration cancelled');
+        error.name = 'AbortError';
+        return error;
+      }
+    }
+
+    function stopSource() {
+      if (!activeSource) return;
+      var source = activeSource;
+      activeSource = null;
+      source.onended = null;
+      try { source.stop(); } catch (e) {}
+      try { source.disconnect(); } catch (e) {}
+    }
+
+    function rejectPending(error) {
+      pendingByRequest.forEach(function (entry) { entry.reject(error); });
+      pendingByRequest.clear();
+      pendingByKey.clear();
+    }
+
+    function failWorker(error) {
+      if (workerFailed) return;
+      workerFailed = true;
+      workerReady = false;
+      if (worker) { try { worker.terminate(); } catch (e) {} }
+      worker = null;
+      if (workerUrl) { try { window.URL.revokeObjectURL(workerUrl); } catch (e) {} }
+      workerUrl = null;
+      rejectPending(error instanceof Error ? error : new Error(String(error || 'KOKORO_WORKER_FAILED')));
+    }
+
+    function ensureWorker() {
+      if (worker) return worker;
+      if (!capability().available) throw new Error('KOKORO_WORKER_UNAVAILABLE');
+      var source = '(' + kokoroWorkerMain.toString() + ')();';
+      workerUrl = window.URL.createObjectURL(new Blob([source], { type: 'text/javascript' }));
+      try {
+        worker = new Worker(workerUrl, { type: 'module', name: 'vextreme-read-aloud-kokoro' });
+      } catch (error) {
+        failWorker(error);
+        throw error;
+      }
+
+      worker.onmessage = function (event) {
+        var value = event.data || {};
+        if (value.type === 'ready') { workerReady = true; return; }
+        if (value.type === 'preparing') return;
+        if (value.type === 'audio') {
+          var entry = pendingByRequest.get(value.requestId);
+          if (!entry || entry.generation !== value.generation) return;
+          pendingByRequest.delete(value.requestId);
+          pendingByKey.delete(entry.key);
+          var audio = { samples: value.samples, sampleRate: value.sampleRate };
+          cacheAudio(entry.key, audio);
+          entry.resolve(audio);
+          return;
+        }
+        if (value.type === 'error') failWorker(new Error(value.message || 'KOKORO_WORKER_ERROR'));
+      };
+      worker.onerror = function (event) {
+        failWorker(new Error(event && event.message ? event.message : 'KOKORO_WORKER_ERROR'));
+      };
+      return worker;
+    }
+
+    function cacheAudio(key, audio) {
+      if (cache.has(key)) cache.delete(key);
+      cache.set(key, audio);
+      while (cache.size > MAX_AUDIO_CACHE_ITEMS) {
+        cache.delete(cache.keys().next().value);
+      }
+    }
+
+    function getCached(key) {
+      if (!cache.has(key)) return null;
+      var audio = cache.get(key);
+      cache.delete(key);
+      cache.set(key, audio);
+      return audio;
+    }
+
+    function key(text, voice) {
+      return voice + '\u0000' + text;
+    }
+
+    function request(text, voice) {
+      var id = key(text, voice);
+      var cached = getCached(id);
+      if (cached) return Promise.resolve(cached);
+      var existing = pendingByKey.get(id);
+      if (existing) return existing.promise;
+
+      var requestId = ++requestSequence;
+      var generation = workerGeneration;
+      var resolvePromise;
+      var rejectPromise;
+      var promise = new Promise(function (resolve, reject) {
+        resolvePromise = resolve;
+        rejectPromise = reject;
+      });
+      var entry = {
+        key: id,
+        promise: promise,
+        resolve: resolvePromise,
+        reject: rejectPromise,
+        generation: generation
+      };
+      pendingByKey.set(id, entry);
+      pendingByRequest.set(requestId, entry);
+      ensureWorker().postMessage({
+        type: 'generate',
+        requestId: requestId,
+        generation: generation,
+        text: text,
+        voice: voice
+      });
+      return promise;
+    }
+
+    function audioBuffer(audio) {
+      var samples = new Float32Array(audio.samples);
+      var buffer = audioContext.createBuffer(1, samples.length, audio.sampleRate);
+      buffer.copyToChannel(samples, 0);
+      return buffer;
+    }
+
+    async function speak(text, voice, rate, callbacks) {
+      callbacks = callbacks || {};
+      var token = ++playGeneration;
+      if (!activate()) {
+        if (callbacks.onError) callbacks.onError(new Error('KOKORO_CAPABILITY_UNAVAILABLE'));
+        return;
+      }
+      if (!workerReady && callbacks.onPreparing) callbacks.onPreparing();
+      try {
+        var audio = await request(text, voice);
+        if (token !== playGeneration) return;
+        stopSource();
+        var source = audioContext.createBufferSource();
+        activeSource = source;
+        source.buffer = audioBuffer(audio);
+        source.playbackRate.value = clampRate(rate);
+        source.connect(audioContext.destination);
+        source.onended = function () {
+          if (token !== playGeneration || activeSource !== source) return;
+          activeSource = null;
+          try { source.disconnect(); } catch (e) {}
+          if (callbacks.onEnd) callbacks.onEnd();
+        };
+        if (callbacks.onStart) callbacks.onStart();
+        source.start();
+      } catch (error) {
+        if (token !== playGeneration || (error && error.name === 'AbortError')) return;
+        if (callbacks.onError) callbacks.onError(error);
+      }
+    }
+
+    function prefetch(items, voice) {
+      if (!capability().available) return;
+      (items || []).forEach(function (text) { request(text, voice).catch(function () {}); });
+    }
+
+    function setRate(rate) {
+      if (!activeSource || !audioContext) return;
+      try { activeSource.playbackRate.setValueAtTime(clampRate(rate), audioContext.currentTime); }
+      catch (e) { activeSource.playbackRate.value = clampRate(rate); }
+    }
+
+    function pause() {
+      if (audioContext && audioContext.state === 'running') audioContext.suspend().catch(function () {});
+    }
+
+    function resume() {
+      if (audioContext && audioContext.state === 'suspended') audioContext.resume().catch(function () {});
+    }
+
+    function cancel() {
+      playGeneration += 1;
+      stopSource();
+      workerGeneration += 1;
+      if (worker) worker.postMessage({ type: 'cancel', generation: workerGeneration });
+      rejectPending(abortError());
+      if (audioContext && audioContext.state === 'suspended') audioContext.resume().catch(function () {});
+    }
+
+    return {
+      capability: capability,
+      speak: speak,
+      prefetch: prefetch,
+      setRate: setRate,
+      pause: pause,
+      resume: resume,
+      cancel: cancel
+    };
+  }());
+
+  var SystemNarration = {
+    active: null,
+    speak: function (text, language, rate, callbacks) {
+      callbacks = callbacks || {};
+      if (!('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window)) {
+        if (callbacks.onError) callbacks.onError(new Error('SYSTEM_SPEECH_UNAVAILABLE'));
+        return;
+      }
+      var utterance = new SpeechSynthesisUtterance(text);
+      this.active = utterance;
+      utterance.rate = clampRate(rate);
+      var voice = selectedSystemVoice(language);
+      if (voice) {
+        utterance.voice = voice;
+        if (voice.lang) utterance.lang = voice.lang;
+      } else {
+        utterance.lang = language;
+      }
+      utterance.onstart = callbacks.onStart || null;
+      utterance.onend = function () {
+        SystemNarration.active = null;
+        if (callbacks.onEnd) callbacks.onEnd();
+      };
+      utterance.onerror = function (event) {
+        SystemNarration.active = null;
+        if (callbacks.onError) callbacks.onError(event);
+      };
+      window.speechSynthesis.speak(utterance);
+    },
+    pause: function () { if ('speechSynthesis' in window) window.speechSynthesis.pause(); },
+    resume: function () { if ('speechSynthesis' in window) window.speechSynthesis.resume(); },
+    cancel: function () {
+      this.active = null;
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+    }
+  };
+
+  function isNeuralVoice(value) {
+    return typeof value === 'string' && value.indexOf(KOKORO_PREFIX) === 0;
+  }
+
+  function neuralVoiceId(value) {
+    return isNeuralVoice(value) ? value.slice(KOKORO_PREFIX.length) : null;
+  }
+
+  function voiceStorageKey(language) {
+    return primaryLanguage(language);
+  }
+
+  function preferredVoice(language) {
+    return state.settings.voices[voiceStorageKey(language)] || null;
+  }
+
+  function rememberVoice(language, value) {
+    state.settings.voices[voiceStorageKey(language)] = value;
+    saveSettings();
+  }
+
+  function populateVoices(language) {
+    if (!ui.voice) return;
+    var wanted = preferredVoice(language);
+    var primary = primaryLanguage(language);
+    ui.voice.textContent = '';
+
+    if (primary === 'en' && NeuralNarration.capability().available) {
+      KOKORO_VOICES.forEach(function (voice) {
+        var option = document.createElement('option');
+        option.value = KOKORO_PREFIX + voice.id;
+        option.textContent = 'Kokoro · ' + voice.name + ' · ' + voice.language + ' · ' + voice.grade;
+        ui.voice.appendChild(option);
+      });
+    }
+
+    matchingSystemVoices(language).forEach(function (voice) {
+      var option = document.createElement('option');
+      option.value = systemVoiceRef(voice);
+      option.textContent = 'OS · ' + voice.name + (voice.lang ? ' · ' + voice.lang : '');
+      ui.voice.appendChild(option);
+    });
+
+    if (!ui.voice.options.length) {
+      var fallback = document.createElement('option');
+      fallback.value = SYSTEM_PREFIX + 'default';
+      fallback.textContent = 'OS';
+      ui.voice.appendChild(fallback);
+    }
+
+    var values = Array.from(ui.voice.options).map(function (option) { return option.value; });
+    if (wanted && values.indexOf(wanted) >= 0) ui.voice.value = wanted;
+    else ui.voice.value = (primary === 'en' && values.indexOf(KOKORO_PREFIX + 'af_heart') >= 0)
+      ? KOKORO_PREFIX + 'af_heart'
+      : values[0];
+
+    rememberVoice(language, ui.voice.value);
+  }
+
+  function stopProviders() {
+    NeuralNarration.cancel();
+    SystemNarration.cancel();
+  }
+
+  function clearHighlight() {
+    if (state.currentElement) state.currentElement.classList.remove('vex-read-aloud-current');
+    state.currentElement = null;
+  }
+
+  function setStatusKey(key) {
+    if (!ui.status) return;
+    ui.status.setAttribute('data-i18n', key);
+    var source = document.querySelector('[data-vex-read-aloud-copy="' + key + '"]');
+    if (source) ui.status.textContent = source.textContent;
+  }
+
+  function setMode(mode) {
+    state.mode = mode;
+    if (ui.play) ui.play.disabled = mode === 'playing' || mode === 'preparing';
+    if (ui.pause) ui.pause.disabled = mode !== 'playing';
+  }
+
+  function currentLanguage() {
+    var item = state.plan[state.index];
+    return item ? item.language : effectiveLanguage(state.currentElement);
+  }
+
+  function ensureCatalog(language) {
+    var normalized = String(language || 'en').toLowerCase();
+    if (state.language === normalized && ui.voice && ui.voice.options.length) return;
+    state.language = normalized;
+    populateVoices(normalized);
+  }
+
+  function prefetchAhead() {
+    if (!ui.voice || !isNeuralVoice(ui.voice.value)) return;
+    var voice = neuralVoiceId(ui.voice.value);
+    var texts = [];
+    var language = currentLanguage();
+    for (var i = state.index + 1; i < state.plan.length && texts.length < LOOKAHEAD; i += 1) {
+      if (primaryLanguage(state.plan[i].language) !== primaryLanguage(language)) break;
+      texts.push(state.plan[i].text);
+    }
+    NeuralNarration.prefetch(texts, voice);
+  }
+
+  function showCurrent(item) {
+    if (state.currentElement !== item.element) {
+      clearHighlight();
+      state.currentElement = item.element;
+      state.currentElement.classList.add('vex-read-aloud-current');
+      try { state.currentElement.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {}
+    }
+  }
+
+  function finishReading() {
+    stopProviders();
+    clearHighlight();
+    setMode('idle');
+    setStatusKey('common.status.read-aloud-done');
+  }
+
+  function speakCurrent() {
+    if (state.index >= state.plan.length) {
+      finishReading();
+      return;
+    }
+    var item = state.plan[state.index];
+    ensureCatalog(item.language);
+    showCurrent(item);
+    var chosen = ui.voice ? ui.voice.value : null;
+    var rate = state.settings.rate;
+
+    function onEnd() {
+      if (state.mode !== 'playing') return;
+      state.index += 1;
+      speakCurrent();
+    }
+
+    function fallbackToSystem() {
+      var voices = matchingSystemVoices(item.language);
+      if (!voices.length) {
+        setMode('idle');
+        setStatusKey('common.status.read-aloud-none');
+        return;
+      }
+      ui.voice.value = systemVoiceRef(voices[0]);
+      rememberVoice(item.language, ui.voice.value);
+      setStatusKey('common.status.read-aloud-fallback');
+      SystemNarration.speak(item.text, item.language, rate, {
+        onStart: function () { setMode('playing'); },
+        onEnd: onEnd,
+        onError: finishReading
+      });
+    }
+
+    if (isNeuralVoice(chosen) && primaryLanguage(item.language) === 'en') {
+      NeuralNarration.speak(item.text, neuralVoiceId(chosen), rate, {
+        onPreparing: function () {
+          setMode('preparing');
+          setStatusKey('common.status.read-aloud-preparing');
+        },
+        onStart: function () {
+          setMode('playing');
+          setStatusKey('common.status.read-aloud-reading');
+        },
+        onEnd: onEnd,
+        onError: fallbackToSystem
+      });
+      prefetchAhead();
+      return;
+    }
+
+    SystemNarration.speak(item.text, item.language, rate, {
+      onStart: function () {
+        setMode('playing');
+        setStatusKey('common.status.read-aloud-reading');
+      },
+      onEnd: onEnd,
+      onError: finishReading
+    });
+  }
+
+  function startFromElement(element) {
+    exitPickMode();
+    stopProviders();
+    clearHighlight();
+    state.plan = buildPlan();
+    var index = startIndexForElement(state.plan, element);
+    if (index < 0) {
+      state.plan = [];
+      state.index = 0;
+      setMode('idle');
+      setStatusKey('common.status.read-aloud-none');
+      return;
+    }
+    state.index = index;
+    ensureCatalog(state.plan[index].language);
+    setMode('playing');
+    speakCurrent();
+  }
+
+  function startFromViewport() {
+    var element = viewportStartElement();
+    if (!element) {
+      setStatusKey('common.status.read-aloud-none');
+      return;
+    }
+    startFromElement(element);
+  }
+
+  function pauseReading() {
+    if (state.mode !== 'playing') return;
+    if (ui.voice && isNeuralVoice(ui.voice.value)) NeuralNarration.pause();
+    else SystemNarration.pause();
+    setMode('paused');
+  }
+
+  function resumeReading() {
+    if (state.mode !== 'paused') return;
+    if (ui.voice && isNeuralVoice(ui.voice.value)) NeuralNarration.resume();
+    else SystemNarration.resume();
+    setMode('playing');
+  }
+
+  function stopReading(clearPlan) {
+    stopProviders();
+    clearHighlight();
+    if (clearPlan !== false) {
+      state.plan = [];
+      state.index = 0;
+    }
+    setMode('idle');
+  }
+
+  function jumpBlock(direction) {
+    if (!state.plan.length) return;
+    var currentBlock = state.plan[state.index] && state.plan[state.index].blockIndex;
+    var target = -1;
+    if (direction > 0) {
+      for (var i = state.index + 1; i < state.plan.length; i += 1) {
+        if (state.plan[i].blockIndex !== currentBlock) { target = i; break; }
+      }
+    } else {
+      for (var j = state.index - 1; j >= 0; j -= 1) {
+        if (state.plan[j].blockIndex !== currentBlock) {
+          var block = state.plan[j].blockIndex;
+          target = j;
+          while (target > 0 && state.plan[target - 1].blockIndex === block) target -= 1;
+          break;
+        }
+      }
+    }
+    if (target < 0) return;
+    stopProviders();
+    state.index = target;
+    setMode('playing');
+    speakCurrent();
+  }
+
+  function readableTarget(target) {
+    if (!target || !target.closest) return null;
+    if (target.closest('#vex-read-aloud-root,#vex-spiral-fab,[data-vex-read-aloud-skip]')) return null;
+    var element = target.closest(READABLE_SELECTOR);
+    return element && isVisible(element) && normalizedText(element) ? element : null;
+  }
+
+  function setPickElement(element, shouldScroll) {
+    if (state.pickElement === element) return;
+    if (state.pickElement) state.pickElement.classList.remove('vex-read-aloud-pick-target');
+    state.pickElement = element || null;
+    if (!state.pickElement) return;
+    state.pickElement.classList.add('vex-read-aloud-pick-target');
+    if (shouldScroll) {
+      try { state.pickElement.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {}
+    }
+  }
+
+  function movePickElement(direction) {
+    var blocks = readableBlocks();
+    if (!blocks.length) return;
+    var index = blocks.indexOf(state.pickElement);
+    if (index < 0) {
+      index = blocks.indexOf(viewportStartElement());
+      if (index < 0) index = 0;
+    } else {
+      index = Math.max(0, Math.min(blocks.length - 1, index + direction));
+    }
+    setPickElement(blocks[index], true);
+  }
+
+  function exitPickMode() {
+    if (!state.picking) return;
+    state.picking = false;
+    document.documentElement.classList.remove('vex-read-aloud-picking');
+    if (state.pickElement) state.pickElement.classList.remove('vex-read-aloud-pick-target');
+    state.pickElement = null;
+    if (pickHandlers) {
+      document.removeEventListener('pointerover', pickHandlers.over, true);
+      document.removeEventListener('click', pickHandlers.click, true);
+      document.removeEventListener('contextmenu', pickHandlers.context, true);
+      document.removeEventListener('keydown', pickHandlers.key, true);
+    }
+    pickHandlers = null;
+  }
+
+  function enterPickMode() {
+    stopReading(false);
+    exitPickMode();
+    state.picking = true;
+    document.documentElement.classList.add('vex-read-aloud-picking');
+    setStatusKey('common.status.read-aloud-pick');
+
+    pickHandlers = {
+      over: function (event) {
+        setPickElement(readableTarget(event.target), false);
+      },
+      click: function (event) {
+        var candidate = readableTarget(event.target);
+        if (!candidate) return;
+        event.preventDefault();
+        event.stopPropagation();
+        startFromElement(candidate);
+      },
+      context: function (event) {
+        var candidate = readableTarget(event.target);
+        if (!candidate) return;
+        event.preventDefault();
+        event.stopPropagation();
+        startFromElement(candidate);
+      },
+      key: function (event) {
+        if (event.key === 'Escape') {
+          exitPickMode();
+          setMode('idle');
+          return;
+        }
+        if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
+          event.preventDefault();
+          movePickElement(1);
+          return;
+        }
+        if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
+          event.preventDefault();
+          movePickElement(-1);
+          return;
+        }
+        if ((event.key === 'Enter' || event.key === ' ') && state.pickElement) {
+          event.preventDefault();
+          startFromElement(state.pickElement);
+        }
+      }
+    };
+
+    setPickElement(viewportStartElement(), false);
+    document.addEventListener('pointerover', pickHandlers.over, true);
+    document.addEventListener('click', pickHandlers.click, true);
+    document.addEventListener('contextmenu', pickHandlers.context, true);
+    document.addEventListener('keydown', pickHandlers.key, true);
+  }
+
+  function makeText(tag, key, fallback, className) {
+    var element = document.createElement(tag);
+    if (className) element.className = className;
+    element.setAttribute('data-i18n', key);
+    element.setAttribute('data-vex-read-aloud-copy', key);
+    element.textContent = fallback;
+    return element;
+  }
+
+  function buildCopyBank() {
+    var bank = document.createElement('div');
+    bank.className = 'vex-sr-only';
+    [
+      ['common.status.read-aloud-pick', 'Choose where reading should begin.'],
+      ['common.status.read-aloud-preparing', 'Preparing high-quality voice…'],
+      ['common.status.read-aloud-reading', 'Reading…'],
+      ['common.status.read-aloud-done', 'Reading complete.'],
+      ['common.status.read-aloud-fallback', 'High-quality voice unavailable; using system speech.'],
+      ['common.status.read-aloud-none', 'No readable text found.']
+    ].forEach(function (item) {
+      bank.appendChild(makeText('span', item[0], item[1]));
+    });
+    return bank;
+  }
+
+  function syncAccessibleLabels() {
+    if (ui.orb && ui.orbLabel) ui.orb.setAttribute('aria-label', ui.orbLabel.textContent);
+    if (ui.close && ui.closeLabel) ui.close.setAttribute('aria-label', ui.closeLabel.textContent);
+    if (ui.voice && ui.voiceLabel) ui.voice.setAttribute('aria-label', ui.voiceLabel.textContent);
+    if (ui.rate && ui.speedLabel) ui.rate.setAttribute('aria-label', ui.speedLabel.textContent);
+  }
+
+  function injectStyles() {
+    var css = [
+      '#vex-read-aloud-root{font-family:var(--sans,system-ui,sans-serif)}',
+      '#vex-read-aloud-root .vex-sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}',
+      '#vex-read-aloud-orb{width:44px;height:44px;border-radius:50%;border:1px solid var(--border,rgba(0,0,0,.08));background:var(--ember-bg,rgba(255,255,255,.82));cursor:pointer;font-size:19px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.12)}',
+      '#vex-read-aloud-root.vex-read-aloud-standalone{position:fixed;top:16px;right:72px;z-index:9999}',
+      '#vex-read-aloud-panel{position:fixed;right:20px;bottom:20px;width:min(430px,calc(100vw - 32px));z-index:10020;background:var(--bg,#fffdf8);color:var(--ink,#1c1917);border:1px solid var(--border,rgba(0,0,0,.14));border-radius:18px;box-shadow:0 18px 50px rgba(0,0,0,.22);padding:16px;display:none}',
+      '#vex-read-aloud-panel.open{display:block}',
+      '.vex-read-aloud-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.vex-read-aloud-head strong{font-size:16px}.vex-read-aloud-close{border:0;background:transparent;font-size:22px;cursor:pointer;color:inherit}',
+      '.vex-read-aloud-transport{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.vex-read-aloud-transport button,.vex-read-aloud-start{border:1px solid var(--border,rgba(0,0,0,.16));background:var(--bg,#fffdf8);color:inherit;border-radius:999px;padding:8px 11px;cursor:pointer;font:inherit}.vex-read-aloud-transport button:disabled{opacity:.4;cursor:default}.vex-read-aloud-start{font-weight:600}',
+      '.vex-read-aloud-field{display:grid;grid-template-columns:70px 1fr;gap:10px;align-items:center;margin-top:12px}.vex-read-aloud-field label{font-size:12px;font-weight:600;opacity:.75}.vex-read-aloud-field select{min-width:0;width:100%;font:inherit;border:1px solid var(--border,rgba(0,0,0,.16));border-radius:10px;padding:8px;background:var(--bg,#fffdf8);color:inherit}.vex-read-aloud-rate-row{display:flex;align-items:center;gap:10px}.vex-read-aloud-rate-row input{min-width:0;flex:1}.vex-read-aloud-rate-row output{width:46px;text-align:right;font-variant-numeric:tabular-nums}',
+      '#vex-read-aloud-status{min-height:18px;margin-top:10px;font-size:12px;opacity:.72}',
+      '.vex-read-aloud-pick-target{outline:3px solid var(--accent,#0f766e)!important;outline-offset:4px!important;cursor:pointer!important}.vex-read-aloud-current{box-shadow:inset 4px 0 0 var(--accent,#0f766e)!important;background:rgba(15,118,110,.07)!important}',
+      '@media(max-width:640px){#vex-read-aloud-panel{right:10px;bottom:10px;width:calc(100vw - 20px);border-radius:14px}.vex-read-aloud-field{grid-template-columns:58px 1fr}}'
+    ].join('\n');
+    var style = document.createElement('style');
+    style.textContent = css;
+    document.head.appendChild(style);
+  }
+
+  function mount() {
+    if (document.getElementById('vex-read-aloud-root')) return;
+    injectStyles();
+
+    var root = document.createElement('div');
+    root.id = 'vex-read-aloud-root';
+    root.setAttribute('data-vex-read-aloud-skip', 'true');
+
+    var copyBank = buildCopyBank();
+    root.appendChild(copyBank);
+
+    var orb = document.createElement('button');
+    orb.id = 'vex-read-aloud-orb';
+    orb.type = 'button';
+    orb.textContent = '🔊';
+    orb.setAttribute('aria-expanded', 'false');
+
+    var orbLabel = makeText('span', 'common.button.read-aloud', 'Read aloud', 'vex-sr-only');
+    orb.appendChild(orbLabel);
+
+    var panel = document.createElement('section');
+    panel.id = 'vex-read-aloud-panel';
+    panel.setAttribute('role', 'region');
+
+    var head = document.createElement('div');
+    head.className = 'vex-read-aloud-head';
+    var heading = makeText('strong', 'common.button.read-aloud', 'Read aloud');
+
+    var close = document.createElement('button');
+    close.type = 'button';
+    close.className = 'vex-read-aloud-close';
+    close.textContent = '×';
+    var closeLabel = makeText('span', 'common.button.read-aloud-close', 'Close', 'vex-sr-only');
+    close.appendChild(closeLabel);
+    head.appendChild(heading);
+    head.appendChild(close);
+
+    var transport = document.createElement('div');
+    transport.className = 'vex-read-aloud-transport';
+
+    var start = makeText('button', 'common.button.read-aloud-start-here', 'Start here', 'vex-read-aloud-start');
+    start.type = 'button';
+
+    function iconButton(icon, key, fallback) {
+      var button = document.createElement('button');
+      button.type = 'button';
+      button.textContent = icon;
+      var label = makeText('span', key, fallback, 'vex-sr-only');
+      button.appendChild(label);
+      return { button: button, label: label };
+    }
+
+    var previous = iconButton('⏮', 'common.button.read-aloud-previous', 'Previous');
+    var play = iconButton('▶', 'common.button.read-aloud-play', 'Play');
+    var pause = iconButton('Ⅱ', 'common.button.read-aloud-pause', 'Pause');
+    var next = iconButton('⏭', 'common.button.read-aloud-next', 'Next');
+    var stop = iconButton('■', 'common.button.read-aloud-stop', 'Stop');
+
+    transport.appendChild(start);
+    transport.appendChild(previous.button);
+    transport.appendChild(play.button);
+    transport.appendChild(pause.button);
+    transport.appendChild(next.button);
+    transport.appendChild(stop.button);
+
+    var voiceField = document.createElement('div');
+    voiceField.className = 'vex-read-aloud-field';
+    var voiceLabel = makeText('label', 'common.label.read-aloud-voice', 'Voice');
+    var voice = document.createElement('select');
+    voice.id = 'vex-read-aloud-voice';
+    voiceLabel.htmlFor = voice.id;
+    voiceField.appendChild(voiceLabel);
+    voiceField.appendChild(voice);
+
+    var speedField = document.createElement('div');
+    speedField.className = 'vex-read-aloud-field';
+    var speedLabel = makeText('label', 'common.label.read-aloud-speed', 'Speed');
+    var speedRow = document.createElement('div');
+    speedRow.className = 'vex-read-aloud-rate-row';
+    var rate = document.createElement('input');
+    rate.id = 'vex-read-aloud-rate';
+    rate.type = 'range';
+    rate.min = '0.6';
+    rate.max = '1.75';
+    rate.step = '0.05';
+    rate.value = String(state.settings.rate);
+    speedLabel.htmlFor = rate.id;
+    var rateOutput = document.createElement('output');
+    rateOutput.htmlFor = rate.id;
+    rateOutput.textContent = String(state.settings.rate).replace(/\.0+$/, '') + '×';
+    speedRow.appendChild(rate);
+    speedRow.appendChild(rateOutput);
+    speedField.appendChild(speedLabel);
+    speedField.appendChild(speedRow);
+
+    var status = makeText('div', 'common.status.read-aloud-pick', 'Choose where reading should begin.');
+    status.id = 'vex-read-aloud-status';
+    status.setAttribute('role', 'status');
+    status.setAttribute('aria-live', 'polite');
+
+    panel.appendChild(head);
+    panel.appendChild(transport);
+    panel.appendChild(voiceField);
+    panel.appendChild(speedField);
+    panel.appendChild(status);
+
+    root.appendChild(orb);
+    root.appendChild(panel);
+
+    ui = {
+      root: root,
+      orb: orb,
+      orbLabel: orbLabel,
+      panel: panel,
+      close: close,
+      closeLabel: closeLabel,
+      start: start,
+      previous: previous.button,
+      play: play.button,
+      pause: pause.button,
+      next: next.button,
+      stop: stop.button,
+      voice: voice,
+      voiceLabel: voiceLabel,
+      rate: rate,
+      speedLabel: speedLabel,
+      rateOutput: rateOutput,
+      status: status
+    };
+
+    var group = document.getElementById('vex-spiral-group');
+    if (group) {
+      root.className = 'vex-read-aloud-group-child';
+      orb.className = 'vex-orb';
+      group.appendChild(root);
+    } else {
+      root.className = 'vex-read-aloud-standalone';
+      document.body.appendChild(root);
+    }
+
+    ensureCatalog(effectiveLanguage(null));
+    setMode('idle');
+    syncAccessibleLabels();
+
+    orb.addEventListener('click', function (event) {
+      event.stopPropagation();
+      state.panelOpen = panel.classList.toggle('open');
+      orb.setAttribute('aria-expanded', String(state.panelOpen));
+      if (state.panelOpen) {
+        ensureCatalog(currentLanguage());
+        syncAccessibleLabels();
+      }
+    });
+
+    close.addEventListener('click', function () {
+      panel.classList.remove('open');
+      state.panelOpen = false;
+      orb.setAttribute('aria-expanded', 'false');
+      exitPickMode();
+    });
+
+    start.addEventListener('click', enterPickMode);
+    previous.button.addEventListener('click', function () { jumpBlock(-1); });
+    next.button.addEventListener('click', function () { jumpBlock(1); });
+    play.button.addEventListener('click', function () {
+      if (state.mode === 'paused') resumeReading();
+      else if (state.plan.length && state.index < state.plan.length) {
+        setMode('playing');
+        speakCurrent();
+      } else startFromViewport();
+    });
+    pause.button.addEventListener('click', pauseReading);
+    stop.button.addEventListener('click', function () {
+      stopReading(true);
+      setStatusKey('common.status.read-aloud-pick');
+    });
+
+    voice.addEventListener('change', function () {
+      var lang = currentLanguage();
+      rememberVoice(lang, voice.value);
+      if (state.mode !== 'idle') {
+        stopProviders();
+        setMode('playing');
+        speakCurrent();
+      }
+    });
+
+    rate.addEventListener('input', function () {
+      state.settings.rate = clampRate(rate.value);
+      saveSettings();
+      rateOutput.textContent = String(state.settings.rate).replace(/\.0+$/, '') + '×';
+      NeuralNarration.setRate(state.settings.rate);
+      // SpeechSynthesis does not reliably support mid-utterance rate mutation.
+      // Do not restart; the current bounded block finishes and the new rate
+      // applies to the next block.
+    });
+
+    if ('speechSynthesis' in window && window.speechSynthesis.addEventListener) {
+      window.speechSynthesis.addEventListener('voiceschanged', function () {
+        populateVoices(currentLanguage());
+      });
+    }
+
+    window.addEventListener(LANG_CHANGE_EVENT, function () {
+      var nextLanguage = effectiveLanguage(state.currentElement);
+      var changed = primaryLanguage(nextLanguage) !== primaryLanguage(state.language);
+      var sourceOwned = state.currentElement && state.currentElement.closest &&
+        state.currentElement.closest('[data-narration-language]');
+      if (changed && state.plan.length && !sourceOwned) stopReading(true);
+      state.language = null;
+      populateVoices(nextLanguage);
+      syncAccessibleLabels();
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && state.picking) exitPickMode();
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mount);
+  else mount();
+}());
+
+// [VXG RealForever]
+
+
 /* === feature: lang (fab-lang.js) === */
 /**
  * VEXTREME — widgets/fab-lang.js
@@ -355,6 +1655,7 @@
  *       - docs/architecture/06-i18n.md (runtime authority + surface-context contract)
  *       - tests/08-build-vextreme.test.js (FAB synchronization/fallback/context guards)
  *       - tests/85-terrain-view-contract.test.js (Terrain child-context validation and parent FAB persistence)
+ *       - widgets/fab-read-aloud.js (localized overlay + voice-catalog refresh; source-owned narration language may remain fixed)
  *     partial-locale EN/source fallback or apply ordering:
  *       - tests/08-build-vextreme.test.js (fallback + stale-request guard)
  *       - localized browser acceptance before screenshot evidence is trusted
@@ -377,7 +1678,7 @@
   // this constant had never been bumped since introduction, which is most
   // of why a real fix here silently didn't reach CDN-script-tag pages —
   // see docs/lattice-map.json's context note on this file for the story.
-  var VERSION    = '3.6.0';
+  var VERSION    = '3.7.0';
   var CDN_BASE   = 'https://cdn.jsdelivr.net/gh/vgong24/vextreme@main';
   var INDEX_URL  = CDN_BASE + '/data/index.json?v=' + VERSION;
   var LS_LANG    = 'vex-lang';

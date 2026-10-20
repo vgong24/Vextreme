@@ -560,6 +560,294 @@
       ],
       "missingLangs": []
     },
+    "common.button.read-aloud": {
+      "key": "common.button.read-aloud",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "ar",
+        "de",
+        "en",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
+      ],
+      "missingLangs": []
+    },
+    "common.button.read-aloud-start-here": {
+      "key": "common.button.read-aloud-start-here",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "ar",
+        "de",
+        "en",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
+      ],
+      "missingLangs": []
+    },
+    "common.button.read-aloud-play": {
+      "key": "common.button.read-aloud-play",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "ar",
+        "de",
+        "en",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
+      ],
+      "missingLangs": []
+    },
+    "common.button.read-aloud-pause": {
+      "key": "common.button.read-aloud-pause",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "ar",
+        "de",
+        "en",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
+      ],
+      "missingLangs": []
+    },
+    "common.button.read-aloud-stop": {
+      "key": "common.button.read-aloud-stop",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "ar",
+        "de",
+        "en",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
+      ],
+      "missingLangs": []
+    },
+    "common.button.read-aloud-previous": {
+      "key": "common.button.read-aloud-previous",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "ar",
+        "de",
+        "en",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
+      ],
+      "missingLangs": []
+    },
+    "common.button.read-aloud-next": {
+      "key": "common.button.read-aloud-next",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "ar",
+        "de",
+        "en",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
+      ],
+      "missingLangs": []
+    },
+    "common.button.read-aloud-close": {
+      "key": "common.button.read-aloud-close",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "ar",
+        "de",
+        "en",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
+      ],
+      "missingLangs": []
+    },
+    "common.label.read-aloud-voice": {
+      "key": "common.label.read-aloud-voice",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "ar",
+        "de",
+        "en",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
+      ],
+      "missingLangs": []
+    },
+    "common.label.read-aloud-speed": {
+      "key": "common.label.read-aloud-speed",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "ar",
+        "de",
+        "en",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
+      ],
+      "missingLangs": []
+    },
+    "common.status.read-aloud-pick": {
+      "key": "common.status.read-aloud-pick",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "ar",
+        "de",
+        "en",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
+      ],
+      "missingLangs": []
+    },
+    "common.status.read-aloud-preparing": {
+      "key": "common.status.read-aloud-preparing",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "ar",
+        "de",
+        "en",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
+      ],
+      "missingLangs": []
+    },
+    "common.status.read-aloud-reading": {
+      "key": "common.status.read-aloud-reading",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "ar",
+        "de",
+        "en",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
+      ],
+      "missingLangs": []
+    },
+    "common.status.read-aloud-done": {
+      "key": "common.status.read-aloud-done",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "ar",
+        "de",
+        "en",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
+      ],
+      "missingLangs": []
+    },
+    "common.status.read-aloud-fallback": {
+      "key": "common.status.read-aloud-fallback",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "ar",
+        "de",
+        "en",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
+      ],
+      "missingLangs": []
+    },
+    "common.status.read-aloud-none": {
+      "key": "common.status.read-aloud-none",
+      "usedIn": [],
+      "inManifest": true,
+      "langs": [
+        "ar",
+        "de",
+        "en",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
+      ],
+      "missingLangs": []
+    },
     "demo.heading.title": {
       "key": "demo.heading.title",
       "usedIn": [
@@ -442269,7 +442557,7 @@
     }
   },
   "summary": {
-    "totalKeysInManifest": 25201,
+    "totalKeysInManifest": 25217,
     "totalKeysUsed": 25162,
     "orphanUsages": [],
     "unusedKeys": [
@@ -442281,6 +442569,16 @@
       "claude-journals.heading.title",
       "common.button.copied",
       "common.button.copy-filename",
+      "common.button.read-aloud",
+      "common.button.read-aloud-close",
+      "common.button.read-aloud-next",
+      "common.button.read-aloud-pause",
+      "common.button.read-aloud-play",
+      "common.button.read-aloud-previous",
+      "common.button.read-aloud-start-here",
+      "common.button.read-aloud-stop",
+      "common.label.read-aloud-speed",
+      "common.label.read-aloud-voice",
       "common.label.you-are-here",
       "common.nav.full-build-health",
       "common.nav.github",
@@ -442288,6 +442586,12 @@
       "common.nav.prev",
       "common.nav.primary-site",
       "common.status.built-on",
+      "common.status.read-aloud-done",
+      "common.status.read-aloud-fallback",
+      "common.status.read-aloud-none",
+      "common.status.read-aloud-pick",
+      "common.status.read-aloud-preparing",
+      "common.status.read-aloud-reading",
       "convos-with-god.heading.title",
       "covenant.heading.title",
       "demo.live.label.content-fingerprint",

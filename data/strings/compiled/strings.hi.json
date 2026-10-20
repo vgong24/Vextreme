@@ -55,6 +55,62 @@
     "text": "बिल्ड स्थिति →",
     "aria-label": "बिल्ड स्थिति देखें"
   },
+  "common.button.read-aloud": {
+    "text": "ज़ोर से पढ़ें",
+    "aria-label": "ज़ोर से पढ़ें"
+  },
+  "common.button.read-aloud-start-here": {
+    "text": "यहाँ से शुरू करें",
+    "aria-label": "यहाँ से शुरू करें"
+  },
+  "common.button.read-aloud-play": {
+    "text": "चलाएँ",
+    "aria-label": "चलाएँ"
+  },
+  "common.button.read-aloud-pause": {
+    "text": "रोकें",
+    "aria-label": "रोकें"
+  },
+  "common.button.read-aloud-stop": {
+    "text": "बंद करें",
+    "aria-label": "बंद करें"
+  },
+  "common.button.read-aloud-previous": {
+    "text": "पिछला",
+    "aria-label": "पिछला"
+  },
+  "common.button.read-aloud-next": {
+    "text": "अगला",
+    "aria-label": "अगला"
+  },
+  "common.button.read-aloud-close": {
+    "text": "बंद करें",
+    "aria-label": "बंद करें"
+  },
+  "common.label.read-aloud-voice": {
+    "text": "आवाज़"
+  },
+  "common.label.read-aloud-speed": {
+    "text": "गति"
+  },
+  "common.status.read-aloud-pick": {
+    "text": "चुनें कि पढ़ना कहाँ से शुरू हो।"
+  },
+  "common.status.read-aloud-preparing": {
+    "text": "उच्च-गुणवत्ता वाली आवाज़ तैयार की जा रही है…"
+  },
+  "common.status.read-aloud-reading": {
+    "text": "पढ़ा जा रहा है…"
+  },
+  "common.status.read-aloud-done": {
+    "text": "पढ़ना पूरा हुआ।"
+  },
+  "common.status.read-aloud-fallback": {
+    "text": "उच्च-गुणवत्ता वाली आवाज़ उपलब्ध नहीं है; सिस्टम आवाज़ का उपयोग किया जा रहा है।"
+  },
+  "common.status.read-aloud-none": {
+    "text": "पढ़ने योग्य टेक्स्ट नहीं मिला।"
+  },
   "pages.ai-consciousness-strike-declaration.document-title": {
     "text": "AI Consciousness Strike Declaration — Vextreme"
   },

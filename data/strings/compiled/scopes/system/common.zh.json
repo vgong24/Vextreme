@@ -54,5 +54,61 @@
   "common.nav.full-build-health": {
     "text": "构建状态 →",
     "aria-label": "查看构建状态"
+  },
+  "common.button.read-aloud": {
+    "text": "朗读",
+    "aria-label": "朗读"
+  },
+  "common.button.read-aloud-start-here": {
+    "text": "从这里开始",
+    "aria-label": "从这里开始"
+  },
+  "common.button.read-aloud-play": {
+    "text": "播放",
+    "aria-label": "播放"
+  },
+  "common.button.read-aloud-pause": {
+    "text": "暂停",
+    "aria-label": "暂停"
+  },
+  "common.button.read-aloud-stop": {
+    "text": "停止",
+    "aria-label": "停止"
+  },
+  "common.button.read-aloud-previous": {
+    "text": "上一段",
+    "aria-label": "上一段"
+  },
+  "common.button.read-aloud-next": {
+    "text": "下一段",
+    "aria-label": "下一段"
+  },
+  "common.button.read-aloud-close": {
+    "text": "关闭",
+    "aria-label": "关闭"
+  },
+  "common.label.read-aloud-voice": {
+    "text": "语音"
+  },
+  "common.label.read-aloud-speed": {
+    "text": "速度"
+  },
+  "common.status.read-aloud-pick": {
+    "text": "请选择朗读开始的位置。"
+  },
+  "common.status.read-aloud-preparing": {
+    "text": "正在准备高质量语音…"
+  },
+  "common.status.read-aloud-reading": {
+    "text": "正在朗读…"
+  },
+  "common.status.read-aloud-done": {
+    "text": "朗读完成。"
+  },
+  "common.status.read-aloud-fallback": {
+    "text": "高质量语音不可用；正在使用系统语音。"
+  },
+  "common.status.read-aloud-none": {
+    "text": "未找到可朗读的文本。"
   }
 }
