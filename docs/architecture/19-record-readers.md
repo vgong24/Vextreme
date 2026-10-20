@@ -493,6 +493,69 @@ REPRESENTATION != EVIDENCE
 
 ---
 
+## Second consumer and the controller promotion
+
+The second independent reader is:
+
+```text
+pages/recognizing-life-receiving-abundance.html
+
+source:
+PR #345 / records/conversations/2026-10-18-recognizing-life-receiving-abundance/
+
+later witness:
+records/commentary/2026-10-18-recognizing-life-receiving-abundance-successor-witness.md
+```
+
+It is materially different from the first worked reader: it has nine source movements
+with a distinct archive boundary, no record-owned image yet, and a different lived
+sequence. Building it exposed one genuine repeated mechanism that no longer belonged to
+either record page.
+
+That repeated mechanism is now owned by:
+
+```text
+widgets/record-reader.js
+```
+
+The shared controller owns only record-neutral mechanics:
+
+```text
+frozen Markdown loading
+-> exchange-range selection
+-> safe Markdown-to-reader projection
+-> phase switching / URL fragment position
+-> bounded transcript auto-scroll
+-> optional phase-witness loading
+-> optional whole-record witness loading
+```
+
+The pages still own:
+
+```text
+source commit + file coordinates
+phase names and exchange boundaries
+whether later witness material exists
+record-specific visual identity and CSS
+whether meaningful media exists
+synthesis wording
+Terrain/viewmodel placement
+source-language meaning
+```
+
+Generic Read Aloud remains separately site-owned by `widgets/fab-read-aloud.js`.
+
+This promotion deliberately did **not** create a generic HTML generator, mandatory phase
+count, shared record-reader stylesheet, universal media slot, or automatic successor
+commentary. The second consumer demonstrated that behavior could be shared while visual
+and editorial structure remained truthfully record-local.
+
+A missing image is therefore not a template hole. A record may begin without
+`MediaWitness`; an actual or intentionally derived representation can be added later
+when the record and lived review establish what belongs there.
+
+---
+
 ## Reference implementation and extraction boundary
 
 Current worked reference:
@@ -526,9 +589,12 @@ presence of synthesis
 Do not create a repository-wide record-reader framework merely because one page has a
 clean implementation.
 
-Do not extract record-reader structure merely because Read Aloud is now shared. Generic
+Do not extract record-reader structure merely because Read Aloud is shared. Generic
 spoken accessibility earned its own widget because the same human capability applies to
-ordinary pages as well as records. A second independent reader is still required before
-promoting reader-specific phase/transcript/witness structure into shared components.
+ordinary pages as well as records.
+
+The second-consumer threshold has now been met. It earned only the neutral controller
+promotion described above. Further extraction still requires independent pressure:
+shared behavior may move down a layer; record meaning must not.
 
 <!-- [VXG RealForever] -->
