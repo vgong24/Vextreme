@@ -96,6 +96,21 @@ test('READ-ALOUD: neural model preparation and inference live only in one Worker
   assert.doesNotMatch(pageProvider, /from_pretrained|tts\.generate|raw\.toBlob|decodeAudioData/);
 });
 
+test('READ-ALOUD: ordinary sentences are independent neural synthesis units', () => {
+  const fn = extractFunction('splitText');
+  const splitText = new Function(fn + '\nreturn splitText;')();
+
+  assert.deepEqual(
+    splitText('First sentence. Second sentence? Third sentence!'),
+    ['First sentence.', 'Second sentence?', 'Third sentence!'],
+  );
+
+  const long = 'alpha beta gamma delta epsilon zeta eta theta iota kappa lambda mu.';
+  const pieces = splitText(long, 24);
+  assert.ok(pieces.length > 1, 'one unusually long sentence should still be bounded');
+  assert.ok(pieces.every((piece) => piece.length <= 24));
+});
+
 test('READ-ALOUD: neural audio cache is independent of playback speed', () => {
   const s = source();
   assert.match(s, /var MAX_AUDIO_CACHE_ITEMS = 32;/);
@@ -267,12 +282,12 @@ test('READ-ALOUD: active voice changes invalidate stale system callbacks and res
 test('READ-ALOUD: Kokoro fallback is transient and never rewrites the selected preference', () => {
   const s = source();
   const system = s.slice(s.indexOf('var SystemNarration ='), s.indexOf('function isNeuralVoice'));
-  assert.match(system, /voiceOverride \\|\\| selectedSystemVoice\\(language\\)/);
+  assert.match(system, /voiceOverride \|\| selectedSystemVoice\(language\)/);
   const fallback = extractFunction('fallbackToSystem');
-  assert.match(fallback, /var fallbackVoice = voices\\[0\\]/);
-  assert.match(fallback, /SystemNarration\\.speak[\\s\\S]*fallbackVoice/);
-  assert.doesNotMatch(fallback, /ui\\.voice\\.value\\s*=/);
-  assert.doesNotMatch(fallback, /rememberVoice\\(/);
+  assert.match(fallback, /var fallbackVoice = voices\[0\]/);
+  assert.match(fallback, /SystemNarration\.speak[\s\S]*fallbackVoice/);
+  assert.doesNotMatch(fallback, /ui\.voice\.value\s*=/);
+  assert.doesNotMatch(fallback, /rememberVoice\(/);
 });
 
 test('READ-ALOUD: system speech rate changes are deferred rather than restarting the current utterance', () => {

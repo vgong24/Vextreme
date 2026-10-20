@@ -515,7 +515,6 @@
     var limit = maxChars || 360;
     var sentences = clean.match(/[^.!?]+(?:[.!?]+(?:["'’”\)\]]+)?|$)/g) || [clean];
     var out = [];
-    var buffer = '';
 
     function pushWords(value) {
       var words = value.split(/\s+/);
@@ -532,23 +531,17 @@
       if (chunk) out.push(chunk);
     }
 
+    // Keep ordinary sentences as independent synthesis/cache units. While one
+    // sentence plays, the existing bounded lookahead can prepare the next two.
     sentences.forEach(function (sentence) {
       sentence = sentence.trim();
       if (!sentence) return;
       if (sentence.length > limit) {
-        if (buffer) { out.push(buffer); buffer = ''; }
         pushWords(sentence);
         return;
       }
-      var next = buffer ? buffer + ' ' + sentence : sentence;
-      if (next.length > limit) {
-        if (buffer) out.push(buffer);
-        buffer = sentence;
-      } else {
-        buffer = next;
-      }
+      out.push(sentence);
     });
-    if (buffer) out.push(buffer);
     return out;
   }
 
