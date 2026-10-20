@@ -362,6 +362,22 @@ test('LOCALIZATION-SCREENSHOT: matrix execution is Assets-first and reuses the s
   assert.equal(pkg.scripts['localization:screenshots'], 'node scripts/screenshot-localization-matrix.js');
 });
 
+test('PAGE-HEALTH: generated Read Aloud ownership predicts the generic page-owned FAB before output regeneration', () => {
+  const slug = 'generated-dashboard';
+  const result = buildPageHealth({
+    pageSlugs:[slug],
+    htmlBySlug:{[slug]:'<html><p>Readable generated dashboard.</p></html>'},
+    distBySlug:{[slug]:''},
+    wiredBySlug:{},
+    navRows:[{slug,navigable:true,staticHubLinks:1,hasShellJs:false,hasFabNav:false}],
+    nodes:[], manifest:{}, analysisPages:{}, screenshotFiles:[],
+    readAloudOwnedBySlug:{[slug]:'generated-owner'},
+  });
+  assert.equal(result.pages[slug].fab.delivery, 'page-owned');
+  assert.equal(result.pages[slug].health.gaps.includes('fab'), false);
+  assert.deepEqual(result.pages[slug].readAloud, { applicable:true, delivery:'generated-owner' });
+});
+
 test('PAGE-HEALTH: generated Read Aloud ownership is source-derived before output regeneration', () => {
   const { generatedReadAloudOwners } = require('../lib/build-page-health');
   const owners = generatedReadAloudOwners(ROOT);
