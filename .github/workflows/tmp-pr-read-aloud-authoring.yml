@@ -1,0 +1,68 @@
+name: Temporary PR Read Aloud semantic-container authoring
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  author:
+    if: github.head_ref == 'VXG-102026-chatgpt-read-aloud-semantic-containers'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout exact authoring branch
+        uses: actions/checkout@v4
+        with:
+          ref: VXG-102026-chatgpt-read-aloud-semantic-containers
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install exact dependencies
+        run: npm ci
+
+      - name: Execute the retained exact authoring plan
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          source = Path('.github/workflows/tmp-read-aloud-semantic-containers.yml').read_text(encoding='utf-8').splitlines()
+          blocks = []
+          index = 0
+          while index < len(source):
+              if source[index] == '        run: |':
+                  index += 1
+                  block = []
+                  while index < len(source):
+                      line = source[index]
+                      if line.startswith('          '):
+                          block.append(line[10:])
+                          index += 1
+                          continue
+                      if line == '':
+                          block.append('')
+                          index += 1
+                          continue
+                      break
+                  blocks.append('\n'.join(block).rstrip() + '\n')
+                  continue
+              index += 1
+
+          if len(blocks) != 5:
+              raise SystemExit(f'expected five retained run blocks, found {len(blocks)}')
+          Path('/tmp/read-aloud-author.sh').write_text('set -euo pipefail\n\n' + '\n'.join(blocks), encoding='utf-8')
+          PY
+          rm -f .github/workflows/tmp-pr-read-aloud-authoring.yml
+          rm -f .github/workflows/tmp-repair-read-aloud-authoring.yml
+          bash /tmp/read-aloud-author.sh
