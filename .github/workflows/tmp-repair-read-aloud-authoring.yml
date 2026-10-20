@@ -5,6 +5,7 @@ on:
     branches:
       - VXG-102026-chatgpt-read-aloud-semantic-containers
 
+# This second branch commit makes the newly added one-shot workflow active.
 jobs:
   repair:
     runs-on: ubuntu-latest
