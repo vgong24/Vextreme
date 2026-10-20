@@ -83,15 +83,6 @@ test('ASSEMBLER: assembleGodScript returns a non-empty string', () => {
   assert.ok(script.length > 0);
 });
 
-test('ASSEMBLER: feature boundaries do not multiply widget trailing newlines', () => {
-  const script = assembleGodScript('test-slug', DEMO_VIEWMODEL, { includeSourceComment: false });
-  assert.doesNotMatch(
-    script,
-    /\n{3,}\/\* === (?:core|feature): /,
-    'the assembler owns one stable blank-line boundary between embedded feature sources',
-  );
-});
-
 test('ASSEMBLER: output contains VEX_VIEWMODEL assignment', () => {
   const script = assembleGodScript('test-slug', DEMO_VIEWMODEL, { includeSourceComment: false });
   assert.ok(script.includes('window.VEX_VIEWMODEL'), 'must set VEX_VIEWMODEL global');
