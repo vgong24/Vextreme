@@ -132,6 +132,7 @@ test('PAGE-HEALTH: Read Aloud coverage is independent from generic FAB applicabi
   assert.equal(readAloudDelivery('', '/* core: fab-read-aloud.js */', true), 'god-script');
   assert.equal(readAloudDelivery('<script src="../widgets/fab-read-aloud.js"></script>', '', false), 'page-owned');
   assert.equal(readAloudDelivery('<script src="../widgets/vex-institutional.js"></script>', '', false), 'institutional-shared');
+  assert.equal(readAloudDelivery('', '', false, 'generated-owner'), 'generated-owner');
   assert.equal(readAloudApplicable('empty', ''), false);
   assert.equal(readAloudApplicable('redirect', '<meta name="robots" content="noindex"><p>Moved</p><script>location.replace("x")</script>'), false);
   assert.equal(readAloudApplicable('article', '<main><p>Readable public content.</p></main>'), true);
@@ -359,6 +360,14 @@ test('LOCALIZATION-SCREENSHOT: matrix execution is Assets-first and reuses the s
 
   const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8'));
   assert.equal(pkg.scripts['localization:screenshots'], 'node scripts/screenshot-localization-matrix.js');
+});
+
+test('PAGE-HEALTH: generated Read Aloud ownership is source-derived before output regeneration', () => {
+  const { generatedReadAloudOwners } = require('../lib/build-page-health');
+  const owners = generatedReadAloudOwners(ROOT);
+  for (const slug of ['build-health','ecosystem-hub','roles-index','vextreme-demo','ai-practitioner-tools','direct-contact']) {
+    assert.equal(owners[slug], 'generated-owner', slug + ' must be covered by its rightful generator/projector source');
+  }
 });
 
 test('PAGE-HEALTH integration: every applicable public readable surface has Read Aloud delivery', () => {
