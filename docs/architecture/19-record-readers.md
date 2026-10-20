@@ -515,7 +515,7 @@ either record page.
 That repeated mechanism is now owned by:
 
 ```text
-widgets/record-reader.js
+components/record-reader.js
 ```
 
 The shared controller owns only record-neutral mechanics:
