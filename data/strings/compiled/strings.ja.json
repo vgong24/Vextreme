@@ -124,6 +124,62 @@
     "text": "ビルド健全性 →",
     "aria-label": "ビルド健全性を表示"
   },
+  "common.button.read-aloud": {
+    "text": "読み上げ",
+    "aria-label": "読み上げ"
+  },
+  "common.button.read-aloud-start-here": {
+    "text": "ここから開始",
+    "aria-label": "ここから開始"
+  },
+  "common.button.read-aloud-play": {
+    "text": "再生",
+    "aria-label": "再生"
+  },
+  "common.button.read-aloud-pause": {
+    "text": "一時停止",
+    "aria-label": "一時停止"
+  },
+  "common.button.read-aloud-stop": {
+    "text": "停止",
+    "aria-label": "停止"
+  },
+  "common.button.read-aloud-previous": {
+    "text": "前へ",
+    "aria-label": "前へ"
+  },
+  "common.button.read-aloud-next": {
+    "text": "次へ",
+    "aria-label": "次へ"
+  },
+  "common.button.read-aloud-close": {
+    "text": "閉じる",
+    "aria-label": "閉じる"
+  },
+  "common.label.read-aloud-voice": {
+    "text": "音声"
+  },
+  "common.label.read-aloud-speed": {
+    "text": "速度"
+  },
+  "common.status.read-aloud-pick": {
+    "text": "読み上げを開始する場所を選んでください。"
+  },
+  "common.status.read-aloud-preparing": {
+    "text": "高品質音声を準備しています…"
+  },
+  "common.status.read-aloud-reading": {
+    "text": "読み上げ中…"
+  },
+  "common.status.read-aloud-done": {
+    "text": "読み上げが完了しました。"
+  },
+  "common.status.read-aloud-fallback": {
+    "text": "高品質音声を使用できないため、システム音声を使用します。"
+  },
+  "common.status.read-aloud-none": {
+    "text": "読み上げ可能なテキストが見つかりません。"
+  },
   "demo.heading.title": {
     "text": "Vextremeの構築方法"
   },

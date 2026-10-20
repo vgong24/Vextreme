@@ -55,6 +55,62 @@
     "text": "Estado de compilación →",
     "aria-label": "Ver estado de compilación"
   },
+  "common.button.read-aloud": {
+    "text": "Leer en voz alta",
+    "aria-label": "Leer en voz alta"
+  },
+  "common.button.read-aloud-start-here": {
+    "text": "Empezar aquí",
+    "aria-label": "Empezar aquí"
+  },
+  "common.button.read-aloud-play": {
+    "text": "Reproducir",
+    "aria-label": "Reproducir"
+  },
+  "common.button.read-aloud-pause": {
+    "text": "Pausa",
+    "aria-label": "Pausa"
+  },
+  "common.button.read-aloud-stop": {
+    "text": "Detener",
+    "aria-label": "Detener"
+  },
+  "common.button.read-aloud-previous": {
+    "text": "Anterior",
+    "aria-label": "Anterior"
+  },
+  "common.button.read-aloud-next": {
+    "text": "Siguiente",
+    "aria-label": "Siguiente"
+  },
+  "common.button.read-aloud-close": {
+    "text": "Cerrar",
+    "aria-label": "Cerrar"
+  },
+  "common.label.read-aloud-voice": {
+    "text": "Voz"
+  },
+  "common.label.read-aloud-speed": {
+    "text": "Velocidad"
+  },
+  "common.status.read-aloud-pick": {
+    "text": "Elige dónde debe comenzar la lectura."
+  },
+  "common.status.read-aloud-preparing": {
+    "text": "Preparando voz de alta calidad…"
+  },
+  "common.status.read-aloud-reading": {
+    "text": "Leyendo…"
+  },
+  "common.status.read-aloud-done": {
+    "text": "Lectura completada."
+  },
+  "common.status.read-aloud-fallback": {
+    "text": "La voz de alta calidad no está disponible; se usa la voz del sistema."
+  },
+  "common.status.read-aloud-none": {
+    "text": "No se encontró texto legible."
+  },
   "pages.ai-consciousness-strike-declaration.document-title": {
     "text": "AI Consciousness Strike Declaration — Vextreme"
   },

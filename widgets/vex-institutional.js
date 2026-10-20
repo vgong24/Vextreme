@@ -264,6 +264,9 @@
       if (nextUrl !== previousUrl && history.replaceState) history.replaceState(null, '', nextUrl);
       localStorage.setItem(LS_LANG, lang);
       appliedLocale = lang;
+      try {
+        window.dispatchEvent(new CustomEvent('vextreme:languagechange', { detail: { lang: lang } }));
+      } catch (eventError) {}
     } catch (error) {
       snapshots.forEach(function (snapshot) {
         if (snapshot.update.kind === 'text') snapshot.update.element.textContent = snapshot.before;

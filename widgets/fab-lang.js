@@ -69,6 +69,7 @@
  *       - docs/architecture/06-i18n.md (runtime authority + surface-context contract)
  *       - tests/08-build-vextreme.test.js (FAB synchronization/fallback/context guards)
  *       - tests/85-terrain-view-contract.test.js (Terrain child-context validation and parent FAB persistence)
+ *       - widgets/fab-read-aloud.js (localized overlay + voice-catalog refresh; source-owned narration language may remain fixed)
  *     partial-locale EN/source fallback or apply ordering:
  *       - tests/08-build-vextreme.test.js (fallback + stale-request guard)
  *       - localized browser acceptance before screenshot evidence is trusted
@@ -91,7 +92,7 @@
   // this constant had never been bumped since introduction, which is most
   // of why a real fix here silently didn't reach CDN-script-tag pages —
   // see docs/lattice-map.json's context note on this file for the story.
-  var VERSION    = '3.6.0';
+  var VERSION    = '3.7.0';
   var CDN_BASE   = 'https://cdn.jsdelivr.net/gh/vgong24/vextreme@main';
   var INDEX_URL  = CDN_BASE + '/data/index.json?v=' + VERSION;
   var LS_LANG    = 'vex-lang';

@@ -963,6 +963,23 @@
   var evolutionLayer = document.getElementById('evolutionLayer');
   var evolutionReader = document.getElementById('evolutionReader');
   var evolutionReaderFrame = document.getElementById('evolutionReaderFrame');
+
+  function publishReadAloudSurfaceOwnership() {
+    var suppressed = Boolean(evolutionReader && !evolutionReader.hidden);
+    window.VEXTREME_READ_ALOUD_SUPPRESSED = suppressed;
+    try {
+      window.dispatchEvent(new CustomEvent('vextreme:read-aloud-suppress', {
+        detail: { suppressed: suppressed, owner: suppressed ? 'terrain-embedded-reader' : 'terrain' }
+      }));
+    } catch (e) {}
+  }
+  if (evolutionReader && typeof MutationObserver === 'function') {
+    new MutationObserver(publishReadAloudSurfaceOwnership).observe(evolutionReader, {
+      attributes: true,
+      attributeFilter: ['hidden']
+    });
+  }
+  publishReadAloudSurfaceOwnership();
   var evolutionGestureHint = document.getElementById('evolutionGestureHint');
   var contentCuriosityDock = document.getElementById('contentCuriosityDock');
 
@@ -3923,6 +3940,6 @@ window.VEXTREME_OVERRIDE = {
   }]
 };
 </script>
-<script src="../lib/shell.js?v=13"></script>
+<script src="../lib/shell.js?v=14"></script>
 </body>
 </html>

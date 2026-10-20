@@ -55,6 +55,15 @@ test('CHROME-RAIL: spiral FAB uses the nav rail with a standalone fallback', () 
   assert.match(source, /vex-spiral-fab--nav/);
 });
 
+test('CHROME-RAIL: Read Aloud is a shared Spiral child with standalone fallback, not a second fixed FAB owner', () => {
+  const source = read('widgets/fab-read-aloud.js');
+  assert.match(source, /getElementById\('vex-spiral-group'\)/);
+  assert.match(source, /group\.appendChild\(root\)/);
+  assert.match(source, /orb\.className = 'vex-orb'/);
+  assert.match(source, /document\.body\.appendChild\(root\)/);
+  assert.match(source, /vex-read-aloud-standalone/);
+});
+
 test('CHROME-RAIL: configured FAB links remain children of the shared Spiral and fail closed on unsafe URL / raw HTML patterns', () => {
   const source = read('lib/vextreme.js');
   const helper = source.match(/function safeFabLinkUrl\(value\) \{[\s\S]*?\n  function loadFabWidgets\(cfg\)/);
