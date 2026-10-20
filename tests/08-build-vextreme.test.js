@@ -267,6 +267,8 @@ test('LANGUAGE AUTHORITY: live repository pages no longer load the legacy lang-f
     'live pages must consume canonical widgets/fab-lang.js (directly, via shell, or via God Script), not a second language engine');
 
   const demoBuilder = fs.readFileSync(path.join(ROOT, 'lib', 'build-demo.js'), 'utf8');
+  assert.ok(demoBuilder.includes('widgets/fab-read-aloud.js'),
+    'standalone demo generator must carry the site Read Aloud capability, not merely a legacy FAB');
   assert.ok(demoBuilder.includes('widgets/fab-lang.js'));
   assert.ok(demoBuilder.includes('widgets/fab-demo.js'));
   assert.ok(!demoBuilder.includes(legacyRef),
