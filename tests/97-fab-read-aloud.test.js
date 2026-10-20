@@ -223,6 +223,17 @@ test('READ-ALOUD: overlay copy is owned by common string identities for all Glob
   }
 });
 
+test('READ-ALOUD: a parent surface can suppress and stop its owner while an embedded reader owns the visible document', () => {
+  const s = source();
+  assert.match(s, /var SUPPRESS_EVENT = 'vextreme:read-aloud-suppress';/);
+  const fn = extractFunction('setSuppressed');
+  assert.match(fn, /stopReading\(true\)/);
+  assert.match(fn, /ui\.root\.hidden = state\.suppressed/);
+  assert.match(fn, /aria-hidden/);
+  assert.match(s, /window\.VEXTREME_READ_ALOUD_SUPPRESSED/);
+  assert.match(s, /window\.addEventListener\(SUPPRESS_EVENT/);
+});
+
 test('READ-ALOUD: system speech rate changes are deferred rather than restarting the current utterance', () => {
   const s = source();
   const rateHandler = s.match(/rate\.addEventListener\('input',[\s\S]*?\n    \}\);/);

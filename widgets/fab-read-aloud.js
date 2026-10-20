@@ -69,6 +69,7 @@
   var SYSTEM_PREFIX = 'system:';
   var SETTINGS_KEY = 'vex-read-aloud-settings/v1';
   var LANG_CHANGE_EVENT = 'vextreme:languagechange';
+  var SUPPRESS_EVENT = 'vextreme:read-aloud-suppress';
   var MAX_SYSTEM_VOICES = 8;
   var MAX_AUDIO_CACHE_ITEMS = 32;
   var LOOKAHEAD = 2;
@@ -94,6 +95,7 @@
     currentElement: null,
     pickElement: null,
     language: null,
+    suppressed: false,
     settings: loadSettings()
   };
 
@@ -892,6 +894,21 @@
     setMode('idle');
   }
 
+  function setSuppressed(value) {
+    state.suppressed = Boolean(value);
+    if (state.suppressed) {
+      exitPickMode();
+      stopReading(true);
+      state.panelOpen = false;
+      if (ui.panel) ui.panel.classList.remove('open');
+      if (ui.orb) ui.orb.setAttribute('aria-expanded', 'false');
+    }
+    if (ui.root) {
+      ui.root.hidden = state.suppressed;
+      ui.root.setAttribute('aria-hidden', state.suppressed ? 'true' : 'false');
+    }
+  }
+
   function jumpBlock(direction) {
     if (!state.plan.length) return;
     var currentBlock = state.plan[state.index] && state.plan[state.index].blockIndex;
@@ -1272,6 +1289,11 @@
         populateVoices(currentLanguage());
       });
     }
+
+    window.addEventListener(SUPPRESS_EVENT, function (event) {
+      setSuppressed(Boolean(event && event.detail && event.detail.suppressed));
+    });
+    setSuppressed(Boolean(window.VEXTREME_READ_ALOUD_SUPPRESSED));
 
     window.addEventListener(LANG_CHANGE_EVENT, function () {
       var nextLanguage = effectiveLanguage(state.currentElement);

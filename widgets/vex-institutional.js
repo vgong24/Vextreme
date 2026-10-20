@@ -41,8 +41,10 @@
   }
 
   function config() {
+    var scopes = (window.VEX_STRING_SCOPES || []).slice();
+    if (scopes.indexOf('common') === -1) scopes.push('common');
     return {
-      scopes: (window.VEX_STRING_SCOPES || []).slice(),
+      scopes: scopes,
       category: window.VEX_STRING_CATEGORY || 'production',
       root: window.VEX_INST_ROOT || '../'
     };
@@ -264,6 +266,9 @@
       if (nextUrl !== previousUrl && history.replaceState) history.replaceState(null, '', nextUrl);
       localStorage.setItem(LS_LANG, lang);
       appliedLocale = lang;
+      try {
+        window.dispatchEvent(new CustomEvent('vextreme:languagechange', { detail: { lang: lang } }));
+      } catch (eventError) {}
     } catch (error) {
       snapshots.forEach(function (snapshot) {
         if (snapshot.update.kind === 'text') snapshot.update.element.textContent = snapshot.before;
@@ -367,12 +372,28 @@
     requestLocale(initial.locale, select);
   }
 
+  function ensureReadAloud() {
+    if (document.querySelector('script[data-vex-institutional-read-aloud]')) return;
+    var cfg = config();
+    var script = document.createElement('script');
+    script.src = cfg.root + 'widgets/fab-read-aloud.js';
+    script.async = false;
+    script.setAttribute('data-vex-institutional-read-aloud', '');
+    script.addEventListener('load', function () {
+      if (appliedLocale !== LANG_DEFAULT) {
+        requestLocale(appliedLocale, document.querySelector('[data-vex-lang-select]'));
+      }
+    });
+    document.head.appendChild(script);
+  }
+
   function mount() {
     initTheme();
     initLang();
   }
 
   installLocaleHold();
+  ensureReadAloud();
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mount);
   else mount();
 }());
