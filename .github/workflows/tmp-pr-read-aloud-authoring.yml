@@ -38,6 +38,18 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('tools/tmp-apply-read-aloud-semantic-containers.py')
+          text = path.read_text(encoding='utf-8')
+          old = "textwrap.dedent(r'''" + chr(92) + "\n"
+          new = "textwrap.dedent(r'''\n"
+          count = text.count(old)
+          if count != 4:
+              raise SystemExit(f'expected four raw-string continuation artifacts, found {count}')
+          path.write_text(text.replace(old, new), encoding='utf-8')
+          PY
           python3 -m py_compile tools/tmp-apply-read-aloud-semantic-containers.py
           python3 tools/tmp-apply-read-aloud-semantic-containers.py
           rm -f .github/workflows/tmp-read-aloud-semantic-containers.yml
