@@ -101,6 +101,7 @@
 
   var ui = {};
   var pickHandlers = null;
+  var voiceSwitchGeneration = 0;
 
   function clampRate(value) {
     var n = Number(value);
@@ -624,12 +625,14 @@
 
   var SystemNarration = {
     active: null,
+    generation: 0,
     speak: function (text, language, rate, callbacks) {
       callbacks = callbacks || {};
       if (!('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window)) {
         if (callbacks.onError) callbacks.onError(new Error('SYSTEM_SPEECH_UNAVAILABLE'));
         return;
       }
+      var token = ++this.generation;
       var utterance = new SpeechSynthesisUtterance(text);
       this.active = utterance;
       utterance.rate = clampRate(rate);
@@ -640,12 +643,17 @@
       } else {
         utterance.lang = language;
       }
-      utterance.onstart = callbacks.onStart || null;
+      utterance.onstart = function () {
+        if (token !== SystemNarration.generation || SystemNarration.active !== utterance) return;
+        if (callbacks.onStart) callbacks.onStart();
+      };
       utterance.onend = function () {
+        if (token !== SystemNarration.generation || SystemNarration.active !== utterance) return;
         SystemNarration.active = null;
         if (callbacks.onEnd) callbacks.onEnd();
       };
       utterance.onerror = function (event) {
+        if (token !== SystemNarration.generation || SystemNarration.active !== utterance) return;
         SystemNarration.active = null;
         if (callbacks.onError) callbacks.onError(event);
       };
@@ -654,6 +662,7 @@
     pause: function () { if ('speechSynthesis' in window) window.speechSynthesis.pause(); },
     resume: function () { if ('speechSynthesis' in window) window.speechSynthesis.resume(); },
     cancel: function () {
+      this.generation += 1;
       this.active = null;
       if ('speechSynthesis' in window) window.speechSynthesis.cancel();
     }
@@ -735,10 +744,23 @@
     if (source) ui.status.textContent = source.textContent;
   }
 
+  function syncPlayPauseControl() {
+    if (!ui.playPause || !ui.playPauseLabel || !ui.playPauseIcon) return;
+    var pause = state.mode === 'playing';
+    var key = pause ? 'common.button.read-aloud-pause' : 'common.button.read-aloud-play';
+    var fallback = pause ? 'Pause' : 'Play';
+    var copy = document.querySelector('.vex-read-aloud-copy-bank [data-vex-read-aloud-copy="' + key + '"]');
+    ui.playPauseIcon.nodeValue = pause ? 'Ⅱ' : '▶';
+    ui.playPauseLabel.setAttribute('data-i18n', key);
+    ui.playPauseLabel.setAttribute('data-vex-read-aloud-copy', key);
+    ui.playPauseLabel.textContent = copy ? copy.textContent : fallback;
+    ui.playPause.disabled = state.mode === 'preparing';
+    ui.playPause.setAttribute('aria-label', ui.playPauseLabel.textContent);
+  }
+
   function setMode(mode) {
     state.mode = mode;
-    if (ui.play) ui.play.disabled = mode === 'playing' || mode === 'preparing';
-    if (ui.pause) ui.pause.disabled = mode !== 'playing';
+    syncPlayPauseControl();
   }
 
   function currentLanguage() {
@@ -1046,8 +1068,10 @@
 
   function buildCopyBank() {
     var bank = document.createElement('div');
-    bank.className = 'vex-sr-only';
+    bank.className = 'vex-sr-only vex-read-aloud-copy-bank';
     [
+      ['common.button.read-aloud-play', 'Play'],
+      ['common.button.read-aloud-pause', 'Pause'],
       ['common.status.read-aloud-pick', 'Choose where reading should begin.'],
       ['common.status.read-aloud-preparing', 'Preparing high-quality voice…'],
       ['common.status.read-aloud-reading', 'Reading…'],
@@ -1065,6 +1089,7 @@
     if (ui.close && ui.closeLabel) ui.close.setAttribute('aria-label', ui.closeLabel.textContent);
     if (ui.voice && ui.voiceLabel) ui.voice.setAttribute('aria-label', ui.voiceLabel.textContent);
     if (ui.rate && ui.speedLabel) ui.rate.setAttribute('aria-label', ui.speedLabel.textContent);
+    syncPlayPauseControl();
   }
 
   function injectStyles() {
@@ -1133,22 +1158,21 @@
     function iconButton(icon, key, fallback) {
       var button = document.createElement('button');
       button.type = 'button';
-      button.textContent = icon;
+      var iconNode = document.createTextNode(icon);
+      button.appendChild(iconNode);
       var label = makeText('span', key, fallback, 'vex-sr-only');
       button.appendChild(label);
-      return { button: button, label: label };
+      return { button: button, label: label, iconNode: iconNode };
     }
 
     var previous = iconButton('⏮', 'common.button.read-aloud-previous', 'Previous');
-    var play = iconButton('▶', 'common.button.read-aloud-play', 'Play');
-    var pause = iconButton('Ⅱ', 'common.button.read-aloud-pause', 'Pause');
+    var playPause = iconButton('▶', 'common.button.read-aloud-play', 'Play');
     var next = iconButton('⏭', 'common.button.read-aloud-next', 'Next');
     var stop = iconButton('■', 'common.button.read-aloud-stop', 'Stop');
 
     transport.appendChild(start);
     transport.appendChild(previous.button);
-    transport.appendChild(play.button);
-    transport.appendChild(pause.button);
+    transport.appendChild(playPause.button);
     transport.appendChild(next.button);
     transport.appendChild(stop.button);
 
@@ -1205,8 +1229,9 @@
       closeLabel: closeLabel,
       start: start,
       previous: previous.button,
-      play: play.button,
-      pause: pause.button,
+      playPause: playPause.button,
+      playPauseLabel: playPause.label,
+      playPauseIcon: playPause.iconNode,
       next: next.button,
       stop: stop.button,
       voice: voice,
@@ -1251,14 +1276,14 @@
     start.addEventListener('click', enterPickMode);
     previous.button.addEventListener('click', function () { jumpBlock(-1); });
     next.button.addEventListener('click', function () { jumpBlock(1); });
-    play.button.addEventListener('click', function () {
-      if (state.mode === 'paused') resumeReading();
+    playPause.button.addEventListener('click', function () {
+      if (state.mode === 'playing') pauseReading();
+      else if (state.mode === 'paused') resumeReading();
       else if (state.plan.length && state.index < state.plan.length) {
         setMode('playing');
         speakCurrent();
       } else startFromViewport();
     });
-    pause.button.addEventListener('click', pauseReading);
     stop.button.addEventListener('click', function () {
       stopReading(true);
       setStatusKey('common.status.read-aloud-pick');
@@ -1266,12 +1291,18 @@
 
     voice.addEventListener('change', function () {
       var lang = currentLanguage();
-      rememberVoice(lang, voice.value);
-      if (state.mode !== 'idle') {
-        stopProviders();
-        setMode('playing');
+      var selected = voice.value;
+      var token = ++voiceSwitchGeneration;
+      rememberVoice(lang, selected);
+      if (state.mode === 'idle') return;
+      stopProviders();
+      setMode('playing');
+      window.setTimeout(function () {
+        if (token !== voiceSwitchGeneration || state.mode === 'idle') return;
+        var values = Array.from(voice.options).map(function (option) { return option.value; });
+        if (values.indexOf(selected) >= 0) voice.value = selected;
         speakCurrent();
-      }
+      }, 0);
     });
 
     rate.addEventListener('input', function () {

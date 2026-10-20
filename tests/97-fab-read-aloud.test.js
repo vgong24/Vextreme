@@ -234,6 +234,34 @@ test('READ-ALOUD: a parent surface can suppress and stop its owner while an embe
   assert.match(s, /window\.addEventListener\(SUPPRESS_EVENT/);
 });
 
+test('READ-ALOUD: Play and Pause are one stateful transport control', () => {
+  const s = source();
+  assert.match(s, /var playPause = iconButton\('▶', 'common\.button\.read-aloud-play', 'Play'\)/);
+  assert.doesNotMatch(s, /var pause = iconButton/);
+  assert.match(s, /playPause\.button\.addEventListener\('click'/);
+  assert.match(s, /state\.mode === 'playing'\) pauseReading\(\)/);
+  assert.match(extractFunction('setMode'), /syncPlayPauseControl\(\)/);
+  const sync = extractFunction('syncPlayPauseControl');
+  assert.match(sync, /common\.button\.read-aloud-pause/);
+  assert.match(sync, /common\.button\.read-aloud-play/);
+});
+
+test('READ-ALOUD: active voice changes invalidate stale system callbacks and restart with the selected voice', () => {
+  const s = source();
+  const system = s.slice(s.indexOf('var SystemNarration ='), s.indexOf('function isNeuralVoice'));
+  assert.match(system, /generation: 0/);
+  assert.match(system, /var token = \+\+this\.generation/);
+  assert.match(system, /token !== SystemNarration\.generation/);
+  assert.match(system, /this\.generation \+= 1/);
+  const handler = s.match(/voice\.addEventListener\('change',[\s\S]*?\n    \}\);/);
+  assert.ok(handler, 'voice change handler must exist');
+  assert.match(handler[0], /var selected = voice\.value/);
+  assert.match(handler[0], /var token = \+\+voiceSwitchGeneration/);
+  assert.match(handler[0], /window\.setTimeout/);
+  assert.match(handler[0], /voice\.value = selected/);
+  assert.match(handler[0], /speakCurrent\(\)/);
+});
+
 test('READ-ALOUD: system speech rate changes are deferred rather than restarting the current utterance', () => {
   const s = source();
   const rateHandler = s.match(/rate\.addEventListener\('input',[\s\S]*?\n    \}\);/);
