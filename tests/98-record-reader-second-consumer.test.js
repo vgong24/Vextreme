@@ -22,7 +22,7 @@ function read(rel) {
 }
 
 test('RECORD-READER-FOUNDATION: shared controller is semantic and record-neutral', () => {
-  const widget = read('widgets/record-reader.js');
+  const widget = read('components/record-reader.js');
   assert.match(widget, /global\.VexRecordReader=\{mount:mount\}/);
   assert.match(widget, /data-reader-component="phase"/);
   assert.match(widget, /function renderBlocks\(lines\)/);
