@@ -101,7 +101,7 @@ test('READER-NARRATION-OWNERSHIP: preserved transcript/witness component identit
     'preserved-record',
     'transcript-viewport',
     'witness-commentary',
-    'whole-record-witness',
+    'successor-witness',
   ]) {
     assert.match(page, new RegExp('data-reader-component="' + component + '"'));
   }
