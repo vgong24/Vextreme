@@ -403,6 +403,8 @@
   var SETTINGS_KEY = 'vex-read-aloud-settings/v1';
   var LANG_CHANGE_EVENT = 'vextreme:languagechange';
   var SUPPRESS_EVENT = 'vextreme:read-aloud-suppress';
+  var RUNTIME_BROKER_KEY = 'VEXTREME_READ_ALOUD_RUNTIME';
+  var RUNTIME_BROKER_SCHEMA = 'vextreme.read-aloud-runtime/v1';
   var MAX_SYSTEM_VOICES = 8;
   var MAX_AUDIO_CACHE_ITEMS = 32;
   var MAX_PREFETCH_ITEMS = 6;
@@ -768,6 +770,18 @@
     };
   }
 
+  function parentNeuralRuntime() {
+    if (window.parent === window) return null;
+    try {
+      var runtime = window.parent[RUNTIME_BROKER_KEY];
+      if (!runtime || runtime.schemaVersion !== RUNTIME_BROKER_SCHEMA) return null;
+      if (typeof runtime.request !== 'function' || typeof runtime.prepare !== 'function') return null;
+      return runtime;
+    } catch (e) {
+      return null;
+    }
+  }
+
   var NeuralNarration = (function () {
     var worker = null;
     var workerUrl = null;
@@ -788,6 +802,18 @@
     }
 
     function capability() {
+      var parentRuntime = parentNeuralRuntime();
+      if (parentRuntime && typeof parentRuntime.capability === 'function') {
+        try {
+          var parentCapability = parentRuntime.capability();
+          if (parentCapability && parentCapability.available) {
+            return {
+              available: true,
+              execution: 'parent-broker:' + String(parentCapability.execution || 'neural')
+            };
+          }
+        } catch (e) {}
+      }
       return {
         available: !!(
           !workerFailed &&
@@ -916,6 +942,8 @@
     }
 
     function request(text, voice) {
+      var parentRuntime = parentNeuralRuntime();
+      if (parentRuntime) return parentRuntime.request(text, voice);
       var id = key(text, voice);
       var cached = getCached(id);
       if (cached) return Promise.resolve(cached);
@@ -994,6 +1022,11 @@
     }
 
     function prepare() {
+      var parentRuntime = parentNeuralRuntime();
+      if (parentRuntime) {
+        try { parentRuntime.prepare(); } catch (error) {}
+        return;
+      }
       if (!capability().available) return;
       try { ensureWorker().postMessage({ type: 'prepare' }); } catch (error) {}
     }
@@ -1040,6 +1073,7 @@
     return {
       capability: capability,
       prepare: prepare,
+      request: request,
       speak: speak,
       prefetch: prefetch,
       setRate: setRate,
@@ -1048,6 +1082,19 @@
       cancel: cancel
     };
   }());
+
+  // Same-origin embedded readers may reuse this document's already-warm neural
+  // provider. Terrain keeps its parent document alive while swapping reader
+  // iframes, so child pages can cross navigation boundaries without loading a
+  // second Kokoro model. Standalone documents remain self-contained.
+  try {
+    window[RUNTIME_BROKER_KEY] = {
+      schemaVersion: RUNTIME_BROKER_SCHEMA,
+      capability: NeuralNarration.capability,
+      prepare: NeuralNarration.prepare,
+      request: NeuralNarration.request
+    };
+  } catch (e) {}
 
   var SystemNarration = {
     active: null,
@@ -1781,7 +1828,6 @@
 }());
 
 // [VXG RealForever]
-
 
 /* === feature: lang (fab-lang.js) === */
 /**
