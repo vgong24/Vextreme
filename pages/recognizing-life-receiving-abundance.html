@@ -37,7 +37,7 @@
   Threshold -> ArcScopeRail -> Phase { PhaseHeader + TranscriptViewport + WitnessCommentary }
   -> RecordBoundary -> SuccessorWitness -> Synthesis.
 
-  Generic source projection/navigation/auto-scroll is owned by widgets/record-reader.js.
+  Generic source projection/navigation/auto-scroll is owned by components/record-reader.js.
   This page owns only this record's source coordinates, phase meanings, presentation, and later witness relationship.
   SOURCE BEFORE WITNESS. WITNESS BEFORE SYNTHESIS. REPRESENTATION != EVIDENCE.
 -->
@@ -125,7 +125,7 @@
 <div id="arcNavMount" class="arc-wrap"></div>
 </main>
 
-<script src="../widgets/record-reader.js"></script>
+<script src="../components/record-reader.js"></script>
 <script>
 VexRecordReader.mount({
   rootSelector:'main[data-record-reader-root]',
