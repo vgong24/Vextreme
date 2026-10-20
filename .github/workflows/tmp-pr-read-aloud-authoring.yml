@@ -43,12 +43,29 @@ jobs:
 
           path = Path('tools/tmp-apply-read-aloud-semantic-containers.py')
           text = path.read_text(encoding='utf-8')
-          old = "textwrap.dedent(r'''" + chr(92) + "\n"
-          new = "textwrap.dedent(r'''\n"
-          count = text.count(old)
+
+          raw_continuation = "textwrap.dedent(r'''" + chr(92) + "\n"
+          raw_plain = "textwrap.dedent(r'''\n"
+          count = text.count(raw_continuation)
           if count != 4:
               raise SystemExit(f'expected four raw-string continuation artifacts, found {count}')
-          path.write_text(text.replace(old, new), encoding='utf-8')
+          text = text.replace(raw_continuation, raw_plain)
+
+          style_patches = [
+              ("readable_functions = textwrap.dedent(r'''", "readable_functions = textwrap.indent(textwrap.dedent(r'''"),
+              ("  function splitText(text, maxChars) {''')", "  function splitText(text, maxChars) {'''), '  ')"),
+              ("build_plan = textwrap.dedent(r'''", "build_plan = textwrap.indent(textwrap.dedent(r'''"),
+              ("  function startIndexForElement''')", "  function startIndexForElement'''), '  ')"),
+              ("readable_target = textwrap.dedent(r'''", "readable_target = textwrap.indent(textwrap.dedent(r'''"),
+              ("  function setPickElement''')", "  function setPickElement'''), '  ')"),
+          ]
+          for old, new in style_patches:
+              matches = text.count(old)
+              if matches != 1:
+                  raise SystemExit(f'expected one source-style patch for {old!r}, found {matches}')
+              text = text.replace(old, new)
+
+          path.write_text(text, encoding='utf-8')
           PY
           python3 -m py_compile tools/tmp-apply-read-aloud-semantic-containers.py
           python3 tools/tmp-apply-read-aloud-semantic-containers.py
