@@ -2360,10 +2360,10 @@
       "stageName": "RUNTIME",
       "x": 1760,
       "y": 450,
-      "role": "spiral FAB — trigger button + shared expandable group container that other orb widgets mount into",
+      "role": "spiral FAB — trigger + shared two-axis expansion geometry: primary human-facing controls horizontally, secondary diagnostic utilities vertically",
       "reads": [],
       "writes": [
-        "DOM: #vex-spiral-fab / #vex-spiral-trigger / #vex-spiral-group (consumed by fab-read-aloud.js, fab-lang.js, fab-theme.js, fab-map.js)",
+        "DOM: #vex-spiral-fab / #vex-spiral-trigger / #vex-spiral-group / #vex-spiral-primary / #vex-spiral-secondary (children default primary; diagnostic utilities may opt into the secondary axis)",
         "DOM: mounts into #vex-nav-actions when provided by lib/vextreme.js; otherwise appends to document.body"
       ],
       "loadedBy": [
@@ -3041,22 +3041,6 @@
     [
       "widgets/vex-fab.js",
       "lib/vextreme.js"
-    ],
-    [
-      "widgets/vex-fab.js",
-      "widgets/fab-lang.js"
-    ],
-    [
-      "widgets/vex-fab.js",
-      "widgets/fab-map.js"
-    ],
-    [
-      "widgets/vex-fab.js",
-      "widgets/fab-read-aloud.js"
-    ],
-    [
-      "widgets/vex-fab.js",
-      "widgets/fab-theme.js"
     ]
   ],
   "debtTitles": {
