@@ -262,6 +262,17 @@ test('READ-ALOUD: active voice changes invalidate stale system callbacks and res
   assert.match(handler[0], /speakCurrent\(\)/);
 });
 
+test('READ-ALOUD: Kokoro fallback is transient and never rewrites the selected preference', () => {
+  const s = source();
+  const system = s.slice(s.indexOf('var SystemNarration ='), s.indexOf('function isNeuralVoice'));
+  assert.match(system, /voiceOverride \\|\\| selectedSystemVoice\\(language\\)/);
+  const fallback = extractFunction('fallbackToSystem');
+  assert.match(fallback, /var fallbackVoice = voices\\[0\\]/);
+  assert.match(fallback, /SystemNarration\\.speak[\\s\\S]*fallbackVoice/);
+  assert.doesNotMatch(fallback, /ui\\.voice\\.value\\s*=/);
+  assert.doesNotMatch(fallback, /rememberVoice\\(/);
+});
+
 test('READ-ALOUD: system speech rate changes are deferred rather than restarting the current utterance', () => {
   const s = source();
   const rateHandler = s.match(/rate\.addEventListener\('input',[\s\S]*?\n    \}\);/);
