@@ -281,6 +281,15 @@ test('FAB-AUTOLOAD: CONFIG SCHEMA doc comment documents FAB enablement and reusa
 // versions must be bumped together; this makes that instruction enforced
 // instead of remembered.
 
+test('CACHE-SYNC: same-origin shell keeps runtime assets on the same deployed revision', () => {
+  const shell = fs.readFileSync(path.join(ROOT, 'lib', 'shell.js'), 'utf8');
+  assert.match(shell, /var DEFAULT_BASE = 'https:\/\/cdn\.jsdelivr\.net\/gh\/vgong24\/vextreme@main';/);
+  assert.match(shell, /document\.currentScript/);
+  assert.match(shell, /shellUrl\.origin === window\.location\.origin/);
+  assert.match(shell, /shellUrl\.href\.replace\(\/\\\/lib\\\/shell\\\.js/);
+  assert.match(shell, /: DEFAULT_BASE/);
+});
+
 test('CACHE-SYNC: shell.js VEXTREME_VER matches vextreme.js DEFAULT_CACHE exactly', () => {
   const shell = fs.readFileSync(path.join(ROOT, 'lib', 'shell.js'), 'utf8');
   const vx    = readSource();

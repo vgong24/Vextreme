@@ -75,6 +75,23 @@ test('READ-ALOUD: system voice inventory is language-filtered and capped at eigh
   assert.match(fn, /\.slice\(0, MAX_SYSTEM_VOICES\)/);
 });
 
+test('READ-ALOUD: same-origin embedded readers reuse the parent neural runtime', () => {
+  const s = source();
+  assert.match(s, /var RUNTIME_BROKER_KEY = 'VEXTREME_READ_ALOUD_RUNTIME';/);
+  assert.match(s, /var RUNTIME_BROKER_SCHEMA = 'vextreme\.read-aloud-runtime\/v1';/);
+  const parentRuntime = extractFunction('parentNeuralRuntime');
+  assert.match(parentRuntime, /window\.parent === window/);
+  assert.match(parentRuntime, /window\.parent\[RUNTIME_BROKER_KEY\]/);
+  assert.match(parentRuntime, /runtime\.schemaVersion !== RUNTIME_BROKER_SCHEMA/);
+
+  const provider = s.slice(s.indexOf('var NeuralNarration ='), s.indexOf('var SystemNarration ='));
+  assert.match(provider, /parentRuntime\.request\(text, voice\)/);
+  assert.match(provider, /parentRuntime\.prepare\(\)/);
+  assert.match(provider, /request: request/);
+  assert.match(s, /window\[RUNTIME_BROKER_KEY\] = \{/);
+  assert.match(s, /schemaVersion: RUNTIME_BROKER_SCHEMA/);
+});
+
 test('READ-ALOUD: neural model preparation and inference live only in one Worker', () => {
   const s = source();
   const workerStart = s.indexOf('function kokoroWorkerMain()');
