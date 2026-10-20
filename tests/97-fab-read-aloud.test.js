@@ -85,7 +85,10 @@ test('READ-ALOUD: neural model preparation and inference live only in one Worker
   const pageProvider = s.slice(providerStart);
 
   assert.match(worker, /import\(KOKORO_MODULE_URL\)/);
-  assert.match(worker, /KokoroTTS\.from_pretrained\(KOKORO_MODEL_ID, \{ dtype: 'q8', device: 'wasm' \}\)/);
+  assert.match(worker, /requestAdapter\(\)/);
+  assert.match(worker, /\{ device: 'webgpu', dtype: 'fp32' \}/);
+  assert.match(worker, /\{ device: 'wasm', dtype: 'q8' \}/);
+  assert.match(worker, /type: 'runtime-fallback'/);
   assert.match(worker, /await tts\.generate\(job\.text, \{ voice: job\.voice, speed: 1 \}\)/);
   assert.match(worker, /var samples = raw && raw\.audio;/);
   assert.match(worker, /KOKORO_AUDIO_EMPTY/);
@@ -136,12 +139,16 @@ test('READ-ALOUD: neural speed can change live without restarting or regeneratin
     'moving the speed slider must not restart current narration');
 });
 
-test('READ-ALOUD: continuous reading stays bounded instead of synthesizing the whole page', () => {
+test('READ-ALOUD: continuous reading targets bounded seconds of ready neural audio', () => {
   const s = source();
-  assert.match(s, /var LOOKAHEAD = 2;/);
+  assert.match(s, /var MAX_PREFETCH_ITEMS = 6;/);
+  assert.match(s, /var READY_AUDIO_TARGET_SECONDS = 12;/);
   const prefetch = extractFunction('prefetchAhead');
-  assert.match(prefetch, /texts\.length < LOOKAHEAD/);
-  assert.match(prefetch, /NeuralNarration\.prefetch\(texts, voice\)/);
+  assert.match(prefetch, /texts\.length < MAX_PREFETCH_ITEMS/);
+  assert.match(prefetch, /NeuralNarration\.prefetch\(texts, voice, READY_AUDIO_TARGET_SECONDS, state\.settings\.rate\)/);
+  const provider = s.slice(s.indexOf('var NeuralNarration ='), s.indexOf('var SystemNarration ='));
+  assert.match(provider, /readySeconds < target/);
+  assert.match(provider, /audioDurationSeconds\(audio, rate\)/);
   assert.match(s, /var MAX_AUDIO_CACHE_ITEMS = 32;/);
 });
 
@@ -261,6 +268,18 @@ test('READ-ALOUD: Play and Pause are one stateful transport control', () => {
   const sync = extractFunction('syncPlayPauseControl');
   assert.match(sync, /common\.button\.read-aloud-pause/);
   assert.match(sync, /common\.button\.read-aloud-play/);
+});
+
+test('READ-ALOUD: user intent prewarms Kokoro without starting narration', () => {
+  const s = source();
+  const warm = extractFunction('prewarmSelectedVoice');
+  assert.match(warm, /NeuralNarration\.prepare\(\)/);
+  const orbHandler = s.match(/orb\.addEventListener\('click',[\s\S]*?\n    \}\);/);
+  assert.ok(orbHandler);
+  assert.match(orbHandler[0], /prewarmSelectedVoice\(\)/);
+  const voiceHandler = s.match(/voice\.addEventListener\('change',[\s\S]*?\n    \}\);/);
+  assert.ok(voiceHandler);
+  assert.match(voiceHandler[0], /isNeuralVoice\(selected\).*NeuralNarration\.prepare\(\)/);
 });
 
 test('READ-ALOUD: active voice changes invalidate stale system callbacks and restart with the selected voice', () => {

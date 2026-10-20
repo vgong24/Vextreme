@@ -405,7 +405,8 @@
   var SUPPRESS_EVENT = 'vextreme:read-aloud-suppress';
   var MAX_SYSTEM_VOICES = 8;
   var MAX_AUDIO_CACHE_ITEMS = 32;
-  var LOOKAHEAD = 2;
+  var MAX_PREFETCH_ITEMS = 6;
+  var READY_AUDIO_TARGET_SECONDS = 12;
   var READABLE_SELECTOR = 'h1,h2,h3,h4,h5,h6,p,li,blockquote,figcaption,pre,td,th';
 
   var KOKORO_VOICES = Object.freeze([
@@ -622,9 +623,25 @@
     var active = false;
     var generation = 0;
     var fatalError = null;
+    var runtimePromise = null;
 
     function message(error) {
       return error && error.message ? String(error.message) : String(error || 'KOKORO_WORKER_ERROR');
+    }
+
+    function preferredRuntime() {
+      if (runtimePromise) return runtimePromise;
+      runtimePromise = Promise.resolve().then(async function () {
+        try {
+          if (self.navigator && self.navigator.gpu &&
+              typeof self.navigator.gpu.requestAdapter === 'function') {
+            var adapter = await self.navigator.gpu.requestAdapter();
+            if (adapter) return { device: 'webgpu', dtype: 'fp32' };
+          }
+        } catch (error) {}
+        return { device: 'wasm', dtype: 'q8' };
+      });
+      return runtimePromise;
     }
 
     function ensureReady() {
@@ -632,8 +649,36 @@
       if (fatalError) return Promise.reject(fatalError);
       if (preparePromise) return preparePromise;
       self.postMessage({ type: 'preparing' });
-      preparePromise = import(KOKORO_MODULE_URL).then(function (module) {
-        return module.KokoroTTS.from_pretrained(KOKORO_MODEL_ID, { dtype: 'q8', device: 'wasm' });
+      preparePromise = import(KOKORO_MODULE_URL).then(async function (module) {
+        var runtime = await preferredRuntime();
+        try {
+          var ready = await module.KokoroTTS.from_pretrained(KOKORO_MODEL_ID, runtime);
+          self.postMessage({
+            type: 'runtime',
+            device: runtime.device,
+            dtype: runtime.dtype,
+            fallback: false
+          });
+          return ready;
+        } catch (error) {
+          if (runtime.device !== 'webgpu') throw error;
+          var fallback = { device: 'wasm', dtype: 'q8' };
+          runtimePromise = Promise.resolve(fallback);
+          self.postMessage({
+            type: 'runtime-fallback',
+            from: 'webgpu',
+            to: 'wasm',
+            message: message(error)
+          });
+          var readyFallback = await module.KokoroTTS.from_pretrained(KOKORO_MODEL_ID, fallback);
+          self.postMessage({
+            type: 'runtime',
+            device: fallback.device,
+            dtype: fallback.dtype,
+            fallback: true
+          });
+          return readyFallback;
+        }
       }).then(function (ready) {
         engine = ready;
         self.postMessage({ type: 'ready' });
@@ -694,6 +739,18 @@
         queue.length = 0;
         return;
       }
+      if (value.type === 'prepare') {
+        ensureReady().catch(function (error) {
+          fatalError = error;
+          self.postMessage({
+            type: 'error',
+            requestId: null,
+            generation: generation,
+            message: message(error)
+          });
+        });
+        return;
+      }
       if (value.type === 'generate') {
         if (fatalError) {
           self.postMessage({
@@ -716,6 +773,7 @@
     var workerUrl = null;
     var workerReady = false;
     var workerFailed = false;
+    var workerRuntime = null;
     var workerGeneration = 0;
     var requestSequence = 0;
     var pendingByRequest = new Map();
@@ -741,7 +799,9 @@
           window.Promise &&
           audioConstructor()
         ),
-        execution: 'worker-wasm-q8'
+        execution: workerRuntime
+          ? 'worker-' + workerRuntime.device + '-' + workerRuntime.dtype
+          : 'worker-auto-webgpu-wasm'
       };
     }
 
@@ -804,6 +864,19 @@
         var value = event.data || {};
         if (value.type === 'ready') { workerReady = true; return; }
         if (value.type === 'preparing') return;
+        if (value.type === 'runtime') {
+          workerRuntime = { device: value.device, dtype: value.dtype, fallback: !!value.fallback };
+          if (window.console && typeof window.console.info === 'function') {
+            window.console.info('[Vextreme Read Aloud] Kokoro runtime:', workerRuntime);
+          }
+          return;
+        }
+        if (value.type === 'runtime-fallback') {
+          if (window.console && typeof window.console.warn === 'function') {
+            window.console.warn('[Vextreme Read Aloud] WebGPU unavailable at model init; using WASM.', value.message || '');
+          }
+          return;
+        }
         if (value.type === 'audio') {
           var entry = pendingByRequest.get(value.requestId);
           if (!entry || entry.generation !== value.generation) return;
@@ -876,6 +949,12 @@
       return promise;
     }
 
+    function audioDurationSeconds(audio, rate) {
+      if (!audio || !audio.samples || !audio.sampleRate) return 0;
+      var sampleCount = audio.samples.byteLength / Float32Array.BYTES_PER_ELEMENT;
+      return (sampleCount / audio.sampleRate) / clampRate(rate);
+    }
+
     function audioBuffer(audio) {
       var samples = new Float32Array(audio.samples);
       var buffer = audioContext.createBuffer(1, samples.length, audio.sampleRate);
@@ -914,9 +993,25 @@
       }
     }
 
-    function prefetch(items, voice) {
+    function prepare() {
       if (!capability().available) return;
-      (items || []).forEach(function (text) { request(text, voice).catch(function () {}); });
+      try { ensureWorker().postMessage({ type: 'prepare' }); } catch (error) {}
+    }
+
+    function prefetch(items, voice, targetSeconds, rate) {
+      if (!capability().available) return;
+      var target = Math.max(0, Number(targetSeconds) || 0);
+      (async function () {
+        var readySeconds = 0;
+        for (var i = 0; i < (items || []).length && readySeconds < target; i += 1) {
+          try {
+            var audio = await request(items[i], voice);
+            readySeconds += audioDurationSeconds(audio, rate);
+          } catch (error) {
+            return;
+          }
+        }
+      }());
     }
 
     function setRate(rate) {
@@ -944,6 +1039,7 @@
 
     return {
       capability: capability,
+      prepare: prepare,
       speak: speak,
       prefetch: prefetch,
       setRate: setRate,
@@ -1105,16 +1201,20 @@
     populateVoices(normalized);
   }
 
+  function prewarmSelectedVoice() {
+    if (ui.voice && isNeuralVoice(ui.voice.value)) NeuralNarration.prepare();
+  }
+
   function prefetchAhead() {
     if (!ui.voice || !isNeuralVoice(ui.voice.value)) return;
     var voice = neuralVoiceId(ui.voice.value);
     var texts = [];
     var language = currentLanguage();
-    for (var i = state.index + 1; i < state.plan.length && texts.length < LOOKAHEAD; i += 1) {
+    for (var i = state.index + 1; i < state.plan.length && texts.length < MAX_PREFETCH_ITEMS; i += 1) {
       if (primaryLanguage(state.plan[i].language) !== primaryLanguage(language)) break;
       texts.push(state.plan[i].text);
     }
-    NeuralNarration.prefetch(texts, voice);
+    NeuralNarration.prefetch(texts, voice, READY_AUDIO_TARGET_SECONDS, state.settings.rate);
   }
 
   function showCurrent(item) {
@@ -1595,6 +1695,7 @@
       if (state.panelOpen) {
         ensureCatalog(currentLanguage());
         syncAccessibleLabels();
+        prewarmSelectedVoice();
       }
     });
 
@@ -1626,6 +1727,7 @@
       var selected = voice.value;
       var token = ++voiceSwitchGeneration;
       rememberVoice(lang, selected);
+      if (isNeuralVoice(selected)) NeuralNarration.prepare();
       if (state.mode === 'idle') return;
       stopProviders();
       setMode('playing');
