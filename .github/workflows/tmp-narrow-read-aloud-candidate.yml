@@ -88,9 +88,16 @@ jobs:
         run: |
           set -euo pipefail
           BASE='518bb4ea9e0e504c17699b8053a2195bc961999d'
+          mapfile -t PATHS < <(git diff --name-only "$BASE")
+          printf '%s\n' 'Candidate paths after narrowing:' "${PATHS[@]}"
+
           UNEXPECTED=()
-          while IFS= read -r path; do
+          DIST_COUNT=0
+          for path in "${PATHS[@]}"; do
             case "$path" in
+              dist/vextreme-*.js)
+                DIST_COUNT=$((DIST_COUNT + 1))
+                ;;
               data/terrain-map.json|\
               docs/architecture.md|\
               docs/architecture/17-fab-autoload.md|\
@@ -100,26 +107,26 @@ jobs:
               pages/terrain-map.html|\
               sw.js|\
               tests/97-fab-read-aloud.test.js|\
-              widgets/fab-read-aloud.js|\
-              dist/*)
+              widgets/fab-read-aloud.js)
                 ;;
               *)
                 UNEXPECTED+=("$path")
                 ;;
             esac
-          done < <(git diff --name-only "$BASE")
+          done
 
           if ((${#UNEXPECTED[@]})); then
             printf '%s\n' 'Unexpected paths remain:' "${UNEXPECTED[@]}" >&2
             exit 1
           fi
 
-          DIST_COUNT="$(git diff --name-only "$BASE" | grep -c '^dist/vextreme-.*\.js$')"
-          [ "$DIST_COUNT" -eq 95 ] || {
+          printf 'Generated God Script count: %s\n' "$DIST_COUNT"
+          if [ "$DIST_COUNT" -ne 95 ]; then
             printf 'Expected 95 generated God Scripts, found %s\n' "$DIST_COUNT" >&2
             exit 1
-          }
+          fi
 
+          MISSING=()
           for path in \
             widgets/fab-read-aloud.js \
             tests/97-fab-read-aloud.test.js \
@@ -131,11 +138,14 @@ jobs:
             lib/vextreme.js \
             pages/terrain-map.html \
             sw.js; do
-            git diff --quiet "$BASE" -- "$path" && {
-              printf 'Expected changed path is unchanged: %s\n' "$path" >&2
-              exit 1
-            }
+            if git diff --quiet "$BASE" -- "$path"; then
+              MISSING+=("$path")
+            fi
           done
+          if ((${#MISSING[@]})); then
+            printf '%s\n' 'Expected changed paths are unchanged:' "${MISSING[@]}" >&2
+            exit 1
+          fi
 
       - name: Run focused and whole-repository proof
         run: |
