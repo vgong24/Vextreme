@@ -61,18 +61,23 @@
       '  position: fixed;',
       '  top: 16px;',
       '  right: 16px;',
-      '  z-index: 9998;', // one below any orb's own popup (e.g. the lang wheel) so it never occludes them
-      '  display: flex;',
-      '  align-items: flex-start;',
-      '  gap: 8px;',
+      '  z-index: 9998;',
+      '  display: grid;',
+      '  grid-template-columns: minmax(0, auto) 44px;',
+      '  grid-template-rows: 44px auto;',
+      '  column-gap: 8px;',
+      '  row-gap: 8px;',
+      '  align-items: start;',
+      '  justify-items: end;',
       '  font-family: inherit;',
       '}',
       '#vex-spiral-trigger {',
+      '  grid-column: 2;',
+      '  grid-row: 1;',
       '  width: 44px;',
       '  height: 44px;',
       '  border-radius: 50%;',
       '  border: none;',
-      '  flex: 0 0 auto;',
       '  background: rgba(255,255,255,0.18);',
       '  backdrop-filter: blur(6px);',
       '  -webkit-backdrop-filter: blur(6px);',
@@ -91,27 +96,37 @@
       '  top: auto;',
       '  right: auto;',
       '  z-index: 1;',
-      '  align-items: center;',
-      '  flex-direction: row-reverse;',
       '}',
       '#vex-spiral-fab.vex-spiral-fab--nav #vex-spiral-trigger {',
       '  color: var(--stone, #1c1917);',
       '  background: var(--ember-bg, rgba(255,255,255,0.18));',
       '  border: 1px solid var(--border, rgba(0,0,0,0.08));',
       '}',
-      '#vex-spiral-fab.vex-spiral-fab--nav #vex-spiral-group {',
-      '  flex-wrap: nowrap;',
-      '}',
       '#vex-spiral-trigger:hover { background: rgba(255,255,255,0.32); }',
       '#vex-spiral-trigger.open { transform: rotate(90deg); }',
-      '#vex-spiral-group {',
-      '  display: none;',
+      '#vex-spiral-group { display: none; }',
+      '#vex-spiral-group.open { display: contents; }',
+      '#vex-spiral-primary {',
+      '  grid-column: 1;',
+      '  grid-row: 1;',
+      '  display: flex;',
+      '  align-items: center;',
+      '  justify-content: flex-end;',
+      '  gap: 8px;',
+      '  min-width: 0;',
+      '  max-width: min(62vw, 420px);',
+      '  overflow-x: auto;',
+      '  scrollbar-width: none;',
+      '}',
+      '#vex-spiral-primary::-webkit-scrollbar { display: none; }',
+      '#vex-spiral-secondary {',
+      '  grid-column: 2;',
+      '  grid-row: 2;',
+      '  display: flex;',
+      '  flex-direction: column;',
       '  align-items: center;',
       '  gap: 8px;',
-      '  flex-wrap: wrap;',
-      '  max-width: 220px;',
       '}',
-      '#vex-spiral-group.open { display: flex; }',
     ].join('\n');
 
     var style = document.createElement('style');
@@ -134,6 +149,30 @@
     var group = document.createElement('div');
     group.id = 'vex-spiral-group';
 
+    var primary = document.createElement('div');
+    primary.id = 'vex-spiral-primary';
+    primary.setAttribute('data-vex-spiral-lane', 'primary');
+
+    var secondary = document.createElement('div');
+    secondary.id = 'vex-spiral-secondary';
+    secondary.setAttribute('data-vex-spiral-lane', 'secondary');
+
+    group.appendChild(primary);
+    group.appendChild(secondary);
+
+    function routeChild(node) {
+      if (!node || node === primary || node === secondary || node.nodeType !== 1) return;
+      var lane = node.getAttribute('data-vex-spiral-axis') === 'secondary' ? secondary : primary;
+      lane.appendChild(node);
+    }
+
+    var laneObserver = new MutationObserver(function (records) {
+      records.forEach(function (record) {
+        Array.from(record.addedNodes || []).forEach(routeChild);
+      });
+    });
+    laneObserver.observe(group, { childList: true });
+
     trigger.addEventListener('click', function (e) {
       e.stopPropagation();
       var open = group.classList.toggle('open');
@@ -141,8 +180,6 @@
       trigger.setAttribute('aria-expanded', String(open));
     });
 
-    // Click anywhere outside the group (and not on the trigger) closes it —
-    // same convention widgets/fab-lang.js's own wheel already uses.
     document.addEventListener('click', function (e) {
       if (!group.classList.contains('open')) return;
       if (group.contains(e.target) || trigger.contains(e.target)) return;

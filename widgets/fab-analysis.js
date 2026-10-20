@@ -377,6 +377,7 @@
 
     var container = document.createElement('div');
     container.id = 'vex-analysis-fab';
+    container.setAttribute('data-vex-spiral-axis', 'secondary');
 
     var btn = document.createElement('button');
     btn.setAttribute('aria-label', 'Analysis mode — search strings, coverage, and pages');
