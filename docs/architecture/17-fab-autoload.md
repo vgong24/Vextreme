@@ -320,4 +320,41 @@ surface. Closing the reader restores Terrain's owner. This prevents two independ
 speech controls from competing over one human reading journey while preserving standalone
 Read Aloud when the embedded document is opened directly.
 
+
+## Addendum 5 (2026-10-19): the Spiral has two semantic expansion axes
+
+Lived use of the site-wide Read Aloud rollout exposed a geometry problem that the
+single flexible group could not express cleanly. Human-facing controls such as Read
+Aloud, language, theme, and map belong to the primary interaction row. Analysis/Search
+is a diagnostic utility; letting it wrap opportunistically under whichever primary orb
+happened to precede it made the Spiral feel accidental rather than intentional.
+
+The Spiral now expands from the same trigger in two directions:
+
+```text
+                         primary interaction
+                    ←  Read Aloud · Lang · Theme · Map
+                  🌀
+                  ↓
+                  Analysis / Search
+                  secondary utility axis
+```
+
+The owner still does not know feature names. Existing children appended to
+`#vex-spiral-group` route to the horizontal primary lane by default. A child opts into
+the vertical utility lane only by declaring:
+
+```html
+data-vex-spiral-axis="secondary"
+```
+
+Today Analysis/Search is the first such child. This preserves the extensibility reason
+the Spiral exists: new features own their own meaning and only declare which interaction
+axis they belong to; `widgets/vex-fab.js` owns geometry, not a central feature switch.
+
+The same lived pass also collapsed Read Aloud's separate Play and Pause buttons into one
+stateful transport control. Voice changes during active reading invalidate stale Web
+Speech callbacks before restarting the current bounded block with the newly selected
+voice, preventing a cancelled utterance from stopping or advancing its replacement.
+
 <!-- [VXG RealForever] -->

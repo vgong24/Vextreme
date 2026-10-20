@@ -73,6 +73,13 @@ test('READER-NARRATION-OWNERSHIP: page-local speech transport UI is removed', ()
   }
 });
 
+test('READER-NARRATION-OWNERSHIP: transcript viewport hands vertical scroll back to the parent at its boundaries', () => {
+  const page = readPage();
+  assert.match(page, /\.rs-source-window\{[^}]*overscroll-behavior-x:contain;overscroll-behavior-y:auto;/);
+  assert.doesNotMatch(page, /\.rs-source-window\{[^}]*overscroll-behavior:contain;/,
+    'vertical wheel/trackpad momentum must not be trapped inside the bounded transcript viewport');
+});
+
 test('READER-NARRATION-OWNERSHIP: record-specific auto-scroll remains local and functional in shape', () => {
   const page = readPage();
   const script = inlineReaderScript(page);

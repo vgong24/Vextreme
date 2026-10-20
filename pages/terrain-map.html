@@ -929,8 +929,11 @@
 (function () {
   'use strict';
 
-  var BASE = '/Vextreme';
-  var TERRAIN_URL = BASE + '/data/terrain-map.json';
+  var DEPLOYMENT_ROOT = new URL('../', window.location.href);
+  var BASE = DEPLOYMENT_ROOT.pathname.replace(/\/$/, '');
+  var TERRAIN_URL = new URL('data/terrain-map.json', DEPLOYMENT_ROOT).href;
+  var CANONICAL_SITE_ORIGIN = 'https://vgong24.github.io';
+  var CANONICAL_SITE_BASE = '/Vextreme/';
 
   var STATUS_TEXT = { good: 'Healthy', warning: 'Tested, open item(s)', critical: 'Untested, open item(s)' };
   var ICON = { good: '●', warning: '▲', critical: '✗' };
@@ -1046,10 +1049,28 @@
     });
   }
 
-  function languageAwareUrl(url, lang) {
+  function deploymentAwareUrl(url) {
     if (!url || url === 'about:blank') return url;
     try {
       var target = new URL(url, window.location.href);
+      var canonicalSite = target.origin === CANONICAL_SITE_ORIGIN &&
+        target.pathname.indexOf(CANONICAL_SITE_BASE) === 0;
+      var canonicalPath = target.origin === window.location.origin &&
+        target.pathname.indexOf(CANONICAL_SITE_BASE) === 0;
+      if ((canonicalSite || canonicalPath) && DEPLOYMENT_ROOT.pathname !== CANONICAL_SITE_BASE) {
+        var relative = target.pathname.slice(CANONICAL_SITE_BASE.length) + target.search + target.hash;
+        return new URL(relative, DEPLOYMENT_ROOT).href;
+      }
+      return target.href;
+    } catch (e) {
+      return url;
+    }
+  }
+
+  function languageAwareUrl(url, lang) {
+    if (!url || url === 'about:blank') return url;
+    try {
+      var target = new URL(deploymentAwareUrl(url), window.location.href);
       if (target.origin !== window.location.origin) return target.href;
       if (!lang || lang === 'en') target.searchParams.delete('lang');
       else target.searchParams.set('lang', lang);
@@ -3940,6 +3961,6 @@ window.VEXTREME_OVERRIDE = {
   }]
 };
 </script>
-<script src="../lib/shell.js?v=14"></script>
+<script src="../lib/shell.js?v=15"></script>
 </body>
 </html>

@@ -57,6 +57,10 @@
  *       - lib/vextreme.js shell FAB order
  *       - tests/08-build-vextreme.test.js
  *       - tests/41-vextreme-fab-autoload.test.js
+ *     transport toggle / active voice switching changes:
+ *       - tests/97-fab-read-aloud.test.js
+ *       - browser-lived acceptance while narration is active
+ *       - SystemNarration generation/cancellation semantics here
  * LATTICE:END
  */
 
@@ -70,9 +74,12 @@
   var SETTINGS_KEY = 'vex-read-aloud-settings/v1';
   var LANG_CHANGE_EVENT = 'vextreme:languagechange';
   var SUPPRESS_EVENT = 'vextreme:read-aloud-suppress';
+  var RUNTIME_BROKER_KEY = 'VEXTREME_READ_ALOUD_RUNTIME';
+  var RUNTIME_BROKER_SCHEMA = 'vextreme.read-aloud-runtime/v1';
   var MAX_SYSTEM_VOICES = 8;
   var MAX_AUDIO_CACHE_ITEMS = 32;
-  var LOOKAHEAD = 2;
+  var MAX_PREFETCH_ITEMS = 6;
+  var READY_AUDIO_TARGET_SECONDS = 12;
   var READABLE_SELECTOR = 'h1,h2,h3,h4,h5,h6,p,li,blockquote,figcaption,pre,td,th';
 
   var KOKORO_VOICES = Object.freeze([
@@ -101,6 +108,7 @@
 
   var ui = {};
   var pickHandlers = null;
+  var voiceSwitchGeneration = 0;
 
   function clampRate(value) {
     var n = Number(value);
@@ -181,7 +189,6 @@
     var limit = maxChars || 360;
     var sentences = clean.match(/[^.!?]+(?:[.!?]+(?:["'’”\)\]]+)?|$)/g) || [clean];
     var out = [];
-    var buffer = '';
 
     function pushWords(value) {
       var words = value.split(/\s+/);
@@ -198,23 +205,17 @@
       if (chunk) out.push(chunk);
     }
 
+    // Keep ordinary sentences as independent synthesis/cache units. While one
+    // sentence plays, the existing bounded lookahead can prepare the next two.
     sentences.forEach(function (sentence) {
       sentence = sentence.trim();
       if (!sentence) return;
       if (sentence.length > limit) {
-        if (buffer) { out.push(buffer); buffer = ''; }
         pushWords(sentence);
         return;
       }
-      var next = buffer ? buffer + ' ' + sentence : sentence;
-      if (next.length > limit) {
-        if (buffer) out.push(buffer);
-        buffer = sentence;
-      } else {
-        buffer = next;
-      }
+      out.push(sentence);
     });
-    if (buffer) out.push(buffer);
     return out;
   }
 
@@ -295,9 +296,25 @@
     var active = false;
     var generation = 0;
     var fatalError = null;
+    var runtimePromise = null;
 
     function message(error) {
       return error && error.message ? String(error.message) : String(error || 'KOKORO_WORKER_ERROR');
+    }
+
+    function preferredRuntime() {
+      if (runtimePromise) return runtimePromise;
+      runtimePromise = Promise.resolve().then(async function () {
+        try {
+          if (self.navigator && self.navigator.gpu &&
+              typeof self.navigator.gpu.requestAdapter === 'function') {
+            var adapter = await self.navigator.gpu.requestAdapter();
+            if (adapter) return { device: 'webgpu', dtype: 'fp32' };
+          }
+        } catch (error) {}
+        return { device: 'wasm', dtype: 'q8' };
+      });
+      return runtimePromise;
     }
 
     function ensureReady() {
@@ -305,8 +322,36 @@
       if (fatalError) return Promise.reject(fatalError);
       if (preparePromise) return preparePromise;
       self.postMessage({ type: 'preparing' });
-      preparePromise = import(KOKORO_MODULE_URL).then(function (module) {
-        return module.KokoroTTS.from_pretrained(KOKORO_MODEL_ID, { dtype: 'q8', device: 'wasm' });
+      preparePromise = import(KOKORO_MODULE_URL).then(async function (module) {
+        var runtime = await preferredRuntime();
+        try {
+          var ready = await module.KokoroTTS.from_pretrained(KOKORO_MODEL_ID, runtime);
+          self.postMessage({
+            type: 'runtime',
+            device: runtime.device,
+            dtype: runtime.dtype,
+            fallback: false
+          });
+          return ready;
+        } catch (error) {
+          if (runtime.device !== 'webgpu') throw error;
+          var fallback = { device: 'wasm', dtype: 'q8' };
+          runtimePromise = Promise.resolve(fallback);
+          self.postMessage({
+            type: 'runtime-fallback',
+            from: 'webgpu',
+            to: 'wasm',
+            message: message(error)
+          });
+          var readyFallback = await module.KokoroTTS.from_pretrained(KOKORO_MODEL_ID, fallback);
+          self.postMessage({
+            type: 'runtime',
+            device: fallback.device,
+            dtype: fallback.dtype,
+            fallback: true
+          });
+          return readyFallback;
+        }
       }).then(function (ready) {
         engine = ready;
         self.postMessage({ type: 'ready' });
@@ -331,7 +376,11 @@
             if (job.generation !== generation) continue;
             var raw = await tts.generate(job.text, { voice: job.voice, speed: 1 });
             if (job.generation !== generation) continue;
-            var samples = raw.data;
+            // kokoro-js@1.2.1 returns Transformers.js RawAudio { audio, sampling_rate }.
+            var samples = raw && raw.audio;
+            if (!samples || typeof samples.length !== 'number' || samples.length === 0) {
+              throw new Error('KOKORO_AUDIO_EMPTY');
+            }
             self.postMessage({
               type: 'audio',
               requestId: job.requestId,
@@ -363,6 +412,18 @@
         queue.length = 0;
         return;
       }
+      if (value.type === 'prepare') {
+        ensureReady().catch(function (error) {
+          fatalError = error;
+          self.postMessage({
+            type: 'error',
+            requestId: null,
+            generation: generation,
+            message: message(error)
+          });
+        });
+        return;
+      }
       if (value.type === 'generate') {
         if (fatalError) {
           self.postMessage({
@@ -380,11 +441,24 @@
     };
   }
 
+  function parentNeuralRuntime() {
+    if (window.parent === window) return null;
+    try {
+      var runtime = window.parent[RUNTIME_BROKER_KEY];
+      if (!runtime || runtime.schemaVersion !== RUNTIME_BROKER_SCHEMA) return null;
+      if (typeof runtime.request !== 'function' || typeof runtime.prepare !== 'function') return null;
+      return runtime;
+    } catch (e) {
+      return null;
+    }
+  }
+
   var NeuralNarration = (function () {
     var worker = null;
     var workerUrl = null;
     var workerReady = false;
     var workerFailed = false;
+    var workerRuntime = null;
     var workerGeneration = 0;
     var requestSequence = 0;
     var pendingByRequest = new Map();
@@ -399,6 +473,18 @@
     }
 
     function capability() {
+      var parentRuntime = parentNeuralRuntime();
+      if (parentRuntime && typeof parentRuntime.capability === 'function') {
+        try {
+          var parentCapability = parentRuntime.capability();
+          if (parentCapability && parentCapability.available) {
+            return {
+              available: true,
+              execution: 'parent-broker:' + String(parentCapability.execution || 'neural')
+            };
+          }
+        } catch (e) {}
+      }
       return {
         available: !!(
           !workerFailed &&
@@ -410,7 +496,9 @@
           window.Promise &&
           audioConstructor()
         ),
-        execution: 'worker-wasm-q8'
+        execution: workerRuntime
+          ? 'worker-' + workerRuntime.device + '-' + workerRuntime.dtype
+          : 'worker-auto-webgpu-wasm'
       };
     }
 
@@ -473,6 +561,19 @@
         var value = event.data || {};
         if (value.type === 'ready') { workerReady = true; return; }
         if (value.type === 'preparing') return;
+        if (value.type === 'runtime') {
+          workerRuntime = { device: value.device, dtype: value.dtype, fallback: !!value.fallback };
+          if (window.console && typeof window.console.info === 'function') {
+            window.console.info('[Vextreme Read Aloud] Kokoro runtime:', workerRuntime);
+          }
+          return;
+        }
+        if (value.type === 'runtime-fallback') {
+          if (window.console && typeof window.console.warn === 'function') {
+            window.console.warn('[Vextreme Read Aloud] WebGPU unavailable at model init; using WASM.', value.message || '');
+          }
+          return;
+        }
         if (value.type === 'audio') {
           var entry = pendingByRequest.get(value.requestId);
           if (!entry || entry.generation !== value.generation) return;
@@ -512,6 +613,8 @@
     }
 
     function request(text, voice) {
+      var parentRuntime = parentNeuralRuntime();
+      if (parentRuntime) return parentRuntime.request(text, voice);
       var id = key(text, voice);
       var cached = getCached(id);
       if (cached) return Promise.resolve(cached);
@@ -543,6 +646,12 @@
         voice: voice
       });
       return promise;
+    }
+
+    function audioDurationSeconds(audio, rate) {
+      if (!audio || !audio.samples || !audio.sampleRate) return 0;
+      var sampleCount = audio.samples.byteLength / Float32Array.BYTES_PER_ELEMENT;
+      return (sampleCount / audio.sampleRate) / clampRate(rate);
     }
 
     function audioBuffer(audio) {
@@ -583,9 +692,30 @@
       }
     }
 
-    function prefetch(items, voice) {
+    function prepare() {
+      var parentRuntime = parentNeuralRuntime();
+      if (parentRuntime) {
+        try { parentRuntime.prepare(); } catch (error) {}
+        return;
+      }
       if (!capability().available) return;
-      (items || []).forEach(function (text) { request(text, voice).catch(function () {}); });
+      try { ensureWorker().postMessage({ type: 'prepare' }); } catch (error) {}
+    }
+
+    function prefetch(items, voice, targetSeconds, rate) {
+      if (!capability().available) return;
+      var target = Math.max(0, Number(targetSeconds) || 0);
+      (async function () {
+        var readySeconds = 0;
+        for (var i = 0; i < (items || []).length && readySeconds < target; i += 1) {
+          try {
+            var audio = await request(items[i], voice);
+            readySeconds += audioDurationSeconds(audio, rate);
+          } catch (error) {
+            return;
+          }
+        }
+      }());
     }
 
     function setRate(rate) {
@@ -613,6 +743,8 @@
 
     return {
       capability: capability,
+      prepare: prepare,
+      request: request,
       speak: speak,
       prefetch: prefetch,
       setRate: setRate,
@@ -622,30 +754,50 @@
     };
   }());
 
+  // Same-origin embedded readers may reuse this document's already-warm neural
+  // provider. Terrain keeps its parent document alive while swapping reader
+  // iframes, so child pages can cross navigation boundaries without loading a
+  // second Kokoro model. Standalone documents remain self-contained.
+  try {
+    window[RUNTIME_BROKER_KEY] = {
+      schemaVersion: RUNTIME_BROKER_SCHEMA,
+      capability: NeuralNarration.capability,
+      prepare: NeuralNarration.prepare,
+      request: NeuralNarration.request
+    };
+  } catch (e) {}
+
   var SystemNarration = {
     active: null,
-    speak: function (text, language, rate, callbacks) {
+    generation: 0,
+    speak: function (text, language, rate, callbacks, voiceOverride) {
       callbacks = callbacks || {};
       if (!('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window)) {
         if (callbacks.onError) callbacks.onError(new Error('SYSTEM_SPEECH_UNAVAILABLE'));
         return;
       }
+      var token = ++this.generation;
       var utterance = new SpeechSynthesisUtterance(text);
       this.active = utterance;
       utterance.rate = clampRate(rate);
-      var voice = selectedSystemVoice(language);
+      var voice = voiceOverride || selectedSystemVoice(language);
       if (voice) {
         utterance.voice = voice;
         if (voice.lang) utterance.lang = voice.lang;
       } else {
         utterance.lang = language;
       }
-      utterance.onstart = callbacks.onStart || null;
+      utterance.onstart = function () {
+        if (token !== SystemNarration.generation || SystemNarration.active !== utterance) return;
+        if (callbacks.onStart) callbacks.onStart();
+      };
       utterance.onend = function () {
+        if (token !== SystemNarration.generation || SystemNarration.active !== utterance) return;
         SystemNarration.active = null;
         if (callbacks.onEnd) callbacks.onEnd();
       };
       utterance.onerror = function (event) {
+        if (token !== SystemNarration.generation || SystemNarration.active !== utterance) return;
         SystemNarration.active = null;
         if (callbacks.onError) callbacks.onError(event);
       };
@@ -654,6 +806,7 @@
     pause: function () { if ('speechSynthesis' in window) window.speechSynthesis.pause(); },
     resume: function () { if ('speechSynthesis' in window) window.speechSynthesis.resume(); },
     cancel: function () {
+      this.generation += 1;
       this.active = null;
       if ('speechSynthesis' in window) window.speechSynthesis.cancel();
     }
@@ -735,10 +888,23 @@
     if (source) ui.status.textContent = source.textContent;
   }
 
+  function syncPlayPauseControl() {
+    if (!ui.playPause || !ui.playPauseLabel || !ui.playPauseIcon) return;
+    var pause = state.mode === 'playing';
+    var key = pause ? 'common.button.read-aloud-pause' : 'common.button.read-aloud-play';
+    var fallback = pause ? 'Pause' : 'Play';
+    var copy = document.querySelector('.vex-read-aloud-copy-bank [data-vex-read-aloud-copy="' + key + '"]');
+    ui.playPauseIcon.nodeValue = pause ? 'Ⅱ' : '▶';
+    ui.playPauseLabel.setAttribute('data-i18n', key);
+    ui.playPauseLabel.setAttribute('data-vex-read-aloud-copy', key);
+    ui.playPauseLabel.textContent = copy ? copy.textContent : fallback;
+    ui.playPause.disabled = state.mode === 'preparing';
+    ui.playPause.setAttribute('aria-label', ui.playPauseLabel.textContent);
+  }
+
   function setMode(mode) {
     state.mode = mode;
-    if (ui.play) ui.play.disabled = mode === 'playing' || mode === 'preparing';
-    if (ui.pause) ui.pause.disabled = mode !== 'playing';
+    syncPlayPauseControl();
   }
 
   function currentLanguage() {
@@ -753,16 +919,20 @@
     populateVoices(normalized);
   }
 
+  function prewarmSelectedVoice() {
+    if (ui.voice && isNeuralVoice(ui.voice.value)) NeuralNarration.prepare();
+  }
+
   function prefetchAhead() {
     if (!ui.voice || !isNeuralVoice(ui.voice.value)) return;
     var voice = neuralVoiceId(ui.voice.value);
     var texts = [];
     var language = currentLanguage();
-    for (var i = state.index + 1; i < state.plan.length && texts.length < LOOKAHEAD; i += 1) {
+    for (var i = state.index + 1; i < state.plan.length && texts.length < MAX_PREFETCH_ITEMS; i += 1) {
       if (primaryLanguage(state.plan[i].language) !== primaryLanguage(language)) break;
       texts.push(state.plan[i].text);
     }
-    NeuralNarration.prefetch(texts, voice);
+    NeuralNarration.prefetch(texts, voice, READY_AUDIO_TARGET_SECONDS, state.settings.rate);
   }
 
   function showCurrent(item) {
@@ -798,21 +968,23 @@
       speakCurrent();
     }
 
-    function fallbackToSystem() {
+    function fallbackToSystem(error) {
       var voices = matchingSystemVoices(item.language);
       if (!voices.length) {
         setMode('idle');
         setStatusKey('common.status.read-aloud-none');
         return;
       }
-      ui.voice.value = systemVoiceRef(voices[0]);
-      rememberVoice(item.language, ui.voice.value);
+      var fallbackVoice = voices[0];
+      if (window.console && typeof window.console.warn === 'function') {
+        window.console.warn('[Vextreme Read Aloud] Kokoro unavailable; using transient system fallback.', error);
+      }
       setStatusKey('common.status.read-aloud-fallback');
       SystemNarration.speak(item.text, item.language, rate, {
         onStart: function () { setMode('playing'); },
         onEnd: onEnd,
         onError: finishReading
-      });
+      }, fallbackVoice);
     }
 
     if (isNeuralVoice(chosen) && primaryLanguage(item.language) === 'en') {
@@ -1046,8 +1218,10 @@
 
   function buildCopyBank() {
     var bank = document.createElement('div');
-    bank.className = 'vex-sr-only';
+    bank.className = 'vex-sr-only vex-read-aloud-copy-bank';
     [
+      ['common.button.read-aloud-play', 'Play'],
+      ['common.button.read-aloud-pause', 'Pause'],
       ['common.status.read-aloud-pick', 'Choose where reading should begin.'],
       ['common.status.read-aloud-preparing', 'Preparing high-quality voice…'],
       ['common.status.read-aloud-reading', 'Reading…'],
@@ -1065,6 +1239,7 @@
     if (ui.close && ui.closeLabel) ui.close.setAttribute('aria-label', ui.closeLabel.textContent);
     if (ui.voice && ui.voiceLabel) ui.voice.setAttribute('aria-label', ui.voiceLabel.textContent);
     if (ui.rate && ui.speedLabel) ui.rate.setAttribute('aria-label', ui.speedLabel.textContent);
+    syncPlayPauseControl();
   }
 
   function injectStyles() {
@@ -1133,22 +1308,21 @@
     function iconButton(icon, key, fallback) {
       var button = document.createElement('button');
       button.type = 'button';
-      button.textContent = icon;
+      var iconNode = document.createTextNode(icon);
+      button.appendChild(iconNode);
       var label = makeText('span', key, fallback, 'vex-sr-only');
       button.appendChild(label);
-      return { button: button, label: label };
+      return { button: button, label: label, iconNode: iconNode };
     }
 
     var previous = iconButton('⏮', 'common.button.read-aloud-previous', 'Previous');
-    var play = iconButton('▶', 'common.button.read-aloud-play', 'Play');
-    var pause = iconButton('Ⅱ', 'common.button.read-aloud-pause', 'Pause');
+    var playPause = iconButton('▶', 'common.button.read-aloud-play', 'Play');
     var next = iconButton('⏭', 'common.button.read-aloud-next', 'Next');
     var stop = iconButton('■', 'common.button.read-aloud-stop', 'Stop');
 
     transport.appendChild(start);
     transport.appendChild(previous.button);
-    transport.appendChild(play.button);
-    transport.appendChild(pause.button);
+    transport.appendChild(playPause.button);
     transport.appendChild(next.button);
     transport.appendChild(stop.button);
 
@@ -1205,8 +1379,9 @@
       closeLabel: closeLabel,
       start: start,
       previous: previous.button,
-      play: play.button,
-      pause: pause.button,
+      playPause: playPause.button,
+      playPauseLabel: playPause.label,
+      playPauseIcon: playPause.iconNode,
       next: next.button,
       stop: stop.button,
       voice: voice,
@@ -1238,6 +1413,7 @@
       if (state.panelOpen) {
         ensureCatalog(currentLanguage());
         syncAccessibleLabels();
+        prewarmSelectedVoice();
       }
     });
 
@@ -1251,14 +1427,14 @@
     start.addEventListener('click', enterPickMode);
     previous.button.addEventListener('click', function () { jumpBlock(-1); });
     next.button.addEventListener('click', function () { jumpBlock(1); });
-    play.button.addEventListener('click', function () {
-      if (state.mode === 'paused') resumeReading();
+    playPause.button.addEventListener('click', function () {
+      if (state.mode === 'playing') pauseReading();
+      else if (state.mode === 'paused') resumeReading();
       else if (state.plan.length && state.index < state.plan.length) {
         setMode('playing');
         speakCurrent();
       } else startFromViewport();
     });
-    pause.button.addEventListener('click', pauseReading);
     stop.button.addEventListener('click', function () {
       stopReading(true);
       setStatusKey('common.status.read-aloud-pick');
@@ -1266,12 +1442,19 @@
 
     voice.addEventListener('change', function () {
       var lang = currentLanguage();
-      rememberVoice(lang, voice.value);
-      if (state.mode !== 'idle') {
-        stopProviders();
-        setMode('playing');
+      var selected = voice.value;
+      var token = ++voiceSwitchGeneration;
+      rememberVoice(lang, selected);
+      if (isNeuralVoice(selected)) NeuralNarration.prepare();
+      if (state.mode === 'idle') return;
+      stopProviders();
+      setMode('playing');
+      window.setTimeout(function () {
+        if (token !== voiceSwitchGeneration || state.mode === 'idle') return;
+        var values = Array.from(voice.options).map(function (option) { return option.value; });
+        if (values.indexOf(selected) >= 0) voice.value = selected;
         speakCurrent();
-      }
+      }, 0);
     });
 
     rate.addEventListener('input', function () {

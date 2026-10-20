@@ -75,6 +75,23 @@ test('READ-ALOUD: system voice inventory is language-filtered and capped at eigh
   assert.match(fn, /\.slice\(0, MAX_SYSTEM_VOICES\)/);
 });
 
+test('READ-ALOUD: same-origin embedded readers reuse the parent neural runtime', () => {
+  const s = source();
+  assert.match(s, /var RUNTIME_BROKER_KEY = 'VEXTREME_READ_ALOUD_RUNTIME';/);
+  assert.match(s, /var RUNTIME_BROKER_SCHEMA = 'vextreme\.read-aloud-runtime\/v1';/);
+  const parentRuntime = extractFunction('parentNeuralRuntime');
+  assert.match(parentRuntime, /window\.parent === window/);
+  assert.match(parentRuntime, /window\.parent\[RUNTIME_BROKER_KEY\]/);
+  assert.match(parentRuntime, /runtime\.schemaVersion !== RUNTIME_BROKER_SCHEMA/);
+
+  const provider = s.slice(s.indexOf('var NeuralNarration ='), s.indexOf('var SystemNarration ='));
+  assert.match(provider, /parentRuntime\.request\(text, voice\)/);
+  assert.match(provider, /parentRuntime\.prepare\(\)/);
+  assert.match(provider, /request: request/);
+  assert.match(s, /window\[RUNTIME_BROKER_KEY\] = \{/);
+  assert.match(s, /schemaVersion: RUNTIME_BROKER_SCHEMA/);
+});
+
 test('READ-ALOUD: neural model preparation and inference live only in one Worker', () => {
   const s = source();
   const workerStart = s.indexOf('function kokoroWorkerMain()');
@@ -85,13 +102,38 @@ test('READ-ALOUD: neural model preparation and inference live only in one Worker
   const pageProvider = s.slice(providerStart);
 
   assert.match(worker, /import\(KOKORO_MODULE_URL\)/);
-  assert.match(worker, /KokoroTTS\.from_pretrained\(KOKORO_MODEL_ID, \{ dtype: 'q8', device: 'wasm' \}\)/);
+  assert.match(worker, /requestAdapter\(\)/);
+  assert.match(worker, /\{ device: 'webgpu', dtype: 'fp32' \}/);
+  assert.match(worker, /\{ device: 'wasm', dtype: 'q8' \}/);
+  assert.match(worker, /type: 'runtime-fallback'/);
   assert.match(worker, /await tts\.generate\(job\.text, \{ voice: job\.voice, speed: 1 \}\)/);
-  assert.match(worker, /var samples = raw\.data;/);
+  assert.match(worker, /var samples = raw && raw\.audio;/);
+  assert.match(worker, /KOKORO_AUDIO_EMPTY/);
+  assert.doesNotMatch(worker, /raw\.data/);
   assert.match(worker, /\[samples\.buffer\]/);
 
   assert.equal((pageProvider.match(/new Worker\(/g) || []).length, 1);
   assert.doesNotMatch(pageProvider, /from_pretrained|tts\.generate|raw\.toBlob|decodeAudioData/);
+});
+
+test('READ-ALOUD: ordinary sentences are independent neural synthesis units', () => {
+  const s = source();
+  const start = s.indexOf('function splitText(');
+  const end = s.indexOf('\n  function buildPlan(', start);
+  assert.notEqual(start, -1, 'splitText() must exist');
+  assert.notEqual(end, -1, 'buildPlan() must follow splitText()');
+  const fn = s.slice(start, end).trim();
+  const splitText = new Function(fn + '\nreturn splitText;')();
+
+  assert.deepEqual(
+    splitText('First sentence. Second sentence? Third sentence!'),
+    ['First sentence.', 'Second sentence?', 'Third sentence!'],
+  );
+
+  const long = 'alpha beta gamma delta epsilon zeta eta theta iota kappa lambda mu.';
+  const pieces = splitText(long, 24);
+  assert.ok(pieces.length > 1, 'one unusually long sentence should still be bounded');
+  assert.ok(pieces.every((piece) => piece.length <= 24));
 });
 
 test('READ-ALOUD: neural audio cache is independent of playback speed', () => {
@@ -119,12 +161,16 @@ test('READ-ALOUD: neural speed can change live without restarting or regeneratin
     'moving the speed slider must not restart current narration');
 });
 
-test('READ-ALOUD: continuous reading stays bounded instead of synthesizing the whole page', () => {
+test('READ-ALOUD: continuous reading targets bounded seconds of ready neural audio', () => {
   const s = source();
-  assert.match(s, /var LOOKAHEAD = 2;/);
+  assert.match(s, /var MAX_PREFETCH_ITEMS = 6;/);
+  assert.match(s, /var READY_AUDIO_TARGET_SECONDS = 12;/);
   const prefetch = extractFunction('prefetchAhead');
-  assert.match(prefetch, /texts\.length < LOOKAHEAD/);
-  assert.match(prefetch, /NeuralNarration\.prefetch\(texts, voice\)/);
+  assert.match(prefetch, /texts\.length < MAX_PREFETCH_ITEMS/);
+  assert.match(prefetch, /NeuralNarration\.prefetch\(texts, voice, READY_AUDIO_TARGET_SECONDS, state\.settings\.rate\)/);
+  const provider = s.slice(s.indexOf('var NeuralNarration ='), s.indexOf('var SystemNarration ='));
+  assert.match(provider, /readySeconds < target/);
+  assert.match(provider, /audioDurationSeconds\(audio, rate\)/);
   assert.match(s, /var MAX_AUDIO_CACHE_ITEMS = 32;/);
 });
 
@@ -232,6 +278,57 @@ test('READ-ALOUD: a parent surface can suppress and stop its owner while an embe
   assert.match(fn, /aria-hidden/);
   assert.match(s, /window\.VEXTREME_READ_ALOUD_SUPPRESSED/);
   assert.match(s, /window\.addEventListener\(SUPPRESS_EVENT/);
+});
+
+test('READ-ALOUD: Play and Pause are one stateful transport control', () => {
+  const s = source();
+  assert.match(s, /var playPause = iconButton\('▶', 'common\.button\.read-aloud-play', 'Play'\)/);
+  assert.doesNotMatch(s, /var pause = iconButton/);
+  assert.match(s, /playPause\.button\.addEventListener\('click'/);
+  assert.match(s, /state\.mode === 'playing'\) pauseReading\(\)/);
+  assert.match(extractFunction('setMode'), /syncPlayPauseControl\(\)/);
+  const sync = extractFunction('syncPlayPauseControl');
+  assert.match(sync, /common\.button\.read-aloud-pause/);
+  assert.match(sync, /common\.button\.read-aloud-play/);
+});
+
+test('READ-ALOUD: user intent prewarms Kokoro without starting narration', () => {
+  const s = source();
+  const warm = extractFunction('prewarmSelectedVoice');
+  assert.match(warm, /NeuralNarration\.prepare\(\)/);
+  const orbHandler = s.match(/orb\.addEventListener\('click',[\s\S]*?\n    \}\);/);
+  assert.ok(orbHandler);
+  assert.match(orbHandler[0], /prewarmSelectedVoice\(\)/);
+  const voiceHandler = s.match(/voice\.addEventListener\('change',[\s\S]*?\n    \}\);/);
+  assert.ok(voiceHandler);
+  assert.match(voiceHandler[0], /isNeuralVoice\(selected\).*NeuralNarration\.prepare\(\)/);
+});
+
+test('READ-ALOUD: active voice changes invalidate stale system callbacks and restart with the selected voice', () => {
+  const s = source();
+  const system = s.slice(s.indexOf('var SystemNarration ='), s.indexOf('function isNeuralVoice'));
+  assert.match(system, /generation: 0/);
+  assert.match(system, /var token = \+\+this\.generation/);
+  assert.match(system, /token !== SystemNarration\.generation/);
+  assert.match(system, /this\.generation \+= 1/);
+  const handler = s.match(/voice\.addEventListener\('change',[\s\S]*?\n    \}\);/);
+  assert.ok(handler, 'voice change handler must exist');
+  assert.match(handler[0], /var selected = voice\.value/);
+  assert.match(handler[0], /var token = \+\+voiceSwitchGeneration/);
+  assert.match(handler[0], /window\.setTimeout/);
+  assert.match(handler[0], /voice\.value = selected/);
+  assert.match(handler[0], /speakCurrent\(\)/);
+});
+
+test('READ-ALOUD: Kokoro fallback is transient and never rewrites the selected preference', () => {
+  const s = source();
+  const system = s.slice(s.indexOf('var SystemNarration ='), s.indexOf('function isNeuralVoice'));
+  assert.match(system, /voiceOverride \|\| selectedSystemVoice\(language\)/);
+  const fallback = extractFunction('fallbackToSystem');
+  assert.match(fallback, /var fallbackVoice = voices\[0\]/);
+  assert.match(fallback, /SystemNarration\.speak[\s\S]*fallbackVoice/);
+  assert.doesNotMatch(fallback, /ui\.voice\.value\s*=/);
+  assert.doesNotMatch(fallback, /rememberVoice\(/);
 });
 
 test('READ-ALOUD: system speech rate changes are deferred rather than restarting the current utterance', () => {
