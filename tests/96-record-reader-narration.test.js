@@ -18,7 +18,7 @@ const path = require('node:path');
 
 const ROOT = path.join(__dirname, '..');
 const PAGE_PATH = path.join(ROOT, 'pages', 'returning-scorpions-to-god.html');
-const READER_WIDGET_PATH = path.join(ROOT, 'widgets', 'record-reader.js');
+const READER_WIDGET_PATH = path.join(ROOT, 'components', 'record-reader.js');
 
 function readPage() {
   return fs.readFileSync(PAGE_PATH, 'utf8').replace(/\r\n/g, '\n');
