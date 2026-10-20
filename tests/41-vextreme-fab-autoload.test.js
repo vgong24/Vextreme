@@ -290,6 +290,13 @@ test('CACHE-SYNC: same-origin shell keeps runtime assets on the same deployed re
   assert.match(shell, /: DEFAULT_BASE/);
 });
 
+test('CACHE-SYNC: same-origin shell propagates its deployed base to downstream widgets', () => {
+  const shell = fs.readFileSync(path.join(ROOT, 'lib', 'shell.js'), 'utf8');
+  assert.match(shell, /shellUrl && shellUrl\.origin === window\.location\.origin && !override\.baseUrl/);
+  assert.match(shell, /Object\.assign\(\{\}, override, \{ baseUrl: BASE \}\)/);
+  assert.match(shell, /window\.VEXTREME\(override\)/);
+});
+
 test('CACHE-SYNC: shell.js VEXTREME_VER matches vextreme.js DEFAULT_CACHE exactly', () => {
   const shell = fs.readFileSync(path.join(ROOT, 'lib', 'shell.js'), 'utf8');
   const vx    = readSource();
