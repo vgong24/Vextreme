@@ -57,6 +57,10 @@
  *       - lib/vextreme.js shell FAB order
  *       - tests/08-build-vextreme.test.js
  *       - tests/41-vextreme-fab-autoload.test.js
+ *     transport toggle / active voice switching changes:
+ *       - tests/97-fab-read-aloud.test.js
+ *       - browser-lived acceptance while narration is active
+ *       - SystemNarration generation/cancellation semantics here
  * LATTICE:END
  */
 

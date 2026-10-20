@@ -46,6 +46,10 @@
  *     default features array in lib/build-index.js buildViewmodel() changed:
  *       - this widget's inclusion on default-viewmodel pages changes with it
  *       - tests/07-viewmodel.test.js, tests/08-build-vextreme.test.js (FAB SYSTEM default-feature-count assertions)
+ *     Spiral utility-axis classification changes:
+ *       - widgets/vex-fab.js (owns two-axis geometry)
+ *       - tests/37-fab-analysis.test.js
+ *       - tests/43-runtime-chrome-composition.test.js
  * LATTICE:END
  */
 
