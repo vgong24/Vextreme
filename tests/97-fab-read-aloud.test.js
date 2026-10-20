@@ -273,6 +273,86 @@ test('READ-ALOUD: Kokoro fallback is transient and never rewrites the selected p
   assert.doesNotMatch(fallback, /rememberVoice\\(/);
 });
 
+test('READ-ALOUD-DIAGNOSTIC: CI Chrome module Worker can import pinned Kokoro runtime', { timeout: 30000 }, async (t) => {
+  if (!process.env.CI) {
+    t.skip('one-time hosted browser diagnostic');
+    return;
+  }
+
+  const http = require('node:http');
+  const { spawn } = require('node:child_process');
+  const candidates = [
+    process.env.CHROME_BIN,
+    '/usr/bin/google-chrome',
+    '/usr/bin/google-chrome-stable',
+    '/usr/bin/chromium',
+    '/usr/bin/chromium-browser',
+  ].filter(Boolean);
+  const chrome = candidates.find((candidate) => fs.existsSync(candidate));
+  assert.ok(chrome, 'GitHub-hosted diagnostic requires a Chrome/Chromium binary');
+
+  const workerSource = [
+    'self.onmessage = async function () {',
+    '  try {',
+    "    var module = await import('https://cdn.jsdelivr.net/npm/kokoro-js@1.2.1/+esm');",
+    "    var ok = module && module.KokoroTTS && typeof module.KokoroTTS.from_pretrained === 'function';",
+    "    self.postMessage(ok ? 'PASS' : 'FAIL:KokoroTTS.from_pretrained missing');",
+    '  } catch (error) {',
+    "    self.postMessage('FAIL:' + String(error && (error.stack || error.message) || error));",
+    '  }',
+    '};',
+  ].join('\n');
+
+  const html = '<!doctype html><meta charset="utf-8"><body>KOKORO_WORKER_IMPORT_PENDING</body><script>' +
+    "var workerUrl = URL.createObjectURL(new Blob([" + JSON.stringify(workerSource) + "], { type: 'text/javascript' }));" +
+    "var worker = new Worker(workerUrl, { type: 'module', name: 'kokoro-ci-diagnostic' });" +
+    "worker.onmessage = function (event) { document.body.textContent = 'KOKORO_WORKER_IMPORT_' + event.data; };" +
+    "worker.onerror = function (event) { document.body.textContent = 'KOKORO_WORKER_IMPORT_FAIL:' + (event.message || 'worker error'); };" +
+    "worker.postMessage({});" +
+    "setTimeout(function () { if (document.body.textContent === 'KOKORO_WORKER_IMPORT_PENDING') document.body.textContent = 'KOKORO_WORKER_IMPORT_FAIL:timeout'; }, 12000);" +
+    '</script>';
+
+  const server = http.createServer((request, response) => {
+    response.writeHead(200, {
+      'content-type': 'text/html; charset=utf-8',
+      'cache-control': 'no-store',
+    });
+    response.end(html);
+  });
+
+  await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
+  const port = server.address().port;
+
+  let stdout = '';
+  let stderr = '';
+  let exitCode;
+  try {
+    exitCode = await new Promise((resolve, reject) => {
+      const child = spawn(chrome, [
+        '--headless=new',
+        '--no-sandbox',
+        '--disable-gpu',
+        '--virtual-time-budget=15000',
+        '--dump-dom',
+        'http://127.0.0.1:' + port + '/',
+      ]);
+      child.stdout.on('data', (chunk) => { stdout += chunk; });
+      child.stderr.on('data', (chunk) => { stderr += chunk; });
+      child.on('error', reject);
+      child.on('close', resolve);
+    });
+  } finally {
+    await new Promise((resolve) => server.close(resolve));
+  }
+
+  assert.equal(exitCode, 0, 'Chrome diagnostic failed to launch: ' + stderr.slice(-4000));
+  assert.match(
+    stdout,
+    /KOKORO_WORKER_IMPORT_PASS/,
+    'Pinned Kokoro module failed inside a Blob module Worker. Chrome output: ' + stdout.slice(-4000) + '\nChrome stderr: ' + stderr.slice(-4000),
+  );
+});
+
 test('READ-ALOUD: system speech rate changes are deferred rather than restarting the current utterance', () => {
   const s = source();
   const rateHandler = s.match(/rate\.addEventListener\('input',[\s\S]*?\n    \}\);/);
