@@ -66,6 +66,16 @@ test('CHROME-RAIL: Spiral opens from one trigger into horizontal primary and ver
   assert.match(source, /lane\.appendChild\(node\)/);
 });
 
+test('CHROME-RAIL: primary Spiral lane preserves child popup escape instead of clipping it', () => {
+  const source = read('widgets/vex-fab.js');
+  assert.match(source, /#vex-spiral-primary[\s\S]*?overflow: visible/);
+  assert.doesNotMatch(
+    source,
+    /#vex-spiral-primary[\s\S]*?overflow-x: auto/,
+    'a horizontal scroll container also clips vertical child popups such as the language wheel',
+  );
+});
+
 test('CHROME-RAIL: Analysis/Search uses the secondary vertical Spiral lane', () => {
   const source = read('widgets/fab-analysis.js');
   assert.match(source, /container\.setAttribute\('data-vex-spiral-axis', 'secondary'\)/);

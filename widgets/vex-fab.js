@@ -119,11 +119,12 @@
       '  justify-content: flex-end;',
       '  gap: 8px;',
       '  min-width: 0;',
+      // Primary children may own popups that escape below the 44px row
+      // (the language wheel is the first real case). Do not make this lane a
+      // scroll container: overflow-x:auto also clips vertical overflow.
       '  max-width: min(62vw, 420px);',
-      '  overflow-x: auto;',
-      '  scrollbar-width: none;',
+      '  overflow: visible;',
       '}',
-      '#vex-spiral-primary::-webkit-scrollbar { display: none; }',
       '#vex-spiral-secondary {',
       '  grid-column: 2;',
       '  grid-row: 2;',
