@@ -357,4 +357,45 @@ stateful transport control. Voice changes during active reading invalidate stale
 Speech callbacks before restarting the current bounded block with the newly selected
 voice, preventing a cancelled utterance from stopping or advancing its replacement.
 
+
+## Addendum 6 (2026-10-20): readable content is ownership-based, not a tag whitelist
+
+Lived continuous reading across the Liberation pages exposed a gap in the phrase
+"semantic block." The earlier implementation treated it as a selector for native prose
+tags (`p`, headings, lists, quotes, captions, `pre`, and table cells). Authored Vextreme
+pages also express meaning as visual field containers: for example, The Turning Point's
+`.proclamation-item` rows and Journal 013's `.credential-row` label/value pairs are
+`div` containers whose localized words live in inline spans. Those statements were
+visible and selectable as page content but absent from the narration plan.
+
+Read Aloud now discovers units from text ownership:
+
+```text
+visible text node
+  -> reject hidden, navigation, control, and widget-owned surfaces
+  -> nearest source-owned data-vex-read-aloud-block, when explicitly declared
+  -> otherwise nearest semantic element or rendered block/flex/grid container
+  -> merge consecutive text with the same owner into one ordered readable unit
+  -> split that unit into bounded sentence synthesis items
+```
+
+This boundary is deliberately generic. It does not register page class names, and pages
+do not gain page-specific speech branches. Paragraph inline formatting continues to
+belong to its paragraph; field labels and values belong to their shared row; card items
+belong to the card item that visually owns them. If a nested readable child interrupts a
+container's direct text, the parent resumes in a later unit so source order remains true
+instead of pulling trailing text ahead of the child.
+
+Two explicit attributes remain available at the authored DOM boundary:
+
+- `data-vex-read-aloud-block` groups a compound region as one source-owned unit when the
+  nearest inferred layout boundary is not the intended spoken boundary.
+- `data-vex-read-aloud-skip` excludes a region that should remain visible but not enter
+  narration.
+
+Start Here, viewport start, Previous/Next, current highlighting, and continuous playback
+all consume the same discovered unit model. A future omission should therefore be fixed
+at this ownership boundary (or with one of the source-owned attributes), not by adding a
+new page-name/class whitelist or a second narration implementation.
+
 <!-- [VXG RealForever] -->

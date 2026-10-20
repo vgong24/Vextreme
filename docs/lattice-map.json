@@ -2475,7 +2475,7 @@
       "role": "site-wide Read Aloud accessibility orb + overlay — chooses a readable DOM start point, continuously reads semantic blocks, persists voice/rate preferences, and delegates speech to lazy provider mechanics",
       "context": "Promoted from the Returning-scorpions page-local narration vertical slice after lived use exposed cross-page accessibility pressure: first-use neural inference had to leave the UI thread, users needed arbitrary start-here selection/continuous traversal, and speed/voice preferences should not be reimplemented per page. Mounts into #vex-spiral-group when present, with standalone fallback. Kokoro remains lazy and isolated in one module Worker; source truth remains page-owned. Nearest data-narration-language/lang is consumed as source-language authority before document/FAB locale. Post-merge lived acceptance on PR #358 refined transport into one Play/Pause toggle and hardened active voice switching: Web Speech callbacks are generation-bound so cancellation from a prior utterance cannot stop or advance the replacement voice, and the restart is deferred one task after provider cancellation so the selected voice actually takes effect.",
       "reads": [
-        "DOM: visible h1-h6/p/li/blockquote/figcaption/pre/td/th content (excluding nav/widget/hidden surfaces)",
+        "DOM: visible text nodes grouped into ordered units by their nearest explicit data-vex-read-aloud-block, semantic element, or layout container (excluding navigation/control/widget/hidden surfaces)",
         "DOM: nearest data-narration-language or lang source-language boundary",
         "window vextreme:languagechange event from widgets/fab-lang.js",
         "localStorage vex-read-aloud-settings/v1 (persisted rate + voice per primary language)",
@@ -2500,7 +2500,7 @@
         "tests/96-record-reader-narration.test.js (record reader does not duplicate generic TTS)"
       ],
       "changeMap": {
-        "readable block selector / start-here traversal changes": [
+        "readable-unit ownership / start-here traversal changes": [
           "tests/97-fab-read-aloud.test.js",
           "browser-lived acceptance on long-form and ordinary pages"
         ],
