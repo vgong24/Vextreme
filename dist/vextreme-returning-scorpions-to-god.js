@@ -959,7 +959,7 @@
   var SystemNarration = {
     active: null,
     generation: 0,
-    speak: function (text, language, rate, callbacks) {
+    speak: function (text, language, rate, callbacks, voiceOverride) {
       callbacks = callbacks || {};
       if (!('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window)) {
         if (callbacks.onError) callbacks.onError(new Error('SYSTEM_SPEECH_UNAVAILABLE'));
@@ -969,7 +969,7 @@
       var utterance = new SpeechSynthesisUtterance(text);
       this.active = utterance;
       utterance.rate = clampRate(rate);
-      var voice = selectedSystemVoice(language);
+      var voice = voiceOverride || selectedSystemVoice(language);
       if (voice) {
         utterance.voice = voice;
         if (voice.lang) utterance.lang = voice.lang;
@@ -1153,21 +1153,23 @@
       speakCurrent();
     }
 
-    function fallbackToSystem() {
+    function fallbackToSystem(error) {
       var voices = matchingSystemVoices(item.language);
       if (!voices.length) {
         setMode('idle');
         setStatusKey('common.status.read-aloud-none');
         return;
       }
-      ui.voice.value = systemVoiceRef(voices[0]);
-      rememberVoice(item.language, ui.voice.value);
+      var fallbackVoice = voices[0];
+      if (window.console && typeof window.console.warn === 'function') {
+        window.console.warn('[Vextreme Read Aloud] Kokoro unavailable; using transient system fallback.', error);
+      }
       setStatusKey('common.status.read-aloud-fallback');
       SystemNarration.speak(item.text, item.language, rate, {
         onStart: function () { setMode('playing'); },
         onEnd: onEnd,
         onError: finishReading
-      });
+      }, fallbackVoice);
     }
 
     if (isNeuralVoice(chosen) && primaryLanguage(item.language) === 'en') {
