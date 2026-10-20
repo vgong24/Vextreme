@@ -2706,8 +2706,8 @@ mode (below) proving the point.
 
 `lib/vextreme.js` (`shell.js`'s loader) already auto-provides nav and body-wrap from one
 script tag — no page hand-authors its own nav HTML. There was no equivalent for the v2
-spiral-FAB system: every page wanting `vex-fab.js` + `fab-lang.js` + `fab-theme.js` +
-`fab-map.js` had to list all four itself. The only place these got assembled automatically
+spiral-FAB system: every page wanting `vex-fab.js` + `fab-read-aloud.js` + `fab-lang.js` + `fab-theme.js` +
+`fab-map.js` had to list the shared set itself. The only place these got assembled automatically
 was `lib/build-vextreme.js`'s God Script build — a heavier process requiring per-slug
 string-scope/viewmodel configuration most standalone pages don't have.
 
@@ -2719,7 +2719,7 @@ loads, in this exact order — order is load-bearing, `vex-fab.js` must create
 `#vex-spiral-group` before the others look for it:
 
 ```
-widgets/vex-fab.js  → widgets/fab-lang.js → widgets/fab-theme.js → widgets/fab-map.js
+widgets/vex-fab.js → widgets/fab-read-aloud.js → widgets/fab-lang.js → widgets/fab-theme.js → widgets/fab-map.js
 ```
 
 Gated the same way `nav`/`bodyWrap` already are (`cfg.fab`, default `true` on
@@ -2781,7 +2781,7 @@ not spot-checked:
 
 ### The fix: `fabWidgets`, a per-widget opt-out
 
-`VEXTREME({ fabWidgets: { theme: false } })` (same shape for `lang`/`map`) skips one widget
+`VEXTREME({ fabWidgets: { theme: false } })` (same shape for `readAloud`/`lang`/`map`) skips one widget
 in the auto-loaded set while keeping the rest — `vex-fab.js` (the spiral container itself)
 always loads when `cfg.fab` is true. Applied to the 5 pages above via
 `window.VEXTREME_OVERRIDE = { fabWidgets: { theme: false } }` (the 4 specimen/dashboard
@@ -2908,6 +2908,64 @@ Current delivery is 28 shell pages plus one God-Script page; ten `pages/*.html`
 surfaces still have neither path. Global rollout is the next bounded PR after
 this composition contract is accepted. Analysis traversal, view profiles, and
 cross-page string navigation remain product direction, not completed behavior.
+
+## Addendum 3 (2026-10-19): Read Aloud becomes site accessibility, not page-local narration
+
+The Returning-scorpions record reader first proved higher-quality Kokoro narration as a
+page-local vertical slice. Lived use then exposed two pressures that were no longer local:
+first-use neural work could make the page unresponsive, and page-local transport could
+not provide a reusable "start reading here and continue" experience across Vextreme.
+That repeated pressure earned a promotion into the existing Spiral widget family.
+
+The promoted owner is:
+
+```text
+widgets/fab-read-aloud.js
+  = generic site accessibility
+  = start-here selection + continuous semantic-block plan
+  = play / pause / stop / previous / next
+  = voice catalog + persisted preference
+  = live neural playback speed
+  = lazy Worker-based Kokoro provider + bounded cache/look-ahead
+  = browser/system speech fallback
+```
+
+Pages do **not** gain a new speech implementation. They expose ordinary readable DOM and
+may declare a source-owned boundary such as `data-narration-language="en"` when the
+spoken source language must remain distinct from presentation/FAB language. The widget
+reads that boundary; it never rewrites source truth.
+
+Read Aloud is default infrastructure in the God-Script feature registry, so every page
+does not need to repeat `read-aloud` in its viewmodel. The neural model remains lazy:
+loading the page/FAB does not load Kokoro. Shell-era pages receive the same widget from
+`loadFabWidgets()`, ordered after the Spiral owner and before `fab-lang.js` so the
+widget's `data-i18n` surface exists when the language FAB applies the selected locale.
+
+Start-here selection is an **explicit mode**, not a permanent takeover of page
+interaction. While that mode is active, a person may click a readable block,
+right-click / long-press one, or use arrow keys to move the highlighted candidate and
+Enter/Space to begin there. Escape cancels selection. The widget only suppresses the
+browser context menu for a readable target while this explicit selection mode is active;
+normal right-click behavior remains untouched everywhere else.
+
+The explicit shell escape hatch is:
+
+```js
+window.VEXTREME_OVERRIDE = { fabWidgets: { readAloud: false } };
+```
+
+Use it only for a demonstrated surface conflict; accessibility being optional by default
+would recreate per-page admission debt.
+
+Speed semantics intentionally differ by provider capability. Kokoro synthesizes canonical
+1.0× PCM once and changes `AudioBufferSourceNode.playbackRate` live, so moving the speed
+slider does not restart or regenerate the current block. Browser `speechSynthesis` has no
+portable live-rate mutation contract, so the current bounded block finishes and the new
+rate applies to the next block rather than restarting what the person is hearing.
+
+The Spiral trigger still requires no modification when this orb is added. That unchanged
+owner is the reason the FAB composition remains extensible rather than becoming another
+central switch statement.
 
 ---
 
@@ -3226,10 +3284,10 @@ For a record reader, that grammar means:
 | Current truth | What preserved source, media, and later commentary actually exist? |
 | Missing question | What does the reader still need in order to perceive or navigate the record? |
 | Rightful owner | Which source owns original truth, which later source owns witness, and which layer owns presentation? |
-| State | Which phase is active? Where is the viewport? Is narration idle, speaking, or paused? |
-| Control | What may the reader intentionally do: navigate, scroll, auto-scroll, read aloud, pause, choose voice/rate, open source? |
-| Act | What does that control mean semantically: show a phase, start narration, pause narration, open evidence? |
-| Effect | What mechanism realizes the act: DOM change, browser scroll, browser speech, external navigation? |
+| State | Which phase is active? Where is the viewport? Reader-local state stays local; generic spoken accessibility state belongs to the site Read Aloud widget. |
+| Control | What may the record reader intentionally do locally (navigate, scroll, auto-scroll, open source), and what generic accessibility control is delegated to site Read Aloud? |
+| Act | What does the local control mean semantically: show a phase, move the viewport, open evidence? Generic start/pause/voice/rate speech acts belong to site Read Aloud. |
+| Effect | What mechanism realizes the act: DOM change, browser scroll, external navigation, or the shared Read Aloud provider boundary? |
 | Projection / presentation | How are already-owned truths made perceivable without becoming new truth owners? |
 | Human journey | In what order can a person encounter source, witness, media, and controls? |
 | Proof | What evidence can truthfully establish source completeness, behavior, visual form, or lived quality? |
@@ -3263,7 +3321,8 @@ WitnessCommentary
   = later interpretation owned separately from the preserved record
 
 Read Aloud / narration
-  = reader control over spoken presentation
+  = site accessibility over already-visible content
+  = owned by widgets/fab-read-aloud.js, not by one record-reader page
 ```
 
 Do not let an implementation mechanism become the semantic noun merely because it
@@ -3426,14 +3485,49 @@ For long source:
 - manual scrolling always remains available;
 - auto-scroll is opt-in and pauses on deliberate reader interaction;
 - phase changes stop/reset phase-local reading state;
-- browser-native Read Aloud is now a proven page-local vertical slice inside
-  `TranscriptTools`; narration state/control remain reader semantics while
-  `speechSynthesis` is only the current effect provider;
-- browser narration remains distinct from Vex voice identity, voice formation, and
-  any future embodied-expression provider.
+- `TranscriptTools` may keep genuinely record-specific aids such as auto-scroll;
+- generic Read Aloud is site accessibility owned by `widgets/fab-read-aloud.js`, which
+  can start from a user-selected readable block and continue through visible content;
+- a record reader may declare a source-owned narration language (for example
+  `data-narration-language="en"`) without owning TTS mechanics;
+- neural/browser providers remain distinct from source truth, Vex voice identity,
+  voice formation, and any future embodied-expression provider.
 
 ---
 
+
+## Site Read Aloud ownership
+
+The Returning-scorpions vertical slice earned a repository-level promotion only after
+lived use exposed pressure that was not specific to preserved records: people needed to
+start speech from arbitrary content, carry the same controls across pages, change neural
+playback speed without restarting, and avoid running model inference on the UI thread.
+
+The ownership boundary is now:
+
+```text
+Page / record source
+  owns visible text + source-language meaning
+        ↓
+widgets/fab-read-aloud.js
+  owns generic spoken accessibility
+  start-here selection / continuous plan / transport / preferences
+        ↓
+provider mechanics
+  Kokoro Worker + PCM playback
+  or browser/system speech fallback
+```
+
+A page must not copy Kokoro, Web Speech, voice catalogs, transport state, or generic
+continuous-reading logic merely because it wants spoken accessibility. Conversely the
+site widget must not infer or rewrite preserved source truth; nearest
+`data-narration-language` / `lang` ownership outranks the presentation locale for what
+language the source should be spoken in.
+
+This is a **site accessibility promotion**, not a repository-wide record-reader
+framework. Record-reader phase/witness/provenance semantics remain local to the reader.
+
+---
 ## Provenance should navigate, not nag
 
 Establish the source/derived distinction clearly, then let the record speak.
@@ -3614,9 +3708,10 @@ presence of synthesis
 Do not create a repository-wide record-reader framework merely because one page has a
 clean implementation.
 
-A second independent reader may confirm repeated pressure. Extract shared
-`components/` or runtime machinery only when multiple real consumers need the same
-semantic promise and the shared owner becomes clearer than keeping the behavior local.
+Do not extract record-reader structure merely because Read Aloud is now shared. Generic
+spoken accessibility earned its own widget because the same human capability applies to
+ordinary pages as well as records. A second independent reader is still required before
+promoting reader-specific phase/transcript/witness structure into shared components.
 
 ---
 
