@@ -2967,6 +2967,40 @@ The Spiral trigger still requires no modification when this orb is added. That u
 owner is the reason the FAB composition remains extensible rather than becoming another
 central switch statement.
 
+
+## Addendum 4 (2026-10-19): site-wide accessibility is a capability, not a Spiral membership test
+
+Fresh Independent Assurance of the promoted Read Aloud owner found a scope error that
+the existing green tests did not express. Generic FAB delivery and spoken accessibility
+are related, but they are not the same capability. Some legitimate public reading
+surfaces intentionally do not adopt the full shell/God-Script/Spiral runtime, including
+institutional pages, Terrain entry/group-home documents, and generated operational
+dashboards. Exempting those surfaces from generic FAB debt must not silently exempt them
+from Read Aloud.
+
+The resulting contract is:
+
+```text
+public readable surface
+  -> shell / God Script Read Aloud when that runtime is already rightful
+  -> otherwise the same widgets/fab-read-aloud.js through the surface's existing
+     shared owner, generator, or provider-neutral local script
+  -> never a second narration engine
+```
+
+`data/page-health.json` now projects Read Aloud applicability and delivery separately
+from `fab.delivery`. Empty historical placeholders, the redirect-only Archives shim,
+and the explicit v2 development fixture are not accessibility debt because they do not
+represent a meaningful readable public surface. A readable page with no Read Aloud
+delivery is explicit debt and fails the coverage regression.
+
+Terrain adds one composition rule because its Content reader embeds same-origin pages:
+while the iframe reader is visible, the outer Terrain Read Aloud owner is stopped and
+suppressed. The embedded document owns spoken accessibility for the visible reading
+surface. Closing the reader restores Terrain's owner. This prevents two independent
+speech controls from competing over one human reading journey while preserving standalone
+Read Aloud when the embedded document is opened directly.
+
 ---
 
 # Institutional pages
