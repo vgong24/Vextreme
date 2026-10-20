@@ -34,7 +34,7 @@ test('RECORD-READER-FOUNDATION: shared controller is semantic and record-neutral
 
 test('RECORD-READER-FOUNDATION: Scorpions consumes the shared controller instead of owning a duplicate', () => {
   const page = read('pages/returning-scorpions-to-god.html');
-  assert.match(page, /src="\.\.\/widgets\/record-reader\.js"/);
+  assert.match(page, /src="\.\.\/components\/record-reader\.js"/);
   assert.match(page, /VexRecordReader\.mount\(/);
   assert.doesNotMatch(page, /function renderBlocks\(lines\)/);
   assert.doesNotMatch(page, /function startTranscriptAutoScroll\(section\)/);
@@ -46,7 +46,7 @@ test('RECORD-READER-SECOND-CONSUMER: second arc binds the frozen source and late
   assert.match(page, /data-reader-template="conversation-witness-reader\/v1"/);
   assert.match(page, /data-narration-language="en"/);
   assert.match(page, /records\/commentary\/2026-10-18-recognizing-life-receiving-abundance-successor-witness\.md/);
-  assert.match(page, /src="\.\.\/widgets\/record-reader\.js"/);
+  assert.match(page, /src="\.\.\/components\/record-reader\.js"/);
 });
 
 test('RECORD-READER-SECOND-CONSUMER: nine source movements cover exchanges 1 through 26 without overlap gaps', () => {
