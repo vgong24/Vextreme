@@ -127,6 +127,9 @@ TranscriptTools
 MediaWitness
   = record-relevant media presented as part of the reading
 
+PreservationBoundary
+  = mandatory archive provenance: evidence owner + source-supported record time + derived-layer boundary
+
 ProvenanceLink
   = direct navigation from presentation back to evidence
 
@@ -250,7 +253,8 @@ CSS or JavaScript.
 | Building block | Responsibility | When to use it |
 |---|---|---|
 | `Threshold` | Enough orientation to enter the record without solving it | Normally required |
-| `ProvenanceLink` | Direct route to evidence plus source-supported record time/date | Required for evidence-backed readers; temporal precision must not exceed the preserved source |
+| `PreservationBoundary` | Evidence owner, actionable source route, source-supported record time/date, and derived-layer boundary | Required for evidence-backed readers |
+| `ProvenanceLink` | Direct route to evidence / later witness source | Required inside the preservation boundary; useful again where phase-local inspection helps |
 | `MediaWitness` | Record-relevant visual or media surface | Only when media materially belongs |
 | `ArcScopeRail` | Navigate real semantic movements/phases | Only when meaningful phases exist |
 | `PhaseHeader` | Name the current movement and source range | With phased records |
