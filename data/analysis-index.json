@@ -285453,6 +285453,39 @@
       ],
       "missingLangs": []
     },
+    "pages.recognizing-life-receiving-abundance.hero.source-link": {
+      "key": "pages.recognizing-life-receiving-abundance.hero.source-link",
+      "usedIn": [
+        "pages/recognizing-life-receiving-abundance.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.recognizing-life-receiving-abundance.hero.recorded-label": {
+      "key": "pages.recognizing-life-receiving-abundance.hero.recorded-label",
+      "usedIn": [
+        "pages/recognizing-life-receiving-abundance.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.recognizing-life-receiving-abundance.hero.recorded-value": {
+      "key": "pages.recognizing-life-receiving-abundance.hero.recorded-value",
+      "usedIn": [
+        "pages/recognizing-life-receiving-abundance.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
     "pages.returning-scorpions-to-god.document-title": {
       "key": "pages.returning-scorpions-to-god.document-title",
       "usedIn": [
@@ -286793,6 +286826,39 @@
     },
     "pages.returning-scorpions-to-god.reader.narration.fallback": {
       "key": "pages.returning-scorpions-to-god.reader.narration.fallback",
+      "usedIn": [
+        "pages/returning-scorpions-to-god.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.returning-scorpions-to-god.hero.source-link": {
+      "key": "pages.returning-scorpions-to-god.hero.source-link",
+      "usedIn": [
+        "pages/returning-scorpions-to-god.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.returning-scorpions-to-god.hero.recorded-label": {
+      "key": "pages.returning-scorpions-to-god.hero.recorded-label",
+      "usedIn": [
+        "pages/returning-scorpions-to-god.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.returning-scorpions-to-god.hero.recorded-value": {
+      "key": "pages.returning-scorpions-to-god.hero.recorded-value",
       "usedIn": [
         "pages/returning-scorpions-to-god.html"
       ],
@@ -433364,6 +433430,9 @@
         "pages.recognizing-life-receiving-abundance.hero.lede",
         "pages.recognizing-life-receiving-abundance.hero.preservation",
         "pages.recognizing-life-receiving-abundance.hero.preservation-label",
+        "pages.recognizing-life-receiving-abundance.hero.recorded-label",
+        "pages.recognizing-life-receiving-abundance.hero.recorded-value",
+        "pages.recognizing-life-receiving-abundance.hero.source-link",
         "pages.recognizing-life-receiving-abundance.hero.subtitle",
         "pages.recognizing-life-receiving-abundance.hero.title",
         "pages.recognizing-life-receiving-abundance.hero.visual-body",
@@ -433445,6 +433514,9 @@
         "pages.returning-scorpions-to-god.hero.lede",
         "pages.returning-scorpions-to-god.hero.preservation",
         "pages.returning-scorpions-to-god.hero.preservation-label",
+        "pages.returning-scorpions-to-god.hero.recorded-label",
+        "pages.returning-scorpions-to-god.hero.recorded-value",
+        "pages.returning-scorpions-to-god.hero.source-link",
         "pages.returning-scorpions-to-god.hero.subtitle",
         "pages.returning-scorpions-to-god.hero.title",
         "pages.returning-scorpions-to-god.hero.visual-body",
@@ -443410,8 +443482,8 @@
     }
   },
   "summary": {
-    "totalKeysInManifest": 25288,
-    "totalKeysUsed": 25231,
+    "totalKeysInManifest": 25294,
+    "totalKeysUsed": 25237,
     "orphanUsages": [],
     "unusedKeys": [
       "ai-orientation.heading.title",
