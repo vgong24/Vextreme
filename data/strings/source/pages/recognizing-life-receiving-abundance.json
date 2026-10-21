@@ -10,7 +10,10 @@
       "derivedCommentary": "records/commentary/2026-10-18-recognizing-life-receiving-abundance-successor-witness.md",
       "preservationRule": "TRANSCRIPT_EVIDENCE_IMMUTABLE__DERIVED_PRESENTATION_SEPARATE",
       "derivedMedia": "assets/recognizing-life-receiving-abundance/cover.webp",
-      "derivedMediaClass": "REPRESENTATIVE_NOT_EVIDENCE"
+      "derivedMediaClass": "REPRESENTATIVE_NOT_EVIDENCE",
+      "recordedTimeRef": "records/conversations/2026-10-18-recognizing-life-receiving-abundance/README.md",
+      "recordedTimePrecision": "DATE_RANGE",
+      "exactArchiveClockSupplied": false
     }
   },
   "pages.recognizing-life-receiving-abundance.document-title": {
@@ -58,7 +61,7 @@
   "pages.recognizing-life-receiving-abundance.hero.preservation": {
     "strings": {
       "en": {
-        "text": "PR #345 remains the chronological evidence record. This page groups the preserved exchanges into movements and adds later successor commentary without rewriting the original dialogue."
+        "text": "The linked PR remains the chronological evidence record. This page groups the preserved exchanges into movements and adds later successor commentary without rewriting the original dialogue."
       }
     }
   },
@@ -507,6 +510,27 @@
     "strings": {
       "en": {
         "text": "This derived image follows Victor's later lived recollection of the setting: around midnight on the beach left of Santa Monica Pier, the sand dollar alone near the waterline, pier and amusement lights in the distance, the Ferris wheel carrying a heart-shaped light pattern, and a quarter moon over the ocean. Artwork is representation, not evidence of unrecorded visual detail."
+      }
+    }
+  },
+  "pages.recognizing-life-receiving-abundance.hero.source-link": {
+    "strings": {
+      "en": {
+        "text": "Source · PR #345 ↗"
+      }
+    }
+  },
+  "pages.recognizing-life-receiving-abundance.hero.recorded-label": {
+    "strings": {
+      "en": {
+        "text": "Recorded period"
+      }
+    }
+  },
+  "pages.recognizing-life-receiving-abundance.hero.recorded-value": {
+    "strings": {
+      "en": {
+        "text": "October 17–18, 2026 · Pacific time · exact archive clock not supplied"
       }
     }
   }
