@@ -3317,6 +3317,137 @@ It is a reference implementation, not a mandatory HTML skeleton.
 
 ---
 
+## Fresh-instance starter map
+
+Use this section as the **front door**, not as a second architecture authority.
+The rest of this chapter owns the details behind each step.
+
+```text
+README.md / AGENTS.md
+        ↓
+this starter map
+        ↓
+1. identify the preserved record + slug
+        ↓
+2. read the evidence README / transcript source
+        ↓
+3. classify what actually exists
+        ↓
+4. choose required + earned building blocks
+        ↓
+5. inspect the two worked readers
+        ↓
+6. reuse only neutral controller behavior
+        ↓
+7. wire rightful source registries / projections
+        ↓
+8. prove source fidelity + generated currentness + lived quality
+```
+
+### The 60-second classification
+
+Before opening either worked page, answer these questions from source:
+
+| Question | If yes | If no |
+|---|---|---|
+| Is there a preserved evidence record? | Build an evidence-backed reader. | This chapter is probably the wrong owner. |
+| What date/time precision does the source actually support? | Put that precision in `PreservationBoundary`. | Show the supported date/date-range; never invent a clock. |
+| Is there later commentary written after the record? | `WitnessCommentary` / `WholeRecordWitness` may fit. | Do not manufacture a witness. |
+| Does the record have natural movements? | `ArcScopeRail` + `PhaseHeader` may fit. | Keep the source continuous. |
+| Does meaningful media belong to the record? | `MediaWitness` may fit and must be classified truthfully. | A missing image is not a hole. |
+| Is the source long enough to benefit from bounded reading? | `TranscriptViewport` / `TranscriptTools` may fit. | Do not add controls for symmetry. |
+| Does a synthesis add something earned by the record? | `Synthesis` may fit after source/witness. | Stop when the record is complete. |
+
+### What is mandatory vs earned
+
+For an evidence-backed reader, the minimum semantic spine is:
+
+```text
+Threshold
+  ↓
+PreservationBoundary
+  - actionable evidence route
+  - source-supported date/time precision
+  - derived-layer boundary
+  ↓
+PreservedRecord
+  - complete source remains available
+```
+
+Everything else is conditional:
+
+```text
+MediaWitness       only when media belongs
+ArcScopeRail       only when natural movements exist
+TranscriptViewport only when bounded reading helps
+TranscriptTools    only when a real reading aid is useful
+WitnessCommentary  only when later commentary exists
+RecordBoundary     when whole-record hindsight follows
+WholeRecordWitness only when separately authored
+Synthesis          only when the record earns one
+```
+
+### Compare the two worked readers
+
+Do not choose one and clone it. Compare them to see **what repeats** and **what stays
+record-owned**.
+
+| Concern | Returning scorpions to God | Recognizing Life, Receiving Abundance |
+|---|---|---|
+| Public reader | `pages/returning-scorpions-to-god.html` | `pages/recognizing-life-receiving-abundance.html` |
+| Evidence owner | PR #338 | PR #345 |
+| Temporal provenance | Exact supplied snapshot: Oct 17, 2026 · 5:55 AM PDT | Recorded period: Oct 17–18, 2026 · exact archive clock not supplied |
+| Natural structure | Ten worked sets | Nine source movements + archive boundary + later witness |
+| Later witness | Present | Present |
+| Representative media | Present | Added only after source-first structure + lived review |
+| Shared mechanics | `components/record-reader.js` | `components/record-reader.js` |
+| Record-owned meaning | phases, styling, source coordinates, media meaning, synthesis | phases, styling, source coordinates, media meaning, synthesis |
+
+### Where the reusable implementation stops
+
+```text
+components/record-reader.js
+  owns neutral mechanics
+  - frozen Markdown loading
+  - exchange-range selection
+  - safe source projection
+  - phase switching
+  - transcript auto-scroll
+  - optional witness loading
+
+pages/{slug}.html
+  owns this record's meaning
+  - evidence coordinates
+  - phase names / ranges
+  - preservation boundary content
+  - media choice
+  - visual identity
+  - synthesis
+```
+
+If a fresh instance is about to copy CSS, phase count, media geometry, or witness
+presence simply because a worked reader has it, stop and return to the classification
+table above.
+
+### Finish-line checklist
+
+A reader is not complete merely because it renders.
+
+```text
+source identity + chronology are exact
+preservation boundary links the evidence owner
+displayed date/time precision does not exceed source evidence
+complete original source remains available
+derived witness/media remain explicitly derived
+site Read Aloud remains the generic speech owner
+write-side registries own generated projections
+focused record-reader proof passes
+generated currentness converges
+lived review confirms the page actually reads well
+```
+
+---
+
 ## Start by classifying the record
 
 Do not choose UI blocks first. Ask what actually exists.

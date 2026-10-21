@@ -35,7 +35,7 @@ conventions, and continuity mechanics, continue to `CLAUDE.md`.
 | If the task is about... | Start with |
 |---|---|
 | A new content page or slug | `README.md`, then `docs/architecture/02-slug.md` and `03-data.md` |
-| A preserved conversation / source-backed record reader | `docs/architecture/19-record-readers.md` |
+| A preserved conversation / source-backed record reader | `docs/architecture/19-record-readers.md#fresh-instance-starter-map` — classify first, then use the worked readers as examples rather than skeletons |
 | A generated projection such as Terrain, index, status, or architecture output | `docs/architecture/03-data.md` and `04-build-time.md` |
 | Browser-side rendering or runtime behavior | `docs/architecture/05-browser.md` |
 | User-visible strings or localization identity | `docs/architecture/06-i18n.md` |
