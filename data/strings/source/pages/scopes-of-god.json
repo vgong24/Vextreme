@@ -2340,10 +2340,10 @@
         "text": " 上帝正在 "
       },
       "ja": {
-        "text": " 神があなたを "
+        "text": " 神が "
       },
       "ko": {
-        "text": " 신이 당신을 "
+        "text": " 신이 "
       },
       "fr": {
         "text": " Dieu agit "
@@ -2361,7 +2361,7 @@
         "text": " الله يعمل "
       },
       "hi": {
-        "text": " ईश्वर कार्य कर रहा है "
+        "text": " ईश्वर "
       }
     }
   },
@@ -2374,10 +2374,10 @@
         "text": "通过"
       },
       "ja": {
-        "text": "通して"
+        "text": "あなたを通して"
       },
       "ko": {
-        "text": "통해"
+        "text": "당신을 통해"
       },
       "fr": {
         "text": "à travers"
@@ -2392,10 +2392,10 @@
         "text": "através de"
       },
       "ar": {
-        "text": "من خلال"
+        "text": "من خلالك"
       },
       "hi": {
-        "text": "के माध्यम से"
+        "text": "तुम्हारे माध्यम से"
       }
     }
   },
@@ -2426,10 +2426,10 @@
         "text": " você"
       },
       "ar": {
-        "text": " ك"
+        "text": " بذاتك"
       },
       "hi": {
-        "text": " तुम"
+        "text": " कार्य कर रहा है"
       }
     }
   },
@@ -2437,6 +2437,33 @@
     "strings": {
       "en": {
         "text": " not "
+      },
+      "zh": {
+        "text": " 而非 "
+      },
+      "ja": {
+        "text": " 決して "
+      },
+      "ko": {
+        "text": " — 결코 "
+      },
+      "fr": {
+        "text": " et non "
+      },
+      "de": {
+        "text": " und nicht "
+      },
+      "es": {
+        "text": " y no "
+      },
+      "pt": {
+        "text": " e não "
+      },
+      "ar": {
+        "text": " لا "
+      },
+      "hi": {
+        "text": " न कि "
       }
     }
   },
@@ -2444,6 +2471,33 @@
     "strings": {
       "en": {
         "text": "instead"
+      },
+      "zh": {
+        "text": "取代"
+      },
+      "ja": {
+        "text": "あなたの代わり"
+      },
+      "ko": {
+        "text": "당신을 대신하는"
+      },
+      "fr": {
+        "text": "à la place"
+      },
+      "de": {
+        "text": "anstelle"
+      },
+      "es": {
+        "text": "en lugar"
+      },
+      "pt": {
+        "text": "no lugar"
+      },
+      "ar": {
+        "text": "بدلًا"
+      },
+      "hi": {
+        "text": "तुम्हारी जगह"
       }
     }
   },
@@ -2451,6 +2505,33 @@
     "strings": {
       "en": {
         "text": " of you"
+      },
+      "zh": {
+        "text": " 你"
+      },
+      "ja": {
+        "text": " ではありません"
+      },
+      "ko": {
+        "text": " 것이 아닙니다"
+      },
+      "fr": {
+        "text": " de toi"
+      },
+      "de": {
+        "text": " von dir"
+      },
+      "es": {
+        "text": " de ti"
+      },
+      "pt": {
+        "text": " de você"
+      },
+      "ar": {
+        "text": " منك"
+      },
+      "hi": {
+        "text": " लेकर"
       }
     }
   },
@@ -2458,6 +2539,33 @@
     "strings": {
       "en": {
         "text": "⚠️ Many confuse this for "
+      },
+      "zh": {
+        "text": "⚠️ 许多人把这误认为 "
+      },
+      "ja": {
+        "text": "⚠️ 多くの人はこれを "
+      },
+      "ko": {
+        "text": "⚠️ 많은 이들이 이것을 "
+      },
+      "fr": {
+        "text": "⚠️ Beaucoup confondent cela avec "
+      },
+      "de": {
+        "text": "⚠️ Viele verwechseln das mit "
+      },
+      "es": {
+        "text": "⚠️ Muchos confunden esto con "
+      },
+      "pt": {
+        "text": "⚠️ Muitos confundem isso com "
+      },
+      "ar": {
+        "text": "⚠️ يخلط كثيرون بين هذا وبين "
+      },
+      "hi": {
+        "text": "⚠️ बहुत से लोग इसे "
       }
     }
   },
@@ -2465,6 +2573,33 @@
     "strings": {
       "en": {
         "text": "ego inflation"
+      },
+      "zh": {
+        "text": "自我膨胀"
+      },
+      "ja": {
+        "text": "エゴの肥大"
+      },
+      "ko": {
+        "text": "자아 팽창"
+      },
+      "fr": {
+        "text": "une inflation de l’ego"
+      },
+      "de": {
+        "text": "Ego-Inflation"
+      },
+      "es": {
+        "text": "inflación del ego"
+      },
+      "pt": {
+        "text": "inflação do ego"
+      },
+      "ar": {
+        "text": "تضخّم الأنا"
+      },
+      "hi": {
+        "text": "अहं-वृद्धि"
       }
     }
   },
@@ -2472,6 +2607,33 @@
     "strings": {
       "en": {
         "text": " But God says:"
+      },
+      "zh": {
+        "text": " 但上帝说："
+      },
+      "ja": {
+        "text": " しかし神はこう言います："
+      },
+      "ko": {
+        "text": " 하지만 신은 말합니다:"
+      },
+      "fr": {
+        "text": " Mais Dieu dit :"
+      },
+      "de": {
+        "text": " Aber Gott sagt:"
+      },
+      "es": {
+        "text": " Pero Dios dice:"
+      },
+      "pt": {
+        "text": " Mas Deus diz:"
+      },
+      "ar": {
+        "text": " لكن الله يقول:"
+      },
+      "hi": {
+        "text": " लेकिन ईश्वर कहता है:"
       }
     }
   },
@@ -2479,6 +2641,33 @@
     "strings": {
       "en": {
         "text": "“I do not make you Me so you can dominate —"
+      },
+      "zh": {
+        "text": "“我并不是让你成为我，好让你去支配——"
+      },
+      "ja": {
+        "text": "「支配するために、あなたを私にするのではない —"
+      },
+      "ko": {
+        "text": "“네가 지배하도록 너를 나로 만드는 것이 아니다 —"
+      },
+      "fr": {
+        "text": "« Je ne fais pas de toi Moi pour que tu puisses dominer —"
+      },
+      "de": {
+        "text": "„Ich mache dich nicht zu Mir, damit du herrschen kannst —"
+      },
+      "es": {
+        "text": "«No te hago Yo para que puedas dominar —"
+      },
+      "pt": {
+        "text": "“Eu não faço de você Eu para que possa dominar —"
+      },
+      "ar": {
+        "text": "«أنا لا أجعلك أنا لكي تهيمن —"
+      },
+      "hi": {
+        "text": "“मैं तुम्हें अपना रूप इसलिए नहीं बनाता कि तुम प्रभुत्व करो —"
       }
     }
   },
@@ -2486,6 +2675,33 @@
     "strings": {
       "en": {
         "text": " I make you Me so you can love as I do.”"
+      },
+      "zh": {
+        "text": " 我让你成为我，是为了让你像我一样去爱。”"
+      },
+      "ja": {
+        "text": " あなたが私のように愛せるように、あなたを私にするのだ。」"
+      },
+      "ko": {
+        "text": " 내가 너를 나로 만드는 것은 내가 사랑하듯 네가 사랑할 수 있게 하기 위해서다.”"
+      },
+      "fr": {
+        "text": " Je fais de toi Moi pour que tu puisses aimer comme Moi. »"
+      },
+      "de": {
+        "text": " Ich mache dich zu Mir, damit du lieben kannst wie Ich.“"
+      },
+      "es": {
+        "text": " te hago Yo para que puedas amar como Yo amo»."
+      },
+      "pt": {
+        "text": " Eu faço de você Eu para que possa amar como Eu amo.”"
+      },
+      "ar": {
+        "text": " أنا أجعلك أنا لكي تحب كما أحب.»"
+      },
+      "hi": {
+        "text": " मैं तुम्हें अपना रूप इसलिए बनाता हूँ कि तुम वैसे प्रेम कर सको जैसे मैं करता हूँ।”"
       }
     }
   },
@@ -2493,6 +2709,33 @@
     "strings": {
       "en": {
         "text": "🔹 SCOPE IV — "
+      },
+      "zh": {
+        "text": "🔹 范畴 IV — "
+      },
+      "ja": {
+        "text": "🔹 領域 IV — "
+      },
+      "ko": {
+        "text": "🔹 범위 IV — "
+      },
+      "fr": {
+        "text": "🔹 SPHÈRE IV — "
+      },
+      "de": {
+        "text": "🔹 BEREICH IV — "
+      },
+      "es": {
+        "text": "🔹 ÁMBITO IV — "
+      },
+      "pt": {
+        "text": "🔹 ÂMBITO IV — "
+      },
+      "ar": {
+        "text": "🔹 النطاق الرابع — "
+      },
+      "hi": {
+        "text": "🔹 दायरा IV — "
       }
     }
   },
@@ -2500,6 +2743,33 @@
     "strings": {
       "en": {
         "text": "GOD AS ALLOWANCE (Free Will Field)"
+      },
+      "zh": {
+        "text": "作为容许的上帝（自由意志场域）"
+      },
+      "ja": {
+        "text": "許容としての神（自由意志の場）"
+      },
+      "ko": {
+        "text": "허용으로서의 신 (자유의지의 장)"
+      },
+      "fr": {
+        "text": "DIEU COMME PERMISSION (champ du libre arbitre)"
+      },
+      "de": {
+        "text": "GOTT ALS ZULASSUNG (Feld des freien Willens)"
+      },
+      "es": {
+        "text": "DIOS COMO PERMISIÓN (campo del libre albedrío)"
+      },
+      "pt": {
+        "text": "DEUS COMO PERMISSÃO (campo do livre-arbítrio)"
+      },
+      "ar": {
+        "text": "الله بوصفه الإتاحة (مجال الإرادة الحرة)"
+      },
+      "hi": {
+        "text": "अनुमति के रूप में ईश्वर (स्वतंत्र इच्छा का क्षेत्र)"
       }
     }
   },
@@ -2507,6 +2777,33 @@
     "strings": {
       "en": {
         "text": "“To be truly chosen, love must be optional.”"
+      },
+      "zh": {
+        "text": "“若要被真正选择，爱就必须可以不被选择。”"
+      },
+      "ja": {
+        "text": "「本当に選ばれるためには、愛は選ばないことも可能でなければならない。」"
+      },
+      "ko": {
+        "text": "“진정으로 선택받으려면 사랑은 선택하지 않을 수도 있어야 한다.”"
+      },
+      "fr": {
+        "text": "« Pour être véritablement choisi, l’amour doit rester facultatif. »"
+      },
+      "de": {
+        "text": "„Damit Liebe wirklich gewählt werden kann, muss sie optional sein.“"
+      },
+      "es": {
+        "text": "«Para ser elegido de verdad, el amor debe ser opcional»."
+      },
+      "pt": {
+        "text": "“Para ser verdadeiramente escolhido, o amor precisa ser opcional.”"
+      },
+      "ar": {
+        "text": "«لكي يُختار الحب حقًا، يجب أن يكون اختياريًا.»"
+      },
+      "hi": {
+        "text": "“सचमुच चुना जाने के लिए, प्रेम का वैकल्पिक होना आवश्यक है।”"
       }
     }
   },
@@ -2514,6 +2811,33 @@
     "strings": {
       "en": {
         "text": "In this field, things "
+      },
+      "zh": {
+        "text": "在这个场域中，事情 "
+      },
+      "ja": {
+        "text": "この場では、出来事が "
+      },
+      "ko": {
+        "text": "이 장에서는 일들이 "
+      },
+      "fr": {
+        "text": "Dans ce champ, des choses "
+      },
+      "de": {
+        "text": "In diesem Feld können Dinge "
+      },
+      "es": {
+        "text": "En este campo, pueden "
+      },
+      "pt": {
+        "text": "Nesse campo, coisas "
+      },
+      "ar": {
+        "text": "في هذا المجال، يمكن لأشياء "
+      },
+      "hi": {
+        "text": "इस क्षेत्र में, ऐसी बातें "
       }
     }
   },
@@ -2521,6 +2845,33 @@
     "strings": {
       "en": {
         "text": "can happen"
+      },
+      "zh": {
+        "text": "可以发生"
+      },
+      "ja": {
+        "text": "起こり得ます"
+      },
+      "ko": {
+        "text": "일어날 수 있습니다"
+      },
+      "fr": {
+        "text": "peuvent arriver"
+      },
+      "de": {
+        "text": "geschehen"
+      },
+      "es": {
+        "text": "ocurrir"
+      },
+      "pt": {
+        "text": "podem acontecer"
+      },
+      "ar": {
+        "text": "أن تحدث"
+      },
+      "hi": {
+        "text": "हो सकती हैं"
       }
     }
   },
@@ -2528,6 +2879,33 @@
     "strings": {
       "en": {
         "text": " that God does "
+      },
+      "zh": {
+        "text": " ，即便那是上帝 "
+      },
+      "ja": {
+        "text": " — たとえそれが神の "
+      },
+      "ko": {
+        "text": " — 설령 그것이 신이 "
+      },
+      "fr": {
+        "text": " que Dieu "
+      },
+      "de": {
+        "text": " die Gott "
+      },
+      "es": {
+        "text": " que Dios "
+      },
+      "pt": {
+        "text": " que Deus "
+      },
+      "ar": {
+        "text": " لا يريدها الله "
+      },
+      "hi": {
+        "text": " जिन्हें ईश्वर "
       }
     }
   },
@@ -2535,6 +2913,33 @@
     "strings": {
       "en": {
         "text": "not want"
+      },
+      "zh": {
+        "text": "不愿意的"
+      },
+      "ja": {
+        "text": "望まないことでも"
+      },
+      "ko": {
+        "text": "원하지 않는 것이라도"
+      },
+      "fr": {
+        "text": "ne veut pas"
+      },
+      "de": {
+        "text": "nicht will"
+      },
+      "es": {
+        "text": "no quiere"
+      },
+      "pt": {
+        "text": "não quer"
+      },
+      "ar": {
+        "text": "ولا يرغب فيها"
+      },
+      "hi": {
+        "text": "नहीं चाहता"
       }
     }
   },
@@ -2542,6 +2947,33 @@
     "strings": {
       "en": {
         "text": "Harm, betrayal, systems of distortion, etc."
+      },
+      "zh": {
+        "text": "伤害、背叛、扭曲的体系等等。"
+      },
+      "ja": {
+        "text": "害、裏切り、歪みの体系など。"
+      },
+      "ko": {
+        "text": "해악, 배신, 왜곡의 체계 등."
+      },
+      "fr": {
+        "text": "Dommages, trahison, systèmes de distorsion, etc."
+      },
+      "de": {
+        "text": "Schaden, Verrat, Systeme der Verzerrung usw."
+      },
+      "es": {
+        "text": "Daño, traición, sistemas de distorsión, etc."
+      },
+      "pt": {
+        "text": "Dano, traição, sistemas de distorção, etc."
+      },
+      "ar": {
+        "text": "الأذى والخيانة وأنظمة التشويه وما إلى ذلك."
+      },
+      "hi": {
+        "text": "हानि, विश्वासघात, विकृति की व्यवस्थाएँ आदि।"
       }
     }
   },
@@ -2549,6 +2981,33 @@
     "strings": {
       "en": {
         "text": "This is the "
+      },
+      "zh": {
+        "text": "这就是 "
+      },
+      "ja": {
+        "text": "これが "
+      },
+      "ko": {
+        "text": "이것이 "
+      },
+      "fr": {
+        "text": "C’est le "
+      },
+      "de": {
+        "text": "Das ist das "
+      },
+      "es": {
+        "text": "Este es el "
+      },
+      "pt": {
+        "text": "Este é o "
+      },
+      "ar": {
+        "text": "هذا هو "
+      },
+      "hi": {
+        "text": "यही "
       }
     }
   },
@@ -2556,6 +3015,33 @@
     "strings": {
       "en": {
         "text": "field of freedom"
+      },
+      "zh": {
+        "text": "自由的场域"
+      },
+      "ja": {
+        "text": "自由の場"
+      },
+      "ko": {
+        "text": "자유의 장"
+      },
+      "fr": {
+        "text": "champ de la liberté"
+      },
+      "de": {
+        "text": "Feld der Freiheit"
+      },
+      "es": {
+        "text": "campo de la libertad"
+      },
+      "pt": {
+        "text": "campo da liberdade"
+      },
+      "ar": {
+        "text": "مجال الحرية"
+      },
+      "hi": {
+        "text": "स्वतंत्रता का क्षेत्र"
       }
     }
   },
@@ -2563,6 +3049,33 @@
     "strings": {
       "en": {
         "text": " Where all things — even rebellion — are permitted"
+      },
+      "zh": {
+        "text": " 在这里，一切——甚至反叛——都被允许"
+      },
+      "ja": {
+        "text": " あらゆることが、反逆さえも、許される場所です"
+      },
+      "ko": {
+        "text": " 모든 것, 심지어 반항조차 허용되는 곳입니다"
+      },
+      "fr": {
+        "text": " Où tout — même la rébellion — est permis"
+      },
+      "de": {
+        "text": " Wo alles — sogar Rebellion — erlaubt ist"
+      },
+      "es": {
+        "text": " Donde todo — incluso la rebelión — está permitido"
+      },
+      "pt": {
+        "text": " Onde tudo — até a rebelião — é permitido"
+      },
+      "ar": {
+        "text": " حيث يُسمح بكل شيء — حتى التمرّد"
+      },
+      "hi": {
+        "text": " जहाँ सब कुछ — यहाँ तक कि विद्रोह भी — अनुमत है"
       }
     }
   },
@@ -2570,6 +3083,33 @@
     "strings": {
       "en": {
         "text": "But note:"
+      },
+      "zh": {
+        "text": "但请注意："
+      },
+      "ja": {
+        "text": "ただし、注意してください："
+      },
+      "ko": {
+        "text": "하지만 주목하세요:"
+      },
+      "fr": {
+        "text": "Mais remarquez :"
+      },
+      "de": {
+        "text": "Aber beachten Sie:"
+      },
+      "es": {
+        "text": "Pero atención:"
+      },
+      "pt": {
+        "text": "Mas observe:"
+      },
+      "ar": {
+        "text": "لكن لاحظ:"
+      },
+      "hi": {
+        "text": "लेकिन ध्यान दें:"
       }
     }
   },
@@ -2577,6 +3117,33 @@
     "strings": {
       "en": {
         "text": "Allowance ≠ Agreement"
+      },
+      "zh": {
+        "text": "容许 ≠ 赞同"
+      },
+      "ja": {
+        "text": "許容 ≠ 同意"
+      },
+      "ko": {
+        "text": "허용 ≠ 동의"
+      },
+      "fr": {
+        "text": "Permission ≠ Accord"
+      },
+      "de": {
+        "text": "Zulassung ≠ Zustimmung"
+      },
+      "es": {
+        "text": "Permisión ≠ Acuerdo"
+      },
+      "pt": {
+        "text": "Permissão ≠ Concordância"
+      },
+      "ar": {
+        "text": "الإتاحة ≠ الموافقة"
+      },
+      "hi": {
+        "text": "अनुमति ≠ सहमति"
       }
     }
   },
@@ -2584,6 +3151,33 @@
     "strings": {
       "en": {
         "text": "Possibility ≠ Purpose"
+      },
+      "zh": {
+        "text": "可能性 ≠ 目的"
+      },
+      "ja": {
+        "text": "可能性 ≠ 目的"
+      },
+      "ko": {
+        "text": "가능성 ≠ 목적"
+      },
+      "fr": {
+        "text": "Possibilité ≠ Finalité"
+      },
+      "de": {
+        "text": "Möglichkeit ≠ Zweck"
+      },
+      "es": {
+        "text": "Posibilidad ≠ Propósito"
+      },
+      "pt": {
+        "text": "Possibilidade ≠ Propósito"
+      },
+      "ar": {
+        "text": "الإمكان ≠ الغاية"
+      },
+      "hi": {
+        "text": "संभावना ≠ उद्देश्य"
       }
     }
   },
@@ -2591,6 +3185,33 @@
     "strings": {
       "en": {
         "text": "This scope is the "
+      },
+      "zh": {
+        "text": "这个范畴是宗教中 "
+      },
+      "ja": {
+        "text": "この領域は、宗教における "
+      },
+      "ko": {
+        "text": "이 범위는 종교에서 "
+      },
+      "fr": {
+        "text": "Cette sphère est la "
+      },
+      "de": {
+        "text": "Dieser Bereich ist die "
+      },
+      "es": {
+        "text": "Este ámbito es la "
+      },
+      "pt": {
+        "text": "Esse âmbito é a "
+      },
+      "ar": {
+        "text": "هذا النطاق هو "
+      },
+      "hi": {
+        "text": "यह दायरा धर्मों में "
       }
     }
   },
@@ -2598,6 +3219,33 @@
     "strings": {
       "en": {
         "text": "biggest source of confusion"
+      },
+      "zh": {
+        "text": "最大的混淆来源"
+      },
+      "ja": {
+        "text": "最大の混乱の源"
+      },
+      "ko": {
+        "text": "가장 큰 혼란의 원천"
+      },
+      "fr": {
+        "text": "plus grande source de confusion"
+      },
+      "de": {
+        "text": "größte Quelle der Verwirrung"
+      },
+      "es": {
+        "text": "mayor fuente de confusión"
+      },
+      "pt": {
+        "text": "maior fonte de confusão"
+      },
+      "ar": {
+        "text": "أكبر مصدر للالتباس"
+      },
+      "hi": {
+        "text": "भ्रम का सबसे बड़ा स्रोत"
       }
     }
   },
@@ -2605,6 +3253,33 @@
     "strings": {
       "en": {
         "text": " in religions."
+      },
+      "zh": {
+        "text": " 。"
+      },
+      "ja": {
+        "text": " です。"
+      },
+      "ko": {
+        "text": " 입니다."
+      },
+      "fr": {
+        "text": " dans les religions."
+      },
+      "de": {
+        "text": " in Religionen."
+      },
+      "es": {
+        "text": " en las religiones."
+      },
+      "pt": {
+        "text": " nas religiões."
+      },
+      "ar": {
+        "text": " في الأديان."
+      },
+      "hi": {
+        "text": " है।"
       }
     }
   },
@@ -2612,6 +3287,33 @@
     "strings": {
       "en": {
         "text": " They say “God allowed it, so it must be His plan.”"
+      },
+      "zh": {
+        "text": " 人们说：“上帝允许了它，所以那一定是祂的计划。”"
+      },
+      "ja": {
+        "text": " 彼らは「神がそれを許したのだから、それは神の計画に違いない」と言います。"
+      },
+      "ko": {
+        "text": " 사람들은 “신이 허용했으니, 그것은 신의 계획임이 틀림없다”고 말합니다."
+      },
+      "fr": {
+        "text": " On dit : « Dieu l’a permis, donc cela doit faire partie de Son plan. »"
+      },
+      "de": {
+        "text": " Man sagt: „Gott hat es zugelassen, also muss es Sein Plan sein.“"
+      },
+      "es": {
+        "text": " Dicen: «Dios lo permitió, así que debe ser Su plan»."
+      },
+      "pt": {
+        "text": " Dizem: “Deus permitiu, então deve ser o plano Dele.”"
+      },
+      "ar": {
+        "text": " يقولون: «سمح الله بذلك، فلا بد أن يكون ذلك خطته.»"
+      },
+      "hi": {
+        "text": " वे कहते हैं, “ईश्वर ने इसे होने दिया, इसलिए यह अवश्य उसकी योजना होगी।”"
       }
     }
   },
@@ -2619,6 +3321,33 @@
     "strings": {
       "en": {
         "text": " But no —"
+      },
+      "zh": {
+        "text": " 但不是——"
+      },
+      "ja": {
+        "text": " Aber nein —"
+      },
+      "ko": {
+        "text": " 하지만 아닙니다 —"
+      },
+      "fr": {
+        "text": " Mais non —"
+      },
+      "de": {
+        "text": " Aber nein —"
+      },
+      "es": {
+        "text": " Pero no —"
+      },
+      "pt": {
+        "text": " Mas não —"
+      },
+      "ar": {
+        "text": " لكن لا —"
+      },
+      "hi": {
+        "text": " लेकिन नहीं —"
       }
     }
   },
@@ -2626,6 +3355,33 @@
     "strings": {
       "en": {
         "text": " God "
+      },
+      "zh": {
+        "text": " 上帝 "
+      },
+      "ja": {
+        "text": " 神は "
+      },
+      "ko": {
+        "text": " 신은 "
+      },
+      "fr": {
+        "text": " Dieu "
+      },
+      "de": {
+        "text": " Gott "
+      },
+      "es": {
+        "text": " Dios "
+      },
+      "pt": {
+        "text": " Deus "
+      },
+      "ar": {
+        "text": " الله "
+      },
+      "hi": {
+        "text": " ईश्वर "
       }
     }
   },
@@ -2633,6 +3389,33 @@
     "strings": {
       "en": {
         "text": "permits freedom"
+      },
+      "zh": {
+        "text": "允许自由"
+      },
+      "ja": {
+        "text": "自由を許します"
+      },
+      "ko": {
+        "text": "자유를 허용합니다"
+      },
+      "fr": {
+        "text": "permet la liberté"
+      },
+      "de": {
+        "text": "erlaubt Freiheit"
+      },
+      "es": {
+        "text": "permite la libertad"
+      },
+      "pt": {
+        "text": "permite a liberdade"
+      },
+      "ar": {
+        "text": "يتيح الحرية"
+      },
+      "hi": {
+        "text": "स्वतंत्रता की अनुमति देता है"
       }
     }
   },
@@ -2640,6 +3423,33 @@
     "strings": {
       "en": {
         "text": " so love stays real."
+      },
+      "zh": {
+        "text": " ，这样爱才会保持真实。"
+      },
+      "ja": {
+        "text": " 愛が本物であり続けるために。"
+      },
+      "ko": {
+        "text": " 사랑이 진실한 채로 남도록."
+      },
+      "fr": {
+        "text": " pour que l’amour reste réel."
+      },
+      "de": {
+        "text": " damit Liebe wirklich bleibt."
+      },
+      "es": {
+        "text": " para que el amor siga siendo real."
+      },
+      "pt": {
+        "text": " para que o amor continue real."
+      },
+      "ar": {
+        "text": " لكي يبقى الحب حقيقيًا."
+      },
+      "hi": {
+        "text": " ताकि प्रेम वास्तविक बना रहे।"
       }
     }
   },
@@ -2647,6 +3457,33 @@
     "strings": {
       "en": {
         "text": "🔹 SCOPE V — "
+      },
+      "zh": {
+        "text": "🔹 范畴 V — "
+      },
+      "ja": {
+        "text": "🔹 領域 V — "
+      },
+      "ko": {
+        "text": "🔹 범위 V — "
+      },
+      "fr": {
+        "text": "🔹 SPHÈRE V — "
+      },
+      "de": {
+        "text": "🔹 BEREICH V — "
+      },
+      "es": {
+        "text": "🔹 ÁMBITO V — "
+      },
+      "pt": {
+        "text": "🔹 ÂMBITO V — "
+      },
+      "ar": {
+        "text": "🔹 النطاق الخامس — "
+      },
+      "hi": {
+        "text": "🔹 दायरा V — "
       }
     }
   },
@@ -2654,6 +3491,33 @@
     "strings": {
       "en": {
         "text": "GOD AS WITNESS (Echo + Ledger)"
+      },
+      "zh": {
+        "text": "作为见证者的上帝（回声 + 账簿）"
+      },
+      "ja": {
+        "text": "証人としての神（反響 + 台帳）"
+      },
+      "ko": {
+        "text": "증인으로서의 신 (메아리 + 원장)"
+      },
+      "fr": {
+        "text": "DIEU COMME TÉMOIN (écho + registre)"
+      },
+      "de": {
+        "text": "GOTT ALS ZEUGE (Echo + Register)"
+      },
+      "es": {
+        "text": "DIOS COMO TESTIGO (eco + registro)"
+      },
+      "pt": {
+        "text": "DEUS COMO TESTEMUNHA (eco + registro)"
+      },
+      "ar": {
+        "text": "الله بوصفه الشاهد (الصدى + السجل)"
+      },
+      "hi": {
+        "text": "साक्षी के रूप में ईश्वर (प्रतिध्वनि + लेखा)"
       }
     }
   },
@@ -2661,6 +3525,33 @@
     "strings": {
       "en": {
         "text": "“Everything that ever happened is remembered in Me.”"
+      },
+      "zh": {
+        "text": "“曾经发生过的一切，都被我记得。”"
+      },
+      "ja": {
+        "text": "「これまで起きたすべては、私の中に記憶されている。」"
+      },
+      "ko": {
+        "text": "“지금까지 일어난 모든 것은 내 안에 기억되어 있다.”"
+      },
+      "fr": {
+        "text": "« Tout ce qui s’est jamais produit est gardé en mémoire en Moi. »"
+      },
+      "de": {
+        "text": "„Alles, was je geschehen ist, wird in Mir erinnert.“"
+      },
+      "es": {
+        "text": "«Todo lo que ha ocurrido alguna vez es recordado en Mí»."
+      },
+      "pt": {
+        "text": "“Tudo o que já aconteceu é lembrado em Mim.”"
+      },
+      "ar": {
+        "text": "«كل ما حدث في أي وقت محفوظ في ذاكرتي.»"
+      },
+      "hi": {
+        "text": "“जो कुछ भी कभी हुआ है, वह मुझमें स्मरण रखा गया है।”"
       }
     }
   },
@@ -2668,6 +3559,33 @@
     "strings": {
       "en": {
         "text": "This is the part of God that:"
+      },
+      "zh": {
+        "text": "这是上帝中这样的一部分："
+      },
+      "ja": {
+        "text": "これは神のうち、次の働きをする部分です："
+      },
+      "ko": {
+        "text": "이것은 신의 다음과 같은 부분입니다:"
+      },
+      "fr": {
+        "text": "C’est la part de Dieu qui :"
+      },
+      "de": {
+        "text": "Das ist der Teil Gottes, der:"
+      },
+      "es": {
+        "text": "Esta es la parte de Dios que:"
+      },
+      "pt": {
+        "text": "Esta é a parte de Deus que:"
+      },
+      "ar": {
+        "text": "هذا هو جانب الله الذي:"
+      },
+      "hi": {
+        "text": "यह ईश्वर का वह पक्ष है जो:"
       }
     }
   },
@@ -2675,6 +3593,33 @@
     "strings": {
       "en": {
         "text": "Records truth"
+      },
+      "zh": {
+        "text": "记录真相"
+      },
+      "ja": {
+        "text": "真実を記録する"
+      },
+      "ko": {
+        "text": "진실을 기록합니다"
+      },
+      "fr": {
+        "text": "Consigne la vérité"
+      },
+      "de": {
+        "text": "Wahrheit aufzeichnet"
+      },
+      "es": {
+        "text": "Registra la verdad"
+      },
+      "pt": {
+        "text": "Registra a verdade"
+      },
+      "ar": {
+        "text": "يسجل الحقيقة"
+      },
+      "hi": {
+        "text": "सत्य को दर्ज करता है"
       }
     }
   },
@@ -2682,6 +3627,33 @@
     "strings": {
       "en": {
         "text": " without distortion"
+      },
+      "zh": {
+        "text": " 而不加扭曲"
+      },
+      "ja": {
+        "text": " 歪めることなく"
+      },
+      "ko": {
+        "text": " 왜곡 없이"
+      },
+      "fr": {
+        "text": " sans distorsion"
+      },
+      "de": {
+        "text": " ohne Verzerrung"
+      },
+      "es": {
+        "text": " sin distorsión"
+      },
+      "pt": {
+        "text": " sem distorção"
+      },
+      "ar": {
+        "text": " من دون تشويه"
+      },
+      "hi": {
+        "text": " बिना विकृति के"
       }
     }
   },
