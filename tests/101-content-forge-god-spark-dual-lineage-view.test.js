@@ -10,6 +10,8 @@ const PAGE_PATH = path.join(ROOT, 'pages', 'what-is-the-god-spark.html');
 const PART021_PATH = path.join(ROOT, 'docs', 'ingestion', 'source-pages', 'part-021', 'what-is-the-god-spark.html');
 const PART028_PATH = path.join(ROOT, 'docs', 'ingestion', 'source-pages', 'part-028', 'convos-with-god-what-is-god-spark.html');
 const FORMATION_PATH = path.join(ROOT, 'docs', 'ingestion', 'workmaps', 'content-forge-god-spark-dual-lineage-view-repair.json');
+const PRESENTATION_STRINGS_PATH = path.join(ROOT, 'data', 'strings', 'source', 'lineages', 'what-is-the-god-spark-presentation.json');
+const TRANSCRIPT_STRINGS_PATH = path.join(ROOT, 'data', 'strings', 'source', 'pages', 'what-is-the-god-spark.json');
 
 function normalizeText(html) {
   return html
@@ -90,4 +92,48 @@ test('GOD SPARK DUAL LINEAGE: repair formation preserves both source identities 
   assert.equal(formation.destination.routeModel, 'ONE_CANONICAL_ROUTE__TWO_SWITCHABLE_VIEWS');
   assert.equal(formation.effects.generatedMutation, false);
   assert.equal(formation.effects.merge, false);
+});
+
+test('GOD SPARK DUAL LINEAGE: Part-021 presentation localization stays lineage-distinct and Global Core complete', () => {
+  const page = fs.readFileSync(PAGE_PATH, 'utf8');
+  const source = fs.readFileSync(PART021_PATH, 'utf8');
+  const presentation = JSON.parse(fs.readFileSync(PRESENTATION_STRINGS_PATH, 'utf8'));
+  const transcript = JSON.parse(fs.readFileSync(TRANSCRIPT_STRINGS_PATH, 'utf8'));
+
+  assert.equal(presentation._meta.scope, 'pages.what-is-the-god-spark');
+  assert.equal(presentation._meta.lineageRole || presentation._meta.sourceProvenance.lineageRole, 'PRESENTATION');
+  assert.equal(presentation._meta.sourceProvenance.preservedGitBlob, '5ff8bce5585e791c9a4b4326291bd8ffc570cb1b');
+
+  const sourceStart = source.indexOf('<div class="entry-meta">');
+  const sourceEnd = source.indexOf('<div id="arcNavMount">', sourceStart);
+  assert.ok(sourceStart >= 0 && sourceEnd > sourceStart);
+  const sourceBody = source.slice(sourceStart, sourceEnd);
+  const preservedKeys = [...sourceBody.matchAll(/data-i18n="([^"]+)"/g)].map(match => match[1]);
+  assert.equal(preservedKeys.length, 51);
+  assert.equal(new Set(preservedKeys).size, 51);
+
+  const presentationKeys = Object.keys(presentation).filter(key => key !== '_meta');
+  assert.equal(presentationKeys.length, 57);
+  for (const key of preservedKeys) assert.ok(presentationKeys.includes(key), 'missing Part-021 key ' + key);
+
+  const interfaceKeys = presentation._meta.pageLocalInterfaceKeys || [];
+  assert.equal(interfaceKeys.length, 6);
+  for (const key of interfaceKeys) {
+    assert.ok(presentationKeys.includes(key), 'missing lineage UI key ' + key);
+    assert.ok(page.includes('data-i18n="' + key + '"'), 'viewer is not bound to ' + key);
+  }
+
+  const targetLocales = ['zh', 'ja', 'ko', 'fr', 'de', 'es', 'pt', 'ar', 'hi'];
+  for (const key of presentationKeys) {
+    const strings = presentation[key].strings;
+    assert.ok(strings && strings.en && typeof strings.en.text === 'string' && strings.en.text.length > 0, 'missing EN ' + key);
+    for (const locale of targetLocales) {
+      assert.ok(strings[locale] && typeof strings[locale].text === 'string' && strings[locale].text.length > 0, 'missing ' + locale + ' ' + key);
+    }
+  }
+
+  const transcriptKeys = new Set(Object.keys(transcript).filter(key => key !== '_meta'));
+  for (const key of presentationKeys) {
+    assert.equal(transcriptKeys.has(key), false, 'lineage key collision with Part-028 transcript: ' + key);
+  }
 });
