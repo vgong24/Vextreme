@@ -26,7 +26,7 @@ test('CHROME-HOME: shared chrome exposes the Vextreme, VexLife, and VexWork fami
   assert.match(source, /class="vex-nav-brand-family"/);
   assert.match(source, /class="vex-nav-title" href="\/Vextreme\/pages\/terrain-map\.html\?view=content&profile=evolution-v1">Vextreme<\/a>/);
   assert.match(source, /class="vex-nav-product" href="https:\/\/vgong24\.github\.io\/VexLife\/">VexLife<\/a>/);
-  assert.match(source, /class="vex-nav-product" href="\\/Vextreme\\/vexwork\\/">VexWork<\/a>/);
+  assert.match(source, /class="vex-nav-product" href="\/Vextreme\/vexwork\/">VexWork<\/a>/);
   assert.match(css, /\.vex-nav-brand-family \{/);
   assert.match(css, /\.vex-nav-product \{/);
 });
