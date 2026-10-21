@@ -50,6 +50,27 @@ test('RECORD-READER-SECOND-CONSUMER: second arc binds the frozen source and late
   assert.match(page, /src="\.\.\/components\/record-reader\.js"/);
 });
 
+test('RECORD-READER-PROVENANCE: evidence-backed readers expose source route and source-supported temporal precision', () => {
+  const scorpions = read('pages/returning-scorpions-to-god.html');
+  const abundance = read('pages/' + SLUG + '.html');
+  const scorpionStrings = JSON.parse(read('data/strings/source/pages/returning-scorpions-to-god.json'));
+  const abundanceStrings = JSON.parse(read('data/strings/source/pages/' + SLUG + '.json'));
+
+  assert.match(scorpions, /data-reader-component="preservation-boundary" data-recorded-precision="exact-time"/);
+  assert.match(scorpions, /href="https:\/\/github\.com\/vgong24\/Vextreme\/pull\/338"/);
+  assert.match(scorpions, /datetime="2026-10-17T05:55:00-07:00"/);
+  assert.match(scorpions, /October 17, 2026 · 5:55 AM PDT \(UTC−07:00\) · supplied by Victor/);
+  assert.equal(scorpionStrings._meta.sourceProvenance.recordedTimePrecision, 'EXACT_TIME');
+  assert.equal(scorpionStrings._meta.sourceProvenance.recordedTimeAuthority, 'VICTOR_SUPPLIED_TIMESTAMP');
+
+  assert.match(abundance, /data-reader-component="preservation-boundary" data-recorded-precision="date-range"/);
+  assert.match(abundance, /href="https:\/\/github\.com\/vgong24\/Vextreme\/pull\/345"/);
+  assert.match(abundance, /October 17–18, 2026 · Pacific time · exact archive clock not supplied/);
+  assert.doesNotMatch(abundance, /data-recorded-precision="exact-time"[^>]*>[^<]*October 17–18/);
+  assert.equal(abundanceStrings._meta.sourceProvenance.recordedTimePrecision, 'DATE_RANGE');
+  assert.equal(abundanceStrings._meta.sourceProvenance.exactArchiveClockSupplied, false);
+});
+
 test('RECORD-READER-SECOND-CONSUMER: nine source movements cover exchanges 1 through 26 without overlap gaps', () => {
   const page = read('pages/' + SLUG + '.html');
   const ranges = [...page.matchAll(/data-phase-kind="(?:record|archive-boundary)" data-set="(\d+)" data-from="(\d+)" data-to="(\d+)"/g)]
