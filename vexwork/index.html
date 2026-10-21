@@ -104,7 +104,7 @@
 
   <section class="vw-stats" aria-label="VexWork summary">
     <div class="vw-stat"><div class="vw-stat-value" id="vw-project-count">—</div><div class="vw-stat-label">Project work items</div></div>
-    <div class="vw-stat"><div class="vw-stat-value" id="vw-active-count">—</div><div class="vw-stat-label">Not done / archived</div></div>
+    <div class="vw-stat"><div class="vw-stat-value" id="vw-active-count">—</div><div class="vw-stat-label">Open project work</div></div>
     <div class="vw-stat"><div class="vw-stat-value" id="vw-parking-count">—</div><div class="vw-stat-label">Parking Lot</div></div>
   </section>
 
@@ -206,7 +206,7 @@
   function renderDashboard(input) {
     var data = assertDashboard(input);
     el('vw-project-count').textContent = data.summary.projectWorkItemCount;
-    el('vw-active-count').textContent = data.summary.activeProjectWorkItemCount;
+    el('vw-active-count').textContent = data.summary.openProjectWorkItemCount;
     el('vw-parking-count').textContent = data.summary.parkingLotItemCount;
     el('vw-project-label').textContent = data.project.label;
     el('vw-project-purpose').textContent = data.project.purpose;
