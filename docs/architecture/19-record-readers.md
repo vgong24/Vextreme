@@ -493,6 +493,87 @@ REPRESENTATION != EVIDENCE
 
 ---
 
+## Second consumer and the controller promotion
+
+The second independent reader is:
+
+```text
+pages/recognizing-life-receiving-abundance.html
+
+source:
+PR #345 / records/conversations/2026-10-18-recognizing-life-receiving-abundance/
+
+later witness:
+records/commentary/2026-10-18-recognizing-life-receiving-abundance-successor-witness.md
+```
+
+It is materially different from the first worked reader: it has nine source movements
+with a distinct archive boundary, began without record-owned media, and follows a different
+lived sequence. After the source-first structure was proven and Victor reviewed the visual
+direction, one intentionally derived representative cover was added without changing the
+evidence boundary. Building it exposed one genuine repeated mechanism that no longer belonged to
+either record page.
+
+That repeated mechanism is now owned by:
+
+```text
+components/record-reader.js
+```
+
+The shared controller owns only record-neutral mechanics:
+
+```text
+frozen Markdown loading
+-> exchange-range selection
+-> safe Markdown-to-reader projection
+-> phase switching / URL fragment position
+-> bounded transcript auto-scroll
+-> optional phase-witness loading
+-> optional whole-record witness loading
+```
+
+The pages still own:
+
+```text
+source commit + file coordinates
+phase names and exchange boundaries
+whether later witness material exists
+record-specific visual identity and CSS
+whether meaningful media exists
+synthesis wording
+Terrain/viewmodel placement
+source-language meaning
+```
+
+Generic Read Aloud remains separately site-owned by `widgets/fab-read-aloud.js`.
+
+This promotion deliberately did **not** create a generic HTML generator, mandatory phase
+count, shared record-reader stylesheet, universal media slot, or automatic successor
+commentary. The second consumer demonstrated that behavior could be shared while visual
+and editorial structure remained truthfully record-local.
+
+A missing image is therefore not a template hole. A record may begin without
+`MediaWitness`; an actual or intentionally derived representation can be added later
+when the record and lived review establish what belongs there.
+
+For this second consumer, that later visual review eventually earned:
+
+```text
+assets/recognizing-life-receiving-abundance/cover.webp
+  semantic identity = stable record cover
+  media class       = representative
+  evidence class    = NOT_EVIDENCE
+```
+
+The approved composition is a derived midnight shoreline reconstruction: the sand dollar
+remains alone near the waterline, Santa Monica Pier and amusement lights sit in the
+distance, and the Ferris wheel carries the remembered heart-light motif. These later
+recollected visual details guide representation only; they do not get inserted into PR
+#345 as historical transcript facts. The page and Terrain preview must share the same
+digest revision token for the asset.
+
+---
+
 ## Reference implementation and extraction boundary
 
 Current worked reference:
@@ -526,9 +607,12 @@ presence of synthesis
 Do not create a repository-wide record-reader framework merely because one page has a
 clean implementation.
 
-Do not extract record-reader structure merely because Read Aloud is now shared. Generic
+Do not extract record-reader structure merely because Read Aloud is shared. Generic
 spoken accessibility earned its own widget because the same human capability applies to
-ordinary pages as well as records. A second independent reader is still required before
-promoting reader-specific phase/transcript/witness structure into shared components.
+ordinary pages as well as records.
+
+The second-consumer threshold has now been met. It earned only the neutral controller
+promotion described above. Further extraction still requires independent pressure:
+shared behavior may move down a layer; record meaning must not.
 
 <!-- [VXG RealForever] -->
