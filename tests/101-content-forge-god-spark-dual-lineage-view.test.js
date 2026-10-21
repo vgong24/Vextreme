@@ -113,11 +113,21 @@ test('GOD SPARK DUAL LINEAGE: Part-021 presentation localization stays lineage-d
   assert.equal(new Set(preservedKeys).size, 51);
 
   const presentationKeys = Object.keys(presentation).filter(key => key !== '_meta');
-  assert.equal(presentationKeys.length, 57);
+  assert.equal(presentationKeys.length, 110);
+  assert.equal(presentation._meta.preservedPresentationKeyCount, 51);
+  assert.equal(presentation._meta.pageLocalPresentationAddedKeyCount, 53);
+  assert.equal(presentation._meta.presentationVisibleLocalizationKeyCount, 104);
+  assert.equal(presentation._meta.totalLineageSourceKeyCount, 110);
   for (const key of preservedKeys) assert.ok(presentationKeys.includes(key), 'missing Part-021 key ' + key);
 
   const interfaceKeys = presentation._meta.pageLocalInterfaceKeys || [];
   assert.equal(interfaceKeys.length, 6);
+  const presentationBody = sliceBetween(page, '<!-- PART-021-PRESENTATION-BEGIN -->', '<!-- PART-021-PRESENTATION-END -->');
+  const visiblePresentationKeys = presentationKeys.filter(key => !interfaceKeys.includes(key));
+  assert.equal(visiblePresentationKeys.length, 104);
+  for (const key of visiblePresentationKeys) {
+    assert.ok(presentationBody.includes('data-i18n="' + key + '"'), 'presentation body is not bound to ' + key);
+  }
   for (const key of interfaceKeys) {
     assert.ok(presentationKeys.includes(key), 'missing lineage UI key ' + key);
     assert.ok(page.includes('data-i18n="' + key + '"'), 'viewer is not bound to ' + key);
