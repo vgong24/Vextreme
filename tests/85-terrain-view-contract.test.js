@@ -41,6 +41,18 @@ function canonicalAssortment() {
   return { nodes, arcs, rows };
 }
 
+test('TERRAIN-VIEW: embedded reader URLs stay on the current deployed revision', () => {
+  const source = pageSource();
+  assert.match(source, /var DEPLOYMENT_ROOT = new URL\('\.\.\/', window\.location\.href\);/);
+  assert.match(source, /var BASE = DEPLOYMENT_ROOT\.pathname\.replace\(\/\\\/\$\/, ''\);/);
+  assert.match(source, /var TERRAIN_URL = new URL\('data\/terrain-map\.json', DEPLOYMENT_ROOT\)\.href;/);
+  assert.match(source, /var CANONICAL_SITE_ORIGIN = 'https:\/\/vgong24\.github\.io';/);
+  assert.match(source, /function deploymentAwareUrl\(url\)/);
+  assert.match(source, /target\.pathname\.indexOf\(CANONICAL_SITE_BASE\) === 0/);
+  assert.match(source, /return new URL\(relative, DEPLOYMENT_ROOT\)\.href/);
+  assert.match(source, /new URL\(deploymentAwareUrl\(url\), window\.location\.href\)/);
+});
+
 test('TERRAIN-VIEW: Content presentation is accepted while the legacy Live geometry remains available', () => {
   const value = contract();
   assert.equal(value.schemaVersion, 'vextreme.terrain-view-contract/v1');
@@ -119,7 +131,7 @@ test('TERRAIN-VIEW: current canonical arcs are not empty; three are secondary-on
   ]);
 
   const timeline = rows.find(row => row.key === 'full_timeline');
-  assert.equal(timeline.members.length, 75);
+  assert.equal(timeline.members.length, 76);
   assert.equal(timeline.primary.length, 1);
 });
 

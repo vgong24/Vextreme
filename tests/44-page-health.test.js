@@ -15,6 +15,8 @@ const {
   hasVisibleThemeStyles,
   metaDescriptionText,
   fabDelivery,
+  readAloudApplicable,
+  readAloudDelivery,
   buildPageHealth,
   loadInputs,
 } = require('../lib/build-page-health');
@@ -125,6 +127,18 @@ test('PAGE-HEALTH: FAB delivery preserves shell, God Script, disabled, and missi
   assert.equal(fabDelivery('', '', false), 'missing');
 });
 
+test('PAGE-HEALTH: Read Aloud coverage is independent from generic FAB applicability', () => {
+  assert.equal(readAloudDelivery('<script src="/lib/shell.js"></script>', '', false), 'shell');
+  assert.equal(readAloudDelivery('', '/* core: fab-read-aloud.js */', true), 'god-script');
+  assert.equal(readAloudDelivery('<script src="../widgets/fab-read-aloud.js"></script>', '', false), 'page-owned');
+  assert.equal(readAloudDelivery('<script src="../widgets/vex-institutional.js"></script>', '', false), 'institutional-shared');
+  assert.equal(readAloudDelivery('', '', false, 'generated-owner'), 'generated-owner');
+  assert.equal(readAloudApplicable('empty', ''), false);
+  assert.equal(readAloudApplicable('redirect', '<meta name="robots" content="noindex"><p>Moved</p><script>location.replace("x")</script>'), false);
+  assert.equal(readAloudApplicable('article', '<main><p>Readable public content.</p></main>'), true);
+});
+
+
 test('PAGE-HEALTH: analysis indexing and an exposed analysis control remain separate facts', () => {
   const result = buildPageHealth({
     pageSlugs: ['indexed-only'], htmlBySlug: { 'indexed-only': '<a href="build-health.html">out</a>' },
@@ -168,7 +182,7 @@ test('PAGE-HEALTH: Terrain group-home surfaces do not inherit ordinary record pl
   const slug = 'direct-contact';
   const result = buildPageHealth({
     pageSlugs:[slug],
-    htmlBySlug:{[slug]:'<html data-vex-surface="group-home"><a href="the-walk.html">Walk</a></html>'},
+    htmlBySlug:{[slug]:'<html data-vex-surface="group-home"><p>Collection introduction.</p><a href="the-walk.html">Walk</a><script src="../widgets/fab-read-aloud.js"></script></html>'},
     distBySlug:{[slug]:''}, wiredBySlug:{},
     navRows:[{slug,navigable:true,staticHubLinks:1,hasShellJs:false,hasFabNav:false}],
     nodes:[], manifest:{}, analysisPages:{}, screenshotFiles:[]
@@ -177,6 +191,7 @@ test('PAGE-HEALTH: Terrain group-home surfaces do not inherit ordinary record pl
   assert.deepEqual(page.surface,{kind:'group-home',state:'active'});
   assert.equal(page.placement.state,'group-home');
   assert.equal(page.fab.delivery,'not-applicable');
+  assert.deepEqual(page.readAloud,{applicable:true,delivery:'page-owned'});
   assert.equal(page.health.blockers.length,0);
   assert.equal(page.health.gaps.includes('uncurated'),false);
   assert.equal(page.health.gaps.includes('fab'),false);
@@ -187,7 +202,7 @@ test('PAGE-HEALTH: registry-owned institutional pages do not inherit record FAB 
   const result = buildPageHealth({
     pageSlugs: [slug],
     htmlBySlug: {
-      [slug]: '<html data-theme="foundation" data-vex-theme-family="foundation"><p data-i18n="institution.test">Test</p></html>',
+      [slug]: '<html data-theme="foundation" data-vex-theme-family="foundation"><p data-i18n="institution.test">Test</p><script src="../widgets/vex-institutional.js"></script></html>',
     },
     distBySlug: { [slug]: '' },
     wiredBySlug: {},
@@ -211,6 +226,7 @@ test('PAGE-HEALTH: registry-owned institutional pages do not inherit record FAB 
   assert.equal(page.surface.kind, 'institutional');
   assert.equal(page.placement.state, 'institutional');
   assert.equal(page.fab.delivery, 'not-applicable');
+  assert.deepEqual(page.readAloud, { applicable: true, delivery: 'institutional-shared' });
   assert.equal(page.theme.visibleStyles, true);
   assert.deepEqual(page.evidence.screenshotFiles, [
     'docs/screenshots/vex-test-en-foundation-320.png',
@@ -344,6 +360,36 @@ test('LOCALIZATION-SCREENSHOT: matrix execution is Assets-first and reuses the s
 
   const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8'));
   assert.equal(pkg.scripts['localization:screenshots'], 'node scripts/screenshot-localization-matrix.js');
+});
+
+test('PAGE-HEALTH: generated Read Aloud ownership predicts the generic page-owned FAB before output regeneration', () => {
+  const slug = 'generated-dashboard';
+  const result = buildPageHealth({
+    pageSlugs:[slug],
+    htmlBySlug:{[slug]:'<html><p>Readable generated dashboard.</p></html>'},
+    distBySlug:{[slug]:''},
+    wiredBySlug:{},
+    navRows:[{slug,navigable:true,staticHubLinks:1,hasShellJs:false,hasFabNav:false}],
+    nodes:[], manifest:{}, analysisPages:{}, screenshotFiles:[],
+    readAloudOwnedBySlug:{[slug]:'generated-owner'},
+  });
+  assert.equal(result.pages[slug].fab.delivery, 'page-owned');
+  assert.equal(result.pages[slug].health.gaps.includes('fab'), false);
+  assert.deepEqual(result.pages[slug].readAloud, { applicable:true, delivery:'generated-owner' });
+});
+
+test('PAGE-HEALTH: generated Read Aloud ownership is source-derived before output regeneration', () => {
+  const { generatedReadAloudOwners } = require('../lib/build-page-health');
+  const owners = generatedReadAloudOwners(ROOT);
+  for (const slug of ['build-health','ecosystem-hub','roles-index','vextreme-demo','ai-practitioner-tools','direct-contact']) {
+    assert.equal(owners[slug], 'generated-owner', slug + ' must be covered by its rightful generator/projector source');
+  }
+});
+
+test('PAGE-HEALTH integration: every applicable public readable surface has Read Aloud delivery', () => {
+  const fresh = buildPageHealth(loadInputs());
+  assert.equal(fresh.summary.missingReadAloud, 0);
+  assert.equal(fresh.summary.withReadAloud, fresh.summary.readAloudApplicable);
 });
 
 test('PAGE-HEALTH integration: committed projection equals fresh source computation', () => {

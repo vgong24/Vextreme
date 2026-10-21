@@ -55,6 +55,41 @@ test('CHROME-RAIL: spiral FAB uses the nav rail with a standalone fallback', () 
   assert.match(source, /vex-spiral-fab--nav/);
 });
 
+test('CHROME-RAIL: Spiral opens from one trigger into horizontal primary and vertical secondary lanes', () => {
+  const source = read('widgets/vex-fab.js');
+  assert.match(source, /id = 'vex-spiral-primary'/);
+  assert.match(source, /id = 'vex-spiral-secondary'/);
+  assert.match(source, /grid-template-columns: minmax\(0, auto\) 44px/);
+  assert.match(source, /#vex-spiral-primary[\s\S]*?grid-row: 1/);
+  assert.match(source, /#vex-spiral-secondary[\s\S]*?grid-row: 2/);
+  assert.match(source, /data-vex-spiral-axis'\) === 'secondary'/);
+  assert.match(source, /lane\.appendChild\(node\)/);
+});
+
+test('CHROME-RAIL: primary Spiral lane preserves child popup escape instead of clipping it', () => {
+  const source = read('widgets/vex-fab.js');
+  assert.match(source, /#vex-spiral-primary[\s\S]*?overflow: visible/);
+  assert.doesNotMatch(
+    source,
+    /#vex-spiral-primary[\s\S]*?overflow-x: auto/,
+    'a horizontal scroll container also clips vertical child popups such as the language wheel',
+  );
+});
+
+test('CHROME-RAIL: Analysis/Search uses the secondary vertical Spiral lane', () => {
+  const source = read('widgets/fab-analysis.js');
+  assert.match(source, /container\.setAttribute\('data-vex-spiral-axis', 'secondary'\)/);
+});
+
+test('CHROME-RAIL: Read Aloud is a shared Spiral child with standalone fallback, not a second fixed FAB owner', () => {
+  const source = read('widgets/fab-read-aloud.js');
+  assert.match(source, /getElementById\('vex-spiral-group'\)/);
+  assert.match(source, /group\.appendChild\(root\)/);
+  assert.match(source, /orb\.className = 'vex-orb'/);
+  assert.match(source, /document\.body\.appendChild\(root\)/);
+  assert.match(source, /vex-read-aloud-standalone/);
+});
+
 test('CHROME-RAIL: configured FAB links remain children of the shared Spiral and fail closed on unsafe URL / raw HTML patterns', () => {
   const source = read('lib/vextreme.js');
   const helper = source.match(/function safeFabLinkUrl\(value\) \{[\s\S]*?\n  function loadFabWidgets\(cfg\)/);

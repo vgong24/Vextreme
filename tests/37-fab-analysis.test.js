@@ -144,6 +144,12 @@ test('STRUCTURAL: mounts into #vex-spiral-group when present, with a standalone 
   assert.ok(source.includes('vex-standalone'), 'must have a standalone fallback class for pages without spiral-fab');
 });
 
+test('STRUCTURAL: Analysis declares the Spiral secondary axis instead of competing with primary human controls', () => {
+  const source = readSource();
+  assert.match(source, /data-vex-spiral-axis', 'secondary'/);
+});
+
+
 test('STRUCTURAL: data/analysis-index.json is fetched lazily on first open, not unconditionally at mount time', () => {
   const source = readSource();
   const mountMatch = source.match(/function mount\(\)[\s\S]*?\n  \}\n\n  if \(document\.readyState/);

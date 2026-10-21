@@ -1,15 +1,18 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 133,
+    "total": 134,
     "healthy": 4,
-    "attention": 122,
+    "attention": 123,
     "critical": 7,
-    "sorted": 89,
-    "withFab": 115,
-    "withIdentity": 98,
+    "sorted": 90,
+    "withFab": 122,
+    "readAloudApplicable": 127,
+    "withReadAloud": 127,
+    "missingReadAloud": 0,
+    "withIdentity": 99,
     "withScreenshots": 12,
-    "withMetaDescription": 99
+    "withMetaDescription": 100
   },
   "pages": {
     "a-conversation-with-pastor-jacob": {
@@ -33,6 +36,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -85,6 +92,10 @@
         "fab": false
       },
       "fab": {
+        "delivery": "shell"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "shell"
       },
       "theme": {
@@ -141,6 +152,10 @@
       },
       "fab": {
         "delivery": "missing"
+      },
+      "readAloud": {
+        "applicable": false,
+        "delivery": "not-applicable"
       },
       "theme": {
         "control": "none",
@@ -199,6 +214,10 @@
       "fab": {
         "delivery": "missing"
       },
+      "readAloud": {
+        "applicable": false,
+        "delivery": "not-applicable"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -254,6 +273,10 @@
         "fab": false
       },
       "fab": {
+        "delivery": "shell"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "shell"
       },
       "theme": {
@@ -313,6 +336,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -366,6 +393,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -469,6 +500,10 @@
       "fab": {
         "delivery": "not-applicable"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "generated-owner"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -521,6 +556,10 @@
       },
       "fab": {
         "delivery": "missing"
+      },
+      "readAloud": {
+        "applicable": false,
+        "delivery": "not-applicable"
       },
       "theme": {
         "control": "none",
@@ -581,6 +620,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -631,6 +674,10 @@
         "fab": false
       },
       "fab": {
+        "delivery": "shell"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "shell"
       },
       "theme": {
@@ -688,6 +735,10 @@
       "fab": {
         "delivery": "shell"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "shell"
+      },
       "theme": {
         "control": "shared",
         "visibleStyles": false
@@ -743,6 +794,10 @@
       "fab": {
         "delivery": "shell"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "shell"
+      },
       "theme": {
         "control": "shared",
         "visibleStyles": false
@@ -796,7 +851,11 @@
         "fab": false
       },
       "fab": {
-        "delivery": "missing"
+        "delivery": "page-owned"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "generated-owner"
       },
       "theme": {
         "control": "page-owned",
@@ -871,7 +930,6 @@
         "state": "attention",
         "blockers": [],
         "gaps": [
-          "fab",
           "uncurated",
           "screenshot",
           "theme-effect"
@@ -899,6 +957,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -956,6 +1018,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -1009,6 +1075,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -1111,6 +1181,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -1165,6 +1239,10 @@
         "fab": false
       },
       "fab": {
+        "delivery": "shell"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "shell"
       },
       "theme": {
@@ -1270,6 +1348,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -1325,6 +1407,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -1375,6 +1461,10 @@
         "fab": false
       },
       "fab": {
+        "delivery": "shell"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "shell"
       },
       "theme": {
@@ -1435,6 +1525,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -1488,6 +1582,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -1545,6 +1643,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -1598,6 +1700,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -1654,6 +1760,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -1704,6 +1814,10 @@
         "fab": false
       },
       "fab": {
+        "delivery": "shell"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "shell"
       },
       "theme": {
@@ -1765,6 +1879,10 @@
       "fab": {
         "delivery": "not-applicable"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "generated-owner"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -1818,6 +1936,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -1875,6 +1997,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -1925,7 +2051,11 @@
         "fab": false
       },
       "fab": {
-        "delivery": "missing"
+        "delivery": "page-owned"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "generated-owner"
       },
       "theme": {
         "control": "none",
@@ -1955,7 +2085,6 @@
         "state": "attention",
         "blockers": [],
         "gaps": [
-          "fab",
           "uncurated",
           "identity",
           "screenshot"
@@ -1982,6 +2111,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -2037,6 +2170,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -2139,6 +2276,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -2192,6 +2333,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -2292,6 +2437,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -2395,6 +2544,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -2492,6 +2645,10 @@
       "fab": {
         "delivery": "shell"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "shell"
+      },
       "theme": {
         "control": "shared",
         "visibleStyles": false
@@ -2550,6 +2707,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -2603,6 +2764,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -2661,6 +2826,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -2714,6 +2883,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -2772,6 +2945,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -2824,6 +3001,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -2879,6 +3060,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -2978,6 +3163,10 @@
       "fab": {
         "delivery": "missing"
       },
+      "readAloud": {
+        "applicable": false,
+        "delivery": "not-applicable"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -3038,6 +3227,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -3088,6 +3281,10 @@
         "fab": false
       },
       "fab": {
+        "delivery": "shell"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "shell"
       },
       "theme": {
@@ -3149,6 +3346,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -3156,7 +3357,52 @@
       "identity": {
         "keyCount": 105,
         "languages": {
+          "ar": {
+            "translated": 105,
+            "total": 105,
+            "state": "full"
+          },
+          "de": {
+            "translated": 105,
+            "total": 105,
+            "state": "full"
+          },
           "en": {
+            "translated": 105,
+            "total": 105,
+            "state": "full"
+          },
+          "es": {
+            "translated": 105,
+            "total": 105,
+            "state": "full"
+          },
+          "fr": {
+            "translated": 105,
+            "total": 105,
+            "state": "full"
+          },
+          "hi": {
+            "translated": 105,
+            "total": 105,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 105,
+            "total": 105,
+            "state": "full"
+          },
+          "ko": {
+            "translated": 105,
+            "total": 105,
+            "state": "full"
+          },
+          "pt": {
+            "translated": 105,
+            "total": 105,
+            "state": "full"
+          },
+          "zh": {
             "translated": 105,
             "total": 105,
             "state": "full"
@@ -3202,6 +3448,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -3305,6 +3555,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -3356,6 +3610,10 @@
       },
       "fab": {
         "delivery": "missing"
+      },
+      "readAloud": {
+        "applicable": false,
+        "delivery": "not-applicable"
       },
       "theme": {
         "control": "none",
@@ -3414,6 +3672,10 @@
       "fab": {
         "delivery": "shell"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "shell"
+      },
       "theme": {
         "control": "shared",
         "visibleStyles": false
@@ -3470,6 +3732,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -3572,6 +3838,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -3672,6 +3942,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -3726,6 +4000,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -3776,6 +4054,10 @@
         "fab": false
       },
       "fab": {
+        "delivery": "shell"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "shell"
       },
       "theme": {
@@ -3836,6 +4118,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -3891,6 +4177,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -3944,6 +4234,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -4046,6 +4340,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -4143,6 +4441,10 @@
       "fab": {
         "delivery": "shell"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "shell"
+      },
       "theme": {
         "control": "shared",
         "visibleStyles": false
@@ -4196,6 +4498,10 @@
         "fab": false
       },
       "fab": {
+        "delivery": "shell"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "shell"
       },
       "theme": {
@@ -4253,6 +4559,10 @@
       "fab": {
         "delivery": "shell"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "shell"
+      },
       "theme": {
         "control": "shared",
         "visibleStyles": true
@@ -4305,6 +4615,10 @@
         "fab": false
       },
       "fab": {
+        "delivery": "shell"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "shell"
       },
       "theme": {
@@ -4363,6 +4677,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -4413,7 +4731,11 @@
         "fab": false
       },
       "fab": {
-        "delivery": "missing"
+        "delivery": "page-owned"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "page-owned"
       },
       "theme": {
         "control": "page-owned",
@@ -4451,7 +4773,6 @@
         "state": "attention",
         "blockers": [],
         "gaps": [
-          "fab",
           "uncurated",
           "identity"
         ]
@@ -4478,6 +4799,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -4530,7 +4855,11 @@
         "fab": false
       },
       "fab": {
-        "delivery": "missing"
+        "delivery": "page-owned"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "page-owned"
       },
       "theme": {
         "control": "none",
@@ -4560,7 +4889,6 @@
         "state": "attention",
         "blockers": [],
         "gaps": [
-          "fab",
           "uncurated",
           "identity",
           "screenshot"
@@ -4587,6 +4915,10 @@
         "fab": false
       },
       "fab": {
+        "delivery": "shell"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "shell"
       },
       "theme": {
@@ -4623,6 +4955,66 @@
         ]
       }
     },
+    "returning-scorpions-to-god": {
+      "slug": "returning-scorpions-to-god",
+      "title": "Returning scorpions to God",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "convos_with_god",
+          "victors_record",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "page-owned",
+        "visibleStyles": true
+      },
+      "identity": {
+        "keyCount": 121,
+        "languages": {
+          "en": {
+            "translated": 121,
+            "total": 121,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "A repository-native annotated witness reading of the preserved Returning scorpions to God conversation."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "roles-index": {
       "slug": "roles-index",
       "title": "roles-index",
@@ -4641,7 +5033,11 @@
         "fab": false
       },
       "fab": {
-        "delivery": "missing"
+        "delivery": "page-owned"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "generated-owner"
       },
       "theme": {
         "control": "none",
@@ -4673,7 +5069,6 @@
         "state": "attention",
         "blockers": [],
         "gaps": [
-          "fab",
           "uncurated",
           "identity"
         ]
@@ -4700,6 +5095,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -4752,6 +5151,10 @@
         "fab": false
       },
       "fab": {
+        "delivery": "shell"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "shell"
       },
       "theme": {
@@ -4812,6 +5215,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -4862,6 +5269,10 @@
         "fab": false
       },
       "fab": {
+        "delivery": "shell"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "shell"
       },
       "theme": {
@@ -4961,6 +5372,10 @@
         "fab": false
       },
       "fab": {
+        "delivery": "shell"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "shell"
       },
       "theme": {
@@ -5064,6 +5479,10 @@
       "fab": {
         "delivery": "shell"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "shell"
+      },
       "theme": {
         "control": "page-owned",
         "visibleStyles": false
@@ -5163,6 +5582,10 @@
         "fab": false
       },
       "fab": {
+        "delivery": "shell"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "shell"
       },
       "theme": {
@@ -5266,6 +5689,10 @@
       "fab": {
         "delivery": "shell"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "shell"
+      },
       "theme": {
         "control": "page-owned",
         "visibleStyles": false
@@ -5367,6 +5794,10 @@
       "fab": {
         "delivery": "missing"
       },
+      "readAloud": {
+        "applicable": false,
+        "delivery": "not-applicable"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -5422,7 +5853,11 @@
         "fab": false
       },
       "fab": {
-        "delivery": "missing"
+        "delivery": "page-owned"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "page-owned"
       },
       "theme": {
         "control": "none",
@@ -5454,7 +5889,6 @@
           "isolated"
         ],
         "gaps": [
-          "fab",
           "uncurated",
           "identity",
           "screenshot"
@@ -5479,6 +5913,10 @@
         "fab": false
       },
       "fab": {
+        "delivery": "shell"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "shell"
       },
       "theme": {
@@ -5539,6 +5977,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -5592,6 +6034,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -5649,6 +6095,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -5702,6 +6152,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -5804,6 +6258,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -5902,6 +6360,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -6005,6 +6467,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -6058,6 +6524,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -6115,6 +6585,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -6167,6 +6641,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -6225,6 +6703,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -6279,6 +6761,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -6382,6 +6868,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -6435,6 +6925,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -6492,6 +6986,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -6545,6 +7043,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -6646,6 +7148,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -6701,6 +7207,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -6754,6 +7264,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -6857,6 +7371,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -6957,6 +7475,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -7013,6 +7535,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -7067,6 +7593,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -7128,6 +7658,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -7230,6 +7764,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -7327,6 +7865,10 @@
       "fab": {
         "delivery": "shell"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "shell"
+      },
       "theme": {
         "control": "shared",
         "visibleStyles": false
@@ -7380,6 +7922,10 @@
         "fab": false
       },
       "fab": {
+        "delivery": "shell"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "shell"
       },
       "theme": {
@@ -7439,6 +7985,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -7494,6 +8044,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -7547,6 +8101,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -7649,6 +8207,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -7700,6 +8262,10 @@
       },
       "fab": {
         "delivery": "missing"
+      },
+      "readAloud": {
+        "applicable": false,
+        "delivery": "not-applicable"
       },
       "theme": {
         "control": "none",
@@ -7761,6 +8327,10 @@
       },
       "fab": {
         "delivery": "not-applicable"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "page-owned"
       },
       "theme": {
         "control": "page-owned",
@@ -7850,6 +8420,10 @@
       "fab": {
         "delivery": "not-applicable"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "page-owned"
+      },
       "theme": {
         "control": "page-owned",
         "visibleStyles": true
@@ -7919,6 +8493,10 @@
       },
       "fab": {
         "delivery": "page-owned"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "generated-owner"
       },
       "theme": {
         "control": "page-owned",
@@ -8025,6 +8603,10 @@
       "fab": {
         "delivery": "not-applicable"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "page-owned"
+      },
       "theme": {
         "control": "page-owned",
         "visibleStyles": true
@@ -8111,6 +8693,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -8177,6 +8763,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -8232,6 +8822,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -8285,6 +8879,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -8387,6 +8985,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -8441,6 +9043,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -8543,6 +9149,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -8550,7 +9160,52 @@
       "identity": {
         "keyCount": 412,
         "languages": {
+          "ar": {
+            "translated": 412,
+            "total": 412,
+            "state": "full"
+          },
+          "de": {
+            "translated": 412,
+            "total": 412,
+            "state": "full"
+          },
           "en": {
+            "translated": 412,
+            "total": 412,
+            "state": "full"
+          },
+          "es": {
+            "translated": 412,
+            "total": 412,
+            "state": "full"
+          },
+          "fr": {
+            "translated": 412,
+            "total": 412,
+            "state": "full"
+          },
+          "hi": {
+            "translated": 412,
+            "total": 412,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 412,
+            "total": 412,
+            "state": "full"
+          },
+          "ko": {
+            "translated": 412,
+            "total": 412,
+            "state": "full"
+          },
+          "pt": {
+            "translated": 412,
+            "total": 412,
+            "state": "full"
+          },
+          "zh": {
             "translated": 412,
             "total": 412,
             "state": "full"
@@ -8597,6 +9252,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -8654,6 +9313,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -8707,6 +9370,10 @@
         "fab": true
       },
       "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "god-script"
       },
       "theme": {
@@ -8809,6 +9476,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -8864,6 +9535,10 @@
       "fab": {
         "delivery": "god-script"
       },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
       "theme": {
         "control": "none",
         "visibleStyles": false
@@ -8914,6 +9589,10 @@
         "fab": false
       },
       "fab": {
+        "delivery": "shell"
+      },
+      "readAloud": {
+        "applicable": true,
         "delivery": "shell"
       },
       "theme": {

@@ -47,6 +47,7 @@ test('TERRAIN ENTRY: preserved authored visible text and semantic structure surv
       assert.equal(countTag(projected, tag), countTag(source, tag), entry.slug + ': ' + tag + ' structure drifted');
     }
     assert.ok(pageHtml.includes('preserved blob ' + entry.sourceBlob + '.'), entry.slug + ': exact preserved blob provenance missing');
+    assert.ok(pageHtml.includes('<script src="../widgets/fab-read-aloud.js"></script>'), entry.slug + ': standalone/embedded reader must carry site Read Aloud through a provider-neutral local asset');
   }
 });
 
@@ -102,6 +103,7 @@ test('TERRAIN GROUP HOME: Direct Contact and AI Practitioner Tools are determini
     assert.equal(arcs[member.groupKey].parent.pageSlug, member.slug);
     assert.equal(arcs[member.groupKey].parent.url, '/Vextreme/pages/' + member.slug + '.html');
     assert.match(committed, /data-vex-surface="group-home"/);
+    assert.ok(committed.includes('<script src="../widgets/fab-read-aloud.js"></script>'), member.slug + ': group-home projection must carry site Read Aloud without adopting the archive runtime');
     assert.doesNotMatch(committed, /www\.vextreme24\.com|\/__rescue\/|\/__vex\/|data-vex-id=|data-i18n=/);
     assert.doesNotMatch(committed, /(?:href|src)=["']\/(?!\/)/);
   }

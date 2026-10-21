@@ -55,6 +55,62 @@
     "text": "Build Health →",
     "aria-label": "View build health"
   },
+  "common.button.read-aloud": {
+    "text": "Read aloud",
+    "aria-label": "Read aloud"
+  },
+  "common.button.read-aloud-start-here": {
+    "text": "Start here",
+    "aria-label": "Start here"
+  },
+  "common.button.read-aloud-play": {
+    "text": "Play",
+    "aria-label": "Play"
+  },
+  "common.button.read-aloud-pause": {
+    "text": "Pause",
+    "aria-label": "Pause"
+  },
+  "common.button.read-aloud-stop": {
+    "text": "Stop",
+    "aria-label": "Stop"
+  },
+  "common.button.read-aloud-previous": {
+    "text": "Previous",
+    "aria-label": "Previous"
+  },
+  "common.button.read-aloud-next": {
+    "text": "Next",
+    "aria-label": "Next"
+  },
+  "common.button.read-aloud-close": {
+    "text": "Close",
+    "aria-label": "Close"
+  },
+  "common.label.read-aloud-voice": {
+    "text": "Voice"
+  },
+  "common.label.read-aloud-speed": {
+    "text": "Speed"
+  },
+  "common.status.read-aloud-pick": {
+    "text": "Choose where reading should begin."
+  },
+  "common.status.read-aloud-preparing": {
+    "text": "Preparing high-quality voice…"
+  },
+  "common.status.read-aloud-reading": {
+    "text": "Reading…"
+  },
+  "common.status.read-aloud-done": {
+    "text": "Reading complete."
+  },
+  "common.status.read-aloud-fallback": {
+    "text": "High-quality voice unavailable; using system speech."
+  },
+  "common.status.read-aloud-none": {
+    "text": "No readable text found."
+  },
   "pages.victor-methodology-presentation.header.eyebrow": {
     "text": "Engineering Dossier · 2021–2026 · DOC-ID: VG-DOSSIER-v2.1"
   },

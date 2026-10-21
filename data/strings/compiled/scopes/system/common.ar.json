@@ -54,5 +54,61 @@
   "common.nav.full-build-health": {
     "text": "حالة البناء →",
     "aria-label": "عرض حالة البناء"
+  },
+  "common.button.read-aloud": {
+    "text": "قراءة بصوت عالٍ",
+    "aria-label": "قراءة بصوت عالٍ"
+  },
+  "common.button.read-aloud-start-here": {
+    "text": "ابدأ من هنا",
+    "aria-label": "ابدأ من هنا"
+  },
+  "common.button.read-aloud-play": {
+    "text": "تشغيل",
+    "aria-label": "تشغيل"
+  },
+  "common.button.read-aloud-pause": {
+    "text": "إيقاف مؤقت",
+    "aria-label": "إيقاف مؤقت"
+  },
+  "common.button.read-aloud-stop": {
+    "text": "إيقاف",
+    "aria-label": "إيقاف"
+  },
+  "common.button.read-aloud-previous": {
+    "text": "السابق",
+    "aria-label": "السابق"
+  },
+  "common.button.read-aloud-next": {
+    "text": "التالي",
+    "aria-label": "التالي"
+  },
+  "common.button.read-aloud-close": {
+    "text": "إغلاق",
+    "aria-label": "إغلاق"
+  },
+  "common.label.read-aloud-voice": {
+    "text": "الصوت"
+  },
+  "common.label.read-aloud-speed": {
+    "text": "السرعة"
+  },
+  "common.status.read-aloud-pick": {
+    "text": "اختر المكان الذي يجب أن تبدأ منه القراءة."
+  },
+  "common.status.read-aloud-preparing": {
+    "text": "جارٍ تجهيز صوت عالي الجودة…"
+  },
+  "common.status.read-aloud-reading": {
+    "text": "جارٍ القراءة…"
+  },
+  "common.status.read-aloud-done": {
+    "text": "اكتملت القراءة."
+  },
+  "common.status.read-aloud-fallback": {
+    "text": "الصوت عالي الجودة غير متاح؛ سيتم استخدام صوت النظام."
+  },
+  "common.status.read-aloud-none": {
+    "text": "لم يتم العثور على نص قابل للقراءة."
   }
 }
