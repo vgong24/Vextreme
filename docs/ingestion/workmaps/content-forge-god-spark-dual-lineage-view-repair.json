@@ -77,7 +77,7 @@
     "runtimeScope": "pages.what-is-the-god-spark",
     "preservedPresentationKeyCount": 51,
     "pageLocalInterfaceKeyCount": 6,
-    "totalLineageKeys": 57,
+    "totalLineageKeys": 110,
     "targetLocales": [
       "zh",
       "ja",
@@ -89,10 +89,23 @@
       "ar",
       "hi"
     ],
-    "targetCellCount": 513,
+    "targetCellCount": 990,
     "missingTargetCells": 0,
     "transcriptSourcePath": "data/strings/source/pages/what-is-the-god-spark.json",
     "transcriptSourceMutation": false,
-    "keyCollisionCount": 0
+    "keyCollisionCount": 0,
+    "pageLocalPresentationAddedKeyCount": 53,
+    "presentationVisibleLocalizationKeyCount": 104,
+    "stableUnlocalizedPresentationIdentities": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "Victor",
+      "Claude"
+    ],
+    "coverageRule": "EVERY_VISIBLE_TEXT_NODE_LOCALIZED_EXCEPT_STABLE_NUMERIC_OR_SPEAKER_IDENTITY"
   }
 }
