@@ -20,14 +20,15 @@ function read(relativePath) {
   return fs.readFileSync(path.join(ROOT, relativePath), 'utf8').replace(/\r\n/g, '\n');
 }
 
-test('CHROME-HOME: shared chrome separates Vextreme Terrain home from VexLife onboarding home', () => {
+test('CHROME-HOME: shared chrome exposes the Vextreme, VexLife, and VexWork family', () => {
   const source = read('lib/vextreme.js');
   const css = read('styles/site-nav.css');
-  assert.match(source, /class="vex-nav-brand-pair"/);
+  assert.match(source, /class="vex-nav-brand-family"/);
   assert.match(source, /class="vex-nav-title" href="\/Vextreme\/pages\/terrain-map\.html\?view=content&profile=evolution-v1">Vextreme<\/a>/);
-  assert.match(source, /class="vex-nav-life" href="https:\/\/vgong24\.github\.io\/VexLife\/">VexLife<\/a>/);
-  assert.match(css, /\.vex-nav-brand-pair \{/);
-  assert.match(css, /\.vex-nav-life \{/);
+  assert.match(source, /class="vex-nav-product" href="https:\/\/vgong24\.github\.io\/VexLife\/">VexLife<\/a>/);
+  assert.match(source, /class="vex-nav-product" href="\/Vextreme\/pages\/vex-work\.html">VexWork<\/a>/);
+  assert.match(css, /\.vex-nav-brand-family \{/);
+  assert.match(css, /\.vex-nav-product \{/);
 });
 
 test('CHROME-RAIL: nav exposes one reserved action mount', () => {

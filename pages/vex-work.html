@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VexWork — Public Work Board</title>
+<meta name="description" content="Read-only public projection of VexWork Project Board and Parking Lot truth.">
+<link rel="icon" href="../assets/logo/vextreme-mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles/design-system.css">
+<style>
+  :root { --vw-lane-width: 248px; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--cream, #fafaf9);
+    color: var(--stone, #1c1917);
+    font-family: var(--sans, 'IBM Plex Sans', sans-serif);
+  }
+  a { color: inherit; }
+  .vw-shell { width: min(1440px, calc(100% - 32px)); margin: 0 auto; }
+  .vw-product-nav {
+    display: flex; align-items: center; gap: 7px;
+    padding: 22px 0 0;
+    font-family: var(--serif, 'Source Serif 4', Georgia, serif);
+    font-size: 14px;
+  }
+  .vw-product-nav a { color: var(--muted, #78716c); text-decoration: none; }
+  .vw-product-nav a:hover { color: var(--ember, #b45830); }
+  .vw-product-nav strong { color: var(--stone, #1c1917); font-weight: 600; }
+  .vw-sep { color: var(--border-strong, #d6d3d1); font-family: var(--mono, monospace); font-size: 11px; }
+  .vw-header { padding: 34px 0 24px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px; align-items: end; }
+  .vw-eyebrow { margin: 0 0 9px; color: var(--ember, #b45830); font-family: var(--mono, monospace); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; }
+  h1 { margin: 0; font-family: var(--serif, Georgia, serif); font-size: clamp(36px, 7vw, 68px); line-height: 0.95; font-weight: 600; letter-spacing: -0.035em; }
+  .vw-lede { max-width: 720px; margin: 16px 0 0; color: var(--muted, #78716c); line-height: 1.7; font-size: 15px; }
+  .vw-source { text-align: right; font-family: var(--mono, monospace); font-size: 11px; line-height: 1.8; color: var(--muted, #78716c); }
+  .vw-source a { color: var(--ember, #b45830); text-decoration: none; }
+  .vw-source a:hover { text-decoration: underline; }
+  .vw-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 30px; }
+  .vw-stat { border: 1px solid var(--border, #e7e5e4); background: #fff; border-radius: 8px; padding: 14px 16px; }
+  .vw-stat-value { font-family: var(--mono, monospace); color: var(--ember, #b45830); font-size: 24px; font-weight: 500; }
+  .vw-stat-label { margin-top: 4px; color: var(--muted, #78716c); font-size: 11px; }
+  .vw-section-head { display: flex; gap: 18px; align-items: baseline; justify-content: space-between; margin: 34px 0 12px; }
+  .vw-section-head h2 { margin: 0; font-family: var(--mono, monospace); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .vw-section-head p { margin: 0; color: var(--muted, #78716c); font-size: 12px; }
+  .vw-board-scroll { overflow-x: auto; padding-bottom: 12px; scrollbar-width: thin; }
+  .vw-board { display: grid; grid-template-columns: repeat(10, var(--vw-lane-width)); gap: 10px; align-items: start; min-width: max-content; }
+  .vw-lane { border: 1px solid var(--border, #e7e5e4); background: rgba(255,255,255,0.62); border-radius: 8px; min-height: 132px; overflow: hidden; }
+  .vw-lane-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 11px 12px; border-bottom: 1px solid var(--border, #e7e5e4); background: rgba(255,255,255,0.75); }
+  .vw-lane-title { font-family: var(--mono, monospace); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .vw-count { min-width: 20px; height: 20px; padding: 0 5px; display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; background: var(--border, #e7e5e4); color: var(--muted, #78716c); font-family: var(--mono, monospace); font-size: 9px; }
+  .vw-cards { display: grid; gap: 8px; padding: 8px; }
+  .vw-empty { padding: 14px 10px; color: var(--muted, #78716c); font-size: 11px; font-style: italic; }
+  .vw-card { border: 1px solid var(--border, #e7e5e4); background: #fff; border-radius: 7px; padding: 11px; box-shadow: 0 1px 0 rgba(28,25,23,0.02); }
+  .vw-card-top { display: flex; gap: 7px; flex-wrap: wrap; align-items: center; margin-bottom: 8px; }
+  .vw-badge { display: inline-flex; border-radius: 999px; padding: 2px 6px; font-family: var(--mono, monospace); font-size: 8px; letter-spacing: 0.05em; text-transform: uppercase; background: var(--border, #e7e5e4); color: var(--muted, #78716c); }
+  .vw-badge--state { background: var(--ember-bg, #f7ece7); color: var(--ember, #b45830); }
+  .vw-badge--held { background: #f1f0ee; color: #6b6864; }
+  .vw-card h3 { margin: 0 0 7px; font-size: 13px; line-height: 1.35; }
+  .vw-card p { margin: 0; color: var(--muted, #78716c); font-size: 11px; line-height: 1.55; }
+  .vw-ref { margin-top: 10px; font-family: var(--mono, monospace); font-size: 8px; color: #9a948d; overflow-wrap: anywhere; }
+  .vw-repos { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 4px; }
+  .vw-repo { font-family: var(--mono, monospace); font-size: 8px; color: var(--muted, #78716c); }
+  .vw-parking { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 360px)); gap: 10px; margin-bottom: 52px; }
+  .vw-parking .vw-card { border-left: 3px solid var(--ember, #b45830); }
+  .vw-status { margin: 28px 0 52px; padding: 14px 16px; border: 1px dashed var(--border, #e7e5e4); border-radius: 8px; color: var(--muted, #78716c); font-size: 12px; }
+  .vw-error { color: #9f3131; }
+  .vw-footer { border-top: 1px solid var(--border, #e7e5e4); padding: 18px 0 30px; display: flex; justify-content: space-between; gap: 20px; color: var(--muted, #78716c); font-family: var(--mono, monospace); font-size: 9px; }
+  @media (max-width: 720px) {
+    .vw-header { grid-template-columns: 1fr; }
+    .vw-source { text-align: left; }
+    .vw-stats { grid-template-columns: 1fr 1fr; }
+    .vw-stat:last-child { grid-column: 1 / -1; }
+    .vw-board { min-width: 0; width: 100%; display: flex; flex-direction: column; }
+    .vw-lane { width: 100%; min-height: auto; }
+    .vw-board-scroll { overflow: visible; }
+    .vw-footer { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+<div class="vw-shell">
+  <nav class="vw-product-nav" aria-label="Vextreme product family">
+    <a href="/Vextreme/pages/terrain-map.html?view=content&profile=evolution-v1">Vextreme</a>
+    <span class="vw-sep" aria-hidden="true">/</span>
+    <a href="https://vgong24.github.io/VexLife/">VexLife</a>
+    <span class="vw-sep" aria-hidden="true">/</span>
+    <strong aria-current="page">VexWork</strong>
+  </nav>
+
+  <header class="vw-header">
+    <div>
+      <p class="vw-eyebrow">Public work projection · read only</p>
+      <h1>VexWork</h1>
+      <p class="vw-lede">A visible map of what is active, captured, completed, and intentionally parked. VexWork owns the work truth; this page only renders its public projection.</p>
+    </div>
+    <div class="vw-source">
+      <a href="https://github.com/VexGPT/VexWork">VexWork source ↗</a><br>
+      <a href="https://github.com/VexGPT/VexWork/blob/main/public/work-dashboard.json">public dashboard JSON ↗</a>
+    </div>
+  </header>
+
+  <section class="vw-stats" aria-label="VexWork summary">
+    <div class="vw-stat"><div class="vw-stat-value" id="vw-project-count">—</div><div class="vw-stat-label">Project work items</div></div>
+    <div class="vw-stat"><div class="vw-stat-value" id="vw-active-count">—</div><div class="vw-stat-label">Not done / archived</div></div>
+    <div class="vw-stat"><div class="vw-stat-value" id="vw-parking-count">—</div><div class="vw-stat-label">Parking Lot</div></div>
+  </section>
+
+  <div class="vw-section-head">
+    <h2 id="vw-project-label">Work Board</h2>
+    <p id="vw-project-purpose">Loading canonical VexWork projection…</p>
+  </div>
+  <div class="vw-board-scroll" aria-labelledby="vw-project-label">
+    <div class="vw-board" id="vw-board"></div>
+  </div>
+
+  <div class="vw-section-head">
+    <h2>Parking Lot</h2>
+    <p>Visible without forcing deferred work into Project membership or implementation authority.</p>
+  </div>
+  <div class="vw-parking" id="vw-parking"></div>
+
+  <div class="vw-status" id="vw-status" role="status">Loading public VexWork truth…</div>
+
+  <footer class="vw-footer">
+    <span>VEXTREME VIEW · VEXWORK TRUTH OWNER</span>
+    <span>effects=false · executionAuthority=NONE</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var DASHBOARD_URL = 'https://raw.githubusercontent.com/VexGPT/VexWork/main/public/work-dashboard.json';
+
+  function el(id) { return document.getElementById(id); }
+
+  function textNode(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) node.className = className;
+    node.textContent = text == null ? '' : String(text);
+    return node;
+  }
+
+  function badge(text, className) {
+    return textNode('span', 'vw-badge' + (className ? ' ' + className : ''), text);
+  }
+
+  function renderCard(card) {
+    var article = document.createElement('article');
+    article.className = 'vw-card';
+
+    var top = document.createElement('div');
+    top.className = 'vw-card-top';
+    top.appendChild(badge(card.state, 'vw-badge--state'));
+    top.appendChild(badge(card.workClass));
+    if (card.workDisposition === 'PARKED') top.appendChild(badge('parked'));
+    if (card.authorityDisposition === 'NO_AUTHORITY') top.appendChild(badge('no authority', 'vw-badge--held'));
+    article.appendChild(top);
+
+    article.appendChild(textNode('h3', '', card.label));
+    article.appendChild(textNode('p', '', card.purpose));
+
+    var repos = document.createElement('div');
+    repos.className = 'vw-repos';
+    (card.repositoryRefs || []).forEach(function (repo) {
+      repos.appendChild(textNode('span', 'vw-repo', repo));
+    });
+    article.appendChild(repos);
+    article.appendChild(textNode('div', 'vw-ref', card.workRef));
+    return article;
+  }
+
+  function renderLane(lane) {
+    var section = document.createElement('section');
+    section.className = 'vw-lane';
+    section.setAttribute('data-lane-ref', lane.laneRef);
+
+    var head = document.createElement('div');
+    head.className = 'vw-lane-head';
+    head.appendChild(textNode('span', 'vw-lane-title', lane.label));
+    head.appendChild(textNode('span', 'vw-count', lane.cards.length));
+    section.appendChild(head);
+
+    var cards = document.createElement('div');
+    cards.className = 'vw-cards';
+    if (!lane.cards.length) {
+      cards.appendChild(textNode('div', 'vw-empty', 'No work'));
+    } else {
+      lane.cards.forEach(function (card) { cards.appendChild(renderCard(card)); });
+    }
+    section.appendChild(cards);
+    return section;
+  }
+
+  function assertDashboard(data) {
+    if (!data || data.schemaVersion !== 'vexwork.public-work-dashboard/v1') throw new Error('unsupported VexWork dashboard schema');
+    if (!data.project || !Array.isArray(data.lanes) || !data.parkingLot || !Array.isArray(data.parkingLot.items)) throw new Error('incomplete VexWork dashboard');
+    if (data.effects !== false || data.executionAuthority !== 'NONE') throw new Error('public VexWork projection crossed its no-effects boundary');
+    return data;
+  }
+
+  function renderDashboard(input) {
+    var data = assertDashboard(input);
+    el('vw-project-count').textContent = data.summary.projectWorkItemCount;
+    el('vw-active-count').textContent = data.summary.activeProjectWorkItemCount;
+    el('vw-parking-count').textContent = data.summary.parkingLotItemCount;
+    el('vw-project-label').textContent = data.project.label;
+    el('vw-project-purpose').textContent = data.project.purpose;
+
+    var board = el('vw-board');
+    board.textContent = '';
+    data.lanes.forEach(function (lane) { board.appendChild(renderLane(lane)); });
+
+    var parking = el('vw-parking');
+    parking.textContent = '';
+    if (!data.parkingLot.items.length) {
+      parking.appendChild(textNode('div', 'vw-empty', 'Nothing parked.'));
+    } else {
+      data.parkingLot.items.forEach(function (card) { parking.appendChild(renderCard(card)); });
+    }
+
+    el('vw-status').textContent = 'Current public projection loaded from VexWork. This page cannot mutate Workgraph truth.';
+  }
+
+  fetch(DASHBOARD_URL, { cache: 'no-store' })
+    .then(function (response) {
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+      return response.json();
+    })
+    .then(renderDashboard)
+    .catch(function (error) {
+      var status = el('vw-status');
+      status.classList.add('vw-error');
+      status.textContent = 'VexWork dashboard is unavailable right now: ' + error.message + '. Source remains available through the links above.';
+    });
+}());
+</script>
+</body>
+</html>
+<!-- [VXG RealForever][VEXWORK][PUBLIC-DASHBOARD][VEXTREME-VIEW] -->
