@@ -1,0 +1,38 @@
+name: PR 372 exact pr-ready proof
+
+on:
+  push:
+    branches:
+      - VXG-102126-pr372-pr-ready-proof
+
+permissions:
+  contents: read
+
+jobs:
+  pr-ready:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact reviewed candidate
+        uses: actions/checkout@v4
+        with:
+          ref: dbb1c428dcf28d5101255bd072c5822e4e90ef59
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Bind exact candidate
+        run: |
+          echo "HEAD=$(git rev-parse HEAD)"
+          echo "TREE=$(git rev-parse HEAD^{tree})"
+          test "$(git rev-parse HEAD)" = "dbb1c428dcf28d5101255bd072c5822e4e90ef59"
+          test "$(git rev-parse HEAD^{tree})" = "4f3340d25759b421411c209ebeb08f466d436736"
+
+      - name: Run repository review floor
+        run: npm run pr-ready
