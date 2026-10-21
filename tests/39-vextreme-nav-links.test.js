@@ -52,7 +52,7 @@ test('injectNav links: active shared chrome has no provider-domain or out-of-seq
   assert.equal(links.some(l => /take-a-walk/.test(l.href)), false);
   assert.match(source, /vex-nav-title[^>]*href="\/Vextreme\/pages\/terrain-map\.html\?view=content&profile=evolution-v1">Vextreme/);
   assert.match(source, /vex-nav-product[^>]*href="https:\/\/vgong24\.github\.io\/VexLife\/">VexLife/);
-  assert.match(source, /vex-nav-product[^>]*href="\\/Vextreme\\/vexwork\\/">VexWork/);
+  assert.match(source, /vex-nav-product[^>]*href="\/Vextreme\/vexwork\/">VexWork/);
 });
 
 test('injectNav links: every href is a non-empty string, every label is unique', () => {
