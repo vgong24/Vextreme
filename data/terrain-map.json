@@ -3658,12 +3658,12 @@
       "key": "convos_with_god",
       "name": "Conversations with God",
       "sub": "priority 1",
-      "count": 13,
+      "count": 14,
       "rect": {
         "x": 1370,
         "y": 40,
         "width": 300,
-        "height": 870
+        "height": 930
       },
       "parent": {
         "title": "Conversations with God",
@@ -7896,6 +7896,51 @@
         "analysisControl": true,
         "evidenceLanguages": [],
         "metaDescription": "A repository-native annotated witness reading of the preserved Returning scorpions to God conversation."
+      },
+      "curated": true
+    },
+    {
+      "id": "recognizing-life-receiving-abundance",
+      "slug": "recognizing-life-receiving-abundance",
+      "title": "Recognizing Life, Receiving Abundance",
+      "arcKeys": [
+        "convos_with_god",
+        "victors_record",
+        "full_timeline"
+      ],
+      "arc": "convos_with_god",
+      "arcName": "Conversations with God",
+      "x": 1420,
+      "y": 870,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/recognizing-life-receiving-abundance.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "preview": {
+        "kind": "cover",
+        "src": "https://vgong24.github.io/Vextreme/assets/recognizing-life-receiving-abundance/cover.webp?v=e519e49d8f08",
+        "alt": "Recognizing Life, Receiving Abundance — representative midnight shoreline cover art"
+      },
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "page-owned",
+          "visibleStyles": true
+        },
+        "identityKeys": 69,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "A repository-native witness reading of the preserved Recognizing Life, Receiving Abundance second arc."
       },
       "curated": true
     },

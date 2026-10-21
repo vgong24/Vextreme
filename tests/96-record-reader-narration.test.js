@@ -18,17 +18,14 @@ const path = require('node:path');
 
 const ROOT = path.join(__dirname, '..');
 const PAGE_PATH = path.join(ROOT, 'pages', 'returning-scorpions-to-god.html');
+const READER_COMPONENT_PATH = path.join(ROOT, 'components', 'record-reader.js');
 
 function readPage() {
   return fs.readFileSync(PAGE_PATH, 'utf8').replace(/\r\n/g, '\n');
 }
 
-function inlineReaderScript(page) {
-  const start = page.indexOf("<script>\n(function(){");
-  const end = page.indexOf('</script>', start);
-  assert.notEqual(start, -1, 'reader inline script start must exist');
-  assert.notEqual(end, -1, 'reader inline script end must exist');
-  return page.slice(start, end);
+function readReaderComponent() {
+  return fs.readFileSync(READER_COMPONENT_PATH, 'utf8').replace(/\r\n/g, '\n');
 }
 
 test('READER-NARRATION-OWNERSHIP: preserved reader declares source-owned narration language', () => {
@@ -42,7 +39,7 @@ test('READER-NARRATION-OWNERSHIP: preserved reader declares source-owned narrati
 
 test('READER-NARRATION-OWNERSHIP: generic TTS mechanics no longer live in the record reader', () => {
   const page = readPage();
-  const script = inlineReaderScript(page);
+  const script = readReaderComponent();
 
   for (const forbidden of [
     'KokoroNarrationProvider',
@@ -80,9 +77,10 @@ test('READER-NARRATION-OWNERSHIP: transcript viewport hands vertical scroll back
     'vertical wheel/trackpad momentum must not be trapped inside the bounded transcript viewport');
 });
 
-test('READER-NARRATION-OWNERSHIP: record-specific auto-scroll remains local and functional in shape', () => {
+test('READER-NARRATION-OWNERSHIP: record-specific auto-scroll remains shared reader machinery, not page-local TTS', () => {
   const page = readPage();
-  const script = inlineReaderScript(page);
+  const script = readReaderComponent();
+  assert.match(page, /src="\.\.\/components\/record-reader\.js"/);
   assert.match(page, /\.rs-autoscroll\{/);
   assert.match(script, /function startTranscriptAutoScroll\(section\)/);
   assert.match(script, /function pauseTranscriptAutoScroll\(section\)/);
@@ -91,17 +89,20 @@ test('READER-NARRATION-OWNERSHIP: record-specific auto-scroll remains local and 
 });
 
 test('READER-NARRATION-OWNERSHIP: phase transitions reset auto-scroll without owning site narration state', () => {
-  const script = inlineReaderScript(readPage());
-  const show = script.match(/function show\(index,scroll\)\{[\s\S]*?centerActive\(scroll!==false\);\}/);
-  assert.ok(show, 'show() must remain extractable');
-  assert.match(show[0], /pauseTranscriptAutoScroll\(s\)/);
-  assert.doesNotMatch(show[0], /Narration|Speech|speech|Kokoro/,
+  const script = readReaderComponent();
+  assert.match(script, /function show\(index,scroll\)/, 'shared controller must own phase transitions');
+  assert.match(
+    script,
+    /sets\.forEach\(function\(section\)\{pauseTranscriptAutoScroll\(section\);\}\)/,
+    'phase transitions must stop record-local auto-scroll'
+  );
+  assert.doesNotMatch(script, /Narration|Speech|speechSynthesis|Kokoro/,
     'record phase selection must not become a second site narration owner');
 });
 
 test('READER-NARRATION-OWNERSHIP: preserved transcript/witness component identities remain present', () => {
   const page = readPage();
-  const script = inlineReaderScript(page);
+  const script = readReaderComponent();
 
   // These identities are structural page markup and remain directly present.
   for (const component of [
