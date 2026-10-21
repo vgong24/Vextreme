@@ -7,7 +7,10 @@
       "parentRecord": "github.pull.vextreme.338",
       "parentHead": "03e36d169fb7fed12091e5956f29945788fadd3e",
       "derivedCommentary": "records/commentary/2026-10-17-returning-scorpions-to-god-successor-witness.md",
-      "preservationRule": "TRANSCRIPT_EVIDENCE_IMMUTABLE__DERIVED_PRESENTATION_SEPARATE"
+      "preservationRule": "TRANSCRIPT_EVIDENCE_IMMUTABLE__DERIVED_PRESENTATION_SEPARATE",
+      "recordedTimeRef": "records/conversations/2026-10-17-returning-scorpions-to-god/README.md",
+      "recordedTimePrecision": "EXACT_TIME",
+      "recordedTimeAuthority": "VICTOR_SUPPLIED_TIMESTAMP"
     }
   },
   "pages.returning-scorpions-to-god.document-title": {
@@ -55,7 +58,7 @@
   "pages.returning-scorpions-to-god.hero.preservation": {
     "strings": {
       "en": {
-        "text": "PR #338 remains the chronological evidence record. This page is a later reading layer; its arc names and commentary do not rewrite the transcript."
+        "text": "The linked PR remains the chronological evidence record. This page is a later reading layer; its arc names and commentary do not rewrite the transcript."
       }
     }
   },
@@ -868,6 +871,27 @@
     "strings": {
       "en": {
         "text": "High-quality voice unavailable; using system speech."
+      }
+    }
+  },
+  "pages.returning-scorpions-to-god.hero.source-link": {
+    "strings": {
+      "en": {
+        "text": "Source · PR #338 ↗"
+      }
+    }
+  },
+  "pages.returning-scorpions-to-god.hero.recorded-label": {
+    "strings": {
+      "en": {
+        "text": "Archive snapshot"
+      }
+    }
+  },
+  "pages.returning-scorpions-to-god.hero.recorded-value": {
+    "strings": {
+      "en": {
+        "text": "October 17, 2026 · 5:55 AM PDT (UTC−07:00) · supplied by Victor"
       }
     }
   }
