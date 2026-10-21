@@ -22,6 +22,23 @@ function read(rel) {
   return fs.readFileSync(path.join(ROOT, rel), 'utf8').replace(/\r\n/g, '\n');
 }
 
+test('RECORD-READER-STARTER: fresh-entry routes land on the canonical starter map, not a second template authority', () => {
+  const architecture = read('docs/architecture/19-record-readers.md');
+  const readme = read('README.md');
+  const agents = read('AGENTS.md');
+
+  assert.match(architecture, /## Fresh-instance starter map/);
+  assert.match(architecture, /### The 60-second classification/);
+  assert.match(architecture, /### What is mandatory vs earned/);
+  assert.match(architecture, /### Compare the two worked readers/);
+  assert.match(architecture, /pages\/returning-scorpions-to-god\.html/);
+  assert.match(architecture, /pages\/recognizing-life-receiving-abundance\.html/);
+  assert.match(architecture, /components\/record-reader\.js/);
+  assert.match(architecture, /displayed date\/time precision does not exceed source evidence/);
+  assert.match(readme, /docs\/architecture\/19-record-readers\.md#fresh-instance-starter-map/);
+  assert.match(agents, /docs\/architecture\/19-record-readers\.md#fresh-instance-starter-map/);
+});
+
 test('RECORD-READER-FOUNDATION: shared controller is semantic and record-neutral', () => {
   const widget = read('components/record-reader.js');
   assert.match(widget, /global\.VexRecordReader=\{mount:mount\}/);
