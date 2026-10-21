@@ -63,6 +63,7 @@ test('FAB-AUTOLOAD: loadFabWidgets loads the base FAB set in stable order when n
   await loadFabWidgets({ fab: true, baseUrl: 'https://cdn.example', cacheVer: '?v=1' });
   assert.deepEqual(calls, [
     'https://cdn.example/widgets/vex-fab.js?v=1',
+    'https://cdn.example/widgets/fab-read-aloud.js?v=1',
     'https://cdn.example/widgets/fab-lang.js?v=1',
     'https://cdn.example/widgets/fab-theme.js?v=1',
     'https://cdn.example/widgets/fab-map.js?v=1',
@@ -86,6 +87,7 @@ test('FAB-AUTOLOAD: configured link items mount after the shared Spiral owner wi
   });
   assert.deepEqual(calls, [
     'https://cdn.example/widgets/vex-fab.js?v=1',
+    'https://cdn.example/widgets/fab-read-aloud.js?v=1',
     'https://cdn.example/widgets/fab-lang.js?v=1',
     'https://cdn.example/widgets/fab-theme.js?v=1',
     'https://cdn.example/widgets/fab-map.js?v=1',
@@ -111,18 +113,20 @@ test('FAB-AUTOLOAD: fabWidgets.links:false suppresses configured link mounting w
   assert.deepEqual(mounted, []);
   assert.deepEqual(calls, [
     'https://cdn.example/widgets/vex-fab.js',
+    'https://cdn.example/widgets/fab-read-aloud.js',
     'https://cdn.example/widgets/fab-lang.js',
     'https://cdn.example/widgets/fab-theme.js',
     'https://cdn.example/widgets/fab-map.js',
   ]);
 });
 
-test('FAB-AUTOLOAD: fabWidgets.theme:false skips fab-theme.js but keeps vex-fab.js/fab-lang.js/fab-map.js', async () => {
+test('FAB-AUTOLOAD: fabWidgets.theme:false skips theme but keeps shared Read Aloud and sibling FABs', async () => {
   const calls = [];
   const loadFabWidgets = loadLoadFabWidgets()(fakeLoadScript(calls), function () {});
   await loadFabWidgets({ fab: true, fabWidgets: { theme: false }, baseUrl: 'https://cdn.example', cacheVer: '' });
   assert.deepEqual(calls, [
     'https://cdn.example/widgets/vex-fab.js',
+    'https://cdn.example/widgets/fab-read-aloud.js',
     'https://cdn.example/widgets/fab-lang.js',
     'https://cdn.example/widgets/fab-map.js',
   ]);
@@ -134,15 +138,24 @@ test('FAB-AUTOLOAD: fabWidgets can disable multiple widgets at once, always keep
   await loadFabWidgets({ fab: true, fabWidgets: { lang: false, map: false }, baseUrl: 'https://cdn.example', cacheVer: '' });
   assert.deepEqual(calls, [
     'https://cdn.example/widgets/vex-fab.js',
+    'https://cdn.example/widgets/fab-read-aloud.js',
     'https://cdn.example/widgets/fab-theme.js',
   ]);
+});
+
+test('FAB-AUTOLOAD: fabWidgets.readAloud:false is the explicit accessibility-widget escape hatch', async () => {
+  const calls = [];
+  const loadFabWidgets = loadLoadFabWidgets()(fakeLoadScript(calls), function () {});
+  await loadFabWidgets({ fab: true, fabWidgets: { readAloud: false }, baseUrl: 'https://cdn.example', cacheVer: '' });
+  assert.equal(calls.some((src) => src.includes('fab-read-aloud.js')), false);
+  assert.equal(calls.some((src) => src.includes('fab-lang.js')), true);
 });
 
 test('FAB-AUTOLOAD: an empty fabWidgets object loads everything, same as omitting it', async () => {
   const calls = [];
   const loadFabWidgets = loadLoadFabWidgets()(fakeLoadScript(calls), function () {});
   await loadFabWidgets({ fab: true, fabWidgets: {}, baseUrl: 'https://cdn.example', cacheVer: '' });
-  assert.equal(calls.length, 4);
+  assert.equal(calls.length, 5);
 });
 
 test('FAB-AUTOLOAD: loadFabWidgets waits for each script before requesting the next (real sequencing, not fire-and-forget)', async () => {
@@ -166,7 +179,7 @@ test('FAB-AUTOLOAD: loadFabWidgets waits for each script before requesting the n
   await donePromise;
   // fab-lang.js was requested only after vex-fab.js resolved, confirming real
   // sequencing rather than firing all four requests immediately in parallel
-  assert.deepEqual(order, ['vex-fab resolved', 'fab-lang requested', 'other requested', 'other requested']);
+  assert.deepEqual(order, ['vex-fab resolved', 'other requested', 'fab-lang requested', 'other requested', 'other requested']);
 });
 
 test('FAB-AUTOLOAD: loadFabWidgets never references fab-demo.js or fab-analysis.js', () => {
@@ -175,6 +188,24 @@ test('FAB-AUTOLOAD: loadFabWidgets never references fab-demo.js or fab-analysis.
   assert.ok(match);
   assert.equal(match[0].includes('fab-demo.js'), false, 'fab-demo.js is deprecated per fab-map.js\'s own header, must not be auto-loaded');
   assert.equal(match[0].includes('fab-analysis.js'), false, 'fab-analysis.js needs real per-page data, must stay opt-in via the God-Script build system');
+});
+
+// detectEnv — commit-pinned Githack previews are standalone Vextreme
+// deployments. They need the same nav/FAB eligibility as GitHub Pages so an
+// exact-preview Terrain parent can own the warm Read Aloud runtime broker.
+function detectEnvFor(hostname) {
+  const source = readSource();
+  const match = source.match(/function detectEnv\(\) \{[\s\S]*?\n  \}/);
+  assert.ok(match, 'detectEnv() must exist in lib/vextreme.js');
+  const load = new Function('global', match[0] + '\nreturn detectEnv;');
+  return load({ location: { hostname } })();
+}
+
+test('FAB-AUTOLOAD: exact Githack previews retain standalone site chrome and Read Aloud eligibility', () => {
+  assert.equal(detectEnvFor('rawcdn.githack.com'), 'github_pages');
+  assert.equal(detectEnvFor('raw.githack.com'), 'github_pages');
+  assert.equal(detectEnvFor('vgong24.github.io'), 'github_pages');
+  assert.equal(detectEnvFor('example.com'), 'squarespace');
 });
 
 // resolveConfig — extracted with mocked detectEnv/detectSlug so the `fab`
@@ -267,6 +298,22 @@ test('FAB-AUTOLOAD: CONFIG SCHEMA doc comment documents FAB enablement and reusa
 // never appeared on production pages. shell.js's own header says the two
 // versions must be bumped together; this makes that instruction enforced
 // instead of remembered.
+
+test('CACHE-SYNC: same-origin shell keeps runtime assets on the same deployed revision', () => {
+  const shell = fs.readFileSync(path.join(ROOT, 'lib', 'shell.js'), 'utf8');
+  assert.match(shell, /var DEFAULT_BASE = 'https:\/\/cdn\.jsdelivr\.net\/gh\/vgong24\/vextreme@main';/);
+  assert.match(shell, /document\.currentScript/);
+  assert.match(shell, /shellUrl\.origin === window\.location\.origin/);
+  assert.match(shell, /shellUrl\.href\.replace\(\/\\\/lib\\\/shell\\\.js/);
+  assert.match(shell, /: DEFAULT_BASE/);
+});
+
+test('CACHE-SYNC: same-origin shell propagates its deployed base to downstream widgets', () => {
+  const shell = fs.readFileSync(path.join(ROOT, 'lib', 'shell.js'), 'utf8');
+  assert.match(shell, /shellUrl && shellUrl\.origin === window\.location\.origin && !override\.baseUrl/);
+  assert.match(shell, /Object\.assign\(\{\}, override, \{ baseUrl: BASE \}\)/);
+  assert.match(shell, /window\.VEXTREME\(override\)/);
+});
 
 test('CACHE-SYNC: shell.js VEXTREME_VER matches vextreme.js DEFAULT_CACHE exactly', () => {
   const shell = fs.readFileSync(path.join(ROOT, 'lib', 'shell.js'), 'utf8');

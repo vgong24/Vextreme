@@ -188,6 +188,7 @@
         "lib/vextreme-index-v2.js (browser reads index.json via CDN)",
         "lib/build-vextreme.js (reads index.json for slugMap + supportedLangs)",
         "lib/check-key-alignment.js",
+        "lib/build-archives.js",
         "tests/01-content-pipeline.test.js",
         "tests/03-browser-nav.test.js",
         "tests/07-viewmodel.test.js",
@@ -258,13 +259,14 @@
     },
     "lib/build-vextreme.js": {
       "role": "God Script assembler — reads index + string bundles, writes one self-contained dist/ file per page",
-      "context": "The write side of the page delivery pipeline. Inlines EN strings, bakes in viewmodel, includes feature widgets. Once a God Script is loaded by a page, it needs zero additional fetches for EN. Run after build-index.js and strings-compile.js. Session 025 FAB unification: spiral-fab and theme have real filenames now (vex-fab.js, fab-theme.js) after sitting reserved-but-unbuilt (filename: null) since Session 013; a new map feature (fab-map.js) was added alongside them. FEATURES object key order was changed so spiral-fab registers before lang/theme/map — that order is the script concatenation order, which is also the DOMContentLoaded firing order in the browser, and vex-fab.js's #vex-spiral-group container must exist before the other three widgets look for it on mount. Honest caveat found while building this: as of Session 025, ZERO live pages actually load a God Script (node lib/audit-pages.js reports 0 wired) — every real page still uses old standalone <script src=CDN> tags, so this feature (and the VEX_SUPPORTED_LANGS fix before it) is correct, tested infrastructure with no live effect until a page's script tags are actually switched over to its dist/ file. Not yet decided whether/when that wiring happens. Page-local user-facing locale options now come from data/index.json.pageLanguageMap[slug].completeLangs; availableLangs remains coverage information and root supportedLangs is compatibility fallback only.",
+      "context": "The write side of the page delivery pipeline. Inlines EN strings, bakes in viewmodel, includes feature widgets. Once a God Script is loaded by a page, it needs zero additional fetches for EN. Run after build-index.js and strings-compile.js. Session 025 FAB unification: spiral-fab and theme have real filenames now (vex-fab.js, fab-theme.js) after sitting reserved-but-unbuilt (filename: null) since Session 013; a new map feature (fab-map.js) was added alongside them. FEATURES object key order was changed so spiral-fab registers before lang/theme/map — that order is the script concatenation order, which is also the DOMContentLoaded firing order in the browser, and vex-fab.js's #vex-spiral-group container must exist before the other three widgets look for it on mount. Honest caveat found while building this: as of Session 025, ZERO live pages actually load a God Script (node lib/audit-pages.js reports 0 wired) — every real page still uses old standalone <script src=CDN> tags, so this feature (and the VEX_SUPPORTED_LANGS fix before it) is correct, tested infrastructure with no live effect until a page's script tags are actually switched over to its dist/ file. Not yet decided whether/when that wiring happens. Page-local user-facing locale options now come from data/index.json.pageLanguageMap[slug].completeLangs; availableLangs remains coverage information and root supportedLangs is compatibility fallback only. Read Aloud is default infrastructure and is concatenated after the Spiral owner but before fab-lang.js so its localized overlay exists before the language FAB applies the selected locale; the neural runtime itself remains lazy.",
       "reads": [
         "data/index.json",
         "data/viewmodels.json",
         "data/strings/compiled/scopes/{category}/{scope}.en.json",
         "widgets/sw-register.js",
         "widgets/vex-fab.js",
+        "widgets/fab-read-aloud.js",
         "widgets/fab-lang.js",
         "widgets/fab-theme.js",
         "widgets/fab-map.js",
@@ -690,11 +692,11 @@
       }
     },
     "widgets/vex-fab.js": {
-      "role": "spiral FAB — trigger button + shared expandable group container that other orb widgets mount into",
-      "context": "Session 025 FAB unification: activates the spiral-fab Feature slot reserved-but-unbuilt (filename: null) since Session 013 — Victor asked for one expandable FAB framework instead of one-off widgets, so a new orb is a small widget registration, not a change to this file. Renders a trigger button (#vex-spiral-trigger, 🌀) that toggles a group container (#vex-spiral-group); widgets/fab-theme.js, widgets/fab-map.js, and widgets/fab-lang.js each look up that container on their OWN DOMContentLoaded handler and append their orb into it if present. Session 029 composition repair: when shell.js has injected #vex-nav-actions, the complete spiral mounts into that reserved action rail and participates in nav layout instead of overlaying nav links or the mobile hamburger. God-Script pages without site nav retain the original fixed top-right fallback. This file does not need to change when an orb is added or removed — that is the whole point of the split. MUST be listed before lang/theme/map in lib/build-vextreme.js's FEATURES registry so its DOMContentLoaded handler (which creates #vex-spiral-group) fires before theirs (handlers fire in registration order = script concatenation order).",
+      "role": "spiral FAB — trigger + shared two-axis expansion geometry: primary human-facing controls horizontally, secondary diagnostic utilities vertically",
+      "context": "Session 025 FAB unification: activates the spiral-fab Feature slot reserved-but-unbuilt (filename: null) since Session 013 — Victor asked for one expandable FAB framework instead of one-off widgets, so a new orb is a small widget registration, not a change to this file. Renders a trigger button (#vex-spiral-trigger, 🌀) that toggles a group container (#vex-spiral-group); widgets/fab-read-aloud.js, widgets/fab-theme.js, widgets/fab-map.js, and widgets/fab-lang.js each look up that container on their OWN DOMContentLoaded handler and append their orb into it if present. Session 029 composition repair: when shell.js has injected #vex-nav-actions, the complete spiral mounts into that reserved action rail and participates in nav layout instead of overlaying nav links or the mobile hamburger. God-Script pages without site nav retain the original fixed top-right fallback. This file does not need to change when an orb is added or removed — that is the whole point of the split. MUST be listed before lang/theme/map in lib/build-vextreme.js's FEATURES registry so its DOMContentLoaded handler (which creates #vex-spiral-group) fires before theirs (handlers fire in registration order = script concatenation order). Post-merge lived acceptance on PR #358 exposed that an undifferentiated flex group could place Analysis/Search under an arbitrary preceding orb. The owner now creates primary/secondary lanes anchored to the same trigger while preserving #vex-spiral-group as the child mount contract. Direct children default to primary; a child may declare data-vex-spiral-axis=secondary without teaching this owner feature-specific meaning.",
       "reads": [],
       "writes": [
-        "DOM: #vex-spiral-fab / #vex-spiral-trigger / #vex-spiral-group (consumed by fab-lang.js, fab-theme.js, fab-map.js)",
+        "DOM: #vex-spiral-fab / #vex-spiral-trigger / #vex-spiral-group / #vex-spiral-primary / #vex-spiral-secondary (children default primary; diagnostic utilities may opt into the secondary axis)",
         "DOM: mounts into #vex-nav-actions when provided by lib/vextreme.js; otherwise appends to document.body"
       ],
       "loadedBy": [
@@ -711,12 +713,19 @@
           "widgets/fab-lang.js (getElementById('vex-spiral-group') lookup)",
           "widgets/fab-theme.js (getElementById('vex-spiral-group') lookup)",
           "widgets/fab-map.js (getElementById('vex-spiral-group') lookup)",
-          "tests/08 (FAB SYSTEM: nesting assertions)"
+          "tests/08 (FAB SYSTEM: nesting assertions)",
+          "widgets/fab-read-aloud.js (getElementById('vex-spiral-group') lookup)"
         ],
         "#vex-nav-actions mount contract changed": [
           "lib/vextreme.js injectNav() (must create the action rail before loading this widget)",
           "styles/site-nav.css (.vex-nav-actions owns rail geometry)",
           "tests/43-runtime-chrome-composition.test.js"
+        ],
+        "Spiral primary/secondary lane geometry or data-vex-spiral-axis contract changed": [
+          "widgets/fab-analysis.js (current secondary-axis consumer)",
+          "tests/37-fab-analysis.test.js",
+          "tests/43-runtime-chrome-composition.test.js",
+          "docs/architecture/17-fab-autoload.md"
         ]
       }
     },
@@ -817,7 +826,8 @@
           "pages/terrain-map.html (validates active reader child context and projects the parent proxy wheel)",
           "docs/architecture/06-i18n.md (runtime authority + surface-context contract)",
           "tests/08-build-vextreme.test.js (FAB synchronization/fallback/context guards)",
-          "tests/85-terrain-view-contract.test.js (Terrain child-context validation and parent FAB persistence)"
+          "tests/85-terrain-view-contract.test.js (Terrain child-context validation and parent FAB persistence)",
+          "widgets/fab-read-aloud.js (localized overlay + voice-catalog refresh; source-owned narration language may remain fixed)"
         ],
         "partial-locale EN/source fallback or apply ordering": [
           "tests/08-build-vextreme.test.js (fallback + stale-request guard)",
@@ -2228,7 +2238,7 @@
     },
     "widgets/fab-analysis.js": {
       "role": "Analysis Mode orb + panel — searches data/analysis-index.json, exports the visible result set as CSV",
-      "context": "docs/architecture/15-analysis-mode.md Phase B. Real, live search/browse UI over Vextreme public content (real canonical string IDs, real language coverage, real page cross-references, real screenshots) instead of a synthetic demo fixture -- see the architecture doc for the full reasoning. data/analysis-index.json is fetched lazily on first panel open, not at page load, so Phase C (God-Script capability-config decision, od-011) can measure the real fetch cost before deciding default-on vs. per-slug opt-in. Follows widgets/fab-map.js/fab-lang.js/fab-theme.js's exact #vex-spiral-group mount contract. Phase C (docs/architecture/15-analysis-mode.md): wired into lib/build-index.js buildViewmodel()'s default features array alongside lang/spiral-fab/theme/map -- default-on for any page using the standard viewmodel path, same mechanism every sibling FAB feature already uses (an explicit data/viewmodels.json override excludes it per-slug, same escape hatch demo/specimen pages already use to exclude theme/map). Decision was measured, not guessed: fab-analysis.js is 17.5KB (comparable to sibling orb widgets), and the actual data/analysis-index.json fetch (~100KB, ~5.4KB gzipped) stays lazy -- paid only if a visitor opens the panel, never at page load.",
+      "context": "docs/architecture/15-analysis-mode.md Phase B. Real, live search/browse UI over Vextreme public content (real canonical string IDs, real language coverage, real page cross-references, real screenshots) instead of a synthetic demo fixture -- see the architecture doc for the full reasoning. data/analysis-index.json is fetched lazily on first panel open, not at page load, so Phase C (God-Script capability-config decision, od-011) can measure the real fetch cost before deciding default-on vs. per-slug opt-in. Follows widgets/fab-map.js/fab-lang.js/fab-theme.js's exact #vex-spiral-group mount contract. Phase C (docs/architecture/15-analysis-mode.md): wired into lib/build-index.js buildViewmodel()'s default features array alongside lang/spiral-fab/theme/map -- default-on for any page using the standard viewmodel path, same mechanism every sibling FAB feature already uses (an explicit data/viewmodels.json override excludes it per-slug, same escape hatch demo/specimen pages already use to exclude theme/map). Decision was measured, not guessed: fab-analysis.js is 17.5KB (comparable to sibling orb widgets), and the actual data/analysis-index.json fetch (~100KB, ~5.4KB gzipped) stays lazy -- paid only if a visitor opens the panel, never at page load. Post-merge lived feedback classified Analysis/Search as a diagnostic utility rather than a primary human-facing control, so it now declares data-vex-spiral-axis=secondary and opens vertically from the shared Spiral trigger while retaining the same lazy fetch/panel behavior.",
       "reads": [
         "data/analysis-index.json via CDN (lazy fetch, first panel open only)"
       ],
@@ -2249,6 +2259,11 @@
         "default features array in lib/build-index.js buildViewmodel() changed": [
           "this widget's inclusion on default-viewmodel pages changes with it",
           "tests/07-viewmodel.test.js, tests/08-build-vextreme.test.js (FAB SYSTEM default-feature-count assertions)"
+        ],
+        "Spiral utility-axis classification changes": [
+          "widgets/vex-fab.js (owns two-axis geometry)",
+          "tests/37-fab-analysis.test.js",
+          "tests/43-runtime-chrome-composition.test.js"
         ]
       }
     },
@@ -2324,6 +2339,7 @@
         "components/section-toggle.js (gated v1 behavior)",
         "components/bc-nav.js (gated v1 behavior)",
         "widgets/vex-fab.js (Spiral trigger/group owner; loaded first)",
+        "widgets/fab-read-aloud.js (default Spiral accessibility child; may opt out with fabWidgets.readAloud:false)",
         "widgets/fab-lang.js (optional Spiral child)",
         "widgets/fab-theme.js (optional Spiral child)",
         "widgets/fab-map.js (optional Spiral child)"
@@ -2359,7 +2375,8 @@
           "widgets/fab-map.js",
           "lib/build-vextreme.js (parallel God Script feature-order contract)",
           "tests/41-vextreme-fab-autoload.test.js",
-          "tests/43-runtime-chrome-composition.test.js"
+          "tests/43-runtime-chrome-composition.test.js",
+          "widgets/fab-read-aloud.js"
         ],
         "v1 consumer gate or enhancement layer changed": [
           "lib/arc-nav.js",
@@ -2451,6 +2468,63 @@
           "tests/44-page-health.test.js (bridge contract)",
           "scripts/screenshot-localization-matrix.js (site-scale consumer)",
           "lib/screenshot-evidence.js / Page Health / Analysis / Terrain remain readers of pinned/local evidence"
+        ]
+      }
+    },
+    "widgets/fab-read-aloud.js": {
+      "role": "site-wide Read Aloud accessibility orb + overlay — chooses a readable DOM start point, continuously reads semantic blocks, persists voice/rate preferences, and delegates speech to lazy provider mechanics",
+      "context": "Promoted from the Returning-scorpions page-local narration vertical slice after lived use exposed cross-page accessibility pressure: first-use neural inference had to leave the UI thread, users needed arbitrary start-here selection/continuous traversal, and speed/voice preferences should not be reimplemented per page. Mounts into #vex-spiral-group when present, with standalone fallback. Kokoro remains lazy and isolated in one module Worker; source truth remains page-owned. Nearest data-narration-language/lang is consumed as source-language authority before document/FAB locale. Post-merge lived acceptance on PR #358 refined transport into one Play/Pause toggle and hardened active voice switching: Web Speech callbacks are generation-bound so cancellation from a prior utterance cannot stop or advance the replacement voice, and the restart is deferred one task after provider cancellation so the selected voice actually takes effect.",
+      "reads": [
+        "DOM: visible text nodes grouped into ordered units by their nearest explicit data-vex-read-aloud-block, semantic element, or layout container (excluding navigation/control/widget/hidden surfaces)",
+        "DOM: nearest data-narration-language or lang source-language boundary",
+        "window vextreme:languagechange event from widgets/fab-lang.js",
+        "localStorage vex-read-aloud-settings/v1 (persisted rate + voice per primary language)",
+        "browser speechSynthesis voice inventory (same-language fallback, capped)",
+        "kokoro-js@1.2.1 + onnx-community/Kokoro-82M-v1.0-ONNX (lazy inside module Worker only)",
+        "data/strings/source/common.json via normal compiled/inlined [data-i18n] runtime"
+      ],
+      "writes": [
+        "DOM: #vex-read-aloud-root / #vex-read-aloud-panel and current/start-target highlight classes",
+        "localStorage vex-read-aloud-settings/v1",
+        "AudioContext playback through transferred Float32 PCM",
+        "browser speechSynthesis playback fallback"
+      ],
+      "loadedBy": [
+        "lib/build-vextreme.js (default infrastructure feature; inlined into God Scripts after Spiral owner)",
+        "lib/vextreme.js shell-era FAB auto-loader (after Spiral owner, before language FAB)"
+      ],
+      "testedBy": [
+        "tests/97-fab-read-aloud.test.js",
+        "tests/08-build-vextreme.test.js (God Script default/order)",
+        "tests/41-vextreme-fab-autoload.test.js (shell loading/order/opt-out)",
+        "tests/96-record-reader-narration.test.js (record reader does not duplicate generic TTS)"
+      ],
+      "changeMap": {
+        "readable-unit ownership / start-here traversal changes": [
+          "tests/97-fab-read-aloud.test.js",
+          "browser-lived acceptance on long-form and ordinary pages"
+        ],
+        "Kokoro provider/version/model/Worker execution changes": [
+          "tests/97-fab-read-aloud.test.js",
+          "legal/provenance boundary for third-party runtime",
+          "lived responsiveness + audio-quality acceptance"
+        ],
+        "language ownership or vextreme:languagechange handling changes": [
+          "widgets/fab-lang.js",
+          "pages/returning-scorpions-to-god.html data-narration-language source marker",
+          "tests/97-fab-read-aloud.test.js"
+        ],
+        "Spiral mount contract changes": [
+          "widgets/vex-fab.js",
+          "lib/build-vextreme.js feature order",
+          "lib/vextreme.js shell FAB order",
+          "tests/08-build-vextreme.test.js",
+          "tests/41-vextreme-fab-autoload.test.js"
+        ],
+        "transport toggle / active voice switching changes": [
+          "tests/97-fab-read-aloud.test.js",
+          "browser-lived acceptance while narration is active",
+          "SystemNarration generation/cancellation semantics here"
         ]
       }
     }

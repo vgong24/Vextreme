@@ -639,5 +639,629 @@
         "aria-label": "बिल्ड स्थिति देखें"
       }
     }
+  },
+  "common.button.read-aloud": {
+    "strings": {
+      "en": {
+        "text": "Read aloud",
+        "aria-label": "Read aloud"
+      },
+      "ja": {
+        "text": "読み上げ",
+        "aria-label": "読み上げ"
+      },
+      "zh": {
+        "text": "朗读",
+        "aria-label": "朗读"
+      },
+      "ko": {
+        "text": "소리 내어 읽기",
+        "aria-label": "소리 내어 읽기"
+      },
+      "fr": {
+        "text": "Lecture à voix haute",
+        "aria-label": "Lecture à voix haute"
+      },
+      "de": {
+        "text": "Vorlesen",
+        "aria-label": "Vorlesen"
+      },
+      "es": {
+        "text": "Leer en voz alta",
+        "aria-label": "Leer en voz alta"
+      },
+      "pt": {
+        "text": "Ler em voz alta",
+        "aria-label": "Ler em voz alta"
+      },
+      "ar": {
+        "text": "قراءة بصوت عالٍ",
+        "aria-label": "قراءة بصوت عالٍ"
+      },
+      "hi": {
+        "text": "ज़ोर से पढ़ें",
+        "aria-label": "ज़ोर से पढ़ें"
+      }
+    }
+  },
+  "common.button.read-aloud-start-here": {
+    "strings": {
+      "en": {
+        "text": "Start here",
+        "aria-label": "Start here"
+      },
+      "ja": {
+        "text": "ここから開始",
+        "aria-label": "ここから開始"
+      },
+      "zh": {
+        "text": "从这里开始",
+        "aria-label": "从这里开始"
+      },
+      "ko": {
+        "text": "여기서 시작",
+        "aria-label": "여기서 시작"
+      },
+      "fr": {
+        "text": "Commencer ici",
+        "aria-label": "Commencer ici"
+      },
+      "de": {
+        "text": "Hier starten",
+        "aria-label": "Hier starten"
+      },
+      "es": {
+        "text": "Empezar aquí",
+        "aria-label": "Empezar aquí"
+      },
+      "pt": {
+        "text": "Começar aqui",
+        "aria-label": "Começar aqui"
+      },
+      "ar": {
+        "text": "ابدأ من هنا",
+        "aria-label": "ابدأ من هنا"
+      },
+      "hi": {
+        "text": "यहाँ से शुरू करें",
+        "aria-label": "यहाँ से शुरू करें"
+      }
+    }
+  },
+  "common.button.read-aloud-play": {
+    "strings": {
+      "en": {
+        "text": "Play",
+        "aria-label": "Play"
+      },
+      "ja": {
+        "text": "再生",
+        "aria-label": "再生"
+      },
+      "zh": {
+        "text": "播放",
+        "aria-label": "播放"
+      },
+      "ko": {
+        "text": "재생",
+        "aria-label": "재생"
+      },
+      "fr": {
+        "text": "Lire",
+        "aria-label": "Lire"
+      },
+      "de": {
+        "text": "Abspielen",
+        "aria-label": "Abspielen"
+      },
+      "es": {
+        "text": "Reproducir",
+        "aria-label": "Reproducir"
+      },
+      "pt": {
+        "text": "Reproduzir",
+        "aria-label": "Reproduzir"
+      },
+      "ar": {
+        "text": "تشغيل",
+        "aria-label": "تشغيل"
+      },
+      "hi": {
+        "text": "चलाएँ",
+        "aria-label": "चलाएँ"
+      }
+    }
+  },
+  "common.button.read-aloud-pause": {
+    "strings": {
+      "en": {
+        "text": "Pause",
+        "aria-label": "Pause"
+      },
+      "ja": {
+        "text": "一時停止",
+        "aria-label": "一時停止"
+      },
+      "zh": {
+        "text": "暂停",
+        "aria-label": "暂停"
+      },
+      "ko": {
+        "text": "일시 정지",
+        "aria-label": "일시 정지"
+      },
+      "fr": {
+        "text": "Pause",
+        "aria-label": "Pause"
+      },
+      "de": {
+        "text": "Pause",
+        "aria-label": "Pause"
+      },
+      "es": {
+        "text": "Pausa",
+        "aria-label": "Pausa"
+      },
+      "pt": {
+        "text": "Pausar",
+        "aria-label": "Pausar"
+      },
+      "ar": {
+        "text": "إيقاف مؤقت",
+        "aria-label": "إيقاف مؤقت"
+      },
+      "hi": {
+        "text": "रोकें",
+        "aria-label": "रोकें"
+      }
+    }
+  },
+  "common.button.read-aloud-stop": {
+    "strings": {
+      "en": {
+        "text": "Stop",
+        "aria-label": "Stop"
+      },
+      "ja": {
+        "text": "停止",
+        "aria-label": "停止"
+      },
+      "zh": {
+        "text": "停止",
+        "aria-label": "停止"
+      },
+      "ko": {
+        "text": "중지",
+        "aria-label": "중지"
+      },
+      "fr": {
+        "text": "Arrêter",
+        "aria-label": "Arrêter"
+      },
+      "de": {
+        "text": "Stopp",
+        "aria-label": "Stopp"
+      },
+      "es": {
+        "text": "Detener",
+        "aria-label": "Detener"
+      },
+      "pt": {
+        "text": "Parar",
+        "aria-label": "Parar"
+      },
+      "ar": {
+        "text": "إيقاف",
+        "aria-label": "إيقاف"
+      },
+      "hi": {
+        "text": "बंद करें",
+        "aria-label": "बंद करें"
+      }
+    }
+  },
+  "common.button.read-aloud-previous": {
+    "strings": {
+      "en": {
+        "text": "Previous",
+        "aria-label": "Previous"
+      },
+      "ja": {
+        "text": "前へ",
+        "aria-label": "前へ"
+      },
+      "zh": {
+        "text": "上一段",
+        "aria-label": "上一段"
+      },
+      "ko": {
+        "text": "이전",
+        "aria-label": "이전"
+      },
+      "fr": {
+        "text": "Précédent",
+        "aria-label": "Précédent"
+      },
+      "de": {
+        "text": "Zurück",
+        "aria-label": "Zurück"
+      },
+      "es": {
+        "text": "Anterior",
+        "aria-label": "Anterior"
+      },
+      "pt": {
+        "text": "Anterior",
+        "aria-label": "Anterior"
+      },
+      "ar": {
+        "text": "السابق",
+        "aria-label": "السابق"
+      },
+      "hi": {
+        "text": "पिछला",
+        "aria-label": "पिछला"
+      }
+    }
+  },
+  "common.button.read-aloud-next": {
+    "strings": {
+      "en": {
+        "text": "Next",
+        "aria-label": "Next"
+      },
+      "ja": {
+        "text": "次へ",
+        "aria-label": "次へ"
+      },
+      "zh": {
+        "text": "下一段",
+        "aria-label": "下一段"
+      },
+      "ko": {
+        "text": "다음",
+        "aria-label": "다음"
+      },
+      "fr": {
+        "text": "Suivant",
+        "aria-label": "Suivant"
+      },
+      "de": {
+        "text": "Weiter",
+        "aria-label": "Weiter"
+      },
+      "es": {
+        "text": "Siguiente",
+        "aria-label": "Siguiente"
+      },
+      "pt": {
+        "text": "Próximo",
+        "aria-label": "Próximo"
+      },
+      "ar": {
+        "text": "التالي",
+        "aria-label": "التالي"
+      },
+      "hi": {
+        "text": "अगला",
+        "aria-label": "अगला"
+      }
+    }
+  },
+  "common.button.read-aloud-close": {
+    "strings": {
+      "en": {
+        "text": "Close",
+        "aria-label": "Close"
+      },
+      "ja": {
+        "text": "閉じる",
+        "aria-label": "閉じる"
+      },
+      "zh": {
+        "text": "关闭",
+        "aria-label": "关闭"
+      },
+      "ko": {
+        "text": "닫기",
+        "aria-label": "닫기"
+      },
+      "fr": {
+        "text": "Fermer",
+        "aria-label": "Fermer"
+      },
+      "de": {
+        "text": "Schließen",
+        "aria-label": "Schließen"
+      },
+      "es": {
+        "text": "Cerrar",
+        "aria-label": "Cerrar"
+      },
+      "pt": {
+        "text": "Fechar",
+        "aria-label": "Fechar"
+      },
+      "ar": {
+        "text": "إغلاق",
+        "aria-label": "إغلاق"
+      },
+      "hi": {
+        "text": "बंद करें",
+        "aria-label": "बंद करें"
+      }
+    }
+  },
+  "common.label.read-aloud-voice": {
+    "strings": {
+      "en": {
+        "text": "Voice"
+      },
+      "ja": {
+        "text": "音声"
+      },
+      "zh": {
+        "text": "语音"
+      },
+      "ko": {
+        "text": "음성"
+      },
+      "fr": {
+        "text": "Voix"
+      },
+      "de": {
+        "text": "Stimme"
+      },
+      "es": {
+        "text": "Voz"
+      },
+      "pt": {
+        "text": "Voz"
+      },
+      "ar": {
+        "text": "الصوت"
+      },
+      "hi": {
+        "text": "आवाज़"
+      }
+    }
+  },
+  "common.label.read-aloud-speed": {
+    "strings": {
+      "en": {
+        "text": "Speed"
+      },
+      "ja": {
+        "text": "速度"
+      },
+      "zh": {
+        "text": "速度"
+      },
+      "ko": {
+        "text": "속도"
+      },
+      "fr": {
+        "text": "Vitesse"
+      },
+      "de": {
+        "text": "Geschwindigkeit"
+      },
+      "es": {
+        "text": "Velocidad"
+      },
+      "pt": {
+        "text": "Velocidade"
+      },
+      "ar": {
+        "text": "السرعة"
+      },
+      "hi": {
+        "text": "गति"
+      }
+    }
+  },
+  "common.status.read-aloud-pick": {
+    "strings": {
+      "en": {
+        "text": "Choose where reading should begin."
+      },
+      "ja": {
+        "text": "読み上げを開始する場所を選んでください。"
+      },
+      "zh": {
+        "text": "请选择朗读开始的位置。"
+      },
+      "ko": {
+        "text": "읽기를 시작할 위치를 선택하세요."
+      },
+      "fr": {
+        "text": "Choisissez où commencer la lecture."
+      },
+      "de": {
+        "text": "Wählen Sie aus, wo das Vorlesen beginnen soll."
+      },
+      "es": {
+        "text": "Elige dónde debe comenzar la lectura."
+      },
+      "pt": {
+        "text": "Escolha onde a leitura deve começar."
+      },
+      "ar": {
+        "text": "اختر المكان الذي يجب أن تبدأ منه القراءة."
+      },
+      "hi": {
+        "text": "चुनें कि पढ़ना कहाँ से शुरू हो।"
+      }
+    }
+  },
+  "common.status.read-aloud-preparing": {
+    "strings": {
+      "en": {
+        "text": "Preparing high-quality voice…"
+      },
+      "ja": {
+        "text": "高品質音声を準備しています…"
+      },
+      "zh": {
+        "text": "正在准备高质量语音…"
+      },
+      "ko": {
+        "text": "고품질 음성을 준비하는 중…"
+      },
+      "fr": {
+        "text": "Préparation de la voix haute qualité…"
+      },
+      "de": {
+        "text": "Hochwertige Stimme wird vorbereitet…"
+      },
+      "es": {
+        "text": "Preparando voz de alta calidad…"
+      },
+      "pt": {
+        "text": "Preparando voz de alta qualidade…"
+      },
+      "ar": {
+        "text": "جارٍ تجهيز صوت عالي الجودة…"
+      },
+      "hi": {
+        "text": "उच्च-गुणवत्ता वाली आवाज़ तैयार की जा रही है…"
+      }
+    }
+  },
+  "common.status.read-aloud-reading": {
+    "strings": {
+      "en": {
+        "text": "Reading…"
+      },
+      "ja": {
+        "text": "読み上げ中…"
+      },
+      "zh": {
+        "text": "正在朗读…"
+      },
+      "ko": {
+        "text": "읽는 중…"
+      },
+      "fr": {
+        "text": "Lecture en cours…"
+      },
+      "de": {
+        "text": "Wird vorgelesen…"
+      },
+      "es": {
+        "text": "Leyendo…"
+      },
+      "pt": {
+        "text": "Lendo…"
+      },
+      "ar": {
+        "text": "جارٍ القراءة…"
+      },
+      "hi": {
+        "text": "पढ़ा जा रहा है…"
+      }
+    }
+  },
+  "common.status.read-aloud-done": {
+    "strings": {
+      "en": {
+        "text": "Reading complete."
+      },
+      "ja": {
+        "text": "読み上げが完了しました。"
+      },
+      "zh": {
+        "text": "朗读完成。"
+      },
+      "ko": {
+        "text": "읽기가 완료되었습니다."
+      },
+      "fr": {
+        "text": "Lecture terminée."
+      },
+      "de": {
+        "text": "Vorlesen abgeschlossen."
+      },
+      "es": {
+        "text": "Lectura completada."
+      },
+      "pt": {
+        "text": "Leitura concluída."
+      },
+      "ar": {
+        "text": "اكتملت القراءة."
+      },
+      "hi": {
+        "text": "पढ़ना पूरा हुआ।"
+      }
+    }
+  },
+  "common.status.read-aloud-fallback": {
+    "strings": {
+      "en": {
+        "text": "High-quality voice unavailable; using system speech."
+      },
+      "ja": {
+        "text": "高品質音声を使用できないため、システム音声を使用します。"
+      },
+      "zh": {
+        "text": "高质量语音不可用；正在使用系统语音。"
+      },
+      "ko": {
+        "text": "고품질 음성을 사용할 수 없어 시스템 음성을 사용합니다."
+      },
+      "fr": {
+        "text": "Voix haute qualité indisponible ; utilisation de la voix système."
+      },
+      "de": {
+        "text": "Hochwertige Stimme nicht verfügbar; Systemstimme wird verwendet."
+      },
+      "es": {
+        "text": "La voz de alta calidad no está disponible; se usa la voz del sistema."
+      },
+      "pt": {
+        "text": "Voz de alta qualidade indisponível; usando a voz do sistema."
+      },
+      "ar": {
+        "text": "الصوت عالي الجودة غير متاح؛ سيتم استخدام صوت النظام."
+      },
+      "hi": {
+        "text": "उच्च-गुणवत्ता वाली आवाज़ उपलब्ध नहीं है; सिस्टम आवाज़ का उपयोग किया जा रहा है।"
+      }
+    }
+  },
+  "common.status.read-aloud-none": {
+    "strings": {
+      "en": {
+        "text": "No readable text found."
+      },
+      "ja": {
+        "text": "読み上げ可能なテキストが見つかりません。"
+      },
+      "zh": {
+        "text": "未找到可朗读的文本。"
+      },
+      "ko": {
+        "text": "읽을 수 있는 텍스트를 찾지 못했습니다."
+      },
+      "fr": {
+        "text": "Aucun texte lisible trouvé."
+      },
+      "de": {
+        "text": "Kein vorlesbarer Text gefunden."
+      },
+      "es": {
+        "text": "No se encontró texto legible."
+      },
+      "pt": {
+        "text": "Nenhum texto legível encontrado."
+      },
+      "ar": {
+        "text": "لم يتم العثور على نص قابل للقراءة."
+      },
+      "hi": {
+        "text": "पढ़ने योग्य टेक्स्ट नहीं मिला।"
+      }
+    }
   }
 }

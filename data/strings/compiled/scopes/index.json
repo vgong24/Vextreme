@@ -14,16 +14,16 @@
   "common": {
     "category": "system",
     "path": "system/common",
-    "en": 16,
-    "ja": 16,
-    "fr": 16,
-    "zh": 16,
-    "ko": 16,
-    "de": 16,
-    "es": 16,
-    "pt": 16,
-    "ar": 16,
-    "hi": 16
+    "en": 32,
+    "ja": 32,
+    "fr": 32,
+    "zh": 32,
+    "ko": 32,
+    "de": 32,
+    "es": 32,
+    "pt": 32,
+    "ar": 32,
+    "hi": 32
   },
   "demo": {
     "category": "demo",
@@ -275,7 +275,16 @@
   "pages.i-was-here": {
     "category": "production",
     "path": "production/pages/i-was-here",
-    "en": 105
+    "en": 105,
+    "zh": 105,
+    "ja": 105,
+    "ko": 105,
+    "fr": 105,
+    "de": 105,
+    "es": 105,
+    "pt": 105,
+    "ar": 105,
+    "hi": 105
   },
   "pages.infrastructure-reformation": {
     "category": "production",
@@ -381,6 +390,11 @@
     "category": "production",
     "path": "production/pages/reality-rendering-mechanics",
     "en": 126
+  },
+  "pages.returning-scorpions-to-god": {
+    "category": "production",
+    "path": "production/pages/returning-scorpions-to-god",
+    "en": 123
   },
   "pages.scopes-of-god": {
     "category": "production",
@@ -699,7 +713,16 @@
   "pages.what-is-the-god-spark": {
     "category": "production",
     "path": "production/pages/what-is-the-god-spark",
-    "en": 412
+    "en": 412,
+    "zh": 412,
+    "ja": 412,
+    "ko": 412,
+    "fr": 412,
+    "de": 412,
+    "es": 412,
+    "pt": 412,
+    "ar": 412,
+    "hi": 412
   },
   "pages.what-was-used-against-you": {
     "category": "production",

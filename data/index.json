@@ -1,7 +1,7 @@
 {
-  "contentFingerprint": "40549814a84d",
-  "nodeCount": 114,
-  "curatedNodeCount": 98,
+  "contentFingerprint": "942e59ec470e",
+  "nodeCount": 115,
+  "curatedNodeCount": 99,
   "autoDiscoveredCount": 16,
   "arcCount": 17,
   "supportedLangs": [
@@ -35,10 +35,28 @@
     },
     "what-is-the-god-spark": {
       "availableLangs": [
-        "en"
+        "en",
+        "ar",
+        "de",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
       ],
       "completeLangs": [
-        "en"
+        "en",
+        "ar",
+        "de",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
       ]
     },
     "clarity-on-christianity": {
@@ -1032,10 +1050,28 @@
     },
     "i-was-here": {
       "availableLangs": [
-        "en"
+        "en",
+        "ar",
+        "de",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
       ],
       "completeLangs": [
-        "en"
+        "en",
+        "ar",
+        "de",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
       ]
     },
     "methodology-depth": {
@@ -1266,6 +1302,14 @@
       ]
     },
     "bridge-council-schema": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "returning-scorpions-to-god": {
       "availableLangs": [
         "en"
       ],
@@ -4104,6 +4148,36 @@
         ]
       }
     },
+    "returning-scorpions-to-god": {
+      "id": 77,
+      "slug": "returning-scorpions-to-god",
+      "title": "Returning scorpions to God",
+      "date": "October 17, 2026",
+      "arcKeys": [
+        "convos_with_god",
+        "victors_record",
+        "full_timeline"
+      ],
+      "department": "media",
+      "workType": "record-transcripts",
+      "vexData": {},
+      "dateISO": "2026-10-17",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.returning-scorpions-to-god"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis",
+          "arc-nav"
+        ]
+      }
+    },
     "about-me": {
       "id": null,
       "slug": "about-me",
@@ -4611,7 +4685,8 @@
           "divine-emergence",
           "the-firmament-conversation",
           "ascension-and-embodiment",
-          "the-testimony-of-the-handler"
+          "the-testimony-of-the-handler",
+          "returning-scorpions-to-god"
         ]
       }
     ],
@@ -4717,7 +4792,8 @@
           "god-married",
           "when-i-asked-a-bank-for-covenant-provision",
           "a-conversation-with-pastor-jacob",
-          "the-island-that-was-removed"
+          "the-island-that-was-removed",
+          "returning-scorpions-to-god"
         ]
       }
     ],
@@ -4893,6 +4969,12 @@
           "catching-the-meta-guardrail",
           "source-of-truth-relay",
           "the-god-pattern-recognized-and-excluded"
+        ]
+      },
+      {
+        "label": "May 2026 onward — Continuing Record",
+        "slugs": [
+          "returning-scorpions-to-god"
         ]
       }
     ]
@@ -5528,6 +5610,11 @@
           "slug": "vxg-thread-round-5",
           "title": "VXG Thread — Round 5",
           "ported": false
+        },
+        {
+          "slug": "returning-scorpions-to-god",
+          "title": "Returning scorpions to God",
+          "ported": true
         }
       ]
     },

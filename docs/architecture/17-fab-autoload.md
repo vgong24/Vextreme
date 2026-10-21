@@ -25,8 +25,8 @@ mode (below) proving the point.
 
 `lib/vextreme.js` (`shell.js`'s loader) already auto-provides nav and body-wrap from one
 script tag — no page hand-authors its own nav HTML. There was no equivalent for the v2
-spiral-FAB system: every page wanting `vex-fab.js` + `fab-lang.js` + `fab-theme.js` +
-`fab-map.js` had to list all four itself. The only place these got assembled automatically
+spiral-FAB system: every page wanting `vex-fab.js` + `fab-read-aloud.js` + `fab-lang.js` + `fab-theme.js` +
+`fab-map.js` had to list the shared set itself. The only place these got assembled automatically
 was `lib/build-vextreme.js`'s God Script build — a heavier process requiring per-slug
 string-scope/viewmodel configuration most standalone pages don't have.
 
@@ -38,7 +38,7 @@ loads, in this exact order — order is load-bearing, `vex-fab.js` must create
 `#vex-spiral-group` before the others look for it:
 
 ```
-widgets/vex-fab.js  → widgets/fab-lang.js → widgets/fab-theme.js → widgets/fab-map.js
+widgets/vex-fab.js → widgets/fab-read-aloud.js → widgets/fab-lang.js → widgets/fab-theme.js → widgets/fab-map.js
 ```
 
 Gated the same way `nav`/`bodyWrap` already are (`cfg.fab`, default `true` on
@@ -100,7 +100,7 @@ not spot-checked:
 
 ### The fix: `fabWidgets`, a per-widget opt-out
 
-`VEXTREME({ fabWidgets: { theme: false } })` (same shape for `lang`/`map`) skips one widget
+`VEXTREME({ fabWidgets: { theme: false } })` (same shape for `readAloud`/`lang`/`map`) skips one widget
 in the auto-loaded set while keeping the rest — `vex-fab.js` (the spiral container itself)
 always loads when `cfg.fab` is true. Applied to the 5 pages above via
 `window.VEXTREME_OVERRIDE = { fabWidgets: { theme: false } }` (the 4 specimen/dashboard
@@ -227,5 +227,175 @@ Current delivery is 28 shell pages plus one God-Script page; ten `pages/*.html`
 surfaces still have neither path. Global rollout is the next bounded PR after
 this composition contract is accepted. Analysis traversal, view profiles, and
 cross-page string navigation remain product direction, not completed behavior.
+
+## Addendum 3 (2026-10-19): Read Aloud becomes site accessibility, not page-local narration
+
+The Returning-scorpions record reader first proved higher-quality Kokoro narration as a
+page-local vertical slice. Lived use then exposed two pressures that were no longer local:
+first-use neural work could make the page unresponsive, and page-local transport could
+not provide a reusable "start reading here and continue" experience across Vextreme.
+That repeated pressure earned a promotion into the existing Spiral widget family.
+
+The promoted owner is:
+
+```text
+widgets/fab-read-aloud.js
+  = generic site accessibility
+  = start-here selection + continuous semantic-block plan
+  = play / pause / stop / previous / next
+  = voice catalog + persisted preference
+  = live neural playback speed
+  = lazy Worker-based Kokoro provider + bounded cache/look-ahead
+  = browser/system speech fallback
+```
+
+Pages do **not** gain a new speech implementation. They expose ordinary readable DOM and
+may declare a source-owned boundary such as `data-narration-language="en"` when the
+spoken source language must remain distinct from presentation/FAB language. The widget
+reads that boundary; it never rewrites source truth.
+
+Read Aloud is default infrastructure in the God-Script feature registry, so every page
+does not need to repeat `read-aloud` in its viewmodel. The neural model remains lazy:
+loading the page/FAB does not load Kokoro. Shell-era pages receive the same widget from
+`loadFabWidgets()`, ordered after the Spiral owner and before `fab-lang.js` so the
+widget's `data-i18n` surface exists when the language FAB applies the selected locale.
+
+Start-here selection is an **explicit mode**, not a permanent takeover of page
+interaction. While that mode is active, a person may click a readable block,
+right-click / long-press one, or use arrow keys to move the highlighted candidate and
+Enter/Space to begin there. Escape cancels selection. The widget only suppresses the
+browser context menu for a readable target while this explicit selection mode is active;
+normal right-click behavior remains untouched everywhere else.
+
+The explicit shell escape hatch is:
+
+```js
+window.VEXTREME_OVERRIDE = { fabWidgets: { readAloud: false } };
+```
+
+Use it only for a demonstrated surface conflict; accessibility being optional by default
+would recreate per-page admission debt.
+
+Speed semantics intentionally differ by provider capability. Kokoro synthesizes canonical
+1.0× PCM once and changes `AudioBufferSourceNode.playbackRate` live, so moving the speed
+slider does not restart or regenerate the current block. Browser `speechSynthesis` has no
+portable live-rate mutation contract, so the current bounded block finishes and the new
+rate applies to the next block rather than restarting what the person is hearing.
+
+The Spiral trigger still requires no modification when this orb is added. That unchanged
+owner is the reason the FAB composition remains extensible rather than becoming another
+central switch statement.
+
+
+## Addendum 4 (2026-10-19): site-wide accessibility is a capability, not a Spiral membership test
+
+Fresh Independent Assurance of the promoted Read Aloud owner found a scope error that
+the existing green tests did not express. Generic FAB delivery and spoken accessibility
+are related, but they are not the same capability. Some legitimate public reading
+surfaces intentionally do not adopt the full shell/God-Script/Spiral runtime, including
+institutional pages, Terrain entry/group-home documents, and generated operational
+dashboards. Exempting those surfaces from generic FAB debt must not silently exempt them
+from Read Aloud.
+
+The resulting contract is:
+
+```text
+public readable surface
+  -> shell / God Script Read Aloud when that runtime is already rightful
+  -> otherwise the same widgets/fab-read-aloud.js through the surface's existing
+     shared owner, generator, or provider-neutral local script
+  -> never a second narration engine
+```
+
+`data/page-health.json` now projects Read Aloud applicability and delivery separately
+from `fab.delivery`. Empty historical placeholders, the redirect-only Archives shim,
+and the explicit v2 development fixture are not accessibility debt because they do not
+represent a meaningful readable public surface. A readable page with no Read Aloud
+delivery is explicit debt and fails the coverage regression.
+
+Terrain adds one composition rule because its Content reader embeds same-origin pages:
+while the iframe reader is visible, the outer Terrain Read Aloud owner is stopped and
+suppressed. The embedded document owns spoken accessibility for the visible reading
+surface. Closing the reader restores Terrain's owner. This prevents two independent
+speech controls from competing over one human reading journey while preserving standalone
+Read Aloud when the embedded document is opened directly.
+
+
+## Addendum 5 (2026-10-19): the Spiral has two semantic expansion axes
+
+Lived use of the site-wide Read Aloud rollout exposed a geometry problem that the
+single flexible group could not express cleanly. Human-facing controls such as Read
+Aloud, language, theme, and map belong to the primary interaction row. Analysis/Search
+is a diagnostic utility; letting it wrap opportunistically under whichever primary orb
+happened to precede it made the Spiral feel accidental rather than intentional.
+
+The Spiral now expands from the same trigger in two directions:
+
+```text
+                         primary interaction
+                    ←  Read Aloud · Lang · Theme · Map
+                  🌀
+                  ↓
+                  Analysis / Search
+                  secondary utility axis
+```
+
+The owner still does not know feature names. Existing children appended to
+`#vex-spiral-group` route to the horizontal primary lane by default. A child opts into
+the vertical utility lane only by declaring:
+
+```html
+data-vex-spiral-axis="secondary"
+```
+
+Today Analysis/Search is the first such child. This preserves the extensibility reason
+the Spiral exists: new features own their own meaning and only declare which interaction
+axis they belong to; `widgets/vex-fab.js` owns geometry, not a central feature switch.
+
+The same lived pass also collapsed Read Aloud's separate Play and Pause buttons into one
+stateful transport control. Voice changes during active reading invalidate stale Web
+Speech callbacks before restarting the current bounded block with the newly selected
+voice, preventing a cancelled utterance from stopping or advancing its replacement.
+
+
+## Addendum 6 (2026-10-20): readable content is ownership-based, not a tag whitelist
+
+Lived continuous reading across the Liberation pages exposed a gap in the phrase
+"semantic block." The earlier implementation treated it as a selector for native prose
+tags (`p`, headings, lists, quotes, captions, `pre`, and table cells). Authored Vextreme
+pages also express meaning as visual field containers: for example, The Turning Point's
+`.proclamation-item` rows and Journal 013's `.credential-row` label/value pairs are
+`div` containers whose localized words live in inline spans. Those statements were
+visible and selectable as page content but absent from the narration plan.
+
+Read Aloud now discovers units from text ownership:
+
+```text
+visible text node
+  -> reject hidden, navigation, control, and widget-owned surfaces
+  -> nearest source-owned data-vex-read-aloud-block, when explicitly declared
+  -> otherwise nearest semantic element or rendered block/flex/grid container
+  -> merge consecutive text with the same owner into one ordered readable unit
+  -> split that unit into bounded sentence synthesis items
+```
+
+This boundary is deliberately generic. It does not register page class names, and pages
+do not gain page-specific speech branches. Paragraph inline formatting continues to
+belong to its paragraph; field labels and values belong to their shared row; card items
+belong to the card item that visually owns them. If a nested readable child interrupts a
+container's direct text, the parent resumes in a later unit so source order remains true
+instead of pulling trailing text ahead of the child.
+
+Two explicit attributes remain available at the authored DOM boundary:
+
+- `data-vex-read-aloud-block` groups a compound region as one source-owned unit when the
+  nearest inferred layout boundary is not the intended spoken boundary.
+- `data-vex-read-aloud-skip` excludes a region that should remain visible but not enter
+  narration.
+
+Start Here, viewport start, Previous/Next, current highlighting, and continuous playback
+all consume the same discovered unit model. A future omission should therefore be fixed
+at this ownership boundary (or with one of the source-owned attributes), not by adding a
+new page-name/class whitelist or a second narration implementation.
 
 <!-- [VXG RealForever] -->

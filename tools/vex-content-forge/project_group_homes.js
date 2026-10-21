@@ -74,7 +74,7 @@ function projectGroupHome(root, member, allOutputSlugs = []) {
     + '<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:wght@300;400;500;600&display=swap" rel="stylesheet"/>\n'
     + '<style>' + style.replace(/<\/style/gi, '<\\/style') + '</style></head><body data-vex-group-home="' + member.slug + '">\n'
     + '<!-- Source-managed group-home projection of ' + member.sourcePath + '; preserved Git blob ' + member.sourceGitBlob + '. Group home is not arc membership. -->\n'
-    + main + '\n</body></html>\n';
+    + main + '\n<script src="../widgets/fab-read-aloud.js"></script>\n</body></html>\n';
 }
 function projectFormation(root = DEFAULT_ROOT, options = {}) {
   const formationPath = path.join(root, options.formationRel || FORMATION_REL);
