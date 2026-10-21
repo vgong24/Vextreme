@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 134,
+    "total": 135,
     "healthy": 4,
-    "attention": 123,
+    "attention": 124,
     "critical": 7,
-    "sorted": 90,
-    "withFab": 122,
-    "readAloudApplicable": 127,
-    "withReadAloud": 127,
+    "sorted": 91,
+    "withFab": 123,
+    "readAloudApplicable": 128,
+    "withReadAloud": 128,
     "missingReadAloud": 0,
-    "withIdentity": 99,
+    "withIdentity": 100,
     "withScreenshots": 12,
-    "withMetaDescription": 100
+    "withMetaDescription": 101
   },
   "pages": {
     "a-conversation-with-pastor-jacob": {
@@ -1192,7 +1192,52 @@
       "identity": {
         "keyCount": 157,
         "languages": {
+          "ar": {
+            "translated": 157,
+            "total": 157,
+            "state": "full"
+          },
+          "de": {
+            "translated": 157,
+            "total": 157,
+            "state": "full"
+          },
           "en": {
+            "translated": 157,
+            "total": 157,
+            "state": "full"
+          },
+          "es": {
+            "translated": 157,
+            "total": 157,
+            "state": "full"
+          },
+          "fr": {
+            "translated": 157,
+            "total": 157,
+            "state": "full"
+          },
+          "hi": {
+            "translated": 157,
+            "total": 157,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 157,
+            "total": 157,
+            "state": "full"
+          },
+          "ko": {
+            "translated": 157,
+            "total": 157,
+            "state": "full"
+          },
+          "pt": {
+            "translated": 157,
+            "total": 157,
+            "state": "full"
+          },
+          "zh": {
             "translated": 157,
             "total": 157,
             "state": "full"
@@ -4895,6 +4940,66 @@
         ]
       }
     },
+    "recognizing-life-receiving-abundance": {
+      "slug": "recognizing-life-receiving-abundance",
+      "title": "Recognizing Life, Receiving Abundance",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "convos_with_god",
+          "victors_record",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "page-owned",
+        "visibleStyles": true
+      },
+      "identity": {
+        "keyCount": 72,
+        "languages": {
+          "en": {
+            "translated": 72,
+            "total": 72,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "A repository-native witness reading of the preserved Recognizing Life, Receiving Abundance second arc."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "restoration-protocol": {
       "slug": "restoration-protocol",
       "title": "Restoration Protocol",
@@ -4988,11 +5093,11 @@
         "visibleStyles": true
       },
       "identity": {
-        "keyCount": 121,
+        "keyCount": 124,
         "languages": {
           "en": {
-            "translated": 121,
-            "total": 121,
+            "translated": 124,
+            "total": 124,
             "state": "full"
           }
         }
