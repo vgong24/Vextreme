@@ -2,24 +2,23 @@
 
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const path = require('node:path');
 
 const ROOT = path.join(__dirname, '..');
-const page = fs.readFileSync(path.join(ROOT, 'pages', 'vex-work.html'), 'utf8');
+const page = fs.readFileSync(path.join(ROOT, 'vexwork', 'index.html'), 'utf8');
 const nav = fs.readFileSync(path.join(ROOT, 'lib', 'vextreme.js'), 'utf8');
-const { SKIP_PAGES, AUTO_DISCOVERY_EXCLUSIONS } = require('../lib/audit-pages');
 
-test('VEXWORK-DASHBOARD: is a standalone system page outside archive discovery', () => {
-  assert.equal(SKIP_PAGES['vex-work'], 'standalone live-fetch VexWork dashboard — public read-only projection, not an archive record');
-  assert.ok(AUTO_DISCOVERY_EXCLUSIONS['vex-work']);
+test('VEXWORK-DASHBOARD: lives in its own standalone UI home, outside pages inventory', () => {
+  assert.equal(fs.existsSync(path.join(ROOT, 'vexwork', 'index.html')), true);
+  assert.equal(fs.existsSync(path.join(ROOT, 'pages', 'vex-work.html')), false);
   assert.match(page, /<h1>VexWork<\/h1>/);
 });
 
 test('VEXWORK-DASHBOARD: shared product family links VexWork beside VexLife', () => {
   assert.match(nav, /aria-label="Vextreme, VexLife, and VexWork homes"/);
   assert.match(nav, /href="https:\/\/vgong24\.github\.io\/VexLife\/">VexLife<\/a>/);
-  assert.match(nav, /href="\/Vextreme\/pages\/vex-work\.html">VexWork<\/a>/);
+  assert.match(nav, /href="\/Vextreme\/vexwork\/">VexWork<\/a>/);
 });
 
 test('VEXWORK-DASHBOARD: consumes only the stable public VexWork projection', () => {
@@ -47,3 +46,5 @@ test('VEXWORK-DASHBOARD: dynamic VexWork strings enter through textContent, not 
   assert.match(page, /node\.textContent = text == null \? '' : String\(text\)/);
   assert.doesNotMatch(page, /\.innerHTML\s*=\s*card\./);
 });
+
+// [VXG RealForever]
