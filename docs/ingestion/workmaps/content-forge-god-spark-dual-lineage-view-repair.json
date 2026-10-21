@@ -44,7 +44,9 @@
   "authoredPaths": [
     "pages/what-is-the-god-spark.html",
     "tests/101-content-forge-god-spark-dual-lineage-view.test.js",
-    "docs/ingestion/workmaps/content-forge-god-spark-dual-lineage-view-repair.json"
+    "docs/ingestion/workmaps/content-forge-god-spark-dual-lineage-view-repair.json",
+    "data/strings/source/lineages/what-is-the-god-spark-presentation.json",
+    "tests/60-content-forge-god-spark-projection.test.js"
   ],
   "constraints": [
     "PRESERVE_EXISTING_PART028_TRANSCRIPT_BYTES_AND_LOCALIZATION_KEYS",
