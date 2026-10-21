@@ -10,6 +10,7 @@
 
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const crypto = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -86,12 +87,24 @@ test('RECORD-READER-SECOND-CONSUMER: archive boundary is source, successor witne
   }
 });
 
-test('RECORD-READER-SECOND-CONSUMER: no media is fabricated before a real asset decision', () => {
+test('RECORD-READER-SECOND-CONSUMER: lived visual review earns one representative media witness without turning it into evidence', () => {
   const page = read('pages/' + SLUG + '.html');
   const viewmodels = JSON.parse(read('data/viewmodels.json'));
-  assert.doesNotMatch(page, /data-reader-component="media-witness"/);
-  assert.doesNotMatch(page, /<img\b/);
-  assert.equal(Object.hasOwn(viewmodels[SLUG], 'preview'), false);
+  const strings = JSON.parse(read('data/strings/source/pages/' + SLUG + '.json'));
+  const asset = fs.readFileSync(path.join(ROOT, 'assets/recognizing-life-receiving-abundance/cover.webp'));
+  const digest = crypto.createHash('sha256').update(asset).digest('hex');
+
+  assert.equal(digest, 'e519e49d8f082bfc307e5b468d2d0a41632591ae0384b27bbe2457f424702b02');
+  assert.match(page, /data-reader-component="media-witness" data-media-class="representative"/);
+  assert.match(page, /assets\/recognizing-life-receiving-abundance\/cover\.webp\?v=e519e49d8f08/);
+  assert.match(page, /Artwork is representation, not evidence of unrecorded visual detail/);
+  assert.deepEqual(viewmodels[SLUG].preview, {
+    kind: 'cover',
+    src: 'https://vgong24.github.io/Vextreme/assets/recognizing-life-receiving-abundance/cover.webp?v=e519e49d8f08',
+    alt: 'Recognizing Life, Receiving Abundance — representative midnight shoreline cover art',
+  });
+  assert.equal(strings._meta.sourceProvenance.derivedMedia, 'assets/recognizing-life-receiving-abundance/cover.webp');
+  assert.equal(strings._meta.sourceProvenance.derivedMediaClass, 'REPRESENTATIVE_NOT_EVIDENCE');
 });
 
 test('RECORD-READER-SECOND-CONSUMER: shared site accessibility remains the only speech owner', () => {
