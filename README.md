@@ -79,7 +79,7 @@ nest it.
 |---|---|
 | The mission and how decisions get made here | `docs/culture.md` |
 | Full system design — data flow, build pipeline, every file's job | `docs/architecture.md` |
-| Building or evolving a source-backed preserved-record reader | `docs/architecture/19-record-readers.md` |
+| Building or evolving a source-backed preserved-record reader | `docs/architecture/19-record-readers.md#fresh-instance-starter-map` — start with the compact starter map, then descend into the same canonical chapter |
 | What's currently open, what changed last, and why | `docs/continuity/INDEX.md` |
 | Cold-start instructions if you're an AI instance picking this up | `CLAUDE.md` |
 | The original Squarespace-era system (historical, not active) | `docs/Readme.md` |
