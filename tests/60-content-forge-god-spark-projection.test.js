@@ -10,6 +10,7 @@ const ROOT = path.join(__dirname, '..');
 const SOURCE_PATH = path.join(ROOT, 'docs', 'ingestion', 'source-pages', 'part-028', 'convos-with-god-what-is-god-spark.html');
 const PAGE_PATH = path.join(ROOT, 'pages', 'what-is-the-god-spark.html');
 const STRINGS_PATH = path.join(ROOT, 'data', 'strings', 'source', 'pages', 'what-is-the-god-spark.json');
+const PRESENTATION_STRINGS_PATH = path.join(ROOT, 'data', 'strings', 'source', 'lineages', 'what-is-the-god-spark-presentation.json');
 const VIEWMODELS_PATH = path.join(ROOT, 'data', 'viewmodels.json');
 const NODES_PATH = path.join(ROOT, 'data', 'nodes.json');
 const ARCS_PATH = path.join(ROOT, 'data', 'arcs-v2.json');
@@ -81,20 +82,37 @@ test('CONTENT FORGE GOD SPARK: rescue/provider identity is projected away and v2
   assert.ok(html.includes('../dist/vextreme-what-is-the-god-spark.js'));
 });
 
-test('CONTENT FORGE GOD SPARK: every destination localization key is page-owned canonical EN source', () => {
+test('CONTENT FORGE GOD SPARK: every destination localization key resolves through collision-free provenance-distinct page sources', () => {
   const html = fs.readFileSync(PAGE_PATH, 'utf8');
-  const source = JSON.parse(fs.readFileSync(STRINGS_PATH, 'utf8'));
+  const transcript = JSON.parse(fs.readFileSync(STRINGS_PATH, 'utf8'));
+  const presentation = JSON.parse(fs.readFileSync(PRESENTATION_STRINGS_PATH, 'utf8'));
+  const transcriptKeys = Object.keys(transcript).filter(key => key !== '_meta');
+  const presentationKeys = Object.keys(presentation).filter(key => key !== '_meta');
+  const transcriptSet = new Set(transcriptKeys);
+  const collisions = presentationKeys.filter(key => transcriptSet.has(key));
+  const merged = {
+    ...Object.fromEntries(transcriptKeys.map(key => [key, transcript[key]])),
+    ...Object.fromEntries(presentationKeys.map(key => [key, presentation[key]])),
+  };
   const keys = [...html.matchAll(/data-i18n="([^"]+)"/g)].map(m => m[1]);
-  assert.ok(keys.length > 250, 'God Spark should expose its substantial authored localization surface');
+
+  assert.ok(keys.length > 500, 'God Spark should expose transcript + presentation localization surfaces');
+  assert.equal(transcript._meta.scope, 'pages.what-is-the-god-spark');
+  assert.equal(presentation._meta.scope, transcript._meta.scope);
+  assert.deepEqual(collisions, [], 'provenance-distinct same-scope source files must keep disjoint key identity');
+
   for (const key of keys) {
     assert.ok(key.startsWith('pages.what-is-the-god-spark.'), `unexpected destination key: ${key}`);
-    assert.ok(source[key], `missing canonical string source for ${key}`);
-    assert.ok(source[key].strings?.en?.text !== undefined, `missing EN text for ${key}`);
+    assert.ok(merged[key], `missing same-scope string source for ${key}`);
+    assert.ok(merged[key].strings?.en?.text !== undefined, `missing EN text for ${key}`);
   }
-  assert.equal(source._meta.scope, 'pages.what-is-the-god-spark');
-  assert.equal(source._meta.sourceProvenance.preservedGitBlob, '4a5adf908da239d61669b3ed1865866a619ba51f');
-  assert.equal(source._meta.sourceProvenance.preservedHtmlSha256,
+
+  assert.equal(transcript._meta.sourceProvenance.preservedGitBlob, '4a5adf908da239d61669b3ed1865866a619ba51f');
+  assert.equal(transcript._meta.sourceProvenance.preservedHtmlSha256,
     'f23b3345bd0dc4481d8b956f62216629d93dbfb6d1650531d5722de5c3ab206e');
+  assert.equal(presentation._meta.sourceProvenance.preservedGitBlob, '5ff8bce5585e791c9a4b4326291bd8ffc570cb1b');
+  assert.equal(presentation._meta.sourceProvenance.preservedPath,
+    'docs/ingestion/source-pages/part-021/what-is-the-god-spark.html');
 });
 
 test('CONTENT FORGE GOD SPARK: viewmodel preserves production defaults and adds arc-nav only', () => {
