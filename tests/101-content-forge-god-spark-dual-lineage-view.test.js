@@ -147,3 +147,66 @@ test('GOD SPARK DUAL LINEAGE: Part-021 presentation localization stays lineage-d
     assert.equal(transcriptKeys.has(key), false, 'lineage key collision with Part-028 transcript: ' + key);
   }
 });
+
+function godSparkDecodeText(value) {
+  return value
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&ldquo;/g, '“')
+    .replace(/&rdquo;/g, '”')
+    .replace(/&lsquo;/g, '‘')
+    .replace(/&rsquo;/g, '’')
+    .replace(/&mdash;/g, '—')
+    .replace(/&ndash;/g, '–')
+    .replace(/&hellip;/g, '…')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function godSparkAttributes(raw) {
+  const result = {};
+  const pattern = /([:\w-]+)\s*=\s*(?:"([^"]*)"|'([^']*)')/g;
+  let match;
+  while ((match = pattern.exec(raw))) result[match[1]] = match[2] ?? match[3] ?? '';
+  return result;
+}
+
+function godSparkUnboundVisibleText(html) {
+  const tokens = html.match(/<!--[\s\S]*?-->|<\/?[a-zA-Z][^>]*>|[^<]+/g) || [];
+  const stack = [];
+  const values = [];
+  for (const token of tokens) {
+    if (token.startsWith('<!--')) continue;
+    if (token.startsWith('</')) {
+      stack.pop();
+      continue;
+    }
+    if (token.startsWith('<')) {
+      const match = token.match(/^<([a-zA-Z0-9:-]+)([\s\S]*?)\/?>$/);
+      if (!match) continue;
+      const tag = match[1].toLowerCase();
+      const attrs = godSparkAttributes(match[2]);
+      const isVoid = /^(br|hr|img|input|meta|link)$/i.test(tag) || /\/>$/.test(token);
+      if (!isVoid) stack.push({ tag, attrs });
+      continue;
+    }
+    const text = godSparkDecodeText(token);
+    if (!text || !/[\p{L}\p{N}]/u.test(text)) continue;
+    if (stack.some(entry => ['script', 'style'].includes(entry.tag))) continue;
+    if (stack.some(entry => entry.attrs['data-i18n'])) continue;
+    values.push(text);
+  }
+  return values;
+}
+
+test('GOD SPARK DUAL LINEAGE: only stable numeric and speaker identities may remain unbound', () => {
+  const page = fs.readFileSync(PAGE_PATH, 'utf8');
+  const presentation = sliceBetween(page, '<!-- PART-021-PRESENTATION-BEGIN -->', '<!-- PART-021-PRESENTATION-END -->');
+  assert.deepEqual(
+    godSparkUnboundVisibleText(presentation).sort(),
+    ['01', '02', '03', '04', '05', '06', 'Claude', 'Victor'],
+  );
+});
+
