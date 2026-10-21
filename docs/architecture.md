@@ -3807,8 +3807,10 @@ records/commentary/2026-10-18-recognizing-life-receiving-abundance-successor-wit
 ```
 
 It is materially different from the first worked reader: it has nine source movements
-with a distinct archive boundary, no record-owned image yet, and a different lived
-sequence. Building it exposed one genuine repeated mechanism that no longer belonged to
+with a distinct archive boundary, began without record-owned media, and follows a different
+lived sequence. After the source-first structure was proven and Victor reviewed the visual
+direction, one intentionally derived representative cover was added without changing the
+evidence boundary. Building it exposed one genuine repeated mechanism that no longer belonged to
 either record page.
 
 That repeated mechanism is now owned by:
@@ -3852,6 +3854,22 @@ and editorial structure remained truthfully record-local.
 A missing image is therefore not a template hole. A record may begin without
 `MediaWitness`; an actual or intentionally derived representation can be added later
 when the record and lived review establish what belongs there.
+
+For this second consumer, that later visual review eventually earned:
+
+```text
+assets/recognizing-life-receiving-abundance/cover.webp
+  semantic identity = stable record cover
+  media class       = representative
+  evidence class    = NOT_EVIDENCE
+```
+
+The approved composition is a derived midnight shoreline reconstruction: the sand dollar
+remains alone near the waterline, Santa Monica Pier and amusement lights sit in the
+distance, and the Ferris wheel carries the remembered heart-light motif. These later
+recollected visual details guide representation only; they do not get inserted into PR
+#345 as historical transcript facts. The page and Terrain preview must share the same
+digest revision token for the asset.
 
 ---
 

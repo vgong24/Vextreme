@@ -285420,6 +285420,39 @@
       ],
       "missingLangs": []
     },
+    "pages.recognizing-life-receiving-abundance.hero.visual-label": {
+      "key": "pages.recognizing-life-receiving-abundance.hero.visual-label",
+      "usedIn": [
+        "pages/recognizing-life-receiving-abundance.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.recognizing-life-receiving-abundance.hero.visual-title": {
+      "key": "pages.recognizing-life-receiving-abundance.hero.visual-title",
+      "usedIn": [
+        "pages/recognizing-life-receiving-abundance.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.recognizing-life-receiving-abundance.hero.visual-body": {
+      "key": "pages.recognizing-life-receiving-abundance.hero.visual-body",
+      "usedIn": [
+        "pages/recognizing-life-receiving-abundance.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
     "pages.returning-scorpions-to-god.document-title": {
       "key": "pages.returning-scorpions-to-god.document-title",
       "usedIn": [
@@ -433333,6 +433366,9 @@
         "pages.recognizing-life-receiving-abundance.hero.preservation-label",
         "pages.recognizing-life-receiving-abundance.hero.subtitle",
         "pages.recognizing-life-receiving-abundance.hero.title",
+        "pages.recognizing-life-receiving-abundance.hero.visual-body",
+        "pages.recognizing-life-receiving-abundance.hero.visual-label",
+        "pages.recognizing-life-receiving-abundance.hero.visual-title",
         "pages.recognizing-life-receiving-abundance.intro.source-body",
         "pages.recognizing-life-receiving-abundance.intro.source-label",
         "pages.recognizing-life-receiving-abundance.intro.witness-body",
@@ -443374,8 +443410,8 @@
     }
   },
   "summary": {
-    "totalKeysInManifest": 25285,
-    "totalKeysUsed": 25228,
+    "totalKeysInManifest": 25288,
+    "totalKeysUsed": 25231,
     "orphanUsages": [],
     "unusedKeys": [
       "ai-orientation.heading.title",
