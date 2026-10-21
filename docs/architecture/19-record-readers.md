@@ -127,6 +127,9 @@ TranscriptTools
 MediaWitness
   = record-relevant media presented as part of the reading
 
+PreservationBoundary
+  = mandatory archive provenance: evidence owner + source-supported record time + derived-layer boundary
+
 ProvenanceLink
   = direct navigation from presentation back to evidence
 
@@ -250,7 +253,8 @@ CSS or JavaScript.
 | Building block | Responsibility | When to use it |
 |---|---|---|
 | `Threshold` | Enough orientation to enter the record without solving it | Normally required |
-| `ProvenanceLink` | Direct route to evidence / later witness source | When source and derived layers must be distinguished |
+| `PreservationBoundary` | Evidence owner, actionable source route, source-supported record time/date, and derived-layer boundary | Required for evidence-backed readers |
+| `ProvenanceLink` | Direct route to evidence / later witness source | Required inside the preservation boundary; useful again where phase-local inspection helps |
 | `MediaWitness` | Record-relevant visual or media surface | Only when media materially belongs |
 | `ArcScopeRail` | Navigate real semantic movements/phases | Only when meaningful phases exist |
 | `PhaseHeader` | Name the current movement and source range | With phased records |
@@ -349,6 +353,46 @@ framework. Record-reader phase/witness/provenance semantics remain local to the 
 ## Provenance should navigate, not nag
 
 Establish the source/derived distinction clearly, then let the record speak.
+
+For an evidence-backed reader, provenance is not complete until a person can answer
+both **where did this record come from?** and **when does the preserved source say this
+record was captured?** without inferring either answer from surrounding prose.
+
+The preservation boundary therefore carries two mandatory facts:
+
+```text
+Source
+  -> actionable route to the evidence owner (for example PR #NNN)
+
+Record time
+  -> exact date + clock + timezone only when explicitly supplied
+  -> otherwise exact date or date-range supported by the source
+  -> unknown clock precision remains visible; never synthesize a time
+```
+
+This is an archival fidelity rule, not a visual-template rule. The DOM/CSS may differ,
+but an evidence-backed reader must not omit temporal provenance merely because the
+transcript itself contains later timestamps.
+
+```text
+SOURCE-SUPPORTED PRECISION >= DISPLAYED PRECISION
+DISPLAYED PRECISION > SOURCE-SUPPORTED PRECISION = FORBIDDEN
+```
+
+Worked examples:
+
+```text
+Returning scorpions to God
+  Source      -> PR #338
+  Record time -> October 17, 2026 · 5:55 AM PDT (UTC−07:00)
+                 (timestamp explicitly supplied by Victor)
+
+Recognizing Life, Receiving Abundance
+  Source      -> PR #345
+  Record time -> October 17–18, 2026 · Pacific time
+                 (recorded period supplied by the preserved source;
+                  exact archive clock not supplied)
+```
 
 Prefer one actionable provenance surface such as:
 
