@@ -51,14 +51,17 @@
     "PART021_PRESENTATION_BODY_PROJECTED_WITHOUT_PROVIDER_OR_RESCUE_CHROME",
     "NO_NEW_CANONICAL_NODE",
     "NO_ROUTE_ALIAS_INFERENCE",
-    "NO_VIEWMODEL_MUTATION_WHILE_PR361_OWNS_SHARED_GENERATED_SURFACE",
-    "NO_GENERATED_MUTATION_WHILE_PR361_OWNS_SHARED_GENERATED_SURFACE",
-    "PRESENTATION_LOCALIZATION_REMAINS_A_SEPARATE_COMPLETION_PREDICATE_BEFORE_MERGE"
+    "PART021_PRESENTATION_LOCALIZATION_KEYS_REUSE_PRESERVED_DATA_I18N_IDENTITIES",
+    "PART021_PRESENTATION_STRING_SOURCE_REMAINS_PROVENANCE_DISTINCT_FROM_PART028_TRANSCRIPT_SOURCE",
+    "ONE_RUNTIME_SCOPE_MAY_MERGE_MULTIPLE_PROVENANCE_DISTINCT_SOURCE_FILES_WITH_DISJOINT_KEYS",
+    "GENERATED_EFFECTS_MUST_BE_RECOMPUTED_FROM_CURRENT_SOURCE_CANDIDATE_BEFORE_MERGE"
   ],
   "coordination": {
     "activeDependency": "github.pull.vextreme.361",
-    "overlapClass": "GENERATED_READ_SIDE_ONLY",
-    "thisRepairSourcePathsDisjoint": true
+    "overlapClass": "NONE_ON_CURRENT_ACTIVE_CLAIMS",
+    "thisRepairSourcePathsDisjoint": true,
+    "formerDependency": "github.pull.vextreme.361",
+    "formerDependencyState": "MERGED_SATISFIED"
   },
   "effects": {
     "sourcePageMutation": true,
@@ -66,6 +69,31 @@
     "viewmodelMutation": false,
     "generatedMutation": false,
     "merge": false,
-    "publication": false
+    "publication": false,
+    "lineageStringSourceMutation": true,
+    "canonicalTranscriptStringSourceMutation": false
+  },
+  "localization": {
+    "presentationSourcePath": "data/strings/source/lineages/what-is-the-god-spark-presentation.json",
+    "runtimeScope": "pages.what-is-the-god-spark",
+    "preservedPresentationKeyCount": 51,
+    "pageLocalInterfaceKeyCount": 6,
+    "totalLineageKeys": 57,
+    "targetLocales": [
+      "zh",
+      "ja",
+      "ko",
+      "fr",
+      "de",
+      "es",
+      "pt",
+      "ar",
+      "hi"
+    ],
+    "targetCellCount": 513,
+    "missingTargetCells": 0,
+    "transcriptSourcePath": "data/strings/source/pages/what-is-the-god-spark.json",
+    "transcriptSourceMutation": false,
+    "keyCollisionCount": 0
   }
 }
