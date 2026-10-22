@@ -4,7 +4,7 @@
 
 ## The one selected image
 
-![Final daylight visualization — a single narrow multi-storey condominium bending as one continuous structure from a pier toward the ocean, with Victor safely landed and an outside observer standing nearby.](assets/daylight-condominium.jpg)
+![Final daylight visualization — a single narrow multi-storey condominium bending as one continuous structure from a pier toward the ocean, with Victor safely landed and an outside observer standing nearby.](assets/daylight-condominium.webp)
 
 *Selected image only. The original final generator output was a 1536 × 1024 PNG; this archive may use a smaller JPEG derivative to preserve it within the available repository upload channel. No intermediate images are retained.*
 
