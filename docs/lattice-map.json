@@ -2297,7 +2297,7 @@
     },
     "lib/shell.js": {
       "role": "thin GitHub Pages shell bootstrap — loads the cache-versioned legacy runtime and invokes VEXTREME with the page's optional override",
-      "context": "Still live for pages that include shell.js even though the newer God Script path exists. This file owns only the stable bootstrap/cache handoff: it injects lib/vextreme.js, waits for it, then calls window.VEXTREME(window.VEXTREME_OVERRIDE || {}). It must not become a second runtime-composition owner. Its VEXTREME_VER must stay aligned with lib/vextreme.js DEFAULT_CACHE; tests/41 makes that prior cache regression mechanical instead of remembered.",
+      "context": "Still live for pages that include shell.js even though the newer God Script path exists. This file owns only the stable bootstrap/cache handoff: it injects lib/vextreme.js, waits for it, then calls window.VEXTREME(window.VEXTREME_OVERRIDE || {}). Its VEXTREME_VER is generated from the shared cache-family content by lib/build-shared-cache-generation.js and must equal lib/vextreme.js DEFAULT_CACHE plus Terrain's bootstrap token; tests/41 proves both equality and content-currentness.",
       "reads": [
         "lib/vextreme.js (cache-versioned runtime loaded into the page)",
         "window.VEXTREME_OVERRIDE (optional page configuration passed through after load)"
@@ -2314,9 +2314,10 @@
         "tests/41-vextreme-fab-autoload.test.js"
       ],
       "changeMap": {
-        "VEXTREME_VER or bootstrap cache handoff changed": [
-          "lib/vextreme.js DEFAULT_CACHE (must stay byte-equivalent as a version token)",
-          "tests/41-vextreme-fab-autoload.test.js (CACHE-SYNC assertion)"
+        "shared cache identity or bootstrap cache handoff changed": [
+          "lib/build-shared-cache-generation.js (content-derived token owner)",
+          "lib/vextreme.js DEFAULT_CACHE and pages/terrain-map.html bootstrap (generated peers)",
+          "tests/41-vextreme-fab-autoload.test.js (CACHE-SYNC currentness assertions)"
         ],
         "runtime target or VEXTREME invocation contract changed": [
           "lib/vextreme.js (the loaded runtime/entry point)",
@@ -2357,8 +2358,9 @@
         "tests/43-runtime-chrome-composition.test.js"
       ],
       "changeMap": {
-        "DEFAULT_CACHE changed": [
-          "lib/shell.js VEXTREME_VER (cache token must stay synchronized)",
+        "DEFAULT_CACHE or cache-versioned asset family changed": [
+          "lib/build-shared-cache-generation.js CACHE_FAMILY_PATHS / generated identity",
+          "lib/shell.js VEXTREME_VER and pages/terrain-map.html bootstrap",
           "tests/41-vextreme-fab-autoload.test.js"
         ],
         "#vex-nav-actions or shared chrome composition changed": [
