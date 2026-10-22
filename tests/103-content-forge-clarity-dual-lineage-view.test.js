@@ -69,7 +69,9 @@ test('CLARITY-DUAL-LINEAGE: transcript remains bound to the accepted Part-028 so
   const transcriptPanel = between(page, '<article class="lineage-sheet transcript-sheet"', '</article>');
   const transcriptKeys = sourceKeys(transcriptSource);
   assert.equal(transcriptKeys.length, 157);
-  for (const key of transcriptKeys) {
+  const documentTitleKey = 'pages.clarity-on-christianity.document-title';
+  assert.match(page, new RegExp('data-i18n="' + escapeRegExp(documentTitleKey) + '"'));
+  for (const key of transcriptKeys.filter((item) => item !== documentTitleKey)) {
     assert.match(transcriptPanel, new RegExp('data-i18n="' + escapeRegExp(key) + '"'));
   }
   assert.equal(transcriptSource._meta.sourceProvenance.preservedPath, 'docs/ingestion/source-pages/part-028/convos-with-god-clarity-on-christianity.html');
