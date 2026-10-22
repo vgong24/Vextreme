@@ -19,6 +19,7 @@ const { test } = require('node:test');
 const assert    = require('node:assert/strict');
 const fs        = require('fs');
 const path      = require('path');
+const cacheIdentity = require('../lib/build-shared-cache-generation');
 
 const ROOT  = path.join(__dirname, '..');
 const VX_IN = path.join(ROOT, 'lib', 'vextreme.js');
@@ -292,12 +293,11 @@ test('FAB-AUTOLOAD: CONFIG SCHEMA doc comment documents FAB enablement and reusa
   assert.match(source, /\*\s+fabLinks\s+array\s+Reusable Spiral link-item config/);
 });
 
-// ── Cache-version sync (regression guard) ──────────────────────────────────
-// The FAB autoload originally shipped without bumping the cache version, so
-// jsDelivr/browser caches kept serving the pre-FAB vextreme.js and the FAB
-// never appeared on production pages. shell.js's own header says the two
-// versions must be bumped together; this makes that instruction enforced
-// instead of remembered.
+// ── Shared cache identity (regression guard) ────────────────────────────────
+// The shell/runtime family now derives one token from its actual cache-family
+// bytes. Equality alone is insufficient: both owners can agree on one stale
+// token. These tests therefore prove both synchronized ownership and exact
+// content-derived currentness.
 
 test('CACHE-SYNC: same-origin shell keeps runtime assets on the same deployed revision', () => {
   const shell = fs.readFileSync(path.join(ROOT, 'lib', 'shell.js'), 'utf8');
@@ -323,7 +323,7 @@ test('CACHE-SYNC: shell.js VEXTREME_VER matches vextreme.js DEFAULT_CACHE exactl
   assert.ok(shellVer, 'shell.js must declare VEXTREME_VER');
   assert.ok(vxVer, 'vextreme.js must declare DEFAULT_CACHE');
   assert.equal(shellVer[1], vxVer[1],
-    `shell.js VEXTREME_VER (${shellVer[1]}) and vextreme.js DEFAULT_CACHE (${vxVer[1]}) must be bumped together — a mismatch means production serves a stale vextreme.js`);
+    `shell.js VEXTREME_VER (${shellVer[1]}) and vextreme.js DEFAULT_CACHE (${vxVer[1]}) must be generated together`);
 });
 
 test('CACHE-SYNC: Terrain shell bootstrap uses same-origin cache token equal to VEXTREME_VER', () => {
@@ -336,6 +336,41 @@ test('CACHE-SYNC: Terrain shell bootstrap uses same-origin cache token equal to 
   assert.equal(terrainTag[1], shellVer[1],
     'Terrain bootstrap query must move with shell.js VEXTREME_VER so the bootstrap itself cannot stay on an older CDN/browser cache generation');
   assert.doesNotMatch(terrain, /cdn\.jsdelivr\.net\/gh\/vgong24\/vextreme@main\/lib\/shell\.js/);
+});
+
+test('CACHE-SYNC: shared token equals the deterministic cache-family fingerprint', () => {
+  const expected = cacheIdentity.expectedCacheToken(ROOT);
+  const observed = cacheIdentity.readCacheTokens(ROOT);
+  assert.match(expected, /^\?v=[a-f0-9]{12}$/);
+  assert.deepEqual(observed, { shell: expected, runtime: expected, terrain: expected });
+});
+
+test('CACHE-SYNC: token normalization converges and cache-family byte changes invalidate', () => {
+  const base = [
+    ['lib/shell.js', "var VEXTREME_VER = '?v=111111111111';"],
+    ['lib/vextreme.js', "var DEFAULT_CACHE = '?v=111111111111';"],
+    ['widgets/vex-fab.js', 'alpha']
+  ];
+  const tokenOnlyChanged = [
+    ['lib/shell.js', "var VEXTREME_VER = '?v=222222222222';"],
+    ['lib/vextreme.js', "var DEFAULT_CACHE = '?v=333333333333';"],
+    ['widgets/vex-fab.js', 'alpha']
+  ];
+  const runtimeChanged = [
+    ['lib/shell.js', "var VEXTREME_VER = '?v=444444444444';"],
+    ['lib/vextreme.js', "var DEFAULT_CACHE = '?v=555555555555';"],
+    ['widgets/vex-fab.js', 'beta']
+  ];
+  assert.equal(
+    cacheIdentity.computeFingerprintFromEntries(base),
+    cacheIdentity.computeFingerprintFromEntries(tokenOnlyChanged),
+    'token-only edits must not recursively change the next identity'
+  );
+  assert.notEqual(
+    cacheIdentity.computeFingerprintFromEntries(base),
+    cacheIdentity.computeFingerprintFromEntries(runtimeChanged),
+    'a cache-family byte change must change the identity'
+  );
 });
 
 // ── v1 enhancement-layer gating (authored-style protection) ─────────────────
