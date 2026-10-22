@@ -18,7 +18,7 @@ test('VEXWORK-DASHBOARD: lives in its own standalone UI home, outside pages inve
 test('VEXWORK-DASHBOARD: shared product family links VexWork beside VexLife', () => {
   assert.match(nav, /aria-label="Vextreme, VexLife, and VexWork homes"/);
   assert.match(nav, /href="https:\/\/vgong24\.github\.io\/VexLife\/">VexLife<\/a>/);
-  assert.match(nav, /href="\/Vextreme\/vexwork\/">VexWork<\/a>/);
+  assert.match(nav, /href="https:\/\/vexgpt\.github\.io\/VexWork\/">VexWork<\/a>/);
 });
 
 test('VEXWORK-DASHBOARD: consumes only the stable public VexWork projection', () => {
