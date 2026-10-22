@@ -24,7 +24,7 @@
 - [01-dream-and-immediate-witness.md](01-dream-and-immediate-witness.md) — Original dream and full immediate interpretation.
 - [02-condominium-and-i-am.md](02-condominium-and-i-am.md) — What the condo represents, "I AM THAT I AM", and visual intent.
 - [03-selected-visual-and-ocean.md](03-selected-visual-and-ocean.md) — Final image (only) and complete post-image ocean dialogue, ending at the Instagram/dams question.
-- [assets/daylight-condominium.jpg](assets/daylight-condominium.jpg) — Selected final daylight visualization (if binary upload is present in this PR).
+- [assets/daylight-condominium.webp](assets/daylight-condominium.webp) — Selected final daylight visualization (a compact 400 × 267 WebP derivative of the approved 1536 × 1024 daylight rendering).
 
 ## Fidelity and provenance
 
