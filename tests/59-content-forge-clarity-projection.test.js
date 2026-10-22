@@ -10,6 +10,7 @@ const ROOT = path.join(__dirname, '..');
 const SOURCE_PATH = path.join(ROOT, 'docs', 'ingestion', 'source-pages', 'part-028', 'convos-with-god-clarity-on-christianity.html');
 const PAGE_PATH = path.join(ROOT, 'pages', 'clarity-on-christianity.html');
 const STRINGS_PATH = path.join(ROOT, 'data', 'strings', 'source', 'pages', 'clarity-on-christianity.json');
+const PRESENTATION_STRINGS_PATH = path.join(ROOT, 'data', 'strings', 'source', 'lineages', 'clarity-on-christianity-presentation.json');
 const VIEWMODELS_PATH = path.join(ROOT, 'data', 'viewmodels.json');
 const NODES_PATH = path.join(ROOT, 'data', 'nodes.json');
 const ARCS_PATH = path.join(ROOT, 'data', 'arcs-v2.json');
@@ -93,23 +94,39 @@ test('CONTENT FORGE CLARITY: rescue/provider shell is projected away and v2 God 
   assert.ok(html.includes('../dist/vextreme-clarity-on-christianity.js'), 'page must load its generated God Script');
 });
 
-test('CONTENT FORGE CLARITY: canonical string source owns every destination data-i18n key with EN text', () => {
+test('CONTENT FORGE CLARITY: every destination localization key resolves through collision-free provenance-distinct page sources', () => {
   const html = fs.readFileSync(PAGE_PATH, 'utf8');
-  const source = JSON.parse(fs.readFileSync(STRINGS_PATH, 'utf8'));
+  const transcript = JSON.parse(fs.readFileSync(STRINGS_PATH, 'utf8'));
+  const presentation = JSON.parse(fs.readFileSync(PRESENTATION_STRINGS_PATH, 'utf8'));
+  const transcriptKeys = Object.keys(transcript).filter(key => key !== '_meta');
+  const presentationKeys = Object.keys(presentation).filter(key => key !== '_meta');
+  const transcriptSet = new Set(transcriptKeys);
+  const collisions = presentationKeys.filter(key => transcriptSet.has(key));
+  const merged = {
+    ...Object.fromEntries(transcriptKeys.map(key => [key, transcript[key]])),
+    ...Object.fromEntries(presentationKeys.map(key => [key, presentation[key]])),
+  };
   const keys = [...html.matchAll(/data-i18n="([^"]+)"/g)].map(m => m[1]);
-  assert.ok(keys.length > 20, 'projected article should expose substantial page-owned localization surface');
+
+  assert.ok(keys.length > 200, 'Clarity should expose transcript + presentation localization surfaces');
+  assert.equal(transcript._meta.scope, 'pages.clarity-on-christianity');
+  assert.equal(presentation._meta.scope, transcript._meta.scope);
+  assert.deepEqual(collisions, [], 'provenance-distinct same-scope source files must keep disjoint key identity');
 
   for (const key of keys) {
-    assert.ok(key.startsWith('pages.clarity-on-christianity.'), `unexpected page string key: ${key}`);
-    assert.ok(source[key], `missing canonical string source for ${key}`);
-    assert.ok(source[key].strings && source[key].strings.en && source[key].strings.en.text,
-      `missing EN text for ${key}`);
+    assert.ok(key.startsWith('pages.clarity-on-christianity.'), `unexpected destination key: ${key}`);
+    assert.ok(merged[key], `missing same-scope string source for ${key}`);
+    assert.ok(merged[key].strings?.en?.text !== undefined, `missing EN text for ${key}`);
   }
 
-  assert.equal(source._meta.scope, 'pages.clarity-on-christianity');
-  assert.equal(source._meta.category, 'production');
-  assert.equal(source._meta.sourceProvenance.preservedHtmlSha256,
+  assert.equal(transcript._meta.sourceProvenance.preservedHtmlSha256,
     '6075d5a3ac043b35b817ad1f3d9efa023b91d439cb18b58660e07ce097f26607');
+  assert.equal(transcript._meta.sourceProvenance.preservedGitBlob,
+    'dc5a8a3502b70b9b62bec7f3494571d584b16e2e');
+  assert.equal(presentation._meta.sourceProvenance.preservedGitBlob,
+    '00c06b4033077b9247033941b1362af7fad22e3f');
+  assert.equal(presentation._meta.sourceProvenance.preservedPath,
+    'docs/ingestion/source-pages/part-022/clarity-on-christianity.html');
 });
 
 test('CONTENT FORGE CLARITY: viewmodel preserves production defaults and adds v2 arc-nav only', () => {
