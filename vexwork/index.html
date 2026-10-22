@@ -3,242 +3,155 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VexWork — Public Work Board</title>
-<meta name="description" content="Read-only public projection of VexWork Project Board and Parking Lot truth.">
+<title>VexWork — Work Navigator</title>
+<meta name="description" content="Read-only semantic navigator for VexWork Projects, Outcomes, dependencies, Boards and work-item history.">
 <link rel="icon" href="../assets/logo/vextreme-mark.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles/design-system.css">
 <style>
-  :root { --vw-lane-width: 248px; }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--cream, #fafaf9);
-    color: var(--stone, #1c1917);
-    font-family: var(--sans, 'IBM Plex Sans', sans-serif);
-  }
-  a { color: inherit; }
-  .vw-shell { width: min(1440px, calc(100% - 32px)); margin: 0 auto; }
-  .vw-product-nav {
-    display: flex; align-items: center; gap: 7px;
-    padding: 22px 0 0;
-    font-family: var(--serif, 'Source Serif 4', Georgia, serif);
-    font-size: 14px;
-  }
-  .vw-product-nav a { color: var(--muted, #78716c); text-decoration: none; }
-  .vw-product-nav a:hover { color: var(--ember, #b45830); }
-  .vw-product-nav strong { color: var(--stone, #1c1917); font-weight: 600; }
-  .vw-sep { color: var(--border-strong, #d6d3d1); font-family: var(--mono, monospace); font-size: 11px; }
-  .vw-header { padding: 34px 0 24px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px; align-items: end; }
-  .vw-eyebrow { margin: 0 0 9px; color: var(--ember, #b45830); font-family: var(--mono, monospace); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; }
-  h1 { margin: 0; font-family: var(--serif, Georgia, serif); font-size: clamp(36px, 7vw, 68px); line-height: 0.95; font-weight: 600; letter-spacing: -0.035em; }
-  .vw-lede { max-width: 720px; margin: 16px 0 0; color: var(--muted, #78716c); line-height: 1.7; font-size: 15px; }
-  .vw-source { text-align: right; font-family: var(--mono, monospace); font-size: 11px; line-height: 1.8; color: var(--muted, #78716c); }
-  .vw-source a { color: var(--ember, #b45830); text-decoration: none; }
-  .vw-source a:hover { text-decoration: underline; }
-  .vw-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 30px; }
-  .vw-stat { border: 1px solid var(--border, #e7e5e4); background: #fff; border-radius: 8px; padding: 14px 16px; }
-  .vw-stat-value { font-family: var(--mono, monospace); color: var(--ember, #b45830); font-size: 24px; font-weight: 500; }
-  .vw-stat-label { margin-top: 4px; color: var(--muted, #78716c); font-size: 11px; }
-  .vw-section-head { display: flex; gap: 18px; align-items: baseline; justify-content: space-between; margin: 34px 0 12px; }
-  .vw-section-head h2 { margin: 0; font-family: var(--mono, monospace); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; }
-  .vw-section-head p { margin: 0; color: var(--muted, #78716c); font-size: 12px; }
-  .vw-board-scroll { overflow-x: auto; padding-bottom: 12px; scrollbar-width: thin; }
-  .vw-board { display: grid; grid-template-columns: repeat(10, var(--vw-lane-width)); gap: 10px; align-items: start; min-width: max-content; }
-  .vw-lane { border: 1px solid var(--border, #e7e5e4); background: rgba(255,255,255,0.62); border-radius: 8px; min-height: 132px; overflow: hidden; }
-  .vw-lane-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 11px 12px; border-bottom: 1px solid var(--border, #e7e5e4); background: rgba(255,255,255,0.75); }
-  .vw-lane-title { font-family: var(--mono, monospace); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; }
-  .vw-count { min-width: 20px; height: 20px; padding: 0 5px; display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; background: var(--border, #e7e5e4); color: var(--muted, #78716c); font-family: var(--mono, monospace); font-size: 9px; }
-  .vw-cards { display: grid; gap: 8px; padding: 8px; }
-  .vw-empty { padding: 14px 10px; color: var(--muted, #78716c); font-size: 11px; font-style: italic; }
-  .vw-card { border: 1px solid var(--border, #e7e5e4); background: #fff; border-radius: 7px; padding: 11px; box-shadow: 0 1px 0 rgba(28,25,23,0.02); }
-  .vw-card-top { display: flex; gap: 7px; flex-wrap: wrap; align-items: center; margin-bottom: 8px; }
-  .vw-badge { display: inline-flex; border-radius: 999px; padding: 2px 6px; font-family: var(--mono, monospace); font-size: 8px; letter-spacing: 0.05em; text-transform: uppercase; background: var(--border, #e7e5e4); color: var(--muted, #78716c); }
-  .vw-badge--state { background: var(--ember-bg, #f7ece7); color: var(--ember, #b45830); }
-  .vw-badge--held { background: #f1f0ee; color: #6b6864; }
-  .vw-card h3 { margin: 0 0 7px; font-size: 13px; line-height: 1.35; }
-  .vw-card p { margin: 0; color: var(--muted, #78716c); font-size: 11px; line-height: 1.55; }
-  .vw-ref { margin-top: 10px; font-family: var(--mono, monospace); font-size: 8px; color: #9a948d; overflow-wrap: anywhere; }
-  .vw-repos { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 4px; }
-  .vw-repo { font-family: var(--mono, monospace); font-size: 8px; color: var(--muted, #78716c); }
-  .vw-parking { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 360px)); gap: 10px; margin-bottom: 52px; }
-  .vw-parking .vw-card { border-left: 3px solid var(--ember, #b45830); }
-  .vw-status { margin: 28px 0 52px; padding: 14px 16px; border: 1px dashed var(--border, #e7e5e4); border-radius: 8px; color: var(--muted, #78716c); font-size: 12px; }
-  .vw-error { color: #9f3131; }
-  .vw-footer { border-top: 1px solid var(--border, #e7e5e4); padding: 18px 0 30px; display: flex; justify-content: space-between; gap: 20px; color: var(--muted, #78716c); font-family: var(--mono, monospace); font-size: 9px; }
-  @media (max-width: 720px) {
-    .vw-header { grid-template-columns: 1fr; }
-    .vw-source { text-align: left; }
-    .vw-stats { grid-template-columns: 1fr 1fr; }
-    .vw-stat:last-child { grid-column: 1 / -1; }
-    .vw-board { min-width: 0; width: 100%; display: flex; flex-direction: column; }
-    .vw-lane { width: 100%; min-height: auto; }
-    .vw-board-scroll { overflow: visible; }
-    .vw-footer { flex-direction: column; }
-  }
+:root{--vw-blue:#2563eb;--vw-ink:#1c1917;--vw-muted:#78716c;--vw-line:#e7e5e4;--vw-paper:#fff;--vw-wash:#fafaf9;--vw-ember:#b45830}
+*{box-sizing:border-box}body{margin:0;background:var(--vw-wash);color:var(--vw-ink);font-family:'IBM Plex Sans',sans-serif}button,input{font:inherit}button{cursor:pointer}
+.vw-shell{width:min(1460px,calc(100% - 28px));margin:0 auto}.vw-product-nav{display:flex;align-items:center;gap:8px;padding:20px 0 15px;font-family:'Source Serif 4',serif;font-size:15px}.vw-product-nav a{color:var(--vw-muted);text-decoration:none}.vw-product-nav strong{font-weight:600}.vw-sep{color:#d6d3d1;font-family:'IBM Plex Mono',monospace;font-size:11px}
+.vw-toolbar{display:grid;grid-template-columns:minmax(0,1fr) minmax(230px,420px);gap:20px;align-items:center;border-top:1px solid var(--vw-line);border-bottom:1px solid var(--vw-line);padding:16px 0}.vw-brand{display:flex;align-items:baseline;gap:14px}.vw-brand h1{margin:0;font-family:'Source Serif 4',serif;font-size:30px;letter-spacing:-.03em}.vw-readonly{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--vw-ember)}
+.vw-search{width:100%;border:1px solid #d6d3d1;border-radius:9px;background:#f2f2f0;padding:12px 14px;color:var(--vw-ink)}.vw-search:focus{outline:2px solid rgba(37,99,235,.25);border-color:var(--vw-blue)}
+.vw-levels{display:flex;align-items:center;gap:8px;padding:12px 0;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#a8a29e}.vw-level{padding:5px 8px;border-radius:999px;border:1px solid transparent}.vw-level.is-current{color:var(--vw-blue);border-color:#bfdbfe;background:#eff6ff}.vw-level-sep{color:#d6d3d1}
+.vw-main{min-height:72vh;padding:26px 0 60px}.vw-hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end;margin-bottom:24px}.vw-eyebrow{margin:0 0 8px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--vw-blue)}.vw-hero h2{font-family:'Source Serif 4',serif;font-size:clamp(34px,5vw,58px);line-height:1;margin:0;letter-spacing:-.035em}.vw-lede{max-width:820px;color:var(--vw-muted);line-height:1.65;margin:13px 0 0}.vw-hero-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.vw-btn{border:1px solid #d6d3d1;background:#fff;border-radius:8px;padding:9px 12px;color:var(--vw-ink)}.vw-btn:hover,.vw-btn:focus-visible{border-color:#93c5fd;outline:none}.vw-btn--primary{background:var(--vw-blue);border-color:var(--vw-blue);color:#fff}.vw-btn--quiet{background:transparent}
+.vw-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:20px 0 28px}.vw-stat{border:1px solid var(--vw-line);border-radius:10px;background:#fff;padding:14px 16px}.vw-stat strong{display:block;font-family:'IBM Plex Mono',monospace;font-size:22px;color:var(--vw-ember)}.vw-stat span{display:block;margin-top:4px;color:var(--vw-muted);font-size:11px}
+.vw-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px}.vw-card{border:1px solid var(--vw-line);border-radius:11px;background:#fff;padding:16px;min-width:0}.vw-card.is-clickable{cursor:pointer}.vw-card.is-clickable:hover,.vw-card.is-clickable:focus-visible{border-color:#93c5fd;box-shadow:0 7px 24px rgba(37,99,235,.07);outline:none}.vw-card-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}.vw-chip{display:inline-flex;align-items:center;border-radius:999px;background:#f1f0ee;padding:3px 7px;font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.04em;text-transform:uppercase;color:#78716c}.vw-chip--state{background:#fff4ef;color:var(--vw-ember)}.vw-chip--blue{background:#eff6ff;color:var(--vw-blue)}.vw-card h3{margin:0 0 7px;font-size:16px}.vw-card p{margin:0;color:var(--vw-muted);font-size:12px;line-height:1.55}.vw-card-ref{margin-top:12px;font-family:'IBM Plex Mono',monospace;font-size:8px;color:#a8a29e;overflow-wrap:anywhere}.vw-card-foot{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-top:14px}.vw-countline{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--vw-muted)}
+.vw-section{margin-top:34px}.vw-section-head{display:flex;justify-content:space-between;gap:20px;align-items:baseline;margin-bottom:12px}.vw-section-head h3{margin:0;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase}.vw-section-head p{margin:0;color:var(--vw-muted);font-size:12px}
+.vw-tabs{display:flex;gap:5px;flex-wrap:wrap;margin:20px 0;border-bottom:1px solid var(--vw-line);padding-bottom:8px}.vw-tab{border:0;background:transparent;border-radius:7px;padding:8px 11px;color:var(--vw-muted)}.vw-tab.is-current{background:#eff6ff;color:var(--vw-blue);font-weight:600}
+.vw-tree{display:grid;gap:10px}.vw-tree-node{border-left:2px solid #dbeafe;padding-left:12px}.vw-tree-node[data-depth="0"]{border-left-color:var(--vw-blue);padding-left:15px}.vw-tree-node>.vw-card{margin-bottom:8px}.vw-tree-children{display:grid;gap:8px;margin-left:20px}.vw-item-row{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.vw-item-row h3{margin:0}.vw-rel{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--vw-muted)}
+.vw-board-scroll{overflow-x:auto;padding-bottom:10px}.vw-board{display:grid;grid-template-columns:repeat(10,240px);gap:9px;min-width:max-content;align-items:start}.vw-lane{border:1px solid var(--vw-line);border-radius:9px;background:rgba(255,255,255,.65);min-height:120px}.vw-lane-head{display:flex;justify-content:space-between;gap:8px;padding:10px;border-bottom:1px solid var(--vw-line);font-family:'IBM Plex Mono',monospace;font-size:9px;text-transform:uppercase}.vw-lane-body{display:grid;gap:7px;padding:7px}.vw-lane .vw-card{padding:11px}.vw-empty{padding:12px;color:#a8a29e;font-size:11px;font-style:italic}
+.vw-deps{display:grid;gap:8px}.vw-dep-row{display:grid;grid-template-columns:minmax(180px,1fr) auto minmax(180px,1fr);gap:10px;align-items:center;border:1px solid var(--vw-line);background:#fff;border-radius:9px;padding:11px}.vw-dep-arrow{font-family:'IBM Plex Mono',monospace;color:var(--vw-blue)}
+.vw-detail{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(250px,.8fr);gap:20px}.vw-panel{border:1px solid var(--vw-line);border-radius:10px;background:#fff;padding:18px}.vw-panel h3{margin:0 0 13px}.vw-fields{display:grid;grid-template-columns:150px minmax(0,1fr);gap:9px 14px;font-size:12px}.vw-field-label{font-family:'IBM Plex Mono',monospace;color:var(--vw-muted);font-size:9px;text-transform:uppercase;letter-spacing:.05em}.vw-field-value{overflow-wrap:anywhere}.vw-ref-list{display:flex;flex-wrap:wrap;gap:5px}.vw-ref-token{font-family:'IBM Plex Mono',monospace;font-size:9px;background:#f5f5f4;border-radius:5px;padding:4px 6px;overflow-wrap:anywhere}.vw-history{display:grid;gap:9px}.vw-history-entry{border-left:2px solid #bfdbfe;padding:8px 0 8px 13px}.vw-history-entry strong{font-size:12px}.vw-history-entry p{margin:5px 0 0;color:var(--vw-muted);font-size:11px}.vw-history-entry time{font-family:'IBM Plex Mono',monospace;font-size:8px;color:#a8a29e}
+.vw-breadcrumb{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:14px;font-size:11px}.vw-breadcrumb button{border:0;background:transparent;color:var(--vw-blue);padding:0}.vw-breadcrumb span{color:#a8a29e}.vw-ai-hint{margin-top:18px;border:1px dashed #bfdbfe;background:#f8fbff;border-radius:9px;padding:12px;color:#475569;font-size:11px;line-height:1.5}.vw-ai-hint code{font-family:'IBM Plex Mono',monospace;color:var(--vw-blue)}
+.vw-status{margin-top:26px;padding:13px 15px;border:1px dashed var(--vw-line);border-radius:9px;color:var(--vw-muted);font-size:11px}.vw-error{color:#9f3131}.vw-footer{border-top:1px solid var(--vw-line);display:flex;justify-content:space-between;gap:20px;padding:18px 0 30px;font-family:'IBM Plex Mono',monospace;font-size:8px;color:#a8a29e}
+@media(max-width:820px){.vw-toolbar,.vw-hero,.vw-detail{grid-template-columns:1fr}.vw-hero-actions{justify-content:flex-start}.vw-stats{grid-template-columns:1fr 1fr}.vw-board{display:flex;flex-direction:column;min-width:0}.vw-lane{width:100%}.vw-board-scroll{overflow:visible}.vw-dep-row{grid-template-columns:1fr}.vw-dep-arrow{transform:rotate(90deg);justify-self:start}.vw-fields{grid-template-columns:1fr}.vw-tree-children{margin-left:8px}.vw-footer{flex-direction:column}}
 </style>
 </head>
 <body>
 <div class="vw-shell">
-  <nav class="vw-product-nav" aria-label="Vextreme product family">
-    <a href="/Vextreme/pages/terrain-map.html?view=content&profile=evolution-v1">Vextreme</a>
-    <span class="vw-sep" aria-hidden="true">/</span>
-    <a href="https://vgong24.github.io/VexLife/">VexLife</a>
-    <span class="vw-sep" aria-hidden="true">/</span>
-    <strong aria-current="page">VexWork</strong>
-  </nav>
-
-  <header class="vw-header">
-    <div>
-      <p class="vw-eyebrow">Public work projection · read only</p>
-      <h1>VexWork</h1>
-      <p class="vw-lede">A visible map of what is active, captured, completed, and intentionally parked. VexWork owns the work truth; this page only renders its public projection.</p>
-    </div>
-    <div class="vw-source">
-      <a href="https://github.com/VexGPT/VexWork">VexWork source ↗</a><br>
-      <a href="https://github.com/VexGPT/VexWork/blob/main/public/work-dashboard.json">public dashboard JSON ↗</a>
-    </div>
-  </header>
-
-  <section class="vw-stats" aria-label="VexWork summary">
-    <div class="vw-stat"><div class="vw-stat-value" id="vw-project-count">—</div><div class="vw-stat-label">Project work items</div></div>
-    <div class="vw-stat"><div class="vw-stat-value" id="vw-active-count">—</div><div class="vw-stat-label">Open project work</div></div>
-    <div class="vw-stat"><div class="vw-stat-value" id="vw-parking-count">—</div><div class="vw-stat-label">Parking Lot</div></div>
-  </section>
-
-  <div class="vw-section-head">
-    <h2 id="vw-project-label">Work Board</h2>
-    <p id="vw-project-purpose">Loading canonical VexWork projection…</p>
-  </div>
-  <div class="vw-board-scroll" aria-labelledby="vw-project-label">
-    <div class="vw-board" id="vw-board"></div>
-  </div>
-
-  <div class="vw-section-head">
-    <h2>Parking Lot</h2>
-    <p>Visible without forcing deferred work into Project membership or implementation authority.</p>
-  </div>
-  <div class="vw-parking" id="vw-parking"></div>
-
-  <div class="vw-status" id="vw-status" role="status">Loading public VexWork truth…</div>
-
-  <footer class="vw-footer">
-    <span>VEXTREME VIEW · VEXWORK TRUTH OWNER</span>
-    <span>effects=false · executionAuthority=NONE</span>
-  </footer>
+<nav class="vw-product-nav" aria-label="Vextreme product family">
+<a href="/Vextreme/pages/terrain-map.html?view=content&profile=evolution-v1">Vextreme</a><span class="vw-sep" aria-hidden="true">/</span>
+<a href="https://vgong24.github.io/VexLife/">VexLife</a><span class="vw-sep" aria-hidden="true">/</span>
+<strong aria-current="page">VexWork</strong>
+</nav>
+<div class="vw-toolbar">
+<div class="vw-brand"><h1>VexWork</h1><span class="vw-readonly">read-only projection</span></div>
+<label><span class="vw-field-label">Find work</span><input id="vw-search" class="vw-search" type="search" placeholder="Find a Project, Outcome, task, defect or work ref…"></label>
 </div>
-
+<div class="vw-levels" aria-label="VexWork semantic level">
+<span class="vw-level" data-level="PROJECTS">Projects</span><span class="vw-level-sep">→</span>
+<span class="vw-level" data-level="PROJECT">Project</span><span class="vw-level-sep">→</span>
+<span class="vw-level" data-level="ITEM">Work item</span>
+</div>
+<main class="vw-main" id="vw-app" aria-live="polite"></main>
+<div class="vw-status" id="vw-status" role="status">Loading public VexWork workspace…</div>
+<footer class="vw-footer"><span>VEXTREME VIEW · VEXWORK TRUTH OWNER</span><span>effects=false · executionAuthority=NONE</span></footer>
+</div>
+<script src="./workspace-reader.js"></script>
 <script>
-(function () {
-  'use strict';
+(function(){
+'use strict';
+var WORKSPACE_URL='https://raw.githubusercontent.com/VexGPT/VexWork/main/public/workspace.json';
+var Reader=window.VexWorkWorkspaceReader;
+var app=document.getElementById('vw-app');
+var status=document.getElementById('vw-status');
+var search=document.getElementById('vw-search');
+var workspace=null;
 
-  var DASHBOARD_URL = 'https://raw.githubusercontent.com/VexGPT/VexWork/main/public/work-dashboard.json';
-
-  function el(id) { return document.getElementById(id); }
-
-  function textNode(tag, className, text) {
-    var node = document.createElement(tag);
-    if (className) node.className = className;
-    node.textContent = text == null ? '' : String(text);
-    return node;
-  }
-
-  function badge(text, className) {
-    return textNode('span', 'vw-badge' + (className ? ' ' + className : ''), text);
-  }
-
-  function renderCard(card) {
-    var article = document.createElement('article');
-    article.className = 'vw-card';
-
-    var top = document.createElement('div');
-    top.className = 'vw-card-top';
-    top.appendChild(badge(card.state, 'vw-badge--state'));
-    top.appendChild(badge(card.workClass));
-    if (card.workDisposition === 'PARKED') top.appendChild(badge('parked'));
-    if (card.authorityDisposition === 'NO_AUTHORITY') top.appendChild(badge('no authority', 'vw-badge--held'));
-    article.appendChild(top);
-
-    article.appendChild(textNode('h3', '', card.label));
-    article.appendChild(textNode('p', '', card.purpose));
-
-    var repos = document.createElement('div');
-    repos.className = 'vw-repos';
-    (card.repositoryRefs || []).forEach(function (repo) {
-      repos.appendChild(textNode('span', 'vw-repo', repo));
-    });
-    article.appendChild(repos);
-    article.appendChild(textNode('div', 'vw-ref', card.workRef));
-    return article;
-  }
-
-  function renderLane(lane) {
-    var section = document.createElement('section');
-    section.className = 'vw-lane';
-    section.setAttribute('data-lane-ref', lane.laneRef);
-
-    var head = document.createElement('div');
-    head.className = 'vw-lane-head';
-    head.appendChild(textNode('span', 'vw-lane-title', lane.label));
-    head.appendChild(textNode('span', 'vw-count', lane.cards.length));
-    section.appendChild(head);
-
-    var cards = document.createElement('div');
-    cards.className = 'vw-cards';
-    if (!lane.cards.length) {
-      cards.appendChild(textNode('div', 'vw-empty', 'No work'));
-    } else {
-      lane.cards.forEach(function (card) { cards.appendChild(renderCard(card)); });
-    }
-    section.appendChild(cards);
-    return section;
-  }
-
-  function assertDashboard(data) {
-    if (!data || data.schemaVersion !== 'vexwork.public-work-dashboard/v1') throw new Error('unsupported VexWork dashboard schema');
-    if (!data.project || !Array.isArray(data.lanes) || !data.parkingLot || !Array.isArray(data.parkingLot.items)) throw new Error('incomplete VexWork dashboard');
-    if (data.effects !== false || data.executionAuthority !== 'NONE') throw new Error('public VexWork projection crossed its no-effects boundary');
-    return data;
-  }
-
-  function renderDashboard(input) {
-    var data = assertDashboard(input);
-    el('vw-project-count').textContent = data.summary.projectWorkItemCount;
-    el('vw-active-count').textContent = data.summary.openProjectWorkItemCount;
-    el('vw-parking-count').textContent = data.summary.parkingLotItemCount;
-    el('vw-project-label').textContent = data.project.label;
-    el('vw-project-purpose').textContent = data.project.purpose;
-
-    var board = el('vw-board');
-    board.textContent = '';
-    data.lanes.forEach(function (lane) { board.appendChild(renderLane(lane)); });
-
-    var parking = el('vw-parking');
-    parking.textContent = '';
-    if (!data.parkingLot.items.length) {
-      parking.appendChild(textNode('div', 'vw-empty', 'Nothing parked.'));
-    } else {
-      data.parkingLot.items.forEach(function (card) { parking.appendChild(renderCard(card)); });
-    }
-
-    el('vw-status').textContent = 'Current public projection loaded from VexWork. This page cannot mutate Workgraph truth.';
-  }
-
-  fetch(DASHBOARD_URL, { cache: 'no-store' })
-    .then(function (response) {
-      if (!response.ok) throw new Error('HTTP ' + response.status);
-      return response.json();
-    })
-    .then(renderDashboard)
-    .catch(function (error) {
-      var status = el('vw-status');
-      status.classList.add('vw-error');
-      status.textContent = 'VexWork dashboard is unavailable right now: ' + error.message + '. Source remains available through the links above.';
-    });
+function node(tag,className,text){var el=document.createElement(tag);if(className)el.className=className;if(text!==undefined&&text!==null)el.textContent=String(text);return el}
+function chip(text,extra){return node('span','vw-chip'+(extra?' '+extra:''),text)}
+function button(text,className,handler){var b=node('button','vw-btn'+(className?' '+className:''),text);b.type='button';b.addEventListener('click',handler);return b}
+function clear(el){el.replaceChildren()}
+function setLevel(level){document.querySelectorAll('.vw-level').forEach(function(el){el.classList.toggle('is-current',el.dataset.level===level);el.setAttribute('aria-current',el.dataset.level===level?'step':'false')})}
+function route(){return Reader.parseRoute(location.search)}
+function navigate(next,replace){var url=location.pathname+Reader.routeSearch(next);if(replace)history.replaceState({vexwork:true},'',url);else history.pushState({vexwork:true},'',url);search.value='';render()}
+function projectOf(ref){return Reader.projectByRef(workspace,ref)}
+function itemOf(project,ref){return Reader.itemByRef(project,ref)}
+function rootState(project){var roots=Reader.projectRootItems(project);return roots.length===1?roots[0].state:(roots.length+' roots')}
+function cardForItem(project,item,clickable){
+  var card=node('article','vw-card'+(clickable?' is-clickable':''));if(clickable){card.tabIndex=0;card.setAttribute('role','button')}
+  var meta=node('div','vw-card-meta');meta.append(chip(item.state,'vw-chip--state'),chip(item.workClass),chip(item.priorityClass));card.appendChild(meta)
+  card.append(node('h3','',item.label),node('p','',item.purpose))
+  var foot=node('div','vw-card-foot');foot.append(node('span','vw-countline',(item.childWorkRefs||[]).length+' children · '+(item.dependencyRefs||[]).length+' dependencies'),node('span','vw-rel',item.repositoryRefs.join(' · ')));card.appendChild(foot)
+  card.appendChild(node('div','vw-card-ref',item.workRef))
+  if(clickable){var open=function(){navigate({projectRef:project?project.project.projectRef:null,workRef:item.workRef,view:'overview'})};card.addEventListener('click',open);card.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}})}
+  return card
+}
+function hero(eyebrow,title,lede,actions){
+  var wrap=node('section','vw-hero'),copy=node('div'),acts=node('div','vw-hero-actions');copy.append(node('p','vw-eyebrow',eyebrow),node('h2','',title),node('p','vw-lede',lede));(actions||[]).forEach(function(a){acts.appendChild(a)});wrap.append(copy,acts);return wrap
+}
+function stats(values){var grid=node('div','vw-stats');values.forEach(function(pair){var s=node('div','vw-stat');s.append(node('strong','',pair[0]),node('span','',pair[1]));grid.appendChild(s)});return grid}
+function sectionHead(title,copy){var h=node('div','vw-section-head');h.append(node('h3','',title),node('p','',copy||''));return h}
+function projectCard(project){
+  var card=node('article','vw-card is-clickable');card.tabIndex=0;card.setAttribute('role','button')
+  var meta=node('div','vw-card-meta');meta.append(chip(rootState(project),'vw-chip--state'),chip(project.summary.outcomeCount+' outcomes','vw-chip--blue'));card.appendChild(meta)
+  card.append(node('h3','',project.project.label),node('p','',project.project.purpose))
+  var foot=node('div','vw-card-foot');foot.append(node('span','vw-countline',project.summary.workItemCount+' items · '+project.summary.openWorkItemCount+' open · '+project.summary.needsHumanCount+' needs human'),node('span','vw-rel','Open Project →'));card.appendChild(foot)
+  var open=function(){navigate({projectRef:project.project.projectRef,workRef:null,view:'story'})};card.addEventListener('click',open);card.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}});return card
+}
+function renderProjects(){
+  setLevel('PROJECTS');clear(app)
+  app.appendChild(hero('Portfolio','Projects','Enter through a durable human outcome. VexWork Projects group canonical Workgraph truth; this page only gives that truth a navigable shape.',[]))
+  var totalItems=workspace.projects.reduce(function(sum,p){return sum+p.summary.workItemCount},0),open=workspace.projects.reduce(function(sum,p){return sum+p.summary.openWorkItemCount},0),needs=workspace.projects.reduce(function(sum,p){return sum+p.summary.needsHumanCount},0)
+  app.appendChild(stats([[workspace.projects.length,'Projects'],[totalItems,'Project work items'],[open,'Open work'],[needs,'Needs human']]))
+  var sec=node('section','vw-section');sec.appendChild(sectionHead('Projects','Choose a Project to enter its Story Map, Board or dependency view.'));var grid=node('div','vw-grid');workspace.projects.forEach(function(p){grid.appendChild(projectCard(p))});sec.appendChild(grid);app.appendChild(sec)
+  var park=node('section','vw-section');park.appendChild(sectionHead('Parking Lot','Deferred work stays visible without becoming Project membership or implementation authority.'));var pg=node('div','vw-grid');workspace.parkingLot.items.forEach(function(item){pg.appendChild(cardForItem(null,item,true))});park.appendChild(pg);app.appendChild(park)
+}
+function tabs(values,current,onChange){var row=node('div','vw-tabs');values.forEach(function(value){var label={story:'Story Map',board:'Board',dependencies:'Dependencies',overview:'Overview',children:'Children',history:'History'}[value]||value;var b=node('button','vw-tab'+(value===current?' is-current':''),label);b.type='button';b.setAttribute('aria-current',value===current?'page':'false');b.addEventListener('click',function(){onChange(value)});row.appendChild(b)});return row}
+function treeNode(project,item,depth){
+  var wrap=node('div','vw-tree-node');wrap.dataset.depth=String(depth);wrap.appendChild(cardForItem(project,item,true));var kids=Reader.childItems(project,item.workRef);if(kids.length){var child=node('div','vw-tree-children');kids.forEach(function(k){child.appendChild(treeNode(project,k,depth+1))});wrap.appendChild(child)}return wrap
+}
+function renderStory(project){var tree=node('div','vw-tree');Reader.projectRootItems(project).forEach(function(root){tree.appendChild(treeNode(project,root,0))});return tree}
+function renderBoard(project){
+  var scroll=node('div','vw-board-scroll'),board=node('div','vw-board'),byRef=new Map(project.items.map(function(i){return[i.workRef,i]}));project.lanes.forEach(function(lane){var sec=node('section','vw-lane'),head=node('div','vw-lane-head');head.append(node('span','',lane.label),node('span','',lane.workRefs.length));sec.appendChild(head);var body=node('div','vw-lane-body');if(!lane.workRefs.length)body.appendChild(node('div','vw-empty','No work'));lane.workRefs.forEach(function(ref){body.appendChild(cardForItem(project,byRef.get(ref),true))});sec.appendChild(body);board.appendChild(sec)});scroll.appendChild(board);return scroll
+}
+function renderDependencies(project){
+  var wrap=node('div','vw-deps'),byRef=new Map(project.items.map(function(i){return[i.workRef,i]})),count=0;project.items.forEach(function(item){(item.dependencyRefs||[]).forEach(function(dep){count+=1;var row=node('div','vw-dep-row'),left=cardForItem(project,item,true),right=byRef.get(dep)?cardForItem(project,byRef.get(dep),true):node('div','vw-card',dep);row.append(left,node('div','vw-dep-arrow','depends on →'),right);wrap.appendChild(row)})});if(!count)wrap.appendChild(node('div','vw-empty','No dependencies inside this Project.'));return wrap
+}
+function renderProject(routeState){
+  var project=projectOf(routeState.projectRef);if(!project){navigate({projectRef:null,workRef:null,view:'story'},true);return}setLevel('PROJECT');clear(app)
+  app.appendChild(hero('Project',project.project.label,project.project.purpose,[button('← All Projects','vw-btn--quiet',function(){navigate({projectRef:null,workRef:null,view:'story'})})]))
+  app.appendChild(stats([[project.summary.workItemCount,'Work items'],[project.summary.openWorkItemCount,'Open'],[project.summary.completedCount,'Done / archived'],[project.summary.needsHumanCount,'Needs human']]))
+  app.appendChild(tabs(Reader.PROJECT_VIEWS,routeState.view,function(view){navigate({projectRef:project.project.projectRef,workRef:null,view:view})}))
+  if(routeState.view==='board')app.appendChild(renderBoard(project));else if(routeState.view==='dependencies')app.appendChild(renderDependencies(project));else app.appendChild(renderStory(project))
+}
+function breadcrumb(project,item){
+  var bar=node('nav','vw-breadcrumb');var home=node('button','','Projects');home.type='button';home.addEventListener('click',function(){navigate({projectRef:null,workRef:null,view:'story'})});bar.append(home,node('span','','/'))
+  if(project){var pb=node('button','',project.project.label);pb.type='button';pb.addEventListener('click',function(){navigate({projectRef:project.project.projectRef,workRef:null,view:'story'})});bar.append(pb,node('span','','/'));Reader.ancestorRefs(project,item.workRef).forEach(function(ref){var a=itemOf(project,ref),b=node('button','',a?a.label:ref);b.type='button';b.addEventListener('click',function(){navigate({projectRef:project.project.projectRef,workRef:ref,view:'overview'})});bar.append(b,node('span','','/'))})}
+  bar.append(node('span','',item.label));return bar
+}
+function refs(values){var box=node('div','vw-ref-list');(values||[]).forEach(function(value){box.appendChild(node('span','vw-ref-token',value))});if(!values||!values.length)box.appendChild(node('span','vw-empty','None'));return box}
+function fieldGrid(item,project){
+  var grid=node('div','vw-fields');function add(label,value){grid.append(node('div','vw-field-label',label),typeof value==='string'?node('div','vw-field-value',value):value)}
+  add('Work ref',item.workRef);add('Type',item.workClass);add('State',item.state);add('Priority',item.priorityClass);add('Project',project?project.project.label:'Parking Lot');add('Parent',item.parentWorkRefOrNull||'None');add('Authority',item.authorityDisposition);add('Effects',item.effectDisposition);add('Updated',item.updatedAt);add('Repositories',refs(item.repositoryRefs));add('Next process',refs(item.nextProcessRefs));add('Sources',refs(item.sourceRefs));return grid
+}
+function renderChildren(project,item){var grid=node('div','vw-grid'),kids=project?Reader.childItems(project,item.workRef):[];if(!kids.length)return node('div','vw-empty','No child work.');kids.forEach(function(child){grid.appendChild(cardForItem(project,child,true))});return grid}
+function renderItemDependencies(project,item){
+  var wrap=node('div','vw-section');if(!project)return node('div','vw-empty','This parked item is not inside a Project dependency view.');var byRef=new Map(project.items.map(function(i){return[i.workRef,i]})),out=item.dependencyRefs||[],incoming=Reader.incomingDependencyRefs(project,item.workRef);wrap.appendChild(sectionHead('Depends on','Work this item cannot meaningfully advance without.'));var g1=node('div','vw-grid');out.forEach(function(ref){g1.appendChild(byRef.get(ref)?cardForItem(project,byRef.get(ref),true):node('div','vw-card',ref))});if(!out.length)g1.appendChild(node('div','vw-empty','No dependencies.'));wrap.appendChild(g1);wrap.appendChild(sectionHead('Depended on by','Work that names this item as a dependency.'));var g2=node('div','vw-grid');incoming.forEach(function(ref){g2.appendChild(cardForItem(project,byRef.get(ref),true))});if(!incoming.length)g2.appendChild(node('div','vw-empty','No incoming dependencies.'));wrap.appendChild(g2);return wrap
+}
+function renderHistory(item){var list=node('div','vw-history');if(!item.transitionHistory||!item.transitionHistory.length)return node('div','vw-empty','No recorded state transitions in this public Workgraph.');item.transitionHistory.forEach(function(h){var e=node('div','vw-history-entry');e.append(node('strong','',h.priorState+' → '+h.nextState),node('p','',h.reason||'No reason recorded.'),node('time','',h.createdAt+' · '+h.actorRef));list.appendChild(e)});return list}
+function renderItem(routeState){
+  var located=Reader.locateItem(workspace,routeState.projectRef,routeState.workRef);if(!located){navigate({projectRef:routeState.projectRef,workRef:null,view:'story'},true);return}var project=located.project,item=located.item;setLevel('ITEM');clear(app);app.appendChild(breadcrumb(project,item))
+  app.appendChild(hero(item.workClass+(located.parked?' · Parking Lot':''),item.label,item.purpose,[button(project?'← Project':'← Projects','vw-btn--quiet',function(){navigate({projectRef:project?project.project.projectRef:null,workRef:null,view:'story'})})]))
+  app.appendChild(tabs(Reader.ITEM_VIEWS,routeState.view,function(view){navigate({projectRef:project?project.project.projectRef:null,workRef:item.workRef,view:view})}))
+  if(routeState.view==='children')app.appendChild(renderChildren(project,item));else if(routeState.view==='dependencies')app.appendChild(renderItemDependencies(project,item));else if(routeState.view==='history')app.appendChild(renderHistory(item));else{var detail=node('div','vw-detail'),main=node('section','vw-panel'),side=node('aside','vw-panel');main.append(node('h3','','Objective / description'),node('p','vw-lede',item.purpose));var hint=node('div','vw-ai-hint');hint.append('When talking to an AI about this work, use the exact context ref ',node('code','',item.workRef),'. VexWork stays read-only; the AI updates rightful work/source owners.');main.appendChild(hint);side.append(node('h3','','Details'),fieldGrid(item,project));detail.append(main,side);app.appendChild(detail)}
+}
+function renderSearch(query){
+  setLevel('PROJECTS');clear(app);var results=Reader.searchWorkspace(workspace,query);app.appendChild(hero('Search','Results for “'+query+'”','Search is presentation-only and does not change Workgraph truth or browser semantic history.',[button('Clear search','vw-btn--quiet',function(){search.value='';render()})]))
+  var sec=node('section','vw-section');sec.appendChild(sectionHead('Projects',results.projects.length+' matches'));var pg=node('div','vw-grid');results.projects.forEach(function(p){pg.appendChild(projectCard(p))});if(!results.projects.length)pg.appendChild(node('div','vw-empty','No Project matches.'));sec.appendChild(pg);app.appendChild(sec)
+  var items=node('section','vw-section');items.appendChild(sectionHead('Work items',results.items.length+' matches'));var ig=node('div','vw-grid');results.items.forEach(function(hit){var p=projectOf(hit.projectRef);ig.appendChild(cardForItem(p,hit.item,true))});if(!results.items.length)ig.appendChild(node('div','vw-empty','No work-item matches.'));items.appendChild(ig);app.appendChild(items)
+  if(results.parking.length){var park=node('section','vw-section');park.appendChild(sectionHead('Parking Lot',results.parking.length+' matches'));var kg=node('div','vw-grid');results.parking.forEach(function(i){kg.appendChild(cardForItem(null,i,true))});park.appendChild(kg);app.appendChild(park)}
+}
+function render(){if(!workspace)return;var q=search.value.trim();if(q){renderSearch(q);return}var r=route();if(r.level==='ITEM')renderItem(r);else if(r.level==='PROJECT')renderProject(r);else renderProjects();status.classList.remove('vw-error');status.textContent='Current public projection loaded from VexWork. This page cannot mutate Workgraph truth.'}
+search.addEventListener('input',render);window.addEventListener('popstate',function(){search.value='';render()})
+fetch(WORKSPACE_URL,{cache:'no-store'}).then(function(response){if(!response.ok)throw new Error('HTTP '+response.status);return response.json()}).then(function(data){workspace=Reader.validateWorkspace(data);render()}).catch(function(error){status.classList.add('vw-error');status.textContent='VexWork workspace is unavailable right now: '+error.message+'. The canonical source remains in VexWork.'})
 }());
 </script>
 </body>
 </html>
-<!-- [VXG RealForever][VEXWORK][PUBLIC-DASHBOARD][VEXTREME-VIEW] -->
+<!-- [VXG RealForever][VEXWORK][SEMANTIC-NAVIGATOR][VEXTREME-VIEW] -->
