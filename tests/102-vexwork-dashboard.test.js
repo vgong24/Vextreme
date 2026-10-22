@@ -54,7 +54,7 @@ test('VEXWORK-WORKSPACE: UI exposes story, board, dependency and ticket-history 
   assert.match(page, /Story Map/);
   assert.match(page, /board:'Board'/);
   assert.match(page, /dependencies:'Dependencies'/);
-  assert.match(page, /history:'History'/);
+  assert.match(page, /history:'State History'/);
   assert.match(page, /This page cannot mutate Workgraph truth/);
   assert.match(page, /VexWork stays read-only/);
   assert.doesNotMatch(page, /method:\s*['"](?:POST|PUT|PATCH|DELETE)['"]/i);
