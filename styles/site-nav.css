@@ -68,7 +68,7 @@
 
 /* ── SITE TITLE ──────────────────────────────────────────── */
 
-.vex-nav-brand-pair {
+.vex-nav-brand-family {
   display: inline-flex;
   align-items: baseline;
   gap: 7px;
@@ -78,7 +78,7 @@
 }
 
 .vex-nav-title,
-.vex-nav-life {
+.vex-nav-product {
   font-family: var(--serif, 'Source Serif 4', Georgia, serif);
   text-decoration: none;
   white-space: nowrap;
@@ -91,7 +91,7 @@
   letter-spacing: -0.01em;
 }
 
-.vex-nav-life {
+.vex-nav-product {
   font-size: 15px;
   font-weight: 500;
   color: var(--muted, #78716c);
@@ -104,7 +104,7 @@
 }
 
 .vex-nav-title:hover,
-.vex-nav-life:hover {
+.vex-nav-product:hover {
   color: var(--ember, #b45830);
 }
 
