@@ -139,7 +139,7 @@ test('RECORD-READER-SECOND-CONSUMER: lived visual review earns one representativ
   assert.deepEqual(viewmodels[SLUG].preview, {
     kind: 'cover',
     src: 'https://vgong24.github.io/Vextreme/assets/recognizing-life-receiving-abundance/cover.webp?v=e519e49d8f08',
-    alt: 'Recognizing Life, Receiving Abundance — representative midnight shoreline cover art',
+    alt: 'The Sand Dollar on the Shore — representative midnight shoreline cover art',
   });
   assert.equal(strings._meta.sourceProvenance.derivedMedia, 'assets/recognizing-life-receiving-abundance/cover.webp');
   assert.equal(strings._meta.sourceProvenance.derivedMediaClass, 'REPRESENTATIVE_NOT_EVIDENCE');
