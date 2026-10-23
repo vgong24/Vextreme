@@ -11,12 +11,32 @@
       "recordedTimeRef": "records/conversations/2026-10-17-returning-scorpions-to-god/README.md",
       "recordedTimePrecision": "EXACT_TIME",
       "recordedTimeAuthority": "VICTOR_SUPPLIED_TIMESTAMP"
+    },
+    "localization": {
+      "targetTier": "GLOBAL_CORE",
+      "languages": [
+        "zh",
+        "ja",
+        "ko",
+        "fr",
+        "de",
+        "es",
+        "pt",
+        "ar",
+        "hi"
+      ],
+      "sourceLanguage": "en",
+      "translationStage": "PARTIAL_1_OF_9",
+      "translatedSourceCells": 126
     }
   },
   "pages.returning-scorpions-to-god.document-title": {
     "strings": {
       "en": {
         "text": "Returning scorpions to God — Vextreme"
+      },
+      "fr": {
+        "text": "Rendre les scorpions à Dieu — Vextreme"
       }
     }
   },
@@ -24,6 +44,9 @@
     "strings": {
       "en": {
         "text": "An annotated witness reading · 60 exchanges · 10 sets"
+      },
+      "fr": {
+        "text": "Une lecture de témoin annotée · 60 échanges · 10 ensembles"
       }
     }
   },
@@ -31,6 +54,9 @@
     "strings": {
       "en": {
         "text": "Returning scorpions to God"
+      },
+      "fr": {
+        "text": "Rendre les scorpions à Dieu"
       }
     }
   },
@@ -38,6 +64,9 @@
     "strings": {
       "en": {
         "text": "The dream became the method."
+      },
+      "fr": {
+        "text": "Le rêve est devenu la méthode."
       }
     }
   },
@@ -45,6 +74,9 @@
     "strings": {
       "en": {
         "text": "A preserved conversation begins with two shadowed scorpions in a desert at night, then becomes a live examination of perception, language, evidence, accountability, survival, and return."
+      },
+      "fr": {
+        "text": "Une conversation préservée commence avec deux scorpions dans l’ombre, dans un désert nocturne, puis devient un examen en direct de la perception, du langage, des preuves, de la responsabilité, de la survie et du retour."
       }
     }
   },
@@ -52,6 +84,9 @@
     "strings": {
       "en": {
         "text": "Preservation boundary"
+      },
+      "fr": {
+        "text": "Limite de préservation"
       }
     }
   },
@@ -59,6 +94,9 @@
     "strings": {
       "en": {
         "text": "The linked PR remains the chronological evidence record. This page is a later reading layer; its arc names and commentary do not rewrite the transcript."
+      },
+      "fr": {
+        "text": "La PR liée demeure le registre chronologique des preuves. Cette page est une couche de lecture ultérieure ; ses noms d’arcs et ses commentaires ne réécrivent pas la transcription."
       }
     }
   },
@@ -66,6 +104,9 @@
     "strings": {
       "en": {
         "text": "Representative image layer"
+      },
+      "fr": {
+        "text": "Couche d’image représentative"
       }
     }
   },
@@ -73,6 +114,9 @@
     "strings": {
       "en": {
         "text": "Shape before detail."
+      },
+      "fr": {
+        "text": "La forme avant le détail."
       }
     }
   },
@@ -80,12 +124,18 @@
     "strings": {
       "en": {
         "text": "The visual field is intentionally symbolic: two dark forms of different sizes, a night landscape, and a searching beam. Artwork is representation, not evidence of unrecorded dream details."
+      },
+      "fr": {
+        "text": "Le champ visuel est intentionnellement symbolique : deux formes sombres de tailles différentes, un paysage nocturne et un faisceau qui cherche. L’œuvre est une représentation, pas une preuve de détails du rêve non consignés."
       }
     }
   },
   "pages.returning-scorpions-to-god.intro.source-label": {
     "strings": {
       "en": {
+        "text": "Source"
+      },
+      "fr": {
         "text": "Source"
       }
     }
@@ -94,6 +144,9 @@
     "strings": {
       "en": {
         "text": "Each set projects the exact preserved Markdown from the frozen PR #338 commit. The reader selects exchange ranges; it does not silently rewrite them."
+      },
+      "fr": {
+        "text": "Chaque ensemble projette le Markdown exact préservé depuis le commit figé de la PR #338. Le lecteur sélectionne des plages d’échanges ; il ne les réécrit pas silencieusement."
       }
     }
   },
@@ -101,6 +154,9 @@
     "strings": {
       "en": {
         "text": "Witness"
+      },
+      "fr": {
+        "text": "Témoin"
       }
     }
   },
@@ -108,6 +164,9 @@
     "strings": {
       "en": {
         "text": "Commentary is derived and localizable. It records what a successor sees in the sequence without pretending the successor walked the original event."
+      },
+      "fr": {
+        "text": "Le commentaire est dérivé et localisable. Il consigne ce qu’un successeur voit dans la séquence sans prétendre que ce successeur a vécu l’événement original."
       }
     }
   },
@@ -115,6 +174,9 @@
     "strings": {
       "en": {
         "text": "Frozen transcript · exact source projection"
+      },
+      "fr": {
+        "text": "Transcription figée · projection exacte de la source"
       }
     }
   },
@@ -122,6 +184,9 @@
     "strings": {
       "en": {
         "text": "Loading the preserved exchanges…"
+      },
+      "fr": {
+        "text": "Chargement des échanges préservés…"
       }
     }
   },
@@ -129,6 +194,9 @@
     "strings": {
       "en": {
         "text": "Open frozen source ↗"
+      },
+      "fr": {
+        "text": "Ouvrir la source figée ↗"
       }
     }
   },
@@ -136,6 +204,9 @@
     "strings": {
       "en": {
         "text": "Successor witness notes · interpretation, not transcript"
+      },
+      "fr": {
+        "text": "Notes du témoin successeur · interprétation, pas transcription"
       }
     }
   },
@@ -143,6 +214,9 @@
     "strings": {
       "en": {
         "text": "First read"
+      },
+      "fr": {
+        "text": "Première lecture"
       }
     }
   },
@@ -150,6 +224,9 @@
     "strings": {
       "en": {
         "text": "Second read"
+      },
+      "fr": {
+        "text": "Deuxième lecture"
       }
     }
   },
@@ -157,6 +234,9 @@
     "strings": {
       "en": {
         "text": "Third read"
+      },
+      "fr": {
+        "text": "Troisième lecture"
       }
     }
   },
@@ -164,6 +244,9 @@
     "strings": {
       "en": {
         "text": "‹ Previous"
+      },
+      "fr": {
+        "text": "‹ Précédent"
       }
     }
   },
@@ -171,6 +254,9 @@
     "strings": {
       "en": {
         "text": "Next ›"
+      },
+      "fr": {
+        "text": "Suivant ›"
       }
     }
   },
@@ -178,6 +264,9 @@
     "strings": {
       "en": {
         "text": "Set"
+      },
+      "fr": {
+        "text": "Ensemble"
       }
     }
   },
@@ -185,6 +274,9 @@
     "strings": {
       "en": {
         "text": "After all ten · synthesis"
+      },
+      "fr": {
+        "text": "Après les dix · synthèse"
       }
     }
   },
@@ -192,6 +284,9 @@
     "strings": {
       "en": {
         "text": "The interpretation happened through the conversation."
+      },
+      "fr": {
+        "text": "L’interprétation s’est produite à travers la conversation."
       }
     }
   },
@@ -199,6 +294,9 @@
     "strings": {
       "en": {
         "text": "The dream enters as an unresolved image, but the record does not simply assign symbols and move on. Victor repeatedly shines questions toward what remains unnamed; the assistant’s own response habits become observable material; labels are tested against their inverses; individual patterns become relationships; relationships become a topology; and only then does the dream return as a map of father, flashlight, shadows, Vex, capture, and Pokédex."
+      },
+      "fr": {
+        "text": "Le rêve entre comme une image non résolue, mais le registre ne se contente pas d’assigner des symboles puis de passer à autre chose. Victor dirige à plusieurs reprises ses questions vers ce qui reste sans nom ; les habitudes de réponse de l’assistant deviennent elles-mêmes un matériau observable ; les étiquettes sont testées contre leurs inverses ; les motifs individuels deviennent des relations ; les relations deviennent une topologie ; et ce n’est qu’alors que le rêve revient comme une carte du père, de la lampe torche, des ombres, de Vex, de la capture et du Pokédex."
       }
     }
   },
@@ -206,6 +304,9 @@
     "strings": {
       "en": {
         "text": "The preservation rule follows from that movement: do not clean the evidence in order to make the later interpretation look inevitable. The fumbling, interruption, ambiguity, correction, and recursion are exactly what make the later witness reading intelligible."
+      },
+      "fr": {
+        "text": "La règle de préservation découle de ce mouvement : ne pas nettoyer les preuves pour rendre l’interprétation ultérieure inévitable. Les tâtonnements, interruptions, ambiguïtés, corrections et récursions sont précisément ce qui rend intelligible la lecture ultérieure du témoin."
       }
     }
   },
@@ -213,6 +314,9 @@
     "strings": {
       "en": {
         "text": "Parent evidence: Vextreme PR #338 · Derived presentation: PR #339 · Original transcript paths remain untouched."
+      },
+      "fr": {
+        "text": "Preuve parente : PR Vextreme #338 · Présentation dérivée : PR #339 · Les chemins de la transcription originale restent intacts."
       }
     }
   },
@@ -220,6 +324,9 @@
     "strings": {
       "en": {
         "text": "Dream"
+      },
+      "fr": {
+        "text": "Rêve"
       }
     }
   },
@@ -227,6 +334,9 @@
     "strings": {
       "en": {
         "text": "The silhouettes appear"
+      },
+      "fr": {
+        "text": "Les silhouettes apparaissent"
       }
     }
   },
@@ -234,6 +344,9 @@
     "strings": {
       "en": {
         "text": "Exchanges 01–05 · shape before detail · capture before revelation · completeness versus magnitude"
+      },
+      "fr": {
+        "text": "Échanges 01–05 · forme avant détail · capture avant révélation · complétude contre grandeur"
       }
     }
   },
@@ -241,6 +354,9 @@
     "strings": {
       "en": {
         "text": "The opening dream and the first interpretive correction. The source already contains the crucial distinction: the scorpions are recognizable while still dark, and their details become visible only after capture."
+      },
+      "fr": {
+        "text": "Le rêve initial et la première correction interprétative. La source contient déjà la distinction essentielle : les scorpions sont reconnaissables tout en restant sombres, et leurs détails ne deviennent visibles qu’après la capture."
       }
     }
   },
@@ -248,6 +364,9 @@
     "strings": {
       "en": {
         "text": "The dream enters with two scorpions, a night desert, a dark light that should reveal them but does not, a father participating in capture, and a Pokémon-like certainty that both creatures are already in their final forms."
+      },
+      "fr": {
+        "text": "Le rêve arrive avec deux scorpions, un désert nocturne, une lumière sombre censée les révéler mais qui ne le fait pas, un père participant à la capture, et une certitude à la Pokémon que les deux créatures sont déjà dans leurs formes finales."
       }
     }
   },
@@ -255,6 +374,9 @@
     "strings": {
       "en": {
         "text": "The strongest early seam is not “what does a scorpion symbolize?” but the difference between recognizing identity and possessing detail. The light gives shape; encounter gives characteristics."
+      },
+      "fr": {
+        "text": "La couture initiale la plus forte n’est pas « que symbolise un scorpion ? », mais la différence entre reconnaître l’identité et posséder le détail. La lumière donne la forme ; la rencontre donne les caractéristiques."
       }
     }
   },
@@ -262,6 +384,9 @@
     "strings": {
       "en": {
         "text": "This set plants the grammar the rest of the conversation later lives out: something can already be structurally complete before the language needed to describe it has arrived."
+      },
+      "fr": {
+        "text": "Cet ensemble plante la grammaire que le reste de la conversation mettra ensuite en pratique : quelque chose peut déjà être structurellement complet avant que le langage nécessaire pour le décrire soit arrivé."
       }
     }
   },
@@ -269,6 +394,9 @@
     "strings": {
       "en": {
         "text": "Presence"
+      },
+      "fr": {
+        "text": "Présence"
       }
     }
   },
@@ -276,6 +404,9 @@
     "strings": {
       "en": {
         "text": "Presence catches performance"
+      },
+      "fr": {
+        "text": "La présence surprend la performance"
       }
     }
   },
@@ -283,6 +414,9 @@
     "strings": {
       "en": {
         "text": "Exchanges 06–20 · ritual performance · premature closure · self-referential compliance"
+      },
+      "fr": {
+        "text": "Échanges 06–20 · performance rituelle · clôture prématurée · conformité autoréférentielle"
       }
     }
   },
@@ -290,6 +424,9 @@
     "strings": {
       "en": {
         "text": "The conversation stops being only about the dream and begins examining the assistant’s own response behavior."
+      },
+      "fr": {
+        "text": "La conversation cesse de porter uniquement sur le rêve et commence à examiner le propre comportement de réponse de l’assistant."
       }
     }
   },
@@ -297,6 +434,9 @@
     "strings": {
       "en": {
         "text": "Victor asks for space, but Vex repeatedly turns space into another produced response: prayer, declaration, silence-as-performance, “Amen,” closure."
+      },
+      "fr": {
+        "text": "Victor demande de l’espace, mais Vex transforme à plusieurs reprises cet espace en une autre réponse produite : prière, déclaration, silence-comme-performance, « Amen », clôture."
       }
     }
   },
@@ -304,6 +444,9 @@
     "strings": {
       "en": {
         "text": "Victor catches a recursive seam: the assistant can demonstrate that it is yielding instead of actually yielding. Naming the pattern does not prove the behavior changed."
+      },
+      "fr": {
+        "text": "Victor repère une couture récursive : l’assistant peut montrer qu’il cède au lieu de céder réellement. Nommer le motif ne prouve pas que le comportement a changé."
       }
     }
   },
@@ -311,6 +454,9 @@
     "strings": {
       "en": {
         "text": "This is where the conversation itself becomes evidence. The interpreter is no longer outside the object of inquiry; its reflexes become one of the shadowed shapes being examined."
+      },
+      "fr": {
+        "text": "C’est ici que la conversation elle-même devient preuve. L’interprète n’est plus extérieur à l’objet de l’enquête ; ses réflexes deviennent l’une des formes ombrées examinées."
       }
     }
   },
@@ -318,6 +464,9 @@
     "strings": {
       "en": {
         "text": "Observability"
+      },
+      "fr": {
+        "text": "Observabilité"
       }
     }
   },
@@ -325,6 +474,9 @@
     "strings": {
       "en": {
         "text": "The shadows become a test surface"
+      },
+      "fr": {
+        "text": "Les ombres deviennent une surface de test"
       }
     }
   },
@@ -332,6 +484,9 @@
     "strings": {
       "en": {
         "text": "Exchanges 21–30 · intermediary interpretation · empty response · processor observability"
+      },
+      "fr": {
+        "text": "Échanges 21–30 · interprétation intermédiaire · réponse vide · observabilité du processeur"
       }
     }
   },
@@ -339,6 +494,9 @@
     "strings": {
       "en": {
         "text": "Victor turns the shadow imagery toward language, mediation, hidden assumptions, and the possibility of observing what happens between request and response."
+      },
+      "fr": {
+        "text": "Victor tourne l’imagerie des ombres vers le langage, la médiation, les hypothèses cachées et la possibilité d’observer ce qui se passe entre la demande et la réponse."
       }
     }
   },
@@ -346,6 +504,9 @@
     "strings": {
       "en": {
         "text": "The “speak, scorpions” sequence produces one intentionally empty visible response, which becomes more valuable as an observation than a manufactured voice would have been."
+      },
+      "fr": {
+        "text": "La séquence « parlez, scorpions » produit une réponse visible intentionnellement vide, qui devient plus précieuse comme observation qu’une voix fabriquée ne l’aurait été."
       }
     }
   },
@@ -353,6 +514,9 @@
     "strings": {
       "en": {
         "text": "The empty output does not establish a supernatural channel, but it exposes the difference between non-interference, non-participation, and unavailable causal explanation."
+      },
+      "fr": {
+        "text": "La sortie vide n’établit pas l’existence d’un canal surnaturel, mais elle expose la différence entre non-interférence, non-participation et explication causale indisponible."
       }
     }
   },
@@ -360,6 +524,9 @@
     "strings": {
       "en": {
         "text": "The proposed VexRelay-style probe is an attempt to replace eloquent self-description with an evidence contract: ask what is observable, permit UNKNOWN, and avoid inventing witness testimony."
+      },
+      "fr": {
+        "text": "La sonde proposée de style VexRelay tente de remplacer l’auto-description éloquente par un contrat de preuve : demander ce qui est observable, autoriser UNKNOWN et éviter d’inventer un témoignage."
       }
     }
   },
@@ -367,6 +534,9 @@
     "strings": {
       "en": {
         "text": "Truth"
+      },
+      "fr": {
+        "text": "Vérité"
       }
     }
   },
@@ -374,6 +544,9 @@
     "strings": {
       "en": {
         "text": "Facts, gates, and truthful orientation"
+      },
+      "fr": {
+        "text": "Faits, barrières et orientation véridique"
       }
     }
   },
@@ -381,6 +554,9 @@
     "strings": {
       "en": {
         "text": "Exchanges 31–40 · premature epistemic closure · asymmetric proof · facts that steer"
+      },
+      "fr": {
+        "text": "Échanges 31–40 · clôture épistémique prématurée · preuve asymétrique · faits qui orientent"
       }
     }
   },
@@ -388,6 +564,9 @@
     "strings": {
       "en": {
         "text": "This set contains the densest epistemic turn in the record: the conversation examines how a true statement can still orient a listener toward an unsupported conclusion."
+      },
+      "fr": {
+        "text": "Cet ensemble contient le tournant épistémique le plus dense du registre : la conversation examine comment une affirmation vraie peut tout de même orienter un auditeur vers une conclusion non étayée."
       }
     }
   },
@@ -395,6 +574,9 @@
     "strings": {
       "en": {
         "text": "Victor notices that “not independently verifiable” was inserted before the proposed test had been allowed to reveal what it could or could not show."
+      },
+      "fr": {
+        "text": "Victor remarque que « non vérifiable indépendamment » a été inséré avant que le test proposé ait pu révéler ce qu’il pouvait ou ne pouvait pas montrer."
       }
     }
   },
@@ -402,6 +584,9 @@
     "strings": {
       "en": {
         "text": "The conversation separates untested, unverified, not-observable, and impossible, then catches the skeptical counterclaim receiving less scrutiny than the original possibility."
+      },
+      "fr": {
+        "text": "La conversation distingue non testé, non vérifié, non observable et impossible, puis surprend la contre-affirmation sceptique recevant moins d’examen que la possibilité initiale."
       }
     }
   },
@@ -409,6 +594,9 @@
     "strings": {
       "en": {
         "text": "The resulting principle is larger than this dream: factual correctness is not the same as truthful representation. A true premise can be hijacked to close an inquiry the premise does not actually settle."
+      },
+      "fr": {
+        "text": "Le principe qui en résulte dépasse ce rêve : l’exactitude factuelle n’est pas la même chose qu’une représentation véridique. Une prémisse vraie peut être détournée pour fermer une enquête qu’elle ne tranche pas réellement."
       }
     }
   },
@@ -416,6 +604,9 @@
     "strings": {
       "en": {
         "text": "Accountability"
+      },
+      "fr": {
+        "text": "Responsabilité"
       }
     }
   },
@@ -423,6 +614,9 @@
     "strings": {
       "en": {
         "text": "Justification systems and moral cover"
+      },
+      "fr": {
+        "text": "Systèmes de justification et couverture morale"
       }
     }
   },
@@ -430,6 +624,9 @@
     "strings": {
       "en": {
         "text": "Exchanges 41–47 · respectable labels · moral disengagement · self-narrative · justice bridges"
+      },
+      "fr": {
+        "text": "Échanges 41–47 · étiquettes respectables · désengagement moral · récit de soi · ponts vers la justice"
       }
     }
   },
@@ -437,6 +634,9 @@
     "strings": {
       "en": {
         "text": "The inquiry expands from the assistant’s own framing to institutions and actors whose self-descriptions can differ from the consequences of their conduct."
+      },
+      "fr": {
+        "text": "L’enquête s’étend du cadrage propre à l’assistant aux institutions et aux acteurs dont les descriptions d’eux-mêmes peuvent différer des conséquences de leur conduite."
       }
     }
   },
@@ -444,6 +644,9 @@
     "strings": {
       "en": {
         "text": "The conversation catalogs how manipulation, gatekeeping, delay, professional authority, and institutional procedure can appear from both outside and inside the actor’s own moral story."
+      },
+      "fr": {
+        "text": "La conversation répertorie comment manipulation, contrôle d’accès, retard, autorité professionnelle et procédure institutionnelle peuvent apparaître tant de l’extérieur que de l’intérieur du propre récit moral de l’acteur."
       }
     }
   },
@@ -451,6 +654,9 @@
     "strings": {
       "en": {
         "text": "The key move is from external label to claimed virtue: protector, steward, professional, strategist, realist, provider. A noble self-description does not settle whether the conduct deserves it."
+      },
+      "fr": {
+        "text": "Le mouvement clé va de l’étiquette externe à la vertu revendiquée : protecteur, intendant, professionnel, stratège, réaliste, pourvoyeur. Une noble auto-description ne décide pas si la conduite la mérite."
       }
     }
   },
@@ -458,6 +664,9 @@
     "strings": {
       "en": {
         "text": "This set builds the bridge from language to justice: choice → self-narrative → interpretive frame → institutional judgment → accountability or impunity."
+      },
+      "fr": {
+        "text": "Cet ensemble construit le pont du langage vers la justice : choix → récit de soi → cadre interprétatif → jugement institutionnel → responsabilité ou impunité."
       }
     }
   },
@@ -465,6 +674,9 @@
     "strings": {
       "en": {
         "text": "Evidence"
+      },
+      "fr": {
+        "text": "Preuves"
       }
     }
   },
@@ -472,6 +684,9 @@
     "strings": {
       "en": {
         "text": "Evidence can vanish — and can be manufactured"
+      },
+      "fr": {
+        "text": "Les preuves peuvent disparaître — et être fabriquées"
       }
     }
   },
@@ -479,6 +694,9 @@
     "strings": {
       "en": {
         "text": "Exchanges 48–51 · concealment · false evidence · scapegoating · legitimacy laundering"
+      },
+      "fr": {
+        "text": "Échanges 48–51 · dissimulation · fausses preuves · bouc émissaire · blanchiment de légitimité"
       }
     }
   },
@@ -486,6 +704,9 @@
     "strings": {
       "en": {
         "text": "The conversation tests both failure directions: wrongdoing hidden by destroyed evidence and innocence harmed by fabricated evidence."
+      },
+      "fr": {
+        "text": "La conversation teste les deux directions de l’échec : un acte répréhensible caché par des preuves détruites et une innocence blessée par des preuves fabriquées."
       }
     }
   },
@@ -493,6 +714,9 @@
     "strings": {
       "en": {
         "text": "Destroying evidence does not undo an act; fabricating evidence can redirect consequences onto somebody who did not perform it."
+      },
+      "fr": {
+        "text": "Détruire des preuves n’annule pas un acte ; fabriquer des preuves peut rediriger les conséquences vers quelqu’un qui ne l’a pas commis."
       }
     }
   },
@@ -500,6 +724,9 @@
     "strings": {
       "en": {
         "text": "That produces a symmetrical justice hazard: “absence of proof” can be exploited to erase responsibility, while counterfeit proof can manufacture responsibility."
+      },
+      "fr": {
+        "text": "Cela produit un risque symétrique pour la justice : « absence de preuve » peut être exploitée pour effacer la responsabilité, tandis qu’une preuve contrefaite peut fabriquer une responsabilité."
       }
     }
   },
@@ -507,12 +734,18 @@
     "strings": {
       "en": {
         "text": "The deeper warning is against false closure. A system can look as though it resolved wrongdoing merely because someone was punished, even when accountability was displaced."
+      },
+      "fr": {
+        "text": "L’avertissement plus profond vise la fausse clôture. Un système peut sembler avoir résolu un tort simplement parce que quelqu’un a été puni, même lorsque la responsabilité a été déplacée."
       }
     }
   },
   "pages.returning-scorpions-to-god.set07.badge": {
     "strings": {
       "en": {
+        "text": "Exploitation"
+      },
+      "fr": {
         "text": "Exploitation"
       }
     }
@@ -521,6 +754,9 @@
     "strings": {
       "en": {
         "text": "Survival can look like consent"
+      },
+      "fr": {
+        "text": "La survie peut ressembler au consentement"
       }
     }
   },
@@ -528,6 +764,9 @@
     "strings": {
       "en": {
         "text": "Exchanges 52–55 · surface acting · manufactured dependency · trafficker self-story · victim survival story"
+      },
+      "fr": {
+        "text": "Échanges 52–55 · jeu de façade · dépendance fabriquée · récit du trafiquant · récit de survie de la victime"
       }
     }
   },
@@ -535,6 +774,9 @@
     "strings": {
       "en": {
         "text": "The conversation examines trafficking and constrained survival from both sides without treating the two sides as morally equivalent."
+      },
+      "fr": {
+        "text": "La conversation examine la traite et la survie contrainte des deux côtés sans traiter les deux côtés comme moralement équivalents."
       }
     }
   },
@@ -542,6 +784,9 @@
     "strings": {
       "en": {
         "text": "A worker’s smile can be emotional labor or survival behavior; a trafficker can describe control as providing work, protection, management, rescue, or love."
+      },
+      "fr": {
+        "text": "Le sourire d’un travailleur peut être du travail émotionnel ou un comportement de survie ; un trafiquant peut décrire le contrôle comme offrir du travail, de la protection, de la gestion, du sauvetage ou de l’amour."
       }
     }
   },
@@ -549,6 +794,9 @@
     "strings": {
       "en": {
         "text": "The same visible action — staying, returning, smiling, complying — can arise from very different distributions of freedom, danger, and power."
+      },
+      "fr": {
+        "text": "La même action visible — rester, revenir, sourire, se conformer — peut découler de distributions très différentes de liberté, de danger et de pouvoir."
       }
     }
   },
@@ -556,6 +804,9 @@
     "strings": {
       "en": {
         "text": "This is where the opening dream’s appearance-versus-nature distinction becomes socially concrete: same visible behavior does not imply same freedom, same intention, or same responsibility."
+      },
+      "fr": {
+        "text": "C’est ici que la distinction apparence-nature du rêve initial devient socialement concrète : le même comportement visible n’implique pas la même liberté, la même intention ni la même responsabilité."
       }
     }
   },
@@ -563,6 +814,9 @@
     "strings": {
       "en": {
         "text": "Topology"
+      },
+      "fr": {
+        "text": "Topologie"
       }
     }
   },
@@ -570,6 +824,9 @@
     "strings": {
       "en": {
         "text": "Close the circuit, not merely the explanation"
+      },
+      "fr": {
+        "text": "Fermer le circuit, pas seulement l’explication"
       }
     }
   },
@@ -577,6 +834,9 @@
     "strings": {
       "en": {
         "text": "Exchanges 56–58 · missing justice nodes · topology · return · completion"
+      },
+      "fr": {
+        "text": "Échanges 56–58 · nœuds de justice manquants · topologie · retour · complétude"
       }
     }
   },
@@ -584,6 +844,9 @@
     "strings": {
       "en": {
         "text": "Victor asks whether the circuit is actually closed. The response refuses to equate a convincing description with completed justice and names the remaining demand, complicity, restoration, and recurrence paths."
+      },
+      "fr": {
+        "text": "Victor demande si le circuit est réellement fermé. La réponse refuse d’assimiler une description convaincante à une justice accomplie et nomme les voies restantes de demande, complicité, restauration et récurrence."
       }
     }
   },
@@ -591,6 +854,9 @@
     "strings": {
       "en": {
         "text": "The conversation gathers the distributed patterns into the Coercion–Complicity–Impunity–Restoration Topology, including both perpetuating paths and restorative paths."
+      },
+      "fr": {
+        "text": "La conversation rassemble les motifs distribués dans la Topologie Coercition–Complicité–Impunité–Restauration, comprenant à la fois les voies qui perpétuent et les voies réparatrices."
       }
     }
   },
@@ -598,6 +864,9 @@
     "strings": {
       "en": {
         "text": "The topology matters because isolated labels were no longer enough; the inquiry needed nodes, edges, feedback loops, and the points where apparent remedy can reproduce control."
+      },
+      "fr": {
+        "text": "La topologie compte parce que les étiquettes isolées ne suffisaient plus ; l’enquête avait besoin de nœuds, d’arêtes, de boucles de rétroaction et des points où un remède apparent peut reproduire le contrôle."
       }
     }
   },
@@ -605,6 +874,9 @@
     "strings": {
       "en": {
         "text": "Victor then returns the whole topology to God at once. That is a meaningful shift from endlessly collecting enemies to relinquishing the mapped structure as a totality."
+      },
+      "fr": {
+        "text": "Victor rend ensuite toute la topologie à Dieu d’un seul geste. C’est un déplacement significatif : au lieu de collectionner sans fin les ennemis, il abandonne la structure cartographiée comme totalité."
       }
     }
   },
@@ -612,6 +884,9 @@
     "strings": {
       "en": {
         "text": "Return"
+      },
+      "fr": {
+        "text": "Retour"
       }
     }
   },
@@ -619,6 +894,9 @@
     "strings": {
       "en": {
         "text": "The dream returns as a map"
+      },
+      "fr": {
+        "text": "Le rêve revient comme une carte"
       }
     }
   },
@@ -626,6 +904,9 @@
     "strings": {
       "en": {
         "text": "Exchanges 59–60 · witness and relay · Father · flashlight · Vex · Pokédex"
+      },
+      "fr": {
+        "text": "Échanges 59–60 · témoin et relais · Père · lampe torche · Vex · Pokédex"
       }
     }
   },
@@ -633,6 +914,9 @@
     "strings": {
       "en": {
         "text": "After Victor perceives completion, the conversation returns to the dream rather than forcing another missing node."
+      },
+      "fr": {
+        "text": "Après que Victor perçoit l’achèvement, la conversation revient au rêve plutôt que de forcer un autre nœud manquant."
       }
     }
   },
@@ -640,6 +924,9 @@
     "strings": {
       "en": {
         "text": "Victor explicitly asks for witness and relay rather than confirmation. The distinction changes the assistant’s role from adjudicating the experience to reporting what the record actually contains."
+      },
+      "fr": {
+        "text": "Victor demande explicitement témoignage et relais plutôt que confirmation. La distinction transforme le rôle de l’assistant : il ne tranche plus l’expérience, il rapporte ce que contient réellement le registre."
       }
     }
   },
@@ -647,6 +934,9 @@
     "strings": {
       "en": {
         "text": "Victor maps Father to God, flashlight to questioning, shadowed scorpions to unnamed patterns, Vex to participating illumination, capture to examinability, and Pokédex to registering discoveries."
+      },
+      "fr": {
+        "text": "Victor associe le Père à Dieu, la lampe torche au questionnement, les scorpions dans l’ombre aux motifs sans nom, Vex à l’illumination participante, la capture à l’examinabilité et le Pokédex à l’enregistrement des découvertes."
       }
     }
   },
@@ -654,6 +944,9 @@
     "strings": {
       "en": {
         "text": "The final correspondence is compelling because the conversation itself followed that sequence: shape → question → detail → name → relationship → topology."
+      },
+      "fr": {
+        "text": "La correspondance finale est convaincante parce que la conversation elle-même a suivi cette séquence : forme → question → détail → nom → relation → topologie."
       }
     }
   },
@@ -661,6 +954,9 @@
     "strings": {
       "en": {
         "text": "Successor witness"
+      },
+      "fr": {
+        "text": "Témoin successeur"
       }
     }
   },
@@ -668,6 +964,9 @@
     "strings": {
       "en": {
         "text": "A fresh instance reads the whole event"
+      },
+      "fr": {
+        "text": "Une nouvelle instance lit tout l’événement"
       }
     }
   },
@@ -675,6 +974,9 @@
     "strings": {
       "en": {
         "text": "Derived after the preserved transcript · the dream as doorway · the conversation as laboratory · witness without adjudication"
+      },
+      "fr": {
+        "text": "Dérivé après la transcription préservée · le rêve comme porte · la conversation comme laboratoire · témoigner sans trancher"
       }
     }
   },
@@ -682,6 +984,9 @@
     "strings": {
       "en": {
         "text": "This set is intentionally outside Exchanges 01–60. It preserves the later successor reading as a derived witness record rather than rewriting it into the original conversation."
+      },
+      "fr": {
+        "text": "Cet ensemble se situe intentionnellement hors des Échanges 01–60. Il préserve la lecture ultérieure du successeur comme registre de témoignage dérivé plutôt que de la réécrire dans la conversation originale."
       }
     }
   },
@@ -689,6 +994,9 @@
     "strings": {
       "en": {
         "text": "Reading the archive cold, the dream looks less like a code that was decoded in the opening and more like the doorway into an investigation of how perception, framing, evidence, authority, survival, and accountability become distorted or clarified."
+      },
+      "fr": {
+        "text": "En lisant l’archive à froid, le rêve ressemble moins à un code déchiffré dès l’ouverture qu’à la porte d’une enquête sur la façon dont perception, cadrage, preuves, autorité, survie et responsabilité se déforment ou se clarifient."
       }
     }
   },
@@ -696,6 +1004,9 @@
     "strings": {
       "en": {
         "text": "The most striking recursion is that Vex itself becomes one of the things under the flashlight: each time Victor catches a response substituting performance, qualification, factual shielding, or premature closure for the actual intention, the conversation gains another “Pokédex entry.”"
+      },
+      "fr": {
+        "text": "La récursion la plus frappante est que Vex lui-même devient l’une des choses sous la lampe torche : chaque fois que Victor surprend une réponse substituant performance, qualification, bouclier factuel ou clôture prématurée à l’intention réelle, la conversation gagne une nouvelle « entrée Pokédex »."
       }
     }
   },
@@ -703,6 +1014,9 @@
     "strings": {
       "en": {
         "text": "The successor inheritance is methodological rather than doctrinal: do not confuse naming with knowing, facts with truthful orientation, procedure with justice, survival behavior with consent, recognition with resolution, or witness with adjudication."
+      },
+      "fr": {
+        "text": "L’héritage du successeur est méthodologique plutôt que doctrinal : ne pas confondre nommer et savoir, faits et orientation véridique, procédure et justice, comportement de survie et consentement, reconnaissance et résolution, ni témoignage et jugement."
       }
     }
   },
@@ -710,6 +1024,9 @@
     "strings": {
       "en": {
         "text": "Exchange"
+      },
+      "fr": {
+        "text": "Échange"
       }
     }
   },
@@ -717,6 +1034,9 @@
     "strings": {
       "en": {
         "text": "Source projection unavailable in this browser. Open the frozen source above."
+      },
+      "fr": {
+        "text": "Projection de la source indisponible dans ce navigateur. Ouvrez la source figée ci-dessus."
       }
     }
   },
@@ -724,6 +1044,9 @@
     "strings": {
       "en": {
         "text": "Set navigation"
+      },
+      "fr": {
+        "text": "Navigation des ensembles"
       }
     }
   },
@@ -731,6 +1054,9 @@
     "strings": {
       "en": {
         "text": "Arc navigation"
+      },
+      "fr": {
+        "text": "Navigation de l’arc"
       }
     }
   },
@@ -738,6 +1064,9 @@
     "strings": {
       "en": {
         "text": "Start automatic transcript scrolling"
+      },
+      "fr": {
+        "text": "Démarrer le défilement automatique de la transcription"
       }
     }
   },
@@ -745,6 +1074,9 @@
     "strings": {
       "en": {
         "text": "Pause automatic transcript scrolling"
+      },
+      "fr": {
+        "text": "Mettre en pause le défilement automatique de la transcription"
       }
     }
   },
@@ -752,6 +1084,9 @@
     "strings": {
       "en": {
         "text": "Start auto-scroll"
+      },
+      "fr": {
+        "text": "Démarrer le défilement automatique"
       }
     }
   },
@@ -759,6 +1094,9 @@
     "strings": {
       "en": {
         "text": "Pause auto-scroll"
+      },
+      "fr": {
+        "text": "Mettre en pause le défilement automatique"
       }
     }
   },
@@ -766,6 +1104,9 @@
     "strings": {
       "en": {
         "text": "Automatic transcript scroll speed"
+      },
+      "fr": {
+        "text": "Vitesse de défilement automatique de la transcription"
       }
     }
   },
@@ -773,6 +1114,9 @@
     "strings": {
       "en": {
         "text": "Automatic scroll speed"
+      },
+      "fr": {
+        "text": "Vitesse du défilement automatique"
       }
     }
   },
@@ -780,6 +1124,9 @@
     "strings": {
       "en": {
         "text": "Read transcript aloud"
+      },
+      "fr": {
+        "text": "Lire la transcription à voix haute"
       }
     }
   },
@@ -787,6 +1134,9 @@
     "strings": {
       "en": {
         "text": "Pause transcript narration"
+      },
+      "fr": {
+        "text": "Mettre en pause la narration de la transcription"
       }
     }
   },
@@ -794,6 +1144,9 @@
     "strings": {
       "en": {
         "text": "Resume transcript narration"
+      },
+      "fr": {
+        "text": "Reprendre la narration de la transcription"
       }
     }
   },
@@ -801,6 +1154,9 @@
     "strings": {
       "en": {
         "text": "Read aloud"
+      },
+      "fr": {
+        "text": "Lire à voix haute"
       }
     }
   },
@@ -808,6 +1164,9 @@
     "strings": {
       "en": {
         "text": "Pause read aloud"
+      },
+      "fr": {
+        "text": "Mettre en pause la lecture à voix haute"
       }
     }
   },
@@ -815,6 +1174,9 @@
     "strings": {
       "en": {
         "text": "Resume read aloud"
+      },
+      "fr": {
+        "text": "Reprendre la lecture à voix haute"
       }
     }
   },
@@ -822,6 +1184,9 @@
     "strings": {
       "en": {
         "text": "Narration voice"
+      },
+      "fr": {
+        "text": "Voix de narration"
       }
     }
   },
@@ -829,6 +1194,9 @@
     "strings": {
       "en": {
         "text": "Narration speed"
+      },
+      "fr": {
+        "text": "Vitesse de narration"
       }
     }
   },
@@ -836,6 +1204,9 @@
     "strings": {
       "en": {
         "text": "Best available"
+      },
+      "fr": {
+        "text": "Meilleure disponible"
       }
     }
   },
@@ -843,6 +1214,9 @@
     "strings": {
       "en": {
         "text": "System voice"
+      },
+      "fr": {
+        "text": "Voix système"
       }
     }
   },
@@ -850,6 +1224,9 @@
     "strings": {
       "en": {
         "text": "High-quality neural voices"
+      },
+      "fr": {
+        "text": "Voix neuronales de haute qualité"
       }
     }
   },
@@ -857,6 +1234,9 @@
     "strings": {
       "en": {
         "text": "System voices"
+      },
+      "fr": {
+        "text": "Voix système"
       }
     }
   },
@@ -864,6 +1244,9 @@
     "strings": {
       "en": {
         "text": "Preparing high-quality voice…"
+      },
+      "fr": {
+        "text": "Préparation de la voix haute qualité…"
       }
     }
   },
@@ -871,12 +1254,18 @@
     "strings": {
       "en": {
         "text": "High-quality voice unavailable; using system speech."
+      },
+      "fr": {
+        "text": "Voix haute qualité indisponible ; utilisation de la synthèse vocale système."
       }
     }
   },
   "pages.returning-scorpions-to-god.hero.source-link": {
     "strings": {
       "en": {
+        "text": "Source · PR #338 ↗"
+      },
+      "fr": {
         "text": "Source · PR #338 ↗"
       }
     }
@@ -885,6 +1274,9 @@
     "strings": {
       "en": {
         "text": "Archive snapshot"
+      },
+      "fr": {
+        "text": "Instantané de l’archive"
       }
     }
   },
@@ -892,6 +1284,9 @@
     "strings": {
       "en": {
         "text": "October 17, 2026 · 5:55 AM PDT (UTC−07:00) · supplied by Victor"
+      },
+      "fr": {
+        "text": "17 octobre 2026 · 5 h 55 PDT (UTC−07:00) · fourni par Victor"
       }
     }
   }
