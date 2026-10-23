@@ -82,8 +82,8 @@ test('RECORD-READER-LOCALIZATION: source completeness is carried by locale cells
 
 
 test('RECORD-READER-LOCALIZATION-SOURCE: Sand Dollar reader title uses the simple event identity in Global Core', () => {
-  const page = read('pages/recognizing-life-receiving-abundance.html');
-  const strings = JSON.parse(read('data/strings/source/pages/recognizing-life-receiving-abundance.json'));
+  const page = readText('pages/recognizing-life-receiving-abundance.html');
+  const strings = readJson('data/strings/source/pages/recognizing-life-receiving-abundance.json');
   const locales = ['en','zh','ja','ko','fr','de','es','pt','ar','hi'];
   assert.match(page, />The Sand Dollar on the Shore — Vextreme<\/title>/);
   assert.match(page, />The Sand Dollar on the Shore<\/h1>/);
