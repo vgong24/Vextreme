@@ -80,3 +80,22 @@ test('RECORD-READER-THIRD-CONSUMER: every page i18n binding has an English sourc
 });
 
 // [VXG RealForever]
+
+
+test('RECORD-READER-THIRD-CONSUMER: reader-facing event title stays simple and localized', () => {
+  const page = read('pages/' + SLUG + '.html');
+  const strings = JSON.parse(read('data/strings/source/pages/' + SLUG + '.json'));
+  const expectedLocales = ['en','fr','de','es','pt','zh','ja','ko','ar','hi'];
+  assert.match(page, />The Bending Condominium Dream — Vextreme<\/title>/);
+  assert.match(page, />The Bending Condominium Dream<\/h1>/);
+  for (const key of ['pages.' + SLUG + '.document-title','pages.' + SLUG + '.hero.title']) {
+    assert.deepEqual(Object.keys(strings[key].strings).sort(), expectedLocales.slice().sort());
+    for (const locale of expectedLocales) assert.ok(strings[key].strings[locale].text.trim());
+  }
+  const nodes = JSON.parse(read('data/nodes.json'));
+  const views = JSON.parse(read('data/viewmodels.json'));
+  assert.equal(nodes.find(x => x.slug === SLUG).title, 'The Bending Condominium Dream');
+  assert.equal(nodes.find(x => x.slug === 'recognizing-life-receiving-abundance').title, 'The Sand Dollar on the Shore');
+  assert.equal(views[SLUG].title, 'The Bending Condominium Dream');
+  assert.equal(views['recognizing-life-receiving-abundance'].title, 'The Sand Dollar on the Shore');
+});
