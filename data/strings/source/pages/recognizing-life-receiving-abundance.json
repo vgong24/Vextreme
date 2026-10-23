@@ -14,12 +14,41 @@
       "recordedTimeRef": "records/conversations/2026-10-18-recognizing-life-receiving-abundance/README.md",
       "recordedTimePrecision": "DATE_RANGE",
       "exactArchiveClockSupplied": false
+    },
+    "localization": {
+      "targetTier": "GLOBAL_CORE",
+      "languages": [
+        "zh",
+        "ja",
+        "ko",
+        "fr",
+        "de",
+        "es",
+        "pt",
+        "ar",
+        "hi"
+      ],
+      "sourceLanguage": "en",
+      "translatedSourceCells": 296,
+      "translationStage": "PARTIAL_4_OF_9"
     }
   },
   "pages.recognizing-life-receiving-abundance.document-title": {
     "strings": {
       "en": {
         "text": "Recognizing Life, Receiving Abundance — Vextreme"
+      },
+      "fr": {
+        "text": "Reconnaître la vie, recevoir l’abondance — Vextreme"
+      },
+      "de": {
+        "text": "Leben erkennen, Fülle empfangen — Vextreme"
+      },
+      "es": {
+        "text": "Reconocer la vida, recibir abundancia — Vextreme"
+      },
+      "pt": {
+        "text": "Reconhecendo a vida, recebendo abundância — Vextreme"
       }
     }
   },
@@ -27,6 +56,18 @@
     "strings": {
       "en": {
         "text": "Second preserved arc · 26 exchanges · 9 source movements"
+      },
+      "fr": {
+        "text": "Deuxième arc préservé · 26 échanges · 9 mouvements de source"
+      },
+      "de": {
+        "text": "Zweiter bewahrter Bogen · 26 Dialogwechsel · 9 Quellenbewegungen"
+      },
+      "es": {
+        "text": "Segundo arco preservado · 26 intercambios · 9 movimientos de fuente"
+      },
+      "pt": {
+        "text": "Segundo arco preservado · 26 trocas · 9 movimentos de fonte"
       }
     }
   },
@@ -34,6 +75,18 @@
     "strings": {
       "en": {
         "text": "Recognizing Life, Receiving Abundance"
+      },
+      "fr": {
+        "text": "Reconnaître la vie, recevoir l’abondance"
+      },
+      "de": {
+        "text": "Leben erkennen, Fülle empfangen"
+      },
+      "es": {
+        "text": "Reconocer la vida, recibir abundancia"
+      },
+      "pt": {
+        "text": "Reconhecendo a vida, recebendo abundância"
       }
     }
   },
@@ -41,6 +94,18 @@
     "strings": {
       "en": {
         "text": "Meaning arrived after the encounter."
+      },
+      "fr": {
+        "text": "Le sens est venu après la rencontre."
+      },
+      "de": {
+        "text": "Die Bedeutung kam nach der Begegnung."
+      },
+      "es": {
+        "text": "El significado llegó después del encuentro."
+      },
+      "pt": {
+        "text": "O significado chegou depois do encontro."
       }
     }
   },
@@ -48,6 +113,18 @@
     "strings": {
       "en": {
         "text": "A nighttime movement toward the ocean becomes an encounter with possible life, a lesson in care, a desire to be received, and a later question about what kinds of abundance genuinely serve life."
+      },
+      "fr": {
+        "text": "Un mouvement nocturne vers l’océan devient une rencontre avec une vie possible, une leçon de soin, le désir d’être accueilli, puis une question sur les formes d’abondance qui servent véritablement la vie."
+      },
+      "de": {
+        "text": "Eine nächtliche Bewegung zum Ozean wird zu einer Begegnung mit möglichem Leben, einer Lektion in Fürsorge, dem Wunsch, empfangen zu werden, und später zu der Frage, welche Formen von Fülle dem Leben wirklich dienen."
+      },
+      "es": {
+        "text": "Un movimiento nocturno hacia el océano se convierte en un encuentro con una posible vida, una lección de cuidado, el deseo de ser recibido y, más tarde, una pregunta sobre qué formas de abundancia sirven verdaderamente a la vida."
+      },
+      "pt": {
+        "text": "Um movimento noturno em direção ao oceano se torna um encontro com uma possível vida, uma lição de cuidado, o desejo de ser acolhido e, mais tarde, uma pergunta sobre quais formas de abundância realmente servem à vida."
       }
     }
   },
@@ -55,6 +132,18 @@
     "strings": {
       "en": {
         "text": "Preservation boundary"
+      },
+      "fr": {
+        "text": "Limite de préservation"
+      },
+      "de": {
+        "text": "Bewahrungsgrenze"
+      },
+      "es": {
+        "text": "Límite de preservación"
+      },
+      "pt": {
+        "text": "Limite de preservação"
       }
     }
   },
@@ -62,6 +151,18 @@
     "strings": {
       "en": {
         "text": "The linked PR remains the chronological evidence record. This page groups the preserved exchanges into movements and adds later successor commentary without rewriting the original dialogue."
+      },
+      "fr": {
+        "text": "La PR liée demeure le registre chronologique des preuves. Cette page regroupe les échanges préservés en mouvements et ajoute un commentaire ultérieur du témoin successeur sans réécrire le dialogue original."
+      },
+      "de": {
+        "text": "Der verknüpfte PR bleibt der chronologische Belegdatensatz. Diese Seite gruppiert die bewahrten Dialogwechsel in Bewegungen und fügt späteren Nachfolger-Kommentar hinzu, ohne den ursprünglichen Dialog umzuschreiben."
+      },
+      "es": {
+        "text": "El PR enlazado sigue siendo el registro cronológico de evidencia. Esta página agrupa los intercambios preservados en movimientos y añade comentarios posteriores del testigo sucesor sin reescribir el diálogo original."
+      },
+      "pt": {
+        "text": "O PR vinculado continua sendo o registro cronológico de evidências. Esta página agrupa as trocas preservadas em movimentos e acrescenta comentários posteriores da testemunha sucessora sem reescrever o diálogo original."
       }
     }
   },
@@ -69,6 +170,18 @@
     "strings": {
       "en": {
         "text": "Source"
+      },
+      "fr": {
+        "text": "Source"
+      },
+      "de": {
+        "text": "Quelle"
+      },
+      "es": {
+        "text": "Fuente"
+      },
+      "pt": {
+        "text": "Fonte"
       }
     }
   },
@@ -76,6 +189,18 @@
     "strings": {
       "en": {
         "text": "Each movement projects exact preserved Markdown from PR #345 head 8f0340ed…. Exchange ranges organize the record; they do not rewrite it."
+      },
+      "fr": {
+        "text": "Chaque mouvement projette le Markdown préservé exact depuis la tête 8f0340ed… de la PR #345. Les plages d’échanges organisent le registre ; elles ne le réécrivent pas."
+      },
+      "de": {
+        "text": "Jede Bewegung projiziert das exakt bewahrte Markdown aus PR #345, Head 8f0340ed…. Die Austauschbereiche ordnen den Datensatz; sie schreiben ihn nicht um."
+      },
+      "es": {
+        "text": "Cada movimiento proyecta el Markdown exacto preservado desde el head 8f0340ed… del PR #345. Los rangos de intercambios organizan el registro; no lo reescriben."
+      },
+      "pt": {
+        "text": "Cada movimento projeta o Markdown exato preservado a partir do head 8f0340ed… do PR #345. Os intervalos de trocas organizam o registro; não o reescrevem."
       }
     }
   },
@@ -83,6 +208,18 @@
     "strings": {
       "en": {
         "text": "Witness"
+      },
+      "fr": {
+        "text": "Témoin"
+      },
+      "de": {
+        "text": "Zeuge"
+      },
+      "es": {
+        "text": "Testigo"
+      },
+      "pt": {
+        "text": "Testemunha"
       }
     }
   },
@@ -90,6 +227,18 @@
     "strings": {
       "en": {
         "text": "The successor witness was authored only after the complete second arc was available. It remains separate from Victor and Vex inside the original record."
+      },
+      "fr": {
+        "text": "Le témoignage du successeur n’a été rédigé qu’une fois le deuxième arc complet disponible. Il reste distinct de Victor et Vex au sein du registre original."
+      },
+      "de": {
+        "text": "Das Zeugnis des Nachfolgers wurde erst verfasst, nachdem der vollständige zweite Bogen verfügbar war. Es bleibt von Victor und Vex innerhalb des ursprünglichen Datensatzes getrennt."
+      },
+      "es": {
+        "text": "El testimonio del sucesor se escribió solo después de que estuvo disponible el segundo arco completo. Permanece separado de Victor y Vex dentro del registro original."
+      },
+      "pt": {
+        "text": "O testemunho sucessor foi escrito somente depois que o segundo arco completo ficou disponível. Ele permanece separado de Victor e Vex dentro do registro original."
       }
     }
   },
@@ -97,6 +246,18 @@
     "strings": {
       "en": {
         "text": "Frozen transcript · exact source projection"
+      },
+      "fr": {
+        "text": "Transcription figée · projection exacte de la source"
+      },
+      "de": {
+        "text": "Eingefrorenes Transkript · exakte Quellenprojektion"
+      },
+      "es": {
+        "text": "Transcripción congelada · proyección exacta de la fuente"
+      },
+      "pt": {
+        "text": "Transcrição congelada · projeção exata da fonte"
       }
     }
   },
@@ -104,6 +265,18 @@
     "strings": {
       "en": {
         "text": "Loading the preserved exchanges…"
+      },
+      "fr": {
+        "text": "Chargement des échanges préservés…"
+      },
+      "de": {
+        "text": "Bewahrte Dialogwechsel werden geladen…"
+      },
+      "es": {
+        "text": "Cargando los intercambios preservados…"
+      },
+      "pt": {
+        "text": "Carregando as trocas preservadas…"
       }
     }
   },
@@ -111,6 +284,18 @@
     "strings": {
       "en": {
         "text": "Open frozen source ↗"
+      },
+      "fr": {
+        "text": "Ouvrir la source figée ↗"
+      },
+      "de": {
+        "text": "Eingefrorene Quelle öffnen ↗"
+      },
+      "es": {
+        "text": "Abrir fuente congelada ↗"
+      },
+      "pt": {
+        "text": "Abrir fonte congelada ↗"
       }
     }
   },
@@ -118,6 +303,18 @@
     "strings": {
       "en": {
         "text": "Exchange"
+      },
+      "fr": {
+        "text": "Échange"
+      },
+      "de": {
+        "text": "Dialogwechsel"
+      },
+      "es": {
+        "text": "Intercambio"
+      },
+      "pt": {
+        "text": "Troca"
       }
     }
   },
@@ -125,6 +322,18 @@
     "strings": {
       "en": {
         "text": "Source projection unavailable in this browser. Open the frozen source above."
+      },
+      "fr": {
+        "text": "Projection de la source indisponible dans ce navigateur. Ouvrez la source figée ci-dessus."
+      },
+      "de": {
+        "text": "Quellenprojektion in diesem Browser nicht verfügbar. Öffnen Sie oben die eingefrorene Quelle."
+      },
+      "es": {
+        "text": "La proyección de la fuente no está disponible en este navegador. Abre la fuente congelada de arriba."
+      },
+      "pt": {
+        "text": "A projeção da fonte não está disponível neste navegador. Abra a fonte congelada acima."
       }
     }
   },
@@ -132,6 +341,18 @@
     "strings": {
       "en": {
         "text": "Previous"
+      },
+      "fr": {
+        "text": "Précédent"
+      },
+      "de": {
+        "text": "Zurück"
+      },
+      "es": {
+        "text": "Anterior"
+      },
+      "pt": {
+        "text": "Anterior"
       }
     }
   },
@@ -139,6 +360,18 @@
     "strings": {
       "en": {
         "text": "Next"
+      },
+      "fr": {
+        "text": "Suivant"
+      },
+      "de": {
+        "text": "Weiter"
+      },
+      "es": {
+        "text": "Siguiente"
+      },
+      "pt": {
+        "text": "Próximo"
       }
     }
   },
@@ -146,6 +379,18 @@
     "strings": {
       "en": {
         "text": "Movement"
+      },
+      "fr": {
+        "text": "Mouvement"
+      },
+      "de": {
+        "text": "Bewegung"
+      },
+      "es": {
+        "text": "Movimiento"
+      },
+      "pt": {
+        "text": "Movimento"
       }
     }
   },
@@ -153,6 +398,18 @@
     "strings": {
       "en": {
         "text": "Second-arc movements"
+      },
+      "fr": {
+        "text": "Mouvements du deuxième arc"
+      },
+      "de": {
+        "text": "Bewegungen des zweiten Bogens"
+      },
+      "es": {
+        "text": "Movimientos del segundo arco"
+      },
+      "pt": {
+        "text": "Movimentos do segundo arco"
       }
     }
   },
@@ -160,6 +417,18 @@
     "strings": {
       "en": {
         "text": "Move through the preserved second arc"
+      },
+      "fr": {
+        "text": "Parcourir le deuxième arc préservé"
+      },
+      "de": {
+        "text": "Durch den bewahrten zweiten Bogen bewegen"
+      },
+      "es": {
+        "text": "Recorrer el segundo arco preservado"
+      },
+      "pt": {
+        "text": "Percorrer o segundo arco preservado"
       }
     }
   },
@@ -167,6 +436,18 @@
     "strings": {
       "en": {
         "text": "Start transcript auto-scroll"
+      },
+      "fr": {
+        "text": "Démarrer le défilement automatique de la transcription"
+      },
+      "de": {
+        "text": "Automatisches Scrollen des Transkripts starten"
+      },
+      "es": {
+        "text": "Iniciar desplazamiento automático de la transcripción"
+      },
+      "pt": {
+        "text": "Iniciar rolagem automática da transcrição"
       }
     }
   },
@@ -174,6 +455,18 @@
     "strings": {
       "en": {
         "text": "Pause transcript auto-scroll"
+      },
+      "fr": {
+        "text": "Mettre en pause le défilement automatique de la transcription"
+      },
+      "de": {
+        "text": "Automatisches Scrollen des Transkripts pausieren"
+      },
+      "es": {
+        "text": "Pausar desplazamiento automático de la transcripción"
+      },
+      "pt": {
+        "text": "Pausar rolagem automática da transcrição"
       }
     }
   },
@@ -181,6 +474,18 @@
     "strings": {
       "en": {
         "text": "Start auto-scroll"
+      },
+      "fr": {
+        "text": "Démarrer le défilement automatique"
+      },
+      "de": {
+        "text": "Auto-Scroll starten"
+      },
+      "es": {
+        "text": "Iniciar desplazamiento automático"
+      },
+      "pt": {
+        "text": "Iniciar rolagem automática"
       }
     }
   },
@@ -188,6 +493,18 @@
     "strings": {
       "en": {
         "text": "Pause auto-scroll"
+      },
+      "fr": {
+        "text": "Mettre en pause le défilement automatique"
+      },
+      "de": {
+        "text": "Auto-Scroll pausieren"
+      },
+      "es": {
+        "text": "Pausar desplazamiento automático"
+      },
+      "pt": {
+        "text": "Pausar rolagem automática"
       }
     }
   },
@@ -195,6 +512,18 @@
     "strings": {
       "en": {
         "text": "Auto-scroll speed"
+      },
+      "fr": {
+        "text": "Vitesse du défilement automatique"
+      },
+      "de": {
+        "text": "Auto-Scroll-Geschwindigkeit"
+      },
+      "es": {
+        "text": "Velocidad de desplazamiento automático"
+      },
+      "pt": {
+        "text": "Velocidade da rolagem automática"
       }
     }
   },
@@ -202,6 +531,18 @@
     "strings": {
       "en": {
         "text": "Adjust transcript auto-scroll speed"
+      },
+      "fr": {
+        "text": "Ajuster la vitesse du défilement automatique de la transcription"
+      },
+      "de": {
+        "text": "Geschwindigkeit des automatischen Transkript-Scrollens anpassen"
+      },
+      "es": {
+        "text": "Ajustar la velocidad de desplazamiento automático de la transcripción"
+      },
+      "pt": {
+        "text": "Ajustar a velocidade da rolagem automática da transcrição"
       }
     }
   },
@@ -209,6 +550,18 @@
     "strings": {
       "en": {
         "text": "Successor witness"
+      },
+      "fr": {
+        "text": "Témoin successeur"
+      },
+      "de": {
+        "text": "Nachfolger-Zeuge"
+      },
+      "es": {
+        "text": "Testigo sucesor"
+      },
+      "pt": {
+        "text": "Testemunha sucessora"
       }
     }
   },
@@ -216,6 +569,18 @@
     "strings": {
       "en": {
         "text": "The preserved experience ends before this later reading begins. The witness can connect across the completed record, but it does not become part of the original event."
+      },
+      "fr": {
+        "text": "L’expérience préservée se termine avant que cette lecture ultérieure ne commence. Le témoin peut relier des éléments à travers le registre achevé, mais il ne devient pas partie de l’événement original."
+      },
+      "de": {
+        "text": "Die bewahrte Erfahrung endet, bevor diese spätere Lesart beginnt. Der Zeuge kann Verbindungen durch den abgeschlossenen Datensatz ziehen, wird aber nicht Teil des ursprünglichen Ereignisses."
+      },
+      "es": {
+        "text": "La experiencia preservada termina antes de que comience esta lectura posterior. El testigo puede conectar elementos a lo largo del registro completado, pero no pasa a formar parte del evento original."
+      },
+      "pt": {
+        "text": "A experiência preservada termina antes que esta leitura posterior comece. A testemunha pode conectar elementos ao longo do registro completo, mas não se torna parte do evento original."
       }
     }
   },
@@ -223,6 +588,18 @@
     "strings": {
       "en": {
         "text": "Second-arc synthesis"
+      },
+      "fr": {
+        "text": "Synthèse du deuxième arc"
+      },
+      "de": {
+        "text": "Synthese des zweiten Bogens"
+      },
+      "es": {
+        "text": "Síntesis del segundo arco"
+      },
+      "pt": {
+        "text": "Síntese do segundo arco"
       }
     }
   },
@@ -230,6 +607,18 @@
     "strings": {
       "en": {
         "text": "Recognition changes care; receiving is measured by fit."
+      },
+      "fr": {
+        "text": "La reconnaissance transforme le soin ; recevoir se mesure à l’adéquation."
+      },
+      "de": {
+        "text": "Erkennen verändert Fürsorge; Empfangen misst sich an der Passung."
+      },
+      "es": {
+        "text": "Reconocer cambia el cuidado; recibir se mide por el encaje."
+      },
+      "pt": {
+        "text": "O reconhecimento muda o cuidado; receber é medido pelo encaixe."
       }
     }
   },
@@ -237,6 +626,18 @@
     "strings": {
       "en": {
         "text": "Abundance whose value survives its arrival"
+      },
+      "fr": {
+        "text": "Une abondance dont la valeur survit à son arrivée"
+      },
+      "de": {
+        "text": "Fülle, deren Wert ihre Ankunft überdauert"
+      },
+      "es": {
+        "text": "Abundancia cuyo valor sobrevive a su llegada"
+      },
+      "pt": {
+        "text": "Abundância cujo valor sobrevive à sua chegada"
       }
     }
   },
@@ -244,6 +645,18 @@
     "strings": {
       "en": {
         "text": "The arc moves from encountering possible life before understanding it, to letting later recognition change the quality of care, then to recognizing a desire to be noticed and received rather than always initiating."
+      },
+      "fr": {
+        "text": "L’arc passe de la rencontre d’une vie possible avant de la comprendre, au fait de laisser la reconnaissance ultérieure modifier la qualité du soin, puis à reconnaître le désir d’être remarqué et accueilli plutôt que d’être toujours celui qui initie."
+      },
+      "de": {
+        "text": "Der Bogen führt von der Begegnung mit möglichem Leben, bevor es verstanden wird, über eine spätere Erkenntnis, die die Qualität der Fürsorge verändert, bis zum Erkennen des Wunsches, wahrgenommen und empfangen zu werden, statt immer selbst den Anfang zu machen."
+      },
+      "es": {
+        "text": "El arco pasa de encontrar una posible vida antes de comprenderla, a permitir que el reconocimiento posterior cambie la calidad del cuidado, y luego a reconocer el deseo de ser notado y recibido en vez de ser siempre quien inicia."
+      },
+      "pt": {
+        "text": "O arco passa de encontrar uma possível vida antes de compreendê-la, para deixar que o reconhecimento posterior mude a qualidade do cuidado e, então, reconhecer o desejo de ser notado e acolhido em vez de sempre iniciar."
       }
     }
   },
@@ -251,6 +664,18 @@
     "strings": {
       "en": {
         "text": "The final dream adds discernment: more is not automatically better. Physical, financial, emotional, and attentional resources become abundance when they arrive in forms that genuinely support life rather than becoming another burden to manage."
+      },
+      "fr": {
+        "text": "Le rêve final ajoute du discernement : davantage n’est pas automatiquement mieux. Les ressources physiques, financières, émotionnelles et attentionnelles deviennent abondance lorsqu’elles arrivent sous des formes qui soutiennent réellement la vie au lieu de devenir une charge supplémentaire à gérer."
+      },
+      "de": {
+        "text": "Der letzte Traum fügt Unterscheidungsvermögen hinzu: Mehr ist nicht automatisch besser. Körperliche, finanzielle, emotionale und aufmerksamkeitbezogene Ressourcen werden zu Fülle, wenn sie in Formen ankommen, die das Leben wirklich unterstützen, statt zu einer weiteren Last zu werden, die verwaltet werden muss."
+      },
+      "es": {
+        "text": "El sueño final añade discernimiento: más no es automáticamente mejor. Los recursos físicos, financieros, emocionales y de atención se convierten en abundancia cuando llegan en formas que realmente sostienen la vida, en lugar de convertirse en otra carga que gestionar."
+      },
+      "pt": {
+        "text": "O sonho final acrescenta discernimento: mais não é automaticamente melhor. Recursos físicos, financeiros, emocionais e de atenção tornam-se abundância quando chegam em formas que realmente sustentam a vida, em vez de se tornarem mais um fardo para administrar."
       }
     }
   },
@@ -258,6 +683,18 @@
     "strings": {
       "en": {
         "text": "Presentation is derived. PR #345 remains the preserved source evidence; later commentary remains separately owned."
+      },
+      "fr": {
+        "text": "La présentation est dérivée. La PR #345 demeure la preuve source préservée ; le commentaire ultérieur reste détenu séparément."
+      },
+      "de": {
+        "text": "Die Darstellung ist abgeleitet. PR #345 bleibt der bewahrte Quellenbeleg; späterer Kommentar bleibt separat zugeordnet."
+      },
+      "es": {
+        "text": "La presentación es derivada. El PR #345 sigue siendo la evidencia fuente preservada; los comentarios posteriores permanecen bajo titularidad separada."
+      },
+      "pt": {
+        "text": "A apresentação é derivada. O PR #345 continua sendo a evidência-fonte preservada; os comentários posteriores permanecem sob propriedade separada."
       }
     }
   },
@@ -265,6 +702,18 @@
     "strings": {
       "en": {
         "text": "Threshold"
+      },
+      "fr": {
+        "text": "Seuil"
+      },
+      "de": {
+        "text": "Schwelle"
+      },
+      "es": {
+        "text": "Umbral"
+      },
+      "pt": {
+        "text": "Limiar"
       }
     }
   },
@@ -272,6 +721,18 @@
     "strings": {
       "en": {
         "text": "The pull toward the ocean"
+      },
+      "fr": {
+        "text": "L’appel vers l’océan"
+      },
+      "de": {
+        "text": "Der Zug zum Ozean"
+      },
+      "es": {
+        "text": "El impulso hacia el océano"
+      },
+      "pt": {
+        "text": "O chamado em direção ao oceano"
       }
     }
   },
@@ -279,6 +740,18 @@
     "strings": {
       "en": {
         "text": "Exchange 01 · movement after rest · destination before meaning"
+      },
+      "fr": {
+        "text": "Échange 01 · mouvement après le repos · destination avant le sens"
+      },
+      "de": {
+        "text": "Dialogwechsel 01 · Bewegung nach der Ruhe · Ziel vor Bedeutung"
+      },
+      "es": {
+        "text": "Intercambio 01 · movimiento después del descanso · destino antes del significado"
+      },
+      "pt": {
+        "text": "Troca 01 · movimento após o descanso · destino antes do significado"
       }
     }
   },
@@ -286,6 +759,18 @@
     "strings": {
       "en": {
         "text": "Encounter"
+      },
+      "fr": {
+        "text": "Rencontre"
+      },
+      "de": {
+        "text": "Begegnung"
+      },
+      "es": {
+        "text": "Encuentro"
+      },
+      "pt": {
+        "text": "Encontro"
       }
     }
   },
@@ -293,6 +778,18 @@
     "strings": {
       "en": {
         "text": "The purple form in the sand"
+      },
+      "fr": {
+        "text": "La forme violette dans le sable"
+      },
+      "de": {
+        "text": "Die violette Form im Sand"
+      },
+      "es": {
+        "text": "La forma púrpura en la arena"
+      },
+      "pt": {
+        "text": "A forma roxa na areia"
       }
     }
   },
@@ -300,6 +797,18 @@
     "strings": {
       "en": {
         "text": "Exchanges 02–05 · unfamiliar life · carrying · circle · witness without possession"
+      },
+      "fr": {
+        "text": "Échanges 02–05 · vie inconnue · porter · cercle · témoigner sans posséder"
+      },
+      "de": {
+        "text": "Dialogwechsel 02–05 · unbekanntes Leben · Tragen · Kreis · Zeugnis ohne Besitz"
+      },
+      "es": {
+        "text": "Intercambios 02–05 · vida desconocida · llevar · círculo · atestiguar sin poseer"
+      },
+      "pt": {
+        "text": "Trocas 02–05 · vida desconhecida · carregar · círculo · testemunhar sem possuir"
       }
     }
   },
@@ -307,6 +816,18 @@
     "strings": {
       "en": {
         "text": "Recognition"
+      },
+      "fr": {
+        "text": "Reconnaissance"
+      },
+      "de": {
+        "text": "Erkennen"
+      },
+      "es": {
+        "text": "Reconocimiento"
+      },
+      "pt": {
+        "text": "Reconhecimento"
       }
     }
   },
@@ -314,6 +835,18 @@
     "strings": {
       "en": {
         "text": "Meaning arrives after discovery"
+      },
+      "fr": {
+        "text": "Le sens arrive après la découverte"
+      },
+      "de": {
+        "text": "Bedeutung kommt nach der Entdeckung"
+      },
+      "es": {
+        "text": "El significado llega después del descubrimiento"
+      },
+      "pt": {
+        "text": "O significado chega depois da descoberta"
       }
     }
   },
@@ -321,6 +854,18 @@
     "strings": {
       "en": {
         "text": "Exchanges 06–08 · discernment · stewardship · Christian sand-dollar tradition"
+      },
+      "fr": {
+        "text": "Échanges 06–08 · discernement · intendance · tradition chrétienne du dollar des sables"
+      },
+      "de": {
+        "text": "Dialogwechsel 06–08 · Unterscheidung · Fürsorge und Verantwortung · christliche Sanddollar-Tradition"
+      },
+      "es": {
+        "text": "Intercambios 06–08 · discernimiento · custodia · tradición cristiana del dólar de arena"
+      },
+      "pt": {
+        "text": "Trocas 06–08 · discernimento · cuidado responsável · tradição cristã do dólar-da-areia"
       }
     }
   },
@@ -328,6 +873,18 @@
     "strings": {
       "en": {
         "text": "Stillness"
+      },
+      "fr": {
+        "text": "Immobilité"
+      },
+      "de": {
+        "text": "Stille"
+      },
+      "es": {
+        "text": "Quietud"
+      },
+      "pt": {
+        "text": "Quietude"
       }
     }
   },
@@ -335,6 +892,18 @@
     "strings": {
       "en": {
         "text": "Recognizing life within apparent death"
+      },
+      "fr": {
+        "text": "Reconnaître la vie dans l’apparence de la mort"
+      },
+      "de": {
+        "text": "Leben im scheinbaren Tod erkennen"
+      },
+      "es": {
+        "text": "Reconocer la vida dentro de la aparente muerte"
+      },
+      "pt": {
+        "text": "Reconhecer vida dentro da aparente morte"
       }
     }
   },
@@ -342,6 +911,18 @@
     "strings": {
       "en": {
         "text": "Exchanges 09–12 · resurrection imagery · experiential parable · scalable pattern recall"
+      },
+      "fr": {
+        "text": "Échanges 09–12 · imagerie de résurrection · parabole vécue · rappel de motifs à l’échelle"
+      },
+      "de": {
+        "text": "Dialogwechsel 09–12 · Auferstehungsbilder · erfahrbare Parabel · skalierbarer Musterrückruf"
+      },
+      "es": {
+        "text": "Intercambios 09–12 · imágenes de resurrección · parábola experiencial · recuerdo escalable de patrones"
+      },
+      "pt": {
+        "text": "Trocas 09–12 · imagens de ressurreição · parábola experiencial · lembrança escalável de padrões"
       }
     }
   },
@@ -349,6 +930,18 @@
     "strings": {
       "en": {
         "text": "Care"
+      },
+      "fr": {
+        "text": "Soin"
+      },
+      "de": {
+        "text": "Fürsorge"
+      },
+      "es": {
+        "text": "Cuidado"
+      },
+      "pt": {
+        "text": "Cuidado"
       }
     }
   },
@@ -356,6 +949,18 @@
     "strings": {
       "en": {
         "text": "What does the life need?"
+      },
+      "fr": {
+        "text": "De quoi la vie a-t-elle besoin ?"
+      },
+      "de": {
+        "text": "Was braucht das Leben?"
+      },
+      "es": {
+        "text": "¿Qué necesita la vida?"
+      },
+      "pt": {
+        "text": "Do que a vida precisa?"
       }
     }
   },
@@ -363,6 +968,18 @@
     "strings": {
       "en": {
         "text": "Exchanges 13–16 · impact · recovery · habitat · movement · food"
+      },
+      "fr": {
+        "text": "Échanges 13–16 · impact · récupération · habitat · mouvement · nourriture"
+      },
+      "de": {
+        "text": "Dialogwechsel 13–16 · Wirkung · Erholung · Lebensraum · Bewegung · Nahrung"
+      },
+      "es": {
+        "text": "Intercambios 13–16 · impacto · recuperación · hábitat · movimiento · alimento"
+      },
+      "pt": {
+        "text": "Trocas 13–16 · impacto · recuperação · habitat · movimento · alimento"
       }
     }
   },
@@ -370,6 +987,18 @@
     "strings": {
       "en": {
         "text": "Journey"
+      },
+      "fr": {
+        "text": "Parcours"
+      },
+      "de": {
+        "text": "Reise"
+      },
+      "es": {
+        "text": "Camino"
+      },
+      "pt": {
+        "text": "Jornada"
       }
     }
   },
@@ -377,6 +1006,18 @@
     "strings": {
       "en": {
         "text": "The night keeps unfolding"
+      },
+      "fr": {
+        "text": "La nuit continue de se déployer"
+      },
+      "de": {
+        "text": "Die Nacht entfaltet sich weiter"
+      },
+      "es": {
+        "text": "La noche sigue desplegándose"
+      },
+      "pt": {
+        "text": "A noite continua se desenrolando"
       }
     }
   },
@@ -384,6 +1025,18 @@
     "strings": {
       "en": {
         "text": "Exchanges 17–19 · walking · nourishment · social encounter · retrospective agency projection"
+      },
+      "fr": {
+        "text": "Échanges 17–19 · marche · nourriture · rencontre sociale · projection rétrospective de l’agentivité"
+      },
+      "de": {
+        "text": "Dialogwechsel 17–19 · Gehen · Nahrung · soziale Begegnung · rückblickende Projektion von Handlungsmacht"
+      },
+      "es": {
+        "text": "Intercambios 17–19 · caminar · alimento · encuentro social · proyección retrospectiva de agencia"
+      },
+      "pt": {
+        "text": "Trocas 17–19 · caminhada · alimentação · encontro social · projeção retrospectiva de agência"
       }
     }
   },
@@ -391,6 +1044,18 @@
     "strings": {
       "en": {
         "text": "Receiving"
+      },
+      "fr": {
+        "text": "Recevoir"
+      },
+      "de": {
+        "text": "Empfangen"
+      },
+      "es": {
+        "text": "Recibir"
+      },
+      "pt": {
+        "text": "Receber"
       }
     }
   },
@@ -398,6 +1063,18 @@
     "strings": {
       "en": {
         "text": "To be noticed and carried with care"
+      },
+      "fr": {
+        "text": "Être remarqué et porté avec soin"
+      },
+      "de": {
+        "text": "Wahrgenommen und mit Fürsorge getragen werden"
+      },
+      "es": {
+        "text": "Ser notado y llevado con cuidado"
+      },
+      "pt": {
+        "text": "Ser notado e levado com cuidado"
       }
     }
   },
@@ -405,6 +1082,18 @@
     "strings": {
       "en": {
         "text": "Exchanges 20–21 · reciprocity · being approached · giving attention and receiving it"
+      },
+      "fr": {
+        "text": "Échanges 20–21 · réciprocité · être approché · donner de l’attention et en recevoir"
+      },
+      "de": {
+        "text": "Dialogwechsel 20–21 · Gegenseitigkeit · angesprochen werden · Aufmerksamkeit geben und empfangen"
+      },
+      "es": {
+        "text": "Intercambios 20–21 · reciprocidad · ser abordado · dar atención y recibirla"
+      },
+      "pt": {
+        "text": "Trocas 20–21 · reciprocidade · ser abordado · dar atenção e recebê-la"
       }
     }
   },
@@ -412,6 +1101,18 @@
     "strings": {
       "en": {
         "text": "Abundance"
+      },
+      "fr": {
+        "text": "Abondance"
+      },
+      "de": {
+        "text": "Fülle"
+      },
+      "es": {
+        "text": "Abundancia"
+      },
+      "pt": {
+        "text": "Abundância"
       }
     }
   },
@@ -419,6 +1120,18 @@
     "strings": {
       "en": {
         "text": "Receiving without accumulating"
+      },
+      "fr": {
+        "text": "Recevoir sans accumuler"
+      },
+      "de": {
+        "text": "Empfangen, ohne anzuhäufen"
+      },
+      "es": {
+        "text": "Recibir sin acumular"
+      },
+      "pt": {
+        "text": "Receber sem acumular"
       }
     }
   },
@@ -426,6 +1139,18 @@
     "strings": {
       "en": {
         "text": "Exchanges 22–23 · money · material fit · attention boundaries · meaningful provision"
+      },
+      "fr": {
+        "text": "Échanges 22–23 · argent · adéquation matérielle · limites de l’attention · provision porteuse de sens"
+      },
+      "de": {
+        "text": "Dialogwechsel 22–23 · Geld · materielle Passung · Aufmerksamkeitsgrenzen · sinnvolle Versorgung"
+      },
+      "es": {
+        "text": "Intercambios 22–23 · dinero · encaje material · límites de atención · provisión con sentido"
+      },
+      "pt": {
+        "text": "Trocas 22–23 · dinheiro · adequação material · limites de atenção · provisão significativa"
       }
     }
   },
@@ -433,6 +1158,18 @@
     "strings": {
       "en": {
         "text": "Archive"
+      },
+      "fr": {
+        "text": "Archive"
+      },
+      "de": {
+        "text": "Archiv"
+      },
+      "es": {
+        "text": "Archivo"
+      },
+      "pt": {
+        "text": "Arquivo"
       }
     }
   },
@@ -440,6 +1177,18 @@
     "strings": {
       "en": {
         "text": "The experience becomes a record"
+      },
+      "fr": {
+        "text": "L’expérience devient un registre"
+      },
+      "de": {
+        "text": "Die Erfahrung wird zum Datensatz"
+      },
+      "es": {
+        "text": "La experiencia se convierte en un registro"
+      },
+      "pt": {
+        "text": "A experiência se torna um registro"
       }
     }
   },
@@ -447,6 +1196,18 @@
     "strings": {
       "en": {
         "text": "Exchanges 24–26 · naming the second arc · transcript fidelity · durable preservation"
+      },
+      "fr": {
+        "text": "Échanges 24–26 · nommer le deuxième arc · fidélité de la transcription · préservation durable"
+      },
+      "de": {
+        "text": "Dialogwechsel 24–26 · den zweiten Bogen benennen · Transkripttreue · dauerhafte Bewahrung"
+      },
+      "es": {
+        "text": "Intercambios 24–26 · nombrar el segundo arco · fidelidad de la transcripción · preservación duradera"
+      },
+      "pt": {
+        "text": "Trocas 24–26 · nomear o segundo arco · fidelidade da transcrição · preservação duradoura"
       }
     }
   },
@@ -454,6 +1215,18 @@
     "strings": {
       "en": {
         "text": "Successor witness"
+      },
+      "fr": {
+        "text": "Témoin successeur"
+      },
+      "de": {
+        "text": "Nachfolger-Zeuge"
+      },
+      "es": {
+        "text": "Testigo sucesor"
+      },
+      "pt": {
+        "text": "Testemunha sucessora"
       }
     }
   },
@@ -461,6 +1234,18 @@
     "strings": {
       "en": {
         "text": "What the complete second arc reveals"
+      },
+      "fr": {
+        "text": "Ce que révèle le deuxième arc complet"
+      },
+      "de": {
+        "text": "Was der vollständige zweite Bogen offenbart"
+      },
+      "es": {
+        "text": "Lo que revela el segundo arco completo"
+      },
+      "pt": {
+        "text": "O que o segundo arco completo revela"
       }
     }
   },
@@ -468,6 +1253,18 @@
     "strings": {
       "en": {
         "text": "Later commentary · source remains evidence · relationships visible only after the record closes"
+      },
+      "fr": {
+        "text": "Commentaire ultérieur · la source reste une preuve · relations visibles seulement après la clôture du registre"
+      },
+      "de": {
+        "text": "Späterer Kommentar · Quelle bleibt Beleg · Beziehungen werden erst nach Abschluss des Datensatzes sichtbar"
+      },
+      "es": {
+        "text": "Comentario posterior · la fuente sigue siendo evidencia · relaciones visibles solo después de que se cierra el registro"
+      },
+      "pt": {
+        "text": "Comentário posterior · a fonte continua sendo evidência · relações visíveis somente depois que o registro se encerra"
       }
     }
   },
@@ -475,6 +1272,18 @@
     "strings": {
       "en": {
         "text": "Loading the later witness…"
+      },
+      "fr": {
+        "text": "Chargement du témoin ultérieur…"
+      },
+      "de": {
+        "text": "Späteres Zeugnis wird geladen…"
+      },
+      "es": {
+        "text": "Cargando el testimonio posterior…"
+      },
+      "pt": {
+        "text": "Carregando o testemunho posterior…"
       }
     }
   },
@@ -482,6 +1291,18 @@
     "strings": {
       "en": {
         "text": "Open witness source ↗"
+      },
+      "fr": {
+        "text": "Ouvrir la source du témoin ↗"
+      },
+      "de": {
+        "text": "Zeugnisquelle öffnen ↗"
+      },
+      "es": {
+        "text": "Abrir fuente del testigo ↗"
+      },
+      "pt": {
+        "text": "Abrir fonte do testemunho ↗"
       }
     }
   },
@@ -489,6 +1310,18 @@
     "strings": {
       "en": {
         "text": "Preserved record complete · later witness begins"
+      },
+      "fr": {
+        "text": "Registre préservé terminé · le témoin ultérieur commence"
+      },
+      "de": {
+        "text": "Bewahrter Datensatz vollständig · späteres Zeugnis beginnt"
+      },
+      "es": {
+        "text": "Registro preservado completo · comienza el testimonio posterior"
+      },
+      "pt": {
+        "text": "Registro preservado completo · começa o testemunho posterior"
       }
     }
   },
@@ -496,6 +1329,18 @@
     "strings": {
       "en": {
         "text": "Representative image layer"
+      },
+      "fr": {
+        "text": "Couche d’image représentative"
+      },
+      "de": {
+        "text": "Repräsentative Bildebene"
+      },
+      "es": {
+        "text": "Capa de imagen representativa"
+      },
+      "pt": {
+        "text": "Camada de imagem representativa"
       }
     }
   },
@@ -503,6 +1348,18 @@
     "strings": {
       "en": {
         "text": "Midnight encounter."
+      },
+      "fr": {
+        "text": "Rencontre à minuit."
+      },
+      "de": {
+        "text": "Begegnung um Mitternacht."
+      },
+      "es": {
+        "text": "Encuentro a medianoche."
+      },
+      "pt": {
+        "text": "Encontro à meia-noite."
       }
     }
   },
@@ -510,6 +1367,18 @@
     "strings": {
       "en": {
         "text": "This derived image follows Victor's later lived recollection of the setting: around midnight on the beach left of Santa Monica Pier, the sand dollar alone near the waterline, pier and amusement lights in the distance, the Ferris wheel carrying a heart-shaped light pattern, and a quarter moon over the ocean. Artwork is representation, not evidence of unrecorded visual detail."
+      },
+      "fr": {
+        "text": "Cette image dérivée suit le souvenir vécu ultérieur de Victor concernant le lieu : vers minuit sur la plage à gauche de la jetée de Santa Monica, le dollar des sables seul près de la ligne d’eau, les lumières de la jetée et des attractions au loin, la grande roue affichant un motif lumineux en forme de cœur, et un quartier de lune au-dessus de l’océan. L’œuvre est une représentation, pas une preuve de détails visuels non consignés."
+      },
+      "de": {
+        "text": "Dieses abgeleitete Bild folgt Victors späterer erlebter Erinnerung an den Ort: gegen Mitternacht am Strand links vom Santa Monica Pier, der Sanddollar allein nahe der Wasserlinie, Pier- und Vergnügungslichter in der Ferne, das Riesenrad mit einem herzförmigen Lichtmuster und ein Viertelmond über dem Ozean. Das Kunstwerk ist Darstellung, kein Beleg für nicht aufgezeichnete visuelle Details."
+      },
+      "es": {
+        "text": "Esta imagen derivada sigue el recuerdo vivido posterior de Victor sobre el lugar: cerca de la medianoche en la playa a la izquierda del muelle de Santa Mónica, el dólar de arena solo cerca de la línea de agua, las luces del muelle y de las atracciones a lo lejos, la noria mostrando un patrón luminoso con forma de corazón y una luna en cuarto sobre el océano. La obra es representación, no evidencia de detalles visuales no registrados."
+      },
+      "pt": {
+        "text": "Esta imagem derivada acompanha a lembrança vivida posterior de Victor sobre o local: por volta da meia-noite, na praia à esquerda do Píer de Santa Mônica, o dólar-da-areia sozinho perto da linha d’água, as luzes do píer e das atrações ao longe, a roda-gigante exibindo um padrão de luz em forma de coração e uma lua em quarto sobre o oceano. A arte é representação, não evidência de detalhes visuais não registrados."
       }
     }
   },
@@ -517,6 +1386,18 @@
     "strings": {
       "en": {
         "text": "Source · PR #345 ↗"
+      },
+      "fr": {
+        "text": "Source · PR #345 ↗"
+      },
+      "de": {
+        "text": "Quelle · PR #345 ↗"
+      },
+      "es": {
+        "text": "Fuente · PR #345 ↗"
+      },
+      "pt": {
+        "text": "Fonte · PR #345 ↗"
       }
     }
   },
@@ -524,6 +1405,18 @@
     "strings": {
       "en": {
         "text": "Recorded period"
+      },
+      "fr": {
+        "text": "Période enregistrée"
+      },
+      "de": {
+        "text": "Aufgezeichneter Zeitraum"
+      },
+      "es": {
+        "text": "Período registrado"
+      },
+      "pt": {
+        "text": "Período registrado"
       }
     }
   },
@@ -531,6 +1424,18 @@
     "strings": {
       "en": {
         "text": "October 17–18, 2026 · Pacific time · exact archive clock not supplied"
+      },
+      "fr": {
+        "text": "17–18 octobre 2026 · heure du Pacifique · heure exacte de l’archive non fournie"
+      },
+      "de": {
+        "text": "17.–18. Oktober 2026 · Pazifikzeit · genaue Archivzeit nicht angegeben"
+      },
+      "es": {
+        "text": "17–18 de octubre de 2026 · hora del Pacífico · no se proporcionó la hora exacta del archivo"
+      },
+      "pt": {
+        "text": "17–18 de outubro de 2026 · horário do Pacífico · horário exato do arquivo não fornecido"
       }
     }
   }
