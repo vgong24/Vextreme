@@ -28,9 +28,12 @@ The registry has two states:
 | `reserved` | The slug, purpose, and intended contracts are held for a later bounded PR. | The page must not exist; the slug must also be absent from node, arc, generated-index, and God Script projections. |
 | `active` | A page has crossed the complete contract and evidence boundary. | `pages/{slug}.html`, every required locale bundle/key, and every declared screenshot cell must exist while archive/runtime exclusions continue to hold. |
 
-The initial reservations were `vextreme-home` and `vex-support`. Both are now
-active English/Japanese/Simplified-Chinese standalone pages with the foundation
-runtime and a complete eighteen-cell locale/theme/viewport matrix per page.
+The initial reservations were `vextreme-home` and `vex-support`. Welcome Wagon A1
+later migrated the active institutional identity from `vextreme-home` to
+`about-vextreme`, while retaining `pages/vextreme-home.html` only as a noindex
+compatibility alias. The active About Vextreme and Support surfaces carry
+English/Japanese/Simplified-Chinese standalone pages with the foundation runtime
+and a complete eighteen-cell locale/theme/viewport matrix per page.
 Support-surface activation does not automatically activate the three explicit
 route cards: their separate route contract still requires every routes[] URL to
 remain null and every route action inert in this row. The five support meanings
@@ -154,8 +157,8 @@ equal to the registry and the values equal to the compiled English bundle.
 `lib/audit-pages.js` derives the auto-discovery exclusions and record-page
 inventory from this registry. `lib/build-index.js`, `lib/build-archives.js`,
 `lib/check-key-alignment.js`, and the Terrain content projection consume that
-derived boundary. The static `SKIP_PAGES` list remains only for generated/dev
-pages; institutional slugs are not copied into it.
+derived boundary. The static `SKIP_PAGES` list remains for generated/dev pages
+and deliberate compatibility shims; active institutional slugs are not copied into it.
 
 `lib/build-index-page.js` advertises every active institutional page whose
 derived file exists. It reads each entry's `discovery.rootLabelKey` from the

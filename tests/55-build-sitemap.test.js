@@ -29,14 +29,14 @@ test('BUILD-SITEMAP: existing content, utility, and active institutional pages a
   ]));
   fs.writeFileSync(path.join(root, 'pages', 'present.html'), '<html></html>');
   fs.writeFileSync(path.join(root, 'pages', 'build-health.html'), '<html></html>');
-  fs.writeFileSync(path.join(root, 'pages', 'vextreme-home.html'), '<html></html>');
+  fs.writeFileSync(path.join(root, 'pages', 'about-vextreme.html'), '<html></html>');
   fs.writeFileSync(path.join(root, 'config', 'institutional-surfaces.json'), JSON.stringify({
-    surfaces: { 'vextreme-home': { state: 'active' }, 'vex-support': { state: 'reserved' } },
+    surfaces: { 'about-vextreme': { state: 'active' }, 'vex-support': { state: 'reserved' } },
   }));
   assert.deepEqual(collectLiveUrls(root), [
     'https://vgong24.github.io/Vextreme/pages/present.html',
     'https://vgong24.github.io/Vextreme/pages/build-health.html',
-    'https://vgong24.github.io/Vextreme/pages/vextreme-home.html',
+    'https://vgong24.github.io/Vextreme/pages/about-vextreme.html',
   ]);
 });
 

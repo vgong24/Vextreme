@@ -4,8 +4,8 @@
  *
  * Usage:
  *   node scripts/screenshot-institutional.js
- *   node scripts/screenshot-institutional.js vextreme-home
- *   node scripts/screenshot-institutional.js vextreme-home --assets-root ../Vextreme-Assets
+ *   node scripts/screenshot-institutional.js about-vextreme
+ *   node scripts/screenshot-institutional.js about-vextreme --assets-root ../Vextreme-Assets
  *
  * --assets-root (or VEXTREME_ASSETS_ROOT) is optional. When supplied, each
  * already-verified locale/theme/viewport PNG is also handed unchanged to the
@@ -271,7 +271,7 @@ async function verifyContract(page, surface, locale, theme, viewport, bundle) {
     const selects = Array.from(document.querySelectorAll('[data-vex-lang-select]'));
     const select = selects[0] || null;
     const institutionalLinks = Array.from(document.querySelectorAll('a[href]'))
-      .filter(anchor => /(^|\/)(?:vextreme-home|vex-support)\.html(?:[?#]|$)/.test(anchor.getAttribute('href') || ''))
+      .filter(anchor => /(^|\/)(?:about-vextreme|vex-support)\.html(?:[?#]|$)/.test(anchor.getAttribute('href') || ''))
       .map(anchor => anchor.getAttribute('href'));
     const linkLocaleIssues = institutionalLinks.filter(href => {
       const parsed = new URL(href, location.href);
@@ -454,7 +454,7 @@ async function browserLocaleState(page) {
       stored: localStorage.getItem('vex-lang'),
       values,
       institutionalHrefs: Array.from(document.querySelectorAll('a[href]'), anchor => anchor.getAttribute('href'))
-        .filter(href => /(^|\/)(?:vextreme-home|vex-support)\.html(?:[?#]|$)/.test(href || '')),
+        .filter(href => /(^|\/)(?:about-vextreme|vex-support)\.html(?:[?#]|$)/.test(href || '')),
     };
   });
 }
@@ -768,7 +768,7 @@ async function main() {
     const baseUrl = `http://127.0.0.1:${port}`;
     process.stdout.write('browser acceptance\n');
     await verifyStaticEnglish(browser, baseUrl, surfaces);
-    const runtimeSurface = surfaces.find(surface => surface.slug === 'vextreme-home' && needsLocaleRuntime(surface))
+    const runtimeSurface = surfaces.find(surface => surface.slug === 'about-vextreme' && needsLocaleRuntime(surface))
       || surfaces.find(needsLocaleRuntime)
       || null;
     if (runtimeSurface) {
