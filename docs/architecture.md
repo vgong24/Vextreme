@@ -3114,12 +3114,14 @@ The registry has two states:
 The initial reservations were `vextreme-home` and `vex-support`. Both are now
 active English/Japanese/Simplified-Chinese standalone pages with the foundation
 runtime and a complete eighteen-cell locale/theme/viewport matrix per page.
-Support activation does not activate a payment destination: its separate route
-contract requires every URL to remain null and every page action inert in this
-row. A reservation is not implementation status, acceptance, payment
-activation, or a promise that planned locales already exist. It prevents
-another page from silently claiming the same identity while the integration
-stack remains reviewable.
+Support-surface activation does not automatically activate the three explicit
+route cards: their separate route contract still requires every routes[] URL to
+remain null and every route action inert in this row. The five support meanings
+are different: they reuse the exact Stripe Checkout destinations already
+preserved in pages/connect.html and reconfirmed by Victor on 2026-10-23.
+A reservation is not implementation status, acceptance, or a promise that
+planned locales already exist. It prevents another page from silently claiming
+the same identity while the integration stack remains reviewable.
 
 Promote `state` from `reserved` to `active` in the same PR that adds the page.
 The validator rejects either half-state: a reserved entry with a page or any
@@ -3265,13 +3267,13 @@ the rest of the repository.
 
 ## What this contract does not decide
 
-The registry contract by itself does not decide payment destination, verified
-financial balance, or commercial engagement endpoint. The implementation
-stack carries the foundation token family, the shared
-progressive-enhancement widget, localized home and support domains, and their
-complete 36-cell render evidence. Payment activation remains held until Victor
-verifies each destination and the fail-closed route contract is deliberately
-advanced in a separate review.
+The registry contract by itself does not decide verified financial balance or
+commercial engagement endpoint. The three explicit support/engagement route
+cards remain held until their own destinations are verified. The five support
+meanings separately reuse the existing Stripe Checkout destinations preserved
+on the earlier Connect page and reconfirmed by Victor on 2026-10-23; restoring
+those links does not activate GitHub Sponsors, a direct-transfer destination,
+or the Vextreme LLC engagement route.
 
 It also does not require separate GitHub accounts or separate operating systems
 to construct or review the work. Linux/Node CI is the deterministic build lane.
