@@ -1,0 +1,224 @@
+name: PR408 exact-candidate visual evidence
+
+on:
+  push:
+    branches:
+      - evidence/pr408-welcome-wagon-visual-a001
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout immutable PR408 candidate
+        uses: actions/checkout@v4
+        with:
+          ref: 7c05f87d9a360da267678f79b5f540344a34646e
+          fetch-depth: 0
+
+      - name: Verify exact candidate binding
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "7c05f87d9a360da267678f79b5f540344a34646e"
+          test "$(git rev-parse HEAD^{tree})" = "0233da901b9479f6648900dc109455b9dd502d64"
+          git diff --exit-code 1418b952c10bf01616ebf5832f6a7533ab51dc2c..HEAD -- pages/terrain-map.html tests/85-terrain-view-contract.test.js
+          mapfile -t changed < <(git diff --name-only 1418b952c10bf01616ebf5832f6a7533ab51dc2c..HEAD)
+          test "${#changed[@]}" -eq 2
+          test "${changed[0]}" = "pages/terrain-map.html"
+          test "${changed[1]}" = "tests/85-terrain-view-contract.test.js"
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install disposable browser proof runtime
+        run: |
+          npm install --no-save --package-lock=false playwright@1.56.1
+          npx playwright install --with-deps chromium
+
+      - name: Capture exact Terrain arrival cells
+        shell: bash
+        run: |
+          cat > /tmp/pr408-visual-proof.cjs <<'NODE'
+          const fs = require('fs');
+          const http = require('http');
+          const path = require('path');
+          const crypto = require('crypto');
+          const { chromium } = require('playwright');
+
+          const ROOT = process.cwd();
+          const OUT = path.join(ROOT, 'artifacts', 'pr408-visual');
+          const CDN = 'https://cdn.jsdelivr.net/gh/vgong24/vextreme@main';
+          fs.mkdirSync(OUT, { recursive: true });
+
+          const mime = {
+            '.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8',
+            '.js':'text/javascript; charset=utf-8','.json':'application/json; charset=utf-8',
+            '.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg',
+            '.webp':'image/webp','.woff':'font/woff','.woff2':'font/woff2','.ttf':'font/ttf'
+          };
+          const typeFor = (p) => mime[path.extname(p).toLowerCase()] || 'application/octet-stream';
+          function safeLocal(urlPath) {
+            let logical = decodeURIComponent(String(urlPath || '/').split('?')[0]);
+            if (logical.startsWith('/Vextreme/')) logical = logical.slice('/Vextreme/'.length);
+            else logical = logical.replace(/^\/+/, '');
+            const absolute = path.resolve(ROOT, logical || 'index.html');
+            if (absolute !== ROOT && !absolute.startsWith(ROOT + path.sep)) throw new Error('path escape');
+            return absolute;
+          }
+          const server = http.createServer((req,res) => {
+            try {
+              let file = safeLocal(req.url);
+              if (fs.existsSync(file) && fs.statSync(file).isDirectory()) file = path.join(file,'index.html');
+              if (!fs.existsSync(file) || !fs.statSync(file).isFile()) {
+                res.writeHead(404); res.end('not found'); return;
+              }
+              const body = fs.readFileSync(file);
+              res.writeHead(200, {'content-type':typeFor(file),'cache-control':'no-store'});
+              res.end(body);
+            } catch (e) {
+              res.writeHead(400); res.end(e.message);
+            }
+          });
+
+          function sha256(file) {
+            return crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+          }
+
+          (async () => {
+            await new Promise((resolve,reject) => {
+              server.once('error',reject);
+              server.listen(0,'127.0.0.1',resolve);
+            });
+            const port = server.address().port;
+            const browser = await chromium.launch({ headless:true, args:['--no-sandbox'] });
+            const cells = [
+              {ref:'desktop-dark', width:1440, height:1000, scheme:'dark'},
+              {ref:'desktop-light', width:1440, height:1000, scheme:'light'},
+              {ref:'mobile-dark', width:390, height:844, scheme:'dark', mobile:true},
+              {ref:'mobile-light', width:390, height:844, scheme:'light', mobile:true}
+            ];
+            const receipt = {
+              schemaVersion:'vextreme.welcome-wagon.terrain-arrival-visual-proof/v1',
+              candidateHead:'7c05f87d9a360da267678f79b5f540344a34646e',
+              candidateTree:'0233da901b9479f6648900dc109455b9dd502d64',
+              base:'1418b952c10bf01616ebf5832f6a7533ab51dc2c',
+              route:'/Vextreme/pages/terrain-map.html?view=content&profile=evolution-v1',
+              cells:[]
+            };
+
+            try {
+              for (const cell of cells) {
+                const context = await browser.newContext({
+                  viewport:{width:cell.width,height:cell.height},
+                  colorScheme:cell.scheme,
+                  isMobile:!!cell.mobile,
+                  hasTouch:!!cell.mobile
+                });
+                const page = await context.newPage();
+                const requests = [];
+                const failures = [];
+                page.on('request', r => requests.push(r.url()));
+                page.on('requestfailed', r => failures.push({url:r.url(),error:r.failure()?.errorText || null}));
+                await page.route(CDN + '/**', async route => {
+                  const requestUrl = route.request().url();
+                  const relative = requestUrl.slice(CDN.length).split('?')[0].replace(/^\/+/, '');
+                  const local = path.resolve(ROOT, relative);
+                  if (local.startsWith(ROOT + path.sep) && fs.existsSync(local) && fs.statSync(local).isFile()) {
+                    await route.fulfill({status:200,contentType:typeFor(local),body:fs.readFileSync(local)});
+                  } else {
+                    await route.continue();
+                  }
+                });
+
+                const url = `http://127.0.0.1:${port}/Vextreme/pages/terrain-map.html?view=content&profile=evolution-v1`;
+                const response = await page.goto(url,{waitUntil:'domcontentloaded',timeout:30000});
+                if (!response || !response.ok()) throw new Error(`${cell.ref}: page response failed`);
+                await page.locator('#vex-site-nav .vex-nav').waitFor({state:'visible',timeout:15000});
+                await page.locator('[data-terrain-entry="arrival"]').waitFor({state:'visible',timeout:15000});
+                await page.locator('[data-entry-action="receive-god"]').waitFor({state:'visible'});
+                await page.locator('[data-entry-action="archives"]').waitFor({state:'visible'});
+                await page.locator('[data-entry-action="about"]').waitFor({state:'visible'});
+                await page.evaluate(async () => { if (document.fonts?.ready) await document.fonts.ready; });
+                await page.waitForTimeout(400);
+
+                const dom = await page.evaluate(() => {
+                  const entry = document.querySelector('[data-terrain-entry="arrival"]');
+                  const cards = [...document.querySelectorAll('.entry-card')];
+                  const nav = document.querySelector('#vex-site-nav .vex-nav');
+                  const spiral = document.getElementById('vex-spiral-trigger');
+                  const heading = entry?.querySelector('h2');
+                  const lede = entry?.querySelector('.entry-lede');
+                  const root = document.documentElement;
+                  const body = document.body;
+                  const style = (el) => el ? getComputedStyle(el) : null;
+                  return {
+                    entryVisible: !!entry && !!(entry.offsetWidth || entry.offsetHeight || entry.getClientRects().length),
+                    actions: cards.map(el => el.getAttribute('data-entry-action')),
+                    cardTitles: cards.map(el => el.querySelector('.entry-title')?.textContent?.trim() || ''),
+                    vexsystemActionCount: document.querySelectorAll('[data-entry-action="vexsystem"]').length,
+                    headingText: heading?.textContent?.trim() || '',
+                    ledeText: lede?.textContent?.trim() || '',
+                    headingFont: style(heading)?.fontFamily || null,
+                    cardTitleFont: style(cards[0]?.querySelector('.entry-title'))?.fontFamily || null,
+                    cardRadius: style(cards[0])?.borderRadius || null,
+                    navVisible: !!nav && !!(nav.offsetWidth || nav.offsetHeight || nav.getClientRects().length),
+                    navBackground: style(nav)?.backgroundColor || null,
+                    navTitleFont: style(document.querySelector('#vex-site-nav .vex-nav-title'))?.fontFamily || null,
+                    spiralPresent: !!spiral,
+                    spiralVisible: !!spiral && !!(spiral.offsetWidth || spiral.offsetHeight || spiral.getClientRects().length),
+                    spiralSize: spiral ? {width:spiral.getBoundingClientRect().width,height:spiral.getBoundingClientRect().height} : null,
+                    documentOverflow: root.scrollWidth - root.clientWidth,
+                    bodyOverflow: body.scrollWidth - body.clientWidth
+                  };
+                });
+
+                const expectedActions = ['receive-god','archives','about'];
+                if (JSON.stringify(dom.actions) !== JSON.stringify(expectedActions)) throw new Error(`${cell.ref}: action order drift ${JSON.stringify(dom.actions)}`);
+                if (dom.vexsystemActionCount !== 0) throw new Error(`${cell.ref}: VexSystem returned to arrival`);
+                if (dom.headingText !== 'How do you want to enter?') throw new Error(`${cell.ref}: heading drift`);
+                if (!dom.ledeText.startsWith('Terrain is the public front door to Vextreme.')) throw new Error(`${cell.ref}: lede drift`);
+                if (!/Source Serif 4|Iowan Old Style|Georgia/i.test(dom.headingFont || '')) throw new Error(`${cell.ref}: heading font not editorial`);
+                if (!/Source Serif 4|Iowan Old Style|Georgia/i.test(dom.cardTitleFont || '')) throw new Error(`${cell.ref}: card title font not editorial`);
+                if (dom.cardRadius !== '10px') throw new Error(`${cell.ref}: card radius drift ${dom.cardRadius}`);
+                if (!dom.navVisible) throw new Error(`${cell.ref}: family nav hidden`);
+                if (!dom.spiralPresent || !dom.spiralVisible) throw new Error(`${cell.ref}: Spiral trigger lost`);
+                if ((dom.spiralSize?.width || 0) < 32 || (dom.spiralSize?.height || 0) < 32) throw new Error(`${cell.ref}: Spiral trigger collapsed`);
+                if (dom.documentOverflow > 1 || dom.bodyOverflow > 1) throw new Error(`${cell.ref}: horizontal overflow`);
+
+                const shot = path.join(OUT, `${cell.ref}.png`);
+                await page.screenshot({path:shot,fullPage:true});
+                receipt.cells.push({
+                  ref:cell.ref,
+                  viewport:{width:cell.width,height:cell.height},
+                  colorScheme:cell.scheme,
+                  dom,
+                  screenshot:{path:path.basename(shot),bytes:fs.statSync(shot).size,sha256:sha256(shot)},
+                  requestCount:requests.length,
+                  requestFailureCount:failures.length,
+                  requestFailures:failures
+                });
+                await context.close();
+              }
+              fs.writeFileSync(path.join(OUT,'receipt.json'), JSON.stringify(receipt,null,2)+'\n');
+              console.log(JSON.stringify({state:'PASS',cells:receipt.cells.map(c=>({ref:c.ref,screenshot:c.screenshot,dom:c.dom}))},null,2));
+            } finally {
+              await browser.close();
+              await new Promise(resolve => server.close(resolve));
+            }
+          })().catch(err => { console.error(err.stack || err); process.exitCode=1; });
+          NODE
+          node /tmp/pr408-visual-proof.cjs
+
+      - name: Upload bounded visual evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr408-welcome-wagon-visual-evidence-7c05f87d
+          path: artifacts/pr408-visual/
+          if-no-files-found: error
+          retention-days: 7
