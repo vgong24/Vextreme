@@ -1,8 +1,8 @@
 {
-  "_comment": "Support route state is kept out of page layout. pages/vex-support.html renders every route's honest inactive state statically, which is the complete no-JavaScript default. The institutional validator requires every non-ACTIVE route to have a null url and an inert page projection. A later payment-activation row may let widgets/vex-institutional.js upgrade a route only when status is ACTIVE and url is a verified HTTPS string. candidateUrl is never renderable. See docs/architecture/18-institutional-pages.md.",
+  "_comment": "The three explicit route cards remain fail-closed and link-free until their own publication predicates pass. Separately, the five support-meaning cards in pages/vex-support.html reuse the exact Stripe Checkout URLs already preserved in pages/connect.html.",
   "schemaVersion": "vextreme.support-routes/v1",
-  "observedAt": "2026-08-01",
-  "publicationRule": "Never render an unverified route as an active payment action. A route becomes ACTIVE only after every entry in its requiredBeforePublication list is genuinely satisfied — not when the list is deleted.",
+  "observedAt": "2026-10-23",
+  "publicationRule": "Never render an unverified routes[] destination as active. The five support-meaning Stripe links are a separate static projection restored from pages/connect.html after Victor reconfirmed them on 2026-10-23.",
   "routes": [
     {
       "routeId": "support.victor.direct",
@@ -45,15 +45,22 @@
     }
   ],
   "tierAmounts": {
-    "status": "CONFIRMED_FOR_DISPLAY_WITHOUT_DESTINATION",
-    "confirmedBy": "Victor, 2026-07-31 — keep the figures, remove the links until GitHub Sponsors is live.",
-    "monthly": { "light": 7, "alignment": 33, "abundance": 77, "foundationBuilder": 333 },
-    "oneTime": { "openOffering": "supporter_chosen" }
+    "status": "ACTIVE_WITH_RESTORED_STRIPE_LINKS",
+    "confirmedBy": "Victor, 2026-10-23 — restore the Stripe links preserved on the earlier Connect page to the corresponding five support meanings.",
+    "monthly": {
+      "light": 7,
+      "alignment": 33,
+      "abundance": 77,
+      "foundationBuilder": 333
+    },
+    "oneTime": {
+      "openOffering": "supporter_chosen"
+    }
   },
   "legacyStripeLinks": {
     "source": "https://www.vextreme24.com/connect",
-    "status": "HISTORICAL_ONLY_DO_NOT_COPY_FORWARD",
-    "reason": "The architecture now separates Victor's personal open-source support from Vextreme LLC engagements, and every active destination must be re-verified independently. A link appearing on the legacy page is not evidence that it is still correct."
+    "status": "OWNER_RECONFIRMED_AND_RESTORED",
+    "reason": "The five Stripe Checkout URLs preserved on the earlier Connect page are restored on pages/vex-support.html after Victor's 2026-10-23 reconfirmation. This does not activate the separate direct-transfer, GitHub Sponsors, or Vextreme LLC route cards."
   },
   "capacityFigures": {
     "status": "WITHHELD_PENDING_VERIFICATION",
