@@ -602,16 +602,16 @@ async function readyTerrainArrival(cdp, page) {
   await waitFor(
     cdp,
     page.sessionId,
-    "document.readyState === 'complete' && document.querySelector('[data-terrain-entry=\"arrival\"]') && document.querySelector('[data-entry-action=\"vexsystem\"]')",
-    'Terrain VexSystem arrival readiness'
+    "document.readyState === 'complete' && document.querySelector('[data-terrain-entry=\"arrival\"]') && document.querySelector('[data-entry-action=\"about\"]')",
+    'Terrain About orientation arrival readiness'
   );
 }
 
 async function terrainArrivalSnapshot(cdp, page) {
   const expression = "(() => {" +
     "const contract = JSON.parse(document.querySelector('#terrain-entry-contract')?.textContent || '{}');" +
-    "const choice = (contract.choices || []).find(item => item.id === 'vexsystem') || null;" +
-    "const button = document.querySelector('[data-entry-action=\"vexsystem\"]');" +
+    "const choice = (contract.choices || []).find(item => item.id === 'about') || null;" +
+    "const button = document.querySelector('[data-entry-action=\"about\"]');" +
     "const reader = document.querySelector('#evolutionReader');" +
     "const rect = button ? button.getBoundingClientRect() : null;" +
     "return {" +
@@ -619,10 +619,10 @@ async function terrainArrivalSnapshot(cdp, page) {
       "entryPresent: Boolean(document.querySelector('[data-terrain-entry=\"arrival\"]'))," +
       "choiceCount: document.querySelectorAll('[data-entry-action]').length," +
       "enabledChoiceCount: [...document.querySelectorAll('[data-entry-action]')].filter(node => !node.disabled).length," +
-      "vexsystemButtonPresent: Boolean(button)," +
-      "vexsystemButtonDisabled: button ? button.disabled : null," +
-      "vexsystemAriaDisabled: button ? button.getAttribute('aria-disabled') : null," +
-      "vexsystemCopy: button ? button.textContent : null," +
+      "aboutButtonPresent: Boolean(button)," +
+      "aboutButtonDisabled: button ? button.disabled : null," +
+      "aboutAriaDisabled: button ? button.getAttribute('aria-disabled') : null," +
+      "aboutCopy: button ? button.textContent : null," +
       "choiceEffect: choice ? choice.effect : null," +
       "choicePath: choice ? choice.path : null," +
       "choiceEnabled: choice ? choice.enabled : null," +
@@ -639,26 +639,26 @@ async function terrainArrivalSnapshot(cdp, page) {
 }
 
 function assertTerrainArrivalSnapshot(snapshot, label) {
-  if (!snapshot.entryPresent || !snapshot.vexsystemButtonPresent) {
+  if (!snapshot.entryPresent || !snapshot.aboutButtonPresent) {
     fail('VEXSYSTEM_BROWSER_TERRAIN_ENTRY_MISSING', label, snapshot);
   }
   if (
     snapshot.choiceCount !== 3 ||
     snapshot.enabledChoiceCount !== 3 ||
-    snapshot.vexsystemButtonDisabled !== false ||
-    snapshot.vexsystemAriaDisabled === 'true'
+    snapshot.aboutButtonDisabled !== false ||
+    snapshot.aboutAriaDisabled === 'true'
   ) {
-    fail('VEXSYSTEM_BROWSER_TERRAIN_VEXSYSTEM_NOT_ACTIVE', label, snapshot);
+    fail('VEXSYSTEM_BROWSER_TERRAIN_ABOUT_NOT_ACTIVE', label, snapshot);
   }
   if (
-    snapshot.choiceEffect !== 'vexsystem-learning-world' ||
-    snapshot.choicePath !== '../vexsystem/' ||
+    snapshot.choiceEffect !== 'plain-orientation' ||
+    snapshot.choicePath !== 'about-vextreme.html' ||
     snapshot.choiceEnabled !== true
   ) {
     fail('VEXSYSTEM_BROWSER_TERRAIN_CONTRACT_MISMATCH', label, snapshot);
   }
   if (snapshot.readerHidden !== true) {
-    fail('VEXSYSTEM_BROWSER_TERRAIN_READER_OWNS_VEXSYSTEM', label, snapshot);
+    fail('VEXSYSTEM_BROWSER_TERRAIN_READER_OWNS_ABOUT', label, snapshot);
   }
   if (snapshot.horizontalOverflow !== 0) {
     fail('VEXSYSTEM_BROWSER_TERRAIN_HORIZONTAL_OVERFLOW', label, snapshot);
@@ -679,7 +679,7 @@ async function runTerrainEntryRuntime(origin, cdp) {
     arrival.buttonCenterY == null ||
     arrival.buttonVisible !== true
   ) {
-    fail('VEXSYSTEM_BROWSER_TERRAIN_VEXSYSTEM_BUTTON_NOT_VISIBLE', 'Terrain desktop arrival', arrival);
+    fail('VEXSYSTEM_BROWSER_TERRAIN_ABOUT_BUTTON_NOT_VISIBLE', 'Terrain desktop arrival', arrival);
   }
 
   await cdp.send('Input.dispatchMouseEvent', {
@@ -706,17 +706,24 @@ async function runTerrainEntryRuntime(origin, cdp) {
   await waitFor(
     cdp,
     desktop.sessionId,
-    "location.pathname === '/Vextreme/vexsystem/' || location.pathname === '/Vextreme/vexsystem/index.html'",
-    'Terrain top-level VexSystem handoff'
+    "location.pathname === '/Vextreme/pages/about-vextreme.html'",
+    'Terrain top-level About Vextreme handoff'
   );
   await ready(cdp, desktop);
   const navigated = await runtimeSnapshot(cdp, desktop);
-  assertRuntimeSnapshot(navigated, 'Terrain -> VexSystem destination');
+  const aboutHeading = await evaluate(cdp, desktop.sessionId, "document.querySelector('[data-i18n=\"institution.about.hero.heading\"]')?.textContent || ''");
+  if (!/public place to understand what exists/i.test(aboutHeading)) {
+    fail('VEXSYSTEM_BROWSER_TERRAIN_ABOUT_ORIENTATION_MISSING', 'About Vextreme did not expose the plain-human orientation heading.', { arrival, aboutHeading });
+  }
+  const vexsystemLink = await evaluate(cdp, desktop.sessionId, "document.querySelector('a[href=\"../vexsystem/index.html\"]')?.getAttribute('href') || ''");
+  if (vexsystemLink !== '../vexsystem/index.html') {
+    fail('VEXSYSTEM_BROWSER_ABOUT_VEXSYSTEM_DEPTH_MISSING', 'VexSystem secondary technical-depth route was not present on About Vextreme.', { vexsystemLink });
+  }
   const topLevel = await evaluate(cdp, desktop.sessionId, 'window.top === window');
   if (topLevel !== true) {
     fail(
-      'VEXSYSTEM_BROWSER_TERRAIN_HANDOFF_EMBEDDED',
-      'Terrain handed VexSystem to an embedded reader instead of top-level navigation.',
+      'VEXSYSTEM_BROWSER_TERRAIN_ABOUT_HANDOFF_EMBEDDED',
+      'Terrain handed About Vextreme to an embedded reader instead of top-level navigation.',
       { arrival, navigated, topLevel }
     );
   }

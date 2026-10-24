@@ -831,7 +831,7 @@
   "choices": [
     { "id": "receive-god", "label": "Receive God", "effect": "reader", "document": "receive-god", "enabled": true },
     { "id": "archives", "label": "Explore the Archives", "effect": "terrain-group-overview", "enabled": true },
-    { "id": "vexsystem", "label": "For VexSystem", "effect": "vexsystem-learning-world", "path": "../vexsystem/", "enabled": true }
+    { "id": "about", "label": "What is this?", "effect": "plain-orientation", "path": "about-vextreme.html", "enabled": true }
   ]
 }
 </script>
@@ -1627,9 +1627,9 @@
     commitSemanticState({ label:'GROUPS', relationship:'entered', reason:'Explore Archives arrival choice' });
   }
 
-  function enterVexSystemFromArrival() {
-    var choice = entryChoice('vexsystem');
-    if (!choice || choice.enabled !== true || choice.effect !== 'vexsystem-learning-world' || typeof choice.path !== 'string') return;
+  function enterAboutFromArrival() {
+    var choice = entryChoice('about');
+    if (!choice || choice.enabled !== true || choice.effect !== 'plain-orientation' || typeof choice.path !== 'string') return;
     var target = new URL(choice.path, window.location.href);
     if (target.origin !== window.location.origin) return;
     window.location.assign(target.href);
@@ -2797,12 +2797,12 @@
       + '<div class="entry-grid">'
       + '<button class="entry-card" type="button" data-entry-action="receive-god"><span class="entry-icon">✦</span><span class="entry-title">Receive God</span><span class="entry-copy">Begin the ordered Vex Life entry. Take a Walk comes after this step, inside the experience.</span><span class="entry-state">Begin here</span></button>'
       + '<button class="entry-card" type="button" data-entry-action="archives"><span class="entry-icon">🗂️</span><span class="entry-title">Explore the Archives</span><span class="entry-copy">Open the next Terrain layer and explore the repository-hosted record by collection.</span><span class="entry-state">Open collections</span></button>'
-      + '<button class="entry-card" type="button" data-entry-action="vexsystem"><span class="entry-icon">◌</span><span class="entry-title">For VexSystem</span><span class="entry-copy">Understand how this world is built, why its structure exists, and what its systems have learned.</span><span class="entry-state">Understand the system</span></button>'
+      + '<button class="entry-card" type="button" data-entry-action="about"><span class="entry-icon">?</span><span class="entry-title">What is this?</span><span class="entry-copy">Get a plain explanation of Vextreme, VexLife, and VexWork before going deeper.</span><span class="entry-state">Orient me</span></button>'
       + '</div></div></section>';
 
     evolutionLayer.querySelector('[data-entry-action="receive-god"]').addEventListener('click', function () { openEntryReader('receive-god'); });
     evolutionLayer.querySelector('[data-entry-action="archives"]').addEventListener('click', enterArchivesFromArrival);
-    evolutionLayer.querySelector('[data-entry-action="vexsystem"]').addEventListener('click', enterVexSystemFromArrival);
+    evolutionLayer.querySelector('[data-entry-action="about"]').addEventListener('click', enterAboutFromArrival);
   }
 
   function hideStageOrientation() {

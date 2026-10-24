@@ -31,7 +31,7 @@ test('VEXSYSTEM: Blueprint is current-first and hides formation-only history', (
   assert.equal(state.lens, 'BLUEPRINT');
   assert.equal(state.selectedSubjectRef, 'feature.vextreme.terrain-entry');
   assert.ok(projection.subjects.some(subject => subject.subjectRef === 'contract.vextreme.terrain-entry.v1'));
-  assert.ok(projection.subjects.some(subject => subject.subjectRef === 'route.vextreme.vexsystem'));
+  assert.ok(projection.subjects.some(subject => subject.subjectRef === 'route.vextreme.about-vextreme'));
   assert.equal(projection.subjects.some(subject => subject.formationOnly === true), false);
 });
 
@@ -80,17 +80,22 @@ test('VEXSYSTEM: semantic zoom changes visible neighborhood, not selected subjec
   assert.ok(sourceProjection.subjects.some(subject => subject.kind === 'PROOF'));
 });
 
-test('VEXSYSTEM: activated VexSystem route is current and remains a parallel branch rather than the primary ordered entry', () => {
-  const route = atlas.subjects.find(subject => subject.subjectRef === 'route.vextreme.vexsystem');
-  assert.ok(route);
-  assert.equal(route.state, 'ACTIVE');
-  assert.ok(route.sourceRefs.includes('vexsystem/index.html'));
+test('VEXSYSTEM: ordinary Terrain orientation and secondary VexSystem depth remain distinct active routes', () => {
+  const about = atlas.subjects.find(subject => subject.subjectRef === 'route.vextreme.about-vextreme');
+  const vexsystem = atlas.subjects.find(subject => subject.subjectRef === 'route.vextreme.vexsystem');
+  assert.ok(about);
+  assert.ok(vexsystem);
+  assert.equal(about.state, 'ACTIVE');
+  assert.equal(vexsystem.state, 'ACTIVE');
+  assert.ok(about.sourceRefs.includes('pages/about-vextreme.html'));
+  assert.ok(vexsystem.sourceRefs.includes('vexsystem/index.html'));
 
-  const relation = atlas.relations.find(item =>
-    item.relationRef === 'rel.vexsystem.contract-to-vexsystem'
-  );
-  assert.ok(relation);
-  assert.equal(relation.branchClass, 'ALTERNATIVE_BRANCH');
+  const aboutRelation = atlas.relations.find(item => item.relationRef === 'rel.vexsystem.contract-to-about-vextreme');
+  const systemRelation = atlas.relations.find(item => item.relationRef === 'rel.vexsystem.system-to-vexsystem-depth');
+  assert.ok(aboutRelation);
+  assert.ok(systemRelation);
+  assert.equal(aboutRelation.branchClass, 'ALTERNATIVE_BRANCH');
+  assert.equal(systemRelation.branchClass, 'ALTERNATIVE_BRANCH');
 });
 
 test('VEXSYSTEM: focus trail supports forward exploration and semantic return', () => {
