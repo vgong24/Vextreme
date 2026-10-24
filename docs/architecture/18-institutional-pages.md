@@ -208,7 +208,7 @@ hardware ownership or account count into architecture.
 
 ## Adding another institutional surface
 
-1. Reserve a globally unique `vex-` or `vextreme-` slug in the registry.
+1. Reserve a globally unique lowercase kebab-case slug in the registry. Institutional class comes from the registry, not from a required slug prefix.
 2. Record its semantic purpose and the smallest honest runtime/string/theme/
    evidence contract.
 3. Open the page implementation as a separate bounded PR.

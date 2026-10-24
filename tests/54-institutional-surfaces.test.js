@@ -443,7 +443,7 @@ test('INSTITUTIONAL-SURFACES: unsafe identity and permissive runtime fail closed
   const broken = {
     schemaVersion: SCHEMA_VERSION,
     surfaces: {
-      home: entry({
+      'Home Page': entry({
         runtime: { mode: 'standalone', godScript: true, shell: false },
         archive: { indexed: true, arcMembership: false },
       }),
