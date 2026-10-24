@@ -5,12 +5,12 @@
   The institutional support page: what the work is, how it formed, what
   support protects, and which routes remain unavailable today.
 
-  THREE THINGS THIS PAGE DELIBERATELY DOES NOT DO
-  -----------------------------------------------
-  1. It publishes no payment destination. Every route renders its real held
-     state as static markup. A later payment-activation row may turn a route
-     on only through the fail-closed contract in data/support-routes.json;
-     a route with a null URL can never render a link.
+  THREE BOUNDARIES THIS PAGE KEEPS EXPLICIT
+  ------------------------------------------
+  1. The three route doors above the support meanings remain held until their
+     own publication predicates pass. The five support-meaning cards are a
+     separate, reviewed payment-activation row: each one renders only the exact
+     Stripe Checkout destination owned by data/support-routes.json.
   2. It publishes no financial figure that has not been reconciled. The
      capacity ladder carries stage state, not amounts. Founder-reported
      numbers exist, one was tied to a date that had already passed, and one
@@ -20,9 +20,10 @@
      JA and ZH are applied only from the independently reviewed canonical
      source bundle; the authored English remains intact when JavaScript is off.
 
-  The tier amounts ARE shown. Victor confirmed on 2026-07-31 to keep the
-  figures and remove the destinations until GitHub Sponsors is live — see
-  data/support-routes.json tierAmounts.confirmedBy.
+  The tier amounts and Stripe Checkout destinations are now shown together.
+  Victor explicitly asked on 2026-10-23 to restore the five Stripe links
+  preserved on the earlier Connect page; data/support-routes.json owns the
+  exact mapping while the other support/engagement routes remain held.
 
   Institutional surface, not an archive record. Self-contained: no God Script,
   no God Script. Complete and honest with JavaScript disabled.
@@ -38,7 +39,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title data-i18n="institution.support.title">Support Vextreme and VexLife</title>
-<meta name="description" content="How support can protect the open-source work behind Vextreme and VexLife, what support does not purchase, and why every public route remains held until independently verified.">
+<meta name="description" content="How support can protect the open-source work behind Vextreme and VexLife, five Stripe Checkout destinations for the support meanings, and which separate routes remain held pending verification.">
 <meta name="vex:department" content="institute">
 <meta name="vex:workType" content="governance">
 <script>
@@ -106,7 +107,7 @@
   <!-- ── Routes: three doors, not three checkouts ────────────────────────── -->
   <section class="vex-section vex-inst-shell" aria-labelledby="routes-heading">
     <h2 class="vex-h1" id="routes-heading" data-i18n="institution.support.routes.heading">Ways to support</h2>
-    <p class="vex-lede" data-i18n="institution.support.routes.intro">Three separate doors, not three equivalent checkouts. Every public action remains closed until its exact destination is verified; this page shows each route's present state without rendering a link that goes nowhere.</p>
+    <p class="vex-lede" data-i18n="institution.support.routes.intro">Three separate doors, not three equivalent checkouts. These three routes remain closed until their exact destinations are verified; the five support meanings below use separately owner-confirmed Stripe Checkout destinations.</p>
 
     <div class="vex-routes">
 
@@ -133,8 +134,8 @@
           <h3 class="vex-route-title" data-i18n="institution.support.route.github.title">Sponsor through GitHub</h3>
           <span class="vex-badge vex-badge-pending" data-i18n="institution.support.route.state.activating">Activating</span>
         </div>
-        <p class="vex-route-body" data-i18n="institution.support.route.github.body">Recurring and one-time sponsorship for the public open-source work, with no platform cut taken out of it. This is where the support meanings below will link once it is live.</p>
-        <p class="vex-provenance" data-vex-route-pending data-i18n="institution.support.route.github.pending">Not open yet. GitHub Sponsors requires a completed public presence before it will approve an account, and approval then takes its own review period. This page is part of building that presence. Until it clears, the amounts below are shown without a destination rather than pointed at a payment processor that would take a percentage of what Victor needs this month.</p>
+        <p class="vex-route-body" data-i18n="institution.support.route.github.body">Recurring and one-time sponsorship for the public open-source work, with no platform cut taken out of it. When it becomes live, it will be an additional sponsorship route alongside the Stripe Checkout destinations below.</p>
+        <p class="vex-provenance" data-vex-route-pending data-i18n="institution.support.route.github.pending">Not open yet. GitHub Sponsors still requires approval and a verified public profile. The Stripe Checkout destinations below are published separately now; this route remains held until its own publication checks pass.</p>
         <span class="vex-btn vex-btn-disabled" role="link" aria-disabled="true" tabindex="0"
               data-vex-route-action
               data-i18n="institution.support.route.disabled-label">Not available yet</span>
@@ -320,7 +321,7 @@
   <section class="vex-section vex-inst-shell" aria-labelledby="meanings-heading">
     <h2 class="vex-h1" id="meanings-heading" data-i18n="institution.support.meanings.heading">Five support meanings</h2>
     <p class="vex-lede" data-i18n="institution.support.meanings.intro">These are support meanings, not moral ranks, memberships, service packages, or levels of authority. The public work remains equally available at every one of them, and at none of them. Greater support does not create greater human importance or authority over the work.</p>
-    <p class="vex-provenance" data-i18n="institution.support.meanings.amount-note">Amounts are shown as the intended monthly meanings. They are not links: no destination is attached until GitHub Sponsors is live.</p>
+    <p class="vex-provenance" data-i18n="institution.support.meanings.amount-note">Amounts are shown as the intended monthly meanings. Each card now opens the corresponding Stripe Checkout destination restored from the earlier Connect page and reconfirmed by Victor on October 23, 2026; GitHub Sponsors remains a separate pending route.</p>
 
     <!--
       The five images carry visual lineage from the older Connect page. They
@@ -329,7 +330,9 @@
       purpose: no meaning is rendered as the important one.
     -->
     <ul class="vex-meanings">
-      <li class="vex-meaning">
+      <li class="vex-meaning" data-vex-support-tier="light">
+        <a class="vex-meaning-link" data-vex-tier-checkout
+           href="https://buy.stripe.com/8x25kC4XAb3g0Hafpw9MY00" target="_blank" rel="noopener noreferrer">
         <figure class="vex-meaning-figure">
           <img src="../assets/support/light-candle.webp" width="640" height="640" decoding="async"
                data-i18n-alt="institution.support.meaning.light.alt"
@@ -340,8 +343,11 @@
           <p class="vex-meaning-amount" data-i18n="institution.support.meaning.light.amount">$7 / month</p>
           <p class="vex-meaning-body" data-i18n="institution.support.meaning.light.body">A small recurring act that helps keep the public foundations available.</p>
         </div>
+        </a>
       </li>
-      <li class="vex-meaning">
+      <li class="vex-meaning" data-vex-support-tier="alignment">
+        <a class="vex-meaning-link" data-vex-tier-checkout
+           href="https://buy.stripe.com/28E3cuahUefs3Tmfpw9MY02" target="_blank" rel="noopener noreferrer">
         <figure class="vex-meaning-figure">
           <img src="../assets/support/alignment-weave.webp" width="640" height="640" decoding="async"
                data-i18n-alt="institution.support.meaning.alignment.alt"
@@ -352,8 +358,11 @@
           <p class="vex-meaning-amount" data-i18n="institution.support.meaning.alignment.amount">$33 / month</p>
           <p class="vex-meaning-body" data-i18n="institution.support.meaning.alignment.body">Stable support that gives Victor consistent time and capacity to continue.</p>
         </div>
+        </a>
       </li>
-      <li class="vex-meaning">
+      <li class="vex-meaning" data-vex-support-tier="abundance">
+        <a class="vex-meaning-link" data-vex-tier-checkout
+           href="https://buy.stripe.com/4gM6oGblYefs61u4KS9MY03" target="_blank" rel="noopener noreferrer">
         <figure class="vex-meaning-figure">
           <img src="../assets/support/abundance-tree.webp" width="640" height="640" decoding="async"
                data-i18n-alt="institution.support.meaning.abundance.alt"
@@ -364,8 +373,11 @@
           <p class="vex-meaning-amount" data-i18n="institution.support.meaning.abundance.amount">$77 / month</p>
           <p class="vex-meaning-body" data-i18n="institution.support.meaning.abundance.body">Expanded capacity for documentation, localization, testing, accessibility, and growth.</p>
         </div>
+        </a>
       </li>
-      <li class="vex-meaning">
+      <li class="vex-meaning" data-vex-support-tier="foundationBuilder">
+        <a class="vex-meaning-link" data-vex-tier-checkout
+           href="https://buy.stripe.com/bJecN49dQ8V8dtWb9g9MY04" target="_blank" rel="noopener noreferrer">
         <figure class="vex-meaning-figure">
           <img src="../assets/support/foundation-builder.webp" width="640" height="640" decoding="async"
                data-i18n-alt="institution.support.meaning.foundation.alt"
@@ -376,8 +388,11 @@
           <p class="vex-meaning-amount" data-i18n="institution.support.meaning.foundation.amount">$333 / month</p>
           <p class="vex-meaning-body" data-i18n="institution.support.meaning.foundation.body">Major foundational support for durable releases, infrastructure, model access, and independent review.</p>
         </div>
+        </a>
       </li>
-      <li class="vex-meaning">
+      <li class="vex-meaning" data-vex-support-tier="openOffering">
+        <a class="vex-meaning-link" data-vex-tier-checkout
+           href="https://buy.stripe.com/28E5kC2Psb3g2Pi3GO9MY01" target="_blank" rel="noopener noreferrer">
         <figure class="vex-meaning-figure">
           <img src="../assets/support/open-offering-hand-water.webp" width="640" height="640" decoding="async"
                data-i18n-alt="institution.support.meaning.offering.alt"
@@ -388,6 +403,7 @@
           <p class="vex-meaning-amount" data-i18n="institution.support.meaning.offering.amount">Amount you choose</p>
           <p class="vex-meaning-body" data-i18n="institution.support.meaning.offering.body">A one-time, supporter-chosen expression of immediate help or gratitude.</p>
         </div>
+        </a>
       </li>
     </ul>
   </section>

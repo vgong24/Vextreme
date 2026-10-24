@@ -497,6 +497,30 @@ select.vex-control {
   flex-direction: column;
 }
 
+.vex-meaning-link {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.vex-meaning-link:hover {
+  background: var(--bg-surface-raised);
+}
+
+.vex-meaning-link:hover .vex-meaning-name,
+.vex-meaning-link:focus-visible .vex-meaning-name {
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+}
+
+.vex-meaning-link:focus-visible {
+  outline: var(--border-w-strong) solid var(--text-primary);
+  outline-offset: calc(-1 * var(--border-w-strong));
+}
+
 .vex-meaning-figure {
   margin: 0;
   aspect-ratio: 1 / 1;

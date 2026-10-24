@@ -1731,10 +1731,11 @@
       }
     },
     "lib/check-institutional-surfaces.js": {
-      "role": "fail-closed institutional-surface registry, identity-reservation, static-English, inactive-support-route, runtime-localization, and evidence validator",
-      "context": "Institutional Surface Integration 4/4. Reserved entries own identity across page, node, arc, generated-index, and God Script projections. Active entries provide one standalone page with explicit surface/string-category/string-scope/theme markers, static English text/alt/ARIA values equal to the compiled English bundle, complete visible and accessibility locale bindings, exactly one labelled native-language selector, synchronous pre-paint localization wiring, hostile-failure-safe behavioral execution of the declared multi-locale loader/control, and structurally valid PNG evidence for every declared locale/theme/viewport cell. The support domain additionally binds its data-vex-route identities to data/support-routes.json and fails closed unless every route remains inactive, null-backed, prerequisite-bearing, action-bearing, ARIA-disabled, link-free, and candidate-free; payment activation remains outside this row.",
+      "role": "fail-closed institutional-surface registry, identity-reservation, static-English, held-support-route, active-tier-checkout, runtime-localization, and evidence validator",
+      "context": "Institutional Surface Integration 4/4 plus the separately reviewed support-payment activation row. Reserved entries own identity across page, node, arc, generated-index, and God Script projections. Active entries provide one standalone page with explicit surface/string-category/string-scope/theme markers, static English text/alt/ARIA values equal to the compiled English bundle, complete visible and accessibility locale bindings, exactly one labelled native-language selector, synchronous pre-paint localization wiring, hostile-failure-safe behavioral execution of the declared multi-locale loader/control, and structurally valid PNG evidence for every declared locale/theme/viewport cell. The support domain keeps its three route-door identities fail-closed while v2 separately binds tier amount identities to exact owner-confirmed Stripe Checkout URLs and exact page anchors; repository binding does not claim processor-side reachability.",
       "reads": [
         "config/institutional-surfaces.json (surface lifecycle, discovery, and registry-declared runtime.supportRoutes target)",
+        "data/support-routes.json (held support-route state plus exact active tier Checkout destinations)",
         "lib/vex-config.js (valid compiled-string categories)",
         "lib/screenshot-evidence.js (canonical filenames plus pinned Assets evidence normalization)",
         "data/screenshot-evidence-assets.json (pinned Vextreme-Assets screenshot records used only as local-missing fallback)",
@@ -1763,7 +1764,8 @@
         "tests/54-institutional-surfaces.test.js"
       ],
       "changeMap": {
-        "active page marker, static-English, inactive-support-route, runtime, or archive-boundary rules change": [
+        "active page marker, static-English, held-support-route/tier-checkout, runtime, or archive-boundary rules change": [
+          "data/support-routes.json support-domain contract",
           "config/institutional-surfaces.json entry schema",
           "tests/54-institutional-surfaces.test.js active valid/invalid fixtures",
           "docs/architecture/18-institutional-pages.md active-page invariants"

@@ -3114,12 +3114,14 @@ The registry has two states:
 The initial reservations were `vextreme-home` and `vex-support`. Both are now
 active English/Japanese/Simplified-Chinese standalone pages with the foundation
 runtime and a complete eighteen-cell locale/theme/viewport matrix per page.
-Support activation does not activate a payment destination: its separate route
-contract requires every URL to remain null and every page action inert in this
-row. A reservation is not implementation status, acceptance, payment
-activation, or a promise that planned locales already exist. It prevents
-another page from silently claiming the same identity while the integration
-stack remains reviewable.
+Support-page activation and payment activation remain distinct. The three
+support/engagement route doors still require null URLs and inert actions until
+their own predicates pass. The separately reviewed v2 support contract now
+activates the five support-meaning Stripe Checkout destinations as an exact
+config-to-page projection. A reservation is not implementation status,
+acceptance, payment activation, or a promise that planned locales already
+exist. It prevents another page from silently claiming the same identity while
+the integration stack remains reviewable.
 
 Promote `state` from `reserved` to `active` in the same PR that adds the page.
 The validator rejects either half-state: a reserved entry with a page or any
@@ -3205,15 +3207,27 @@ active entry, proves these projections together:
    storage change together only after validation, preventing mixed-language
    rendering and wrong-locale first paint.
 6. When `runtime.supportRoutes` names a route contract, it must belong to the
-   `open-source-support` purpose, use `vextreme.support-routes/v1`, and match
-   the page's `data-vex-route` identities exactly. This support-domain row
+   `open-source-support` purpose and use `vextreme.support-routes/v2`. The
+   contract deliberately keeps two effect classes separate. `routes[]`
+   continues to match the page's `data-vex-route` identities exactly and
    accepts only inactive statuses, null `url` fields, retained publication
    prerequisites, no route-local anchors, at least one projected action per
    route, and only actions carrying `aria-disabled="true"`. A recorded
-   `candidateUrl` is evidence for later verification: its literal value must
-   not appear in rendered route text or attributes. Payment activation must
-   change this contract in its own reviewed row; renaming a held state to
-   `ACTIVE` cannot bypass it.
+   `candidateUrl` remains evidence for later verification and its literal
+   value must not appear in rendered route text or attributes.
+
+   The separately reviewed `tierCheckout` row is the payment-activation
+   contract for the support meanings. Its tier identities are derived from
+   `tierAmounts.monthly` plus `tierAmounts.oneTime`; every one must have
+   exactly one owner-confirmed `https://buy.stripe.com/…` destination and
+   exactly one matching `data-vex-support-tier` page projection containing
+   one `data-vex-tier-checkout` anchor. The anchor's `href` must equal the
+   configured URL byte-for-byte and carry `target="_blank"` plus
+   `rel="noopener noreferrer"`. An amount without a destination, a
+   destination without an amount, a substituted host, a duplicate projection,
+   or page-local URL drift fails closed. This binding proves repository
+   destination identity and current owner intent; it does not by itself prove
+   Stripe processor reachability or merchant-account state.
 7. Every required locale × declared theme × declared viewport cell exists as
    `docs/screenshots/{slug}-{locale}-{theme}-{viewport}.png` with a PNG
    signature, valid chunk boundaries, positive dimensions, IDAT/IEND chunks,
@@ -3265,13 +3279,15 @@ the rest of the repository.
 
 ## What this contract does not decide
 
-The registry contract by itself does not decide payment destination, verified
-financial balance, or commercial engagement endpoint. The implementation
-stack carries the foundation token family, the shared
+The institutional registry by itself does not decide payment destination,
+verified financial balance, or commercial engagement endpoint. The support
+contract now owns the separately reviewed five-tier Stripe destination mapping;
+the three route doors still remain held under their own predicates. The
+implementation stack carries the foundation token family, the shared
 progressive-enhancement widget, localized home and support domains, and their
-complete 36-cell render evidence. Payment activation remains held until Victor
-verifies each destination and the fail-closed route contract is deliberately
-advanced in a separate review.
+complete 36-cell render evidence. Repository acceptance of a Checkout URL is
+not evidence that Stripe's remote processor or merchant account is currently
+reachable; that external fact remains separately observable.
 
 It also does not require separate GitHub accounts or separate operating systems
 to construct or review the work. Linux/Node CI is the deterministic build lane.
