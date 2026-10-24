@@ -48,20 +48,43 @@
   /* The shared shell owns --vex-site-nav-height. Keep this viewport app
      exactly inside the remaining surface instead of clipping one nav-height
      from the map's bottom edge. */
-  #vex-site-nav{
-    /* Welcome Wagon projection: shared shell remains the owner; Terrain only
-       supplies its authored palette/type context instead of inheriting the
-       shell's unrelated light fallbacks. */
-    --cream:var(--ground);
-    --stone:var(--ink);
-    --muted:var(--ink-muted);
-    --border:var(--line-strong);
-    --ember:var(--ink);
-    --ember-bg:var(--panel-2);
-    --serif:"Source Serif 4", "Iowan Old Style", Georgia, serif;
-    --sans:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    --mono:"IBM Plex Mono", ui-monospace, "SF Mono", monospace;
+  /* Welcome Wagon projection: the shared shell still owns nav structure and
+     behavior. Terrain styles only the nav's own presentation classes so the
+     nested #vex-nav-actions / Spiral FAB retains its existing visual contract. */
+  #vex-site-nav .vex-nav{
+    background:var(--ground);
+    border-color:var(--line-strong);
+    font-family:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   }
+  #vex-site-nav .vex-nav-title,
+  #vex-site-nav .vex-nav-product{
+    font-family:"Source Serif 4", "Iowan Old Style", Georgia, serif;
+  }
+  #vex-site-nav .vex-nav-title{ color:var(--ink); }
+  #vex-site-nav .vex-nav-product,
+  #vex-site-nav .vex-nav-link,
+  #vex-site-nav .vex-nav-mobile-link,
+  #vex-site-nav .vex-nav-toggle{ color:var(--ink-muted); }
+  #vex-site-nav .vex-nav-brand-separator{
+    color:var(--ink-faint);
+    font-family:"IBM Plex Mono", ui-monospace, "SF Mono", monospace;
+  }
+  #vex-site-nav .vex-nav-title:hover,
+  #vex-site-nav .vex-nav-product:hover,
+  #vex-site-nav .vex-nav-link:hover,
+  #vex-site-nav .vex-nav-mobile-link:hover,
+  #vex-site-nav .vex-nav-toggle:hover,
+  #vex-site-nav .vex-nav-link.active,
+  #vex-site-nav .vex-nav-mobile-link.active{
+    color:var(--ink);
+  }
+  #vex-site-nav .vex-nav-link:hover,
+  #vex-site-nav .vex-nav-toggle:hover{ background:var(--panel-2); }
+  #vex-site-nav .vex-nav-mobile{
+    background:var(--ground);
+    border-color:var(--line-strong);
+  }
+  #vex-site-nav .vex-nav-mobile-link{ border-color:var(--line-strong); }
   #vex-site-nav + .app{
     height:calc(100vh - var(--vex-site-nav-height, 61px));
     height:calc(100dvh - var(--vex-site-nav-height, 61px));

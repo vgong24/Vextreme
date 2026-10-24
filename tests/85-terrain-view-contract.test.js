@@ -900,7 +900,10 @@ test('TERRAIN-VIEW: ordered entry keeps human orientation primary while VexSyste
 test('TERRAIN-VIEW: Welcome Wagon arrival converges visually without importing institutional runtime ownership', () => {
   const source = pageSource();
 
-  assert.match(source, /#vex-site-nav\s*\{[\s\S]*--cream:var\(--ground\);[\s\S]*--stone:var\(--ink\);[\s\S]*--ember:var\(--ink\);/u);
+  assert.match(source, /#vex-site-nav \.vex-nav\{[\s\S]*background:var\(--ground\);[\s\S]*border-color:var\(--line-strong\);/u);
+  assert.match(source, /#vex-site-nav \.vex-nav-title,[\s\S]*font-family:"Source Serif 4"/u);
+  assert.doesNotMatch(source, /#vex-site-nav\s*\{[\s\S]*--stone:/u);
+  assert.doesNotMatch(source, /#vex-site-nav\s*\{[\s\S]*--ember-bg:/u);
   assert.match(source, /\.entry-arrival\{[\s\S]*--entry-serif:"Source Serif 4"[\s\S]*--entry-sans:"IBM Plex Sans"[\s\S]*--entry-mono:"IBM Plex Mono"/u);
   assert.match(source, /\.entry-shell h2\{[\s\S]*var\(--entry-serif\)/u);
   assert.match(source, /\.entry-title\{[^}]*var\(--entry-serif\)/u);
