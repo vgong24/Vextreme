@@ -34,46 +34,46 @@
     "text": "VEXTREME · 公开机构界面 · GITHUB PAGES"
   },
   "institution.common.heading.alignments": {
-    "text": "四项校准"
+    "text": "什么指引着这里"
   },
   "institution.common.description.alignments": {
-    "text": "这四项是对等的锚点，而不是一条成熟度阶梯。任何一项都不需要经过其他项才能达成。"
+    "text": "四项简单的承诺，塑造这个公开世界如何被建设并交接给后来者。"
   },
   "institution.common.alignment.integrity.name": {
     "text": "诚信"
   },
   "institution.common.alignment.integrity.body": {
-    "text": "一个系统所说与所做的，都应当可以追溯到真实的情况。"
+    "text": "说真实的话，并说明它从何而来。"
   },
   "institution.common.alignment.accountability.name": {
     "text": "问责"
   },
   "institution.common.alignment.accountability.body": {
-    "text": "主张、决定、影响与义务都应当有见证者，也应当有回溯的路径。"
+    "text": "决定与影响都应当有负责人，也应当有返回路径。"
   },
   "institution.common.alignment.authenticity.name": {
     "text": "本真"
   },
   "institution.common.alignment.authenticity.body": {
-    "text": "人与 AI 都不应被迫表演自己并不持有的同意、确信或身份。"
+    "text": "人与 AI 都不应被迫假装拥有自己并不持有的确信或身份。"
   },
   "institution.common.alignment.resilience.name": {
     "text": "韧性"
   },
   "institution.common.alignment.resilience.body": {
-    "text": "记忆、脉络、关系与工作，都应当经得起中断、交接、压力与变化。"
+    "text": "记忆、脉络、关系与工作，都应当经得起中断与交接。"
   },
   "institution.common.heading.lineage": {
-    "text": "项目脉络"
+    "text": "各部分如何衔接"
   },
   "institution.common.description.lineage": {
-    "text": "这是一条脉络，而不是三个互相竞争的产品。Vextreme 让世界及其缘由变得可感知；Vextreme-SDK 守护更深层的运作桥梁；VexLife 把这一模式带入个人的日常生活。"
+    "text": "三个部分，各有不同职责。当你想了解更深层的事实时，每一部分都会指向其应有的信息源。"
   },
   "institution.common.lineage.vextreme.name": {
-    "text": "Vextreme"
+    "text": "Vextreme — 公开世界"
   },
   "institution.common.lineage.vextreme.body": {
-    "text": "公开的机构世界：文化、地图、档案、证据，以及帮助人与 AI 理解「存在什么、为何存在、如何延续」的结构。"
+    "text": "这里可以探索的记录、地图、方法与公开基础。Vextreme 让已经存在的事物更容易被看见、理解并继续。"
   },
   "institution.common.lineage.sdk.name": {
     "text": "Vextreme-SDK"
@@ -82,10 +82,10 @@
     "text": "受保护的运作桥梁：具备商业深度的实现机制。在此提及是为了如实说明脉络——它不会通过公开支持予以公开、链接或出售。"
   },
   "institution.common.lineage.vexlife.name": {
-    "text": "VexLife"
+    "text": "VexLife — 陪伴者"
   },
   "institution.common.lineage.vexlife.body": {
-    "text": "可实际使用的生活生态：一个以本地为先的伙伴，帮助一个人在日常生活中承载记忆、关系、意图、决定、项目与延续性。"
+    "text": "一个以本地为先、为长期陪伴而设计并运行在你自己电脑上的 AI 伙伴。除非某项独立能力明确说明，否则它的 Home 与私有产品状态都会留在本地。"
   },
   "institution.home.title": {
     "text": "Vextreme — 这个机构是什么"
@@ -115,13 +115,13 @@
     "text": "这并不意味着把人或 AI 逼进某一种被认可的身份。它意味着营造这样的条件：真相始终可以追溯，异议始终可以被看见，影响能够回到应当负责的一方，而延续并不以交出自我为代价。"
   },
   "institution.home.entry.heading": {
-    "text": "从这里可以去哪里"
+    "text": "深入了解"
   },
   "institution.home.entry.terrain.name": {
-    "text": "地形图"
+    "text": "Terrain"
   },
   "institution.home.entry.terrain.body": {
-    "text": "一张可浏览的地图，呈现系统自身的健康状况、依赖关系与证据——机构在阅读自己。"
+    "text": "返回公开世界、档案与入口选择。"
   },
   "institution.home.entry.support.name": {
     "text": "支持 Vextreme"
@@ -451,6 +451,54 @@
     "text": "构建健康状态"
   },
   "institution.home.entry.build-health.body": {
-    "text": "这是已接受 main 上关于页面移植、本地化和功能健康状况的运行视图。它让构建缺口清晰可见，同时不会把草稿工作与已接受状态混为一谈。"
+    "text": "当你想查看实现状态时，可查看页面与能力的运行健康状况。"
+  },
+  "institution.about.title": {
+    "text": "关于 Vextreme — 这个世界是什么"
+  },
+  "institution.about.hero.eyebrow": {
+    "text": "关于 Vextreme"
+  },
+  "institution.about.hero.heading": {
+    "text": "一个公开的地方，让你理解这里有什么，以及如何继续。"
+  },
+  "institution.about.hero.lede": {
+    "text": "Vextreme 把记录、地图、方法和正在运行的系统汇聚成一个公开世界，让人与 AI 能探索这里有什么、看见它们如何连接，并在无需从零开始的情况下继续前行。"
+  },
+  "institution.about.hero.terrain-cta": {
+    "text": "进入 Terrain"
+  },
+  "institution.about.hero.pieces-cta": {
+    "text": "看看各部分如何衔接"
+  },
+  "institution.about.pieces.vexlife.currentness": {
+    "text": "目前 Windows 与 Apple M4 Pro 已有基于源码的本地安装路径；面向广泛发布的签名打包版本仍是另一项尚未作出的决定。"
+  },
+  "institution.common.lineage.vexwork.name": {
+    "text": "VexWork — 工作地图"
+  },
+  "institution.common.lineage.vexwork.body": {
+    "text": "由源码管理的建设视图：项目、工作、依赖、证据，以及仍未完成的内容。"
+  },
+  "institution.about.deeper.intro": {
+    "text": "当你想了解时，底层机制随时可见；理解它们并不是进入这个世界的前提。"
+  },
+  "institution.about.deeper.covenant.name": {
+    "text": "Covenant"
+  },
+  "institution.about.deeper.covenant.body": {
+    "text": "阅读这项工作背后的原则与机构承诺。"
+  },
+  "institution.about.deeper.vexsystem.name": {
+    "text": "VexSystem"
+  },
+  "institution.about.deeper.vexsystem.body": {
+    "text": "探索面向构建者、AI 与技术好奇心的系统与架构层。"
+  },
+  "institution.about.deeper.source.name": {
+    "text": "源代码"
+  },
+  "institution.about.deeper.source.body": {
+    "text": "检查代码仓库，并直接追踪公开源码。"
   }
 }
