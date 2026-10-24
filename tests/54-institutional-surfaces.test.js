@@ -846,6 +846,24 @@ test('INSTITUTIONAL-SURFACES: a bounded standalone active fixture passes', () =>
   assert.deepEqual(validateRegistry(active, root), []);
 });
 
+test('INSTITUTIONAL-SURFACES: active institutional headers project shared Vextreme family identity without replacing local navigation', () => {
+  for (const slug of ['about-vextreme', 'vex-support', 'vextreme-covenant']) {
+    const html = fs.readFileSync(path.join(ROOT, 'pages', slug + '.html'), 'utf8');
+    assert.match(html, /<nav class="vex-family-nav" aria-label="Vextreme family">/);
+    assert.match(html, /href="terrain-map\.html\?view=content&amp;profile=evolution-v1">Vextreme<\/a>/);
+    assert.match(html, /href="https:\/\/vgong24\.github\.io\/VexLife\/">VexLife<\/a>/);
+    assert.match(html, /href="https:\/\/vexgpt\.github\.io\/VexWork\/">VexWork<\/a>/);
+    assert.match(html, /<nav class="vex-nav" aria-label="Institutional">/,
+      slug + ' keeps its local institutional navigation');
+  }
+
+  const css = fs.readFileSync(path.join(ROOT, 'styles', 'vex-institutional.css'), 'utf8');
+  assert.match(css, /\.vex-family-nav \{/);
+  assert.match(css, /\.vex-family-current \{/);
+  assert.match(css, /@media \(max-width: 640px\)[\s\S]*\.vex-family-nav \{[\s\S]*order: 2;[\s\S]*width: 100%;/,
+    'family identity gets its own bounded mobile row rather than forcing horizontal overflow');
+});
+
 test('INSTITUTIONAL-SURFACES: About Vextreme answers the human question before technical depth', () => {
   const about = fs.readFileSync(path.join(ROOT, 'pages', 'about-vextreme.html'), 'utf8');
   assert.match(about, /data-i18n="institution\.about\.hero\.heading">A public place to understand what exists — and how to continue\.<\/h1>/);
