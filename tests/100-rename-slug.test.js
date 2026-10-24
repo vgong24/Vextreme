@@ -7,7 +7,7 @@ const test = require('node:test');
 const {
   classifyReference,
   planInstitutionalSlugRename,
-} = require('./rename-slug.js');
+} = require('../lib/rename-slug.js');
 
 function write(root, relative, content = '') {
   const target = path.join(root, relative);
