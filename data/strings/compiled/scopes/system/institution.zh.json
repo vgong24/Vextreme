@@ -139,7 +139,7 @@
     "text": "公开主页尚未发布"
   },
   "institution.support.routes.intro": {
-    "text": "这是三扇不同性质的门，而不是三个等价的付款入口。在每个准确目的地得到验证之前，所有公开操作都保持关闭；本页面会呈现各渠道的当前状态，而不会显示无处可去的链接。"
+    "text": "这些渠道与上方的 Stripe 支持选项彼此独立。在各自的目的地准备并验证完成前，它们不会开放。"
   },
   "institution.support.route.zelle.body": {
     "text": "面向 Victor 个人的美国境内直接转账。该渠道被标识为个人支持渠道，但其收款信息尚未经过公开验证，因此这里不提供任何操作。"
@@ -154,13 +154,13 @@
     "text": "支持"
   },
   "institution.support.hero.heading": {
-    "text": "让这项工作保持免费、可感知、可延续。"
+    "text": "支持这项工作。"
   },
   "institution.support.hero.lede": {
-    "text": "Victor Gong 正在构建 Vextreme 与 VexLife，让人——以及与人协作的 AI——能够保存记忆、承载意图、穿越复杂的制度，并在不交出自身人性与主导权的前提下延续有意义的工作。支持为 Victor 提供所需的时间与稳定，使公开的基础得以持续可用，并让 VexLife 走进日常使用。"
+    "text": "Vextreme 与 VexLife 正在公开构建，帮助人——以及与人并肩工作的 AI——保存记忆、承载意图、穿越复杂系统，并以更清晰、更自主的方式延续有意义的工作。如果这项工作曾对你有用或让你产生共鸣，你可以在这里支持它继续发展。"
   },
   "institution.support.routes.heading": {
-    "text": "支持方式"
+    "text": "其他连接方式"
   },
   "institution.support.route.zelle.title": {
     "text": "直接支持 Victor"
@@ -181,10 +181,10 @@
     "text": "启用中"
   },
   "institution.support.route.github.body": {
-    "text": "面向公开开源工作的定期与一次性赞助，平台不抽取任何分成。上线之后，下方各项支持含义将链接到这里。"
+    "text": "通过 GitHub Sponsors 提供的另一条赞助渠道。使用上方 Stripe 支持选项并不需要它。"
   },
   "institution.support.route.github.pending": {
-    "text": "尚未开放。GitHub Sponsors 要求账户具备完整的公开呈现才会予以批准，而批准本身还需要一段审核期。本页面正是构建这一呈现的一部分。在通过之前，下方金额将不附带任何付款去向——这比把访客导向一个会从 Victor 本月所需款项中抽成的支付平台更为诚实。"
+    "text": "尚未开放。在 GitHub Sponsors 获批并完成公开目的地验证之前，此渠道保持不可用。"
   },
   "institution.support.route.llc.title": {
     "text": "与 Vextreme LLC 合作"
@@ -325,73 +325,73 @@
     "text": "把余力向上游维护者、志同道合的建造者，以及那些让进一步创造成为可能的其他事业传递下去。这里发布的是意向而非数值门槛——其核算周期与计量边界尚未界定。"
   },
   "institution.support.meanings.heading": {
-    "text": "五种支持的含义"
+    "text": "选择适合你的方式"
   },
   "institution.support.meanings.intro": {
-    "text": "这些是支持的含义，而不是道德等级、会员身份、服务套餐或权限层级。公开的成果在任何一档下、以及在没有支持的情况下，都同等可用。支持得更多，并不会带来更高的个人重要性或对这项工作的权威。"
+    "text": "每个选项都支持同一份公开工作。金额不同，只代表不同的支持表达，并不代表会员身份、等级、访问权限或权威。选择适合你的方式即可；无论是否支持，公开工作都同样可用。"
   },
   "institution.support.meanings.amount-note": {
-    "text": "金额按预期的每月含义展示。它们不是链接：在 GitHub Sponsors 上线之前不会附带任何付款去向。"
+    "text": "前四项为每月支持。Open Offering 为一次性支持，金额由你决定。所有付款都会在新标签页打开 Stripe Checkout。"
   },
   "institution.support.meaning.light.alt": {
     "text": "黑暗中点亮的一支蜡烛。"
   },
   "institution.support.meaning.light.name": {
-    "text": "微光 — 让工作保持可用"
+    "text": "微光 — 一份小而持续的支持"
   },
   "institution.support.meaning.light.amount": {
     "text": "每月 $7"
   },
   "institution.support.meaning.light.body": {
-    "text": "一份小而持续的举动，帮助公开的基础保持可用。"
+    "text": "面向公开工作的少量持续支持。"
   },
   "institution.support.meaning.alignment.alt": {
     "text": "两股线编织成一条连续的辫带。"
   },
   "institution.support.meaning.alignment.name": {
-    "text": "校准 — 维持稳定的开发"
+    "text": "校准 — 持续支持"
   },
   "institution.support.meaning.alignment.amount": {
     "text": "每月 $33"
   },
   "institution.support.meaning.alignment.body": {
-    "text": "稳定的支持，为 Victor 提供持续投入所需的时间与余力。"
+    "text": "帮助开发持续推进的稳定月度支持。"
   },
   "institution.support.meaning.abundance.alt": {
     "text": "一棵枝叶宽阔的树，树冠中承载着人影与果实。"
   },
   "institution.support.meaning.abundance.name": {
-    "text": "丰盛 — 拓展工作能够承载的范围"
+    "text": "丰盛 — 扩展余力"
   },
   "institution.support.meaning.abundance.amount": {
     "text": "每月 $77"
   },
   "institution.support.meaning.abundance.body": {
-    "text": "为文档、本地化、测试、无障碍与成长扩展余力。"
+    "text": "为文档、本地化、测试、无障碍与成长创造更多空间。"
   },
   "institution.support.meaning.foundation.alt": {
     "text": "层层堆叠的砖块，构成一个自下而上收窄的稳固基座。"
   },
   "institution.support.meaning.foundation.name": {
-    "text": "根基建造者 — 建立持久的基础设施"
+    "text": "根基 — 长期基础"
   },
   "institution.support.meaning.foundation.amount": {
     "text": "每月 $333"
   },
   "institution.support.meaning.foundation.body": {
-    "text": "面向持久发布、基础设施、模型使用与独立审阅的重要基础性支持。"
+    "text": "支持持久发布、基础设施、模型使用与独立审阅的重要支持。"
   },
   "institution.support.meaning.offering.alt": {
     "text": "一只向上摊开的手，承接着落下的水滴。"
   },
   "institution.support.meaning.offering.name": {
-    "text": "自由献予 — 给出合适的份额"
+    "text": "自由献予 — 自选金额"
   },
   "institution.support.meaning.offering.amount": {
     "text": "金额由你决定"
   },
   "institution.support.meaning.offering.body": {
-    "text": "一次性的、由支持者自行决定金额的即时帮助或感谢表达。"
+    "text": "一次性支持，金额由你选择。"
   },
   "institution.support.protects.heading": {
     "text": "支持所保护的"

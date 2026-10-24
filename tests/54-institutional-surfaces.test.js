@@ -839,6 +839,14 @@ test('INSTITUTIONAL-SURFACES: a bounded standalone active fixture passes', () =>
   assert.deepEqual(validateRegistry(active, root), []);
 });
 
+test('INSTITUTIONAL-SURFACES: actionable support choices precede held routes', () => {
+  const support = fs.readFileSync(path.join(ROOT, 'pages', 'vex-support.html'), 'utf8');
+  const choices = support.indexOf('aria-labelledby="meanings-heading"');
+  const heldRoutes = support.indexOf('aria-labelledby="routes-heading"');
+  assert.ok(choices >= 0);
+  assert.ok(heldRoutes > choices);
+});
+
 test('INSTITUTIONAL-SURFACES: support page reuses the five existing Connect Stripe destinations', () => {
   const connect = fs.readFileSync(path.join(ROOT, 'pages', 'connect.html'), 'utf8');
   const support = fs.readFileSync(path.join(ROOT, 'pages', 'vex-support.html'), 'utf8');

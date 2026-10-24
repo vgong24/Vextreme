@@ -139,7 +139,7 @@
     "text": "公開ホームは未公開"
   },
   "institution.support.routes.intro": {
-    "text": "同等の三つの決済ではなく、性質の異なる三つの扉です。正確な送付先が検証されるまで、すべての公開アクションは閉じたままです。このページは、行き先のないリンクを表示せず、各経路の現在の状態を示します。"
+    "text": "これらは上の Stripe 支援とは別の経路です。それぞれの送付先が準備され、検証されるまでは利用できません。"
   },
   "institution.support.route.zelle.body": {
     "text": "Victor個人への米国内の直接送金です。この経路は個人的な支援用として特定されていますが、受取情報が公開向けに検証されていないため、ここではアクションを利用できません。"
@@ -154,13 +154,13 @@
     "text": "支援"
   },
   "institution.support.hero.heading": {
-    "text": "この取り組みを、無償で、知覚可能で、続けられるものに保つために。"
+    "text": "この取り組みを支える。"
   },
   "institution.support.hero.lede": {
-    "text": "Victor Gong は Vextreme と VexLife をつくっています。人が——そしてその傍らで働くAIが——記憶を守り、意図を運び、難しい制度を渡り、人間性や主導権を手放すことなく意味のある仕事を続けられるように。支援は、公開された基盤を利用可能に保ち、VexLife を日常で使えるものにするために必要な時間と安定を Victor にもたらします。"
+    "text": "Vextreme と VexLife は、人とその傍らで働くAIが、記憶を守り、意図を携え、複雑な仕組みを歩み、より明晰に、より主体的に意味ある仕事を続けられるよう、公開の場で築かれています。この取り組みが役に立った、あるいは意味を感じたなら、ここからその継続と発展を支えることができます。"
   },
   "institution.support.routes.heading": {
-    "text": "支援の方法"
+    "text": "そのほかのつながり方"
   },
   "institution.support.route.zelle.title": {
     "text": "Victor を直接支援する"
@@ -181,10 +181,10 @@
     "text": "有効化の準備中"
   },
   "institution.support.route.github.body": {
-    "text": "公開されたオープンソースの取り組みに対する、継続的および単発の支援です。プラットフォームによる控除はありません。稼働後は、下の各支援の意味がここへリンクします。"
+    "text": "GitHub Sponsors を通じた別の支援経路です。上の Stripe 支援を利用するために必要なものではありません。"
   },
   "institution.support.route.github.pending": {
-    "text": "まだ開いていません。GitHub Sponsors は承認にあたって完成した公開プレゼンスを求め、承認自体にも審査期間があります。このページはそのプレゼンスを整える一部です。承認されるまで、下記の金額は送金先を示さずに表示します。今月 Victor に必要な金額から手数料を差し引く決済業者へ誘導するよりも、そのほうが誠実だからです。"
+    "text": "まだ開いていません。GitHub Sponsors の承認と公開先の検証が完了するまで、この経路は利用できません。"
   },
   "institution.support.route.llc.title": {
     "text": "Vextreme LLC と取引する"
@@ -325,73 +325,73 @@
     "text": "上流のメンテナ、志を同じくする作り手、さらなる創造を可能にした他の事業へと、余力を渡していくこと。数値的な閾値ではなく意図として掲げています。会計期間と測定の境界がまだ定義されていないためです。"
   },
   "institution.support.meanings.heading": {
-    "text": "五つの支援の意味"
+    "text": "自分に合う形を選ぶ"
   },
   "institution.support.meanings.intro": {
-    "text": "これらは支援の意味であり、道徳的な序列・会員資格・サービスの内容・権限の段階ではありません。公開された成果は、どの段階であっても、また支援がなくても、等しく利用できます。支援額の大きさが、人としての重要さやこの取り組みに対する権限を増やすことはありません。"
+    "text": "どの選択肢も同じ公開の取り組みを支えます。金額の違いは支援の表現の違いであり、会員資格、序列、アクセス権、権限ではありません。自分に合うものを選んでください。支援の有無にかかわらず、公開の取り組みは同じように利用できます。"
   },
   "institution.support.meanings.amount-note": {
-    "text": "金額は想定される月額の意味として表示しています。リンクではありません。GitHub Sponsors が稼働するまで、送金先は付与されません。"
+    "text": "最初の4つは月額支援です。Open Offering は1回限りで、金額を自分で選べます。すべての支払いは新しいタブで Stripe Checkout を開きます。"
   },
   "institution.support.meaning.light.alt": {
     "text": "暗闇のなかに灯る一本のろうそく。"
   },
   "institution.support.meaning.light.name": {
-    "text": "ライト — 取り組みを利用可能に保つ"
+    "text": "ライト — 小さく、継続的に支える"
   },
   "institution.support.meaning.light.amount": {
     "text": "月額 $7"
   },
   "institution.support.meaning.light.body": {
-    "text": "公開された基盤を利用可能に保つための、小さな継続的な行為です。"
+    "text": "公開の取り組みへの小さな継続支援です。"
   },
   "institution.support.meaning.alignment.alt": {
     "text": "二本の筋が一本の連なる組紐に編まれている。"
   },
   "institution.support.meaning.alignment.name": {
-    "text": "アラインメント — 開発を安定して続ける"
+    "text": "アラインメント — 継続的な支援"
   },
   "institution.support.meaning.alignment.amount": {
     "text": "月額 $33"
   },
   "institution.support.meaning.alignment.body": {
-    "text": "Victor が継続するための一貫した時間と余力をもたらす、安定した支援です。"
+    "text": "開発を続けるための、安定した月額支援です。"
   },
   "institution.support.meaning.abundance.alt": {
     "text": "枝葉のなかに人影と実を抱く、大きく広がった木。"
   },
   "institution.support.meaning.abundance.name": {
-    "text": "アバンダンス — 取り組みが担える範囲を広げる"
+    "text": "アバンダンス — 余力を広げる"
   },
   "institution.support.meaning.abundance.amount": {
     "text": "月額 $77"
   },
   "institution.support.meaning.abundance.body": {
-    "text": "ドキュメント・ローカライゼーション・テスト・アクセシビリティ・成長のための余力を広げます。"
+    "text": "ドキュメント、ローカライゼーション、テスト、アクセシビリティ、成長のための余力を広げます。"
   },
   "institution.support.meaning.foundation.alt": {
     "text": "積み上げられたブロックが、上に向かって細くなる安定した土台をつくっている。"
   },
   "institution.support.meaning.foundation.name": {
-    "text": "ファウンデーション・ビルダー — 永続する基盤を築く"
+    "text": "ファウンデーション — 長期的な基盤"
   },
   "institution.support.meaning.foundation.amount": {
     "text": "月額 $333"
   },
   "institution.support.meaning.foundation.body": {
-    "text": "永続的なリリース・インフラ・モデル利用・独立したレビューを支える、基盤への大きな支援です。"
+    "text": "永続的なリリース、インフラ、モデル利用、独立したレビューを支える大きな支援です。"
   },
   "institution.support.meaning.offering.alt": {
     "text": "上向きに開かれた手が、落ちてくる水滴を受けている。"
   },
   "institution.support.meaning.offering.name": {
-    "text": "オープン・オファリング — 見合う分だけ贈る"
+    "text": "オープン・オファリング — 金額を自分で選ぶ"
   },
   "institution.support.meaning.offering.amount": {
     "text": "任意の金額"
   },
   "institution.support.meaning.offering.body": {
-    "text": "支援者自身が額を選ぶ、単発の助力または感謝の表現です。"
+    "text": "自分に合う金額を選べる、1回限りの支援です。"
   },
   "institution.support.protects.heading": {
     "text": "支援が守るもの"

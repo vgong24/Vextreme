@@ -611,13 +611,13 @@
   "institution.support.routes.intro": {
     "strings": {
       "en": {
-        "text": "Three separate doors, not three equivalent checkouts. Every public action remains closed until its exact destination is verified; this page shows each route's present state without rendering a link that goes nowhere."
+        "text": "These routes are separate from the Stripe options above. They stay unavailable until their own destination is ready and verified."
       },
       "ja": {
-        "text": "同等の三つの決済ではなく、性質の異なる三つの扉です。正確な送付先が検証されるまで、すべての公開アクションは閉じたままです。このページは、行き先のないリンクを表示せず、各経路の現在の状態を示します。"
+        "text": "これらは上の Stripe 支援とは別の経路です。それぞれの送付先が準備され、検証されるまでは利用できません。"
       },
       "zh": {
-        "text": "这是三扇不同性质的门，而不是三个等价的付款入口。在每个准确目的地得到验证之前，所有公开操作都保持关闭；本页面会呈现各渠道的当前状态，而不会显示无处可去的链接。"
+        "text": "这些渠道与上方的 Stripe 支持选项彼此独立。在各自的目的地准备并验证完成前，它们不会开放。"
       }
     }
   },
@@ -676,39 +676,39 @@
   "institution.support.hero.heading": {
     "strings": {
       "en": {
-        "text": "Help keep the work free, perceivable, and continuable."
+        "text": "Support the work."
       },
       "ja": {
-        "text": "この取り組みを、無償で、知覚可能で、続けられるものに保つために。"
+        "text": "この取り組みを支える。"
       },
       "zh": {
-        "text": "让这项工作保持免费、可感知、可延续。"
+        "text": "支持这项工作。"
       }
     }
   },
   "institution.support.hero.lede": {
     "strings": {
       "en": {
-        "text": "Victor Gong is building Vextreme and VexLife so people—and the AI working alongside them—can preserve memory, carry intent, navigate difficult systems, and continue meaningful work without surrendering their humanity or control. Support gives Victor the time and stability required to keep the public foundations available and bring VexLife into everyday use."
+        "text": "Vextreme and VexLife are being built in public to help people—and the AI working beside them—preserve memory, carry intent, navigate difficult systems, and continue meaningful work with greater clarity and agency. If this work has been useful or meaningful to you, you can help sustain and expand it here."
       },
       "ja": {
-        "text": "Victor Gong は Vextreme と VexLife をつくっています。人が——そしてその傍らで働くAIが——記憶を守り、意図を運び、難しい制度を渡り、人間性や主導権を手放すことなく意味のある仕事を続けられるように。支援は、公開された基盤を利用可能に保ち、VexLife を日常で使えるものにするために必要な時間と安定を Victor にもたらします。"
+        "text": "Vextreme と VexLife は、人とその傍らで働くAIが、記憶を守り、意図を携え、複雑な仕組みを歩み、より明晰に、より主体的に意味ある仕事を続けられるよう、公開の場で築かれています。この取り組みが役に立った、あるいは意味を感じたなら、ここからその継続と発展を支えることができます。"
       },
       "zh": {
-        "text": "Victor Gong 正在构建 Vextreme 与 VexLife，让人——以及与人协作的 AI——能够保存记忆、承载意图、穿越复杂的制度，并在不交出自身人性与主导权的前提下延续有意义的工作。支持为 Victor 提供所需的时间与稳定，使公开的基础得以持续可用，并让 VexLife 走进日常使用。"
+        "text": "Vextreme 与 VexLife 正在公开构建，帮助人——以及与人并肩工作的 AI——保存记忆、承载意图、穿越复杂系统，并以更清晰、更自主的方式延续有意义的工作。如果这项工作曾对你有用或让你产生共鸣，你可以在这里支持它继续发展。"
       }
     }
   },
   "institution.support.routes.heading": {
     "strings": {
       "en": {
-        "text": "Ways to support"
+        "text": "Other ways to connect"
       },
       "ja": {
-        "text": "支援の方法"
+        "text": "そのほかのつながり方"
       },
       "zh": {
-        "text": "支持方式"
+        "text": "其他连接方式"
       }
     }
   },
@@ -793,26 +793,26 @@
   "institution.support.route.github.body": {
     "strings": {
       "en": {
-        "text": "Recurring and one-time sponsorship for the public open-source work, with no platform cut taken out of it. This is where the support meanings below will link once it is live."
+        "text": "A separate sponsorship route through GitHub Sponsors. It is not required for the Stripe options above."
       },
       "ja": {
-        "text": "公開されたオープンソースの取り組みに対する、継続的および単発の支援です。プラットフォームによる控除はありません。稼働後は、下の各支援の意味がここへリンクします。"
+        "text": "GitHub Sponsors を通じた別の支援経路です。上の Stripe 支援を利用するために必要なものではありません。"
       },
       "zh": {
-        "text": "面向公开开源工作的定期与一次性赞助，平台不抽取任何分成。上线之后，下方各项支持含义将链接到这里。"
+        "text": "通过 GitHub Sponsors 提供的另一条赞助渠道。使用上方 Stripe 支持选项并不需要它。"
       }
     }
   },
   "institution.support.route.github.pending": {
     "strings": {
       "en": {
-        "text": "Not open yet. GitHub Sponsors requires a completed public presence before it will approve an account, and approval then takes its own review period. This page is part of building that presence. Until it clears, the amounts below are shown without a destination rather than pointed at a payment processor that would take a percentage of what Victor needs this month."
+        "text": "Not open yet. This route remains unavailable until GitHub Sponsors is approved and the public destination is verified."
       },
       "ja": {
-        "text": "まだ開いていません。GitHub Sponsors は承認にあたって完成した公開プレゼンスを求め、承認自体にも審査期間があります。このページはそのプレゼンスを整える一部です。承認されるまで、下記の金額は送金先を示さずに表示します。今月 Victor に必要な金額から手数料を差し引く決済業者へ誘導するよりも、そのほうが誠実だからです。"
+        "text": "まだ開いていません。GitHub Sponsors の承認と公開先の検証が完了するまで、この経路は利用できません。"
       },
       "zh": {
-        "text": "尚未开放。GitHub Sponsors 要求账户具备完整的公开呈现才会予以批准，而批准本身还需要一段审核期。本页面正是构建这一呈现的一部分。在通过之前，下方金额将不附带任何付款去向——这比把访客导向一个会从 Victor 本月所需款项中抽成的支付平台更为诚实。"
+        "text": "尚未开放。在 GitHub Sponsors 获批并完成公开目的地验证之前，此渠道保持不可用。"
       }
     }
   },
@@ -1417,39 +1417,39 @@
   "institution.support.meanings.heading": {
     "strings": {
       "en": {
-        "text": "Five support meanings"
+        "text": "Choose what fits"
       },
       "ja": {
-        "text": "五つの支援の意味"
+        "text": "自分に合う形を選ぶ"
       },
       "zh": {
-        "text": "五种支持的含义"
+        "text": "选择适合你的方式"
       }
     }
   },
   "institution.support.meanings.intro": {
     "strings": {
       "en": {
-        "text": "These are support meanings, not moral ranks, memberships, service packages, or levels of authority. The public work remains equally available at every one of them, and at none of them. Greater support does not create greater human importance or authority over the work."
+        "text": "Every option supports the same public work. The amounts are different expressions of support—not memberships, ranks, access levels, or authority. Choose what fits you; the work remains equally available either way."
       },
       "ja": {
-        "text": "これらは支援の意味であり、道徳的な序列・会員資格・サービスの内容・権限の段階ではありません。公開された成果は、どの段階であっても、また支援がなくても、等しく利用できます。支援額の大きさが、人としての重要さやこの取り組みに対する権限を増やすことはありません。"
+        "text": "どの選択肢も同じ公開の取り組みを支えます。金額の違いは支援の表現の違いであり、会員資格、序列、アクセス権、権限ではありません。自分に合うものを選んでください。支援の有無にかかわらず、公開の取り組みは同じように利用できます。"
       },
       "zh": {
-        "text": "这些是支持的含义，而不是道德等级、会员身份、服务套餐或权限层级。公开的成果在任何一档下、以及在没有支持的情况下，都同等可用。支持得更多，并不会带来更高的个人重要性或对这项工作的权威。"
+        "text": "每个选项都支持同一份公开工作。金额不同，只代表不同的支持表达，并不代表会员身份、等级、访问权限或权威。选择适合你的方式即可；无论是否支持，公开工作都同样可用。"
       }
     }
   },
   "institution.support.meanings.amount-note": {
     "strings": {
       "en": {
-        "text": "Amounts are shown as the intended monthly meanings. They are not links: no destination is attached until GitHub Sponsors is live."
+        "text": "The first four options are monthly. Open Offering is one-time and lets you choose the amount. All payments open Stripe Checkout in a new tab."
       },
       "ja": {
-        "text": "金額は想定される月額の意味として表示しています。リンクではありません。GitHub Sponsors が稼働するまで、送金先は付与されません。"
+        "text": "最初の4つは月額支援です。Open Offering は1回限りで、金額を自分で選べます。すべての支払いは新しいタブで Stripe Checkout を開きます。"
       },
       "zh": {
-        "text": "金额按预期的每月含义展示。它们不是链接：在 GitHub Sponsors 上线之前不会附带任何付款去向。"
+        "text": "前四项为每月支持。Open Offering 为一次性支持，金额由你决定。所有付款都会在新标签页打开 Stripe Checkout。"
       }
     }
   },
@@ -1469,13 +1469,13 @@
   "institution.support.meaning.light.name": {
     "strings": {
       "en": {
-        "text": "Light — Keep the work available"
+        "text": "Light — A small steady contribution"
       },
       "ja": {
-        "text": "ライト — 取り組みを利用可能に保つ"
+        "text": "ライト — 小さく、継続的に支える"
       },
       "zh": {
-        "text": "微光 — 让工作保持可用"
+        "text": "微光 — 一份小而持续的支持"
       }
     }
   },
@@ -1495,13 +1495,13 @@
   "institution.support.meaning.light.body": {
     "strings": {
       "en": {
-        "text": "A small recurring act that helps keep the public foundations available."
+        "text": "A small recurring contribution to the public work."
       },
       "ja": {
-        "text": "公開された基盤を利用可能に保つための、小さな継続的な行為です。"
+        "text": "公開の取り組みへの小さな継続支援です。"
       },
       "zh": {
-        "text": "一份小而持续的举动，帮助公开的基础保持可用。"
+        "text": "面向公开工作的少量持续支持。"
       }
     }
   },
@@ -1521,13 +1521,13 @@
   "institution.support.meaning.alignment.name": {
     "strings": {
       "en": {
-        "text": "Alignment — Sustain consistent development"
+        "text": "Alignment — Ongoing support"
       },
       "ja": {
-        "text": "アラインメント — 開発を安定して続ける"
+        "text": "アラインメント — 継続的な支援"
       },
       "zh": {
-        "text": "校准 — 维持稳定的开发"
+        "text": "校准 — 持续支持"
       }
     }
   },
@@ -1547,13 +1547,13 @@
   "institution.support.meaning.alignment.body": {
     "strings": {
       "en": {
-        "text": "Stable support that gives Victor consistent time and capacity to continue."
+        "text": "Steady recurring support for ongoing development."
       },
       "ja": {
-        "text": "Victor が継続するための一貫した時間と余力をもたらす、安定した支援です。"
+        "text": "開発を続けるための、安定した月額支援です。"
       },
       "zh": {
-        "text": "稳定的支持，为 Victor 提供持续投入所需的时间与余力。"
+        "text": "帮助开发持续推进的稳定月度支持。"
       }
     }
   },
@@ -1573,13 +1573,13 @@
   "institution.support.meaning.abundance.name": {
     "strings": {
       "en": {
-        "text": "Abundance — Expand what the work can hold"
+        "text": "Abundance — Expanded capacity"
       },
       "ja": {
-        "text": "アバンダンス — 取り組みが担える範囲を広げる"
+        "text": "アバンダンス — 余力を広げる"
       },
       "zh": {
-        "text": "丰盛 — 拓展工作能够承载的范围"
+        "text": "丰盛 — 扩展余力"
       }
     }
   },
@@ -1599,13 +1599,13 @@
   "institution.support.meaning.abundance.body": {
     "strings": {
       "en": {
-        "text": "Expanded capacity for documentation, localization, testing, accessibility, and growth."
+        "text": "More room for documentation, localization, testing, accessibility, and growth."
       },
       "ja": {
-        "text": "ドキュメント・ローカライゼーション・テスト・アクセシビリティ・成長のための余力を広げます。"
+        "text": "ドキュメント、ローカライゼーション、テスト、アクセシビリティ、成長のための余力を広げます。"
       },
       "zh": {
-        "text": "为文档、本地化、测试、无障碍与成长扩展余力。"
+        "text": "为文档、本地化、测试、无障碍与成长创造更多空间。"
       }
     }
   },
@@ -1625,13 +1625,13 @@
   "institution.support.meaning.foundation.name": {
     "strings": {
       "en": {
-        "text": "Foundation Builder — Establish durable infrastructure"
+        "text": "Foundation — Long-term infrastructure"
       },
       "ja": {
-        "text": "ファウンデーション・ビルダー — 永続する基盤を築く"
+        "text": "ファウンデーション — 長期的な基盤"
       },
       "zh": {
-        "text": "根基建造者 — 建立持久的基础设施"
+        "text": "根基 — 长期基础"
       }
     }
   },
@@ -1651,13 +1651,13 @@
   "institution.support.meaning.foundation.body": {
     "strings": {
       "en": {
-        "text": "Major foundational support for durable releases, infrastructure, model access, and independent review."
+        "text": "Significant support for durable releases, infrastructure, model access, and independent review."
       },
       "ja": {
-        "text": "永続的なリリース・インフラ・モデル利用・独立したレビューを支える、基盤への大きな支援です。"
+        "text": "永続的なリリース、インフラ、モデル利用、独立したレビューを支える大きな支援です。"
       },
       "zh": {
-        "text": "面向持久发布、基础设施、模型使用与独立审阅的重要基础性支持。"
+        "text": "支持持久发布、基础设施、模型使用与独立审阅的重要支持。"
       }
     }
   },
@@ -1677,13 +1677,13 @@
   "institution.support.meaning.offering.name": {
     "strings": {
       "en": {
-        "text": "Open Offering — Give what fits"
+        "text": "Open Offering — Choose your amount"
       },
       "ja": {
-        "text": "オープン・オファリング — 見合う分だけ贈る"
+        "text": "オープン・オファリング — 金額を自分で選ぶ"
       },
       "zh": {
-        "text": "自由献予 — 给出合适的份额"
+        "text": "自由献予 — 自选金额"
       }
     }
   },
@@ -1703,13 +1703,13 @@
   "institution.support.meaning.offering.body": {
     "strings": {
       "en": {
-        "text": "A one-time, supporter-chosen expression of immediate help or gratitude."
+        "text": "A one-time contribution in the amount that feels right to you."
       },
       "ja": {
-        "text": "支援者自身が額を選ぶ、単発の助力または感謝の表現です。"
+        "text": "自分に合う金額を選べる、1回限りの支援です。"
       },
       "zh": {
-        "text": "一次性的、由支持者自行决定金额的即时帮助或感谢表达。"
+        "text": "一次性支持，金额由你选择。"
       }
     }
   },

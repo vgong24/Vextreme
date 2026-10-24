@@ -139,7 +139,7 @@
     "text": "Public home not released"
   },
   "institution.support.routes.intro": {
-    "text": "Three separate doors, not three equivalent checkouts. Every public action remains closed until its exact destination is verified; this page shows each route's present state without rendering a link that goes nowhere."
+    "text": "These routes are separate from the Stripe options above. They stay unavailable until their own destination is ready and verified."
   },
   "institution.support.route.zelle.body": {
     "text": "A direct U.S. transfer to Victor personally. This route is identified for personal support, but its receiving detail has not been publicly verified, so no action is available here."
@@ -154,13 +154,13 @@
     "text": "Support"
   },
   "institution.support.hero.heading": {
-    "text": "Help keep the work free, perceivable, and continuable."
+    "text": "Support the work."
   },
   "institution.support.hero.lede": {
-    "text": "Victor Gong is building Vextreme and VexLife so people—and the AI working alongside them—can preserve memory, carry intent, navigate difficult systems, and continue meaningful work without surrendering their humanity or control. Support gives Victor the time and stability required to keep the public foundations available and bring VexLife into everyday use."
+    "text": "Vextreme and VexLife are being built in public to help people—and the AI working beside them—preserve memory, carry intent, navigate difficult systems, and continue meaningful work with greater clarity and agency. If this work has been useful or meaningful to you, you can help sustain and expand it here."
   },
   "institution.support.routes.heading": {
-    "text": "Ways to support"
+    "text": "Other ways to connect"
   },
   "institution.support.route.zelle.title": {
     "text": "Support Victor directly"
@@ -181,10 +181,10 @@
     "text": "Activating"
   },
   "institution.support.route.github.body": {
-    "text": "Recurring and one-time sponsorship for the public open-source work, with no platform cut taken out of it. This is where the support meanings below will link once it is live."
+    "text": "A separate sponsorship route through GitHub Sponsors. It is not required for the Stripe options above."
   },
   "institution.support.route.github.pending": {
-    "text": "Not open yet. GitHub Sponsors requires a completed public presence before it will approve an account, and approval then takes its own review period. This page is part of building that presence. Until it clears, the amounts below are shown without a destination rather than pointed at a payment processor that would take a percentage of what Victor needs this month."
+    "text": "Not open yet. This route remains unavailable until GitHub Sponsors is approved and the public destination is verified."
   },
   "institution.support.route.llc.title": {
     "text": "Work with Vextreme LLC"
@@ -325,73 +325,73 @@
     "text": "Capacity passed onward to upstream maintainers, aligned builders, and other businesses whose work made further creation possible. Published as an intention, not a numeric threshold — its accounting period and measurement boundary are not defined yet."
   },
   "institution.support.meanings.heading": {
-    "text": "Five support meanings"
+    "text": "Choose what fits"
   },
   "institution.support.meanings.intro": {
-    "text": "These are support meanings, not moral ranks, memberships, service packages, or levels of authority. The public work remains equally available at every one of them, and at none of them. Greater support does not create greater human importance or authority over the work."
+    "text": "Every option supports the same public work. The amounts are different expressions of support—not memberships, ranks, access levels, or authority. Choose what fits you; the work remains equally available either way."
   },
   "institution.support.meanings.amount-note": {
-    "text": "Amounts are shown as the intended monthly meanings. They are not links: no destination is attached until GitHub Sponsors is live."
+    "text": "The first four options are monthly. Open Offering is one-time and lets you choose the amount. All payments open Stripe Checkout in a new tab."
   },
   "institution.support.meaning.light.alt": {
     "text": "A single lit candle in the dark."
   },
   "institution.support.meaning.light.name": {
-    "text": "Light — Keep the work available"
+    "text": "Light — A small steady contribution"
   },
   "institution.support.meaning.light.amount": {
     "text": "$7 / month"
   },
   "institution.support.meaning.light.body": {
-    "text": "A small recurring act that helps keep the public foundations available."
+    "text": "A small recurring contribution to the public work."
   },
   "institution.support.meaning.alignment.alt": {
     "text": "Two strands woven into a single continuous braid."
   },
   "institution.support.meaning.alignment.name": {
-    "text": "Alignment — Sustain consistent development"
+    "text": "Alignment — Ongoing support"
   },
   "institution.support.meaning.alignment.amount": {
     "text": "$33 / month"
   },
   "institution.support.meaning.alignment.body": {
-    "text": "Stable support that gives Victor consistent time and capacity to continue."
+    "text": "Steady recurring support for ongoing development."
   },
   "institution.support.meaning.abundance.alt": {
     "text": "A broad tree whose canopy holds figures and fruit."
   },
   "institution.support.meaning.abundance.name": {
-    "text": "Abundance — Expand what the work can hold"
+    "text": "Abundance — Expanded capacity"
   },
   "institution.support.meaning.abundance.amount": {
     "text": "$77 / month"
   },
   "institution.support.meaning.abundance.body": {
-    "text": "Expanded capacity for documentation, localization, testing, accessibility, and growth."
+    "text": "More room for documentation, localization, testing, accessibility, and growth."
   },
   "institution.support.meaning.foundation.alt": {
     "text": "Stacked blocks forming a stable base that narrows as it rises."
   },
   "institution.support.meaning.foundation.name": {
-    "text": "Foundation Builder — Establish durable infrastructure"
+    "text": "Foundation — Long-term infrastructure"
   },
   "institution.support.meaning.foundation.amount": {
     "text": "$333 / month"
   },
   "institution.support.meaning.foundation.body": {
-    "text": "Major foundational support for durable releases, infrastructure, model access, and independent review."
+    "text": "Significant support for durable releases, infrastructure, model access, and independent review."
   },
   "institution.support.meaning.offering.alt": {
     "text": "An open upturned hand receiving falling drops of water."
   },
   "institution.support.meaning.offering.name": {
-    "text": "Open Offering — Give what fits"
+    "text": "Open Offering — Choose your amount"
   },
   "institution.support.meaning.offering.amount": {
     "text": "Amount you choose"
   },
   "institution.support.meaning.offering.body": {
-    "text": "A one-time, supporter-chosen expression of immediate help or gratitude."
+    "text": "A one-time contribution in the amount that feels right to you."
   },
   "institution.support.protects.heading": {
     "text": "What support protects"
