@@ -896,4 +896,28 @@ test('TERRAIN-VIEW: ordered entry keeps human orientation primary while VexSyste
   assert.doesNotMatch(source, /data-entry-action="take-a-walk"/);
 });
 
+
+test('TERRAIN-VIEW: Welcome Wagon arrival converges visually without importing institutional runtime ownership', () => {
+  const source = pageSource();
+
+  assert.match(source, /#vex-site-nav \.vex-nav\{[\s\S]*background:var\(--ground\);[\s\S]*border-color:var\(--line-strong\);/u);
+  assert.match(source, /#vex-site-nav \.vex-nav-title,[\s\S]*font-family:"Source Serif 4"/u);
+  assert.doesNotMatch(source, /#vex-site-nav\s*\{[\s\S]*--stone:/u);
+  assert.doesNotMatch(source, /#vex-site-nav\s*\{[\s\S]*--ember-bg:/u);
+  assert.match(source, /\.entry-arrival\{[\s\S]*--entry-serif:"Source Serif 4"[\s\S]*--entry-sans:"IBM Plex Sans"[\s\S]*--entry-mono:"IBM Plex Mono"/u);
+  assert.match(source, /\.entry-shell h2\{[\s\S]*var\(--entry-serif\)/u);
+  assert.match(source, /\.entry-title\{[^}]*var\(--entry-serif\)/u);
+  assert.match(source, /--sans:\s*system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;/u);
+  assert.doesNotMatch(source, /\.topbar\{[^}]*var\(--entry-/u);
+  assert.match(source, /<div class="entry-kicker">Vextreme · Terrain<\/div>/u);
+  assert.match(source, /Terrain is the public front door to Vextreme\./u);
+  assert.match(source, /<span class="entry-icon">01<\/span>/u);
+  assert.match(source, /<span class="entry-icon">02<\/span>/u);
+  assert.match(source, /<span class="entry-icon">03<\/span>/u);
+
+  assert.doesNotMatch(source, /<link[^>]+design-system\.css/iu);
+  assert.doesNotMatch(source, /<link[^>]+vex-institutional\.css/iu);
+  assert.doesNotMatch(source, /data-entry-action="vexsystem"/u);
+});
+
 // [VXG RealForever]
