@@ -611,13 +611,13 @@
   "institution.support.routes.intro": {
     "strings": {
       "en": {
-        "text": "Three separate doors, not three equivalent checkouts. These three routes remain closed until their exact destinations are verified; the five support meanings below use separately owner-confirmed Stripe Checkout destinations."
+        "text": "Three separate doors, not three equivalent checkouts. Every public action remains closed until its exact destination is verified; this page shows each route's present state without rendering a link that goes nowhere."
       },
       "ja": {
-        "text": "同等の三つの決済ではなく、性質の異なる三つの扉です。この三つの経路は正確な送付先が検証されるまで閉じたままですが、下の五つの支援の意味には、Victor が別途確認した Stripe Checkout の送付先が設定されています。"
+        "text": "同等の三つの決済ではなく、性質の異なる三つの扉です。正確な送付先が検証されるまで、すべての公開アクションは閉じたままです。このページは、行き先のないリンクを表示せず、各経路の現在の状態を示します。"
       },
       "zh": {
-        "text": "这是三扇不同性质的门，而不是三个等价的付款入口。这三条渠道在其准确目的地得到验证前仍保持关闭；下方五种支持含义则使用 Victor 另行确认的 Stripe Checkout 付款目的地。"
+        "text": "这是三扇不同性质的门，而不是三个等价的付款入口。在每个准确目的地得到验证之前，所有公开操作都保持关闭；本页面会呈现各渠道的当前状态，而不会显示无处可去的链接。"
       }
     }
   },
@@ -793,26 +793,26 @@
   "institution.support.route.github.body": {
     "strings": {
       "en": {
-        "text": "Recurring and one-time sponsorship for the public open-source work, with no platform cut taken out of it. When it becomes live, it will be an additional sponsorship route alongside the Stripe Checkout destinations below."
+        "text": "Recurring and one-time sponsorship for the public open-source work, with no platform cut taken out of it. This is where the support meanings below will link once it is live."
       },
       "ja": {
-        "text": "公開されたオープンソースの取り組みに対する、継続的および単発の支援です。プラットフォームによる控除はありません。稼働後は、下の Stripe Checkout の送付先に加わる別の支援経路になります。"
+        "text": "公開されたオープンソースの取り組みに対する、継続的および単発の支援です。プラットフォームによる控除はありません。稼働後は、下の各支援の意味がここへリンクします。"
       },
       "zh": {
-        "text": "面向公开开源工作的定期与一次性赞助，平台不抽取任何分成。上线后，它会成为下方 Stripe Checkout 付款目的地之外的另一条赞助渠道。"
+        "text": "面向公开开源工作的定期与一次性赞助，平台不抽取任何分成。上线之后，下方各项支持含义将链接到这里。"
       }
     }
   },
   "institution.support.route.github.pending": {
     "strings": {
       "en": {
-        "text": "Not open yet. GitHub Sponsors still requires approval and a verified public profile. The Stripe Checkout destinations below are published separately now; this route remains held until its own publication checks pass."
+        "text": "Not open yet. GitHub Sponsors requires a completed public presence before it will approve an account, and approval then takes its own review period. This page is part of building that presence. Until it clears, the amounts below are shown without a destination rather than pointed at a payment processor that would take a percentage of what Victor needs this month."
       },
       "ja": {
-        "text": "まだ開いていません。GitHub Sponsors には引き続き承認と検証済みの公開プロフィールが必要です。下の Stripe Checkout の送付先は現在、別経路として公開されていますが、この経路は独自の公開確認を通過するまで保留されます。"
+        "text": "まだ開いていません。GitHub Sponsors は承認にあたって完成した公開プレゼンスを求め、承認自体にも審査期間があります。このページはそのプレゼンスを整える一部です。承認されるまで、下記の金額は送金先を示さずに表示します。今月 Victor に必要な金額から手数料を差し引く決済業者へ誘導するよりも、そのほうが誠実だからです。"
       },
       "zh": {
-        "text": "尚未开放。GitHub Sponsors 仍需要审批以及已验证的公开资料。下方 Stripe Checkout 付款目的地现在作为独立渠道发布；本渠道在自身的发布检查通过之前仍保持保留状态。"
+        "text": "尚未开放。GitHub Sponsors 要求账户具备完整的公开呈现才会予以批准，而批准本身还需要一段审核期。本页面正是构建这一呈现的一部分。在通过之前，下方金额将不附带任何付款去向——这比把访客导向一个会从 Victor 本月所需款项中抽成的支付平台更为诚实。"
       }
     }
   },
@@ -1443,13 +1443,13 @@
   "institution.support.meanings.amount-note": {
     "strings": {
       "en": {
-        "text": "Amounts are shown as the intended monthly meanings. Each card now opens the corresponding Stripe Checkout destination restored from the earlier Connect page and reconfirmed by Victor on October 23, 2026; GitHub Sponsors remains a separate pending route."
+        "text": "Amounts are shown as the intended monthly meanings. They are not links: no destination is attached until GitHub Sponsors is live."
       },
       "ja": {
-        "text": "金額は想定される月額の意味として表示しています。各カードは、以前の Connect ページから復元され、2026年10月23日に Victor が再確認した対応する Stripe Checkout の送付先を開きます。GitHub Sponsors は別の保留中の経路です。"
+        "text": "金額は想定される月額の意味として表示しています。リンクではありません。GitHub Sponsors が稼働するまで、送金先は付与されません。"
       },
       "zh": {
-        "text": "金额按预期的每月含义展示。每张卡片现在都会打开从早期 Connect 页面恢复、并由 Victor 于 2026 年 10 月 23 日再次确认的对应 Stripe Checkout 付款目的地；GitHub Sponsors 仍是另一条待开放渠道。"
+        "text": "金额按预期的每月含义展示。它们不是链接：在 GitHub Sponsors 上线之前不会附带任何付款去向。"
       }
     }
   },

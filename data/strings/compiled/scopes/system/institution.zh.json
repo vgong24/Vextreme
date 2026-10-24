@@ -139,7 +139,7 @@
     "text": "公开主页尚未发布"
   },
   "institution.support.routes.intro": {
-    "text": "这是三扇不同性质的门，而不是三个等价的付款入口。这三条渠道在其准确目的地得到验证前仍保持关闭；下方五种支持含义则使用 Victor 另行确认的 Stripe Checkout 付款目的地。"
+    "text": "这是三扇不同性质的门，而不是三个等价的付款入口。在每个准确目的地得到验证之前，所有公开操作都保持关闭；本页面会呈现各渠道的当前状态，而不会显示无处可去的链接。"
   },
   "institution.support.route.zelle.body": {
     "text": "面向 Victor 个人的美国境内直接转账。该渠道被标识为个人支持渠道，但其收款信息尚未经过公开验证，因此这里不提供任何操作。"
@@ -181,10 +181,10 @@
     "text": "启用中"
   },
   "institution.support.route.github.body": {
-    "text": "面向公开开源工作的定期与一次性赞助，平台不抽取任何分成。上线后，它会成为下方 Stripe Checkout 付款目的地之外的另一条赞助渠道。"
+    "text": "面向公开开源工作的定期与一次性赞助，平台不抽取任何分成。上线之后，下方各项支持含义将链接到这里。"
   },
   "institution.support.route.github.pending": {
-    "text": "尚未开放。GitHub Sponsors 仍需要审批以及已验证的公开资料。下方 Stripe Checkout 付款目的地现在作为独立渠道发布；本渠道在自身的发布检查通过之前仍保持保留状态。"
+    "text": "尚未开放。GitHub Sponsors 要求账户具备完整的公开呈现才会予以批准，而批准本身还需要一段审核期。本页面正是构建这一呈现的一部分。在通过之前，下方金额将不附带任何付款去向——这比把访客导向一个会从 Victor 本月所需款项中抽成的支付平台更为诚实。"
   },
   "institution.support.route.llc.title": {
     "text": "与 Vextreme LLC 合作"
@@ -331,7 +331,7 @@
     "text": "这些是支持的含义，而不是道德等级、会员身份、服务套餐或权限层级。公开的成果在任何一档下、以及在没有支持的情况下，都同等可用。支持得更多，并不会带来更高的个人重要性或对这项工作的权威。"
   },
   "institution.support.meanings.amount-note": {
-    "text": "金额按预期的每月含义展示。每张卡片现在都会打开从早期 Connect 页面恢复、并由 Victor 于 2026 年 10 月 23 日再次确认的对应 Stripe Checkout 付款目的地；GitHub Sponsors 仍是另一条待开放渠道。"
+    "text": "金额按预期的每月含义展示。它们不是链接：在 GitHub Sponsors 上线之前不会附带任何付款去向。"
   },
   "institution.support.meaning.light.alt": {
     "text": "黑暗中点亮的一支蜡烛。"

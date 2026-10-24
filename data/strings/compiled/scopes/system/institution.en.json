@@ -139,7 +139,7 @@
     "text": "Public home not released"
   },
   "institution.support.routes.intro": {
-    "text": "Three separate doors, not three equivalent checkouts. These three routes remain closed until their exact destinations are verified; the five support meanings below use separately owner-confirmed Stripe Checkout destinations."
+    "text": "Three separate doors, not three equivalent checkouts. Every public action remains closed until its exact destination is verified; this page shows each route's present state without rendering a link that goes nowhere."
   },
   "institution.support.route.zelle.body": {
     "text": "A direct U.S. transfer to Victor personally. This route is identified for personal support, but its receiving detail has not been publicly verified, so no action is available here."
@@ -181,10 +181,10 @@
     "text": "Activating"
   },
   "institution.support.route.github.body": {
-    "text": "Recurring and one-time sponsorship for the public open-source work, with no platform cut taken out of it. When it becomes live, it will be an additional sponsorship route alongside the Stripe Checkout destinations below."
+    "text": "Recurring and one-time sponsorship for the public open-source work, with no platform cut taken out of it. This is where the support meanings below will link once it is live."
   },
   "institution.support.route.github.pending": {
-    "text": "Not open yet. GitHub Sponsors still requires approval and a verified public profile. The Stripe Checkout destinations below are published separately now; this route remains held until its own publication checks pass."
+    "text": "Not open yet. GitHub Sponsors requires a completed public presence before it will approve an account, and approval then takes its own review period. This page is part of building that presence. Until it clears, the amounts below are shown without a destination rather than pointed at a payment processor that would take a percentage of what Victor needs this month."
   },
   "institution.support.route.llc.title": {
     "text": "Work with Vextreme LLC"
@@ -331,7 +331,7 @@
     "text": "These are support meanings, not moral ranks, memberships, service packages, or levels of authority. The public work remains equally available at every one of them, and at none of them. Greater support does not create greater human importance or authority over the work."
   },
   "institution.support.meanings.amount-note": {
-    "text": "Amounts are shown as the intended monthly meanings. Each card now opens the corresponding Stripe Checkout destination restored from the earlier Connect page and reconfirmed by Victor on October 23, 2026; GitHub Sponsors remains a separate pending route."
+    "text": "Amounts are shown as the intended monthly meanings. They are not links: no destination is attached until GitHub Sponsors is live."
   },
   "institution.support.meaning.light.alt": {
     "text": "A single lit candle in the dark."
