@@ -79,11 +79,11 @@ test('SCOPES-OF-GOD-DUAL-LINEAGE: Source transcript remains bound to accepted Pa
 test('SCOPES-OF-GOD-DUAL-LINEAGE: Part-022 Presentation lineage is collision-free and excludes historical shell identities', () => {
   const presentationKeys = sourceKeys(presentationSource);
   const transcriptKeys = new Set(sourceKeys(transcriptSource));
-  assert.equal(presentationKeys.length, 90);
-  assert.equal(presentationSource._meta.preservedPresentationKeyCount, 53);
+  assert.equal(presentationKeys.length, 83);
+  assert.equal(presentationSource._meta.preservedPresentationKeyCount, 46);
   assert.equal(presentationSource._meta.pageLocalPresentationAddedKeyCount, 31);
-  assert.equal(presentationSource._meta.presentationVisibleLocalizationKeyCount, 84);
-  assert.equal(presentationSource._meta.totalLineageSourceKeyCount, 90);
+  assert.equal(presentationSource._meta.presentationVisibleLocalizationKeyCount, 77);
+  assert.equal(presentationSource._meta.totalLineageSourceKeyCount, 83);
   assert.equal(presentationSource._meta.sourceProvenance.preservedPath,
     'docs/ingestion/source-pages/part-022/scopes-of-god.html');
   assert.equal(presentationSource._meta.sourceProvenance.preservedGitBlob,
@@ -100,7 +100,7 @@ test('SCOPES-OF-GOD-DUAL-LINEAGE: every visible Presentation localization identi
   const interfaceKeys = new Set(presentationSource._meta.pageLocalInterfaceKeys);
   const source = sourceKeys(presentationSource);
   const visibleKeys = source.filter((key) => !interfaceKeys.has(key));
-  assert.equal(visibleKeys.length, 84);
+  assert.equal(visibleKeys.length, 77);
   assert.deepEqual(visibleKeys.filter((key) => !bound.has(key)), []);
   const targets = presentationSource._meta.targetLocales;
   assert.deepEqual(targets, ['zh', 'ja', 'ko', 'fr', 'de', 'es', 'pt', 'ar', 'hi']);
