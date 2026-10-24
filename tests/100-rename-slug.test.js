@@ -81,24 +81,43 @@ test('unknown references are visible and fail apply readiness', () => {
   assert.equal(plan.references.find(x=>x.path==='misc/notes.txt').classification,'UNKNOWN');
 });
 
-test('current Vextreme patient zero is fully classified when run inside the repository', () => {
+test('current Vextreme patient zero remains truthful before or after canonical migration', () => {
   const root = path.resolve(__dirname, '..');
-  if (!fs.existsSync(path.join(root, 'pages', 'vextreme-home.html'))) return;
+  const registry = JSON.parse(fs.readFileSync(path.join(root, 'config', 'institutional-surfaces.json'), 'utf8'));
+  const legacyOwned = Boolean(registry.surfaces && registry.surfaces['vextreme-home']);
+  const aboutOwned = Boolean(registry.surfaces && registry.surfaces['about-vextreme']);
+
+  if (legacyOwned) {
+    const plan = planInstitutionalSlugRename({ root, fromSlug: 'vextreme-home', toSlug: 'about-vextreme' });
+    const classes = Object.fromEntries(plan.references.map((entry) => [entry.path, entry.classification]));
+    assert.equal(plan.preconditions.ok, true);
+    assert.deepEqual(plan.collisions, []);
+    assert.equal(plan.summary.unknownCount, 0, JSON.stringify(plan.references.filter((entry) => entry.classification === 'UNKNOWN')));
+    assert.equal(plan.applyReady, true);
+    assert.equal(classes['pages/vextreme-home.html'], 'LIVE_OWNER');
+    assert.equal(classes['config/institutional-surfaces.json'], 'LIVE_OWNER');
+    assert.equal(classes['pages/vex-support.html'], 'LIVE_REFERENCE');
+    assert.equal(classes['pages/vextreme-covenant.html'], 'LIVE_REFERENCE');
+    assert.equal(classes['widgets/vex-institutional.js'], 'LIVE_REFERENCE');
+    assert.equal(classes['sitemap.xml'], 'GENERATED');
+    assert.equal(classes['data/page-health.json'], 'GENERATED');
+    assert.equal(classes['data/terrain-map.json'], 'GENERATED');
+    assert.equal(classes['data/screenshot-evidence-assets.json'], 'SCREENSHOT_EVIDENCE');
+    assert.equal(classes['tests/54-institutional-surfaces.test.js'], 'TEST_EXPECTATION');
+    assert.equal(classes['docs/continuity/INDEX.md'], 'HISTORICAL_PROVENANCE');
+    return;
+  }
+
+  assert.equal(aboutOwned, true, 'post-migration repository must register about-vextreme as the canonical institutional owner');
+  assert.equal(fs.existsSync(path.join(root, 'pages', 'about-vextreme.html')), true);
+  const alias = fs.readFileSync(path.join(root, 'pages', 'vextreme-home.html'), 'utf8');
+  assert.match(alias, /name="robots" content="noindex"/);
+  assert.match(alias, /about-vextreme\.html/);
+
   const plan = planInstitutionalSlugRename({ root, fromSlug: 'vextreme-home', toSlug: 'about-vextreme' });
-  const classes = Object.fromEntries(plan.references.map((entry) => [entry.path, entry.classification]));
-  assert.equal(plan.preconditions.ok, true);
-  assert.deepEqual(plan.collisions, []);
-  assert.equal(plan.summary.unknownCount, 0, JSON.stringify(plan.references.filter((entry) => entry.classification === 'UNKNOWN')));
-  assert.equal(plan.applyReady, true);
-  assert.equal(classes['pages/vextreme-home.html'], 'LIVE_OWNER');
-  assert.equal(classes['config/institutional-surfaces.json'], 'LIVE_OWNER');
-  assert.equal(classes['pages/vex-support.html'], 'LIVE_REFERENCE');
-  assert.equal(classes['pages/vextreme-covenant.html'], 'LIVE_REFERENCE');
-  assert.equal(classes['widgets/vex-institutional.js'], 'LIVE_REFERENCE');
-  assert.equal(classes['sitemap.xml'], 'GENERATED');
-  assert.equal(classes['data/page-health.json'], 'GENERATED');
-  assert.equal(classes['data/terrain-map.json'], 'GENERATED');
-  assert.equal(classes['data/screenshot-evidence-assets.json'], 'SCREENSHOT_EVIDENCE');
-  assert.equal(classes['tests/54-institutional-surfaces.test.js'], 'TEST_EXPECTATION');
-  assert.equal(classes['docs/continuity/INDEX.md'], 'HISTORICAL_PROVENANCE');
+  assert.equal(plan.preconditions.ok, false, 'the retired slug must no longer satisfy institutional-owner preconditions');
+  assert.equal(plan.preconditions.errors.some((entry) => entry.kind === 'OLD_INSTITUTIONAL_OWNER_MISSING'), true);
+  assert.equal(plan.collisions.some((entry) => entry.path === 'pages/about-vextreme.html'), true);
+  assert.equal(plan.collisions.some((entry) => entry.kind === 'INSTITUTIONAL_SLUG_EXISTS'), true);
+  assert.equal(plan.applyReady, false, 'replaying the completed migration must fail closed');
 });

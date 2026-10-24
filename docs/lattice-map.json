@@ -993,7 +993,7 @@
     },
     "lib/audit-pages.js": {
       "role": "page wiring auditor — read-only report of which pages/*.html are wired to a God Script, blocked, or intentionally skipped",
-      "context": "The canonical way to answer 'what's the current wiring status' without manually reading every page. CLAUDE.md points here instead of describing wiring status in prose, since prose goes stale and this doesn't — it reads dist/ and pages/ directly on every run. Generated/dev exceptions remain in SKIP_PAGES; institutional identity is derived from config/institutional-surfaces.json and merged into AUTO_DISCOVERY_EXCLUSIONS. getRecordPageSlugs consumes that exclusion map plus existing non-production data/viewmodels.json classification so generated/dev, institutional, and already-classified demo/staging/experimental surfaces cannot leak back into Terrain Content as fake uncurated records. Production viewmodel pages remain records.",
+      "context": "The canonical way to answer 'what's the current wiring status' without manually reading every page. CLAUDE.md points here instead of describing wiring status in prose, since prose goes stale and this doesn't — it reads dist/ and pages/ directly on every run. Generated/dev/compatibility-shim exceptions remain in SKIP_PAGES; institutional identity is derived from config/institutional-surfaces.json and merged into AUTO_DISCOVERY_EXCLUSIONS. getRecordPageSlugs consumes that exclusion map plus existing non-production data/viewmodels.json classification so generated/dev/compatibility-shim, institutional, and already-classified demo/staging/experimental surfaces cannot leak back into Terrain Content as fake uncurated records. Production viewmodel pages remain records.",
       "reads": [
         "pages/*.html (checks for a dist/vextreme-{slug}.js script src)",
         "dist/*.js (checks which God Scripts exist)",
@@ -1025,15 +1025,15 @@
           "SKIP_PAGES or BLOCKERS entry in this file may need updating if the reason changes",
           "CLAUDE.md 'Current blockers' section (prose summary — keep loosely in sync)"
         ],
-        "a new generated page added (own loader, not God Script)": [
-          "SKIP_PAGES entry — otherwise it reports as a false blocker",
-          "lib/check-key-alignment.js's orphan-page check also reads SKIP_PAGES — a page that's a false positive there is fixed the same way"
-        ],
         "SKIP_PAGES / record-page exclusion shape changed": [
           "lib/check-key-alignment.js (destructures AUTO_DISCOVERY_EXCLUSIONS + getPageSlugs)",
           "lib/build-index.js / lib/build-archives.js (consume AUTO_DISCOVERY_EXCLUSIONS for record discovery)",
           "lib/build-terrain-map.js (getRecordPageSlugs must project the same exclusions into Terrain Content)",
           "tests/28-build-terrain-map.test.js (system/dev pages must not reappear as UNCURATED content)"
+        ],
+        "a new generated or compatibility page added (own loader/redirect, not God Script)": [
+          "SKIP_PAGES entry — otherwise it reports as a false blocker",
+          "lib/check-key-alignment.js's orphan-page check also reads SKIP_PAGES — a page that's a false positive there is fixed the same way"
         ]
       }
     },
@@ -1702,7 +1702,7 @@
     },
     "config/institutional-surfaces.json": {
       "role": "authored registry for institutional surface identity, lifecycle, root-discovery label key, runtime exclusions, optional support-route contract, string scope, theme variants, and required evidence",
-      "context": "Institutional Surface Integration. PR #135 proved that vextreme-home and vex-support are a real second page class, but encoded their identity across page-local exceptions, duplicated lists, runtime assumptions, and an oversized acceptance surface. Item 1/4 reserved both identities; item 2/4 promoted the English home; item 3/4 promoted the English support domain with an explicit support-route data path while every payment URL remained null and inert; item 4/4 requires independently reviewed English, Japanese, and Chinese bundles on both active surfaces with no planned locale remainder. Each root-discovery label is a key into the canonical compiled institutional bundle, not user-facing copy duplicated in the registry or index generator. A reservation still owns its slug across page, node, arc, generated-index, and God Script projections.",
+      "context": "Institutional Surface Integration. PR #135 proved that the original vextreme-home and vex-support surfaces are a real second page class; Welcome Wagon A1 later migrates the active About identity to about-vextreme while retaining the old URL only as a compatibility shim, but encoded their identity across page-local exceptions, duplicated lists, runtime assumptions, and an oversized acceptance surface. Item 1/4 reserved both identities; item 2/4 promoted the English home; item 3/4 promoted the English support domain with an explicit support-route data path while every payment URL remained null and inert; item 4/4 requires independently reviewed English, Japanese, and Chinese bundles on both active surfaces with no planned locale remainder. Each root-discovery label is a key into the canonical compiled institutional bundle, not user-facing copy duplicated in the registry or index generator. A reservation still owns its slug across page, node, arc, generated-index, and God Script projections.",
       "reads": [],
       "writes": [],
       "loadedBy": [

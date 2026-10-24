@@ -1,10 +1,10 @@
 {
   "schemaVersion": "institutional-surfaces.registry/v1",
   "surfaces": {
-    "vextreme-home": {
+    "about-vextreme": {
       "state": "active",
       "kind": "institutional",
-      "purpose": "institution-home",
+      "purpose": "institution-about",
       "discovery": {
         "rootLabelKey": "institution.common.nav.about"
       },

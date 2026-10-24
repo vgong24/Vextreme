@@ -209,7 +209,7 @@
   function localizedInstitutionalHref(rawHref, lang) {
     if (typeof rawHref !== 'string' || !rawHref || rawHref.charAt(0) === '#') return rawHref;
     var match = /^([^?#]*)(\?[^#]*)?(#.*)?$/.exec(rawHref);
-    if (!match || !/(^|\/)(?:vextreme-home|vex-support)\.html$/.test(match[1])) return rawHref;
+    if (!match || !/(^|\/)(?:about-vextreme|vex-support)\.html$/.test(match[1])) return rawHref;
     var params;
     try { params = new URLSearchParams((match[2] || '').replace(/^\?/, '')); }
     catch (error) { return rawHref; }
