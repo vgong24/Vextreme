@@ -2,7 +2,7 @@
   "_meta": {
     "scope": "institution",
     "category": "system",
-    "description": "Canonical English, Japanese, and Simplified Chinese strings for the registry-owned Vextreme home and support domain.",
+    "description": "Canonical English, Japanese, and Simplified Chinese strings for the registry-owned About Vextreme, support, and Covenant institutional surfaces.",
     "keyConvention": "institution.{surface}.{element-type}.{semantic-name}; use common only for text shared by institutional surfaces.",
     "translationPolicy": "English remains the static no-JavaScript fallback. JA/ZH values may become required and selectable only after separate exact-source TRANSLATION_CLEAR_JA and TRANSLATION_CLEAR_ZH receipts are bound to this complete source file; every locale must cover every English-bearing institutional key, including Victor's attributed first-person support testimony.",
     "sourceCanon": "Accepted English adapted from PR #135 and the Vextreme culture/architecture record. JA/ZH use PR #135 only where the English source matches exactly; changed and previously untranslated values were independently authored for exact-source review."
@@ -156,26 +156,26 @@
   "institution.common.heading.alignments": {
     "strings": {
       "en": {
-        "text": "Four alignments"
+        "text": "What guides this"
       },
       "ja": {
-        "text": "四つのアラインメント"
+        "text": "この世界を導くもの"
       },
       "zh": {
-        "text": "四项校准"
+        "text": "什么指引着这里"
       }
     }
   },
   "institution.common.description.alignments": {
     "strings": {
       "en": {
-        "text": "These are equal anchors, not a maturity ladder. No one of them is reached by passing through the others."
+        "text": "Four simple commitments shape how this public world is built and handed forward."
       },
       "ja": {
-        "text": "これらは対等なアンカーであり、成熟度の段階ではありません。いずれかを経なければ他に到達できない、という関係にはありません。"
+        "text": "四つのシンプルな約束が、この公開世界をどう作り、次へ渡すかを形づくります。"
       },
       "zh": {
-        "text": "这四项是对等的锚点，而不是一条成熟度阶梯。任何一项都不需要经过其他项才能达成。"
+        "text": "四项简单的承诺，塑造这个公开世界如何被建设并交接给后来者。"
       }
     }
   },
@@ -195,13 +195,13 @@
   "institution.common.alignment.integrity.body": {
     "strings": {
       "en": {
-        "text": "What a system says and does should remain traceable to what is true."
+        "text": "Say what is true, and show where it came from."
       },
       "ja": {
-        "text": "システムが語ることと行うことは、真実へと辿れる状態であり続けるべきです。"
+        "text": "真実を語り、それがどこから来たのかを示す。"
       },
       "zh": {
-        "text": "一个系统所说与所做的，都应当可以追溯到真实的情况。"
+        "text": "说真实的话，并说明它从何而来。"
       }
     }
   },
@@ -221,13 +221,13 @@
   "institution.common.alignment.accountability.body": {
     "strings": {
       "en": {
-        "text": "Claims, decisions, effects, and obligations should have witnesses and return routes."
+        "text": "Decisions and effects should have owners and return paths."
       },
       "ja": {
-        "text": "主張・決定・影響・義務には、証人と戻り経路があるべきです。"
+        "text": "決定と影響には、責任を持つ人と戻り経路があるべきです。"
       },
       "zh": {
-        "text": "主张、决定、影响与义务都应当有见证者，也应当有回溯的路径。"
+        "text": "决定与影响都应当有负责人，也应当有返回路径。"
       }
     }
   },
@@ -247,13 +247,13 @@
   "institution.common.alignment.authenticity.body": {
     "strings": {
       "en": {
-        "text": "People and AI should not be coerced into performing agreement, certainty, or identity they do not hold."
+        "text": "People and AI should not have to pretend certainty or identity they do not hold."
       },
       "ja": {
-        "text": "人もAIも、実際には持っていない同意・確信・アイデンティティを演じるよう強いられるべきではありません。"
+        "text": "人もAIも、持っていない確信やアイデンティティを装う必要があってはなりません。"
       },
       "zh": {
-        "text": "人与 AI 都不应被迫表演自己并不持有的同意、确信或身份。"
+        "text": "人与 AI 都不应被迫假装拥有自己并不持有的确信或身份。"
       }
     }
   },
@@ -273,65 +273,65 @@
   "institution.common.alignment.resilience.body": {
     "strings": {
       "en": {
-        "text": "Memory, context, relationships, and work should survive interruption, handoff, pressure, and change."
+        "text": "Memory, context, relationships, and work should survive interruption and handoff."
       },
       "ja": {
-        "text": "記憶・文脈・関係性・作業は、中断や引き継ぎ、圧力や変化を越えて残るべきです。"
+        "text": "記憶・文脈・関係性・作業は、中断や引き継ぎを越えて残るべきです。"
       },
       "zh": {
-        "text": "记忆、脉络、关系与工作，都应当经得起中断、交接、压力与变化。"
+        "text": "记忆、脉络、关系与工作，都应当经得起中断与交接。"
       }
     }
   },
   "institution.common.heading.lineage": {
     "strings": {
       "en": {
-        "text": "Project lineage"
+        "text": "How the pieces fit"
       },
       "ja": {
-        "text": "プロジェクトの系譜"
+        "text": "全体がどうつながるか"
       },
       "zh": {
-        "text": "项目脉络"
+        "text": "各部分如何衔接"
       }
     }
   },
   "institution.common.description.lineage": {
     "strings": {
       "en": {
-        "text": "One lineage, not three competing products. Vextreme makes the world and its reasons perceivable. Vextreme-SDK protects the deeper operational bridge. VexLife brings the pattern into a person's life."
+        "text": "Three parts, different jobs. Each points to its rightful source when you want deeper truth."
       },
       "ja": {
-        "text": "三つの競合する製品ではなく、一つの系譜です。Vextreme は世界とその理由を知覚可能にします。Vextreme-SDK はより深い運用上の橋を保護します。VexLife はそのパターンを個人の生活へと届けます。"
+        "text": "三つの要素にはそれぞれ違う役割があります。さらに深く知りたいときは、それぞれが本来の情報源へ案内します。"
       },
       "zh": {
-        "text": "这是一条脉络，而不是三个互相竞争的产品。Vextreme 让世界及其缘由变得可感知；Vextreme-SDK 守护更深层的运作桥梁；VexLife 把这一模式带入个人的日常生活。"
+        "text": "三个部分，各有不同职责。当你想了解更深层的事实时，每一部分都会指向其应有的信息源。"
       }
     }
   },
   "institution.common.lineage.vextreme.name": {
     "strings": {
       "en": {
-        "text": "Vextreme"
+        "text": "Vextreme — the public world"
       },
       "ja": {
-        "text": "Vextreme"
+        "text": "Vextreme — 公開世界"
       },
       "zh": {
-        "text": "Vextreme"
+        "text": "Vextreme — 公开世界"
       }
     }
   },
   "institution.common.lineage.vextreme.body": {
     "strings": {
       "en": {
-        "text": "The public institutional world: culture, maps, archives, evidence, and structures that help humans and AI understand what exists, why it exists, and how it can continue."
+        "text": "The records, maps, methods, and public foundations you can explore here. Vextreme helps make what exists easier to see, understand, and continue."
       },
       "ja": {
-        "text": "公開された機関の世界です。文化・マップ・アーカイブ・証跡、そして人とAIが「何が存在し、なぜ存在し、どう続きうるか」を理解するための構造を保持します。"
+        "text": "ここで探索できる記録・地図・方法・公開基盤です。Vextreme は、存在するものを見つけやすく、理解しやすく、続けやすくします。"
       },
       "zh": {
-        "text": "公开的机构世界：文化、地图、档案、证据，以及帮助人与 AI 理解「存在什么、为何存在、如何延续」的结构。"
+        "text": "这里可以探索的记录、地图、方法与公开基础。Vextreme 让已经存在的事物更容易被看见、理解并继续。"
       }
     }
   },
@@ -364,26 +364,26 @@
   "institution.common.lineage.vexlife.name": {
     "strings": {
       "en": {
-        "text": "VexLife"
+        "text": "VexLife — the companion"
       },
       "ja": {
-        "text": "VexLife"
+        "text": "VexLife — コンパニオン"
       },
       "zh": {
-        "text": "VexLife"
+        "text": "VexLife — 陪伴者"
       }
     }
   },
   "institution.common.lineage.vexlife.body": {
     "strings": {
       "en": {
-        "text": "The usable life ecosystem: a local-first companion intended to help a person carry memory, relationships, intent, decisions, projects, and continuity across everyday life."
+        "text": "A local-first, lifelong AI companion designed to run on your own computer. Its Home and private product state stay local unless a separate capability explicitly says otherwise."
       },
       "ja": {
-        "text": "実際に使える生活のエコシステムです。ローカル優先のコンパニオンとして、記憶・関係性・意図・決定・プロジェクト・継続性を日常のなかで運ぶことを支えます。"
+        "text": "自分のコンピューターで動くよう設計された、ローカル優先の生涯AIコンパニオンです。別の機能が明示しない限り、Home と非公開の製品状態はローカルに留まります。"
       },
       "zh": {
-        "text": "可实际使用的生活生态：一个以本地为先的伙伴，帮助一个人在日常生活中承载记忆、关系、意图、决定、项目与延续性。"
+        "text": "一个以本地为先、为长期陪伴而设计并运行在你自己电脑上的 AI 伙伴。除非某项独立能力明确说明，否则它的 Home 与私有产品状态都会留在本地。"
       }
     }
   },
@@ -507,39 +507,39 @@
   "institution.home.entry.heading": {
     "strings": {
       "en": {
-        "text": "Where to go from here"
+        "text": "Go deeper"
       },
       "ja": {
-        "text": "ここからの進み先"
+        "text": "さらに深く"
       },
       "zh": {
-        "text": "从这里可以去哪里"
+        "text": "深入了解"
       }
     }
   },
   "institution.home.entry.terrain.name": {
     "strings": {
       "en": {
-        "text": "The terrain map"
+        "text": "Terrain"
       },
       "ja": {
-        "text": "テレインマップ"
+        "text": "テレイン"
       },
       "zh": {
-        "text": "地形图"
+        "text": "Terrain"
       }
     }
   },
   "institution.home.entry.terrain.body": {
     "strings": {
       "en": {
-        "text": "A navigable atlas of the system's own health, dependencies, and evidence — the institution reading itself."
+        "text": "Return to the public world, archives, and entry choices."
       },
       "ja": {
-        "text": "システム自身の健全性・依存関係・証跡を辿れるアトラスです。機関が自らを読んでいる状態です。"
+        "text": "公開世界、アーカイブ、入口の選択肢へ戻ります。"
       },
       "zh": {
-        "text": "一张可浏览的地图，呈现系统自身的健康状况、依赖关系与证据——机构在阅读自己。"
+        "text": "返回公开世界、档案与入口选择。"
       }
     }
   },
@@ -1963,13 +1963,13 @@
   "institution.home.entry.build-health.body": {
     "strings": {
       "en": {
-        "text": "The accepted-main operational view of page porting, localization, and capability health. It makes build gaps visible without confusing draft work with accepted state."
+        "text": "See operational page and capability health when you want the implementation view."
       },
       "ja": {
-        "text": "承認済み main における、ページ移植・ローカライズ・機能健全性の運用ビューです。ドラフト作業と承認済み状態を混同せずに、ビルド上の欠落を可視化します。"
+        "text": "実装の状態を見たいときに、ページと機能の運用ヘルスを確認できます。"
       },
       "zh": {
-        "text": "这是已接受 main 上关于页面移植、本地化和功能健康状况的运行视图。它让构建缺口清晰可见，同时不会把草稿工作与已接受状态混为一谈。"
+        "text": "当你想查看实现状态时，可查看页面与能力的运行健康状况。"
       }
     }
   },
@@ -4911,6 +4911,214 @@
     "strings": {
       "en": {
         "text": "Design Foundation residuals are promoted only when current source lacks the same capability"
+      }
+    }
+  },
+  "institution.about.title": {
+    "strings": {
+      "en": {
+        "text": "About Vextreme — What this world is"
+      },
+      "ja": {
+        "text": "Vextremeについて — この世界とは"
+      },
+      "zh": {
+        "text": "关于 Vextreme — 这个世界是什么"
+      }
+    }
+  },
+  "institution.about.hero.eyebrow": {
+    "strings": {
+      "en": {
+        "text": "About Vextreme"
+      },
+      "ja": {
+        "text": "Vextremeについて"
+      },
+      "zh": {
+        "text": "关于 Vextreme"
+      }
+    }
+  },
+  "institution.about.hero.heading": {
+    "strings": {
+      "en": {
+        "text": "A public place to understand what exists — and how to continue."
+      },
+      "ja": {
+        "text": "何がここにあり、どう続けていけるのかを理解するための、公開された場所。"
+      },
+      "zh": {
+        "text": "一个公开的地方，让你理解这里有什么，以及如何继续。"
+      }
+    }
+  },
+  "institution.about.hero.lede": {
+    "strings": {
+      "en": {
+        "text": "Vextreme brings records, maps, methods, and working systems into one public world so people and AI can explore what is here, see how it connects, and continue without starting from zero."
+      },
+      "ja": {
+        "text": "Vextreme は、記録・地図・方法・動いているシステムを一つの公開世界にまとめ、人とAIがここにあるものを探索し、つながりを理解し、ゼロから始め直さずに続きを担えるようにします。"
+      },
+      "zh": {
+        "text": "Vextreme 把记录、地图、方法和正在运行的系统汇聚成一个公开世界，让人与 AI 能探索这里有什么、看见它们如何连接，并在无需从零开始的情况下继续前行。"
+      }
+    }
+  },
+  "institution.about.hero.terrain-cta": {
+    "strings": {
+      "en": {
+        "text": "Enter the Terrain"
+      },
+      "ja": {
+        "text": "テレインへ入る"
+      },
+      "zh": {
+        "text": "进入 Terrain"
+      }
+    }
+  },
+  "institution.about.hero.pieces-cta": {
+    "strings": {
+      "en": {
+        "text": "See how the pieces fit"
+      },
+      "ja": {
+        "text": "全体のつながりを見る"
+      },
+      "zh": {
+        "text": "看看各部分如何衔接"
+      }
+    }
+  },
+  "institution.about.pieces.vexlife.currentness": {
+    "strings": {
+      "en": {
+        "text": "Source-local Windows and Apple M4 Pro setup routes exist today; a broad signed packaged release remains a separate held decision."
+      },
+      "ja": {
+        "text": "現在、Windows と Apple M4 Pro にはソースローカルのセットアップ経路があります。広く配布する署名済みパッケージ版は、引き続き別の保留中の判断です。"
+      },
+      "zh": {
+        "text": "目前 Windows 与 Apple M4 Pro 已有基于源码的本地安装路径；面向广泛发布的签名打包版本仍是另一项尚未作出的决定。"
+      }
+    }
+  },
+  "institution.common.lineage.vexwork.name": {
+    "strings": {
+      "en": {
+        "text": "VexWork — the work map"
+      },
+      "ja": {
+        "text": "VexWork — 作業マップ"
+      },
+      "zh": {
+        "text": "VexWork — 工作地图"
+      }
+    }
+  },
+  "institution.common.lineage.vexwork.body": {
+    "strings": {
+      "en": {
+        "text": "The source-managed view of what is being built: projects, work, dependencies, evidence, and what remains unfinished."
+      },
+      "ja": {
+        "text": "何が作られているかをソース管理で示すビューです。プロジェクト、作業、依存関係、証拠、そして未完了のものを見渡せます。"
+      },
+      "zh": {
+        "text": "由源码管理的建设视图：项目、工作、依赖、证据，以及仍未完成的内容。"
+      }
+    }
+  },
+  "institution.about.deeper.intro": {
+    "strings": {
+      "en": {
+        "text": "The machinery is available when you want it. It is not a prerequisite for entering the world."
+      },
+      "ja": {
+        "text": "仕組みは、必要になったときにいつでも見られます。この世界に入るための前提条件ではありません。"
+      },
+      "zh": {
+        "text": "当你想了解时，底层机制随时可见；理解它们并不是进入这个世界的前提。"
+      }
+    }
+  },
+  "institution.about.deeper.covenant.name": {
+    "strings": {
+      "en": {
+        "text": "Covenant"
+      },
+      "ja": {
+        "text": "コヴェナント"
+      },
+      "zh": {
+        "text": "Covenant"
+      }
+    }
+  },
+  "institution.about.deeper.covenant.body": {
+    "strings": {
+      "en": {
+        "text": "Read the principles and institutional commitments behind the work."
+      },
+      "ja": {
+        "text": "この仕事を支える原則と機関としての約束を読みます。"
+      },
+      "zh": {
+        "text": "阅读这项工作背后的原则与机构承诺。"
+      }
+    }
+  },
+  "institution.about.deeper.vexsystem.name": {
+    "strings": {
+      "en": {
+        "text": "VexSystem"
+      },
+      "ja": {
+        "text": "VexSystem"
+      },
+      "zh": {
+        "text": "VexSystem"
+      }
+    }
+  },
+  "institution.about.deeper.vexsystem.body": {
+    "strings": {
+      "en": {
+        "text": "Explore the system and architecture layer for builders, AI, and technical curiosity."
+      },
+      "ja": {
+        "text": "開発者、AI、技術的な好奇心のためのシステムとアーキテクチャ層を探索します。"
+      },
+      "zh": {
+        "text": "探索面向构建者、AI 与技术好奇心的系统与架构层。"
+      }
+    }
+  },
+  "institution.about.deeper.source.name": {
+    "strings": {
+      "en": {
+        "text": "Source"
+      },
+      "ja": {
+        "text": "ソース"
+      },
+      "zh": {
+        "text": "源代码"
+      }
+    }
+  },
+  "institution.about.deeper.source.body": {
+    "strings": {
+      "en": {
+        "text": "Inspect the repository and follow the public source directly."
+      },
+      "ja": {
+        "text": "リポジトリを確認し、公開ソースを直接たどります。"
+      },
+      "zh": {
+        "text": "检查代码仓库，并直接追踪公开源码。"
       }
     }
   }

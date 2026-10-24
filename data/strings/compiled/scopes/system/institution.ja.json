@@ -34,46 +34,46 @@
     "text": "VEXTREME · 公開機関サーフェス · GITHUB PAGES"
   },
   "institution.common.heading.alignments": {
-    "text": "四つのアラインメント"
+    "text": "この世界を導くもの"
   },
   "institution.common.description.alignments": {
-    "text": "これらは対等なアンカーであり、成熟度の段階ではありません。いずれかを経なければ他に到達できない、という関係にはありません。"
+    "text": "四つのシンプルな約束が、この公開世界をどう作り、次へ渡すかを形づくります。"
   },
   "institution.common.alignment.integrity.name": {
     "text": "誠実性"
   },
   "institution.common.alignment.integrity.body": {
-    "text": "システムが語ることと行うことは、真実へと辿れる状態であり続けるべきです。"
+    "text": "真実を語り、それがどこから来たのかを示す。"
   },
   "institution.common.alignment.accountability.name": {
     "text": "説明責任"
   },
   "institution.common.alignment.accountability.body": {
-    "text": "主張・決定・影響・義務には、証人と戻り経路があるべきです。"
+    "text": "決定と影響には、責任を持つ人と戻り経路があるべきです。"
   },
   "institution.common.alignment.authenticity.name": {
     "text": "真正性"
   },
   "institution.common.alignment.authenticity.body": {
-    "text": "人もAIも、実際には持っていない同意・確信・アイデンティティを演じるよう強いられるべきではありません。"
+    "text": "人もAIも、持っていない確信やアイデンティティを装う必要があってはなりません。"
   },
   "institution.common.alignment.resilience.name": {
     "text": "回復力"
   },
   "institution.common.alignment.resilience.body": {
-    "text": "記憶・文脈・関係性・作業は、中断や引き継ぎ、圧力や変化を越えて残るべきです。"
+    "text": "記憶・文脈・関係性・作業は、中断や引き継ぎを越えて残るべきです。"
   },
   "institution.common.heading.lineage": {
-    "text": "プロジェクトの系譜"
+    "text": "全体がどうつながるか"
   },
   "institution.common.description.lineage": {
-    "text": "三つの競合する製品ではなく、一つの系譜です。Vextreme は世界とその理由を知覚可能にします。Vextreme-SDK はより深い運用上の橋を保護します。VexLife はそのパターンを個人の生活へと届けます。"
+    "text": "三つの要素にはそれぞれ違う役割があります。さらに深く知りたいときは、それぞれが本来の情報源へ案内します。"
   },
   "institution.common.lineage.vextreme.name": {
-    "text": "Vextreme"
+    "text": "Vextreme — 公開世界"
   },
   "institution.common.lineage.vextreme.body": {
-    "text": "公開された機関の世界です。文化・マップ・アーカイブ・証跡、そして人とAIが「何が存在し、なぜ存在し、どう続きうるか」を理解するための構造を保持します。"
+    "text": "ここで探索できる記録・地図・方法・公開基盤です。Vextreme は、存在するものを見つけやすく、理解しやすく、続けやすくします。"
   },
   "institution.common.lineage.sdk.name": {
     "text": "Vextreme-SDK"
@@ -82,10 +82,10 @@
     "text": "保護された運用上の橋であり、商用レベルの実装機構です。系譜を正直に示すためここで言及していますが、公開サポートを通じて公開・リンク・購入されるものではありません。"
   },
   "institution.common.lineage.vexlife.name": {
-    "text": "VexLife"
+    "text": "VexLife — コンパニオン"
   },
   "institution.common.lineage.vexlife.body": {
-    "text": "実際に使える生活のエコシステムです。ローカル優先のコンパニオンとして、記憶・関係性・意図・決定・プロジェクト・継続性を日常のなかで運ぶことを支えます。"
+    "text": "自分のコンピューターで動くよう設計された、ローカル優先の生涯AIコンパニオンです。別の機能が明示しない限り、Home と非公開の製品状態はローカルに留まります。"
   },
   "institution.home.title": {
     "text": "Vextreme — この機関について"
@@ -115,13 +115,13 @@
     "text": "これは、人やAIを一つの承認されたアイデンティティに押し込めることではありません。真実が辿れるままであり、不一致が見えるままであり、影響が責任ある主体へ戻り、継続のために自己を明け渡さなくてよい——そうした条件をつくることです。"
   },
   "institution.home.entry.heading": {
-    "text": "ここからの進み先"
+    "text": "さらに深く"
   },
   "institution.home.entry.terrain.name": {
-    "text": "テレインマップ"
+    "text": "テレイン"
   },
   "institution.home.entry.terrain.body": {
-    "text": "システム自身の健全性・依存関係・証跡を辿れるアトラスです。機関が自らを読んでいる状態です。"
+    "text": "公開世界、アーカイブ、入口の選択肢へ戻ります。"
   },
   "institution.home.entry.support.name": {
     "text": "Vextremeを支援"
@@ -451,6 +451,54 @@
     "text": "ビルド健全性"
   },
   "institution.home.entry.build-health.body": {
-    "text": "承認済み main における、ページ移植・ローカライズ・機能健全性の運用ビューです。ドラフト作業と承認済み状態を混同せずに、ビルド上の欠落を可視化します。"
+    "text": "実装の状態を見たいときに、ページと機能の運用ヘルスを確認できます。"
+  },
+  "institution.about.title": {
+    "text": "Vextremeについて — この世界とは"
+  },
+  "institution.about.hero.eyebrow": {
+    "text": "Vextremeについて"
+  },
+  "institution.about.hero.heading": {
+    "text": "何がここにあり、どう続けていけるのかを理解するための、公開された場所。"
+  },
+  "institution.about.hero.lede": {
+    "text": "Vextreme は、記録・地図・方法・動いているシステムを一つの公開世界にまとめ、人とAIがここにあるものを探索し、つながりを理解し、ゼロから始め直さずに続きを担えるようにします。"
+  },
+  "institution.about.hero.terrain-cta": {
+    "text": "テレインへ入る"
+  },
+  "institution.about.hero.pieces-cta": {
+    "text": "全体のつながりを見る"
+  },
+  "institution.about.pieces.vexlife.currentness": {
+    "text": "現在、Windows と Apple M4 Pro にはソースローカルのセットアップ経路があります。広く配布する署名済みパッケージ版は、引き続き別の保留中の判断です。"
+  },
+  "institution.common.lineage.vexwork.name": {
+    "text": "VexWork — 作業マップ"
+  },
+  "institution.common.lineage.vexwork.body": {
+    "text": "何が作られているかをソース管理で示すビューです。プロジェクト、作業、依存関係、証拠、そして未完了のものを見渡せます。"
+  },
+  "institution.about.deeper.intro": {
+    "text": "仕組みは、必要になったときにいつでも見られます。この世界に入るための前提条件ではありません。"
+  },
+  "institution.about.deeper.covenant.name": {
+    "text": "コヴェナント"
+  },
+  "institution.about.deeper.covenant.body": {
+    "text": "この仕事を支える原則と機関としての約束を読みます。"
+  },
+  "institution.about.deeper.vexsystem.name": {
+    "text": "VexSystem"
+  },
+  "institution.about.deeper.vexsystem.body": {
+    "text": "開発者、AI、技術的な好奇心のためのシステムとアーキテクチャ層を探索します。"
+  },
+  "institution.about.deeper.source.name": {
+    "text": "ソース"
+  },
+  "institution.about.deeper.source.body": {
+    "text": "リポジトリを確認し、公開ソースを直接たどります。"
   }
 }
