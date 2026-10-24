@@ -134,13 +134,16 @@ active entry, proves these projections together:
    value must not appear in rendered route text or attributes.
 
    The separately reviewed `tierCheckout` row is the payment-activation
-   contract for the support meanings. Its tier identities are derived from
-   `tierAmounts.monthly` plus `tierAmounts.oneTime`; every one must have
+   contract for the support meanings. `tierAmounts` must explicitly declare
+   `ACTIVE_WITH_STRIPE_CHECKOUT` and retain its owner confirmation. Tier
+   identities are derived from `tierAmounts.monthly` plus
+   `tierAmounts.oneTime`; every one must have
    exactly one owner-confirmed `https://buy.stripe.com/…` destination and
    exactly one matching `data-vex-support-tier` page projection containing
    one `data-vex-tier-checkout` anchor. The anchor's `href` must equal the
    configured URL byte-for-byte and carry `target="_blank"` plus
-   `rel="noopener noreferrer"`. An amount without a destination, a
+   `rel="noopener noreferrer"`. URLs must already be in canonical form rather
+   than relying on browser normalization. An amount without a destination, a
    destination without an amount, a substituted host, a duplicate projection,
    or page-local URL drift fails closed. This binding proves repository
    destination identity and current owner intent; it does not by itself prove

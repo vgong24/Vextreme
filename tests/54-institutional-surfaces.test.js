@@ -385,10 +385,22 @@ test('INSTITUTIONAL-SURFACES: tier Checkout activation is exact, Stripe-bound, a
   const valid = supportRouteFixture(routeBlock);
   assert.deepEqual(validateRegistry(valid.active, valid.root), []);
 
+  const staleAmountStatus = supportRouteFixture(routeBlock);
+  staleAmountStatus.routeConfig.tierAmounts.status = 'CONFIRMED_FOR_DISPLAY_WITHOUT_DESTINATION';
+  fs.writeFileSync(staleAmountStatus.routePath, `${JSON.stringify(staleAmountStatus.routeConfig)}\n`);
+  assert.ok(validateRegistry(staleAmountStatus.active, staleAmountStatus.root)
+    .some(issue => issue.check === 'support-tier-amounts-status'));
+
   const wrongHost = supportRouteFixture(routeBlock);
   wrongHost.routeConfig.tierCheckout.destinations[0].url = 'https://example.com/pay';
   fs.writeFileSync(wrongHost.routePath, `${JSON.stringify(wrongHost.routeConfig)}\n`);
   assert.ok(validateRegistry(wrongHost.active, wrongHost.root)
+    .some(issue => issue.check === 'support-tier-checkout-url'));
+
+  const normalizedHost = supportRouteFixture(routeBlock);
+  normalizedHost.routeConfig.tierCheckout.destinations[0].url = 'https://BUY.STRIPE.COM/testcheckout123';
+  fs.writeFileSync(normalizedHost.routePath, `${JSON.stringify(normalizedHost.routeConfig)}\n`);
+  assert.ok(validateRegistry(normalizedHost.active, normalizedHost.root)
     .some(issue => issue.check === 'support-tier-checkout-url'));
 
   const wrongHref = supportRouteFixture(
