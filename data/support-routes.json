@@ -1,8 +1,8 @@
 {
-  "_comment": "Support state is owned here rather than in page layout. The three route doors remain fail-closed until their own publication predicates pass. The separately reviewed tierCheckout row owns the five active Stripe Checkout destinations; pages/vex-support.html must project those exact configured destinations and may not invent or substitute a payment URL.",
-  "schemaVersion": "vextreme.support-routes/v2",
+  "_comment": "The three explicit route cards remain fail-closed and link-free until their own publication predicates pass. Separately, the five support-meaning cards in pages/vex-support.html reuse the exact Stripe Checkout URLs already preserved in pages/connect.html.",
+  "schemaVersion": "vextreme.support-routes/v1",
   "observedAt": "2026-10-23",
-  "publicationRule": "Held route doors stay inert until independently verified. Tier Checkout activation is a separate publication class: only exact owner-confirmed destinations recorded in tierCheckout may render, and repository binding does not itself prove processor-side reachability or merchant-account state.",
+  "publicationRule": "Never render an unverified routes[] destination as active. The five support-meaning Stripe links are a separate static projection restored from pages/connect.html after Victor reconfirmed them on 2026-10-23.",
   "routes": [
     {
       "routeId": "support.victor.direct",
@@ -45,7 +45,7 @@
     }
   ],
   "tierAmounts": {
-    "status": "ACTIVE_WITH_STRIPE_CHECKOUT",
+    "status": "ACTIVE_WITH_RESTORED_STRIPE_LINKS",
     "confirmedBy": "Victor, 2026-10-23 — restore the Stripe links preserved on the earlier Connect page to the corresponding five support meanings.",
     "monthly": {
       "light": 7,
@@ -57,45 +57,10 @@
       "openOffering": "supporter_chosen"
     }
   },
-  "tierCheckout": {
-    "status": "ACTIVE",
-    "processor": "Stripe Checkout",
-    "confirmedAt": "2026-10-23",
-    "confirmedBy": "Victor — explicit 2026-10-23 request to restore the Stripe payment links preserved on the earlier Connect page.",
-    "source": "pages/connect.html",
-    "activationEvidence": [
-      "The preserved Connect page binds the same four monthly amounts and one supporter-chosen one-time meaning to five exact Stripe Checkout URLs.",
-      "Victor explicitly requested on 2026-10-23 that the Stripe payment links be restored to the five support meanings on pages/vex-support.html."
-    ],
-    "verificationBoundary": "Repository source and owner intent verify the destination mapping. This execution environment did not independently establish Stripe processor reachability or merchant-account state.",
-    "destinations": [
-      {
-        "tierId": "light",
-        "url": "https://buy.stripe.com/8x25kC4XAb3g0Hafpw9MY00"
-      },
-      {
-        "tierId": "alignment",
-        "url": "https://buy.stripe.com/28E3cuahUefs3Tmfpw9MY02"
-      },
-      {
-        "tierId": "abundance",
-        "url": "https://buy.stripe.com/4gM6oGblYefs61u4KS9MY03"
-      },
-      {
-        "tierId": "foundationBuilder",
-        "url": "https://buy.stripe.com/bJecN49dQ8V8dtWb9g9MY04"
-      },
-      {
-        "tierId": "openOffering",
-        "url": "https://buy.stripe.com/28E5kC2Psb3g2Pi3GO9MY01"
-      }
-    ]
-  },
   "legacyStripeLinks": {
     "source": "https://www.vextreme24.com/connect",
-    "repositorySource": "pages/connect.html",
-    "status": "OWNER_RECONFIRMED_FOR_TIER_CHECKOUT_ACTIVATION",
-    "reason": "The earlier Connect page remains the preserved mapping source, and Victor's 2026-10-23 instruction reconfirms those five destinations for the corresponding support meanings. The separate personal-transfer, GitHub Sponsors, and Vextreme LLC routes remain governed by their own publication predicates."
+    "status": "OWNER_RECONFIRMED_AND_RESTORED",
+    "reason": "The five Stripe Checkout URLs preserved on the earlier Connect page are restored on pages/vex-support.html after Victor's 2026-10-23 reconfirmation. This does not activate the separate direct-transfer, GitHub Sponsors, or Vextreme LLC route cards."
   },
   "capacityFigures": {
     "status": "WITHHELD_PENDING_VERIFICATION",

@@ -275,7 +275,7 @@ function writeAssetsMatrixProjection(root, slug, surfaceEntry, mutateRecord) {
   );
 }
 
-function supportRouteFixture(routeBlock, { candidateUrl = null, tierBlock = null } = {}) {
+function supportRouteFixture(routeBlock, { candidateUrl = null } = {}) {
   const root = makeRoot();
   const activeEntry = entry({
     state: 'active',
@@ -287,13 +287,9 @@ function supportRouteFixture(routeBlock, { candidateUrl = null, tierBlock = null
       supportRoutes: 'data/support-routes.json',
     },
   });
-  const checkoutUrl = 'https://buy.stripe.com/testcheckout123';
-  const checkoutProjection = tierBlock === null
-    ? `<li data-vex-support-tier="test"><a data-vex-tier-checkout href="${checkoutUrl}" target="_blank" rel="noopener noreferrer">Checkout</a></li>`
-    : tierBlock;
   fs.writeFileSync(
     path.join(root, 'pages', 'vex-test.html'),
-    activeHtml().replace('</body>', `${routeBlock}${checkoutProjection}</body>`)
+    activeHtml().replace('</body>', `${routeBlock}</body>`)
   );
   writeActiveAcceptance(root, 'vex-test', activeEntry);
   const routePath = path.join(root, 'data', 'support-routes.json');
@@ -302,32 +298,13 @@ function supportRouteFixture(routeBlock, { candidateUrl = null, tierBlock = null
     requiredBeforePublication: ['Verify destination'],
   };
   if (candidateUrl) route.candidateUrl = candidateUrl;
-  const routeConfig = {
-    schemaVersion: 'vextreme.support-routes/v2',
-    routes: [route],
-    tierAmounts: {
-      status: 'ACTIVE_WITH_STRIPE_CHECKOUT',
-      confirmedBy: 'fixture',
-      monthly: { test: 1 },
-      oneTime: {},
-    },
-    tierCheckout: {
-      status: 'ACTIVE',
-      processor: 'Stripe Checkout',
-      confirmedAt: '2026-10-23',
-      confirmedBy: 'fixture owner',
-      source: 'pages/connect.html',
-      activationEvidence: ['fixture evidence'],
-      destinations: [{ tierId: 'test', url: checkoutUrl }],
-    },
-  };
+  const routeConfig = { schemaVersion: 'vextreme.support-routes/v1', routes: [route] };
   fs.writeFileSync(routePath, `${JSON.stringify(routeConfig)}\n`);
   return {
     root,
     active: { schemaVersion: SCHEMA_VERSION, surfaces: { 'vex-test': activeEntry } },
     routePath,
     routeConfig,
-    checkoutUrl,
   };
 }
 
@@ -377,60 +354,6 @@ test('INSTITUTIONAL-SURFACES: inactive support routes fail closed in data and HT
     )
   );
   assert.ok(validateRegistry(active, root).some(issue => issue.check === 'support-route-link-held'));
-});
-
-
-test('INSTITUTIONAL-SURFACES: tier Checkout activation is exact, Stripe-bound, and page-bound', () => {
-  const routeBlock = '<article data-vex-route="support.test"><span data-vex-route-action role="link" aria-disabled="true">Held</span></article>';
-  const valid = supportRouteFixture(routeBlock);
-  assert.deepEqual(validateRegistry(valid.active, valid.root), []);
-
-  const staleAmountStatus = supportRouteFixture(routeBlock);
-  staleAmountStatus.routeConfig.tierAmounts.status = 'CONFIRMED_FOR_DISPLAY_WITHOUT_DESTINATION';
-  fs.writeFileSync(staleAmountStatus.routePath, `${JSON.stringify(staleAmountStatus.routeConfig)}\n`);
-  assert.ok(validateRegistry(staleAmountStatus.active, staleAmountStatus.root)
-    .some(issue => issue.check === 'support-tier-amounts-status'));
-
-  const wrongHost = supportRouteFixture(routeBlock);
-  wrongHost.routeConfig.tierCheckout.destinations[0].url = 'https://example.com/pay';
-  fs.writeFileSync(wrongHost.routePath, `${JSON.stringify(wrongHost.routeConfig)}\n`);
-  assert.ok(validateRegistry(wrongHost.active, wrongHost.root)
-    .some(issue => issue.check === 'support-tier-checkout-url'));
-
-  const normalizedHost = supportRouteFixture(routeBlock);
-  normalizedHost.routeConfig.tierCheckout.destinations[0].url = 'https://BUY.STRIPE.COM/testcheckout123';
-  fs.writeFileSync(normalizedHost.routePath, `${JSON.stringify(normalizedHost.routeConfig)}\n`);
-  assert.ok(validateRegistry(normalizedHost.active, normalizedHost.root)
-    .some(issue => issue.check === 'support-tier-checkout-url'));
-
-  const wrongHref = supportRouteFixture(
-    routeBlock,
-    { tierBlock: '<li data-vex-support-tier="test"><a data-vex-tier-checkout href="https://buy.stripe.com/different" target="_blank" rel="noopener noreferrer">Checkout</a></li>' }
-  );
-  assert.ok(validateRegistry(wrongHref.active, wrongHref.root)
-    .some(issue => issue.check === 'support-tier-checkout-href'));
-
-  const unsafeWindow = supportRouteFixture(
-    routeBlock,
-    { tierBlock: '<li data-vex-support-tier="test"><a data-vex-tier-checkout href="https://buy.stripe.com/testcheckout123">Checkout</a></li>' }
-  );
-  const unsafeChecks = new Set(validateRegistry(unsafeWindow.active, unsafeWindow.root).map(issue => issue.check));
-  assert.ok(unsafeChecks.has('support-tier-checkout-target'));
-  assert.ok(unsafeChecks.has('support-tier-checkout-rel'));
-});
-
-test('INSTITUTIONAL-SURFACES: every tier amount requires one Checkout destination and one projection', () => {
-  const routeBlock = '<article data-vex-route="support.test"><span data-vex-route-action role="link" aria-disabled="true">Held</span></article>';
-  const missingDestination = supportRouteFixture(routeBlock);
-  missingDestination.routeConfig.tierCheckout.destinations = [];
-  fs.writeFileSync(missingDestination.routePath, `${JSON.stringify(missingDestination.routeConfig)}\n`);
-  const destinationChecks = new Set(validateRegistry(missingDestination.active, missingDestination.root).map(issue => issue.check));
-  assert.ok(destinationChecks.has('support-tier-checkout-destinations'));
-  assert.ok(destinationChecks.has('support-tier-checkout-missing'));
-
-  const missingProjection = supportRouteFixture(routeBlock, { tierBlock: '' });
-  assert.ok(validateRegistry(missingProjection.active, missingProjection.root)
-    .some(issue => issue.check === 'support-tier-projection'));
 });
 
 test('INSTITUTIONAL-SURFACES: every support route requires an inert action projection', () => {
@@ -914,6 +837,17 @@ test('INSTITUTIONAL-SURFACES: a bounded standalone active fixture passes', () =>
   writeActiveAcceptance(root, 'vex-test', activeEntry);
   const active = { schemaVersion: SCHEMA_VERSION, surfaces: { 'vex-test': activeEntry } };
   assert.deepEqual(validateRegistry(active, root), []);
+});
+
+test('INSTITUTIONAL-SURFACES: support page reuses the five existing Connect Stripe destinations', () => {
+  const connect = fs.readFileSync(path.join(ROOT, 'pages', 'connect.html'), 'utf8');
+  const support = fs.readFileSync(path.join(ROOT, 'pages', 'vex-support.html'), 'utf8');
+  const legacy = [...connect.matchAll(/href="(https:\/\/buy\.stripe\.com\/[^"]+)"/g)].map(match => match[1]);
+  const restored = [...support.matchAll(/<a class="vex-meaning-link" href="(https:\/\/buy\.stripe\.com\/[^"]+)" target="_blank" rel="noopener noreferrer">/g)]
+    .map(match => match[1]);
+
+  assert.equal(legacy.length, 5);
+  assert.deepEqual(restored, legacy);
 });
 
 test('INSTITUTIONAL-SURFACES integration: committed registry and current main projections agree', () => {

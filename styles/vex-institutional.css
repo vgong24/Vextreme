@@ -506,10 +506,6 @@ select.vex-control {
   text-decoration: none;
 }
 
-.vex-meaning-link:hover {
-  background: var(--bg-surface-raised);
-}
-
 .vex-meaning-link:hover .vex-meaning-name,
 .vex-meaning-link:focus-visible .vex-meaning-name {
   text-decoration: underline;
