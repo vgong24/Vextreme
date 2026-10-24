@@ -30,7 +30,7 @@ test('CONTENT FORGE SCOPES OF GOD: every destination localization key resolves t
   const keys = [...page.matchAll(/data-i18n="([^"]+)"/g)].map((match) => match[1]);
 
   assert.equal(transcriptKeys.length, 143);
-  assert.equal(presentationKeys.length, 90);
+  assert.equal(presentationKeys.length, 83);
   assert.equal(transcript._meta.scope, 'pages.scopes-of-god');
   assert.equal(presentation._meta.scope, transcript._meta.scope);
   assert.deepEqual(collisions, [], 'provenance-distinct same-scope source files must keep disjoint key identity');
