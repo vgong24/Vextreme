@@ -71,8 +71,12 @@ test('BANK-COVENANT-DUAL-LINEAGE: current Presentation source identities remain 
   const panel = between(page, '<!-- PART-024-PRESENTATION-BEGIN -->', '<!-- PART-024-PRESENTATION-END -->');
   const bound = new Set([...panel.matchAll(/data-i18n="([^"]+)"/g)].map((match) => match[1]));
   const keys = sourceKeys(presentationSource);
+  const documentTitleKey = 'pages.when-i-asked-a-bank-for-covenant-provision.document-title';
+  const visibleKeys = keys.filter((key) => key !== documentTitleKey);
   assert.equal(keys.length, 51);
-  assert.deepEqual(keys.filter((key) => !bound.has(key)), []);
+  assert.equal(visibleKeys.length, 50);
+  assert.deepEqual(visibleKeys.filter((key) => !bound.has(key)), []);
+  assert.match(page, new RegExp('data-i18n="' + escapeRegExp(documentTitleKey) + '"'));
   assert.equal(presentationSource._meta.sourceProvenance.preservedPath,
     'docs/ingestion/source-pages/part-024/when-i-asked-a-bank-for-covenant-provision.html');
   assert.equal(presentationSource._meta.sourceProvenance.preservedGitBlob,
