@@ -25,11 +25,9 @@ jobs:
           set -euo pipefail
           test "$(git rev-parse HEAD)" = "7c05f87d9a360da267678f79b5f540344a34646e"
           test "$(git rev-parse HEAD^{tree})" = "0233da901b9479f6648900dc109455b9dd502d64"
-          git diff --exit-code 1418b952c10bf01616ebf5832f6a7533ab51dc2c..HEAD -- pages/terrain-map.html tests/85-terrain-view-contract.test.js
-          mapfile -t changed < <(git diff --name-only 1418b952c10bf01616ebf5832f6a7533ab51dc2c..HEAD)
-          test "${#changed[@]}" -eq 2
-          test "${changed[0]}" = "pages/terrain-map.html"
-          test "${changed[1]}" = "tests/85-terrain-view-contract.test.js"
+          changed="$(git diff --name-only 1418b952c10bf01616ebf5832f6a7533ab51dc2c..HEAD | LC_ALL=C sort)"
+          expected="$(printf '%s\n%s' 'pages/terrain-map.html' 'tests/85-terrain-view-contract.test.js')"
+          test "$changed" = "$expected"
 
       - name: Setup Node
         uses: actions/setup-node@v4
