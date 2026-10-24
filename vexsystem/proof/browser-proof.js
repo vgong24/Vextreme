@@ -709,8 +709,12 @@ async function runTerrainEntryRuntime(origin, cdp) {
     "location.pathname === '/Vextreme/pages/about-vextreme.html'",
     'Terrain top-level About Vextreme handoff'
   );
-  await ready(cdp, desktop);
-  const navigated = await runtimeSnapshot(cdp, desktop);
+  await waitFor(
+    cdp,
+    desktop.sessionId,
+    "document.querySelector('[data-i18n=\"institution.about.hero.heading\"]')",
+    'About Vextreme orientation surface'
+  );
   const aboutHeading = await evaluate(cdp, desktop.sessionId, "document.querySelector('[data-i18n=\"institution.about.hero.heading\"]')?.textContent || ''");
   if (!/public place to understand what exists/i.test(aboutHeading)) {
     fail('VEXSYSTEM_BROWSER_TERRAIN_ABOUT_ORIENTATION_MISSING', 'About Vextreme did not expose the plain-human orientation heading.', { arrival, aboutHeading });
@@ -724,7 +728,7 @@ async function runTerrainEntryRuntime(origin, cdp) {
     fail(
       'VEXSYSTEM_BROWSER_TERRAIN_ABOUT_HANDOFF_EMBEDDED',
       'Terrain handed About Vextreme to an embedded reader instead of top-level navigation.',
-      { arrival, navigated, topLevel }
+      { arrival, aboutHeading, topLevel }
     );
   }
 
