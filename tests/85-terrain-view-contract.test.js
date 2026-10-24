@@ -907,7 +907,8 @@ test('TERRAIN-VIEW: Welcome Wagon arrival converges visually without importing i
   assert.match(source, /\.entry-arrival\{[\s\S]*--entry-serif:"Source Serif 4"[\s\S]*--entry-sans:"IBM Plex Sans"[\s\S]*--entry-mono:"IBM Plex Mono"/u);
   assert.match(source, /\.entry-shell h2\{[\s\S]*var\(--entry-serif\)/u);
   assert.match(source, /\.entry-title\{[^}]*var\(--entry-serif\)/u);
-  assert.match(source, /\.topbar\{[^}]*font-family:(?!var\(--entry-)/u);
+  assert.match(source, /--sans:\s*system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;/u);
+  assert.doesNotMatch(source, /\.topbar\{[^}]*var\(--entry-/u);
   assert.match(source, /<div class="entry-kicker">Vextreme · Terrain<\/div>/u);
   assert.match(source, /Terrain is the public front door to Vextreme\./u);
   assert.match(source, /<span class="entry-icon">01<\/span>/u);
