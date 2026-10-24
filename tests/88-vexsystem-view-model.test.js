@@ -37,7 +37,7 @@ test('VEXSYSTEM VIEW: Terrain entry exposes three executable choices while prese
   const branchClasses = new Map(process.relations.map(item => [item.relationRef, item.branchClass]));
   assert.equal(branchClasses.get('rel.vexsystem.contract-to-receive-god'), 'ACTIVE_BRANCH');
   assert.equal(branchClasses.get('rel.vexsystem.contract-to-archives'), 'ALTERNATIVE_BRANCH');
-  assert.equal(branchClasses.get('rel.vexsystem.contract-to-vexsystem'), 'ALTERNATIVE_BRANCH');
+  assert.equal(branchClasses.get('rel.vexsystem.contract-to-about-vextreme'), 'ALTERNATIVE_BRANCH');
 });
 
 test('VEXSYSTEM VIEW: consequence lens can distinguish contract proof from browser/visual proof', () => {

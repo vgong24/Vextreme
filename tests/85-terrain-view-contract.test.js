@@ -865,31 +865,33 @@ test('TERRAIN-VIEW: shipped renderer consumes the contract and exposes semantic 
 });
 
 
-test('TERRAIN-VIEW: ordered entry contract keeps Take a Walk inside the reader while activating the VexSystem learning-world handoff', () => {
+test('TERRAIN-VIEW: ordered entry keeps human orientation primary while VexSystem stays secondary through About', () => {
   const value = entryContract();
   assert.equal(value.schemaVersion, 'vextreme.terrain-entry/v1');
   assert.deepEqual(value.choices.map(choice => [choice.id, choice.effect, choice.enabled]), [
     ['receive-god', 'reader', true],
     ['archives', 'terrain-group-overview', true],
-    ['vexsystem', 'vexsystem-learning-world', true],
+    ['about', 'plain-orientation', true],
   ]);
-  assert.equal(value.choices.find(choice => choice.id === 'vexsystem').path, '../vexsystem/');
+  assert.equal(value.choices.find(choice => choice.id === 'about').path, 'about-vextreme.html');
   assert.equal(value.documents['receive-god'].order, 1);
   assert.equal(value.documents['take-a-walk'].order, 2);
   assert.equal(value.choices.some(choice => choice.id === 'take-a-walk'), false);
+  assert.equal(value.choices.some(choice => choice.id === 'vexsystem'), false);
 
   const source = pageSource();
   assert.match(source, /function renderEvolutionAArrival\(\)/);
   assert.match(source, /function openEntryReader\(slug\)/);
   assert.match(source, /function enterArchivesFromArrival\(\)/);
   assert.match(source, /function handleTerrainEntryMessage\(event\)/);
-  assert.match(source, /function enterVexSystemFromArrival\(\)/);
-  assert.match(source, /data-entry-action="vexsystem"/);
-  assert.doesNotMatch(source, /data-entry-action="vexsystem" disabled/);
+  assert.match(source, /function enterAboutFromArrival\(\)/);
+  assert.match(source, /data-entry-action="about"/);
+  assert.match(source, />What is this\?<\/span>/);
+  assert.doesNotMatch(source, /data-entry-action="vexsystem"/);
   assert.match(source, /new URL\(choice\.path, window\.location\.href\)/);
   assert.match(source, /target\.origin !== window\.location\.origin/);
   assert.match(source, /window\.location\.assign\(target\.href\)/);
-  assert.ok(source.includes("evolutionLayer.querySelector('[data-entry-action=\"vexsystem\"]').addEventListener('click', enterVexSystemFromArrival);"));
+  assert.ok(source.includes("evolutionLayer.querySelector('[data-entry-action=\"about\"]').addEventListener('click', enterAboutFromArrival);"));
   assert.match(source, /openEntryReader\('receive-god'\)/);
   assert.doesNotMatch(source, /data-entry-action="take-a-walk"/);
 });
