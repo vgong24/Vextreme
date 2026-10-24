@@ -900,11 +900,11 @@ test('TERRAIN-VIEW: ordered entry keeps human orientation primary while VexSyste
 test('TERRAIN-VIEW: Welcome Wagon arrival converges visually without importing institutional runtime ownership', () => {
   const source = pageSource();
 
-  assert.match(source, /--serif:\s*"Source Serif 4"/u);
-  assert.match(source, /--sans:\s*"IBM Plex Sans"/u);
   assert.match(source, /#vex-site-nav\s*\{[\s\S]*--cream:var\(--ground\);[\s\S]*--stone:var\(--ink\);[\s\S]*--ember:var\(--ink\);/u);
-  assert.match(source, /\.entry-shell h2\{[\s\S]*var\(--serif\)/u);
-  assert.match(source, /\.entry-title\{[^}]*var\(--serif\)/u);
+  assert.match(source, /\.entry-arrival\{[\s\S]*--entry-serif:"Source Serif 4"[\s\S]*--entry-sans:"IBM Plex Sans"[\s\S]*--entry-mono:"IBM Plex Mono"/u);
+  assert.match(source, /\.entry-shell h2\{[\s\S]*var\(--entry-serif\)/u);
+  assert.match(source, /\.entry-title\{[^}]*var\(--entry-serif\)/u);
+  assert.match(source, /\.topbar\{[^}]*font-family:(?!var\(--entry-)/u);
   assert.match(source, /<div class="entry-kicker">Vextreme · Terrain<\/div>/u);
   assert.match(source, /Terrain is the public front door to Vextreme\./u);
   assert.match(source, /<span class="entry-icon">01<\/span>/u);
