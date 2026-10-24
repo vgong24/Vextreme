@@ -2297,7 +2297,7 @@
     },
     "lib/shell.js": {
       "role": "thin GitHub Pages shell bootstrap — loads the cache-versioned legacy runtime and invokes VEXTREME with the page's optional override",
-      "context": "Still live for pages that include shell.js even though the newer God Script path exists. This file owns only the stable bootstrap/cache handoff: it injects lib/vextreme.js, waits for it, then calls window.VEXTREME(window.VEXTREME_OVERRIDE || {}). It must not become a second runtime-composition owner. Its VEXTREME_VER must stay aligned with lib/vextreme.js DEFAULT_CACHE; tests/41 makes that prior cache regression mechanical instead of remembered.",
+      "context": "Still live for pages that include shell.js even though the newer God Script path exists. This file owns only the stable bootstrap/cache handoff: it injects lib/vextreme.js, waits for it, then calls window.VEXTREME(window.VEXTREME_OVERRIDE || {}). Its VEXTREME_VER is generated from the shared cache-family content by lib/build-shared-cache-generation.js and must equal lib/vextreme.js DEFAULT_CACHE plus Terrain's bootstrap token; tests/41 proves both equality and content-currentness.",
       "reads": [
         "lib/vextreme.js (cache-versioned runtime loaded into the page)",
         "window.VEXTREME_OVERRIDE (optional page configuration passed through after load)"
@@ -2314,9 +2314,10 @@
         "tests/41-vextreme-fab-autoload.test.js"
       ],
       "changeMap": {
-        "VEXTREME_VER or bootstrap cache handoff changed": [
-          "lib/vextreme.js DEFAULT_CACHE (must stay byte-equivalent as a version token)",
-          "tests/41-vextreme-fab-autoload.test.js (CACHE-SYNC assertion)"
+        "shared cache identity or bootstrap cache handoff changed": [
+          "lib/build-shared-cache-generation.js (content-derived token owner)",
+          "lib/vextreme.js DEFAULT_CACHE and pages/terrain-map.html bootstrap (generated peers)",
+          "tests/41-vextreme-fab-autoload.test.js (CACHE-SYNC currentness assertions)"
         ],
         "runtime target or VEXTREME invocation contract changed": [
           "lib/vextreme.js (the loaded runtime/entry point)",
@@ -2357,8 +2358,9 @@
         "tests/43-runtime-chrome-composition.test.js"
       ],
       "changeMap": {
-        "DEFAULT_CACHE changed": [
-          "lib/shell.js VEXTREME_VER (cache token must stay synchronized)",
+        "DEFAULT_CACHE or cache-versioned asset family changed": [
+          "lib/build-shared-cache-generation.js CACHE_FAMILY_PATHS / generated identity",
+          "lib/shell.js VEXTREME_VER and pages/terrain-map.html bootstrap",
           "tests/41-vextreme-fab-autoload.test.js"
         ],
         "#vex-nav-actions or shared chrome composition changed": [
@@ -2525,6 +2527,43 @@
           "tests/97-fab-read-aloud.test.js",
           "browser-lived acceptance while narration is active",
           "SystemNarration generation/cancellation semantics here"
+        ]
+      }
+    },
+    "lib/build-shared-cache-generation.js": {
+      "role": "deterministic shared-runtime cache identity generator — fingerprints the cache-versioned v1 shell/runtime asset family after normalizing token-bearing lines, then writes one convergent content-derived token into shell.js, vextreme.js and Terrain's shell bootstrap",
+      "context": "2026-10-21 — a lived Vextreme -> VexWork -> Vextreme -> VexWork loop proved that source-correct navigation could regress to the retired route because the shared shell/runtime cache token remained v16 after the nav bytes changed. The immediate v17 repair closed that instance. This generator removes the human-maintained global integer entirely: the token is the first 12 hex characters of SHA-256 over sorted cache-family path+normalized-byte entries. shell.js and vextreme.js normalize only their token constant before hashing, so the generated token cannot recursively change its own next identity. Parallel branches derive identities from their actual composed bytes rather than contending on one integer.",
+      "reads": [
+        "lib/shell.js and lib/vextreme.js (token-bearing source normalized before hashing)",
+        "lib/arc-nav.js and lib/archive-renderer.js",
+        "components/section-toggle.js and components/bc-nav.js",
+        "widgets/vex-fab.js / fab-read-aloud.js / fab-lang.js / fab-theme.js / fab-map.js",
+        "styles/site-nav.css / squarespace-overrides.css / design-system.css / arc-nav.css / page template CSS",
+        "data/arcs.json and data/pages.json"
+      ],
+      "writes": [
+        "lib/shell.js VEXTREME_VER",
+        "lib/vextreme.js DEFAULT_CACHE",
+        "pages/terrain-map.html shell.js query token"
+      ],
+      "loadedBy": [
+        "package.json cache:build / cache:check / pr-ready",
+        "tests/41-vextreme-fab-autoload.test.js"
+      ],
+      "testedBy": [
+        "tests/41-vextreme-fab-autoload.test.js"
+      ],
+      "changeMap": {
+        "CACHE_FAMILY_PATHS membership changes": [
+          "lib/vextreme.js cacheVer consumers — every same-token runtime fetch/load must stay represented",
+          "tests/41 cache-family fingerprint regression",
+          "docs/lattice-map.json reads list here"
+        ],
+        "token normalization or rewrite contract changes": [
+          "lib/shell.js VEXTREME_VER",
+          "lib/vextreme.js DEFAULT_CACHE",
+          "pages/terrain-map.html shell bootstrap",
+          "tests/41 convergence + currentness checks"
         ]
       }
     }

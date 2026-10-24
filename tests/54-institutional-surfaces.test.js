@@ -839,6 +839,33 @@ test('INSTITUTIONAL-SURFACES: a bounded standalone active fixture passes', () =>
   assert.deepEqual(validateRegistry(active, root), []);
 });
 
+test('INSTITUTIONAL-SURFACES: support page stays contribution-first and compact', () => {
+  const support = fs.readFileSync(path.join(ROOT, 'pages', 'vex-support.html'), 'utf8');
+  const choices = support.indexOf('aria-labelledby="meanings-heading"');
+  const heldRoutes = support.indexOf('aria-labelledby="routes-heading" hidden');
+  assert.ok(choices >= 0);
+  assert.ok(heldRoutes > choices);
+  for (const removed of [
+    'id="story-heading"',
+    'id="capacity-heading"',
+    'institution.support.protects.heading',
+    'institution.support.stewardship.heading',
+  ]) {
+    assert.equal(support.includes(removed), false, removed);
+  }
+});
+
+test('INSTITUTIONAL-SURFACES: support page reuses the five existing Connect Stripe destinations', () => {
+  const connect = fs.readFileSync(path.join(ROOT, 'pages', 'connect.html'), 'utf8');
+  const support = fs.readFileSync(path.join(ROOT, 'pages', 'vex-support.html'), 'utf8');
+  const legacy = [...connect.matchAll(/href="(https:\/\/buy\.stripe\.com\/[^"]+)"/g)].map(match => match[1]);
+  const restored = [...support.matchAll(/<a class="vex-meaning-link" href="(https:\/\/buy\.stripe\.com\/[^"]+)" target="_blank" rel="noopener noreferrer">/g)]
+    .map(match => match[1]);
+
+  assert.equal(legacy.length, 5);
+  assert.deepEqual(restored, legacy);
+});
+
 test('INSTITUTIONAL-SURFACES integration: committed registry and current main projections agree', () => {
   assert.deepEqual(run(ROOT).issues, []);
 });
