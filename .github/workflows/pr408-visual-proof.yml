@@ -172,7 +172,11 @@ jobs:
                     spiralVisible: !!spiral && !!(spiral.offsetWidth || spiral.offsetHeight || spiral.getClientRects().length),
                     spiralSize: spiral ? {width:spiral.getBoundingClientRect().width,height:spiral.getBoundingClientRect().height} : null,
                     documentOverflow: root.scrollWidth - root.clientWidth,
-                    bodyOverflow: body.scrollWidth - body.clientWidth
+                    bodyOverflow: body.scrollWidth - body.clientWidth,
+                    layerScroll: (() => {
+                      const layer = document.querySelector('.evolution-layer');
+                      return layer ? {scrollTop:layer.scrollTop,scrollHeight:layer.scrollHeight,clientHeight:layer.clientHeight} : null;
+                    })()
                   };
                 });
 
@@ -191,12 +195,55 @@ jobs:
 
                 const shot = path.join(OUT, `${cell.ref}.png`);
                 await page.screenshot({path:shot,fullPage:true});
+
+                let mobileAbout = null;
+                if (cell.mobile) {
+                  mobileAbout = await page.evaluate(() => {
+                    const layer = document.querySelector('.evolution-layer');
+                    const about = document.querySelector('[data-entry-action="about"]');
+                    if (!layer || !about) return {ok:false,reason:'missing-layer-or-about'};
+                    const beforeTop = layer.scrollTop;
+                    about.scrollIntoView({block:'end',inline:'nearest'});
+                    const lr = layer.getBoundingClientRect();
+                    const ar = about.getBoundingClientRect();
+                    return {
+                      ok:true,
+                      beforeTop,
+                      afterTop:layer.scrollTop,
+                      layer:{top:lr.top,bottom:lr.bottom,clientHeight:layer.clientHeight,scrollHeight:layer.scrollHeight},
+                      about:{top:ar.top,bottom:ar.bottom,height:ar.height},
+                      fullyVisible:ar.top >= lr.top - 1 && ar.bottom <= lr.bottom + 1
+                    };
+                  });
+                  await page.waitForTimeout(120);
+                  mobileAbout = await page.evaluate((prior) => {
+                    const layer = document.querySelector('.evolution-layer');
+                    const about = document.querySelector('[data-entry-action="about"]');
+                    const lr = layer?.getBoundingClientRect();
+                    const ar = about?.getBoundingClientRect();
+                    return {
+                      ...prior,
+                      afterTop:layer?.scrollTop ?? null,
+                      layer:lr ? {top:lr.top,bottom:lr.bottom,clientHeight:layer.clientHeight,scrollHeight:layer.scrollHeight} : null,
+                      about:ar ? {top:ar.top,bottom:ar.bottom,height:ar.height} : null,
+                      fullyVisible:!!(lr && ar && ar.top >= lr.top - 1 && ar.bottom <= lr.bottom + 1)
+                    };
+                  }, mobileAbout);
+                  if (!mobileAbout.ok || !mobileAbout.fullyVisible || !(mobileAbout.afterTop > mobileAbout.beforeTop)) {
+                    throw new Error(`${cell.ref}: About card is not reachable through Terrain scroll container ${JSON.stringify(mobileAbout)}`);
+                  }
+                  const aboutShot = path.join(OUT, `${cell.ref}-about.png`);
+                  await page.screenshot({path:aboutShot,fullPage:true});
+                  mobileAbout.screenshot = {path:path.basename(aboutShot),bytes:fs.statSync(aboutShot).size,sha256:sha256(aboutShot)};
+                }
+
                 receipt.cells.push({
                   ref:cell.ref,
                   viewport:{width:cell.width,height:cell.height},
                   colorScheme:cell.scheme,
                   dom,
                   screenshot:{path:path.basename(shot),bytes:fs.statSync(shot).size,sha256:sha256(shot)},
+                  mobileAbout,
                   requestCount:requests.length,
                   requestFailureCount:failures.length,
                   requestFailures:failures
