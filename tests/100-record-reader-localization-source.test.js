@@ -22,6 +22,11 @@ const CASES = [
     expectedKeys: 74,
     expectedPageBindings: 72,
   },
+  {
+    slug: 'bending-condominium-ocean-return',
+    expectedKeys: 46,
+    expectedPageBindings: 46,
+  },
 ];
 
 function readJson(rel) {
