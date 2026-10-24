@@ -49,7 +49,7 @@ test('VEXSYSTEM UNDERSTANDING: current answer preserves primary and parallel act
   assert.deepEqual(view.routes.map(item => [item.subject.subjectRef, item.subject.state, item.relation.branchClass]), [
     ['route.vextreme.receive-god', 'ACTIVE', 'ACTIVE_BRANCH'],
     ['route.vextreme.archives', 'ACTIVE', 'ALTERNATIVE_BRANCH'],
-    ['route.vextreme.vexsystem', 'ACTIVE', 'ALTERNATIVE_BRANCH']
+    ['route.vextreme.about-vextreme', 'ACTIVE', 'ALTERNATIVE_BRANCH']
   ]);
 });
 
@@ -100,8 +100,8 @@ test('VEXSYSTEM UNDERSTANDING: public/private and source-descent boundaries rema
 });
 
 
-test('VEXSYSTEM UNDERSTANDING: selecting a branch subject keeps its real named parent chain', () => {
-  const view = vexsystem.composeUnderstanding(atlas, 'route.vextreme.vexsystem');
+test('VEXSYSTEM UNDERSTANDING: selecting the ordinary orientation branch keeps its real named parent chain', () => {
+  const view = vexsystem.composeUnderstanding(atlas, 'route.vextreme.about-vextreme');
   assert.deepEqual(view.placement.map(subject => subject.subjectRef), [
     'system.vextreme.public-institutional-template',
     'foundation.vextreme.terrain',
