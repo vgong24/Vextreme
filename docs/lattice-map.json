@@ -2581,7 +2581,8 @@
         "stdout only — plan row is read-only and performs no rename"
       ],
       "loadedBy": [
-        "manual run: node lib/rename-slug.js --from <old> --to <new> --kind institutional --plan"
+        "manual run: node lib/rename-slug.js --from <old> --to <new> --kind institutional --plan",
+        "tests/100-rename-slug.test.js"
       ],
       "testedBy": [
         "tests/100-rename-slug.test.js"
