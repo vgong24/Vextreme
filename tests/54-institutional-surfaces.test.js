@@ -846,6 +846,23 @@ test('INSTITUTIONAL-SURFACES: a bounded standalone active fixture passes', () =>
   assert.deepEqual(validateRegistry(active, root), []);
 });
 
+test('INSTITUTIONAL-SURFACES: About Vextreme answers the human question before technical depth', () => {
+  const about = fs.readFileSync(path.join(ROOT, 'pages', 'about-vextreme.html'), 'utf8');
+  assert.match(about, /data-i18n="institution\.about\.hero\.heading">A public place to understand what exists — and how to continue\.<\/h1>/);
+  assert.match(about, /href="terrain-map\.html" data-i18n="institution\.about\.hero\.terrain-cta">Enter the Terrain<\/a>/);
+  assert.match(about, /href="#pieces" data-i18n="institution\.about\.hero\.pieces-cta">See how the pieces fit<\/a>/);
+  assert.match(about, /https:\/\/github\.com\/vgong24\/VexLife/);
+  assert.match(about, /https:\/\/vexgpt\.github\.io\/VexWork\//);
+  assert.match(about, /href="vextreme-covenant\.html"/);
+  assert.match(about, /href="\.\.\/vexsystem\/index\.html"/);
+  assert.match(about, /href="build-health\.html"/);
+  assert.match(about, /href="https:\/\/github\.com\/vgong24\/Vextreme"/);
+  assert.doesNotMatch(about, /Vextreme is not a website project/);
+  assert.doesNotMatch(about, /Public home not released/);
+  assert.doesNotMatch(about, /institution\.common\.lineage\.sdk\./);
+  assert.doesNotMatch(about, /institution\.home\.hero\.build-health-cta/);
+});
+
 test('INSTITUTIONAL-SURFACES: support page stays contribution-first and compact', () => {
   const support = fs.readFileSync(path.join(ROOT, 'pages', 'vex-support.html'), 'utf8');
   const choices = support.indexOf('aria-labelledby="meanings-heading"');
