@@ -443,7 +443,8 @@
         "lib/strings-check.js (reads its output data/strings/compiled/manifest.json for stale detection)",
         "lib/strings-export.js (reuses contentHash for translator source preimage binding)",
         "lib/strings-import.js (reuses contentHash for returned-translation preimage verification)",
-        "tests/02-strings-pipeline.test.js"
+        "tests/02-strings-pipeline.test.js",
+        "tests/100-record-reader-localization-source.test.js"
       ],
       "testedBy": [
         "tests/02-strings-pipeline.test.js"
