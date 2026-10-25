@@ -2327,9 +2327,10 @@
       }
     },
     "lib/vextreme.js": {
-      "role": "legacy shell-era runtime composition loader — environment styles, shared nav/body composition, current Spiral FAB auto-load, and gated v1 archive enhancement",
+      "role": "legacy shell-era runtime composition loader — environment styles, shared nav/body composition, registry-backed institutional locale projection, current Spiral FAB auto-load, and gated v1 archive enhancement",
       "context": "This is the still-live runtime behind lib/shell.js, not the preferred v2 God Script assembler. It detects environment/slug, injects the shared site nav and reserved #vex-nav-actions rail, loads the Spiral FAB group in order, fetches v1 arcs/pages data, and only then admits the v1 reset/archive layer for pages that actually consume it. Real regressions established that this loader must decorate authored pages without silently restyling them. Changes here are browser-composition changes even when a source/DOM unit test is green.",
       "reads": [
+        "config/institutional-surfaces.json (shell-context required-locale projection before shared language FAB mount)",
         "data/arcs.json (v1 arc data fetched at runtime)",
         "data/pages.json (v1 page/template data fetched at runtime)",
         "styles/site-nav.css (GitHub Pages/local shared chrome)",
@@ -2348,7 +2349,8 @@
       ],
       "writes": [
         "DOM: #vex-site-nav / #vex-nav-actions and optional .vex-page-body composition",
-        "window.VEXTREME_ENV / VEXTREME_BASE_URL / VEXTREME_ARCS / VEXTREME_PAGES runtime globals"
+        "window.VEXTREME_ENV / VEXTREME_BASE_URL / VEXTREME_ARCS / VEXTREME_PAGES runtime globals",
+        "window.VEX_SUPPORTED_LANGS for registry-authorized institutional shell-context surfaces"
       ],
       "loadedBy": [
         "lib/shell.js (one-tag GitHub Pages bootstrap)"
@@ -2389,6 +2391,13 @@
           "styles/design-system.css",
           "styles/arc-nav.css",
           "lib/audit-fab.js"
+        ],
+        "institutional shell-context language projection changed": [
+          "config/institutional-surfaces.json",
+          "widgets/fab-lang.js",
+          "lib/check-institutional-surfaces.js",
+          "tests/54-institutional-surfaces.test.js",
+          "browser-rendered acceptance for About Vextreme"
         ]
       }
     },

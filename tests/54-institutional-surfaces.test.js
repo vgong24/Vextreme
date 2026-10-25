@@ -20,6 +20,7 @@ const {
 } = require('../lib/audit-pages');
 const { discoverOrphanNodes } = require('../lib/auto-discover-nodes');
 const { probeLocalizationRuntime } = require('../lib/institutional-localization-runtime');
+const { computeHealth } = require('../lib/build-page-health');
 
 const ROOT = path.join(__dirname, '..');
 
@@ -152,7 +153,7 @@ function activeShellLocalizedHtml({ category = 'system', scope = 'institution', 
     '<!doctype html>',
     '<html data-vex-surface="institutional" data-vex-string-category="system" data-vex-string-scope="institution" data-vex-theme-family="foundation" data-theme="foundation-light">',
     '<head>',
-    `<script>window.VEX_STRING_SCOPES = ['${scope}']; window.VEX_STRING_CATEGORY = '${category}'; window.VEX_SUPPORTED_LANGS = ${JSON.stringify(locales)};</script>`,
+    `<script>window.VEX_STRING_SCOPES = ['${scope}']; window.VEX_STRING_CATEGORY = '${category}';</script>`,
     '</head>',
     '<body>',
     '<h1 data-i18n="institution.test">Test en</h1>',
@@ -377,9 +378,9 @@ test('INSTITUTIONAL-SURFACES: shell-context keeps institutional identity while s
 
   fs.writeFileSync(
     path.join(root, 'pages', 'vex-test.html'),
-    activeShellLocalizedHtml().replace('window.VEX_SUPPORTED_LANGS = ["en","ja"];', 'window.VEX_SUPPORTED_LANGS = ["en"];')
+    activeShellLocalizedHtml().replace('</script>', ' window.VEX_SUPPORTED_LANGS = ["en"]; </script>')
   );
-  assert.ok(validateRegistry(active, root).some(issue => issue.check === 'locale-control-option'));
+  assert.ok(validateRegistry(active, root).some(issue => issue.check === 'locale-source-authority'));
 
   fs.writeFileSync(
     path.join(root, 'pages', 'vex-test.html'),
@@ -913,7 +914,16 @@ test('INSTITUTIONAL-SURFACES: standalone institutional headers keep local naviga
   assert.equal(registry.surfaces['about-vextreme'].runtime.mode, 'shell-context');
   assert.equal(registry.surfaces['about-vextreme'].runtime.shell, true);
   assert.match(about, /src="\.\.\/lib\/shell\.js\?v=92abdcec2f23"/);
-  assert.match(about, /window\.VEX_SUPPORTED_LANGS = \['en', 'ja', 'zh'\]/);
+  assert.doesNotMatch(about, /window\.VEX_SUPPORTED_LANGS\s*=/);
+  const sharedRuntime = fs.readFileSync(path.join(ROOT, 'lib', 'vextreme.js'), 'utf8');
+  assert.match(sharedRuntime, /function primeInstitutionalSupportedLangs\(cfg\)/);
+  assert.match(sharedRuntime, /\/config\/institutional-surfaces\.json/);
+  assert.match(sharedRuntime, /strings\.requiredLocales/);
+  assert.match(sharedRuntime, /runtime\.mode !== 'shell-context'/);
+  const primeCall = sharedRuntime.indexOf('return primeInstitutionalSupportedLangs(cfg);');
+  const langLoad = sharedRuntime.indexOf("loadScript(BASE + '/widgets/fab-lang.js'", primeCall);
+  assert.ok(primeCall >= 0 && langLoad > primeCall,
+    'canonical institutional locale projection must resolve before fab-lang.js mounts');
   assert.match(about, /href="\.\.\/styles\/design-system\.css\?v=a688d1811342f0b255c5b8fdb246b8cb1e0d58ea"/);
   assert.match(about, /href="\.\.\/styles\/vex-institutional\.css\?v=0f8fb583cb30a82258df6fb388530abb2e0cdb28"/);
   assert.match(about, /window\.VEXTREME_OVERRIDE = \{[\s\S]*bodyWrap: false,[\s\S]*arcNav: false,[\s\S]*fabWidgets: \{ theme: false, map: false \}/);
@@ -927,6 +937,33 @@ test('INSTITUTIONAL-SURFACES: standalone institutional headers keep local naviga
   assert.match(css, /\.vex-family-current \{/);
   assert.match(css, /@media \(max-width: 640px\)[\s\S]*\.vex-family-nav \{[\s\S]*order: 2;[\s\S]*width: 100%;/,
     'family identity gets its own bounded mobile row rather than forcing horizontal overflow');
+});
+
+
+test('INSTITUTIONAL-SURFACES: Page Health accepts shell only for registry-authorized shell-context surfaces', () => {
+  const page = {
+    surface: { kind: 'institutional', state: 'active' },
+    runtime: { shell: true, godScript: false },
+    navigation: { navigable: true },
+    fab: { delivery: 'not-applicable' },
+    readAloud: { applicable: false, delivery: 'not-applicable' },
+    placement: { state: 'institutional' },
+    identity: { keyCount: 1 },
+    evidence: { screenshotLanguages: ['en'] },
+    theme: { control: 'none', visibleStyles: true },
+  };
+
+  const shellContext = computeHealth(page, { runtime: { mode: 'shell-context' } });
+  assert.equal(shellContext.blockers.includes('institutional-shell'), false);
+
+  const standalone = computeHealth(page, { runtime: { mode: 'standalone' } });
+  assert.equal(standalone.blockers.includes('institutional-shell'), true);
+
+  const missingShell = computeHealth(
+    { ...page, runtime: { shell: false, godScript: false } },
+    { runtime: { mode: 'shell-context' } }
+  );
+  assert.equal(missingShell.blockers.includes('institutional-shell-missing'), true);
 });
 
 test('INSTITUTIONAL-SURFACES: About Vextreme orients a newcomer without making belief or machinery prerequisites', () => {

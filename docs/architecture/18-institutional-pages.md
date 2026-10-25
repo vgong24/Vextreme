@@ -114,11 +114,12 @@ active entry, proves these projections together:
      labelled native selector with the autonyms `English`, `日本語`, and
      `中文`.
    - `shell-context` keeps the same string category/scope and compiled bundle
-     authority, loads `lib/shell.js`, declares the exact required set through
-     `window.VEX_SUPPORTED_LANGS`, and delegates language interaction to the
-     shared `widgets/fab-lang.js` surface. It must not retain the standalone
-     native selector, load `widgets/vex-institutional.js`, or opt the language
-     FAB out.
+     authority and loads `lib/shell.js`. The shared shell runtime reads the
+     canonical `config/institutional-surfaces.json` entry for the current slug
+     and projects its `strings.requiredLocales` into `window.VEX_SUPPORTED_LANGS`
+     before the existing `widgets/fab-lang.js` surface mounts. The page must
+     not hand-author that locale list, retain the standalone native selector,
+     load `widgets/vex-institutional.js`, or opt the language FAB out.
 
    Planned locales cannot appear as selectable published options before
    promotion.
@@ -190,10 +191,11 @@ and Analysis retain their existing per-locale representative image while also
 preserving every exact matrix filename in their derived data. Page Health also
 consumes the institutional registry directly, so intentional absence from
 record placement and God-Script/FAB delivery is classified as an institutional
-invariant rather than reported as generic page debt. The inverse is fail-closed:
-if an institutional page is ever delivered through `shell.js` or a generated
-God Script, Page Health marks it critical from the registry-derived surface
-classification even when every generic capability is otherwise present.
+invariant rather than reported as generic page debt. Runtime mode remains
+fail-closed: a `standalone` institutional page delivered through `shell.js`,
+a `shell-context` page missing the shared shell, or any institutional page
+delivered through a generated God Script is critical even when every generic
+capability is otherwise present.
 
 `npm run pr-ready` includes the validator. A public page cannot silently appear
 outside the registry, inherit archive runtime, be auto-discovered back into the
