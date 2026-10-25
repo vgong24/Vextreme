@@ -31,6 +31,7 @@ test('CHROME-HOME: shared chrome exposes the Vextreme, VexLife, and VexWork fami
   assert.match(css, /\.vex-family-rail \{/);
   assert.match(css, /\.vex-family-mark-glyph \{[\s\S]*vextreme-mark\.svg/);
   assert.match(css, /grid-template-columns:\s*5\.8rem 0\.65rem 5\.3rem 0\.65rem 5\.3rem/);
+  assert.match(css, /\.vex-family-world \{[\s\S]*text-align: center;/);
   assert.match(css, /\.vex-nav-title \{[\s\S]*font-family:\s*var\(--serif/);
   assert.match(css, /\.vex-nav-product \{[\s\S]*font-family:\s*var\(--sans/);
   assert.match(css, /\.vex-nav-brand-separator \{[\s\S]*text-align: center;[\s\S]*justify-self: center;/);
