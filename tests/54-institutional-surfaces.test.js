@@ -147,6 +147,25 @@ function activeLocalizedHtml({ category = 'system', scope = 'institution', local
   ].join('\n');
 }
 
+function activeShellLocalizedHtml({ category = 'system', scope = 'institution', locales = ['en', 'ja'] } = {}) {
+  return [
+    '<!doctype html>',
+    '<html data-vex-surface="institutional" data-vex-string-category="system" data-vex-string-scope="institution" data-vex-theme-family="foundation" data-theme="foundation-light">',
+    '<head>',
+    `<script>window.VEX_STRING_SCOPES = ['${scope}']; window.VEX_STRING_CATEGORY = '${category}'; window.VEX_SUPPORTED_LANGS = ${JSON.stringify(locales)};</script>`,
+    '</head>',
+    '<body>',
+    '<h1 data-i18n="institution.test">Test en</h1>',
+    '<img alt="Test image en" data-i18n-alt="institution.test.alt">',
+    '<button aria-label="Test action en" data-i18n-aria="institution.test.aria">Test</button>',
+    '<script>window.VEXTREME_OVERRIDE = { bodyWrap: false, fabWidgets: { theme: false, map: false } };</script>',
+    '<script src="../lib/shell.js?v=test"></script>',
+    '</body>',
+    '</html>',
+    '',
+  ].join('\n');
+}
+
 function workingLocalizationLoader() {
   return [
     '(function () {',
@@ -334,6 +353,39 @@ test('INSTITUTIONAL-SURFACES: active surfaces and reserved identities stay disti
   const legacyAlias = fs.readFileSync(path.join(ROOT, 'pages', 'vextreme-home.html'), 'utf8');
   assert.match(legacyAlias, /name="robots" content="noindex"/);
   assert.match(legacyAlias, /location\.replace\('about-vextreme\.html' \+ window\.location\.search \+ window\.location\.hash\)/);
+});
+
+test('INSTITUTIONAL-SURFACES: shell-context keeps institutional identity while shared shell owns chrome and language FAB', () => {
+  const root = makeRoot();
+  const shellEntry = entry({
+    state: 'active',
+    runtime: {
+      mode: 'shell-context', godScript: false, shell: true,
+      localizationLoader: 'widgets/fab-lang.js',
+      localizationControl: 'fab-lang',
+      supportRoutes: null,
+    },
+    strings: { category: 'system', scope: 'institution', requiredLocales: ['en', 'ja'], plannedLocales: [] },
+    theme: { family: 'foundation', variants: ['foundation-light'] },
+    evidence: { viewports: [320], themes: ['foundation-light'] },
+  });
+  fs.writeFileSync(path.join(root, 'pages', 'vex-test.html'), activeShellLocalizedHtml());
+  fs.writeFileSync(path.join(root, 'widgets', 'fab-lang.js'), '// shared shell language owner\n');
+  writeActiveAcceptance(root, 'vex-test', shellEntry);
+  const active = { schemaVersion: SCHEMA_VERSION, surfaces: { 'vex-test': shellEntry } };
+  assert.deepEqual(validateRegistry(active, root), []);
+
+  fs.writeFileSync(
+    path.join(root, 'pages', 'vex-test.html'),
+    activeShellLocalizedHtml().replace('window.VEX_SUPPORTED_LANGS = ["en","ja"];', 'window.VEX_SUPPORTED_LANGS = ["en"];')
+  );
+  assert.ok(validateRegistry(active, root).some(issue => issue.check === 'locale-control-option'));
+
+  fs.writeFileSync(
+    path.join(root, 'pages', 'vex-test.html'),
+    activeShellLocalizedHtml().replace('{ theme: false, map: false }', '{ theme: false, map: false, lang: false }')
+  );
+  assert.ok(validateRegistry(active, root).some(issue => issue.check === 'shell-context-lang-disabled'));
 });
 
 test('INSTITUTIONAL-SURFACES: inactive support routes fail closed in data and HTML', () => {
@@ -846,8 +898,8 @@ test('INSTITUTIONAL-SURFACES: a bounded standalone active fixture passes', () =>
   assert.deepEqual(validateRegistry(active, root), []);
 });
 
-test('INSTITUTIONAL-SURFACES: active institutional headers project shared Vextreme family identity without replacing local navigation', () => {
-  for (const slug of ['about-vextreme', 'vex-support', 'vextreme-covenant']) {
+test('INSTITUTIONAL-SURFACES: standalone institutional headers keep local navigation while About consumes the shared Terrain shell', () => {
+  for (const slug of ['vex-support', 'vextreme-covenant']) {
     const html = fs.readFileSync(path.join(ROOT, 'pages', slug + '.html'), 'utf8');
     assert.match(html, /<nav class="vex-family-nav" aria-label="Vextreme family">/);
     assert.match(html, /href="terrain-map\.html\?view=content&amp;profile=evolution-v1">Vextreme<\/a>/);
@@ -857,6 +909,17 @@ test('INSTITUTIONAL-SURFACES: active institutional headers project shared Vextre
       slug + ' keeps its local institutional navigation');
   }
 
+  const about = fs.readFileSync(path.join(ROOT, 'pages', 'about-vextreme.html'), 'utf8');
+  assert.equal(registry.surfaces['about-vextreme'].runtime.mode, 'shell-context');
+  assert.equal(registry.surfaces['about-vextreme'].runtime.shell, true);
+  assert.match(about, /src="\.\.\/lib\/shell\.js\?v=92abdcec2f23"/);
+  assert.match(about, /window\.VEX_SUPPORTED_LANGS = \['en', 'ja', 'zh'\]/);
+  assert.match(about, /fabWidgets: \{ theme: false, map: false \}/);
+  assert.doesNotMatch(about, /<header class="vex-header">/);
+  assert.doesNotMatch(about, /data-vex-lang-select/);
+  assert.doesNotMatch(about, /data-vex-theme-toggle/);
+  assert.doesNotMatch(about, /widgets\/vex-institutional\.js/);
+
   const css = fs.readFileSync(path.join(ROOT, 'styles', 'vex-institutional.css'), 'utf8');
   assert.match(css, /\.vex-family-nav \{/);
   assert.match(css, /\.vex-family-current \{/);
@@ -864,21 +927,23 @@ test('INSTITUTIONAL-SURFACES: active institutional headers project shared Vextre
     'family identity gets its own bounded mobile row rather than forcing horizontal overflow');
 });
 
-test('INSTITUTIONAL-SURFACES: About Vextreme answers the human question before technical depth', () => {
+test('INSTITUTIONAL-SURFACES: About Vextreme orients a newcomer without making belief or machinery prerequisites', () => {
   const about = fs.readFileSync(path.join(ROOT, 'pages', 'about-vextreme.html'), 'utf8');
-  assert.match(about, /data-i18n="institution\.about\.hero\.heading">A public place to understand what exists — and how to continue\.<\/h1>/);
-  assert.match(about, /href="terrain-map\.html" data-i18n="institution\.about\.hero\.terrain-cta">Enter the Terrain<\/a>/);
+  assert.match(about, /data-i18n="institution\.about\.hero\.heading">Vextreme is a public place to understand what exists — and how to continue\.<\/h1>/);
+  assert.match(about, /data-i18n="institution\.about\.hero\.freedom">You can simply look around\./);
+  assert.match(about, /data-i18n="institution\.about\.hero\.faith-boundary">[\s\S]*invitation for the willing, not a prerequisite/);
   assert.match(about, /href="#pieces" data-i18n="institution\.about\.hero\.pieces-cta">See how the pieces fit<\/a>/);
-  assert.match(about, /https:\/\/github\.com\/vgong24\/VexLife/);
+  assert.match(about, /href="https:\/\/vgong24\.github\.io\/VexLife\/"/);
   assert.match(about, /https:\/\/vexgpt\.github\.io\/VexWork\//);
+  assert.match(about, /id="why"[\s\S]*data-i18n="institution\.about\.why\.heading">Why this exists<\/h2>/);
   assert.match(about, /href="vextreme-covenant\.html"/);
   assert.match(about, /href="\.\.\/vexsystem\/index\.html"/);
-  assert.match(about, /href="build-health\.html"/);
   assert.match(about, /href="https:\/\/github\.com\/vgong24\/Vextreme"/);
-  assert.doesNotMatch(about, /Vextreme is not a website project/);
-  assert.doesNotMatch(about, /Public home not released/);
-  assert.doesNotMatch(about, /institution\.common\.lineage\.sdk\./);
-  assert.doesNotMatch(about, /institution\.home\.hero\.build-health-cta/);
+  assert.doesNotMatch(about, /href="build-health\.html"/);
+  assert.doesNotMatch(about, /institution\.about\.hero\.terrain-cta/);
+  assert.doesNotMatch(about, /vextreme24\.com/i);
+  assert.doesNotMatch(about, /id="guides"/);
+  assert.doesNotMatch(about, /Source-local Windows and Apple M4 Pro setup routes/);
 });
 
 test('INSTITUTIONAL-SURFACES: support page stays contribution-first and compact', () => {
