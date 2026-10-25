@@ -920,4 +920,38 @@ test('TERRAIN-VIEW: Welcome Wagon arrival converges visually without importing i
   assert.doesNotMatch(source, /data-entry-action="vexsystem"/u);
 });
 
+
+test('TERRAIN-VIEW: ordinary arrival hides technical chrome without changing its ownership or restore path', () => {
+  const source = pageSource();
+
+  assert.match(source, /var arriving = quiet && mapWrap && mapWrap\.classList\.contains\('evolution-arrival-active'\);/u);
+  assert.match(source, /appRoot\.classList\.toggle\('terrain-arrival-quiet', arriving\);/u);
+  assert.match(source, /\.terrain-content-quiet\.terrain-arrival-quiet \.topbar\{ display:none; \}/u);
+  assert.match(source, /\.terrain-arrival-quiet \.level-readout\{ visibility:hidden; \}/u);
+  assert.match(source, /\.terrain-arrival-quiet \.evolution-layer\{ inset:18px 18px 20px; \}/u);
+
+  assert.match(source, /id="searchInput"/u);
+  assert.match(source, /id="terrainInspectToggle"/u);
+  assert.match(source, /id="levelReadout"/u);
+
+  const arrival = source.indexOf("mapWrap.classList.add('evolution-a-active', 'evolution-arrival-active');");
+  const arrivalSync = source.indexOf('syncTerrainChrome();', arrival);
+  assert.ok(arrival >= 0 && arrivalSync > arrival, 'arrival state must exist before chrome projection');
+
+  const archives = source.indexOf('function enterArchivesFromArrival()');
+  const archivesClear = source.indexOf("mapWrap.classList.remove('evolution-reader-active', 'evolution-arrival-active');", archives);
+  const archivesSync = source.indexOf('syncTerrainChrome();', archivesClear);
+  assert.ok(archives >= 0 && archivesClear > archives && archivesSync > archivesClear,
+    'Archives must clear arrival state before restoring technical chrome');
+
+  const reader = source.indexOf('function openEntryReader(slug)');
+  const readerClear = source.indexOf("mapWrap.classList.remove('evolution-arrival-active');", reader);
+  const readerSync = source.indexOf('syncTerrainChrome();', readerClear);
+  assert.ok(reader >= 0 && readerClear > reader && readerSync > readerClear,
+    'Receive God reader must leave arrival quiet before existing reader-quiet projection');
+
+  assert.doesNotMatch(source, /\.terrain-arrival-quiet[^\n{]*#vex-site-nav/u);
+  assert.doesNotMatch(source, /\.terrain-arrival-quiet[^\n{]*#vex-spiral/u);
+});
+
 // [VXG RealForever]

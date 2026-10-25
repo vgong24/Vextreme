@@ -119,6 +119,7 @@
   .terrain-content-quiet:not(.terrain-inspect-open) .stage-density-track,
   .terrain-content-quiet:not(.terrain-inspect-open) .stage-density-fill{ display:none; }
   .terrain-content-quiet.terrain-reader-quiet .topbar{ display:none; }
+  .terrain-content-quiet.terrain-arrival-quiet .topbar{ display:none; }
   .brand{ display:flex; flex-direction:column; gap:2px; margin-right:auto; min-width:220px; }
   .brand .eyebrow{ margin:0; font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); }
   .brand h1{ margin:0; font-size:18px; font-weight:650; letter-spacing:-.01em; }
@@ -192,6 +193,7 @@
     transition:opacity .22s ease, border-color .16s ease; backdrop-filter:blur(8px);
   }
   .level-readout.is-active{ opacity:.94; }
+  .terrain-arrival-quiet .level-readout{ visibility:hidden; }
   .level-readout[data-can-zoom-out="true"]{ cursor:zoom-out; }
   .level-readout:focus-visible{ outline:none; border-color:var(--accent); opacity:.94; }
   .threshold-progress{ position:relative; width:100%; height:132px; min-width:0; }
@@ -230,6 +232,7 @@
     transition:opacity .17s ease, transform .17s cubic-bezier(.2,.7,.3,1);
     transform-origin:50% 50%;
   }
+  .terrain-arrival-quiet .evolution-layer{ inset:18px 18px 20px; }
   .entry-arrival{
     --entry-serif:"Source Serif 4", "Iowan Old Style", Georgia, serif;
     --entry-sans:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -1273,8 +1276,10 @@
   function syncTerrainChrome() {
     var quiet = currentWorld === 'content' && (currentProfile === 'evolution-v1' || currentProfile === 'evolution-v2');
     var reading = currentWorld === 'content' && (currentProfile === 'evolution-v1' || currentProfile === 'evolution-v2') && evolutionReader && !evolutionReader.hidden;
+    var arriving = quiet && mapWrap && mapWrap.classList.contains('evolution-arrival-active');
     appRoot.classList.toggle('terrain-content-quiet', quiet);
     appRoot.classList.toggle('terrain-reader-quiet', reading);
+    appRoot.classList.toggle('terrain-arrival-quiet', arriving);
     if (!reading) resetTerrainLanguageSurfaceContext();
     terrainInspectToggle.hidden = !quiet || reading;
     if (!quiet || reading) {
