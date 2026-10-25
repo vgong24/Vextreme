@@ -30,9 +30,10 @@ test('CHROME-HOME: shared chrome exposes the Vextreme, VexLife, and VexWork fami
   assert.match(source, /class="vex-family-world vex-nav-product" href="https:\/\/vexgpt\.github\.io\/VexWork\/">VexWork<\/a>/);
   assert.match(css, /\.vex-family-rail \{/);
   assert.match(css, /\.vex-family-mark-glyph \{[\s\S]*vextreme-mark\.svg/);
-  assert.match(css, /grid-template-columns:\s*5\.8rem auto 5\.3rem auto 5\.3rem/);
+  assert.match(css, /grid-template-columns:\s*5\.8rem 0\.65rem 5\.3rem 0\.65rem 5\.3rem/);
   assert.match(css, /\.vex-nav-title \{[\s\S]*font-family:\s*var\(--serif/);
   assert.match(css, /\.vex-nav-product \{[\s\S]*font-family:\s*var\(--sans/);
+  assert.match(css, /\.vex-nav-brand-separator \{[\s\S]*text-align: center;[\s\S]*justify-self: center;/);
 });
 
 test('CHROME-RAIL: nav exposes one reserved action mount', () => {
@@ -123,6 +124,7 @@ test('CHROME-RAIL: mobile keeps family coordinates intact and moves Vextreme-onl
   assert.match(source, /@media \(max-width: 640px\) \{[\s\S]*?:root \{ --vex-site-nav-height: 93px; \}/);
   assert.match(source, /@media \(max-width: 640px\) \{[\s\S]*?\.vex-nav-inner \{[\s\S]*?flex-wrap: wrap;[\s\S]*?row-gap: 6px;/);
   assert.match(source, /@media \(max-width: 640px\) \{[\s\S]*?\.vex-family-rail \{[\s\S]*?width: 100%;[\s\S]*?margin-right: 0;/);
+  assert.match(source, /grid-template-columns:\s*4\.9rem 0\.65rem 4\.7rem 0\.65rem 4\.8rem/);
   assert.match(source, /@media \(max-width: 640px\) \{[\s\S]*?\.vex-nav-toggle \{ margin-left: auto; \}/);
   assert.match(source, /\.vex-nav-mobile \{[\s\S]*?top: var\(--vex-site-nav-height\);/);
 });
