@@ -178,8 +178,8 @@ test('TERRAIN-VIEW: accepted Content remains the no-query default while Evolutio
   assert.match(source, /<span class="content-view-split">[\s\S]*data-world="content"[\s\S]*id="contentProfileWrap"[\s\S]*id="contentProfile"[\s\S]*<\/span>/,
     'presentation profile belongs inside the Content half of the View control');
   assert.match(source, /\.terrain-content-quiet \.lens,[\s\S]*\.terrain-content-quiet \.legend\{ display:none; \}/);
-  assert.match(source, /\.terrain-content-quiet\.terrain-inspect-open \.lens,[\s\S]*\.terrain-content-quiet\.terrain-inspect-open \.legend\{ display:flex; \}/,
-    'Inspect owns reveal of the View/profile control in accepted Content');
+  assert.doesNotMatch(source, /terrain-inspect-open/,
+    'accepted Content no longer has an Inspect-only reveal branch');
   assert.doesNotMatch(source, />Evolution A</);
   assert.match(source, /id="evolutionLayer"/);
   assert.match(source, /function readInitialRoute\(\)/);
@@ -236,7 +236,7 @@ test('TERRAIN-VIEW: collection group homes stay outside membership while remaini
 
 test('TERRAIN-VIEW: accepted Content quiet chrome and wheel boundaries preserve explicit entry / outward exit semantics', () => {
   const source = pageSource();
-  assert.match(source, /id="terrainInspectToggle"/);
+  assert.doesNotMatch(source, /id="terrainInspectToggle"/);
   assert.match(source, /function syncTerrainChrome\(\)/);
   assert.match(source, /terrain-content-quiet/);
   assert.match(source, /terrain-reader-quiet/);
@@ -720,7 +720,7 @@ test('TERRAIN-VIEW: Content overview collection titles wrap to two lines and aut
     'focused and context variants retain their existing compact title behavior');
 });
 
-test('TERRAIN-VIEW: accepted Content reserves the stable viewport dock while Reflow shelf is Inspect-only comparison', () => {
+test('TERRAIN-VIEW: accepted Content reserves the stable viewport dock while Reflow shelf remains an explicit query comparison', () => {
   const source = pageSource();
 
   assert.match(source, /id="contentCuriosityDock"/);
