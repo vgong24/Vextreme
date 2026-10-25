@@ -897,6 +897,16 @@ test('INSTITUTIONAL-SURFACES: support page stays contribution-first and compact'
   }
 });
 
+test('INSTITUTIONAL-SURFACES: support page pins the current institutional style generation so full-card links cannot fall back to browser-blue text', () => {
+  const support = fs.readFileSync(path.join(ROOT, 'pages', 'vex-support.html'), 'utf8');
+  const componentCss = fs.readFileSync(path.join(ROOT, 'styles', 'vex-institutional.css'), 'utf8');
+
+  assert.match(support, /href="\.\.\/styles\/design-system\.css\?v=a688d1811342f0b255c5b8fdb246b8cb1e0d58ea"/);
+  assert.match(support, /href="\.\.\/styles\/vex-institutional\.css\?v=0f8fb583cb30a82258df6fb388530abb2e0cdb28"/);
+  assert.match(componentCss, /\.vex-meaning-link\s*\{[\s\S]*?color:\s*inherit;[\s\S]*?text-decoration:\s*none;/);
+  assert.doesNotMatch(support, /href="\.\.\/styles\/vex-institutional\.css"/);
+});
+
 test('INSTITUTIONAL-SURFACES: support page reuses the five existing Connect Stripe destinations', () => {
   const connect = fs.readFileSync(path.join(ROOT, 'pages', 'connect.html'), 'utf8');
   const support = fs.readFileSync(path.join(ROOT, 'pages', 'vex-support.html'), 'utf8');
