@@ -731,6 +731,18 @@ async function runTerrainEntryRuntime(origin, cdp) {
       { arrival, aboutHeading, topLevel }
     );
   }
+  const aboutNavigation = await evaluate(
+    cdp,
+    desktop.sessionId,
+    "({ pathname: location.pathname, href: location.href })"
+  );
+  if (!aboutNavigation || aboutNavigation.pathname !== '/Vextreme/pages/about-vextreme.html') {
+    fail(
+      'VEXSYSTEM_BROWSER_TERRAIN_ABOUT_NAVIGATION_MISMATCH',
+      'Terrain did not remain on the accepted About Vextreme top-level orientation route.',
+      { arrival, aboutHeading, topLevel, aboutNavigation }
+    );
+  }
 
   const mobile = await createPage(cdp, origin + TERRAIN_ENTRY, {
     width: 390,
@@ -746,12 +758,12 @@ async function runTerrainEntryRuntime(origin, cdp) {
     activationPath: 'TRUSTED_POINTER_TOP_LEVEL_HANDOFF',
     desktop: {
       arrival,
-      navigated,
+      aboutNavigation,
       topLevel,
-      signals: assertPageSignals(desktop, 'Terrain desktop -> VexSystem runtime', {
+      signals: assertPageSignals(desktop, 'Terrain desktop -> About Vextreme runtime', {
         allowSingleSupersededDocumentAbort:
           topLevel === true &&
-          (navigated.pathname === '/Vextreme/vexsystem/' || navigated.pathname === '/Vextreme/vexsystem/index.html')
+          aboutNavigation.pathname === '/Vextreme/pages/about-vextreme.html'
       })
     },
     mobile: {
