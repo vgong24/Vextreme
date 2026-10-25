@@ -13,11 +13,11 @@
         "arcMembership": false
       },
       "runtime": {
-        "mode": "standalone",
+        "mode": "shell-context",
         "godScript": false,
-        "shell": false,
-        "localizationLoader": "widgets/vex-institutional.js",
-        "localizationControl": "data-vex-lang-select",
+        "shell": true,
+        "localizationLoader": "widgets/fab-lang.js",
+        "localizationControl": "fab-lang",
         "supportRoutes": null
       },
       "strings": {
@@ -33,7 +33,6 @@
       "theme": {
         "family": "foundation",
         "variants": [
-          "foundation",
           "foundation-light"
         ]
       },
@@ -44,7 +43,6 @@
           1440
         ],
         "themes": [
-          "foundation",
           "foundation-light"
         ]
       },
