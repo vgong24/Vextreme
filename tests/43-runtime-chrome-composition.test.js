@@ -23,12 +23,16 @@ function read(relativePath) {
 test('CHROME-HOME: shared chrome exposes the Vextreme, VexLife, and VexWork family', () => {
   const source = read('lib/vextreme.js');
   const css = read('styles/site-nav.css');
-  assert.match(source, /class="vex-nav-brand-family"/);
-  assert.match(source, /class="vex-nav-title" href="\/Vextreme\/pages\/terrain-map\.html">Vextreme<\/a>/);
-  assert.match(source, /class="vex-nav-product" href="https:\/\/vgong24\.github\.io\/VexLife\/">VexLife<\/a>/);
-  assert.match(source, /class="vex-nav-product" href="https:\/\/vexgpt\.github\.io\/VexWork\/">VexWork<\/a>/);
-  assert.match(css, /\.vex-nav-brand-family \{/);
-  assert.match(css, /\.vex-nav-product \{/);
+  assert.match(source, /class="vex-family-rail" role="group"/);
+  assert.match(source, /class="vex-family-mark"[^>]*href="\/Vextreme\/pages\/terrain-map\.html"/);
+  assert.match(source, /class="vex-family-world vex-nav-title vex-family-current"[^>]*aria-current="page">Vextreme<\/a>/);
+  assert.match(source, /class="vex-family-world vex-nav-product" href="https:\/\/vgong24\.github\.io\/VexLife\/">VexLife<\/a>/);
+  assert.match(source, /class="vex-family-world vex-nav-product" href="https:\/\/vexgpt\.github\.io\/VexWork\/">VexWork<\/a>/);
+  assert.match(css, /\.vex-family-rail \{/);
+  assert.match(css, /\.vex-family-mark-glyph \{[\s\S]*vextreme-mark\.svg/);
+  assert.match(css, /grid-template-columns:\s*5\.8rem auto 4\.8rem auto 4\.9rem/);
+  assert.match(css, /\.vex-nav-title \{[\s\S]*font-family:\s*var\(--serif/);
+  assert.match(css, /\.vex-nav-product \{[\s\S]*font-family:\s*var\(--sans/);
 });
 
 test('CHROME-RAIL: nav exposes one reserved action mount', () => {

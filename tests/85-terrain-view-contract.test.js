@@ -903,9 +903,9 @@ test('TERRAIN-VIEW: Welcome Wagon arrival converges visually without importing i
   const source = pageSource();
 
   assert.match(source, /#vex-site-nav \.vex-nav\{[\s\S]*background:var\(--ground\);[\s\S]*border-color:var\(--line-strong\);/u);
-  assert.match(source, /#vex-site-nav \.vex-nav-title,[\s\S]*font-family:"Source Serif 4"/u);
-  assert.match(source, /#vex-site-nav \.vex-nav-title::before\{[\s\S]*vextreme-mark\.svg[\s\S]*mask:/u);
-  assert.match(source, /@media \(max-width:480px\)\{[\s\S]*#vex-site-nav \.vex-nav-title\{ gap:5px; \}[\s\S]*#vex-site-nav \.vex-nav-title::before\{ width:18px; height:18px; \}/u);
+  assert.match(source, /#vex-site-nav \.vex-family-mark,[\s\S]*#vex-site-nav \.vex-family-current\{ color:var\(--ink\); \}/u);
+  assert.doesNotMatch(source, /vex-nav-title::before/u);
+  assert.doesNotMatch(source, /vextreme-mark\.svg/u);
   assert.doesNotMatch(source, /#vex-site-nav\s*\{[\s\S]*--stone:/u);
   assert.doesNotMatch(source, /#vex-site-nav\s*\{[\s\S]*--ember-bg:/u);
   assert.match(source, /\.entry-arrival\{[\s\S]*--entry-serif:"Source Serif 4"[\s\S]*--entry-sans:"IBM Plex Sans"[\s\S]*--entry-mono:"IBM Plex Mono"/u);

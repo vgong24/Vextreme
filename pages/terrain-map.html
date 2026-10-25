@@ -56,22 +56,8 @@
     border-color:var(--line-strong);
     font-family:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   }
-  #vex-site-nav .vex-nav-title,
-  #vex-site-nav .vex-nav-product{
-    font-family:"Source Serif 4", "Iowan Old Style", Georgia, serif;
-  }
-  #vex-site-nav .vex-nav-title{
-    display:inline-flex; align-items:center; gap:8px; color:var(--ink);
-  }
-  #vex-site-nav .vex-nav-title::before{
-    content:""; width:24px; height:24px; flex:none; background:currentColor;
-    -webkit-mask:url("../assets/logo/vextreme-mark.svg") center/contain no-repeat;
-    mask:url("../assets/logo/vextreme-mark.svg") center/contain no-repeat;
-  }
-  @media (max-width:480px){
-    #vex-site-nav .vex-nav-title{ gap:5px; }
-    #vex-site-nav .vex-nav-title::before{ width:18px; height:18px; }
-  }
+  #vex-site-nav .vex-family-mark,
+  #vex-site-nav .vex-family-current{ color:var(--ink); }
   #vex-site-nav .vex-nav-product,
   #vex-site-nav .vex-nav-link,
   #vex-site-nav .vex-nav-mobile-link,
