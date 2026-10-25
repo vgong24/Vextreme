@@ -141,15 +141,35 @@
 }
 
 @media (max-width: 640px) {
-  .vex-family-rail { gap: 8px; }
+  :root { --vex-site-nav-height: 93px; }
+
+  .vex-nav-inner {
+    height: auto;
+    min-height: 92px;
+    flex-wrap: wrap;
+    column-gap: 8px;
+    row-gap: 6px;
+    padding: 10px 16px;
+  }
+
+  .vex-family-rail {
+    width: 100%;
+    margin-right: 0;
+    gap: 8px;
+  }
+
   .vex-family-mark { width: 22px; height: 22px; flex-basis: 22px; }
+
   .vex-nav-brand-family {
     grid-template-columns: 4.9rem auto 4.7rem auto 4.8rem;
     gap: 4px;
   }
+
   .vex-nav-title { font-size: 17px; }
   .vex-nav-product { font-size: 12px; }
   .vex-nav-brand-separator { font-size: 10px; }
+
+  .vex-nav-toggle { margin-left: auto; }
 }
 
 
@@ -270,7 +290,7 @@
 .vex-nav-mobile {
   display: none;
   position: fixed;
-  top: 60px; /* matches nav bar height */
+  top: var(--vex-site-nav-height);
   left: 0;
   right: 0;
   bottom: 0;
