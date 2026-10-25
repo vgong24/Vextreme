@@ -3114,12 +3114,12 @@ The registry has two states:
 The initial reservations were `vextreme-home` and `vex-support`. Welcome Wagon A1
 later migrated the active institutional identity from `vextreme-home` to
 `about-vextreme`, while retaining `pages/vextreme-home.html` only as a noindex
-compatibility alias. The active Support surface remains an English/Japanese/Simplified-Chinese
-standalone institutional page. About Vextreme retains the same institutional
+compatibility alias. The active Support surface and About Vextreme both retain their institutional
 identity, discovery, string, evidence, and archive-exclusion ownership while
-using the bounded `shell-context` runtime so the Terrain journey's shared
-navigation/FAB context surrounds the orientation content instead of creating a
-second institutional homepage.
+using the bounded `shell-context` runtime so Terrain's shared navigation/FAB
+context surrounds their human-facing content instead of creating duplicate
+institutional home chrome. The Covenant remains a standalone institutional
+surface until a separate lived need earns a migration.
 Support-surface activation does not automatically activate the three explicit
 route cards: their separate route contract still requires every routes[] URL to
 remain null and every route action inert in this row. The five support meanings
