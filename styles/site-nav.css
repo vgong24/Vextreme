@@ -98,7 +98,7 @@
 
 .vex-nav-brand-family {
   display: grid;
-  grid-template-columns: 5.8rem auto 4.8rem auto 4.9rem;
+  grid-template-columns: 5.8rem auto 5.3rem auto 5.3rem;
   align-items: baseline;
   gap: 7px;
   white-space: nowrap;
@@ -144,7 +144,7 @@
   .vex-family-rail { gap: 8px; }
   .vex-family-mark { width: 22px; height: 22px; flex-basis: 22px; }
   .vex-nav-brand-family {
-    grid-template-columns: 4.8rem auto 4rem auto 4.25rem;
+    grid-template-columns: 4.9rem auto 4.7rem auto 4.8rem;
     gap: 4px;
   }
   .vex-nav-title { font-size: 16px; }
