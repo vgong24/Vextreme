@@ -914,7 +914,9 @@ test('INSTITUTIONAL-SURFACES: standalone institutional headers keep local naviga
   assert.equal(registry.surfaces['about-vextreme'].runtime.shell, true);
   assert.match(about, /src="\.\.\/lib\/shell\.js\?v=92abdcec2f23"/);
   assert.match(about, /window\.VEX_SUPPORTED_LANGS = \['en', 'ja', 'zh'\]/);
-  assert.match(about, /fabWidgets: \{ theme: false, map: false \}/);
+  assert.match(about, /href="\.\.\/styles\/design-system\.css\?v=a688d1811342f0b255c5b8fdb246b8cb1e0d58ea"/);
+  assert.match(about, /href="\.\.\/styles\/vex-institutional\.css\?v=0f8fb583cb30a82258df6fb388530abb2e0cdb28"/);
+  assert.match(about, /window\.VEXTREME_OVERRIDE = \{[\s\S]*bodyWrap: false,[\s\S]*arcNav: false,[\s\S]*fabWidgets: \{ theme: false, map: false \}/);
   assert.doesNotMatch(about, /<header class="vex-header">/);
   assert.doesNotMatch(about, /data-vex-lang-select/);
   assert.doesNotMatch(about, /data-vex-theme-toggle/);
