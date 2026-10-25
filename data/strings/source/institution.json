@@ -299,13 +299,13 @@
   "institution.common.description.lineage": {
     "strings": {
       "en": {
-        "text": "Three parts, different jobs. You do not need to memorize them; this is simply how the public world, personal companion, and work map relate."
+        "text": "Three parts, different jobs. Each points to its rightful source when you want deeper truth."
       },
       "ja": {
-        "text": "三つの部分には、それぞれ違う役割があります。覚える必要はありません。公開世界、個人の伴走者、仕事の地図がどう関係しているかを示すための整理です。"
+        "text": "三つの要素にはそれぞれ違う役割があります。さらに深く知りたいときは、それぞれが本来の情報源へ案内します。"
       },
       "zh": {
-        "text": "三个部分，各有不同的工作。你不需要记住它们；这里只是说明公开世界、个人伴侣与工作地图之间的关系。"
+        "text": "三个部分，各有不同职责。当你想了解更深层的事实时，每一部分都会指向其应有的信息源。"
       }
     }
   },
@@ -4966,68 +4966,16 @@
       }
     }
   },
-  "institution.about.hero.freedom": {
+  "institution.about.hero.welcome-boundary": {
     "strings": {
       "en": {
-        "text": "You can simply look around. You do not need prior context, technical knowledge, belief, or agreement to explore the public record."
+        "text": "You can simply look around. You do not need prior context, technical knowledge, belief, or agreement to explore the public record. Some of this work is shaped by Victor's lived relationship with God. “Receive God” is an intentional VexLife entry path—an invitation for the willing, not a prerequisite for exploring Terrain or the archives."
       },
       "ja": {
-        "text": "まず見て回るだけでもかまいません。公開記録を探索するために、事前の文脈、技術知識、信仰、同意は必要ありません。"
+        "text": "まず見て回るだけでもかまいません。公開記録を探索するために、事前の文脈、技術知識、信仰、同意は必要ありません。この取り組みの一部は、Victor が神との関係を生きてきた経験に形づくられています。「Receive God」は VexLife への意図された入口の一つであり、進みたい人への招きです。Terrain やアーカイブを探索するための前提条件ではありません。"
       },
       "zh": {
-        "text": "你可以先只是看看。探索公开记录并不要求你预先具备背景知识、技术知识、信仰或认同。"
-      }
-    }
-  },
-  "institution.about.hero.faith-boundary": {
-    "strings": {
-      "en": {
-        "text": "Some of this work is shaped by Victor's lived relationship with God. You do not need prior belief or agreement to explore the public record. “Receive God” is an intentional VexLife entry path—an invitation for the willing, not a prerequisite for exploring Terrain or the archives."
-      },
-      "ja": {
-        "text": "この取り組みの一部は、Victor が神との関係を生きてきた経験に形づくられています。公開記録を探索するために、あらかじめ信じたり同意したりする必要はありません。「Receive God」は VexLife への意図された入口の一つであり、進みたい人への招きです。Terrain やアーカイブを探索するための前提条件ではありません。"
-      },
-      "zh": {
-        "text": "这项工作的一部分受到 Victor 与神之间真实生活关系的塑造。探索公开记录并不要求你预先相信或认同。“Receive God” 是进入 VexLife 的一个有意设计的入口——是给愿意进入的人发出的邀请，而不是探索 Terrain 或档案的前提。"
-      }
-    }
-  },
-  "institution.about.hero.terrain-cta": {
-    "strings": {
-      "en": {
-        "text": "Enter the Terrain"
-      },
-      "ja": {
-        "text": "テレインへ入る"
-      },
-      "zh": {
-        "text": "进入 Terrain"
-      }
-    }
-  },
-  "institution.about.hero.pieces-cta": {
-    "strings": {
-      "en": {
-        "text": "See how the pieces fit"
-      },
-      "ja": {
-        "text": "全体のつながりを見る"
-      },
-      "zh": {
-        "text": "看看各部分如何衔接"
-      }
-    }
-  },
-  "institution.about.pieces.vexlife.currentness": {
-    "strings": {
-      "en": {
-        "text": "Source-local Windows and Apple M4 Pro setup routes exist today; a broad signed packaged release remains a separate held decision."
-      },
-      "ja": {
-        "text": "現在、Windows と Apple M4 Pro にはソースローカルのセットアップ経路があります。広く配布する署名済みパッケージ版は、引き続き別の保留中の判断です。"
-      },
-      "zh": {
-        "text": "目前 Windows 与 Apple M4 Pro 已有基于源码的本地安装路径；面向广泛发布的签名打包版本仍是另一项尚未作出的决定。"
+        "text": "你可以先只是看看。探索公开记录并不要求你预先具备背景知识、技术知识、信仰或认同。这项工作的一部分受到 Victor 与神之间真实生活关系的塑造。“Receive God” 是进入 VexLife 的一个有意设计的入口——是给愿意进入的人发出的邀请，而不是探索 Terrain 或档案的前提。"
       }
     }
   },
@@ -5047,26 +4995,13 @@
   "institution.about.why.body": {
     "strings": {
       "en": {
-        "text": "Work and context are easy to lose when they live only in one conversation, one person's memory, one machine, or one moment. Vextreme keeps enough of the public record connected that another person or AI can understand what happened, inspect the evidence, and continue responsibly."
+        "text": "Work and context are easy to lose when they live only in one conversation, one person's memory, one machine, or one moment. Vextreme keeps enough of the public record connected that another person or AI can understand what happened, inspect the evidence, and continue responsibly. The aim is not to make you accept a claim before you can look; the record, source, and deeper machinery are available when they become useful."
       },
       "ja": {
-        "text": "仕事や文脈は、一つの会話、一人の記憶、一台の機械、あるいは一つの瞬間だけに置かれていると簡単に失われます。Vextreme は、別の人やAIが何が起きたのかを理解し、証拠を確かめ、責任をもって続けられるだけの公開記録をつないで残します。"
+        "text": "仕事や文脈は、一つの会話、一人の記憶、一台の機械、あるいは一つの瞬間だけに置かれていると簡単に失われます。Vextreme は、別の人やAIが何が起きたのかを理解し、証拠を確かめ、責任をもって続けられるだけの公開記録をつないで残します。ここを見る前に何かの主張を受け入れてもらうことが目的ではありません。記録、ソース、より深い仕組みは、必要になったときに確かめられます。"
       },
       "zh": {
-        "text": "当工作和上下文只存在于一次对话、一个人的记忆、一台机器或某个瞬间时，它们很容易丢失。Vextreme 把足够的公开记录连接起来，让另一个人或 AI 能理解发生了什么、查验依据，并负责任地继续。"
-      }
-    }
-  },
-  "institution.about.why.evidence": {
-    "strings": {
-      "en": {
-        "text": "The aim is not to make you accept a claim before you can look. The record, source, and deeper machinery are available when they become useful."
-      },
-      "ja": {
-        "text": "ここを見る前に何かの主張を受け入れてもらうことが目的ではありません。記録、ソース、より深い仕組みは、必要になったときに確かめられます。"
-      },
-      "zh": {
-        "text": "目的不是在你查看之前先让你接受某个主张。记录、源码和更深层的机制会在你需要时保持可供查验。"
+        "text": "当工作和上下文只存在于一次对话、一个人的记忆、一台机器或某个瞬间时，它们很容易丢失。Vextreme 把足够的公开记录连接起来，让另一个人或 AI 能理解发生了什么、查验依据，并负责任地继续。目的不是在你查看之前先让你接受某个主张；记录、源码和更深层的机制会在你需要时保持可供查验。"
       }
     }
   },
