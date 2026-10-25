@@ -338,11 +338,25 @@ test('CACHE-SYNC: Terrain shell bootstrap uses same-origin cache token equal to 
   assert.doesNotMatch(terrain, /cdn\.jsdelivr\.net\/gh\/vgong24\/vextreme@main\/lib\/shell\.js/);
 });
 
-test('CACHE-SYNC: shared token equals the deterministic cache-family fingerprint', () => {
+test('CACHE-SYNC: shared token equals the deterministic cache-family fingerprint across every shell bootstrap owner', () => {
   const expected = cacheIdentity.expectedCacheToken(ROOT);
   const observed = cacheIdentity.readCacheTokens(ROOT);
   assert.match(expected, /^\?v=[a-f0-9]{12}$/);
-  assert.deepEqual(observed, { shell: expected, runtime: expected, terrain: expected });
+  assert.equal(observed.shell, expected);
+  assert.equal(observed.runtime, expected);
+  assert.equal(observed.terrain, expected);
+  assert.deepEqual(
+    Object.keys(observed.institutional).sort(),
+    ['pages/about-vextreme.html', 'pages/vex-support.html']
+  );
+  assert.ok(Object.values(observed.institutional).every((value) => value === expected));
+});
+
+test('CACHE-SYNC: institutional registry participates in shared cache identity', () => {
+  assert.ok(
+    cacheIdentity.CACHE_FAMILY_PATHS.includes('config/institutional-surfaces.json'),
+    'the registry is fetched under cfg.cacheVer and must invalidate the shared cache identity'
+  );
 });
 
 test('CACHE-SYNC: token normalization converges and cache-family byte changes invalidate', () => {
