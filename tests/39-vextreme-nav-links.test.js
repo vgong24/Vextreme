@@ -40,7 +40,7 @@ test('injectNav links: Terrain, Receive God, and Ecosystem Hub use repository-ho
   const terrainMap = links.find(l => l.label === 'Terrain Map');
   const receiveGod = links.find(l => l.label === 'Receive God');
   const ecosystemHub = links.find(l => l.label === 'Ecosystem Hub');
-  assert.equal(terrainMap.href, '/Vextreme/pages/terrain-map.html?view=content&profile=evolution-v1');
+  assert.equal(terrainMap.href, '/Vextreme/pages/terrain-map.html');
   assert.equal(receiveGod.href, '/Vextreme/pages/receive-god.html');
   assert.equal(ecosystemHub.href, '/Vextreme/pages/ecosystem-hub.html');
 });
@@ -50,7 +50,7 @@ test('injectNav links: active shared chrome has no provider-domain or out-of-seq
   const links = loadNavLinks();
   assert.equal(links.some(l => /vextreme24\.com/.test(l.href)), false);
   assert.equal(links.some(l => /take-a-walk/.test(l.href)), false);
-  assert.match(source, /vex-nav-title[^>]*href="\/Vextreme\/pages\/terrain-map\.html\?view=content&profile=evolution-v1">Vextreme/);
+  assert.match(source, /vex-nav-title[^>]*href="\/Vextreme\/pages\/terrain-map\\.html">Vextreme/);
   assert.match(source, /vex-nav-product[^>]*href="https:\/\/vgong24\.github\.io\/VexLife\/">VexLife/);
   assert.match(source, /vex-nav-product[^>]*href="https:\/\/vexgpt\.github\.io\/VexWork\/">VexWork/);
 });

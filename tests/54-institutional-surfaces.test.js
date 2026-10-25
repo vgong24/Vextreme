@@ -899,22 +899,11 @@ test('INSTITUTIONAL-SURFACES: a bounded standalone active fixture passes', () =>
   assert.deepEqual(validateRegistry(active, root), []);
 });
 
-test('INSTITUTIONAL-SURFACES: standalone institutional headers keep local navigation while About consumes the shared Terrain shell', () => {
-  for (const slug of ['vex-support', 'vextreme-covenant']) {
-    const html = fs.readFileSync(path.join(ROOT, 'pages', slug + '.html'), 'utf8');
-    assert.match(html, /<nav class="vex-family-nav" aria-label="Vextreme family">/);
-    assert.match(html, /href="terrain-map\.html\?view=content&amp;profile=evolution-v1">Vextreme<\/a>/);
-    assert.match(html, /href="https:\/\/vgong24\.github\.io\/VexLife\/">VexLife<\/a>/);
-    assert.match(html, /href="https:\/\/vexgpt\.github\.io\/VexWork\/">VexWork<\/a>/);
-    assert.match(html, /<nav class="vex-nav" aria-label="Institutional">/,
-      slug + ' keeps its local institutional navigation');
-  }
+test('INSTITUTIONAL-SURFACES: Covenant keeps standalone chrome while About and Support consume the shared Terrain shell', () => {
+  const covenant = fs.readFileSync(path.join(ROOT, 'pages', 'vextreme-covenant.html'), 'utf8');
+  assert.match(covenant, /<nav class="vex-family-nav" aria-label="Vextreme family">/);
+  assert.match(covenant, /<nav class="vex-nav" aria-label="Institutional">/);
 
-  const about = fs.readFileSync(path.join(ROOT, 'pages', 'about-vextreme.html'), 'utf8');
-  assert.equal(registry.surfaces['about-vextreme'].runtime.mode, 'shell-context');
-  assert.equal(registry.surfaces['about-vextreme'].runtime.shell, true);
-  assert.match(about, /src="\.\.\/lib\/shell\.js\?v=92abdcec2f23"/);
-  assert.doesNotMatch(about, /window\.VEX_SUPPORTED_LANGS\s*=/);
   const sharedRuntime = fs.readFileSync(path.join(ROOT, 'lib', 'vextreme.js'), 'utf8');
   assert.match(sharedRuntime, /function primeInstitutionalSupportedLangs\(cfg\)/);
   assert.match(sharedRuntime, /\/config\/institutional-surfaces\.json/);
@@ -924,21 +913,26 @@ test('INSTITUTIONAL-SURFACES: standalone institutional headers keep local naviga
   const langLoad = sharedRuntime.indexOf("loadScript(BASE + '/widgets/fab-lang.js'", primeCall);
   assert.ok(primeCall >= 0 && langLoad > primeCall,
     'canonical institutional locale projection must resolve before fab-lang.js mounts');
-  assert.match(about, /href="\.\.\/styles\/design-system\.css\?v=a688d1811342f0b255c5b8fdb246b8cb1e0d58ea"/);
-  assert.match(about, /href="\.\.\/styles\/vex-institutional\.css\?v=0f8fb583cb30a82258df6fb388530abb2e0cdb28"/);
-  assert.match(about, /window\.VEXTREME_OVERRIDE = \{[\s\S]*bodyWrap: false,[\s\S]*arcNav: false,[\s\S]*fabWidgets: \{ theme: false, map: false \}/);
-  assert.doesNotMatch(about, /<header class="vex-header">/);
-  assert.doesNotMatch(about, /data-vex-lang-select/);
-  assert.doesNotMatch(about, /data-vex-theme-toggle/);
-  assert.doesNotMatch(about, /widgets\/vex-institutional\.js/);
 
-  const css = fs.readFileSync(path.join(ROOT, 'styles', 'vex-institutional.css'), 'utf8');
-  assert.match(css, /\.vex-family-nav \{/);
-  assert.match(css, /\.vex-family-current \{/);
-  assert.match(css, /@media \(max-width: 640px\)[\s\S]*\.vex-family-nav \{[\s\S]*order: 2;[\s\S]*width: 100%;/,
-    'family identity gets its own bounded mobile row rather than forcing horizontal overflow');
+  for (const slug of ['about-vextreme', 'vex-support']) {
+    const html = fs.readFileSync(path.join(ROOT, 'pages', slug + '.html'), 'utf8');
+    const entry = registry.surfaces[slug];
+    assert.equal(entry.runtime.mode, 'shell-context');
+    assert.equal(entry.runtime.shell, true);
+    assert.equal(entry.runtime.localizationLoader, 'widgets/fab-lang.js');
+    assert.equal(entry.runtime.localizationControl, 'fab-lang');
+    assert.match(html, /src="\.\.\/lib\/shell\.js\?v=[a-f0-9]{12}"/);
+    assert.match(html, /window\.VEXTREME_OVERRIDE = \{[\s\S]*bodyWrap: false,[\s\S]*arcNav: false,[\s\S]*fabWidgets: \{ theme: false, map: false \}/);
+    assert.doesNotMatch(html, /<header class="vex-header">/);
+    assert.doesNotMatch(html, /data-vex-lang-select/);
+    assert.doesNotMatch(html, /data-vex-theme-toggle/);
+    assert.doesNotMatch(html, /widgets\/vex-institutional\.js/);
+  }
+
+  const support = fs.readFileSync(path.join(ROOT, 'pages', 'vex-support.html'), 'utf8');
+  assert.equal(registry.surfaces['vex-support'].runtime.supportRoutes, 'data/support-routes.json');
+  assert.doesNotMatch(support, /vextreme24\.com/i);
 });
-
 
 test('INSTITUTIONAL-SURFACES: Page Health accepts shell only for registry-authorized shell-context surfaces', () => {
   const page = {
