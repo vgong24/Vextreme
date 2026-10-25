@@ -34,7 +34,7 @@
  */
 
 :root {
-  --vex-site-nav-height: 61px;
+  --vex-site-nav-height: 77px;
 }
 
 
@@ -53,7 +53,7 @@
   width: 100%;
   margin: 0;
   padding: 0 clamp(16px, 2vw, 28px);
-  height: 60px;
+  height: 76px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
