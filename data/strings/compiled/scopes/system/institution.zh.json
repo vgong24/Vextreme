@@ -67,7 +67,7 @@
     "text": "各部分如何衔接"
   },
   "institution.common.description.lineage": {
-    "text": "三个部分，各有不同职责。当你想了解更深层的事实时，每一部分都会指向其应有的信息源。"
+    "text": "三个部分，各有不同的工作。你不需要记住它们；这里只是说明公开世界、个人伴侣与工作地图之间的关系。"
   },
   "institution.common.lineage.vextreme.name": {
     "text": "Vextreme — 公开世界"
@@ -457,13 +457,19 @@
     "text": "关于 Vextreme — 这个世界是什么"
   },
   "institution.about.hero.eyebrow": {
-    "text": "关于 Vextreme"
+    "text": "这是什么？"
   },
   "institution.about.hero.heading": {
-    "text": "一个公开的地方，让你理解这里有什么，以及如何继续。"
+    "text": "Vextreme 是一个公开的地方，让你理解这里有什么，以及如何继续。"
   },
   "institution.about.hero.lede": {
-    "text": "Vextreme 把记录、地图、方法和正在运行的系统汇聚成一个公开世界，让人与 AI 能探索这里有什么、看见它们如何连接，并在无需从零开始的情况下继续前行。"
+    "text": "它把公开记录、地图、方法和正在运行的系统连接起来，让人与 AI 无需从零开始，就能看见已经构建了什么、它从何而来，以及还有什么尚未完成。"
+  },
+  "institution.about.hero.freedom": {
+    "text": "你可以先只是看看。探索公开记录并不要求你预先具备背景知识或技术知识。"
+  },
+  "institution.about.hero.faith-boundary": {
+    "text": "这项工作的一部分受到 Victor 与神之间真实生活关系的塑造。探索公开记录并不要求你预先相信或认同。“Receive God” 是进入 VexLife 的一个有意设计的入口——是给愿意进入的人发出的邀请，而不是探索 Terrain 或档案的前提。"
   },
   "institution.about.hero.terrain-cta": {
     "text": "进入 Terrain"
@@ -474,6 +480,15 @@
   "institution.about.pieces.vexlife.currentness": {
     "text": "目前 Windows 与 Apple M4 Pro 已有基于源码的本地安装路径；面向广泛发布的签名打包版本仍是另一项尚未作出的决定。"
   },
+  "institution.about.why.heading": {
+    "text": "为什么它存在"
+  },
+  "institution.about.why.body": {
+    "text": "当工作和上下文只存在于一次对话、一个人的记忆、一台机器或某个瞬间时，它们很容易丢失。Vextreme 把足够的公开记录连接起来，让另一个人或 AI 能理解发生了什么、查验依据，并负责任地继续。"
+  },
+  "institution.about.why.evidence": {
+    "text": "目的不是在你查看之前先让你接受某个主张。记录、源码和更深层的机制会在你需要时保持可供查验。"
+  },
   "institution.common.lineage.vexwork.name": {
     "text": "VexWork — 工作地图"
   },
@@ -481,7 +496,7 @@
     "text": "由源码管理的建设视图：项目、工作、依赖、证据，以及仍未完成的内容。"
   },
   "institution.about.deeper.intro": {
-    "text": "当你想了解时，底层机制随时可见；理解它们并不是进入这个世界的前提。"
+    "text": "当你想了解时，底层机制随时可见；理解它们并不是进入或探索这个世界的前提。"
   },
   "institution.about.deeper.covenant.name": {
     "text": "Covenant"

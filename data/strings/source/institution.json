@@ -4930,39 +4930,65 @@
   "institution.about.hero.eyebrow": {
     "strings": {
       "en": {
-        "text": "About Vextreme"
+        "text": "What is this?"
       },
       "ja": {
-        "text": "Vextremeについて"
+        "text": "これは何ですか？"
       },
       "zh": {
-        "text": "关于 Vextreme"
+        "text": "这是什么？"
       }
     }
   },
   "institution.about.hero.heading": {
     "strings": {
       "en": {
-        "text": "A public place to understand what exists — and how to continue."
+        "text": "Vextreme is a public place to understand what exists — and how to continue."
       },
       "ja": {
-        "text": "何がここにあり、どう続けていけるのかを理解するための、公開された場所。"
+        "text": "Vextreme は、ここに何があり、どう続けられるのかを理解するための公開された場所です。"
       },
       "zh": {
-        "text": "一个公开的地方，让你理解这里有什么，以及如何继续。"
+        "text": "Vextreme 是一个公开的地方，让你理解这里有什么，以及如何继续。"
       }
     }
   },
   "institution.about.hero.lede": {
     "strings": {
       "en": {
-        "text": "Vextreme brings records, maps, methods, and working systems into one public world so people and AI can explore what is here, see how it connects, and continue without starting from zero."
+        "text": "It connects public records, maps, methods, and working systems so people and AI can see what has been built, where it came from, and what remains unfinished without starting from zero."
       },
       "ja": {
-        "text": "Vextreme は、記録・地図・方法・動いているシステムを一つの公開世界にまとめ、人とAIがここにあるものを探索し、つながりを理解し、ゼロから始め直さずに続きを担えるようにします。"
+        "text": "公開された記録、地図、方法、動いているシステムをつなぎ、人とAIが、何が築かれたのか、どこから来たのか、何が未完成なのかを、ゼロから始め直さずに見渡せるようにします。"
       },
       "zh": {
-        "text": "Vextreme 把记录、地图、方法和正在运行的系统汇聚成一个公开世界，让人与 AI 能探索这里有什么、看见它们如何连接，并在无需从零开始的情况下继续前行。"
+        "text": "它把公开记录、地图、方法和正在运行的系统连接起来，让人与 AI 无需从零开始，就能看见已经构建了什么、它从何而来，以及还有什么尚未完成。"
+      }
+    }
+  },
+  "institution.about.hero.freedom": {
+    "strings": {
+      "en": {
+        "text": "You can simply look around. You do not need prior context or technical knowledge to explore the public record."
+      },
+      "ja": {
+        "text": "まず見て回るだけでもかまいません。公開記録を探索するために、事前の文脈や技術知識は必要ありません。"
+      },
+      "zh": {
+        "text": "你可以先只是看看。探索公开记录并不要求你预先具备背景知识或技术知识。"
+      }
+    }
+  },
+  "institution.about.hero.faith-boundary": {
+    "strings": {
+      "en": {
+        "text": "Some of this work is shaped by Victor's lived relationship with God. You do not need prior belief or agreement to explore the public record. “Receive God” is an intentional VexLife entry path—an invitation for the willing, not a prerequisite for exploring Terrain or the archives."
+      },
+      "ja": {
+        "text": "この取り組みの一部は、Victor が神との関係を生きてきた経験に形づくられています。公開記録を探索するために、あらかじめ信じたり同意したりする必要はありません。「Receive God」は VexLife への意図された入口の一つであり、進みたい人への招きです。Terrain やアーカイブを探索するための前提条件ではありません。"
+      },
+      "zh": {
+        "text": "这项工作的一部分受到 Victor 与神之间真实生活关系的塑造。探索公开记录并不要求你预先相信或认同。“Receive God” 是进入 VexLife 的一个有意设计的入口——是给愿意进入的人发出的邀请，而不是探索 Terrain 或档案的前提。"
       }
     }
   },
@@ -4992,16 +5018,42 @@
       }
     }
   },
-  "institution.about.pieces.vexlife.currentness": {
+  "institution.about.why.heading": {
     "strings": {
       "en": {
-        "text": "Source-local Windows and Apple M4 Pro setup routes exist today; a broad signed packaged release remains a separate held decision."
+        "text": "Why this exists"
       },
       "ja": {
-        "text": "現在、Windows と Apple M4 Pro にはソースローカルのセットアップ経路があります。広く配布する署名済みパッケージ版は、引き続き別の保留中の判断です。"
+        "text": "なぜこれが存在するのか"
       },
       "zh": {
-        "text": "目前 Windows 与 Apple M4 Pro 已有基于源码的本地安装路径；面向广泛发布的签名打包版本仍是另一项尚未作出的决定。"
+        "text": "为什么它存在"
+      }
+    }
+  },
+  "institution.about.why.body": {
+    "strings": {
+      "en": {
+        "text": "Work and context are easy to lose when they live only in one conversation, one person's memory, one machine, or one moment. Vextreme keeps enough of the public record connected that another person or AI can understand what happened, inspect the evidence, and continue responsibly."
+      },
+      "ja": {
+        "text": "仕事や文脈は、一つの会話、一人の記憶、一台の機械、あるいは一つの瞬間だけに置かれていると簡単に失われます。Vextreme は、別の人やAIが何が起きたのかを理解し、証拠を確かめ、責任をもって続けられるだけの公開記録をつないで残します。"
+      },
+      "zh": {
+        "text": "当工作和上下文只存在于一次对话、一个人的记忆、一台机器或某个瞬间时，它们很容易丢失。Vextreme 把足够的公开记录连接起来，让另一个人或 AI 能理解发生了什么、查验依据，并负责任地继续。"
+      }
+    }
+  },
+  "institution.about.why.evidence": {
+    "strings": {
+      "en": {
+        "text": "The aim is not to make you accept a claim before you can look. The record, source, and deeper machinery are available when they become useful."
+      },
+      "ja": {
+        "text": "ここを見る前に何かの主張を受け入れてもらうことが目的ではありません。記録、ソース、より深い仕組みは、必要になったときに確かめられます。"
+      },
+      "zh": {
+        "text": "目的不是在你查看之前先让你接受某个主张。记录、源码和更深层的机制会在你需要时保持可供查验。"
       }
     }
   },
@@ -5034,13 +5086,13 @@
   "institution.about.deeper.intro": {
     "strings": {
       "en": {
-        "text": "The machinery is available when you want it. It is not a prerequisite for entering the world."
+        "text": "The machinery is available when you want it. It is not a prerequisite for entering or exploring the world."
       },
       "ja": {
-        "text": "仕組みは、必要になったときにいつでも見られます。この世界に入るための前提条件ではありません。"
+        "text": "仕組みは、必要になったときにいつでも見られます。この世界に入ったり探索したりするための前提条件ではありません。"
       },
       "zh": {
-        "text": "当你想了解时，底层机制随时可见；理解它们并不是进入这个世界的前提。"
+        "text": "当你想了解时，底层机制随时可见；理解它们并不是进入或探索这个世界的前提。"
       }
     }
   },

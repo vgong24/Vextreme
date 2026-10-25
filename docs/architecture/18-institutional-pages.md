@@ -31,9 +31,12 @@ The registry has two states:
 The initial reservations were `vextreme-home` and `vex-support`. Welcome Wagon A1
 later migrated the active institutional identity from `vextreme-home` to
 `about-vextreme`, while retaining `pages/vextreme-home.html` only as a noindex
-compatibility alias. The active About Vextreme and Support surfaces carry
-English/Japanese/Simplified-Chinese standalone pages with the foundation runtime
-and a complete eighteen-cell locale/theme/viewport matrix per page.
+compatibility alias. The active Support surface remains an English/Japanese/Simplified-Chinese
+standalone institutional page. About Vextreme retains the same institutional
+identity, discovery, string, evidence, and archive-exclusion ownership while
+using the bounded `shell-context` runtime so the Terrain journey's shared
+navigation/FAB context surrounds the orientation content instead of creating a
+second institutional homepage.
 Support-surface activation does not automatically activate the three explicit
 route cards: their separate route contract still requires every routes[] URL to
 remain null and every route action inert in this row. The five support meanings
@@ -58,7 +61,10 @@ Each slug owns these exact dimensions:
 - a root-discovery label key whose English value remains owned by the compiled
   institutional string bundle rather than duplicated in a generator;
 - archive and arc exclusions;
-- standalone runtime boundary plus the declared localization loader and control;
+- an explicit runtime mode: `standalone` for institution-owned chrome, or bounded
+  `shell-context` when an institutional identity is intentionally presented
+  inside the shared Vextreme/Terrain navigation context; each mode declares its
+  localization owner and control;
 - an explicit support-route data path for the support domain, and `null` for
   surfaces that do not own routes;
 - canonical string category/scope plus required and planned locales;
@@ -99,14 +105,24 @@ active entry, proves these projections together:
    equal it, so duplicated markup cannot drift while generation stays green.
    The entry's root-discovery label key must also resolve in every required
    locale bundle before the surface can be advertised.
-5. When a required locale is not English, the page loads the registry's
-   declared standalone localization widget synchronously in `<head>` before
-   the first stylesheet, projects matching `VEX_STRING_SCOPES` and
-   `VEX_STRING_CATEGORY` globals, and exposes exactly one labelled native
-   selector with the autonyms `English`, `日本語`, and `中文`. Planned locales
-   cannot appear as selectable published options before promotion. URL choice
-   has precedence over valid storage, which has precedence over English; an
-   invalid URL value resolves to English and is never persisted.
+5. When a required locale is not English, localization follows the declared
+   runtime mode.
+
+   - `standalone` loads the registry's localization widget synchronously in
+     `<head>` before the first stylesheet, projects matching
+     `VEX_STRING_SCOPES` / `VEX_STRING_CATEGORY`, and exposes exactly one
+     labelled native selector with the autonyms `English`, `日本語`, and
+     `中文`.
+   - `shell-context` keeps the same string category/scope and compiled bundle
+     authority and loads `lib/shell.js`. The shared shell runtime reads the
+     canonical `config/institutional-surfaces.json` entry for the current slug
+     and projects its `strings.requiredLocales` into `window.VEX_SUPPORTED_LANGS`
+     before the existing `widgets/fab-lang.js` surface mounts. The page must
+     not hand-author that locale list, retain the standalone native selector,
+     load `widgets/vex-institutional.js`, or opt the language FAB out.
+
+   Planned locales cannot appear as selectable published options before
+   promotion.
 
    Static wiring is not acceptance evidence by itself. The validator executes
    the declared widget in a bounded child-process DOM, operates the real
@@ -141,7 +157,9 @@ active entry, proves these projections together:
    signature, valid chunk boundaries, positive dimensions, IDAT/IEND chunks,
    and valid chunk CRCs. Structural validity does not replace reviewer
    inspection of what the image actually shows.
-8. It does not load `shell.js` or a God Script.
+8. Runtime ownership matches the registry: `standalone` must not load
+   `shell.js`; `shell-context` must load it. Neither mode may load a God
+   Script.
 9. No `dist/vextreme-{slug}.js` artifact exists.
 10. The slug is absent from `data/nodes.json`, every arc in
    `data/arcs-v2.json`, and the generated content maps in `data/index.json`.
@@ -173,10 +191,11 @@ and Analysis retain their existing per-locale representative image while also
 preserving every exact matrix filename in their derived data. Page Health also
 consumes the institutional registry directly, so intentional absence from
 record placement and God-Script/FAB delivery is classified as an institutional
-invariant rather than reported as generic page debt. The inverse is fail-closed:
-if an institutional page is ever delivered through `shell.js` or a generated
-God Script, Page Health marks it critical from the registry-derived surface
-classification even when every generic capability is otherwise present.
+invariant rather than reported as generic page debt. Runtime mode remains
+fail-closed: a `standalone` institutional page delivered through `shell.js`,
+a `shell-context` page missing the shared shell, or any institutional page
+delivered through a generated God Script is critical even when every generic
+capability is otherwise present.
 
 `npm run pr-ready` includes the validator. A public page cannot silently appear
 outside the registry, inherit archive runtime, be auto-discovered back into the
