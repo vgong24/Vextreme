@@ -2,114 +2,92 @@
 <!--
   VEXTREME — pages/about-vextreme.html
 
-  The canonical About Vextreme institutional page. A1 changes identity only;
-  A2 owns the later copy/structure refactor. This is an institutional surface,
-  not an archive record.
-  Its lifecycle and runtime contract live in
-  config/institutional-surfaces.json and docs/architecture/18-institutional-pages.md.
+  The canonical About Vextreme orientation page. It remains an institutional
+  identity for discovery, strings, evidence, and archive exclusion, but its
+  human-facing runtime belongs to Terrain's shared shell context rather than a
+  second institutional homepage.
 
-  English is authored directly into the markup, so the page remains complete
-  with JavaScript disabled. The shared widget adds the optional light theme
-  and applies only complete, reviewed institutional locale bundles.
+  English remains complete in authored markup. The shared shell owns global
+  family navigation and the Spiral action rail; fab-lang.js applies the
+  complete reviewed institutional EN/JA/ZH bundles when a visitor asks for
+  another language.
 -->
 <html lang="en"
       data-vex-surface="institutional"
       data-vex-string-category="system"
       data-vex-string-scope="institution"
       data-vex-theme-family="foundation"
-      data-theme="foundation">
+      data-theme="foundation-light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title data-i18n="institution.about.title">About Vextreme — What this world is</title>
-<meta name="description" content="Vextreme is a public world of records, maps, methods, and working systems that helps people and AI see what is here, how it connects, and how to continue.">
+<meta name="description" content="Vextreme is a public world of connected records, maps, methods, and working systems that helps people and AI understand what exists and continue without starting from zero.">
 <meta name="vex:department" content="institute">
 <meta name="vex:workType" content="org-design">
 <script>
   window.VEX_STRING_SCOPES = ['institution', 'common'];
   window.VEX_STRING_CATEGORY = 'system';
-  window.VEX_INST_ROOT = '../';
+  window.VEX_SUPPORTED_LANGS = ['en', 'ja', 'zh'];
 </script>
-<script src="../widgets/vex-institutional.js"></script>
-<script src="../widgets/fab-read-aloud.js"></script>
 <link rel="icon" href="../assets/logo/vextreme-mark.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles/design-system.css">
 <link rel="stylesheet" href="../styles/vex-institutional.css">
+<style>
+  /* Terrain-context presentation only; lib/vextreme.js remains the nav owner. */
+  #vex-site-nav .vex-nav-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  #vex-site-nav .vex-nav-title::before {
+    content: "";
+    width: 24px;
+    height: 24px;
+    flex: none;
+    background: currentColor;
+    -webkit-mask: url("../assets/logo/vextreme-mark.svg") center/contain no-repeat;
+    mask: url("../assets/logo/vextreme-mark.svg") center/contain no-repeat;
+  }
+  @media (max-width: 480px) {
+    #vex-site-nav .vex-nav-title { gap: 5px; }
+    #vex-site-nav .vex-nav-title::before { width: 18px; height: 18px; }
+  }
+</style>
 </head>
 <body class="vex-inst">
 
 <a class="vex-skip" href="#main" data-i18n="institution.common.skip.content">Skip to main content</a>
 
-<header class="vex-header">
-  <div class="vex-inst-shell vex-header-inner">
-    <a class="vex-brand" href="about-vextreme.html" aria-current="page"
-       data-i18n-aria="institution.common.brand.home-label"
-       aria-label="Vextreme — return to the institutional home page">
-      <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-        <path d="M 51.89 109.32 A 50 50 0 1 1 68.11 109.32 L 39.73 35.68 L 60 65.41 L 80.27 35.68 Z"
-              stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
-      </svg>
-      <span class="vex-brand-word" data-i18n="institution.common.brand.wordmark">Vextreme</span>
-      <span class="vex-brand-sub" data-i18n="institution.common.brand.descriptor">Institution</span>
-    </a>
-
-    <nav class="vex-family-nav" aria-label="Vextreme family">
-      <a class="vex-family-link vex-family-current" href="terrain-map.html?view=content&amp;profile=evolution-v1">Vextreme</a>
-      <span class="vex-family-separator" aria-hidden="true">/</span>
-      <a class="vex-family-link" href="https://vgong24.github.io/VexLife/">VexLife</a>
-      <span class="vex-family-separator" aria-hidden="true">/</span>
-      <a class="vex-family-link" href="https://vexgpt.github.io/VexWork/">VexWork</a>
-    </nav>
-
-    <nav class="vex-nav" aria-label="Institutional">
-      <a href="vex-support.html" data-i18n="institution.home.entry.support.name">Support Vextreme</a>
-      <a href="build-health.html" data-i18n="institution.common.nav.build-health">Build Health</a>
-      <a href="terrain-map.html" data-i18n="institution.common.nav.terrain">Terrain</a>
-    </nav>
-
-    <div class="vex-header-controls">
-      <label class="vex-control-label" for="vex-lang" data-vex-lang-label hidden
-             data-i18n="institution.common.label.language">Language</label>
-      <select class="vex-control" id="vex-lang" data-vex-lang-select hidden>
-        <option value="en">English</option>
-        <option value="ja">日本語</option>
-        <option value="zh">中文</option>
-      </select>
-      <button class="vex-control" type="button" data-vex-theme-toggle aria-pressed="false" hidden
-              data-i18n="institution.common.button.theme"
-              data-i18n-aria="institution.common.button.theme"
-              aria-label="Switch between the dark and light institutional surface">Theme</button>
-    </div>
-  </div>
-</header>
-
 <main id="main">
 
   <section class="vex-section vex-inst-shell">
-    <p class="vex-eyebrow" data-i18n="institution.about.hero.eyebrow">About Vextreme</p>
-    <h1 class="vex-display" data-i18n="institution.about.hero.heading">A public place to understand what exists — and how to continue.</h1>
-    <p class="vex-lede" data-i18n="institution.about.hero.lede">Vextreme brings records, maps, methods, and working systems into one public world so people and AI can explore what is here, see how it connects, and continue without starting from zero.</p>
+    <p class="vex-eyebrow" data-i18n="institution.about.hero.eyebrow">What is this?</p>
+    <h1 class="vex-display" data-i18n="institution.about.hero.heading">Vextreme is a public place to understand what exists — and how to continue.</h1>
+    <p class="vex-lede" data-i18n="institution.about.hero.lede">It connects public records, maps, methods, and working systems so people and AI can see what has been built, where it came from, and what remains unfinished without starting from zero.</p>
+    <div class="vex-prose vex-inst-measure">
+      <p data-i18n="institution.about.hero.freedom">You can simply look around. You do not need prior context, technical knowledge, belief, or agreement to explore the public record.</p>
+      <p data-i18n="institution.about.hero.faith-boundary">Some of this work is shaped by Victor's lived relationship with God. You do not need prior belief or agreement to explore the public record. “Receive God” is an intentional VexLife entry path—an invitation for the willing, not a prerequisite for exploring Terrain or the archives.</p>
+    </div>
     <div class="vex-actions">
-      <a class="vex-btn" href="terrain-map.html" data-i18n="institution.about.hero.terrain-cta">Enter the Terrain</a>
       <a class="vex-btn vex-btn-outline" href="#pieces" data-i18n="institution.about.hero.pieces-cta">See how the pieces fit</a>
     </div>
   </section>
 
   <section class="vex-section vex-inst-shell" id="pieces" aria-labelledby="pieces-heading">
     <h2 class="vex-h1" id="pieces-heading" data-i18n="institution.common.heading.lineage">How the pieces fit</h2>
-    <p class="vex-lede" data-i18n="institution.common.description.lineage">Three parts, different jobs. Each points to its rightful source when you want deeper truth.</p>
+    <p class="vex-lede" data-i18n="institution.common.description.lineage">Three parts, different jobs. You do not need to memorize them; this is simply how the public world, personal companion, and work map relate.</p>
     <div class="vex-lineage">
       <article class="vex-card">
         <h3 class="vex-card-title" data-i18n="institution.common.lineage.vextreme.name">Vextreme — the public world</h3>
         <p class="vex-card-body" data-i18n="institution.common.lineage.vextreme.body">The records, maps, methods, and public foundations you can explore here. Vextreme helps make what exists easier to see, understand, and continue.</p>
       </article>
       <article class="vex-card">
-        <h3 class="vex-card-title"><a href="https://github.com/vgong24/VexLife" data-i18n="institution.common.lineage.vexlife.name">VexLife — the companion</a></h3>
+        <h3 class="vex-card-title"><a href="https://vgong24.github.io/VexLife/" data-i18n="institution.common.lineage.vexlife.name">VexLife — the companion</a></h3>
         <p class="vex-card-body" data-i18n="institution.common.lineage.vexlife.body">A local-first, lifelong AI companion designed to run on your own computer. Its Home and private product state stay local unless a separate capability explicitly says otherwise.</p>
-        <p class="vex-provenance" data-i18n="institution.about.pieces.vexlife.currentness">Source-local Windows and Apple M4 Pro setup routes exist today; a broad signed packaged release remains a separate held decision.</p>
       </article>
       <article class="vex-card">
         <h3 class="vex-card-title"><a href="https://vexgpt.github.io/VexWork/" data-i18n="institution.common.lineage.vexwork.name">VexWork — the work map</a></h3>
@@ -118,37 +96,18 @@
     </div>
   </section>
 
-  <section class="vex-section vex-inst-shell" id="guides" aria-labelledby="guides-heading">
-    <h2 class="vex-h1" id="guides-heading" data-i18n="institution.common.heading.alignments">What guides this</h2>
-    <p class="vex-lede" data-i18n="institution.common.description.alignments">Four simple commitments shape how this public world is built and handed forward.</p>
-    <div class="vex-grid">
-      <article class="vex-card">
-        <h3 class="vex-card-title" data-i18n="institution.common.alignment.integrity.name">Integrity</h3>
-        <p class="vex-card-body" data-i18n="institution.common.alignment.integrity.body">Say what is true, and show where it came from.</p>
-      </article>
-      <article class="vex-card">
-        <h3 class="vex-card-title" data-i18n="institution.common.alignment.accountability.name">Accountability</h3>
-        <p class="vex-card-body" data-i18n="institution.common.alignment.accountability.body">Decisions and effects should have owners and return paths.</p>
-      </article>
-      <article class="vex-card">
-        <h3 class="vex-card-title" data-i18n="institution.common.alignment.authenticity.name">Authenticity</h3>
-        <p class="vex-card-body" data-i18n="institution.common.alignment.authenticity.body">People and AI should not have to pretend certainty or identity they do not hold.</p>
-      </article>
-      <article class="vex-card">
-        <h3 class="vex-card-title" data-i18n="institution.common.alignment.resilience.name">Resilience</h3>
-        <p class="vex-card-body" data-i18n="institution.common.alignment.resilience.body">Memory, context, relationships, and work should survive interruption and handoff.</p>
-      </article>
+  <section class="vex-section vex-inst-shell" id="why" aria-labelledby="why-heading">
+    <h2 class="vex-h1" id="why-heading" data-i18n="institution.about.why.heading">Why this exists</h2>
+    <div class="vex-prose">
+      <p class="vex-prose-lead" data-i18n="institution.about.why.body">Work and context are easy to lose when they live only in one conversation, one person's memory, one machine, or one moment. Vextreme keeps enough of the public record connected that another person or AI can understand what happened, inspect the evidence, and continue responsibly.</p>
+      <p data-i18n="institution.about.why.evidence">The aim is not to make you accept a claim before you can look. The record, source, and deeper machinery are available when they become useful.</p>
     </div>
   </section>
 
   <section class="vex-section vex-inst-shell" id="deeper" aria-labelledby="deeper-heading">
     <h2 class="vex-h1" id="deeper-heading" data-i18n="institution.home.entry.heading">Go deeper</h2>
-    <p class="vex-lede" data-i18n="institution.about.deeper.intro">The machinery is available when you want it. It is not a prerequisite for entering the world.</p>
+    <p class="vex-lede" data-i18n="institution.about.deeper.intro">The machinery is available when you want it. It is not a prerequisite for entering or exploring the world.</p>
     <div class="vex-grid vex-grid-2">
-      <article class="vex-card">
-        <h3 class="vex-card-title"><a href="terrain-map.html" data-i18n="institution.home.entry.terrain.name">Terrain</a></h3>
-        <p class="vex-card-body" data-i18n="institution.home.entry.terrain.body">Return to the public world, archives, and entry choices.</p>
-      </article>
       <article class="vex-card">
         <h3 class="vex-card-title"><a href="vextreme-covenant.html" data-i18n="institution.about.deeper.covenant.name">Covenant</a></h3>
         <p class="vex-card-body" data-i18n="institution.about.deeper.covenant.body">Read the principles and institutional commitments behind the work.</p>
@@ -158,31 +117,28 @@
         <p class="vex-card-body" data-i18n="institution.about.deeper.vexsystem.body">Explore the system and architecture layer for builders, AI, and technical curiosity.</p>
       </article>
       <article class="vex-card">
-        <h3 class="vex-card-title"><a href="build-health.html" data-i18n="institution.home.entry.build-health.name">Build Health</a></h3>
-        <p class="vex-card-body" data-i18n="institution.home.entry.build-health.body">See operational page and capability health when you want the implementation view.</p>
-      </article>
-      <article class="vex-card">
         <h3 class="vex-card-title"><a href="https://github.com/vgong24/Vextreme" data-i18n="institution.about.deeper.source.name">Source</a></h3>
         <p class="vex-card-body" data-i18n="institution.about.deeper.source.body">Inspect the repository and follow the public source directly.</p>
       </article>
-    </div>
-    <div class="vex-actions">
-      <a class="vex-btn" href="terrain-map.html" data-i18n="institution.about.hero.terrain-cta">Enter the Terrain</a>
     </div>
   </section>
 
 </main>
 
-<footer class="vex-footer">
-  <div class="vex-inst-shell vex-footer-inner">
-    <span class="vex-footer-mark" data-i18n="institution.common.footer.mark">VEXTREME · PUBLIC INSTITUTIONAL SURFACE · GITHUB PAGES</span>
-    <div class="vex-footer-links">
-      <a href="https://www.vextreme24.com" data-i18n="institution.common.footer.site">vextreme24.com</a>
-      <a href="https://github.com/vgong24/Vextreme" data-i18n="institution.common.footer.repo">Source on GitHub</a>
-    </div>
-  </div>
-</footer>
-
+<script>
+window.VEXTREME_OVERRIDE = {
+  bodyWrap: false,
+  fabWidgets: { theme: false, map: false },
+  fabLinks: [{
+    id: 'support',
+    href: 'vex-support.html',
+    label: 'Support Vextreme and VexLife',
+    title: 'Support the creator',
+    icon: '🫴'
+  }]
+};
+</script>
+<script src="../lib/shell.js?v=92abdcec2f23"></script>
 </body>
 </html>
 <!-- [VXG RealForever] -->
