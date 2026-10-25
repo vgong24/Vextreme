@@ -270,16 +270,18 @@ test('TERRAIN-VIEW: parent language FAB stays visible and mirrors the active emb
     'entry-to-archives transition must not retain the embedded child language context');
 });
 
-test('TERRAIN-VIEW: public Content hides engineering evidence until the existing Inspect state is opened', () => {
+test('TERRAIN-VIEW: public Content keeps engineering evidence quiet without a separate Inspect pathway', () => {
   const source = pageSource();
 
-  assert.match(source, /\.terrain-content-quiet:not\(\.terrain-inspect-open\) \.evo-card-meta,/);
-  assert.match(source, /\.terrain-content-quiet:not\(\.terrain-inspect-open\) \.stage-status-dot,/);
-  assert.match(source, /\.terrain-content-quiet:not\(\.terrain-inspect-open\) \.stage-density-track,/);
-  assert.match(source, /\.terrain-content-quiet:not\(\.terrain-inspect-open\) \.stage-density-fill\{ display:none; \}/);
+  assert.match(source, /\.terrain-content-quiet \.evo-card-meta,/);
+  assert.match(source, /\.terrain-content-quiet \.stage-status-dot,/);
+  assert.match(source, /\.terrain-content-quiet \.stage-density-track,/);
+  assert.match(source, /\.terrain-content-quiet \.stage-density-fill\{ display:none; \}/);
 
-  assert.match(source, /terrainInspectToggle\.addEventListener\('click', function \(\) \{[\s\S]*classList\.toggle\('terrain-inspect-open'\)/,
-    'the already-shipped Inspect toggle remains the reveal control');
+  assert.doesNotMatch(source, /terrainInspectToggle/);
+  assert.doesNotMatch(source, /terrain-inspect-toggle/);
+  assert.doesNotMatch(source, /terrain-inspect-open/);
+  assert.doesNotMatch(source, />Inspect<\/button>/);
 
   assert.match(source, /'<div class="evo-card-meta">' \+ chips \+ '<\/div>'/,
     'technical card evidence remains rendered rather than deleted');
@@ -288,7 +290,7 @@ test('TERRAIN-VIEW: public Content hides engineering evidence until the existing
   assert.match(source, /class:'stage-density-fill'/);
 
   assert.doesNotMatch(source, /\.evo-card-meta\s*\{\s*display:none/,
-    'evidence must not be globally hidden from Code or Inspect contexts');
+    'evidence must not be globally hidden from Code contexts');
 });
 
 test('TERRAIN-VIEW: embedded preserved routes resolve root and repository-relative page links through live Terrain nodes', () => {
@@ -902,6 +904,7 @@ test('TERRAIN-VIEW: Welcome Wagon arrival converges visually without importing i
 
   assert.match(source, /#vex-site-nav \.vex-nav\{[\s\S]*background:var\(--ground\);[\s\S]*border-color:var\(--line-strong\);/u);
   assert.match(source, /#vex-site-nav \.vex-nav-title,[\s\S]*font-family:"Source Serif 4"/u);
+  assert.match(source, /#vex-site-nav \.vex-nav-title::before\{[\s\S]*vextreme-mark\.svg[\s\S]*mask:/u);
   assert.doesNotMatch(source, /#vex-site-nav\s*\{[\s\S]*--stone:/u);
   assert.doesNotMatch(source, /#vex-site-nav\s*\{[\s\S]*--ember-bg:/u);
   assert.match(source, /\.entry-arrival\{[\s\S]*--entry-serif:"Source Serif 4"[\s\S]*--entry-sans:"IBM Plex Sans"[\s\S]*--entry-mono:"IBM Plex Mono"/u);
@@ -911,9 +914,10 @@ test('TERRAIN-VIEW: Welcome Wagon arrival converges visually without importing i
   assert.doesNotMatch(source, /\.topbar\{[^}]*var\(--entry-/u);
   assert.match(source, /<div class="entry-kicker">Vextreme · Terrain<\/div>/u);
   assert.match(source, /Terrain is the public front door to Vextreme\./u);
-  assert.match(source, /<span class="entry-icon">01<\/span>/u);
-  assert.match(source, /<span class="entry-icon">02<\/span>/u);
-  assert.match(source, /<span class="entry-icon">03<\/span>/u);
+  assert.match(source, /<span class="entry-icon" aria-hidden="true">✦<\/span>/u);
+  assert.match(source, /<span class="entry-icon" aria-hidden="true">🗂️<\/span>/u);
+  assert.match(source, /<span class="entry-icon" aria-hidden="true">\?<\/span>/u);
+  assert.doesNotMatch(source, /<span class="entry-icon"[^>]*>0[123]<\/span>/u);
 
   assert.doesNotMatch(source, /<link[^>]+design-system\.css/iu);
   assert.doesNotMatch(source, /<link[^>]+vex-institutional\.css/iu);
@@ -931,8 +935,9 @@ test('TERRAIN-VIEW: ordinary arrival hides technical chrome without changing its
   assert.match(source, /\.terrain-arrival-quiet \.evolution-layer\{ inset:18px 18px 20px; \}/u);
 
   assert.match(source, /id="searchInput"/u);
-  assert.match(source, /id="terrainInspectToggle"/u);
   assert.match(source, /id="levelReadout"/u);
+  assert.doesNotMatch(source, /id="terrainInspectToggle"/u);
+  assert.doesNotMatch(source, /terrain-inspect-open/u);
 
   const arrival = source.indexOf("mapWrap.classList.add('evolution-a-active', 'evolution-arrival-active');");
   const arrivalSync = source.indexOf('syncTerrainChrome();', arrival);
