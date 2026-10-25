@@ -60,7 +60,18 @@
   #vex-site-nav .vex-nav-product{
     font-family:"Source Serif 4", "Iowan Old Style", Georgia, serif;
   }
-  #vex-site-nav .vex-nav-title{ color:var(--ink); }
+  #vex-site-nav .vex-nav-title{
+    display:inline-flex; align-items:center; gap:8px; color:var(--ink);
+  }
+  #vex-site-nav .vex-nav-title::before{
+    content:""; width:24px; height:24px; flex:none; background:currentColor;
+    -webkit-mask:url("../assets/logo/vextreme-mark.svg") center/contain no-repeat;
+    mask:url("../assets/logo/vextreme-mark.svg") center/contain no-repeat;
+  }
+  @media (max-width:480px){
+    #vex-site-nav .vex-nav-title{ gap:5px; }
+    #vex-site-nav .vex-nav-title::before{ width:18px; height:18px; }
+  }
   #vex-site-nav .vex-nav-product,
   #vex-site-nav .vex-nav-link,
   #vex-site-nav .vex-nav-mobile-link,
@@ -91,13 +102,6 @@
   }
 
   .topbar{ display:flex; align-items:center; gap:20px; flex-wrap:wrap; padding:14px 20px; border-bottom:1px solid var(--line); background:var(--panel); flex:none; z-index:5; }
-  .terrain-inspect-toggle{
-    display:none; align-items:center; justify-content:center; flex:none;
-    border:1px solid var(--line-strong); border-radius:8px; background:var(--panel); color:var(--ink);
-    padding:7px 10px; font:600 11px/1 var(--sans); cursor:pointer;
-  }
-  .terrain-inspect-toggle:hover, .terrain-inspect-toggle:focus-visible{ border-color:var(--accent); color:var(--accent); outline:none; }
-  .terrain-inspect-toggle[hidden]{ display:none; }
   .terrain-content-quiet .topbar{ gap:10px; padding:8px 12px; flex-wrap:nowrap; }
   .terrain-content-quiet .brand{ min-width:0; margin-right:0; order:0; }
   .terrain-content-quiet .brand .eyebrow,
@@ -107,18 +111,12 @@
   .terrain-content-quiet .brand h1{ font-size:15px; white-space:nowrap; }
   .terrain-content-quiet .search{ order:1; margin-left:auto; width:clamp(150px,28vw,260px); }
   .terrain-content-quiet .search-meta{ display:none; }
-  .terrain-content-quiet .terrain-inspect-toggle{ display:inline-flex; order:2; }
-  .terrain-content-quiet.terrain-inspect-open .topbar{ flex-wrap:wrap; }
-  .terrain-content-quiet.terrain-inspect-open .lens,
-  .terrain-content-quiet.terrain-inspect-open .legend{ display:flex; }
-  .terrain-content-quiet.terrain-inspect-open .search-meta{ display:flex; }
-  .terrain-content-quiet.terrain-inspect-open .lens{ order:3; }
-  .terrain-content-quiet.terrain-inspect-open .legend{ order:4; width:100%; }
-  .terrain-content-quiet:not(.terrain-inspect-open) .evo-card-meta,
-  .terrain-content-quiet:not(.terrain-inspect-open) .stage-status-dot,
-  .terrain-content-quiet:not(.terrain-inspect-open) .stage-density-track,
-  .terrain-content-quiet:not(.terrain-inspect-open) .stage-density-fill{ display:none; }
+  .terrain-content-quiet .evo-card-meta,
+  .terrain-content-quiet .stage-status-dot,
+  .terrain-content-quiet .stage-density-track,
+  .terrain-content-quiet .stage-density-fill{ display:none; }
   .terrain-content-quiet.terrain-reader-quiet .topbar{ display:none; }
+  .terrain-content-quiet.terrain-arrival-quiet .topbar{ display:none; }
   .brand{ display:flex; flex-direction:column; gap:2px; margin-right:auto; min-width:220px; }
   .brand .eyebrow{ margin:0; font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); }
   .brand h1{ margin:0; font-size:18px; font-weight:650; letter-spacing:-.01em; }
@@ -192,6 +190,7 @@
     transition:opacity .22s ease, border-color .16s ease; backdrop-filter:blur(8px);
   }
   .level-readout.is-active{ opacity:.94; }
+  .terrain-arrival-quiet .level-readout{ visibility:hidden; }
   .level-readout[data-can-zoom-out="true"]{ cursor:zoom-out; }
   .level-readout:focus-visible{ outline:none; border-color:var(--accent); opacity:.94; }
   .threshold-progress{ position:relative; width:100%; height:132px; min-width:0; }
@@ -230,6 +229,7 @@
     transition:opacity .17s ease, transform .17s cubic-bezier(.2,.7,.3,1);
     transform-origin:50% 50%;
   }
+  .terrain-arrival-quiet .evolution-layer{ inset:18px 18px 20px; }
   .entry-arrival{
     --entry-serif:"Source Serif 4", "Iowan Old Style", Georgia, serif;
     --entry-sans:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -253,7 +253,7 @@
   button.entry-card:not(:disabled):hover, button.entry-card:not(:disabled):focus-visible{
     border-color:var(--ink-muted); background:var(--panel-2); outline:none;
   }
-  .entry-icon{ color:var(--ink-faint); font:700 10px/1 var(--entry-mono); letter-spacing:.12em; }
+  .entry-icon{ color:var(--ink-muted); font-size:20px; line-height:1; }
   .entry-title{ margin-top:auto; font:500 22px/1.25 var(--entry-serif); letter-spacing:-.01em; }
   .entry-copy{ color:var(--ink-muted); font-size:13px; line-height:1.6; }
   .entry-state{ margin-top:4px; color:var(--ink-muted); font:700 9px/1.2 var(--entry-mono); letter-spacing:.08em; text-transform:uppercase; }
@@ -388,7 +388,6 @@
     .evo-group-depth-card{ min-height:190px; margin:0 10px 10px 0; }
     .terrain-content-quiet .topbar{ gap:7px; padding:7px 10px; }
     .terrain-content-quiet .search{ width:min(52vw,220px); }
-    .terrain-content-quiet.terrain-inspect-open .search{ width:100%; order:5; }
     .reader-toolbar{ padding:7px 10px; }
     .reader-standalone{ display:none; }
     .reader-stage{ padding:8px 38px 10px; }
@@ -611,7 +610,6 @@
       <h1>Terrain Map</h1>
       <div class="sub" id="subline">Loading…</div>
     </div>
-    <button class="terrain-inspect-toggle" id="terrainInspectToggle" type="button" aria-expanded="false">Inspect</button>
     <div class="lens">
       <span class="lens-label">View</span>
       <div class="lens-toggle" role="group" aria-label="Code or content" id="worldBar">
@@ -1002,7 +1000,6 @@
   }
 
   var appRoot = document.querySelector('.app');
-  var terrainInspectToggle = document.getElementById('terrainInspectToggle');
   var contentProfileWrap = document.getElementById('contentProfileWrap');
   var contentProfile = document.getElementById('contentProfile');
   var svg = document.getElementById('svg');
@@ -1273,14 +1270,11 @@
   function syncTerrainChrome() {
     var quiet = currentWorld === 'content' && (currentProfile === 'evolution-v1' || currentProfile === 'evolution-v2');
     var reading = currentWorld === 'content' && (currentProfile === 'evolution-v1' || currentProfile === 'evolution-v2') && evolutionReader && !evolutionReader.hidden;
+    var arriving = quiet && mapWrap && mapWrap.classList.contains('evolution-arrival-active');
     appRoot.classList.toggle('terrain-content-quiet', quiet);
     appRoot.classList.toggle('terrain-reader-quiet', reading);
+    appRoot.classList.toggle('terrain-arrival-quiet', arriving);
     if (!reading) resetTerrainLanguageSurfaceContext();
-    terrainInspectToggle.hidden = !quiet || reading;
-    if (!quiet || reading) {
-      appRoot.classList.remove('terrain-inspect-open');
-      terrainInspectToggle.setAttribute('aria-expanded', 'false');
-    }
     renderEvolutionSearchResults();
   }
 
@@ -2842,9 +2836,9 @@
       + '<h2>How do you want to enter?</h2>'
       + '<p class="entry-lede">Terrain is the public front door to Vextreme. Begin the VexLife path, explore the archives, or get a plain explanation before going deeper.</p>'
       + '<div class="entry-grid">'
-      + '<button class="entry-card" type="button" data-entry-action="receive-god"><span class="entry-icon">01</span><span class="entry-title">Receive God</span><span class="entry-copy">Begin the ordered VexLife entry. Take a Walk comes after this step, inside the experience.</span><span class="entry-state">Begin here</span></button>'
-      + '<button class="entry-card" type="button" data-entry-action="archives"><span class="entry-icon">02</span><span class="entry-title">Explore the Archives</span><span class="entry-copy">Open the next Terrain layer and explore the repository-hosted record by collection.</span><span class="entry-state">Open collections</span></button>'
-      + '<button class="entry-card" type="button" data-entry-action="about"><span class="entry-icon">03</span><span class="entry-title">What is this?</span><span class="entry-copy">Get a plain explanation of Vextreme, VexLife, and VexWork before going deeper.</span><span class="entry-state">Orient me</span></button>'
+      + '<button class="entry-card" type="button" data-entry-action="receive-god"><span class="entry-icon" aria-hidden="true">✦</span><span class="entry-title">Receive God</span><span class="entry-copy">Begin the ordered VexLife entry. Take a Walk comes after this step, inside the experience.</span><span class="entry-state">Begin here</span></button>'
+      + '<button class="entry-card" type="button" data-entry-action="archives"><span class="entry-icon" aria-hidden="true">🗂️</span><span class="entry-title">Explore the Archives</span><span class="entry-copy">Open the next Terrain layer and explore the repository-hosted record by collection.</span><span class="entry-state">Open collections</span></button>'
+      + '<button class="entry-card" type="button" data-entry-action="about"><span class="entry-icon" aria-hidden="true">?</span><span class="entry-title">What is this?</span><span class="entry-copy">Get a plain explanation of Vextreme, VexLife, and VexWork before going deeper.</span><span class="entry-state">Orient me</span></button>'
       + '</div></div></section>';
 
     evolutionLayer.querySelector('[data-entry-action="receive-god"]').addEventListener('click', function () { openEntryReader('receive-god'); });
@@ -3828,10 +3822,6 @@
     contentCuriosityDock.addEventListener('mouseleave', scheduleContentTilePeekClose);
     contentProfile.addEventListener('change', function () {
       setPresentationProfile(contentProfile.value, true);
-    });
-    terrainInspectToggle.addEventListener('click', function () {
-      var open = appRoot.classList.toggle('terrain-inspect-open');
-      terrainInspectToggle.setAttribute('aria-expanded', String(open));
     });
     wireDepthRailOutwardGesture();
     evolutionLayer.addEventListener('wheel', handleEvolutionShelfWheel, { passive:false });
