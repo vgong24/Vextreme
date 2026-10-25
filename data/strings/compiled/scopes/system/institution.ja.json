@@ -67,7 +67,7 @@
     "text": "全体がどうつながるか"
   },
   "institution.common.description.lineage": {
-    "text": "三つの要素にはそれぞれ違う役割があります。さらに深く知りたいときは、それぞれが本来の情報源へ案内します。"
+    "text": "三つの部分には、それぞれ違う役割があります。覚える必要はありません。公開世界、個人の伴走者、仕事の地図がどう関係しているかを示すための整理です。"
   },
   "institution.common.lineage.vextreme.name": {
     "text": "Vextreme — 公開世界"
@@ -457,13 +457,19 @@
     "text": "Vextremeについて — この世界とは"
   },
   "institution.about.hero.eyebrow": {
-    "text": "Vextremeについて"
+    "text": "これは何ですか？"
   },
   "institution.about.hero.heading": {
-    "text": "何がここにあり、どう続けていけるのかを理解するための、公開された場所。"
+    "text": "Vextreme は、ここに何があり、どう続けられるのかを理解するための公開された場所です。"
   },
   "institution.about.hero.lede": {
-    "text": "Vextreme は、記録・地図・方法・動いているシステムを一つの公開世界にまとめ、人とAIがここにあるものを探索し、つながりを理解し、ゼロから始め直さずに続きを担えるようにします。"
+    "text": "公開された記録、地図、方法、動いているシステムをつなぎ、人とAIが、何が築かれたのか、どこから来たのか、何が未完成なのかを、ゼロから始め直さずに見渡せるようにします。"
+  },
+  "institution.about.hero.freedom": {
+    "text": "まず見て回るだけでもかまいません。公開記録を探索するために、事前の文脈、技術知識、信仰、同意は必要ありません。"
+  },
+  "institution.about.hero.faith-boundary": {
+    "text": "この取り組みの一部は、Victor が神との関係を生きてきた経験に形づくられています。公開記録を探索するために、あらかじめ信じたり同意したりする必要はありません。「Receive God」は VexLife への意図された入口の一つであり、進みたい人への招きです。Terrain やアーカイブを探索するための前提条件ではありません。"
   },
   "institution.about.hero.terrain-cta": {
     "text": "テレインへ入る"
@@ -474,6 +480,15 @@
   "institution.about.pieces.vexlife.currentness": {
     "text": "現在、Windows と Apple M4 Pro にはソースローカルのセットアップ経路があります。広く配布する署名済みパッケージ版は、引き続き別の保留中の判断です。"
   },
+  "institution.about.why.heading": {
+    "text": "なぜこれが存在するのか"
+  },
+  "institution.about.why.body": {
+    "text": "仕事や文脈は、一つの会話、一人の記憶、一台の機械、あるいは一つの瞬間だけに置かれていると簡単に失われます。Vextreme は、別の人やAIが何が起きたのかを理解し、証拠を確かめ、責任をもって続けられるだけの公開記録をつないで残します。"
+  },
+  "institution.about.why.evidence": {
+    "text": "ここを見る前に何かの主張を受け入れてもらうことが目的ではありません。記録、ソース、より深い仕組みは、必要になったときに確かめられます。"
+  },
   "institution.common.lineage.vexwork.name": {
     "text": "VexWork — 作業マップ"
   },
@@ -481,7 +496,7 @@
     "text": "何が作られているかをソース管理で示すビューです。プロジェクト、作業、依存関係、証拠、そして未完了のものを見渡せます。"
   },
   "institution.about.deeper.intro": {
-    "text": "仕組みは、必要になったときにいつでも見られます。この世界に入るための前提条件ではありません。"
+    "text": "仕組みは、必要になったときにいつでも見られます。この世界に入ったり探索したりするための前提条件ではありません。"
   },
   "institution.about.deeper.covenant.name": {
     "text": "コヴェナント"
