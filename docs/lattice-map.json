@@ -1378,7 +1378,7 @@
     },
     "lib/build-page-health.js": {
       "role": "joins existing page registries, runtime audits, localization identity, analysis, and screenshot evidence into one deterministic per-page capability projection",
-      "context": "Archives answers page health while Terrain answers organizational health. This generator gives both read sides one source without making either interface re-scan HTML or duplicate classification rules. It distinguishes mechanism presence from visible effect, especially shared theme control versus authored light/dark styles. Registry-owned institutional pages intentionally omit record placement and FAB delivery, but the registry's inverse runtime boundary is strict: observed shell or God-Script delivery makes an institutional page critical even when its generic capabilities are complete. `discovery.metaDescription` (added alongside the Fresh Participant Dignity relay-culture PR, while scoping what a page-index for external search-agent AIs would need) is deliberately stored as the extracted text itself (`''` when absent), not a pre-flattened boolean — same shape as `identity.keyCount` being a count rather than a `hasIdentity` flag. `metaDescriptionText()` is the one place that ever parses the HTML for this; every consumer (Archives' badge, Terrain's detail panel, a future page-index) derives presence/quality from the string it already has rather than re-scanning the page. Matches the `<meta>` tag itself first, then reads `name=`/`content=` from within that tag independently — attribute order in the source HTML is not assumed. Known ceiling, not yet hit: HTML entities in `content` (e.g. `&amp;`) are returned raw, undecoded — fine for every current page (none use them) and for feeding back into an `esc()`-based HTML re-render (Terrain's detail panel), but a future consumer that treats this string as plain text (a search snippet, a page-index entry) would need to decode entities first. Resolve when a real consumer needs decoded text, not preemptively. This is the field a future large-repo instance — or an external AI with no repo access — would actually read to map a user's question to a route: the badge only answers 'does this page describe itself,' the string is what a search/navigation layer would need to answer 'which page.' Health-severity handling follows the same precedent as `analysis.control`: surfaced as a badge, deliberately excluded from computeHealth()'s gaps/blockers so adding it doesn't retroactively flip most of the site to 'attention' — only 4/39 pages had a meta description when this landed. Promote it into a real gap once enough pages are curated that the absence is the exception, not the norm.",
+      "context": "Archives answers page health while Terrain answers organizational health. This generator gives both read sides one source without making either interface re-scan HTML or duplicate classification rules. It distinguishes mechanism presence from visible effect, especially shared theme control versus authored light/dark styles. Registry-owned institutional pages intentionally omit record placement and FAB delivery, while runtime mode remains fail-closed: standalone pages delivered through shell are critical, shell-context pages missing shell are critical, and any institutional God-Script delivery is critical even when generic capabilities are complete. `discovery.metaDescription` (added alongside the Fresh Participant Dignity relay-culture PR, while scoping what a page-index for external search-agent AIs would need) is deliberately stored as the extracted text itself (`''` when absent), not a pre-flattened boolean — same shape as `identity.keyCount` being a count rather than a `hasIdentity` flag. `metaDescriptionText()` is the one place that ever parses the HTML for this; every consumer (Archives' badge, Terrain's detail panel, a future page-index) derives presence/quality from the string it already has rather than re-scanning the page. Matches the `<meta>` tag itself first, then reads `name=`/`content=` from within that tag independently — attribute order in the source HTML is not assumed. Known ceiling, not yet hit: HTML entities in `content` (e.g. `&amp;`) are returned raw, undecoded — fine for every current page (none use them) and for feeding back into an `esc()`-based HTML re-render (Terrain's detail panel), but a future consumer that treats this string as plain text (a search snippet, a page-index entry) would need to decode entities first. Resolve when a real consumer needs decoded text, not preemptively. This is the field a future large-repo instance — or an external AI with no repo access — would actually read to map a user's question to a route: the badge only answers 'does this page describe itself,' the string is what a search/navigation layer would need to answer 'which page.' Health-severity handling follows the same precedent as `analysis.control`: surfaced as a badge, deliberately excluded from computeHealth()'s gaps/blockers so adding it doesn't retroactively flip most of the site to 'attention' — only 4/39 pages had a meta description when this landed. Promote it into a real gap once enough pages are curated that the absence is the exception, not the norm.",
       "reads": [
         "pages/*.html (runtime tags, data-i18n bindings, authored theme styles)",
         "data/nodes.json (arc placement)",
@@ -1401,10 +1401,12 @@
         ".github/workflows/build-index.yml (before Archives and Terrain)",
         "tests/helpers/prereqs.js",
         "tests/44-page-health.test.js",
-        "lib/check-description-freshness.js (metaDescriptionText only)"
+        "lib/check-description-freshness.js (metaDescriptionText only)",
+        "tests/54-institutional-surfaces.test.js (shell-context institutional health-mode contract)"
       ],
       "testedBy": [
-        "tests/44-page-health.test.js"
+        "tests/44-page-health.test.js",
+        "tests/54-institutional-surfaces.test.js (registry-authorized shell-context health boundary)"
       ],
       "changeMap": {
         "data/page-health.json schema changed": [
@@ -2298,7 +2300,7 @@
     },
     "lib/shell.js": {
       "role": "thin GitHub Pages shell bootstrap — loads the cache-versioned legacy runtime and invokes VEXTREME with the page's optional override",
-      "context": "Still live for pages that include shell.js even though the newer God Script path exists. This file owns only the stable bootstrap/cache handoff: it injects lib/vextreme.js, waits for it, then calls window.VEXTREME(window.VEXTREME_OVERRIDE || {}). Its VEXTREME_VER is generated from the shared cache-family content by lib/build-shared-cache-generation.js and must equal lib/vextreme.js DEFAULT_CACHE plus Terrain's bootstrap token; tests/41 proves both equality and content-currentness.",
+      "context": "Still live for pages that include shell.js even though the newer God Script path exists. This file owns only the stable bootstrap/cache handoff: it injects lib/vextreme.js, waits for it, then calls window.VEXTREME(window.VEXTREME_OVERRIDE || {}). Its VEXTREME_VER is generated from the shared cache-family content by lib/build-shared-cache-generation.js and must equal lib/vextreme.js DEFAULT_CACHE plus Terrain and every active shell-context institutional bootstrap token; tests/41 proves equality and content-currentness.",
       "reads": [
         "lib/vextreme.js (cache-versioned runtime loaded into the page)",
         "window.VEXTREME_OVERRIDE (optional page configuration passed through after load)"
@@ -2317,7 +2319,7 @@
       "changeMap": {
         "shared cache identity or bootstrap cache handoff changed": [
           "lib/build-shared-cache-generation.js (content-derived token owner)",
-          "lib/vextreme.js DEFAULT_CACHE and pages/terrain-map.html bootstrap (generated peers)",
+          "lib/vextreme.js DEFAULT_CACHE, pages/terrain-map.html and active shell-context institutional bootstraps (generated peers)",
           "tests/41-vextreme-fab-autoload.test.js (CACHE-SYNC currentness assertions)"
         ],
         "runtime target or VEXTREME invocation contract changed": [
@@ -2327,9 +2329,10 @@
       }
     },
     "lib/vextreme.js": {
-      "role": "legacy shell-era runtime composition loader — environment styles, shared nav/body composition, current Spiral FAB auto-load, and gated v1 archive enhancement",
+      "role": "legacy shell-era runtime composition loader — environment styles, shared nav/body composition, registry-backed institutional locale projection, current Spiral FAB auto-load, and gated v1 archive enhancement",
       "context": "This is the still-live runtime behind lib/shell.js, not the preferred v2 God Script assembler. It detects environment/slug, injects the shared site nav and reserved #vex-nav-actions rail, loads the Spiral FAB group in order, fetches v1 arcs/pages data, and only then admits the v1 reset/archive layer for pages that actually consume it. Real regressions established that this loader must decorate authored pages without silently restyling them. Changes here are browser-composition changes even when a source/DOM unit test is green.",
       "reads": [
+        "config/institutional-surfaces.json (shell-context required-locale projection before shared language FAB mount)",
         "data/arcs.json (v1 arc data fetched at runtime)",
         "data/pages.json (v1 page/template data fetched at runtime)",
         "styles/site-nav.css (GitHub Pages/local shared chrome)",
@@ -2348,7 +2351,8 @@
       ],
       "writes": [
         "DOM: #vex-site-nav / #vex-nav-actions and optional .vex-page-body composition",
-        "window.VEXTREME_ENV / VEXTREME_BASE_URL / VEXTREME_ARCS / VEXTREME_PAGES runtime globals"
+        "window.VEXTREME_ENV / VEXTREME_BASE_URL / VEXTREME_ARCS / VEXTREME_PAGES runtime globals",
+        "window.VEX_SUPPORTED_LANGS for registry-authorized institutional shell-context surfaces"
       ],
       "loadedBy": [
         "lib/shell.js (one-tag GitHub Pages bootstrap)"
@@ -2361,7 +2365,7 @@
       "changeMap": {
         "DEFAULT_CACHE or cache-versioned asset family changed": [
           "lib/build-shared-cache-generation.js CACHE_FAMILY_PATHS / generated identity",
-          "lib/shell.js VEXTREME_VER and pages/terrain-map.html bootstrap",
+          "lib/shell.js VEXTREME_VER, pages/terrain-map.html and active shell-context institutional bootstraps",
           "tests/41-vextreme-fab-autoload.test.js"
         ],
         "#vex-nav-actions or shared chrome composition changed": [
@@ -2389,6 +2393,13 @@
           "styles/design-system.css",
           "styles/arc-nav.css",
           "lib/audit-fab.js"
+        ],
+        "institutional shell-context language projection changed": [
+          "config/institutional-surfaces.json",
+          "widgets/fab-lang.js",
+          "lib/check-institutional-surfaces.js",
+          "tests/54-institutional-surfaces.test.js",
+          "browser-rendered acceptance for About Vextreme and Support"
         ]
       }
     },
@@ -2532,7 +2543,7 @@
       }
     },
     "lib/build-shared-cache-generation.js": {
-      "role": "deterministic shared-runtime cache identity generator — fingerprints the cache-versioned v1 shell/runtime asset family after normalizing token-bearing lines, then writes one convergent content-derived token into shell.js, vextreme.js and Terrain's shell bootstrap",
+      "role": "deterministic shared-runtime cache identity generator — fingerprints the cache-versioned v1 shell/runtime asset family after normalizing token-bearing lines, then writes one convergent content-derived token into shell.js, vextreme.js, Terrain and every active institutional shell-context bootstrap",
       "context": "2026-10-21 — a lived Vextreme -> VexWork -> Vextreme -> VexWork loop proved that source-correct navigation could regress to the retired route because the shared shell/runtime cache token remained v16 after the nav bytes changed. The immediate v17 repair closed that instance. This generator removes the human-maintained global integer entirely: the token is the first 12 hex characters of SHA-256 over sorted cache-family path+normalized-byte entries. shell.js and vextreme.js normalize only their token constant before hashing, so the generated token cannot recursively change its own next identity. Parallel branches derive identities from their actual composed bytes rather than contending on one integer.",
       "reads": [
         "lib/shell.js and lib/vextreme.js (token-bearing source normalized before hashing)",
@@ -2540,12 +2551,14 @@
         "components/section-toggle.js and components/bc-nav.js",
         "widgets/vex-fab.js / fab-read-aloud.js / fab-lang.js / fab-theme.js / fab-map.js",
         "styles/site-nav.css / squarespace-overrides.css / design-system.css / arc-nav.css / page template CSS",
-        "data/arcs.json and data/pages.json"
+        "data/arcs.json and data/pages.json",
+        "config/institutional-surfaces.json (active shell-context page ownership and cache-versioned locale registry)"
       ],
       "writes": [
         "lib/shell.js VEXTREME_VER",
         "lib/vextreme.js DEFAULT_CACHE",
-        "pages/terrain-map.html shell.js query token"
+        "pages/terrain-map.html shell.js query token",
+        "pages/{active shell-context institutional slug}.html shell.js query token"
       ],
       "loadedBy": [
         "package.json cache:build / cache:check / pr-ready",
@@ -2564,6 +2577,7 @@
           "lib/shell.js VEXTREME_VER",
           "lib/vextreme.js DEFAULT_CACHE",
           "pages/terrain-map.html shell bootstrap",
+          "active shell-context institutional page bootstraps derived from config/institutional-surfaces.json",
           "tests/41 convergence + currentness checks"
         ]
       }

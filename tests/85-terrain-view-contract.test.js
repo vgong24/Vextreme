@@ -178,8 +178,8 @@ test('TERRAIN-VIEW: accepted Content remains the no-query default while Evolutio
   assert.match(source, /<span class="content-view-split">[\s\S]*data-world="content"[\s\S]*id="contentProfileWrap"[\s\S]*id="contentProfile"[\s\S]*<\/span>/,
     'presentation profile belongs inside the Content half of the View control');
   assert.match(source, /\.terrain-content-quiet \.lens,[\s\S]*\.terrain-content-quiet \.legend\{ display:none; \}/);
-  assert.match(source, /\.terrain-content-quiet\.terrain-inspect-open \.lens,[\s\S]*\.terrain-content-quiet\.terrain-inspect-open \.legend\{ display:flex; \}/,
-    'Inspect owns reveal of the View/profile control in accepted Content');
+  assert.doesNotMatch(source, /terrain-inspect-open/,
+    'accepted Content no longer has an Inspect-only reveal branch');
   assert.doesNotMatch(source, />Evolution A</);
   assert.match(source, /id="evolutionLayer"/);
   assert.match(source, /function readInitialRoute\(\)/);
@@ -236,7 +236,7 @@ test('TERRAIN-VIEW: collection group homes stay outside membership while remaini
 
 test('TERRAIN-VIEW: accepted Content quiet chrome and wheel boundaries preserve explicit entry / outward exit semantics', () => {
   const source = pageSource();
-  assert.match(source, /id="terrainInspectToggle"/);
+  assert.doesNotMatch(source, /id="terrainInspectToggle"/);
   assert.match(source, /function syncTerrainChrome\(\)/);
   assert.match(source, /terrain-content-quiet/);
   assert.match(source, /terrain-reader-quiet/);
@@ -270,16 +270,18 @@ test('TERRAIN-VIEW: parent language FAB stays visible and mirrors the active emb
     'entry-to-archives transition must not retain the embedded child language context');
 });
 
-test('TERRAIN-VIEW: public Content hides engineering evidence until the existing Inspect state is opened', () => {
+test('TERRAIN-VIEW: public Content keeps engineering evidence quiet without a separate Inspect pathway', () => {
   const source = pageSource();
 
-  assert.match(source, /\.terrain-content-quiet:not\(\.terrain-inspect-open\) \.evo-card-meta,/);
-  assert.match(source, /\.terrain-content-quiet:not\(\.terrain-inspect-open\) \.stage-status-dot,/);
-  assert.match(source, /\.terrain-content-quiet:not\(\.terrain-inspect-open\) \.stage-density-track,/);
-  assert.match(source, /\.terrain-content-quiet:not\(\.terrain-inspect-open\) \.stage-density-fill\{ display:none; \}/);
+  assert.match(source, /\.terrain-content-quiet \.evo-card-meta,/);
+  assert.match(source, /\.terrain-content-quiet \.stage-status-dot,/);
+  assert.match(source, /\.terrain-content-quiet \.stage-density-track,/);
+  assert.match(source, /\.terrain-content-quiet \.stage-density-fill\{ display:none; \}/);
 
-  assert.match(source, /terrainInspectToggle\.addEventListener\('click', function \(\) \{[\s\S]*classList\.toggle\('terrain-inspect-open'\)/,
-    'the already-shipped Inspect toggle remains the reveal control');
+  assert.doesNotMatch(source, /terrainInspectToggle/);
+  assert.doesNotMatch(source, /terrain-inspect-toggle/);
+  assert.doesNotMatch(source, /terrain-inspect-open/);
+  assert.doesNotMatch(source, />Inspect<\/button>/);
 
   assert.match(source, /'<div class="evo-card-meta">' \+ chips \+ '<\/div>'/,
     'technical card evidence remains rendered rather than deleted');
@@ -288,7 +290,7 @@ test('TERRAIN-VIEW: public Content hides engineering evidence until the existing
   assert.match(source, /class:'stage-density-fill'/);
 
   assert.doesNotMatch(source, /\.evo-card-meta\s*\{\s*display:none/,
-    'evidence must not be globally hidden from Code or Inspect contexts');
+    'evidence must not be globally hidden from Code contexts');
 });
 
 test('TERRAIN-VIEW: embedded preserved routes resolve root and repository-relative page links through live Terrain nodes', () => {
@@ -718,7 +720,7 @@ test('TERRAIN-VIEW: Content overview collection titles wrap to two lines and aut
     'focused and context variants retain their existing compact title behavior');
 });
 
-test('TERRAIN-VIEW: accepted Content reserves the stable viewport dock while Reflow shelf is Inspect-only comparison', () => {
+test('TERRAIN-VIEW: accepted Content reserves the stable viewport dock while Reflow shelf remains an explicit query comparison', () => {
   const source = pageSource();
 
   assert.match(source, /id="contentCuriosityDock"/);
@@ -894,6 +896,68 @@ test('TERRAIN-VIEW: ordered entry keeps human orientation primary while VexSyste
   assert.ok(source.includes("evolutionLayer.querySelector('[data-entry-action=\"about\"]').addEventListener('click', enterAboutFromArrival);"));
   assert.match(source, /openEntryReader\('receive-god'\)/);
   assert.doesNotMatch(source, /data-entry-action="take-a-walk"/);
+});
+
+
+test('TERRAIN-VIEW: Welcome Wagon arrival converges visually without importing institutional runtime ownership', () => {
+  const source = pageSource();
+
+  assert.match(source, /#vex-site-nav \.vex-nav\{[\s\S]*background:var\(--ground\);[\s\S]*border-color:var\(--line-strong\);/u);
+  assert.match(source, /#vex-site-nav \.vex-family-mark,[\s\S]*#vex-site-nav \.vex-family-current\{ color:var\(--ink\); \}/u);
+  assert.doesNotMatch(source, /vex-nav-title::before/u);
+  assert.doesNotMatch(source, /vextreme-mark\.svg/u);
+  assert.doesNotMatch(source, /#vex-site-nav\s*\{[\s\S]*--stone:/u);
+  assert.doesNotMatch(source, /#vex-site-nav\s*\{[\s\S]*--ember-bg:/u);
+  assert.match(source, /\.entry-arrival\{[\s\S]*--entry-serif:"Source Serif 4"[\s\S]*--entry-sans:"IBM Plex Sans"[\s\S]*--entry-mono:"IBM Plex Mono"/u);
+  assert.match(source, /\.entry-shell h2\{[\s\S]*var\(--entry-serif\)/u);
+  assert.match(source, /\.entry-title\{[^}]*var\(--entry-serif\)/u);
+  assert.match(source, /--sans:\s*system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;/u);
+  assert.doesNotMatch(source, /\.topbar\{[^}]*var\(--entry-/u);
+  assert.match(source, /<div class="entry-kicker">Vextreme · Terrain<\/div>/u);
+  assert.match(source, /Terrain is the public front door to Vextreme\./u);
+  assert.match(source, /<span class="entry-icon" aria-hidden="true">✦<\/span>/u);
+  assert.match(source, /<span class="entry-icon" aria-hidden="true">🗂️<\/span>/u);
+  assert.match(source, /<span class="entry-icon" aria-hidden="true">\?<\/span>/u);
+  assert.doesNotMatch(source, /<span class="entry-icon"[^>]*>0[123]<\/span>/u);
+
+  assert.doesNotMatch(source, /<link[^>]+design-system\.css/iu);
+  assert.doesNotMatch(source, /<link[^>]+vex-institutional\.css/iu);
+  assert.doesNotMatch(source, /data-entry-action="vexsystem"/u);
+});
+
+
+test('TERRAIN-VIEW: ordinary arrival hides technical chrome without changing its ownership or restore path', () => {
+  const source = pageSource();
+
+  assert.match(source, /var arriving = quiet && mapWrap && mapWrap\.classList\.contains\('evolution-arrival-active'\);/u);
+  assert.match(source, /appRoot\.classList\.toggle\('terrain-arrival-quiet', arriving\);/u);
+  assert.match(source, /\.terrain-content-quiet\.terrain-arrival-quiet \.topbar\{ display:none; \}/u);
+  assert.match(source, /\.terrain-arrival-quiet \.level-readout\{ visibility:hidden; \}/u);
+  assert.match(source, /\.terrain-arrival-quiet \.evolution-layer\{ inset:18px 18px 20px; \}/u);
+
+  assert.match(source, /id="searchInput"/u);
+  assert.match(source, /id="levelReadout"/u);
+  assert.doesNotMatch(source, /id="terrainInspectToggle"/u);
+  assert.doesNotMatch(source, /terrain-inspect-open/u);
+
+  const arrival = source.indexOf("mapWrap.classList.add('evolution-a-active', 'evolution-arrival-active');");
+  const arrivalSync = source.indexOf('syncTerrainChrome();', arrival);
+  assert.ok(arrival >= 0 && arrivalSync > arrival, 'arrival state must exist before chrome projection');
+
+  const archives = source.indexOf('function enterArchivesFromArrival()');
+  const archivesClear = source.indexOf("mapWrap.classList.remove('evolution-reader-active', 'evolution-arrival-active');", archives);
+  const archivesSync = source.indexOf('syncTerrainChrome();', archivesClear);
+  assert.ok(archives >= 0 && archivesClear > archives && archivesSync > archivesClear,
+    'Archives must clear arrival state before restoring technical chrome');
+
+  const reader = source.indexOf('function openEntryReader(slug)');
+  const readerClear = source.indexOf("mapWrap.classList.remove('evolution-arrival-active');", reader);
+  const readerSync = source.indexOf('syncTerrainChrome();', readerClear);
+  assert.ok(reader >= 0 && readerClear > reader && readerSync > readerClear,
+    'Receive God reader must leave arrival quiet before existing reader-quiet projection');
+
+  assert.doesNotMatch(source, /\.terrain-arrival-quiet[^\n{]*#vex-site-nav/u);
+  assert.doesNotMatch(source, /\.terrain-arrival-quiet[^\n{]*#vex-spiral/u);
 });
 
 // [VXG RealForever]
