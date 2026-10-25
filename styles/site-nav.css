@@ -84,7 +84,6 @@
   display: inline-grid;
   place-items: center;
   color: var(--stone, #1c1917);
-  text-decoration: none;
   border-radius: 50%;
 }
 
@@ -137,7 +136,6 @@
   font-size: 12px;
 }
 
-.vex-family-mark:hover,
 .vex-family-world:hover {
   color: var(--ember, #b45830);
 }
