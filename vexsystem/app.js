@@ -31,7 +31,7 @@
   // caches non-HTML requests by URL. Bind mutable VexSystem data to the exact
   // Git blob identity so an older cached atlas cannot cross generations with
   // the current renderer.
-  const VEXSYSTEM_ATLAS_BLOB = 'c7694c6c0b7f97c3fe95abfeb9cc5f28fc0b3b5b';
+  const VEXSYSTEM_ATLAS_BLOB = '3bbdff484a8fa3101283dbf4d135dfaf2b2b1f94';
   const VEXSYSTEM_ATLAS_URL = `../data/vexsystem/atlas.json?v=${VEXSYSTEM_ATLAS_BLOB}`;
 
   const dom = {

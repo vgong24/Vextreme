@@ -272,23 +272,24 @@ test('VEXSYSTEM PAGE: Formation screenshot visibly captures the optional deepeni
 });
 
 
-test('VEXSYSTEM PAGE: browser proof covers the live Terrain -> VexSystem top-level handoff', () => {
+test('VEXSYSTEM PAGE: browser proof covers the live Terrain -> About Vextreme top-level handoff with VexSystem secondary depth', () => {
   assert.match(browserProof, /const TERRAIN_ENTRY = '\/Vextreme\/pages\/terrain-map\.html\?view=content&profile=evolution-v1'/);
   assert.match(browserProof, /relative\.startsWith\('Vextreme\/'\)/);
   assert.match(browserProof, /function assertTerrainArrivalSnapshot\(snapshot, label\)/);
-  assert.match(browserProof, /VEXSYSTEM_BROWSER_TERRAIN_VEXSYSTEM_NOT_ACTIVE/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_TERRAIN_ABOUT_NOT_ACTIVE/);
   assert.match(browserProof, /VEXSYSTEM_BROWSER_TERRAIN_CONTRACT_MISMATCH/);
-  assert.match(browserProof, /VEXSYSTEM_BROWSER_TERRAIN_READER_OWNS_VEXSYSTEM/);
+  assert.match(browserProof, /VEXSYSTEM_BROWSER_TERRAIN_READER_OWNS_ABOUT/);
   assert.match(browserProof, /TRUSTED_POINTER_TOP_LEVEL_HANDOFF/);
-  assert.match(browserProof, /Terrain top-level VexSystem handoff/);
-  assert.match(browserProof, /\/Vextreme\/vexsystem\//);
+  assert.match(browserProof, /Terrain top-level About Vextreme handoff/);
+  assert.match(browserProof, /\/Vextreme\/pages\/about-vextreme\.html/);
+  assert.match(browserProof, /\.\.\/vexsystem\/index\.html/);
   assert.match(browserProof, /window\.top === window/);
   assert.match(browserProof, /terrain-entry-desktop/);
   assert.match(browserProof, /terrain-entry-mobile/);
 });
 
 
-test('VEXSYSTEM PAGE: navigation-abort noise is admitted only after a proven top-level Terrain -> VexSystem handoff', () => {
+test('VEXSYSTEM PAGE: navigation-abort noise is admitted only after a proven top-level Terrain -> About Vextreme handoff', () => {
   assert.match(browserProof, /allowSingleSupersededDocumentAbort/);
   assert.match(browserProof, /entry\.url == null/);
   assert.match(browserProof, /entry\.errorText === 'net::ERR_ABORTED'/);
@@ -296,7 +297,8 @@ test('VEXSYSTEM PAGE: navigation-abort noise is admitted only after a proven top
   assert.match(browserProof, /entry\.type === 'Document'/);
   assert.match(browserProof, /VEXSYSTEM_BROWSER_MULTIPLE_NAVIGATION_ABORTS/);
   assert.match(browserProof, /topLevel === true/);
-  assert.match(browserProof, /navigated\.pathname === '\/Vextreme\/vexsystem\/'/);
+  assert.match(browserProof, /aboutNavigation\.pathname === '\/Vextreme\/pages\/about-vextreme\.html'/);
+  assert.doesNotMatch(browserProof, /\bnavigated\b/);
   assert.doesNotMatch(browserProof, /allowSingleSupersededDocumentAbort:\s*true/);
 });
 
