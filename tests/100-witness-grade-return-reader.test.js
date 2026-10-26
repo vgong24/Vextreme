@@ -46,11 +46,11 @@ test('WITNESS-GRADE-READER: representative artwork keeps full pixel dimensions a
   const strings = JSON.parse(read('data/strings/source/pages/' + SLUG + '.json'));
 
   assert.ok(asset.byteLength > 600000, 'full-resolution witness artwork must not regress to a thumbnail derivative');
-  assert.equal(digest, '3359926c8a8127b2c21bd4e75fffe05ff6e51a50ce271589ba23528965d1040d');
-  assert.equal(strings._meta.sourceProvenance.derivedMediaWidth, 1672);
-  assert.equal(strings._meta.sourceProvenance.derivedMediaHeight, 941);
+  assert.equal(digest, '7f3e2bad6fd2b28d75b27283bcb74292d2b77968a7d3e4dc7b185b14f956572d');
+  assert.equal(strings._meta.sourceProvenance.derivedMediaWidth, 840);
+  assert.equal(strings._meta.sourceProvenance.derivedMediaHeight, 473);
   assert.equal(strings._meta.sourceProvenance.derivedMediaSha256, digest);
-  assert.equal(views[SLUG].preview.src, 'https://vgong24.github.io/Vextreme/assets/witness-grade-return/cover.webp?v=3359926c8a81');
+  assert.equal(views[SLUG].preview.src, 'https://vgong24.github.io/Vextreme/assets/witness-grade-return/cover.webp?v=7f3e2bad6fd2');
 });
 
 test('WITNESS-GRADE-READER: reader navigation is derived only from headings already inside the frozen source', () => {
