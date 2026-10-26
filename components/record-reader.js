@@ -113,7 +113,7 @@ function mount(config){
   function exchanges(raw){
     var parts=raw.split(/\n## Exchange\s+/),list=[];
     for(var i=1;i<parts.length;i++){
-      var m=parts[i].match(/^(\d+)\s*\n([\s\S]*)$/);
+      var m=parts[i].match(/^(\d+)(?:[ \t]+[—–-][ \t]+[^\n]+)?[ \t]*\n([\s\S]*)$/);
       if(!m)continue;
       list.push({n:parseInt(m[1],10),body:m[2].replace(/\n---\s*$/,'').trim()});
     }
