@@ -1,7 +1,7 @@
 {
-  "contentFingerprint": "b91c5fa3691f",
-  "nodeCount": 117,
-  "curatedNodeCount": 101,
+  "contentFingerprint": "9c571388fad4",
+  "nodeCount": 118,
+  "curatedNodeCount": 102,
   "autoDiscoveredCount": 16,
   "arcCount": 17,
   "supportedLangs": [
@@ -1583,6 +1583,14 @@
         "ko",
         "pt",
         "zh"
+      ]
+    },
+    "witness-grade-return": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
       ]
     },
     "about-me": {
@@ -4506,6 +4514,35 @@
         ]
       }
     },
+    "witness-grade-return": {
+      "id": 80,
+      "slug": "witness-grade-return",
+      "title": "Witness-grade return",
+      "date": "October 26, 2026",
+      "arcKeys": [
+        "convos_with_god",
+        "victors_record",
+        "full_timeline"
+      ],
+      "department": "media",
+      "workType": "record-transcripts",
+      "vexData": {},
+      "dateISO": "2026-10-26",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.witness-grade-return"
+        ],
+        "features": [
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis",
+          "arc-nav"
+        ]
+      }
+    },
     "about-me": {
       "id": null,
       "slug": "about-me",
@@ -5016,7 +5053,8 @@
           "the-testimony-of-the-handler",
           "returning-scorpions-to-god",
           "recognizing-life-receiving-abundance",
-          "bending-condominium-ocean-return"
+          "bending-condominium-ocean-return",
+          "witness-grade-return"
         ]
       }
     ],
@@ -5125,7 +5163,8 @@
           "the-island-that-was-removed",
           "returning-scorpions-to-god",
           "recognizing-life-receiving-abundance",
-          "bending-condominium-ocean-return"
+          "bending-condominium-ocean-return",
+          "witness-grade-return"
         ]
       }
     ],
@@ -5308,7 +5347,8 @@
         "slugs": [
           "returning-scorpions-to-god",
           "recognizing-life-receiving-abundance",
-          "bending-condominium-ocean-return"
+          "bending-condominium-ocean-return",
+          "witness-grade-return"
         ]
       }
     ]
@@ -5958,6 +5998,11 @@
         {
           "slug": "bending-condominium-ocean-return",
           "title": "The Bending Condominium Dream",
+          "ported": true
+        },
+        {
+          "slug": "witness-grade-return",
+          "title": "Witness-grade return",
           "ported": true
         }
       ]

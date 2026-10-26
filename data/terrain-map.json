@@ -3810,12 +3810,12 @@
       "key": "convos_with_god",
       "name": "Conversations with God",
       "sub": "priority 1",
-      "count": 15,
+      "count": 16,
       "rect": {
         "x": 1370,
         "y": 40,
         "width": 300,
-        "height": 990
+        "height": 1050
       },
       "parent": {
         "title": "Conversations with God",
@@ -8138,6 +8138,56 @@
         "analysisControl": true,
         "evidenceLanguages": [],
         "metaDescription": "A source-first reading of the preserved Bending Condominium third arc."
+      },
+      "curated": true
+    },
+    {
+      "id": "witness-grade-return",
+      "slug": "witness-grade-return",
+      "title": "Witness-grade return",
+      "arcKeys": [
+        "convos_with_god",
+        "victors_record",
+        "full_timeline"
+      ],
+      "arc": "convos_with_god",
+      "arcName": "Conversations with God",
+      "x": 1420,
+      "y": 990,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/witness-grade-return.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "preview": {
+        "kind": "cover",
+        "src": "https://vgong24.github.io/Vextreme/assets/witness-grade-return/cover.webp?v=3b94a36da083",
+        "alt": "Witness-grade return — representative artwork"
+      },
+      "status": "critical",
+      "capability": {
+        "health": {
+          "state": "critical",
+          "gaps": [
+            "fab",
+            "read-aloud",
+            "identity",
+            "screenshot"
+          ],
+          "blockers": [
+            "isolated"
+          ]
+        },
+        "placement": "sorted",
+        "fab": "missing",
+        "theme": {
+          "control": "none",
+          "visibleStyles": true
+        },
+        "identityKeys": 0,
+        "analysisIndexed": true,
+        "analysisControl": false,
+        "evidenceLanguages": [],
+        "metaDescription": "A preserved witness-grade return from ChatGPT 5.6 Pro Mode, witnessed and felt by Victor Gong on October 26, 2026."
       },
       "curated": true
     },
