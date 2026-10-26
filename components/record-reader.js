@@ -11,6 +11,11 @@ function mount(config){
   var sourceBase=config.sourceBase||'';
   var witnessUrl=config.witnessUrl||null;
   var phaseWitnessUrl=config.phaseWitnessUrl||witnessUrl;
+  var documentUrl=config.documentUrl||null;
+  var documentTargetSelector=config.documentTargetSelector||null;
+  var documentSectionSelector=config.documentSectionSelector||null;
+  var documentBeginMarker=config.documentBeginMarker||null;
+  var documentEndMarker=config.documentEndMarker||null;
   var prefix=config.classPrefix||'rr';
   var controlIds=config.controlIds||{};
   var phaseSelector=config.phaseSelector||'[data-reader-component="phase"]';
@@ -143,6 +148,42 @@ function mount(config){
       target.textContent=templateText('sourceUnavailable');
     });
   }
+  function boundedDocumentBody(raw){
+    var body=raw;
+    if(documentBeginMarker){
+      var a=body.indexOf(documentBeginMarker);
+      if(a<0)throw new Error('DOCUMENT_BEGIN_MARKER_MISSING');
+      body=body.slice(a+documentBeginMarker.length);
+    }
+    if(documentEndMarker){
+      var b=body.indexOf(documentEndMarker);
+      if(b<0)throw new Error('DOCUMENT_END_MARKER_MISSING');
+      body=body.slice(0,b);
+    }
+    return body.trim();
+  }
+  function loadDocument(){
+    if(!documentUrl||!documentTargetSelector)return Promise.reject(new Error('DOCUMENT_SOURCE_UNAVAILABLE'));
+    var target=root.querySelector(documentTargetSelector)||document.querySelector(documentTargetSelector);
+    if(!target)return Promise.reject(new Error('DOCUMENT_TARGET_MISSING'));
+    var section=documentSectionSelector?(root.querySelector(documentSectionSelector)||document.querySelector(documentSectionSelector)):target.closest('[data-reader-component="document"]');
+    if(section)installTranscriptControls(section);
+    return fetch(documentUrl).then(function(r){if(!r.ok)throw new Error(String(r.status));return r.text();}).then(function(raw){
+      var body=boundedDocumentBody(raw);
+      target.innerHTML=renderDocument(body);
+      target.dataset.loaded='true';
+      if(section){
+        var loading=section.querySelector(selectClass('transcript-loading'));
+        if(loading)loading.remove();
+      }
+      root.dispatchEvent(new CustomEvent('vextreme:recorddocumentloaded',{detail:{target:target}}));
+      return target;
+    }).catch(function(err){
+      target.textContent=templateText('sourceUnavailable')||'Source projection unavailable.';
+      throw err;
+    });
+  }
+
   function wholeWitnessBody(raw){return raw.split('<!-- PHASE-WITNESS-APPENDIX -->')[0].trim();}
   function loadWitness(section){
     if(!witnessUrl||section.dataset.loaded==='true')return;
@@ -277,6 +318,16 @@ function mount(config){
       if(trackRoot)trackRoot.scrollIntoView({behavior:'smooth',block:'start'});
     }
     centerActive(scroll!==false);
+  }
+
+  if(!sets.length&&documentUrl&&documentTargetSelector){
+    var documentSection=documentSectionSelector?(root.querySelector(documentSectionSelector)||document.querySelector(documentSectionSelector)):null;
+    global.addEventListener('vextreme:languagechange',function(){if(documentSection)refreshTranscriptControlStrings(documentSection);});
+    loadDocument().catch(function(){});
+    return {
+      loadDocument:loadDocument,
+      pauseAll:function(){if(documentSection)pauseTranscriptAutoScroll(documentSection);}
+    };
   }
 
   track.forEach(function(button){button.addEventListener('click',function(){show(parseInt(button.dataset.go,10)-1,true);});});
