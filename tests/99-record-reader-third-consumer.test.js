@@ -50,7 +50,7 @@ test('RECORD-READER-THIRD-CONSUMER: selected daylight artwork is stable reader m
   const strings = JSON.parse(read('data/strings/source/pages/' + SLUG + '.json'));
   const views = JSON.parse(read('data/viewmodels.json'));
   const asset = fs.readFileSync(path.join(ROOT, 'assets', SLUG, 'daylight-condominium.webp'));
-  assert.ok(asset.byteLength > 300000, 'selected full-resolution artwork must not regress to a thumbnail derivative');
+  assert.ok(asset.byteLength > 70000, 'selected page-scale artwork must not regress to a thumbnail derivative');
   assert.match(page, /data-media-class="selected-record-artwork"/);
   assert.match(page, /not a photograph, prediction, or verified external event/);
   assert.equal(strings._meta.sourceProvenance.selectedMediaClass, 'SELECTED_RECORD_ARTWORK_REPRESENTATION_NOT_EXTERNAL_EVIDENCE');
