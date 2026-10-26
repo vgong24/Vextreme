@@ -2544,7 +2544,7 @@
     },
     "lib/build-shared-cache-generation.js": {
       "role": "deterministic shared-runtime cache identity generator — fingerprints the cache-versioned v1 shell/runtime asset family after normalizing token-bearing lines, then writes one convergent content-derived token into shell.js, vextreme.js, Terrain and every active institutional shell-context bootstrap",
-      "context": "2026-10-21 — a lived Vextreme -> VexWork -> Vextreme -> VexWork loop proved that source-correct navigation could regress to the retired route because the shared shell/runtime cache token remained v16 after the nav bytes changed. The immediate v17 repair closed that instance. This generator removes the human-maintained global integer entirely: the token is the first 12 hex characters of SHA-256 over sorted cache-family path+normalized-byte entries. shell.js and vextreme.js normalize only their token constant before hashing, so the generated token cannot recursively change its own next identity. Parallel branches derive identities from their actual composed bytes rather than contending on one integer.",
+      "context": "2026-10-21 — a lived Vextreme -> VexWork -> Vextreme -> VexWork loop proved that source-correct navigation could regress to the retired route because the shared shell/runtime cache token remained v16 after the nav bytes changed. The immediate v17 repair closed that instance. This generator removes the human-maintained global integer entirely: the token is the first 12 hex characters of SHA-256 over sorted cache-family path+normalized-byte entries. shell.js and vextreme.js normalize only their token constant before hashing, so the generated token cannot recursively change its own next identity. Parallel branches derive identities from their actual composed bytes rather than contending on one integer. 2026-10-26 PR #379 A010 exposed that Build Vextreme Index could change widgets/fab-lang.js without regenerating this cache identity, so the index workflow now runs this generator immediately after the FAB version step and stages every token owner as generated output.",
       "reads": [
         "lib/shell.js and lib/vextreme.js (token-bearing source normalized before hashing)",
         "lib/arc-nav.js and lib/archive-renderer.js",
@@ -2561,17 +2561,20 @@
         "pages/{active shell-context institutional slug}.html shell.js query token"
       ],
       "loadedBy": [
+        ".github/workflows/build-index.yml (after bump-fab-version.js; before build-vextreme.js)",
         "package.json cache:build / cache:check / pr-ready",
         "tests/41-vextreme-fab-autoload.test.js"
       ],
       "testedBy": [
-        "tests/41-vextreme-fab-autoload.test.js"
+        "tests/41-vextreme-fab-autoload.test.js",
+        "tests/120-build-index-cache-currentness.test.js"
       ],
       "changeMap": {
         "CACHE_FAMILY_PATHS membership changes": [
           "lib/vextreme.js cacheVer consumers — every same-token runtime fetch/load must stay represented",
           "tests/41 cache-family fingerprint regression",
-          "docs/lattice-map.json reads list here"
+          "docs/lattice-map.json reads list here",
+          "tests/120-build-index-cache-currentness.test.js (build-index trigger coverage)"
         ],
         "token normalization or rewrite contract changes": [
           "lib/shell.js VEXTREME_VER",
