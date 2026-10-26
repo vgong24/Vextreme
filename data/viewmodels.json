@@ -1543,7 +1543,9 @@
     "title": "Witness-grade return",
     "category": "production",
     "template": "page",
-    "scopes": [],
+    "scopes": [
+      "pages.witness-grade-return"
+    ],
     "features": [
       "spiral-fab",
       "theme",
