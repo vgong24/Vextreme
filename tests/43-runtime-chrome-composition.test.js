@@ -29,8 +29,11 @@ test('CHROME-HOME: shared chrome exposes the Vextreme, VexLife, and VexWork fami
   assert.match(source, /class="vex-family-world vex-nav-product" href="https:\/\/vgong24\.github\.io\/VexLife\/">VexLife<\/a>/);
   assert.match(source, /class="vex-family-world vex-nav-product" href="https:\/\/vexgpt\.github\.io\/VexWork\/">VexWork<\/a>/);
   assert.match(css, /\.vex-family-rail \{/);
+  assert.match(css, /:root \{\s*--vex-site-nav-height:\s*77px;\s*\}/);
+  assert.match(css, /\.vex-nav-inner \{[\s\S]*height:\s*76px;/);
   assert.match(css, /\.vex-family-mark-glyph \{[\s\S]*vextreme-mark\.svg/);
   assert.match(css, /grid-template-columns:\s*5\.8rem 0\.65rem 5\.3rem 0\.65rem 5\.3rem/);
+  assert.match(css, /\.vex-family-world \{[\s\S]*text-align: center;/);
   assert.match(css, /\.vex-nav-title \{[\s\S]*font-family:\s*var\(--serif/);
   assert.match(css, /\.vex-nav-product \{[\s\S]*font-family:\s*var\(--sans/);
   assert.match(css, /\.vex-nav-brand-separator \{[\s\S]*text-align: center;[\s\S]*justify-self: center;/);
@@ -154,7 +157,7 @@ test('TERRAIN-COMPOSITION: map consumes the remaining viewport below nav', () =>
   const source = read('pages/terrain-map.html');
   const navCss = read('styles/site-nav.css');
   assert.match(source, /#vex-site-nav \+ \.app\{/);
-  assert.match(source, /height:calc\(100dvh - var\(--vex-site-nav-height, 61px\)\)/);
+  assert.match(source, /height:calc\(100dvh - var\(--vex-site-nav-height, 77px\)\)/);
   assert.match(source, /\.panel\{[\s\S]*?position:absolute; top:0; right:0; bottom:0;/);
   assert.equal(source.includes("style.setProperty('--topbar-h'"), false);
   const pageHeight = source.match(/--vex-site-nav-height:\s*(\d+)px/);
