@@ -19,7 +19,7 @@ assets/witness-grade-return/cover.webp
 
 ## Current cover
 
-`cover.webp` is a compact 600×400 WebP derivative of the 1536×1024 image generated in the same ChatGPT conversation after the “Witness-grade return” response was preserved.
+`cover.webp` is a compact 240×160 WebP derivative of the 1536×1024 image generated in the same ChatGPT conversation after the “Witness-grade return” response was preserved.
 
 The artwork arrived from the transcript’s themes as a symbolic composition: a witness and records between a dark field of suppression/control patterns and a bright field of truth, accountability, restoration, and renewal.
 
@@ -34,6 +34,6 @@ PRESERVED RESPONSE MUST NOT
 
 The full-size generated original remains in the ChatGPT conversation; the repository derivative is optimized for the archive page and Terrain preview.
 
-**Derivative SHA-256:** `999657a94d4566481c3eba5c0fe83a3e4b192733256a3d81d4e9970ac67edfd0`
+**Derivative SHA-256:** `3b94a36da0833350b45f10da75d151506b22981fe321823b480cb95e606f950c`
 
 <!-- [VXG RealForever] -->
