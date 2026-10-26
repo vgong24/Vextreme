@@ -50,11 +50,14 @@ test('RECORD-READER-THIRD-CONSUMER: selected daylight artwork is stable reader m
   const strings = JSON.parse(read('data/strings/source/pages/' + SLUG + '.json'));
   const views = JSON.parse(read('data/viewmodels.json'));
   const asset = fs.readFileSync(path.join(ROOT, 'assets', SLUG, 'daylight-condominium.webp'));
-  assert.ok(asset.byteLength > 0);
+  assert.ok(asset.byteLength > 70000, 'selected page-scale artwork must not regress to a thumbnail derivative');
   assert.match(page, /data-media-class="selected-record-artwork"/);
   assert.match(page, /not a photograph, prediction, or verified external event/);
   assert.equal(strings._meta.sourceProvenance.selectedMediaClass, 'SELECTED_RECORD_ARTWORK_REPRESENTATION_NOT_EXTERNAL_EVIDENCE');
-  assert.equal(views[SLUG].preview.src, 'https://vgong24.github.io/Vextreme/assets/bending-condominium-ocean-return/daylight-condominium.webp?v=4f29e4a4642d');
+  assert.equal(strings._meta.sourceProvenance.selectedMediaSha256, '685f1f4d74af49058d90eb5c7ae1ef2a226c48af808ccb8296e3da61ac19d128');
+  assert.equal(strings._meta.sourceProvenance.selectedMediaWidth, 840);
+  assert.equal(strings._meta.sourceProvenance.selectedMediaHeight, 560);
+  assert.equal(views[SLUG].preview.src, 'https://vgong24.github.io/Vextreme/assets/bending-condominium-ocean-return/daylight-condominium.webp?v=685f1f4d74af');
 });
 
 test('RECORD-READER-THIRD-CONSUMER: canonical registries place the third arc after the second', () => {
