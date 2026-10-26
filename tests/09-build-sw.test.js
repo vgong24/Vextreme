@@ -118,7 +118,7 @@ test('BUILD-SW: output has fetch event listener', () => {
   const content = generateSWContent(SAMPLE_URLS, SAMPLE_HASH);
   assert.ok(content.includes("'fetch'"), 'must have fetch listener');
   assert.ok(content.includes('caches.match'), 'fetch must check cache first');
-  assert.ok(content.includes("'text/html'"), 'fetch must skip HTML requests');
+  assert.ok(content.includes("'text/html'"), 'worker must explicitly handle HTML requests');
 });
 
 test('BUILD-SW: widgets/sw-register.js auto-reloads once when a new Service Worker takes control', () => {
