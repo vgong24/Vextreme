@@ -914,7 +914,7 @@ test('TERRAIN-VIEW: Welcome Wagon arrival converges visually without importing i
   assert.match(source, /--sans:\s*system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;/u);
   assert.doesNotMatch(source, /\.topbar\{[^}]*var\(--entry-/u);
   assert.match(source, /<div class="entry-kicker">Vextreme · Terrain<\/div>/u);
-  assert.match(source, /You're in Terrain, a public place inside Vextreme\./u);
+  assert.match(source, /You are in Terrain, a public place inside Vextreme\./u);
   assert.match(source, /<span class="entry-icon" aria-hidden="true">✦<\/span>/u);
   assert.match(source, /<span class="entry-icon" aria-hidden="true">🗂️<\/span>/u);
   assert.match(source, /<span class="entry-icon" aria-hidden="true">\?<\/span>/u);
@@ -929,7 +929,7 @@ test('TERRAIN-VIEW: Welcome Wagon arrival converges visually without importing i
 test('TERRAIN-VIEW: ordinary arrival copy explains each choice without requiring internal product vocabulary', () => {
   const source = pageSource();
 
-  assert.match(source, /You're in Terrain, a public place inside Vextreme\. Begin a guided experience, explore the public record, or get a simple explanation before going deeper\./u);
+  assert.match(source, /You are in Terrain, a public place inside Vextreme\. Begin a guided experience, explore the public record, or get a simple explanation before going deeper\./u);
   assert.match(source, /Begin a guided experience centered on receiving God\. The next step appears inside the experience\./u);
   assert.match(source, /Browse the public record by collection and follow what interests you\./u);
   assert.match(source, /Get a simple explanation of what this place is, what you can find here, and where to go next\./u);
