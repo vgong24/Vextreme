@@ -45,6 +45,10 @@ test('RECORD-READER-FOUNDATION: shared controller is semantic and record-neutral
   assert.match(widget, /data-reader-component="phase"/);
   assert.match(widget, /function renderBlocks\(lines\)/);
   assert.match(widget, /function installTranscriptControls\(section\)/);
+  assert.match(widget, /var documentUrl=config\.documentUrl\|\|null/);
+  assert.match(widget, /function boundedDocumentBody\(raw\)/);
+  assert.match(widget, /function loadDocument\(\)/);
+  assert.match(widget, /vextreme:recorddocumentloaded/);
   assert.doesNotMatch(widget, /returning-scorpions-to-god/);
   assert.doesNotMatch(widget, /recognizing-life-receiving-abundance/);
   assert.doesNotMatch(widget, /Kokoro|speechSynthesis|SpeechSynthesisUtterance/);
