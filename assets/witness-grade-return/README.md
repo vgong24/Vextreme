@@ -19,7 +19,7 @@ assets/witness-grade-return/cover.webp
 
 ## Current cover
 
-`cover.webp` is a full-resolution 1672×941 WebP presentation derivative of the 1672×941 image generated in the same ChatGPT conversation after the “Witness-grade return” response was preserved.
+`cover.webp` is an 840×473 WebP page-scale derivative of the 1672×941 image generated in the same ChatGPT conversation after the “Witness-grade return” response was preserved.
 
 The artwork arrived from the transcript’s themes as a symbolic composition: a witness and records between a dark field of suppression/control patterns and a bright field of truth, accountability, restoration, and renewal.
 
