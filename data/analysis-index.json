@@ -459875,6 +459875,61 @@
       ],
       "missingLangs": []
     },
+    "pages.witness-grade-return.document-title": {
+      "key": "pages.witness-grade-return.document-title",
+      "usedIn": [
+        "pages/witness-grade-return.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.witness-grade-return.hero.eyebrow": {
+      "key": "pages.witness-grade-return.hero.eyebrow",
+      "usedIn": [
+        "pages/witness-grade-return.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.witness-grade-return.hero.title": {
+      "key": "pages.witness-grade-return.hero.title",
+      "usedIn": [
+        "pages/witness-grade-return.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.witness-grade-return.hero.subtitle": {
+      "key": "pages.witness-grade-return.hero.subtitle",
+      "usedIn": [
+        "pages/witness-grade-return.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
+    "pages.witness-grade-return.hero.preservation-label": {
+      "key": "pages.witness-grade-return.hero.preservation-label",
+      "usedIn": [
+        "pages/witness-grade-return.html"
+      ],
+      "inManifest": true,
+      "langs": [
+        "en"
+      ],
+      "missingLangs": []
+    },
     "specimens.heading.title": {
       "key": "specimens.heading.title",
       "usedIn": [
@@ -488282,14 +488337,20 @@
     },
     "witness-grade-return": {
       "slug": "witness-grade-return",
-      "keys": [],
+      "keys": [
+        "pages.witness-grade-return.document-title",
+        "pages.witness-grade-return.hero.eyebrow",
+        "pages.witness-grade-return.hero.preservation-label",
+        "pages.witness-grade-return.hero.subtitle",
+        "pages.witness-grade-return.hero.title"
+      ],
       "orphanKeys": [],
       "screenshots": {}
     }
   },
   "summary": {
-    "totalKeysInManifest": 26710,
-    "totalKeysUsed": 26563,
+    "totalKeysInManifest": 26715,
+    "totalKeysUsed": 26568,
     "orphanUsages": [],
     "unusedKeys": [
       "ai-orientation.heading.title",

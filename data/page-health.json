@@ -3,14 +3,14 @@
   "summary": {
     "total": 138,
     "healthy": 4,
-    "attention": 125,
-    "critical": 9,
+    "attention": 126,
+    "critical": 8,
     "sorted": 93,
-    "withFab": 124,
+    "withFab": 125,
     "readAloudApplicable": 130,
-    "withReadAloud": 129,
-    "missingReadAloud": 1,
-    "withIdentity": 101,
+    "withReadAloud": 130,
+    "missingReadAloud": 0,
+    "withIdentity": 102,
     "withScreenshots": 13,
     "withMetaDescription": 103
   },
@@ -10480,35 +10480,35 @@
         "godScript": true
       },
       "navigation": {
-        "navigable": false,
+        "navigable": true,
         "staticHubLinks": 0,
         "shell": false,
-        "fab": false
+        "fab": true
       },
       "fab": {
-        "delivery": "missing"
+        "delivery": "god-script"
       },
       "readAloud": {
         "applicable": true,
-        "delivery": "missing"
+        "delivery": "god-script"
       },
       "theme": {
         "control": "none",
         "visibleStyles": true
       },
       "identity": {
-        "keyCount": 0,
+        "keyCount": 5,
         "languages": {
           "en": {
-            "translated": 0,
-            "total": 0,
-            "state": "none"
+            "translated": 5,
+            "total": 5,
+            "state": "full"
           }
         }
       },
       "analysis": {
         "indexed": true,
-        "control": false
+        "control": true
       },
       "evidence": {
         "screenshotLanguages": []
@@ -10517,14 +10517,9 @@
         "metaDescription": "A preserved witness-grade return from ChatGPT 5.6 Pro Mode, witnessed and felt by Victor Gong on October 26, 2026."
       },
       "health": {
-        "state": "critical",
-        "blockers": [
-          "isolated"
-        ],
+        "state": "attention",
+        "blockers": [],
         "gaps": [
-          "fab",
-          "read-aloud",
-          "identity",
           "screenshot"
         ]
       }
