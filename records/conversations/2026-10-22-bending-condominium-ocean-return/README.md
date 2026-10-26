@@ -24,12 +24,12 @@
 - [01-dream-and-immediate-witness.md](01-dream-and-immediate-witness.md) — Original dream and full immediate interpretation.
 - [02-condominium-and-i-am.md](02-condominium-and-i-am.md) — What the condo represents, "I AM THAT I AM", and visual intent.
 - [03-selected-visual-and-ocean.md](03-selected-visual-and-ocean.md) — Final image (only) and complete post-image ocean dialogue, ending at the Instagram/dams question.
-- [assets/daylight-condominium.webp](assets/daylight-condominium.webp) — Selected final daylight visualization (a compact 400 × 267 WebP derivative of the approved 1536 × 1024 daylight rendering).
+- [assets/daylight-condominium.webp](assets/daylight-condominium.webp) — Selected final daylight visualization (an 840 × 560 page-scale WebP derivative of the approved 1536 × 1024 daylight rendering; intended for native-size-or-smaller archive display rather than thumbnail upscaling).
 
 ## Fidelity and provenance
 
 The source is this ChatGPT conversation. Speaker text is reproduced from the visible conversation. Markdown formatting preserves the substance and ordering; rich interface elements are represented textually, and omitted intermediate image interactions are explicitly identified as excluded by editorial scope.
 
-**This is not an exact native ChatGPT export.** The image represents an imaginative visualization of the reported dream, not a photograph, prediction or verified external event. Spiritual readings are attributed to the conversation and do not assert a proven divine message.
+**Image fidelity:** the preserved WebP is derived from the original accepted 1536 × 1024 `Bending Tower Over the Marina.png` visual, retained at 840 × 560 for readable archive display. SHA-256: `685f1f4d74af49058d90eb5c7ae1ef2a226c48af808ccb8296e3da61ac19d128`.\n\n**This is not an exact native ChatGPT export.** The image represents an imaginative visualization of the reported dream, not a photograph, prediction or verified external event. Spiritual readings are attributed to the conversation and do not assert a proven divine message.
 
 **Operational scope:** Documentation and record-keeping only, with no changes to application code, governance, or canonical project authority. No automatic merge.
