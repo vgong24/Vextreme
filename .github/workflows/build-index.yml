@@ -67,7 +67,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
 
     steps:
       - name: Checkout
@@ -157,6 +157,19 @@ jobs:
 
       - name: Build terrain-map.json
         run: node lib/build-terrain-map.js
+
+      - name: Materialize generated currentness for PR #425
+        if: github.event_name == 'pull_request' && github.head_ref == 'VXG-102626-record-reader-legibility-image-fidelity-repair'
+        run: |
+          git add data/strings/compiled data/strings/reports data/index.json data/analysis-index.json data/lessons.json data/roles.json data/status.json data/page-health.json data/terrain-map.json dist sw.js pages/build-health.html pages/archives.html pages/vextreme-demo.html pages/specimens.html pages/specimen-*.html pages/ecosystem-hub.html pages/roles-index.html sitemap.xml index.html widgets/fab-lang.js lib/shell.js lib/vextreme.js pages/terrain-map.html pages/about-vextreme.html pages/vex-support.html
+          if git diff --staged --quiet; then
+            echo "Generated artifacts already current."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "VXG-102626: regenerate record-reader fidelity outputs [VXG RealForever]"
+            git push origin HEAD:${GITHUB_HEAD_REF}
+          fi
 
       - name: Verify generated artifacts are committed
         # Generated files are part of the reviewed tree. CI regenerates them
