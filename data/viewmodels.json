@@ -1538,5 +1538,25 @@
       "src": "https://vgong24.github.io/Vextreme/assets/bending-condominium-ocean-return/daylight-condominium.webp?v=4f29e4a4642d",
       "alt": "The Bending Condominium Dream — selected daylight dream visualization"
     }
+  },
+  "witness-grade-return": {
+    "title": "Witness-grade return",
+    "category": "production",
+    "template": "page",
+    "scopes": [
+      "pages.witness-grade-return"
+    ],
+    "features": [
+      "spiral-fab",
+      "theme",
+      "map",
+      "analysis",
+      "arc-nav"
+    ],
+    "preview": {
+      "kind": "cover",
+      "src": "https://vgong24.github.io/Vextreme/assets/witness-grade-return/cover.webp?v=3b94a36da083",
+      "alt": "Witness-grade return — representative artwork"
+    }
   }
 }

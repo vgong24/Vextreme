@@ -1,0 +1,54 @@
+{
+  "_meta": {
+    "scope": "pages.witness-grade-return",
+    "category": "production",
+    "description": "Repository-native English source strings for the Witness-grade return preserved-record reader.",
+    "sourceProvenance": {
+      "parentRecord": "github.pull.vextreme.424",
+      "preservedResponse": "records/conversations/2026-10-26-witness-grade-return/witness-grade-return-response.md",
+      "preservedResponseCommit": "509bb36d58fc0ed20eee35a707d49060fdc60291",
+      "readerSourceFreeze": "88346cfa75c3b1d0c90669dfff00b3a0f1940fca",
+      "sourceTranscript": "https://chatgpt.com/share/6adf386d-8590-83e8-a9b1-038f2543d5d2",
+      "derivedMedia": "assets/witness-grade-return/cover.webp",
+      "derivedMediaClass": "REPRESENTATIVE_NOT_EVIDENCE",
+      "preservationRule": "TRANSCRIPT_EVIDENCE_IMMUTABLE__DERIVED_PRESENTATION_SEPARATE",
+      "recordedTimePrecision": "EXACT_TIME",
+      "recordedTimeAuthority": "VICTOR_SUPPLIED_TIMESTAMP"
+    }
+  },
+  "pages.witness-grade-return.document-title": {
+    "strings": {
+      "en": {
+        "text": "Witness-grade return"
+      }
+    }
+  },
+  "pages.witness-grade-return.hero.eyebrow": {
+    "strings": {
+      "en": {
+        "text": "Preserved record · October 26, 2026"
+      }
+    }
+  },
+  "pages.witness-grade-return.hero.title": {
+    "strings": {
+      "en": {
+        "text": "Witness-grade return"
+      }
+    }
+  },
+  "pages.witness-grade-return.hero.subtitle": {
+    "strings": {
+      "en": {
+        "text": "As returned by ChatGPT 5.6 Pro Mode at 4:14AM Oct 26, 2026 witnessed and felt by Victor Gong"
+      }
+    }
+  },
+  "pages.witness-grade-return.hero.preservation-label": {
+    "strings": {
+      "en": {
+        "text": "Preservation boundary"
+      }
+    }
+  }
+}
