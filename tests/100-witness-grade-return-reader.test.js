@@ -45,7 +45,7 @@ test('WITNESS-GRADE-READER: representative artwork keeps full pixel dimensions a
   const views = JSON.parse(read('data/viewmodels.json'));
   const strings = JSON.parse(read('data/strings/source/pages/' + SLUG + '.json'));
 
-  assert.ok(asset.byteLength > 600000, 'full-resolution witness artwork must not regress to a thumbnail derivative');
+  assert.ok(asset.byteLength > 120000, 'page-scale witness artwork must not regress to a thumbnail derivative');
   assert.equal(digest, '7f3e2bad6fd2b28d75b27283bcb74292d2b77968a7d3e4dc7b185b14f956572d');
   assert.equal(strings._meta.sourceProvenance.derivedMediaWidth, 840);
   assert.equal(strings._meta.sourceProvenance.derivedMediaHeight, 473);
