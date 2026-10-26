@@ -27,6 +27,15 @@ on:
       - 'lib/build-index-page.js'
       - 'lib/build-vextreme.js'
       - 'lib/build-sw.js'
+      - 'lib/build-shared-cache-generation.js'
+      - 'lib/shell.js'
+      - 'lib/vextreme.js'
+      - 'lib/arc-nav.js'
+      - 'lib/archive-renderer.js'
+      - 'components/section-toggle.js'
+      - 'components/bc-nav.js'
+      - 'data/arcs.json'
+      - 'data/pages.json'
       - 'lib/build-status.js'
       - 'lib/check-institutional-surfaces.js'
       - 'lib/screenshot-evidence.js'
@@ -98,6 +107,12 @@ jobs:
         # the end requires a second build to converge.
         run: node lib/bump-fab-version.js
 
+      - name: Build shared runtime cache generation
+        # bump-fab-version.js mutates widgets/fab-lang.js, which is part of the
+        # shared cache fingerprint. Regenerate the shared token before any
+        # downstream build consumes the current shell/runtime generation.
+        run: node lib/build-shared-cache-generation.js
+
       - name: Build God Scripts
         run: node lib/build-vextreme.js
 
@@ -149,11 +164,11 @@ jobs:
         # branch. That keeps review heads immutable, avoids GH013 on protected
         # feature branches, and makes one checkout/account sufficient to build.
         run: |
-          git add data/strings/compiled data/strings/reports data/index.json data/analysis-index.json data/lessons.json data/roles.json data/status.json data/page-health.json data/terrain-map.json dist sw.js pages/build-health.html pages/archives.html pages/vextreme-demo.html pages/specimens.html pages/specimen-*.html pages/ecosystem-hub.html pages/roles-index.html sitemap.xml index.html widgets/fab-lang.js
+          git add data/strings/compiled data/strings/reports data/index.json data/analysis-index.json data/lessons.json data/roles.json data/status.json data/page-health.json data/terrain-map.json dist sw.js pages/build-health.html pages/archives.html pages/vextreme-demo.html pages/specimens.html pages/specimen-*.html pages/ecosystem-hub.html pages/roles-index.html sitemap.xml index.html widgets/fab-lang.js lib/shell.js lib/vextreme.js pages/terrain-map.html pages/about-vextreme.html pages/vex-support.html
           if git diff --staged --quiet; then
             echo "Generated artifacts match the reviewed source tree."
           else
-            echo "Generated artifacts are stale. Run workflow steps 4–23 locally and commit the resulting files."
+            echo "Generated artifacts are stale. Run the workflow generation steps locally and commit the resulting files."
             git diff --staged --stat
             git diff --staged --exit-code
           fi
