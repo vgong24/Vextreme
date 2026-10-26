@@ -7335,13 +7335,13 @@
   "institution.covenant.colophon.t009": {
     "strings": {
       "en": {
-        "text": "At currentization, English is the required source projection. Japanese and Chinese remain planned until their own reviewed translations and evidence are admitted; they are not exposed as selectable languages early."
+        "text": "English was the initial required source projection. Japanese and Chinese become selectable only after their own reviewed translations and evidence are admitted; planned locales are never exposed early."
       },
       "ja": {
-        "text": "現行化の時点では、英語が必須のソース投影です。日本語と中国語は、それぞれの翻訳と証拠がレビューされ受理されるまで計画中のままであり、早期に選択可能な言語として公開されません。"
+        "text": "英語は当初の必須ソース投影でした。日本語と中国語は、それぞれの翻訳と証拠がレビューされ受理された後にのみ選択可能になります。計画中のロケールが早期に公開されることはありません。"
       },
       "zh": {
-        "text": "在当前化时，英语是必需的来源投影。日语与中文在各自翻译和证据完成审阅并被接受之前仍保持为计划语言，不会提前作为可选择语言公开。"
+        "text": "英语是最初的必需来源投影。日语与中文只有在各自翻译和证据完成审阅并被接受之后，才会成为可选择语言；计划中的语言绝不会提前公开。"
       }
     }
   },
@@ -7413,13 +7413,13 @@
   "institution.covenant.colophon.t015": {
     "strings": {
       "en": {
-        "text": "JA/ZH localization remains a separate reviewed successor row"
+        "text": "JA/ZH localization is governed by a separate reviewed successor row"
       },
       "ja": {
-        "text": "JA/ZH ローカライズは、別個にレビューされる後続行として残る"
+        "text": "JA/ZH ローカライズは、別個にレビューされる後続行によって管理される"
       },
       "zh": {
-        "text": "JA/ZH 本地化仍是一个单独审阅的后续工作行"
+        "text": "JA/ZH 本地化由一个单独审阅的后续工作行管理"
       }
     }
   },
