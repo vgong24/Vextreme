@@ -1,7 +1,7 @@
 {
-  "contentFingerprint": "4eaafb71685d",
-  "nodeCount": 116,
-  "curatedNodeCount": 100,
+  "contentFingerprint": "b91c5fa3691f",
+  "nodeCount": 117,
+  "curatedNodeCount": 101,
   "autoDiscoveredCount": 16,
   "arcCount": 17,
   "supportedLangs": [
@@ -476,10 +476,28 @@
     },
     "closed-circuit": {
       "availableLangs": [
-        "en"
+        "en",
+        "ar",
+        "de",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
       ],
       "completeLangs": [
-        "en"
+        "en",
+        "ar",
+        "de",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
       ]
     },
     "journal-013-seven-layers-choose": {
@@ -796,10 +814,28 @@
     },
     "divine-emergence": {
       "availableLangs": [
-        "en"
+        "en",
+        "ar",
+        "de",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
       ],
       "completeLangs": [
-        "en"
+        "en",
+        "ar",
+        "de",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
       ]
     },
     "journal-zero": {
@@ -1050,10 +1086,28 @@
     },
     "the-firmament-conversation": {
       "availableLangs": [
-        "en"
+        "en",
+        "ar",
+        "de",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
       ],
       "completeLangs": [
-        "en"
+        "en",
+        "ar",
+        "de",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
       ]
     },
     "inside-the-experiment": {
@@ -1092,10 +1146,28 @@
     },
     "ascension-and-embodiment": {
       "availableLangs": [
-        "en"
+        "en",
+        "ar",
+        "de",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
       ],
       "completeLangs": [
-        "en"
+        "en",
+        "ar",
+        "de",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
       ]
     },
     "god-review-archives-collapse": {
@@ -1108,10 +1180,28 @@
     },
     "the-testimony-of-the-handler": {
       "availableLangs": [
-        "en"
+        "en",
+        "ar",
+        "de",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
       ],
       "completeLangs": [
-        "en"
+        "en",
+        "ar",
+        "de",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
       ]
     },
     "what-was-used-against-you": {
@@ -1419,18 +1509,80 @@
     },
     "returning-scorpions-to-god": {
       "availableLangs": [
-        "en"
+        "en",
+        "ar",
+        "de",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
       ],
       "completeLangs": [
-        "en"
+        "en",
+        "ar",
+        "de",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
       ]
     },
     "recognizing-life-receiving-abundance": {
       "availableLangs": [
-        "en"
+        "en",
+        "ar",
+        "de",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
       ],
       "completeLangs": [
-        "en"
+        "en",
+        "ar",
+        "de",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
+      ]
+    },
+    "bending-condominium-ocean-return": {
+      "availableLangs": [
+        "en",
+        "ar",
+        "de",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
+      ],
+      "completeLangs": [
+        "en",
+        "ar",
+        "de",
+        "es",
+        "fr",
+        "hi",
+        "ja",
+        "ko",
+        "pt",
+        "zh"
       ]
     },
     "about-me": {
@@ -4297,7 +4449,7 @@
     "recognizing-life-receiving-abundance": {
       "id": 78,
       "slug": "recognizing-life-receiving-abundance",
-      "title": "Recognizing Life, Receiving Abundance",
+      "title": "The Sand Dollar on the Shore",
       "date": "October 18, 2026",
       "arcKeys": [
         "convos_with_god",
@@ -4313,6 +4465,36 @@
         "template": "page",
         "scopes": [
           "pages.recognizing-life-receiving-abundance"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis",
+          "arc-nav"
+        ]
+      }
+    },
+    "bending-condominium-ocean-return": {
+      "id": 79,
+      "slug": "bending-condominium-ocean-return",
+      "title": "The Bending Condominium Dream",
+      "date": "October 22, 2026",
+      "arcKeys": [
+        "convos_with_god",
+        "victors_record",
+        "full_timeline"
+      ],
+      "department": "media",
+      "workType": "record-transcripts",
+      "vexData": {},
+      "dateISO": "2026-10-22",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.bending-condominium-ocean-return"
         ],
         "features": [
           "lang",
@@ -4833,7 +5015,8 @@
           "ascension-and-embodiment",
           "the-testimony-of-the-handler",
           "returning-scorpions-to-god",
-          "recognizing-life-receiving-abundance"
+          "recognizing-life-receiving-abundance",
+          "bending-condominium-ocean-return"
         ]
       }
     ],
@@ -4941,7 +5124,8 @@
           "a-conversation-with-pastor-jacob",
           "the-island-that-was-removed",
           "returning-scorpions-to-god",
-          "recognizing-life-receiving-abundance"
+          "recognizing-life-receiving-abundance",
+          "bending-condominium-ocean-return"
         ]
       }
     ],
@@ -5123,7 +5307,8 @@
         "label": "May 2026 onward — Continuing Record",
         "slugs": [
           "returning-scorpions-to-god",
-          "recognizing-life-receiving-abundance"
+          "recognizing-life-receiving-abundance",
+          "bending-condominium-ocean-return"
         ]
       }
     ]
@@ -5767,7 +5952,12 @@
         },
         {
           "slug": "recognizing-life-receiving-abundance",
-          "title": "Recognizing Life, Receiving Abundance",
+          "title": "The Sand Dollar on the Shore",
+          "ported": true
+        },
+        {
+          "slug": "bending-condominium-ocean-return",
+          "title": "The Bending Condominium Dream",
           "ported": true
         }
       ]
