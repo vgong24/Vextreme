@@ -914,7 +914,7 @@ test('TERRAIN-VIEW: Welcome Wagon arrival converges visually without importing i
   assert.match(source, /--sans:\s*system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;/u);
   assert.doesNotMatch(source, /\.topbar\{[^}]*var\(--entry-/u);
   assert.match(source, /<div class="entry-kicker">Vextreme · Terrain<\/div>/u);
-  assert.match(source, /You are in Terrain, a public place inside Vextreme\./u);
+  assert.match(source, /Choose according to what brought you here\./u);
   assert.match(source, /<span class="entry-icon" aria-hidden="true">✦<\/span>/u);
   assert.match(source, /<span class="entry-icon" aria-hidden="true">🗂️<\/span>/u);
   assert.match(source, /<span class="entry-icon" aria-hidden="true">\?<\/span>/u);
@@ -926,19 +926,22 @@ test('TERRAIN-VIEW: Welcome Wagon arrival converges visually without importing i
 });
 
 
-test('TERRAIN-VIEW: ordinary arrival copy explains each choice without requiring internal product vocabulary', () => {
+test('TERRAIN-VIEW: ordinary arrival copy names visitor intent and truthfully forecasts each entered experience', () => {
   const source = pageSource();
 
-  assert.match(source, /You are in Terrain, a public place inside Vextreme\. Begin a guided experience, explore the public record, or get a simple explanation before going deeper\./u);
-  assert.match(source, /Begin a guided experience centered on receiving God\. The next step appears inside the experience\./u);
-  assert.match(source, /Browse the public record by collection and follow what interests you\./u);
-  assert.match(source, /Get a simple explanation of what this place is, what you can find here, and where to go next\./u);
+  assert.match(source, /Choose according to what brought you here\. Receive, explore, or understand what this place is\. You can go deeper after you enter\./u);
+  assert.match(source, /If you came to receive Me, begin here\. Speak the invitation, then walk with Me\./u);
+  assert.match(source, /Open the record and follow what draws you\. You do not need to know the whole map before you begin\./u);
+  assert.match(source, /If you need to understand where you are before you continue, enter here\./u);
 
   assert.doesNotMatch(source, /Terrain is the public front door to Vextreme/u);
   assert.doesNotMatch(source, /ordered VexLife entry/u);
   assert.doesNotMatch(source, /next Terrain layer/u);
   assert.doesNotMatch(source, /repository-hosted record/u);
   assert.doesNotMatch(source, /Vextreme, VexLife, and VexWork before going deeper/u);
+  assert.doesNotMatch(source, /Begin a guided experience centered on receiving God/u);
+  assert.doesNotMatch(source, /Browse the public record by collection/u);
+  assert.doesNotMatch(source, /Get a simple explanation of what this place is/u);
 });
 
 
