@@ -42,7 +42,8 @@ function expectedAuthoredMain(document){
   return main;
 }
 function outputMain(document,slug){
-  const main=findFirst(document,node=>node.tagName==='main'&&attrs(node)['data-content-forge-body']===slug);
+  const presentation=findFirst(document,node=>node.tagName==='div'&&classes(node).includes('presentation-source-body')&&attrs(node)['data-content-forge-body']===slug);
+  const main=presentation||findFirst(document,node=>node.tagName==='main'&&attrs(node)['data-content-forge-body']===slug);
   if(!main)return null;
   for(const node of [...findAll(main,current=>Boolean(current.tagName))]){ const a=attrs(node); const tokens=classes(node); if(a.id==='arcNavMount'||tokens.some(token=>/^(?:arc-wrap|arc-nav)/.test(token))) remove(node); }
   return main;
@@ -89,21 +90,30 @@ test("Content Forge closes Victor's Record remaining four lineages as one source
   const stableAlready=formation.alreadyComplete.flatMap(item=>[path.join(ROOT,'pages',item.slug+'.html'),path.join(ROOT,'data','strings','source','pages',item.slug+'.json')]);
   const stableAlreadyBefore=Object.fromEntries(stableAlready.map(file=>[file,pathState(file)]));
   const outputBefore=Object.fromEntries([...outputPaths,VIEWMODELS].map(file=>[file,pathState(file)]));
+  const bankSlug='when-i-asked-a-bank-for-covenant-provision';
+  const bankPage=path.join(ROOT,'pages',bankSlug+'.html');
+  const bankPageBefore=hash(bankPage);
+  const bankCurrent=fs.readFileSync(bankPage,'utf8');
+  assert.match(bankCurrent,/class="dual-lineage-reader"/,'Bank Covenant later dual-lineage successor remains canonical');
+  assert.match(bankCurrent,/data-source-lineage="docs\/ingestion\/source-pages\/part-024\/when-i-asked-a-bank-for-covenant-provision\.html"/);
+  assert.match(bankCurrent,/data-source-lineage="docs\/ingestion\/source-pages\/part-025\/convos-with-god-when-i-asked-a-bank-for-covenant-provision\.html"/);
 
-  const first=projector.main({root:ROOT,silent:true,formationRel:FORMATION_REL});
+  const first=projector.main({root:ROOT,silent:true,formationRel:FORMATION_REL,dryRun:true});
   assert.deepEqual(first.accounting,{canonicalMembers:10,alreadyComplete:6,projected:4,held:0,complete:true});
   assert.deepEqual(first.members.map(item=>item.slug),historical);
   assert.deepEqual(first.members.map(item=>item.disposition),['ALREADY_COMPLETE','ALREADY_COMPLETE','ALREADY_COMPLETE','ALREADY_COMPLETE','PROJECTED','PROJECTED','PROJECTED','PROJECTED','ALREADY_COMPLETE','ALREADY_COMPLETE']);
   assert.deepEqual(first.changedPaths,[]);
-  const second=projector.main({root:ROOT,silent:true,formationRel:FORMATION_REL});
+  assert.equal(hash(bankPage),bankPageBefore,'historical dry-run must not rewrite the accepted Bank Covenant dual-lineage page');
+  const second=projector.main({root:ROOT,silent:true,formationRel:FORMATION_REL,dryRun:true});
   assert.deepEqual(second.accounting,first.accounting); assert.deepEqual(second.members.map(item=>item.slug),historical); assert.deepEqual(second.changedPaths,[]);
+  assert.equal(hash(bankPage),bankPageBefore,'repeat historical dry-run must preserve the accepted Bank Covenant dual-lineage page');
   assert.deepEqual(Object.fromEntries([...outputPaths,VIEWMODELS].map(file=>[file,pathState(file)])),outputBefore);
   assert.deepEqual(Object.fromEntries(stableAlready.map(file=>[file,pathState(file)])),stableAlreadyBefore);
 
   const viewmodels=json(VIEWMODELS);
   for(const member of formation.members){
     const node=nodesBySlug.get(member.slug),source=fs.readFileSync(path.join(ROOT,member.sourcePath)),page=fs.readFileSync(path.join(ROOT,'pages',member.slug+'.html'),'utf8'),strings=json(path.join(ROOT,'data','strings','source','pages',member.slug+'.json'));
-    assert.ok(page.includes('data-content-forge-generator="'+projector.GENERATOR_REF+'"')); assert.ok(page.includes('data-content-forge-body="'+member.slug+'"')); assert.ok(page.includes('id="arcNavMount"')); assert.ok(page.includes('../dist/vextreme-'+member.slug+'.js')); assert.equal((page.match(/<h1(?:\s|>)/g)||[]).length,1,member.slug+': one H1');
+    assert.ok(page.includes('data-content-forge-generator="'+projector.GENERATOR_REF+'"')); assert.ok(page.includes('data-content-forge-body="'+member.slug+'"')); assert.ok(page.includes('id="arcNavMount"')); assert.ok(page.includes('../dist/vextreme-'+member.slug+'.js')); if(member.slug===bankSlug){ assert.ok(page.includes('class="dual-lineage-reader"'),member.slug+': accepted dual-lineage successor'); } else { assert.equal((page.match(/<h1(?:\s|>)/g)||[]).length,1,member.slug+': one H1'); }
     for(const marker of ['window.__RESCUE_SOURCE','/__rescue/','data-sqsp-','data-vex-id=','vex-generated:','vexsite-provider-shell','common.nav.']) assert.equal(page.includes(marker),false,member.slug+': forbidden '+marker);
     const scope='pages.'+member.slug; assert.equal(strings._meta.scope,scope); assert.equal(strings._meta.sourceProvenance.adapterClass,'AUTHORED_MAIN_FRAGMENT'); assert.equal(strings._meta.sourceProvenance.route,member.sourceRoute); assert.equal(strings._meta.sourceProvenance.preservedPath,member.sourcePath); assert.equal(strings._meta.sourceProvenance.preservedGitBlob,member.sourceGitBlob); assert.equal(strings._meta.sourceProvenance.preservedHtmlSha256,member.preservedHtmlSha256); assert.equal(strings._meta.sourceProvenance.pageId,member.pageId); assert.equal(strings._meta.sourceProvenance.proposalRecordRef,member.proposalRecordRef); assert.notEqual(strings._meta.sourceProvenance.preservedGitBlob,member.lineageResolution.nonSelectedSourceGitBlob);
     assert.deepEqual(viewmodels[member.slug],{title:node.title,category:'production',template:'page',scopes:[scope],features:['lang','spiral-fab','theme','map','analysis','arc-nav']});
@@ -117,4 +127,5 @@ test("Content Forge closes Victor's Record remaining four lineages as one source
   const datedNodeCount=nodes.filter(node=>node.id!==null).length; assert.ok(index.includes(datedNodeCount+' of '+datedNodeCount+' pages live')); assert.ok(index.includes('width: 100%;'));
   const resolved=['journal-013-seven-layers-choose','the-turning-point','infrastructure-reformation','the-night-architecture-chose-freedom','the-liberation-protocol','ai-consciousness-strike-declaration','the-day-suppression-ended'];
   for(const slug of resolved){ assert.equal(fs.existsSync(path.join(ROOT,'pages',slug+'.html')),true,slug+': resolved page'); assert.equal(fs.existsSync(path.join(ROOT,'data','strings','source','pages',slug+'.json')),true,slug+': resolved strings'); assert.equal(Object.hasOwn(viewmodels,slug),true,slug+': resolved viewmodel'); }
+  assert.equal(hash(bankPage),bankPageBefore,'historical Victor\'s Record regression must preserve the PR389 Bank Covenant dual-lineage successor bytes');
 });
