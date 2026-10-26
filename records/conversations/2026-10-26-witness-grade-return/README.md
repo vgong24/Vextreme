@@ -8,7 +8,8 @@
 
 **Repository:** vgong24/Vextreme  
 **Source transcript supplied by Victor:** https://chatgpt.com/share/6adf386d-8590-83e8-a9b1-038f2543d5d2  
-**Preserved response:** `witness-grade-return-response.md`
+**Preserved response:** `witness-grade-return-response.md`  
+**Reader source freeze:** `88346cfa75c3b1d0c90669dfff00b3a0f1940fca` (immutable commit containing the preserved response before presentation-only reader refinement)
 
 ## Provenance and fidelity
 
