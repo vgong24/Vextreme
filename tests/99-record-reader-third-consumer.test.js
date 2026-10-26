@@ -35,7 +35,7 @@ test('RECORD-READER-THIRD-CONSUMER: third arc consumes the shared controller and
   const page = read('pages/' + SLUG + '.html');
   assert.match(page, new RegExp(SOURCE_HEAD));
   assert.match(page, /data-reader-template="conversation-witness-reader\/v1"/);
-  assert.match(page, /src="\\.\\.\\/components\\/record-reader\\.js\\?v=7c2f2da43153"/);
+  assert.match(page, /src="\.\.\/components\/record-reader\.js\?v=7c2f2da43153"/);
   assert.match(page, /VexRecordReader\.mount\(/);
   assert.doesNotMatch(page, /function renderBlocks\(lines\)/);
   assert.doesNotMatch(page, /witnessUrl:/);
