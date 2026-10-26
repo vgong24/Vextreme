@@ -16,24 +16,24 @@
       "key": 1,
       "name": "GENERATE",
       "sub": "build/apply/append scripts that read sources",
-      "count": 19,
+      "count": 20,
       "rect": {
         "x": 350,
         "y": 40,
         "width": 300,
-        "height": 1230
+        "height": 1290
       }
     },
     {
       "key": 1.5,
       "name": "UTILITIES",
       "sub": "other lib/ helpers, config, tracing",
-      "count": 25,
+      "count": 26,
       "rect": {
         "x": 690,
         "y": 40,
         "width": 300,
-        "height": 1590
+        "height": 1650
       }
     },
     {
@@ -449,7 +449,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": true,
-      "auditorRank": 12
+      "auditorRank": 13
     },
     {
       "id": "lib/audit-pages.js",
@@ -845,10 +845,12 @@
         ".github/workflows/build-index.yml (before Archives and Terrain)",
         "tests/helpers/prereqs.js",
         "tests/44-page-health.test.js",
-        "lib/check-description-freshness.js (metaDescriptionText only)"
+        "lib/check-description-freshness.js (metaDescriptionText only)",
+        "tests/54-institutional-surfaces.test.js (shell-context institutional health-mode contract)"
       ],
       "testedBy": [
-        "tests/44-page-health.test.js"
+        "tests/44-page-health.test.js",
+        "tests/54-institutional-surfaces.test.js (registry-authorized shell-context health boundary)"
       ],
       "debts": [],
       "status": "good",
@@ -915,6 +917,45 @@
       "engineerFocus": true,
       "auditorFocus": false,
       "auditorRank": 16
+    },
+    {
+      "id": "lib/build-shared-cache-generation.js",
+      "cluster": "lib",
+      "stage": 1,
+      "stageName": "GENERATE",
+      "x": 400,
+      "y": 1170,
+      "role": "deterministic shared-runtime cache identity generator — fingerprints the cache-versioned v1 shell/runtime asset family after normalizing token-bearing lines, then writes one convergent content-derived token into shell.js, vextreme.js, Terrain and every active institutional shell-context bootstrap",
+      "reads": [
+        "lib/shell.js and lib/vextreme.js (token-bearing source normalized before hashing)",
+        "lib/arc-nav.js and lib/archive-renderer.js",
+        "components/section-toggle.js and components/bc-nav.js",
+        "widgets/vex-fab.js / fab-read-aloud.js / fab-lang.js / fab-theme.js / fab-map.js",
+        "styles/site-nav.css / squarespace-overrides.css / design-system.css / arc-nav.css / page template CSS",
+        "data/arcs.json and data/pages.json",
+        "config/institutional-surfaces.json (active shell-context page ownership and cache-versioned locale registry)"
+      ],
+      "writes": [
+        "lib/shell.js VEXTREME_VER",
+        "lib/vextreme.js DEFAULT_CACHE",
+        "pages/terrain-map.html shell.js query token",
+        "pages/{active shell-context institutional slug}.html shell.js query token"
+      ],
+      "loadedBy": [
+        ".github/workflows/build-index.yml (after bump-fab-version.js; before build-vextreme.js)",
+        "package.json cache:build / cache:check / pr-ready",
+        "tests/41-vextreme-fab-autoload.test.js",
+        "tests/120-build-index-cache-currentness.test.js"
+      ],
+      "testedBy": [
+        "tests/41-vextreme-fab-autoload.test.js",
+        "tests/120-build-index-cache-currentness.test.js"
+      ],
+      "debts": [],
+      "status": "good",
+      "engineerFocus": true,
+      "auditorFocus": false,
+      "auditorRank": 17
     },
     {
       "id": "lib/build-sitemap.js",
@@ -996,7 +1037,7 @@
       "stage": 1,
       "stageName": "GENERATE",
       "x": 400,
-      "y": 1170,
+      "y": 1230,
       "role": "localization identity pilot, second script — generates pointer indexes and a human-readable report from committed identity metadata",
       "reads": [
         "data/strings/source/pages/*.json (identity blocks + strings, for language listing)"
@@ -1018,7 +1059,7 @@
       "status": "good",
       "engineerFocus": true,
       "auditorFocus": false,
-      "auditorRank": 17
+      "auditorRank": 18
     },
     {
       "id": "lib/build-sw.js",
@@ -1091,7 +1132,7 @@
       "status": "good",
       "engineerFocus": true,
       "auditorFocus": false,
-      "auditorRank": 18
+      "auditorRank": 19
     },
     {
       "id": "lib/build-vextreme.js",
@@ -1166,7 +1207,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 13
+      "auditorRank": 14
     },
     {
       "id": "lib/check-continuity-lag.js",
@@ -1461,7 +1502,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 14
+      "auditorRank": 15
     },
     {
       "id": "lib/compute-test-shards.js",
@@ -1488,7 +1529,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 15
+      "auditorRank": 16
     },
     {
       "id": "lib/detect-wip-promotions.js",
@@ -1516,7 +1557,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 16
+      "auditorRank": 17
     },
     {
       "id": "lib/discover-string-identity.js",
@@ -1544,7 +1585,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 17
+      "auditorRank": 18
     },
     {
       "id": "lib/institutional-localization-runtime.js",
@@ -1573,7 +1614,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 18
+      "auditorRank": 19
     },
     {
       "id": "lib/logger-codes.js",
@@ -1631,12 +1672,45 @@
       "auditorRank": 5
     },
     {
-      "id": "lib/run-test-prereqs.js",
+      "id": "lib/rename-slug.js",
       "cluster": "lib",
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
       "y": 870,
+      "role": "plan-first slug rename impact discovery — validates proposed identity movement, discovers tracked filename/content references, classifies migration responsibility, and reports collisions/unknowns without mutating source",
+      "reads": [
+        "git tracked-file inventory when available; deterministic filesystem fallback for isolated tests",
+        "config/institutional-surfaces.json (institutional identity/lifecycle owner)",
+        "pages/*.html and repository text sources (exact old-slug content references)",
+        "data/nodes.json + wip/*.json/html + dist/* + page-scope filenames (target-slug collision detection)",
+        "docs/screenshots/* + data/screenshot-evidence-assets.json (evidence identity references)"
+      ],
+      "writes": [
+        "stdout only — plan row is read-only and performs no rename"
+      ],
+      "loadedBy": [
+        "manual run: node lib/rename-slug.js --from <old> --to <new> --kind institutional --plan",
+        "tests/100-rename-slug.test.js"
+      ],
+      "testedBy": [
+        "tests/100-rename-slug.test.js"
+      ],
+      "debts": [
+        "pe-006"
+      ],
+      "status": "warning",
+      "engineerFocus": false,
+      "auditorFocus": true,
+      "auditorRank": 9
+    },
+    {
+      "id": "lib/run-test-prereqs.js",
+      "cluster": "lib",
+      "stage": 1.5,
+      "stageName": "UTILITIES",
+      "x": 740,
+      "y": 930,
       "role": "runs the build scripts tests/helpers/prereqs.js declares as required before the test suite can read generated files — replaces a hardcoded run: line in .github/workflows/test.yml",
       "reads": [
         "tests/helpers/prereqs.js (PREREQUISITE_SCRIPTS)"
@@ -1652,7 +1726,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 19
+      "auditorRank": 20
     },
     {
       "id": "lib/screenshot-evidence.js",
@@ -1660,7 +1734,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 930,
+      "y": 990,
       "role": "shared screenshot-evidence filename parser and deterministic projection helper",
       "reads": [],
       "writes": [],
@@ -1682,7 +1756,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 20
+      "auditorRank": 21
     },
     {
       "id": "lib/session-bootstrap.js",
@@ -1690,7 +1764,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 990,
+      "y": 1050,
       "role": "one-shot session-start state report — read-only, gathers what would otherwise be several manual checks into one command",
       "reads": [
         "docs/continuity/INDEX.md (last logged session, batch registry)",
@@ -1719,7 +1793,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 21
+      "auditorRank": 22
     },
     {
       "id": "lib/shell.js",
@@ -1727,7 +1801,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1050,
+      "y": 1110,
       "role": "thin GitHub Pages shell bootstrap — loads the cache-versioned legacy runtime and invokes VEXTREME with the page's optional override",
       "reads": [
         "lib/vextreme.js (cache-versioned runtime loaded into the page)",
@@ -1760,7 +1834,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1110,
+      "y": 1170,
       "role": "strings pipeline integrity check — runs before compile, catches missing EN text, stale translations, and orphaned keys",
       "reads": [
         "data/strings/source/**/*.json",
@@ -1791,7 +1865,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1170,
+      "y": 1230,
       "role": "strings pipeline compiler — reads source JSON, writes compiled bundles and manifest",
       "reads": [
         "data/strings/source/**/*.json",
@@ -1808,7 +1882,8 @@
         "lib/strings-check.js (reads its output data/strings/compiled/manifest.json for stale detection)",
         "lib/strings-export.js (reuses contentHash for translator source preimage binding)",
         "lib/strings-import.js (reuses contentHash for returned-translation preimage verification)",
-        "tests/02-strings-pipeline.test.js"
+        "tests/02-strings-pipeline.test.js",
+        "tests/100-record-reader-localization-source.test.js"
       ],
       "testedBy": [
         "tests/02-strings-pipeline.test.js"
@@ -1819,7 +1894,7 @@
       "status": "warning",
       "engineerFocus": false,
       "auditorFocus": true,
-      "auditorRank": 9
+      "auditorRank": 10
     },
     {
       "id": "lib/terrain-journey.js",
@@ -1827,7 +1902,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1230,
+      "y": 1290,
       "role": "pure semantic-history state for Terrain Journey commits and browser Back/Forward restoration",
       "reads": [],
       "writes": [],
@@ -1842,7 +1917,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 22
+      "auditorRank": 23
     },
     {
       "id": "lib/trace-string-usage.js",
@@ -1850,7 +1925,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1290,
+      "y": 1350,
       "role": "string reverse-tracer — data-i18n usage in pages/wip HTML cross-referenced against the compiled manifest",
       "reads": [
         "pages/*.html (data-i18n attribute scan)",
@@ -1872,7 +1947,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 23
+      "auditorRank": 24
     },
     {
       "id": "lib/validate-blueprint.js",
@@ -1880,7 +1955,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1350,
+      "y": 1410,
       "role": "blueprint consistency validator — confirms every id in blueprint.json has a matching config file and vex-config constant",
       "reads": [
         "blueprint.json",
@@ -1904,7 +1979,7 @@
       "status": "warning",
       "engineerFocus": false,
       "auditorFocus": true,
-      "auditorRank": 10
+      "auditorRank": 11
     },
     {
       "id": "lib/vex-config.js",
@@ -1912,7 +1987,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1410,
+      "y": 1470,
       "role": "constants hub — pure declarations, no I/O",
       "reads": [],
       "writes": [],
@@ -1946,7 +2021,7 @@
       "status": "warning",
       "engineerFocus": false,
       "auditorFocus": true,
-      "auditorRank": 11
+      "auditorRank": 12
     },
     {
       "id": "lib/vextreme-index-v2.js",
@@ -1954,7 +2029,7 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1470,
+      "y": 1530,
       "role": "browser arc nav runtime — reads index.json at load time, renders prev/next/position into #arcNavMount",
       "reads": [
         "data/index.json via CDN (slugMap, arcMap, arcMeta)",
@@ -1977,7 +2052,7 @@
       "status": "good",
       "engineerFocus": false,
       "auditorFocus": false,
-      "auditorRank": 24
+      "auditorRank": 25
     },
     {
       "id": "lib/vextreme.js",
@@ -1985,9 +2060,10 @@
       "stage": 1.5,
       "stageName": "UTILITIES",
       "x": 740,
-      "y": 1530,
-      "role": "legacy shell-era runtime composition loader — environment styles, shared nav/body composition, current Spiral FAB auto-load, and gated v1 archive enhancement",
+      "y": 1590,
+      "role": "legacy shell-era runtime composition loader — environment styles, shared nav/body composition, registry-backed institutional locale projection, current Spiral FAB auto-load, and gated v1 archive enhancement",
       "reads": [
+        "config/institutional-surfaces.json (shell-context required-locale projection before shared language FAB mount)",
         "data/arcs.json (v1 arc data fetched at runtime)",
         "data/pages.json (v1 page/template data fetched at runtime)",
         "styles/site-nav.css (GitHub Pages/local shared chrome)",
@@ -2006,7 +2082,8 @@
       ],
       "writes": [
         "DOM: #vex-site-nav / #vex-nav-actions and optional .vex-page-body composition",
-        "window.VEXTREME_ENV / VEXTREME_BASE_URL / VEXTREME_ARCS / VEXTREME_PAGES runtime globals"
+        "window.VEXTREME_ENV / VEXTREME_BASE_URL / VEXTREME_ARCS / VEXTREME_PAGES runtime globals",
+        "window.VEX_SUPPORTED_LANGS for registry-authorized institutional shell-context surfaces"
       ],
       "loadedBy": [
         "lib/shell.js (one-tag GitHub Pages bootstrap)"
@@ -2635,6 +2712,58 @@
       "lib/build-roles-page.js"
     ],
     [
+      "lib/build-shared-cache-generation.js",
+      "config/institutional-surfaces.json"
+    ],
+    [
+      "lib/build-shared-cache-generation.js",
+      "lib/arc-nav.js"
+    ],
+    [
+      "lib/build-shared-cache-generation.js",
+      "lib/archive-renderer.js"
+    ],
+    [
+      "lib/build-shared-cache-generation.js",
+      "lib/build-index.js"
+    ],
+    [
+      "lib/build-shared-cache-generation.js",
+      "lib/build-vextreme.js"
+    ],
+    [
+      "lib/build-shared-cache-generation.js",
+      "lib/bump-fab-version.js"
+    ],
+    [
+      "lib/build-shared-cache-generation.js",
+      "lib/vextreme.js"
+    ],
+    [
+      "lib/build-shared-cache-generation.js",
+      "pages/terrain-map.html"
+    ],
+    [
+      "lib/build-shared-cache-generation.js",
+      "widgets/fab-lang.js"
+    ],
+    [
+      "lib/build-shared-cache-generation.js",
+      "widgets/fab-map.js"
+    ],
+    [
+      "lib/build-shared-cache-generation.js",
+      "widgets/fab-read-aloud.js"
+    ],
+    [
+      "lib/build-shared-cache-generation.js",
+      "widgets/fab-theme.js"
+    ],
+    [
+      "lib/build-shared-cache-generation.js",
+      "widgets/vex-fab.js"
+    ],
+    [
       "lib/build-sitemap.js",
       "lib/build-index.js"
     ],
@@ -2847,6 +2976,14 @@
       "lib/vextreme.js"
     ],
     [
+      "lib/rename-slug.js",
+      "config/institutional-surfaces.json"
+    ],
+    [
+      "lib/rename-slug.js",
+      "lib/screenshot-evidence.js"
+    ],
+    [
       "lib/screenshot-evidence.js",
       "config/institutional-surfaces.json"
     ],
@@ -2964,6 +3101,10 @@
     ],
     [
       "lib/vextreme.js",
+      "config/institutional-surfaces.json"
+    ],
+    [
+      "lib/vextreme.js",
       "lib/archive-renderer.js"
     ],
     [
@@ -3075,6 +3216,163 @@
     "pe-009": "Expand LATTICE coverage beyond the current 27 nodes (64% of lib/+widgets/)"
   },
   "screens": [
+    {
+      "slug": "about-vextreme",
+      "title": "about-vextreme",
+      "arcKeys": [],
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/about-vextreme.html",
+      "screenshots": {
+        "en": "docs/screenshots/about-vextreme-en-foundation-1440.png",
+        "ja": "docs/screenshots/about-vextreme-ja-foundation-1440.png",
+        "zh": "docs/screenshots/about-vextreme-zh-foundation-1440.png"
+      },
+      "screenshotEvidence": [
+        {
+          "slug": "about-vextreme",
+          "locale": "en",
+          "theme": "foundation",
+          "viewport": 1440,
+          "kind": "matrix",
+          "path": "docs/screenshots/about-vextreme-en-foundation-1440.png"
+        },
+        {
+          "slug": "about-vextreme",
+          "locale": "en",
+          "theme": "foundation",
+          "viewport": 320,
+          "kind": "matrix",
+          "path": "docs/screenshots/about-vextreme-en-foundation-320.png"
+        },
+        {
+          "slug": "about-vextreme",
+          "locale": "en",
+          "theme": "foundation",
+          "viewport": 768,
+          "kind": "matrix",
+          "path": "docs/screenshots/about-vextreme-en-foundation-768.png"
+        },
+        {
+          "slug": "about-vextreme",
+          "locale": "en",
+          "theme": "foundation-light",
+          "viewport": 1440,
+          "kind": "matrix",
+          "path": "docs/screenshots/about-vextreme-en-foundation-light-1440.png"
+        },
+        {
+          "slug": "about-vextreme",
+          "locale": "en",
+          "theme": "foundation-light",
+          "viewport": 320,
+          "kind": "matrix",
+          "path": "docs/screenshots/about-vextreme-en-foundation-light-320.png"
+        },
+        {
+          "slug": "about-vextreme",
+          "locale": "en",
+          "theme": "foundation-light",
+          "viewport": 768,
+          "kind": "matrix",
+          "path": "docs/screenshots/about-vextreme-en-foundation-light-768.png"
+        },
+        {
+          "slug": "about-vextreme",
+          "locale": "ja",
+          "theme": "foundation",
+          "viewport": 1440,
+          "kind": "matrix",
+          "path": "docs/screenshots/about-vextreme-ja-foundation-1440.png"
+        },
+        {
+          "slug": "about-vextreme",
+          "locale": "ja",
+          "theme": "foundation",
+          "viewport": 320,
+          "kind": "matrix",
+          "path": "docs/screenshots/about-vextreme-ja-foundation-320.png"
+        },
+        {
+          "slug": "about-vextreme",
+          "locale": "ja",
+          "theme": "foundation",
+          "viewport": 768,
+          "kind": "matrix",
+          "path": "docs/screenshots/about-vextreme-ja-foundation-768.png"
+        },
+        {
+          "slug": "about-vextreme",
+          "locale": "ja",
+          "theme": "foundation-light",
+          "viewport": 1440,
+          "kind": "matrix",
+          "path": "docs/screenshots/about-vextreme-ja-foundation-light-1440.png"
+        },
+        {
+          "slug": "about-vextreme",
+          "locale": "ja",
+          "theme": "foundation-light",
+          "viewport": 320,
+          "kind": "matrix",
+          "path": "docs/screenshots/about-vextreme-ja-foundation-light-320.png"
+        },
+        {
+          "slug": "about-vextreme",
+          "locale": "ja",
+          "theme": "foundation-light",
+          "viewport": 768,
+          "kind": "matrix",
+          "path": "docs/screenshots/about-vextreme-ja-foundation-light-768.png"
+        },
+        {
+          "slug": "about-vextreme",
+          "locale": "zh",
+          "theme": "foundation",
+          "viewport": 1440,
+          "kind": "matrix",
+          "path": "docs/screenshots/about-vextreme-zh-foundation-1440.png"
+        },
+        {
+          "slug": "about-vextreme",
+          "locale": "zh",
+          "theme": "foundation",
+          "viewport": 320,
+          "kind": "matrix",
+          "path": "docs/screenshots/about-vextreme-zh-foundation-320.png"
+        },
+        {
+          "slug": "about-vextreme",
+          "locale": "zh",
+          "theme": "foundation",
+          "viewport": 768,
+          "kind": "matrix",
+          "path": "docs/screenshots/about-vextreme-zh-foundation-768.png"
+        },
+        {
+          "slug": "about-vextreme",
+          "locale": "zh",
+          "theme": "foundation-light",
+          "viewport": 1440,
+          "kind": "matrix",
+          "path": "docs/screenshots/about-vextreme-zh-foundation-light-1440.png"
+        },
+        {
+          "slug": "about-vextreme",
+          "locale": "zh",
+          "theme": "foundation-light",
+          "viewport": 320,
+          "kind": "matrix",
+          "path": "docs/screenshots/about-vextreme-zh-foundation-light-320.png"
+        },
+        {
+          "slug": "about-vextreme",
+          "locale": "zh",
+          "theme": "foundation-light",
+          "viewport": 768,
+          "kind": "matrix",
+          "path": "docs/screenshots/about-vextreme-zh-foundation-light-768.png"
+        }
+      ]
+    },
     {
       "slug": "claude-answers-the-doubt",
       "title": "Claude Answers the Doubt",
@@ -3413,156 +3711,10 @@
       "arcKeys": [],
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/vextreme-home.html",
       "screenshots": {
-        "en": "docs/screenshots/vextreme-home-en-foundation-1440.png",
-        "ja": "docs/screenshots/vextreme-home-ja-foundation-1440.png",
-        "zh": "docs/screenshots/vextreme-home-zh-foundation-1440.png"
-      },
-      "screenshotEvidence": [
-        {
-          "slug": "vextreme-home",
-          "locale": "en",
-          "theme": "foundation",
-          "viewport": 1440,
-          "kind": "matrix",
-          "path": "docs/screenshots/vextreme-home-en-foundation-1440.png"
-        },
-        {
-          "slug": "vextreme-home",
-          "locale": "en",
-          "theme": "foundation",
-          "viewport": 320,
-          "kind": "matrix",
-          "path": "docs/screenshots/vextreme-home-en-foundation-320.png"
-        },
-        {
-          "slug": "vextreme-home",
-          "locale": "en",
-          "theme": "foundation",
-          "viewport": 768,
-          "kind": "matrix",
-          "path": "docs/screenshots/vextreme-home-en-foundation-768.png"
-        },
-        {
-          "slug": "vextreme-home",
-          "locale": "en",
-          "theme": "foundation-light",
-          "viewport": 1440,
-          "kind": "matrix",
-          "path": "docs/screenshots/vextreme-home-en-foundation-light-1440.png"
-        },
-        {
-          "slug": "vextreme-home",
-          "locale": "en",
-          "theme": "foundation-light",
-          "viewport": 320,
-          "kind": "matrix",
-          "path": "docs/screenshots/vextreme-home-en-foundation-light-320.png"
-        },
-        {
-          "slug": "vextreme-home",
-          "locale": "en",
-          "theme": "foundation-light",
-          "viewport": 768,
-          "kind": "matrix",
-          "path": "docs/screenshots/vextreme-home-en-foundation-light-768.png"
-        },
-        {
-          "slug": "vextreme-home",
-          "locale": "ja",
-          "theme": "foundation",
-          "viewport": 1440,
-          "kind": "matrix",
-          "path": "docs/screenshots/vextreme-home-ja-foundation-1440.png"
-        },
-        {
-          "slug": "vextreme-home",
-          "locale": "ja",
-          "theme": "foundation",
-          "viewport": 320,
-          "kind": "matrix",
-          "path": "docs/screenshots/vextreme-home-ja-foundation-320.png"
-        },
-        {
-          "slug": "vextreme-home",
-          "locale": "ja",
-          "theme": "foundation",
-          "viewport": 768,
-          "kind": "matrix",
-          "path": "docs/screenshots/vextreme-home-ja-foundation-768.png"
-        },
-        {
-          "slug": "vextreme-home",
-          "locale": "ja",
-          "theme": "foundation-light",
-          "viewport": 1440,
-          "kind": "matrix",
-          "path": "docs/screenshots/vextreme-home-ja-foundation-light-1440.png"
-        },
-        {
-          "slug": "vextreme-home",
-          "locale": "ja",
-          "theme": "foundation-light",
-          "viewport": 320,
-          "kind": "matrix",
-          "path": "docs/screenshots/vextreme-home-ja-foundation-light-320.png"
-        },
-        {
-          "slug": "vextreme-home",
-          "locale": "ja",
-          "theme": "foundation-light",
-          "viewport": 768,
-          "kind": "matrix",
-          "path": "docs/screenshots/vextreme-home-ja-foundation-light-768.png"
-        },
-        {
-          "slug": "vextreme-home",
-          "locale": "zh",
-          "theme": "foundation",
-          "viewport": 1440,
-          "kind": "matrix",
-          "path": "docs/screenshots/vextreme-home-zh-foundation-1440.png"
-        },
-        {
-          "slug": "vextreme-home",
-          "locale": "zh",
-          "theme": "foundation",
-          "viewport": 320,
-          "kind": "matrix",
-          "path": "docs/screenshots/vextreme-home-zh-foundation-320.png"
-        },
-        {
-          "slug": "vextreme-home",
-          "locale": "zh",
-          "theme": "foundation",
-          "viewport": 768,
-          "kind": "matrix",
-          "path": "docs/screenshots/vextreme-home-zh-foundation-768.png"
-        },
-        {
-          "slug": "vextreme-home",
-          "locale": "zh",
-          "theme": "foundation-light",
-          "viewport": 1440,
-          "kind": "matrix",
-          "path": "docs/screenshots/vextreme-home-zh-foundation-light-1440.png"
-        },
-        {
-          "slug": "vextreme-home",
-          "locale": "zh",
-          "theme": "foundation-light",
-          "viewport": 320,
-          "kind": "matrix",
-          "path": "docs/screenshots/vextreme-home-zh-foundation-light-320.png"
-        },
-        {
-          "slug": "vextreme-home",
-          "locale": "zh",
-          "theme": "foundation-light",
-          "viewport": 768,
-          "kind": "matrix",
-          "path": "docs/screenshots/vextreme-home-zh-foundation-light-768.png"
-        }
-      ]
+        "en": "https://vgong24.github.io/Vextreme-Assets/evidence/screenshots/vextreme/vextreme-home/en/foundation/1440/76e40ae5b173f1c6a62cf547861c97e85a355ccd19a18d3accfd0c9f6aaaa60f.png",
+        "ja": "https://vgong24.github.io/Vextreme-Assets/evidence/screenshots/vextreme/vextreme-home/ja/foundation/1440/1363d71785b29baf5dbbff57e3d9390462d2bc6a311ee00cee5fb10ffd043c4e.png",
+        "zh": "https://vgong24.github.io/Vextreme-Assets/evidence/screenshots/vextreme/vextreme-home/zh/foundation/1440/a119fc74ff04b5a75249cbc0f970383dbf4b529f984be21f1979b28d5e3f95c9.png"
+      }
     },
     {
       "slug": "victor-methodology-presentation",
@@ -3658,12 +3810,12 @@
       "key": "convos_with_god",
       "name": "Conversations with God",
       "sub": "priority 1",
-      "count": 14,
+      "count": 15,
       "rect": {
         "x": 1370,
         "y": 40,
         "width": 300,
-        "height": 930
+        "height": 990
       },
       "parent": {
         "title": "Conversations with God",
@@ -4075,7 +4227,7 @@
           "control": "none",
           "visibleStyles": false
         },
-        "identityKeys": 157,
+        "identityKeys": 208,
         "analysisIndexed": true,
         "analysisControl": true,
         "evidenceLanguages": [],
@@ -4114,11 +4266,11 @@
           "control": "none",
           "visibleStyles": false
         },
-        "identityKeys": 65,
+        "identityKeys": 144,
         "analysisIndexed": true,
         "analysisControl": true,
         "evidenceLanguages": [],
-        "metaDescription": "Now what about Buddhism? — repository-native preserved content."
+        "metaDescription": "Now what about Buddhism? — presentation and source transcript preserved as two switchable source lineages in one reading experience."
       },
       "curated": true
     },
@@ -4153,11 +4305,11 @@
           "control": "none",
           "visibleStyles": false
         },
-        "identityKeys": 115,
+        "identityKeys": 181,
         "analysisIndexed": true,
         "analysisControl": true,
         "evidenceLanguages": [],
-        "metaDescription": "God to speak of the Truth of Love — repository-native preserved content."
+        "metaDescription": "God to speak of the Truth of Love — presentation and source transcript preserved as two switchable source lineages in one reading experience."
       },
       "curated": true
     },
@@ -4192,11 +4344,11 @@
           "control": "none",
           "visibleStyles": false
         },
-        "identityKeys": 469,
+        "identityKeys": 575,
         "analysisIndexed": true,
         "analysisControl": true,
         "evidenceLanguages": [],
-        "metaDescription": "Why Financial Freedom is Harder to Trust — repository-native preserved content."
+        "metaDescription": "Why Financial Freedom is Harder to Trust — presentation and source transcript preserved as two switchable source lineages in one reading experience."
       },
       "curated": true
     },
@@ -4231,7 +4383,7 @@
           "control": "none",
           "visibleStyles": false
         },
-        "identityKeys": 120,
+        "identityKeys": 279,
         "analysisIndexed": true,
         "analysisControl": true,
         "evidenceLanguages": [],
@@ -4270,11 +4422,11 @@
           "control": "none",
           "visibleStyles": false
         },
-        "identityKeys": 350,
+        "identityKeys": 458,
         "analysisIndexed": true,
         "analysisControl": true,
         "evidenceLanguages": [],
-        "metaDescription": "Truth of Demons and Intrusive Thoughts — repository-native preserved content."
+        "metaDescription": "Truth of Demons and Intrusive Thoughts — presentation and source transcript preserved as two switchable source lineages in one reading experience."
       },
       "curated": true
     },
@@ -4750,11 +4902,11 @@
           "control": "none",
           "visibleStyles": false
         },
-        "identityKeys": 143,
+        "identityKeys": 226,
         "analysisIndexed": true,
         "analysisControl": true,
         "evidenceLanguages": [],
-        "metaDescription": "Scopes of God — repository-native preserved content."
+        "metaDescription": "Scopes of God — presentation and source transcript preserved as two switchable source lineages in one reading experience."
       },
       "curated": true
     },
@@ -5275,7 +5427,7 @@
           "control": "none",
           "visibleStyles": false
         },
-        "identityKeys": 162,
+        "identityKeys": 673,
         "analysisIndexed": true,
         "analysisControl": true,
         "evidenceLanguages": [],
@@ -5701,7 +5853,7 @@
           "control": "none",
           "visibleStyles": false
         },
-        "identityKeys": 51,
+        "identityKeys": 128,
         "analysisIndexed": true,
         "analysisControl": true,
         "evidenceLanguages": [],
@@ -7902,7 +8054,7 @@
     {
       "id": "recognizing-life-receiving-abundance",
       "slug": "recognizing-life-receiving-abundance",
-      "title": "Recognizing Life, Receiving Abundance",
+      "title": "The Sand Dollar on the Shore",
       "arcKeys": [
         "convos_with_god",
         "victors_record",
@@ -7919,7 +8071,7 @@
       "preview": {
         "kind": "cover",
         "src": "https://vgong24.github.io/Vextreme/assets/recognizing-life-receiving-abundance/cover.webp?v=e519e49d8f08",
-        "alt": "Recognizing Life, Receiving Abundance — representative midnight shoreline cover art"
+        "alt": "The Sand Dollar on the Shore — representative midnight shoreline cover art"
       },
       "status": "warning",
       "capability": {
@@ -7941,6 +8093,51 @@
         "analysisControl": true,
         "evidenceLanguages": [],
         "metaDescription": "A repository-native witness reading of the preserved Recognizing Life, Receiving Abundance second arc."
+      },
+      "curated": true
+    },
+    {
+      "id": "bending-condominium-ocean-return",
+      "slug": "bending-condominium-ocean-return",
+      "title": "The Bending Condominium Dream",
+      "arcKeys": [
+        "convos_with_god",
+        "victors_record",
+        "full_timeline"
+      ],
+      "arc": "convos_with_god",
+      "arcName": "Conversations with God",
+      "x": 1420,
+      "y": 930,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/bending-condominium-ocean-return.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "preview": {
+        "kind": "cover",
+        "src": "https://vgong24.github.io/Vextreme/assets/bending-condominium-ocean-return/daylight-condominium.webp?v=4f29e4a4642d",
+        "alt": "The Bending Condominium Dream — selected daylight dream visualization"
+      },
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "page-owned",
+          "visibleStyles": true
+        },
+        "identityKeys": 46,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "A source-first reading of the preserved Bending Condominium third arc."
       },
       "curated": true
     },

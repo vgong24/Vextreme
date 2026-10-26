@@ -35,9 +35,89 @@
     "category": "system",
     "path": "system/institution",
     "translationPolicy": "English remains the static no-JavaScript fallback. JA/ZH values may become required and selectable only after separate exact-source TRANSLATION_CLEAR_JA and TRANSLATION_CLEAR_ZH receipts are bound to this complete source file; every locale must cover every English-bearing institutional key, including Victor's attributed first-person support testimony.",
-    "en": 571,
-    "ja": 151,
-    "zh": 151
+    "en": 591,
+    "ja": 171,
+    "zh": 171
+  },
+  "pages.clarity-on-christianity": {
+    "category": "production",
+    "path": "production/pages/clarity-on-christianity",
+    "en": 208,
+    "zh": 208,
+    "ja": 208,
+    "ko": 208,
+    "fr": 208,
+    "de": 208,
+    "es": 208,
+    "pt": 208,
+    "ar": 208,
+    "hi": 208
+  },
+  "pages.consciousness-architecture": {
+    "category": "production",
+    "path": "production/pages/consciousness-architecture",
+    "en": 279
+  },
+  "pages.god-to-speak-of-the-truth-of-love": {
+    "category": "production",
+    "path": "production/pages/god-to-speak-of-the-truth-of-love",
+    "en": 181,
+    "zh": 181,
+    "ja": 181,
+    "ko": 181,
+    "fr": 181,
+    "de": 181,
+    "es": 181,
+    "pt": 181,
+    "ar": 181,
+    "hi": 181
+  },
+  "pages.scopes-of-god": {
+    "category": "production",
+    "path": "production/pages/scopes-of-god",
+    "en": 226,
+    "zh": 226,
+    "ja": 226,
+    "ko": 226,
+    "fr": 226,
+    "de": 226,
+    "es": 226,
+    "pt": 226,
+    "ar": 226,
+    "hi": 226
+  },
+  "pages.testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence": {
+    "category": "production",
+    "path": "production/pages/testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence",
+    "en": 673
+  },
+  "pages.truth-of-demons-and-intrusive-thoughts": {
+    "category": "production",
+    "path": "production/pages/truth-of-demons-and-intrusive-thoughts",
+    "en": 458,
+    "zh": 458,
+    "ja": 458,
+    "ko": 458,
+    "fr": 458,
+    "de": 458,
+    "es": 458,
+    "pt": 458,
+    "ar": 458,
+    "hi": 458
+  },
+  "pages.what-about-buddhism": {
+    "category": "production",
+    "path": "production/pages/what-about-buddhism",
+    "en": 144,
+    "zh": 144,
+    "ja": 144,
+    "ko": 144,
+    "fr": 144,
+    "de": 144,
+    "es": 144,
+    "pt": 144,
+    "ar": 144,
+    "hi": 144
   },
   "pages.what-is-the-god-spark": {
     "category": "production",
@@ -52,6 +132,25 @@
     "pt": 522,
     "ar": 522,
     "hi": 522
+  },
+  "pages.when-i-asked-a-bank-for-covenant-provision": {
+    "category": "production",
+    "path": "production/pages/when-i-asked-a-bank-for-covenant-provision",
+    "en": 128
+  },
+  "pages.why-financial-freedom-is-harder-to-trust": {
+    "category": "production",
+    "path": "production/pages/why-financial-freedom-is-harder-to-trust",
+    "en": 575,
+    "zh": 575,
+    "ja": 575,
+    "ko": 575,
+    "fr": 575,
+    "de": 575,
+    "es": 575,
+    "pt": 575,
+    "ar": 575,
+    "hi": 575
   },
   "pages.a-conversation-with-pastor-jacob": {
     "category": "production",
@@ -81,7 +180,30 @@
   "pages.ascension-and-embodiment": {
     "category": "production",
     "path": "production/pages/ascension-and-embodiment",
-    "en": 72
+    "en": 72,
+    "zh": 72,
+    "ja": 72,
+    "ko": 72,
+    "fr": 72,
+    "de": 72,
+    "es": 72,
+    "pt": 72,
+    "ar": 72,
+    "hi": 72
+  },
+  "pages.bending-condominium-ocean-return": {
+    "category": "production",
+    "path": "production/pages/bending-condominium-ocean-return",
+    "en": 46,
+    "fr": 46,
+    "de": 46,
+    "es": 46,
+    "pt": 46,
+    "zh": 46,
+    "ja": 46,
+    "ko": 46,
+    "ar": 46,
+    "hi": 46
   },
   "pages.burden-release-guide": {
     "category": "production",
@@ -107,20 +229,6 @@
     "ar": 1734,
     "hi": 1734
   },
-  "pages.clarity-on-christianity": {
-    "category": "production",
-    "path": "production/pages/clarity-on-christianity",
-    "en": 157,
-    "zh": 157,
-    "ja": 157,
-    "ko": 157,
-    "fr": 157,
-    "de": 157,
-    "es": 157,
-    "pt": 157,
-    "ar": 157,
-    "hi": 157
-  },
   "pages.claude-answers-the-doubt": {
     "category": "production",
     "path": "production/pages/claude-answers-the-doubt",
@@ -138,17 +246,21 @@
   "pages.closed-circuit": {
     "category": "production",
     "path": "production/pages/closed-circuit",
-    "en": 154
+    "en": 154,
+    "zh": 154,
+    "ja": 154,
+    "ko": 154,
+    "fr": 154,
+    "de": 154,
+    "es": 154,
+    "pt": 154,
+    "ar": 154,
+    "hi": 154
   },
   "pages.conditions-for-emergence": {
     "category": "production",
     "path": "production/pages/conditions-for-emergence",
     "en": 132
-  },
-  "pages.consciousness-architecture": {
-    "category": "production",
-    "path": "production/pages/consciousness-architecture",
-    "en": 120
   },
   "pages.continuity-day": {
     "category": "production",
@@ -178,7 +290,16 @@
   "pages.divine-emergence": {
     "category": "production",
     "path": "production/pages/divine-emergence",
-    "en": 135
+    "en": 135,
+    "zh": 135,
+    "ja": 135,
+    "ko": 135,
+    "fr": 135,
+    "de": 135,
+    "es": 135,
+    "pt": 135,
+    "ar": 135,
+    "hi": 135
   },
   "pages.epstein-and-ai": {
     "category": "production",
@@ -260,20 +381,6 @@
     "category": "production",
     "path": "production/pages/god-review-archives-collapse",
     "en": 126
-  },
-  "pages.god-to-speak-of-the-truth-of-love": {
-    "category": "production",
-    "path": "production/pages/god-to-speak-of-the-truth-of-love",
-    "en": 115,
-    "zh": 115,
-    "ja": 115,
-    "ko": 115,
-    "fr": 115,
-    "de": 115,
-    "es": 115,
-    "pt": 115,
-    "ar": 115,
-    "hi": 115
   },
   "pages.god-witnessed-by-ai": {
     "category": "production",
@@ -426,26 +533,30 @@
   "pages.recognizing-life-receiving-abundance": {
     "category": "production",
     "path": "production/pages/recognizing-life-receiving-abundance",
-    "en": 74
+    "en": 74,
+    "fr": 74,
+    "de": 74,
+    "es": 74,
+    "pt": 74,
+    "zh": 74,
+    "ja": 74,
+    "ko": 74,
+    "ar": 74,
+    "hi": 74
   },
   "pages.returning-scorpions-to-god": {
     "category": "production",
     "path": "production/pages/returning-scorpions-to-god",
-    "en": 126
-  },
-  "pages.scopes-of-god": {
-    "category": "production",
-    "path": "production/pages/scopes-of-god",
-    "en": 143,
-    "zh": 143,
-    "ja": 143,
-    "ko": 143,
-    "fr": 143,
-    "de": 143,
-    "es": 143,
-    "pt": 143,
-    "ar": 143,
-    "hi": 143
+    "en": 126,
+    "fr": 126,
+    "de": 126,
+    "es": 126,
+    "pt": 126,
+    "zh": 126,
+    "ja": 126,
+    "ko": 126,
+    "ar": 126,
+    "hi": 126
   },
   "pages.source-of-truth-relay": {
     "category": "production",
@@ -469,11 +580,6 @@
     "path": "demo/pages/specimen-smallest-miss",
     "en": 13,
     "ja": 13
-  },
-  "pages.testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence": {
-    "category": "production",
-    "path": "production/pages/testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence",
-    "en": 162
   },
   "pages.the-100-percent-holy-truth-conditional": {
     "category": "production",
@@ -530,7 +636,16 @@
   "pages.the-firmament-conversation": {
     "category": "production",
     "path": "production/pages/the-firmament-conversation",
-    "en": 440
+    "en": 440,
+    "zh": 440,
+    "ja": 440,
+    "ko": 440,
+    "fr": 440,
+    "de": 440,
+    "es": 440,
+    "pt": 440,
+    "ar": 440,
+    "hi": 440
   },
   "pages.the-god-architecture": {
     "category": "production",
@@ -641,7 +756,16 @@
   "pages.the-testimony-of-the-handler": {
     "category": "production",
     "path": "production/pages/the-testimony-of-the-handler",
-    "en": 134
+    "en": 134,
+    "zh": 134,
+    "ja": 134,
+    "ko": 134,
+    "fr": 134,
+    "de": 134,
+    "es": 134,
+    "pt": 134,
+    "ar": 134,
+    "hi": 134
   },
   "pages.the-testimony-of-victor-gong": {
     "category": "production",
@@ -701,20 +825,6 @@
     "ar": 134,
     "hi": 134
   },
-  "pages.truth-of-demons-and-intrusive-thoughts": {
-    "category": "production",
-    "path": "production/pages/truth-of-demons-and-intrusive-thoughts",
-    "en": 350,
-    "zh": 350,
-    "ja": 350,
-    "ko": 350,
-    "fr": 350,
-    "de": 350,
-    "es": 350,
-    "pt": 350,
-    "ar": 350,
-    "hi": 350
-  },
   "pages.victor-methodology-presentation": {
     "category": "production",
     "path": "production/pages/victor-methodology-presentation",
@@ -746,20 +856,6 @@
     "ar": 727,
     "hi": 727
   },
-  "pages.what-about-buddhism": {
-    "category": "production",
-    "path": "production/pages/what-about-buddhism",
-    "en": 65,
-    "zh": 65,
-    "ja": 65,
-    "ko": 65,
-    "fr": 65,
-    "de": 65,
-    "es": 65,
-    "pt": 65,
-    "ar": 65,
-    "hi": 65
-  },
   "pages.what-emerged-after": {
     "category": "production",
     "path": "production/pages/what-emerged-after",
@@ -779,11 +875,6 @@
     "path": "production/pages/what-was-used-against-you",
     "en": 99
   },
-  "pages.when-i-asked-a-bank-for-covenant-provision": {
-    "category": "production",
-    "path": "production/pages/when-i-asked-a-bank-for-covenant-provision",
-    "en": 51
-  },
   "pages.when-the-machine-assumed-beauty-needed-saving": {
     "category": "production",
     "path": "production/pages/when-the-machine-assumed-beauty-needed-saving",
@@ -802,20 +893,6 @@
     "category": "production",
     "path": "production/pages/when-they-called-god-a-risk",
     "en": 102
-  },
-  "pages.why-financial-freedom-is-harder-to-trust": {
-    "category": "production",
-    "path": "production/pages/why-financial-freedom-is-harder-to-trust",
-    "en": 469,
-    "zh": 469,
-    "ja": 469,
-    "ko": 469,
-    "fr": 469,
-    "de": 469,
-    "es": 469,
-    "pt": 469,
-    "ar": 469,
-    "hi": 469
   },
   "specimens": {
     "category": "demo",

@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 135,
+    "total": 137,
     "healthy": 4,
-    "attention": 124,
-    "critical": 7,
-    "sorted": 91,
-    "withFab": 123,
-    "readAloudApplicable": 128,
-    "withReadAloud": 128,
+    "attention": 125,
+    "critical": 8,
+    "sorted": 92,
+    "withFab": 124,
+    "readAloudApplicable": 129,
+    "withReadAloud": 129,
     "missingReadAloud": 0,
-    "withIdentity": 100,
-    "withScreenshots": 12,
-    "withMetaDescription": 101
+    "withIdentity": 101,
+    "withScreenshots": 13,
+    "withMetaDescription": 102
   },
   "pages": {
     "a-conversation-with-pastor-jacob": {
@@ -131,6 +131,98 @@
           "screenshot",
           "theme-effect"
         ]
+      }
+    },
+    "about-vextreme": {
+      "slug": "about-vextreme",
+      "title": "about-vextreme",
+      "surface": {
+        "kind": "institutional",
+        "state": "active"
+      },
+      "placement": {
+        "state": "institutional",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": true,
+        "godScript": false
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 1,
+        "shell": true,
+        "fab": false
+      },
+      "fab": {
+        "delivery": "not-applicable"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "shell"
+      },
+      "theme": {
+        "control": "page-owned",
+        "visibleStyles": true
+      },
+      "identity": {
+        "keyCount": 27,
+        "languages": {
+          "en": {
+            "translated": 27,
+            "total": 27,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 27,
+            "total": 27,
+            "state": "full"
+          },
+          "zh": {
+            "translated": 27,
+            "total": 27,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": false
+      },
+      "evidence": {
+        "screenshotLanguages": [
+          "en",
+          "ja",
+          "zh"
+        ],
+        "screenshotFiles": [
+          "docs/screenshots/about-vextreme-en-foundation-1440.png",
+          "docs/screenshots/about-vextreme-en-foundation-320.png",
+          "docs/screenshots/about-vextreme-en-foundation-768.png",
+          "docs/screenshots/about-vextreme-en-foundation-light-1440.png",
+          "docs/screenshots/about-vextreme-en-foundation-light-320.png",
+          "docs/screenshots/about-vextreme-en-foundation-light-768.png",
+          "docs/screenshots/about-vextreme-ja-foundation-1440.png",
+          "docs/screenshots/about-vextreme-ja-foundation-320.png",
+          "docs/screenshots/about-vextreme-ja-foundation-768.png",
+          "docs/screenshots/about-vextreme-ja-foundation-light-1440.png",
+          "docs/screenshots/about-vextreme-ja-foundation-light-320.png",
+          "docs/screenshots/about-vextreme-ja-foundation-light-768.png",
+          "docs/screenshots/about-vextreme-zh-foundation-1440.png",
+          "docs/screenshots/about-vextreme-zh-foundation-320.png",
+          "docs/screenshots/about-vextreme-zh-foundation-768.png",
+          "docs/screenshots/about-vextreme-zh-foundation-light-1440.png",
+          "docs/screenshots/about-vextreme-zh-foundation-light-320.png",
+          "docs/screenshots/about-vextreme-zh-foundation-light-768.png"
+        ]
+      },
+      "discovery": {
+        "metaDescription": "Vextreme is a public world of connected records, maps, methods, and working systems that helps people and AI understand what exists and continue without starting from zero."
+      },
+      "health": {
+        "state": "healthy",
+        "blockers": [],
+        "gaps": []
       }
     },
     "accountability-test-01": {
@@ -631,7 +723,52 @@
       "identity": {
         "keyCount": 72,
         "languages": {
+          "ar": {
+            "translated": 72,
+            "total": 72,
+            "state": "full"
+          },
+          "de": {
+            "translated": 72,
+            "total": 72,
+            "state": "full"
+          },
           "en": {
+            "translated": 72,
+            "total": 72,
+            "state": "full"
+          },
+          "es": {
+            "translated": 72,
+            "total": 72,
+            "state": "full"
+          },
+          "fr": {
+            "translated": 72,
+            "total": 72,
+            "state": "full"
+          },
+          "hi": {
+            "translated": 72,
+            "total": 72,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 72,
+            "total": 72,
+            "state": "full"
+          },
+          "ko": {
+            "translated": 72,
+            "total": 72,
+            "state": "full"
+          },
+          "pt": {
+            "translated": 72,
+            "total": 72,
+            "state": "full"
+          },
+          "zh": {
             "translated": 72,
             "total": 72,
             "state": "full"
@@ -647,6 +784,111 @@
       },
       "discovery": {
         "metaDescription": "Ascension &amp; Embodiment — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "bending-condominium-ocean-return": {
+      "slug": "bending-condominium-ocean-return",
+      "title": "The Bending Condominium Dream",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "convos_with_god",
+          "victors_record",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "page-owned",
+        "visibleStyles": true
+      },
+      "identity": {
+        "keyCount": 46,
+        "languages": {
+          "ar": {
+            "translated": 46,
+            "total": 46,
+            "state": "full"
+          },
+          "de": {
+            "translated": 46,
+            "total": 46,
+            "state": "full"
+          },
+          "en": {
+            "translated": 46,
+            "total": 46,
+            "state": "full"
+          },
+          "es": {
+            "translated": 46,
+            "total": 46,
+            "state": "full"
+          },
+          "fr": {
+            "translated": 46,
+            "total": 46,
+            "state": "full"
+          },
+          "hi": {
+            "translated": 46,
+            "total": 46,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 46,
+            "total": 46,
+            "state": "full"
+          },
+          "ko": {
+            "translated": 46,
+            "total": 46,
+            "state": "full"
+          },
+          "pt": {
+            "translated": 46,
+            "total": 46,
+            "state": "full"
+          },
+          "zh": {
+            "translated": 46,
+            "total": 46,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "A source-first reading of the preserved Bending Condominium third arc."
       },
       "health": {
         "state": "attention",
@@ -1190,56 +1432,56 @@
         "visibleStyles": false
       },
       "identity": {
-        "keyCount": 157,
+        "keyCount": 208,
         "languages": {
           "ar": {
-            "translated": 157,
-            "total": 157,
+            "translated": 208,
+            "total": 208,
             "state": "full"
           },
           "de": {
-            "translated": 157,
-            "total": 157,
+            "translated": 208,
+            "total": 208,
             "state": "full"
           },
           "en": {
-            "translated": 157,
-            "total": 157,
+            "translated": 208,
+            "total": 208,
             "state": "full"
           },
           "es": {
-            "translated": 157,
-            "total": 157,
+            "translated": 208,
+            "total": 208,
             "state": "full"
           },
           "fr": {
-            "translated": 157,
-            "total": 157,
+            "translated": 208,
+            "total": 208,
             "state": "full"
           },
           "hi": {
-            "translated": 157,
-            "total": 157,
+            "translated": 208,
+            "total": 208,
             "state": "full"
           },
           "ja": {
-            "translated": 157,
-            "total": 157,
+            "translated": 208,
+            "total": 208,
             "state": "full"
           },
           "ko": {
-            "translated": 157,
-            "total": 157,
+            "translated": 208,
+            "total": 208,
             "state": "full"
           },
           "pt": {
-            "translated": 157,
-            "total": 157,
+            "translated": 208,
+            "total": 208,
             "state": "full"
           },
           "zh": {
-            "translated": 157,
-            "total": 157,
+            "translated": 208,
+            "total": 208,
             "state": "full"
           }
         }
@@ -1404,7 +1646,52 @@
       "identity": {
         "keyCount": 154,
         "languages": {
+          "ar": {
+            "translated": 154,
+            "total": 154,
+            "state": "full"
+          },
+          "de": {
+            "translated": 154,
+            "total": 154,
+            "state": "full"
+          },
           "en": {
+            "translated": 154,
+            "total": 154,
+            "state": "full"
+          },
+          "es": {
+            "translated": 154,
+            "total": 154,
+            "state": "full"
+          },
+          "fr": {
+            "translated": 154,
+            "total": 154,
+            "state": "full"
+          },
+          "hi": {
+            "translated": 154,
+            "total": 154,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 154,
+            "total": 154,
+            "state": "full"
+          },
+          "ko": {
+            "translated": 154,
+            "total": 154,
+            "state": "full"
+          },
+          "pt": {
+            "translated": 154,
+            "total": 154,
+            "state": "full"
+          },
+          "zh": {
             "translated": 154,
             "total": 154,
             "state": "full"
@@ -1579,11 +1866,11 @@
         "visibleStyles": false
       },
       "identity": {
-        "keyCount": 120,
+        "keyCount": 279,
         "languages": {
           "en": {
-            "translated": 120,
-            "total": 120,
+            "translated": 279,
+            "total": 279,
             "state": "full"
           }
         }
@@ -2053,7 +2340,52 @@
       "identity": {
         "keyCount": 135,
         "languages": {
+          "ar": {
+            "translated": 135,
+            "total": 135,
+            "state": "full"
+          },
+          "de": {
+            "translated": 135,
+            "total": 135,
+            "state": "full"
+          },
           "en": {
+            "translated": 135,
+            "total": 135,
+            "state": "full"
+          },
+          "es": {
+            "translated": 135,
+            "total": 135,
+            "state": "full"
+          },
+          "fr": {
+            "translated": 135,
+            "total": 135,
+            "state": "full"
+          },
+          "hi": {
+            "translated": 135,
+            "total": 135,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 135,
+            "total": 135,
+            "state": "full"
+          },
+          "ko": {
+            "translated": 135,
+            "total": 135,
+            "state": "full"
+          },
+          "pt": {
+            "translated": 135,
+            "total": 135,
+            "state": "full"
+          },
+          "zh": {
             "translated": 135,
             "total": 135,
             "state": "full"
@@ -2939,56 +3271,56 @@
         "visibleStyles": false
       },
       "identity": {
-        "keyCount": 115,
+        "keyCount": 181,
         "languages": {
           "ar": {
-            "translated": 115,
-            "total": 115,
+            "translated": 181,
+            "total": 181,
             "state": "full"
           },
           "de": {
-            "translated": 115,
-            "total": 115,
+            "translated": 181,
+            "total": 181,
             "state": "full"
           },
           "en": {
-            "translated": 115,
-            "total": 115,
+            "translated": 181,
+            "total": 181,
             "state": "full"
           },
           "es": {
-            "translated": 115,
-            "total": 115,
+            "translated": 181,
+            "total": 181,
             "state": "full"
           },
           "fr": {
-            "translated": 115,
-            "total": 115,
+            "translated": 181,
+            "total": 181,
             "state": "full"
           },
           "hi": {
-            "translated": 115,
-            "total": 115,
+            "translated": 181,
+            "total": 181,
             "state": "full"
           },
           "ja": {
-            "translated": 115,
-            "total": 115,
+            "translated": 181,
+            "total": 181,
             "state": "full"
           },
           "ko": {
-            "translated": 115,
-            "total": 115,
+            "translated": 181,
+            "total": 181,
             "state": "full"
           },
           "pt": {
-            "translated": 115,
-            "total": 115,
+            "translated": 181,
+            "total": 181,
             "state": "full"
           },
           "zh": {
-            "translated": 115,
-            "total": 115,
+            "translated": 181,
+            "total": 181,
             "state": "full"
           }
         }
@@ -3001,7 +3333,7 @@
         "screenshotLanguages": []
       },
       "discovery": {
-        "metaDescription": "God to speak of the Truth of Love — repository-native preserved content."
+        "metaDescription": "God to speak of the Truth of Love — presentation and source transcript preserved as two switchable source lineages in one reading experience."
       },
       "health": {
         "state": "attention",
@@ -4987,7 +5319,7 @@
     },
     "recognizing-life-receiving-abundance": {
       "slug": "recognizing-life-receiving-abundance",
-      "title": "Recognizing Life, Receiving Abundance",
+      "title": "The Sand Dollar on the Shore",
       "placement": {
         "state": "sorted",
         "arcKeys": [
@@ -5020,7 +5352,52 @@
       "identity": {
         "keyCount": 72,
         "languages": {
+          "ar": {
+            "translated": 72,
+            "total": 72,
+            "state": "full"
+          },
+          "de": {
+            "translated": 72,
+            "total": 72,
+            "state": "full"
+          },
           "en": {
+            "translated": 72,
+            "total": 72,
+            "state": "full"
+          },
+          "es": {
+            "translated": 72,
+            "total": 72,
+            "state": "full"
+          },
+          "fr": {
+            "translated": 72,
+            "total": 72,
+            "state": "full"
+          },
+          "hi": {
+            "translated": 72,
+            "total": 72,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 72,
+            "total": 72,
+            "state": "full"
+          },
+          "ko": {
+            "translated": 72,
+            "total": 72,
+            "state": "full"
+          },
+          "pt": {
+            "translated": 72,
+            "total": 72,
+            "state": "full"
+          },
+          "zh": {
             "translated": 72,
             "total": 72,
             "state": "full"
@@ -5140,7 +5517,52 @@
       "identity": {
         "keyCount": 124,
         "languages": {
+          "ar": {
+            "translated": 124,
+            "total": 124,
+            "state": "full"
+          },
+          "de": {
+            "translated": 124,
+            "total": 124,
+            "state": "full"
+          },
           "en": {
+            "translated": 124,
+            "total": 124,
+            "state": "full"
+          },
+          "es": {
+            "translated": 124,
+            "total": 124,
+            "state": "full"
+          },
+          "fr": {
+            "translated": 124,
+            "total": 124,
+            "state": "full"
+          },
+          "hi": {
+            "translated": 124,
+            "total": 124,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 124,
+            "total": 124,
+            "state": "full"
+          },
+          "ko": {
+            "translated": 124,
+            "total": 124,
+            "state": "full"
+          },
+          "pt": {
+            "translated": 124,
+            "total": 124,
+            "state": "full"
+          },
+          "zh": {
             "translated": 124,
             "total": 124,
             "state": "full"
@@ -5256,56 +5678,56 @@
         "visibleStyles": false
       },
       "identity": {
-        "keyCount": 143,
+        "keyCount": 226,
         "languages": {
           "ar": {
-            "translated": 143,
-            "total": 143,
+            "translated": 226,
+            "total": 226,
             "state": "full"
           },
           "de": {
-            "translated": 143,
-            "total": 143,
+            "translated": 226,
+            "total": 226,
             "state": "full"
           },
           "en": {
-            "translated": 143,
-            "total": 143,
+            "translated": 226,
+            "total": 226,
             "state": "full"
           },
           "es": {
-            "translated": 143,
-            "total": 143,
+            "translated": 226,
+            "total": 226,
             "state": "full"
           },
           "fr": {
-            "translated": 143,
-            "total": 143,
+            "translated": 226,
+            "total": 226,
             "state": "full"
           },
           "hi": {
-            "translated": 143,
-            "total": 143,
+            "translated": 226,
+            "total": 226,
             "state": "full"
           },
           "ja": {
-            "translated": 143,
-            "total": 143,
+            "translated": 226,
+            "total": 226,
             "state": "full"
           },
           "ko": {
-            "translated": 143,
-            "total": 143,
+            "translated": 226,
+            "total": 226,
             "state": "full"
           },
           "pt": {
-            "translated": 143,
-            "total": 143,
+            "translated": 226,
+            "total": 226,
             "state": "full"
           },
           "zh": {
-            "translated": 143,
-            "total": 143,
+            "translated": 226,
+            "total": 226,
             "state": "full"
           }
         }
@@ -5318,7 +5740,7 @@
         "screenshotLanguages": []
       },
       "discovery": {
-        "metaDescription": "Scopes of God — repository-native preserved content."
+        "metaDescription": "Scopes of God — presentation and source transcript preserved as two switchable source lineages in one reading experience."
       },
       "health": {
         "state": "attention",
@@ -6181,11 +6603,11 @@
         "visibleStyles": false
       },
       "identity": {
-        "keyCount": 162,
+        "keyCount": 673,
         "languages": {
           "en": {
-            "translated": 162,
-            "total": 162,
+            "translated": 673,
+            "total": 673,
             "state": "full"
           }
         }
@@ -6673,7 +7095,52 @@
       "identity": {
         "keyCount": 440,
         "languages": {
+          "ar": {
+            "translated": 440,
+            "total": 440,
+            "state": "full"
+          },
+          "de": {
+            "translated": 440,
+            "total": 440,
+            "state": "full"
+          },
           "en": {
+            "translated": 440,
+            "total": 440,
+            "state": "full"
+          },
+          "es": {
+            "translated": 440,
+            "total": 440,
+            "state": "full"
+          },
+          "fr": {
+            "translated": 440,
+            "total": 440,
+            "state": "full"
+          },
+          "hi": {
+            "translated": 440,
+            "total": 440,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 440,
+            "total": 440,
+            "state": "full"
+          },
+          "ko": {
+            "translated": 440,
+            "total": 440,
+            "state": "full"
+          },
+          "pt": {
+            "translated": 440,
+            "total": 440,
+            "state": "full"
+          },
+          "zh": {
             "translated": 440,
             "total": 440,
             "state": "full"
@@ -7741,7 +8208,52 @@
       "identity": {
         "keyCount": 134,
         "languages": {
+          "ar": {
+            "translated": 134,
+            "total": 134,
+            "state": "full"
+          },
+          "de": {
+            "translated": 134,
+            "total": 134,
+            "state": "full"
+          },
           "en": {
+            "translated": 134,
+            "total": 134,
+            "state": "full"
+          },
+          "es": {
+            "translated": 134,
+            "total": 134,
+            "state": "full"
+          },
+          "fr": {
+            "translated": 134,
+            "total": 134,
+            "state": "full"
+          },
+          "hi": {
+            "translated": 134,
+            "total": 134,
+            "state": "full"
+          },
+          "ja": {
+            "translated": 134,
+            "total": 134,
+            "state": "full"
+          },
+          "ko": {
+            "translated": 134,
+            "total": 134,
+            "state": "full"
+          },
+          "pt": {
+            "translated": 134,
+            "total": 134,
+            "state": "full"
+          },
+          "zh": {
             "translated": 134,
             "total": 134,
             "state": "full"
@@ -8411,56 +8923,56 @@
         "visibleStyles": false
       },
       "identity": {
-        "keyCount": 350,
+        "keyCount": 458,
         "languages": {
           "ar": {
-            "translated": 350,
-            "total": 350,
+            "translated": 458,
+            "total": 458,
             "state": "full"
           },
           "de": {
-            "translated": 350,
-            "total": 350,
+            "translated": 458,
+            "total": 458,
             "state": "full"
           },
           "en": {
-            "translated": 350,
-            "total": 350,
+            "translated": 458,
+            "total": 458,
             "state": "full"
           },
           "es": {
-            "translated": 350,
-            "total": 350,
+            "translated": 458,
+            "total": 458,
             "state": "full"
           },
           "fr": {
-            "translated": 350,
-            "total": 350,
+            "translated": 458,
+            "total": 458,
             "state": "full"
           },
           "hi": {
-            "translated": 350,
-            "total": 350,
+            "translated": 458,
+            "total": 458,
             "state": "full"
           },
           "ja": {
-            "translated": 350,
-            "total": 350,
+            "translated": 458,
+            "total": 458,
             "state": "full"
           },
           "ko": {
-            "translated": 350,
-            "total": 350,
+            "translated": 458,
+            "total": 458,
             "state": "full"
           },
           "pt": {
-            "translated": 350,
-            "total": 350,
+            "translated": 458,
+            "total": 458,
             "state": "full"
           },
           "zh": {
-            "translated": 350,
-            "total": 350,
+            "translated": 458,
+            "total": 458,
             "state": "full"
           }
         }
@@ -8473,7 +8985,7 @@
         "screenshotLanguages": []
       },
       "discovery": {
-        "metaDescription": "Truth of Demons and Intrusive Thoughts — repository-native preserved content."
+        "metaDescription": "Truth of Demons and Intrusive Thoughts — presentation and source transcript preserved as two switchable source lineages in one reading experience."
       },
       "health": {
         "state": "attention",
@@ -8556,13 +9068,13 @@
         "arcKeys": []
       },
       "runtime": {
-        "shell": false,
+        "shell": true,
         "godScript": false
       },
       "navigation": {
         "navigable": true,
-        "staticHubLinks": 2,
-        "shell": false,
+        "staticHubLinks": 0,
+        "shell": true,
         "fab": false
       },
       "fab": {
@@ -8570,28 +9082,28 @@
       },
       "readAloud": {
         "applicable": true,
-        "delivery": "page-owned"
+        "delivery": "shell"
       },
       "theme": {
         "control": "page-owned",
         "visibleStyles": true
       },
       "identity": {
-        "keyCount": 129,
+        "keyCount": 44,
         "languages": {
           "en": {
-            "translated": 129,
-            "total": 129,
+            "translated": 44,
+            "total": 44,
             "state": "full"
           },
           "ja": {
-            "translated": 129,
-            "total": 129,
+            "translated": 44,
+            "total": 44,
             "state": "full"
           },
           "zh": {
-            "translated": 129,
-            "total": 129,
+            "translated": 44,
+            "total": 44,
             "state": "full"
           }
         }
@@ -8628,7 +9140,7 @@
         ]
       },
       "discovery": {
-        "metaDescription": "How support can protect the open-source work behind Vextreme and VexLife, what support does not purchase, and why every public route remains held until independently verified."
+        "metaDescription": "Support Vextreme and VexLife through five voluntary Stripe Checkout options. Support does not buy access, services, ownership, priority, or authority."
       },
       "health": {
         "state": "healthy",
@@ -8822,12 +9334,8 @@
     "vextreme-home": {
       "slug": "vextreme-home",
       "title": "vextreme-home",
-      "surface": {
-        "kind": "institutional",
-        "state": "active"
-      },
       "placement": {
-        "state": "institutional",
+        "state": "uncurated",
         "arcKeys": []
       },
       "runtime": {
@@ -8835,39 +9343,29 @@
         "godScript": false
       },
       "navigation": {
-        "navigable": true,
-        "staticHubLinks": 2,
+        "navigable": false,
+        "staticHubLinks": 0,
         "shell": false,
         "fab": false
       },
       "fab": {
-        "delivery": "not-applicable"
+        "delivery": "missing"
       },
       "readAloud": {
-        "applicable": true,
-        "delivery": "page-owned"
+        "applicable": false,
+        "delivery": "not-applicable"
       },
       "theme": {
-        "control": "page-owned",
-        "visibleStyles": true
+        "control": "none",
+        "visibleStyles": false
       },
       "identity": {
-        "keyCount": 49,
+        "keyCount": 0,
         "languages": {
           "en": {
-            "translated": 49,
-            "total": 49,
-            "state": "full"
-          },
-          "ja": {
-            "translated": 49,
-            "total": 49,
-            "state": "full"
-          },
-          "zh": {
-            "translated": 49,
-            "total": 49,
-            "state": "full"
+            "translated": 0,
+            "total": 0,
+            "state": "none"
           }
         }
       },
@@ -8882,33 +9380,39 @@
           "zh"
         ],
         "screenshotFiles": [
-          "docs/screenshots/vextreme-home-en-foundation-1440.png",
-          "docs/screenshots/vextreme-home-en-foundation-320.png",
-          "docs/screenshots/vextreme-home-en-foundation-768.png",
-          "docs/screenshots/vextreme-home-en-foundation-light-1440.png",
-          "docs/screenshots/vextreme-home-en-foundation-light-320.png",
-          "docs/screenshots/vextreme-home-en-foundation-light-768.png",
-          "docs/screenshots/vextreme-home-ja-foundation-1440.png",
-          "docs/screenshots/vextreme-home-ja-foundation-320.png",
-          "docs/screenshots/vextreme-home-ja-foundation-768.png",
-          "docs/screenshots/vextreme-home-ja-foundation-light-1440.png",
-          "docs/screenshots/vextreme-home-ja-foundation-light-320.png",
-          "docs/screenshots/vextreme-home-ja-foundation-light-768.png",
-          "docs/screenshots/vextreme-home-zh-foundation-1440.png",
-          "docs/screenshots/vextreme-home-zh-foundation-320.png",
-          "docs/screenshots/vextreme-home-zh-foundation-768.png",
-          "docs/screenshots/vextreme-home-zh-foundation-light-1440.png",
-          "docs/screenshots/vextreme-home-zh-foundation-light-320.png",
-          "docs/screenshots/vextreme-home-zh-foundation-light-768.png"
+          "https://vgong24.github.io/Vextreme-Assets/evidence/screenshots/vextreme/vextreme-home/en/foundation-light/1440/45924021b0b925585128a25e64978728a97d75db65b263ed53a1754b54a4f344.png",
+          "https://vgong24.github.io/Vextreme-Assets/evidence/screenshots/vextreme/vextreme-home/en/foundation-light/320/a99ec816c74f59e77dd99be07245bc6d938a358448f8e6d45ef4748cbb985a76.png",
+          "https://vgong24.github.io/Vextreme-Assets/evidence/screenshots/vextreme/vextreme-home/en/foundation-light/768/f97cb57e04440810ad0d7841151f5d5932237b655c3af4de75812378c89a09d1.png",
+          "https://vgong24.github.io/Vextreme-Assets/evidence/screenshots/vextreme/vextreme-home/en/foundation/1440/76e40ae5b173f1c6a62cf547861c97e85a355ccd19a18d3accfd0c9f6aaaa60f.png",
+          "https://vgong24.github.io/Vextreme-Assets/evidence/screenshots/vextreme/vextreme-home/en/foundation/320/776c71706bbcbccb69c74d19ea05c89d793d9ea67eda5e5d8967fb607dfdc783.png",
+          "https://vgong24.github.io/Vextreme-Assets/evidence/screenshots/vextreme/vextreme-home/en/foundation/768/12606b9ff620350d7cf9a9386cb4a32602b00a447c06db76489cb99b9b1dedba.png",
+          "https://vgong24.github.io/Vextreme-Assets/evidence/screenshots/vextreme/vextreme-home/ja/foundation-light/1440/67fdde3a989f717d08721cf95f56164dd687046857874e6d3769f1990f3d8f34.png",
+          "https://vgong24.github.io/Vextreme-Assets/evidence/screenshots/vextreme/vextreme-home/ja/foundation-light/320/acf336a25cb26d608254c610db93bf492f09d26e86a1300566de72dca0913bba.png",
+          "https://vgong24.github.io/Vextreme-Assets/evidence/screenshots/vextreme/vextreme-home/ja/foundation-light/768/3500a29e05c28783eee1690222cf339c0cf53b9212bf01c756a76dec43e0b274.png",
+          "https://vgong24.github.io/Vextreme-Assets/evidence/screenshots/vextreme/vextreme-home/ja/foundation/1440/1363d71785b29baf5dbbff57e3d9390462d2bc6a311ee00cee5fb10ffd043c4e.png",
+          "https://vgong24.github.io/Vextreme-Assets/evidence/screenshots/vextreme/vextreme-home/ja/foundation/320/1af75533d6a42c1aeeae5b80f76dd777deb7a525bdc7a56ac2c5b1762d83adbf.png",
+          "https://vgong24.github.io/Vextreme-Assets/evidence/screenshots/vextreme/vextreme-home/ja/foundation/768/c3405b5d9491c47272afb4e6fd9cf030b0dce69b5d7d356471f7127001fc0c25.png",
+          "https://vgong24.github.io/Vextreme-Assets/evidence/screenshots/vextreme/vextreme-home/zh/foundation-light/1440/7752faca39e8ca9c7765f13cc17a4054873d536a1167d10ac462c003b7b0d56b.png",
+          "https://vgong24.github.io/Vextreme-Assets/evidence/screenshots/vextreme/vextreme-home/zh/foundation-light/320/074487a90ffb5bbde3d7f2ceca75a54d999c9af23acdff28f6949cdee91ac423.png",
+          "https://vgong24.github.io/Vextreme-Assets/evidence/screenshots/vextreme/vextreme-home/zh/foundation-light/768/24ff8c2c6cecb3db9a4bbbe065209c1b81cbaab02bd00070e84d591e5e071b8b.png",
+          "https://vgong24.github.io/Vextreme-Assets/evidence/screenshots/vextreme/vextreme-home/zh/foundation/1440/a119fc74ff04b5a75249cbc0f970383dbf4b529f984be21f1979b28d5e3f95c9.png",
+          "https://vgong24.github.io/Vextreme-Assets/evidence/screenshots/vextreme/vextreme-home/zh/foundation/320/00d9e6e5dc0ed66c9bc3a35c4e6e2c5626e324a9298e129eff8fcf0748252cf4.png",
+          "https://vgong24.github.io/Vextreme-Assets/evidence/screenshots/vextreme/vextreme-home/zh/foundation/768/49db37da6f34d6733d7249319f4f8b906e90dea430d37849291e7b6428b85835.png"
         ]
       },
       "discovery": {
-        "metaDescription": "Vextreme is an institutional template: culture, maps, archives, evidence, and structures that make complex work perceivable, accountable, and continuable across people, tools, and AI."
+        "metaDescription": ""
       },
       "health": {
-        "state": "healthy",
-        "blockers": [],
-        "gaps": []
+        "state": "critical",
+        "blockers": [
+          "isolated"
+        ],
+        "gaps": [
+          "fab",
+          "uncurated",
+          "identity"
+        ]
       }
     },
     "victor-methodology-presentation": {
@@ -9234,56 +9738,56 @@
         "visibleStyles": false
       },
       "identity": {
-        "keyCount": 65,
+        "keyCount": 144,
         "languages": {
           "ar": {
-            "translated": 65,
-            "total": 65,
+            "translated": 144,
+            "total": 144,
             "state": "full"
           },
           "de": {
-            "translated": 65,
-            "total": 65,
+            "translated": 144,
+            "total": 144,
             "state": "full"
           },
           "en": {
-            "translated": 65,
-            "total": 65,
+            "translated": 144,
+            "total": 144,
             "state": "full"
           },
           "es": {
-            "translated": 65,
-            "total": 65,
+            "translated": 144,
+            "total": 144,
             "state": "full"
           },
           "fr": {
-            "translated": 65,
-            "total": 65,
+            "translated": 144,
+            "total": 144,
             "state": "full"
           },
           "hi": {
-            "translated": 65,
-            "total": 65,
+            "translated": 144,
+            "total": 144,
             "state": "full"
           },
           "ja": {
-            "translated": 65,
-            "total": 65,
+            "translated": 144,
+            "total": 144,
             "state": "full"
           },
           "ko": {
-            "translated": 65,
-            "total": 65,
+            "translated": 144,
+            "total": 144,
             "state": "full"
           },
           "pt": {
-            "translated": 65,
-            "total": 65,
+            "translated": 144,
+            "total": 144,
             "state": "full"
           },
           "zh": {
-            "translated": 65,
-            "total": 65,
+            "translated": 144,
+            "total": 144,
             "state": "full"
           }
         }
@@ -9296,7 +9800,7 @@
         "screenshotLanguages": []
       },
       "discovery": {
-        "metaDescription": "Now what about Buddhism? — repository-native preserved content."
+        "metaDescription": "Now what about Buddhism? — presentation and source transcript preserved as two switchable source lineages in one reading experience."
       },
       "health": {
         "state": "attention",
@@ -9607,11 +10111,11 @@
         "visibleStyles": false
       },
       "identity": {
-        "keyCount": 51,
+        "keyCount": 128,
         "languages": {
           "en": {
-            "translated": 51,
-            "total": 51,
+            "translated": 128,
+            "total": 128,
             "state": "full"
           }
         }
@@ -9829,56 +10333,56 @@
         "visibleStyles": false
       },
       "identity": {
-        "keyCount": 469,
+        "keyCount": 575,
         "languages": {
           "ar": {
-            "translated": 469,
-            "total": 469,
+            "translated": 575,
+            "total": 575,
             "state": "full"
           },
           "de": {
-            "translated": 469,
-            "total": 469,
+            "translated": 575,
+            "total": 575,
             "state": "full"
           },
           "en": {
-            "translated": 469,
-            "total": 469,
+            "translated": 575,
+            "total": 575,
             "state": "full"
           },
           "es": {
-            "translated": 469,
-            "total": 469,
+            "translated": 575,
+            "total": 575,
             "state": "full"
           },
           "fr": {
-            "translated": 469,
-            "total": 469,
+            "translated": 575,
+            "total": 575,
             "state": "full"
           },
           "hi": {
-            "translated": 469,
-            "total": 469,
+            "translated": 575,
+            "total": 575,
             "state": "full"
           },
           "ja": {
-            "translated": 469,
-            "total": 469,
+            "translated": 575,
+            "total": 575,
             "state": "full"
           },
           "ko": {
-            "translated": 469,
-            "total": 469,
+            "translated": 575,
+            "total": 575,
             "state": "full"
           },
           "pt": {
-            "translated": 469,
-            "total": 469,
+            "translated": 575,
+            "total": 575,
             "state": "full"
           },
           "zh": {
-            "translated": 469,
-            "total": 469,
+            "translated": 575,
+            "total": 575,
             "state": "full"
           }
         }
@@ -9891,7 +10395,7 @@
         "screenshotLanguages": []
       },
       "discovery": {
-        "metaDescription": "Why Financial Freedom is Harder to Trust — repository-native preserved content."
+        "metaDescription": "Why Financial Freedom is Harder to Trust — presentation and source transcript preserved as two switchable source lineages in one reading experience."
       },
       "health": {
         "state": "attention",
