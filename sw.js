@@ -6,6 +6,7 @@
 'use strict';
 
 var CACHE_NAME    = 'vextreme-v1-26f16d0cb02d';
+var FETCH_MODE    = 'freshness-first';
 var PRECACHE_URLS = [
   "/Vextreme/dist/vextreme-a-conversation-with-pastor-jacob.js",
   "/Vextreme/dist/vextreme-ai-cheat-sheet.js",
@@ -140,7 +141,7 @@ self.addEventListener('activate', function (event) {
     caches.keys().then(function (keys) {
       return Promise.all(
         keys
-          .filter(function (key) { return key !== CACHE_NAME; })
+          .filter(function (key) { return key.indexOf('vextreme-v1-') === 0 && key !== CACHE_NAME; })
           .map(function (key)    { return caches.delete(key); })
       );
     }).then(function () {
@@ -149,13 +150,28 @@ self.addEventListener('activate', function (event) {
   );
 });
 
-/* On fetch: cache-first for pre-cached assets, network for everything else.
+/* On fetch: freshness-first for site-owned pages/assets during active development;
+ * cache-first remains available for offline-oriented delivery.
  * HTML pages are NEVER intercepted — they must always be fresh.
  * Non-GET requests pass through untouched. */
 self.addEventListener('fetch', function (event) {
   if (event.request.method !== 'GET') return;
 
   var accept = event.request.headers.get('accept') || '';
+  if (FETCH_MODE === 'freshness-first') {
+    var url = new URL(event.request.url);
+    if (url.origin !== self.location.origin || url.pathname.indexOf('/Vextreme/') !== 0) return;
+    // Bypass the service-worker and HTTP caches for current Vextreme pages/assets.
+    event.respondWith(
+      fetch(event.request, { cache: 'no-store' }).catch(function () {
+        // Offline fallback only for pre-cached assets, never stale HTML.
+        if (event.request.mode === 'navigate' || accept.indexOf('text/html') !== -1) return Response.error();
+        return caches.match(event.request).then(function (cached) { return cached || Response.error(); });
+      })
+    );
+    return;
+  }
+
   if (accept.indexOf('text/html') !== -1) return; // HTML: always fresh
 
   event.respondWith(
