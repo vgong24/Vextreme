@@ -13,11 +13,29 @@ function read(rel) {
   return fs.readFileSync(path.join(ROOT, rel), 'utf8').replace(/\r\n/g, '\n');
 }
 
+function exchangeHeaderPattern() {
+  const reader = read('components/record-reader.js');
+  const line = reader.split('\n').find(value => value.includes('var m=parts[i].match('));
+  assert.ok(line, 'shared reader exchange parser must remain discoverable');
+  const start = line.indexOf('.match(') + '.match('.length;
+  const end = line.lastIndexOf(');');
+  assert.ok(end > start, 'shared reader exchange parser regex must remain intact');
+  return Function('"use strict"; return ' + line.slice(start, end) + ';')();
+}
+
+test('RECORD-READER-THIRD-CONSUMER: shared parser accepts bare and source-supported titled exchange headings', () => {
+  const heading = exchangeHeaderPattern();
+  assert.match('01\nbody', heading);
+  assert.match('01 — Dream\nbody', heading);
+  assert.match('06 — Instagram, rivers, dams, and beach replenishment (end boundary)\nbody', heading);
+  assert.doesNotMatch('01 Dream\nbody', heading);
+});
+
 test('RECORD-READER-THIRD-CONSUMER: third arc consumes the shared controller and exact frozen source', () => {
   const page = read('pages/' + SLUG + '.html');
   assert.match(page, new RegExp(SOURCE_HEAD));
   assert.match(page, /data-reader-template="conversation-witness-reader\/v1"/);
-  assert.match(page, /src="\.\.\/components\/record-reader\.js"/);
+  assert.match(page, /src="\\.\\.\\/components\\/record-reader\\.js\\?v=7c2f2da43153"/);
   assert.match(page, /VexRecordReader\.mount\(/);
   assert.doesNotMatch(page, /function renderBlocks\(lines\)/);
   assert.doesNotMatch(page, /witnessUrl:/);
