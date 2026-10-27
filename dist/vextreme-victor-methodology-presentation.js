@@ -15,7 +15,7 @@
   /* Scope + category globals for fab-lang compatibility */
   window.VEX_STRING_SCOPES    = ["pages.victor-methodology-presentation"];
   window.VEX_STRING_CATEGORY  = "production";
-  window.VEX_SUPPORTED_LANGS  = ["en","zh"];
+  window.VEX_SUPPORTED_LANGS  = ["en","ar","de","es","fr","hi","ja","ko","pt","zh"];
 
   /* Arc-chunked bundling pilot (od-001/td-006) — one fetch per language
      instead of an N-way scope fan-out. fab-lang.js checks this first. */
