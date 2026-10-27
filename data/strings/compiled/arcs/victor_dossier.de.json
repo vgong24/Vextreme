@@ -110,5 +110,212 @@
   },
   "common.status.read-aloud-none": {
     "text": "Kein vorlesbarer Text gefunden."
+  },
+  "pages.victor-methodology-presentation.header.eyebrow": {
+    "text": "Engineering-Dossier · 2021–2026 · DOC-ID: VG-DOSSIER-v2.1"
+  },
+  "pages.victor-methodology-presentation.header.thesis": {
+    "text": "Jede Stelle finden, an der Menschen zu Annahmen gezwungen sind — und jede Annahme durch eine Karte ersetzen, die sie sicher macht."
+  },
+  "pages.victor-methodology-presentation.header.id-line": {
+    "text": "Senior Software Engineer II · Dexcom (Medizinprodukte, 5 Jahre) · Lean Six Sigma Green Belt · Architekt für KI-Kollaborationssysteme"
+  },
+  "pages.victor-methodology-presentation.header.stamp-big": {
+    "text": "×6"
+  },
+  "pages.victor-methodology-presentation.header.stamp-small": {
+    "text": "BEWIESEN"
+  },
+  "pages.victor-methodology-presentation.section-proofs.heading": {
+    "text": "Eine Methode, sechs Beweise"
+  },
+  "pages.victor-methodology-presentation.section-proofs.intro": {
+    "text": "Über fünf Jahre in einem Medizinprodukteunternehmen — wo Softwarequalität regulatorisches Gewicht und Bedeutung für die Patientensicherheit trägt — wurde derselbe Engineering-Schritt auf sechs unterschiedliche Probleme in wachsendem Maßstab angewandt. Jedes Mal wurde manuelle Arbeit „an der Oberfläche“ durch eine gepflegte Karte ersetzt, die Ebenen strukturell verbindet, sodass Systeme nicht unbemerkt auseinanderdriften können."
+  },
+  "pages.victor-methodology-presentation.proof-organization-knowledge-map.year": {
+    "text": "JAHRE 1–5 · AKTIV"
+  },
+  "pages.victor-methodology-presentation.proof-organization-knowledge-map.title": {
+    "text": "Die Organisation selbst kartieren — die lebende Karte"
+  },
+  "pages.victor-methodology-presentation.proof-organization-knowledge-map.body": {
+    "text": "Angekommen ohne Karte: keine Kanäle zwischen Android-Entwicklern, keine Foren, kein Verzeichnis, wo irgendetwas zu finden war. Zuerst die menschliche Infrastruktur aufgebaut — ein zweiwöchentliches Android-Forum mit offenem Austausch und Lunch-and-Learns zu Bugs und Innovation; ein Confluence, das die Organisation kartiert (Repos, Dokumentation, Dashboards einschließlich VnV-Testwerkzeugen); direkter Entwicklerzugang zu Testwerkzeugen, damit Engineers sofort debuggen können, statt die Zeit anderer zu beanspruchen; später XML→Jetpack-Compose-Migrationsleitfäden und eine „inherit-the-base“-UI-Doktrin, die inkonsistente Neuimplementierungen beseitigte. Kein einmaliges Artefakt: eine lebende Seite, über die gesamten fünf Jahre erweitert und gepflegt — frühe Einträge wie die Organisationskarte, späte Einträge wie die Compose-Leitfäden, eine durchgehend aktuelle Quelle. Kommunikation vom Publikum her gedacht — einschließlich eines „3D“-Boards der Fragment-/Navgraph-Hierarchie, auf dem jede Ebene ihre Verantwortung und Verbindungen als schnell erfassbares Muster zeigt."
+  },
+  "pages.victor-methodology-presentation.proof-organization-knowledge-map.result": {
+    "text": "Ursprung der Methodik und Belastungstest zugleich: eine Karte von Menschen und Wissen, fünf Jahre lang lebendig gehalten."
+  },
+  "pages.victor-methodology-presentation.proof-bulk-data-logging.year": {
+    "text": "JAHR 1"
+  },
+  "pages.victor-methodology-presentation.proof-bulk-data-logging.title": {
+    "text": "Analytics, die nicht driften können — BulkDataLogging"
+  },
+  "pages.victor-methodology-presentation.proof-bulk-data-logging.body": {
+    "text": "Handgeschriebenen Analytics-Code auf jedem Screen durch eine zentrale Karte (ScreenName / ScreenMapper / ButtonName / MetaData) ersetzt, die Anzeige-, Klick-, Dauer- und Eingabeereignisse abdeckt. Wird ein UI-Element gelöscht, verschwindet sein Logging-Eintrag mit ihm — Analytics und UI sind strukturell gebunden."
+  },
+  "pages.victor-methodology-presentation.proof-bulk-data-logging.result": {
+    "text": "Ereignisprotokollierung auf Medizintechnik-Niveau mit struktureller Integrität, organisationsweit."
+  },
+  "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.year": {
+    "text": "JAHR 2"
+  },
+  "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.title": {
+    "text": "Übersetzungen in beide Richtungen navigierbar"
+  },
+  "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.body": {
+    "text": "Das Kartierungsprinzip auf Lokalisierung erweitert: jede Zeichenfolge vom Code zu jeder Sprache und zurück nachvollziehbar, über Android, iOS und Design hinweg — „Wo wird dieser Text verwendet?“ wird strukturell beantwortet statt durch Stammeswissen."
+  },
+  "pages.victor-methodology-presentation.proof-bidirectional-translation-traceability.result": {
+    "text": "Grundlage für die unten beschriebene Lokalisierungstransformation."
+  },
+  "pages.victor-methodology-presentation.proof-compound-safety-bug-map.year": {
+    "text": "MITTE"
+  },
+  "pages.victor-methodology-presentation.proof-compound-safety-bug-map.title": {
+    "text": "Der zusammengesetzte Fehler, den niemand reproduzieren konnte"
+  },
+  "pages.victor-methodology-presentation.proof-compound-safety-bug-map.body": {
+    "text": "Eine fehlende Warnung bei niedrigem Glukosewert — kritisch für die Patientensicherheit — wurde durch zwei zusammenwirkende Defekte in den Systemen dreier Teams verursacht, wobei einer die Beweise für den anderen löschte. Zur Lösung musste zunächst die fehlende systemübergreifende Karte von Hand erstellt, Code auf SDK-Ebene instrumentiert und innerhalb eines eintägigen Fensters Reproduktionsschritte extrahiert werden, bevor der einzige Zeuge in Urlaub ging. Grundursache: Datenbankindizes wurden ohne umschließende @Transaction aufgebaut — eine unsichtbare Abwesenheit."
+  },
+  "pages.victor-methodology-presentation.proof-compound-safety-bug-map.result": {
+    "text": "Die Terrain-Karte ließ Senior-Architekten Systembeziehungen erkennen, die niemand zuvor gesehen hatte. Fix ausgeliefert; Lektion institutionalisiert."
+  },
+  "pages.victor-methodology-presentation.proof-localization-pipeline.year": {
+    "text": "JAHRE 3–4"
+  },
+  "pages.victor-methodology-presentation.proof-localization-pipeline.title": {
+    "text": "Lokalisierung: 6 Monate → 2 Wochen"
+  },
+  "pages.victor-methodology-presentation.proof-localization-pipeline.body": {
+    "text": "Im Rahmen einer von Dexcom unterstützten Lean-Six-Sigma-Arbeit fragmentierte Android-/iOS-Stringstrukturen vereinheitlicht und die Übersetzungspipeline neu aufgebaut — anschließend das kostenpflichtige Vendor-Tool vollständig aus dem Ablauf entfernt, mit einer einzigen Source of Truth, die alle Dokumente reproduzierbar und byte-identisch neu erzeugt, weil jede Bedingung kartiert statt angenommen wurde."
+  },
+  "pages.victor-methodology-presentation.proof-localization-pipeline.metric": {
+    "text": "6 Mon. → 2 Wo."
+  },
+  "pages.victor-methodology-presentation.proof-localization-pipeline.metric-label": {
+    "text": "Lean-Zykluszeit — rechnerischer Wert in Millionenhöhe"
+  },
+  "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.year": {
+    "text": "JAHRE 3–4"
+  },
+  "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.title": {
+    "text": "Der organisatorische Join-Key — UIElementKey"
+  },
+  "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.body": {
+    "text": "Engineering, UX-Design und Qualitätssicherung hatten jeweils IDs, die nur im eigenen Silo Bedeutung hatten. Eine zusammengesetzte Identität — UIElementKey(platform, project, language, stringId, vnvTestId, uxDesignId) — führte jede Disziplin auf dasselbe UI-Element zurück. Erst kartieren, dann ausrichten: kein Team musste sich im Voraus ändern. Mit aktivem Schlüssel kehrte sich die Pipeline um: Design vergibt Schlüssel upstream, Plattformen richten sich per Protokoll aus, Verifikation arbeitet auf einer garantierten Annahme. Disziplinübergreifende Rückverfolgbarkeit — auditfähig in einer regulierten Branche."
+  },
+  "pages.victor-methodology-presentation.proof-cross-domain-ui-identity.result": {
+    "text": "Abgleich verschwand als eigene Phase. Teams arbeiten parallel auf einem gemeinsamen Rückgrat."
+  },
+  "pages.victor-methodology-presentation.proof-source-of-truth-relay.year": {
+    "text": "JAHR 5"
+  },
+  "pages.victor-methodology-presentation.proof-source-of-truth-relay.title": {
+    "text": "PenSDK: die Methode auf die Zeit selbst angewandt"
+  },
+  "pages.victor-methodology-presentation.proof-source-of-truth-relay.body": {
+    "text": "Für ein Insulinpen-Produkt, bei dem die Reihenfolge von Ereignissen sicherheitsrelevant ist: Zustandsänderungen laufen durch einen einzigen SourceOfTruthRelay, der Wahrheit ableitet und verbreitet, sodass parallele Leser strukturell keine widersprüchlichen Realitäten halten können. Coroutines wurden zu ID-gemappten First-Class-Tasks mit bereichsgebundenen Kill-Switches — dadurch wurde ein komplexer Partner-SDK-Refresh-Zyklus chirurgisch beherrschbar. Lässt sich nativ mit Jetpack Compose kombinieren."
+  },
+  "pages.victor-methodology-presentation.proof-source-of-truth-relay.result-tag": {
+    "text": "Vermächtnis"
+  },
+  "pages.victor-methodology-presentation.proof-source-of-truth-relay.result": {
+    "text": "Das Team wurde bewusst in diesen Praktiken entwickelt — vor dem Weggang löste es Probleme selbstständig und bewahrte die Kultur. Die Praktiken überdauerten den Praktiker."
+  },
+  "pages.victor-methodology-presentation.section-throughline.band": {
+    "text": "Analytics können nicht von der UI wegdriften. Übersetzungen können nicht von Screens verwaisen. Lokalisierung kann nicht über Plattformen hinweg fragmentieren. Parallele Leser können einander nicht widersprechen. Und jetzt: KI-Instanzen können bereits korrigierte Fehler nicht erneut einführen."
+  },
+  "pages.victor-methodology-presentation.section-ai-maintainable-systems.heading": {
+    "text": "Die sechste Anwendung: KI-wartbare Systeme"
+  },
+  "pages.victor-methodology-presentation.section-ai-maintainable-systems.p1": {
+    "text": "Jede Organisation, die KI-Coding-Tools einführt, stößt an dieselbe Wand: KI-generierte Arbeit zerfällt, weil nichts institutionelles Wissen zwischen Sitzungen bewahrt. Eine neue KI-Instanz startet kalt und führt Annahmen wieder ein, die Monate zuvor korrigiert wurden — dieselbe Krankheit wie jede Fragmentierung oben, nur im bisher größten Maßstab: der Kontext selbst."
+  },
+  "pages.victor-methodology-presentation.section-ai-maintainable-systems.p2": {
+    "text": "Die öffentliche, funktionierende Demonstration wendet die fünfmal bewährte Methode auf dieses Problem an: ein Repository, in dem CI seine eigenen Indizes selbst pflegt; Pull Requests fungieren als Entscheidungsprotokolle (Annahmen, Kaskadeneffekte, Hinweise für den nächsten Leser — Mensch oder KI); Skalierungsgrenzen werden mit Migrationspfaden dokumentiert, bevor sie erreicht werden; und jede neue KI-Sitzung lädt mit einem einzigen Befehl den vollständigen Kontext. Die mit dem menschlichen Team aufgebaute Eskalationskultur — schwierige Probleme früh routen, Lösungen in gemeinsames Wissen zurückschreiben — wurde in Architektur übersetzt."
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.heading": {
+    "text": "Was sich durch die Einführung ändert"
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.intro": {
+    "text": "Für eine Organisation ist diese Architektur kein Dokumentationsstil — sie verlagert die Quelle der Zuverlässigkeit: weg von individueller Wachsamkeit und Stammeswissen, hin zu einer Struktur, die sich selbst validiert."
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.engineering-label": {
+    "text": "Engineering:"
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.engineering": {
+    "text": "Drift ist kein Disziplinproblem mehr. Wenn Analytics, Strings, Tests und Design über eine Identität aufgelöst werden, wird Abweichung strukturell unmöglich statt manuell überwacht — und die Änderungsprüfung verschiebt sich vom Erinnern an Auswirkungen zum Lesen eines berechneten Impact-Reports."
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.localization-label": {
+    "text": "Lokalisierung & Produkt:"
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.localization": {
+    "text": "eine neue Sprache bedeutet neue Zeilen, nicht duplizierte Seiten. Anbieter übersetzen eine Bedeutung einmal, und der Graph wendet sie überall dort an, wo sie gebunden ist; Plural-, Platzhalter- und Layoutregeln werden pro Locale automatisch validiert."
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.quality-label": {
+    "text": "Qualität & Compliance:"
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.quality": {
+    "text": "jede Änderung erzeugt ihren Impact-Report, bevor sie landet, und die Rückverfolgbarkeit vom Test über die Designabsicht bis zur Übersetzung ist konstruktionsbedingt auditfähig. In regulierten Branchen ist das der Unterschied zwischen Compliance nachweisen und sie rekonstruieren."
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.ai-label": {
+    "text": "KI-Einführung:"
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.ai": {
+    "text": "Agenten hören auf, Kontext neu herzuleiten. Der Graph ist das Gedächtnis; KI ist die Brücke hinein — das Onboarding eines neuen Agenten kostet eine Abfrage, nicht das Lesen eines Repositories, und korrigierte Fehler bleiben über Sitzungen, Tools und Anbieter hinweg korrigiert."
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.leadership-label": {
+    "text": "Führung:"
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.leadership": {
+    "text": "Der Lokalisierungspräzedenzfall oben — sechs Monate auf zwei Wochen — zeigt, was diese Art von Veränderung mit der Zykluszeit macht. Dieselbe Mechanik gilt überall dort, wo Teams heute per Meeting statt per Karte abgleichen."
+  },
+  "pages.victor-methodology-presentation.section-adoption-implications.closing-note": {
+    "text": "Dieses Dokument ist selbst das erste Artefakt, das nach dem beschriebenen Standard verwaltet wird: seine Datensatz-IDs folgen dem Concept-ID-Namensstandard, Legacy-IDs bleiben als Aliase erhalten, und englische sowie chinesische Inhalte werden aus einer einzigen zweisprachigen Quelle neu erzeugt. Der Proof of Concept ist diese Seite."
+  },
+  "pages.victor-methodology-presentation.section-audience-fit.heading": {
+    "text": "Wo das passt"
+  },
+  "pages.victor-methodology-presentation.fit-platform-devex.title": {
+    "text": "Plattform & Developer Experience"
+  },
+  "pages.victor-methodology-presentation.fit-platform-devex.body": {
+    "text": "Die Karten und Pipelines bauen, die große Teams parallel ohne Drift arbeiten lassen."
+  },
+  "pages.victor-methodology-presentation.fit-ai-tooling-companies.title": {
+    "text": "KI-Tooling-Unternehmen"
+  },
+  "pages.victor-methodology-presentation.fit-ai-tooling-companies.body": {
+    "text": "Ein Design-Partner-Profil: die Fehlermodi erlebt und dokumentiert, für deren Lösung diese Produkte existieren."
+  },
+  "pages.victor-methodology-presentation.fit-regulated-industries.title": {
+    "text": "Regulierte Branchen mit KI-Einführung"
+  },
+  "pages.victor-methodology-presentation.fit-regulated-industries.body": {
+    "text": "Medizinprodukte-Hintergrund plus auditfähige Entscheidungsprotokoll-Praktiken — eine seltene Schnittmenge."
+  },
+  "pages.victor-methodology-presentation.fit-process-transformation.title": {
+    "text": "Prozesstransformation"
+  },
+  "pages.victor-methodology-presentation.fit-process-transformation.body": {
+    "text": "Lean-Six-Sigma-validiert: gemessene Reduktion des Zyklus von 6 Monaten auf 2 Wochen bei teamübergreifender Einführung."
+  },
+  "pages.victor-methodology-presentation.note-self-demonstration.lead": {
+    "text": "Dieses Dossier praktiziert seine eigene Methode."
+  },
+  "pages.victor-methodology-presentation.note-self-demonstration.body": {
+    "text": "Jeder Datensatz oben trägt eine stabile ID (proof-bulk-data-logging, proof-cross-domain-ui-identity…), konzeptbasiert benannt gemäß dem Registry Documentation Standard des Repositories, wobei Legacy-IDs als Aliase erhalten bleiben, sodass jeder Leser — Mensch oder KI, auf Englisch oder Chinesisch — einen exakten Datensatz eindeutig referenzieren, zitieren oder danach fragen kann. Erst Identität, dann Diskussion."
+  },
+  "pages.victor-methodology-presentation.footer.line": {
+    "text": "Victor Gong · Dossier v2.1 · Erstellt am 4. Juli 2026 · DOC-ID: VG-DOSSIER-v2.1"
+  },
+  "pages.victor-methodology-presentation.footer.reference-note": {
+    "text": "Referenzen und Repository-Walkthrough auf Anfrage verfügbar"
+  },
+  "pages.victor-methodology-presentation.footer.stamp-word": {
+    "text": "IN"
+  },
+  "pages.victor-methodology-presentation.footer.stamp-label": {
+    "text": "DER AKTE"
   }
 }
