@@ -117,7 +117,7 @@ test('BUILD-SW: output has activate event listener with cache cleanup', () => {
 test('BUILD-SW: output has fetch event listener', () => {
   const content = generateSWContent(SAMPLE_URLS, SAMPLE_HASH);
   assert.ok(content.includes("'fetch'"), 'must have fetch listener');
-  assert.ok(content.includes('caches.match'), 'fetch must check cache first');
+  assert.ok(content.includes('caches.match'), 'retain cache-first rollback and offline CacheStorage fallback');
   assert.ok(content.includes("'text/html'"), 'worker must explicitly handle HTML requests');
 });
 
@@ -156,7 +156,6 @@ test('BUILD-SW: widgets/sw-register.js forces an immediate update check on every
   assert.ok(/\.then\(function\s*\(reg\)\s*\{[\s\S]*?reg\.update\(\)/.test(swRegisterSrc),
     'sw-register.js must call reg.update() after a successful registration to force an immediate check');
 });
-
 
 test('BUILD-SW: active-development mode conditionally revalidates HTTP resources without removing cache-first rollback', () => {
   assert.equal(SITE_FETCH_MODE, 'freshness-first');
@@ -215,7 +214,6 @@ test('BUILD-SW: freshness-first revalidates same-origin resources but preserves 
 
   assert.equal(await dispatch('https://example.org/Vextreme/example.js'), undefined, 'worker must not intercept third-party requests');
 });
-
 
 test('BUILD-SW: install revalidates known URLs without changing offline precache coverage', async () => {
   const precache = ['/Vextreme/dist/a.js', '/Vextreme/dist/b.js', ...CORE_ASSETS];

@@ -155,7 +155,7 @@ self.addEventListener('activate', function (event) {
 
 /* On fetch: conditional freshness for site-owned pages/assets during development;
  * cache-first remains available for offline-oriented delivery.
- * In cache-first, HTML bypasses the worker; in freshness-first, HTML uses network no-store.
+ * In cache-first, HTML bypasses the worker; in freshness-first, HTML revalidates via HTTP cache.
  * Non-GET requests pass through untouched. */
 self.addEventListener('fetch', function (event) {
   if (event.request.method !== 'GET') return;
