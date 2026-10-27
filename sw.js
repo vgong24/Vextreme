@@ -124,11 +124,14 @@ var PRECACHE_URLS = [
   "/Vextreme/data/index.json"
 ];
 
-/* On install: pre-cache all known assets. */
+/* On install: keep offline coverage, conditionally revalidate HTTP-cached assets. */
 self.addEventListener('install', function (event) {
   event.waitUntil(
     caches.open(CACHE_NAME).then(function (cache) {
-      return cache.addAll(PRECACHE_URLS);
+      var installRequests = FETCH_MODE === 'freshness-first'
+        ? PRECACHE_URLS.map(function (url) { return new Request(url, { cache: 'no-cache' }); })
+        : PRECACHE_URLS;
+      return cache.addAll(installRequests);
     }).then(function () {
       return self.skipWaiting(); // take control immediately
     })
@@ -150,9 +153,9 @@ self.addEventListener('activate', function (event) {
   );
 });
 
-/* On fetch: freshness-first for site-owned pages/assets during active development;
+/* On fetch: conditional freshness for site-owned pages/assets during development;
  * cache-first remains available for offline-oriented delivery.
- * In cache-first, HTML bypasses the worker; in freshness-first, HTML uses network no-store.
+ * In cache-first, HTML bypasses the worker; in freshness-first, HTML revalidates via HTTP cache.
  * Non-GET requests pass through untouched. */
 self.addEventListener('fetch', function (event) {
   if (event.request.method !== 'GET') return;
@@ -161,9 +164,9 @@ self.addEventListener('fetch', function (event) {
   if (FETCH_MODE === 'freshness-first') {
     var url = new URL(event.request.url);
     if (url.origin !== self.location.origin || url.pathname.indexOf('/Vextreme/') !== 0) return;
-    // Bypass the service-worker and HTTP caches for current Vextreme pages/assets.
+    // Revalidate the browser HTTP cache; never serve a prior SW cache hit online.
     event.respondWith(
-      fetch(event.request, { cache: 'no-store' }).catch(function () {
+      fetch(event.request, { cache: 'no-cache' }).catch(function () {
         // Offline fallback only for pre-cached assets, never stale HTML.
         if (event.request.mode === 'navigate' || accept.indexOf('text/html') !== -1) return Response.error();
         return caches.match(event.request).then(function (cached) { return cached || Response.error(); });
