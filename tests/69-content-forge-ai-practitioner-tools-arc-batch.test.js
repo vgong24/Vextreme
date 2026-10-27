@@ -61,6 +61,8 @@ test('Content Forge AI Practitioner Tools completes the exact canonical arc from
   assert.deepEqual(formation.members.map(item=>item.slug),["conditions-for-emergence", "burden-release-guide", "the-100-percent-holy-truth-conditional", "methodology-depth", "catching-the-meta-guardrail", "the-lattice-guide", "ai-cheat-sheet", "source-of-truth-relay", "the-god-pattern-recognized-and-excluded"]);
   assert.ok(formation.members.every(item=>item.adapterClass==='AUTHORED_MAIN_FRAGMENT'));
   assert.ok(formation.members.every(item=>item.preclassifiedHoldReason===undefined));
+  const cheatSheet=formation.members.find(item=>item.slug==='ai-cheat-sheet');
+  assert.deepEqual(cheatSheet.longPageNavigation,{parentHref:'ai-practitioner-tools.html',parentLabel:'AI Practitioner Tools'});
 
   const stableAlready=formation.alreadyComplete.flatMap(item=>{
     const page=path.join(ROOT,'pages',item.slug+'.html');
@@ -94,6 +96,16 @@ test('Content Forge AI Practitioner Tools completes the exact canonical arc from
   for(const member of formation.members){
     const node=nodesBySlug.get(member.slug); const source=fs.readFileSync(path.join(ROOT,member.sourcePath)); const page=fs.readFileSync(path.join(ROOT,'pages',member.slug+'.html'),'utf8'); const strings=json(path.join(ROOT,'data','strings','source','pages',member.slug+'.json'));
     assert.ok(page.includes('data-content-forge-generator="'+projector.GENERATOR_REF+'"')); assert.ok(page.includes('data-content-forge-body="'+member.slug+'"')); assert.ok(page.includes('id="arcNavMount"')); assert.ok(page.includes('../dist/vextreme-'+member.slug+'.js')); assert.equal((page.match(/<h1(?:\s|>)/g)||[]).length,1,member.slug+': one H1');
+    if(member.slug==='ai-cheat-sheet'){
+      assert.ok(page.includes('class="vex-long-page-escape"'));
+      assert.ok(page.includes('href="ai-practitioner-tools.html"'));
+      assert.ok(page.includes('href="#vex-page-start"'));
+      assert.ok(page.includes('href="#arcNavMount"'));
+      assert.ok(page.includes('id="vex-page-start"'));
+      assert.equal(projector.ROOT_RELATIVE_ASSET_REF.test(page),false);
+    } else {
+      assert.equal(page.includes('vex-long-page-escape'),false,member.slug+': no unconfigured long-page rail');
+    }
     for(const marker of ['window.__RESCUE_SOURCE','/__rescue/','data-sqsp-','data-vex-id=','vex-generated:','vexsite-provider-shell','common.nav.']) assert.equal(page.includes(marker),false,member.slug+': forbidden '+marker);
     const scope='pages.'+member.slug; assert.equal(strings._meta.scope,scope); assert.equal(strings._meta.sourceProvenance.adapterClass,'AUTHORED_MAIN_FRAGMENT'); assert.equal(strings._meta.sourceProvenance.route,member.sourceRoute); assert.equal(strings._meta.sourceProvenance.preservedPath,member.sourcePath); assert.equal(strings._meta.sourceProvenance.preservedGitBlob,member.sourceGitBlob); assert.equal(strings._meta.sourceProvenance.preservedHtmlSha256,member.preservedHtmlSha256); assert.equal(strings._meta.sourceProvenance.pageId,member.pageId); assert.equal(strings._meta.sourceProvenance.proposalRecordRef,member.proposalRecordRef);
     assert.deepEqual(viewmodels[member.slug],{title:node.title,category:'production',template:'page',scopes:[scope],features:['lang','spiral-fab','theme','map','analysis','arc-nav']});
