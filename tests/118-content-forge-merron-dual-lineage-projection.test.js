@@ -70,14 +70,19 @@ test('CONTENT FORGE MERRON: provider shell is excluded while repository-native r
   assert.ok(page.includes('../dist/vextreme-' + slug + '.js'));
 });
 
-test('CONTENT FORGE MERRON: conversion stays EN-only and does not advance localization scheduler', () => {
+test('CONTENT FORGE MERRON: held Source transcript stays EN-only while flat Presentation localization remains independently owned', () => {
   assert.equal(transcript._meta.localizationState, 'EN_ONLY__NO_SCHEDULER_ADVANCE');
-  for (const [label, source] of [['presentation', presentation], ['transcript', transcript]]) {
-    for (const key of sourceKeys(source)) {
-      assert.deepEqual(Object.keys(source[key].strings || {}), ['en'], label + ': locale drift at ' + key);
-      assert.equal(typeof source[key]?.strings?.en?.text, 'string', label + ': missing EN at ' + key);
-      assert.notEqual(source[key].strings.en.text.length, 0, label + ': blank EN at ' + key);
-    }
+  assert.equal(presentation._meta.localizationState, undefined);
+
+  for (const key of sourceKeys(transcript)) {
+    assert.deepEqual(Object.keys(transcript[key].strings || {}), ['en'], 'transcript: locale drift at ' + key);
+    assert.equal(typeof transcript[key]?.strings?.en?.text, 'string', 'transcript: missing EN at ' + key);
+    assert.notEqual(transcript[key].strings.en.text.length, 0, 'transcript: blank EN at ' + key);
+  }
+
+  for (const key of sourceKeys(presentation)) {
+    assert.equal(typeof presentation[key]?.strings?.en?.text, 'string', 'presentation: missing EN at ' + key);
+    assert.notEqual(presentation[key].strings.en.text.length, 0, 'presentation: blank EN at ' + key);
   }
 });
 

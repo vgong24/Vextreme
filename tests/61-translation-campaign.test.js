@@ -13,6 +13,8 @@ const assert = require('node:assert/strict');
 const { parseCSV } = require('../lib/strings-import');
 const {
   parseCampaignArgs,
+  SCHEDULER_HOLD_LOCALIZATION_STATE,
+  isSchedulerHeldSource,
   needsTranslation,
   compareCanonicalText,
   collectCampaignCandidatesFromSources,
@@ -87,6 +89,22 @@ function fixtureSources() {
         },
       },
     },
+    {
+      rel: 'lineages/held-transcript.json',
+      scope: 'held-transcript',
+      htmlContextMap: {},
+      raw: {
+        _meta: {
+          scope: 'pages.held-transcript',
+          localizationState: 'EN_ONLY__NO_SCHEDULER_ADVANCE',
+        },
+        'pages.held-transcript.body': {
+          strings: {
+            en: { text: 'Held transcript body' },
+          },
+        },
+      },
+    },
   ];
 }
 
@@ -119,7 +137,7 @@ test('CAMPAIGN ELIGIBILITY: missing and stale target rows are selected; current 
   assert.equal(needsTranslation(common.raw['common.charlie'], 'fr'), true);
 });
 
-test('CAMPAIGN CANDIDATES: deterministic global key order skips source-only scopes', () => {
+test('CAMPAIGN CANDIDATES: deterministic global key order skips source-only scopes and scheduler-held lineages', () => {
   const candidates = collectCampaignCandidatesFromSources(fixtureSources(), 'fr');
   assert.deepEqual(
     candidates.map(row => [row.key, row.state, row.sourceScope]),
@@ -134,6 +152,14 @@ test('CAMPAIGN CANDIDATES: deterministic global key order skips source-only scop
     false,
     'source-only scope must not enter campaign work'
   );
+  assert.equal(
+    candidates.some(row => row.key === 'pages.held-transcript.body'),
+    false,
+    'scheduler-held lineage source must not enter campaign work'
+  );
+  assert.equal(SCHEDULER_HOLD_LOCALIZATION_STATE, 'EN_ONLY__NO_SCHEDULER_ADVANCE');
+  assert.equal(isSchedulerHeldSource({ localizationState: SCHEDULER_HOLD_LOCALIZATION_STATE }), true);
+  assert.equal(isSchedulerHeldSource({}), false);
 });
 
 test('CAMPAIGN CANDIDATES: scope filter accepts canonical _meta.scope', () => {
