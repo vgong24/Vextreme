@@ -24,7 +24,9 @@ const {
   computeAssetFingerprint,
   generateSWContent,
   CORE_ASSETS,
+  SITE_FETCH_MODE,
 } = require('../lib/build-sw');
+const vm = require('node:vm');
 
 const ROOT     = path.join(__dirname, '..');
 const DIST_DIR = path.join(ROOT, 'dist');
@@ -116,7 +118,7 @@ test('BUILD-SW: output has fetch event listener', () => {
   const content = generateSWContent(SAMPLE_URLS, SAMPLE_HASH);
   assert.ok(content.includes("'fetch'"), 'must have fetch listener');
   assert.ok(content.includes('caches.match'), 'fetch must check cache first');
-  assert.ok(content.includes("'text/html'"), 'fetch must skip HTML requests');
+  assert.ok(content.includes("'text/html'"), 'worker must explicitly handle HTML requests');
 });
 
 test('BUILD-SW: widgets/sw-register.js auto-reloads once when a new Service Worker takes control', () => {
@@ -153,6 +155,70 @@ test('BUILD-SW: widgets/sw-register.js forces an immediate update check on every
   const swRegisterSrc = fs.readFileSync(path.join(ROOT, 'widgets', 'sw-register.js'), 'utf8');
   assert.ok(/\.then\(function\s*\(reg\)\s*\{[\s\S]*?reg\.update\(\)/.test(swRegisterSrc),
     'sw-register.js must call reg.update() after a successful registration to force an immediate check');
+});
+
+
+test('BUILD-SW: active-development mode prioritizes freshness without removing cache-first rollback', () => {
+  assert.equal(SITE_FETCH_MODE, 'freshness-first');
+  const current = generateSWContent(SAMPLE_URLS, SAMPLE_HASH);
+  const fallback = generateSWContent(SAMPLE_URLS, SAMPLE_HASH, 'cache-first');
+  assert.match(current, /var FETCH_MODE\s+= 'freshness-first';/);
+  assert.match(current, /fetch\(event\.request, \{ cache: 'no-store' \}\)/);
+  assert.match(fallback, /var FETCH_MODE\s+= 'cache-first';/);
+  assert.match(fallback, /if \(cached\) return cached;/);
+  assert.throws(() => generateSWContent([], SAMPLE_HASH, 'unknown'), /SW_FETCH_MODE_INVALID/);
+});
+
+test('BUILD-SW: freshness-first fetches same-origin site assets without cache but preserves offline fallback', async () => {
+  const handlers = {};
+  const seen = [];
+  let fallbackReads = 0;
+  let offline = false;
+  const cached = { origin: 'cache', status: 200 };
+  const current = { origin: 'network', status: 200 };
+  vm.runInNewContext(generateSWContent([], SAMPLE_HASH), {
+    self: {
+      location: { origin: 'https://vgong24.github.io' },
+      addEventListener(kind, handler) { handlers[kind] = handler; },
+    },
+    URL,
+    Response,
+    caches: {
+      match: async () => { fallbackReads += 1; return cached; },
+    },
+    fetch: async (request, options) => {
+      seen.push({ request, options });
+      if (offline) throw new Error('offline');
+      return current;
+    },
+  });
+
+  async function dispatch(url, { mode = 'same-origin', accept = 'text/javascript' } = {}) {
+    let responsePromise;
+    const request = { method: 'GET', url, mode, headers: { get(name) { return name === 'accept' ? accept : null; } } };
+    handlers.fetch({ request, respondWith(value) { responsePromise = value; } });
+    return responsePromise;
+  }
+
+  assert.equal(await dispatch('https://vgong24.github.io/Vextreme/dist/vextreme-example.js'), current);
+  assert.equal(seen[0].options.cache, 'no-store');
+  assert.equal(fallbackReads, 0, 'online visits must not consult stale SW caches');
+  assert.equal(await dispatch('https://vgong24.github.io/Vextreme/pages/example.html', { mode: 'navigate', accept: 'text/html' }), current);
+  assert.equal(seen[1].options.cache, 'no-store', 'HTML navigations also bypass HTTP cache');
+
+  offline = true;
+  assert.equal(await dispatch('https://vgong24.github.io/Vextreme/dist/vextreme-example.js'), cached);
+  assert.equal(fallbackReads, 1, 'pre-cached asset is an offline-only fallback');
+  const navFailure = await dispatch('https://vgong24.github.io/Vextreme/pages/example.html', { mode: 'navigate', accept: 'text/html' });
+  assert.equal(navFailure.status, 0, 'offline navigation must not silently show stale HTML');
+  assert.equal(fallbackReads, 1, 'offline navigation must not query asset caches');
+
+  assert.equal(await dispatch('https://example.org/Vextreme/example.js'), undefined, 'worker must not intercept third-party requests');
+});
+
+test('BUILD-SW: generated worker deletes only Vextreme-owned cache generations', () => {
+  const output = generateSWContent(SAMPLE_URLS, SAMPLE_HASH);
+  assert.match(output, /key\.indexOf\('vextreme-v1-'\) === 0 && key !== CACHE_NAME/);
 });
 
 test('BUILD-SW: output uses dev fingerprint when no fingerprint is supplied', () => {
