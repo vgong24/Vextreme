@@ -25,6 +25,13 @@ const GENERIC_STYLE = `
 const AUTHORED_STYLE = `
 :root{--paper:#fafaf9;--ink:#1c1917;--line:#e7e5e4}*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--paper);color:var(--ink)}.vex-authored-page-frame{width:min(900px,calc(100% - 40px));margin:auto;padding:56px 0 88px}.arc-wrap{margin-top:52px;padding-top:32px;border-top:1px solid var(--line)}
 `.trim();
+const LONG_PAGE_ESCAPE_STYLE = `
+.vex-long-page-escape{position:sticky;top:0;z-index:120;display:flex;align-items:center;justify-content:space-between;gap:12px;width:min(900px,calc(100% - 24px));margin:0 auto;padding:9px 12px;background:rgba(250,250,249,.94);backdrop-filter:blur(12px);border:1px solid #e7e5e4;border-top:0;border-radius:0 0 10px 10px;font:600 10px/1.3 "IBM Plex Sans",sans-serif;letter-spacing:.04em}
+.vex-long-page-escape a{color:#57534e;text-decoration:none;white-space:nowrap}
+.vex-long-page-escape a:hover{color:#b45830}
+.vex-long-page-escape-links{display:flex;align-items:center;gap:10px}
+@media(max-width:560px){.vex-long-page-escape{width:calc(100% - 12px);padding:8px 10px}.vex-long-page-escape-parent{max-width:52vw;overflow:hidden;text-overflow:ellipsis}.vex-long-page-escape-links{gap:8px}}
+`.trim();
 
 class ProjectionInvariantError extends Error {
   constructor(code, message) { super(message); this.name = 'ProjectionInvariantError'; this.code = code; }
@@ -227,6 +234,11 @@ function pageHead(title, scope, description, style) {
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../styles/arc-nav.css"/><style>${style}</style></head>`;
 }
+function longPageEscape(member) {
+  const nav = member.longPageNavigation;
+  if (!nav) return '';
+  return `<nav class="vex-long-page-escape" aria-label="Long page navigation"><a class="vex-long-page-escape-parent" href="${escapeHtml(nav.parentHref)}">← ${escapeHtml(nav.parentLabel)}</a><span class="vex-long-page-escape-links"><a href="#vex-page-start">Top</a><a href="#arcNavMount">Arc navigation</a></span></nav>`;
+}
 function sourceStrings(member, node, sourceHash, body, fixed, stats) {
   const scope = `pages.${member.slug}`;
   const output = { _meta: {
@@ -306,20 +318,22 @@ function projectMember(root, member, nodesBySlug, assetCatalog) {
   const bodyHtml = parse5.serialize(selected).trim();
   const fixed = { [`${scope}.document-title`]: `${node.title} — Vextreme` };
   if (synthesizeCanonicalHeading) fixed[`${scope}.canonical-title`] = node.title;
+  const longPageNav = longPageEscape(member);
+  const mainAnchor = longPageNav ? ' id="vex-page-start"' : '';
   let body;
   if (member.adapterClass === 'SQS_AUTHORED_BODY') {
     Object.assign(fixed, {
       [`${scope}.eyebrow`]: 'Conversations with God', [`${scope}.title`]: node.title,
       [`${scope}.meta.date`]: node.date, [`${scope}.meta.by`]: 'Written By', [`${scope}.meta.author`]: 'Victor Gong',
     });
-    body = `<main><header class="page-head"><p class="eyebrow" data-i18n="${scope}.eyebrow">Conversations with God</p><h1 data-i18n="${scope}.title">${escapeHtml(node.title)}</h1><div class="meta"><time datetime="${isoDate(node.date)}" data-i18n="${scope}.meta.date">${escapeHtml(node.date)}</time><span><span data-i18n="${scope}.meta.by">Written By</span> <span data-i18n="${scope}.meta.author">Victor Gong</span></span></div></header><article class="transcript" data-content-forge-body="${member.slug}" data-content-forge-source="${sourcePart(member.sourcePath)}">${bodyHtml}</article><section class="arc-wrap" aria-label="Arc navigation"><div id="arcNavMount"></div></section></main>`;
+    body = `${longPageNav}<main${mainAnchor}><header class="page-head"><p class="eyebrow" data-i18n="${scope}.eyebrow">Conversations with God</p><h1 data-i18n="${scope}.title">${escapeHtml(node.title)}</h1><div class="meta"><time datetime="${isoDate(node.date)}" data-i18n="${scope}.meta.date">${escapeHtml(node.date)}</time><span><span data-i18n="${scope}.meta.by">Written By</span> <span data-i18n="${scope}.meta.author">Victor Gong</span></span></div></header><article class="transcript" data-content-forge-body="${member.slug}" data-content-forge-source="${sourcePart(member.sourcePath)}">${bodyHtml}</article><section class="arc-wrap" aria-label="Arc navigation"><div id="arcNavMount"></div></section></main>`;
   } else {
     const sourceClass = classes(selected).filter(token => !/^vex-(?:native|generated)/.test(token));
     if (!sourceClass.includes('vex-authored-page-frame')) sourceClass.unshift('vex-authored-page-frame');
     const canonicalHeading = synthesizeCanonicalHeading
       ? `<h1 class="vex-content-forge-canonical-heading" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;" data-i18n="${scope}.canonical-title">${escapeHtml(node.title)}</h1>`
       : '';
-    body = `${canonicalHeading}<main class="${escapeHtml([...new Set(sourceClass)].join(' '))}" data-content-forge-body="${member.slug}" data-content-forge-source="${sourcePart(member.sourcePath)}">${bodyHtml}<section class="arc-wrap" aria-label="Arc navigation"><div id="arcNavMount"></div></section></main>`;
+    body = `${canonicalHeading}${longPageNav}<main${mainAnchor} class="${escapeHtml([...new Set(sourceClass)].join(' '))}" data-content-forge-body="${member.slug}" data-content-forge-source="${sourcePart(member.sourcePath)}">${bodyHtml}<section class="arc-wrap" aria-label="Arc navigation"><div id="arcNavMount"></div></section></main>`;
   }
   const stats = { adapterClass: member.adapterClass, authoredTextLeafCount: leaves.length };
   if (synthesizeCanonicalHeading) stats.canonicalHeadingSynthesized = true;
@@ -328,7 +342,8 @@ function projectMember(root, member, nodesBySlug, assetCatalog) {
   const strings = fs.existsSync(stringsPath)
     ? preserveLocalizationOverlays(projectedStrings, readJson(stringsPath))
     : projectedStrings;
-  const style = member.adapterClass === 'SQS_AUTHORED_BODY' ? GENERIC_STYLE : `${AUTHORED_STYLE}\n${styles.join('\n')}`;
+  const baseStyle = member.adapterClass === 'SQS_AUTHORED_BODY' ? GENERIC_STYLE : `${AUTHORED_STYLE}\n${styles.join('\n')}`;
+  const style = longPageNav ? `${baseStyle}\n${LONG_PAGE_ESCAPE_STYLE}` : baseStyle;
   const page = `${pageHead(node.title, scope, `${node.title} — repository-native preserved content.`, style)}<body data-content-forge-generator="${GENERATOR_REF}"><!-- Source-managed ${member.adapterClass} projection of ${member.sourcePath}. -->${body}<script src="../dist/vextreme-${member.slug}.js"></script></body></html>`;
   validatePage(page, strings, member);
   return {
@@ -357,6 +372,12 @@ function validateFormation(value) {
   const projectableMemberCount = value.members.filter(item => !item.preclassifiedHoldReason).length;
   invariant(boundary?.createPages === projectableMemberCount && boundary?.createStringSources === projectableMemberCount && boundary?.modifyViewmodels === true, 'FORMATION_WRITES', 'write membrane');
   for (const member of value.members) {
+    if (member.longPageNavigation !== undefined) {
+      const nav = member.longPageNavigation;
+      invariant(nav && typeof nav === 'object' && !Array.isArray(nav), 'FORMATION_LONG_PAGE_NAV', member.slug);
+      invariant(typeof nav.parentHref === 'string' && nav.parentHref.length > 0 && !nav.parentHref.includes('..') && !/^(?:[a-z]+:|\/|#)/i.test(nav.parentHref), 'FORMATION_LONG_PAGE_NAV_HREF', member.slug);
+      invariant(typeof nav.parentLabel === 'string' && nav.parentLabel.trim().length > 0, 'FORMATION_LONG_PAGE_NAV_LABEL', member.slug);
+    }
     if (!member.preclassifiedHoldReason) continue;
     invariant(typeof member.preclassifiedHoldReason === 'string' && member.preclassifiedHoldReason.length > 0, 'FORMATION_PRECLASSIFIED_HOLD_REASON', member.slug);
     for (const field of ['adapterClass','sourcePath','sourceGitBlob','preservedHtmlSha256','repositoryBytes','sourceRoute','pageId','proposalRecordRef','sourceReceiptRef']) {

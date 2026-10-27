@@ -198,7 +198,11 @@
       "sourceReceiptRef": "docs/ingestion/batches/2026-09-29-breadth-part-012.json",
       "adapterClass": "AUTHORED_MAIN_FRAGMENT",
       "confidence": "HIGH_UNIQUE_CANONICAL_IDENTITY_NO_LINEAGE_REVIEW",
-      "projectionState": "READY_FOR_AUTHORED_MAIN_FRAGMENT_EXTRACTION"
+      "projectionState": "READY_FOR_AUTHORED_MAIN_FRAGMENT_EXTRACTION",
+      "longPageNavigation": {
+        "parentHref": "ai-practitioner-tools.html",
+        "parentLabel": "AI Practitioner Tools"
+      }
     },
     {
       "slug": "source-of-truth-relay",
