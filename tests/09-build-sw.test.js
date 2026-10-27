@@ -158,18 +158,18 @@ test('BUILD-SW: widgets/sw-register.js forces an immediate update check on every
 });
 
 
-test('BUILD-SW: active-development mode prioritizes freshness without removing cache-first rollback', () => {
+test('BUILD-SW: active-development mode conditionally revalidates HTTP resources without removing cache-first rollback', () => {
   assert.equal(SITE_FETCH_MODE, 'freshness-first');
   const current = generateSWContent(SAMPLE_URLS, SAMPLE_HASH);
   const fallback = generateSWContent(SAMPLE_URLS, SAMPLE_HASH, 'cache-first');
   assert.match(current, /var FETCH_MODE\s+= 'freshness-first';/);
-  assert.match(current, /fetch\(event\.request, \{ cache: 'no-store' \}\)/);
+  assert.match(current, /fetch\(event\.request, \{ cache: 'no-cache' \}\)/);
   assert.match(fallback, /var FETCH_MODE\s+= 'cache-first';/);
   assert.match(fallback, /if \(cached\) return cached;/);
   assert.throws(() => generateSWContent([], SAMPLE_HASH, 'unknown'), /SW_FETCH_MODE_INVALID/);
 });
 
-test('BUILD-SW: freshness-first fetches same-origin site assets without cache but preserves offline fallback', async () => {
+test('BUILD-SW: freshness-first revalidates same-origin resources but preserves offline fallback', async () => {
   const handlers = {};
   const seen = [];
   let fallbackReads = 0;
@@ -201,10 +201,10 @@ test('BUILD-SW: freshness-first fetches same-origin site assets without cache bu
   }
 
   assert.equal(await dispatch('https://vgong24.github.io/Vextreme/dist/vextreme-example.js'), current);
-  assert.equal(seen[0].options.cache, 'no-store');
+  assert.equal(seen[0].options.cache, 'no-cache', 'HTTP cache must be revalidated for each requested asset');
   assert.equal(fallbackReads, 0, 'online visits must not consult stale SW caches');
   assert.equal(await dispatch('https://vgong24.github.io/Vextreme/pages/example.html', { mode: 'navigate', accept: 'text/html' }), current);
-  assert.equal(seen[1].options.cache, 'no-store', 'HTML navigations also bypass HTTP cache');
+  assert.equal(seen[1].options.cache, 'no-cache', 'HTML navigations must revalidate stored HTTP responses');
 
   offline = true;
   assert.equal(await dispatch('https://vgong24.github.io/Vextreme/dist/vextreme-example.js'), cached);
@@ -214,6 +214,43 @@ test('BUILD-SW: freshness-first fetches same-origin site assets without cache bu
   assert.equal(fallbackReads, 1, 'offline navigation must not query asset caches');
 
   assert.equal(await dispatch('https://example.org/Vextreme/example.js'), undefined, 'worker must not intercept third-party requests');
+});
+
+
+test('BUILD-SW: install revalidates known URLs without changing offline precache coverage', async () => {
+  const precache = ['/Vextreme/dist/a.js', '/Vextreme/dist/b.js', ...CORE_ASSETS];
+  async function install(mode) {
+    let requests;
+    let pending;
+    const handlers = {};
+    class RequestStub {
+      constructor(url, options) {
+        this.url = url;
+        this.cache = options.cache;
+      }
+    }
+    vm.runInNewContext(generateSWContent(['/Vextreme/dist/a.js', '/Vextreme/dist/b.js'], SAMPLE_HASH, mode), {
+      self: {
+        addEventListener(type, fn) { handlers[type] = fn; },
+        skipWaiting() { return Promise.resolve(); },
+      },
+      Request: RequestStub,
+      caches: {
+        open: async () => ({
+          addAll(entries) { requests = Array.from(entries); return Promise.resolve(); },
+        }),
+      },
+    });
+    handlers.install({ waitUntil(promise) { pending = promise; } });
+    await pending;
+    return requests;
+  }
+
+  const conditional = await install('freshness-first');
+  assert.deepEqual(conditional.map(x => x.url), precache, 'every offline resource remains in precache');
+  assert.ok(conditional.every(x => x.cache === 'no-cache'), 'install requests must revalidate HTTP cache');
+  const rollback = await install('cache-first');
+  assert.deepEqual(rollback, precache, 'rollback retains its original URL-only install requests');
 });
 
 test('BUILD-SW: generated worker deletes only Vextreme-owned cache generations', () => {
