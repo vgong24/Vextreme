@@ -16,6 +16,9 @@
       },
       "zh": {
         "text": "工程档案 · 2021–2026 · 档案编号: VG-DOSSIER-v2.1"
+      },
+      "fr": {
+        "text": "Dossier d’ingénierie · 2021–2026 · ID DOC : VG-DOSSIER-v2.1"
       }
     },
     "identity": {
@@ -35,6 +38,9 @@
       },
       "zh": {
         "text": "找出所有人们被迫依靠假设的地方——用一张地图取代每一个假设，让它变得可靠。"
+      },
+      "fr": {
+        "text": "Repérer chaque endroit où les gens sont forcés de supposer — et remplacer chaque supposition par une carte qui la rend sûre."
       }
     },
     "identity": {
@@ -54,6 +60,9 @@
       },
       "zh": {
         "text": "高级软件工程师 II · 德康医疗（医疗器械，五年）· 精益六西格玛绿带 · AI 协作系统架构师"
+      },
+      "fr": {
+        "text": "Ingénieur logiciel senior II · Dexcom (dispositifs médicaux, 5 ans) · Ceinture verte Lean Six Sigma · Architecte de systèmes de collaboration avec l’IA"
       }
     },
     "identity": {
@@ -73,6 +82,9 @@
       },
       "zh": {
         "text": "实证"
+      },
+      "fr": {
+        "text": "×6"
       }
     },
     "identity": {
@@ -92,6 +104,9 @@
       },
       "zh": {
         "text": "PROVEN × 6"
+      },
+      "fr": {
+        "text": "PROUVÉ"
       }
     },
     "identity": {
@@ -111,6 +126,9 @@
       },
       "zh": {
         "text": "一个方法，六次实证"
+      },
+      "fr": {
+        "text": "Une méthode, six preuves"
       }
     },
     "identity": {
@@ -129,6 +147,9 @@
       },
       "zh": {
         "text": "在医疗器械公司的五年里——软件质量直接关系到法规与患者安全——同一个工程方法被应用于六个不同规模的问题上。每一次，都是用一张持续维护的地图取代表层的人工操作，让系统在结构上无法悄悄脱节。"
+      },
+      "fr": {
+        "text": "Pendant cinq ans dans une entreprise de dispositifs médicaux — où la qualité logicielle porte un poids réglementaire et de sécurité des patients — le même geste d’ingénierie a été appliqué à six problèmes différents, à une échelle croissante. À chaque fois, le travail manuel effectué « en surface » a été remplacé par une carte maintenue qui relie structurellement les couches, afin que les systèmes ne puissent pas dériver silencieusement."
       }
     },
     "identity": {
@@ -147,6 +168,9 @@
       },
       "zh": {
         "text": "贯穿五年 · 持续维护"
+      },
+      "fr": {
+        "text": "ANNÉES 1–5 · ACTIF"
       }
     },
     "identity": {
@@ -165,6 +189,9 @@
       },
       "zh": {
         "text": "先为组织本身绘制地图——一张\"活\"的地图"
+      },
+      "fr": {
+        "text": "Cartographier l’organisation elle-même — la carte vivante"
       }
     },
     "identity": {
@@ -183,6 +210,9 @@
       },
       "zh": {
         "text": "入职时没有任何地图：安卓开发者之间没有沟通渠道、没有论坛、没有任何资源目录。于是先搭建了人的基础设施——双周安卓论坛（开放分享、缺陷与创新的午餐学习会）；一个映射整个组织的 Confluence（代码仓库、文档、包括测试团队工具在内的仪表盘）；让开发者直接使用测试工具，无需占用他人时间去寻找；以及后期加入的 XML 到 Jetpack Compose 迁移指南和继承基础组件的 UI 准则，消除了同一组件的不一致重复实现。这不是一次性的文档，而是一张持续了整整五年的活页面——早期条目如组织地图，后期条目如 Compose 指南，始终保持最新。沟通方式以受众为先——包括一张\"3D\"导航层级图，每一层的职责与连接一目了然。"
+      },
+      "fr": {
+        "text": "Arrivé sans aucune carte : aucun canal reliant les développeurs Android, aucun forum, aucun répertoire indiquant où se trouvait quoi que ce soit. J’ai d’abord construit l’infrastructure humaine — un forum Android bimensuel avec partage ouvert et déjeuners de formation sur les bugs et l’innovation ; un Confluence cartographiant l’organisation (dépôts, documentation, tableaux de bord, y compris les outils de test VnV) ; un accès direct des développeurs aux outils de test afin que les ingénieurs puissent déboguer immédiatement sans consommer le temps d’une autre personne ; puis, plus tard, des guides de migration XML→Jetpack Compose et une doctrine UI « hériter de la base » éliminant les réimplémentations incohérentes. Ce n’était pas un artefact ponctuel : une page vivante, enrichie et maintenue pendant les cinq années complètes — des premières entrées comme la carte de l’organisation aux dernières comme les guides Compose, une source unique continuellement à jour. Une communication pensée d’abord pour le public — y compris un tableau « 3D » de la hiérarchie fragment/navgraph, chaque couche montrant sa responsabilité et ses connexions sous forme de motif rapidement lisible."
       }
     },
     "identity": {
@@ -201,6 +231,9 @@
       },
       "zh": {
         "text": "方法论的起点，也是它的耐久性证明：一张关于人与知识的地图，被持续维护了整整五年。"
+      },
+      "fr": {
+        "text": "L’origine de la méthodologie et son test d’endurance en un seul élément : une carte des personnes et des connaissances, maintenue vivante pendant cinq ans."
       }
     },
     "identity": {
@@ -219,6 +252,9 @@
       },
       "zh": {
         "text": "第一年"
+      },
+      "fr": {
+        "text": "ANNÉE 1"
       }
     },
     "identity": {
@@ -237,6 +273,9 @@
       },
       "zh": {
         "text": "不会漂移的数据埋点系统"
+      },
+      "fr": {
+        "text": "Des analyses qui ne peuvent pas dériver — BulkDataLogging"
       }
     },
     "identity": {
@@ -255,6 +294,9 @@
       },
       "zh": {
         "text": "用一个中央映射系统取代每个页面手写的埋点代码，覆盖显示、点击、时长与录入事件。删除一个界面元素，它的日志条目随之移除——数据统计与界面在结构上绑定，无法脱节。"
+      },
+      "fr": {
+        "text": "Remplacement du code d’analyse écrit à la main sur chaque écran par une carte centrale unique (ScreenName / ScreenMapper / ButtonName / MetaData) couvrant les événements d’affichage, de clic, de durée et de saisie. Supprimez un élément d’interface et son entrée de journalisation disparaît avec lui — l’analytique et l’UI sont structurellement liées."
       }
     },
     "identity": {
@@ -273,6 +315,9 @@
       },
       "zh": {
         "text": "具备结构完整性的医疗级事件日志系统，全组织通用。"
+      },
+      "fr": {
+        "text": "Journalisation d’événements de niveau médical avec intégrité structurelle, à l’échelle de l’organisation."
       }
     },
     "identity": {
@@ -291,6 +336,9 @@
       },
       "zh": {
         "text": "第二年"
+      },
+      "fr": {
+        "text": "ANNÉE 2"
       }
     },
     "identity": {
@@ -309,6 +357,9 @@
       },
       "zh": {
         "text": "双向可导航的翻译系统"
+      },
+      "fr": {
+        "text": "Des traductions navigables dans les deux sens"
       }
     },
     "identity": {
@@ -348,6 +399,9 @@
       },
       "zh": {
         "text": "为下文的本地化流程转型奠定了基础。"
+      },
+      "fr": {
+        "text": "Fondation de la transformation de la localisation décrite ci-dessous."
       }
     },
     "identity": {
@@ -366,6 +420,9 @@
       },
       "zh": {
         "text": "中期"
+      },
+      "fr": {
+        "text": "MI-PARCOURS"
       }
     },
     "identity": {
@@ -384,6 +441,9 @@
       },
       "zh": {
         "text": "无人能复现的复合缺陷"
+      },
+      "fr": {
+        "text": "Le bug composé que personne ne pouvait reproduire"
       }
     },
     "identity": {
@@ -402,6 +462,9 @@
       },
       "zh": {
         "text": "一个丢失的低血糖警报——直接关系患者安全——源于横跨三个团队系统的两个相互作用的缺陷，其中一个会抹去另一个的证据。解决它需要先手工绘制出缺失的跨系统地图，在 SDK 层加入观测，并在唯一目击者休假前的一天窗口内完成复现步骤的提取。根因是一个看不见的缺失：数据库索引在没有事务包裹的情况下逐个生成。"
+      },
+      "fr": {
+        "text": "Une alerte d’hypoglycémie manquante — critique pour la sécurité des patients — était causée par deux défauts en interaction à travers les systèmes de trois équipes, dont l’un effaçait les preuves de l’autre. La résolution a d’abord exigé de construire à la main la carte inter-systèmes manquante, d’instrumenter le code au niveau du SDK et d’extraire les étapes de reproduction dans une fenêtre d’une journée avant le départ en vacances de l’unique témoin. Cause racine : des index de base de données construits sans @Transaction englobante — une absence invisible."
       }
     },
     "identity": {
@@ -420,6 +483,9 @@
       },
       "zh": {
         "text": "这张地形图让资深架构师第一次看清了此前无人看见的系统关系。修复上线，教训沉淀为制度。"
+      },
+      "fr": {
+        "text": "La carte du terrain a permis aux architectes seniors de percevoir des relations système que personne n’avait vues. Correctif livré ; leçon institutionnalisée."
       }
     },
     "identity": {
@@ -438,6 +504,9 @@
       },
       "zh": {
         "text": "第三至四年"
+      },
+      "fr": {
+        "text": "ANNÉES 3–4"
       }
     },
     "identity": {
@@ -456,6 +525,9 @@
       },
       "zh": {
         "text": "本地化流程：六个月缩短到两周"
+      },
+      "fr": {
+        "text": "Localisation : 6 mois → 2 semaines"
       }
     },
     "identity": {
@@ -474,6 +546,9 @@
       },
       "zh": {
         "text": "通过公司支持的精益六西格玛项目，统一了安卓与 iOS 割裂的文本结构，重构了翻译流程——随后用一个单一事实来源系统完全取代了付费供应商工具：所有文档可重复再生成、逐字节一致，因为每个条件都被映射，而非假设。"
+      },
+      "fr": {
+        "text": "Dans le cadre d’un travail Lean Six Sigma sponsorisé par Dexcom, unification des structures de chaînes fragmentées Android/iOS et réarchitecture du pipeline de traduction — puis suppression complète de l’outil fournisseur payant de la boucle grâce à une source unique de vérité qui régénère tous les documents de façon reproductible et identique octet pour octet, parce que chaque condition a été cartographiée plutôt que supposée."
       }
     },
     "identity": {
@@ -492,6 +567,9 @@
       },
       "zh": {
         "text": "6 个月 → 2 周"
+      },
+      "fr": {
+        "text": "6 mois → 2 sem."
       }
     },
     "identity": {
@@ -510,6 +588,9 @@
       },
       "zh": {
         "text": "精益周期时间 — 账面价值达数百万"
+      },
+      "fr": {
+        "text": "temps de cycle lean — valeur théorique de plusieurs millions"
       }
     },
     "identity": {
@@ -528,6 +609,9 @@
       },
       "zh": {
         "text": "第三至四年"
+      },
+      "fr": {
+        "text": "ANNÉES 3–4"
       }
     },
     "identity": {
@@ -546,6 +630,9 @@
       },
       "zh": {
         "text": "跨部门的统一标识"
+      },
+      "fr": {
+        "text": "La clé de jointure organisationnelle — UIElementKey"
       }
     },
     "identity": {
@@ -564,6 +651,9 @@
       },
       "zh": {
         "text": "工程、设计与质量测试各自的编号只在自己部门内有意义。一个复合标识把所有部门解析到同一个界面元素上。先建地图，再做对齐：没有团队被迫先改。系统上线后，流程倒转：设计在上游发放标识，各平台按协议对齐，验证基于有保证的假设进行。跨部门可追溯——在受监管行业达到审计级别。"
+      },
+      "fr": {
+        "text": "L’ingénierie, le design UX et les tests qualité détenaient chacun des identifiants qui n’avaient de sens que dans leur propre silo. Une identité composite — UIElementKey(platform, project, language, stringId, vnvTestId, uxDesignId) — a ramené chaque discipline au même élément d’interface. Cartographier d’abord, aligner ensuite : aucune équipe n’a été forcée de changer en amont. Une fois la clé en service, le pipeline s’est inversé : le design émet les clés en amont, les plateformes s’alignent par protocole et la vérification avance sur une hypothèse garantie. Traçabilité interdisciplinaire — de niveau audit dans une industrie réglementée."
       }
     },
     "identity": {
@@ -582,6 +672,9 @@
       },
       "zh": {
         "text": "对账调和作为一个阶段彻底消失。各团队沿着同一条主干并行工作。"
+      },
+      "fr": {
+        "text": "La réconciliation a disparu en tant que phase. Les équipes travaillent en parallèle sur une colonne vertébrale partagée."
       }
     },
     "identity": {
@@ -600,6 +693,9 @@
       },
       "zh": {
         "text": "第五年"
+      },
+      "fr": {
+        "text": "ANNÉE 5"
       }
     },
     "identity": {
@@ -618,6 +714,9 @@
       },
       "zh": {
         "text": "把方法应用于时间与并发本身"
+      },
+      "fr": {
+        "text": "PenSDK : la méthode appliquée au temps lui-même"
       }
     },
     "identity": {
@@ -657,6 +756,9 @@
       },
       "zh": {
         "text": "传承"
+      },
+      "fr": {
+        "text": "Héritage"
       }
     },
     "identity": {
@@ -675,6 +777,9 @@
       },
       "zh": {
         "text": "有意识地把团队培养进这套实践——在离开之前，他们已能带着完整的文化独立解决问题。方法比实践者留得更久。"
+      },
+      "fr": {
+        "text": "L’équipe a été délibérément formée à ces pratiques — avant mon départ, elle résolvait les problèmes de manière autonome tout en conservant la culture. Les pratiques ont survécu au praticien."
       }
     },
     "identity": {
@@ -693,6 +798,9 @@
       },
       "zh": {
         "text": "埋点无法脱离界面。翻译无法脱离页面。本地化无法在平台间割裂。并发读取无法互相矛盾。而现在：AI 实例无法重犯已经被纠正过的错误。"
+      },
+      "fr": {
+        "text": "L’analytique ne peut pas dériver de l’UI. Les traductions ne peuvent pas se détacher des écrans. La localisation ne peut pas se fragmenter entre les plateformes. Les lecteurs concurrents ne peuvent pas se contredire. Et maintenant : les instances d’IA ne peuvent pas réintroduire des erreurs déjà corrigées."
       }
     },
     "identity": {
@@ -711,6 +819,9 @@
       },
       "zh": {
         "text": "第六次应用：AI 可自主维护的系统"
+      },
+      "fr": {
+        "text": "La sixième application : des systèmes maintenables par l’IA"
       }
     },
     "identity": {
@@ -729,6 +840,9 @@
       },
       "zh": {
         "text": "每个采用 AI 编程工具的组织都在撞同一堵墙：AI 产出的工作会退化，因为没有任何机制在会话之间保存机构知识。新的 AI 实例从零开始，重新引入几个月前已被纠正的假设——这与上面每一次割裂是同一种病，只是规模最大：割裂的是上下文本身。"
+      },
+      "fr": {
+        "text": "Toutes les organisations qui adoptent des outils de codage IA rencontrent le même mur : le travail généré par l’IA se dégrade, parce que rien ne préserve la connaissance institutionnelle entre les sessions. Une nouvelle instance d’IA démarre à froid et réintroduit des hypothèses corrigées des mois auparavant — la même maladie que toutes les fragmentations ci-dessus, à la plus grande échelle : le contexte lui-même."
       }
     },
     "identity": {
@@ -747,6 +861,9 @@
       },
       "zh": {
         "text": "公开的演示项目把这个经过五次验证的方法应用于此：仓库的持续集成系统自我维护索引；每个变更是一份决策记录（假设、连锁影响、写给下一位读者的说明——无论人或 AI）；扩展上限在触及之前就已记录并配好迁移路径；任何全新的 AI 会话用一条命令即可加载完整上下文。当年与人类团队建立的协作文化，被转写成了系统架构。"
+      },
+      "fr": {
+        "text": "La démonstration publique fonctionnelle applique à ce problème la méthode éprouvée cinq fois : un dépôt où la CI maintient automatiquement ses propres index ; des pull requests qui servent de dossiers de décision (hypothèses, effets en cascade, notes pour le lecteur suivant — humain ou IA) ; des plafonds de mise à l’échelle documentés avec leurs chemins de migration avant d’être atteints ; et toute nouvelle session d’IA qui amorce le contexte complet en une seule commande. La culture d’escalade construite avec l’équipe humaine — problèmes difficiles orientés tôt, résolutions réécrites dans la connaissance partagée — transcrite dans l’architecture."
       }
     },
     "identity": {
@@ -765,6 +882,9 @@
       },
       "zh": {
         "text": "采用之后会改变什么"
+      },
+      "fr": {
+        "text": "Ce que l’adoption change"
       }
     },
     "identity": {
@@ -784,6 +904,9 @@
       },
       "zh": {
         "text": "对一个组织而言，这套架构不是一种文档风格——它把可靠性的来源从个人的警觉与部落式记忆中迁移出来，放进能够自我校验的结构里。"
+      },
+      "fr": {
+        "text": "Pour une organisation, cette architecture n’est pas un style de documentation — elle déplace la source de la fiabilité : de la vigilance individuelle et de la mémoire tribale vers une structure qui se valide elle-même."
       }
     },
     "identity": {
@@ -803,6 +926,9 @@
       },
       "zh": {
         "text": "工程："
+      },
+      "fr": {
+        "text": "Ingénierie :"
       }
     },
     "identity": {
@@ -822,6 +948,9 @@
       },
       "zh": {
         "text": "脱节不再是纪律问题。当埋点、文本、测试与设计通过同一个标识解析时，分歧在结构上就不可能发生，而不需要靠人工监督——变更评审也从凭记忆推测影响变成阅读自动生成的影响报告。"
+      },
+      "fr": {
+        "text": "la dérive cesse d’être un problème de discipline. Lorsque l’analytique, les chaînes, les tests et le design se résolvent à travers une identité unique, la divergence devient structurellement impossible au lieu d’être surveillée manuellement — et la revue des changements passe du rappel de leur impact à la lecture d’un rapport d’impact calculé."
       }
     },
     "identity": {
@@ -841,6 +970,9 @@
       },
       "zh": {
         "text": "本地化与产品："
+      },
+      "fr": {
+        "text": "Localisation & produit :"
       }
     },
     "identity": {
@@ -860,6 +992,9 @@
       },
       "zh": {
         "text": "新增一种语言意味着新增几行数据，而不是复制整套页面。供应商对一个含义只翻译一次，图谱会把它应用到所有绑定之处；复数、占位符与排版规则按语言自动校验。"
+      },
+      "fr": {
+        "text": "une nouvelle langue devient de nouvelles lignes, pas des pages dupliquées. Les fournisseurs traduisent une signification une seule fois et le graphe l’applique partout où elle est liée ; les règles de pluriel, de paramètres réservés et de mise en page sont validées automatiquement pour chaque locale."
       }
     },
     "identity": {
@@ -879,6 +1014,9 @@
       },
       "zh": {
         "text": "质量与合规："
+      },
+      "fr": {
+        "text": "Qualité & conformité :"
       }
     },
     "identity": {
@@ -898,6 +1036,9 @@
       },
       "zh": {
         "text": "每次变更在落地之前就生成影响报告，从测试到设计意图再到翻译的可追溯性是天生审计级的。在受监管行业，这就是证明合规与事后重建合规的区别。"
+      },
+      "fr": {
+        "text": "chaque changement produit son rapport d’impact avant d’être intégré, et la traçabilité du test à l’intention de design puis à la traduction est de niveau audit par construction. Dans les industries réglementées, c’est la différence entre prouver la conformité et la reconstruire."
       }
     },
     "identity": {
@@ -917,6 +1058,9 @@
       },
       "zh": {
         "text": "AI 采用："
+      },
+      "fr": {
+        "text": "Adoption de l’IA :"
       }
     },
     "identity": {
@@ -936,6 +1080,9 @@
       },
       "zh": {
         "text": "AI 代理不再反复重推上下文。图谱是记忆，AI 是进入图谱的桥梁——让一个全新的代理上手只需一次查询，而不是通读整个仓库；被纠正过的错误在会话、工具与供应商之间保持已纠正状态。"
+      },
+      "fr": {
+        "text": "les agents cessent de redériver le contexte. Le graphe est la mémoire ; l’IA est le pont qui y mène — intégrer un nouvel agent coûte une requête, pas une lecture du dépôt, et les erreurs corrigées restent corrigées entre les sessions, les outils et les fournisseurs."
       }
     },
     "identity": {
@@ -955,6 +1102,9 @@
       },
       "zh": {
         "text": "管理层："
+      },
+      "fr": {
+        "text": "Direction :"
       }
     },
     "identity": {
@@ -974,6 +1124,9 @@
       },
       "zh": {
         "text": "上文的本地化先例——六个月缩短到两周——就是这类变革对周期时间的作用。凡是团队目前靠开会而不是靠地图来对齐的地方，同样的机制都适用。"
+      },
+      "fr": {
+        "text": "le précédent de localisation ci-dessus — six mois à deux semaines — montre ce que cette classe de changement fait au temps de cycle. Les mêmes mécanismes s’appliquent partout où les équipes se réconcilient aujourd’hui par réunion plutôt que par carte."
       }
     },
     "identity": {
@@ -993,6 +1146,9 @@
       },
       "zh": {
         "text": "本文件本身就是其所述标准管理下的第一个工件：记录标识符遵循概念命名标准，旧编号以别名形式保留，中英文内容由同一个双语源文件再生成。这一页，就是概念验证。"
+      },
+      "fr": {
+        "text": "Ce document est lui-même le premier artefact géré selon la norme qu’il décrit : ses identifiants d’enregistrement suivent la norme de nommage par ID de concept, les anciens ID sont conservés comme alias, et les contenus anglais et chinois se régénèrent depuis une source bilingue unique. La preuve de concept, c’est cette page."
       }
     },
     "identity": {
@@ -1012,6 +1168,9 @@
       },
       "zh": {
         "text": "适合的方向"
+      },
+      "fr": {
+        "text": "Où cela s’inscrit"
       }
     },
     "identity": {
@@ -1030,6 +1189,9 @@
       },
       "zh": {
         "text": "平台工程 / 开发者体验"
+      },
+      "fr": {
+        "text": "Plateforme & expérience développeur"
       }
     },
     "identity": {
@@ -1049,6 +1211,9 @@
       },
       "zh": {
         "text": "构建让大型团队并行工作而不脱节的地图与流程。"
+      },
+      "fr": {
+        "text": "Construire les cartes et les pipelines qui permettent aux grandes équipes d’avancer en parallèle sans dérive."
       }
     },
     "identity": {
@@ -1068,6 +1233,9 @@
       },
       "zh": {
         "text": "AI 工具公司"
+      },
+      "fr": {
+        "text": "Entreprises d’outillage IA"
       }
     },
     "identity": {
@@ -1087,6 +1255,9 @@
       },
       "zh": {
         "text": "设计伙伴级别的人选：亲身经历并记录了这类产品要解决的失效模式。"
+      },
+      "fr": {
+        "text": "Un profil de partenaire de conception : a rencontré et documenté les modes de défaillance que ces produits existent pour résoudre."
       }
     },
     "identity": {
@@ -1106,6 +1277,9 @@
       },
       "zh": {
         "text": "采用 AI 的受监管行业"
+      },
+      "fr": {
+        "text": "Industries réglementées adoptant l’IA"
       }
     },
     "identity": {
@@ -1125,6 +1299,9 @@
       },
       "zh": {
         "text": "医疗器械背景加上审计级的决策记录实践——罕见的交叉点。"
+      },
+      "fr": {
+        "text": "Expérience dans les dispositifs médicaux et pratiques de dossiers de décision de niveau audit — une intersection rare."
       }
     },
     "identity": {
@@ -1144,6 +1321,9 @@
       },
       "zh": {
         "text": "流程转型"
+      },
+      "fr": {
+        "text": "Transformation des processus"
       }
     },
     "identity": {
@@ -1163,6 +1343,9 @@
       },
       "zh": {
         "text": "经精益六西格玛验证：实测将六个月周期缩短至两周，并获得跨团队采用。"
+      },
+      "fr": {
+        "text": "Validé par Lean Six Sigma : réduction mesurée du cycle de 6 mois à 2 semaines avec adoption interéquipes."
       }
     },
     "identity": {
@@ -1182,6 +1365,9 @@
       },
       "zh": {
         "text": "本档案实践其所述的方法。"
+      },
+      "fr": {
+        "text": "Ce dossier applique sa propre méthode."
       }
     },
     "identity": {
@@ -1200,6 +1386,9 @@
       },
       "zh": {
         "text": "上面的每条记录都带有稳定的概念命名编号（proof-bulk-data-logging、proof-cross-domain-ui-identity……），遵循仓库的注册表文档标准，旧编号以别名保留，任何读者——无论人或 AI，中文或英文——都可以无歧义地引用、询问某一条具体记录。先有标识，再有讨论。"
+      },
+      "fr": {
+        "text": "Chaque enregistrement ci-dessus porte un ID stable (proof-bulk-data-logging, proof-cross-domain-ui-identity…), nommé par concept conformément à la norme de documentation des registres du dépôt, les anciens ID étant conservés comme alias, afin que tout lecteur — humain ou IA, en anglais ou en chinois — puisse référencer, citer ou interroger un enregistrement exact sans ambiguïté. L’identité d’abord ; la discussion ensuite."
       }
     },
     "identity": {
@@ -1218,6 +1407,9 @@
       },
       "zh": {
         "text": "Victor Gong · 档案 v2.1 · 创建于 2026 年 7 月 4 日 · 档案编号: VG-DOSSIER-v2.1"
+      },
+      "fr": {
+        "text": "Victor Gong · Dossier v2.1 · Créé le 4 juillet 2026 · ID DOC : VG-DOSSIER-v2.1"
       }
     },
     "identity": {
@@ -1237,6 +1429,9 @@
       },
       "zh": {
         "text": "可应要求提供推荐人与项目讲解"
+      },
+      "fr": {
+        "text": "Références et visite guidée du dépôt disponibles sur demande"
       }
     },
     "identity": {
@@ -1256,6 +1451,9 @@
       },
       "zh": {
         "text": "记录在案"
+      },
+      "fr": {
+        "text": "AU"
       }
     },
     "identity": {
@@ -1275,6 +1473,9 @@
       },
       "zh": {
         "text": "ON THE RECORD"
+      },
+      "fr": {
+        "text": "DOSSIER"
       }
     },
     "identity": {
