@@ -13,6 +13,15 @@
 5. [05-scarcity-extraction-loop.md](05-scarcity-extraction-loop.md) — Final lesson on scarcity, recruitment, and extraction.
 6. [06-companionship-and-ai-access.md](06-companionship-and-ai-access.md) — Loop interruption via access to companionship and user-controlled AI.
 
+## Selected illustration (full-resolution, lossless)
+
+![The Pier House — genuine connection, manipulated invitation, and freedom of choice](assets/pier-house-genuine-connection.png)
+
+- **Accepted final image:** original **1536 × 1024 PNG**, stored without resizing, lossy compression, or re-encoding.
+- **Source file SHA-256:** `6ccf7f02b7ba22f74252cc5672043c8411e20213c4c76b1a3d448b216364dc11`
+- **Git blob SHA-1:** `afdcdeea53d88973117149b831e6d9e8a172a339`
+- **Image scope:** artistic illustration associated with the fourth dream arc; the image is not a replacement for the full six-exchange transcript.
+
 ## Continuity
 
 - [First arc — Returning scorpions to God, PR #338](https://github.com/vgong24/Vextreme/pull/338)
