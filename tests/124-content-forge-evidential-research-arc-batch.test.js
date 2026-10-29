@@ -73,7 +73,7 @@ test('Content Forge Evidential Research preserves its historical collection whil
   assert.equal(embedded.adapterClass, 'EMBEDDED_CODE_CONTAINER');
   assert.equal(embedded.embeddedRootClass, 'pdgm');
 
-  const first = projector.main({ root: ROOT, silent: true, formationRel: FORMATION_REL });
+  const first = projector.main({ root: ROOT, silent: true, dryRun: true, formationRel: FORMATION_REL });
   assert.deepEqual(first.accounting, {
     canonicalMembers: 15,
     alreadyComplete: 0,
@@ -89,7 +89,7 @@ test('Content Forge Evidential Research preserves its historical collection whil
     path.join(ROOT, 'data', 'strings', 'source', 'pages', member.slug + '.json'),
   ]);
   const firstHashes = Object.fromEntries([...generated, VIEWMODELS].map(file => [file, hash(file)]));
-  const second = projector.main({ root: ROOT, silent: true, formationRel: FORMATION_REL });
+  const second = projector.main({ root: ROOT, silent: true, dryRun: true, formationRel: FORMATION_REL });
   const secondHashes = Object.fromEntries([...generated, VIEWMODELS].map(file => [file, hash(file)]));
   assert.deepEqual(second.accounting, first.accounting);
   assert.deepEqual(second.changedPaths, []);

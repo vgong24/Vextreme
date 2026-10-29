@@ -50,11 +50,11 @@ test('Content Forge Father & Son Threshold preserves explicit lineage and asymme
     assert.equal(hash(path.join(ROOT,member.sourcePath)),member.preservedHtmlSha256);
   }
 
-  const first=projector.main({root:ROOT,silent:true,formationRel:FORMATION_REL});
+  const first=projector.main({root:ROOT,silent:true,dryRun:true,formationRel:FORMATION_REL});
   assert.deepEqual(first.accounting,{canonicalMembers:3,alreadyComplete:0,projected:3,held:0,complete:true});
   const generated=formation.members.flatMap(m=>[path.join(ROOT,'pages',m.slug+'.html'),path.join(ROOT,'data','strings','source','pages',m.slug+'.json')]);
   const firstHashes=Object.fromEntries([...generated,VIEWMODELS].map(file=>[file,hash(file)]));
-  const second=projector.main({root:ROOT,silent:true,formationRel:FORMATION_REL});
+  const second=projector.main({root:ROOT,silent:true,dryRun:true,formationRel:FORMATION_REL});
   assert.deepEqual(second.changedPaths,[]);
   assert.deepEqual(Object.fromEntries([...generated,VIEWMODELS].map(file=>[file,hash(file)])),firstHashes);
   assert.deepEqual({nodes:hash(NODES),arcs:hash(ARCS),intents:hash(INTENTS)},heldBefore);

@@ -81,7 +81,7 @@ test('Content Forge AI Practitioner Tools completes the exact canonical arc from
     assert.ok(textLeaves(expectedAuthoredMain(parse5.parse(source.toString('utf8')))).length>0,member.slug+': authored text present');
   }
 
-  const first=projector.main({root:ROOT,silent:true,formationRel:FORMATION_REL});
+  const first=projector.main({root:ROOT,silent:true,dryRun:true,formationRel:FORMATION_REL});
   assert.deepEqual(first.accounting,{canonicalMembers:11,alreadyComplete:2,projected:9,held:0,complete:true});
   assert.deepEqual(first.members.map(item=>item.slug),canonical);
   assert.deepEqual(first.members.map(item=>item.disposition),canonical.map(slug=>formation.alreadyComplete.some(item=>item.slug===slug)?'ALREADY_COMPLETE':'PROJECTED'));
@@ -89,7 +89,7 @@ test('Content Forge AI Practitioner Tools completes the exact canonical arc from
 
   const generated=formation.members.flatMap(member=>[path.join(ROOT,'pages',member.slug+'.html'),path.join(ROOT,'data','strings','source','pages',member.slug+'.json')]);
   const firstHashes=Object.fromEntries([...generated,VIEWMODELS].map(file=>[file,hash(file)]));
-  const second=projector.main({root:ROOT,silent:true,formationRel:FORMATION_REL}); const secondHashes=Object.fromEntries([...generated,VIEWMODELS].map(file=>[file,hash(file)]));
+  const second=projector.main({root:ROOT,silent:true,dryRun:true,formationRel:FORMATION_REL}); const secondHashes=Object.fromEntries([...generated,VIEWMODELS].map(file=>[file,hash(file)]));
   assert.deepEqual(second.accounting,first.accounting); assert.deepEqual(second.members.map(item=>item.slug),canonical); assert.deepEqual(second.changedPaths,[]); assert.deepEqual(secondHashes,firstHashes); assert.deepEqual(Object.fromEntries(stableAlready.map(file=>[file,pathState(file)])),stableAlreadyState);
 
   const viewmodels=json(VIEWMODELS);

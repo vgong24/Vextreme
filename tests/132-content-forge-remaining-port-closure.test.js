@@ -14,6 +14,7 @@ test('Content Forge remaining recovered ports do not hold on absent inline style
   const evidential = projector.main({
     root: ROOT,
     silent: true,
+    dryRun: true,
     formationRel: 'docs/ingestion/workmaps/content-forge-evidential-research-arc-batch-formation.json',
   });
   const accountability = evidential.members.find(item => item.slug === 'accountability-record-v8');
@@ -24,6 +25,7 @@ test('Content Forge remaining recovered ports do not hold on absent inline style
   const witness = projector.main({
     root: ROOT,
     silent: true,
+    dryRun: true,
     formationRel: 'docs/ingestion/workmaps/content-forge-witness-chatroom-animation-project-formation.json',
   });
   const draft = witness.members.find(item => item.slug === 'current-draft');
@@ -69,6 +71,7 @@ test('Content Forge current-draft resolves its preserved undefined CSS token thr
   const witness = projector.main({
     root: ROOT,
     silent: true,
+    dryRun: true,
     formationRel: 'docs/ingestion/workmaps/content-forge-witness-chatroom-animation-project-formation.json',
   });
   assert.deepEqual(witness.changedPaths, [], 'checked-in canonical output matches the source-managed projector');
