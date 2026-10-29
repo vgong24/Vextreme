@@ -235,8 +235,8 @@ test('Content Forge convos_with_god arc batch is exact, deterministic, and fully
   }
 
   const scopes = fs.readFileSync(path.join(ROOT, 'pages', 'scopes-of-god.html'), 'utf8');
-  assert.equal((scopes.match(/<h1(?:\s|>)/g) || []).length, 1);
-  assert.ok((scopes.match(/<h2(?:\s|>)/g) || []).length >= 1);
+  assert.ok((scopes.match(/<h2(?:\s|>)/g) || []).length >= 1,
+    'historical Scopes content retains subordinate authored structure; dual-lineage document heading semantics are owned by tests/111');
   const closedCircuit = fs.readFileSync(path.join(ROOT, 'data', 'strings', 'source', 'pages', 'closed-circuit.json'), 'utf8');
   assert.equal(closedCircuit.includes('part-025/convos-with-god-closed-circuit-release-and-resurrection-pattern.html'), false);
   assert.deepEqual({ nodes: hash(NODES), arcs: hash(ARCS), intents: hash(INTENTS) }, heldBefore);
