@@ -605,6 +605,12 @@ test('TERRAIN-JOURNEY: Inspect projects relationship and causal reason as separa
   assert.doesNotMatch(projectionSource, /commitSemanticState|history\.(?:pushState|replaceState|back|go)|openEvolution|closeEvolution|enterLevel/,
     'Inspect remains a projection and cannot become a navigation or semantic-state owner');
 
+  const panelLayer = source.match(/\.panel\{[^}]*z-index:(\d+);/);
+  const readerLayer = source.match(/\.evolution-reader\{[^}]*z-index:(\d+);/);
+  assert.ok(panelLayer && readerLayer, 'Journey Inspect and embedded reader layers must remain explicit');
+  assert.ok(Number(panelLayer[1]) > Number(readerLayer[1]),
+    'Journey Inspect must remain perceivable above an embedded reader');
+
   const make = new Function('journeySnapshot', 'esc', [
     projectionSource,
     'return journeyHtml();'
