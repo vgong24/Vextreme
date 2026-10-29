@@ -16,6 +16,7 @@
   window.VEX_STRING_SCOPES    = ["pages.specimen-smallest-miss","specimens"];
   window.VEX_STRING_CATEGORY  = "demo";
   window.VEX_SUPPORTED_LANGS  = ["en","ja"];
+  window.VEX_INDEX_FINGERPRINT = "7ca19fe4444b";
 
 
 

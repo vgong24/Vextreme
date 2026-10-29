@@ -407,6 +407,18 @@ test('ASSEMBLER: Read Aloud is default infrastructure even when a viewmodel list
     'accessibility must not depend on every page remembering a read-aloud feature flag');
 });
 
+test('ASSEMBLER: exact index fingerprint is baked into the God Script for runtime currentness', () => {
+  const script = assembleGodScript('test-slug', DEMO_VIEWMODEL, {
+    includeSourceComment: false,
+    indexFingerprint: 'abcdef123456',
+  });
+  assert.match(script, /window\.VEX_INDEX_FINGERPRINT\s*=\s*"abcdef123456";/);
+
+  const source = fs.readFileSync(path.join(ROOT, 'lib', 'build-vextreme.js'), 'utf8');
+  assert.match(source, /indexFingerprint:\s*index\.contentFingerprint/,
+    'production assembly must bind every generated page to the exact data\/index.json generation');
+});
+
 test('ASSEMBLER: output includes sw-register.js core module', () => {
   const script = assembleGodScript('test-slug', DEMO_VIEWMODEL, { includeSourceComment: false });
   assert.ok(script.includes('sw-register.js') || script.includes('serviceWorker'),
