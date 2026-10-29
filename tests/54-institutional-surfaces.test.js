@@ -918,6 +918,11 @@ test('INSTITUTIONAL-SURFACES: no-JavaScript shell-context fallback does not requ
     /invalid-URL-keeps-supported-storage[\s\S]*expected: 'zh'/,
     'shell-context commissioning must preserve the shared FAB invalid-URL fallback contract instead of imposing standalone semantics'
   );
+  assert.match(
+    source,
+    /if \(\(surface\.evidence\?\.themes \|\| \[\]\)\.length > 1\) \{\s*await verifyThemeToggle/,
+    'theme-toggle commissioning must only run when the surface actually declares more than one evidence theme'
+  );
 });
 
 test('INSTITUTIONAL-SURFACES: Support keeps its skip link before the shared shell nav mount', () => {
