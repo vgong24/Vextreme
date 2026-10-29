@@ -641,6 +641,26 @@ test('TERRAIN-VIEW: collection overview shows up to three deterministic daily pr
   assert.match(source, /data-preview-count/);
   assert.match(source, /data-preview-day/);
   assert.match(source, /class:'stage-curiosity-thumb stage-daily-preview-thumb'/);
+
+  const slotFn = source.match(/function dailyPreviewSlotX\(rect, count, index, thumbWidth\) \{[\s\S]*?\n  \}/);
+  assert.ok(slotFn, 'daily preview geometry helper must remain extractable');
+  const slotX = new Function(slotFn[0] + '\nreturn dailyPreviewSlotX;')();
+  const card = { x:100, width:300 };
+
+  assert.equal(slotX(card, 1, 0, 58), 221,
+    'one preview stays centered in the usable card width');
+  assert.deepEqual(
+    [0, 1].map(index => slotX(card, 2, index, 48)),
+    [114, 338],
+    'two previews occupy the left and right interior anchors'
+  );
+  assert.deepEqual(
+    [0, 1, 2].map(index => slotX(card, 3, index, 48)),
+    [114, 226, 338],
+    'three previews occupy left, center, and right with equal spacing'
+  );
+  assert.doesNotMatch(source, /previewStripWidth|previewStartX|previewThumbGap/,
+    'daily previews must not regress to a compact right-aligned strip');
 });
 
 test('TERRAIN-VIEW: overview thumbnail imagery hydrates progressively after interaction is ready', () => {
