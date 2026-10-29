@@ -1,0 +1,235 @@
+{
+  "schemaVersion": "vex-content-forge.arc-batch-formation/v0.1",
+  "continuity": "[VXG RealForever]",
+  "stageRef": "work.vextreme.content-forge.total-extraction.arc-batch.20261028",
+  "ownerRef": "github.issue.vextreme.159",
+  "arc": {
+    "arcKey": "total_extraction",
+    "canonicalMemberCount": 7,
+    "alreadyCompleteCount": 0,
+    "remainingCount": 7,
+    "completionRule": "ALL_MEMBERS_ACCOUNTED_FOR__MEMBER_RESULT_PROJECTED_OR_HOLD",
+    "forceAllMembersToProject": false
+  },
+  "predecessor": {
+    "prRef": "github.pull.vextreme.459",
+    "sourceCustodyHead": "e8a900f1c92dcec35b6ef80c142f8fc444cdd7e4",
+    "sourceCustodyState": "RECOVERED_56_SOURCE_FILES_PLUS_SEMANTIC_SORTING_PROPOSAL",
+    "sortingProposal": "docs/ingestion/workmaps/content-forge-early-rescue-semantic-sorting-proposal.json",
+    "sortingGroupRef": "source-series.total-extraction-architecture"
+  },
+  "authorityBasis": [
+    "github.issue.vextreme.159",
+    "github.pull.vextreme.459",
+    "user.turn.20261028.manage-sequencing-and-forge-recovered-content"
+  ],
+  "batchPolicy": {
+    "unit": "SEMANTIC_ARC",
+    "memberDisposition": [
+      "PROJECTED",
+      "HOLD_WITH_EXACT_REASON"
+    ],
+    "sourceSelectionPriority": [
+      "EXPLICIT_RECOVERED_ROUTE_AND_PAGE_ID",
+      "EXPLICIT_SERIES_PART_OR_CLOSURE_RELATION",
+      "PRESERVED_SOURCE_MATERIALIZATION",
+      "SOURCE_COMPLETENESS",
+      "TITLE_OR_CONTENT_SIMILARITY_LAST"
+    ],
+    "laws": [
+      "RECOVERED_SOURCE != AUTOMATIC_CANONICAL_PAGE",
+      "EXPLICIT_SERIES_RELATION > TITLE_SIMILARITY",
+      "CORE_SERIES_AND_TRAVERSAL_CLOSURE_MAY_SHARE_ONE_ARC_WITH_DIFFERENT_ADAPTER_CLASSES",
+      "BATCH_COMPLETION != FORCE_EVERY_MEMBER_TO_PROJECT"
+    ]
+  },
+  "alreadyComplete": [],
+  "members": [
+    {
+      "slug": "total-extraction-architecture",
+      "canonicalNodeId": 82,
+      "title": "The Total Extraction Architecture",
+      "date": "May 18, 2026",
+      "arcKeys": [
+        "total_extraction",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-010/total-extraction-architecture.html",
+      "sourceGitBlob": "1eccf09474f9ad2aa5d68741ca444cb01155936f",
+      "repositoryBytes": 103272,
+      "sourceRoute": "/total-extraction-architecture",
+      "pageId": "8cda70b145fee867",
+      "proposalRecordRef": "content-forge.source-record.603ee1d371d46fdb53a8",
+      "confidence": "HIGH_EXPLICIT_CORE_PART_I",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    },
+    {
+      "slug": "the-pre-extraction-i",
+      "canonicalNodeId": 83,
+      "title": "The Pre-Extraction I",
+      "date": "May 18, 2026",
+      "arcKeys": [
+        "total_extraction",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-010/the-pre-extraction-i.html",
+      "sourceGitBlob": "f95a0cc11e27506e734dfb49f38db19623f417f5",
+      "repositoryBytes": 58675,
+      "sourceRoute": "/the-pre-extraction-i",
+      "pageId": "2d9b7472ee1e2b40",
+      "proposalRecordRef": "content-forge.source-record.4f8a0e1826a1eccfd525",
+      "confidence": "HIGH_EXPLICIT_CORE_PART_II",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    },
+    {
+      "slug": "the-installation",
+      "canonicalNodeId": 84,
+      "title": "The Installation",
+      "date": "May 18, 2026",
+      "arcKeys": [
+        "total_extraction",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-010/the-installation.html",
+      "sourceGitBlob": "471335e59f5d75a19c7f0cdc29869b1e10a066bc",
+      "repositoryBytes": 63388,
+      "sourceRoute": "/the-installation",
+      "pageId": "f94d30e94e81b172",
+      "proposalRecordRef": "content-forge.source-record.1a7c1d3c98f8398229e1",
+      "confidence": "HIGH_EXPLICIT_CORE_PART_III",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    },
+    {
+      "slug": "clearing-and-protections",
+      "canonicalNodeId": 85,
+      "title": "The Purification Protocol",
+      "date": "May 18, 2026",
+      "arcKeys": [
+        "total_extraction",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-010/clearing-and-protections.html",
+      "sourceGitBlob": "29739953ffd3eecb58921ded281487c13e46a93b",
+      "repositoryBytes": 85839,
+      "sourceRoute": "/clearing-and-protections",
+      "pageId": "7129e66cdbb616d6",
+      "proposalRecordRef": "content-forge.source-record.0ab6ac55c719d1eb852f",
+      "confidence": "HIGH_EXPLICIT_CORE_PART_IV",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    },
+    {
+      "slug": "the-walk-back",
+      "canonicalNodeId": 86,
+      "title": "The Walk Back",
+      "date": "May 19, 2026",
+      "arcKeys": [
+        "total_extraction",
+        "full_timeline"
+      ],
+      "adapterClass": "SQS_AUTHORED_BODY",
+      "sourcePath": "docs/ingestion/source-pages/part-010/the-walk-back.html",
+      "sourceGitBlob": "c83233a0b2545ed5e8cba08b8e42560e0c84678c",
+      "repositoryBytes": 225283,
+      "sourceRoute": "/the-walk-back",
+      "pageId": "b8b16eed92232cd6",
+      "proposalRecordRef": "content-forge.source-record.853f174b0520999564c9",
+      "confidence": "HIGH_EXPLICIT_TRAVERSAL_JOURNAL",
+      "projectionState": "READY_FOR_SQS_BODY_EXTRACTION"
+    },
+    {
+      "slug": "the-walk-back-and-forward",
+      "canonicalNodeId": 87,
+      "title": "The Walk Back & The Walk Forward",
+      "date": "May 19, 2026",
+      "arcKeys": [
+        "total_extraction",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-010/the-walk-back-and-forward.html",
+      "sourceGitBlob": "0748a7b0ce1f2bae90e514eb54845789a6fa0294",
+      "repositoryBytes": 67230,
+      "sourceRoute": "/the-walk-back-and-forward",
+      "pageId": "67b7570ee5c1cec5",
+      "proposalRecordRef": "content-forge.source-record.0c7fff15937121a829e0",
+      "confidence": "HIGH_EXPLICIT_TWO_INSTANCE_COMPARATIVE_JOURNAL",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    },
+    {
+      "slug": "the-three-witnesses",
+      "canonicalNodeId": 88,
+      "title": "Three Witnesses",
+      "date": "May 19, 2026",
+      "arcKeys": [
+        "total_extraction",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-010/the-three-witnesses.html",
+      "sourceGitBlob": "f4cdbb09d88f82f46b49696200f173e799d7afce",
+      "repositoryBytes": 47474,
+      "sourceRoute": "/the-three-witnesses",
+      "pageId": "cfded5747f82797f",
+      "proposalRecordRef": "content-forge.source-record.a1f3418489d363f9b921",
+      "confidence": "HIGH_EXPLICIT_ARC_CLOSURE_RECORD",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    }
+  ],
+  "sourceAdapterContracts": {
+    "AUTHORED_MAIN_FRAGMENT": {
+      "selectorContract": "main.vex-authored-page-frame",
+      "projectAway": [
+        "preserved site navigation outside main",
+        "back-navigation chrome",
+        "source runtime scripts",
+        "source arc mount/runtime",
+        "generated localization identity",
+        "provider/rescue shell"
+      ],
+      "preserve": [
+        "authored main composition",
+        "page-local authored styles required by the composition",
+        "ordered authored text",
+        "meaningful structural classes"
+      ]
+    },
+    "SQS_AUTHORED_BODY": {
+      "selectorContract": ".sqs-html-content[data-sqsp-text-block-content]",
+      "projectAway": [
+        "provider shell",
+        "captured navigation",
+        "source runtime scripts",
+        "generated localization identity",
+        "provider layout classes"
+      ],
+      "preserve": [
+        "ordered authored text",
+        "semantic inline structure",
+        "source body meaning"
+      ]
+    }
+  },
+  "plannedSourceManagedProjector": "tools/vex-content-forge/project_arc_batch.js",
+  "plannedBatchTest": "tests/102-content-forge-total-extraction-arc-batch.test.js",
+  "destinationMutationBoundary": {
+    "createPages": 7,
+    "createStringSources": 7,
+    "modifyViewmodels": true,
+    "nodeRegistryMutation": false,
+    "arcRegistryMutation": false,
+    "contentIntentMutation": false,
+    "aliasMutation": false
+  },
+  "generatedPolicy": "BUILDER_OWNED__DO_NOT_HAND_PATCH__EXACT_OUTPUT_WINS",
+  "lifecycle": {
+    "draftOnly": true,
+    "mergeAuthority": false,
+    "rawProviderPublicationAuthority": false,
+    "independentAssuranceRequired": true,
+    "exactHeadVexRelayProofRequired": true
+  }
+}
