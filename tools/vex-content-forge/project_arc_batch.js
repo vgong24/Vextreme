@@ -17,6 +17,8 @@ const HTML_NS = 'http://www.w3.org/1999/xhtml';
 const ASSET_FILENAME = /^([0-9a-f]{64})\.([A-Za-z0-9]+)$/i;
 const ROOT_RELATIVE_ASSET_REF = /(^|["'(\s,=])\/__assets\/([0-9a-f]{64}\.[A-Za-z0-9]+)/m;
 const ROOT_RELATIVE_ASSET_REF_GLOBAL = /(^|["'(\s,=])\/__assets\/([0-9a-f]{64}\.[A-Za-z0-9]+)/gm;
+const ROOT_RELATIVE_DOCUMENT_REF = /\/__documents\/google\/[A-Za-z0-9_-]+\/index\.html/m;
+const GOOGLE_DOCUMENT_SOURCE = /^https:\/\/docs\.google\.com\/document\/d\/([A-Za-z0-9_-]+)\/(?:export\?format=(?:docx|pdf)|edit(?:\?.*)?|view(?:\?.*)?)$/;
 
 const GENERIC_STYLE = `
 :root{--paper:#fafaf9;--ink:#1c1917;--muted:#78716c;--line:#e7e5e4;--accent:#b45830}
@@ -86,6 +88,58 @@ function externalizeAssetReferences(root, catalog) {
   walk(root, current => {
     if (current.tagName) current.attrs = (current.attrs || []).map(item => ({ ...item, value: rewriteAssetText(item.value, catalog) }));
     if (current.nodeName === '#text' && current.parentNode?.tagName === 'style') current.value = rewriteAssetText(current.value || '', catalog);
+  });
+}
+function setAttribute(node, name, value) {
+  node.attrs ||= [];
+  const existing = node.attrs.find(item => item.name.toLowerCase() === name.toLowerCase());
+  if (existing) existing.value = value;
+  else node.attrs.push({ name, value });
+}
+function removeAttribute(node, name) {
+  node.attrs = (node.attrs || []).filter(item => item.name.toLowerCase() !== name.toLowerCase());
+}
+function externalizeDocumentReferences(root) {
+  const providerByLocalPath = new Map();
+  walk(root, current => {
+    if (current?.tagName !== 'a') return;
+    const a = attrs(current);
+    if (a['data-provider'] !== 'google-docs') return;
+    const localHref = String(a.href || '');
+    if (!ROOT_RELATIVE_DOCUMENT_REF.test(localHref)) return;
+    const providerId = String(a['data-provider-id'] || '');
+    invariant(/^[A-Za-z0-9_-]+$/.test(providerId), 'DOCUMENT_PROVIDER_ID', providerId || 'missing');
+    const priorProviderId = providerByLocalPath.get(localHref);
+    invariant(!priorProviderId || priorProviderId === providerId, 'DOCUMENT_PROVIDER_PATH_COLLISION', localHref);
+    providerByLocalPath.set(localHref, providerId);
+    const sourceUrl = String(a['data-vex-document-source'] || '');
+    if (!sourceUrl) return;
+    const sourceMatch = GOOGLE_DOCUMENT_SOURCE.exec(sourceUrl);
+    invariant(sourceMatch && sourceMatch[1] === providerId, 'DOCUMENT_SOURCE_URL', sourceUrl);
+    setAttribute(current, 'href', sourceUrl);
+  });
+  walk(root, current => {
+    if (!current?.tagName) return;
+    const a = attrs(current);
+    if (current.tagName === 'iframe') {
+      const localSrc = String(a.src || '');
+      if (!ROOT_RELATIVE_DOCUMENT_REF.test(localSrc)) return;
+      const providerId = providerByLocalPath.get(localSrc);
+      invariant(providerId, 'DOCUMENT_PREVIEW_PROVIDER_ID', localSrc);
+      setAttribute(current, 'src', 'https://docs.google.com/document/d/' + providerId + '/preview');
+      removeAttribute(current, 'sandbox');
+      const tokens = new Set(classes(current));
+      tokens.add('doc-embed-iframe');
+      setAttribute(current, 'class', [...tokens].join(' '));
+      return;
+    }
+    if (current.tagName === 'a') {
+      const localHref = String(a.href || '');
+      if (!ROOT_RELATIVE_DOCUMENT_REF.test(localHref)) return;
+      const providerId = providerByLocalPath.get(localHref);
+      invariant(providerId, 'DOCUMENT_LINK_PROVIDER_ID', localHref);
+      setAttribute(current, 'href', 'https://docs.google.com/document/d/' + providerId + '/view');
+    }
   });
 }
 
@@ -472,6 +526,7 @@ function projectMember(root, member, nodesBySlug, assetCatalog) {
 
   const document = parse5.parse(source.toString('utf8'));
   externalizeAssetReferences(document, assetCatalog);
+  externalizeDocumentReferences(document);
   let selected;
   let styles = [];
   if (member.adapterClass === 'SQS_AUTHORED_BODY' || member.adapterClass === 'SQS_NEUTRAL_TRANSCRIPT') {
@@ -679,4 +734,4 @@ if (require.main === module) {
   try { process.exitCode = main(cliOptions()).accounting.complete ? 0 : 1; }
   catch (error) { process.stderr.write(`${error.stack || error.message}\n`); process.exitCode = 1; }
 }
-module.exports = { ASSET_CATALOG_REL, ASSET_FILENAME, DEFAULT_ROOT, FORMATION_REL, GENERATOR_REF, ROOT_RELATIVE_ASSET_REF, ProjectionInvariantError, attrs, beautifyHtmlMarkup, canonicalNodeCompatible, chronologySuccessorEnrichment, cliOptions, externalizeAssetReferences, findAll, findFirst, gitBlobSha, historicalProjectionNode, interactiveCodeText, loadAssetCatalog, main, preserveLocalizationOverlays, projectMember, rawText, resolveAssetReference, rewriteAssetText, selectAuthoredMain, selectEmbeddedCodeContainer, selectSqsBody, sha256, styleVariableDefaultsCss, textLeaves, usesReadableGeneratedMarkup, validateFormation, validateInteractiveCode };
+module.exports = { ASSET_CATALOG_REL, ASSET_FILENAME, DEFAULT_ROOT, FORMATION_REL, GENERATOR_REF, ROOT_RELATIVE_ASSET_REF, ROOT_RELATIVE_DOCUMENT_REF, ProjectionInvariantError, attrs, beautifyHtmlMarkup, canonicalNodeCompatible, chronologySuccessorEnrichment, cliOptions, externalizeAssetReferences, externalizeDocumentReferences, findAll, findFirst, gitBlobSha, historicalProjectionNode, interactiveCodeText, loadAssetCatalog, main, preserveLocalizationOverlays, projectMember, rawText, resolveAssetReference, rewriteAssetText, selectAuthoredMain, selectEmbeddedCodeContainer, selectSqsBody, sha256, styleVariableDefaultsCss, textLeaves, usesReadableGeneratedMarkup, validateFormation, validateInteractiveCode };
