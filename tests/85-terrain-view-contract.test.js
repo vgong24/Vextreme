@@ -258,7 +258,8 @@ test('TERRAIN-VIEW: collection group homes stay outside membership while remaini
   assert.match(source, /evo-group-depth-kicker">Group home/);
   assert.match(source, /summary\.membershipCount \+ ' members · parent surface<\/span>'/);
   assert.match(source, /function openEvolutionGroupHome\(stage, options\)/);
-  assert.match(source, /activeGroupHomeKey = stage\.key/);
+  assert.match(source, /function openEvolutionGroupHome\(stage, options\)[\s\S]*setActiveEmbeddedSurface\('group-home', stage\.key\)/,
+    'group-home opening must route active-surface identity through the bounded owner');
   assert.match(source, /initialStage\.parent\.pageSlug === initialRoute\.page/);
   const scopedParentRoute = source.indexOf('initialStage.parent.pageSlug === initialRoute.page');
   const globalRecordRoute = source.indexOf('var initialPage = ALL.find', scopedParentRoute > -1 ? scopedParentRoute : 0);
