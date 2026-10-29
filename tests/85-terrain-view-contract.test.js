@@ -207,8 +207,8 @@ test('TERRAIN-VIEW: accepted Content remains the no-query default while Evolutio
 
   assert.match(source, /id="contentProfileWrap"/);
   assert.match(source, /id="contentProfile"/);
-  assert.match(source, /<option value="evolution-v1">Content<\/option>/);
-  assert.match(source, /<option value="evolution-v2">Reflow shelf<\/option>/);
+  assert.match(source, /<option value="evolution-v1" data-i18n="terrain\.chrome\.content">Content<\/option>/);
+  assert.match(source, /<option value="evolution-v2" data-i18n="terrain\.chrome\.reflow-shelf">Reflow shelf<\/option>/);
   assert.match(source, /<span class="content-view-split">[\s\S]*data-world="content"[\s\S]*id="contentProfileWrap"[\s\S]*id="contentProfile"[\s\S]*<\/span>/,
     'presentation profile belongs inside the Content half of the View control');
   assert.match(source, /\.terrain-content-quiet \.lens,[\s\S]*\.terrain-content-quiet \.legend\{ display:none; \}/);
@@ -572,10 +572,10 @@ test('TERRAIN-VIEW: Content middle layer foregrounds group kind and placement re
 test('TERRAIN-VIEW: Content group overview exposes one bounded orientation legend without changing semantic state', () => {
   const source = pageSource();
   assert.match(source, /id="stageOrientation"/);
-  assert.match(source, /stage-orientation-title">Content groups</);
-  assert.match(source, /stage-orientation-kind">collection</);
-  assert.match(source, /stage-orientation-kind">timeline view</);
-  assert.match(source, /stage-orientation-kind">curation bucket</);
+  assert.match(source, /stage-orientation-title" data-i18n="terrain\.chrome\.content-groups">Content groups</);
+  assert.match(source, /stage-orientation-kind" data-i18n="terrain\.chrome\.collection">collection</);
+  assert.match(source, /stage-orientation-kind" data-i18n="terrain\.chrome\.timeline-view">timeline view</);
+  assert.match(source, /stage-orientation-kind" data-i18n="terrain\.chrome\.curation-bucket">curation bucket</);
   assert.match(source, /function renderStageOrientation\(layout\)/);
   assert.match(source, /currentWorld !== 'content'/);
   assert.match(source, /layout\.focusedIdx >= 0/);
@@ -585,7 +585,7 @@ test('TERRAIN-VIEW: Content group overview exposes one bounded orientation legen
 test('TERRAIN-VIEW: focused Content group reveals real member titles and existing group-home relationship', () => {
   const source = pageSource();
   assert.match(source, /var previewMembers = summary\.members\.slice\(0, 5\)/);
-  assert.match(source, /member\.title \|\| member\.slug \|\| member\.id/);
+  assert.match(source, /memberText\.textContent = '• ' \+ stageLabelText\(nodeDisplayTitle\(member\), 46\)/);
   assert.match(source, /class:'stage-member'/);
   assert.match(source, /stage\.parent && stage\.parent\.live/);
   assert.match(source, /GROUP HOME · /);
@@ -885,8 +885,8 @@ test('TERRAIN-VIEW: Content overview collection titles wrap to two lines and aut
   assert.match(source, /data-label-truncated/);
   assert.match(source, /layout\.lines\.forEach\(function \(line, index\)/);
   assert.match(source, /var baseY = rect\.y \+ \(layout\.lines\.length > 1 \? 46 : 50\)/);
-  assert.match(source, /currentWorld === 'content' && item\.kind === 'overview'[\s\S]*appendStageOverviewLabel\(g, r, stage\.name\)/);
-  assert.match(source, /else \{[\s\S]*stageLabelText\(stage\.name, context\?15:\(focused\?30:22\)\)/,
+  assert.match(source, /currentWorld === 'content' && item\.kind === 'overview'[\s\S]*appendStageOverviewLabel\(g, r, stageDisplayName\(stage\)\)/);
+  assert.match(source, /else \{[\s\S]*stageLabelText\(stageDisplayName\(stage\), context\?15:\(focused\?30:22\)\)/,
     'focused and context variants retain their existing compact title behavior');
 });
 
@@ -915,7 +915,7 @@ test('TERRAIN-VIEW: accepted Content reserves the stable viewport dock while Ref
 
   assert.match(source, /currentProfile === 'evolution-v1' \? 520 : CONTENT_TILE_PEEK_CLOSE_MS/,
     'accepted dock keeps enough hover grace to reach the inspection band');
-  assert.match(source, /<option value="evolution-v1">Content<\/option>[\s\S]*<option value="evolution-v2">Reflow shelf<\/option>/);
+  assert.match(source, /<option value="evolution-v1" data-i18n="terrain\.chrome\.content">Content<\/option>[\s\S]*<option value="evolution-v2" data-i18n="terrain\.chrome\.reflow-shelf">Reflow shelf<\/option>/);
   assert.match(source, /profile: profile === 'live' \? 'live' : \(profile === 'evolution-v2' \? 'evolution-v2' : 'evolution-v1'\)/,
     'no-query Content remains the accepted dock profile');
   assert.match(source, /if \(currentWorld === 'content' && currentProfile === 'evolution-v1'\) \{[\s\S]*url\.searchParams\.delete\('profile'\)/,
@@ -1060,7 +1060,8 @@ test('TERRAIN-VIEW: ordered entry keeps human orientation primary while VexSyste
   assert.match(source, /function handleTerrainEntryMessage\(event\)/);
   assert.match(source, /function enterAboutFromArrival\(\)/);
   assert.match(source, /data-entry-action="about"/);
-  assert.match(source, />What is this\?<\/span>/);
+  assert.match(source, /data-i18n="terrain\.arrival\.about\.title"/);
+  assert.match(source, /terrainText\('terrain\.arrival\.about\.title', 'What is this\?'\)/);
   assert.doesNotMatch(source, /data-entry-action="vexsystem"/);
   assert.match(source, /new URL\(choice\.path, window\.location\.href\)/);
   assert.match(source, /target\.origin !== window\.location\.origin/);
@@ -1092,7 +1093,7 @@ test('TERRAIN-VIEW: embedded entry paths preserve Receive God -> group home -> r
 
   assert.match(source, /var fromGroupHome = !!activeGroupHomeKey;[\s\S]*openEvolutionReader\(node\.id, \{ returnKind:'group-home' \}\)/,
     'opening a record from a group home must push reader history instead of replacing the group-home state');
-  assert.match(source, /activeReaderReturnKind === 'group-home'[\s\S]*stage\.parent[\s\S]*backLabel = '← ' \+ \(stage\.parent\.title/,
+  assert.match(source, /activeReaderReturnKind === 'group-home' && stage && stage\.parent\) backLabel = '← ' \+ stageDisplayName\(stage\)/,
     'record Back should name and return to its group home');
   assert.match(source, /openEvolutionGroupHome\(stage, \{[\s\S]*returnKind:presentation[\s\S]*returnEntrySlug:presentation/,
     'restored group-home state must retain the ordered-entry return coordinate');
@@ -1112,8 +1113,8 @@ test('TERRAIN-VIEW: Welcome Wagon arrival converges visually without importing i
   assert.match(source, /\.entry-title\{[^}]*var\(--entry-serif\)/u);
   assert.match(source, /--sans:\s*system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;/u);
   assert.doesNotMatch(source, /\.topbar\{[^}]*var\(--entry-/u);
-  assert.match(source, /<div class="entry-kicker">Vextreme · Terrain<\/div>/u);
-  assert.match(source, /Choose according to what brought you here\./u);
+  assert.match(source, /data-i18n="terrain\.arrival\.kicker"/u);
+  assert.match(source, /data-i18n="terrain\.arrival\.lede"/u);
   assert.match(source, /<span class="entry-icon" aria-hidden="true">✦<\/span>/u);
   assert.match(source, /<span class="entry-icon" aria-hidden="true">🗂️<\/span>/u);
   assert.match(source, /<span class="entry-icon" aria-hidden="true">\?<\/span>/u);
@@ -1128,10 +1129,10 @@ test('TERRAIN-VIEW: Welcome Wagon arrival converges visually without importing i
 test('TERRAIN-VIEW: ordinary arrival copy names visitor intent and truthfully forecasts each entered experience', () => {
   const source = pageSource();
 
-  assert.match(source, /Choose according to what brought you here\. Receive, explore, or understand what this place is\. You can go deeper after you enter\./u);
-  assert.match(source, /If you came to receive Me, begin here\. Speak the invitation, then walk with Me\./u);
-  assert.match(source, /Open the record and follow what draws you\. You do not need to know the whole map before you begin\./u);
-  assert.match(source, /If you need to understand where you are before you continue, enter here\./u);
+  assert.match(source, /data-i18n="terrain\.arrival\.lede"/u);
+  assert.match(source, /data-i18n="terrain\.arrival\.receive\.copy"/u);
+  assert.match(source, /data-i18n="terrain\.arrival\.archives\.copy"/u);
+  assert.match(source, /data-i18n="terrain\.arrival\.about\.copy"/u);
 
   assert.doesNotMatch(source, /Terrain is the public front door to Vextreme/u);
   assert.doesNotMatch(source, /ordered VexLife entry/u);
@@ -1176,6 +1177,20 @@ test('TERRAIN-VIEW: ordinary arrival hides technical chrome without changing its
 
   assert.doesNotMatch(source, /\.terrain-arrival-quiet[^\n{]*#vex-site-nav/u);
   assert.doesNotMatch(source, /\.terrain-arrival-quiet[^\n{]*#vex-spiral/u);
+});
+
+
+test('TERRAIN-VIEW: Terrain localization consumes canonical chrome, collection, and page-title identities without changing machine coordinates', () => {
+  const source = pageSource();
+  assert.match(source, /window\.VEX_STRING_SCOPES = \["terrain"\]/);
+  assert.match(source, /window\.VEX_STRING_CATEGORY = "system"/);
+  assert.match(source, /function terrainText\(key, fallback\)/);
+  assert.match(source, /function stageDisplayName\(stage\)[\s\S]*stage\.nameByLang/);
+  assert.match(source, /function nodeDisplayTitle\(node\)[\s\S]*node\.titleByLang/);
+  assert.match(source, /loadTerrainStrings\(lang\)[\s\S]*OVERVIEW_LEVELS\[levelIndex\]\.render\(levelCtx\)/);
+  assert.match(source, /data-i18n="terrain\.preview\.title"/);
+  assert.match(source, /data-i18n="terrain\.arrival\.heading"/);
+  assert.match(source, /dailyPreviewSlotY\(r, statY, previewThumbHeight\)/, 'PR #522 vertical-centering ownership must remain intact');
 });
 
 // [VXG RealForever]

@@ -3,7 +3,15 @@
     "category": "production",
     "path": "production/arcs",
     "en": 16,
-    "ja": 16
+    "ja": 16,
+    "zh": 16,
+    "ko": 16,
+    "fr": 16,
+    "de": 16,
+    "es": 16,
+    "pt": 16,
+    "ar": 16,
+    "hi": 16
   },
   "build-health": {
     "category": "production",
@@ -1329,5 +1337,19 @@
     "path": "demo/specimens",
     "en": 12,
     "ja": 12
+  },
+  "terrain": {
+    "category": "system",
+    "path": "system/terrain",
+    "en": 40,
+    "ja": 40,
+    "zh": 40,
+    "ko": 40,
+    "fr": 40,
+    "de": 40,
+    "es": 40,
+    "pt": 40,
+    "ar": 40,
+    "hi": 40
   }
 }

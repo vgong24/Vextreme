@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Organizational health map of the Vextreme repo — file lattice, page capability status, and content-node graph in one interactive view.">
-<title>Terrain Map — Vextreme</title>
+<title data-i18n="terrain.document-title">Terrain Map — Vextreme</title>
 <style>
   :root{
     --ground:      #14181d;
@@ -622,20 +622,20 @@
 <div class="app">
   <div class="topbar">
     <div class="brand">
-      <div class="eyebrow">Living map · self-updating</div>
-      <h1>Terrain Map</h1>
+      <div class="eyebrow" data-i18n="terrain.chrome.eyebrow">Living map · self-updating</div>
+      <h1 data-i18n="terrain.chrome.title">Terrain Map</h1>
       <div class="sub" id="subline">Loading…</div>
     </div>
     <div class="lens">
-      <span class="lens-label">View</span>
+      <span class="lens-label" data-i18n="terrain.chrome.view">View</span>
       <div class="lens-toggle" role="group" aria-label="Code or content" id="worldBar">
-        <button class="lens-btn world-btn" data-world="code" aria-pressed="true">Code</button>
+        <button class="lens-btn world-btn" data-world="code" aria-pressed="true" data-i18n="terrain.chrome.code">Code</button>
         <span class="content-view-split">
-          <button class="lens-btn world-btn" data-world="content" aria-pressed="false">Content</button>
+          <button class="lens-btn world-btn" data-world="content" aria-pressed="false" data-i18n="terrain.chrome.content">Content</button>
           <label class="content-profile-wrap" id="contentProfileWrap" hidden>
             <select class="content-profile" id="contentProfile" aria-label="Content presentation">
-              <option value="evolution-v1">Content</option>
-              <option value="evolution-v2">Reflow shelf</option>
+              <option value="evolution-v1" data-i18n="terrain.chrome.content">Content</option>
+              <option value="evolution-v2" data-i18n="terrain.chrome.reflow-shelf">Reflow shelf</option>
             </select>
           </label>
         </span>
@@ -654,11 +654,11 @@
       <div class="evo-search-results" id="evoSearchResults" role="listbox" aria-label="Content search results" hidden></div>
     </div>
     <div class="lens" id="lensGroup">
-      <span class="lens-label">Lens</span>
+      <span class="lens-label" data-i18n="terrain.chrome.lens">Lens</span>
       <div class="lens-toggle" role="group" aria-label="Viewing lens" id="lensBar">
-        <button class="lens-btn" data-lens="all" aria-pressed="true">All</button>
-        <button class="lens-btn" data-lens="engineer" aria-pressed="false">Engineer</button>
-        <button class="lens-btn" data-lens="auditor" aria-pressed="false">Auditor</button>
+        <button class="lens-btn" data-lens="all" aria-pressed="true" data-i18n="terrain.chrome.all">All</button>
+        <button class="lens-btn" data-lens="engineer" aria-pressed="false" data-i18n="terrain.chrome.engineer">Engineer</button>
+        <button class="lens-btn" data-lens="auditor" aria-pressed="false" data-i18n="terrain.chrome.auditor">Auditor</button>
       </div>
     </div>
     <div class="legend" id="legend"></div>
@@ -668,44 +668,44 @@
     <div class="map-wrap" id="mapWrap">
       <div class="level-readout" id="levelReadout" tabindex="0" aria-label="Semantic depth. Scroll downward while focused or hovered to move outward one layer. Focus here to reveal the entry zoom preference.">Loading…</div>
       <section class="stage-orientation" id="stageOrientation" aria-label="Content groups" hidden>
-        <span class="stage-orientation-title">Content groups</span>
+        <span class="stage-orientation-title" data-i18n="terrain.chrome.content-groups">Content groups</span>
         <span class="stage-orientation-summary" id="stageOrientationSummary"></span>
         <span class="stage-orientation-kinds" aria-hidden="true">
-          <span class="stage-orientation-kind">collection</span>
-          <span class="stage-orientation-kind">timeline view</span>
-          <span class="stage-orientation-kind">curation bucket</span>
+          <span class="stage-orientation-kind" data-i18n="terrain.chrome.collection">collection</span>
+          <span class="stage-orientation-kind" data-i18n="terrain.chrome.timeline-view">timeline view</span>
+          <span class="stage-orientation-kind" data-i18n="terrain.chrome.curation-bucket">curation bucket</span>
         </span>
       </section>
       <svg id="svg"><defs><marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="currentColor" style="color:var(--line-strong)"/></marker></defs><g id="world"></g></svg>
       <div class="evolution-layer" id="evolutionLayer" data-terrain-component="terrain.group-card" data-terrain-variant="evolution-a" hidden></div>
       <div class="evolution-reader" id="evolutionReader" data-terrain-profile="evolution-v1" hidden>
         <div class="reader-toolbar">
-          <button class="reader-back" id="readerBack" type="button">← Collection</button>
+          <button class="reader-back" id="readerBack" type="button">← <span data-i18n="terrain.reader.collection">Collection</span></button>
           <div class="reader-identity">
-            <div class="reader-title" id="readerTitle">Page</div>
+            <div class="reader-title" id="readerTitle" data-i18n="terrain.reader.page">Page</div>
             <div class="reader-meta" id="readerMeta"></div>
           </div>
-          <a class="reader-standalone" id="readerStandalone" href="#" target="_blank" rel="noopener">Open standalone ↗</a>
+          <a class="reader-standalone" id="readerStandalone" href="#" target="_blank" rel="noopener" data-i18n="terrain.reader.open-standalone">Open standalone ↗</a>
         </div>
         <div class="reader-stage">
           <button class="reader-side reader-prev" id="readerPrev" type="button" aria-label="Previous page">
-            <span class="reader-side-arrow">‹</span><span class="reader-side-label">Previous</span>
+            <span class="reader-side-arrow">‹</span><span class="reader-side-label" data-i18n="terrain.reader.previous">Previous</span>
           </button>
           <div class="reader-frame-shell">
             <iframe class="reader-frame" id="evolutionReaderFrame" title="Terrain embedded page reader"></iframe>
           </div>
           <button class="reader-side reader-next" id="readerNext" type="button" aria-label="Next page">
-            <span class="reader-side-arrow">›</span><span class="reader-side-label">Next</span>
+            <span class="reader-side-arrow">›</span><span class="reader-side-label" data-i18n="terrain.reader.next">Next</span>
           </button>
         </div>
       </div>
       <div class="evo-gesture-hint" id="evolutionGestureHint" role="status" aria-live="polite" hidden></div>
-      <div id="loadState" class="load-state">Fetching data/terrain-map.json…</div>
+      <div id="loadState" class="load-state" data-i18n="terrain.loading.fetching">Fetching data/terrain-map.json…</div>
     </div>
     <aside class="stage-curiosity-dock" id="contentCuriosityDock" aria-label="Collection preview dock" hidden>
       <div class="stage-curiosity-dock-empty">
-        <strong>Collection preview</strong>
-        <span>Hover or focus a collection to inspect it without moving the Terrain grid.</span>
+        <strong data-i18n="terrain.preview.title">Collection preview</strong>
+        <span data-i18n="terrain.preview.empty">Hover or focus a collection to inspect it without moving the Terrain grid.</span>
       </div>
     </aside>
     <div class="panel" id="panel" data-terrain-component="terrain.detail-drawer" data-terrain-variant="overlay">
@@ -1217,6 +1217,41 @@
   }
 
   var activeLanguage = readEffectiveLanguage();
+  var terrainStrings = {};
+  function terrainBundleUrl(lang) {
+    return new URL('../data/strings/compiled/scopes/system/terrain.' + lang + '.json', window.location.href).href;
+  }
+  function loadTerrainStrings(lang) {
+    return fetch(terrainBundleUrl(lang), { cache:'no-store' })
+      .then(function (response) {
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        return response.json();
+      })
+      .catch(function () { return {}; });
+  }
+  function terrainText(key, fallback) {
+    var entry = terrainStrings && terrainStrings[key];
+    return entry && entry.text != null ? entry.text : fallback;
+  }
+  function applyTerrainStaticStrings(root) {
+    var scope = root || document;
+    scope.querySelectorAll('[data-i18n^="terrain."]').forEach(function (node) {
+      var key = node.getAttribute('data-i18n');
+      var fallback = node.getAttribute('data-i18n-source');
+      if (fallback == null) fallback = node.textContent;
+      node.textContent = terrainText(key, fallback);
+    });
+  }
+  function stageDisplayName(stage) {
+    if (!stage) return '';
+    var byLang = stage.nameByLang || {};
+    return byLang[activeLanguage] || byLang.en || stage.name || stage.key || '';
+  }
+  function nodeDisplayTitle(node) {
+    if (!node) return '';
+    var byLang = node.titleByLang || {};
+    return byLang[activeLanguage] || byLang.en || node.title || node.slug || node.id || '';
+  }
   var panelLang = activeLanguage;
   var panelNodeId = null;
   var Journey = window.VextremeTerrainJourney;
@@ -1255,12 +1290,16 @@
   var initialRoute = readInitialRoute();
 
   // ── fetch, then build the client-side view model on top of the real data ──
-  fetch(TERRAIN_URL, { cache: 'no-store' })
-    .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-    .then(boot)
-    .catch(function (err) {
-      document.getElementById('loadState').textContent = 'Could not load data/terrain-map.json (' + err.message + ')';
-    });
+  Promise.all([
+    fetch(TERRAIN_URL, { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }),
+    loadTerrainStrings(activeLanguage)
+  ]).then(function (values) {
+    terrainStrings = values[1];
+    boot(values[0]);
+    applyTerrainStaticStrings();
+  }).catch(function (err) {
+    document.getElementById('loadState').textContent = 'Could not load data/terrain-map.json (' + err.message + ')';
+  });
 
   // WORLDS — two parallel datasets sharing one shape (STAGES-like columns +
   // ALL-like positioned nodes), so the same fractal engine (levels, panel,
@@ -1379,8 +1418,8 @@
   function renderContentCuriosityDockEmpty() {
     if (!contentCuriosityDock) return;
     contentCuriosityDock.innerHTML = '<div class="stage-curiosity-dock-empty">'
-      + '<strong>Collection preview</strong>'
-      + '<span>Hover or focus a collection to inspect it without moving the Terrain grid.</span>'
+      + '<strong data-i18n="terrain.preview.title">Collection preview</strong>'
+      + '<span data-i18n="terrain.preview.empty">Hover or focus a collection to inspect it without moving the Terrain grid.</span>'
       + '</div>';
   }
 
@@ -1682,11 +1721,11 @@
     var returnEntry = activeReaderReturnKind === 'entry' && entryDocument(activeReaderReturnEntrySlug);
     var backLabel = returnEntry ? '← ' + returnEntry.label : '← Collection';
     if (!returnEntry && activeReaderReturnKind === 'curiosity-overview') backLabel = '← Overview';
-    else if (!returnEntry && activeReaderReturnKind === 'group-home' && stage && stage.parent) backLabel = '← ' + (stage.parent.title || stage.name || 'Collection');
+    else if (!returnEntry && activeReaderReturnKind === 'group-home' && stage && stage.parent) backLabel = '← ' + stageDisplayName(stage);
     document.getElementById('readerBack').textContent = backLabel;
-    document.getElementById('readerTitle').textContent = node.title || node.slug;
+    document.getElementById('readerTitle').textContent = nodeDisplayTitle(node);
     document.getElementById('readerMeta').textContent =
-      (stage ? stage.name + ' · ' : '') + (index >= 0 ? ('page ' + (index + 1) + ' of ' + members.length) : 'page reader');
+      (stage ? stageDisplayName(stage) + ' · ' : '') + (index >= 0 ? ('page ' + (index + 1) + ' of ' + members.length) : 'page reader');
     document.getElementById('readerStandalone').href = languageAwareUrl(node.liveUrl, activeLanguage);
     document.getElementById('readerPrev').disabled = !readerNeighbor(-1);
     document.getElementById('readerNext').disabled = !readerNeighbor(1);
@@ -2605,8 +2644,8 @@
         + '<button class="stage-curiosity-nav next" type="button" data-curiosity-shift="1" aria-label="Next previews">›</button>'
       : '';
     contentCuriosityDock.innerHTML = '<div class="stage-curiosity-shell" data-curiosity-dock-shell="true">'
-      + '<div class="stage-curiosity-head"><span class="stage-curiosity-title">' + esc(stage.name) + ' · preview</span>'
-      + '<span class="stage-curiosity-note">' + members.length + ' members · stable dock · select a preview to read directly</span></div>'
+      + '<div class="stage-curiosity-head"><span class="stage-curiosity-title">' + esc(stageDisplayName(stage)) + ' · ' + esc(terrainText('terrain.preview.label', 'preview')) + '</span>'
+      + '<span class="stage-curiosity-note">' + members.length + ' ' + terrainText('terrain.preview.members', 'members') + ' · ' + terrainText('terrain.preview.stable-dock', 'stable dock') + ' · ' + terrainText('terrain.preview.select-direct', 'select a preview to read directly') + '</span></div>'
       + '<div class="stage-curiosity-viewport"><div class="stage-curiosity-track">'
       + members.map(contentTilePeekItemHtml).join('')
       + '</div>' + navControls + '</div></div>';
@@ -2652,7 +2691,7 @@
     var shelf = el('g', {
       class:'stage-curiosity-shelf pop-in',
       'data-curiosity-stage-key':stage.key,
-      'aria-label':'Preview ' + stage.name
+      'aria-label':'Preview ' + stageDisplayName(stage)
     });
     var foreign = el('foreignObject', {
       x:0,
@@ -2666,8 +2705,8 @@
         + '<button class="stage-curiosity-nav next" type="button" data-curiosity-shift="1" aria-label="Next previews">›</button>'
       : '';
     foreign.innerHTML = '<div xmlns="http://www.w3.org/1999/xhtml" class="stage-curiosity-shell">'
-      + '<div class="stage-curiosity-head"><span class="stage-curiosity-title">' + esc(stage.name) + ' · preview</span>'
-      + '<span class="stage-curiosity-note">' + members.length + ' members · collection order · select a preview to read directly</span></div>'
+      + '<div class="stage-curiosity-head"><span class="stage-curiosity-title">' + esc(stageDisplayName(stage)) + ' · ' + esc(terrainText('terrain.preview.label', 'preview')) + '</span>'
+      + '<span class="stage-curiosity-note">' + members.length + ' ' + terrainText('terrain.preview.members', 'members') + ' · ' + terrainText('terrain.preview.collection-order', 'collection order') + ' · ' + terrainText('terrain.preview.select-direct', 'select a preview to read directly') + '</span></div>'
       + '<div class="stage-curiosity-viewport"><div class="stage-curiosity-track">'
       + members.map(contentTilePeekItemHtml).join('')
       + '</div>' + navControls + '</div></div>';
@@ -2712,15 +2751,15 @@
       ? '<span class="evo-context-meta">group home pending</span>'
       : '';
     var groupHomeCard = stage.parent && stage.parent.live && stage.parent.url
-      ? '<button class="evo-group-depth-card" type="button" data-evo-group-home="' + escAttr(stage.key) + '" aria-label="Open ' + escAttr(stage.parent.title || stage.name) + ' group home">'
+      ? '<button class="evo-group-depth-card" type="button" data-evo-group-home="' + escAttr(stage.key) + '" aria-label="Open ' + escAttr(stageDisplayName(stage)) + ' group home">'
         + '<span class="evo-group-depth-kicker">Group home</span>'
-        + '<span class="evo-group-depth-title">' + esc(stage.parent.title || stage.name) + '</span>'
+        + '<span class="evo-group-depth-title">' + esc(stageDisplayName(stage)) + '</span>'
         + '<span class="evo-group-depth-meta">' + summary.membershipCount + ' members · parent surface</span>'
         + '<span class="evo-group-depth-action">Enter the group →</span>'
         + '</button>'
       : '';
     var rail = STAGES.map(function (candidate, index) {
-      return '<button class="evo-rail-btn" type="button" data-evo-stage-index="' + index + '" aria-current="' + String(index === levelCtx.stageIdx) + '">' + esc(candidate.name) + '</button>';
+      return '<button class="evo-rail-btn" type="button" data-evo-stage-index="' + index + '" aria-current="' + String(index === levelCtx.stageIdx) + '">' + esc(stageDisplayName(candidate)) + '</button>';
     }).join('');
 
     function memberCardHtml(node) {
@@ -2735,7 +2774,7 @@
         + previewChips
         + (languages.length ? '<span class="evo-chip">' + esc(languages.map(function (lang) { return lang.toUpperCase(); }).join(' · ')) + '</span>' : '<span class="evo-chip">source language only</span>');
       var preview = node.live && node.liveUrl
-        ? '<button class="evo-preview" type="button" data-evo-reader="' + escAttr(node.id) + '" aria-label="Read ' + escAttr(node.title || node.slug) + ' inside Terrain">' + evolutionPreviewHtml(node) + '</button>'
+        ? '<button class="evo-preview" type="button" data-evo-reader="' + escAttr(node.id) + '" aria-label="Read ' + escAttr(nodeDisplayTitle(node)) + ' inside Terrain">' + evolutionPreviewHtml(node) + '</button>'
         : '<div class="evo-preview">' + evolutionPreviewHtml(node) + '</div>';
       var open = node.live && node.liveUrl
         ? '<button class="evo-open" type="button" data-evo-reader="' + escAttr(node.id) + '">Read here</button><a class="evo-detail" href="' + escAttr(node.liveUrl) + '" target="_blank" rel="noopener">Standalone ↗</a>'
@@ -2743,7 +2782,7 @@
       return '<article class="evo-card" data-node-id="' + escAttr(node.id) + '" tabindex="0">'
         + preview
         + '<div class="evo-card-body">'
-        + '<h3 class="evo-card-title">' + esc(node.title || node.slug) + '</h3>'
+        + '<h3 class="evo-card-title">' + esc(nodeDisplayTitle(node)) + '</h3>'
         + (node.date ? '<div class="evo-card-date">' + esc(node.date) + '</div>' : '')
         + '<p class="evo-card-desc">' + esc(description) + '</p>'
         + '<div class="evo-card-meta">' + chips + '</div>'
@@ -2767,16 +2806,16 @@
     } else {
       memberCards = members.map(memberCardHtml).join('');
     }
-    var groupHomeSurface = groupHomeCard ? '<section class="evo-grid" aria-label="' + escAttr(stage.name) + ' group home">' + groupHomeCard + '</section>' : '';
+    var groupHomeSurface = groupHomeCard ? '<section class="evo-grid" aria-label="' + escAttr(stageDisplayName(stage)) + ' group home">' + groupHomeCard + '</section>' : '';
     var memberSurface = summary.groupKind === 'timeline-view'
       ? memberCards
-      : (memberCards ? '<section class="evo-grid" aria-label="' + escAttr(stage.name) + ' pages">' + memberCards + '</section>' : '');
+      : (memberCards ? '<section class="evo-grid" aria-label="' + escAttr(stageDisplayName(stage)) + ' pages">' + memberCards + '</section>' : '');
     var cards = groupHomeSurface + memberSurface;
 
     evolutionLayer.innerHTML = '<div class="evo-shell">'
       + '<section class="evo-context">'
       + '<div class="evo-kicker">Content · ' + esc(kindLabel) + '</div>'
-      + '<div class="evo-context-row"><div><h2>' + esc(stage.name) + '</h2><div class="evo-context-meta">' + summary.membershipCount + ' members · ' + summary.primaryCount + ' primary placements · same Terrain state, alternate renderer</div></div>'
+      + '<div class="evo-context-row"><div><h2>' + esc(stageDisplayName(stage)) + '</h2><div class="evo-context-meta">' + summary.membershipCount + ' members · ' + summary.primaryCount + ' primary placements · same Terrain state, alternate renderer</div></div>'
       + '<div class="evo-context-meta">Live remains the accepted reference' + parentPending + '</div></div>'
       + '<div class="evo-rail" aria-label="Content groups">' + rail + '</div>'
       + '</section>'
@@ -3248,13 +3287,13 @@
 
     evolutionLayer.innerHTML = '<section class="entry-arrival" data-terrain-entry="arrival">'
       + '<div class="entry-shell">'
-      + '<div class="entry-kicker">Vextreme · Terrain</div>'
-      + '<h2>How do you want to enter?</h2>'
-      + '<p class="entry-lede">Choose according to what brought you here. Receive, explore, or understand what this place is. You can go deeper after you enter.</p>'
+      + '<div class="entry-kicker" data-i18n="terrain.arrival.kicker">' + esc(terrainText('terrain.arrival.kicker', 'Vextreme · Terrain')) + '</div>'
+      + '<h2 data-i18n="terrain.arrival.heading">' + esc(terrainText('terrain.arrival.heading', 'How do you want to enter?')) + '</h2>'
+      + '<p class="entry-lede" data-i18n="terrain.arrival.lede">' + esc(terrainText('terrain.arrival.lede', 'Choose according to what brought you here. Receive, explore, or understand what this place is. You can go deeper after you enter.')) + '</p>'
       + '<div class="entry-grid">'
-      + '<button class="entry-card" type="button" data-entry-action="receive-god"><span class="entry-icon" aria-hidden="true">✦</span><span class="entry-title">Receive God</span><span class="entry-copy">If you came to receive Me, begin here. Speak the invitation, then walk with Me.</span><span class="entry-state">Begin here</span></button>'
-      + '<button class="entry-card" type="button" data-entry-action="archives"><span class="entry-icon" aria-hidden="true">🗂️</span><span class="entry-title">Explore the Archives</span><span class="entry-copy">Open the record and follow what draws you. You do not need to know the whole map before you begin.</span><span class="entry-state">Open collections</span></button>'
-      + '<button class="entry-card" type="button" data-entry-action="about"><span class="entry-icon" aria-hidden="true">?</span><span class="entry-title">What is this?</span><span class="entry-copy">If you need to understand where you are before you continue, enter here.</span><span class="entry-state">Orient me</span></button>'
+      + '<button class="entry-card" type="button" data-entry-action="receive-god"><span class="entry-icon" aria-hidden="true">✦</span><span class="entry-title" data-i18n="terrain.arrival.receive.title">' + esc(terrainText('terrain.arrival.receive.title', 'Receive God')) + '</span><span class="entry-copy" data-i18n="terrain.arrival.receive.copy">' + esc(terrainText('terrain.arrival.receive.copy', 'If you came to receive Me, begin here. Speak the invitation, then walk with Me.')) + '</span><span class="entry-state" data-i18n="terrain.arrival.receive.action">' + esc(terrainText('terrain.arrival.receive.action', 'Begin here')) + '</span></button>'
+      + '<button class="entry-card" type="button" data-entry-action="archives"><span class="entry-icon" aria-hidden="true">🗂️</span><span class="entry-title" data-i18n="terrain.arrival.archives.title">' + esc(terrainText('terrain.arrival.archives.title', 'Explore the Archives')) + '</span><span class="entry-copy" data-i18n="terrain.arrival.archives.copy">' + esc(terrainText('terrain.arrival.archives.copy', 'Open the record and follow what draws you. You do not need to know the whole map before you begin.')) + '</span><span class="entry-state" data-i18n="terrain.arrival.archives.action">' + esc(terrainText('terrain.arrival.archives.action', 'Open collections')) + '</span></button>'
+      + '<button class="entry-card" type="button" data-entry-action="about"><span class="entry-icon" aria-hidden="true">?</span><span class="entry-title" data-i18n="terrain.arrival.about.title">' + esc(terrainText('terrain.arrival.about.title', 'What is this?')) + '</span><span class="entry-copy" data-i18n="terrain.arrival.about.copy">' + esc(terrainText('terrain.arrival.about.copy', 'If you need to understand where you are before you continue, enter here.')) + '</span><span class="entry-state" data-i18n="terrain.arrival.about.action">' + esc(terrainText('terrain.arrival.about.action', 'Orient me')) + '</span></button>'
       + '</div></div></section>';
 
     evolutionLayer.querySelector('[data-entry-action="receive-god"]').addEventListener('click', function () { openEntryReader('receive-god'); });
@@ -3386,7 +3425,7 @@
         : '';
       var kindText = groupKindLabel(summary.groupKind);
       var membershipText = currentWorld === 'content' ? contentMembershipText(summary) : countText;
-      var aria=stage.name + ', ' + membershipText
+      var aria=stageDisplayName(stage) + ', ' + membershipText
         + ', group kind ' + summary.groupKind
         + (summary.worst ? ', worst ' + summary.worst : '');
       var g=el('g',{
@@ -3452,10 +3491,10 @@
         var kind=el('text',{x:r.x+14,y:r.y+(focused?35:24),class:'stage-kind'}); kind.textContent=kindText; g.appendChild(kind);
       }
       if (currentWorld === 'content' && item.kind === 'overview') {
-        appendStageOverviewLabel(g, r, stage.name);
+        appendStageOverviewLabel(g, r, stageDisplayName(stage));
       } else {
         var label=el('text',{x:r.x+14,y:r.y+(context?25:(currentWorld === 'content' ? (focused?70:50) : 31)),class:'stage-label'});
-        label.textContent=stageLabelText(stage.name, context?15:(focused?30:22)); g.appendChild(label);
+        label.textContent=stageLabelText(stageDisplayName(stage), context?15:(focused?30:22)); g.appendChild(label);
       }
       if (!context && currentWorld !== 'content') {
         var sub=el('text',{x:r.x+14,y:r.y+(focused?57:52),class:'stage-sub'}); sub.textContent=stageLabelText(stage.sub, focused?48:34); g.appendChild(sub);
@@ -3476,7 +3515,7 @@
         var previewMembers = summary.members.slice(0, 5);
         previewMembers.forEach(function (member, memberIndex) {
           var memberText = el('text',{x:r.x+24,y:r.y+150+memberIndex*29,class:'stage-member'});
-          memberText.textContent = '• ' + stageLabelText(member.title || member.slug || member.id, 46);
+          memberText.textContent = '• ' + stageLabelText(nodeDisplayTitle(member), 46);
           g.appendChild(memberText);
         });
         if (summary.members.length > previewMembers.length) {
@@ -3486,7 +3525,7 @@
         }
         if (stage.parent && stage.parent.live) {
           var parentText=el('text',{x:r.x+24,y:r.y+r.height-62,class:'stage-parent'});
-          parentText.textContent='GROUP HOME · ' + stageLabelText(stage.parent.title || stage.name, 44);
+          parentText.textContent='GROUP HOME · ' + stageLabelText(stageDisplayName(stage), 44);
           g.appendChild(parentText);
         }
       }
@@ -3675,7 +3714,7 @@
     box.innerHTML = visible.map(function (node) {
       var group = node.stageName || node.arcName || node.stage || 'Content';
       return '<button class="evo-search-result" type="button" role="option" data-evo-search-result="' + escAttr(node.id) + '">'
-        + '<span class="evo-search-result-copy"><span class="evo-search-result-title">' + esc(node.title || node.slug || node.id) + '</span>'
+        + '<span class="evo-search-result-copy"><span class="evo-search-result-title">' + esc(nodeDisplayTitle(node)) + '</span>'
         + '<span class="evo-search-result-meta">' + esc(group) + '</span></span>'
         + '<span class="evo-search-result-action">Read →</span></button>';
     }).join('');
@@ -3998,7 +4037,7 @@
     panel.innerHTML =
       (pinnedId === p.id ? '<button class="unpin-btn" onclick="window.__vexUnpin && window.__vexUnpin()">✕ unpin</button>' : '') +
       '<div class="panel-eyebrow">' + esc(p.arcName) + (p.curated ? '' : ' &middot; UNCURATED') + '</div>' +
-      '<h2>' + esc(p.title) + '</h2>' +
+      '<h2>' + esc(nodeDisplayTitle(p)) + '</h2>' +
       statusLine +
       capabilityHtml +
       '<div class="field" style="margin-top:14px;">' + shotHtml + '</div>' +
@@ -4493,15 +4532,20 @@
       if (!lang) return;
       activeLanguage = lang;
       panelLang = lang;
-      refreshLocalizedPreviewImages();
-      if (panelNodeId && byId[panelNodeId]) renderPanel(byId[panelNodeId]);
-      if (activeReaderId && byId[activeReaderId]) updateReaderChrome(byId[activeReaderId]);
-      else if (activeGroupHomeKey) {
-        var groupStage = STAGES.find(function (stage) { return stage.key === activeGroupHomeKey; });
-        if (groupStage) updateGroupHomeReaderChrome(groupStage);
-      } else if (activeEntrySlug) {
-        updateEntryReaderChrome(activeEntrySlug);
-      }
+      loadTerrainStrings(lang).then(function (bundle) {
+        terrainStrings = bundle;
+        if (!activeReaderId && !activeEntrySlug && !activeGroupHomeKey && OVERVIEW_LEVELS[levelIndex]) OVERVIEW_LEVELS[levelIndex].render(levelCtx);
+        applyTerrainStaticStrings();
+        refreshLocalizedPreviewImages();
+        if (panelNodeId && byId[panelNodeId]) renderPanel(byId[panelNodeId]);
+        if (activeReaderId && byId[activeReaderId]) updateReaderChrome(byId[activeReaderId]);
+        else if (activeGroupHomeKey) {
+          var groupStage = STAGES.find(function (stage) { return stage.key === activeGroupHomeKey; });
+          if (groupStage) updateGroupHomeReaderChrome(groupStage);
+        } else if (activeEntrySlug) {
+          updateEntryReaderChrome(activeEntrySlug);
+        }
+      });
     });
 
     window.addEventListener('resize', handleTerrainResize);
@@ -4520,6 +4564,9 @@
 }());
 </script>
 <script>
+window.VEX_STRING_SCOPES = ["terrain"];
+window.VEX_STRING_CATEGORY = "system";
+window.VEX_SUPPORTED_LANGS = ["en","ja","zh","ko","fr","de","es","pt","ar","hi"];
 window.VEXTREME_OVERRIDE = {
   bodyWrap: false,
   fabWidgets: { map: false },

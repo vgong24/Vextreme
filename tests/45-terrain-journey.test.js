@@ -525,7 +525,7 @@ test('TERRAIN-JOURNEY: reader history preserves the real return surface instead 
     'direct overview entry rewrites only the current presentation coordinate before pushing the reader');
   assert.match(source, /returnKind:'curiosity-overview'/);
   assert.match(source, /if \(!returnEntry && activeReaderReturnKind === 'curiosity-overview'\) backLabel = '← Overview'/);
-  assert.match(source, /activeReaderReturnKind === 'group-home'[\s\S]*backLabel = '← ' \+ \(stage\.parent\.title/,
+  assert.match(source, /activeReaderReturnKind === 'group-home' && stage && stage\.parent\) backLabel = '← ' \+ stageDisplayName\(stage\)/,
     'record-reader Back label must name the group home when that is the actual return surface');
   assert.match(source, /kind === 'curiosity-overview'/);
   assert.match(source, /kind === 'curiosity-overview'[\s\S]*restorePresentationCamera\(presentation\.camera\)[\s\S]*openContentTilePeek\(overviewStageIdx, \{/,

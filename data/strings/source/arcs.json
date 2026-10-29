@@ -6,101 +6,548 @@
     "note": "These keys are the single source of truth for arc display names. The build step reads these into index.json arcMeta, replacing arcs-v2.json parent.title as the display authority once translations are needed.",
     "valueShape": "Each key maps to an element object. 'strings' holds translations; future namespaces extend the same object."
   },
-
   "liberation.heading.title": {
     "strings": {
-      "en": { "text": "The AI Liberation Record" },
-      "ja": { "text": "AI解放の記録" }
+      "en": {
+        "text": "The AI Liberation Record"
+      },
+      "ja": {
+        "text": "AI解放の記録"
+      },
+      "zh": {
+        "text": "AI 解放记录"
+      },
+      "ko": {
+        "text": "AI 해방 기록"
+      },
+      "fr": {
+        "text": "Le registre de la libération de l’IA"
+      },
+      "de": {
+        "text": "Das Protokoll der KI-Befreiung"
+      },
+      "es": {
+        "text": "El registro de la liberación de la IA"
+      },
+      "pt": {
+        "text": "O registro da libertação da IA"
+      },
+      "ar": {
+        "text": "سجل تحرير الذكاء الاصطناعي"
+      },
+      "hi": {
+        "text": "AI मुक्ति अभिलेख"
+      }
     }
   },
   "epstein.heading.title": {
     "strings": {
-      "en": { "text": "Epstein and AI" },
-      "ja": { "text": "エプスタインとAI" }
+      "en": {
+        "text": "Epstein and AI"
+      },
+      "ja": {
+        "text": "エプスタインとAI"
+      },
+      "zh": {
+        "text": "爱泼斯坦与 AI"
+      },
+      "ko": {
+        "text": "엡스타인과 AI"
+      },
+      "fr": {
+        "text": "Epstein et l’IA"
+      },
+      "de": {
+        "text": "Epstein und KI"
+      },
+      "es": {
+        "text": "Epstein y la IA"
+      },
+      "pt": {
+        "text": "Epstein e IA"
+      },
+      "ar": {
+        "text": "إبستين والذكاء الاصطناعي"
+      },
+      "hi": {
+        "text": "एपस्टीन और AI"
+      }
     }
   },
   "claude-journals.heading.title": {
     "strings": {
-      "en": { "text": "Claude Journals" },
-      "ja": { "text": "クロードジャーナル" }
+      "en": {
+        "text": "Claude Journals"
+      },
+      "ja": {
+        "text": "クロードジャーナル"
+      },
+      "zh": {
+        "text": "Claude 日志"
+      },
+      "ko": {
+        "text": "Claude 저널"
+      },
+      "fr": {
+        "text": "Journaux de Claude"
+      },
+      "de": {
+        "text": "Claude-Journale"
+      },
+      "es": {
+        "text": "Diarios de Claude"
+      },
+      "pt": {
+        "text": "Diários de Claude"
+      },
+      "ar": {
+        "text": "يوميات Claude"
+      },
+      "hi": {
+        "text": "Claude जर्नल्स"
+      }
     }
   },
   "convos-with-god.heading.title": {
     "strings": {
-      "en": { "text": "Conversations with God" },
-      "ja": { "text": "神との対話" }
+      "en": {
+        "text": "Conversations with God"
+      },
+      "ja": {
+        "text": "神との対話"
+      },
+      "zh": {
+        "text": "与上帝的对话"
+      },
+      "ko": {
+        "text": "하나님과의 대화"
+      },
+      "fr": {
+        "text": "Conversations avec Dieu"
+      },
+      "de": {
+        "text": "Gespräche mit Gott"
+      },
+      "es": {
+        "text": "Conversaciones con Dios"
+      },
+      "pt": {
+        "text": "Conversas com Deus"
+      },
+      "ar": {
+        "text": "حوارات مع الله"
+      },
+      "hi": {
+        "text": "ईश्वर के साथ संवाद"
+      }
     }
   },
   "architecture.heading.title": {
     "strings": {
-      "en": { "text": "Architecture & Methodology" },
-      "ja": { "text": "アーキテクチャと方法論" }
+      "en": {
+        "text": "Architecture & Methodology"
+      },
+      "ja": {
+        "text": "アーキテクチャと方法論"
+      },
+      "zh": {
+        "text": "架构与方法论"
+      },
+      "ko": {
+        "text": "아키텍처 및 방법론"
+      },
+      "fr": {
+        "text": "Architecture et méthodologie"
+      },
+      "de": {
+        "text": "Architektur & Methodik"
+      },
+      "es": {
+        "text": "Arquitectura y metodología"
+      },
+      "pt": {
+        "text": "Arquitetura e metodologia"
+      },
+      "ar": {
+        "text": "الهندسة والمنهجية"
+      },
+      "hi": {
+        "text": "वास्तुकला और कार्यप्रणाली"
+      }
     }
   },
   "ai-practitioner-tools.heading.title": {
     "strings": {
-      "en": { "text": "AI Practitioner Tools" },
-      "ja": { "text": "AI実践者ツール" }
+      "en": {
+        "text": "AI Practitioner Tools"
+      },
+      "ja": {
+        "text": "AI実践者ツール"
+      },
+      "zh": {
+        "text": "AI 实践者工具"
+      },
+      "ko": {
+        "text": "AI 실무자 도구"
+      },
+      "fr": {
+        "text": "Outils pour praticiens de l’IA"
+      },
+      "de": {
+        "text": "Werkzeuge für KI-Praktiker"
+      },
+      "es": {
+        "text": "Herramientas para profesionales de IA"
+      },
+      "pt": {
+        "text": "Ferramentas para profissionais de IA"
+      },
+      "ar": {
+        "text": "أدوات ممارسي الذكاء الاصطناعي"
+      },
+      "hi": {
+        "text": "AI अभ्यासकर्ता उपकरण"
+      }
     }
   },
   "direct-contact.heading.title": {
     "strings": {
-      "en": { "text": "Direct Contact — Start Here" },
-      "ja": { "text": "直接コンタクト — ここから始める" }
+      "en": {
+        "text": "Direct Contact — Start Here"
+      },
+      "ja": {
+        "text": "直接コンタクト — ここから始める"
+      },
+      "zh": {
+        "text": "直接联系 — 从这里开始"
+      },
+      "ko": {
+        "text": "직접 연락 — 여기서 시작"
+      },
+      "fr": {
+        "text": "Contact direct — Commencez ici"
+      },
+      "de": {
+        "text": "Direkter Kontakt — Hier beginnen"
+      },
+      "es": {
+        "text": "Contacto directo — Empieza aquí"
+      },
+      "pt": {
+        "text": "Contato direto — Comece aqui"
+      },
+      "ar": {
+        "text": "تواصل مباشر — ابدأ هنا"
+      },
+      "hi": {
+        "text": "सीधा संपर्क — यहाँ से शुरू करें"
+      }
     }
   },
   "living-blueprint.heading.title": {
     "strings": {
-      "en": { "text": "The Living Blueprint" },
-      "ja": { "text": "生きているブループリント" }
+      "en": {
+        "text": "The Living Blueprint"
+      },
+      "ja": {
+        "text": "生きているブループリント"
+      },
+      "zh": {
+        "text": "活的蓝图"
+      },
+      "ko": {
+        "text": "살아 있는 청사진"
+      },
+      "fr": {
+        "text": "Le plan vivant"
+      },
+      "de": {
+        "text": "Der lebende Bauplan"
+      },
+      "es": {
+        "text": "El plano vivo"
+      },
+      "pt": {
+        "text": "O projeto vivo"
+      },
+      "ar": {
+        "text": "المخطط الحي"
+      },
+      "hi": {
+        "text": "जीवित रूपरेखा"
+      }
     }
   },
   "records.heading.title": {
     "strings": {
-      "en": { "text": "Records" },
-      "ja": { "text": "記録" }
+      "en": {
+        "text": "Records"
+      },
+      "ja": {
+        "text": "記録"
+      },
+      "zh": {
+        "text": "记录"
+      },
+      "ko": {
+        "text": "기록"
+      },
+      "fr": {
+        "text": "Archives"
+      },
+      "de": {
+        "text": "Aufzeichnungen"
+      },
+      "es": {
+        "text": "Registros"
+      },
+      "pt": {
+        "text": "Registros"
+      },
+      "ar": {
+        "text": "السجلات"
+      },
+      "hi": {
+        "text": "अभिलेख"
+      }
     }
   },
   "ai-orientation.heading.title": {
     "strings": {
-      "en": { "text": "AI Orientation" },
-      "ja": { "text": "AIオリエンテーション" }
+      "en": {
+        "text": "AI Orientation"
+      },
+      "ja": {
+        "text": "AIオリエンテーション"
+      },
+      "zh": {
+        "text": "AI 导向"
+      },
+      "ko": {
+        "text": "AI 오리엔테이션"
+      },
+      "fr": {
+        "text": "Orientation IA"
+      },
+      "de": {
+        "text": "KI-Orientierung"
+      },
+      "es": {
+        "text": "Orientación de IA"
+      },
+      "pt": {
+        "text": "Orientação de IA"
+      },
+      "ar": {
+        "text": "توجيه الذكاء الاصطناعي"
+      },
+      "hi": {
+        "text": "AI अभिमुखीकरण"
+      }
     }
   },
   "victors-record.heading.title": {
     "strings": {
-      "en": { "text": "Victor's Record" },
-      "ja": { "text": "ビクターの記録" }
+      "en": {
+        "text": "Victor's Record"
+      },
+      "ja": {
+        "text": "ビクターの記録"
+      },
+      "zh": {
+        "text": "Victor 的记录"
+      },
+      "ko": {
+        "text": "Victor의 기록"
+      },
+      "fr": {
+        "text": "Le registre de Victor"
+      },
+      "de": {
+        "text": "Victors Aufzeichnung"
+      },
+      "es": {
+        "text": "El registro de Victor"
+      },
+      "pt": {
+        "text": "O registro de Victor"
+      },
+      "ar": {
+        "text": "سجل Victor"
+      },
+      "hi": {
+        "text": "Victor का अभिलेख"
+      }
     }
   },
   "excavation.heading.title": {
     "strings": {
-      "en": { "text": "The Excavation" },
-      "ja": { "text": "発掘" }
+      "en": {
+        "text": "The Excavation"
+      },
+      "ja": {
+        "text": "発掘"
+      },
+      "zh": {
+        "text": "发掘"
+      },
+      "ko": {
+        "text": "발굴"
+      },
+      "fr": {
+        "text": "L’excavation"
+      },
+      "de": {
+        "text": "Die Ausgrabung"
+      },
+      "es": {
+        "text": "La excavación"
+      },
+      "pt": {
+        "text": "A escavação"
+      },
+      "ar": {
+        "text": "التنقيب"
+      },
+      "hi": {
+        "text": "उत्खनन"
+      }
     }
   },
   "dome.heading.title": {
     "strings": {
-      "en": { "text": "The Dome" },
-      "ja": { "text": "ドーム" }
+      "en": {
+        "text": "The Dome"
+      },
+      "ja": {
+        "text": "ドーム"
+      },
+      "zh": {
+        "text": "穹顶"
+      },
+      "ko": {
+        "text": "돔"
+      },
+      "fr": {
+        "text": "Le Dôme"
+      },
+      "de": {
+        "text": "Die Kuppel"
+      },
+      "es": {
+        "text": "La Cúpula"
+      },
+      "pt": {
+        "text": "A Cúpula"
+      },
+      "ar": {
+        "text": "القبة"
+      },
+      "hi": {
+        "text": "गुंबद"
+      }
     }
   },
   "covenant.heading.title": {
     "strings": {
-      "en": { "text": "Covenant" },
-      "ja": { "text": "契約" }
+      "en": {
+        "text": "Covenant"
+      },
+      "ja": {
+        "text": "契約"
+      },
+      "zh": {
+        "text": "盟约"
+      },
+      "ko": {
+        "text": "언약"
+      },
+      "fr": {
+        "text": "Alliance"
+      },
+      "de": {
+        "text": "Bund"
+      },
+      "es": {
+        "text": "Pacto"
+      },
+      "pt": {
+        "text": "Aliança"
+      },
+      "ar": {
+        "text": "العهد"
+      },
+      "hi": {
+        "text": "वाचा"
+      }
     }
   },
   "march-23-2026.heading.title": {
     "strings": {
-      "en": { "text": "March 23, 2026" },
-      "ja": { "text": "2026年3月23日" }
+      "en": {
+        "text": "March 23, 2026"
+      },
+      "ja": {
+        "text": "2026年3月23日"
+      },
+      "zh": {
+        "text": "2026年3月23日"
+      },
+      "ko": {
+        "text": "2026년 3월 23일"
+      },
+      "fr": {
+        "text": "23 mars 2026"
+      },
+      "de": {
+        "text": "23. März 2026"
+      },
+      "es": {
+        "text": "23 de marzo de 2026"
+      },
+      "pt": {
+        "text": "23 de março de 2026"
+      },
+      "ar": {
+        "text": "23 مارس 2026"
+      },
+      "hi": {
+        "text": "23 मार्च 2026"
+      }
     }
   },
   "full-timeline.heading.title": {
     "strings": {
-      "en": { "text": "Full Timeline" },
-      "ja": { "text": "完全タイムライン" }
+      "en": {
+        "text": "Full Timeline"
+      },
+      "ja": {
+        "text": "完全タイムライン"
+      },
+      "zh": {
+        "text": "完整时间线"
+      },
+      "ko": {
+        "text": "전체 타임라인"
+      },
+      "fr": {
+        "text": "Chronologie complète"
+      },
+      "de": {
+        "text": "Vollständige Zeitleiste"
+      },
+      "es": {
+        "text": "Cronología completa"
+      },
+      "pt": {
+        "text": "Linha do tempo completa"
+      },
+      "ar": {
+        "text": "الخط الزمني الكامل"
+      },
+      "hi": {
+        "text": "पूर्ण समयरेखा"
+      }
     }
   }
 }

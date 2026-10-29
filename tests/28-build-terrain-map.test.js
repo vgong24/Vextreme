@@ -526,6 +526,23 @@ test('BUILD-TERRAIN-MAP: canonical arcMap order is projected separately from pri
   assert.equal(result.pages.find(page => page.slug === 'beta').date, 'January 1, 2026');
 });
 
+
+test('BUILD-TERRAIN-MAP: canonical collection and page-title identities project localized display without replacing machine identity', () => {
+  const nodes = [{ id:1, slug:'alpha', title:'Alpha', arcKeys:['convos_with_god'] }];
+  const arcs = { convos_with_god: { priority:1, parent:{ title:'Conversations with God' } } };
+  const arcStrings = { 'convos-with-god.heading.title': { strings: { en:{text:'Conversations with God'}, ja:{text:'神との対話'} } } };
+  const pageSources = { alpha: { 'pages.alpha.title': { strings: { en:{text:'Alpha'}, ja:{text:'アルファ'} } } } };
+  const result = buildContentPages(nodes, arcs, {}, ['alpha'], { pages:{} }, {}, ['alpha'], {}, {}, {}, arcStrings, pageSources);
+  const collection = result.arcs.find(arc => arc.key === 'convos_with_god');
+  assert.equal(collection.nameKey, 'convos-with-god.heading.title');
+  assert.deepEqual(collection.nameByLang, { en:'Conversations with God', ja:'神との対話' });
+  assert.equal(result.pages[0].id, 'alpha');
+  assert.equal(result.pages[0].slug, 'alpha');
+  assert.equal(result.pages[0].title, 'Alpha');
+  assert.equal(result.pages[0].titleKey, 'pages.alpha.title');
+  assert.deepEqual(result.pages[0].titleByLang, { en:'Alpha', ja:'アルファ' });
+});
+
 // ── 9. Integration ───────────────────────────────────────────────────────────
 
 test('BUILD-TERRAIN-MAP integration: the real generator produces byte-identical output on repeated runs', () => {
