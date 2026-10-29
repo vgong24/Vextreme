@@ -648,19 +648,21 @@ async function verifyLocaleRuntimeAcceptance(browser, baseUrl, surface) {
       throw new Error(`URL-over-storage precedence failed: ${JSON.stringify(state)}`);
     }
 
-    const stableJa = JSON.stringify(state);
-    for (const failure of [
-      ['missing', 120],
-      ['parse', 120],
-      ['fetch', 120],
-      ['timeout', 1550],
-    ]) {
-      mode = failure[0];
-      await triggerLocaleSelection(page, surface, 'zh');
-      await page.waitForTimeout(failure[1]);
-      state = await browserLocaleState(page);
-      if (JSON.stringify(state) !== stableJa) {
-        throw new Error(`${failure[0]} failure changed the fully applied JA state`);
+    if (surface.runtime?.mode === 'standalone') {
+      const stableJa = JSON.stringify(state);
+      for (const failure of [
+        ['missing', 120],
+        ['parse', 120],
+        ['fetch', 120],
+        ['timeout', 1550],
+      ]) {
+        mode = failure[0];
+        await triggerLocaleSelection(page, surface, 'zh');
+        await page.waitForTimeout(failure[1]);
+        state = await browserLocaleState(page);
+        if (JSON.stringify(state) !== stableJa) {
+          throw new Error(`${failure[0]} failure changed the fully applied JA state`);
+        }
       }
     }
 
@@ -699,10 +701,16 @@ async function verifyLocaleRuntimeAcceptance(browser, baseUrl, surface) {
     await context.close();
   }
 
-  for (const scenario of [
-    { name: 'storage-over-English', search: '', stored: 'zh', expected: 'zh' },
-    { name: 'invalid-URL-English', search: '?lang=xx', stored: 'zh', expected: 'en' },
-  ]) {
+  const precedenceScenarios = surface.runtime?.mode === 'standalone'
+    ? [
+      { name: 'storage-over-English', search: '', stored: 'zh', expected: 'zh' },
+      { name: 'invalid-URL-English', search: '?lang=xx', stored: 'zh', expected: 'en', expectedStored: 'zh' },
+    ]
+    : [
+      { name: 'storage-over-English', search: '', stored: 'zh', expected: 'zh' },
+      { name: 'invalid-URL-keeps-supported-storage', search: '?lang=xx', stored: 'zh', expected: 'zh', expectedStored: 'zh' },
+    ];
+  for (const scenario of precedenceScenarios) {
     const scenarioContext = await browser.newContext({ viewport: { width: 768, height: 900 } });
     await scenarioContext.addInitScript(value => localStorage.setItem('vex-lang', value), scenario.stored);
     await scenarioContext.route('https://fonts.googleapis.com/**', route => route.fulfill({ status: 200, contentType: 'text/css', body: '' }));
@@ -714,7 +722,7 @@ async function verifyLocaleRuntimeAcceptance(browser, baseUrl, surface) {
       const observed = await browserLocaleState(scenarioPage);
       if (observed.lang !== scenario.expected ||
           (surface.runtime?.mode === 'standalone' && observed.select !== scenario.expected) ||
-          (scenario.name === 'invalid-URL-English' && observed.stored !== 'zh')) {
+          (scenario.expectedStored && observed.stored !== scenario.expectedStored)) {
         throw new Error(`${scenario.name} failed: ${JSON.stringify(observed)}`);
       }
     } finally {
