@@ -47,7 +47,7 @@ test('TERRAIN ENTRY: preserved authored visible text and semantic structure surv
       assert.equal(countTag(projected, tag), countTag(source, tag), entry.slug + ': ' + tag + ' structure drifted');
     }
     assert.ok(pageHtml.includes('preserved blob ' + entry.sourceBlob + '.'), entry.slug + ': exact preserved blob provenance missing');
-    assert.ok(pageHtml.includes('<script src="../widgets/fab-read-aloud.js"></script>'), entry.slug + ': standalone/embedded reader must carry site Read Aloud through a provider-neutral local asset');
+    assert.ok(pageHtml.includes('<script src="../lib/shell.js"></script>'), entry.slug + ': standalone/embedded reader must carry shared Spiral/Read Aloud/Language composition through a provider-neutral local asset');
   }
 });
 
@@ -143,6 +143,38 @@ test('TERRAIN ENTRY: Take a Walk Global Core source is complete and exactly boun
     for (const locale of requiredLocales) {
       assert.equal(typeof strings[locale].text, 'string', key + ': ' + locale + ' text missing');
       assert.ok(strings[locale].text.trim(), key + ': ' + locale + ' text empty');
+    }
+  }
+});
+
+test('TERRAIN ENTRY: Global Core entry pages mount the shared Spiral Language FAB from the canonical tier', () => {
+  const { LANGUAGE_TIERS } = require('../lib/translation-program');
+  const requiredLocales = ['en', ...LANGUAGE_TIERS['global-core']];
+  const expectedRuntimeLocales = JSON.stringify(requiredLocales);
+  const expectedOverride = 'window.VEXTREME_OVERRIDE = {nav:false,bodyWrap:false,arcNav:false,fab:true,fabWidgets:{readAloud:true,lang:true,theme:false,map:false}};';
+
+  for (const entry of CASES) {
+    const html = fs.readFileSync(path.join(ROOT, 'pages', entry.slug + '.html'), 'utf8');
+    const source = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'strings', 'source', 'pages', entry.slug + '.json'), 'utf8'));
+    const scope = 'pages.' + entry.slug;
+
+    assert.ok(html.includes('window.VEX_STRING_SCOPES = ' + JSON.stringify([scope]) + ';'), entry.slug + ': page scope runtime binding missing');
+    assert.ok(html.includes('window.VEX_STRING_CATEGORY = "production";'), entry.slug + ': production string category missing');
+    assert.ok(html.includes('window.VEX_SUPPORTED_LANGS = ' + expectedRuntimeLocales + ';'), entry.slug + ': runtime locale projection drifted from Global Core tier');
+    assert.ok(html.includes(expectedOverride), entry.slug + ': bounded Spiral FAB shell override missing');
+    assert.ok(html.includes('<script src="../lib/shell.js"></script>'), entry.slug + ': shared shell bootstrap missing');
+    assert.equal(html.includes('<script src="../widgets/fab-read-aloud.js"></script>'), false, entry.slug + ': standalone Read Aloud must be replaced by the shared Spiral composition');
+
+    const sourceKeys = Object.keys(source).filter(key => key !== '_meta').sort();
+    for (const locale of requiredLocales) {
+      const bundle = JSON.parse(fs.readFileSync(
+        path.join(ROOT, 'data', 'strings', 'compiled', 'scopes', 'production', 'pages', entry.slug + '.' + locale + '.json'),
+        'utf8',
+      ));
+      assert.deepEqual(Object.keys(bundle).sort(), sourceKeys, entry.slug + ': ' + locale + ' scoped bundle key set drifted');
+      for (const key of sourceKeys) {
+        assert.deepEqual(bundle[key], source[key].strings[locale], entry.slug + ': ' + locale + ' bundle/source value drifted for ' + key);
+      }
     }
   }
 });
