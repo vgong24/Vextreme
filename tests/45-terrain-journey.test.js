@@ -533,6 +533,10 @@ test('TERRAIN-JOURNEY: reader history preserves the real return surface instead 
   assert.match(source, /openContentTilePeek\(overviewStageIdx, \{[\s\S]*step:Number\.isInteger\(presentation\.step\)[\s\S]*manual:presentation\.manual === true/);
   assert.match(source, /returnKind:presentation && presentation\.returnKind \? presentation\.returnKind : 'collection'/,
     'browser Forward restores the reader with its original return contract');
+  assert.match(source, /openEvolutionReader\(node\.id, \{[\s\S]*writeUrl:false,[\s\S]*returnKind:presentation && presentation\.returnKind \? presentation\.returnKind : 'collection',[\s\S]*returnEntrySlug:presentation && presentation\.returnEntrySlug \? presentation\.returnEntrySlug : null,[\s\S]*returnReaderId:presentation && presentation\.returnReaderId \? presentation\.returnReaderId : null/,
+    'browser Forward must restore the coordinate paired with an entry/reader return kind');
+  assert.match(source, /setReaderReturnContext\(returnKind, \{[\s\S]*entrySlug:options\.returnEntrySlug \|\| activeReaderReturnEntrySlug,[\s\S]*readerId:options\.returnReaderId \|\| activeReaderReturnReaderId[\s\S]*\}\)/,
+    'reader replacement traversal must carry the existing return coordinate into the bounded mutation owner');
 });
 
 
