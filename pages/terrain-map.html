@@ -1043,6 +1043,10 @@
   var pinnedId = null, focusId = null, currentLens = 'all';
   var view = { x: 0, y: 0, scale: 1 };
   var levelIndex = 0, levelBaseScale = 1, levelCtx = {};
+  // Semantic depth has one live owner: levelIndex + levelCtx. Camera scale is presentation,
+  // and ENTER_RATIO is only a local preference for when continuous zoom asks the existing
+  // semantic transition to occur. Persisting that preference must never make it Journey state,
+  // URL route identity, collection identity, or a second semantic-depth truth.
   var ENTER_RATIO_DEFAULT = 4.5, ENTER_RATIO_MIN = 3.0, ENTER_RATIO_MAX = 6.0, ENTER_RATIO_STEP = 0.25;
   var ENTER_RATIO_STORAGE_KEY = 'vex-terrain-enter-ratio';
   var ENTER_RATIO = readTerrainEnterRatioPreference(), EXIT_RATIO = 0.55, MAX_NODE_RATIO = 7;
