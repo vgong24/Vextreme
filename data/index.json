@@ -1,7 +1,7 @@
 {
-  "contentFingerprint": "ca76f5e97279",
-  "nodeCount": 118,
-  "curatedNodeCount": 102,
+  "contentFingerprint": "a9e614d2bbe4",
+  "nodeCount": 119,
+  "curatedNodeCount": 103,
   "autoDiscoveredCount": 16,
   "arcCount": 17,
   "supportedLangs": [
@@ -1795,6 +1795,14 @@
         "ko",
         "pt",
         "zh"
+      ]
+    },
+    "pier-house-scarcity-companionship": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
       ]
     },
     "about-me": {
@@ -4747,6 +4755,36 @@
         ]
       }
     },
+    "pier-house-scarcity-companionship": {
+      "id": 81,
+      "slug": "pier-house-scarcity-companionship",
+      "title": "The Pier House Dream",
+      "date": "October 28, 2026",
+      "arcKeys": [
+        "convos_with_god",
+        "victors_record",
+        "full_timeline"
+      ],
+      "department": "media",
+      "workType": "record-transcripts",
+      "vexData": {},
+      "dateISO": "2026-10-28",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.pier-house-scarcity-companionship"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis",
+          "arc-nav"
+        ]
+      }
+    },
     "about-me": {
       "id": null,
       "slug": "about-me",
@@ -5258,7 +5296,8 @@
           "returning-scorpions-to-god",
           "recognizing-life-receiving-abundance",
           "bending-condominium-ocean-return",
-          "witness-grade-return"
+          "witness-grade-return",
+          "pier-house-scarcity-companionship"
         ]
       }
     ],
@@ -5368,7 +5407,8 @@
           "returning-scorpions-to-god",
           "recognizing-life-receiving-abundance",
           "bending-condominium-ocean-return",
-          "witness-grade-return"
+          "witness-grade-return",
+          "pier-house-scarcity-companionship"
         ]
       }
     ],
@@ -5552,7 +5592,8 @@
           "returning-scorpions-to-god",
           "recognizing-life-receiving-abundance",
           "bending-condominium-ocean-return",
-          "witness-grade-return"
+          "witness-grade-return",
+          "pier-house-scarcity-companionship"
         ]
       }
     ]
@@ -6207,6 +6248,11 @@
         {
           "slug": "witness-grade-return",
           "title": "Witness-grade return",
+          "ported": true
+        },
+        {
+          "slug": "pier-house-scarcity-companionship",
+          "title": "The Pier House Dream",
           "ported": true
         }
       ]
