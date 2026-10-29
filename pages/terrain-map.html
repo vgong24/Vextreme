@@ -180,9 +180,9 @@
   .level-readout[data-can-zoom-out="true"]{ cursor:zoom-out; }
   .level-readout:focus-visible{ outline:none; border-color:var(--accent); opacity:.94; }
   .depth-preference{
-    position:absolute; left:calc(100% - 8px); bottom:8px; width:min(228px,calc(100vw - 92px));
-    display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:8px 10px;
-    padding:9px 10px 9px 16px; border:1px solid var(--line-strong); border-left-color:var(--line);
+    position:absolute; left:calc(100% - 8px); bottom:8px; width:min(268px,calc(100vw - 92px));
+    display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:10px 12px;
+    padding:12px 13px 12px 18px; border:1px solid var(--line-strong); border-left-color:var(--line);
     border-radius:0 12px 12px 0; background:color-mix(in srgb,var(--panel) 96%,transparent);
     box-shadow:8px 10px 26px color-mix(in srgb,var(--ink) 10%,transparent); backdrop-filter:blur(10px);
     opacity:0; visibility:hidden; pointer-events:none; transform:translateX(-8px) scaleX(.96);
@@ -192,10 +192,10 @@
   .level-readout:focus-within .depth-preference{
     opacity:.98; visibility:visible; pointer-events:auto; transform:translateX(0) scaleX(1);
   }
-  .depth-preference-label{ min-width:0; color:var(--ink-muted); font:700 9px/1.2 var(--mono); letter-spacing:.05em; text-transform:uppercase; }
-  .depth-preference-value{ color:var(--accent); font:800 11px/1 var(--mono); white-space:nowrap; }
+  .depth-preference-label{ min-width:0; color:var(--ink-muted); font:700 11px/1.25 var(--mono); letter-spacing:.04em; text-transform:uppercase; }
+  .depth-preference-value{ color:var(--accent); font:800 14px/1 var(--mono); white-space:nowrap; }
   .depth-preference input[type="range"]{
-    grid-column:1/-1; width:100%; min-width:0; margin:0; accent-color:var(--accent); cursor:ew-resize;
+    grid-column:1/-1; width:100%; min-width:0; min-height:28px; margin:0; accent-color:var(--accent); cursor:ew-resize;
   }
   .threshold-progress{ position:relative; width:100%; height:132px; min-width:0; }
   .threshold-track{ position:absolute; top:0; bottom:0; left:11px; width:2px; border-radius:2px; background:var(--line-strong); }
@@ -838,7 +838,8 @@
         "A live collection parent renders as a first-position depth tile while remaining outside ordinary membership and Prev/Next sequencing.",
         "Content quiets engineering diagnostics by default and restores them through an explicit Inspect control; embedded reading hides the Terrain topbar.",
         "Search remains in the Content grammar: results expose collection context and open through collection-to-reader presentation rather than the legacy node inspector.",
-        "Renderer choice is presentation state and is directly addressable by URL; semantic Journey state is unchanged."
+        "Renderer choice is presentation state and is directly addressable by URL; semantic Journey state is unchanged.",
+        "The accepted Content collection overview may expose one local automatic-entry zoom preference; it changes only that collection-entry threshold, never Code-world zoom, collection identity, URL identity, or Journey semantic state."
       ],
       "levels": {
         "group": {
