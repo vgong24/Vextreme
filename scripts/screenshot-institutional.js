@@ -553,9 +553,11 @@ async function verifyStaticEnglish(browser, baseUrl, surfaces) {
         };
       }, bundle);
       const runtimeNeeded = needsLocaleRuntime(surface);
-      const selectorValid = runtimeNeeded
-        ? result.selectorCount === 1 && result.selectorHidden === true
-        : result.selectorCount === 0;
+      const selectorValid = surface.runtime?.mode === 'shell-context'
+        ? result.selectorCount === 0
+        : (runtimeNeeded
+          ? result.selectorCount === 1 && result.selectorHidden === true
+          : result.selectorCount === 0);
       if (result.lang !== 'en' || result.hold || !selectorValid || result.issues.length) {
         throw new Error(`${surface.slug} no-JavaScript English fallback failed: ${JSON.stringify(result)}`);
       }

@@ -890,6 +890,16 @@ test('INSTITUTIONAL-SURFACES: remote fallback requires institutional capture pro
   ), 'generic localization evidence must not satisfy institutional activation matrix proof');
 });
 
+test('INSTITUTIONAL-SURFACES: no-JavaScript shell-context fallback does not require the standalone native selector', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'scripts', 'screenshot-institutional.js'), 'utf8').replace(/\r\n/g, '\n');
+
+  assert.match(
+    source,
+    /surface\.runtime\?\.mode === 'shell-context'\s*\? result\.selectorCount === 0\s*:\s*\(runtimeNeeded[\s\S]*result\.selectorCount === 1 && result\.selectorHidden === true/,
+    'shell-context surfaces must accept static English with no standalone selector while standalone multi-locale surfaces still require one hidden selector'
+  );
+});
+
 test('INSTITUTIONAL-SURFACES: matrix writer can add structured Assets custody without changing local activation evidence', () => {
   const source = fs.readFileSync(path.join(ROOT, 'scripts', 'screenshot-institutional.js'), 'utf8').replace(/\r\n/g, '\n');
 
