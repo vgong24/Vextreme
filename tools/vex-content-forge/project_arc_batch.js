@@ -125,8 +125,47 @@ function replace(parent, current, next) {
   next.parentNode = parent;
 }
 
+function interactiveCodeText(root) {
+  const chunks = [];
+  walk(root, node => {
+    if (!node?.tagName) return;
+    if (node.tagName === 'script') chunks.push(rawText(node));
+    for (const item of node.attrs || []) {
+      if (item.name.toLowerCase().startsWith('on')) chunks.push(String(item.value || ''));
+    }
+  });
+  return chunks.join('\n');
+}
+function validateInteractiveCode(root) {
+  const scripts = findAll(root, node => node.tagName === 'script');
+  for (const script of scripts) {
+    invariant(!Object.hasOwn(attrs(script), 'src'), 'INTERACTIVE_EXTERNAL_SCRIPT', attrs(script).src || 'src');
+  }
+  const code = interactiveCodeText(root);
+  const forbidden = [
+    /\bfetch\s*\(/i,
+    /\bXMLHttpRequest\b/i,
+    /\bWebSocket\b/i,
+    /\bEventSource\b/i,
+    /\bsendBeacon\s*\(/i,
+    /\beval\s*\(/i,
+    /\bnew\s+Function\b/i,
+    /\bFunction\s*\(/i,
+    /\bdocument\.cookie\b/i,
+    /\blocalStorage\b/i,
+    /\bsessionStorage\b/i,
+    /\bindexedDB\b/i,
+  ];
+  for (const pattern of forbidden) {
+    invariant(!pattern.test(code), 'INTERACTIVE_CODE_FORBIDDEN', pattern.source);
+  }
+  return { inlineScriptCount: scripts.length, inlineHandlerCount: findAll(root, node => node?.tagName)
+    .reduce((count, node) => count + (node.attrs || []).filter(item => item.name.toLowerCase().startsWith('on')).length, 0) };
+}
 function sanitize(root, adapter) {
   let h1Seen = false;
+  const sqsBodyAdapter = adapter === 'SQS_AUTHORED_BODY' || adapter === 'SQS_NEUTRAL_TRANSCRIPT';
+  const interactiveAdapter = adapter === 'AUTHORED_INTERACTIVE_MAIN';
   function visit(node) {
     for (const child of [...(node.childNodes || [])]) {
       if (child.tagName) {
@@ -136,23 +175,23 @@ function sanitize(root, adapter) {
           && child.tagName === 'a'
           && a.href === '/archives'
           && /^←?\s*Archives$/i.test(rawText(child).trim());
-        const chrome = ['script', 'noscript', 'template'].includes(child.tagName)
+        const chrome = ((!interactiveAdapter && child.tagName === 'script') || ['noscript', 'template'].includes(child.tagName))
           || a.id === 'arcNavMount'
           || tokens.some(token => /^(?:arc-wrap|arc-nav|entry-nav|back-nav|page-back|vex-back|f-back)/.test(token))
           || archiveBackLink
           || (adapter === 'AUTHORED_MAIN_FRAGMENT' && child.tagName === 'nav');
         if (chrome) { remove(child); continue; }
         if (child.tagName === 'h1') {
-          if (adapter === 'SQS_AUTHORED_BODY' || h1Seen) child.nodeName = child.tagName = 'h2';
+          if (sqsBodyAdapter || h1Seen) child.nodeName = child.tagName = 'h2';
           else h1Seen = true;
         }
         child.attrs = (child.attrs || []).filter(item => {
           const name = item.name.toLowerCase();
           const value = String(item.value || '');
-          if (name === 'data-i18n' || name === 'data-i18n-attrs' || name.startsWith('data-vex') || name.startsWith('data-sqsp') || name.startsWith('on')) return false;
+          if (name === 'data-i18n' || name === 'data-i18n-attrs' || name.startsWith('data-vex') || name.startsWith('data-sqsp') || (!interactiveAdapter && name.startsWith('on'))) return false;
           if ((name === 'href' || name === 'src') && (/^javascript:/i.test(value) || value.includes('/__rescue/'))) return false;
           if (name === 'id' && (value === 'arcNavMount' || value.startsWith('vex-generated:'))) return false;
-          if (adapter === 'SQS_AUTHORED_BODY' && ['class', 'id', 'style'].includes(name)) return false;
+          if (sqsBodyAdapter && ['class', 'id', 'style'].includes(name)) return false;
           return true;
         });
       }
@@ -217,7 +256,7 @@ function localize(root, scope) {
         replace(parent, child, span);
         strings[key] = value;
       } else if (child.tagName) {
-        if (['style','title'].includes(child.tagName)) continue;
+        if (['style','title','script'].includes(child.tagName)) continue;
         const tag = child.tagName.toLowerCase().replace(/[^a-z0-9-]/g, '') || 'node';
         const count = (counts.get(tag) || 0) + 1;
         counts.set(tag, count);
@@ -307,7 +346,7 @@ function validatePage(page, strings, member) {
 function projectMember(root, member, nodesBySlug, assetCatalog) {
   const node = nodesBySlug.get(member.slug);
   invariant(node && node.id === member.canonicalNodeId && node.title === member.title && JSON.stringify(node.arcKeys) === JSON.stringify(member.arcKeys), 'CANONICAL_NODE_MISMATCH', member.slug);
-  invariant(['SQS_AUTHORED_BODY','AUTHORED_MAIN_FRAGMENT','EMBEDDED_CODE_CONTAINER'].includes(member.adapterClass), 'ADAPTER_UNSUPPORTED', member.slug);
+  invariant(['SQS_AUTHORED_BODY','SQS_NEUTRAL_TRANSCRIPT','AUTHORED_MAIN_FRAGMENT','AUTHORED_INTERACTIVE_MAIN','EMBEDDED_CODE_CONTAINER'].includes(member.adapterClass), 'ADAPTER_UNSUPPORTED', member.slug);
   const sourcePath = path.join(root, member.sourcePath);
   invariant(fs.existsSync(sourcePath), 'SOURCE_MISSING', member.sourcePath);
   const source = fs.readFileSync(sourcePath);
@@ -319,18 +358,20 @@ function projectMember(root, member, nodesBySlug, assetCatalog) {
   externalizeAssetReferences(document, assetCatalog);
   let selected;
   let styles = [];
-  if (member.adapterClass === 'SQS_AUTHORED_BODY') {
+  if (member.adapterClass === 'SQS_AUTHORED_BODY' || member.adapterClass === 'SQS_NEUTRAL_TRANSCRIPT') {
     selected = selectSqsBody(document);
-  } else if (member.adapterClass === 'AUTHORED_MAIN_FRAGMENT') {
+  } else if (member.adapterClass === 'AUTHORED_MAIN_FRAGMENT' || member.adapterClass === 'AUTHORED_INTERACTIVE_MAIN') {
     selected = selectAuthoredMain(document);
     styles = authoredStyles(document);
+    if (member.adapterClass === 'AUTHORED_INTERACTIVE_MAIN') validateInteractiveCode(selected);
   } else {
     const embedded = selectEmbeddedCodeContainer(document, member.embeddedRootClass);
     selected = embedded.root;
     styles = authoredStyles(embedded.container);
   }
   const h1Seen = sanitize(selected, member.adapterClass);
-  const synthesizeCanonicalHeading = member.adapterClass !== 'SQS_AUTHORED_BODY' && !h1Seen;
+  const sqsBodyAdapter = member.adapterClass === 'SQS_AUTHORED_BODY' || member.adapterClass === 'SQS_NEUTRAL_TRANSCRIPT';
+  const synthesizeCanonicalHeading = !sqsBodyAdapter && !h1Seen;
   const leaves = textLeaves(selected);
   invariant(leaves.length, 'AUTHORED_TEXT_EMPTY', member.slug);
   const scope = `pages.${member.slug}`;
@@ -347,6 +388,12 @@ function projectMember(root, member, nodesBySlug, assetCatalog) {
       [`${scope}.meta.date`]: node.date, [`${scope}.meta.by`]: 'Written By', [`${scope}.meta.author`]: 'Victor Gong',
     });
     body = `${longPageNav}<main${mainAnchor}><header class="page-head"><p class="eyebrow" data-i18n="${scope}.eyebrow">Conversations with God</p><h1 data-i18n="${scope}.title">${escapeHtml(node.title)}</h1><div class="meta"><time datetime="${isoDate(node.date)}" data-i18n="${scope}.meta.date">${escapeHtml(node.date)}</time><span><span data-i18n="${scope}.meta.by">Written By</span> <span data-i18n="${scope}.meta.author">Victor Gong</span></span></div></header><article class="transcript" data-content-forge-body="${member.slug}" data-content-forge-source="${sourcePart(member.sourcePath)}">${bodyHtml}</article><section class="arc-wrap" aria-label="Arc navigation"><div id="arcNavMount"></div></section></main>`;
+  } else if (member.adapterClass === 'SQS_NEUTRAL_TRANSCRIPT') {
+    fixed[`${scope}.title`] = node.title;
+    const dateMeta = node.date
+      ? (fixed[`${scope}.meta.date`] = node.date, `<div class="meta"><time datetime="${isoDate(node.date)}" data-i18n="${scope}.meta.date">${escapeHtml(node.date)}</time></div>`)
+      : '';
+    body = `${longPageNav}<main${mainAnchor}><header class="page-head"><h1 data-i18n="${scope}.title">${escapeHtml(node.title)}</h1>${dateMeta}</header><article class="transcript" data-content-forge-body="${member.slug}" data-content-forge-source="${sourcePart(member.sourcePath)}">${bodyHtml}</article><section class="arc-wrap" aria-label="Arc navigation"><div id="arcNavMount"></div></section></main>`;
   } else {
     const sourceClass = classes(selected).filter(token => !/^vex-(?:native|generated)/.test(token));
     if (!sourceClass.includes('vex-authored-page-frame')) sourceClass.unshift('vex-authored-page-frame');
@@ -362,7 +409,7 @@ function projectMember(root, member, nodesBySlug, assetCatalog) {
   const strings = fs.existsSync(stringsPath)
     ? preserveLocalizationOverlays(projectedStrings, readJson(stringsPath))
     : projectedStrings;
-  const baseStyle = member.adapterClass === 'SQS_AUTHORED_BODY' ? GENERIC_STYLE : `${AUTHORED_STYLE}\n${styles.join('\n')}`;
+  const baseStyle = sqsBodyAdapter ? GENERIC_STYLE : `${AUTHORED_STYLE}\n${styles.join('\n')}`;
   const style = longPageNav ? `${baseStyle}\n${LONG_PAGE_ESCAPE_STYLE}` : baseStyle;
   const page = `${pageHead(node.title, scope, `${node.title} — repository-native preserved content.`, style)}<body data-content-forge-generator="${GENERATOR_REF}"><!-- Source-managed ${member.adapterClass} projection of ${member.sourcePath}. -->${body}<script src="../dist/vextreme-${member.slug}.js"></script></body></html>`;
   validatePage(page, strings, member);
@@ -498,4 +545,4 @@ if (require.main === module) {
   try { process.exitCode = main(cliOptions()).accounting.complete ? 0 : 1; }
   catch (error) { process.stderr.write(`${error.stack || error.message}\n`); process.exitCode = 1; }
 }
-module.exports = { ASSET_CATALOG_REL, ASSET_FILENAME, DEFAULT_ROOT, FORMATION_REL, GENERATOR_REF, ROOT_RELATIVE_ASSET_REF, ProjectionInvariantError, attrs, cliOptions, externalizeAssetReferences, findAll, findFirst, gitBlobSha, loadAssetCatalog, main, preserveLocalizationOverlays, rawText, resolveAssetReference, rewriteAssetText, selectAuthoredMain, selectEmbeddedCodeContainer, selectSqsBody, sha256, textLeaves, validateFormation };
+module.exports = { ASSET_CATALOG_REL, ASSET_FILENAME, DEFAULT_ROOT, FORMATION_REL, GENERATOR_REF, ROOT_RELATIVE_ASSET_REF, ProjectionInvariantError, attrs, cliOptions, externalizeAssetReferences, findAll, findFirst, gitBlobSha, interactiveCodeText, loadAssetCatalog, main, preserveLocalizationOverlays, projectMember, rawText, resolveAssetReference, rewriteAssetText, selectAuthoredMain, selectEmbeddedCodeContainer, selectSqsBody, sha256, textLeaves, validateFormation, validateInteractiveCode };

@@ -154,6 +154,13 @@ test('APPLY-CONTENT-INTENTS: validateIntent with neither field set is always val
   assert.equal(result.valid, true);
 });
 
+test('APPLY-CONTENT-INTENTS: validateIntent accepts an exact canonical title override and rejects empty title overrides', () => {
+  assert.equal(validateIntent({ slug:'x', title:'VXG Council Declaration' }, SAMPLE_DEPARTMENTS, SAMPLE_ARCS).valid, true);
+  const invalid = validateIntent({ slug:'x', title:'   ' }, SAMPLE_DEPARTMENTS, SAMPLE_ARCS);
+  assert.equal(invalid.valid, false);
+  assert.match(invalid.errors[0], /title must be a non-empty string/);
+});
+
 
 // ── 5. canonical promotion ────────────────────────────────────────────────────
 
@@ -174,6 +181,23 @@ test('APPLY-CONTENT-INTENTS: buildCanonicalNode reuses page title/meta and actua
   assert.deepEqual(node, {
     id:null, slug:'placed', title:'A & B', date:'', arcKeys:['records'],
     department:'media', workType:'reviews', vexData:{},
+  });
+});
+
+
+test('APPLY-CONTENT-INTENTS: buildCanonicalNode honors explicit canonical title/date while retaining actual department placement', () => {
+  const html = '<html><head><title data-i18n="pages.x.document-title">VXG Council Declaration — Vextreme</title><meta name="vex:department" content="institute"><meta name="vex:workType" content="governance"></head></html>';
+  const node = buildCanonicalNode({
+    slug:'vxg-council-declaration',
+    title:'VXG Council Declaration',
+    date:'May 18, 2026',
+    department:'institute',
+    workType:'governance',
+    registerNode:true,
+  }, html, {}, { ...SAMPLE_DEPARTMENTS, institute:{ label:'Institute', default:false, workTypes:{ governance:{ label:'Governance' } } } });
+  assert.deepEqual(node, {
+    id:null, slug:'vxg-council-declaration', title:'VXG Council Declaration', date:'May 18, 2026', arcKeys:[],
+    department:'institute', workType:'governance', vexData:{},
   });
 });
 
