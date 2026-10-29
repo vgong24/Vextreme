@@ -62,8 +62,8 @@ test('TERRAIN ENTRY: active documents are provider-neutral repository pages outs
     for (const forbidden of ['www.vextreme24.com','/__rescue/','/__vex/','/__localization/','vex-native-site-nav','cdn.jsdelivr.net/gh/vgong24/vextreme','data-vex-id=']) {
       assert.equal(html.includes(forbidden), false, entry.slug + ': retained provider/runtime marker ' + forbidden);
     }
-    if (entry.slug === 'receive-god') {
-      assert.match(html, /data-i18n=/, 'receive-god: Global Core source identities must stay bound');
+    if (['receive-god', 'take-a-walk'].includes(entry.slug)) {
+      assert.match(html, /data-i18n=/, entry.slug + ': Global Core source identities must stay bound');
     } else {
       assert.equal(html.includes('data-i18n='), false, entry.slug + ': localization identity adopted before its own source row');
     }
@@ -98,6 +98,44 @@ test('TERRAIN ENTRY: Receive God Global Core source is complete and exactly boun
   assert.equal(bindings.length, 60, 'Receive God binding count drifted');
   assert.equal(new Set(bindings).size, 60, 'Receive God binding identities must be unique');
   assert.deepEqual([...bindings].sort(), [...sourceKeys].sort(), 'page/source identity set drifted');
+
+  for (const key of sourceKeys) {
+    const strings = source[key].strings;
+    assert.deepEqual(Object.keys(strings).sort(), [...requiredLocales].sort(), key + ': Global Core locale set drifted');
+    for (const locale of requiredLocales) {
+      assert.equal(typeof strings[locale].text, 'string', key + ': ' + locale + ' text missing');
+      assert.ok(strings[locale].text.trim(), key + ': ' + locale + ' text empty');
+    }
+  }
+});
+
+test('TERRAIN ENTRY: Take a Walk Global Core source is complete and exactly bound to preserved English', () => {
+  const requiredLocales = ['en','ja','zh','ko','fr','de','es','pt','ar','hi'];
+  const source = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'strings', 'source', 'pages', 'take-a-walk.json'), 'utf8'));
+  const html = fs.readFileSync(path.join(ROOT, 'pages', 'take-a-walk.html'), 'utf8');
+  const doc = parse5.parse(html);
+  const bindings = [];
+
+  walk(doc, node => {
+    const key = attrs(node)['data-i18n'];
+    if (!key) return;
+    bindings.push(key);
+    assert.ok(source[key], key + ': bound identity missing from source');
+    assert.equal(
+      visibleTextLeaves(node).join(' '),
+      source[key].strings.en.text,
+      key + ': bound English text drifted from preserved page copy',
+    );
+  });
+
+  const sourceKeys = Object.keys(source).filter(key => key !== '_meta');
+  assert.equal(source._meta.scope, 'pages.take-a-walk');
+  assert.equal(source._meta.sourceProvenance.preservedGitBlob, '51f3f219f3095aff678667ecf28312cac7c48833');
+  assert.equal(source._meta.projectionStats.authoredTextLeafCount, 84);
+  assert.equal(source._meta.projectionStats.boundIdentityCount, 85);
+  assert.equal(bindings.length, 85, 'Take a Walk binding count drifted');
+  assert.equal(new Set(bindings).size, 85, 'Take a Walk binding identities must be unique');
+  assert.deepEqual([...bindings].sort(), [...sourceKeys].sort(), 'Take a Walk page/source identity set drifted');
 
   for (const key of sourceKeys) {
     const strings = source[key].strings;
