@@ -54,6 +54,29 @@ test('TERRAIN-VIEW: Content collection grid caps expansion at four columns while
   );
 });
 
+test('TERRAIN-VIEW: semantic entry depth gives users more readable pre-entry zoom and a persistent hover/focus preference', () => {
+  const source = pageSource();
+
+  assert.match(source, /ENTER_RATIO_DEFAULT = 4\.5, ENTER_RATIO_MIN = 3\.0, ENTER_RATIO_MAX = 6\.0, ENTER_RATIO_STEP = 0\.25/);
+  assert.match(source, /ENTER_RATIO_STORAGE_KEY = 'vex-terrain-enter-ratio'/);
+  assert.match(source, /var ENTER_RATIO = readTerrainEnterRatioPreference\(\), EXIT_RATIO = 0\.55, MAX_NODE_RATIO = 7/);
+  assert.match(source, /localStorage\.getItem\(ENTER_RATIO_STORAGE_KEY\)/);
+  assert.match(source, /localStorage\.setItem\(ENTER_RATIO_STORAGE_KEY, String\(ENTER_RATIO\)\)/);
+
+  assert.match(source, /\.depth-preference\{[\s\S]*?left:calc\(100% - 8px\); bottom:8px;[\s\S]*?grid-template-columns:minmax\(0,1fr\) auto;/);
+  assert.match(source, /\.level-readout:hover \.depth-preference,[\s\S]*?\.level-readout:focus-within \.depth-preference\{/);
+  assert.match(source, /id="terrainEnterRatio" data-enter-ratio type="range"/);
+  assert.match(source, /aria-label="Zoom depth before entering the next Terrain layer"/);
+  assert.match(source, /setTerrainEnterRatioPreference\(control\.value, false\)/);
+  assert.match(source, /setTerrainEnterRatioPreference\(control\.value, true\)/);
+
+  assert.match(source, /function thresholdRailPosition\(ratio\)[\s\S]*?ENTER_RATIO - 1/);
+  assert.match(source, /levelIndex === 1 && typeof levelCtx\.stageIdx !== 'number' && ratio > ENTER_RATIO/);
+  assert.match(source, /levelIndex < OVERVIEW_LEVELS\.length - 1 && ratio > ENTER_RATIO/);
+  assert.match(source, /event\.target\.closest\('\.depth-preference'\)/,
+    'range interaction must not fall through to the rail wheel/keyboard navigation gestures');
+});
+
 test('TERRAIN-VIEW: embedded reader URLs stay on the current deployed revision', () => {
   const source = pageSource();
   assert.match(source, /var DEPLOYMENT_ROOT = new URL\('\.\.\/', window\.location\.href\);/);
