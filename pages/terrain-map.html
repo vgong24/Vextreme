@@ -774,7 +774,7 @@
           "renderer": "adaptive-group-cards",
           "fit": 0.92,
           "overview": {
-            "maxColumns": 4,
+            "maxColumns": 3,
             "cardWidth": 240,
             "cardHeight": 140,
             "gap": 24,
@@ -845,7 +845,10 @@
       "levels": {
         "group": {
           "component": "terrain.group-card",
-          "renderer": "viewport-curiosity-dock"
+          "renderer": "viewport-curiosity-dock",
+          "overview": {
+            "maxColumns": 4
+          }
         },
         "node": {
           "component": "terrain.node-marker",
@@ -2761,12 +2764,21 @@
     group.appendChild(label);
     return layout;
   }
+  function stageOverviewMaxColumns(profile) {
+    var contentOverview = EVOLUTION_A_VIEW.levels.group.overview;
+    if (currentWorld === 'content' && currentProfile === 'evolution-v1'
+      && contentOverview && Number.isInteger(contentOverview.maxColumns)) {
+      return contentOverview.maxColumns;
+    }
+    return profile.overview.maxColumns;
+  }
+
   function stageOverviewColumnCount(profile) {
     var overview = profile.overview;
     var vp = viewportSize();
     var usableWidth = Math.max(overview.cardWidth, vp.w * profile.fit - overview.boundsPadding * 2);
     var fittingColumns = Math.max(1, Math.floor((usableWidth + overview.gap) / (overview.cardWidth + overview.gap)));
-    return Math.min(overview.maxColumns, Math.max(1, STAGES.length), fittingColumns);
+    return Math.min(stageOverviewMaxColumns(profile), Math.max(1, STAGES.length), fittingColumns);
   }
 
   function stageCompositionLayout(ctx) {
