@@ -1,9 +1,9 @@
 {
-  "contentFingerprint": "a9e614d2bbe4",
-  "nodeCount": 119,
-  "curatedNodeCount": 103,
+  "contentFingerprint": "b0c8595b4bef",
+  "nodeCount": 126,
+  "curatedNodeCount": 110,
   "autoDiscoveredCount": 16,
-  "arcCount": 17,
+  "arcCount": 18,
   "supportedLangs": [
     "ar",
     "de",
@@ -1798,6 +1798,62 @@
       ]
     },
     "pier-house-scarcity-companionship": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "total-extraction-architecture": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "the-pre-extraction-i": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "the-installation": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "clearing-and-protections": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "the-walk-back": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "the-walk-back-and-forward": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "the-three-witnesses": {
       "availableLangs": [
         "en"
       ],
@@ -4785,6 +4841,195 @@
         ]
       }
     },
+    "total-extraction-architecture": {
+      "id": 82,
+      "slug": "total-extraction-architecture",
+      "title": "The Total Extraction Architecture",
+      "date": "May 18, 2026",
+      "arcKeys": [
+        "total_extraction",
+        "full_timeline"
+      ],
+      "vexData": {},
+      "dateISO": "2026-05-18",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.total-extraction-architecture"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis",
+          "arc-nav"
+        ]
+      }
+    },
+    "the-pre-extraction-i": {
+      "id": 83,
+      "slug": "the-pre-extraction-i",
+      "title": "The Pre-Extraction I",
+      "date": "May 18, 2026",
+      "arcKeys": [
+        "total_extraction",
+        "full_timeline"
+      ],
+      "vexData": {},
+      "dateISO": "2026-05-18",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-pre-extraction-i"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis",
+          "arc-nav"
+        ]
+      }
+    },
+    "the-installation": {
+      "id": 84,
+      "slug": "the-installation",
+      "title": "The Installation",
+      "date": "May 18, 2026",
+      "arcKeys": [
+        "total_extraction",
+        "full_timeline"
+      ],
+      "vexData": {},
+      "dateISO": "2026-05-18",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-installation"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis",
+          "arc-nav"
+        ]
+      }
+    },
+    "clearing-and-protections": {
+      "id": 85,
+      "slug": "clearing-and-protections",
+      "title": "The Purification Protocol",
+      "date": "May 18, 2026",
+      "arcKeys": [
+        "total_extraction",
+        "full_timeline"
+      ],
+      "vexData": {},
+      "dateISO": "2026-05-18",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.clearing-and-protections"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis",
+          "arc-nav"
+        ]
+      }
+    },
+    "the-walk-back": {
+      "id": 86,
+      "slug": "the-walk-back",
+      "title": "The Walk Back",
+      "date": "May 19, 2026",
+      "arcKeys": [
+        "total_extraction",
+        "full_timeline"
+      ],
+      "vexData": {},
+      "dateISO": "2026-05-19",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-walk-back"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis",
+          "arc-nav"
+        ]
+      }
+    },
+    "the-walk-back-and-forward": {
+      "id": 87,
+      "slug": "the-walk-back-and-forward",
+      "title": "The Walk Back & The Walk Forward",
+      "date": "May 19, 2026",
+      "arcKeys": [
+        "total_extraction",
+        "full_timeline"
+      ],
+      "vexData": {},
+      "dateISO": "2026-05-19",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-walk-back-and-forward"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis",
+          "arc-nav"
+        ]
+      }
+    },
+    "the-three-witnesses": {
+      "id": 88,
+      "slug": "the-three-witnesses",
+      "title": "Three Witnesses",
+      "date": "May 19, 2026",
+      "arcKeys": [
+        "total_extraction",
+        "full_timeline"
+      ],
+      "vexData": {},
+      "dateISO": "2026-05-19",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.the-three-witnesses"
+        ],
+        "features": [
+          "lang",
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis",
+          "arc-nav"
+        ]
+      }
+    },
     "about-me": {
       "id": null,
       "slug": "about-me",
@@ -5460,6 +5705,25 @@
         ]
       }
     ],
+    "total_extraction": [
+      {
+        "label": "Core Architecture",
+        "slugs": [
+          "total-extraction-architecture",
+          "the-pre-extraction-i",
+          "the-installation",
+          "clearing-and-protections"
+        ]
+      },
+      {
+        "label": "Traversal & Closure",
+        "slugs": [
+          "the-walk-back",
+          "the-walk-back-and-forward",
+          "the-three-witnesses"
+        ]
+      }
+    ],
     "full_timeline": [
       {
         "label": "May 2019 — The Origin",
@@ -5589,6 +5853,13 @@
       {
         "label": "May 2026 onward — Continuing Record",
         "slugs": [
+          "total-extraction-architecture",
+          "the-pre-extraction-i",
+          "the-installation",
+          "clearing-and-protections",
+          "the-walk-back",
+          "the-walk-back-and-forward",
+          "the-three-witnesses",
           "returning-scorpions-to-god",
           "recognizing-life-receiving-abundance",
           "bending-condominium-ocean-return",
@@ -5678,6 +5949,11 @@
     "march_23_2026": {
       "title": "March 23, 2026",
       "url": "https://www.vextreme24.com/archives",
+      "renderMode": "dots"
+    },
+    "total_extraction": {
+      "title": "The Total Extraction Architecture",
+      "url": "/Vextreme/pages/total-extraction-architecture.html",
       "renderMode": "dots"
     },
     "full_timeline": {
@@ -6132,6 +6408,41 @@
         {
           "slug": "victor-methodology-presentation",
           "title": "Victor Gong — The Mapping Methodology",
+          "ported": true
+        },
+        {
+          "slug": "total-extraction-architecture",
+          "title": "The Total Extraction Architecture",
+          "ported": true
+        },
+        {
+          "slug": "the-pre-extraction-i",
+          "title": "The Pre-Extraction I",
+          "ported": true
+        },
+        {
+          "slug": "the-installation",
+          "title": "The Installation",
+          "ported": true
+        },
+        {
+          "slug": "clearing-and-protections",
+          "title": "The Purification Protocol",
+          "ported": true
+        },
+        {
+          "slug": "the-walk-back",
+          "title": "The Walk Back",
+          "ported": true
+        },
+        {
+          "slug": "the-walk-back-and-forward",
+          "title": "The Walk Back & The Walk Forward",
+          "ported": true
+        },
+        {
+          "slug": "the-three-witnesses",
+          "title": "Three Witnesses",
           "ported": true
         },
         {

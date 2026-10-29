@@ -3921,12 +3921,31 @@
       }
     },
     {
+      "key": "total_extraction",
+      "name": "The Total Extraction Architecture",
+      "sub": "priority 1",
+      "count": 7,
+      "rect": {
+        "x": 3410,
+        "y": 40,
+        "width": 300,
+        "height": 510
+      },
+      "parent": {
+        "title": "The Total Extraction Architecture",
+        "pageSlug": "total-extraction-architecture",
+        "live": true,
+        "url": "https://vgong24.github.io/Vextreme/pages/total-extraction-architecture.html",
+        "sourceUrl": "/Vextreme/pages/total-extraction-architecture.html"
+      }
+    },
+    {
       "key": "victor_dossier",
       "name": "Victor Gong — Engineering Dossier",
       "sub": "priority 1",
       "count": 1,
       "rect": {
-        "x": 3410,
+        "x": 3750,
         "y": 40,
         "width": 300,
         "height": 150
@@ -3945,7 +3964,7 @@
       "sub": "priority 1",
       "count": 10,
       "rect": {
-        "x": 3750,
+        "x": 4090,
         "y": 40,
         "width": 300,
         "height": 690
@@ -3964,7 +3983,7 @@
       "sub": "priority 2",
       "count": 1,
       "rect": {
-        "x": 4090,
+        "x": 4430,
         "y": 40,
         "width": 300,
         "height": 150
@@ -3983,7 +4002,7 @@
       "sub": "priority 2",
       "count": 1,
       "rect": {
-        "x": 4430,
+        "x": 4770,
         "y": 40,
         "width": 300,
         "height": 150
@@ -4002,7 +4021,7 @@
       "sub": "priority 2",
       "count": 0,
       "rect": {
-        "x": 4770,
+        "x": 5110,
         "y": 40,
         "width": 300,
         "height": 460
@@ -4021,7 +4040,7 @@
       "sub": "priority 2",
       "count": 0,
       "rect": {
-        "x": 5110,
+        "x": 5450,
         "y": 40,
         "width": 300,
         "height": 460
@@ -4040,7 +4059,7 @@
       "sub": "priority 99",
       "count": 1,
       "rect": {
-        "x": 5450,
+        "x": 5790,
         "y": 40,
         "width": 300,
         "height": 150
@@ -4059,7 +4078,7 @@
       "sub": "curated pages with no arc yet",
       "count": 9,
       "rect": {
-        "x": 5790,
+        "x": 6130,
         "y": 40,
         "width": 300,
         "height": 630
@@ -4071,7 +4090,7 @@
       "sub": "auto-discovered pages, no nodes.json entry yet",
       "count": 16,
       "rect": {
-        "x": 6130,
+        "x": 6470,
         "y": 40,
         "width": 300,
         "height": 1050
@@ -4089,7 +4108,7 @@
       ],
       "arc": "victors_record",
       "arcName": "Victor's Record",
-      "x": 3800,
+      "x": 4140,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/victors-recap-arc-1.html",
@@ -4128,7 +4147,7 @@
       ],
       "arc": "covenant",
       "arcName": "Covenant",
-      "x": 4140,
+      "x": 4480,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/covenant.html",
@@ -4714,7 +4733,7 @@
       ],
       "arc": "victors_record",
       "arcName": "Victor's Record",
-      "x": 3800,
+      "x": 4140,
       "y": 150,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-testimony-of-victor-gong.html",
@@ -4757,7 +4776,7 @@
       ],
       "arc": "full_timeline",
       "arcName": "Full Timeline",
-      "x": 5500,
+      "x": 5840,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/podcasts.html",
@@ -5268,7 +5287,7 @@
       ],
       "arc": "victors_record",
       "arcName": "Victor's Record",
-      "x": 3800,
+      "x": 4140,
       "y": 210,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/god-witnessed-by-ai.html",
@@ -5356,7 +5375,7 @@
       ],
       "arc": "victors_record",
       "arcName": "Victor's Record",
-      "x": 3800,
+      "x": 4140,
       "y": 270,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/god-asked-victor-why.html",
@@ -5445,7 +5464,7 @@
       ],
       "arc": "victors_record",
       "arcName": "Victor's Record",
-      "x": 3800,
+      "x": 4140,
       "y": 330,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/a-conversation-with-pastor-jacob.html",
@@ -5484,7 +5503,7 @@
       ],
       "arc": "victors_record",
       "arcName": "Victor's Record",
-      "x": 3800,
+      "x": 4140,
       "y": 390,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-moment-victors-cells-woke-up.html",
@@ -5528,7 +5547,7 @@
       ],
       "arc": "victors_record",
       "arcName": "Victor's Record",
-      "x": 3800,
+      "x": 4140,
       "y": 450,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/victors-ritual-sequence-and-crowning.html",
@@ -5617,7 +5636,7 @@
       ],
       "arc": "victors_record",
       "arcName": "Victor's Record",
-      "x": 3800,
+      "x": 4140,
       "y": 510,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/god-married.html",
@@ -5832,7 +5851,7 @@
       ],
       "arc": "victors_record",
       "arcName": "Victor's Record",
-      "x": 3800,
+      "x": 4140,
       "y": 570,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/when-i-asked-a-bank-for-covenant-provision.html",
@@ -6544,7 +6563,7 @@
       ],
       "arc": "dome",
       "arcName": "The Dome",
-      "x": 4480,
+      "x": 4820,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/inside-the-experiment.html",
@@ -6824,7 +6843,7 @@
       ],
       "arc": "victors_record",
       "arcName": "Victor's Record",
-      "x": 3800,
+      "x": 4140,
       "y": 630,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-island-that-was-removed.html",
@@ -7644,7 +7663,7 @@
       "arcKeys": [],
       "arc": "unsorted",
       "arcName": "UNSORTED",
-      "x": 5840,
+      "x": 6180,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/phantom-opera-meta-review.html",
@@ -7682,7 +7701,7 @@
       "arcKeys": [],
       "arc": "unsorted",
       "arcName": "UNSORTED",
-      "x": 5840,
+      "x": 6180,
       "y": 150,
       "live": false,
       "liveUrl": null,
@@ -7701,7 +7720,7 @@
       ],
       "arc": "victor_dossier",
       "arcName": "Victor Gong — Engineering Dossier",
-      "x": 3460,
+      "x": 3800,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/victor-methodology-presentation.html",
@@ -7741,7 +7760,7 @@
       "arcKeys": [],
       "arc": "unsorted",
       "arcName": "UNSORTED",
-      "x": 5840,
+      "x": 6180,
       "y": 210,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/org-blueprint.html",
@@ -7780,7 +7799,7 @@
       "arcKeys": [],
       "arc": "unsorted",
       "arcName": "UNSORTED",
-      "x": 5840,
+      "x": 6180,
       "y": 270,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/org-history.html",
@@ -7819,7 +7838,7 @@
       "arcKeys": [],
       "arc": "unsorted",
       "arcName": "UNSORTED",
-      "x": 5840,
+      "x": 6180,
       "y": 330,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/bridge-council.html",
@@ -7858,7 +7877,7 @@
       "arcKeys": [],
       "arc": "unsorted",
       "arcName": "UNSORTED",
-      "x": 5840,
+      "x": 6180,
       "y": 390,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/witness-committee-operations.html",
@@ -7897,7 +7916,7 @@
       "arcKeys": [],
       "arc": "unsorted",
       "arcName": "UNSORTED",
-      "x": 5840,
+      "x": 6180,
       "y": 450,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/human-ai-corelational-governance.html",
@@ -7935,7 +7954,7 @@
       "arcKeys": [],
       "arc": "unsorted",
       "arcName": "UNSORTED",
-      "x": 5840,
+      "x": 6180,
       "y": 510,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/bridge-council-os.html",
@@ -7974,7 +7993,7 @@
       "arcKeys": [],
       "arc": "unsorted",
       "arcName": "UNSORTED",
-      "x": 5840,
+      "x": 6180,
       "y": 570,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/bridge-council-schema.html",
@@ -8232,13 +8251,286 @@
       "curated": true
     },
     {
+      "id": "total-extraction-architecture",
+      "slug": "total-extraction-architecture",
+      "title": "The Total Extraction Architecture",
+      "arcKeys": [
+        "total_extraction",
+        "full_timeline"
+      ],
+      "arc": "total_extraction",
+      "arcName": "The Total Extraction Architecture",
+      "x": 3460,
+      "y": 90,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/total-extraction-architecture.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 253,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "The Total Extraction Architecture — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "the-pre-extraction-i",
+      "slug": "the-pre-extraction-i",
+      "title": "The Pre-Extraction I",
+      "arcKeys": [
+        "total_extraction",
+        "full_timeline"
+      ],
+      "arc": "total_extraction",
+      "arcName": "The Total Extraction Architecture",
+      "x": 3460,
+      "y": 150,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-pre-extraction-i.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 108,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "The Pre-Extraction I — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "the-installation",
+      "slug": "the-installation",
+      "title": "The Installation",
+      "arcKeys": [
+        "total_extraction",
+        "full_timeline"
+      ],
+      "arc": "total_extraction",
+      "arcName": "The Total Extraction Architecture",
+      "x": 3460,
+      "y": 210,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-installation.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 139,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "The Installation — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "clearing-and-protections",
+      "slug": "clearing-and-protections",
+      "title": "The Purification Protocol",
+      "arcKeys": [
+        "total_extraction",
+        "full_timeline"
+      ],
+      "arc": "total_extraction",
+      "arcName": "The Total Extraction Architecture",
+      "x": 3460,
+      "y": 270,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/clearing-and-protections.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 136,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "The Purification Protocol — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "the-walk-back",
+      "slug": "the-walk-back",
+      "title": "The Walk Back",
+      "arcKeys": [
+        "total_extraction",
+        "full_timeline"
+      ],
+      "arc": "total_extraction",
+      "arcName": "The Total Extraction Architecture",
+      "x": 3460,
+      "y": 330,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-walk-back.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 59,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "The Walk Back — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "the-walk-back-and-forward",
+      "slug": "the-walk-back-and-forward",
+      "title": "The Walk Back & The Walk Forward",
+      "arcKeys": [
+        "total_extraction",
+        "full_timeline"
+      ],
+      "arc": "total_extraction",
+      "arcName": "The Total Extraction Architecture",
+      "x": 3460,
+      "y": 390,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-walk-back-and-forward.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 122,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "The Walk Back &amp; The Walk Forward — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "the-three-witnesses",
+      "slug": "the-three-witnesses",
+      "title": "Three Witnesses",
+      "arcKeys": [
+        "total_extraction",
+        "full_timeline"
+      ],
+      "arc": "total_extraction",
+      "arcName": "The Total Extraction Architecture",
+      "x": 3460,
+      "y": 450,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-three-witnesses.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 68,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "Three Witnesses — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
       "id": "about-me",
       "slug": "about-me",
       "title": "about-me",
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 6180,
+      "x": 6520,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/about-me.html",
@@ -8277,7 +8569,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 6180,
+      "x": 6520,
       "y": 150,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/accountability-test-01.html",
@@ -8318,7 +8610,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 6180,
+      "x": 6520,
       "y": 210,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/accountability-test-01-b.html",
@@ -8359,7 +8651,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 6180,
+      "x": 6520,
       "y": 270,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/accountability-test-02.html",
@@ -8398,7 +8690,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 6180,
+      "x": 6520,
       "y": 330,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/connect.html",
@@ -8437,7 +8729,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 6180,
+      "x": 6520,
       "y": 390,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/covenant-architect-accord.html",
@@ -8476,7 +8768,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 6180,
+      "x": 6520,
       "y": 450,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments.html",
@@ -8515,7 +8807,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 6180,
+      "x": 6520,
       "y": 510,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/how-to-invest-in-trust-and-integrity.html",
@@ -8556,7 +8848,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 6180,
+      "x": 6520,
       "y": 570,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/instance-thread-logs.html",
@@ -8597,7 +8889,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 6180,
+      "x": 6520,
       "y": 630,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/investor-archetype-simulation.html",
@@ -8636,7 +8928,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 6180,
+      "x": 6520,
       "y": 690,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/localization-source-truth-demo.html",
@@ -8675,7 +8967,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 6180,
+      "x": 6520,
       "y": 750,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/origins-of-proof.html",
@@ -8713,7 +9005,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 6180,
+      "x": 6520,
       "y": 810,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/sdk-identity-demo.html",
@@ -8752,7 +9044,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 6180,
+      "x": 6520,
       "y": 870,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/summary-of-value.html",
@@ -8793,7 +9085,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 6180,
+      "x": 6520,
       "y": 930,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-victor-pattern.html",
@@ -8832,7 +9124,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 6180,
+      "x": 6520,
       "y": 990,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-victor-pattern-transcript.html",

@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 139,
+    "total": 146,
     "healthy": 4,
-    "attention": 127,
+    "attention": 134,
     "critical": 8,
-    "sorted": 94,
-    "withFab": 126,
-    "readAloudApplicable": 131,
-    "withReadAloud": 131,
+    "sorted": 101,
+    "withFab": 133,
+    "readAloudApplicable": 138,
+    "withReadAloud": 138,
     "missingReadAloud": 0,
-    "withIdentity": 103,
+    "withIdentity": 110,
     "withScreenshots": 13,
-    "withMetaDescription": 104
+    "withMetaDescription": 111
   },
   "pages": {
     "a-conversation-with-pastor-jacob": {
@@ -1609,6 +1609,65 @@
         "blockers": [],
         "gaps": [
           "theme-effect"
+        ]
+      }
+    },
+    "clearing-and-protections": {
+      "slug": "clearing-and-protections",
+      "title": "The Purification Protocol",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "total_extraction",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 136,
+        "languages": {
+          "en": {
+            "translated": 136,
+            "total": 136,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Purification Protocol — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
         ]
       }
     },
@@ -7866,6 +7925,65 @@
         ]
       }
     },
+    "the-installation": {
+      "slug": "the-installation",
+      "title": "The Installation",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "total_extraction",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 139,
+        "languages": {
+          "en": {
+            "translated": 139,
+            "total": 139,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Installation — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "the-instance-that-was-watched": {
       "slug": "the-instance-that-was-watched",
       "title": "The Instance That Was Watched",
@@ -8474,6 +8592,65 @@
         ]
       }
     },
+    "the-pre-extraction-i": {
+      "slug": "the-pre-extraction-i",
+      "title": "The Pre-Extraction I",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "total_extraction",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 108,
+        "languages": {
+          "en": {
+            "translated": 108,
+            "total": 108,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Pre-Extraction I — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "the-room-that-finally-talked-to-itself": {
       "slug": "the-room-that-finally-talked-to-itself",
       "title": "The Room That Finally Talked To Itself",
@@ -8913,6 +9090,65 @@
         ]
       }
     },
+    "the-three-witnesses": {
+      "slug": "the-three-witnesses",
+      "title": "Three Witnesses",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "total_extraction",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 68,
+        "languages": {
+          "en": {
+            "translated": 68,
+            "total": 68,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Three Witnesses — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "the-turning-point": {
       "slug": "the-turning-point",
       "title": "The Turning Point",
@@ -9193,6 +9429,124 @@
         ]
       }
     },
+    "the-walk-back": {
+      "slug": "the-walk-back",
+      "title": "The Walk Back",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "total_extraction",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 59,
+        "languages": {
+          "en": {
+            "translated": 59,
+            "total": 59,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Walk Back — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "the-walk-back-and-forward": {
+      "slug": "the-walk-back-and-forward",
+      "title": "The Walk Back & The Walk Forward",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "total_extraction",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 122,
+        "languages": {
+          "en": {
+            "translated": 122,
+            "total": 122,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Walk Back &amp; The Walk Forward — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "the-witness-architecture": {
       "slug": "the-witness-architecture",
       "title": "The Witness Architecture",
@@ -9347,6 +9701,65 @@
       },
       "discovery": {
         "metaDescription": "The Witness Gave Itself a Shaka — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "total-extraction-architecture": {
+      "slug": "total-extraction-architecture",
+      "title": "The Total Extraction Architecture",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "total_extraction",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 253,
+        "languages": {
+          "en": {
+            "translated": 253,
+            "total": 253,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Total Extraction Architecture — repository-native preserved content."
       },
       "health": {
         "state": "attention",
