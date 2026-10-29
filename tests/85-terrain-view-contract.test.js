@@ -65,6 +65,9 @@ test('TERRAIN-VIEW: collection entry depth gives users more readable pre-entry z
   assert.match(source, /function enterRatioForCurrentContext\(\)[\s\S]*collectionEntryPreferenceApplies\(\) \? collectionEnterRatio : TERRAIN_ENTER_RATIO/);
 
   assert.match(source, /\.depth-preference\{[\s\S]*?left:calc\(100% - 8px\); bottom:8px;[\s\S]*?grid-template-columns:minmax\(0,1fr\) auto;/);
+  assert.match(source, /\.depth-preference-label\{[^}]*font:700 11px\/1\.25 var\(--mono\)/);
+  assert.match(source, /\.depth-preference-value\{[^}]*font:800 14px\/1 var\(--mono\)/);
+  assert.match(source, /\.depth-preference input\[type="range"\]\{[^}]*min-height:28px/);
   assert.match(source, /\.level-readout:hover \.depth-preference,[\s\S]*?\.level-readout:focus-within \.depth-preference\{/);
   assert.match(source, /id="terrainEnterRatio" data-enter-ratio type="range"/);
   assert.match(source, /aria-label="Zoom depth before automatic collection entry"/);
@@ -110,6 +113,8 @@ test('TERRAIN-VIEW: Content presentation is accepted while the legacy Live geome
   assert.equal(value.profiles['evolution-v1'].levels.group.renderer, 'viewport-curiosity-dock');
   assert.equal(value.profiles['evolution-v1'].levels.node.renderer, 'preview-card');
   assert.equal(value.profiles['evolution-v1'].levels.node.readerRenderer, 'embedded-page');
+  assert.ok(value.profiles['evolution-v1'].declaredDeltas.some(delta => /local automatic-entry zoom preference/.test(delta)));
+  assert.ok(value.profiles['evolution-v1'].declaredDeltas.some(delta => /never Code-world zoom/.test(delta)));
   assert.equal(
     value.profiles['evolution-v1'].levels.node.inputPriority,
     'scrollable-content > armed-boundary-transition > terrain-zoom'
