@@ -898,6 +898,16 @@ test('INSTITUTIONAL-SURFACES: no-JavaScript shell-context fallback does not requ
     /surface\.runtime\?\.mode === 'shell-context'\s*\? result\.selectorCount === 0\s*:\s*\(runtimeNeeded[\s\S]*result\.selectorCount === 1 && result\.selectorHidden === true/,
     'shell-context surfaces must accept static English with no standalone selector while standalone multi-locale surfaces still require one hidden selector'
   );
+  assert.match(
+    source,
+    /if \(surface\.runtime\?\.mode === 'standalone'\) \{\s*const firstFrames[\s\S]*wrong-locale first paint/,
+    'wrong-locale first-paint commissioning belongs only to the standalone pre-paint-hold runtime'
+  );
+  assert.match(
+    source,
+    /if \(surface\.runtime\?\.mode === 'standalone'\) \{\s*const timeoutContext[\s\S]*pre-paint timeout fallback/,
+    'pre-paint timeout fallback belongs only to the standalone pre-paint-hold runtime'
+  );
 });
 
 test('INSTITUTIONAL-SURFACES: matrix writer can add structured Assets custody without changing local activation evidence', () => {
