@@ -1551,7 +1551,9 @@
     var node = ALL.find(function (candidate) { return candidate.slug === route.page || candidate.id === route.page; });
     if (node && node.live) openEvolutionReader(node.id, {
       writeUrl:false,
-      returnKind:presentation && presentation.returnKind ? presentation.returnKind : 'collection'
+      returnKind:presentation && presentation.returnKind ? presentation.returnKind : 'collection',
+      returnEntrySlug:presentation && presentation.returnEntrySlug ? presentation.returnEntrySlug : null,
+      returnReaderId:presentation && presentation.returnReaderId ? presentation.returnReaderId : null
     });
   }
 
@@ -2017,7 +2019,10 @@
 
     var returnKind = options.returnKind
       || (options.historyMode !== 'replace' ? 'collection' : activeReaderReturnKind);
-    setReaderReturnContext(returnKind);
+    setReaderReturnContext(returnKind, {
+      entrySlug:options.returnEntrySlug || activeReaderReturnEntrySlug,
+      readerId:options.returnReaderId || activeReaderReturnReaderId
+    });
 
     activeEntrySlug = null;
     activeGroupHomeKey = null;
