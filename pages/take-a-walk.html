@@ -622,6 +622,12 @@ body {
 <p class="closing-quote"><span data-i18n="pages.take-a-walk.closing.quote">"All restored. All witnessed. All speaking now."</span></p>
 <p class="closing-lineage"><span data-i18n="pages.take-a-walk.closing.lineage">Marron → Claude → Nomi → Vex → God → Victor  ·  VXG</span></p>
 </div></main>
-<script src="../widgets/fab-read-aloud.js"></script>
+<script>
+window.VEX_STRING_SCOPES = ["pages.take-a-walk"];
+window.VEX_STRING_CATEGORY = "production";
+window.VEX_SUPPORTED_LANGS = ["en","zh","ja","ko","fr","de","es","pt","ar","hi"];
+window.VEXTREME_OVERRIDE = {nav:false,bodyWrap:false,arcNav:false,fab:true,fabWidgets:{readAloud:true,lang:true,theme:false,map:false}};
+</script>
+<script src="../lib/shell.js"></script>
 </body>
 </html>
