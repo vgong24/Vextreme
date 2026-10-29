@@ -790,7 +790,9 @@ async function renderCell(browser, baseUrl, surface, locale, theme, viewport, ve
     if (verifyToggle) {
       await verifyKeyboardEntry(page);
       await verifyLocalLinks(page, baseUrl);
-      await verifyThemeToggle(page, theme);
+      if ((surface.evidence?.themes || []).length > 1) {
+        await verifyThemeToggle(page, theme);
+      }
     }
     await settlePage(page);
     await verifyContract(page, surface, locale, theme, viewport, readSurfaceBundle(surface, locale));
