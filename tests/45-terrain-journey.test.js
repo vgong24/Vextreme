@@ -551,8 +551,8 @@ test('TERRAIN-JOURNEY: embedded Arc parent routes converge with Back without col
     'the current Arc parent uses the same history-owned return path as the top Back control');
   assert.match(source, /var matches = groupHomeRouteMatches\(slug\);[\s\S]*if \(matches\.length !== 1\) return false;/,
     'alternate group-home traversal must fail closed when one slug does not identify exactly one group');
-  assert.match(source, /openEvolutionGroupHome\(target\.stage, \{[\s\S]*writeUrl:false,[\s\S]*returnKind:originReaderId \? 'reader' : 'collection',[\s\S]*returnReaderId:originReaderId/,
-    'a unique alternate Arc parent preserves the originating record as presentation return context');
+  assert.match(source, /openEvolutionGroupHome\(target\.stage, \{[\s\S]*writeUrl:false,[\s\S]*returnKind:options\.returnKind \|\| \(originReaderId \? 'reader' : 'collection'\),[\s\S]*returnEntrySlug:options\.returnEntrySlug,[\s\S]*returnReaderId:options\.returnReaderId \|\| originReaderId/,
+    'a unique alternate Arc parent preserves an explicit entry/reader return owner while retaining reader-or-collection fallback');
   assert.match(source, /syncPresentationUrl\('replace', 'group-home', \{[\s\S]*returnReaderId:activeReaderReturnReaderId/,
     'alternate topology uses the existing presentation history namespace rather than another navigation stack');
   assert.match(source, /var backLabel = returnEntry \? '← ' \+ returnEntry\.label : '← Collection';[\s\S]*if \(!returnEntry && returnReader\) backLabel = '← ' \+ \(returnReader\.title \|\| returnReader\.slug \|\| 'Page'\)/,
