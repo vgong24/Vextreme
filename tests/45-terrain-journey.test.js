@@ -507,8 +507,8 @@ test('TERRAIN-JOURNEY: reader history preserves the real return surface instead 
     'group-home history must preserve the actual surface it should return to');
   assert.match(source, /openEvolutionReader\(previous\.id, \{ historyMode:'replace' \}\)/);
   assert.match(source, /openEvolutionReader\(next\.id, \{ historyMode:'replace' \}\)/);
-  assert.match(source, /syncPresentationUrl\('replace', 'reader', \{ returnKind:activeReaderReturnKind \}\)/,
-    'direct embedded record routes must keep their real return contract when replacing the current presentation coordinate');
+  assert.match(source, /syncPresentationUrl\(options\.historyMode === 'push' \? 'push' : 'replace', 'reader', \{[\s\S]*returnKind:activeReaderReturnKind,[\s\S]*returnEntrySlug:activeReaderReturnEntrySlug,[\s\S]*returnReaderId:activeReaderReturnReaderId/,
+    'direct embedded record routes must keep their complete real return relationship when replacing or pushing the current presentation coordinate');
   assert.match(source, /presentationHistoryKind\(history\.state\) === 'reader'/);
   assert.match(source, /presentationHistoryKind\(history\.state\) === 'group-home'/);
   assert.match(source, /presentationHistoryKind\(history\.state\) === 'entry'/);
@@ -524,7 +524,7 @@ test('TERRAIN-JOURNEY: reader history preserves the real return surface instead 
   assert.match(source, /history\.replaceState\(returnState, '', window\.location\.href\)/,
     'direct overview entry rewrites only the current presentation coordinate before pushing the reader');
   assert.match(source, /returnKind:'curiosity-overview'/);
-  assert.match(source, /if \(activeReaderReturnKind === 'curiosity-overview'\) backLabel = '← Overview'/);
+  assert.match(source, /if \(!returnEntry && activeReaderReturnKind === 'curiosity-overview'\) backLabel = '← Overview'/);
   assert.match(source, /activeReaderReturnKind === 'group-home'[\s\S]*backLabel = '← ' \+ \(stage\.parent\.title/,
     'record-reader Back label must name the group home when that is the actual return surface');
   assert.match(source, /kind === 'curiosity-overview'/);
@@ -551,8 +551,8 @@ test('TERRAIN-JOURNEY: embedded Arc parent routes converge with Back without col
     'the current Arc parent uses the same history-owned return path as the top Back control');
   assert.match(source, /var matches = groupHomeRouteMatches\(slug\);[\s\S]*if \(matches\.length !== 1\) return false;/,
     'alternate group-home traversal must fail closed when one slug does not identify exactly one group');
-  assert.match(source, /openEvolutionGroupHome\(target\.stage, \{[\s\S]*writeUrl:false,[\s\S]*returnKind:originReaderId \? 'reader' : 'collection',[\s\S]*returnReaderId:originReaderId/,
-    'a unique alternate Arc parent preserves the originating record as presentation return context');
+  assert.match(source, /openEvolutionGroupHome\(target\.stage, \{[\s\S]*writeUrl:false,[\s\S]*returnKind:options\.returnKind \|\| \(originReaderId \? 'reader' : 'collection'\),[\s\S]*returnEntrySlug:options\.returnEntrySlug,[\s\S]*returnReaderId:options\.returnReaderId \|\| originReaderId/,
+    'a unique alternate Arc parent preserves an explicit entry/reader return owner while retaining reader-or-collection fallback');
   assert.match(source, /syncPresentationUrl\('replace', 'group-home', \{[\s\S]*returnReaderId:activeReaderReturnReaderId/,
     'alternate topology uses the existing presentation history namespace rather than another navigation stack');
   assert.match(source, /var backLabel = returnEntry \? '← ' \+ returnEntry\.label : '← Collection';[\s\S]*if \(!returnEntry && returnReader\) backLabel = '← ' \+ \(returnReader\.title \|\| returnReader\.slug \|\| 'Page'\)/,
@@ -774,6 +774,116 @@ test('TERRAIN-JOURNEY: active embedded surface has one mutually-exclusive mutati
 
   assert.match(source, /function syncEntryReaderFromDocument\(\)[\s\S]*setActiveEmbeddedSurface\('entry', slug\)/,
     'embedded entry-document synchronization must update active identity through the bounded owner');
+});
+
+
+test('TERRAIN-JOURNEY: ordered entry repository routes preserve current entry identity as the return relationship', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
+
+  assert.match(
+    source,
+    /function syncEntryReaderFromDocument\(\)[\s\S]*var priorEntrySlug = activeEntrySlug;[\s\S]*setActiveEmbeddedSurface\('entry', slug\);[\s\S]*presentationHistoryKind\(history\.state\) === 'entry'[\s\S]*syncPresentationUrl\('replace', 'entry', \{ entrySlug:slug \}\)/,
+    'entry-to-entry iframe navigation must currentize the parent presentation-history coordinate'
+  );
+  assert.match(
+    source,
+    /syncPresentationUrl\(options\.historyMode === 'push' \? 'push' : 'replace', 'reader', \{[\s\S]*returnKind:activeReaderReturnKind,[\s\S]*returnEntrySlug:activeReaderReturnEntrySlug,[\s\S]*returnReaderId:activeReaderReturnReaderId/,
+    'repository-route reader history must serialize the whole already-formed return relationship'
+  );
+  assert.match(
+    source,
+    /syncPresentationUrl\(options\.historyMode \|\| 'push', 'reader', \{[\s\S]*returnKind:activeReaderReturnKind,[\s\S]*returnEntrySlug:activeReaderReturnEntrySlug,[\s\S]*returnReaderId:activeReaderReturnReaderId/,
+    'reader Previous\/Next replacement must not drop a coordinate-bearing return relationship'
+  );
+  assert.match(
+    source,
+    /var returnEntry = activeReaderReturnKind === 'entry' && entryDocument\(activeReaderReturnEntrySlug\);[\s\S]*var backLabel = returnEntry \? '← ' \+ returnEntry\.label : '← Collection'/,
+    'reader chrome must project the actual entry return owner rather than label it Collection'
+  );
+  assert.match(
+    source,
+    /var returnsToPage = activeReaderReturnKind === 'reader' \|\| activeReaderReturnKind === 'entry';[\s\S]*Page reached · returned to where you entered[\s\S]*activeReaderReturnKind === 'reader' \|\| activeReaderReturnKind === 'entry'[\s\S]*return to the page/,
+    'reader outward messaging must follow the same entry-aware return relationship as Back'
+  );
+  assert.match(
+    source,
+    /function openGroupHomeRouteInTerrain\(slug, options\) \{[\s\S]*options = options \|\| \{\};[\s\S]*returnKind:options\.returnKind \|\| \(originReaderId \? 'reader' : 'collection'\),[\s\S]*returnEntrySlug:options\.returnEntrySlug/,
+    'entry-origin group-home routes must preserve the exact ordered-entry return owner'
+  );
+  assert.match(
+    source,
+    /if \(openGroupHomeRouteInTerrain\(slug, options\)\) return true;/,
+    'repository route dispatch must carry the entry return relationship through the group-home owner'
+  );
+  assert.match(
+    source,
+    /entryReturnPush = activeReaderReturnKind === 'entry' && options\.historyMode === 'push';[\s\S]*if \(!entryReturnPush\)[\s\S]*commitSemanticState\([\s\S]*if \(entryReturnPush\) \{[\s\S]*syncPresentationUrl\('replace', 'reader'/,
+    'entry-origin ordinary pages must form one semantic history step and replace that new coordinate with the reader presentation'
+  );
+
+  const handlerStart = source.indexOf('function handleEntryReaderRouteClick(event)');
+  const handlerEnd = source.indexOf('function handleEvolutionReaderRouteClick(event)', handlerStart);
+  assert.ok(handlerStart > 0 && handlerEnd > handlerStart, 'entry route handler must remain extractable');
+  const handlerSource = source.slice(handlerStart, handlerEnd);
+
+  const routed = [];
+  const handler = new Function(
+    'repositorySlugFromHref',
+    'entryDocument',
+    'openRepositoryRouteInTerrain',
+    [
+      "var activeEntrySlug = 'receive-god';",
+      handlerSource,
+      'return handleEntryReaderRouteClick;'
+    ].join('\n')
+  )(
+    (href) => {
+      const match = /^([a-z0-9][a-z0-9-]*)\.html(?:[?#].*)?$/i.exec(href);
+      return match ? match[1] : null;
+    },
+    (slug) => slug === 'receive-god' || slug === 'take-a-walk' ? { slug } : null,
+    (slug, options) => {
+      routed.push({ slug, options });
+      return true;
+    }
+  );
+
+  function eventFor(href, terrainAction) {
+    let prevented = false;
+    const anchor = {
+      hasAttribute: (name) => name === 'data-terrain-action' && terrainAction === true,
+      getAttribute: (name) => name === 'href' ? href : null,
+    };
+    return {
+      event: {
+        target: { closest: () => anchor },
+        preventDefault: () => { prevented = true; },
+      },
+      prevented: () => prevented,
+    };
+  }
+
+  const nextEntry = eventFor('take-a-walk.html', false);
+  handler(nextEntry.event);
+  assert.equal(nextEntry.prevented(), false, 'registered entry-to-entry navigation remains native inside the ordered entry reader');
+  assert.equal(routed.length, 0);
+
+  const ownedEntryAction = eventFor('terrain-map.html?view=content', true);
+  handler(ownedEntryAction.event);
+  assert.equal(ownedEntryAction.prevented(), false, 'entry-owned Terrain actions remain with their existing postMessage owner');
+  assert.equal(routed.length, 0);
+
+  const repositoryPage = eventFor('restoration-protocol.html', false);
+  handler(repositoryPage.event);
+  assert.equal(repositoryPage.prevented(), true);
+  assert.deepEqual(routed, [{
+    slug:'restoration-protocol',
+    options:{
+      returnKind:'entry',
+      returnEntrySlug:'receive-god',
+      historyMode:'push'
+    }
+  }]);
 });
 
 

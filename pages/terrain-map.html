@@ -1678,9 +1678,10 @@
     var members = evolutionReaderMembers();
     var index = members.findIndex(function (candidate) { return candidate.id === node.id; });
     var stage = typeof levelCtx.stageIdx === 'number' ? STAGES[levelCtx.stageIdx] : null;
-    var backLabel = '← Collection';
-    if (activeReaderReturnKind === 'curiosity-overview') backLabel = '← Overview';
-    else if (activeReaderReturnKind === 'group-home' && stage && stage.parent) backLabel = '← ' + (stage.parent.title || stage.name || 'Collection');
+    var returnEntry = activeReaderReturnKind === 'entry' && entryDocument(activeReaderReturnEntrySlug);
+    var backLabel = returnEntry ? '← ' + returnEntry.label : '← Collection';
+    if (!returnEntry && activeReaderReturnKind === 'curiosity-overview') backLabel = '← Overview';
+    else if (!returnEntry && activeReaderReturnKind === 'group-home' && stage && stage.parent) backLabel = '← ' + (stage.parent.title || stage.name || 'Collection');
     document.getElementById('readerBack').textContent = backLabel;
     document.getElementById('readerTitle').textContent = node.title || node.slug;
     document.getElementById('readerMeta').textContent =
@@ -1789,6 +1790,7 @@
 
   function syncEntryReaderFromDocument() {
     if (!activeEntrySlug) return;
+    var priorEntrySlug = activeEntrySlug;
     var doc = evolutionReaderFrame.contentDocument;
     if (!doc || !doc.documentElement) return;
     var slug = doc.documentElement.getAttribute('data-vex-entry-document');
@@ -1796,6 +1798,9 @@
     setActiveEmbeddedSurface('entry', slug);
     updateEntryReaderChrome(slug);
     evolutionReaderFrame.title = 'Reading ' + entryDocument(slug).label + ' inside Terrain';
+    if (slug !== priorEntrySlug && presentationHistoryKind(history.state) === 'entry') {
+      syncPresentationUrl('replace', 'entry', { entrySlug:slug });
+    }
   }
 
   function enterArchivesFromArrival() {
@@ -1884,7 +1889,8 @@
     });
   }
 
-  function openGroupHomeRouteInTerrain(slug) {
+  function openGroupHomeRouteInTerrain(slug, options) {
+    options = options || {};
     var currentReturnStage = currentReaderReturnStage();
     if (activeReaderId
       && currentReturnStage
@@ -1903,8 +1909,9 @@
     levelCtx = { stageIdx:target.stageIdx };
     openEvolutionGroupHome(target.stage, {
       writeUrl:false,
-      returnKind:originReaderId ? 'reader' : 'collection',
-      returnReaderId:originReaderId
+      returnKind:options.returnKind || (originReaderId ? 'reader' : 'collection'),
+      returnEntrySlug:options.returnEntrySlug,
+      returnReaderId:options.returnReaderId || originReaderId
     });
     commitSemanticState({
       label:target.stage.parent.title || target.stage.name || 'Group home',
@@ -1920,8 +1927,9 @@
     return true;
   }
 
-  function openRepositoryRouteInTerrain(slug) {
-    if (openGroupHomeRouteInTerrain(slug)) return true;
+  function openRepositoryRouteInTerrain(slug, options) {
+    options = options || {};
+    if (openGroupHomeRouteInTerrain(slug, options)) return true;
     if (slug === 'archives') {
       enterArchivesFromArrival();
       return true;
@@ -1933,13 +1941,33 @@
     if (stageIdx < 0) return false;
     levelIndex = 1;
     levelCtx = { stageIdx:stageIdx };
+    var entryReturnPush = false;
     if (fromGroupHome) {
       openEvolutionReader(node.id, { returnKind:'group-home' });
     } else {
-      openEvolutionReader(node.id, { writeUrl:false });
-      syncPresentationUrl('replace', 'reader', { returnKind:activeReaderReturnKind });
+      openEvolutionReader(node.id, {
+        writeUrl:false,
+        returnKind:options.returnKind,
+        returnEntrySlug:options.returnEntrySlug,
+        returnReaderId:options.returnReaderId
+      });
+      entryReturnPush = activeReaderReturnKind === 'entry' && options.historyMode === 'push';
+      if (!entryReturnPush) {
+        syncPresentationUrl(options.historyMode === 'push' ? 'push' : 'replace', 'reader', {
+          returnKind:activeReaderReturnKind,
+          returnEntrySlug:activeReaderReturnEntrySlug,
+          returnReaderId:activeReaderReturnReaderId
+        });
+      }
     }
     commitSemanticState({ label:node.title || node.slug, nodeId:node.id, relationship:'opened from preserved route', reason:'Terrain embedded repository route resolver' });
+    if (entryReturnPush) {
+      syncPresentationUrl('replace', 'reader', {
+        returnKind:activeReaderReturnKind,
+        returnEntrySlug:activeReaderReturnEntrySlug,
+        returnReaderId:activeReaderReturnReaderId
+      });
+    }
     return true;
   }
 
@@ -1961,6 +1989,22 @@
     var filename = target.pathname.slice(pagesPrefix.length);
     var pageMatch = /^([a-z0-9][a-z0-9-]*)\.html$/i.exec(filename);
     return pageMatch ? pageMatch[1] : null;
+  }
+
+  function handleEntryReaderRouteClick(event) {
+    var anchor = event.target && event.target.closest ? event.target.closest('a[href]') : null;
+    if (!anchor || anchor.hasAttribute('data-terrain-action')) return;
+    var href = anchor.getAttribute('href') || '';
+    var slug = repositorySlugFromHref(href);
+    if (!slug || entryDocument(slug)) return;
+    var originEntrySlug = activeEntrySlug;
+    if (!originEntrySlug) return;
+    if (!openRepositoryRouteInTerrain(slug, {
+      returnKind:'entry',
+      returnEntrySlug:originEntrySlug,
+      historyMode:'push'
+    })) return;
+    event.preventDefault();
   }
 
   function handleEvolutionReaderRouteClick(event) {
@@ -2051,7 +2095,9 @@
     evolutionReaderFrame.title = 'Reading ' + (node.title || node.slug) + ' inside Terrain';
     replaceEvolutionReaderDocument(node.liveUrl);
     if (options.writeUrl !== false) syncPresentationUrl(options.historyMode || 'push', 'reader', {
-      returnKind:activeReaderReturnKind
+      returnKind:activeReaderReturnKind,
+      returnEntrySlug:activeReaderReturnEntrySlug,
+      returnReaderId:activeReaderReturnReaderId
     });
   }
 
@@ -2160,17 +2206,17 @@
     if (boundaryGestureReady('reader-outward:' + readerKey, direction)) {
       lockOutwardWheelGesture();
       var returnsToOverview = activeReaderReturnKind === 'curiosity-overview';
-      var returnsToReader = activeReaderReturnKind === 'reader';
+      var returnsToPage = activeReaderReturnKind === 'reader' || activeReaderReturnKind === 'entry';
       closeEvolutionReader();
       showGestureHint(returnsToOverview
         ? 'Overview reached · returned to where you entered'
-        : (returnsToReader
+        : (returnsToPage
           ? 'Page reached · returned to where you entered'
           : 'Collection reached · release, then scroll again to return to groups'));
     } else {
       showGestureHint(activeReaderReturnKind === 'curiosity-overview'
         ? 'End reached · pause, then scroll down again to return to the overview'
-        : (activeReaderReturnKind === 'reader'
+        : (activeReaderReturnKind === 'reader' || activeReaderReturnKind === 'entry'
           ? 'End reached · pause, then scroll down again to return to the page'
           : 'End reached · pause, then scroll down again to return to the collection'));
     }
@@ -2182,6 +2228,7 @@
       if (!doc) return;
       if (activeEntrySlug) {
         syncEntryReaderFromDocument();
+        doc.addEventListener('click', handleEntryReaderRouteClick);
         return;
       }
       doc.addEventListener('click', handleEvolutionReaderRouteClick);
