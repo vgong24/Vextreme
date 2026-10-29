@@ -333,7 +333,7 @@ test('TERRAIN-VIEW: embedded preserved routes resolve root and repository-relati
   assert.match(source, /var rootMatch =/);
   assert.match(source, /var relativeMatch =/);
   assert.match(source, /function handleEvolutionReaderRouteClick\(event\)/);
-  assert.match(source, /function openRepositoryRouteInTerrain\(slug\)/);
+  assert.match(source, /function openRepositoryRouteInTerrain\(slug, options\)/);
   assert.match(source, /stageIndexForRouteNode\(node\)/);
   assert.match(source, /doc\.addEventListener\('click', handleEvolutionReaderRouteClick\)/);
   assert.match(source, /if \(activeEntrySlug\) \{\s*syncEntryReaderFromDocument\(\);\s*doc\.addEventListener\('click', handleEntryReaderRouteClick\);\s*return;\s*\}/);

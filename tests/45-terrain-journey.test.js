@@ -507,8 +507,8 @@ test('TERRAIN-JOURNEY: reader history preserves the real return surface instead 
     'group-home history must preserve the actual surface it should return to');
   assert.match(source, /openEvolutionReader\(previous\.id, \{ historyMode:'replace' \}\)/);
   assert.match(source, /openEvolutionReader\(next\.id, \{ historyMode:'replace' \}\)/);
-  assert.match(source, /syncPresentationUrl\('replace', 'reader', \{ returnKind:activeReaderReturnKind \}\)/,
-    'direct embedded record routes must keep their real return contract when replacing the current presentation coordinate');
+  assert.match(source, /syncPresentationUrl\(options\.historyMode === 'push' \? 'push' : 'replace', 'reader', \{[\s\S]*returnKind:activeReaderReturnKind,[\s\S]*returnEntrySlug:activeReaderReturnEntrySlug,[\s\S]*returnReaderId:activeReaderReturnReaderId/,
+    'direct embedded record routes must keep their complete real return relationship when replacing or pushing the current presentation coordinate');
   assert.match(source, /presentationHistoryKind\(history\.state\) === 'reader'/);
   assert.match(source, /presentationHistoryKind\(history\.state\) === 'group-home'/);
   assert.match(source, /presentationHistoryKind\(history\.state\) === 'entry'/);
