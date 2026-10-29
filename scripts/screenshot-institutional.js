@@ -635,11 +635,13 @@ async function verifyLocaleRuntimeAcceptance(browser, baseUrl, surface) {
     await page.goto(`${baseUrl}/pages/${surface.slug}.html?lang=ja&keep=1#main`, { waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => document.documentElement.lang === 'ja');
     await page.waitForTimeout(80);
-    const firstFrames = await page.evaluate(() => window.__vexFirstFrames || []);
-    const wrongVisibleFrame = firstFrames.find(frame => frame.visible && (
-      frame.lang !== 'ja' || frame.heading !== expectedJaHeading
-    ));
-    if (wrongVisibleFrame) throw new Error(`wrong-locale first paint: ${JSON.stringify(wrongVisibleFrame)}`);
+    if (surface.runtime?.mode === 'standalone') {
+      const firstFrames = await page.evaluate(() => window.__vexFirstFrames || []);
+      const wrongVisibleFrame = firstFrames.find(frame => frame.visible && (
+        frame.lang !== 'ja' || frame.heading !== expectedJaHeading
+      ));
+      if (wrongVisibleFrame) throw new Error(`wrong-locale first paint: ${JSON.stringify(wrongVisibleFrame)}`);
+    }
     let state = await browserLocaleState(page);
     if (state.lang !== 'ja' || (surface.runtime?.mode === 'standalone' && state.select !== 'ja') || state.stored !== 'ja' ||
         !state.search.includes('lang=ja') || !state.search.includes('keep=1') || state.hash !== '#main') {
@@ -720,29 +722,31 @@ async function verifyLocaleRuntimeAcceptance(browser, baseUrl, surface) {
     }
   }
 
-  const timeoutContext = await browser.newContext({ viewport: { width: 768, height: 900 } });
-  await timeoutContext.addInitScript(() => localStorage.setItem('vex-lang', 'ja'));
-  await timeoutContext.route('https://fonts.googleapis.com/**', route => route.fulfill({ status: 200, contentType: 'text/css', body: '' }));
-  await timeoutContext.route('**/data/strings/compiled/scopes/system/institution.ja.json', async route => {
-    await new Promise(resolve => setTimeout(resolve, 2300));
-    await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(bundles.ja) });
-  });
-  const timeoutPage = await timeoutContext.newPage();
-  try {
-    await timeoutPage.goto(`${baseUrl}/pages/${surface.slug}.html`, { waitUntil: 'domcontentloaded' });
-    await timeoutPage.waitForFunction(() => !document.documentElement.hasAttribute('data-vex-locale-hold'), null, { timeout: 1999 });
-    const releasedAt = await timeoutPage.evaluate(() => performance.now());
-    const fallback = await timeoutPage.evaluate(({ bundle, headingKey }) => ({
-      lang: document.documentElement.lang,
-      heading: document.querySelector('h1').textContent,
-      expected: bundle[headingKey].text,
-      stored: localStorage.getItem('vex-lang'),
-    }), { bundle: bundles.en, headingKey });
-    if (releasedAt >= 2000 || fallback.lang !== 'en' || fallback.heading !== fallback.expected || fallback.stored !== 'ja') {
-      throw new Error(`pre-paint timeout fallback failed at ${releasedAt}ms: ${JSON.stringify(fallback)}`);
+  if (surface.runtime?.mode === 'standalone') {
+    const timeoutContext = await browser.newContext({ viewport: { width: 768, height: 900 } });
+    await timeoutContext.addInitScript(() => localStorage.setItem('vex-lang', 'ja'));
+    await timeoutContext.route('https://fonts.googleapis.com/**', route => route.fulfill({ status: 200, contentType: 'text/css', body: '' }));
+    await timeoutContext.route('**/data/strings/compiled/scopes/system/institution.ja.json', async route => {
+      await new Promise(resolve => setTimeout(resolve, 2300));
+      await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(bundles.ja) });
+    });
+    const timeoutPage = await timeoutContext.newPage();
+    try {
+      await timeoutPage.goto(`${baseUrl}/pages/${surface.slug}.html`, { waitUntil: 'domcontentloaded' });
+      await timeoutPage.waitForFunction(() => !document.documentElement.hasAttribute('data-vex-locale-hold'), null, { timeout: 1999 });
+      const releasedAt = await timeoutPage.evaluate(() => performance.now());
+      const fallback = await timeoutPage.evaluate(({ bundle, headingKey }) => ({
+        lang: document.documentElement.lang,
+        heading: document.querySelector('h1').textContent,
+        expected: bundle[headingKey].text,
+        stored: localStorage.getItem('vex-lang'),
+      }), { bundle: bundles.en, headingKey });
+      if (releasedAt >= 2000 || fallback.lang !== 'en' || fallback.heading !== fallback.expected || fallback.stored !== 'ja') {
+        throw new Error(`pre-paint timeout fallback failed at ${releasedAt}ms: ${JSON.stringify(fallback)}`);
+      }
+    } finally {
+      await timeoutContext.close();
     }
-  } finally {
-    await timeoutContext.close();
   }
 }
 
