@@ -28,6 +28,22 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+.record-cover {
+  margin: 0 0 clamp(24px, 4vw, 36px);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #0c0a09;
+  box-shadow: 0 18px 50px rgba(28, 25, 23, 0.10);
+}
+.record-cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1672 / 941;
+  object-fit: cover;
+}
+
 .entry-meta {
   display: flex;
   align-items: center;
@@ -380,6 +396,9 @@ main{width:min(920px,calc(100% - 32px));}
 @media(prefers-reduced-motion:reduce){.lineage-stack,.lineage-sheet,.lineage-switch button{transition:none!important}.lineage-sheet{transform:none!important}}
 </style></head>
 <body data-content-forge-generator="tools/vex-content-forge/project_arc_batch.js"><main>
+<figure class="record-cover">
+  <img src="https://vgong24.github.io/Vextreme-Assets/__assets/e79f271fdee76a31554fbd1ee0fbb23ab5a974f79cc5582fc956413e4ad33d92.webp" alt="Truth of Demons and Intrusive Thoughts — a luminous path between fragmented shadow, predatory darkness, protection, integration, and return toward light" width="1672" height="941" loading="eager" decoding="async"/>
+</figure>
 <section class="lineage-experience-head" aria-label="Source lineage views">
   <p class="lineage-experience-kicker" data-i18n="pages.truth-of-demons-and-intrusive-thoughts.lineage.kicker">Two preserved source lineages · one reading experience</p>
   <div class="lineage-switch" role="tablist" aria-label="Choose source lineage">
