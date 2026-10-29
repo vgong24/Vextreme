@@ -67,7 +67,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
 
     steps:
       - name: Checkout
@@ -157,22 +157,6 @@ jobs:
 
       - name: Build terrain-map.json
         run: node lib/build-terrain-map.js
-
-      # TEMPORARY publication carrier for PR #458 only. This is removed
-      # before merge; it exists because the assistant runtime cannot transport
-      # the 13 MB generated analysis-index through the contents/Git blob APIs.
-      - name: Commit generated Pier House publication artifacts
-        if: github.event_name == 'pull_request' && github.head_ref == 'VXG-102826-chatgpt-pier-house-reader-a001'
-        run: |
-          git add data/strings/compiled data/strings/reports data/index.json data/analysis-index.json data/lessons.json data/roles.json data/status.json data/page-health.json data/terrain-map.json dist sw.js pages/build-health.html pages/archives.html pages/vextreme-demo.html pages/specimens.html pages/specimen-*.html pages/ecosystem-hub.html pages/roles-index.html sitemap.xml index.html widgets/fab-lang.js lib/shell.js lib/vextreme.js pages/terrain-map.html pages/about-vextreme.html pages/vex-support.html
-          if git diff --cached --quiet; then
-            echo "No generated publication drift to commit."
-          else
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git commit -m "build: regenerate Pier House publication artifacts"
-            git push origin HEAD:VXG-102826-chatgpt-pier-house-reader-a001
-          fi
 
       - name: Verify generated artifacts are committed
         # Generated files are part of the reviewed tree. CI regenerates them
