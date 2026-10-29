@@ -1,0 +1,99 @@
+name: TEMP Support localization close-house
+
+on:
+  push:
+    branches:
+      - VXG-102926-chatgpt-institutional-support-global-core-close-house-a001
+
+permissions:
+  contents: read
+
+jobs:
+  close-house:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout exact branch head
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install repository dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Install bounded Playwright carrier
+        run: |
+          npm install --no-save --package-lock=false playwright@1.56.1
+          npx playwright install --with-deps chromium
+
+      - name: Run canonical generators
+        run: |
+          set -euo pipefail
+          node lib/strings-compile.js
+          node lib/build-string-identity-index.js
+          node lib/build-arc-bundles.js
+          node lib/build-index.js
+          node lib/bump-fab-version.js
+          node lib/build-shared-cache-generation.js
+          node lib/build-vextreme.js
+          node lib/build-sw.js
+          node lib/build-analysis-index.js
+          node lib/build-page-health.js
+          node lib/build-archives.js
+          node lib/build-demo.js
+          node lib/build-specimens.js
+          node lib/build-sitemap.js
+          node lib/build-index-page.js
+          node lib/build-lessons.js
+          node lib/build-status.js
+          node lib/build-roles.js
+          node lib/build-ecosystem-hub.js
+          node lib/build-roles-page.js
+          node lib/build-terrain-map.js
+
+      - name: Render exact Support institutional evidence
+        run: |
+          set -euo pipefail
+          node scripts/screenshot-institutional.js vex-support | tee /tmp/support-render.log
+
+      - name: Verify institutional activation
+        run: |
+          set -euo pipefail
+          npm run institutional-surfaces:check | tee /tmp/institutional-check.log
+
+      - name: Collect exact generated and evidence delta
+        run: |
+          set -euo pipefail
+          mkdir -p close-house-output/files close-house-output/evidence
+          git add data/strings/compiled data/strings/reports data/index.json data/analysis-index.json data/lessons.json data/roles.json data/status.json data/page-health.json data/terrain-map.json dist sw.js pages/build-health.html pages/archives.html pages/vextreme-demo.html pages/specimens.html pages/specimen-*.html pages/ecosystem-hub.html pages/roles-index.html sitemap.xml index.html widgets/fab-lang.js lib/shell.js lib/vextreme.js pages/terrain-map.html pages/about-vextreme.html pages/vex-support.html docs/screenshots/vex-support-*.png
+          git diff --cached --check
+          git diff --cached --name-only > close-house-output/evidence/changed-paths.txt
+          git diff --cached --stat > close-house-output/evidence/diff.stat
+          printf '%s\n' "$GITHUB_SHA" > close-house-output/evidence/source-head.txt
+          cp /tmp/support-render.log close-house-output/evidence/support-render.log
+          cp /tmp/institutional-check.log close-house-output/evidence/institutional-check.log
+          while IFS= read -r p; do
+            [ -z "$p" ] && continue
+            mkdir -p "close-house-output/files/$(dirname "$p")"
+            cp "$p" "close-house-output/files/$p"
+          done < close-house-output/evidence/changed-paths.txt
+          (
+            cd close-house-output/files
+            find . -type f -print0 | sort -z | xargs -0 sha256sum
+          ) > close-house-output/evidence/sha256.txt
+          test -s close-house-output/evidence/changed-paths.txt
+
+      - name: Upload close-house evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vex-support-close-house-${{ github.sha }}
+          path: close-house-output
+          if-no-files-found: error
+          retention-days: 7
