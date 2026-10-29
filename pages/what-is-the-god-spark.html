@@ -65,6 +65,21 @@ h1 { margin: 0; font-family: var(--serif); font-size: clamp(36px, 7vw, 62px); fo
    Part-028 = nested Conversations-with-God source transcript lineage. */
 :root { --ember-bg: #fdf8f6; }
 main { width: min(920px, calc(100% - 32px)); }
+.record-cover {
+  margin: 0 0 clamp(24px, 4vw, 36px);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #0c0a09;
+  box-shadow: 0 18px 50px rgba(28, 25, 23, 0.10);
+}
+.record-cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1672 / 941;
+  object-fit: cover;
+}
 .lineage-experience-head {
   width: min(780px, 100%);
   margin: 0 auto 26px;
@@ -526,6 +541,9 @@ main { width: min(920px, calc(100% - 32px)); }
 <body>
 <main>
 
+<figure class="record-cover">
+  <img src="https://vgong24.github.io/Vextreme-Assets/__assets/2bd560cef3ddd15e58b5e2b0383dba67d2fac2accf97e2ba5b15c49608238159.webp" alt="What is the God Spark? — luminous source-and-network cover art" loading="eager" decoding="async"/>
+</figure>
 <section class="lineage-experience-head" aria-label="God Spark source views">
   <p class="lineage-experience-kicker" data-i18n="pages.what-is-the-god-spark.lineage.kicker">Two preserved source lineages · one reading experience</p>
   <div class="lineage-switch" role="tablist" aria-label="Choose God Spark view">
