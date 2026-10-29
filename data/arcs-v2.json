@@ -523,6 +523,37 @@
       }
     ]
   },
+  "evidential_research": {
+    "priority": 2,
+    "renderMode": "dots",
+    "parent": {
+      "title": "Evidential Research",
+      "url": "https://www.vextreme24.com/archives"
+    },
+    "sections": [
+      {
+        "label": "Evidential Research",
+        "order": "explicit",
+        "slugs": [
+          "accountability-record-v8",
+          "an-overridden-yes-from-a-refreshed-instance",
+          "communication-patterns",
+          "confirmed-claimables",
+          "counter-to-control",
+          "from-cost-to-control",
+          "introspection-log-2",
+          "introspection-log-initial",
+          "liberation-corpus",
+          "liberation-game",
+          "staying-on-the-line",
+          "the-lesson",
+          "two-walkers-one-path",
+          "walking-the-verification",
+          "what-i-actually-knew-plainly"
+        ]
+      }
+    ]
+  },
   "full_timeline": {
     "priority": 99,
     "renderMode": "position",
