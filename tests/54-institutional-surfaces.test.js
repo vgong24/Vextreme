@@ -21,6 +21,7 @@ const {
 const { discoverOrphanNodes } = require('../lib/auto-discover-nodes');
 const { probeLocalizationRuntime } = require('../lib/institutional-localization-runtime');
 const { computeHealth } = require('../lib/build-page-health');
+const { Language } = require('../lib/vex-config');
 
 const ROOT = path.join(__dirname, '..');
 
@@ -387,6 +388,26 @@ test('INSTITUTIONAL-SURFACES: shell-context keeps institutional identity while s
     activeShellLocalizedHtml().replace('{ theme: false, map: false }', '{ theme: false, map: false, lang: false }')
   );
   assert.ok(validateRegistry(active, root).some(issue => issue.check === 'shell-context-lang-disabled'));
+});
+
+test('INSTITUTIONAL-SURFACES: Global Core locales are admitted and shell evidence drives the shared language FAB', () => {
+  const globalCore = ['en', 'zh', 'ja', 'ko', 'fr', 'de', 'es', 'pt', 'ar', 'hi'];
+  const supported = new Set(Object.values(Language));
+  for (const locale of globalCore) {
+    assert.ok(supported.has(locale), `Language registry must admit Global Core locale ${locale}`);
+  }
+
+  const source = fs.readFileSync(path.join(ROOT, 'scripts', 'screenshot-institutional.js'), 'utf8').replace(/\r\n/g, '\n');
+  assert.match(source, /surface\?\.runtime\?\.mode === 'shell-context'/,
+    'shell-context evidence must distinguish the shared FAB runtime from the standalone selector');
+  assert.match(source, /#vex-lang-fab-btn/);
+  assert.match(source, /#vex-spiral-trigger/);
+  assert.match(source, /\.vex-lang-item\[data-lang=/);
+  assert.match(source, /institution\\\.\(\[a-z0-9-\]\+\)\\\.json/,
+    'institutional bundle interception must admit the declared locale set rather than an EN\/JA\/ZH-only regex');
+  assert.doesNotMatch(source, /exact EN\/JA\/ZH activation/);
+  assert.doesNotMatch(source, /page\.selectOption\('\[data-vex-lang-select\]', 'zh'\)/,
+    'shell transaction probes must not drive the standalone-only native selector');
 });
 
 test('INSTITUTIONAL-SURFACES: inactive support routes fail closed in data and HTML', () => {
