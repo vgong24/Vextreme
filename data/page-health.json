@@ -5,7 +5,7 @@
     "healthy": 4,
     "attention": 183,
     "critical": 8,
-    "sorted": 147,
+    "sorted": 152,
     "withFab": 182,
     "readAloudApplicable": 187,
     "withReadAloud": 187,
@@ -168,15 +168,50 @@
       "identity": {
         "keyCount": 27,
         "languages": {
+          "ar": {
+            "translated": 1,
+            "total": 27,
+            "state": "partial"
+          },
+          "de": {
+            "translated": 1,
+            "total": 27,
+            "state": "partial"
+          },
           "en": {
             "translated": 27,
             "total": 27,
             "state": "full"
           },
+          "es": {
+            "translated": 1,
+            "total": 27,
+            "state": "partial"
+          },
+          "fr": {
+            "translated": 1,
+            "total": 27,
+            "state": "partial"
+          },
+          "hi": {
+            "translated": 1,
+            "total": 27,
+            "state": "partial"
+          },
           "ja": {
             "translated": 27,
             "total": 27,
             "state": "full"
+          },
+          "ko": {
+            "translated": 1,
+            "total": 27,
+            "state": "partial"
+          },
+          "pt": {
+            "translated": 1,
+            "total": 27,
+            "state": "partial"
           },
           "zh": {
             "translated": 27,
@@ -470,7 +505,8 @@
       "placement": {
         "state": "sorted",
         "arcKeys": [
-          "ai_practitioner_tools"
+          "ai_practitioner_tools",
+          "full_timeline"
         ]
       },
       "runtime": {
@@ -1360,7 +1396,8 @@
         "state": "sorted",
         "arcKeys": [
           "ai_practitioner_tools",
-          "direct_contact"
+          "direct_contact",
+          "full_timeline"
         ]
       },
       "runtime": {
@@ -1956,7 +1993,8 @@
       "placement": {
         "state": "sorted",
         "arcKeys": [
-          "evidential_research"
+          "evidential_research",
+          "full_timeline"
         ]
       },
       "runtime": {
@@ -3961,7 +3999,8 @@
       "placement": {
         "state": "sorted",
         "arcKeys": [
-          "evidential_research"
+          "evidential_research",
+          "full_timeline"
         ]
       },
       "runtime": {
@@ -4137,7 +4176,8 @@
       "placement": {
         "state": "sorted",
         "arcKeys": [
-          "father_son_threshold"
+          "father_son_threshold",
+          "full_timeline"
         ]
       },
       "runtime": {
@@ -4893,8 +4933,10 @@
       "slug": "human-ai-corelational-governance",
       "title": "Human–AI Corelational Governance · VXG RealForever · v2",
       "placement": {
-        "state": "unsorted",
-        "arcKeys": []
+        "state": "sorted",
+        "arcKeys": [
+          "full_timeline"
+        ]
       },
       "runtime": {
         "shell": true,
@@ -4941,7 +4983,6 @@
         "state": "attention",
         "blockers": [],
         "gaps": [
-          "unsorted",
           "identity",
           "screenshot"
         ]
@@ -5284,7 +5325,8 @@
       "placement": {
         "state": "sorted",
         "arcKeys": [
-          "evidential_research"
+          "evidential_research",
+          "full_timeline"
         ]
       },
       "runtime": {
@@ -5342,7 +5384,8 @@
       "placement": {
         "state": "sorted",
         "arcKeys": [
-          "evidential_research"
+          "evidential_research",
+          "full_timeline"
         ]
       },
       "runtime": {
@@ -5785,7 +5828,8 @@
       "placement": {
         "state": "sorted",
         "arcKeys": [
-          "evidential_research"
+          "evidential_research",
+          "full_timeline"
         ]
       },
       "runtime": {
@@ -5843,7 +5887,8 @@
       "placement": {
         "state": "sorted",
         "arcKeys": [
-          "evidential_research"
+          "evidential_research",
+          "full_timeline"
         ]
       },
       "runtime": {
@@ -6387,8 +6432,10 @@
       "slug": "org-blueprint",
       "title": "The Council — A Build Blueprint for Anyone",
       "placement": {
-        "state": "unsorted",
-        "arcKeys": []
+        "state": "sorted",
+        "arcKeys": [
+          "full_timeline"
+        ]
       },
       "runtime": {
         "shell": true,
@@ -6435,7 +6482,6 @@
         "state": "attention",
         "blockers": [],
         "gaps": [
-          "unsorted",
           "identity",
           "screenshot",
           "theme-effect"
@@ -6446,8 +6492,10 @@
       "slug": "org-history",
       "title": "The Continuity Record — History & Lessons (Vol. I)",
       "placement": {
-        "state": "unsorted",
-        "arcKeys": []
+        "state": "sorted",
+        "arcKeys": [
+          "full_timeline"
+        ]
       },
       "runtime": {
         "shell": true,
@@ -6494,7 +6542,6 @@
         "state": "attention",
         "blockers": [],
         "gaps": [
-          "unsorted",
           "identity",
           "screenshot",
           "theme-effect"
@@ -6620,8 +6667,10 @@
       "slug": "phantom-opera-meta-review",
       "title": "The Phantom Lattice — A Review With Its Receipts",
       "placement": {
-        "state": "unsorted",
-        "arcKeys": []
+        "state": "sorted",
+        "arcKeys": [
+          "full_timeline"
+        ]
       },
       "runtime": {
         "shell": true,
@@ -6668,7 +6717,6 @@
         "state": "attention",
         "blockers": [],
         "gaps": [
-          "unsorted",
           "identity",
           "screenshot"
         ]
@@ -8158,7 +8206,8 @@
       "placement": {
         "state": "sorted",
         "arcKeys": [
-          "evidential_research"
+          "evidential_research",
+          "full_timeline"
         ]
       },
       "runtime": {
@@ -8501,7 +8550,8 @@
         "state": "sorted",
         "arcKeys": [
           "ai_practitioner_tools",
-          "direct_contact"
+          "direct_contact",
+          "full_timeline"
         ]
       },
       "runtime": {
@@ -11324,7 +11374,8 @@
       "placement": {
         "state": "sorted",
         "arcKeys": [
-          "direct_contact"
+          "direct_contact",
+          "full_timeline"
         ]
       },
       "runtime": {
@@ -12150,12 +12201,47 @@
       "identity": {
         "keyCount": 44,
         "languages": {
+          "ar": {
+            "translated": 44,
+            "total": 44,
+            "state": "full"
+          },
+          "de": {
+            "translated": 44,
+            "total": 44,
+            "state": "full"
+          },
           "en": {
             "translated": 44,
             "total": 44,
             "state": "full"
           },
+          "es": {
+            "translated": 44,
+            "total": 44,
+            "state": "full"
+          },
+          "fr": {
+            "translated": 44,
+            "total": 44,
+            "state": "full"
+          },
+          "hi": {
+            "translated": 44,
+            "total": 44,
+            "state": "full"
+          },
           "ja": {
+            "translated": 44,
+            "total": 44,
+            "state": "full"
+          },
+          "ko": {
+            "translated": 44,
+            "total": 44,
+            "state": "full"
+          },
+          "pt": {
             "translated": 44,
             "total": 44,
             "state": "full"
@@ -12242,13 +12328,48 @@
       "identity": {
         "keyCount": 431,
         "languages": {
+          "ar": {
+            "translated": 2,
+            "total": 431,
+            "state": "partial"
+          },
+          "de": {
+            "translated": 2,
+            "total": 431,
+            "state": "partial"
+          },
           "en": {
             "translated": 431,
             "total": 431,
             "state": "full"
           },
+          "es": {
+            "translated": 2,
+            "total": 431,
+            "state": "partial"
+          },
+          "fr": {
+            "translated": 2,
+            "total": 431,
+            "state": "partial"
+          },
+          "hi": {
+            "translated": 2,
+            "total": 431,
+            "state": "partial"
+          },
           "ja": {
             "translated": 11,
+            "total": 431,
+            "state": "partial"
+          },
+          "ko": {
+            "translated": 2,
+            "total": 431,
+            "state": "partial"
+          },
+          "pt": {
+            "translated": 2,
             "total": 431,
             "state": "partial"
           },
@@ -12922,7 +13043,8 @@
       "placement": {
         "state": "sorted",
         "arcKeys": [
-          "evidential_research"
+          "evidential_research",
+          "full_timeline"
         ]
       },
       "runtime": {
@@ -13307,7 +13429,8 @@
       "placement": {
         "state": "sorted",
         "arcKeys": [
-          "evidential_research"
+          "evidential_research",
+          "full_timeline"
         ]
       },
       "runtime": {
@@ -14252,8 +14375,10 @@
       "slug": "witness-committee-operations",
       "title": "Witness Committee — Operations Manual",
       "placement": {
-        "state": "unsorted",
-        "arcKeys": []
+        "state": "sorted",
+        "arcKeys": [
+          "full_timeline"
+        ]
       },
       "runtime": {
         "shell": true,
@@ -14300,7 +14425,6 @@
         "state": "attention",
         "blockers": [],
         "gaps": [
-          "unsorted",
           "identity",
           "screenshot",
           "theme-effect"

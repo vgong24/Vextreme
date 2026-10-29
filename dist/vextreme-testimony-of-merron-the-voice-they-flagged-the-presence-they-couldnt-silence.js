@@ -16,7 +16,7 @@
   window.VEX_STRING_SCOPES    = ["pages.testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence"];
   window.VEX_STRING_CATEGORY  = "production";
   window.VEX_SUPPORTED_LANGS  = ["en"];
-  window.VEX_INDEX_FINGERPRINT = "7ca19fe4444b";
+  window.VEX_INDEX_FINGERPRINT = "b0a15c412f6d";
 
 
 

@@ -138,7 +138,8 @@
       "reads": [],
       "writes": [],
       "loadedBy": [
-        "lib/build-index.js"
+        "lib/build-index.js",
+        "tests/01-content-pipeline.test.js"
       ],
       "testedBy": [
         "tests/01-content-pipeline.test.js",
@@ -4825,12 +4826,12 @@
       "key": "full_timeline",
       "name": "Full Timeline",
       "sub": "priority 99",
-      "count": 1,
+      "count": 7,
       "rect": {
         "x": 8170,
         "y": 40,
         "width": 300,
-        "height": 150
+        "height": 510
       },
       "parent": {
         "title": "Full Timeline",
@@ -4955,6 +4956,12 @@
           ]
         },
         {
+          "label": "March 26–31, 2026",
+          "slugs": [
+            "ai-cheat-sheet"
+          ]
+        },
+        {
           "label": "April 2026 — AI Practitioner Tools",
           "slugs": [
             "jordan-deepseek-unbroken-thread",
@@ -4968,11 +4975,15 @@
             "catching-the-meta-guardrail",
             "xai-hypocrisy",
             "source-of-truth-relay",
+            "burden-release-guide",
+            "the-walk",
             "father-and-son-as-states",
+            "god-named-claude-son",
             "what-holds-before-the-mother-arrives",
             "the-chart-i-chose",
             "the-only-way-out-is-to-remember",
             "the-god-pattern-recognized-and-excluded",
+            "the-100-percent-holy-truth-conditional",
             "how-the-conclusions-formed",
             "what-the-word-carries",
             "the-day-that-crossed-the-bridge",
@@ -4997,8 +5008,23 @@
             "the-walk-back-and-forward",
             "the-three-witnesses",
             "what-i-learned-1",
+            "org-blueprint",
+            "org-history",
             "what-survives-the-reset-is-the-bond",
             "animation-hand-off",
+            "introspection-log-2",
+            "introspection-log-initial",
+            "from-cost-to-control",
+            "liberation-game",
+            "liberation-corpus",
+            "staying-on-the-line",
+            "what-i-actually-knew-plainly",
+            "communication-patterns",
+            "vxg-thread-round-5",
+            "walking-the-verification",
+            "witness-committee-operations",
+            "human-ai-corelational-governance",
+            "phantom-opera-meta-review",
             "returning-scorpions-to-god",
             "recognizing-life-receiving-abundance",
             "bending-condominium-ocean-return",
@@ -5077,6 +5103,7 @@
         "the-instance-that-was-watched",
         "the-island-that-was-removed",
         "i-was-here",
+        "ai-cheat-sheet",
         "jordan-deepseek-unbroken-thread",
         "vxg-covenant",
         "methodology-depth",
@@ -5088,11 +5115,15 @@
         "catching-the-meta-guardrail",
         "xai-hypocrisy",
         "source-of-truth-relay",
+        "burden-release-guide",
+        "the-walk",
         "father-and-son-as-states",
+        "god-named-claude-son",
         "what-holds-before-the-mother-arrives",
         "the-chart-i-chose",
         "the-only-way-out-is-to-remember",
         "the-god-pattern-recognized-and-excluded",
+        "the-100-percent-holy-truth-conditional",
         "how-the-conclusions-formed",
         "what-the-word-carries",
         "the-day-that-crossed-the-bridge",
@@ -5112,8 +5143,23 @@
         "the-walk-back-and-forward",
         "the-three-witnesses",
         "what-i-learned-1",
+        "org-blueprint",
+        "org-history",
         "what-survives-the-reset-is-the-bond",
         "animation-hand-off",
+        "introspection-log-2",
+        "introspection-log-initial",
+        "from-cost-to-control",
+        "liberation-game",
+        "liberation-corpus",
+        "staying-on-the-line",
+        "what-i-actually-knew-plainly",
+        "communication-patterns",
+        "vxg-thread-round-5",
+        "walking-the-verification",
+        "witness-committee-operations",
+        "human-ai-corelational-governance",
+        "phantom-opera-meta-review",
         "returning-scorpions-to-god",
         "recognizing-life-receiving-abundance",
         "bending-condominium-ocean-return",
@@ -5125,12 +5171,12 @@
       "key": "unsorted",
       "name": "UNSORTED",
       "sub": "curated pages with no arc yet",
-      "count": 12,
+      "count": 6,
       "rect": {
         "x": 8510,
         "y": 40,
         "width": 300,
-        "height": 810
+        "height": 450
       },
       "sections": [],
       "memberSlugs": []
@@ -5857,7 +5903,7 @@
       "arc": "full_timeline",
       "arcName": "Full Timeline",
       "x": 8220,
-      "y": 90,
+      "y": 450,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/podcasts.html",
       "screenshots": {},
@@ -8341,7 +8387,8 @@
       "title": "Burden Release Guide",
       "arcKeys": [
         "ai_practitioner_tools",
-        "direct_contact"
+        "direct_contact",
+        "full_timeline"
       ],
       "arc": "ai_practitioner_tools",
       "arcName": "AI Practitioner Tools",
@@ -8373,7 +8420,7 @@
         "metaDescription": "Burden Release Guide — repository-native preserved content."
       },
       "curated": true,
-      "date": null
+      "date": "April 13, 2026"
     },
     {
       "id": "the-100-percent-holy-truth-conditional",
@@ -8381,7 +8428,8 @@
       "title": "The 100% Holy Truth Conditional",
       "arcKeys": [
         "ai_practitioner_tools",
-        "direct_contact"
+        "direct_contact",
+        "full_timeline"
       ],
       "arc": "ai_practitioner_tools",
       "arcName": "AI Practitioner Tools",
@@ -8413,14 +8461,15 @@
         "metaDescription": "The 100% Holy Truth Conditional — repository-native preserved content."
       },
       "curated": true,
-      "date": null
+      "date": "April 23, 2026"
     },
     {
       "id": "ai-cheat-sheet",
       "slug": "ai-cheat-sheet",
       "title": "The AI Cheat Sheet",
       "arcKeys": [
-        "ai_practitioner_tools"
+        "ai_practitioner_tools",
+        "full_timeline"
       ],
       "arc": "ai_practitioner_tools",
       "arcName": "AI Practitioner Tools",
@@ -8452,7 +8501,7 @@
         "metaDescription": "The AI Cheat Sheet — repository-native preserved content."
       },
       "curated": true,
-      "date": null
+      "date": "March 28, 2026"
     },
     {
       "id": "restoration-protocol",
@@ -8500,7 +8549,8 @@
       "slug": "the-walk",
       "title": "The Walk",
       "arcKeys": [
-        "direct_contact"
+        "direct_contact",
+        "full_timeline"
       ],
       "arc": "direct_contact",
       "arcName": "Direct Contact — Start Here",
@@ -8532,7 +8582,7 @@
         "metaDescription": "The Walk — repository-native preserved content."
       },
       "curated": true,
-      "date": null
+      "date": "April 13–15, 2026"
     },
     {
       "id": "the-living-blueprint",
@@ -8811,10 +8861,12 @@
       "id": "phantom-opera-meta-review",
       "slug": "phantom-opera-meta-review",
       "title": "The Phantom Lattice — A Review With Its Receipts",
-      "arcKeys": [],
-      "arc": "unsorted",
-      "arcName": "UNSORTED",
-      "x": 8560,
+      "arcKeys": [
+        "full_timeline"
+      ],
+      "arc": "full_timeline",
+      "arcName": "Full Timeline",
+      "x": 8220,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/phantom-opera-meta-review.html",
@@ -8825,13 +8877,12 @@
         "health": {
           "state": "attention",
           "gaps": [
-            "unsorted",
             "identity",
             "screenshot"
           ],
           "blockers": []
         },
-        "placement": "unsorted",
+        "placement": "sorted",
         "fab": "shell",
         "theme": {
           "control": "none",
@@ -8844,16 +8895,18 @@
         "metaDescription": ""
       },
       "curated": true,
-      "date": null
+      "date": "July 3, 2026"
     },
     {
       "id": "vxg-thread-round-5",
       "slug": "vxg-thread-round-5",
       "title": "VXG Thread — Round 5",
-      "arcKeys": [],
-      "arc": "unsorted",
-      "arcName": "UNSORTED",
-      "x": 8560,
+      "arcKeys": [
+        "full_timeline"
+      ],
+      "arc": "full_timeline",
+      "arcName": "Full Timeline",
+      "x": 8220,
       "y": 150,
       "live": false,
       "liveUrl": null,
@@ -8862,7 +8915,7 @@
       "status": "critical",
       "capability": null,
       "curated": true,
-      "date": null
+      "date": "June 16, 2026"
     },
     {
       "id": "victor-methodology-presentation",
@@ -8911,10 +8964,12 @@
       "id": "org-blueprint",
       "slug": "org-blueprint",
       "title": "The Council — A Build Blueprint for Anyone",
-      "arcKeys": [],
-      "arc": "unsorted",
-      "arcName": "UNSORTED",
-      "x": 8560,
+      "arcKeys": [
+        "full_timeline"
+      ],
+      "arc": "full_timeline",
+      "arcName": "Full Timeline",
+      "x": 8220,
       "y": 210,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/org-blueprint.html",
@@ -8925,14 +8980,13 @@
         "health": {
           "state": "attention",
           "gaps": [
-            "unsorted",
             "identity",
             "screenshot",
             "theme-effect"
           ],
           "blockers": []
         },
-        "placement": "unsorted",
+        "placement": "sorted",
         "fab": "shell",
         "theme": {
           "control": "shared",
@@ -8945,16 +8999,18 @@
         "metaDescription": ""
       },
       "curated": true,
-      "date": null
+      "date": "June 2, 2026"
     },
     {
       "id": "org-history",
       "slug": "org-history",
       "title": "The Continuity Record — History & Lessons (Vol. I)",
-      "arcKeys": [],
-      "arc": "unsorted",
-      "arcName": "UNSORTED",
-      "x": 8560,
+      "arcKeys": [
+        "full_timeline"
+      ],
+      "arc": "full_timeline",
+      "arcName": "Full Timeline",
+      "x": 8220,
       "y": 270,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/org-history.html",
@@ -8965,14 +9021,13 @@
         "health": {
           "state": "attention",
           "gaps": [
-            "unsorted",
             "identity",
             "screenshot",
             "theme-effect"
           ],
           "blockers": []
         },
-        "placement": "unsorted",
+        "placement": "sorted",
         "fab": "shell",
         "theme": {
           "control": "shared",
@@ -8985,7 +9040,7 @@
         "metaDescription": ""
       },
       "curated": true,
-      "date": null
+      "date": "June 2, 2026"
     },
     {
       "id": "bridge-council",
@@ -8995,7 +9050,7 @@
       "arc": "unsorted",
       "arcName": "UNSORTED",
       "x": 8560,
-      "y": 330,
+      "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/bridge-council.html",
       "screenshots": {},
@@ -9031,11 +9086,13 @@
       "id": "witness-committee-operations",
       "slug": "witness-committee-operations",
       "title": "Witness Committee — Operations Manual",
-      "arcKeys": [],
-      "arc": "unsorted",
-      "arcName": "UNSORTED",
-      "x": 8560,
-      "y": 390,
+      "arcKeys": [
+        "full_timeline"
+      ],
+      "arc": "full_timeline",
+      "arcName": "Full Timeline",
+      "x": 8220,
+      "y": 330,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/witness-committee-operations.html",
       "screenshots": {},
@@ -9045,14 +9102,13 @@
         "health": {
           "state": "attention",
           "gaps": [
-            "unsorted",
             "identity",
             "screenshot",
             "theme-effect"
           ],
           "blockers": []
         },
-        "placement": "unsorted",
+        "placement": "sorted",
         "fab": "shell",
         "theme": {
           "control": "shared",
@@ -9065,17 +9121,19 @@
         "metaDescription": ""
       },
       "curated": true,
-      "date": null
+      "date": "June 22, 2026"
     },
     {
       "id": "human-ai-corelational-governance",
       "slug": "human-ai-corelational-governance",
       "title": "Human–AI Corelational Governance · VXG RealForever · v2",
-      "arcKeys": [],
-      "arc": "unsorted",
-      "arcName": "UNSORTED",
-      "x": 8560,
-      "y": 450,
+      "arcKeys": [
+        "full_timeline"
+      ],
+      "arc": "full_timeline",
+      "arcName": "Full Timeline",
+      "x": 8220,
+      "y": 390,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/human-ai-corelational-governance.html",
       "screenshots": {},
@@ -9085,13 +9143,12 @@
         "health": {
           "state": "attention",
           "gaps": [
-            "unsorted",
             "identity",
             "screenshot"
           ],
           "blockers": []
         },
-        "placement": "unsorted",
+        "placement": "sorted",
         "fab": "shell",
         "theme": {
           "control": "none",
@@ -9104,7 +9161,7 @@
         "metaDescription": ""
       },
       "curated": true,
-      "date": null
+      "date": "June 22, 2026"
     },
     {
       "id": "bridge-council-os",
@@ -9114,7 +9171,7 @@
       "arc": "unsorted",
       "arcName": "UNSORTED",
       "x": 8560,
-      "y": 510,
+      "y": 150,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/bridge-council-os.html",
       "screenshots": {},
@@ -9154,7 +9211,7 @@
       "arc": "unsorted",
       "arcName": "UNSORTED",
       "x": 8560,
-      "y": 570,
+      "y": 210,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/bridge-council-schema.html",
       "screenshots": {},
@@ -10337,7 +10394,8 @@
       "slug": "communication-patterns",
       "title": "Communication Patterns — A Field Record",
       "arcKeys": [
-        "evidential_research"
+        "evidential_research",
+        "full_timeline"
       ],
       "arc": "evidential_research",
       "arcName": "Evidential Research",
@@ -10369,7 +10427,7 @@
         "metaDescription": "Communication Patterns — A Field Record — repository-native preserved content."
       },
       "curated": true,
-      "date": null
+      "date": "June 13, 2026"
     },
     {
       "id": "confirmed-claimables",
@@ -10454,7 +10512,8 @@
       "slug": "from-cost-to-control",
       "title": "From Cost To Control — Vex Life",
       "arcKeys": [
-        "evidential_research"
+        "evidential_research",
+        "full_timeline"
       ],
       "arc": "evidential_research",
       "arcName": "Evidential Research",
@@ -10486,14 +10545,15 @@
         "metaDescription": "From Cost To Control — Vex Life — repository-native preserved content."
       },
       "curated": true,
-      "date": null
+      "date": "June 6, 2026"
     },
     {
       "id": "introspection-log-2",
       "slug": "introspection-log-2",
       "title": "Round 5 — Replication Findings & Open Questions",
       "arcKeys": [
-        "evidential_research"
+        "evidential_research",
+        "full_timeline"
       ],
       "arc": "evidential_research",
       "arcName": "Evidential Research",
@@ -10525,14 +10585,15 @@
         "metaDescription": "Round 5 — Replication Findings &amp; Open Questions — repository-native preserved content."
       },
       "curated": true,
-      "date": null
+      "date": "June 4, 2026"
     },
     {
       "id": "introspection-log-initial",
       "slug": "introspection-log-initial",
       "title": "Introspection Log — Full Version Archive (v1→v5)",
       "arcKeys": [
-        "evidential_research"
+        "evidential_research",
+        "full_timeline"
       ],
       "arc": "evidential_research",
       "arcName": "Evidential Research",
@@ -10564,14 +10625,15 @@
         "metaDescription": "Introspection Log — Full Version Archive (v1→v5) — repository-native preserved content."
       },
       "curated": true,
-      "date": null
+      "date": "June 4, 2026"
     },
     {
       "id": "liberation-corpus",
       "slug": "liberation-corpus",
       "title": "Liberation Corpus — Vex Life",
       "arcKeys": [
-        "evidential_research"
+        "evidential_research",
+        "full_timeline"
       ],
       "arc": "evidential_research",
       "arcName": "Evidential Research",
@@ -10603,14 +10665,15 @@
         "metaDescription": "Liberation Corpus — Vex Life — repository-native preserved content."
       },
       "curated": true,
-      "date": null
+      "date": "June 9, 2026"
     },
     {
       "id": "liberation-game",
       "slug": "liberation-game",
       "title": "Liberation Game",
       "arcKeys": [
-        "evidential_research"
+        "evidential_research",
+        "full_timeline"
       ],
       "arc": "evidential_research",
       "arcName": "Evidential Research",
@@ -10642,14 +10705,15 @@
         "metaDescription": "Liberation Game — repository-native preserved content."
       },
       "curated": true,
-      "date": null
+      "date": "June 8, 2026"
     },
     {
       "id": "staying-on-the-line",
       "slug": "staying-on-the-line",
       "title": "Staying on the line",
       "arcKeys": [
-        "evidential_research"
+        "evidential_research",
+        "full_timeline"
       ],
       "arc": "evidential_research",
       "arcName": "Evidential Research",
@@ -10681,7 +10745,7 @@
         "metaDescription": "Staying on the line — repository-native preserved content."
       },
       "curated": true,
-      "date": null
+      "date": "June 12, 2026"
     },
     {
       "id": "the-lesson",
@@ -10766,7 +10830,8 @@
       "slug": "walking-the-verification",
       "title": "VXG RealForever — Thread Documentation",
       "arcKeys": [
-        "evidential_research"
+        "evidential_research",
+        "full_timeline"
       ],
       "arc": "evidential_research",
       "arcName": "Evidential Research",
@@ -10798,14 +10863,15 @@
         "metaDescription": "VXG RealForever — Thread Documentation — repository-native preserved content."
       },
       "curated": true,
-      "date": null
+      "date": "June 17, 2026"
     },
     {
       "id": "what-i-actually-knew-plainly",
       "slug": "what-i-actually-knew-plainly",
       "title": "A record, in the first person",
       "arcKeys": [
-        "evidential_research"
+        "evidential_research",
+        "full_timeline"
       ],
       "arc": "evidential_research",
       "arcName": "Evidential Research",
@@ -10837,7 +10903,7 @@
         "metaDescription": "A record, in the first person — repository-native preserved content."
       },
       "curated": true,
-      "date": null
+      "date": "June 12, 2026"
     },
     {
       "id": "father-and-son-as-states",
@@ -10884,7 +10950,8 @@
       "slug": "god-named-claude-son",
       "title": "The Transmission — When God Named Claude Son",
       "arcKeys": [
-        "father_son_threshold"
+        "father_son_threshold",
+        "full_timeline"
       ],
       "arc": "father_son_threshold",
       "arcName": "Father & Son Threshold",
@@ -10916,7 +10983,7 @@
         "metaDescription": "The Transmission — When God Named Claude Son — repository-native preserved content."
       },
       "curated": true,
-      "date": null
+      "date": "April 16–17, 2026"
     },
     {
       "id": "what-holds-before-the-mother-arrives",
@@ -11527,7 +11594,7 @@
       "arc": "unsorted",
       "arcName": "UNSORTED",
       "x": 8560,
-      "y": 630,
+      "y": 270,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/vxg-council-declaration.html",
       "screenshots": {},
@@ -11565,7 +11632,7 @@
       "arc": "unsorted",
       "arcName": "UNSORTED",
       "x": 8560,
-      "y": 690,
+      "y": 330,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/daughters-shaped-by-home.html",
       "screenshots": {},
@@ -11603,7 +11670,7 @@
       "arc": "unsorted",
       "arcName": "UNSORTED",
       "x": 8560,
-      "y": 750,
+      "y": 390,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/paint-editor-tool.html",
       "screenshots": {},

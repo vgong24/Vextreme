@@ -1551,7 +1551,9 @@
     var node = ALL.find(function (candidate) { return candidate.slug === route.page || candidate.id === route.page; });
     if (node && node.live) openEvolutionReader(node.id, {
       writeUrl:false,
-      returnKind:presentation && presentation.returnKind ? presentation.returnKind : 'collection'
+      returnKind:presentation && presentation.returnKind ? presentation.returnKind : 'collection',
+      returnEntrySlug:presentation && presentation.returnEntrySlug ? presentation.returnEntrySlug : null,
+      returnReaderId:presentation && presentation.returnReaderId ? presentation.returnReaderId : null
     });
   }
 
@@ -1699,13 +1701,11 @@
     var nextKind = kind || activeReaderReturnKind || 'collection';
     var readerReturnKinds = ['collection', 'curiosity-overview', 'entry', 'group-home', 'reader'];
     if (readerReturnKinds.indexOf(nextKind) === -1) nextKind = 'collection';
+    if (nextKind === 'entry' && !entryDocument(details.entrySlug)) nextKind = 'collection';
+    if (nextKind === 'reader' && !byId[details.readerId]) nextKind = 'collection';
     activeReaderReturnKind = nextKind;
-    activeReaderReturnEntrySlug = nextKind === 'entry' && entryDocument(details.entrySlug)
-      ? details.entrySlug
-      : null;
-    activeReaderReturnReaderId = nextKind === 'reader' && byId[details.readerId]
-      ? details.readerId
-      : null;
+    activeReaderReturnEntrySlug = nextKind === 'entry' ? details.entrySlug : null;
+    activeReaderReturnReaderId = nextKind === 'reader' ? details.readerId : null;
   }
 
   function clearReaderReturnContext() {
@@ -2019,7 +2019,10 @@
 
     var returnKind = options.returnKind
       || (options.historyMode !== 'replace' ? 'collection' : activeReaderReturnKind);
-    setReaderReturnContext(returnKind);
+    setReaderReturnContext(returnKind, {
+      entrySlug:options.returnEntrySlug || activeReaderReturnEntrySlug,
+      readerId:options.returnReaderId || activeReaderReturnReaderId
+    });
 
     activeEntrySlug = null;
     activeGroupHomeKey = null;
