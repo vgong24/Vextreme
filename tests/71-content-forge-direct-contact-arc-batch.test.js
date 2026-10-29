@@ -75,7 +75,7 @@ test('Content Forge Direct Contact completes the exact canonical arc from two un
   const exactRouteFamilies=proposal.lineages?.exactRoute||[];
   const pageIdFamilies=proposal.lineages?.pageId||[];
   for(const member of formation.members){
-    const node=nodesBySlug.get(member.slug); assert.ok(node,member.slug+': canonical slot'); assert.equal(node.id,member.canonicalNodeId); assert.equal(node.title,member.title); assert.deepEqual(node.arcKeys,member.arcKeys);
+    const node=nodesBySlug.get(member.slug); assert.ok(node,member.slug+': canonical slot'); assert.equal(node.id,member.canonicalNodeId); assert.equal(node.title,member.title); assert.equal(projector.canonicalNodeCompatible(node,member),true,member.slug+': current node remains compatible with historical formation plus successor chronology');
     const record=proposalByRef.get(member.proposalRecordRef); assert.ok(record,member.slug+': proposal record'); assert.equal(record.destination.exactCanonicalNodeMatchOnCurrentMain,true); assert.equal(record.classification.requiresJudgment,false); assert.equal(record.source.route,member.sourceRoute); assert.equal(record.source.pageId,member.pageId);
     const ref=member.proposalRecordRef;
     assert.equal(canonicalFamilies.some(f=>(f.recordRefs||[]).includes(ref)&&f.reviewRequired===true),false,member.slug+': no canonical lineage review');

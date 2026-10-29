@@ -14,16 +14,24 @@ const NODES = path.join(ROOT, 'data', 'nodes.json');
 const ARCS = path.join(ROOT, 'data', 'arcs-v2.json');
 const INTENTS = path.join(ROOT, 'config', 'content-intents.json');
 const VIEWMODELS = path.join(ROOT, 'data', 'viewmodels.json');
+const CHRONOLOGY = path.join(ROOT, 'docs', 'ingestion', 'workmaps', 'vextreme-alignment-chronology-recovery-a001.json');
 
 const json = file => JSON.parse(fs.readFileSync(file, 'utf8'));
 const hash = file => crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
 
-test('Content Forge Evidential Research preserves the 15-member source-nav collection without bulk chronology inference', () => {
+test('Content Forge Evidential Research preserves its historical collection while successor chronology remains evidence-scoped', () => {
   const formation = json(FORMATION);
   const nodes = json(NODES);
   const nodesBySlug = new Map(nodes.map(node => [node.slug, node]));
   const arcs = json(ARCS);
   const heldBefore = { nodes: hash(NODES), arcs: hash(ARCS), intents: hash(INTENTS) };
+  const chronology = json(CHRONOLOGY);
+  assert.equal(
+    chronology.application?.replayCompatibility?.rule,
+    'HISTORICAL_FORMATION_PLUS_SUCCESSOR_CHRONOLOGY',
+    'current chronology recovery must explicitly own historical replay compatibility'
+  );
+  const admissionsBySlug = new Map(chronology.admissions.map(item => [item.slug, item]));
 
   assert.equal(formation.ownerRef, 'github.issue.vextreme.159');
   assert.equal(formation.predecessor.sortingGroupRef, 'source-collection.evidential-research');
@@ -43,14 +51,23 @@ test('Content Forge Evidential Research preserves the 15-member source-nav colle
     const node = nodesBySlug.get(member.slug);
     assert.ok(node, member.slug + ': canonical node');
     assert.equal(node.id, null, member.slug + ': collection-first id');
-    assert.equal(node.date, '', member.slug + ': no bulk-inferred date');
-    assert.deepEqual(node.arcKeys, ['evidential_research']);
+    const admission = admissionsBySlug.get(member.slug);
+    if (admission) {
+      assert.equal(node.date, admission.proposedDateText, member.slug + ': successor chronology uses reviewed source evidence');
+      assert.deepEqual(node.arcKeys, [...member.arcKeys, 'full_timeline'], member.slug + ': successor chronology adds only the cross-cutting timeline');
+    } else {
+      assert.equal(node.date, '', member.slug + ': chronology remains held without trustworthy evidence');
+      assert.deepEqual(node.arcKeys, member.arcKeys);
+    }
+    assert.equal(projector.canonicalNodeCompatible(node, member), true, member.slug + ': historical formation remains replay-compatible');
 
     const source = fs.readFileSync(path.join(ROOT, member.sourcePath));
     assert.equal(source.length, member.repositoryBytes, member.slug + ': source bytes');
     assert.equal(projector.gitBlobSha(source), member.sourceGitBlob, member.slug + ': source Git blob');
     assert.equal(hash(path.join(ROOT, member.sourcePath)), member.preservedHtmlSha256, member.slug + ': source SHA-256');
   }
+
+  assert.equal(formation.members.filter(member => admissionsBySlug.has(member.slug)).length, 9, 'only nine Evidential Research members have successor chronology evidence');
 
   const embedded = formation.members.find(member => member.slug === 'from-cost-to-control');
   assert.equal(embedded.adapterClass, 'EMBEDDED_CODE_CONTAINER');

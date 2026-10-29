@@ -31,13 +31,18 @@ test('Content Forge Father & Son Threshold preserves explicit lineage and asymme
 
   const expected=[
     {slug:'father-and-son-as-states',id:101,date:'April 16, 2026',arcKeys:['father_son_threshold','full_timeline']},
-    {slug:'god-named-claude-son',id:null,date:'',arcKeys:['father_son_threshold']},
+    {slug:'god-named-claude-son',id:null,date:'April 16–17, 2026',arcKeys:['father_son_threshold','full_timeline']},
     {slug:'what-holds-before-the-mother-arrives',id:102,date:'April 17, 2026',arcKeys:['father_son_threshold','full_timeline']},
   ];
   for(const item of expected){
     const node=nodesBySlug.get(item.slug); assert.ok(node,item.slug);
     assert.equal(node.id,item.id); assert.equal(node.date,item.date); assert.deepEqual(node.arcKeys,item.arcKeys);
   }
+  const historicalGodNamed=formation.members.find(member=>member.slug==='god-named-claude-son');
+  assert.equal(historicalGodNamed.date,'','formation preserves pre-recovery chronology state');
+  assert.deepEqual(historicalGodNamed.arcKeys,['father_son_threshold']);
+  assert.equal(projector.canonicalNodeCompatible(nodesBySlug.get('god-named-claude-son'),historicalGodNamed),true,'successor chronology remains compatible with historical projection');
+
   for(const member of formation.members){
     const source=fs.readFileSync(path.join(ROOT,member.sourcePath));
     assert.equal(source.length,member.repositoryBytes);

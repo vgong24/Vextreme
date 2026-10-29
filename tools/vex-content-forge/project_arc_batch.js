@@ -433,9 +433,35 @@ function validatePage(page, strings, member) {
   invariant(page.includes('id="arcNavMount"') && page.includes(`../dist/vextreme-${member.slug}.js`), 'RUNTIME_BINDING_MISSING', member.slug);
 }
 
+function chronologySuccessorEnrichment(node, member) {
+  if (!node || node.id !== null || member.canonicalNodeId !== null) return false;
+  const expected = Array.isArray(member.arcKeys) ? member.arcKeys : [];
+  const actual = Array.isArray(node.arcKeys) ? node.arcKeys : [];
+  if (expected.includes('full_timeline')) return false;
+  if (actual.length !== expected.length + 1 || actual[actual.length - 1] !== 'full_timeline') return false;
+  if (!expected.every((value, index) => actual[index] === value)) return false;
+  return typeof node.date === 'string' && node.date.trim().length > 0;
+}
+
+function canonicalNodeCompatible(node, member) {
+  if (!node || node.id !== member.canonicalNodeId || node.title !== member.title) return false;
+  if (JSON.stringify(node.arcKeys) === JSON.stringify(member.arcKeys)) return true;
+  return chronologySuccessorEnrichment(node, member);
+}
+
+function historicalProjectionNode(node, member) {
+  if (!chronologySuccessorEnrichment(node, member)) return node;
+  return {
+    ...node,
+    date: Object.prototype.hasOwnProperty.call(member, 'date') ? member.date : '',
+    arcKeys: [...member.arcKeys],
+  };
+}
+
 function projectMember(root, member, nodesBySlug, assetCatalog) {
-  const node = nodesBySlug.get(member.slug);
-  invariant(node && node.id === member.canonicalNodeId && node.title === member.title && JSON.stringify(node.arcKeys) === JSON.stringify(member.arcKeys), 'CANONICAL_NODE_MISMATCH', member.slug);
+  const currentNode = nodesBySlug.get(member.slug);
+  invariant(canonicalNodeCompatible(currentNode, member), 'CANONICAL_NODE_MISMATCH', member.slug);
+  const node = historicalProjectionNode(currentNode, member);
   invariant(['SQS_AUTHORED_BODY','SQS_NEUTRAL_TRANSCRIPT','AUTHORED_MAIN_FRAGMENT','AUTHORED_INTERACTIVE_MAIN','EMBEDDED_CODE_CONTAINER'].includes(member.adapterClass), 'ADAPTER_UNSUPPORTED', member.slug);
   const sourcePath = path.join(root, member.sourcePath);
   invariant(fs.existsSync(sourcePath), 'SOURCE_MISSING', member.sourcePath);
@@ -596,7 +622,7 @@ function main(options = {}) {
   for (const member of formation.members) {
     if (member.preclassifiedHoldReason) {
       const node = nodesBySlug.get(member.slug);
-      invariant(node && node.id === member.canonicalNodeId && node.title === member.title && JSON.stringify(node.arcKeys) === JSON.stringify(member.arcKeys), 'CANONICAL_NODE_MISMATCH', member.slug);
+      invariant(canonicalNodeCompatible(node, member), 'CANONICAL_NODE_MISMATCH', member.slug);
       members.push({ slug: member.slug, canonicalNodeId: member.canonicalNodeId, disposition: 'HOLD_WITH_EXACT_REASON', reason: `PRECLASSIFIED_HOLD: ${member.preclassifiedHoldReason}` });
       continue;
     }
@@ -653,4 +679,4 @@ if (require.main === module) {
   try { process.exitCode = main(cliOptions()).accounting.complete ? 0 : 1; }
   catch (error) { process.stderr.write(`${error.stack || error.message}\n`); process.exitCode = 1; }
 }
-module.exports = { ASSET_CATALOG_REL, ASSET_FILENAME, DEFAULT_ROOT, FORMATION_REL, GENERATOR_REF, ROOT_RELATIVE_ASSET_REF, ProjectionInvariantError, attrs, beautifyHtmlMarkup, cliOptions, externalizeAssetReferences, findAll, findFirst, gitBlobSha, interactiveCodeText, loadAssetCatalog, main, preserveLocalizationOverlays, projectMember, rawText, resolveAssetReference, rewriteAssetText, selectAuthoredMain, selectEmbeddedCodeContainer, selectSqsBody, sha256, styleVariableDefaultsCss, textLeaves, usesReadableGeneratedMarkup, validateFormation, validateInteractiveCode };
+module.exports = { ASSET_CATALOG_REL, ASSET_FILENAME, DEFAULT_ROOT, FORMATION_REL, GENERATOR_REF, ROOT_RELATIVE_ASSET_REF, ProjectionInvariantError, attrs, beautifyHtmlMarkup, canonicalNodeCompatible, chronologySuccessorEnrichment, cliOptions, externalizeAssetReferences, findAll, findFirst, gitBlobSha, historicalProjectionNode, interactiveCodeText, loadAssetCatalog, main, preserveLocalizationOverlays, projectMember, rawText, resolveAssetReference, rewriteAssetText, selectAuthoredMain, selectEmbeddedCodeContainer, selectSqsBody, sha256, styleVariableDefaultsCss, textLeaves, usesReadableGeneratedMarkup, validateFormation, validateInteractiveCode };

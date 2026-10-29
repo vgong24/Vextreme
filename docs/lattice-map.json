@@ -576,7 +576,8 @@
       "reads": [],
       "writes": [],
       "loadedBy": [
-        "lib/build-index.js"
+        "lib/build-index.js",
+        "tests/01-content-pipeline.test.js"
       ],
       "testedBy": [
         "tests/01-content-pipeline.test.js",
