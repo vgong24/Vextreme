@@ -661,6 +661,22 @@ test('TERRAIN-VIEW: collection overview shows up to three deterministic daily pr
   );
   assert.doesNotMatch(source, /previewStripWidth|previewStartX|previewThumbGap/,
     'daily previews must not regress to a compact right-aligned strip');
+
+  const slotYFn = source.match(/function dailyPreviewSlotY\(rect, metadataBaselineY, thumbHeight\) \{[\s\S]*?\n  \}/);
+  assert.ok(slotYFn, 'daily preview vertical-layout helper must remain extractable');
+  const slotY = new Function(slotYFn[0] + '\nreturn dailyPreviewSlotY;')();
+  const verticalCard = { y:100, height:140 };
+
+  assert.equal(slotY(verticalCard, 180, 34), 189.5,
+    'one preview is centered inside the lower card region');
+  assert.equal(slotY(verticalCard, 180, 30), 191.5,
+    'multi-preview rows are centered between metadata and the card bottom');
+  assert.match(source, /var statY = r\.y \+ \(context\?48:\(currentWorld === 'content' \? \(focused\?103:80\) : \(focused\?84:78\)\)\)/,
+    'metadata baseline must have one named owner inside the card');
+  assert.match(source, /var previewY = dailyPreviewSlotY\(r, statY, previewThumbHeight\)/,
+    'preview geometry must derive from the metadata baseline and card bounds');
+  assert.match(source, /var stat=el\('text',\{x:r\.x\+14,y:statY,class:'stage-sub'\}\)/,
+    'rendered metadata must consume the same baseline used by preview layout');
 });
 
 test('TERRAIN-VIEW: overview thumbnail imagery hydrates progressively after interaction is ready', () => {

@@ -2399,6 +2399,14 @@
     return left + (right - left) * (index / (count - 1));
   }
 
+  function dailyPreviewSlotY(rect, metadataBaselineY, thumbHeight) {
+    var metadataBottom = metadataBaselineY + 3;
+    var previewRegionTop = metadataBottom + 4;
+    var previewRegionBottom = rect.y + rect.height - 14;
+    return previewRegionTop
+      + Math.max(0, previewRegionBottom - previewRegionTop - thumbHeight) / 2;
+  }
+
   function refreshLocalizedPreviewImages() {
     document.querySelectorAll('.evo-card[data-node-id]').forEach(function (card) {
       var node = byId[card.getAttribute('data-node-id')];
@@ -3400,12 +3408,13 @@
         'aria-pressed':String(focused),
         'aria-label':aria
       });
+      var statY = r.y + (context?48:(currentWorld === 'content' ? (focused?103:80) : (focused?84:78)));
       var halo=el('rect',{x:r.x,y:r.y,width:r.width,height:r.height,rx:focused?22:14,class:'stage-halo'}); g.appendChild(halo);
       var dailyPreviewThumbs = [];
       if (dailyPreviewMembers.length) {
         var previewThumbWidth = dailyPreviewMembers.length === 1 ? 58 : 48;
         var previewThumbHeight = dailyPreviewMembers.length === 1 ? 34 : 30;
-        var previewY = r.y + r.height - (dailyPreviewMembers.length === 1 ? 61 : 57);
+        var previewY = dailyPreviewSlotY(r, statY, previewThumbHeight);
         dailyPreviewMembers.forEach(function (member, previewIndex) {
           var visual = evolutionPreviewSource(member);
           if (!visual) return;
@@ -3451,7 +3460,7 @@
       if (!context && currentWorld !== 'content') {
         var sub=el('text',{x:r.x+14,y:r.y+(focused?57:52),class:'stage-sub'}); sub.textContent=stageLabelText(stage.sub, focused?48:34); g.appendChild(sub);
       }
-      var stat=el('text',{x:r.x+14,y:r.y+(context?48:(currentWorld === 'content' ? (focused?103:80) : (focused?84:78))),class:'stage-sub'});
+      var stat=el('text',{x:r.x+14,y:statY,class:'stage-sub'});
       if (currentWorld === 'content') {
         stat.textContent = context ? summary.membershipCount : membershipText;
       } else {
