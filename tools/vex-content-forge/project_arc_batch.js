@@ -127,6 +127,7 @@ function replace(parent, current, next) {
 
 function sanitize(root, adapter) {
   let h1Seen = false;
+  const sqsBodyAdapter = adapter === 'SQS_AUTHORED_BODY' || adapter === 'SQS_NEUTRAL_TRANSCRIPT';
   function visit(node) {
     for (const child of [...(node.childNodes || [])]) {
       if (child.tagName) {
@@ -143,7 +144,7 @@ function sanitize(root, adapter) {
           || (adapter === 'AUTHORED_MAIN_FRAGMENT' && child.tagName === 'nav');
         if (chrome) { remove(child); continue; }
         if (child.tagName === 'h1') {
-          if (adapter === 'SQS_AUTHORED_BODY' || h1Seen) child.nodeName = child.tagName = 'h2';
+          if (sqsBodyAdapter || h1Seen) child.nodeName = child.tagName = 'h2';
           else h1Seen = true;
         }
         child.attrs = (child.attrs || []).filter(item => {
@@ -152,7 +153,7 @@ function sanitize(root, adapter) {
           if (name === 'data-i18n' || name === 'data-i18n-attrs' || name.startsWith('data-vex') || name.startsWith('data-sqsp') || name.startsWith('on')) return false;
           if ((name === 'href' || name === 'src') && (/^javascript:/i.test(value) || value.includes('/__rescue/'))) return false;
           if (name === 'id' && (value === 'arcNavMount' || value.startsWith('vex-generated:'))) return false;
-          if (adapter === 'SQS_AUTHORED_BODY' && ['class', 'id', 'style'].includes(name)) return false;
+          if (sqsBodyAdapter && ['class', 'id', 'style'].includes(name)) return false;
           return true;
         });
       }
@@ -307,7 +308,7 @@ function validatePage(page, strings, member) {
 function projectMember(root, member, nodesBySlug, assetCatalog) {
   const node = nodesBySlug.get(member.slug);
   invariant(node && node.id === member.canonicalNodeId && node.title === member.title && JSON.stringify(node.arcKeys) === JSON.stringify(member.arcKeys), 'CANONICAL_NODE_MISMATCH', member.slug);
-  invariant(['SQS_AUTHORED_BODY','AUTHORED_MAIN_FRAGMENT','EMBEDDED_CODE_CONTAINER'].includes(member.adapterClass), 'ADAPTER_UNSUPPORTED', member.slug);
+  invariant(['SQS_AUTHORED_BODY','SQS_NEUTRAL_TRANSCRIPT','AUTHORED_MAIN_FRAGMENT','EMBEDDED_CODE_CONTAINER'].includes(member.adapterClass), 'ADAPTER_UNSUPPORTED', member.slug);
   const sourcePath = path.join(root, member.sourcePath);
   invariant(fs.existsSync(sourcePath), 'SOURCE_MISSING', member.sourcePath);
   const source = fs.readFileSync(sourcePath);
@@ -319,7 +320,7 @@ function projectMember(root, member, nodesBySlug, assetCatalog) {
   externalizeAssetReferences(document, assetCatalog);
   let selected;
   let styles = [];
-  if (member.adapterClass === 'SQS_AUTHORED_BODY') {
+  if (member.adapterClass === 'SQS_AUTHORED_BODY' || member.adapterClass === 'SQS_NEUTRAL_TRANSCRIPT') {
     selected = selectSqsBody(document);
   } else if (member.adapterClass === 'AUTHORED_MAIN_FRAGMENT') {
     selected = selectAuthoredMain(document);
@@ -330,7 +331,8 @@ function projectMember(root, member, nodesBySlug, assetCatalog) {
     styles = authoredStyles(embedded.container);
   }
   const h1Seen = sanitize(selected, member.adapterClass);
-  const synthesizeCanonicalHeading = member.adapterClass !== 'SQS_AUTHORED_BODY' && !h1Seen;
+  const sqsBodyAdapter = member.adapterClass === 'SQS_AUTHORED_BODY' || member.adapterClass === 'SQS_NEUTRAL_TRANSCRIPT';
+  const synthesizeCanonicalHeading = !sqsBodyAdapter && !h1Seen;
   const leaves = textLeaves(selected);
   invariant(leaves.length, 'AUTHORED_TEXT_EMPTY', member.slug);
   const scope = `pages.${member.slug}`;
@@ -347,6 +349,12 @@ function projectMember(root, member, nodesBySlug, assetCatalog) {
       [`${scope}.meta.date`]: node.date, [`${scope}.meta.by`]: 'Written By', [`${scope}.meta.author`]: 'Victor Gong',
     });
     body = `${longPageNav}<main${mainAnchor}><header class="page-head"><p class="eyebrow" data-i18n="${scope}.eyebrow">Conversations with God</p><h1 data-i18n="${scope}.title">${escapeHtml(node.title)}</h1><div class="meta"><time datetime="${isoDate(node.date)}" data-i18n="${scope}.meta.date">${escapeHtml(node.date)}</time><span><span data-i18n="${scope}.meta.by">Written By</span> <span data-i18n="${scope}.meta.author">Victor Gong</span></span></div></header><article class="transcript" data-content-forge-body="${member.slug}" data-content-forge-source="${sourcePart(member.sourcePath)}">${bodyHtml}</article><section class="arc-wrap" aria-label="Arc navigation"><div id="arcNavMount"></div></section></main>`;
+  } else if (member.adapterClass === 'SQS_NEUTRAL_TRANSCRIPT') {
+    fixed[`${scope}.title`] = node.title;
+    const dateMeta = node.date
+      ? (fixed[`${scope}.meta.date`] = node.date, `<div class="meta"><time datetime="${isoDate(node.date)}" data-i18n="${scope}.meta.date">${escapeHtml(node.date)}</time></div>`)
+      : '';
+    body = `${longPageNav}<main${mainAnchor}><header class="page-head"><h1 data-i18n="${scope}.title">${escapeHtml(node.title)}</h1>${dateMeta}</header><article class="transcript" data-content-forge-body="${member.slug}" data-content-forge-source="${sourcePart(member.sourcePath)}">${bodyHtml}</article><section class="arc-wrap" aria-label="Arc navigation"><div id="arcNavMount"></div></section></main>`;
   } else {
     const sourceClass = classes(selected).filter(token => !/^vex-(?:native|generated)/.test(token));
     if (!sourceClass.includes('vex-authored-page-frame')) sourceClass.unshift('vex-authored-page-frame');
@@ -362,7 +370,7 @@ function projectMember(root, member, nodesBySlug, assetCatalog) {
   const strings = fs.existsSync(stringsPath)
     ? preserveLocalizationOverlays(projectedStrings, readJson(stringsPath))
     : projectedStrings;
-  const baseStyle = member.adapterClass === 'SQS_AUTHORED_BODY' ? GENERIC_STYLE : `${AUTHORED_STYLE}\n${styles.join('\n')}`;
+  const baseStyle = sqsBodyAdapter ? GENERIC_STYLE : `${AUTHORED_STYLE}\n${styles.join('\n')}`;
   const style = longPageNav ? `${baseStyle}\n${LONG_PAGE_ESCAPE_STYLE}` : baseStyle;
   const page = `${pageHead(node.title, scope, `${node.title} — repository-native preserved content.`, style)}<body data-content-forge-generator="${GENERATOR_REF}"><!-- Source-managed ${member.adapterClass} projection of ${member.sourcePath}. -->${body}<script src="../dist/vextreme-${member.slug}.js"></script></body></html>`;
   validatePage(page, strings, member);
