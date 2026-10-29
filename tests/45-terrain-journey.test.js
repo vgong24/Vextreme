@@ -84,7 +84,60 @@ test('TERRAIN-JOURNEY: page wires semantic history without storing camera noise'
 });
 
 
-test('TERRAIN-JOURNEY: threshold rail projects semantic depth and exposes only a bounded outward zoom affordance', () => {
+test('TERRAIN-JOURNEY: automatic-entry preference stays presentation-local and out of semantic identity', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
+
+  const capture = source.match(/function captureSemanticState\(\) \{([\s\S]*?)\n  \}/);
+  assert.ok(capture, 'semantic snapshot owner must remain explicit');
+  assert.doesNotMatch(capture[1], /COLLECTION_ENTER_RATIO|COLLECTION_ENTER_RATIO_STORAGE_KEY|terrainEnterRatio|localStorage/,
+    'automatic-entry preference must not become Journey semantic state');
+
+  const preference = source.match(/function setCollectionEnterRatioPreference\(value, persist\) \{([\s\S]*?)\n  \}/);
+  assert.ok(preference, 'entry-depth preference writer must remain explicit');
+  assert.doesNotMatch(preference[1], /commitSemanticState|syncPresentationUrl|enterLevel/,
+    'changing display preference must not become semantic movement or route identity');
+
+  const reveal = source.match(/function revealDepthRail\(\) \{([\s\S]*?)\n  \}/);
+  assert.ok(reveal, 'depth preference inspection path must remain explicit');
+  assert.doesNotMatch(reveal[1], /localStorage|setCollectionEnterRatioPreference|commitSemanticState/,
+    'hover/focus inspection must remain effect-free');
+
+  const syncUrl = source.match(/function syncPresentationUrl\([^)]*\) \{([\s\S]*?)\n  \}/);
+  assert.ok(syncUrl, 'presentation URL owner must remain explicit');
+  assert.doesNotMatch(syncUrl[1], /ENTER_RATIO|ENTER_RATIO_STORAGE_KEY|terrainEnterRatio/,
+    'preference must not be serialized as navigation identity');
+});
+
+test('TERRAIN-JOURNEY: Content owns max-four overview and readable collection-entry preference without changing Live/Code geometry', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
+  const match = source.match(/<script type="application\/json" id="terrain-view-contract">\s*([\s\S]*?)\s*<\/script>/);
+  assert.ok(match, 'Terrain view contract must remain embedded in the page');
+  const view = JSON.parse(match[1]);
+
+  assert.equal(view.profiles.live.levels.group.overview.maxColumns, 3,
+    'Live/Code keeps its accepted three-column overview geometry');
+  assert.equal(view.profiles['evolution-v1'].levels.group.overview.maxColumns, 4,
+    'accepted Content may expand only its own collection overview to four columns');
+  assert.ok(view.profiles['evolution-v1'].declaredDeltas.some((delta) => /up to four columns/.test(delta)));
+  assert.ok(view.profiles['evolution-v1'].declaredDeltas.some((delta) => /local automatic-entry zoom preference/.test(delta)));
+
+  assert.match(source, /function stageOverviewMaxColumns\(profile\)[\s\S]*currentWorld === 'content'[\s\S]*currentProfile === 'evolution-v1'/);
+  assert.match(source, /return profile\.overview\.maxColumns/);
+  assert.match(source, /function stageOverviewColumnCount\(profile\)/);
+  assert.match(source, /return Math\.min\(stageOverviewMaxColumns\(profile\), Math\.max\(1, STAGES\.length\)\)/);
+  assert.match(source, /function fitRectToView\(rect, fillFactor\)[\s\S]*Math\.min\(vp\.w \* fillFactor \/ rect\.width, vp\.h \* fillFactor \/ rect\.height\)/,
+    'existing Terrain fit/framing remains the viewport-scale owner');
+  assert.match(source, /var cols = stageOverviewColumnCount\(profile\)/);
+  assert.match(source, /\.evo-grid\{ display:grid; grid-template-columns:repeat\(auto-fill,minmax\(220px,1fr\)\);/,
+    'post-entry member-card grid stays outside this overview refinement');
+
+  assert.match(source, /\.depth-preference-label\{[^}]*font:700 11px\/1\.25 var\(--mono\)/);
+  assert.match(source, /\.depth-preference-value\{[^}]*font:800 14px\/1 var\(--mono\)/);
+  assert.match(source, /\.depth-preference input\[type="range"\]\{[^}]*min-height:28px/);
+  assert.match(source, /aria-label="Zoom depth before automatic collection entry"/);
+});
+
+test('TERRAIN-JOURNEY: threshold rail projects semantic depth with bounded outward motion and one bounded entry-depth preference', () => {
   const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
   const start = source.indexOf('function thresholdRailPosition');
   const end = source.indexOf('// ── the navigation fix', start);
@@ -93,12 +146,20 @@ test('TERRAIN-JOURNEY: threshold rail projects semantic depth and exposes only a
 
   assert.match(railSource, /levelIndex/);
   assert.match(railSource, /levelBaseScale/);
-  assert.match(railSource, /ENTER_RATIO/);
+  assert.match(railSource, /enterRatioForCurrentContext/);
   assert.match(railSource, /EXIT_RATIO/);
   assert.match(railSource, /aria-current="step"/);
   assert.match(railSource, /role="progressbar"/);
-  assert.doesNotMatch(railSource, /<button|<input/, 'the rail does not become an arbitrary navigation surface');
-  assert.match(source, /id="levelReadout" tabindex="0" aria-label="Semantic depth\. Scroll downward while focused or hovered to move outward one layer\."/);
+  assert.doesNotMatch(railSource, /<button/, 'the rail does not become an arbitrary discrete navigation surface');
+  assert.match(railSource, /data-enter-ratio type="range"/, 'the rail may expose exactly the bounded automatic-entry depth preference');
+  assert.match(railSource, /COLLECTION_ENTER_RATIO_MIN/);
+  assert.match(railSource, /COLLECTION_ENTER_RATIO_MAX/);
+  assert.match(railSource, /setCollectionEnterRatioPreference/);
+  assert.match(source, /id="levelReadout" tabindex="0" aria-label="Semantic depth\. Scroll downward while focused or hovered to move outward one layer\. Focus here to reveal the entry zoom preference\."/);
+  assert.match(source, /function collectionEntryPreferenceApplies\(\)[\s\S]*currentWorld === 'content'[\s\S]*currentProfile === 'evolution-v1'[\s\S]*levelIndex === 1/);
+  assert.match(source, /function enterRatioForCurrentContext\(\)[\s\S]*collectionEntryPreferenceApplies\(\) \? collectionEnterRatio : TERRAIN_ENTER_RATIO/);
+  assert.match(source, /var TERRAIN_ENTER_RATIO = 3\.0/);
+  assert.match(source, /COLLECTION_ENTER_RATIO_STORAGE_KEY = 'vex-terrain-collection-enter-ratio'/);
   assert.match(source, /\.level-readout\{[\s\S]*z-index:12;[\s\S]*pointer-events:auto;[\s\S]*opacity:\.18;/);
   assert.match(source, /\.level-readout\[data-can-zoom-out="true"\]\{ cursor:zoom-out; \}/);
   assert.match(source, /function canStepOutwardTerrainLayer\(\)/);
@@ -156,7 +217,8 @@ test('TERRAIN-JOURNEY: Row B uses existing stage semantics for adaptive focus an
   assert.match(source, /role:'button'/);
   assert.match(source, /tabindex:'0'/);
   assert.match(source, /targetLevel === 1 && stageIdx >= 0/);
-  assert.match(source, /levelIndex === 1 && typeof levelCtx\.stageIdx !== 'number' && ratio > ENTER_RATIO/);
+  assert.match(source, /var enterRatio = enterRatioForCurrentContext\(\)/);
+  assert.match(source, /levelIndex === 1 && typeof levelCtx\.stageIdx !== 'number' && ratio > enterRatio/);
   assert.match(source, /levelIndex === 1 && typeof levelCtx\.stageIdx === 'number' && ratio < EXIT_RATIO/);
   assert.match(source, /NODE_NEIGHBORHOOD_LIMIT = LIVE_VIEW\.levels\.node\.neighborhoodLimit/);
   assert.match(source, /"neighborhoodLimit": 12/);
