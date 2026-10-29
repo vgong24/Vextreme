@@ -1137,34 +1137,7 @@
       "status": "good",
       "engineerFocus": true,
       "auditorFocus": false,
-      "auditorRank": 19,
-      "context": "Session 025 generalized the terrain-map pilot (an Artifact over 14 hand-picked nodes shown to Victor as a proof of concept) into a real, self-updating feature. Same CQRS split as data/status.json -> pages/ecosystem-hub.html: this script is the write side, pages/terrain-map.html is hand-authored once and live-fetches its output. Adding a lattice node, a page, or a screenshot never requires touching the HTML — only rerunning this generator, wired into CI the same as every other dashboard's data source. Session 025 (continued) replaced the folder-grid layout with a lifecycle-stage layout (source -> generate -> utilities -> check -> output -> runtime) and added two role-lens tags per node (engineerFocus / auditorFocus), after a round of Artifact POCs tested a fractal zoom-level UI (system -> stage -> node, each level snapping to its own full framing on entry, exiting always stepping back one level) against this exact shape. The stage/lens rules are naming-pattern heuristics over real fields, explicitly not a designed taxonomy — each node's lens tags render visibly in the UI so the heuristic can be challenged, not hidden behind a silent classification. Session 025 (continued) again: added computeExecutionOrder (real within-stage ordering sourced from .github/workflows/build-index.yml's literal step sequence and lib/session-bootstrap.js's own check order, not alphabetical) and per-node auditorRank (an alternate within-stage ordering by worst-status-first — the read side swaps to it, recomputing position, only while the auditor lens is active). Also added a second, parallel content layer (layoutArcs/buildContentPages -> the `arcs`/`pages` output fields): the same column-per-group technique applied to data/nodes.json grouped by arc instead of lifecycle stage, primary arc-column geometry ordered by each node's real `id` field (curation order), while reader-facing collection/timeline membership reuses canonical `data/index.json.arcMap` section and slug order rather than inventing a second sorter. A curated node with no matching pages/*.html file is marked live:false, status:'critical' rather than implied to be a real page — most of this repo's 91 curated nodes are unported v1 content, and that is real, common state to show, not an edge case to hide. A real pages/*.html file with no nodes.json entry lands in a distinct 'uncurated' arc column instead of being silently absent.",
-      "changeMap": {
-        "docs/lattice-map.json schema changed (reads/writes/loadedBy/testedBy shape)": [
-          "computeEdges() / findDebtReferences() here read those fields directly"
-        ],
-        "data/terrain-map.json schema changed (nodes/edges/stages/screens/arcs/pages shape)": [
-          "pages/terrain-map.html (the only consumer — live-fetches this exact shape, including the CONTENT world's arcs/pages fields)",
-          "tests/28-build-terrain-map.test.js"
-        ],
-        "data/arcs-v2.json's priority field or key naming convention changed": [
-          "layoutArcs() here sorts arc columns by priority then key — a differently-shaped priority value silently reorders or misgroups the content layer"
-        ],
-        "screenshot filename convention changed": [
-          "lib/screenshot-evidence.js (canonical parser for legacy and institutional matrix names)",
-          "scripts/screenshot-page.js and the later institutional harness (writers must emit an accepted shape)"
-        ],
-        "pinned Assets screenshot projection changed": [
-          "lib/screenshot-evidence.js (Assets record normalization + local-first merge semantics)",
-          "pages/terrain-map.html (absolute remote screenshot URL rendering)",
-          "tests/28-build-terrain-map.test.js and tests/85-terrain-view-contract.test.js"
-        ],
-        "data/index.json arcMap ordering or section schema changed": [
-          "lib/build-terrain-map.js (projects canonical memberSlugs/sections into data/terrain-map.json)",
-          "pages/terrain-map.html (stageMembers and Timeline section renderer consume that order)",
-          "tests/28-build-terrain-map.test.js and tests/85-terrain-view-contract.test.js"
-        ]
-      }
+      "auditorRank": 19
     },
     {
       "id": "lib/build-vextreme.js",

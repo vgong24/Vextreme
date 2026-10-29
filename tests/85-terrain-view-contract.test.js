@@ -377,7 +377,9 @@ test('TERRAIN-VIEW: selected Content collection does not duplicate overview curi
     'shared preview capability remains available for overview curiosity');
   assert.match(source, /class="evo-preview"/,
     'ordinary member cards retain their own page preview');
-  assert.match(source, /var memberCards = members\.map\(function \(node\) \{/);
+  assert.match(source, /function memberCardHtml\(node\)/);
+  assert.match(source, /memberCards = members\.map\(memberCardHtml\)\.join\(''\)/,
+    'ordinary collection cards must still reuse the shared member-card renderer');
 
   assert.doesNotMatch(source, /function evolutionVisualWindowNodes\(members\)/);
   assert.doesNotMatch(source, /class="evo-windows"/);
