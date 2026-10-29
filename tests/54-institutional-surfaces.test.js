@@ -389,6 +389,30 @@ test('INSTITUTIONAL-SURFACES: shell-context keeps institutional identity while s
   assert.ok(validateRegistry(active, root).some(issue => issue.check === 'shell-context-lang-disabled'));
 });
 
+test('INSTITUTIONAL-SURFACES: Global Core locales are admitted and shell evidence drives the shared language FAB', () => {
+  const globalCore = {
+    EN: 'en', ZH: 'zh', JA: 'ja', KO: 'ko', FR: 'fr',
+    DE: 'de', ES: 'es', PT: 'pt', AR: 'ar', HI: 'hi',
+  };
+  const configSource = fs.readFileSync(path.join(ROOT, 'lib', 'vex-config.js'), 'utf8').replace(/\r\n/g, '\n');
+  for (const [symbol, locale] of Object.entries(globalCore)) {
+    assert.match(configSource, new RegExp(`\\b${symbol}:\\s*['"]${locale}['"]`),
+      `Language registry must admit Global Core locale ${locale}`);
+  }
+
+  const source = fs.readFileSync(path.join(ROOT, 'scripts', 'screenshot-institutional.js'), 'utf8').replace(/\r\n/g, '\n');
+  assert.match(source, /surface\?\.runtime\?\.mode === 'shell-context'/,
+    'shell-context evidence must distinguish the shared FAB runtime from the standalone selector');
+  assert.match(source, /#vex-lang-fab-btn/);
+  assert.match(source, /#vex-spiral-trigger/);
+  assert.match(source, /\.vex-lang-item\[data-lang=/);
+  assert.match(source, /institution\\\.\(\[a-z0-9-\]\+\)\\\.json/,
+    'institutional bundle interception must admit the declared locale set rather than an EN\/JA\/ZH-only regex');
+  assert.doesNotMatch(source, /exact EN\/JA\/ZH activation/);
+  assert.doesNotMatch(source, /page\.selectOption\('\[data-vex-lang-select\]', 'zh'\)/,
+    'shell transaction probes must not drive the standalone-only native selector');
+});
+
 test('INSTITUTIONAL-SURFACES: inactive support routes fail closed in data and HTML', () => {
   const { root, active, routePath, routeConfig } = supportRouteFixture(
     '<article data-vex-route="support.test"><span data-vex-route-action role="link" aria-disabled="true">Held</span></article>'

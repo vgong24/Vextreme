@@ -129,7 +129,7 @@ test('CONTENT FORGE CLARITY: every destination localization key resolves through
     'docs/ingestion/source-pages/part-022/clarity-on-christianity.html');
 });
 
-test('CONTENT FORGE CLARITY: viewmodel preserves production defaults and adds v2 arc-nav only', () => {
+test('CONTENT FORGE CLARITY: viewmodel preserves production defaults, v2 arc-nav, and intentional Terrain cover', () => {
   const viewmodels = JSON.parse(fs.readFileSync(VIEWMODELS_PATH, 'utf8'));
   assert.deepEqual(viewmodels['clarity-on-christianity'], {
     title: 'Clarity on Christianity',
@@ -137,6 +137,11 @@ test('CONTENT FORGE CLARITY: viewmodel preserves production defaults and adds v2
     template: 'page',
     scopes: ['pages.clarity-on-christianity'],
     features: ['lang', 'spiral-fab', 'theme', 'map', 'analysis', 'arc-nav'],
+    preview: {
+      kind: 'cover',
+      src: 'https://vgong24.github.io/Vextreme-Assets/__assets/93e8f45a1cf67b8a40a8f09e7143e21956987f9a0e3f14234c048fdc0e162e82.webp',
+      alt: 'Clarity on Christianity — layered source, interpretation, and recognition cover art',
+    },
   });
 });
 

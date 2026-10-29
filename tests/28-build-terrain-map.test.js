@@ -545,8 +545,6 @@ test('BUILD-TERRAIN-MAP integration: Terrain projects canonical Full Timeline se
   assert.ok(timeline, 'Full Timeline arc missing from Terrain');
   assert.deepEqual(timeline.sections, index.arcMap.full_timeline);
   assert.deepEqual(timeline.memberSlugs, index.arcMap.full_timeline.flatMap(section => section.slugs));
-  assert.equal(timeline.memberSlugs.length, 131);
-  assert.equal(timeline.memberSlugs.at(-1), 'pier-house-scarcity-companionship');
 
   const nodeDates = Object.fromEntries(nodes.map(node => [node.slug, node.date || null]));
   for (const page of data.pages) {

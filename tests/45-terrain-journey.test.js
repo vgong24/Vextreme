@@ -35,6 +35,7 @@ test('TERRAIN-JOURNEY: creates a serializable origin and appends relationship-aw
   assert.equal(origin.journey.entries.length, 1, 'append must not mutate the prior browser-history state');
   assert.equal(next.journey.cursor, 1);
   assert.equal(Journey.current(next).relationship, 'search');
+  assert.equal(Journey.current(next).reason, 'search result');
   assert.equal(next.semantic.pinnedId, 'lib/build-vextreme.js');
 });
 
@@ -84,7 +85,91 @@ test('TERRAIN-JOURNEY: page wires semantic history without storing camera noise'
 });
 
 
-test('TERRAIN-JOURNEY: threshold rail projects semantic depth and exposes only a bounded outward zoom affordance', () => {
+test('TERRAIN-JOURNEY: automatic-entry preference stays presentation-local and out of semantic identity', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
+
+  const capture = source.match(/function captureSemanticState\(\) \{([\s\S]*?)\n  \}/);
+  assert.ok(capture, 'semantic snapshot owner must remain explicit');
+  assert.doesNotMatch(capture[1], /COLLECTION_ENTER_RATIO|COLLECTION_ENTER_RATIO_STORAGE_KEY|COLLECTION_SCROLL_TO_ENTER_STORAGE_KEY|terrainEnterRatio|data-scroll-to-enter|localStorage/,
+    'collection zoom/entry preferences must not become Journey semantic state');
+
+  const preference = source.match(/function setCollectionEnterRatioPreference\(value, persist\) \{([\s\S]*?)\n  \}/);
+  assert.ok(preference, 'entry-depth preference writer must remain explicit');
+  assert.doesNotMatch(preference[1], /commitSemanticState|syncPresentationUrl|enterLevel/,
+    'changing display preference must not become semantic movement or route identity');
+
+  const scrollPreference = source.match(/function setCollectionScrollToEnterPreference\(enabled, persist\) \{([\s\S]*?)\n  \}/);
+  assert.ok(scrollPreference, 'scroll-to-enter preference writer must remain explicit');
+  assert.doesNotMatch(scrollPreference[1], /commitSemanticState|syncPresentationUrl|enterLevel/,
+    'changing scroll-to-enter preference must remain local presentation state');
+
+  const reveal = source.match(/function revealDepthRail\(\) \{([\s\S]*?)\n  \}/);
+  assert.ok(reveal, 'depth preference inspection path must remain explicit');
+  assert.doesNotMatch(reveal[1], /localStorage|setCollectionEnterRatioPreference|setCollectionScrollToEnterPreference|commitSemanticState/,
+    'hover/focus inspection must remain effect-free');
+
+  const syncUrl = source.match(/function syncPresentationUrl\([^)]*\) \{([\s\S]*?)\n  \}/);
+  assert.ok(syncUrl, 'presentation URL owner must remain explicit');
+  assert.doesNotMatch(syncUrl[1], /ENTER_RATIO|ENTER_RATIO_STORAGE_KEY|COLLECTION_SCROLL_TO_ENTER_STORAGE_KEY|terrainEnterRatio|scroll-to-enter/,
+    'preferences must not be serialized as navigation identity');
+});
+
+test('TERRAIN-JOURNEY: Content owns max-four overview and readable collection-entry preference without changing Live/Code geometry', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
+  const match = source.match(/<script type="application\/json" id="terrain-view-contract">\s*([\s\S]*?)\s*<\/script>/);
+  assert.ok(match, 'Terrain view contract must remain embedded in the page');
+  const view = JSON.parse(match[1]);
+
+  assert.equal(view.profiles.live.levels.group.overview.maxColumns, 3,
+    'Live/Code keeps its accepted three-column overview geometry');
+  assert.equal(view.profiles['evolution-v1'].levels.group.overview.maxColumns, 4,
+    'accepted Content may expand only its own collection overview to four columns');
+  assert.ok(view.profiles['evolution-v1'].declaredDeltas.some((delta) => /up to four columns/.test(delta)));
+  assert.ok(view.profiles['evolution-v1'].declaredDeltas.some((delta) => /local automatic-entry zoom preference/.test(delta)));
+
+  assert.match(source, /function stageOverviewMaxColumns\(profile\)[\s\S]*currentWorld === 'content'[\s\S]*currentProfile === 'evolution-v1'/);
+  assert.match(source, /return profile\.overview\.maxColumns/);
+  assert.match(source, /function stageOverviewColumnCount\(profile\)/);
+  assert.match(source, /return Math\.min\(stageOverviewMaxColumns\(profile\), Math\.max\(1, STAGES\.length\)\)/);
+  assert.match(source, /function fitRectToView\(rect, fillFactor\)[\s\S]*Math\.min\(vp\.w \* fillFactor \/ rect\.width, vp\.h \* fillFactor \/ rect\.height\)/,
+    'existing Terrain fit/framing remains the viewport-scale owner');
+  assert.match(source, /var cols = stageOverviewColumnCount\(profile\)/);
+  assert.match(source, /\.evo-grid\{ display:grid; grid-template-columns:repeat\(auto-fill,minmax\(220px,1fr\)\);/,
+    'post-entry member-card grid stays outside this overview refinement');
+
+  assert.match(source, /\.depth-preference-label\{[^}]*font:700 11px\/1\.25 var\(--mono\)/);
+  assert.match(source, /\.depth-preference-value\{[^}]*font:800 14px\/1 var\(--mono\)/);
+  assert.match(source, /\.depth-preference input\[type="range"\]\{[^}]*min-height:28px/);
+  assert.match(source, /aria-label="Scroll to enter collection automatically"/);
+  assert.match(source, /Automatic collection entry at/);
+  assert.match(source, /Maximum collection zoom/);
+});
+
+test('TERRAIN-JOURNEY: Scroll to enter defaults on, persists locally, and when off caps visual zoom without semantic entry', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
+
+  assert.match(source, /COLLECTION_SCROLL_TO_ENTER_STORAGE_KEY = 'vex-terrain-collection-scroll-to-enter'/);
+  assert.match(source, /function readCollectionScrollToEnterPreference\(\)[\s\S]*if \(stored === 'false'\) return false;[\s\S]*if \(stored === 'true'\) return true;[\s\S]*return true;/);
+  assert.match(source, /localStorage\.setItem\(COLLECTION_SCROLL_TO_ENTER_STORAGE_KEY, collectionScrollToEnterEnabled \? 'true' : 'false'\)/);
+  assert.match(source, /data-scroll-to-enter/);
+  assert.match(source, /<span>Scroll to enter<\/span>/);
+  assert.match(source, /setCollectionScrollToEnterPreference\(toggle\.checked, true\)/);
+
+  assert.match(source, /var collectionEntryContext = collectionEntryPreferenceApplies\(\)/);
+  assert.match(source, /var allowSemanticEntry = !\(collectionEntryContext && !collectionScrollToEnterEnabled\)/);
+  assert.match(source, /if \(!allowSemanticEntry && ratio > collectionEnterRatio\) \{[\s\S]*newScale = levelBaseScale \* collectionEnterRatio;[\s\S]*ratio = collectionEnterRatio;/);
+  assert.match(source, /if \(allowSemanticEntry && levelIndex === 1 && typeof levelCtx\.stageIdx !== 'number' && ratio > enterRatio\)/);
+  assert.match(source, /if \(allowSemanticEntry && levelIndex < OVERVIEW_LEVELS\.length - 1 && ratio > enterRatio\)/);
+
+  assert.match(source, /g\.addEventListener\('click',function\(ev\)\{ ev\.stopPropagation\(\); activateStage\(i\); \}\)/,
+    'direct collection click entry must remain independent of scroll-to-enter');
+  assert.match(source, /ev\.key==='Enter'\|\|ev\.key===' '/,
+    'keyboard collection entry must remain independent of scroll-to-enter');
+  assert.match(source, /collectionScrollToEnterEnabled[\s\S]*'scroll to zoom into this collection'[\s\S]*'click or press Enter to open this collection'/,
+    'focused collection hint must match the current preference');
+});
+
+test('TERRAIN-JOURNEY: threshold rail projects semantic depth with bounded outward motion and one bounded entry-depth preference', () => {
   const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
   const start = source.indexOf('function thresholdRailPosition');
   const end = source.indexOf('// ── the navigation fix', start);
@@ -93,12 +178,20 @@ test('TERRAIN-JOURNEY: threshold rail projects semantic depth and exposes only a
 
   assert.match(railSource, /levelIndex/);
   assert.match(railSource, /levelBaseScale/);
-  assert.match(railSource, /ENTER_RATIO/);
+  assert.match(railSource, /enterRatioForCurrentContext/);
   assert.match(railSource, /EXIT_RATIO/);
   assert.match(railSource, /aria-current="step"/);
   assert.match(railSource, /role="progressbar"/);
-  assert.doesNotMatch(railSource, /<button|<input/, 'the rail does not become an arbitrary navigation surface');
-  assert.match(source, /id="levelReadout" tabindex="0" aria-label="Semantic depth\. Scroll downward while focused or hovered to move outward one layer\."/);
+  assert.doesNotMatch(railSource, /<button/, 'the rail does not become an arbitrary discrete navigation surface');
+  assert.match(railSource, /data-enter-ratio type="range"/, 'the rail may expose exactly the bounded automatic-entry depth preference');
+  assert.match(railSource, /COLLECTION_ENTER_RATIO_MIN/);
+  assert.match(railSource, /COLLECTION_ENTER_RATIO_MAX/);
+  assert.match(railSource, /setCollectionEnterRatioPreference/);
+  assert.match(source, /id="levelReadout" tabindex="0" aria-label="Semantic depth\. Scroll downward while focused or hovered to move outward one layer\. Focus here to reveal the entry zoom preference\."/);
+  assert.match(source, /function collectionEntryPreferenceApplies\(\)[\s\S]*currentWorld === 'content'[\s\S]*currentProfile === 'evolution-v1'[\s\S]*levelIndex === 1/);
+  assert.match(source, /function enterRatioForCurrentContext\(\)[\s\S]*collectionEntryPreferenceApplies\(\) \? collectionEnterRatio : TERRAIN_ENTER_RATIO/);
+  assert.match(source, /var TERRAIN_ENTER_RATIO = 3\.0/);
+  assert.match(source, /COLLECTION_ENTER_RATIO_STORAGE_KEY = 'vex-terrain-collection-enter-ratio'/);
   assert.match(source, /\.level-readout\{[\s\S]*z-index:12;[\s\S]*pointer-events:auto;[\s\S]*opacity:\.18;/);
   assert.match(source, /\.level-readout\[data-can-zoom-out="true"\]\{ cursor:zoom-out; \}/);
   assert.match(source, /function canStepOutwardTerrainLayer\(\)/);
@@ -156,7 +249,8 @@ test('TERRAIN-JOURNEY: Row B uses existing stage semantics for adaptive focus an
   assert.match(source, /role:'button'/);
   assert.match(source, /tabindex:'0'/);
   assert.match(source, /targetLevel === 1 && stageIdx >= 0/);
-  assert.match(source, /levelIndex === 1 && typeof levelCtx\.stageIdx !== 'number' && ratio > ENTER_RATIO/);
+  assert.match(source, /var enterRatio = enterRatioForCurrentContext\(\)/);
+  assert.match(source, /levelIndex === 1 && typeof levelCtx\.stageIdx !== 'number' && ratio > enterRatio/);
   assert.match(source, /levelIndex === 1 && typeof levelCtx\.stageIdx === 'number' && ratio < EXIT_RATIO/);
   assert.match(source, /NODE_NEIGHBORHOOD_LIMIT = LIVE_VIEW\.levels\.node\.neighborhoodLimit/);
   assert.match(source, /"neighborhoodLimit": 12/);
@@ -409,12 +503,15 @@ test('TERRAIN-JOURNEY: reader history preserves the real return surface instead 
   assert.match(source, /Object\.assign\(\{ version:1, kind:kind \}, details \|\| \{\}\)/);
   assert.match(source, /function presentationHistoryValue\(state\)/);
   assert.match(source, /syncPresentationUrl\(options\.historyMode \|\| 'push', 'reader', \{[\s\S]*returnKind:activeReaderReturnKind/);
-  assert.match(source, /syncPresentationUrl\(options\.historyMode \|\| 'push', 'group-home'\)/);
+  assert.match(source, /syncPresentationUrl\(options\.historyMode \|\| 'push', 'group-home', \{[\s\S]*returnKind:activeReaderReturnKind,[\s\S]*returnEntrySlug:activeReaderReturnEntrySlug,[\s\S]*returnReaderId:activeReaderReturnReaderId/,
+    'group-home history must preserve the actual surface it should return to');
   assert.match(source, /openEvolutionReader\(previous\.id, \{ historyMode:'replace' \}\)/);
   assert.match(source, /openEvolutionReader\(next\.id, \{ historyMode:'replace' \}\)/);
-  assert.match(source, /syncPresentationUrl\('replace', 'reader'\)/);
+  assert.match(source, /syncPresentationUrl\('replace', 'reader', \{ returnKind:activeReaderReturnKind \}\)/,
+    'direct embedded record routes must keep their real return contract when replacing the current presentation coordinate');
   assert.match(source, /presentationHistoryKind\(history\.state\) === 'reader'/);
   assert.match(source, /presentationHistoryKind\(history\.state\) === 'group-home'/);
+  assert.match(source, /presentationHistoryKind\(history\.state\) === 'entry'/);
   assert.match(source, /history\.back\(\)/);
   assert.match(source, /restoreEvolutionPresentationFromHistory\(event\.state\)/);
 
@@ -427,13 +524,112 @@ test('TERRAIN-JOURNEY: reader history preserves the real return surface instead 
   assert.match(source, /history\.replaceState\(returnState, '', window\.location\.href\)/,
     'direct overview entry rewrites only the current presentation coordinate before pushing the reader');
   assert.match(source, /returnKind:'curiosity-overview'/);
-  assert.match(source, /activeReaderReturnKind === 'curiosity-overview' \? '← Overview' : '← Collection'/);
+  assert.match(source, /if \(activeReaderReturnKind === 'curiosity-overview'\) backLabel = '← Overview'/);
+  assert.match(source, /activeReaderReturnKind === 'group-home'[\s\S]*backLabel = '← ' \+ \(stage\.parent\.title/,
+    'record-reader Back label must name the group home when that is the actual return surface');
   assert.match(source, /kind === 'curiosity-overview'/);
   assert.match(source, /kind === 'curiosity-overview'[\s\S]*restorePresentationCamera\(presentation\.camera\)[\s\S]*openContentTilePeek\(overviewStageIdx, \{/,
     'Back restores the presentation camera before reopening the curiosity shelf');
   assert.match(source, /openContentTilePeek\(overviewStageIdx, \{[\s\S]*step:Number\.isInteger\(presentation\.step\)[\s\S]*manual:presentation\.manual === true/);
   assert.match(source, /returnKind:presentation && presentation\.returnKind \? presentation\.returnKind : 'collection'/,
     'browser Forward restores the reader with its original return contract');
+});
+
+
+test('TERRAIN-JOURNEY: embedded Arc parent routes converge with Back without collapsing alternate topology', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
+
+  assert.match(source, /function currentReaderReturnStage\(\)/);
+  assert.match(source, /activeReaderReturnKind !== 'group-home'/);
+  assert.match(source, /function groupHomeRouteMatches\(slug\)/);
+  assert.match(source, /candidate\.stage\.parent\.pageSlug === slug/);
+  assert.match(source, /if \(activeReaderId[\s\S]*currentReturnStage[\s\S]*currentReturnStage\.parent\.pageSlug === slug\) \{[\s\S]*closeEvolutionReader\(\);[\s\S]*return true;/,
+    'the current Arc parent uses the same history-owned return path as the top Back control');
+  assert.match(source, /var matches = groupHomeRouteMatches\(slug\);[\s\S]*if \(matches\.length !== 1\) return false;/,
+    'alternate group-home traversal must fail closed when one slug does not identify exactly one group');
+  assert.match(source, /openEvolutionGroupHome\(target\.stage, \{[\s\S]*writeUrl:false,[\s\S]*returnKind:originReaderId \? 'reader' : 'collection',[\s\S]*returnReaderId:originReaderId/,
+    'a unique alternate Arc parent preserves the originating record as presentation return context');
+  assert.match(source, /syncPresentationUrl\('replace', 'group-home', \{[\s\S]*returnReaderId:activeReaderReturnReaderId/,
+    'alternate topology uses the existing presentation history namespace rather than another navigation stack');
+  assert.match(source, /var backLabel = returnEntry \? '← ' \+ returnEntry\.label : '← Collection';[\s\S]*if \(!returnEntry && returnReader\) backLabel = '← ' \+ \(returnReader\.title \|\| returnReader\.slug \|\| 'Page'\)/,
+    'alternate group-home Back extends the existing entry/collection contract only when returning to a record');
+  assert.match(source, /returnReaderId:presentation && presentation\.returnReaderId \? presentation\.returnReaderId : null/,
+    'Forward restoration preserves the alternate group-home return context');
+  assert.match(source, /function stageIndexForRouteNode\(node, preferredStageKey\)/);
+  assert.match(source, /stageIndexForRouteNode\(node, fromGroupHome \? activeGroupHomeKey : null\)/,
+    'a shared record opened from a group home keeps the actual journey group instead of falling back to primary placement');
+
+  const routeFn = source.match(/function stageIndexForRouteNode\(node, preferredStageKey\) \{[\s\S]*?\n  \}/);
+  assert.ok(routeFn, 'stageIndexForRouteNode must remain extractable for shared-membership proof');
+  const routeIndex = new Function('STAGES', routeFn[0] + '\nreturn stageIndexForRouteNode;')([
+    { key:'ai_practitioner_tools' },
+    { key:'direct_contact' },
+  ]);
+  const sharedRecord = { arcKeys:['ai_practitioner_tools', 'direct_contact'] };
+  assert.equal(routeIndex(sharedRecord, 'direct_contact'), 1,
+    'actual group-home origin outranks the shared record primary/first arc');
+  assert.equal(routeIndex(sharedRecord, null), 0,
+    'without a real route origin the existing primary/first membership fallback remains unchanged');
+
+  const fn = source.match(/function groupHomeRouteMatches\(slug\) \{[\s\S]*?\n  \}/);
+  assert.ok(fn, 'groupHomeRouteMatches must remain extractable for ambiguity proof');
+  const matchGroup = new Function('STAGES', fn[0] + '\nreturn groupHomeRouteMatches;')([
+    { key:'direct_contact', parent:{ live:true, url:'/pages/direct-contact.html', pageSlug:'direct-contact' } },
+    { key:'ai_practitioner_tools', parent:{ live:true, url:'/pages/ai-practitioner-tools.html', pageSlug:'ai-practitioner-tools' } },
+    { key:'architecture', parent:{ live:true, url:'/pages/archives.html', pageSlug:'archives' } },
+    { key:'claude_journals', parent:{ live:true, url:'/pages/archives.html', pageSlug:'archives' } },
+  ]);
+  assert.equal(matchGroup('direct-contact').length, 1);
+  assert.equal(matchGroup('ai-practitioner-tools').length, 1);
+  assert.equal(matchGroup('archives').length, 2,
+    'shared archives route remains ambiguous instead of being silently assigned to one collection');
+});
+
+
+test('TERRAIN-JOURNEY: Inspect projects relationship and causal reason as separate accepted Journey facts', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
+
+  assert.match(source, /\.journey-relationship\{[^}]*color:var\(--accent\)/,
+    'relationship retains the existing emphasized Journey treatment under a truthful presentation name');
+  assert.match(source, /\.journey-reason\{[^}]*color:var\(--ink-faint\)/,
+    'causal reason has its own read-only inspection treatment');
+  assert.match(source, /var relationship = entry\.relationship[\s\S]*class="journey-relationship"[\s\S]*esc\(entry\.relationship\)/);
+  assert.match(source, /var reason = entry\.reason[\s\S]*class="journey-reason">why · ' \+ esc\(entry\.reason\)/);
+  assert.doesNotMatch(source, /class="journey-reason">[^']*' \+ esc\(entry\.relationship\)/,
+    'the misleading historical class-to-field mapping must not return');
+
+  const start = source.indexOf('function journeyHtml()');
+  const end = source.indexOf('function wireJourneyControls', start);
+  assert.ok(start > 0 && end > start, 'Journey inspection projection must remain extractable');
+  const projectionSource = source.slice(start, end);
+  assert.doesNotMatch(projectionSource, /commitSemanticState|history\.(?:pushState|replaceState|back|go)|openEvolution|closeEvolution|enterLevel/,
+    'Inspect remains a projection and cannot become a navigation or semantic-state owner');
+
+  const make = new Function('journeySnapshot', 'esc', [
+    projectionSource,
+    'return journeyHtml();'
+  ].join('\n'));
+  const html = make({
+    journey: {
+      cursor: 1,
+      entries: [
+        { label:'VEXTREME', relationship:null, reason:null, fromNodeId:null },
+        {
+          label:'Direct Contact',
+          relationship:'entered from',
+          reason:'Receive God primary path',
+          fromNodeId:'receive-god'
+        }
+      ]
+    }
+  }, (value) => String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;'));
+
+  assert.match(html, /class="journey-relationship">entered from · receive-god<\/span>/);
+  assert.match(html, /class="journey-reason">why · Receive God primary path<\/span>/);
 });
 
 // [VXG RealForever]

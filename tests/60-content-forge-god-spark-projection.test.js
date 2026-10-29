@@ -115,7 +115,7 @@ test('CONTENT FORGE GOD SPARK: every destination localization key resolves throu
     'docs/ingestion/source-pages/part-021/what-is-the-god-spark.html');
 });
 
-test('CONTENT FORGE GOD SPARK: viewmodel preserves production defaults and adds arc-nav only', () => {
+test('CONTENT FORGE GOD SPARK: viewmodel preserves production defaults, arc-nav, and intentional Terrain cover', () => {
   const viewmodels = JSON.parse(fs.readFileSync(VIEWMODELS_PATH, 'utf8'));
   assert.deepEqual(viewmodels['what-is-the-god-spark'], {
     title: 'What is the God Spark?',
@@ -123,6 +123,11 @@ test('CONTENT FORGE GOD SPARK: viewmodel preserves production defaults and adds 
     template: 'page',
     scopes: ['pages.what-is-the-god-spark'],
     features: ['lang', 'spiral-fab', 'theme', 'map', 'analysis', 'arc-nav'],
+    preview: {
+      kind: 'cover',
+      src: 'https://vgong24.github.io/Vextreme-Assets/__assets/2bd560cef3ddd15e58b5e2b0383dba67d2fac2accf97e2ba5b15c49608238159.webp',
+      alt: 'What is the God Spark? — luminous source-and-network cover art',
+    },
   });
 });
 
