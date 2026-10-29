@@ -463,8 +463,8 @@ test('TERRAIN-JOURNEY: embedded Arc parent routes converge with Back without col
   assert.match(source, /if \(openGroupHomeRouteInTerrain\(slug\)\) return true;[\s\S]*if \(slug === 'archives'\)/,
     'same-group context is resolved before the broad archives fallback');
   assert.match(source, /activeReaderReturnKind === 'reader'[\s\S]*byId\[activeReaderReturnReaderId\]/);
-  assert.match(source, /else if \(returnReader\) backLabel = '← ' \+ \(returnReader\.title \|\| returnReader\.slug \|\| 'Page'\)/,
-    'alternate group-home Back names the actual record it returns to');
+  assert.match(source, /var backLabel = returnEntry \? '← ' \+ returnEntry\.label : '← Collection';[\s\S]*if \(!returnEntry && returnReader\) backLabel = '← ' \+ \(returnReader\.title \|\| returnReader\.slug \|\| 'Page'\)/,
+    'alternate group-home Back extends the existing entry/collection contract only when returning to a record');
   assert.match(source, /returnReaderId:presentation && presentation\.returnReaderId \? presentation\.returnReaderId : null/,
     'Forward restoration preserves the alternate group-home return label/context');
   assert.match(source, /function stageIndexForRouteNode\(node, preferredStageKey\)/);
