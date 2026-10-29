@@ -6,7 +6,7 @@ on:
       - VXG-102826-chatgpt-content-forge-remaining-ports-generated-a001
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   materialize:
@@ -119,8 +119,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          git add -A
-          git reset -- .github/workflows/content-forge-remaining-port-materializer.yml
+          git add config/content-intents.json data/index.json data/nodes.json data/viewmodels.json data/strings/source/pages pages
           git diff --cached --name-only > /tmp/changed-files.txt
           git diff --cached --binary > /tmp/generated.patch
           mkdir -p /tmp/generated-tree
@@ -153,3 +152,14 @@ jobs:
             /tmp/generated-stat.txt
           if-no-files-found: error
           retention-days: 7
+
+      - name: Commit exact remaining-port membrane and remove executor
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rm .github/workflows/content-forge-remaining-port-materializer.yml
+          git add config/content-intents.json data/index.json data/nodes.json data/viewmodels.json data/strings/source/pages pages tools/vex-content-forge/project_arc_batch.js tests/132-content-forge-remaining-port-closure.test.js
+          git config user.name "VexGPT"
+          git config user.email "victor.gong@vextreme24.com"
+          git commit -m "feat(content-forge): materialize remaining recovered ports [VXG RealForever]" -m "Run the source-managed projectors across the fully stacked recovery placements, apply accepted department intents, prove all 56 recovered routes have canonical page ports, and remove the temporary execution workflow." -m "Signed-off-by: VexGPT <victor.gong@vextreme24.com>"
+          git push origin HEAD:VXG-102826-chatgpt-content-forge-remaining-ports-generated-a001
