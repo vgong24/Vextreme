@@ -48,6 +48,13 @@ test('TERRAIN ENTRY: preserved authored visible text and semantic structure surv
     }
     assert.ok(pageHtml.includes('preserved blob ' + entry.sourceBlob + '.'), entry.slug + ': exact preserved blob provenance missing');
     assert.ok(pageHtml.includes('<script src="../widgets/fab-read-aloud.js"></script>'), entry.slug + ': standalone/embedded reader must carry site Read Aloud through a provider-neutral local asset');
+    if (entry.slug === 'receive-god') {
+      const fabRoot = pageHtml.indexOf('<script src="../widgets/vex-fab.js"></script>');
+      const readAloud = pageHtml.indexOf('<script src="../widgets/fab-read-aloud.js"></script>');
+      const language = pageHtml.indexOf('<script src="../widgets/fab-lang.js"></script>');
+      assert.ok(fabRoot >= 0 && fabRoot < readAloud && readAloud < language,
+        'receive-god: page-owned shared FAB root must load before Read Aloud and language controls');
+    }
   }
 });
 
@@ -71,8 +78,9 @@ test('TERRAIN ENTRY: Receive God owns the ordered continuation, archive handoff,
   assert.match(html, /href="take-a-walk\.html"/);
   assert.match(html, /data-terrain-action="archives"/);
   assert.match(html, /type:'vextreme\.terrain-entry\/v1'/);
-  assert.ok(html.includes('href="terrain-map.html?view=content&amp;profile=evolution-v1&amp;group=direct_contact&amp;page=direct-contact" target="_parent"'));
-  assert.ok(html.includes('href="terrain-map.html?view=content&amp;profile=evolution-v1&amp;group=ai_practitioner_tools&amp;page=ai-practitioner-tools" target="_parent"'));
+  assert.ok(html.includes('href="terrain-map.html?view=content&amp;profile=evolution-v1&amp;group=direct_contact&amp;page=direct-contact" target="_parent" data-terrain-action="group-home" data-terrain-group="direct_contact"'));
+  assert.ok(html.includes('href="terrain-map.html?view=content&amp;profile=evolution-v1&amp;group=ai_practitioner_tools&amp;page=ai-practitioner-tools" target="_parent" data-terrain-action="group-home" data-terrain-group="ai_practitioner_tools"'));
+  assert.ok(html.includes("group:link.getAttribute('data-terrain-group') || null"));
   assert.doesNotMatch(html, /held-not-ported/);
 });
 
