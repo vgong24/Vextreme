@@ -908,6 +908,16 @@ test('INSTITUTIONAL-SURFACES: no-JavaScript shell-context fallback does not requ
     /if \(surface\.runtime\?\.mode === 'standalone'\) \{\s*const timeoutContext[\s\S]*pre-paint timeout fallback/,
     'pre-paint timeout fallback belongs only to the standalone pre-paint-hold runtime'
   );
+  assert.match(
+    source,
+    /if \(surface\.runtime\?\.mode === 'standalone'\) \{\s*const stableJa[\s\S]*failure changed the fully applied JA state/,
+    'hostile bundle rollback commissioning belongs to the standalone transactional runtime'
+  );
+  assert.match(
+    source,
+    /invalid-URL-keeps-supported-storage[\s\S]*expected: 'zh'/,
+    'shell-context commissioning must preserve the shared FAB invalid-URL fallback contract instead of imposing standalone semantics'
+  );
 });
 
 test('INSTITUTIONAL-SURFACES: matrix writer can add structured Assets custody without changing local activation evidence', () => {
