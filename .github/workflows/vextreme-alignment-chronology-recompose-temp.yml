@@ -32,6 +32,8 @@ jobs:
           node lib/build-page-health.js
           node lib/build-archives.js
           node lib/build-terrain-map.js
+          node lib/build-vextreme.js
+          node lib/build-sw.js
 
       - name: Chronology + replay compatibility proof
         run: |
@@ -51,16 +53,26 @@ jobs:
         run: |
           node <<'NODE'
           const cp = require('child_process');
-          const allowed = new Set([
+          const exactAllowed = new Set([
             'data/index.json',
             'data/page-health.json',
             'data/terrain-map.json',
             'pages/build-health.html',
-            'pages/archives.html'
+            'sw.js'
           ]);
           const changed = cp.execFileSync('git', ['diff', '--name-only'], { encoding:'utf8' })
             .trim().split('\n').filter(Boolean);
-          const unexpected = changed.filter(file => !allowed.has(file));
+          const allowed = file => exactAllowed.has(file) || /^dist\/vextreme-.+\.js$/.test(file);
+          const unexpected = changed.filter(file => !allowed(file));
+          const dist = changed.filter(file => /^dist\/vextreme-.+\.js$/.test(file));
+          if (dist.length !== 155) {
+            console.error('UNEXPECTED_DIST_COUNT=' + dist.length);
+            process.exit(1);
+          }
+          if (changed.length !== 160) {
+            console.error('UNEXPECTED_GENERATED_COUNT=' + changed.length);
+            process.exit(1);
+          }
           if (unexpected.length) {
             console.error('UNEXPECTED_GENERATED_PATHS=' + JSON.stringify(unexpected));
             process.exit(1);
@@ -70,7 +82,7 @@ jobs:
 
       - name: Stage generated chronology drift
         run: |
-          git add data/index.json data/page-health.json data/terrain-map.json pages/build-health.html pages/archives.html
+          git add data/index.json data/page-health.json data/terrain-map.json pages/build-health.html sw.js dist
           git diff --cached --stat
           test -n "$(git diff --cached --name-only)"
 
@@ -111,7 +123,7 @@ jobs:
             }
             const tree = await request('/git/trees', { base_tree:baseTree, tree:treeEntries });
             const commit = await request('/git/commits', {
-              message:'[Vextreme Alignment] Materialize 131-entry chronology on navigation-current main [VXG RealForever]',
+              message:'[Vextreme Alignment] Materialize 131-entry chronology and index-bound runtime [VXG RealForever]',
               tree:tree.sha,
               parents:[parent]
             });
