@@ -177,6 +177,16 @@ function selectAuthoredMain(document) {
   invariant(main, 'AUTHORED_MAIN_NOT_FOUND', 'no main.vex-authored-page-frame');
   return main;
 }
+function selectEmbeddedCodeContainer(document, rootClass) {
+  invariant(typeof rootClass === 'string' && rootClass.length > 0, 'EMBEDDED_ROOT_CLASS', String(rootClass));
+  const candidates = [];
+  for (const container of findAll(document, node => node.tagName === 'div' && classes(node).includes('sqs-code-container'))) {
+    const root = findFirst(container, node => node.tagName === 'div' && classes(node).includes(rootClass));
+    if (root) candidates.push({ container, root });
+  }
+  invariant(candidates.length === 1, 'EMBEDDED_CODE_CONTAINER_NOT_UNIQUE', rootClass + ':' + candidates.length);
+  return candidates[0];
+}
 function authoredStyles(document) {
   const result = [];
   const seen = new Set();
@@ -297,7 +307,7 @@ function validatePage(page, strings, member) {
 function projectMember(root, member, nodesBySlug, assetCatalog) {
   const node = nodesBySlug.get(member.slug);
   invariant(node && node.id === member.canonicalNodeId && node.title === member.title && JSON.stringify(node.arcKeys) === JSON.stringify(member.arcKeys), 'CANONICAL_NODE_MISMATCH', member.slug);
-  invariant(['SQS_AUTHORED_BODY','AUTHORED_MAIN_FRAGMENT'].includes(member.adapterClass), 'ADAPTER_UNSUPPORTED', member.slug);
+  invariant(['SQS_AUTHORED_BODY','AUTHORED_MAIN_FRAGMENT','EMBEDDED_CODE_CONTAINER'].includes(member.adapterClass), 'ADAPTER_UNSUPPORTED', member.slug);
   const sourcePath = path.join(root, member.sourcePath);
   invariant(fs.existsSync(sourcePath), 'SOURCE_MISSING', member.sourcePath);
   const source = fs.readFileSync(sourcePath);
@@ -307,10 +317,20 @@ function projectMember(root, member, nodesBySlug, assetCatalog) {
 
   const document = parse5.parse(source.toString('utf8'));
   externalizeAssetReferences(document, assetCatalog);
-  const selected = member.adapterClass === 'SQS_AUTHORED_BODY' ? selectSqsBody(document) : selectAuthoredMain(document);
-  const styles = member.adapterClass === 'AUTHORED_MAIN_FRAGMENT' ? authoredStyles(document) : [];
+  let selected;
+  let styles = [];
+  if (member.adapterClass === 'SQS_AUTHORED_BODY') {
+    selected = selectSqsBody(document);
+  } else if (member.adapterClass === 'AUTHORED_MAIN_FRAGMENT') {
+    selected = selectAuthoredMain(document);
+    styles = authoredStyles(document);
+  } else {
+    const embedded = selectEmbeddedCodeContainer(document, member.embeddedRootClass);
+    selected = embedded.root;
+    styles = authoredStyles(embedded.container);
+  }
   const h1Seen = sanitize(selected, member.adapterClass);
-  const synthesizeCanonicalHeading = member.adapterClass === 'AUTHORED_MAIN_FRAGMENT' && !h1Seen;
+  const synthesizeCanonicalHeading = member.adapterClass !== 'SQS_AUTHORED_BODY' && !h1Seen;
   const leaves = textLeaves(selected);
   invariant(leaves.length, 'AUTHORED_TEXT_EMPTY', member.slug);
   const scope = `pages.${member.slug}`;
@@ -372,6 +392,9 @@ function validateFormation(value) {
   const projectableMemberCount = value.members.filter(item => !item.preclassifiedHoldReason).length;
   invariant(boundary?.createPages === projectableMemberCount && boundary?.createStringSources === projectableMemberCount && boundary?.modifyViewmodels === true, 'FORMATION_WRITES', 'write membrane');
   for (const member of value.members) {
+    if (member.adapterClass === 'EMBEDDED_CODE_CONTAINER') {
+      invariant(typeof member.embeddedRootClass === 'string' && member.embeddedRootClass.length > 0, 'FORMATION_EMBEDDED_ROOT_CLASS', member.slug);
+    }
     if (member.longPageNavigation !== undefined) {
       const nav = member.longPageNavigation;
       invariant(nav && typeof nav === 'object' && !Array.isArray(nav), 'FORMATION_LONG_PAGE_NAV', member.slug);
@@ -475,4 +498,4 @@ if (require.main === module) {
   try { process.exitCode = main(cliOptions()).accounting.complete ? 0 : 1; }
   catch (error) { process.stderr.write(`${error.stack || error.message}\n`); process.exitCode = 1; }
 }
-module.exports = { ASSET_CATALOG_REL, ASSET_FILENAME, DEFAULT_ROOT, FORMATION_REL, GENERATOR_REF, ROOT_RELATIVE_ASSET_REF, ProjectionInvariantError, attrs, cliOptions, externalizeAssetReferences, findAll, findFirst, gitBlobSha, loadAssetCatalog, main, preserveLocalizationOverlays, rawText, resolveAssetReference, rewriteAssetText, selectAuthoredMain, selectSqsBody, sha256, textLeaves, validateFormation };
+module.exports = { ASSET_CATALOG_REL, ASSET_FILENAME, DEFAULT_ROOT, FORMATION_REL, GENERATOR_REF, ROOT_RELATIVE_ASSET_REF, ProjectionInvariantError, attrs, cliOptions, externalizeAssetReferences, findAll, findFirst, gitBlobSha, loadAssetCatalog, main, preserveLocalizationOverlays, rawText, resolveAssetReference, rewriteAssetText, selectAuthoredMain, selectEmbeddedCodeContainer, selectSqsBody, sha256, textLeaves, validateFormation };
