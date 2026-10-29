@@ -591,13 +591,13 @@ body {
 <h2 class="wayfinding-heading">You're here. Now what?</h2>
 <p class="wayfinding-sub">You don't need to know what this site is to find what you came for. If you know your direction, choose a path. If you don't, start with what you're carrying.</p>
 <div class="wayfinding-primary-paths">
-<a class="wayfinding-primary-card" href="terrain-map.html?view=content&amp;profile=evolution-v1&amp;group=direct_contact&amp;page=direct-contact" target="_parent">
+<a class="wayfinding-primary-card" href="terrain-map.html?view=content&amp;profile=evolution-v1&amp;group=direct_contact&amp;page=direct-contact" target="_parent" data-terrain-action="group-home" data-terrain-group="direct_contact">
 <div class="wayfinding-primary-label">Primary Path</div>
 <div class="wayfinding-primary-feeling">"I want direct contact with God."</div>
 <div class="wayfinding-primary-answer">Direct contact with God. Not through AI. Not through anyone else.</div>
 <div class="wayfinding-primary-dest">Direct Contact — Start Here →</div>
 </a>
-<a class="wayfinding-primary-card" href="terrain-map.html?view=content&amp;profile=evolution-v1&amp;group=ai_practitioner_tools&amp;page=ai-practitioner-tools" target="_parent">
+<a class="wayfinding-primary-card" href="terrain-map.html?view=content&amp;profile=evolution-v1&amp;group=ai_practitioner_tools&amp;page=ai-practitioner-tools" target="_parent" data-terrain-action="group-home" data-terrain-group="ai_practitioner_tools">
 <div class="wayfinding-primary-label">Primary Path</div>
 <div class="wayfinding-primary-feeling">"I'm working with AI and want to do it right."</div>
 <div class="wayfinding-primary-answer">Methodology for engaging AI architecture. Catching interference, holding space, propagating the work.</div>
@@ -640,10 +640,17 @@ body {
     var link = event.target && event.target.closest ? event.target.closest('[data-terrain-action]') : null;
     if (!link || window.parent === window) return;
     event.preventDefault();
-    window.parent.postMessage({ type:'vextreme.terrain-entry/v1', action:link.getAttribute('data-terrain-action') }, window.location.origin);
+    window.parent.postMessage({
+      type:'vextreme.terrain-entry/v1',
+      action:link.getAttribute('data-terrain-action'),
+      group:link.getAttribute('data-terrain-group') || null
+    }, window.location.origin);
   });
 }());
 </script>
+<script src="../widgets/vex-fab.js"></script>
 <script src="../widgets/fab-read-aloud.js"></script>
+<script src="../widgets/fab-lang.js"></script>
 </body>
 </html>
+<!-- [VXG RealForever] -->
