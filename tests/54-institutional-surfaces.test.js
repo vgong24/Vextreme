@@ -920,6 +920,15 @@ test('INSTITUTIONAL-SURFACES: no-JavaScript shell-context fallback does not requ
   );
 });
 
+test('INSTITUTIONAL-SURFACES: Support keeps its skip link before the shared shell nav mount', () => {
+  const html = fs.readFileSync(path.join(ROOT, 'pages', 'vex-support.html'), 'utf8').replace(/\r\n/g, '\n');
+  assert.match(
+    html,
+    /<a class="vex-skip"[^>]*>[^<]*<\/a>\s*<div id="vex-site-nav"><\/div>\s*<main id="main">/,
+    'the shell must populate an existing nav mount after the authored skip link instead of inserting navigation before keyboard skip access'
+  );
+});
+
 test('INSTITUTIONAL-SURFACES: matrix writer can add structured Assets custody without changing local activation evidence', () => {
   const source = fs.readFileSync(path.join(ROOT, 'scripts', 'screenshot-institutional.js'), 'utf8').replace(/\r\n/g, '\n');
 
