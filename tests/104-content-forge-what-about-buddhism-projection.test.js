@@ -68,6 +68,11 @@ test('CONTENT FORGE BUDDHISM: viewmodel, node identity, and arc placement stay u
     template: 'page',
     scopes: ['pages.what-about-buddhism'],
     features: ['lang', 'spiral-fab', 'theme', 'map', 'analysis', 'arc-nav'],
+    preview: {
+      kind: 'cover',
+      src: 'https://vgong24.github.io/Vextreme-Assets/__assets/5e2a523e20a78ac80544f0658de4083ece50a11d55a2d0879f587910005fdabc.webp',
+      alt: 'Now what about Buddhism? — spiritual scaffolding dissolving into direct recognition cover art',
+    },
   });
 
   assert.deepEqual(nodes.find((item) => item.slug === 'what-about-buddhism'), {
