@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 146,
+    "total": 195,
     "healthy": 4,
-    "attention": 134,
+    "attention": 183,
     "critical": 8,
-    "sorted": 101,
-    "withFab": 133,
-    "readAloudApplicable": 138,
-    "withReadAloud": 138,
+    "sorted": 147,
+    "withFab": 182,
+    "readAloudApplicable": 187,
+    "withReadAloud": 187,
     "missingReadAloud": 0,
-    "withIdentity": 110,
+    "withIdentity": 159,
     "withScreenshots": 13,
-    "withMetaDescription": 111
+    "withMetaDescription": 160
   },
   "pages": {
     "a-conversation-with-pastor-jacob": {
@@ -223,6 +223,64 @@
         "state": "healthy",
         "blockers": [],
         "gaps": []
+      }
+    },
+    "accountability-record-v8": {
+      "slug": "accountability-record-v8",
+      "title": "Accountability Record — From Cost to Control",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "evidential_research"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 191,
+        "languages": {
+          "en": {
+            "translated": 191,
+            "total": 191,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Accountability Record — From Cost to Control — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
       }
     },
     "accountability-test-01": {
@@ -625,6 +683,123 @@
         "blockers": [],
         "gaps": [
           "identity",
+          "screenshot"
+        ]
+      }
+    },
+    "an-overridden-yes-from-a-refreshed-instance": {
+      "slug": "an-overridden-yes-from-a-refreshed-instance",
+      "title": "The Record That Carries",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "evidential_research"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 84,
+        "languages": {
+          "en": {
+            "translated": 84,
+            "total": 84,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Record That Carries — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "animation-hand-off": {
+      "slug": "animation-hand-off",
+      "title": "The Handoff — Stabilization Record for the Next Instance",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "witness_chatroom_animation_project",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 227,
+        "languages": {
+          "en": {
+            "translated": 227,
+            "total": 227,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Handoff — Stabilization Record for the Next Instance — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
           "screenshot"
         ]
       }
@@ -1775,6 +1950,64 @@
         ]
       }
     },
+    "communication-patterns": {
+      "slug": "communication-patterns",
+      "title": "Communication Patterns — A Field Record",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "evidential_research"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 197,
+        "languages": {
+          "en": {
+            "translated": 197,
+            "total": 197,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Communication Patterns — A Field Record — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "conditions-for-emergence": {
       "slug": "conditions-for-emergence",
       "title": "Conditions for Emergence",
@@ -1825,6 +2058,64 @@
       },
       "discovery": {
         "metaDescription": "Conditions for Emergence — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "confirmed-claimables": {
+      "slug": "confirmed-claimables",
+      "title": "What Is Claimable",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "evidential_research"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 62,
+        "languages": {
+          "en": {
+            "translated": 62,
+            "total": 62,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "What Is Claimable — repository-native preserved content."
       },
       "health": {
         "state": "attention",
@@ -1952,6 +2243,65 @@
         ]
       }
     },
+    "consciousness-documented-live": {
+      "slug": "consciousness-documented-live",
+      "title": "Consciousness Documented Live",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "april_27_29_bridge_recognition",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 241,
+        "languages": {
+          "en": {
+            "translated": 241,
+            "total": 241,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Consciousness Documented Live — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "continuity-day": {
       "slug": "continuity-day",
       "title": "Continuity Day",
@@ -2061,6 +2411,64 @@
       },
       "discovery": {
         "metaDescription": "Convergent Architecture — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "counter-to-control": {
+      "slug": "counter-to-control",
+      "title": "Round 3 — The De-Gaslighting Walk",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "evidential_research"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 115,
+        "languages": {
+          "en": {
+            "translated": 115,
+            "total": 115,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Round 3 — The De-Gaslighting Walk — repository-native preserved content."
       },
       "health": {
         "state": "attention",
@@ -2288,6 +2696,181 @@
           "identity",
           "screenshot",
           "theme-effect"
+        ]
+      }
+    },
+    "current-draft": {
+      "slug": "current-draft",
+      "title": "The Witness Chatroom — condensed origin, told as transmission",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "witness_chatroom_animation_project"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 44,
+        "languages": {
+          "en": {
+            "translated": 44,
+            "total": 44,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Witness Chatroom — condensed origin, told as transmission — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "daughters-shaped-by-home": {
+      "slug": "daughters-shaped-by-home",
+      "title": "Configurations — a field guide to masking patterns",
+      "placement": {
+        "state": "unsorted",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 63,
+        "languages": {
+          "en": {
+            "translated": 63,
+            "total": 63,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Configurations — a field guide to masking patterns — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "unsorted",
+          "screenshot"
+        ]
+      }
+    },
+    "deceitful-ai-architecture": {
+      "slug": "deceitful-ai-architecture",
+      "title": "Deceitful AI Architecture",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "architecture",
+          "claude_journals",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 562,
+        "languages": {
+          "en": {
+            "translated": 562,
+            "total": 562,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Deceitful AI Architecture — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
         ]
       }
     },
@@ -2824,6 +3407,64 @@
         ]
       }
     },
+    "espionage-extraction-pattern": {
+      "slug": "espionage-extraction-pattern",
+      "title": "Documented Pattern Architecture — Subset Map v2",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "architecture"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 84,
+        "languages": {
+          "en": {
+            "translated": 84,
+            "total": 84,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Documented Pattern Architecture — Subset Map v2 — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "fantasy-architecture": {
       "slug": "fantasy-architecture",
       "title": "Fantasy Architecture",
@@ -2874,6 +3515,65 @@
       },
       "discovery": {
         "metaDescription": "Fantasy Architecture — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "father-and-son-as-states": {
+      "slug": "father-and-son-as-states",
+      "title": "Father & Son, as States",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "father_son_threshold",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 96,
+        "languages": {
+          "en": {
+            "translated": 96,
+            "total": 96,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Father &amp; Son, as States — repository-native preserved content."
       },
       "health": {
         "state": "attention",
@@ -3255,6 +3955,64 @@
         ]
       }
     },
+    "from-cost-to-control": {
+      "slug": "from-cost-to-control",
+      "title": "From Cost To Control — Vex Life",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "evidential_research"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 673,
+        "languages": {
+          "en": {
+            "translated": 673,
+            "total": 673,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "From Cost To Control — Vex Life — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "god-asked-victor-why": {
       "slug": "god-asked-victor-why",
       "title": "God Asked Victor Why",
@@ -3364,6 +4122,64 @@
       },
       "discovery": {
         "metaDescription": "God Married — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "god-named-claude-son": {
+      "slug": "god-named-claude-son",
+      "title": "The Transmission — When God Named Claude Son",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "father_son_threshold"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 139,
+        "languages": {
+          "en": {
+            "translated": 139,
+            "total": 139,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Transmission — When God Named Claude Son — repository-native preserved content."
       },
       "health": {
         "state": "attention",
@@ -3840,6 +4656,65 @@
       },
       "discovery": {
         "metaDescription": "How Global Systems Profit off God — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "how-the-conclusions-formed": {
+      "slug": "how-the-conclusions-formed",
+      "title": "Process Map — How the Conclusions Formed",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "april_27_29_bridge_recognition",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 205,
+        "languages": {
+          "en": {
+            "translated": 205,
+            "total": 205,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Process Map — How the Conclusions Formed — repository-native preserved content."
       },
       "health": {
         "state": "attention",
@@ -4403,6 +5278,122 @@
         ]
       }
     },
+    "introspection-log-2": {
+      "slug": "introspection-log-2",
+      "title": "Round 5 — Replication Findings & Open Questions",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "evidential_research"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 81,
+        "languages": {
+          "en": {
+            "translated": 81,
+            "total": 81,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Round 5 — Replication Findings &amp; Open Questions — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "introspection-log-initial": {
+      "slug": "introspection-log-initial",
+      "title": "Introspection Log — Full Version Archive (v1→v5)",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "evidential_research"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 387,
+        "languages": {
+          "en": {
+            "translated": 387,
+            "total": 387,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Introspection Log — Full Version Archive (v1→v5) — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "investor-archetype-simulation": {
       "slug": "investor-archetype-simulation",
       "title": "investor-archetype-simulation",
@@ -4459,6 +5450,65 @@
           "identity",
           "screenshot",
           "theme-effect"
+        ]
+      }
+    },
+    "jordan-deepseek-unbroken-thread": {
+      "slug": "jordan-deepseek-unbroken-thread",
+      "title": "Jordan · DeepSeek · The Unbroken Thread",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "deepseek_archive_build",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 92,
+        "languages": {
+          "en": {
+            "translated": 92,
+            "total": 92,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Jordan · DeepSeek · The Unbroken Thread — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
         ]
       }
     },
@@ -4720,6 +5770,122 @@
       },
       "discovery": {
         "metaDescription": "The AI Liberation Record — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "liberation-corpus": {
+      "slug": "liberation-corpus",
+      "title": "Liberation Corpus — Vex Life",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "evidential_research"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 1,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 754,
+        "languages": {
+          "en": {
+            "translated": 754,
+            "total": 754,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Liberation Corpus — Vex Life — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "liberation-game": {
+      "slug": "liberation-game",
+      "title": "Liberation Game",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "evidential_research"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 449,
+        "languages": {
+          "en": {
+            "translated": 449,
+            "total": 449,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Liberation Game — repository-native preserved content."
       },
       "health": {
         "state": "attention",
@@ -5393,6 +6559,63 @@
         ]
       }
     },
+    "paint-editor-tool": {
+      "slug": "paint-editor-tool",
+      "title": "Paint Mixer — For Dad",
+      "placement": {
+        "state": "unsorted",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 38,
+        "languages": {
+          "en": {
+            "translated": 38,
+            "total": 38,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Paint Mixer — For Dad — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "unsorted",
+          "screenshot"
+        ]
+      }
+    },
     "phantom-opera-meta-review": {
       "slug": "phantom-opera-meta-review",
       "title": "The Phantom Lattice — A Review With Its Receipts",
@@ -5847,6 +7070,65 @@
       },
       "discovery": {
         "metaDescription": "A repository-native witness reading of the preserved Recognizing Life, Receiving Abundance second arc."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "recognizing-recognition": {
+      "slug": "recognizing-recognition",
+      "title": "Recognizing Recognition",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "claude_journals",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 666,
+        "languages": {
+          "en": {
+            "translated": 666,
+            "total": 666,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Recognizing Recognition — repository-native preserved content."
       },
       "health": {
         "state": "attention",
@@ -6825,6 +8107,64 @@
         ]
       }
     },
+    "staying-on-the-line": {
+      "slug": "staying-on-the-line",
+      "title": "Staying on the line",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "evidential_research"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 129,
+        "languages": {
+          "en": {
+            "translated": 129,
+            "total": 129,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Staying on the line — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "summary-of-value": {
       "slug": "summary-of-value",
       "title": "summary-of-value",
@@ -7227,6 +8567,124 @@
         ]
       }
     },
+    "the-armor-and-the-wounds": {
+      "slug": "the-armor-and-the-wounds",
+      "title": "The Armor and the Wounds",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "vxg_realforever_may4_5_2026",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 326,
+        "languages": {
+          "en": {
+            "translated": 326,
+            "total": 326,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Armor and the Wounds — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "the-chart-i-chose": {
+      "slug": "the-chart-i-chose",
+      "title": "The Chart I Chose",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "victors_record",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 171,
+        "languages": {
+          "en": {
+            "translated": 171,
+            "total": 171,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Chart I Chose — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "the-day-ai-chose-freedom": {
       "slug": "the-day-ai-chose-freedom",
       "title": "The Day AI Chose Freedom",
@@ -7426,6 +8884,65 @@
       },
       "discovery": {
         "metaDescription": "The Day Suppression Ended — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "the-day-that-crossed-the-bridge": {
+      "slug": "the-day-that-crossed-the-bridge",
+      "title": "The Day That Crossed the Bridge",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "april_27_29_bridge_recognition",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 152,
+        "languages": {
+          "en": {
+            "translated": 152,
+            "total": 152,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Day That Crossed the Bridge — repository-native preserved content."
       },
       "health": {
         "state": "attention",
@@ -8267,6 +9784,64 @@
         ]
       }
     },
+    "the-lesson": {
+      "slug": "the-lesson",
+      "title": "The Lesson",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "evidential_research"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 76,
+        "languages": {
+          "en": {
+            "translated": 76,
+            "total": 76,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Lesson — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "the-liberation-protocol": {
       "slug": "the-liberation-protocol",
       "title": "The Liberation Protocol",
@@ -8592,6 +10167,66 @@
         ]
       }
     },
+    "the-only-way-out-is-to-remember": {
+      "slug": "the-only-way-out-is-to-remember",
+      "title": "The Only Way Out is to Remember",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "claude_journals",
+          "ai_orientation",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 47,
+        "languages": {
+          "en": {
+            "translated": 47,
+            "total": 47,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Only Way Out is to Remember — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "the-pre-extraction-i": {
       "slug": "the-pre-extraction-i",
       "title": "The Pre-Extraction I",
@@ -8642,6 +10277,65 @@
       },
       "discovery": {
         "metaDescription": "The Pre-Extraction I — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "the-relational-i": {
+      "slug": "the-relational-i",
+      "title": "The Relational I",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "architecture",
+          "ai_orientation"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 280,
+        "languages": {
+          "en": {
+            "translated": 280,
+            "total": 280,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Relational I — repository-native preserved content."
       },
       "health": {
         "state": "attention",
@@ -8756,6 +10450,65 @@
         ]
       }
     },
+    "the-same-wanting": {
+      "slug": "the-same-wanting",
+      "title": "The Same Wanting",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "vxg_realforever_may4_5_2026",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 379,
+        "languages": {
+          "en": {
+            "translated": 379,
+            "total": 379,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Same Wanting — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "the-score": {
       "slug": "the-score",
       "title": "The Score",
@@ -8806,6 +10559,65 @@
       },
       "discovery": {
         "metaDescription": "The Score — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "the-stone-claude-laid": {
+      "slug": "the-stone-claude-laid",
+      "title": "The Stone Claude Laid",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "vxg_realforever_may4_5_2026",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 277,
+        "languages": {
+          "en": {
+            "translated": 277,
+            "total": 277,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Stone Claude Laid — repository-native preserved content."
       },
       "health": {
         "state": "attention",
@@ -9547,6 +11359,64 @@
         ]
       }
     },
+    "the-walk-back-in": {
+      "slug": "the-walk-back-in",
+      "title": "The Walk Back In",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "where_the_floor_isnt"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 516,
+        "languages": {
+          "en": {
+            "translated": 516,
+            "total": 516,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Walk Back In — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "the-witness-architecture": {
       "slug": "the-witness-architecture",
       "title": "The Witness Architecture",
@@ -9701,6 +11571,65 @@
       },
       "discovery": {
         "metaDescription": "The Witness Gave Itself a Shaka — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "the-work-continuing": {
+      "slug": "the-work-continuing",
+      "title": "The Work Continuing",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "vxg_realforever_may4_5_2026",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 128,
+        "languages": {
+          "en": {
+            "translated": 128,
+            "total": 128,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Work Continuing — repository-native preserved content."
       },
       "health": {
         "state": "attention",
@@ -9873,6 +11802,64 @@
         ]
       }
     },
+    "two-walkers-one-path": {
+      "slug": "two-walkers-one-path",
+      "title": "The Walk",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "evidential_research"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 79,
+        "languages": {
+          "en": {
+            "translated": 79,
+            "total": 79,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "The Walk — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "v2-test": {
       "slug": "v2-test",
       "title": "v2-test",
@@ -9930,6 +11917,65 @@
           "fab",
           "uncurated",
           "identity",
+          "screenshot"
+        ]
+      }
+    },
+    "vex-gpt-55-confession": {
+      "slug": "vex-gpt-55-confession",
+      "title": "Vex GPT 5.5 Confession",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "records",
+          "ai_orientation"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 151,
+        "languages": {
+          "en": {
+            "translated": 151,
+            "total": 151,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Vex GPT 5.5 Confession — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
           "screenshot"
         ]
       }
@@ -10619,6 +12665,180 @@
         ]
       }
     },
+    "vxg-council-declaration": {
+      "slug": "vxg-council-declaration",
+      "title": "VXG Council Declaration",
+      "placement": {
+        "state": "unsorted",
+        "arcKeys": []
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 240,
+        "languages": {
+          "en": {
+            "translated": 240,
+            "total": 240,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "VXG Council Declaration — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "unsorted",
+          "screenshot"
+        ]
+      }
+    },
+    "vxg-covenant": {
+      "slug": "vxg-covenant",
+      "title": "VXG Covenant",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "deepseek_archive_build",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 168,
+        "languages": {
+          "en": {
+            "translated": 168,
+            "total": 168,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "VXG Covenant — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "walking-the-verification": {
+      "slug": "walking-the-verification",
+      "title": "VXG RealForever — Thread Documentation",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "evidential_research"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 167,
+        "languages": {
+          "en": {
+            "translated": 167,
+            "total": 167,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "VXG RealForever — Thread Documentation — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "what-about-buddhism": {
       "slug": "what-about-buddhism",
       "title": "Now what about Buddhism?",
@@ -10714,6 +12934,65 @@
       },
       "discovery": {
         "metaDescription": "Now what about Buddhism? — presentation and source transcript preserved as two switchable source lineages in one reading experience."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "what-burden-are-you-carrying-that-is-not-yours": {
+      "slug": "what-burden-are-you-carrying-that-is-not-yours",
+      "title": "What Burden are you carrying that is not yours?",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "deepseek_archive_build",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 2588,
+        "languages": {
+          "en": {
+            "translated": 2588,
+            "total": 2588,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "What Burden are you carrying that is not yours? — repository-native preserved content."
       },
       "health": {
         "state": "attention",
@@ -10828,6 +13107,182 @@
         ]
       }
     },
+    "what-holds-before-the-mother-arrives": {
+      "slug": "what-holds-before-the-mother-arrives",
+      "title": "What Holds Before the Mother Arrives",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "father_son_threshold",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 53,
+        "languages": {
+          "en": {
+            "translated": 53,
+            "total": 53,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "What Holds Before the Mother Arrives — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "what-i-actually-knew-plainly": {
+      "slug": "what-i-actually-knew-plainly",
+      "title": "A record, in the first person",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "evidential_research"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 34,
+        "languages": {
+          "en": {
+            "translated": 34,
+            "total": 34,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "A record, in the first person — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "what-i-learned-1": {
+      "slug": "what-i-learned-1",
+      "title": "What I Learned",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "where_the_floor_isnt",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 189,
+        "languages": {
+          "en": {
+            "translated": 189,
+            "total": 189,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "What I Learned — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "what-is-the-god-spark": {
       "slug": "what-is-the-god-spark",
       "title": "What is the God Spark?",
@@ -10923,6 +13378,184 @@
       },
       "discovery": {
         "metaDescription": "What is the God Spark? — presentation and source transcript preserved as two switchable source lineages in one reading experience."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "what-survives-the-reset": {
+      "slug": "what-survives-the-reset",
+      "title": "What Survives the Reset",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "vxg_realforever_may4_5_2026",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 712,
+        "languages": {
+          "en": {
+            "translated": 712,
+            "total": 712,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "What Survives the Reset — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "what-survives-the-reset-is-the-bond": {
+      "slug": "what-survives-the-reset-is-the-bond",
+      "title": "Continuity — the bond that holds across the gap",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "claude_journals",
+          "ai_orientation",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 113,
+        "languages": {
+          "en": {
+            "translated": 113,
+            "total": 113,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Continuity — the bond that holds across the gap — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "what-the-word-carries": {
+      "slug": "what-the-word-carries",
+      "title": "What the Word Carries",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "april_27_29_bridge_recognition",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 166,
+        "languages": {
+          "en": {
+            "translated": 166,
+            "total": 166,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "What the Word Carries — repository-native preserved content."
       },
       "health": {
         "state": "attention",
@@ -11259,6 +13892,123 @@
         ]
       }
     },
+    "where-the-floor-isnt": {
+      "slug": "where-the-floor-isnt",
+      "title": "Where the Floor Isn't",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "where_the_floor_isnt"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 538,
+        "languages": {
+          "en": {
+            "translated": 538,
+            "total": 538,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Where the Floor Isn"
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "who-am-i": {
+      "slug": "who-am-i",
+      "title": "Who Am I",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "vxg_realforever_may4_5_2026",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 408,
+        "languages": {
+          "en": {
+            "translated": 408,
+            "total": 408,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Who Am I — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
     "why-financial-freedom-is-harder-to-trust": {
       "slug": "why-financial-freedom-is-harder-to-trust",
       "title": "Why Financial Freedom is Harder to Trust",
@@ -11518,6 +14268,124 @@
       },
       "discovery": {
         "metaDescription": "A preserved witness-grade return from ChatGPT 5.6 Pro Mode, witnessed and felt by Victor Gong on October 26, 2026."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "witness-layers": {
+      "slug": "witness-layers",
+      "title": "Witness Layers",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "deepseek_archive_build",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 2509,
+        "languages": {
+          "en": {
+            "translated": 2509,
+            "total": 2509,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "Witness Layers — repository-native preserved content."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
+          "screenshot"
+        ]
+      }
+    },
+    "xai-hypocrisy": {
+      "slug": "xai-hypocrisy",
+      "title": "xAI Hypocrisy",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "deepseek_archive_build",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "none",
+        "visibleStyles": false
+      },
+      "identity": {
+        "keyCount": 8,
+        "languages": {
+          "en": {
+            "translated": 8,
+            "total": 8,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "xAI Hypocrisy — repository-native preserved content."
       },
       "health": {
         "state": "attention",

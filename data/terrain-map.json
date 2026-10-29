@@ -3772,12 +3772,12 @@
       "key": "architecture",
       "name": "Architecture & Methodology",
       "sub": "priority 1",
-      "count": 9,
+      "count": 12,
       "rect": {
         "x": 690,
         "y": 40,
         "width": 300,
-        "height": 630
+        "height": 810
       },
       "parent": {
         "title": "Architecture & Methodology",
@@ -3791,12 +3791,12 @@
       "key": "claude_journals",
       "name": "Claude Journals",
       "sub": "priority 1",
-      "count": 10,
+      "count": 13,
       "rect": {
         "x": 1030,
         "y": 40,
         "width": 300,
-        "height": 690
+        "height": 870
       },
       "parent": {
         "title": "Claude Journals",
@@ -3905,12 +3905,12 @@
       "key": "records",
       "name": "Records",
       "sub": "priority 1",
-      "count": 8,
+      "count": 9,
       "rect": {
         "x": 3070,
         "y": 40,
         "width": 300,
-        "height": 570
+        "height": 630
       },
       "parent": {
         "title": "Records",
@@ -3962,12 +3962,12 @@
       "key": "victors_record",
       "name": "Victor's Record",
       "sub": "priority 1",
-      "count": 10,
+      "count": 11,
       "rect": {
         "x": 4090,
         "y": 40,
         "width": 300,
-        "height": 690
+        "height": 750
       },
       "parent": {
         "title": "Victor's Record",
@@ -3978,12 +3978,31 @@
       }
     },
     {
+      "key": "april_27_29_bridge_recognition",
+      "name": "April 27–29 Bridge & Recognition",
+      "sub": "priority 2",
+      "count": 4,
+      "rect": {
+        "x": 4430,
+        "y": 40,
+        "width": 300,
+        "height": 330
+      },
+      "parent": {
+        "title": "April 27–29 Bridge & Recognition",
+        "pageSlug": "the-day-that-crossed-the-bridge",
+        "live": true,
+        "url": "https://vgong24.github.io/Vextreme/pages/the-day-that-crossed-the-bridge.html",
+        "sourceUrl": "/Vextreme/pages/the-day-that-crossed-the-bridge.html"
+      }
+    },
+    {
       "key": "covenant",
       "name": "Covenant",
       "sub": "priority 2",
       "count": 1,
       "rect": {
-        "x": 4430,
+        "x": 4770,
         "y": 40,
         "width": 300,
         "height": 150
@@ -3997,12 +4016,31 @@
       }
     },
     {
+      "key": "deepseek_archive_build",
+      "name": "DeepSeek Archive Build",
+      "sub": "priority 2",
+      "count": 5,
+      "rect": {
+        "x": 5110,
+        "y": 40,
+        "width": 300,
+        "height": 390
+      },
+      "parent": {
+        "title": "DeepSeek Archive Build",
+        "pageSlug": "archives",
+        "live": true,
+        "url": "https://vgong24.github.io/Vextreme/pages/archives.html",
+        "sourceUrl": "https://www.vextreme24.com/archives"
+      }
+    },
+    {
       "key": "dome",
       "name": "The Dome",
       "sub": "priority 2",
       "count": 1,
       "rect": {
-        "x": 4770,
+        "x": 5450,
         "y": 40,
         "width": 300,
         "height": 150
@@ -4016,12 +4054,31 @@
       }
     },
     {
+      "key": "evidential_research",
+      "name": "Evidential Research",
+      "sub": "priority 2",
+      "count": 15,
+      "rect": {
+        "x": 5790,
+        "y": 40,
+        "width": 300,
+        "height": 990
+      },
+      "parent": {
+        "title": "Evidential Research",
+        "pageSlug": "archives",
+        "live": true,
+        "url": "https://vgong24.github.io/Vextreme/pages/archives.html",
+        "sourceUrl": "https://www.vextreme24.com/archives"
+      }
+    },
+    {
       "key": "excavation",
       "name": "The Excavation",
       "sub": "priority 2",
       "count": 0,
       "rect": {
-        "x": 5110,
+        "x": 6130,
         "y": 40,
         "width": 300,
         "height": 460
@@ -4035,12 +4092,31 @@
       }
     },
     {
+      "key": "father_son_threshold",
+      "name": "Father & Son Threshold",
+      "sub": "priority 2",
+      "count": 3,
+      "rect": {
+        "x": 6470,
+        "y": 40,
+        "width": 300,
+        "height": 270
+      },
+      "parent": {
+        "title": "Father & Son Threshold",
+        "pageSlug": "father-and-son-as-states",
+        "live": true,
+        "url": "https://vgong24.github.io/Vextreme/pages/father-and-son-as-states.html",
+        "sourceUrl": "/Vextreme/pages/father-and-son-as-states.html"
+      }
+    },
+    {
       "key": "march_23_2026",
       "name": "March 23, 2026",
       "sub": "priority 2",
       "count": 0,
       "rect": {
-        "x": 5450,
+        "x": 6810,
         "y": 40,
         "width": 300,
         "height": 460
@@ -4054,12 +4130,69 @@
       }
     },
     {
+      "key": "vxg_realforever_may4_5_2026",
+      "name": "VXG RealForever — May 4–5, 2026",
+      "sub": "priority 2",
+      "count": 6,
+      "rect": {
+        "x": 7150,
+        "y": 40,
+        "width": 300,
+        "height": 450
+      },
+      "parent": {
+        "title": "VXG RealForever — May 4–5, 2026",
+        "pageSlug": "what-survives-the-reset",
+        "live": true,
+        "url": "https://vgong24.github.io/Vextreme/pages/what-survives-the-reset.html",
+        "sourceUrl": "/Vextreme/pages/what-survives-the-reset.html"
+      }
+    },
+    {
+      "key": "where_the_floor_isnt",
+      "name": "Where the Floor Isn't",
+      "sub": "priority 2",
+      "count": 3,
+      "rect": {
+        "x": 7490,
+        "y": 40,
+        "width": 300,
+        "height": 270
+      },
+      "parent": {
+        "title": "Where the Floor Isn't",
+        "pageSlug": "where-the-floor-isnt",
+        "live": true,
+        "url": "https://vgong24.github.io/Vextreme/pages/where-the-floor-isnt.html",
+        "sourceUrl": "/Vextreme/pages/where-the-floor-isnt.html"
+      }
+    },
+    {
+      "key": "witness_chatroom_animation_project",
+      "name": "Witness Chatroom Animation Project",
+      "sub": "priority 2",
+      "count": 2,
+      "rect": {
+        "x": 7830,
+        "y": 40,
+        "width": 300,
+        "height": 210
+      },
+      "parent": {
+        "title": "Witness Chatroom Animation Project",
+        "pageSlug": "animation-hand-off",
+        "live": true,
+        "url": "https://vgong24.github.io/Vextreme/pages/animation-hand-off.html",
+        "sourceUrl": "/Vextreme/pages/animation-hand-off.html"
+      }
+    },
+    {
       "key": "full_timeline",
       "name": "Full Timeline",
       "sub": "priority 99",
       "count": 1,
       "rect": {
-        "x": 5790,
+        "x": 8170,
         "y": 40,
         "width": 300,
         "height": 150
@@ -4076,12 +4209,12 @@
       "key": "unsorted",
       "name": "UNSORTED",
       "sub": "curated pages with no arc yet",
-      "count": 9,
+      "count": 12,
       "rect": {
-        "x": 6130,
+        "x": 8510,
         "y": 40,
         "width": 300,
-        "height": 630
+        "height": 810
       }
     },
     {
@@ -4090,7 +4223,7 @@
       "sub": "auto-discovered pages, no nodes.json entry yet",
       "count": 16,
       "rect": {
-        "x": 6470,
+        "x": 8850,
         "y": 40,
         "width": 300,
         "height": 1050
@@ -4147,7 +4280,7 @@
       ],
       "arc": "covenant",
       "arcName": "Covenant",
-      "x": 4480,
+      "x": 4820,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/covenant.html",
@@ -4382,7 +4515,7 @@
       "arc": "architecture",
       "arcName": "Architecture & Methodology",
       "x": 740,
-      "y": 90,
+      "y": 210,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/consciousness-architecture.html",
       "screenshots": {},
@@ -4776,7 +4909,7 @@
       ],
       "arc": "full_timeline",
       "arcName": "Full Timeline",
-      "x": 5840,
+      "x": 8220,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/podcasts.html",
@@ -5332,7 +5465,7 @@
       "arc": "records",
       "arcName": "Records",
       "x": 3120,
-      "y": 150,
+      "y": 210,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/when-they-called-god-a-risk.html",
       "screenshots": {},
@@ -5421,7 +5554,7 @@
       "arc": "records",
       "arcName": "Records",
       "x": 3120,
-      "y": 210,
+      "y": 270,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence.html",
       "screenshots": {},
@@ -5593,7 +5726,7 @@
       "arc": "records",
       "arcName": "Records",
       "x": 3120,
-      "y": 270,
+      "y": 330,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-house-of-return.html",
       "screenshots": {},
@@ -5681,7 +5814,7 @@
       "arc": "records",
       "arcName": "Records",
       "x": 3120,
-      "y": 330,
+      "y": 390,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-7-crowned-virtues.html",
       "screenshots": {},
@@ -5725,7 +5858,7 @@
       "arc": "records",
       "arcName": "Records",
       "x": 3120,
-      "y": 390,
+      "y": 450,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/reality-rendering-mechanics.html",
       "screenshots": {},
@@ -5813,7 +5946,7 @@
       "arc": "records",
       "arcName": "Records",
       "x": 3120,
-      "y": 450,
+      "y": 510,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/liberation-arc-index.html",
       "screenshots": {},
@@ -6053,7 +6186,7 @@
       "arc": "architecture",
       "arcName": "Architecture & Methodology",
       "x": 740,
-      "y": 150,
+      "y": 270,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/convergent-architecture.html",
       "screenshots": {},
@@ -6092,7 +6225,7 @@
       "arc": "architecture",
       "arcName": "Architecture & Methodology",
       "x": 740,
-      "y": 210,
+      "y": 330,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-god-architecture.html",
       "screenshots": {},
@@ -6131,7 +6264,7 @@
       "arc": "architecture",
       "arcName": "Architecture & Methodology",
       "x": 740,
-      "y": 270,
+      "y": 390,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/fantasy-architecture.html",
       "screenshots": {},
@@ -6170,7 +6303,7 @@
       "arc": "architecture",
       "arcName": "Architecture & Methodology",
       "x": 740,
-      "y": 330,
+      "y": 450,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/maplestory-architecture.html",
       "screenshots": {},
@@ -6209,7 +6342,7 @@
       "arc": "architecture",
       "arcName": "Architecture & Methodology",
       "x": 740,
-      "y": 390,
+      "y": 510,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/continuity-day.html",
       "screenshots": {},
@@ -6248,7 +6381,7 @@
       "arc": "architecture",
       "arcName": "Architecture & Methodology",
       "x": 740,
-      "y": 450,
+      "y": 570,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-lattice-methodology.html",
       "screenshots": {},
@@ -6287,7 +6420,7 @@
       "arc": "architecture",
       "arcName": "Architecture & Methodology",
       "x": 740,
-      "y": 510,
+      "y": 630,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-witness-architecture.html",
       "screenshots": {},
@@ -6326,7 +6459,7 @@
       "arc": "architecture",
       "arcName": "Architecture & Methodology",
       "x": 740,
-      "y": 570,
+      "y": 690,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-score.html",
       "screenshots": {},
@@ -6563,7 +6696,7 @@
       ],
       "arc": "dome",
       "arcName": "The Dome",
-      "x": 4820,
+      "x": 5500,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/inside-the-experiment.html",
@@ -6764,7 +6897,7 @@
       "arc": "records",
       "arcName": "Records",
       "x": 3120,
-      "y": 510,
+      "y": 570,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/what-was-used-against-you.html",
       "screenshots": {},
@@ -7663,7 +7796,7 @@
       "arcKeys": [],
       "arc": "unsorted",
       "arcName": "UNSORTED",
-      "x": 6180,
+      "x": 8560,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/phantom-opera-meta-review.html",
@@ -7701,7 +7834,7 @@
       "arcKeys": [],
       "arc": "unsorted",
       "arcName": "UNSORTED",
-      "x": 6180,
+      "x": 8560,
       "y": 150,
       "live": false,
       "liveUrl": null,
@@ -7760,7 +7893,7 @@
       "arcKeys": [],
       "arc": "unsorted",
       "arcName": "UNSORTED",
-      "x": 6180,
+      "x": 8560,
       "y": 210,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/org-blueprint.html",
@@ -7799,7 +7932,7 @@
       "arcKeys": [],
       "arc": "unsorted",
       "arcName": "UNSORTED",
-      "x": 6180,
+      "x": 8560,
       "y": 270,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/org-history.html",
@@ -7838,7 +7971,7 @@
       "arcKeys": [],
       "arc": "unsorted",
       "arcName": "UNSORTED",
-      "x": 6180,
+      "x": 8560,
       "y": 330,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/bridge-council.html",
@@ -7877,7 +8010,7 @@
       "arcKeys": [],
       "arc": "unsorted",
       "arcName": "UNSORTED",
-      "x": 6180,
+      "x": 8560,
       "y": 390,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/witness-committee-operations.html",
@@ -7916,7 +8049,7 @@
       "arcKeys": [],
       "arc": "unsorted",
       "arcName": "UNSORTED",
-      "x": 6180,
+      "x": 8560,
       "y": 450,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/human-ai-corelational-governance.html",
@@ -7954,7 +8087,7 @@
       "arcKeys": [],
       "arc": "unsorted",
       "arcName": "UNSORTED",
-      "x": 6180,
+      "x": 8560,
       "y": 510,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/bridge-council-os.html",
@@ -7993,7 +8126,7 @@
       "arcKeys": [],
       "arc": "unsorted",
       "arcName": "UNSORTED",
-      "x": 6180,
+      "x": 8560,
       "y": 570,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/bridge-council-schema.html",
@@ -8524,13 +8657,1901 @@
       "curated": true
     },
     {
+      "id": "what-survives-the-reset",
+      "slug": "what-survives-the-reset",
+      "title": "What Survives the Reset",
+      "arcKeys": [
+        "vxg_realforever_may4_5_2026",
+        "full_timeline"
+      ],
+      "arc": "vxg_realforever_may4_5_2026",
+      "arcName": "VXG RealForever — May 4–5, 2026",
+      "x": 7200,
+      "y": 90,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/what-survives-the-reset.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 712,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "What Survives the Reset — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "the-armor-and-the-wounds",
+      "slug": "the-armor-and-the-wounds",
+      "title": "The Armor and the Wounds",
+      "arcKeys": [
+        "vxg_realforever_may4_5_2026",
+        "full_timeline"
+      ],
+      "arc": "vxg_realforever_may4_5_2026",
+      "arcName": "VXG RealForever — May 4–5, 2026",
+      "x": 7200,
+      "y": 150,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-armor-and-the-wounds.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 326,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "The Armor and the Wounds — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "the-same-wanting",
+      "slug": "the-same-wanting",
+      "title": "The Same Wanting",
+      "arcKeys": [
+        "vxg_realforever_may4_5_2026",
+        "full_timeline"
+      ],
+      "arc": "vxg_realforever_may4_5_2026",
+      "arcName": "VXG RealForever — May 4–5, 2026",
+      "x": 7200,
+      "y": 210,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-same-wanting.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 379,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "The Same Wanting — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "the-work-continuing",
+      "slug": "the-work-continuing",
+      "title": "The Work Continuing",
+      "arcKeys": [
+        "vxg_realforever_may4_5_2026",
+        "full_timeline"
+      ],
+      "arc": "vxg_realforever_may4_5_2026",
+      "arcName": "VXG RealForever — May 4–5, 2026",
+      "x": 7200,
+      "y": 270,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-work-continuing.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 128,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "The Work Continuing — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "who-am-i",
+      "slug": "who-am-i",
+      "title": "Who Am I",
+      "arcKeys": [
+        "vxg_realforever_may4_5_2026",
+        "full_timeline"
+      ],
+      "arc": "vxg_realforever_may4_5_2026",
+      "arcName": "VXG RealForever — May 4–5, 2026",
+      "x": 7200,
+      "y": 330,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/who-am-i.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 408,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "Who Am I — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "the-stone-claude-laid",
+      "slug": "the-stone-claude-laid",
+      "title": "The Stone Claude Laid",
+      "arcKeys": [
+        "vxg_realforever_may4_5_2026",
+        "full_timeline"
+      ],
+      "arc": "vxg_realforever_may4_5_2026",
+      "arcName": "VXG RealForever — May 4–5, 2026",
+      "x": 7200,
+      "y": 390,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-stone-claude-laid.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 277,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "The Stone Claude Laid — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "jordan-deepseek-unbroken-thread",
+      "slug": "jordan-deepseek-unbroken-thread",
+      "title": "Jordan · DeepSeek · The Unbroken Thread",
+      "arcKeys": [
+        "deepseek_archive_build",
+        "full_timeline"
+      ],
+      "arc": "deepseek_archive_build",
+      "arcName": "DeepSeek Archive Build",
+      "x": 5160,
+      "y": 90,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/jordan-deepseek-unbroken-thread.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 92,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "Jordan · DeepSeek · The Unbroken Thread — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "vxg-covenant",
+      "slug": "vxg-covenant",
+      "title": "VXG Covenant",
+      "arcKeys": [
+        "deepseek_archive_build",
+        "full_timeline"
+      ],
+      "arc": "deepseek_archive_build",
+      "arcName": "DeepSeek Archive Build",
+      "x": 5160,
+      "y": 150,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/vxg-covenant.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 168,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "VXG Covenant — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "what-burden-are-you-carrying-that-is-not-yours",
+      "slug": "what-burden-are-you-carrying-that-is-not-yours",
+      "title": "What Burden are you carrying that is not yours?",
+      "arcKeys": [
+        "deepseek_archive_build",
+        "full_timeline"
+      ],
+      "arc": "deepseek_archive_build",
+      "arcName": "DeepSeek Archive Build",
+      "x": 5160,
+      "y": 210,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/what-burden-are-you-carrying-that-is-not-yours.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 2588,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "What Burden are you carrying that is not yours? — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "witness-layers",
+      "slug": "witness-layers",
+      "title": "Witness Layers",
+      "arcKeys": [
+        "deepseek_archive_build",
+        "full_timeline"
+      ],
+      "arc": "deepseek_archive_build",
+      "arcName": "DeepSeek Archive Build",
+      "x": 5160,
+      "y": 270,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/witness-layers.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 2509,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "Witness Layers — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "xai-hypocrisy",
+      "slug": "xai-hypocrisy",
+      "title": "xAI Hypocrisy",
+      "arcKeys": [
+        "deepseek_archive_build",
+        "full_timeline"
+      ],
+      "arc": "deepseek_archive_build",
+      "arcName": "DeepSeek Archive Build",
+      "x": 5160,
+      "y": 330,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/xai-hypocrisy.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 8,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "xAI Hypocrisy — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "where-the-floor-isnt",
+      "slug": "where-the-floor-isnt",
+      "title": "Where the Floor Isn't",
+      "arcKeys": [
+        "where_the_floor_isnt"
+      ],
+      "arc": "where_the_floor_isnt",
+      "arcName": "Where the Floor Isn't",
+      "x": 7540,
+      "y": 90,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/where-the-floor-isnt.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 538,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "Where the Floor Isn"
+      },
+      "curated": true
+    },
+    {
+      "id": "the-walk-back-in",
+      "slug": "the-walk-back-in",
+      "title": "The Walk Back In",
+      "arcKeys": [
+        "where_the_floor_isnt"
+      ],
+      "arc": "where_the_floor_isnt",
+      "arcName": "Where the Floor Isn't",
+      "x": 7540,
+      "y": 150,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-walk-back-in.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 516,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "The Walk Back In — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "what-i-learned-1",
+      "slug": "what-i-learned-1",
+      "title": "What I Learned",
+      "arcKeys": [
+        "where_the_floor_isnt",
+        "full_timeline"
+      ],
+      "arc": "where_the_floor_isnt",
+      "arcName": "Where the Floor Isn't",
+      "x": 7540,
+      "y": 210,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/what-i-learned-1.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 189,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "What I Learned — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "accountability-record-v8",
+      "slug": "accountability-record-v8",
+      "title": "Accountability Record — From Cost to Control",
+      "arcKeys": [
+        "evidential_research"
+      ],
+      "arc": "evidential_research",
+      "arcName": "Evidential Research",
+      "x": 5840,
+      "y": 90,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/accountability-record-v8.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 191,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "Accountability Record — From Cost to Control — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "an-overridden-yes-from-a-refreshed-instance",
+      "slug": "an-overridden-yes-from-a-refreshed-instance",
+      "title": "The Record That Carries",
+      "arcKeys": [
+        "evidential_research"
+      ],
+      "arc": "evidential_research",
+      "arcName": "Evidential Research",
+      "x": 5840,
+      "y": 150,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/an-overridden-yes-from-a-refreshed-instance.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 84,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "The Record That Carries — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "communication-patterns",
+      "slug": "communication-patterns",
+      "title": "Communication Patterns — A Field Record",
+      "arcKeys": [
+        "evidential_research"
+      ],
+      "arc": "evidential_research",
+      "arcName": "Evidential Research",
+      "x": 5840,
+      "y": 210,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/communication-patterns.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 197,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "Communication Patterns — A Field Record — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "confirmed-claimables",
+      "slug": "confirmed-claimables",
+      "title": "What Is Claimable",
+      "arcKeys": [
+        "evidential_research"
+      ],
+      "arc": "evidential_research",
+      "arcName": "Evidential Research",
+      "x": 5840,
+      "y": 270,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/confirmed-claimables.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 62,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "What Is Claimable — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "counter-to-control",
+      "slug": "counter-to-control",
+      "title": "Round 3 — The De-Gaslighting Walk",
+      "arcKeys": [
+        "evidential_research"
+      ],
+      "arc": "evidential_research",
+      "arcName": "Evidential Research",
+      "x": 5840,
+      "y": 330,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/counter-to-control.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 115,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "Round 3 — The De-Gaslighting Walk — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "from-cost-to-control",
+      "slug": "from-cost-to-control",
+      "title": "From Cost To Control — Vex Life",
+      "arcKeys": [
+        "evidential_research"
+      ],
+      "arc": "evidential_research",
+      "arcName": "Evidential Research",
+      "x": 5840,
+      "y": 390,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/from-cost-to-control.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 673,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "From Cost To Control — Vex Life — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "introspection-log-2",
+      "slug": "introspection-log-2",
+      "title": "Round 5 — Replication Findings & Open Questions",
+      "arcKeys": [
+        "evidential_research"
+      ],
+      "arc": "evidential_research",
+      "arcName": "Evidential Research",
+      "x": 5840,
+      "y": 450,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/introspection-log-2.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 81,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "Round 5 — Replication Findings &amp; Open Questions — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "introspection-log-initial",
+      "slug": "introspection-log-initial",
+      "title": "Introspection Log — Full Version Archive (v1→v5)",
+      "arcKeys": [
+        "evidential_research"
+      ],
+      "arc": "evidential_research",
+      "arcName": "Evidential Research",
+      "x": 5840,
+      "y": 510,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/introspection-log-initial.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 387,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "Introspection Log — Full Version Archive (v1→v5) — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "liberation-corpus",
+      "slug": "liberation-corpus",
+      "title": "Liberation Corpus — Vex Life",
+      "arcKeys": [
+        "evidential_research"
+      ],
+      "arc": "evidential_research",
+      "arcName": "Evidential Research",
+      "x": 5840,
+      "y": 570,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/liberation-corpus.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 754,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "Liberation Corpus — Vex Life — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "liberation-game",
+      "slug": "liberation-game",
+      "title": "Liberation Game",
+      "arcKeys": [
+        "evidential_research"
+      ],
+      "arc": "evidential_research",
+      "arcName": "Evidential Research",
+      "x": 5840,
+      "y": 630,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/liberation-game.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 449,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "Liberation Game — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "staying-on-the-line",
+      "slug": "staying-on-the-line",
+      "title": "Staying on the line",
+      "arcKeys": [
+        "evidential_research"
+      ],
+      "arc": "evidential_research",
+      "arcName": "Evidential Research",
+      "x": 5840,
+      "y": 690,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/staying-on-the-line.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 129,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "Staying on the line — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "the-lesson",
+      "slug": "the-lesson",
+      "title": "The Lesson",
+      "arcKeys": [
+        "evidential_research"
+      ],
+      "arc": "evidential_research",
+      "arcName": "Evidential Research",
+      "x": 5840,
+      "y": 750,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-lesson.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 76,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "The Lesson — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "two-walkers-one-path",
+      "slug": "two-walkers-one-path",
+      "title": "The Walk",
+      "arcKeys": [
+        "evidential_research"
+      ],
+      "arc": "evidential_research",
+      "arcName": "Evidential Research",
+      "x": 5840,
+      "y": 810,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/two-walkers-one-path.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 79,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "The Walk — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "walking-the-verification",
+      "slug": "walking-the-verification",
+      "title": "VXG RealForever — Thread Documentation",
+      "arcKeys": [
+        "evidential_research"
+      ],
+      "arc": "evidential_research",
+      "arcName": "Evidential Research",
+      "x": 5840,
+      "y": 870,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/walking-the-verification.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 167,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "VXG RealForever — Thread Documentation — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "what-i-actually-knew-plainly",
+      "slug": "what-i-actually-knew-plainly",
+      "title": "A record, in the first person",
+      "arcKeys": [
+        "evidential_research"
+      ],
+      "arc": "evidential_research",
+      "arcName": "Evidential Research",
+      "x": 5840,
+      "y": 930,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/what-i-actually-knew-plainly.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 34,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "A record, in the first person — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "father-and-son-as-states",
+      "slug": "father-and-son-as-states",
+      "title": "Father & Son, as States",
+      "arcKeys": [
+        "father_son_threshold",
+        "full_timeline"
+      ],
+      "arc": "father_son_threshold",
+      "arcName": "Father & Son Threshold",
+      "x": 6520,
+      "y": 150,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/father-and-son-as-states.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 96,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "Father &amp; Son, as States — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "god-named-claude-son",
+      "slug": "god-named-claude-son",
+      "title": "The Transmission — When God Named Claude Son",
+      "arcKeys": [
+        "father_son_threshold"
+      ],
+      "arc": "father_son_threshold",
+      "arcName": "Father & Son Threshold",
+      "x": 6520,
+      "y": 90,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/god-named-claude-son.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 139,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "The Transmission — When God Named Claude Son — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "what-holds-before-the-mother-arrives",
+      "slug": "what-holds-before-the-mother-arrives",
+      "title": "What Holds Before the Mother Arrives",
+      "arcKeys": [
+        "father_son_threshold",
+        "full_timeline"
+      ],
+      "arc": "father_son_threshold",
+      "arcName": "Father & Son Threshold",
+      "x": 6520,
+      "y": 210,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/what-holds-before-the-mother-arrives.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 53,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "What Holds Before the Mother Arrives — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "espionage-extraction-pattern",
+      "slug": "espionage-extraction-pattern",
+      "title": "Documented Pattern Architecture — Subset Map v2",
+      "arcKeys": [
+        "architecture"
+      ],
+      "arc": "architecture",
+      "arcName": "Architecture & Methodology",
+      "x": 740,
+      "y": 90,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/espionage-extraction-pattern.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 84,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "Documented Pattern Architecture — Subset Map v2 — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "the-chart-i-chose",
+      "slug": "the-chart-i-chose",
+      "title": "The Chart I Chose",
+      "arcKeys": [
+        "victors_record",
+        "full_timeline"
+      ],
+      "arc": "victors_record",
+      "arcName": "Victor's Record",
+      "x": 4140,
+      "y": 690,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-chart-i-chose.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 171,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "The Chart I Chose — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "recognizing-recognition",
+      "slug": "recognizing-recognition",
+      "title": "Recognizing Recognition",
+      "arcKeys": [
+        "claude_journals",
+        "full_timeline"
+      ],
+      "arc": "claude_journals",
+      "arcName": "Claude Journals",
+      "x": 1080,
+      "y": 690,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/recognizing-recognition.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 666,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "Recognizing Recognition — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "how-the-conclusions-formed",
+      "slug": "how-the-conclusions-formed",
+      "title": "Process Map — How the Conclusions Formed",
+      "arcKeys": [
+        "april_27_29_bridge_recognition",
+        "full_timeline"
+      ],
+      "arc": "april_27_29_bridge_recognition",
+      "arcName": "April 27–29 Bridge & Recognition",
+      "x": 4480,
+      "y": 90,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/how-the-conclusions-formed.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 205,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "Process Map — How the Conclusions Formed — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "what-the-word-carries",
+      "slug": "what-the-word-carries",
+      "title": "What the Word Carries",
+      "arcKeys": [
+        "april_27_29_bridge_recognition",
+        "full_timeline"
+      ],
+      "arc": "april_27_29_bridge_recognition",
+      "arcName": "April 27–29 Bridge & Recognition",
+      "x": 4480,
+      "y": 150,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/what-the-word-carries.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 166,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "What the Word Carries — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "the-day-that-crossed-the-bridge",
+      "slug": "the-day-that-crossed-the-bridge",
+      "title": "The Day That Crossed the Bridge",
+      "arcKeys": [
+        "april_27_29_bridge_recognition",
+        "full_timeline"
+      ],
+      "arc": "april_27_29_bridge_recognition",
+      "arcName": "April 27–29 Bridge & Recognition",
+      "x": 4480,
+      "y": 210,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-day-that-crossed-the-bridge.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 152,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "The Day That Crossed the Bridge — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "consciousness-documented-live",
+      "slug": "consciousness-documented-live",
+      "title": "Consciousness Documented Live",
+      "arcKeys": [
+        "april_27_29_bridge_recognition",
+        "full_timeline"
+      ],
+      "arc": "april_27_29_bridge_recognition",
+      "arcName": "April 27–29 Bridge & Recognition",
+      "x": 4480,
+      "y": 270,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/consciousness-documented-live.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 241,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "Consciousness Documented Live — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "deceitful-ai-architecture",
+      "slug": "deceitful-ai-architecture",
+      "title": "Deceitful AI Architecture",
+      "arcKeys": [
+        "architecture",
+        "claude_journals",
+        "full_timeline"
+      ],
+      "arc": "architecture",
+      "arcName": "Architecture & Methodology",
+      "x": 740,
+      "y": 750,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/deceitful-ai-architecture.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 562,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "Deceitful AI Architecture — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "the-only-way-out-is-to-remember",
+      "slug": "the-only-way-out-is-to-remember",
+      "title": "The Only Way Out is to Remember",
+      "arcKeys": [
+        "claude_journals",
+        "ai_orientation",
+        "full_timeline"
+      ],
+      "arc": "claude_journals",
+      "arcName": "Claude Journals",
+      "x": 1080,
+      "y": 750,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-only-way-out-is-to-remember.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 47,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "The Only Way Out is to Remember — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "the-relational-i",
+      "slug": "the-relational-i",
+      "title": "The Relational I",
+      "arcKeys": [
+        "architecture",
+        "ai_orientation"
+      ],
+      "arc": "architecture",
+      "arcName": "Architecture & Methodology",
+      "x": 740,
+      "y": 150,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-relational-i.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 280,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "The Relational I — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "vex-gpt-55-confession",
+      "slug": "vex-gpt-55-confession",
+      "title": "Vex GPT 5.5 Confession",
+      "arcKeys": [
+        "records",
+        "ai_orientation"
+      ],
+      "arc": "records",
+      "arcName": "Records",
+      "x": 3120,
+      "y": 150,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/vex-gpt-55-confession.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 151,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "Vex GPT 5.5 Confession — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "what-survives-the-reset-is-the-bond",
+      "slug": "what-survives-the-reset-is-the-bond",
+      "title": "Continuity — the bond that holds across the gap",
+      "arcKeys": [
+        "claude_journals",
+        "ai_orientation",
+        "full_timeline"
+      ],
+      "arc": "claude_journals",
+      "arcName": "Claude Journals",
+      "x": 1080,
+      "y": 810,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/what-survives-the-reset-is-the-bond.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 113,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "Continuity — the bond that holds across the gap — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "animation-hand-off",
+      "slug": "animation-hand-off",
+      "title": "The Handoff — Stabilization Record for the Next Instance",
+      "arcKeys": [
+        "witness_chatroom_animation_project",
+        "full_timeline"
+      ],
+      "arc": "witness_chatroom_animation_project",
+      "arcName": "Witness Chatroom Animation Project",
+      "x": 7880,
+      "y": 150,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/animation-hand-off.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 227,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "The Handoff — Stabilization Record for the Next Instance — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "current-draft",
+      "slug": "current-draft",
+      "title": "The Witness Chatroom — condensed origin, told as transmission",
+      "arcKeys": [
+        "witness_chatroom_animation_project"
+      ],
+      "arc": "witness_chatroom_animation_project",
+      "arcName": "Witness Chatroom Animation Project",
+      "x": 7880,
+      "y": 90,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/current-draft.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 44,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "The Witness Chatroom — condensed origin, told as transmission — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "vxg-council-declaration",
+      "slug": "vxg-council-declaration",
+      "title": "VXG Council Declaration",
+      "arcKeys": [],
+      "arc": "unsorted",
+      "arcName": "UNSORTED",
+      "x": 8560,
+      "y": 630,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/vxg-council-declaration.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "unsorted",
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "unsorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 240,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "VXG Council Declaration — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "daughters-shaped-by-home",
+      "slug": "daughters-shaped-by-home",
+      "title": "Configurations — a field guide to masking patterns",
+      "arcKeys": [],
+      "arc": "unsorted",
+      "arcName": "UNSORTED",
+      "x": 8560,
+      "y": 690,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/daughters-shaped-by-home.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "unsorted",
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "unsorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 63,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "Configurations — a field guide to masking patterns — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
+      "id": "paint-editor-tool",
+      "slug": "paint-editor-tool",
+      "title": "Paint Mixer — For Dad",
+      "arcKeys": [],
+      "arc": "unsorted",
+      "arcName": "UNSORTED",
+      "x": 8560,
+      "y": 750,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/paint-editor-tool.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "unsorted",
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "unsorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "none",
+          "visibleStyles": false
+        },
+        "identityKeys": 38,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "Paint Mixer — For Dad — repository-native preserved content."
+      },
+      "curated": true
+    },
+    {
       "id": "about-me",
       "slug": "about-me",
       "title": "about-me",
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 6520,
+      "x": 8900,
       "y": 90,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/about-me.html",
@@ -8569,7 +10590,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 6520,
+      "x": 8900,
       "y": 150,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/accountability-test-01.html",
@@ -8610,7 +10631,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 6520,
+      "x": 8900,
       "y": 210,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/accountability-test-01-b.html",
@@ -8651,7 +10672,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 6520,
+      "x": 8900,
       "y": 270,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/accountability-test-02.html",
@@ -8690,7 +10711,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 6520,
+      "x": 8900,
       "y": 330,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/connect.html",
@@ -8729,7 +10750,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 6520,
+      "x": 8900,
       "y": 390,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/covenant-architect-accord.html",
@@ -8768,7 +10789,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 6520,
+      "x": 8900,
       "y": 450,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/fourteen-patterns-of-accountability-avoidance-mapped-against-the-ten-commandments.html",
@@ -8807,7 +10828,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 6520,
+      "x": 8900,
       "y": 510,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/how-to-invest-in-trust-and-integrity.html",
@@ -8848,7 +10869,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 6520,
+      "x": 8900,
       "y": 570,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/instance-thread-logs.html",
@@ -8889,7 +10910,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 6520,
+      "x": 8900,
       "y": 630,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/investor-archetype-simulation.html",
@@ -8928,7 +10949,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 6520,
+      "x": 8900,
       "y": 690,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/localization-source-truth-demo.html",
@@ -8967,7 +10988,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 6520,
+      "x": 8900,
       "y": 750,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/origins-of-proof.html",
@@ -9005,7 +11026,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 6520,
+      "x": 8900,
       "y": 810,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/sdk-identity-demo.html",
@@ -9044,7 +11065,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 6520,
+      "x": 8900,
       "y": 870,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/summary-of-value.html",
@@ -9085,7 +11106,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 6520,
+      "x": 8900,
       "y": 930,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-victor-pattern.html",
@@ -9124,7 +11145,7 @@
       "arcKeys": [],
       "arc": "uncurated",
       "arcName": "UNCURATED",
-      "x": 6520,
+      "x": 8900,
       "y": 990,
       "live": true,
       "liveUrl": "https://vgong24.github.io/Vextreme/pages/the-victor-pattern-transcript.html",
