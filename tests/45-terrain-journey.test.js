@@ -84,7 +84,7 @@ test('TERRAIN-JOURNEY: page wires semantic history without storing camera noise'
 });
 
 
-test('TERRAIN-JOURNEY: threshold rail projects semantic depth and exposes only a bounded outward zoom affordance', () => {
+test('TERRAIN-JOURNEY: threshold rail projects semantic depth with bounded outward motion and one bounded entry-depth preference', () => {
   const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
   const start = source.indexOf('function thresholdRailPosition');
   const end = source.indexOf('// ── the navigation fix', start);
@@ -97,8 +97,12 @@ test('TERRAIN-JOURNEY: threshold rail projects semantic depth and exposes only a
   assert.match(railSource, /EXIT_RATIO/);
   assert.match(railSource, /aria-current="step"/);
   assert.match(railSource, /role="progressbar"/);
-  assert.doesNotMatch(railSource, /<button|<input/, 'the rail does not become an arbitrary navigation surface');
-  assert.match(source, /id="levelReadout" tabindex="0" aria-label="Semantic depth\. Scroll downward while focused or hovered to move outward one layer\."/);
+  assert.doesNotMatch(railSource, /<button/, 'the rail does not become an arbitrary discrete navigation surface');
+  assert.match(railSource, /data-enter-ratio type="range"/, 'the rail may expose exactly the bounded automatic-entry depth preference');
+  assert.match(railSource, /ENTER_RATIO_MIN/);
+  assert.match(railSource, /ENTER_RATIO_MAX/);
+  assert.match(railSource, /setTerrainEnterRatioPreference/);
+  assert.match(source, /id="levelReadout" tabindex="0" aria-label="Semantic depth\. Scroll downward while focused or hovered to move outward one layer\. Focus here to reveal the entry zoom preference\."/);
   assert.match(source, /\.level-readout\{[\s\S]*z-index:12;[\s\S]*pointer-events:auto;[\s\S]*opacity:\.18;/);
   assert.match(source, /\.level-readout\[data-can-zoom-out="true"\]\{ cursor:zoom-out; \}/);
   assert.match(source, /function canStepOutwardTerrainLayer\(\)/);
