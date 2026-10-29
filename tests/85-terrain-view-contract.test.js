@@ -125,7 +125,7 @@ test('TERRAIN-VIEW: current canonical arcs are not empty; three are secondary-on
     .filter(row => row.members.length > 0 && row.primary.length === 0)
     .map(row => ({ key: row.key, members: row.members.length }));
   assert.deepEqual(secondaryOnly, [
-    { key: 'ai_orientation', members: 8 },
+    { key: 'ai_orientation', members: 12 },
     { key: 'excavation', members: 5 },
     { key: 'march_23_2026', members: 3 },
   ]);

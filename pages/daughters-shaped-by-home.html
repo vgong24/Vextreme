@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html
+  lang="en"><head><meta
+  charset="utf-8"/><meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"/>
+<title data-i18n="pages.daughters-shaped-by-home.document-title">Configurations — a field guide to masking patterns — Vextreme</title><meta
+  name="description"
+  content="Configurations — a field guide to masking patterns — repository-native preserved content."/>
+<link
+  rel="preconnect"
+  href="https://fonts.googleapis.com"/><link
+  rel="preconnect"
+  href="https://fonts.gstatic.com"
+  crossorigin/>
+<link
+  href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:wght@400;600&display=swap"
+  rel="stylesheet"/>
+<link
+  rel="stylesheet"
+  href="../styles/arc-nav.css"/><style>:root{--paper:#fafaf9;--ink:#1c1917;--line:#e7e5e4}*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--paper);color:var(--ink)}.vex-authored-page-frame{width:min(900px,calc(100% - 40px));margin:auto;padding:56px 0 88px}.arc-wrap{margin-top:52px;padding-top:32px;border-top:1px solid var(--line)}
+@import url("https://vgong24.github.io/Vextreme-Assets/__assets/88f45e804ddbc1226dddaee9f79b55ff9b2bb140b64297e41cd68cf31c676b43.css");
+
+:root{
+  --paper:#F3F0E7;
+  --panel:#EAE4D5;
+  --panel-deep:#E1DAC7;
+  --ink:#26252B;
+  --ink-soft:#5C5A51;
+  --ink-faint:#8A8778;
+  --celadon:#5E7C6C;
+  --celadon-deep:#3F5A4C;
+  --plum:#7C4B52;
+  --line:#D3CBB5;
+}
+
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Inter",sans-serif;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+
+::selection{background:var(--celadon);color:var(--paper);}
+
+a{color:var(--celadon-deep);}
+a:focus-visible, button:focus-visible, select:focus-visible, summary:focus-visible{
+  outline:2px solid var(--celadon-deep);
+  outline-offset:2px;
+}
+
+.wrap{
+  max-width:720px;
+  margin:0 auto;
+  padding:72px 24px 100px;
+}
+
+header.masthead{
+  margin-bottom:64px;
+}
+
+.eyebrow{
+  font-size:13px;
+  color:var(--ink-faint);
+  margin:0 0 18px;
+}
+
+h1{
+  font-family:"Newsreader",serif;
+  font-weight:500;
+  font-size:42px;
+  line-height:1.15;
+  margin:0 0 22px;
+  color:var(--ink);
+  max-width:16ch;
+}
+
+.lede{
+  font-size:17px;
+  color:var(--ink-soft);
+  max-width:56ch;
+  margin:0;
+}
+
+section{margin-bottom:56px;}
+
+h2{
+  font-family:"Newsreader",serif;
+  font-weight:500;
+  font-size:23px;
+  margin:0 0 8px;
+}
+
+.section-note{
+  font-size:14px;
+  color:var(--ink-faint);
+  margin:0 0 28px;
+  max-width:52ch;
+}
+
+/* explorer */
+.explorer{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:4px;
+  padding:32px;
+}
+
+.explorer h2{margin-bottom:6px;}
+
+.field-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  margin:24px 0 28px;
+}
+
+@media (max-width:560px){
+  .field-grid{grid-template-columns:1fr;}
+}
+
+.field label{
+  display:block;
+  font-size:13px;
+  color:var(--ink-soft);
+  margin-bottom:6px;
+}
+
+.field select{
+  width:100%;
+  font-family:"Inter",sans-serif;
+  font-size:15px;
+  color:var(--ink);
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:3px;
+  padding:10px 12px;
+  appearance:none;
+  background-image:linear-gradient(45deg, transparent 50%, var(--ink-faint) 50%), linear-gradient(135deg, var(--ink-faint) 50%, transparent 50%);
+  background-position:calc(100% - 18px) center, calc(100% - 13px) center;
+  background-size:5px 5px, 5px 5px;
+  background-repeat:no-repeat;
+}
+
+.result{
+  border-top:1px solid var(--line);
+  padding-top:24px;
+}
+
+.result-name{
+  font-family:"Newsreader",serif;
+  font-size:22px;
+  font-weight:500;
+  margin:0 0 6px;
+}
+
+.result-blurb{
+  font-size:15px;
+  color:var(--ink-soft);
+  margin:0 0 22px;
+  max-width:54ch;
+}
+
+.meter-row{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:10px;
+}
+
+.meter-label{
+  width:92px;
+  flex-shrink:0;
+  font-size:13px;
+  color:var(--ink-soft);
+}
+
+.meter-track{
+  flex:1;
+  height:6px;
+  background:var(--panel-deep);
+  border-radius:3px;
+  overflow:hidden;
+}
+
+.meter-fill{
+  height:100%;
+  background:var(--celadon);
+  border-radius:3px;
+  transition:width .4s ease;
+}
+
+.meter-pct{
+  width:36px;
+  text-align:right;
+  font-size:13px;
+  color:var(--ink-faint);
+  font-variant-numeric:tabular-nums;
+}
+
+/* accordions */
+details{
+  border-bottom:1px solid var(--line);
+  padding:18px 0;
+}
+
+details:first-of-type{border-top:1px solid var(--line);}
+
+summary{
+  cursor:pointer;
+  font-family:"Newsreader",serif;
+  font-size:18px;
+  font-weight:500;
+  list-style:none;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+}
+
+summary::-webkit-details-marker{display:none;}
+
+summary .plus{
+  font-family:"Inter",sans-serif;
+  font-weight:400;
+  font-size:20px;
+  color:var(--ink-faint);
+  flex-shrink:0;
+  transition:transform .2s ease;
+}
+
+details[open] summary .plus{transform:rotate(45deg);}
+
+.details-body{
+  padding-top:14px;
+  font-size:15.5px;
+  color:var(--ink-soft);
+  max-width:58ch;
+}
+
+.details-body p{margin:0 0 14px;}
+.details-body p:last-child{margin-bottom:0;}
+
+/* archetype cards */
+.archetype{
+  padding:22px 0;
+  border-bottom:1px solid var(--line);
+}
+.archetype:first-of-type{border-top:1px solid var(--line);}
+.archetype:last-of-type{border-bottom:none;}
+
+.archetype-name{
+  font-family:"Newsreader",serif;
+  font-size:19px;
+  font-weight:500;
+  margin:0 0 8px;
+  color:var(--celadon-deep);
+}
+
+.archetype p{
+  font-size:15.5px;
+  color:var(--ink-soft);
+  margin:0;
+  max-width:58ch;
+}
+
+.closing{
+  background:var(--panel);
+  border-left:3px solid var(--plum);
+  padding:22px 24px;
+  border-radius:0 4px 4px 0;
+}
+
+.closing p{
+  font-size:15px;
+  color:var(--ink-soft);
+  margin:0 0 12px;
+  max-width:58ch;
+}
+.closing p:last-child{margin-bottom:0;}
+
+footer{
+  margin-top:64px;
+  padding-top:24px;
+  border-top:1px solid var(--line);
+  font-size:13px;
+  color:var(--ink-faint);
+}
+
+@media (prefers-reduced-motion: reduce){
+  .meter-fill{transition:none;}
+  summary .plus{transition:none;}
+}</style><meta name="vex:department" content="rd"/><meta name="vex:workType" content="default"/></head><body
+  data-content-forge-generator="tools/vex-content-forge/project_standalone_page.js"><!-- Source-managed AUTHORED_INTERACTIVE_MAIN projection of docs/ingestion/source-pages/part-011/daughters-shaped-by-home.html. --><main
+  class="vex-authored-page-frame vex-provider-layout-wide"
+  data-content-forge-body="daughters-shaped-by-home"
+  data-content-forge-source="part-011"><div
+  class="wrap">
+<header
+  class="masthead">
+<p
+  class="eyebrow"><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.header001.p001.text001">field notes — household configurations</span></p>
+<h1><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.header001.h1001.text001">The shape a household leaves on a daughter</span></h1>
+<p
+  class="lede"><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.header001.p002.text001">A working scaffold for four variables that seem to combine into recognisable masking patterns — built from research on immigrant family dynamics, Korean cultural concepts, and diaspora psychology. Not a diagnosis, not anyone in particular.</span></p>
+</header>
+<section
+  class="explorer">
+<h2><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section001.h2001.text001">Try a configuration</span></h2>
+<p
+  class="section-note"><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section001.p001.text001">Pick one value per axis. The blend below is a heuristic, not a measurement — most real people sit across two or three of these at once.</span></p>
+<div
+  class="field-grid">
+<div
+  class="field">
+<label
+  for="economic"><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section001.div001.div001.label001.text001">Economic tier</span></label>
+<select
+  id="economic"
+  onchange="recompute()">
+<option
+  value="precarious"><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section001.div001.div001.select001.option001.text001">Precarious / small-business</span></option>
+<option
+  value="downward"><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section001.div001.div001.select001.option002.text001">Downward mobility</span></option>
+<option
+  value="stable"><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section001.div001.div001.select001.option003.text001">Stable / professional</span></option>
+</select>
+</div>
+<div
+  class="field">
+<label
+  for="conflict"><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section001.div001.div002.label001.text001">Conflict style</span></label>
+<select
+  id="conflict"
+  onchange="recompute()">
+<option
+  value="alcohol"><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section001.div001.div002.select001.option001.text001">Alcohol-triggered volatility</span></option>
+<option
+  value="cold"><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section001.div001.div002.select001.option002.text001">Cold, silent repression</span></option>
+<option
+  value="comparison"><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section001.div001.div002.select001.option003.text001">Comparison as control</span></option>
+</select>
+</div>
+<div
+  class="field">
+<label
+  for="sibling"><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section001.div001.div003.label001.text001">Sibling order</span></label>
+<select
+  id="sibling"
+  onchange="recompute()">
+<option
+  value="only"><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section001.div001.div003.select001.option001.text001">Only daughter</span></option>
+<option
+  value="eldest"><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section001.div001.div003.select001.option002.text001">Eldest, with siblings</span></option>
+<option
+  value="brothers"><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section001.div001.div003.select001.option003.text001">Daughter with brothers</span></option>
+<option
+  value="sisters"><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section001.div001.div003.select001.option004.text001">One of several sisters</span></option>
+</select>
+</div>
+<div
+  class="field">
+<label
+  for="trauma"><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section001.div001.div004.label001.text001">Trauma legacy</span></label>
+<select
+  id="trauma"
+  onchange="recompute()">
+<option
+  value="none"><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section001.div001.div004.select001.option001.text001">None known</span></option>
+<option
+  value="han"><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section001.div001.div004.select001.option002.text001">Ambient, unnamed (han)</span></option>
+<option
+  value="direct"><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section001.div001.div004.select001.option003.text001">Direct documented lineage</span></option>
+</select>
+</div>
+</div>
+<div
+  class="result">
+<p
+  class="result-name"
+  id="resultName"><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section001.div002.p001.text001">The performer</span></p>
+<p
+  class="result-blurb"
+  id="resultBlurb"><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section001.div002.p002.text001">Visible warmth, deployed instantly, over strain no one was meant to see.</span></p>
+<div
+  id="meters"></div>
+</div>
+</section>
+<section>
+<h2><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section002.h2001.text001">The axes</span></h2>
+<p
+  class="section-note"><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section002.p001.text001">What each variable is actually tracking.</span></p>
+<details
+  open="">
+<summary><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section002.details001.summary001.text001">Economic tier</span><span
+  class="plus"><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section002.details001.summary001.span001.text001">+</span></span></summary>
+<div
+  class="details-body">
+<p><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section002.details001.div001.p001.text001">Precarious, small-business households — restaurants, salons, dry cleaners — run on long, unpredictable hours. Parents are often physically present but emotionally used up; money stress sits as background static rather than a spoken topic.</span></p>
+<p><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section002.details001.div001.p002.text001">Downward-mobility households carry a different weight: parents who held status before immigrating and are still, quietly, grieving its loss. This one tends to correlate with the sharpest resentment, because the parent's unhappiness predates the child and isn't really about them.</span></p>
+<p><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section002.details001.div001.p003.text001">Stable, professional households usually trade economic panic for a different pressure: constant benchmarking against grades, university, and marriage prospects.</span></p>
+</div>
+</details>
+<details>
+<summary><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section002.details002.summary001.text001">Conflict style</span><span
+  class="plus"><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section002.details002.summary001.span001.text001">+</span></span></summary>
+<div
+  class="details-body">
+<p><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section002.details002.div001.p001.text001">Alcohol-triggered volatility is episodic rather than constant — calm most of the time, then a night where the real material surfaces. Kids raised in it get very good at reading a room and not very good at relaxing in one.</span></p>
+<p><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section002.details002.div001.p002.text001">Cold, silent repression has no incident to point to — just withdrawal and disappointment communicated through absence. Harder to name as a child, because nothing technically happened.</span></p>
+<p><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section002.details002.div001.p003.text001">Comparison-as-control runs conflict through a running scoreboard against a sibling or cousin rather than through open confrontation, and tends to produce achievement as the mask rather than a smile.</span></p>
+<p><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section002.details002.div001.p004.text001">A Korean immigrant church can amplify whichever style sits underneath it — private trouble now carries reputational risk across the whole congregation, not just the family.</span></p>
+<p><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section002.details002.div001.p005.text001">Worth tracking separately: which parent the conflict actually routes through. A daughter managing a volatile father sometimes lands on flat composure rather than a smile, because stoicism is what worked on him specifically.</span></p>
+</div>
+</details>
+<details>
+<summary><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section002.details003.summary001.text001">Sibling order</span><span
+  class="plus"><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section002.details003.summary001.span001.text001">+</span></span></summary>
+<div
+  class="details-body">
+<p><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section002.details003.div001.p001.text001">An only daughter absorbs the full weight of expectation with no one to split it with — often the highest-intensity position, since there's no other child to redirect attention.</span></p>
+<p><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section002.details003.div001.p002.text001">An eldest daughter with younger siblings frequently becomes the household's translator, scheduler, and emotional regulator. Family research calls this parentification, and treats it as a distinct mental-health risk factor, separate from ordinary older-sibling responsibility.</span></p>
+<p><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section002.details003.div001.p003.text001">A daughter with brothers, in more traditionally-minded households, can carry a quieter grief around resource and expectation gaps — not mistreatment exactly, just consistent deprioritisation.</span></p>
+<p><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section002.details003.div001.p004.text001">One of several sisters can go either way: real solidarity and shared coping, or rivalry, depending on whether the parents run a comparison dynamic between them.</span></p>
+</div>
+</details>
+<details>
+<summary><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section002.details004.summary001.text001">Trauma legacy</span><span
+  class="plus"><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section002.details004.summary001.span001.text001">+</span></span></summary>
+<div
+  class="details-body">
+<p><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section002.details004.div001.p001.text001">Some households carry no known inherited history — whatever difficulty exists starts with this generation.</span></p>
+<p><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section002.details004.div001.p002.text001">Han describes something more ambient: a collective, often wordless grief tied to colonisation, war, and division, absorbed into family temperament rather than diagnosed as anything. It shows up as parents who don't explain their moods and kids who learn to infer rather than ask.</span></p>
+<p><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section002.details004.div001.p003.text001">A smaller number of families carry a direct, documented lineage. A 2019 South Korean psychiatric study of the biological children of confirmed "comfort women" survivors found most had at least one diagnosable condition — depression, PTSD, insomnia, alcohol use — despite never experiencing the original trauma themselves, alongside hypervigilance that echoed their mothers'. That's a real transmission mechanism, specific to actual descendants, not a metaphor available to any family with silence in it.</span></p>
+</div>
+</details>
+</section>
+<section>
+<h2><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section003.h2001.text001">The archetypes</span></h2>
+<p
+  class="section-note"><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section003.p001.text001">Composite patterns, not people.</span></p>
+<div
+  class="archetype">
+<p
+  class="archetype-name"><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section003.div001.p001.text001">The performer</span></p>
+<p><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section003.div001.p002.text001">Warmth switched on instantly, on cue, over strain no one was meant to witness. The classic chemyeon response — the outside world gets composure; what's underneath may or may not get anywhere at all.</span></p>
+</div>
+<div
+  class="archetype">
+<p
+  class="archetype-name"><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section003.div002.p001.text001">The regulator</span></p>
+<p><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section003.div002.p002.text001">Masks through competence and control rather than a smile. Usually the parentified eldest daughter, who becomes the family's de facto manager and mistakes being needed for being fine.</span></p>
+</div>
+<div
+  class="archetype">
+<p
+  class="archetype-name"><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section003.div003.p001.text001">The stoic</span></p>
+<p><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section003.div003.p002.text001">Flat affect, anger held in the jaw rather than voiced. More documented in sons under authoritarian fathers, but it shows up in daughters too, especially where direct confrontation reads as insubordination.</span></p>
+</div>
+<div
+  class="archetype">
+<p
+  class="archetype-name"><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section003.div004.p001.text001">The escapist</span></p>
+<p><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section003.div004.p002.text001">Tries to exit the configuration physically or socially — a new country, a new persona — and typically discovers that the pattern was never tied to the geography in the first place.</span></p>
+</div>
+</section>
+<section
+  class="closing">
+<p><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section004.p001.text001">None of these four are an end state. The pattern that shows up most often in people who've had real distance from a configuration — years, therapy, a sibling relationship that finally levels out — is a fifth position that isn't really a mask at all: being willing to name the dynamic plainly, to someone who asks, without performing that it was fine or that it was unbearable. That shift doesn't erase whichever mask came before it. It just stops requiring it.</span></p>
+<p><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.section004.p002.text001">Read this whole page as a set of hooks for noticing, not a formula for concluding. The scoring behind the explorer above is illustrative arithmetic, not a validated instrument.</span></p>
+</section>
+<footer><span
+  data-i18n="pages.daughters-shaped-by-home.body.div001.footer001.text001"> Built as a personal reference. Sources drawn on: research on parentification in immigrant families, the 2019 Psychiatry Investigation study on offspring of comfort women survivors, and reporting on South Korea's escape-the-corset movement. </span></footer>
+</div><script>
+const weights = {
+  economic: {
+    precarious: {performer:3, regulator:1, stoic:1, escapist:1},
+    downward:   {performer:1, regulator:1, stoic:3, escapist:2},
+    stable:     {performer:1, regulator:2, stoic:1, escapist:1}
+  },
+  conflict: {
+    alcohol:    {performer:3, regulator:1, stoic:1, escapist:2},
+    cold:       {performer:1, regulator:2, stoic:3, escapist:1},
+    comparison: {performer:2, regulator:3, stoic:1, escapist:1}
+  },
+  sibling: {
+    only:     {performer:2, regulator:2, stoic:1, escapist:2},
+    eldest:   {performer:1, regulator:3, stoic:1, escapist:1},
+    brothers: {performer:1, regulator:1, stoic:2, escapist:2},
+    sisters:  {performer:1, regulator:1, stoic:1, escapist:1}
+  },
+  trauma: {
+    none:   {performer:1, regulator:1, stoic:1, escapist:1},
+    han:    {performer:2, regulator:1, stoic:2, escapist:1},
+    direct: {performer:1, regulator:1, stoic:3, escapist:2}
+  }
+};
+
+const profiles = {
+  performer: {name:"The performer", blurb:"Visible warmth, deployed instantly, over strain no one was meant to see."},
+  regulator: {name:"The regulator", blurb:"Masks through competence and control rather than a smile — the household's de facto manager."},
+  stoic:     {name:"The stoic", blurb:"Flat affect, anger held rather than voiced. Composure as a closed door, not a performance."},
+  escapist:  {name:"The escapist", blurb:"Tries to exit the configuration itself, and finds the pattern travels with her anyway."}
+};
+
+function recompute(){
+  const econ = document.getElementById('economic').value;
+  const conf = document.getElementById('conflict').value;
+  const sib = document.getElementById('sibling').value;
+  const tra = document.getElementById('trauma').value;
+
+  const totals = {performer:0, regulator:0, stoic:0, escapist:0};
+  [weights.economic[econ], weights.conflict[conf], weights.sibling[sib], weights.trauma[tra]].forEach(w=>{
+    for(const k in w){ totals[k]+=w[k]; }
+  });
+
+  const sum = Object.values(totals).reduce((a,b)=>a+b,0);
+  const pct = {};
+  for(const k in totals){ pct[k] = Math.round((totals[k]/sum)*100); }
+
+  const top = Object.keys(pct).reduce((a,b)=> pct[a]>=pct[b]?a:b);
+
+  document.getElementById('resultName').textContent = profiles[top].name;
+  document.getElementById('resultBlurb').textContent = profiles[top].blurb;
+
+  const order = Object.keys(pct).sort((a,b)=>pct[b]-pct[a]);
+  const meters = document.getElementById('meters');
+  meters.innerHTML = '';
+  order.forEach(key=>{
+    const row = document.createElement('div');
+    row.className = 'meter-row';
+    row.innerHTML = `
+      <div class="meter-label">${profiles[key].name.replace('The ','')}</div>
+      <div class="meter-track"><div class="meter-fill" style="width:${pct[key]}%"></div></div>
+      <div class="meter-pct">${pct[key]}%</div>
+    `;
+    meters.appendChild(row);
+  });
+}
+
+recompute();
+</script><section
+  class="arc-wrap"
+  aria-label="Arc navigation"><div
+  id="arcNavMount"></div></section></main><script src="../dist/vextreme-daughters-shaped-by-home.js"></script></body></html>

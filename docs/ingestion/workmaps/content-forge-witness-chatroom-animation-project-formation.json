@@ -76,7 +76,10 @@
       "proposalRecordRef": "content-forge.source-record.20016a6cebe2437708cb",
       "sourceReceiptRef": "docs/ingestion/workmaps/content-forge-early-rescue-source-custody-recovery-formation.json",
       "confidence": "HIGH_SOURCE_PROJECT_WORKING_DRAFT__DATE_UNESTABLISHED",
-      "projectionState": "READY_FOR_AUTHORED_INTERACTIVE_EXTRACTION"
+      "projectionState": "READY_FOR_AUTHORED_INTERACTIVE_EXTRACTION",
+      "styleVariableDefaults": {
+        "fail": "#9a5a3a"
+      }
     }
   ],
   "sourceAdapterContracts": {

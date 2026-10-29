@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html
+  lang="en"><head><meta
+  charset="utf-8"/><meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"/>
+<title data-i18n="pages.paint-editor-tool.document-title">Paint Mixer — For Dad — Vextreme</title><meta
+  name="description"
+  content="Paint Mixer — For Dad — repository-native preserved content."/>
+<link
+  rel="preconnect"
+  href="https://fonts.googleapis.com"/><link
+  rel="preconnect"
+  href="https://fonts.gstatic.com"
+  crossorigin/>
+<link
+  href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:wght@400;600&display=swap"
+  rel="stylesheet"/>
+<link
+  rel="stylesheet"
+  href="../styles/arc-nav.css"/><style>:root{--paper:#fafaf9;--ink:#1c1917;--line:#e7e5e4}*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--paper);color:var(--ink)}.vex-authored-page-frame{width:min(900px,calc(100% - 40px));margin:auto;padding:56px 0 88px}.arc-wrap{margin-top:52px;padding-top:32px;border-top:1px solid var(--line)}
+:root {
+  --paper: #f5f0e8;
+  --paper-dark: #ede7d9;
+  --ink: #2a1f0e;
+  --ink-light: #6b5a3e;
+  --accent: #8b4513;
+  --border: #d4c5a9;
+  --shadow: rgba(42,31,14,0.12);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #c8b99a;
+  background-image: 
+    radial-gradient(ellipse at 20% 50%, rgba(180,160,120,0.4) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(200,180,140,0.3) 0%, transparent 50%);
+  font-family: "Crimson Pro", Georgia, serif;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.studio {
+  max-width: 1700px;
+  margin: 0 auto;
+  background: var(--paper);
+  border-radius: 2px;
+  box-shadow: 0 8px 48px rgba(42,31,14,0.25), 0 2px 8px rgba(42,31,14,0.15);
+  overflow: hidden;
+}
+
+header {
+  background: var(--paper-dark);
+  border-bottom: 1px solid var(--border);
+  padding: 28px 36px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.title-block h1 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.title-block p {
+  font-size: 13px;
+  color: var(--ink-light);
+  font-style: italic;
+  margin-top: 4px;
+}
+
+.mixing-note {
+  font-size: 11px;
+  color: var(--ink-light);
+  text-align: right;
+  line-height: 1.5;
+  max-width: 240px;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: 600px;
+}
+
+/* SUBJECT SIDEBAR */
+.sidebar {
+  border-right: 1px solid var(--border);
+  background: #f0ead8;
+  padding: 20px 0;
+}
+
+.sidebar-label {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  padding: 0 20px 12px;
+  border-bottom: 1px solid var(--border);
+  display: block;
+}
+
+.subject-btn {
+  width: 100%;
+  text-align: left;
+  padding: 12px 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 15px;
+  color: var(--ink-light);
+  border-left: 3px solid transparent;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.subject-btn:hover { background: rgba(139,69,19,0.06); color: var(--ink); }
+.subject-btn.active {
+  background: var(--paper);
+  color: var(--ink);
+  border-left-color: var(--accent);
+  font-weight: 600;
+}
+
+.subject-icon { font-size: 18px; }
+
+/* MAIN MIXER */
+.mixer {
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.section-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 12px;
+  display: block;
+}
+
+/* COLOR PALETTE GRID */
+.palette-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.color-chip {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 3px solid transparent;
+  box-shadow: 0 2px 6px var(--shadow), inset 0 1px 2px rgba(255,255,255,0.2);
+  transition: all 0.15s;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.color-chip:hover { transform: scale(1.1); box-shadow: 0 4px 12px var(--shadow); }
+.color-chip.selected { border-color: var(--ink); transform: scale(1.08); }
+.color-chip.in-mix { border-color: var(--accent); }
+
+.color-chip-label {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 9px;
+  color: var(--ink-light);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.palette-section {
+  margin-bottom: 28px;
+}
+
+.palette-section-name {
+  font-size: 11px;
+  color: var(--ink-light);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: block;
+}
+
+/* MIX BUILDER */
+.mix-builder {
+  background: var(--paper-dark);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 20px;
+}
+
+.mix-slots {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.mix-slot {
+  display: grid;
+  grid-template-columns: 40px 1fr 60px 28px;
+  gap: 10px;
+  align-items: center;
+}
+
+.mix-swatch {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.mix-slot-name {
+  font-size: 13px;
+  color: var(--ink);
+  font-style: italic;
+}
+
+.ratio-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.ratio-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  box-shadow: 0 1px 4px var(--shadow);
+}
+
+.ratio-pct {
+  font-family: "Crimson Pro", monospace;
+  font-size: 13px;
+  color: var(--ink-light);
+  text-align: right;
+}
+
+.remove-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  cursor: pointer;
+  color: var(--ink-light);
+  font-size: 14px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.1s;
+}
+
+.remove-btn:hover { background: rgba(139,69,19,0.1); color: var(--accent); border-color: var(--accent); }
+
+/* RESULT */
+.result-area {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.result-swatch-large {
+  width: 140px;
+  height: 140px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 16px var(--shadow), inset 0 2px 4px rgba(255,255,255,0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.result-swatch-large::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 40%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.12), transparent);
+  pointer-events: none;
+}
+
+.result-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.result-hex {
+  font-family: "Crimson Pro", monospace;
+  font-size: 22px;
+  color: var(--ink);
+  letter-spacing: 0.05em;
+}
+
+.result-rgb {
+  font-size: 13px;
+  color: var(--ink-light);
+  font-style: italic;
+}
+
+.result-note {
+  font-size: 12px;
+  color: var(--ink-light);
+  line-height: 1.5;
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+  margin-top: 4px;
+}
+
+.save-btn {
+  margin-top: 8px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 2px;
+  letter-spacing: 0.05em;
+  transition: all 0.15s;
+  width: fit-content;
+}
+
+.save-btn:hover { background: #7a3b0f; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(139,69,19,0.3); }
+.save-btn:disabled { background: var(--ink-light); cursor: not-allowed; transform: none; box-shadow: none; }
+
+/* SAVED SWATCHES */
+.saved-section {
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+}
+
+.saved-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.saved-slot {
+  aspect-ratio: 1;
+  border-radius: 4px;
+  border: 2px dashed var(--border);
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.15s;
+}
+
+.saved-slot.filled {
+  border-style: solid;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+.saved-slot.filled:hover { transform: scale(1.05); }
+
+.saved-slot-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  font-size: 8px;
+  text-align: center;
+  padding: 2px;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.saved-slot.filled:hover .saved-slot-label { opacity: 1; }
+
+.saved-slot .clear-saved {
+  position: absolute;
+  top: 2px; right: 2px;
+  background: rgba(0,0,0,0.4);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 14px; height: 14px;
+  font-size: 8px;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.saved-slot.filled:hover .clear-saved { display: flex; }
+
+.empty-hint {
+  font-size: 11px;
+  color: var(--border);
+  text-align: center;
+  padding-top: 6px;
+}
+
+/* MIX EMPTY STATE */
+.mix-empty {
+  text-align: center;
+  padding: 24px;
+  color: var(--ink-light);
+  font-style: italic;
+  font-size: 14px;
+  border: 1px dashed var(--border);
+  border-radius: 2px;
+}
+
+/* TOOLTIP */
+.tooltip {
+  position: fixed;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 6px 10px;
+  border-radius: 2px;
+  font-size: 11px;
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.1s;
+  white-space: nowrap;
+}
+
+@media (max-width: 1700px) {
+  .workspace { grid-template-columns: 1fr; }
+  .sidebar { border-right: none; border-bottom: 1px solid var(--border); }
+  .subject-btn { display: inline-flex; width: auto; border-left: none; border-bottom: 3px solid transparent; }
+  .subject-btn.active { border-bottom-color: var(--accent); border-left-color: transparent; }
+  .saved-grid { grid-template-columns: repeat(4, 1fr); }
+  .result-area { grid-template-columns: 1fr; }
+  .result-swatch-large { width: 100%; height: 100px; }
+  header { flex-direction: column; gap: 12px; align-items: flex-start; }
+  .mixing-note { text-align: left; max-width: 100%; }
+}
+
+/* OPTIMIZATION PANEL */
+.opt-panel {
+  border-top: 2px solid var(--accent);
+  background: #f8f2e4;
+  padding: 24px 32px;
+  display: none;
+}
+
+.opt-panel.open { display: block; }
+
+.opt-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.opt-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 17px;
+  color: var(--ink);
+}
+
+.opt-target {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 14px 16px;
+  background: var(--paper-dark);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+}
+
+.opt-target-swatch {
+  width: 52px;
+  height: 52px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.opt-target-info { flex: 1; }
+
+.opt-target-label {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.opt-target-desc {
+  font-size: 14px;
+  color: var(--ink);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.opt-search-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.opt-search-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 9px 18px;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 13px;
+  cursor: pointer;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+.opt-search-btn:hover { background: #7a3b0f; }
+.opt-search-btn.secondary {
+  background: none;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+.opt-search-btn.secondary:hover { background: rgba(139,69,19,0.08); }
+
+.opt-scope-label {
+  font-size: 12px;
+  color: var(--ink-light);
+  font-style: italic;
+}
+
+.opt-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.opt-result-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 14px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.opt-result-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 2px 8px var(--shadow);
+  transform: translateY(-1px);
+}
+
+.opt-result-top {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.opt-result-swatch {
+  width: 44px;
+  height: 44px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.opt-result-meta { flex: 1; }
+
+.opt-result-match {
+  font-family: "Crimson Pro", monospace;
+  font-size: 13px;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.opt-result-count {
+  font-size: 11px;
+  color: var(--ink-light);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.opt-result-colors {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.opt-color-pill {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--paper-dark);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 3px 8px 3px 5px;
+  font-size: 11px;
+  color: var(--ink-light);
+}
+
+.opt-color-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.opt-load-hint {
+  font-size: 11px;
+  color: var(--ink-light);
+  font-style: italic;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.opt-empty {
+  grid-column: 1/-1;
+  text-align: center;
+  padding: 32px;
+  color: var(--ink-light);
+  font-style: italic;
+  font-size: 14px;
+}
+
+.opt-close {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--ink-light);
+  padding: 6px 14px;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 2px;
+  font-family: "Crimson Pro", Georgia, serif;
+}
+
+.opt-close:hover { border-color: var(--accent); color: var(--accent); }
+
+.match-bar {
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.match-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(to right, #c45e2a, #4a7c3f);
+  transition: width 0.3s;
+}
+
+@media (max-width: 1700px) {
+  .opt-results { grid-template-columns: 1fr; }
+  .opt-panel { padding: 16px 20px; }
+}</style><meta name="vex:department" content="rd"/><meta name="vex:workType" content="default"/></head><body
+  data-content-forge-generator="tools/vex-content-forge/project_standalone_page.js"><!-- Source-managed AUTHORED_INTERACTIVE_MAIN projection of docs/ingestion/source-pages/part-008/paint-editor-tool.html. --><main
+  class="vex-authored-page-frame vex-provider-layout-wide"
+  data-content-forge-body="paint-editor-tool"
+  data-content-forge-source="part-008"><div
+  class="studio">
+<header>
+<div
+  class="title-block">
+<h1><span
+  data-i18n="pages.paint-editor-tool.body.div001.header001.div001.h1001.text001">Paint Mixer</span></h1>
+<p><span
+  data-i18n="pages.paint-editor-tool.body.div001.header001.div001.p001.text001">For the painting for Dad — physical paint approximations</span></p>
+</div>
+<div
+  class="mixing-note"><span
+  data-i18n="pages.paint-editor-tool.body.div001.header001.div002.text001"> Simulates subtractive mixing.</span><br><span
+  data-i18n="pages.paint-editor-tool.body.div001.header001.div002.text002"> Results are close approximations —</span><br><span
+  data-i18n="pages.paint-editor-tool.body.div001.header001.div002.text003"> test on paper before committing. </span></div>
+</header>
+<div
+  class="workspace">
+<!-- SIDEBAR -->
+<div
+  class="sidebar">
+<span
+  class="sidebar-label"><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.span001.text001">Subjects</span></span>
+<button
+  class="subject-btn active"
+  id="btn-cats"
+  onclick="setSubject('cats')">
+<span
+  class="subject-icon"><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button001.span001.text001">🐱</span></span><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button001.text001"> The Cats </span></button>
+<button
+  class="subject-btn"
+  id="btn-gems"
+  onclick="setSubject('gems')">
+<span
+  class="subject-icon"><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button002.span001.text001">💎</span></span><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button002.text001"> Gem Rocks </span></button>
+<button
+  class="subject-btn"
+  id="btn-plants"
+  onclick="setSubject('plants')">
+<span
+  class="subject-icon"><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button003.span001.text001">🌿</span></span><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button003.text001"> Plants &amp; Flowers </span></button>
+<button
+  class="subject-btn"
+  id="btn-water"
+  onclick="setSubject('water')">
+<span
+  class="subject-icon"><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button004.span001.text001">🌊</span></span><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button004.text001"> River &amp; Water </span></button>
+<button
+  class="subject-btn"
+  id="btn-mountain"
+  onclick="setSubject('mountain')">
+<span
+  class="subject-icon"><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button005.span001.text001">⛰️</span></span><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button005.text001"> Mountain </span></button>
+<button
+  class="subject-btn"
+  id="btn-home"
+  onclick="setSubject('home')">
+<span
+  class="subject-icon"><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button006.span001.text001">🏠</span></span><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button006.text001"> Our Home </span></button>
+<button
+  class="subject-btn"
+  id="btn-sky"
+  onclick="setSubject('sky')">
+<span
+  class="subject-icon"><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button007.span001.text001">🌅</span></span><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button007.text001"> Sky &amp; Light </span></button>
+<button
+  class="subject-btn"
+  id="btn-custom"
+  onclick="setSubject('custom')">
+<span
+  class="subject-icon"><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button008.span001.text001">🎨</span></span><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button008.text001"> Custom </span></button>
+</div>
+<!-- MIXER -->
+<div
+  class="mixer">
+<!-- PALETTE -->
+<div>
+<span
+  class="section-title"><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div002.div001.span001.text001">Select colors to mix — click to add to mix</span></span>
+<div
+  id="palette-container"></div>
+</div>
+<!-- MIX BUILDER -->
+<div
+  class="mix-builder">
+<span
+  class="section-title"><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div002.div002.span001.text001">Current mix — adjust ratios with sliders</span></span>
+<div
+  class="mix-slots"
+  id="mix-slots">
+<div
+  class="mix-empty"><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div002.div002.div001.div001.text001">Click colors above to start mixing</span></div>
+</div>
+<div
+  class="result-area"
+  id="result-area"
+  style="display:none">
+<div
+  class="result-swatch-large"
+  id="result-swatch"></div>
+<div
+  class="result-info">
+<div
+  class="result-hex"
+  id="result-hex"><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div002.div002.div002.div002.div001.text001">#------</span></div>
+<div
+  class="result-rgb"
+  id="result-rgb"><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div002.div002.div002.div002.div002.text001">R: — G: — B: —</span></div>
+<div
+  class="result-note"
+  id="result-note"></div>
+<button
+  class="save-btn"
+  id="save-btn"
+  onclick="saveSwatch()"><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div002.div002.div002.div002.button001.text001">Save to test palette</span></button>
+</div>
+</div>
+</div>
+<!-- SAVED -->
+<div
+  class="saved-section">
+<span
+  class="section-title"><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div002.div003.span001.text001">Test palette — up to 8 mixes to compare</span></span>
+<div
+  class="saved-grid"
+  id="saved-grid"></div>
+</div>
+</div>
+</div>
+</div><div
+  class="opt-panel"
+  id="opt-panel">
+<div
+  class="opt-header">
+<div
+  class="opt-title"><span
+  data-i18n="pages.paint-editor-tool.body.div002.div001.div001.text001">Find simpler mix paths</span></div>
+<button
+  class="opt-close"
+  onclick="closeOptPanel()"><span
+  data-i18n="pages.paint-editor-tool.body.div002.div001.button001.text001">Close ✕</span></button>
+</div>
+<div
+  class="opt-target"
+  id="opt-target-display"></div>
+<div
+  class="opt-search-bar">
+<button
+  class="opt-search-btn"
+  onclick="runSearch(2, 'subject')"><span
+  data-i18n="pages.paint-editor-tool.body.div002.div003.button001.text001">Find 2-color alternatives</span></button>
+<button
+  class="opt-search-btn"
+  onclick="runSearch(3, 'subject')"><span
+  data-i18n="pages.paint-editor-tool.body.div002.div003.button002.text001">Find 3-color alternatives</span></button>
+<button
+  class="opt-search-btn secondary"
+  onclick="runSearch(2, 'all')"><span
+  data-i18n="pages.paint-editor-tool.body.div002.div003.button003.text001">Search all palettes (2)</span></button>
+<button
+  class="opt-search-btn secondary"
+  onclick="runSearch(3, 'all')"><span
+  data-i18n="pages.paint-editor-tool.body.div002.div003.button004.text001">Search all palettes (3)</span></button>
+<span
+  class="opt-scope-label"
+  id="opt-scope-label"></span>
+</div>
+<div
+  class="opt-results"
+  id="opt-results">
+<div
+  class="opt-empty"><span
+  data-i18n="pages.paint-editor-tool.body.div002.div004.div001.text001">Choose a search above to find simpler mix alternatives</span></div>
+</div>
+<div
+  class="opt-load-hint"><span
+  data-i18n="pages.paint-editor-tool.body.div002.div005.text001">Click any result card to load it into the mixer</span></div>
+</div><div
+  class="tooltip"
+  id="tooltip"></div><script>
+// ── PALETTE DATA ──────────────────────────────────────────────
+const palettes = {
+  cats: [
+    { name: 'Warm Brown', hex: '#8B6347', note: 'Base for brown cat body' },
+    { name: 'Chocolate', hex: '#5C3A1E', note: 'Dark brown cat markings' },
+    { name: 'Tan', hex: '#D2A679', note: 'Light brown highlights' },
+    { name: 'Cream', hex: '#F5DEB3', note: 'Belly/chest lightening' },
+    { name: 'Burnt Sienna', hex: '#C45E2A', note: 'Warm orange-brown fur' },
+    { name: 'Raw Umber', hex: '#826644', note: 'Mid-tone brown' },
+    { name: 'Cool Gray', hex: '#9BA3A8', note: 'Base for gray cat' },
+    { name: 'Blue Gray', hex: '#7A8FA6', note: 'Cool gray cat tones' },
+    { name: 'Silver', hex: '#C0C8CD', note: 'Light gray highlights' },
+    { name: 'Charcoal', hex: '#4A4E52', note: 'Dark gray markings' },
+    { name: 'Warm White', hex: '#F5F0E8', note: 'White patches' },
+    { name: 'Black', hex: '#1A1A1A', note: 'Darkest shadows & pupils' },
+    { name: 'Pink', hex: '#FFAABB', note: 'Nose & paw pads' },
+    { name: 'Amber', hex: '#FFBF00', note: 'Eye color option' },
+    { name: 'Green Eye', hex: '#4CAF72', note: 'Eye color option' },
+  ],
+  gems: [
+    { name: 'Ruby Red', hex: '#9B1B30', note: 'Deep red gems' },
+    { name: 'Rose', hex: '#E8637A', note: 'Pink gem highlights' },
+    { name: 'Sapphire', hex: '#1B3A8B', note: 'Deep blue gems' },
+    { name: 'Cornflower', hex: '#6495ED', note: 'Mid blue gems' },
+    { name: 'Emerald', hex: '#1A6B47', note: 'Deep green gems' },
+    { name: 'Jade', hex: '#4CAF72', note: 'Light green gems' },
+    { name: 'Amethyst', hex: '#7B3F8C', note: 'Purple gems' },
+    { name: 'Lavender', hex: '#B88AC8', note: 'Light purple gems' },
+    { name: 'Topaz', hex: '#FFC44C', note: 'Gold/yellow gems' },
+    { name: 'Citrine', hex: '#E8A830', note: 'Amber gems' },
+    { name: 'Quartz', hex: '#E8E4F0', note: 'Clear gem shimmer' },
+    { name: 'Obsidian', hex: '#2A2A35', note: 'Dark gem base' },
+    { name: 'Gold', hex: '#D4A017', note: 'Metal settings' },
+    { name: 'Silver', hex: '#C0C0C8', note: 'Silver settings' },
+    { name: 'Pearl', hex: '#F8F4E8', note: 'Lustrous white' },
+  ],
+  plants: [
+    { name: 'Sap Green', hex: '#4A7C3F', note: 'Base leaf green' },
+    { name: 'Olive', hex: '#6B7A3A', note: 'Muted leaf green' },
+    { name: 'Forest', hex: '#2D5A27', note: 'Dark shadow leaves' },
+    { name: 'Lime', hex: '#8BC34A', note: 'Young leaf highlights' },
+    { name: 'Yellow Green', hex: '#C5E05A', note: 'Sunlit leaf tips' },
+    { name: 'Terre Verte', hex: '#5A7A5A', note: 'Muted plant tones' },
+    { name: 'Rose Red', hex: '#C2185B', note: 'Red flowers' },
+    { name: 'Coral', hex: '#FF7043', note: 'Orange flowers' },
+    { name: 'Sunny Yellow', hex: '#FDD835', note: 'Yellow flowers' },
+    { name: 'Violet', hex: '#7B1FA2', note: 'Purple flowers' },
+    { name: 'Sky Blue', hex: '#42A5F5', note: 'Blue flowers' },
+    { name: 'Cream', hex: '#F5F0DC', note: 'White flower base' },
+    { name: 'Burnt Umber', hex: '#7A4425', note: 'Stems & bark' },
+    { name: 'Raw Sienna', hex: '#C4762A', note: 'Warm earth tones' },
+    { name: 'Pink', hex: '#F48FB1', note: 'Pink blossoms' },
+  ],
+  water: [
+    { name: 'Cerulean', hex: '#0097C4', note: 'Bright river blue' },
+    { name: 'Cobalt', hex: '#1A5BA8', note: 'Deep water blue' },
+    { name: 'Prussian', hex: '#1B3A5C', note: 'Darkest water depth' },
+    { name: 'Aqua', hex: '#26C6DA', note: 'Shallow water shimmer' },
+    { name: 'Turquoise', hex: '#00B8A8', note: 'Green-blue water' },
+    { name: 'Teal', hex: '#00796B', note: 'Deep teal water' },
+    { name: 'Sea Green', hex: '#4DB6AC', note: 'Underwater tone' },
+    { name: 'White', hex: '#F5F5F5', note: 'Water highlights/foam' },
+    { name: 'Gray Blue', hex: '#7896A8', note: 'Overcast water' },
+    { name: 'Sky Reflect', hex: '#87CEEB', note: 'Sky reflection in water' },
+    { name: 'Green Reflect', hex: '#5A8A6A', note: 'Bank reflection' },
+    { name: 'Brown Mud', hex: '#8B6347', note: 'Riverbank mud' },
+    { name: 'Sand', hex: '#C4A882', note: 'Riverbed color' },
+    { name: 'Ochre', hex: '#D4A017', note: 'Sandy riverbank' },
+    { name: 'Shadow Blue', hex: '#2B4A6B', note: 'Water shadow depths' },
+  ],
+  mountain: [
+    { name: 'Blue Gray', hex: '#7A8FA6', note: 'Distant mountain base' },
+    { name: 'Mauve', hex: '#8A7090', note: 'Purple mountain haze' },
+    { name: 'Storm Gray', hex: '#5A6670', note: 'Rocky mountain face' },
+    { name: 'Warm Gray', hex: '#8A8278', note: 'Sunlit rock face' },
+    { name: 'Stone', hex: '#B0A898', note: 'Light rock highlights' },
+    { name: 'Slate', hex: '#4A5260', note: 'Dark slate rock' },
+    { name: 'Snow', hex: '#F0F0F5', note: 'Mountain snow peaks' },
+    { name: 'Ice Blue', hex: '#C8D8E8', note: 'Snow shadows' },
+    { name: 'Pine Dark', hex: '#2D5A27', note: 'Mountain pine trees' },
+    { name: 'Pine Mid', hex: '#4A7C3F', note: 'Mid-level pines' },
+    { name: 'Raw Sienna', hex: '#C4762A', note: 'Warm rock tones' },
+    { name: 'Burnt Umber', hex: '#7A4425', note: 'Dark rock crevices' },
+    { name: 'Indigo', hex: '#3F51B5', note: 'Very distant mountain' },
+    { name: 'Lavender', hex: '#B0A8C0', note: 'Atmospheric haze' },
+    { name: 'Olive', hex: '#6B7A3A', note: 'Mountain meadow' },
+  ],
+  home: [
+    { name: 'Bright White', hex: '#F8F8F5', note: 'White walls base' },
+    { name: 'Warm White', hex: '#F5F0E0', note: 'Warm wall white' },
+    { name: 'Light Gray', hex: '#D8D5D0', note: 'White wall shadows' },
+    { name: 'Cream', hex: '#EDE8D8', note: 'Off-white details' },
+    { name: 'Dark Forest', hex: '#1B3A1F', note: 'Dark green trim base' },
+    { name: 'Hunter Green', hex: '#2D5A35', note: 'Main dark green' },
+    { name: 'Sage', hex: '#6B8A6B', note: 'Lighter green accent' },
+    { name: 'Moss', hex: '#4A6A4A', note: 'Green mid-tone' },
+    { name: 'Warm Gray', hex: '#9A9088', note: 'Concrete/path' },
+    { name: 'Tan', hex: '#C4A882', note: 'Natural wood tones' },
+    { name: 'Roof Gray', hex: '#6A7078', note: 'Roof color' },
+    { name: 'Window Blue', hex: '#8AB0C8', note: 'Window glass reflection' },
+    { name: 'Brick', hex: '#C47A5A', note: 'Any brick elements' },
+    { name: 'Black', hex: '#1A1A1A', note: 'Darkest shadows' },
+    { name: 'Gold', hex: '#C4A017', note: 'Warm light on home' },
+  ],
+  sky: [
+    { name: 'Dawn Pink', hex: '#FFB5A0', note: 'Early dawn horizon' },
+    { name: 'Dawn Orange', hex: '#FF8C42', note: 'Sunrise orange' },
+    { name: 'Dawn Yellow', hex: '#FFD580', note: 'Golden hour light' },
+    { name: 'Day Blue', hex: '#5BA4CF', note: 'Clear midday sky' },
+    { name: 'Deep Blue', hex: '#2E6DA4', note: 'High sky blue' },
+    { name: 'Zenith', hex: '#1A4A7A', note: 'Darkest sky above' },
+    { name: 'Cloud White', hex: '#F8F8F8', note: 'Bright cloud tops' },
+    { name: 'Cloud Shadow', hex: '#C8D0D8', note: 'Cloud undersides' },
+    { name: 'Storm Gray', hex: '#7A8A98', note: 'Storm clouds' },
+    { name: 'Dusk Purple', hex: '#8A6AA0', note: 'Dusk sky color' },
+    { name: 'Dusk Pink', hex: '#E896A0', note: 'Evening pink sky' },
+    { name: 'Night Blue', hex: '#1A2A4A', note: 'Twilight/night sky' },
+    { name: 'Moon Silver', hex: '#D8DDE8', note: 'Moonlit sky' },
+    { name: 'Haze', hex: '#D4C8B8', note: 'Atmospheric haze horizon' },
+    { name: 'Golden Sun', hex: '#FFC107', note: 'Sun color/glow' },
+  ],
+  custom: [
+    { name: 'White', hex: '#FFFFFF', note: 'Pure white' },
+    { name: 'Ivory', hex: '#FFFFF0', note: 'Warm white' },
+    { name: 'Cream', hex: '#FFFDD0', note: 'Cream' },
+    { name: 'Lemon', hex: '#FFF44F', note: 'Lemon yellow' },
+    { name: 'Yellow', hex: '#FFD700', note: 'Cadmium yellow' },
+    { name: 'Ochre', hex: '#CC7722', note: 'Yellow ochre' },
+    { name: 'Orange', hex: '#FF6F00', note: 'Orange' },
+    { name: 'Red', hex: '#CC2200', note: 'Cadmium red' },
+    { name: 'Crimson', hex: '#DC143C', note: 'Crimson' },
+    { name: 'Magenta', hex: '#CC0066', note: 'Magenta' },
+    { name: 'Violet', hex: '#7B1FA2', note: 'Violet' },
+    { name: 'Ultramarine', hex: '#1B3A8B', note: 'Ultramarine blue' },
+    { name: 'Cerulean', hex: '#0097C4', note: 'Cerulean' },
+    { name: 'Sap Green', hex: '#4A7C3F', note: 'Sap green' },
+    { name: 'Viridian', hex: '#40826D', note: 'Viridian' },
+    { name: 'Phthalo', hex: '#123524', note: 'Phthalo green' },
+    { name: 'Raw Umber', hex: '#826644', note: 'Raw umber' },
+    { name: 'Burnt Umber', hex: '#7A4425', note: 'Burnt umber' },
+    { name: 'Burnt Sienna', hex: '#C45E2A', note: 'Burnt sienna' },
+    { name: 'Raw Sienna', hex: '#C4762A', note: 'Raw sienna' },
+    { name: 'Gray', hex: '#808080', note: 'Neutral gray' },
+    { name: 'Black', hex: '#1A1A1A', note: 'Ivory black' },
+  ],
+};
+
+// ── STATE ─────────────────────────────────────────────────────
+let currentSubject = 'cats';
+let mixColors = []; // [{hex, name, note, ratio}]
+let savedSwatches = new Array(8).fill(null);
+
+// ── SUBTRACTIVE MIXING ────────────────────────────────────────
+function hexToRgb(hex) {
+  const r = parseInt(hex.slice(1,3),16);
+  const g = parseInt(hex.slice(3,5),16);
+  const b = parseInt(hex.slice(5,7),16);
+  return {r,g,b};
+}
+
+function rgbToHex(r,g,b) {
+  return '#' + [r,g,b].map(v => Math.round(Math.max(0,Math.min(255,v))).toString(16).padStart(2,'0')).join('');
+}
+
+// Subtractive mixing approximation using reflectance model
+function subtractiveBlend(colors, ratios) {
+  if (colors.length === 0) return {r:255,g:255,b:255};
+  
+  const total = ratios.reduce((a,b) => a+b, 0);
+  const weights = ratios.map(r => r/total);
+  
+  // Kubelka-Munk inspired: work in absorption space
+  let rAccum = 0, gAccum = 0, bAccum = 0;
+  
+  colors.forEach((c, i) => {
+    const rgb = hexToRgb(c.hex);
+    const w = weights[i];
+    // Convert to absorption coefficients (higher = more absorbing)
+    const rAbs = Math.pow((255 - rgb.r) / 255, 0.7);
+    const gAbs = Math.pow((255 - rgb.g) / 255, 0.7);
+    const bAbs = Math.pow((255 - rgb.b) / 255, 0.7);
+    rAccum += rAbs * w;
+    gAccum += gAbs * w;
+    bAccum += bAbs * w;
+  });
+  
+  // Convert back to reflectance
+  const r = Math.round((1 - Math.pow(rAccum, 1/0.7)) * 255);
+  const g = Math.round((1 - Math.pow(gAccum, 1/0.7)) * 255);
+  const b = Math.round((1 - Math.pow(bAccum, 1/0.7)) * 255);
+  
+  return {r,g,b};
+}
+
+function getMixDescription(colors) {
+  if (colors.length === 0) return '';
+  const total = mixColors.reduce((s,c) => s+c.ratio, 0);
+  const parts = colors.map(c => {
+    const pct = Math.round(c.ratio / total * 100);
+    return `${pct}% ${c.name}`;
+  });
+  return parts.join(' + ');
+}
+
+// ── RENDER ────────────────────────────────────────────────────
+function setSubject(subject) {
+  currentSubject = subject;
+  document.querySelectorAll('.subject-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('btn-'+subject).classList.add('active');
+  renderPalette();
+}
+
+function renderPalette() {
+  const container = document.getElementById('palette-container');
+  const colors = palettes[currentSubject];
+  
+  container.innerHTML = `
+    <div class="palette-grid" style="padding-top:16px; padding-bottom:8px;">
+      ${colors.map((c, i) => `
+        <div style="display:flex;flex-direction:column;align-items:center;margin-bottom:24px;">
+          <div 
+            class="color-chip ${mixColors.find(m => m.hex===c.hex) ? 'in-mix' : ''}"
+            style="background:${c.hex}"
+            onclick="addToMix(${i})"
+            onmouseenter="showTooltip(event,'${c.name}: ${c.note}')"
+            onmouseleave="hideTooltip()"
+          ></div>
+          <div class="color-chip-label">${c.name}</div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function renderMix() {
+  const slotsEl = document.getElementById('mix-slots');
+  const resultEl = document.getElementById('result-area');
+  
+  if (mixColors.length === 0) {
+    slotsEl.innerHTML = '<div class="mix-empty">Click colors above to start mixing</div>';
+    resultEl.style.display = 'none';
+    return;
+  }
+  
+  const total = mixColors.reduce((s,c) => s+c.ratio, 0);
+  
+  slotsEl.innerHTML = mixColors.map((c, i) => `
+    <div class="mix-slot">
+      <div class="mix-swatch" style="background:${c.hex}"></div>
+      <div class="mix-slot-name">${c.name}</div>
+      <input 
+        type="range" 
+        class="ratio-slider" 
+        min="1" max="100" 
+        value="${c.ratio}"
+        oninput="updateRatio(${i}, this.value)"
+      >
+      <div class="ratio-pct" id="pct-${i}">${Math.round(c.ratio/total*100)}%</div>
+      <button class="remove-btn" onclick="removeFromMix(${i})">×</button>
+    </div>
+  `).join('');
+  
+  // Calculate result
+  const ratios = mixColors.map(c => c.ratio);
+  const blended = subtractiveBlend(mixColors, ratios);
+  const hex = rgbToHex(blended.r, blended.g, blended.b);
+  
+  document.getElementById('result-swatch').style.background = hex;
+  document.getElementById('result-hex').textContent = hex.toUpperCase();
+  document.getElementById('result-rgb').textContent = `R: ${blended.r}  G: ${blended.g}  B: ${blended.b}`;
+  document.getElementById('result-note').textContent = getMixDescription(mixColors);
+  
+  const savedCount = savedSwatches.filter(s => s !== null).length;
+  document.getElementById('save-btn').disabled = savedCount >= 8;
+  document.getElementById('save-btn').textContent = savedCount >= 8 ? 'Palette full (8/8)' : 'Save to test palette';
+  
+  resultEl.style.display = 'grid';
+}
+
+function renderSaved() {
+  const grid = document.getElementById('saved-grid');
+  grid.innerHTML = savedSwatches.map((s, i) => `
+    <div class="saved-slot ${s ? 'filled' : ''}" 
+         style="${s ? `background:${s.hex}` : ''}"
+         onclick="${s ? `loadSwatch(${i})` : ''}"
+         title="${s ? s.description : 'Empty slot'}">
+      ${s ? `
+        <div class="saved-slot-label">${s.hex}</div>
+        <button class="clear-saved" onclick="clearSwatch(event,${i})">×</button>
+      ` : `<div class="empty-hint">${i+1}</div>`}
+    </div>
+  `).join('');
+}
+
+// ── ACTIONS ───────────────────────────────────────────────────
+function addToMix(colorIndex) {
+  const color = palettes[currentSubject][colorIndex];
+  if (mixColors.find(c => c.hex === color.hex)) return;
+  if (mixColors.length >= 5) {
+    alert('Mix up to 5 colors at once for better accuracy');
+    return;
+  }
+  mixColors.push({...color, ratio: 50});
+  renderPalette();
+  renderMix();
+}
+
+function removeFromMix(index) {
+  mixColors.splice(index, 1);
+  renderPalette();
+  renderMix();
+}
+
+function updateRatio(index, value) {
+  mixColors[index].ratio = parseInt(value);
+  const total = mixColors.reduce((s,c) => s+c.ratio, 0);
+  mixColors.forEach((c, i) => {
+    const el = document.getElementById('pct-'+i);
+    if (el) el.textContent = Math.round(c.ratio/total*100) + '%';
+  });
+  const ratios = mixColors.map(c => c.ratio);
+  const blended = subtractiveBlend(mixColors, ratios);
+  const hex = rgbToHex(blended.r, blended.g, blended.b);
+  document.getElementById('result-swatch').style.background = hex;
+  document.getElementById('result-hex').textContent = hex.toUpperCase();
+  document.getElementById('result-rgb').textContent = `R: ${blended.r}  G: ${blended.g}  B: ${blended.b}`;
+  document.getElementById('result-note').textContent = getMixDescription(mixColors);
+}
+
+function saveSwatch() {
+  const ratios = mixColors.map(c => c.ratio);
+  const blended = subtractiveBlend(mixColors, ratios);
+  const hex = rgbToHex(blended.r, blended.g, blended.b);
+  const description = getMixDescription(mixColors);
+  
+  const emptySlot = savedSwatches.findIndex(s => s === null);
+  if (emptySlot === -1) return;
+  
+  savedSwatches[emptySlot] = {hex, description, colors: [...mixColors]};
+  renderSaved();
+  renderMix();
+}
+
+function loadSwatch(index) {
+  const s = savedSwatches[index];
+  if (!s) return;
+  mixColors = s.colors.map(c => ({...c}));
+  renderPalette();
+  renderMix();
+}
+
+function clearSwatch(event, index) {
+  event.stopPropagation();
+  savedSwatches[index] = null;
+  renderSaved();
+  renderMix();
+}
+
+function showTooltip(event, text) {
+  const t = document.getElementById('tooltip');
+  t.textContent = text;
+  t.style.opacity = '1';
+  t.style.left = (event.clientX + 12) + 'px';
+  t.style.top = (event.clientY - 30) + 'px';
+}
+
+function hideTooltip() {
+  document.getElementById('tooltip').style.opacity = '0';
+}
+
+// ── OPTIMIZATION ENGINE ───────────────────────────────────────
+let optTarget = null; // {hex, description, colors}
+
+function colorDistance(hex1, hex2) {
+  const a = hexToRgb(hex1), b = hexToRgb(hex2);
+  // Weighted euclidean in RGB (human perception weighting)
+  return Math.sqrt(
+    2.0 * Math.pow(a.r - b.r, 2) +
+    4.0 * Math.pow(a.g - b.g, 2) +
+    3.0 * Math.pow(a.b - b.b, 2)
+  );
+}
+
+function findBestRatio(colors, targetHex) {
+  // Grid search for best ratio combination
+  let bestDist = Infinity;
+  let bestRatios = colors.map(() => 50);
+  const steps = colors.length === 2 ? [10,20,30,40,50,60,70,80,90] : [15,30,45,60,75,90];
+
+  if (colors.length === 2) {
+    for (let r1 of steps) {
+      const r2 = 100 - r1;
+      const blend = subtractiveBlend(colors, [r1, r2]);
+      const hex = rgbToHex(blend.r, blend.g, blend.b);
+      const dist = colorDistance(hex, targetHex);
+      if (dist < bestDist) { bestDist = dist; bestRatios = [r1, r2]; }
+    }
+  } else {
+    for (let r1 of steps) {
+      for (let r2 of steps) {
+        const r3 = Math.max(5, 100 - r1 - r2);
+        if (r1 + r2 + r3 > 110) continue;
+        const blend = subtractiveBlend(colors, [r1, r2, r3]);
+        const hex = rgbToHex(blend.r, blend.g, blend.b);
+        const dist = colorDistance(hex, targetHex);
+        if (dist < bestDist) { bestDist = dist; bestRatios = [r1, r2, r3]; }
+      }
+    }
+  }
+  return { ratios: bestRatios, dist: bestDist };
+}
+
+function getCombinations(arr, k) {
+  const results = [];
+  function combine(start, combo) {
+    if (combo.length === k) { results.push([...combo]); return; }
+    for (let i = start; i < arr.length; i++) {
+      combine(i + 1, [...combo, arr[i]]);
+    }
+  }
+  combine(0, []);
+  return results;
+}
+
+// Paint primaries — colors that cannot be meaningfully mixed from others
+const PAINT_PRIMARIES = [
+  '#FFFFFF', '#F8F8F5', '#F5F5F5', '#F8F8F8', '#F0F0F5', // whites
+  '#1A1A1A', '#2A1F0E',                                    // blacks
+  '#FFD700', '#FDD835', '#FFF44F', '#FFFDD0',             // cadmium yellows
+  '#CC2200', '#DC143C', '#9B1B30',                         // cadmium reds
+  '#1B3A8B', '#0097C4', '#123524',                         // phthalo/ultramarine blues/greens
+  '#CC0066', '#E8637A',                                    // magentas/quinacridones
+  '#7B1FA2',                                               // violet primaries
+];
+
+function isPrimary(hex) {
+  return PAINT_PRIMARIES.some(p => colorDistance(p, hex) < 18);
+}
+
+function runSearch(numColors, scope) {
+  if (!optTarget) return;
+  
+  const label = document.getElementById('opt-scope-label');
+  const resultsEl = document.getElementById('opt-results');
+  resultsEl.innerHTML = '<div class="opt-empty">Searching...</div>';
+  
+  // Source colors used in the original mix — exclude from search pool
+  const sourceHexes = new Set((optTarget.colors || []).map(c => c.hex));
+  
+  // Build search pool — exclude source colors
+  let pool = [];
+  if (scope === 'subject') {
+    pool = palettes[currentSubject].filter(c => !sourceHexes.has(c.hex));
+    label.textContent = `Searching ${currentSubject} palette — excluding original mix colors`;
+  } else {
+    Object.values(palettes).forEach(p => {
+      p.forEach(c => {
+        if (!pool.find(x => x.hex === c.hex) && !sourceHexes.has(c.hex)) pool.push(c);
+      });
+    });
+    label.textContent = `Searching all palettes (${pool.length} colors, originals excluded)`;
+  }
+
+  // Run async to avoid blocking UI
+  setTimeout(() => {
+    const combos = getCombinations(pool, numColors);
+    const results = [];
+
+    combos.forEach(combo => {
+      const { ratios, dist } = findBestRatio(combo, optTarget.hex);
+      const blend = subtractiveBlend(combo, ratios);
+      const hex = rgbToHex(blend.r, blend.g, blend.b);
+      const matchPct = Math.max(0, Math.round(100 - (dist / 4.41)));
+      results.push({ colors: combo, ratios, hex, dist, matchPct });
+    });
+
+    results.sort((a, b) => a.dist - b.dist);
+    const top = results.slice(0, 8);
+    const bestMatch = top[0]?.matchPct || 0;
+
+    // Check if target is effectively a primary
+    const targetIsPrimary = isPrimary(optTarget.hex);
+    const poorMatchThreshold = 82;
+
+    let headerHtml = '';
+    if (targetIsPrimary || bestMatch < poorMatchThreshold) {
+      const reason = targetIsPrimary
+        ? 'This color is close to a paint primary — it cannot be reliably mixed from other pigments.'
+        : `Best achievable mix without the original colors is only ${bestMatch}% — this color may need to be purchased as-is.`;
+      
+      headerHtml = `
+        <div style="
+          grid-column: 1/-1;
+          background: #f5ede0;
+          border: 1px solid #d4a060;
+          border-left: 3px solid #8b4513;
+          padding: 14px 18px;
+          margin-bottom: 4px;
+          border-radius: 2px;
+          font-family: 'Crimson Pro', Georgia, serif;
+        ">
+          <div style="font-size:13px;font-weight:600;color:#5a2a0a;margin-bottom:4px;font-family:'Playfair Display',serif;">
+            ⚠ ${targetIsPrimary ? 'Primary pigment detected' : 'Difficult to reproduce'}
+          </div>
+          <div style="font-size:13px;color:#7a4a20;line-height:1.5;">${reason}</div>
+          ${top.length > 0 ? '<div style="font-size:12px;color:#9a6a40;margin-top:6px;font-style:italic;">Closest approximations shown below — test on paper before committing.</div>' : ''}
+        </div>
+      `;
+    }
+
+    if (top.length === 0) {
+      resultsEl.innerHTML = headerHtml + '<div class="opt-empty">No combinations found in this palette</div>';
+      return;
+    }
+
+    resultsEl.innerHTML = headerHtml + top.map((r, i) => {
+      const total = r.ratios.reduce((s,v) => s+v, 0);
+      const colorPills = r.colors.map((c, ci) => {
+        const pct = Math.round(r.ratios[ci] / total * 100);
+        return `<div class="opt-color-pill">
+          <div class="opt-color-dot" style="background:${c.hex}"></div>
+          ${pct}% ${c.name}
+        </div>`;
+      }).join('');
+
+      const colorsJson = JSON.stringify(r.colors.map((c, ci) => ({...c, ratio: r.ratios[ci]})));
+      
+      return `
+        <div class="opt-result-card" onclick='loadOptResult(${colorsJson})'>
+          <div class="opt-result-top">
+            <div class="opt-result-swatch" style="background:${r.hex}"></div>
+            <div class="opt-result-meta">
+              <div class="opt-result-match">${r.matchPct}% match</div>
+              <div class="opt-result-count">${numColors}-color mix · #${i+1}</div>
+            </div>
+          </div>
+          <div class="opt-result-colors">${colorPills}</div>
+          <div class="match-bar">
+            <div class="match-fill" style="width:${r.matchPct}%"></div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }, 30);
+}
+
+function loadOptResult(colors) {
+  mixColors = colors.map(c => ({...c}));
+  closeOptPanel();
+  renderPalette();
+  renderMix();
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function openOptPanel(swatchIndex) {
+  const s = savedSwatches[swatchIndex];
+  if (!s) return;
+  optTarget = s;
+  
+  document.getElementById('opt-target-display').innerHTML = `
+    <div class="opt-target-swatch" style="background:${s.hex}"></div>
+    <div class="opt-target-info">
+      <span class="opt-target-label">Target color from saved palette</span>
+      <div class="opt-target-desc">${s.description}</div>
+    </div>
+  `;
+  
+  document.getElementById('opt-scope-label').textContent = 'Choose a search above';
+  document.getElementById('opt-results').innerHTML = '<div class="opt-empty">Choose a search above to find simpler mix alternatives</div>';
+  
+  const panel = document.getElementById('opt-panel');
+  panel.classList.add('open');
+  panel.scrollIntoView({behavior: 'smooth', block: 'start'});
+}
+
+function closeOptPanel() {
+  document.getElementById('opt-panel').classList.remove('open');
+  optTarget = null;
+}
+
+// ── UPDATED RENDER SAVED ──────────────────────────────────────
+function renderSaved() {
+  const grid = document.getElementById('saved-grid');
+  grid.innerHTML = savedSwatches.map((s, i) => `
+    <div style="display:flex;flex-direction:column;gap:4px;">
+      <div class="saved-slot ${s ? 'filled' : ''}" 
+           style="${s ? `background:${s.hex}` : ''}"
+           onclick="${s ? `loadSwatch(${i})` : ''}"
+           title="${s ? s.description : 'Empty slot — save a mix first'}">
+        ${s ? `
+          <div class="saved-slot-label">${s.hex}</div>
+          <button class="clear-saved" onclick="clearSwatch(event,${i})">×</button>
+        ` : `<div class="empty-hint">${i+1}</div>`}
+      </div>
+      ${s ? `<button onclick="openOptPanel(${i})" style="
+        font-family:'Crimson Pro',serif;
+        font-size:9px;
+        letter-spacing:0.08em;
+        text-transform:uppercase;
+        background:none;
+        border:1px solid var(--border);
+        color:var(--ink-light);
+        padding:2px 4px;
+        cursor:pointer;
+        border-radius:2px;
+        width:100%;
+        transition:all 0.1s;
+      " onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'"
+         onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--ink-light)'">
+        Optimize
+      </button>` : ''}
+    </div>
+  `).join('');
+}
+
+// ── INIT ──────────────────────────────────────────────────────
+renderPalette();
+renderSaved();
+</script><section
+  class="arc-wrap"
+  aria-label="Arc navigation"><div
+  id="arcNavMount"></div></section></main><script src="../dist/vextreme-paint-editor-tool.js"></script></body></html>

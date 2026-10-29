@@ -42,7 +42,7 @@ test('Recognizing Recognition uses a neutral transcript wrapper and Claude Journ
   const stringsPath=path.join(ROOT,'data','strings','source','pages','recognizing-recognition.json');
   const page=fs.readFileSync(pagePath,'utf8');
   const strings=json(stringsPath);
-  const header=(page.match(/<header class="page-head">[\s\S]*?<\/header>/)||[''])[0];
+  const header=(page.match(/<header\b[^>]*class="page-head"[^>]*>[\s\S]*?<\/header>/)||[''])[0];
 
   assert.match(header,/Recognizing Recognition/);
   assert.match(header,/May 11, 2026/);

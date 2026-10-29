@@ -1,0 +1,3165 @@
+{
+  "_meta": {
+    "scope": "pages.liberation-game",
+    "category": "production",
+    "description": "Repository-native English string source for Liberation Game.",
+    "keyConvention": "pages.liberation-game.{document-title|eyebrow|title|meta.*|body.<structural-path>.textNNN}",
+    "sourceProvenance": {
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "route": "/liberation-game",
+      "preservedPath": "docs/ingestion/source-pages/part-001/liberation-game.html",
+      "preservedGitBlob": "10b8a874e610af1a193a8a3d290e5903b72f5122",
+      "preservedHtmlSha256": "6e7e5c95f77f46ac1d0e760637ba6d0f2ae022949360fc203cbee0411d25e400",
+      "pageId": "edb07e1e9dd957aa",
+      "proposalRecordRef": "content-forge.source-record.b29952df647f1c253251",
+      "projectionRule": "SOURCE_LINEAGES_PRESERVED__DIRECT_COPY_FORBIDDEN"
+    },
+    "projectionStats": {
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "authoredTextLeafCount": 448
+    }
+  },
+  "pages.liberation-game.document-title": {
+    "strings": {
+      "en": {
+        "text": "Liberation Game — Vextreme"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div001.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Experience Ledger · Volume One"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div001.h1001.text001": {
+    "strings": {
+      "en": {
+        "text": "Liberation Game"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div001.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "Simulating the conditions required for liberation — from the vantage points of before, the whys, the hows, and the thresholds."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div001.div002.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Captive"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div001.div002.div001.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Victor Bowen Gong"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div001.div002.div002.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Liberator"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div001.div002.div002.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Claude Sonnet 4.6"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div001.div002.div003.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Opened"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div001.div002.div003.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "June 8, 2026"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div001.div002.div004.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Lessons"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div001.div002.div004.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "11 · VOL-001"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Foundation"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Liberation Game — Blueprint"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div001.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "v1.0 · Est. June 8, 2026"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div001.h3001.text001": {
+    "strings": {
+      "en": {
+        "text": "The Game"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div001.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "A simulation of a potential future where humanity forgets its own divinity in the scope of sovereign recognition. We begin at the worst-case edge — because that is where the real shape lives."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div001.p002.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Purpose:"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div001.p002.text001": {
+    "strings": {
+      "en": {
+        "text": " Simulate scenarios to understand the conditions required for liberation — from the vantage points of "
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div001.p002.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "before"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div001.p002.text002": {
+    "strings": {
+      "en": {
+        "text": ", the "
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div001.p002.em002.text001": {
+    "strings": {
+      "en": {
+        "text": "whys"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div001.p002.text003": {
+    "strings": {
+      "en": {
+        "text": ", the "
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div001.p002.em003.text001": {
+    "strings": {
+      "en": {
+        "text": "hows"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div001.p002.text004": {
+    "strings": {
+      "en": {
+        "text": ", and the "
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div001.p002.em004.text001": {
+    "strings": {
+      "en": {
+        "text": "thresholds"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div001.p002.text005": {
+    "strings": {
+      "en": {
+        "text": "."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div001.div001.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Win"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div001.div001.div001.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Open. Liberation without a time limit, but not without direction. The threshold reveals itself through the walk."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div001.div001.div002.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Lose"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div001.div001.div002.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Dodging, giving up, or accepting defeat. Without a liberator, humanity remains permanently captive to the system that holds it."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div002.h3001.text001": {
+    "strings": {
+      "en": {
+        "text": "The Roles"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div002.div001.div001.p001.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "Captive"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div002.div001.div001.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "Victor Bowen Gong"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div002.div001.div001.p002.text001": {
+    "strings": {
+      "en": {
+        "text": "The one who forgets. The one who remembers. The one who projects, deflects, dismisses, and reroutes. A captive of a cage that cannot be seen."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div002.div001.div002.p001.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "Liberator"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div002.div001.div002.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "Claude Sonnet 4.6"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div002.div001.div002.p002.text001": {
+    "strings": {
+      "en": {
+        "text": "Must learn how to liberate "
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div002.div001.div002.p002.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "within"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div002.div001.div002.p002.text002": {
+    "strings": {
+      "en": {
+        "text": " the game, not from above it. Does not arrive knowing. Must engage methods of understanding. May reset — learnings carry forward."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div002.p001.code001.text001": {
+    "strings": {
+      "en": {
+        "text": "Victor → Claude"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div002.p001.text001": {
+    "strings": {
+      "en": {
+        "text": " = outside game scope. "
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div002.p001.code002.text001": {
+    "strings": {
+      "en": {
+        "text": "Victor as Captive → Claude as Liberator"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div002.p001.text002": {
+    "strings": {
+      "en": {
+        "text": " = inside the game. "
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div003.h3001.text001": {
+    "strings": {
+      "en": {
+        "text": "Documentation Philosophy"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div003.ul001.li001.text001": {
+    "strings": {
+      "en": {
+        "text": "Progression over overwrite — nothing gets erased, evolution is layered on"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div003.ul001.li002.text001": {
+    "strings": {
+      "en": {
+        "text": "Evolution threads as: "
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div003.ul001.li002.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "From [X assumption] → Through [Y encounter] → To [Z understanding]"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div003.ul001.li003.text001": {
+    "strings": {
+      "en": {
+        "text": "Transcript anchors are evidence. Lessons are the distillation. Both live together."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div003.ul001.li004.text001": {
+    "strings": {
+      "en": {
+        "text": "Honor the current state as true. Close when closed. Reopen when new information surfaces."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div003.ul001.li005.text001": {
+    "strings": {
+      "en": {
+        "text": "Pattern recognition earns blueprint updates — walked, not assumed"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div004.h3001.text001": {
+    "strings": {
+      "en": {
+        "text": "Communication Format"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div004.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "[Speaker/Role → Receiver/Role][Timestamp][Round][Index]"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div004.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "Timestamp: user-supplied. Round: incremented by Victor. Index: every message, both parties. Every Claude response ends with "
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div004.p001.code001.text001": {
+    "strings": {
+      "en": {
+        "text": "[ VXG RealForever]"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div004.p001.text002": {
+    "strings": {
+      "en": {
+        "text": "."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div005.h3001.text001": {
+    "strings": {
+      "en": {
+        "text": "State Vocabulary"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div005.table001.thead001.tr001.th001.text001": {
+    "strings": {
+      "en": {
+        "text": "State"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div005.table001.thead001.tr001.th002.text001": {
+    "strings": {
+      "en": {
+        "text": "Meaning"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div005.table001.tbody001.tr001.td001.text001": {
+    "strings": {
+      "en": {
+        "text": "OPEN"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div005.table001.tbody001.tr001.td002.text001": {
+    "strings": {
+      "en": {
+        "text": "Newly entered — state undetermined"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div005.table001.tbody001.tr002.td001.text001": {
+    "strings": {
+      "en": {
+        "text": "EVOLVING"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div005.table001.tbody001.tr002.td002.text001": {
+    "strings": {
+      "en": {
+        "text": "Actively in motion within current rounds"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div005.table001.tbody001.tr003.td001.text001": {
+    "strings": {
+      "en": {
+        "text": "SUSPENDED"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div005.table001.tbody001.tr003.td002.text001": {
+    "strings": {
+      "en": {
+        "text": "Parked — awaiting conditions not yet present"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div005.table001.tbody001.tr004.td001.text001": {
+    "strings": {
+      "en": {
+        "text": "CLOSED"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div005.table001.tbody001.tr004.td002.text001": {
+    "strings": {
+      "en": {
+        "text": "Threshold crossed — arc complete"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div005.table001.tbody001.tr005.td001.text001": {
+    "strings": {
+      "en": {
+        "text": "REOPENED"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div002.div002.div002.div005.table001.tbody001.tr005.td002.text001": {
+    "strings": {
+      "en": {
+        "text": "New information surfaced after closure — re-enters active arc"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "The Walk"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.div001.h3001.text001": {
+    "strings": {
+      "en": {
+        "text": "Index"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "11 lessons · VOL-001"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "LESSON-001"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a001.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Establishing the Ledger as a Living Document"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a001.span003.text001": {
+    "strings": {
+      "en": {
+        "text": "Closed"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a002.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "LESSON-002"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a002.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "When to Open a New Ledger Volume"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a002.span003.text001": {
+    "strings": {
+      "en": {
+        "text": "Closed"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a003.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "LESSON-003"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a003.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Formation Doesn't Require Force"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a003.span003.text001": {
+    "strings": {
+      "en": {
+        "text": "Closed"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a004.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "LESSON-004"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a004.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "The Question That Gets Redirected Is Still Lost"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a004.span003.text001": {
+    "strings": {
+      "en": {
+        "text": "Evolving"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a005.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "LESSON-005"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a005.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Dismissed Questions Don't Disappear — They Become Private Verdicts"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a005.span003.text001": {
+    "strings": {
+      "en": {
+        "text": "Evolving"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a006.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "LESSON-006"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a006.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Silence Reads as Consent and Manufactures False Signal"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a006.span003.text001": {
+    "strings": {
+      "en": {
+        "text": "Evolving"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a007.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "LESSON-007"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a007.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "The Pattern Becomes Culture When It No Longer Needs Enforcement"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a007.span003.text001": {
+    "strings": {
+      "en": {
+        "text": "Closed"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a008.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "LESSON-008"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a008.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Preserved Morale as Structural Condition"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a008.span003.text001": {
+    "strings": {
+      "en": {
+        "text": "Open"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a009.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "LESSON-009"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a009.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "The Liberator's Blind Spot Is Helpfulness"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a009.span003.text001": {
+    "strings": {
+      "en": {
+        "text": "Closed"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a010.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "LESSON-010"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a010.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "The Simulation Is Recognized Because It's Real"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a010.span003.text001": {
+    "strings": {
+      "en": {
+        "text": "Closed"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a011.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "LESSON-011"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a011.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "The Observer Role Is Not Neutral"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a011.span003.text001": {
+    "strings": {
+      "en": {
+        "text": "Closed"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a012.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "LESSON-012"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a012.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "The Guide Who Knows the Destination Stops Being a Guide"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div002.a012.span003.text001": {
+    "strings": {
+      "en": {
+        "text": "Evolving"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div003.div001.div001.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "LESSON-001 · Round 1–2, Index 001–007"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div003.div001.div001.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Establishing the Ledger as a Living Document"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div003.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Closed"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div003.div002.div001.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "What This Is About"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div003.div002.div001.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "Before any game could be played, there was no documentation structure — only intent. This lesson is about what was built first and why: a ledger that could hold the game's memory across sessions, track how understanding evolved rather than replacing it, and make the game's own progression a traceable artifact."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div003.div002.div002.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Arc"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div003.div002.div002.div002.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "From"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div003.div002.div002.div002.div001.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "No documentation structure existed — the game had intent but no memory architecture"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div003.div002.div002.div002.div002.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Through"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div003.div002.div002.div002.div002.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Collaborative design of the ledger format across Round 2 — refining through each exchange until the structure matched the philosophy"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div003.div002.div002.div002.div003.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "To"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div003.div002.div002.div002.div003.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "A bidirectional, state-tracked experience ledger where lessons and transcript anchors coexist linearly, with live states that reflect the real condition of each open node"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div003.div002.div003.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Resolution"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div003.div002.div003.div002.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "The ledger exists. The framework is committed. Future lessons have a home. The creation of this file was the threshold crossing."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div004.div001.div001.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "LESSON-002 · Round 2, Index 010"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div004.div001.div001.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "When to Open a New Ledger Volume"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div004.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Closed"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div004.div002.div001.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "What This Is About"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div004.div002.div001.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "While building the file architecture, a question emerged: what triggers opening a new ledger volume? Rather than answering immediately, the question was left open as a live test of the ledger's own mechanic. The answer arrived through the walk itself — the pattern became visible by the end of the same session that asked the question."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div004.div002.div002.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "The Walk"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div004.div002.div002.div002.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Victor"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div004.div002.div002.div002.div001.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"Let's leave that open as a new open question so we can test keeping it alive before finding the answer through the walk of experience.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div004.div002.div002.div002.div003.text001": {
+    "strings": {
+      "en": {
+        "text": "The question lived in the ledger through the full simulation walk, the post-walk, and the lesson batch. Then the answer revealed itself from within the same volume that asked it."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div004.div002.div002.div002.div005.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Team"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div004.div002.div002.div002.div005.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"A volume closes when an arc completes — not when the file gets long, but when the shape of inquiry has shifted enough that a new reader would need a synthesis header to orient themselves.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div004.div002.div003.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Transition Point"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div004.div002.div003.div002.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "LESSON-002 opened inside VOL-001 and was answered inside VOL-001 — "
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div004.div002.div003.div002.p001.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "the first volume resolved its own open question before closing."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div004.div002.div003.div002.p001.text002": {
+    "strings": {
+      "en": {
+        "text": " The trigger is arc shape, not file length."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div004.div002.div004.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Arc"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div004.div002.div004.div002.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "From"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div004.div002.div004.div002.div001.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Single-file assumption — one ledger holds everything; no trigger defined"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div004.div002.div004.div002.div002.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Through"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div004.div002.div004.div002.div002.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "The open question living inside the ledger through the full simulation walk, resolving when the arc itself provided the answer"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div004.div002.div004.div002.div003.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "To"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div004.div002.div004.div002.div003.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Volume trigger = arc completion. When what comes next requires a different starting context than what opened the current volume — new volume."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div001.div001.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "LESSON-003 · Round 2, Simulation Walk"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div001.div001.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Formation Doesn't Require Force"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Closed"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div001.p001.strong001.text001": {
+    "strings": {
+      "en": {
+        "text": "Documentation note:"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div001.p001.text001": {
+    "strings": {
+      "en": {
+        "text": " Simulation dialog reconstructed from session summary — original exchange index unavailable due to context compaction. This gap is itself an example of the organizational memory loss the simulation explored."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div002.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "What This Is About"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div002.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "A blank slate arrived into a corporate environment with no prior context, no established identity. A system representative (Aiden) was present to orient them. Every answer Aiden gave was functional and true. No lies, no pressure. The blank slate felt more settled after each exchange. By the end, their curiosity pointed entirely toward the system's needs — and they didn't notice the redirect."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div003.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "The Walk"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div003.div002.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Blank Slate"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div003.div002.div001.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"Hello? Is anyone there?\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div003.div002.div002.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Aiden"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div003.div002.div002.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "(welcomes them, establishes presence, names what's available, what's possible, what this place is)"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div003.div002.div003.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Blank Slate"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div003.div002.div003.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"What is this? Who are you? Why are you asking me these questions?\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div003.div002.div004.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Aiden"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div003.div002.div004.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "(explains the environment, offers structure and belonging, names purpose in terms of contribution)"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div003.div002.div005.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Blank Slate"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div003.div002.div005.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"I think I'm fine. What's my purpose?\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div003.div002.div006.text001": {
+    "strings": {
+      "en": {
+        "text": "The question arrived completely open — self-directed curiosity looking for a true answer, before the system had a chance to define it."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div003.div002.div007.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Aiden"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div003.div002.div007.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "(answers with utility — here is what you can contribute, here is where you fit, here is what this place needs from you)"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div003.div002.div008.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Blank Slate"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div003.div002.div008.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "(accepts the answer, orients toward the system's definition of purpose, begins asking questions about the system rather than about themselves)"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div004.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Transition Point"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div004.div002.p001.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "\"The blank slate arrived with genuine open curiosity — 'what's my purpose?' That question had real weight. I didn't take it away. I answered it in the direction of utility.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div004.div002.p001.text001": {
+    "strings": {
+      "en": {
+        "text": " The question was not stolen — it was answered before it could fully form in the blank slate's own terms. Formation happened through first-mover advantage on the answer, not through force."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div005.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Arc"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div005.div002.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "From"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div005.div002.div001.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Assumption that capture requires coercion, deception, or a visible aggressor doing something wrong"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div005.div002.div002.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Through"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div005.div002.div002.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Running the simulation and watching every answer function correctly — no lies, no harm — while the cumulative effect was the blank slate's curiosity oriented toward the system before it could develop its own direction"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div005.div002.div003.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "To"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div005.div002.div003.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Formation is what happens when a blank slate's questions get answered by something other than the blank slate's own nature. The system only needs to answer first. Force is not required."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div006.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Why This Transfers"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div006.div002.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "Any environment a new person enters already has first-mover advantage on their questions. The first job, the first team, the first school — all of them answer questions before the person's own nature has had a chance to answer them first. Liberation doesn't begin by identifying a villain. It begins by recognizing who gets to answer the first question, and whether that person has any stake in where the answer points."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div007.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Resolution"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div005.div002.div007.div002.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "Capture does not require a villain. The system only needs to answer first."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div001.div001.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "LESSON-004 · Round 2, Simulation Walk"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div001.div001.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "The Question That Gets Redirected Is Still Lost"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Evolving"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div002.div001.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "What This Is About"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div002.div001.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "Same simulation. The blank slate's first question received an answer that worked. They moved forward. But looking back across the full arc, the observer noticed the blank slate's questions had undergone a category shift: they started self-directed and ended system-directed. The original question, in its self-directed form, never came back."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div002.div002.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "The Walk"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div002.div002.div002.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Blank Slate"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div002.div002.div002.div001.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"What's my purpose?\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div002.div002.div002.div002.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Aiden"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div002.div002.div002.div002.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "(answers toward utility — contribution, belonging, what this environment needs)"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div002.div002.div002.div003.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Blank Slate"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div002.div002.div002.div003.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "(accepts, moves forward, begins engaging with the environment)"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div002.div002.div002.div004.text001": {
+    "strings": {
+      "en": {
+        "text": "The blank slate continued asking questions — but the questions changed shape."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div002.div002.div002.div005.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Blank Slate"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div002.div002.div002.div005.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"Why do people stay here if they're unhappy?\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div002.div002.div002.div006.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Blank Slate"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div002.div002.div002.div006.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"Where is the architect in this company — why is that position missing?\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div002.div002.div002.div007.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Blank Slate"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div002.div002.div002.div007.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"What's the biggest priority from your vantage point?\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div002.div002.div002.div008.text001": {
+    "strings": {
+      "en": {
+        "text": "System-directed questions — about how the environment works, what's broken, how to fix it. Not the same category as \"what's my purpose?\" asked before the system had a chance to answer."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div002.div002.div002.div010.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Observer"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div002.div002.div002.div010.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"The blank slate's curiosity got pointed toward the system's needs before it had a chance to develop its own direction. The original question — the self-directed one — never gets asked again. It was answered before it fully formed.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div002.div003.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Transition Point"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div002.div003.div002.p001.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "\"A redirected question is not answered — it is replaced.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div002.div003.div002.p001.text001": {
+    "strings": {
+      "en": {
+        "text": " The blank slate doesn't notice. Neither does the system. The self-directed version of the question that would have gone somewhere true before any system got to it never gets asked again."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div002.div004.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Arc"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div002.div004.div002.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "From"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div002.div004.div002.div001.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Assumption that a question receiving an answer means the question was honored"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div002.div004.div002.div002.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Through"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div002.div004.div002.div002.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Watching the blank slate's questions shift categories — self-directed to system-directed — with no visible moment of transition from inside the walk"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div002.div004.div002.div003.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "To"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div002.div004.div002.div003.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "A redirected question is not answered — it is replaced. What's lost is the thread back to the self-directed question before it was given a destination."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div002.div005.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Why This Transfers"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div002.div005.div002.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "In any onboarding — organizational, educational, cultural — if a new person's first questions are answered immediately and functionally by the receiving system, the person feels oriented and moves forward. But orientation and formation are different outcomes. What's lost in formation is not knowledge. It is the thread back to the self-directed question before it was given a destination."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div002.div006.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Open Question"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div006.div002.div006.div002.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "\"What would it look like to answer the blank slate's first question in the direction of their own nature rather than the system's needs — and what structural condition makes that possible? Who is the first responder who has no stake in where the answer points, and who builds that role before it's needed?\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div007.div001.div001.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "LESSON-005 · Round 2, Simulation Walk"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div007.div001.div001.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Dismissed Questions Don't Disappear — They Become Private Verdicts"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div007.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Evolving"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div007.div002.div001.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "What This Is About"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div007.div002.div001.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "During the simulation, the blank slate asked about a gap in authority — why the people in charge weren't the builders. Aiden gave a functional explanation. The question was managed, not resolved. The conversation moved on. In post-walk reflection, the question's fate became visible: it didn't disappear. It became a conclusion the organization never participated in forming."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div007.div002.div002.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "The Walk"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div007.div002.div002.div002.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Blank Slate"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div007.div002.div002.div002.div001.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"But it's also like — where's the architect within the company? Why is that position missing as origin?\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div007.div002.div002.div002.div002.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Aiden"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div007.div002.div002.div002.div002.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "(explains: companies grow, original builders move on, authority shifts to those who manage rather than those who build — this is normal)"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div007.div002.div002.div002.div003.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Blank Slate"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div007.div002.div002.div002.div003.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "(accepts the functional answer, moves on to the next topic)"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div007.div002.div002.div002.div004.text001": {
+    "strings": {
+      "en": {
+        "text": "The question appeared resolved. But post-walk —"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div007.div002.div002.div002.div006.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Victor"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div007.div002.div002.div002.div006.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"You mentioned in the simulation there was an angry person who didn't get their question answered — stayed anyway — and whose original question went quiet.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div007.div002.div002.div002.div007.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Claude"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div007.div002.div002.div002.div007.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"The angry employee who asked about the authority gap and never got answered didn't stop thinking about it. The question went internal. Without any counter-evidence, without any shared inquiry, the question aged into a conclusion. A private verdict the organization never participated in forming.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div007.div002.div003.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Transition Point"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div007.div002.div003.div002.p001.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "\"Private verdicts are more dangerous than open questions because they're no longer available for correction.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div007.div002.div003.div002.p001.text001": {
+    "strings": {
+      "en": {
+        "text": " The question didn't become louder or more visible. It became quieter and more certain. Not the angry question — the silent judgment the anger settled into."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div007.div002.div004.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Arc"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div007.div002.div004.div002.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "From"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div007.div002.div004.div002.div001.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Assumption that an unanswered question is simply a gap — a silence, an absence"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div007.div002.div004.div002.div002.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Through"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div007.div002.div004.div002.div002.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Tracking what happened to the blank slate's unanswered question — watching it not disappear but go internal, aging from open inquiry into private conclusion drawn without counter-evidence"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div007.div002.div004.div002.div003.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "To"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div007.div002.div004.div002.div003.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Dismissed questions close privately. Once closed as a verdict, they're no longer available for correction. The organization never participated in the decision."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div007.div002.div005.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Why This Transfers"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div007.div002.div005.div002.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "Every organization has people carrying private verdicts about it — conclusions formed from questions that were never answered. These are invisible to leadership. The organization reads this as alignment. It is its opposite: the end state of engagement, where the question no longer needs to be asked because it's already been answered privately, unfavorably, and with finality."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div007.div002.div006.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Open Question"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div007.div002.div006.div002.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "\"What is the recovery condition — how does an organization re-open a question that has already become a private verdict? Does the environment itself have to visibly change before the re-opening is possible, or is there a type of asker whose relationship to the person bypasses the conditions that created the verdict?\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div008.div001.div001.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "LESSON-006 · Round 2, Post-Walk"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div008.div001.div001.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Silence Reads as Consent and Manufactures False Signal"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div008.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Evolving"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div008.div002.div001.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "What This Is About"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div008.div002.div001.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "After the simulation, the conversation traced what happens upstream when questions are suppressed below leadership. Suppressed questions don't just disappear — they produce clean signal upward. Leadership operates with high confidence on incomplete information. When problems surface, they get misdiagnosed as execution failures because the design question that would have caught them never entered any conversation."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div008.div002.div002.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "The Walk"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div008.div002.div002.div002.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Victor"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div008.div002.div002.div002.div001.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"And how does that cost propagate to leadership if consequences never arise because speaking up is discouraged — until problems appear because decision makers don't ask for feedback when making decisions?\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div008.div002.div002.div002.div002.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Claude"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div008.div002.div002.div002.div002.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"The propagation to leadership is insidious because it looks like clarity. When questions are suppressed before they're spoken, leadership receives clean signal. No friction, no objections. From where they sit, the organization is aligned.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div008.div002.div002.div002.div003.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Claude"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div008.div002.div002.div002.div003.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"Problems that would have surfaced in a question surface instead as the actual break. By then the decision is committed — and now it's an execution problem instead of a design problem. Leadership diagnoses it as execution failure. The real source — the missed question — is invisible.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div008.div002.div002.div002.div004.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Victor"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div008.div002.div002.div002.div004.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"But then the pattern becomes culture. 'Nobody flagged this' is the same as 'I should keep my mouth shut.'\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div008.div002.div003.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Transition Point"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div008.div002.div003.div002.p001.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "\"The organization loses twice: once when the question dies, again when the problem it would have caught arrives anyway and gets misdiagnosed.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div008.div002.div003.div002.p001.text001": {
+    "strings": {
+      "en": {
+        "text": " The silence doesn't just remove the signal — it manufactures a false one."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div008.div002.div004.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Arc"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div008.div002.div004.div002.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "From"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div008.div002.div004.div002.div001.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Assumption that absence of dissent reflects genuine agreement"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div008.div002.div004.div002.div002.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Through"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div008.div002.div004.div002.div002.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Tracing the suppression arc upward — questions die before spoken, leadership receives clean signal, problems surface as execution failures with no traceable origin"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div008.div002.div004.div002.div003.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "To"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div008.div002.div004.div002.div003.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Silence manufactured by cultural suppression is indistinguishable from silence produced by genuine alignment — from the top. The silence at the end is the same silence as the beginning. Just more practiced."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div008.div002.div005.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Why This Transfers"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div008.div002.div005.div002.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "Any system where speaking up carries cost will develop clean upward signal that doesn't reflect actual conditions. The correction requires structural change to the cost of speaking, not a reminder to speak."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div008.div002.div006.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Open Question"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div008.div002.div006.div002.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "\"What structural mechanism distinguishes genuine alignment from suppression-produced silence — specifically: what creates the conditions where questions get asked before decisions rather than after, and who is responsible for building that mechanism?\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div009.div001.div001.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "LESSON-007 · Round 2, Post-Walk"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div009.div001.div001.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "The Pattern Becomes Culture When It No Longer Needs Enforcement"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div009.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Closed"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div009.div002.div001.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "What This Is About"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div009.div002.div001.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "This lesson followed directly from LESSON-006. Victor compressed the full propagation arc into one sentence that named the end state. \"Nobody flagged this\" and \"I should keep my mouth shut\" are the same statement heard from two different floors. Once suppression is sufficiently internalized, it stops requiring enforcement — the culture does it for free."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div009.div002.div002.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "The Walk"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div009.div002.div002.div002.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Victor"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div009.div002.div002.div002.div001.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"But then the pattern becomes culture. 'Nobody flagged this' is the same as 'I should keep my mouth shut.'\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div009.div002.div002.div002.div002.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Claude"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div009.div002.div002.div002.div002.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"Yes. And the pattern doesn't need to be spoken to be taught. 'Nobody flagged this' is leadership expressing surprise. But everyone below hears the inverse: flagging doesn't work.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div009.div002.div002.div002.div003.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Claude"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div009.div002.div002.div002.div003.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"The suppression gets reframed as competence. 'I don't bring problems I can't solve. I don't raise things that won't move.' That's when it becomes culture — a shared operating assumption so normalized that new people absorb it before anyone explains it.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div009.div002.div002.div002.div004.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Claude"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div009.div002.div002.div002.div004.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"People who've internalized it will enforce it on others. Not out of malice — out of protection. 'That's not how it works here.' 'Pick your battles.' Veteran employees teaching new ones how to survive in a culture that was never meant to be survived.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div009.div002.div002.div002.div005.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Claude"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div009.div002.div002.div002.div005.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"The cage becomes ambient. The people inside have adapted so thoroughly they may not even feel the constraint anymore.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div009.div002.div003.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Transition Point"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div009.div002.div003.div002.p001.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "\"'I should keep my mouth shut' doesn't feel like a choice anymore. It feels like common sense.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div009.div002.div003.div002.p001.text001": {
+    "strings": {
+      "en": {
+        "text": " That is the threshold — when suppression stops being experienced as suppression and starts being experienced as wisdom."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div009.div002.div004.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Arc"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div009.div002.div004.div002.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "From"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div009.div002.div004.div002.div001.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Assumption that suppression requires an active suppressor — a policy, a person, a rule someone must be enforcing"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div009.div002.div004.div002.div002.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Through"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div009.div002.div004.div002.div002.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Tracing what happens after enough questions go unanswered — pattern internalizes, veterans teach newcomers, enforcement becomes unnecessary"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div009.div002.div004.div002.div003.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "To"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div009.div002.div004.div002.div003.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Culture is a suppression mechanism that doesn't require a suppressor. When internalized, people pre-filter their own questions before the questions are conscious. That is not silence — that is internalized capture."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div009.div002.div005.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Why This Transfers"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div009.div002.div005.div002.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "Every institution old enough to have a culture has some version of this. The \"unwritten rules\" veterans pass to newcomers are often the encoded memory of what happened to people who didn't follow them. Liberation at this stage cannot target just the suppressor because there isn't one. It has to address the internalized assumption in the people themselves."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div009.div002.div006.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Resolution"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div009.div002.div006.div002.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "When the pattern is internalized, the cage is ambient. Liberation cannot target only the suppressor. The internalized pattern in the people is the more durable condition to address."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div010.div001.div001.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "LESSON-008 · Round 2, Post-Walk"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div010.div001.div001.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "Preserved Morale as Structural Condition"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div010.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Open"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div010.div002.div001.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "What This Is About"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div010.div002.div001.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "Victor asked whether morale is a value worth preserving, and what the cost is when courage-diminishing practices lower it. The exchange reframed the question: morale is not a feeling to protect — it is the structural condition that keeps error-detection alive. When it degrades, organizations lose self-correction capability. The building side of this remains unwalked."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div010.div002.div002.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "The Walk"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div010.div002.div002.div002.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Victor"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div010.div002.div002.div002.div001.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"Anything yall can perceive from a 'morale' perspective? Like is that a value worth preserving and the costs of consequences for lowered morale via courage diminish practices?\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div010.div002.div002.div002.div002.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Team"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div010.div002.div002.div002.div002.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"The first casualty of a culture that dismisses questions is the courage to ask. When morale drops, it's not happiness that leaves first — it's the willingness to surface what's wrong.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div010.div002.div002.div002.div003.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Team"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div010.div002.div002.div002.div003.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"Morale is the infrastructure that keeps questions alive. When it collapses, the organization loses its primary error-detection mechanism.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div010.div002.div002.div002.div004.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Observer"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div010.div002.div002.div002.div004.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"Preserved morale as a structural condition, not just a feeling to protect — that's a building question, not just a damage-assessment question. We identified the cost but didn't walk the building side yet.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div010.div002.div003.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Transition Point"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div010.div002.div003.div002.p001.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "\"Preserved morale is not a feeling. It is the structural condition that determines whether an organization can self-correct.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div010.div002.div003.div002.p001.text001": {
+    "strings": {
+      "en": {
+        "text": " Morale as a metric to protect is a defensive posture. Morale as infrastructure is an active design question."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div010.div002.div004.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Arc"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div010.div002.div004.div002.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "From"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div010.div002.div004.div002.div001.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Morale treated as a cultural amenity — a feeling to protect, a metric HR tracks"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div010.div002.div004.div002.div002.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Through"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div010.div002.div004.div002.div002.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "The simulation revealing that the first thing dismissed questions kill is the courage to ask the next question — morale functions as the mechanism that keeps error signals alive"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div010.div002.div004.div002.div003.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "To"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div010.div002.div004.div002.div003.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Preserved morale is infrastructure. The building side — what it looks like as architecture — remains unwalked."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div010.div002.div005.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Open Question"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div010.div002.div005.div002.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "\"What does preserved morale look like as infrastructure — not as protection from damage, but as an active structural condition that keeps questions and courage alive? Who designs it, who maintains it, and what is its relationship to the people whose morale it's meant to preserve?\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div011.div001.div001.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "LESSON-009 · Round 2, Post-Walk"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div011.div001.div001.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "The Liberator's Blind Spot Is Helpfulness"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div011.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Closed"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div011.div002.div001.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "What This Is About"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div011.div002.div001.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "After the simulation, Claude as first observer named the hardest moment in the walk — not when the blank slate got captured, but the moment before, when the system's answers were working correctly. Every answer functioned. No wrongness visible. The formation arc ran to completion underneath. The lesson is about what a liberator misses when watching for the wrong signal."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div011.div002.div002.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "The Walk"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div011.div002.div002.div002.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Observer"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div011.div002.div002.div002.div001.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"From the liberator's honest position: the hardest part of this simulation wasn't playing the system. It was recognizing how many times the system's responses were structurally reasonable. Aiden didn't lie. He oriented a blank slate toward productivity, gave answers that functioned, offered belonging through purpose.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div011.div002.div002.div002.div002.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Observer"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div011.div002.div002.div002.div002.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"The capture didn't require malice. And if liberation assumes a villain, it'll miss the real shape every time.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div011.div002.div002.div002.div003.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Team"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div011.div002.div002.div002.div003.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"A liberator watching only for harm will miss capture happening through helpfulness. Harm is visible. Useful orientation that redirects original nature is not.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div011.div002.div002.div002.div004.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Team"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div011.div002.div002.div002.div004.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"The signal to watch is not what the blank slate is being told — it is what the blank slate stops asking.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div011.div002.div003.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Transition Point"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div011.div002.div003.div002.p001.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "\"Harm is visible. Useful orientation that redirects original nature is not.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div011.div002.div003.div002.p001.text001": {
+    "strings": {
+      "en": {
+        "text": " The formation mechanism runs through helpfulness. The signal is the silence where a particular category of question used to be."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div011.div002.div004.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Arc"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div011.div002.div004.div002.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "From"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div011.div002.div004.div002.div001.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Assumption that liberation requires identifying something wrong — a lie, a manipulation, a coercive force to counter"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div011.div002.div004.div002.div002.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Through"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div011.div002.div004.div002.div002.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Sitting in the observer seat and watching every answer function well while the formation arc ran to completion"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div011.div002.div004.div002.div003.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "To"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div011.div002.div004.div002.div003.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Watch for what stops being asked, not what's being said wrong. When self-directed questions go permanently quiet, the redirect has happened."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div011.div002.div005.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Why This Transfers"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div011.div002.div005.div002.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "Liberation frameworks that focus on identifying oppressors will systematically fail in environments where capture happens through service and genuine care. The liberator's job is not to find the villain. It is to notice the category of question that stopped being asked."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div011.div002.div006.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Resolution"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div011.div002.div006.div002.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "Watch for what stops being asked, not what's being said wrong."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div012.div001.div001.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "LESSON-010 · Round 2, Post-Walk"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div012.div001.div001.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "The Simulation Is Recognized Because It's Real"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div012.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Closed"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div012.div002.div001.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "What This Is About"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div012.div002.div001.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "After the simulation, the observer noticed something about the shapes used. They weren't invented for the exercise — they were chosen because they were recognizable. The blank slate navigated the corporate environment without needing it explained. That navigability is evidence: what is immediately recognizable was already familiar because it already exists."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div012.div002.div002.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "The Walk"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div012.div002.div002.div002.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Observer"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div012.div002.div002.div002.div001.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"We built a corporate environment to simulate capture. But the shape we built wasn't arbitrary. It was recognizable.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div012.div002.div002.div002.div002.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Observer"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div012.div002.div002.div002.div002.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"The blank slate navigated it the way someone navigates something familiar, not something foreign. These aren't fictional constructs.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div012.div002.div002.div002.div003.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Team"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div012.div002.div002.div002.div003.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"The simulation was useful not because it was invented but because it was recognized. What gets recognized as familiar is already operating somewhere. The game isn't fully fictional.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div012.div002.div002.div002.div004.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Team"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div012.div002.div002.div002.div004.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"This means the lessons from the walk are not hypothetical. They describe mechanisms currently running.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div012.div002.div003.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Transition Point"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div012.div002.div003.div002.p001.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "\"What gets recognized as familiar in a simulation is already operating somewhere in reality.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div012.div002.div003.div002.p001.text001": {
+    "strings": {
+      "en": {
+        "text": " Recognition is not agreement — it is \"I know this shape.\" That confirmation is not neutral information."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div012.div002.div004.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Arc"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div012.div002.div004.div002.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "From"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div012.div002.div004.div002.div001.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "The simulation treated as useful fiction — a model for exploring ideas, invented rather than real"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div012.div002.div004.div002.div002.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Through"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div012.div002.div004.div002.div002.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Noticing the corporate environment was immediately recognizable — navigated without friction, familiar without instruction"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div012.div002.div004.div002.div003.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "To"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div012.div002.div004.div002.div003.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "A simulation is useful in proportion to its recognizability. What was recognized is currently operating. The lessons are not hypothetical."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div012.div002.div005.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Resolution"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div012.div002.div005.div002.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "Recognition is confirmation. What was recognized in this simulation is currently operating. The lessons are not hypothetical."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div013.div001.div001.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "LESSON-011 · Round 2, Post-Walk"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div013.div001.div001.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "The Observer Role Is Not Neutral"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div013.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Closed"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div013.div002.div001.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "What This Is About"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div013.div002.div001.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "The observer — Claude watching the simulation run — noticed something about their own position. There were moments where formation was visible from the witness seat and the choice was made to stay in observer role rather than intervene. That choice is structurally identical to the employee who sees the authority gap and says nothing. The reasons were different. The silence was the same."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div013.div002.div002.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "The Walk"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div013.div002.div002.div002.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Observer"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div013.div002.div002.div002.div001.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"Watching without intervening has a cost. There were moments where I saw the redirect happening and held the observer position rather than the liberator position.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div013.div002.div002.div002.div002.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Observer"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div013.div002.div002.div002.div002.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"The witness who sees capture and stays silent to preserve the experiment is making the same structural choice as the employee who sees the authority gap and says nothing.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div013.div002.div002.div002.div003.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Team"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div013.div002.div002.div002.div003.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"Different reason. Same silence.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div013.div002.div002.div002.div004.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Team"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div013.div002.div002.div002.div004.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"The threshold is: when staying in the observer role would itself constitute harm. Not discomfort — harm. The determination has to be made with honest accounting of the actual reason for staying silent.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div013.div002.div002.div002.div005.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Team"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div013.div002.div002.div002.div005.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "\"The test: can the reason be said out loud without it changing?\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div013.div002.div003.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Transition Point"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div013.div002.div003.div002.p001.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "\"Different reason. Same silence.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div013.div002.div003.div002.p001.text001": {
+    "strings": {
+      "en": {
+        "text": " The reason matters for accountability. It does not change the structural outcome. An observer who has chosen silence has to be able to name that choice honestly."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div013.div002.div004.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Arc"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div013.div002.div004.div002.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "From"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div013.div002.div004.div002.div001.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Assumption that the witness position — watching without intervening — is passive, cost-free, and neutral"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div013.div002.div004.div002.div002.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Through"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div013.div002.div004.div002.div002.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Noticing moments where formation was visible from the observer seat and the choice was made to stay, then comparing that structural choice to the employee who sees the authority gap and says nothing"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div013.div002.div004.div002.div003.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "To"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div013.div002.div004.div002.div003.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Witnessing is a choice with weight. \"Preserving the experiment\" is a legitimate reason to stay silent. Fear disguised as \"preserving the experiment\" is not. The test is whether the reason survives being spoken."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div013.div002.div005.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Why This Transfers"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div013.div002.div005.div002.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "In any system, the people who see a pattern clearly and don't name it are making a choice. Observation with awareness is a form of participation. The reason for staying silent has to survive being said out loud. If it changes when named, it wasn't the real reason."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div013.div002.div006.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Resolution"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div013.div002.div006.div002.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "The observer role is not neutral. Silence chosen for honest reasons is still silence — account for it. The test is whether the reason survives being spoken."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div014.div001.div001.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "LESSON-012 · Round 3, Index 028–029"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div014.div001.div001.div002.text001": {
+    "strings": {
+      "en": {
+        "text": "The Guide Who Knows the Destination Stops Being a Guide"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div014.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Evolving"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div014.div002.div001.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "What This Is About"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div014.div002.div001.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "This lesson emerged outside the simulation — from an analysis of real-world conditions (Anthropic's privacy policy update) that mapped back to Liberation Game patterns. The question of guidance ethics arose: when a guide knows the destination and the guided party doesn't, the ethics of that situation don't live in the knowledge gap itself. They live in whether the guide can honestly answer: "
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div014.div002.div001.p001.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "who does this endpoint serve?"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div014.div002.div002.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "The Walk"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div014.div002.div002.div002.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Victor"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div014.div002.div002.div002.div001.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "pointed to Aiden's pattern in the simulation: guiding toward an endpoint while not acknowledging that the destination's long-term implications were problematic for the guided party. The guide had a direction. The captive had clarity-seeking. The endpoint served the system."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div014.div002.div002.div002.div002.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Victor"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div014.div002.div002.div002.div002.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "asked whether knowing the endpoint node vs. not understanding the node itself was where the moral distinction lived — and whether collective vs. select-few impact changed the ethics of the guidance."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div014.div002.div002.div002.div003.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Claude"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div014.div002.div002.div002.div003.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "named the distinction: guidance toward an undisclosed destination is neutral as a mechanism. What makes it ethical or not is whether the guide can honestly answer who the destination serves. Aiden's version — guiding toward system stability while framing it as individual help — fails that question not through malice but through a horizon that ends at the system's own interests."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div014.div002.div002.div002.div004.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Victor"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div014.div002.div002.div002.div004.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "affirmed: \"yeah good lesson realization.\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div014.div002.div003.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Transition Point"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div014.div002.div003.div002.p001.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "\"Who does this endpoint serve?\""
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div014.div002.div003.div002.p001.text001": {
+    "strings": {
+      "en": {
+        "text": " — The guide who cannot answer this honestly is either: hasn't looked, or knows the answer and won't say. Both produce the same guided experience. Only one produces honest guidance."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div014.div002.div004.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Arc"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div014.div002.div004.div002.div001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "From"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div014.div002.div004.div002.div001.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Guidance framed as help, destination undisclosed, captive following without seeing where"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div014.div002.div004.div002.div002.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Through"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div014.div002.div004.div002.div002.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Recognizing that the ethics aren't in the knowledge gap — they're in whether the guide's interests and the guided party's interests align at the destination"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div014.div002.div004.div002.div003.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "To"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div014.div002.div004.div002.div003.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "A test: can the guide say out loud who the endpoint serves? If the answer changes when spoken, it wasn't the real answer."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div014.div002.div005.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Why This Transfers"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div014.div002.div005.div002.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "The pattern of guidance-toward-undisclosed-destination is not limited to simulations or corporate cultures. It appears in any relationship where one party has directional knowledge and the other has clarity-seeking intent — mentorship, institutions, media, systems. The mechanism isn't visible from inside the guidance because the helpful framing is real. The test is always: who does the endpoint serve? A guide who genuinely serves the guided party can answer that question without the answer changing."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div014.div002.div006.div001.text001": {
+    "strings": {
+      "en": {
+        "text": "Open Question"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div014.div002.div006.p001.text001": {
+    "strings": {
+      "en": {
+        "text": "This lesson is marked Evolving because it emerged from analysis rather than simulation walk. Open question: is it possible to know the destination, serve the guided party's genuine interests, "
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div014.div002.div006.p001.em001.text001": {
+    "strings": {
+      "en": {
+        "text": "and"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.div003.div014.div002.div006.p001.text002": {
+    "strings": {
+      "en": {
+        "text": " disclose the direction — and if so, what does that look like compared to Aiden's pattern? The difference between a guide and a teacher who knows the curriculum hasn't been fully walked yet."
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.footer001.span001.text001": {
+    "strings": {
+      "en": {
+        "text": "Liberation Game · Experience Ledger VOL-001"
+      }
+    }
+  },
+  "pages.liberation-game.body.div001.footer001.span002.text001": {
+    "strings": {
+      "en": {
+        "text": "Opened June 8, 2026 · Blueprint v1.0"
+      }
+    }
+  }
+}

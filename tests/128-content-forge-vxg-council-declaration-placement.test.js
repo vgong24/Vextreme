@@ -25,9 +25,14 @@ test('VXG Council Declaration projects first, then composes with institute/gover
   const before={nodes:hash(NODES),intents:hash(INTENTS)};
 
   assert.ok(intent);
-  assert.equal(intent.status,'pending');
+  assert.equal(intent.status,'applied');
   assert.equal(validateIntent(intent,departments,{}).valid,true);
-  assert.equal(nodes.some(node=>node.slug===member.slug),false,'source-admission head must not bypass pending intent registration');
+  const registered=nodes.find(node=>node.slug===member.slug);
+  assert.ok(registered,'generated-currentness head must contain the intent-registered canonical node');
+  assert.equal(registered.id,null);
+  assert.equal(registered.department,'institute');
+  assert.equal(registered.workType,'governance');
+  assert.deepEqual(registered.arcKeys,[]);
   assert.equal(member.adapterClass,'SQS_NEUTRAL_TRANSCRIPT');
   assert.deepEqual(member.arcKeys,[]);
   assert.equal(placement.department,'institute');
@@ -45,10 +50,10 @@ test('VXG Council Declaration projects first, then composes with institute/gover
   const page=fs.readFileSync(pagePath,'utf8');
   const strings=json(stringsPath);
 
-  assert.match(page,/name="vex:department" content="institute"/);
-  assert.match(page,/name="vex:workType" content="governance"/);
+  assert.match(page,/name="vex:department"\s+content="institute"/);
+  assert.match(page,/name="vex:workType"\s+content="governance"/);
   assert.match(page,/May 18, 2026/);
-  assert.doesNotMatch((page.match(/<header class="page-head">[\s\S]*?<\/header>/)||[''])[0],/Written By|Conversations with God/);
+  assert.doesNotMatch((page.match(/<header\b[^>]*class="page-head"[^>]*>[\s\S]*?<\/header>/)||[''])[0],/Written By|Conversations with God/);
   assert.deepEqual(strings._meta.placement,{department:'institute',workType:'governance',intentId:placement.intentId});
 
   const canonical=buildCanonicalNode(intent,page,{},departments);
