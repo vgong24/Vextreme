@@ -59,10 +59,53 @@ test('TERRAIN ENTRY: active documents are provider-neutral repository pages outs
     assert.ok(SKIP_PAGES[entry.slug], entry.slug + ': explicit entry-document classification missing');
     assert.ok(AUTO_DISCOVERY_EXCLUSIONS[entry.slug], entry.slug + ': shared record exclusion missing');
     assert.equal(records.has(entry.slug), false, entry.slug + ': entry document leaked into archive/Terrain record inventory');
-    for (const forbidden of ['www.vextreme24.com','/__rescue/','/__vex/','/__localization/','vex-native-site-nav','cdn.jsdelivr.net/gh/vgong24/vextreme','data-vex-id=','data-i18n=']) {
+    for (const forbidden of ['www.vextreme24.com','/__rescue/','/__vex/','/__localization/','vex-native-site-nav','cdn.jsdelivr.net/gh/vgong24/vextreme','data-vex-id=']) {
       assert.equal(html.includes(forbidden), false, entry.slug + ': retained provider/runtime marker ' + forbidden);
     }
+    if (entry.slug === 'receive-god') {
+      assert.match(html, /data-i18n=/, 'receive-god: Global Core source identities must stay bound');
+    } else {
+      assert.equal(html.includes('data-i18n='), false, entry.slug + ': localization identity adopted before its own source row');
+    }
     assert.doesNotMatch(html, /(?:href|src)=["']\/(?!\/)/, entry.slug + ': root-relative provider-era active route remains');
+  }
+});
+
+test('TERRAIN ENTRY: Receive God Global Core source is complete and exactly bound to preserved English', () => {
+  const requiredLocales = ['en','ja','zh','ko','fr','de','es','pt','ar','hi'];
+  const source = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'strings', 'source', 'pages', 'receive-god.json'), 'utf8'));
+  const html = fs.readFileSync(path.join(ROOT, 'pages', 'receive-god.html'), 'utf8');
+  const doc = parse5.parse(html);
+  const bindings = [];
+
+  walk(doc, node => {
+    const key = attrs(node)['data-i18n'];
+    if (!key) return;
+    bindings.push(key);
+    assert.ok(source[key], key + ': bound identity missing from source');
+    assert.equal(
+      visibleTextLeaves(node).join(' '),
+      source[key].strings.en.text,
+      key + ': bound English text drifted from preserved page copy',
+    );
+  });
+
+  const sourceKeys = Object.keys(source).filter(key => key !== '_meta');
+  assert.equal(source._meta.scope, 'pages.receive-god');
+  assert.equal(source._meta.sourceProvenance.preservedGitBlob, 'fbcff502843de18200239083164d0d622b6d4a1a');
+  assert.equal(source._meta.projectionStats.authoredTextLeafCount, 59);
+  assert.equal(source._meta.projectionStats.boundIdentityCount, 60);
+  assert.equal(bindings.length, 60, 'Receive God binding count drifted');
+  assert.equal(new Set(bindings).size, 60, 'Receive God binding identities must be unique');
+  assert.deepEqual([...bindings].sort(), [...sourceKeys].sort(), 'page/source identity set drifted');
+
+  for (const key of sourceKeys) {
+    const strings = source[key].strings;
+    assert.deepEqual(Object.keys(strings).sort(), [...requiredLocales].sort(), key + ': Global Core locale set drifted');
+    for (const locale of requiredLocales) {
+      assert.equal(typeof strings[locale].text, 'string', key + ': ' + locale + ' text missing');
+      assert.ok(strings[locale].text.trim(), key + ': ' + locale + ' text empty');
+    }
   }
 });
 
