@@ -84,6 +84,30 @@ test('TERRAIN-JOURNEY: page wires semantic history without storing camera noise'
 });
 
 
+test('TERRAIN-JOURNEY: automatic-entry preference stays presentation-local and out of semantic identity', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
+
+  const capture = source.match(/function captureSemanticState\(\) \{([\s\S]*?)\n  \}/);
+  assert.ok(capture, 'semantic snapshot owner must remain explicit');
+  assert.doesNotMatch(capture[1], /ENTER_RATIO|ENTER_RATIO_STORAGE_KEY|terrainEnterRatio|localStorage/,
+    'automatic-entry preference must not become Journey semantic state');
+
+  const preference = source.match(/function setTerrainEnterRatioPreference\(value, persist\) \{([\s\S]*?)\n  \}/);
+  assert.ok(preference, 'entry-depth preference writer must remain explicit');
+  assert.doesNotMatch(preference[1], /commitSemanticState|syncPresentationUrl|enterLevel/,
+    'changing display preference must not become semantic movement or route identity');
+
+  const reveal = source.match(/function revealDepthRail\(\) \{([\s\S]*?)\n  \}/);
+  assert.ok(reveal, 'depth preference inspection path must remain explicit');
+  assert.doesNotMatch(reveal[1], /localStorage|setTerrainEnterRatioPreference|commitSemanticState/,
+    'hover/focus inspection must remain effect-free');
+
+  const syncUrl = source.match(/function syncPresentationUrl\([^)]*\) \{([\s\S]*?)\n  \}/);
+  assert.ok(syncUrl, 'presentation URL owner must remain explicit');
+  assert.doesNotMatch(syncUrl[1], /ENTER_RATIO|ENTER_RATIO_STORAGE_KEY|terrainEnterRatio/,
+    'preference must not be serialized as navigation identity');
+});
+
 test('TERRAIN-JOURNEY: threshold rail projects semantic depth with bounded outward motion and one bounded entry-depth preference', () => {
   const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
   const start = source.indexOf('function thresholdRailPosition');
