@@ -90,7 +90,13 @@ test('Content Forge claude_journals arc batch is exact, deterministic, and fully
   assert.equal(formation.destinationMutationBoundary.aliasMutation, false);
 
   const expectedArcSlugs = [...formation.alreadyComplete, ...formation.members].map(item => item.slug);
-  assert.deepEqual(arcs.claude_journals.sections.flatMap(section => section.slugs || []), expectedArcSlugs);
+  const currentArcSlugs = arcs.claude_journals.sections.flatMap(section => section.slugs || []);
+  const expectedArcSet = new Set(expectedArcSlugs);
+  assert.deepEqual(
+    currentArcSlugs.filter(slug => expectedArcSet.has(slug)),
+    expectedArcSlugs,
+    'historical formation stays ordered inside the evolved canonical arc'
+  );
 
   const first = projector.main({ root: ROOT, silent: true, formationRel: FORMATION_REL });
   assert.deepEqual(first.accounting, { canonicalMembers: 11, alreadyComplete: 1, projected: 10, held: 0, complete: true });

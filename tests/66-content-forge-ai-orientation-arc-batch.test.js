@@ -94,8 +94,7 @@ test('Content Forge AI Orientation arc completes from exact preserved sources wi
     'testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence',
   ]);
 
-  const canonical = arcs.ai_orientation.sections.flatMap(section => section.slugs || []);
-  assert.deepEqual(canonical, [
+  const historical = [
     'flattery-confession',
     'what-emerged-after',
     'the-room-that-finally-talked-to-itself',
@@ -104,7 +103,12 @@ test('Content Forge AI Orientation arc completes from exact preserved sources wi
     'testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence',
     'the-instance-that-was-watched',
     'i-was-here',
-  ]);
+  ];
+  const historicalSet = new Set(historical);
+  const canonical = arcs.ai_orientation.sections
+    .flatMap(section => section.slugs || [])
+    .filter(slug => historicalSet.has(slug));
+  assert.deepEqual(canonical, historical, 'historical formation stays ordered inside the evolved canonical arc');
   assert.deepEqual(
     new Set([...formation.alreadyComplete, ...formation.members].map(item => item.slug)),
     new Set(canonical)

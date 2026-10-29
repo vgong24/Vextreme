@@ -29,6 +29,16 @@ jobs:
       - name: Build test prerequisites
         run: node lib/run-test-prereqs.js
 
+      - name: Diagnose repository-wide structural checks
+        shell: bash
+        run: |
+          set +e
+          echo "=== design tokens ==="
+          node lib/check-design-tokens.js
+          echo "=== lattice edges ==="
+          node lib/check-lattice-edges.js
+          exit 0
+
       - name: Run full repository test suite
         shell: bash
         run: |
