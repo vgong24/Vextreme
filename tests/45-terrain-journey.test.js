@@ -89,23 +89,28 @@ test('TERRAIN-JOURNEY: automatic-entry preference stays presentation-local and o
 
   const capture = source.match(/function captureSemanticState\(\) \{([\s\S]*?)\n  \}/);
   assert.ok(capture, 'semantic snapshot owner must remain explicit');
-  assert.doesNotMatch(capture[1], /COLLECTION_ENTER_RATIO|COLLECTION_ENTER_RATIO_STORAGE_KEY|terrainEnterRatio|localStorage/,
-    'automatic-entry preference must not become Journey semantic state');
+  assert.doesNotMatch(capture[1], /COLLECTION_ENTER_RATIO|COLLECTION_ENTER_RATIO_STORAGE_KEY|COLLECTION_SCROLL_TO_ENTER_STORAGE_KEY|terrainEnterRatio|data-scroll-to-enter|localStorage/,
+    'collection zoom/entry preferences must not become Journey semantic state');
 
   const preference = source.match(/function setCollectionEnterRatioPreference\(value, persist\) \{([\s\S]*?)\n  \}/);
   assert.ok(preference, 'entry-depth preference writer must remain explicit');
   assert.doesNotMatch(preference[1], /commitSemanticState|syncPresentationUrl|enterLevel/,
     'changing display preference must not become semantic movement or route identity');
 
+  const scrollPreference = source.match(/function setCollectionScrollToEnterPreference\(enabled, persist\) \{([\s\S]*?)\n  \}/);
+  assert.ok(scrollPreference, 'scroll-to-enter preference writer must remain explicit');
+  assert.doesNotMatch(scrollPreference[1], /commitSemanticState|syncPresentationUrl|enterLevel/,
+    'changing scroll-to-enter preference must remain local presentation state');
+
   const reveal = source.match(/function revealDepthRail\(\) \{([\s\S]*?)\n  \}/);
   assert.ok(reveal, 'depth preference inspection path must remain explicit');
-  assert.doesNotMatch(reveal[1], /localStorage|setCollectionEnterRatioPreference|commitSemanticState/,
+  assert.doesNotMatch(reveal[1], /localStorage|setCollectionEnterRatioPreference|setCollectionScrollToEnterPreference|commitSemanticState/,
     'hover/focus inspection must remain effect-free');
 
   const syncUrl = source.match(/function syncPresentationUrl\([^)]*\) \{([\s\S]*?)\n  \}/);
   assert.ok(syncUrl, 'presentation URL owner must remain explicit');
-  assert.doesNotMatch(syncUrl[1], /ENTER_RATIO|ENTER_RATIO_STORAGE_KEY|terrainEnterRatio/,
-    'preference must not be serialized as navigation identity');
+  assert.doesNotMatch(syncUrl[1], /ENTER_RATIO|ENTER_RATIO_STORAGE_KEY|COLLECTION_SCROLL_TO_ENTER_STORAGE_KEY|terrainEnterRatio|scroll-to-enter/,
+    'preferences must not be serialized as navigation identity');
 });
 
 test('TERRAIN-JOURNEY: Content owns max-four overview and readable collection-entry preference without changing Live/Code geometry', () => {
@@ -134,7 +139,33 @@ test('TERRAIN-JOURNEY: Content owns max-four overview and readable collection-en
   assert.match(source, /\.depth-preference-label\{[^}]*font:700 11px\/1\.25 var\(--mono\)/);
   assert.match(source, /\.depth-preference-value\{[^}]*font:800 14px\/1 var\(--mono\)/);
   assert.match(source, /\.depth-preference input\[type="range"\]\{[^}]*min-height:28px/);
-  assert.match(source, /aria-label="Zoom depth before automatic collection entry"/);
+  assert.match(source, /aria-label="Scroll to enter collection automatically"/);
+  assert.match(source, /Automatic collection entry at/);
+  assert.match(source, /Maximum collection zoom/);
+});
+
+test('TERRAIN-JOURNEY: Scroll to enter defaults on, persists locally, and when off caps visual zoom without semantic entry', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
+
+  assert.match(source, /COLLECTION_SCROLL_TO_ENTER_STORAGE_KEY = 'vex-terrain-collection-scroll-to-enter'/);
+  assert.match(source, /function readCollectionScrollToEnterPreference\(\)[\s\S]*if \(stored === 'false'\) return false;[\s\S]*if \(stored === 'true'\) return true;[\s\S]*return true;/);
+  assert.match(source, /localStorage\.setItem\(COLLECTION_SCROLL_TO_ENTER_STORAGE_KEY, collectionScrollToEnterEnabled \? 'true' : 'false'\)/);
+  assert.match(source, /data-scroll-to-enter/);
+  assert.match(source, /<span>Scroll to enter<\/span>/);
+  assert.match(source, /setCollectionScrollToEnterPreference\(toggle\.checked, true\)/);
+
+  assert.match(source, /var collectionEntryContext = collectionEntryPreferenceApplies\(\)/);
+  assert.match(source, /var allowSemanticEntry = !\(collectionEntryContext && !collectionScrollToEnterEnabled\)/);
+  assert.match(source, /if \(!allowSemanticEntry && ratio > collectionEnterRatio\) \{[\s\S]*newScale = levelBaseScale \* collectionEnterRatio;[\s\S]*ratio = collectionEnterRatio;/);
+  assert.match(source, /if \(allowSemanticEntry && levelIndex === 1 && typeof levelCtx\.stageIdx !== 'number' && ratio > enterRatio\)/);
+  assert.match(source, /if \(allowSemanticEntry && levelIndex < OVERVIEW_LEVELS\.length - 1 && ratio > enterRatio\)/);
+
+  assert.match(source, /g\.addEventListener\('click',function\(ev\)\{ ev\.stopPropagation\(\); activateStage\(i\); \}\)/,
+    'direct collection click entry must remain independent of scroll-to-enter');
+  assert.match(source, /ev\.key==='Enter'\|\|ev\.key===' '/,
+    'keyboard collection entry must remain independent of scroll-to-enter');
+  assert.match(source, /collectionScrollToEnterEnabled[\s\S]*'scroll to zoom into this collection'[\s\S]*'click or press Enter to open this collection'/,
+    'focused collection hint must match the current preference');
 });
 
 test('TERRAIN-JOURNEY: threshold rail projects semantic depth with bounded outward motion and one bounded entry-depth preference', () => {
