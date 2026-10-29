@@ -71,8 +71,9 @@
       "date": "May 18, 2026",
       "department": "institute",
       "workType": "governance",
-      "status": "pending",
-      "registerNode": true
+      "status": "applied",
+      "registerNode": true,
+      "appliedAt": "2026-10-29T04:10:54.341Z"
     },
     {
       "id": "content-forge-daughters-shaped-by-home",
@@ -81,8 +82,9 @@
       "date": "",
       "department": "rd",
       "workType": "default",
-      "status": "pending",
-      "registerNode": true
+      "status": "applied",
+      "registerNode": true,
+      "appliedAt": "2026-10-29T04:10:54.345Z"
     },
     {
       "id": "content-forge-paint-editor-tool",
@@ -91,8 +93,9 @@
       "date": "",
       "department": "rd",
       "workType": "default",
-      "status": "pending",
-      "registerNode": true
+      "status": "applied",
+      "registerNode": true,
+      "appliedAt": "2026-10-29T04:10:54.345Z"
     }
   ]
 }
