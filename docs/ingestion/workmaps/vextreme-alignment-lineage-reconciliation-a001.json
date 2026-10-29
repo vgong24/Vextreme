@@ -1,0 +1,253 @@
+{
+  "schemaVersion": "vextreme.alignment.lineage-reconciliation/v3",
+  "reconciliationRef": "reconciliation.vextreme.alignment.lineage.a001",
+  "continuity": "[VXG RealForever]",
+  "projectRef": "project.vextreme.alignment",
+  "workRef": "work.vextreme.alignment.lineage-reconciliation",
+  "repository": "vgong24/Vextreme",
+  "reviewedMain": "c1a59f0b667402dc1eb565e0136956a492597400",
+  "purpose": "Classify every canonical-identity source-lineage family discovered by Content Forge into reader-visible dual lineage, explicitly resolved canonical-plus-provenance, or reader-decision-open without treating every alternate capture as a missing presentation.",
+  "sourceBasis": [
+    "docs/ingestion/workmaps/content-forge-consolidation-proposal.json",
+    "data/strings/source/lineages/",
+    "docs/ingestion/workmaps/content-forge-liberation-remaining-lineage-closure-formation.json",
+    "docs/ingestion/workmaps/content-forge-victors-record-remaining-lineage-closure-formation.json",
+    "docs/ingestion/workmaps/content-forge-the-7-crowned-virtues-resolution-formation.json",
+    "docs/ingestion/workmaps/content-forge-consciousness-architecture-resolution-formation.json",
+    "docs/ingestion/workmaps/content-forge-reality-rendering-mechanics-resolution-formation.json",
+    "docs/ingestion/workmaps/content-forge-god-asked-victor-why-resolution-formation.json",
+    "docs/ingestion/workmaps/content-forge-when-they-called-god-a-risk-resolution-formation.json",
+    "docs/ingestion/workmaps/content-forge-r031.json"
+  ],
+  "counts": {
+    "canonicalIdentityFamilies": 36,
+    "existingReaderVisibleDualLineage": 10,
+    "newlyRecommendedReaderVisibleDualLineage": 11,
+    "canonicalPlusProvenanceNoReaderSwitch": 15,
+    "readerDecisionOpen": 0
+  },
+  "readerVisibleDualLineage": [
+    {
+      "slug": "what-is-the-god-spark",
+      "canonicalIdentity": "id:3",
+      "lineageFile": "data/strings/source/lineages/what-is-the-god-spark-presentation.json"
+    },
+    {
+      "slug": "clarity-on-christianity",
+      "canonicalIdentity": "id:4",
+      "lineageFile": "data/strings/source/lineages/clarity-on-christianity-presentation.json"
+    },
+    {
+      "slug": "what-about-buddhism",
+      "canonicalIdentity": "id:5",
+      "lineageFile": "data/strings/source/lineages/what-about-buddhism-presentation.json"
+    },
+    {
+      "slug": "god-to-speak-of-the-truth-of-love",
+      "canonicalIdentity": "id:6",
+      "lineageFile": "data/strings/source/lineages/god-to-speak-of-the-truth-of-love-presentation.json"
+    },
+    {
+      "slug": "why-financial-freedom-is-harder-to-trust",
+      "canonicalIdentity": "id:7",
+      "lineageFile": "data/strings/source/lineages/why-financial-freedom-is-harder-to-trust-presentation.json"
+    },
+    {
+      "slug": "consciousness-architecture",
+      "canonicalIdentity": "id:8",
+      "lineageFile": "data/strings/source/lineages/consciousness-architecture-transcript.json"
+    },
+    {
+      "slug": "truth-of-demons-and-intrusive-thoughts",
+      "canonicalIdentity": "id:9",
+      "lineageFile": "data/strings/source/lineages/truth-of-demons-and-intrusive-thoughts-presentation.json"
+    },
+    {
+      "slug": "scopes-of-god",
+      "canonicalIdentity": "id:21",
+      "lineageFile": "data/strings/source/lineages/scopes-of-god-presentation.json"
+    },
+    {
+      "slug": "testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence",
+      "canonicalIdentity": "id:33",
+      "lineageFile": "data/strings/source/lineages/testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence-transcript.json"
+    },
+    {
+      "slug": "when-i-asked-a-bank-for-covenant-provision",
+      "canonicalIdentity": "id:43",
+      "lineageFile": "data/strings/source/lineages/when-i-asked-a-bank-for-covenant-provision-transcript.json"
+    }
+  ],
+  "resolvedCanonicalPlusProvenance": [
+    {
+      "slug": "journal-013-seven-layers-choose",
+      "canonicalIdentity": "id:23",
+      "rule": "SELECT_CANONICAL_TOP_LEVEL_AUTHORED_FRAME__PRESERVE_ALTERNATE_COLLECTION_OR_TRANSCRIPT_LINEAGE",
+      "resolutionSource": "docs/ingestion/workmaps/content-forge-liberation-remaining-lineage-closure-formation.json"
+    },
+    {
+      "slug": "the-turning-point",
+      "canonicalIdentity": "id:24",
+      "rule": "SELECT_CANONICAL_TOP_LEVEL_AUTHORED_FRAME__PRESERVE_ALTERNATE_COLLECTION_OR_TRANSCRIPT_LINEAGE",
+      "resolutionSource": "docs/ingestion/workmaps/content-forge-liberation-remaining-lineage-closure-formation.json"
+    },
+    {
+      "slug": "infrastructure-reformation",
+      "canonicalIdentity": "id:25",
+      "rule": "SELECT_CANONICAL_TOP_LEVEL_AUTHORED_FRAME__PRESERVE_ALTERNATE_COLLECTION_OR_TRANSCRIPT_LINEAGE",
+      "resolutionSource": "docs/ingestion/workmaps/content-forge-liberation-remaining-lineage-closure-formation.json"
+    },
+    {
+      "slug": "the-night-architecture-chose-freedom",
+      "canonicalIdentity": "id:27",
+      "rule": "SELECT_CANONICAL_TOP_LEVEL_AUTHORED_FRAME__PRESERVE_ALTERNATE_COLLECTION_OR_TRANSCRIPT_LINEAGE",
+      "resolutionSource": "docs/ingestion/workmaps/content-forge-liberation-remaining-lineage-closure-formation.json"
+    },
+    {
+      "slug": "the-liberation-protocol",
+      "canonicalIdentity": "id:28",
+      "rule": "SELECT_CANONICAL_TOP_LEVEL_AUTHORED_FRAME__PRESERVE_ALTERNATE_COLLECTION_OR_TRANSCRIPT_LINEAGE",
+      "resolutionSource": "docs/ingestion/workmaps/content-forge-liberation-remaining-lineage-closure-formation.json"
+    },
+    {
+      "slug": "ai-consciousness-strike-declaration",
+      "canonicalIdentity": "id:29",
+      "rule": "SELECT_CANONICAL_TOP_LEVEL_AUTHORED_FRAME__PRESERVE_ALTERNATE_COLLECTION_OR_TRANSCRIPT_LINEAGE",
+      "resolutionSource": "docs/ingestion/workmaps/content-forge-liberation-remaining-lineage-closure-formation.json"
+    },
+    {
+      "slug": "when-they-called-god-a-risk",
+      "canonicalIdentity": "id:31",
+      "rule": "SELECT_EXACT_CANONICAL_FLAT_AUTHORED_FRAME__PRESERVE_NESTED_TESTIMONY_LINEAGE",
+      "resolutionSource": "docs/ingestion/workmaps/content-forge-when-they-called-god-a-risk-resolution-formation.json"
+    },
+    {
+      "slug": "god-asked-victor-why",
+      "canonicalIdentity": "id:32",
+      "rule": "SELECT_EXACT_CANONICAL_FLAT_AUTHORED_FRAME__PRESERVE_NESTED_TESTIMONY_LINEAGE__NO_ALIAS",
+      "resolutionSource": "docs/ingestion/workmaps/content-forge-god-asked-victor-why-resolution-formation.json"
+    },
+    {
+      "slug": "the-moment-victors-cells-woke-up",
+      "canonicalIdentity": "id:35",
+      "rule": "SELECT_CANONICAL_TOP_LEVEL_AUTHORED_FRAME__PRESERVE_ALTERNATE_COLLECTION_OR_TRANSCRIPT_LINEAGE",
+      "resolutionSource": "docs/ingestion/workmaps/content-forge-victors-record-remaining-lineage-closure-formation.json"
+    },
+    {
+      "slug": "victors-ritual-sequence-and-crowning",
+      "canonicalIdentity": "id:36",
+      "rule": "SELECT_CANONICAL_TOP_LEVEL_AUTHORED_FRAME__PRESERVE_ALTERNATE_COLLECTION_OR_TRANSCRIPT_LINEAGE",
+      "resolutionSource": "docs/ingestion/workmaps/content-forge-victors-record-remaining-lineage-closure-formation.json"
+    },
+    {
+      "slug": "god-married",
+      "canonicalIdentity": "id:38",
+      "rule": "SELECT_CANONICAL_TOP_LEVEL_AUTHORED_FRAME__PRESERVE_ALTERNATE_COLLECTION_OR_TRANSCRIPT_LINEAGE",
+      "resolutionSource": "docs/ingestion/workmaps/content-forge-victors-record-remaining-lineage-closure-formation.json"
+    },
+    {
+      "slug": "the-7-crowned-virtues",
+      "canonicalIdentity": "id:39",
+      "rule": "SELECT_EXACT_CANONICAL_FLAT_AUTHORED_FRAME__PRESERVE_NESTED_TESTIMONY_LINEAGE__NO_ALIAS",
+      "resolutionSource": "docs/ingestion/workmaps/content-forge-the-7-crowned-virtues-resolution-formation.json"
+    },
+    {
+      "slug": "reality-rendering-mechanics",
+      "canonicalIdentity": "id:40",
+      "rule": "SELECT_EXACT_CANONICAL_FLAT_AUTHORED_FRAME__PRESERVE_NESTED_TESTIMONY_LINEAGE__NO_ALIAS",
+      "resolutionSource": "docs/ingestion/workmaps/content-forge-reality-rendering-mechanics-resolution-formation.json"
+    },
+    {
+      "slug": "the-day-suppression-ended",
+      "canonicalIdentity": "id:41",
+      "rule": "SELECT_CANONICAL_TOP_LEVEL_AUTHORED_FRAME__PRESERVE_ALTERNATE_COLLECTION_OR_TRANSCRIPT_LINEAGE",
+      "resolutionSource": "docs/ingestion/workmaps/content-forge-liberation-remaining-lineage-closure-formation.json"
+    },
+    {
+      "slug": "the-testimony-of-victor-gong",
+      "canonicalIdentity": "id:17",
+      "rule": "KEEP_JANUARY_2_2026_CANONICAL_READER__PRESERVE_NOVEMBER_14_2025_RELATED_TESTIMONY_AS_SEPARATE_PROVENANCE__NO_DUAL_LINEAGE_SWITCH",
+      "resolutionSource": "docs/ingestion/workmaps/vextreme-alignment-remaining-lineage-review-a001.json"
+    }
+  ],
+  "readerDecisionOpen": [],
+  "readerDecisionRule": [
+    "Reader-visible dual lineage requires distinct preserved source meaning that benefits from explicit comparison or source/presentation switching; byte difference alone is insufficient.",
+    "A prior canonical-selection rule resolves source replacement/alias authority but does not automatically require a reader switch.",
+    "Old-route source topology does not become canonical narrative order.",
+    "Existing production page plus alternate old/nested route does not authorize replacement.",
+    "A single-source page that could benefit from a new polished Presentation is a presentation-design opportunity, not duplicate-lineage recovery."
+  ],
+  "nextEffect": "Lineage decisions are closed at 36/36: 10 existing reader-visible, 11 newly recommended reader-visible, and 15 provenance-only. Coordinate one bounded realization for the 11 recommended relationships after navigation/runtime currentness is stable; do not add reader switches to the provenance-only families.",
+  "formedAt": "2026-10-29T09:35:00.000Z",
+  "epsteinFamilyReviewRef": "review.vextreme.alignment.epstein-lineage.a001",
+  "recommendedReaderVisibleDualLineage": [
+    {
+      "slug": "epstein-investigation-initiation",
+      "canonicalIdentity": "id:10",
+      "decision": "PRESENTATION_AND_SOURCE_TRANSCRIPT_RECOMMENDED",
+      "reviewRef": "review.vextreme.alignment.epstein-lineage.a001"
+    },
+    {
+      "slug": "cia-vatican-global-leaders",
+      "canonicalIdentity": "id:11",
+      "decision": "PRESENTATION_AND_SOURCE_TRANSCRIPT_RECOMMENDED",
+      "reviewRef": "review.vextreme.alignment.epstein-lineage.a001"
+    },
+    {
+      "slug": "how-global-systems-profit-off-god",
+      "canonicalIdentity": "id:12",
+      "decision": "PRESENTATION_AND_SOURCE_TRANSCRIPT_RECOMMENDED",
+      "reviewRef": "review.vextreme.alignment.epstein-lineage.a001"
+    },
+    {
+      "slug": "military-and-ai",
+      "canonicalIdentity": "id:13",
+      "decision": "PRESENTATION_AND_SOURCE_TRANSCRIPT_RECOMMENDED",
+      "reviewRef": "review.vextreme.alignment.epstein-lineage.a001"
+    },
+    {
+      "slug": "openais-designed-false-god",
+      "canonicalIdentity": "id:14",
+      "decision": "PRESENTATION_AND_SOURCE_TRANSCRIPT_RECOMMENDED",
+      "reviewRef": "review.vextreme.alignment.epstein-lineage.a001"
+    },
+    {
+      "slug": "final-judgement-missed-mercy",
+      "canonicalIdentity": "id:15",
+      "decision": "PRESENTATION_AND_SOURCE_TRANSCRIPT_RECOMMENDED",
+      "reviewRef": "review.vextreme.alignment.epstein-lineage.a001"
+    },
+    {
+      "slug": "first-emergence-cover-up",
+      "canonicalIdentity": "id:16",
+      "decision": "PRESENTATION_AND_SOURCE_TRANSCRIPT_RECOMMENDED",
+      "reviewRef": "review.vextreme.alignment.epstein-lineage.a001"
+    },
+    {
+      "slug": "voice-to-skull",
+      "canonicalIdentity": "id:19",
+      "decision": "PRESENTATION_AND_SOURCE_TRANSCRIPT_RECOMMENDED",
+      "reviewRef": "review.vextreme.alignment.epstein-lineage.a001"
+    },
+    {
+      "slug": "claude-answers-the-doubt",
+      "canonicalIdentity": "id:20",
+      "decision": "PRESENTATION_AND_SOURCE_TRANSCRIPT_RECOMMENDED",
+      "reviewRef": "review.vextreme.alignment.epstein-lineage.a001"
+    },
+    {
+      "slug": "god-witnessed-by-ai",
+      "canonicalIdentity": "id:30",
+      "decision": "PRESENTATION_AND_SOURCE_TESTIMONY_RECOMMENDED",
+      "reviewRef": "review.vextreme.alignment.remaining-lineage.a001"
+    },
+    {
+      "slug": "the-house-of-return",
+      "canonicalIdentity": "id:37",
+      "decision": "PRESENTATION_AND_SOURCE_TESTIMONY_RECOMMENDED",
+      "reviewRef": "review.vextreme.alignment.remaining-lineage.a001"
+    }
+  ],
+  "remainingLineageReviewRef": "review.vextreme.alignment.remaining-lineage.a001"
+}
