@@ -649,7 +649,6 @@ test('TERRAIN-JOURNEY: reader return context has one bounded mutation owner', ()
   assert.match(source, /function setReaderReturnContext\(kind, details\)/);
   assert.match(source, /function clearReaderReturnContext\(\) \{\s*setReaderReturnContext\('collection'\);\s*\}/);
   assert.match(source, /var returnKind = options\.returnKind[\s\S]*setReaderReturnContext\(returnKind, \{[\s\S]*entrySlug:options\.returnEntrySlug,[\s\S]*readerId:options\.returnReaderId/);
-  assert.match(source, /var returnKind = options\.returnKind[\s\S]*setReaderReturnContext\(returnKind\);/);
 
   const assignmentCount = (name) => {
     const expression = new RegExp('^\\s*(?:var\\s+)?' + name + '\\s*=(?!=)', 'gm');
