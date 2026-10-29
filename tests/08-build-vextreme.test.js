@@ -419,6 +419,24 @@ test('ASSEMBLER: exact index fingerprint is baked into the God Script for runtim
     'production assembly must bind every generated page to the exact data\/index.json generation');
 });
 
+test('CLAUDE NAV: Claude Answers the Doubt is God-Script wired and opts into v2 arc-nav', () => {
+  const viewmodels = JSON.parse(fs.readFileSync(VMS_IN, 'utf8'));
+  const vm = viewmodels['claude-answers-the-doubt'];
+  assert.ok(vm, 'Claude page must have an explicit viewmodel once it leaves the legacy shell path');
+  assert.deepEqual(vm.features, ['lang', 'spiral-fab', 'theme', 'map', 'analysis', 'arc-nav']);
+
+  const html = fs.readFileSync(path.join(PAGES_DIR, 'claude-answers-the-doubt.html'), 'utf8');
+  assert.ok(html.includes('../dist/vextreme-claude-answers-the-doubt.js'),
+    'Claude page must load its generated God Script');
+  assert.equal(/lib\/shell\.js/.test(html), false,
+    'Claude page must not remain on the frozen v1 shell/arcs.json runtime');
+  assert.ok(html.includes('id="arcNavMount"'), 'existing arc nav mount must remain intact');
+
+  const auditSource = fs.readFileSync(path.join(ROOT, 'lib', 'audit-pages.js'), 'utf8');
+  assert.doesNotMatch(auditSource, /['"]claude-answers-the-doubt['"]\s*:/,
+    'resolved Claude God-Script blocker must be removed from audit-pages');
+});
+
 test('ASSEMBLER: output includes sw-register.js core module', () => {
   const script = assembleGodScript('test-slug', DEMO_VIEWMODEL, { includeSourceComment: false });
   assert.ok(script.includes('sw-register.js') || script.includes('serviceWorker'),
