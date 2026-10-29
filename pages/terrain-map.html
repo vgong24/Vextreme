@@ -1696,6 +1696,22 @@
     return TERRAIN_ENTRY_CONTRACT.choices.find(function (choice) { return choice.id === id; }) || null;
   }
 
+  function setReaderReturnContext(kind, details) {
+    details = details || {};
+    var nextKind = kind || activeReaderReturnKind || 'collection';
+    activeReaderReturnKind = nextKind;
+    activeReaderReturnEntrySlug = nextKind === 'entry' && entryDocument(details.entrySlug)
+      ? details.entrySlug
+      : null;
+    activeReaderReturnReaderId = nextKind === 'reader' && byId[details.readerId]
+      ? details.readerId
+      : null;
+  }
+
+  function clearReaderReturnContext() {
+    setReaderReturnContext('collection');
+  }
+
   function updateEntryReaderChrome(slug) {
     var entry = entryDocument(slug);
     if (!entry) return;
@@ -1720,9 +1736,7 @@
     if (!entry || currentWorld !== 'content' || currentProfile !== 'evolution-v1' || levelIndex !== 0) return;
     activeReaderId = null;
     activeGroupHomeKey = null;
-    activeReaderReturnKind = 'collection';
-    activeReaderReturnEntrySlug = null;
-    activeReaderReturnReaderId = null;
+    clearReaderReturnContext();
     hoveredEvolutionNodeId = null;
     activeEntrySlug = slug;
     resetBoundaryGesture();
@@ -1749,8 +1763,7 @@
       return;
     }
     activeEntrySlug = null;
-    activeReaderReturnEntrySlug = null;
-    activeReaderReturnReaderId = null;
+    clearReaderReturnContext();
     evolutionReader.hidden = true;
     replaceEvolutionReaderDocument('about:blank');
     mapWrap.classList.remove('evolution-reader-active');
@@ -1773,9 +1786,7 @@
   function enterArchivesFromArrival() {
     activeEntrySlug = null;
     activeReaderId = null;
-    activeReaderReturnKind = 'collection';
-    activeReaderReturnEntrySlug = null;
-    activeReaderReturnReaderId = null;
+    clearReaderReturnContext();
     evolutionReader.hidden = true;
     replaceEvolutionReaderDocument('about:blank');
     mapWrap.classList.remove('evolution-reader-active', 'evolution-arrival-active');
@@ -1971,14 +1982,12 @@
   function openEvolutionGroupHome(stage, options) {
     options = options || {};
     if (!stage || !stage.parent || !stage.parent.live || !stage.parent.url || currentWorld !== 'content' || currentProfile !== 'evolution-v1') return;
-    if (options.returnKind) activeReaderReturnKind = options.returnKind;
-    else if (options.historyMode !== 'replace') activeReaderReturnKind = 'collection';
-    activeReaderReturnEntrySlug = activeReaderReturnKind === 'entry' && entryDocument(options.returnEntrySlug)
-      ? options.returnEntrySlug
-      : null;
-    activeReaderReturnReaderId = activeReaderReturnKind === 'reader' && byId[options.returnReaderId]
-      ? options.returnReaderId
-      : null;
+    var returnKind = options.returnKind
+      || (options.historyMode !== 'replace' ? 'collection' : activeReaderReturnKind);
+    setReaderReturnContext(returnKind, {
+      entrySlug:options.returnEntrySlug,
+      readerId:options.returnReaderId
+    });
     activeEntrySlug = null;
     activeReaderId = null;
     activeGroupHomeKey = stage.key;
@@ -2008,10 +2017,9 @@
     if (!node || !node.live || !node.liveUrl || !contentTilePeekProfileEnabled()) return;
     if (!evolutionReaderMembers().some(function (member) { return member.id === node.id; })) return;
 
-    if (options.returnKind) activeReaderReturnKind = options.returnKind;
-    else if (options.historyMode !== 'replace') activeReaderReturnKind = 'collection';
-    activeReaderReturnEntrySlug = null;
-    activeReaderReturnReaderId = null;
+    var returnKind = options.returnKind
+      || (options.historyMode !== 'replace' ? 'collection' : activeReaderReturnKind);
+    setReaderReturnContext(returnKind);
 
     activeEntrySlug = null;
     activeGroupHomeKey = null;
@@ -2042,9 +2050,7 @@
     }
     activeReaderId = null;
     activeGroupHomeKey = null;
-    activeReaderReturnKind = 'collection';
-    activeReaderReturnEntrySlug = null;
-    activeReaderReturnReaderId = null;
+    clearReaderReturnContext();
     resetBoundaryGesture();
     hideGestureHint();
     evolutionReader.hidden = true;
@@ -2178,9 +2184,7 @@
     evolutionLayer.innerHTML = '';
     activeReaderId = null;
     activeGroupHomeKey = null;
-    activeReaderReturnKind = 'collection';
-    activeReaderReturnEntrySlug = null;
-    activeReaderReturnReaderId = null;
+    clearReaderReturnContext();
     hoveredEvolutionNodeId = null;
     evolutionReader.hidden = true;
     replaceEvolutionReaderDocument('about:blank');
@@ -2559,9 +2563,7 @@
     mapWrap.classList.remove('evolution-reader-active', 'evolution-arrival-active');
     activeReaderId = null;
     activeGroupHomeKey = null;
-    activeReaderReturnKind = 'collection';
-    activeReaderReturnEntrySlug = null;
-    activeReaderReturnReaderId = null;
+    clearReaderReturnContext();
     evolutionReader.hidden = true;
     replaceEvolutionReaderDocument('about:blank');
     evolutionLayer.hidden = false;
@@ -3102,9 +3104,7 @@
     activeReaderId = null;
     activeGroupHomeKey = null;
     activeEntrySlug = null;
-    activeReaderReturnKind = 'collection';
-    activeReaderReturnEntrySlug = null;
-    activeReaderReturnReaderId = null;
+    clearReaderReturnContext();
     hoveredEvolutionNodeId = null;
     evolutionReader.hidden = true;
     replaceEvolutionReaderDocument('about:blank');

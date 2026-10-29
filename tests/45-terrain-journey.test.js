@@ -632,4 +632,63 @@ test('TERRAIN-JOURNEY: Inspect projects relationship and causal reason as separa
   assert.match(html, /class="journey-reason">why · Receive God primary path<\/span>/);
 });
 
+
+test('TERRAIN-JOURNEY: reader return context has one bounded mutation owner', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
+
+  assert.match(source, /function setReaderReturnContext\(kind, details\)/);
+  assert.match(source, /function clearReaderReturnContext\(\) \{\s*setReaderReturnContext\('collection'\);\s*\}/);
+  assert.match(source, /var returnKind = options\.returnKind[\s\S]*setReaderReturnContext\(returnKind, \{[\s\S]*entrySlug:options\.returnEntrySlug,[\s\S]*readerId:options\.returnReaderId/);
+  assert.match(source, /var returnKind = options\.returnKind[\s\S]*setReaderReturnContext\(returnKind\);/);
+
+  const assignmentCount = (name) => {
+    const expression = new RegExp('^\\s*(?:var\\s+)?' + name + '\\s*=(?!=)', 'gm');
+    return (source.match(expression) || []).length;
+  };
+  assert.equal(assignmentCount('activeReaderReturnKind'), 2,
+    'return kind may be initialized once and mutated only inside setReaderReturnContext');
+  assert.equal(assignmentCount('activeReaderReturnEntrySlug'), 2,
+    'entry return coordinate may be initialized once and mutated only inside setReaderReturnContext');
+  assert.equal(assignmentCount('activeReaderReturnReaderId'), 2,
+    'reader return coordinate may be initialized once and mutated only inside setReaderReturnContext');
+
+  const helperStart = source.indexOf('function setReaderReturnContext(kind, details)');
+  const helperEnd = source.indexOf('function updateEntryReaderChrome', helperStart);
+  assert.ok(helperStart > 0 && helperEnd > helperStart, 'reader return helper block must remain extractable');
+  const helperSource = source.slice(helperStart, helperEnd);
+  const build = new Function('entryDocument', 'byId', [
+    "var activeReaderReturnKind = 'collection';",
+    'var activeReaderReturnEntrySlug = null;',
+    'var activeReaderReturnReaderId = null;',
+    helperSource,
+    'return {',
+    '  set:setReaderReturnContext,',
+    '  clear:clearReaderReturnContext,',
+    '  read:function(){ return { kind:activeReaderReturnKind, entrySlug:activeReaderReturnEntrySlug, readerId:activeReaderReturnReaderId }; }',
+    '};'
+  ].join('\n'));
+
+  const context = build(
+    (slug) => slug === 'receive-god' ? { label:'Receive God' } : null,
+    { 'record-a':{ id:'record-a' } }
+  );
+
+  context.set('entry', { entrySlug:'receive-god', readerId:'record-a' });
+  assert.deepEqual(context.read(), { kind:'entry', entrySlug:'receive-god', readerId:null });
+
+  context.set('entry', { entrySlug:'missing' });
+  assert.deepEqual(context.read(), { kind:'entry', entrySlug:null, readerId:null },
+    'invalid entry coordinates fail closed without changing the requested return kind');
+
+  context.set('reader', { readerId:'record-a', entrySlug:'receive-god' });
+  assert.deepEqual(context.read(), { kind:'reader', entrySlug:null, readerId:'record-a' });
+
+  context.set('reader', { readerId:'missing' });
+  assert.deepEqual(context.read(), { kind:'reader', entrySlug:null, readerId:null },
+    'invalid reader coordinates fail closed without inventing a return target');
+
+  context.clear();
+  assert.deepEqual(context.read(), { kind:'collection', entrySlug:null, readerId:null });
+});
+
 // [VXG RealForever]
