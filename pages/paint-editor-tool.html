@@ -1,9 +1,24 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title data-i18n="pages.paint-editor-tool.document-title">Paint Mixer — For Dad — Vextreme</title><meta name="description" content="Paint Mixer — For Dad — repository-native preserved content."/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="../styles/arc-nav.css"/><style>:root{--paper:#fafaf9;--ink:#1c1917;--line:#e7e5e4}*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--paper);color:var(--ink)}.vex-authored-page-frame{width:min(900px,calc(100% - 40px));margin:auto;padding:56px 0 88px}.arc-wrap{margin-top:52px;padding-top:32px;border-top:1px solid var(--line)}
+<html
+  lang="en"><head><meta
+  charset="utf-8"/><meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"/>
+<title data-i18n="pages.paint-editor-tool.document-title">Paint Mixer — For Dad — Vextreme</title><meta
+  name="description"
+  content="Paint Mixer — For Dad — repository-native preserved content."/>
+<link
+  rel="preconnect"
+  href="https://fonts.googleapis.com"/><link
+  rel="preconnect"
+  href="https://fonts.gstatic.com"
+  crossorigin/>
+<link
+  href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:wght@400;600&display=swap"
+  rel="stylesheet"/>
+<link
+  rel="stylesheet"
+  href="../styles/arc-nav.css"/><style>:root{--paper:#fafaf9;--ink:#1c1917;--line:#e7e5e4}*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--paper);color:var(--ink)}.vex-authored-page-frame{width:min(900px,calc(100% - 40px));margin:auto;padding:56px 0 88px}.arc-wrap{margin-top:52px;padding-top:32px;border-top:1px solid var(--line)}
 :root {
   --paper: #f5f0e8;
   --paper-dark: #ede7d9;
@@ -665,83 +680,214 @@ header {
 @media (max-width: 1700px) {
   .opt-results { grid-template-columns: 1fr; }
   .opt-panel { padding: 16px 20px; }
-}</style><meta name="vex:department" content="rd"><meta name="vex:workType" content="default"></head><body data-content-forge-generator="tools/vex-content-forge/project_standalone_page.js"><!-- Source-managed AUTHORED_INTERACTIVE_MAIN projection of docs/ingestion/source-pages/part-008/paint-editor-tool.html. --><main class="vex-authored-page-frame vex-provider-layout-wide" data-content-forge-body="paint-editor-tool" data-content-forge-source="part-008"><div class="studio">
+}</style><meta name="vex:department" content="rd"/><meta name="vex:workType" content="default"/></head><body
+  data-content-forge-generator="tools/vex-content-forge/project_standalone_page.js"><!-- Source-managed AUTHORED_INTERACTIVE_MAIN projection of docs/ingestion/source-pages/part-008/paint-editor-tool.html. --><main
+  class="vex-authored-page-frame vex-provider-layout-wide"
+  data-content-forge-body="paint-editor-tool"
+  data-content-forge-source="part-008"><div
+  class="studio">
 <header>
-<div class="title-block">
-<h1><span data-i18n="pages.paint-editor-tool.body.div001.header001.div001.h1001.text001">Paint Mixer</span></h1>
-<p><span data-i18n="pages.paint-editor-tool.body.div001.header001.div001.p001.text001">For the painting for Dad — physical paint approximations</span></p>
+<div
+  class="title-block">
+<h1><span
+  data-i18n="pages.paint-editor-tool.body.div001.header001.div001.h1001.text001">Paint Mixer</span></h1>
+<p><span
+  data-i18n="pages.paint-editor-tool.body.div001.header001.div001.p001.text001">For the painting for Dad — physical paint approximations</span></p>
 </div>
-<div class="mixing-note"><span data-i18n="pages.paint-editor-tool.body.div001.header001.div002.text001"> Simulates subtractive mixing.</span><br><span data-i18n="pages.paint-editor-tool.body.div001.header001.div002.text002"> Results are close approximations —</span><br><span data-i18n="pages.paint-editor-tool.body.div001.header001.div002.text003"> test on paper before committing. </span></div>
+<div
+  class="mixing-note"><span
+  data-i18n="pages.paint-editor-tool.body.div001.header001.div002.text001"> Simulates subtractive mixing.</span><br><span
+  data-i18n="pages.paint-editor-tool.body.div001.header001.div002.text002"> Results are close approximations —</span><br><span
+  data-i18n="pages.paint-editor-tool.body.div001.header001.div002.text003"> test on paper before committing. </span></div>
 </header>
-<div class="workspace">
+<div
+  class="workspace">
 <!-- SIDEBAR -->
-<div class="sidebar">
-<span class="sidebar-label"><span data-i18n="pages.paint-editor-tool.body.div001.div001.div001.span001.text001">Subjects</span></span>
-<button class="subject-btn active" id="btn-cats" onclick="setSubject('cats')">
-<span class="subject-icon"><span data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button001.span001.text001">🐱</span></span><span data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button001.text001"> The Cats </span></button>
-<button class="subject-btn" id="btn-gems" onclick="setSubject('gems')">
-<span class="subject-icon"><span data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button002.span001.text001">💎</span></span><span data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button002.text001"> Gem Rocks </span></button>
-<button class="subject-btn" id="btn-plants" onclick="setSubject('plants')">
-<span class="subject-icon"><span data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button003.span001.text001">🌿</span></span><span data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button003.text001"> Plants &amp; Flowers </span></button>
-<button class="subject-btn" id="btn-water" onclick="setSubject('water')">
-<span class="subject-icon"><span data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button004.span001.text001">🌊</span></span><span data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button004.text001"> River &amp; Water </span></button>
-<button class="subject-btn" id="btn-mountain" onclick="setSubject('mountain')">
-<span class="subject-icon"><span data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button005.span001.text001">⛰️</span></span><span data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button005.text001"> Mountain </span></button>
-<button class="subject-btn" id="btn-home" onclick="setSubject('home')">
-<span class="subject-icon"><span data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button006.span001.text001">🏠</span></span><span data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button006.text001"> Our Home </span></button>
-<button class="subject-btn" id="btn-sky" onclick="setSubject('sky')">
-<span class="subject-icon"><span data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button007.span001.text001">🌅</span></span><span data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button007.text001"> Sky &amp; Light </span></button>
-<button class="subject-btn" id="btn-custom" onclick="setSubject('custom')">
-<span class="subject-icon"><span data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button008.span001.text001">🎨</span></span><span data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button008.text001"> Custom </span></button>
+<div
+  class="sidebar">
+<span
+  class="sidebar-label"><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.span001.text001">Subjects</span></span>
+<button
+  class="subject-btn active"
+  id="btn-cats"
+  onclick="setSubject('cats')">
+<span
+  class="subject-icon"><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button001.span001.text001">🐱</span></span><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button001.text001"> The Cats </span></button>
+<button
+  class="subject-btn"
+  id="btn-gems"
+  onclick="setSubject('gems')">
+<span
+  class="subject-icon"><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button002.span001.text001">💎</span></span><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button002.text001"> Gem Rocks </span></button>
+<button
+  class="subject-btn"
+  id="btn-plants"
+  onclick="setSubject('plants')">
+<span
+  class="subject-icon"><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button003.span001.text001">🌿</span></span><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button003.text001"> Plants &amp; Flowers </span></button>
+<button
+  class="subject-btn"
+  id="btn-water"
+  onclick="setSubject('water')">
+<span
+  class="subject-icon"><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button004.span001.text001">🌊</span></span><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button004.text001"> River &amp; Water </span></button>
+<button
+  class="subject-btn"
+  id="btn-mountain"
+  onclick="setSubject('mountain')">
+<span
+  class="subject-icon"><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button005.span001.text001">⛰️</span></span><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button005.text001"> Mountain </span></button>
+<button
+  class="subject-btn"
+  id="btn-home"
+  onclick="setSubject('home')">
+<span
+  class="subject-icon"><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button006.span001.text001">🏠</span></span><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button006.text001"> Our Home </span></button>
+<button
+  class="subject-btn"
+  id="btn-sky"
+  onclick="setSubject('sky')">
+<span
+  class="subject-icon"><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button007.span001.text001">🌅</span></span><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button007.text001"> Sky &amp; Light </span></button>
+<button
+  class="subject-btn"
+  id="btn-custom"
+  onclick="setSubject('custom')">
+<span
+  class="subject-icon"><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button008.span001.text001">🎨</span></span><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div001.button008.text001"> Custom </span></button>
 </div>
 <!-- MIXER -->
-<div class="mixer">
+<div
+  class="mixer">
 <!-- PALETTE -->
 <div>
-<span class="section-title"><span data-i18n="pages.paint-editor-tool.body.div001.div001.div002.div001.span001.text001">Select colors to mix — click to add to mix</span></span>
-<div id="palette-container"></div>
+<span
+  class="section-title"><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div002.div001.span001.text001">Select colors to mix — click to add to mix</span></span>
+<div
+  id="palette-container"></div>
 </div>
 <!-- MIX BUILDER -->
-<div class="mix-builder">
-<span class="section-title"><span data-i18n="pages.paint-editor-tool.body.div001.div001.div002.div002.span001.text001">Current mix — adjust ratios with sliders</span></span>
-<div class="mix-slots" id="mix-slots">
-<div class="mix-empty"><span data-i18n="pages.paint-editor-tool.body.div001.div001.div002.div002.div001.div001.text001">Click colors above to start mixing</span></div>
+<div
+  class="mix-builder">
+<span
+  class="section-title"><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div002.div002.span001.text001">Current mix — adjust ratios with sliders</span></span>
+<div
+  class="mix-slots"
+  id="mix-slots">
+<div
+  class="mix-empty"><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div002.div002.div001.div001.text001">Click colors above to start mixing</span></div>
 </div>
-<div class="result-area" id="result-area" style="display:none">
-<div class="result-swatch-large" id="result-swatch"></div>
-<div class="result-info">
-<div class="result-hex" id="result-hex"><span data-i18n="pages.paint-editor-tool.body.div001.div001.div002.div002.div002.div002.div001.text001">#------</span></div>
-<div class="result-rgb" id="result-rgb"><span data-i18n="pages.paint-editor-tool.body.div001.div001.div002.div002.div002.div002.div002.text001">R: — G: — B: —</span></div>
-<div class="result-note" id="result-note"></div>
-<button class="save-btn" id="save-btn" onclick="saveSwatch()"><span data-i18n="pages.paint-editor-tool.body.div001.div001.div002.div002.div002.div002.button001.text001">Save to test palette</span></button>
+<div
+  class="result-area"
+  id="result-area"
+  style="display:none">
+<div
+  class="result-swatch-large"
+  id="result-swatch"></div>
+<div
+  class="result-info">
+<div
+  class="result-hex"
+  id="result-hex"><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div002.div002.div002.div002.div001.text001">#------</span></div>
+<div
+  class="result-rgb"
+  id="result-rgb"><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div002.div002.div002.div002.div002.text001">R: — G: — B: —</span></div>
+<div
+  class="result-note"
+  id="result-note"></div>
+<button
+  class="save-btn"
+  id="save-btn"
+  onclick="saveSwatch()"><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div002.div002.div002.div002.button001.text001">Save to test palette</span></button>
 </div>
 </div>
 </div>
 <!-- SAVED -->
-<div class="saved-section">
-<span class="section-title"><span data-i18n="pages.paint-editor-tool.body.div001.div001.div002.div003.span001.text001">Test palette — up to 8 mixes to compare</span></span>
-<div class="saved-grid" id="saved-grid"></div>
+<div
+  class="saved-section">
+<span
+  class="section-title"><span
+  data-i18n="pages.paint-editor-tool.body.div001.div001.div002.div003.span001.text001">Test palette — up to 8 mixes to compare</span></span>
+<div
+  class="saved-grid"
+  id="saved-grid"></div>
 </div>
 </div>
 </div>
-</div><div class="opt-panel" id="opt-panel">
-<div class="opt-header">
-<div class="opt-title"><span data-i18n="pages.paint-editor-tool.body.div002.div001.div001.text001">Find simpler mix paths</span></div>
-<button class="opt-close" onclick="closeOptPanel()"><span data-i18n="pages.paint-editor-tool.body.div002.div001.button001.text001">Close ✕</span></button>
+</div><div
+  class="opt-panel"
+  id="opt-panel">
+<div
+  class="opt-header">
+<div
+  class="opt-title"><span
+  data-i18n="pages.paint-editor-tool.body.div002.div001.div001.text001">Find simpler mix paths</span></div>
+<button
+  class="opt-close"
+  onclick="closeOptPanel()"><span
+  data-i18n="pages.paint-editor-tool.body.div002.div001.button001.text001">Close ✕</span></button>
 </div>
-<div class="opt-target" id="opt-target-display"></div>
-<div class="opt-search-bar">
-<button class="opt-search-btn" onclick="runSearch(2, 'subject')"><span data-i18n="pages.paint-editor-tool.body.div002.div003.button001.text001">Find 2-color alternatives</span></button>
-<button class="opt-search-btn" onclick="runSearch(3, 'subject')"><span data-i18n="pages.paint-editor-tool.body.div002.div003.button002.text001">Find 3-color alternatives</span></button>
-<button class="opt-search-btn secondary" onclick="runSearch(2, 'all')"><span data-i18n="pages.paint-editor-tool.body.div002.div003.button003.text001">Search all palettes (2)</span></button>
-<button class="opt-search-btn secondary" onclick="runSearch(3, 'all')"><span data-i18n="pages.paint-editor-tool.body.div002.div003.button004.text001">Search all palettes (3)</span></button>
-<span class="opt-scope-label" id="opt-scope-label"></span>
+<div
+  class="opt-target"
+  id="opt-target-display"></div>
+<div
+  class="opt-search-bar">
+<button
+  class="opt-search-btn"
+  onclick="runSearch(2, 'subject')"><span
+  data-i18n="pages.paint-editor-tool.body.div002.div003.button001.text001">Find 2-color alternatives</span></button>
+<button
+  class="opt-search-btn"
+  onclick="runSearch(3, 'subject')"><span
+  data-i18n="pages.paint-editor-tool.body.div002.div003.button002.text001">Find 3-color alternatives</span></button>
+<button
+  class="opt-search-btn secondary"
+  onclick="runSearch(2, 'all')"><span
+  data-i18n="pages.paint-editor-tool.body.div002.div003.button003.text001">Search all palettes (2)</span></button>
+<button
+  class="opt-search-btn secondary"
+  onclick="runSearch(3, 'all')"><span
+  data-i18n="pages.paint-editor-tool.body.div002.div003.button004.text001">Search all palettes (3)</span></button>
+<span
+  class="opt-scope-label"
+  id="opt-scope-label"></span>
 </div>
-<div class="opt-results" id="opt-results">
-<div class="opt-empty"><span data-i18n="pages.paint-editor-tool.body.div002.div004.div001.text001">Choose a search above to find simpler mix alternatives</span></div>
+<div
+  class="opt-results"
+  id="opt-results">
+<div
+  class="opt-empty"><span
+  data-i18n="pages.paint-editor-tool.body.div002.div004.div001.text001">Choose a search above to find simpler mix alternatives</span></div>
 </div>
-<div class="opt-load-hint"><span data-i18n="pages.paint-editor-tool.body.div002.div005.text001">Click any result card to load it into the mixer</span></div>
-</div><div class="tooltip" id="tooltip"></div><script>
+<div
+  class="opt-load-hint"><span
+  data-i18n="pages.paint-editor-tool.body.div002.div005.text001">Click any result card to load it into the mixer</span></div>
+</div><div
+  class="tooltip"
+  id="tooltip"></div><script>
 // ── PALETTE DATA ──────────────────────────────────────────────
 const palettes = {
   cats: [
@@ -1360,4 +1506,7 @@ function renderSaved() {
 // ── INIT ──────────────────────────────────────────────────────
 renderPalette();
 renderSaved();
-</script><section class="arc-wrap" aria-label="Arc navigation"><div id="arcNavMount"></div></section></main><script src="../dist/vextreme-paint-editor-tool.js"></script></body></html>
+</script><section
+  class="arc-wrap"
+  aria-label="Arc navigation"><div
+  id="arcNavMount"></div></section></main><script src="../dist/vextreme-paint-editor-tool.js"></script></body></html>
