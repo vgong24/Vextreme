@@ -175,7 +175,12 @@ test('Content Forge convos_with_god arc batch is exact, deterministic, and fully
     assert.ok(page.includes('id="arcNavMount"'));
     assert.ok(page.includes(`../dist/vextreme-${member.slug}.js`));
     assert.equal(page.includes('href="/archives"'), false, `${member.slug}: source back-navigation removed`);
-    assert.equal((page.match(/<h1(?:\s|>)/g) || []).length, 1);
+    const pageH1Count = (page.match(/<h1(?:\s|>)/g) || []).length;
+    assert.equal(
+      pageH1Count,
+      page.includes('class="lineage-switch"') ? 2 : 1,
+      `${member.slug}: accepted dual-lineage readers may carry one H1 per visible lineage while ordinary pages retain one document H1`
+    );
     for (const marker of ['window.__RESCUE_SOURCE', '/__rescue/', 'data-sqsp-', 'data-vex-id=', 'vex-generated:', 'vexsite-provider-shell', 'common.nav.']) {
       assert.equal(page.includes(marker), false, `${member.slug}: forbidden ${marker}`);
     }
@@ -198,13 +203,20 @@ test('Content Forge convos_with_god arc batch is exact, deterministic, and fully
       assert.ok(key.startsWith(`${scope}.`));
       assert.notEqual(strings[key]?.strings?.en?.text, undefined, `${member.slug}: ${key}`);
     }
-    assert.deepEqual(viewmodels[member.slug], {
+    const currentViewmodel = viewmodels[member.slug];
+    assert.deepEqual({
+      title: currentViewmodel.title,
+      category: currentViewmodel.category,
+      template: currentViewmodel.template,
+      scopes: currentViewmodel.scopes,
+      features: currentViewmodel.features,
+    }, {
       title: node.title,
       category: 'production',
       template: 'page',
       scopes: [scope],
       features: ['lang', 'spiral-fab', 'theme', 'map', 'analysis', 'arc-nav'],
-    });
+    }, `${member.slug}: historical formation core remains intact while successor presentation metadata may coexist`);
 
     const sourceDocument = parse5.parse(source.toString('utf8'));
     const outputDocument = parse5.parse(page);

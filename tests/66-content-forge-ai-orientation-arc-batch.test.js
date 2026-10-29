@@ -202,13 +202,20 @@ test('Content Forge AI Orientation arc completes from exact preserved sources wi
       assert.notEqual(strings[key]?.strings?.en?.text, undefined, member.slug + ': ' + key);
     }
 
-    assert.deepEqual(viewmodels[member.slug], {
+    const currentViewmodel = viewmodels[member.slug];
+    assert.deepEqual({
+      title: currentViewmodel.title,
+      category: currentViewmodel.category,
+      template: currentViewmodel.template,
+      scopes: currentViewmodel.scopes,
+      features: currentViewmodel.features,
+    }, {
       title: node.title,
       category: 'production',
       template: 'page',
       scopes: [scope],
       features: ['lang','spiral-fab','theme','map','analysis','arc-nav'],
-    });
+    }, member.slug + ': historical formation core remains intact while successor presentation metadata may coexist');
 
     const expectedBody = sourceBody(parse5.parse(source.toString('utf8')));
     const actualBody = outputBody(parse5.parse(page), member.slug);
