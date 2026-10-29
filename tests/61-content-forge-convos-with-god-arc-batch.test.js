@@ -170,6 +170,10 @@ test('Content Forge convos_with_god arc batch is exact, deterministic, and fully
 
     const page = fs.readFileSync(path.join(ROOT, 'pages', `${member.slug}.html`), 'utf8');
     const strings = json(path.join(ROOT, 'data', 'strings', 'source', 'pages', `${member.slug}.json`));
+    const outputDocument = parse5.parse(page);
+    const actualBody = outputBody(outputDocument, member.slug);
+    assert.ok(actualBody, `${member.slug}: historical Content Forge projection remains represented inside the current reader`);
+    const historicalProjectionMarkup = parse5.serialize(actualBody);
     assert.ok(page.includes(`data-content-forge-generator="${projector.GENERATOR_REF}"`));
     assert.ok(page.includes(`data-content-forge-body="${member.slug}"`));
     assert.ok(page.includes('id="arcNavMount"'));
@@ -182,7 +186,7 @@ test('Content Forge convos_with_god arc batch is exact, deterministic, and fully
       `${member.slug}: accepted dual-lineage readers may carry one H1 per visible lineage while ordinary pages retain one document H1`
     );
     for (const marker of ['window.__RESCUE_SOURCE', '/__rescue/', 'data-sqsp-', 'data-vex-id=', 'vex-generated:', 'vexsite-provider-shell', 'common.nav.']) {
-      assert.equal(page.includes(marker), false, `${member.slug}: forbidden ${marker}`);
+      assert.equal(historicalProjectionMarkup.includes(marker), false, `${member.slug}: historical projection forbids ${marker}; successor lineage shells are owned elsewhere`);
     }
 
     const scope = `pages.${member.slug}`;
@@ -197,7 +201,7 @@ test('Content Forge convos_with_god arc batch is exact, deterministic, and fully
       proposalRecordRef: member.proposalRecordRef,
       projectionRule: 'SOURCE_LINEAGES_PRESERVED__DIRECT_COPY_FORBIDDEN',
     });
-    const keys = [...page.matchAll(/data-i18n="([^"]+)"/g)].map(match => match[1]);
+    const keys = [...historicalProjectionMarkup.matchAll(/data-i18n="([^"]+)"/g)].map(match => match[1]);
     assert.ok(keys.length > 1);
     for (const key of keys) {
       assert.ok(key.startsWith(`${scope}.`));
@@ -219,9 +223,7 @@ test('Content Forge convos_with_god arc batch is exact, deterministic, and fully
     }, `${member.slug}: historical formation core remains intact while successor presentation metadata may coexist`);
 
     const sourceDocument = parse5.parse(source.toString('utf8'));
-    const outputDocument = parse5.parse(page);
     const expectedBody = sourceBody(sourceDocument, member);
-    const actualBody = outputBody(outputDocument, member.slug);
     const expected = textLeaves(expectedBody);
     const actual = textLeaves(actualBody);
     assert.deepEqual(actual, expected, `${member.slug}: authored text order`);
