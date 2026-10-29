@@ -188,7 +188,8 @@ test('TERRAIN-JOURNEY: Row B uses existing stage semantics for adaptive focus an
   assert.match(source, /role:'button'/);
   assert.match(source, /tabindex:'0'/);
   assert.match(source, /targetLevel === 1 && stageIdx >= 0/);
-  assert.match(source, /levelIndex === 1 && typeof levelCtx\.stageIdx !== 'number' && ratio > ENTER_RATIO/);
+  assert.match(source, /var enterRatio = enterRatioForCurrentContext\(\)/);
+  assert.match(source, /levelIndex === 1 && typeof levelCtx\.stageIdx !== 'number' && ratio > enterRatio/);
   assert.match(source, /levelIndex === 1 && typeof levelCtx\.stageIdx === 'number' && ratio < EXIT_RATIO/);
   assert.match(source, /NODE_NEIGHBORHOOD_LIMIT = LIVE_VIEW\.levels\.node\.neighborhoodLimit/);
   assert.match(source, /"neighborhoodLimit": 12/);
