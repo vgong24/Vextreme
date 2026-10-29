@@ -837,6 +837,7 @@
       "inherits": "live",
       "declaredDeltas": [
         "Content group overview reserves a viewport-owned inspection dock before hover, preserving collection order without changing collection-tile coordinates.",
+        "Content collection overview cards may project up to three distinct preview images; selection is deterministic for the viewer\'s local calendar day and rotates daily when more than three previewable members exist.",
         "The accepted Content group overview may use up to four columns; existing Terrain fit/framing remains the owner of viewport scaling, while Live/Code retains its three-column ceiling.",
         "Content group selection renders immediate membership destinations instead of a large confirmation rectangle.",
         "Selected-group identity becomes compact persistent context with sibling groups in a condensed rail.",
@@ -2329,6 +2330,67 @@
     return { src:screenshotUrl(screenshots[lang]), cover:false };
   }
 
+  function terrainPreviewScore(value) {
+    var text = String(value || '');
+    var hash = 2166136261;
+    for (var i = 0; i < text.length; i += 1) {
+      hash ^= text.charCodeAt(i);
+      hash = Math.imul(hash, 16777619);
+    }
+    return hash >>> 0;
+  }
+
+  function terrainPreviewDayIndex(date) {
+    date = date || new Date();
+    return Math.floor(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) / 86400000);
+  }
+
+  function terrainPreviewDayKey(date) {
+    date = date || new Date();
+    return String(date.getFullYear())
+      + '-' + String(date.getMonth() + 1).padStart(2, '0')
+      + '-' + String(date.getDate()).padStart(2, '0');
+  }
+
+  function dailyPreviewSelection(candidates, stageKey, dayIndex, limit) {
+    var max = Math.max(0, Math.floor(Number(limit) || 0));
+    if (!Array.isArray(candidates) || !candidates.length || !max) return [];
+
+    var seen = Object.create(null);
+    var eligible = candidates.filter(function (node, index) {
+      if (!node) return false;
+      var identity = String(node.id || node.slug || node.title || index);
+      if (seen[identity]) return false;
+      seen[identity] = true;
+      return true;
+    });
+    if (eligible.length <= max) return eligible.slice();
+
+    var ordered = eligible.map(function (node, index) {
+      var identity = String(node.id || node.slug || node.title || index);
+      return {
+        node:node,
+        identity:identity,
+        score:terrainPreviewScore(String(stageKey || '') + '|' + identity)
+      };
+    }).sort(function (left, right) {
+      return left.score - right.score || left.identity.localeCompare(right.identity);
+    });
+
+    var normalizedDay = Math.floor(Number(dayIndex) || 0);
+    var offset = ((terrainPreviewScore(String(stageKey || '')) + normalizedDay) % ordered.length + ordered.length) % ordered.length;
+    var selected = [];
+    for (var slot = 0; slot < Math.min(max, ordered.length); slot += 1) {
+      selected.push(ordered[(offset + slot) % ordered.length].node);
+    }
+    return selected;
+  }
+
+  function dailyStagePreviewMembers(stage, dayIndex) {
+    var candidates = stageMembers(stage).filter(hasEvolutionPreview);
+    return dailyPreviewSelection(candidates, stage && stage.key, dayIndex, 3);
+  }
+
   function refreshLocalizedPreviewImages() {
     document.querySelectorAll('.evo-card[data-node-id]').forEach(function (card) {
       var node = byId[card.getAttribute('data-node-id')];
@@ -3291,9 +3353,15 @@
     var curiosityOverview = contentTilePeekProfileEnabled()
       && layout.focusedIdx < 0
       && contentTilePeekHoverCapable();
+    var previewDate = new Date();
+    var previewDayIndex = terrainPreviewDayIndex(previewDate);
+    var previewDayKey = terrainPreviewDayKey(previewDate);
     layout.items.sort(function (a,b) { return a.index - b.index; }).forEach(function (item) {
       var stage=item.stage, i=item.index, r=item.rect, summary=stageSummary(stage);
       var curiosityEnabled = curiosityOverview && contentTilePeekEnabledFor(stage);
+      var previewStripEnabled = contentTilePeekProfileEnabled()
+        && item.kind === 'overview';
+      var dailyPreviewMembers = previewStripEnabled ? dailyStagePreviewMembers(stage, previewDayIndex) : [];
       var unit = currentWorld === 'content' ? 'member' : (stage.key === SCREENS_KEY ? 'evidence surface' : 'file');
       var focused = item.kind === 'focus', context = item.kind === 'context';
       var countText = summary.membershipCount + ' ' + unit + (summary.membershipCount === 1 ? '' : 's');
@@ -3317,38 +3385,50 @@
         'data-membership-count':String(summary.membershipCount),
         'data-primary-count':String(summary.primaryCount),
         'data-projection-completeness':summary.projectionCompleteness,
+        'data-preview-count':String(dailyPreviewMembers.length),
+        'data-preview-day':previewStripEnabled ? previewDayKey : '',
         'data-focused':String(focused),
         'data-context':String(context),
         'aria-pressed':String(focused),
         'aria-label':aria
       });
       var halo=el('rect',{x:r.x,y:r.y,width:r.width,height:r.height,rx:focused?22:14,class:'stage-halo'}); g.appendChild(halo);
-      var representativeThumb = null;
-      var representativeVisual = null;
-      if (curiosityEnabled) {
-        var representative = stageMembers(stage).filter(hasEvolutionPreview)[0] || null;
-        representativeVisual = representative ? evolutionPreviewSource(representative) : null;
-        if (representativeVisual) {
-          representativeThumb = el('image',{
-            x:r.x+r.width-73,
-            y:r.y+r.height-54,
-            width:58,
-            height:34,
+      var dailyPreviewThumbs = [];
+      if (dailyPreviewMembers.length) {
+        var previewThumbWidth = dailyPreviewMembers.length === 1 ? 58 : 48;
+        var previewThumbHeight = dailyPreviewMembers.length === 1 ? 34 : 30;
+        var previewThumbGap = 5;
+        var previewStripWidth = dailyPreviewMembers.length * previewThumbWidth
+          + Math.max(0, dailyPreviewMembers.length - 1) * previewThumbGap;
+        var previewStartX = r.x + r.width - 14 - previewStripWidth;
+        var previewY = r.y + r.height - (dailyPreviewMembers.length === 1 ? 61 : 57);
+        dailyPreviewMembers.forEach(function (member, previewIndex) {
+          var visual = evolutionPreviewSource(member);
+          if (!visual) return;
+          var previewX = previewStartX + previewIndex * (previewThumbWidth + previewThumbGap);
+          var thumb = el('image',{
+            x:previewX,
+            y:previewY,
+            width:previewThumbWidth,
+            height:previewThumbHeight,
             preserveAspectRatio:'xMidYMid slice',
-            class:'stage-curiosity-thumb',
+            class:'stage-curiosity-thumb stage-daily-preview-thumb',
+            'data-preview-node-id':String(member.id || member.slug || ''),
+            'data-preview-slot':String(previewIndex),
             'aria-hidden':'true'
           });
-          g.appendChild(representativeThumb);
+          g.appendChild(thumb);
           g.appendChild(el('rect',{
-            x:r.x+r.width-73,
-            y:r.y+r.height-54,
-            width:58,
-            height:34,
+            x:previewX,
+            y:previewY,
+            width:previewThumbWidth,
+            height:previewThumbHeight,
             rx:6,
             class:'stage-curiosity-thumb-frame',
             'aria-hidden':'true'
           }));
-        }
+          dailyPreviewThumbs.push({ node:thumb, src:visual.src });
+        });
       }
       if (currentWorld === 'content' && !context) {
         var kind=el('text',{x:r.x+14,y:r.y+(focused?35:24),class:'stage-kind'}); kind.textContent=kindText; g.appendChild(kind);
@@ -3431,9 +3511,9 @@
         g.addEventListener('focusout', function () { scheduleContentTilePeekClose(); });
       }
       world.appendChild(g);
-      if (representativeThumb && representativeVisual) {
-        queueStageThumbnailHydration(representativeThumb, representativeVisual.src);
-      }
+      dailyPreviewThumbs.forEach(function (preview) {
+        queueStageThumbnailHydration(preview.node, preview.src);
+      });
     });
     if (layout.focusedIdx < 0 && currentWorld === 'code') {
       for (var i=0;i<layout.items.length-1;i++) {
