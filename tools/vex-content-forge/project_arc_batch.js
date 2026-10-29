@@ -331,6 +331,67 @@ function preserveLocalizationOverlays(generated, existing) {
   return output;
 }
 
+function beautifyStartTag(tag) {
+  let quote = null;
+  let seenTagName = false;
+  let pendingWhitespace = false;
+  let output = '';
+  for (let index = 0; index < tag.length; index += 1) {
+    const char = tag[index];
+    if (quote) {
+      output += char;
+      if (char === quote) quote = null;
+      continue;
+    }
+    if (char === '"' || char === "'") {
+      if (pendingWhitespace) { output += '\n  '; pendingWhitespace = false; }
+      quote = char;
+      output += char;
+      continue;
+    }
+    if (!seenTagName) {
+      output += char;
+      if (index > 0 && /\s/.test(char)) {
+        output = output.slice(0, -1);
+        seenTagName = true;
+        pendingWhitespace = true;
+      } else if (char === '>') {
+        return output;
+      }
+      continue;
+    }
+    if (/\s/.test(char)) {
+      pendingWhitespace = true;
+      continue;
+    }
+    if (pendingWhitespace) {
+      if (char !== '>' && !(char === '/' && tag[index + 1] === '>')) output += '\n  ';
+      pendingWhitespace = false;
+    }
+    output += char;
+  }
+  return output;
+}
+
+function beautifyHtmlMarkup(page) {
+  const protectedSegments = [];
+  const shielded = page.replace(
+    /<!--[\s\S]*?-->|<(script|style|textarea|title)\b[^>]*>[\s\S]*?<\/\1\s*>/gi,
+    segment => {
+      const token = `\u0000VEX-CONTENT-FORGE-PROTECTED-${protectedSegments.length}\u0000`;
+      protectedSegments.push(segment);
+      return token;
+    }
+  );
+  let beautified = shielded.replace(/<[A-Za-z][^<>]*?>/g, beautifyStartTag);
+  beautified = beautified.replace(/\u0000VEX-CONTENT-FORGE-PROTECTED-(\d+)\u0000/g, (_match, index) => protectedSegments[Number(index)]);
+
+  const before = parse5.serialize(parse5.parse(page));
+  const after = parse5.serialize(parse5.parse(beautified));
+  invariant(after === before, 'BEAUTIFY_DOM_DRIFT', 'formatting changed canonical DOM');
+  return beautified;
+}
+
 function validatePage(page, strings, member) {
   for (const marker of ['window.__RESCUE_SOURCE','/__rescue/','data-sqsp-','data-vex-id=','vex-generated:','vexsite-provider-shell','common.nav.']) {
     invariant(!page.includes(marker), 'FORBIDDEN_SOURCE_IDENTITY', `${member.slug}: ${marker}`);
@@ -413,7 +474,8 @@ function projectMember(root, member, nodesBySlug, assetCatalog) {
     : projectedStrings;
   const baseStyle = sqsBodyAdapter ? GENERIC_STYLE : `${AUTHORED_STYLE}\n${styles.join('\n')}`;
   const style = longPageNav ? `${baseStyle}\n${LONG_PAGE_ESCAPE_STYLE}` : baseStyle;
-  const page = `${pageHead(node.title, scope, `${node.title} — repository-native preserved content.`, style)}<body data-content-forge-generator="${GENERATOR_REF}"><!-- Source-managed ${member.adapterClass} projection of ${member.sourcePath}. -->${body}<script src="../dist/vextreme-${member.slug}.js"></script></body></html>`;
+  const compactPage = `${pageHead(node.title, scope, `${node.title} — repository-native preserved content.`, style)}<body data-content-forge-generator="${GENERATOR_REF}"><!-- Source-managed ${member.adapterClass} projection of ${member.sourcePath}. -->${body}<script src="../dist/vextreme-${member.slug}.js"></script></body></html>`;
+  const page = beautifyHtmlMarkup(compactPage);
   validatePage(page, strings, member);
   return {
     page, strings, viewmodel: { title: node.title, category: 'production', template: 'page', scopes: [scope], features: ['lang','spiral-fab','theme','map','analysis','arc-nav'] },
@@ -547,4 +609,4 @@ if (require.main === module) {
   try { process.exitCode = main(cliOptions()).accounting.complete ? 0 : 1; }
   catch (error) { process.stderr.write(`${error.stack || error.message}\n`); process.exitCode = 1; }
 }
-module.exports = { ASSET_CATALOG_REL, ASSET_FILENAME, DEFAULT_ROOT, FORMATION_REL, GENERATOR_REF, ROOT_RELATIVE_ASSET_REF, ProjectionInvariantError, attrs, cliOptions, externalizeAssetReferences, findAll, findFirst, gitBlobSha, interactiveCodeText, loadAssetCatalog, main, preserveLocalizationOverlays, projectMember, rawText, resolveAssetReference, rewriteAssetText, selectAuthoredMain, selectEmbeddedCodeContainer, selectSqsBody, sha256, textLeaves, validateFormation, validateInteractiveCode };
+module.exports = { ASSET_CATALOG_REL, ASSET_FILENAME, DEFAULT_ROOT, FORMATION_REL, GENERATOR_REF, ROOT_RELATIVE_ASSET_REF, ProjectionInvariantError, attrs, beautifyHtmlMarkup, cliOptions, externalizeAssetReferences, findAll, findFirst, gitBlobSha, interactiveCodeText, loadAssetCatalog, main, preserveLocalizationOverlays, projectMember, rawText, resolveAssetReference, rewriteAssetText, selectAuthoredMain, selectEmbeddedCodeContainer, selectSqsBody, sha256, textLeaves, validateFormation, validateInteractiveCode };
