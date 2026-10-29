@@ -47,4 +47,9 @@ test('projected interactive HTML is reviewable as multiline markup', () => {
   assert.match(page, /data-content-forge-generator=/);
 });
 
+test('Content Forge formatting mode keeps accepted compact pages byte-stable while new/readable pages remain beautified', () => {
+  assert.equal(projector.usesReadableGeneratedMarkup('<!DOCTYPE html>\n<html lang="en"><head></head><body data-content-forge-generator="x"></body></html>'), false);
+  assert.equal(projector.usesReadableGeneratedMarkup('<!DOCTYPE html>\n<html\n  lang="en"><head></head><body\n  data-content-forge-generator="x"></body></html>'), true);
+});
+
 // [VXG RealForever]
