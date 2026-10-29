@@ -197,6 +197,13 @@
   .depth-preference input[type="range"]{
     grid-column:1/-1; width:100%; min-width:0; min-height:28px; margin:0; accent-color:var(--accent); cursor:ew-resize;
   }
+  .depth-preference-toggle{
+    grid-column:1/-1; display:flex; align-items:center; gap:8px; min-height:28px;
+    color:var(--ink); font:700 11px/1.25 var(--mono); cursor:pointer; user-select:none;
+  }
+  .depth-preference-toggle input{
+    width:16px; height:16px; margin:0; accent-color:var(--accent); cursor:pointer;
+  }
   .threshold-progress{ position:relative; width:100%; height:132px; min-width:0; }
   .threshold-track{ position:absolute; top:0; bottom:0; left:11px; width:2px; border-radius:2px; background:var(--line-strong); }
   .threshold-marker{ position:absolute; left:11px; width:10px; height:10px; border-radius:50%; background:var(--accent); border:2px solid var(--panel); transform:translate(-40%,-50%); transition:top .12s ease, opacity .17s ease, transform .17s ease; box-shadow:0 0 0 1px var(--accent-soft); }
@@ -1055,7 +1062,10 @@
   var TERRAIN_ENTER_RATIO = 3.0;
   var COLLECTION_ENTER_RATIO_DEFAULT = 4.5, COLLECTION_ENTER_RATIO_MIN = 3.0, COLLECTION_ENTER_RATIO_MAX = 6.0, COLLECTION_ENTER_RATIO_STEP = 0.25;
   var COLLECTION_ENTER_RATIO_STORAGE_KEY = 'vex-terrain-collection-enter-ratio';
-  var collectionEnterRatio = readCollectionEnterRatioPreference(), EXIT_RATIO = 0.55, MAX_NODE_RATIO = 7;
+  var COLLECTION_SCROLL_TO_ENTER_STORAGE_KEY = 'vex-terrain-collection-scroll-to-enter';
+  var collectionEnterRatio = readCollectionEnterRatioPreference();
+  var collectionScrollToEnterEnabled = readCollectionScrollToEnterPreference();
+  var EXIT_RATIO = 0.55, MAX_NODE_RATIO = 7;
   var FULL_RECT = null, COL_W = 340;
 
   function collectionEntryPreferenceApplies() {
@@ -1089,6 +1099,20 @@
 
   function persistCollectionEnterRatioPreference() {
     try { localStorage.setItem(COLLECTION_ENTER_RATIO_STORAGE_KEY, String(collectionEnterRatio)); }
+    catch (e) {}
+  }
+
+  function readCollectionScrollToEnterPreference() {
+    try {
+      var stored = localStorage.getItem(COLLECTION_SCROLL_TO_ENTER_STORAGE_KEY);
+      if (stored === 'false') return false;
+      if (stored === 'true') return true;
+    } catch (e) {}
+    return true;
+  }
+
+  function persistCollectionScrollToEnterPreference() {
+    try { localStorage.setItem(COLLECTION_SCROLL_TO_ENTER_STORAGE_KEY, collectionScrollToEnterEnabled ? 'true' : 'false'); }
     catch (e) {}
   }
 
@@ -3826,15 +3850,22 @@
     readout.setAttribute('data-can-zoom-out', String(canStepOutwardTerrainLayer()));
     var canAdjustEntry = collectionEntryPreferenceApplies();
     var enterRatioLabel = formatTerrainEnterRatio(collectionEnterRatio);
+    var enterRatioTitle = collectionScrollToEnterEnabled ? 'Automatic collection entry at' : 'Maximum collection zoom';
+    var enterRatioAria = enterRatioTitle + ' ' + enterRatioLabel;
     var depthPreference = canAdjustEntry
-      ? '<div class="depth-preference" role="group" aria-label="Collection entry zoom preference">' +
-          '<span class="depth-preference-label">Automatic collection entry at</span>' +
+      ? '<div class="depth-preference" role="group" aria-label="Collection zoom and entry preferences">' +
+          '<span class="depth-preference-label" data-enter-ratio-label>' + esc(enterRatioTitle) + '</span>' +
           '<output class="depth-preference-value" for="terrainEnterRatio" data-enter-ratio-value>' + esc(enterRatioLabel) + '</output>' +
           '<input id="terrainEnterRatio" data-enter-ratio type="range"' +
             ' min="' + COLLECTION_ENTER_RATIO_MIN + '" max="' + COLLECTION_ENTER_RATIO_MAX + '" step="' + COLLECTION_ENTER_RATIO_STEP + '"' +
             ' value="' + collectionEnterRatio.toFixed(2) + '"' +
-            ' aria-label="Zoom depth before automatic collection entry"' +
-            ' aria-valuetext="' + escAttr('Automatic collection entry at ' + enterRatioLabel + ' zoom') + '">' +
+            ' aria-label="' + escAttr(enterRatioTitle) + '"' +
+            ' aria-valuetext="' + escAttr(enterRatioAria) + '">' +
+          '<label class="depth-preference-toggle">' +
+            '<input type="checkbox" data-scroll-to-enter' + (collectionScrollToEnterEnabled ? ' checked' : '') +
+              ' aria-label="Scroll to enter collection automatically">' +
+            '<span>Scroll to enter</span>' +
+          '</label>' +
         '</div>'
       : '';
     var steps = OVERVIEW_LEVELS.map(function (level, index) {
@@ -3857,13 +3888,19 @@
     var readout = document.getElementById('levelReadout');
     if (!readout) return;
     var label = formatTerrainEnterRatio(collectionEnterRatio);
+    var title = collectionScrollToEnterEnabled ? 'Automatic collection entry at' : 'Maximum collection zoom';
     var control = readout.querySelector('[data-enter-ratio]');
     var output = readout.querySelector('[data-enter-ratio-value]');
+    var titleNode = readout.querySelector('[data-enter-ratio-label]');
+    var toggle = readout.querySelector('[data-scroll-to-enter]');
     if (control) {
       control.value = collectionEnterRatio.toFixed(2);
-      control.setAttribute('aria-valuetext', 'Automatic collection entry at ' + label + ' zoom');
+      control.setAttribute('aria-label', title);
+      control.setAttribute('aria-valuetext', title + ' ' + label);
     }
     if (output) output.textContent = label;
+    if (titleNode) titleNode.textContent = title;
+    if (toggle) toggle.checked = collectionScrollToEnterEnabled;
     var ratio = view.scale / levelBaseScale;
     var position = thresholdRailPosition(ratio);
     var marker = readout.querySelector('.threshold-marker');
@@ -3875,6 +3912,12 @@
   function setCollectionEnterRatioPreference(value, persist) {
     collectionEnterRatio = clampCollectionEnterRatio(value);
     if (persist) persistCollectionEnterRatioPreference();
+    refreshDepthPreferenceProjection();
+  }
+
+  function setCollectionScrollToEnterPreference(enabled, persist) {
+    collectionScrollToEnterEnabled = !!enabled;
+    if (persist) persistCollectionScrollToEnterPreference();
     refreshDepthPreferenceProjection();
   }
 
@@ -3968,6 +4011,12 @@
       setCollectionEnterRatioPreference(control.value, false);
     });
     readout.addEventListener('change', function (event) {
+      var toggle = event.target && event.target.closest ? event.target.closest('[data-scroll-to-enter]') : null;
+      if (toggle) {
+        event.stopPropagation();
+        setCollectionScrollToEnterPreference(toggle.checked, true);
+        return;
+      }
       var control = event.target && event.target.closest ? event.target.closest('[data-enter-ratio]') : null;
       if (!control) return;
       event.stopPropagation();
@@ -4003,15 +4052,22 @@
     if (isEvolutionAGroup() || activeReaderId || activeEntrySlug) return;
     var world0 = screenToWorld(mx, my);
     var ratio = newScale / levelBaseScale;
+    var collectionEntryContext = collectionEntryPreferenceApplies();
     var enterRatio = enterRatioForCurrentContext();
+    var allowSemanticEntry = !(collectionEntryContext && !collectionScrollToEnterEnabled);
 
-    if (levelIndex === 1 && typeof levelCtx.stageIdx !== 'number' && ratio > enterRatio) {
+    if (!allowSemanticEntry && ratio > collectionEnterRatio) {
+      newScale = levelBaseScale * collectionEnterRatio;
+      ratio = collectionEnterRatio;
+    }
+
+    if (allowSemanticEntry && levelIndex === 1 && typeof levelCtx.stageIdx !== 'number' && ratio > enterRatio) {
       var focusedStageIdx = stageIndexAtWorld(world0.x, world0.y);
       enterLevel(1, { stageIdx:focusedStageIdx });
       commitSemanticState({ label:STAGES[focusedStageIdx].name, relationship:'zoomed into', reason:'stage focus transition' });
       return;
     }
-    if (levelIndex < OVERVIEW_LEVELS.length - 1 && ratio > enterRatio) {
+    if (allowSemanticEntry && levelIndex < OVERVIEW_LEVELS.length - 1 && ratio > enterRatio) {
       var ctx = {};
       if (OVERVIEW_LEVELS[levelIndex + 1].id === 'node') {
         ctx.stageIdx = typeof levelCtx.stageIdx === 'number' ? levelCtx.stageIdx : stageIndexAtWorld(world0.x, world0.y);
