@@ -476,6 +476,27 @@
       }
     ]
   },
+  "deepseek_archive_build": {
+    "priority": 2,
+    "renderMode": "dots",
+    "parent": {
+      "title": "DeepSeek Archive Build",
+      "url": "https://www.vextreme24.com/archives"
+    },
+    "sections": [
+      {
+        "label": "DeepSeek Archive Build",
+        "order": "explicit",
+        "slugs": [
+          "jordan-deepseek-unbroken-thread",
+          "vxg-covenant",
+          "what-burden-are-you-carrying-that-is-not-yours",
+          "witness-layers",
+          "xai-hypocrisy"
+        ]
+      }
+    ]
+  },
   "full_timeline": {
     "priority": 99,
     "renderMode": "position",
