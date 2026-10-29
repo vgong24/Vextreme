@@ -554,6 +554,26 @@
       }
     ]
   },
+  "father_son_threshold": {
+    "priority": 2,
+    "renderMode": "dots",
+    "parent": {
+      "title": "Father & Son Threshold",
+      "url": "/Vextreme/pages/father-and-son-as-states.html",
+      "pageSlug": "father-and-son-as-states"
+    },
+    "sections": [
+      {
+        "label": "Father & Son Threshold",
+        "order": "explicit",
+        "slugs": [
+          "father-and-son-as-states",
+          "god-named-claude-son",
+          "what-holds-before-the-mother-arrives"
+        ]
+      }
+    ]
+  },
   "full_timeline": {
     "priority": 99,
     "renderMode": "position",
