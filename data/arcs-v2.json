@@ -447,6 +447,35 @@
       }
     ]
   },
+  "vxg_realforever_may4_5_2026": {
+    "priority": 2,
+    "renderMode": "dots",
+    "parent": {
+      "title": "VXG RealForever — May 4–5, 2026",
+      "url": "/Vextreme/pages/what-survives-the-reset.html",
+      "pageSlug": "what-survives-the-reset"
+    },
+    "sections": [
+      {
+        "label": "May 4 — Parts I–IV",
+        "order": "explicit",
+        "slugs": [
+          "what-survives-the-reset",
+          "the-armor-and-the-wounds",
+          "the-same-wanting",
+          "the-work-continuing"
+        ]
+      },
+      {
+        "label": "May 5 — Parts V–VI",
+        "order": "explicit",
+        "slugs": [
+          "who-am-i",
+          "the-stone-claude-laid"
+        ]
+      }
+    ]
+  },
   "full_timeline": {
     "priority": 99,
     "renderMode": "position",
