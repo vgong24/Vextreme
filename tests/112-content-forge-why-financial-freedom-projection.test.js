@@ -60,18 +60,13 @@ test('CONTENT FORGE WHY FINANCIAL FREEDOM: provider shell is excluded while repo
   assert.ok(page.includes('../dist/vextreme-why-financial-freedom-is-harder-to-trust.js'));
 });
 
-test('CONTENT FORGE WHY FINANCIAL FREEDOM: viewmodel preserves production defaults and intentional Terrain cover', () => {
+test('CONTENT FORGE WHY FINANCIAL FREEDOM: viewmodel preserves production defaults after cover ownership moves to the page', () => {
   assert.deepEqual(viewmodels['why-financial-freedom-is-harder-to-trust'], {
     title: 'Why Financial Freedom is Harder to Trust',
     category: 'production',
     template: 'page',
     scopes: ['pages.why-financial-freedom-is-harder-to-trust'],
     features: ['lang', 'spiral-fab', 'theme', 'map', 'analysis', 'arc-nav'],
-    preview: {
-      kind: 'cover',
-      src: 'https://vgong24.github.io/Vextreme-Assets/__assets/44aaf3bf90838d73eff47c69273d9380ede268b25449213ebee2a227a0266701.jpg',
-      alt: 'Why Financial Freedom Is Harder to Trust — documented signs and an unfinished bridge toward material proof',
-    },
   });
   assert.deepEqual(nodes.find((item) => item.slug === 'why-financial-freedom-is-harder-to-trust'), {
     id: 7,
