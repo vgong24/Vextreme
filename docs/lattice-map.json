@@ -1212,10 +1212,14 @@
       ],
       "loadedBy": [
         "manual run: node lib/apply-content-intents.js",
-        "tests/18-apply-content-intents.test.js"
+        "tests/18-apply-content-intents.test.js",
+        "tests/128-content-forge-vxg-council-declaration-placement.test.js",
+        "tests/131-content-forge-interactive-recovery-placement.test.js"
       ],
       "testedBy": [
-        "tests/18-apply-content-intents.test.js"
+        "tests/18-apply-content-intents.test.js",
+        "tests/128-content-forge-vxg-council-declaration-placement.test.js",
+        "tests/131-content-forge-interactive-recovery-placement.test.js"
       ],
       "changeMap": {
         "content-intents.json schema changed (new field, field renamed)": [
@@ -1685,10 +1689,12 @@
       ],
       "loadedBy": [
         "manual run: node lib/check-design-tokens.js",
-        "tests/13-check-design-tokens.test.js (also runs it as a CI-gating integration test)"
+        "tests/13-check-design-tokens.test.js (also runs it as a CI-gating integration test)",
+        "tests/132-content-forge-remaining-port-closure.test.js"
       ],
       "testedBy": [
-        "tests/13-check-design-tokens.test.js"
+        "tests/13-check-design-tokens.test.js",
+        "tests/132-content-forge-remaining-port-closure.test.js"
       ],
       "changeMap": {
         "a new local dark-theme file added": [

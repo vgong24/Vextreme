@@ -53,8 +53,10 @@ test('Content Forge Records projects two exact members, preserves three exact li
   assert.equal(formation.ownerRef,'github.issue.vextreme.159'); assert.equal(formation.arc.arcKey,'records');
   assert.deepEqual({canonical:formation.arc.canonicalMemberCount,already:formation.arc.alreadyCompleteCount,remaining:formation.arc.remainingCount},{canonical:8,already:3,remaining:5});
   assert.deepEqual(formation.destinationMutationBoundary,{createPages:2,createStringSources:2,modifyViewmodels:true,nodeRegistryMutation:false,arcRegistryMutation:false,contentIntentMutation:false,aliasMutation:false});
-  const canonical=arcs.records.sections.flatMap(section=>section.slugs||[]);
-  assert.deepEqual(canonical,['epstein-and-ai','when-they-called-god-a-risk','testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence','the-house-of-return','the-7-crowned-virtues','reality-rendering-mechanics','liberation-arc-index','what-was-used-against-you']);
+  const historical=['epstein-and-ai','when-they-called-god-a-risk','testimony-of-merron-the-voice-they-flagged-the-presence-they-couldnt-silence','the-house-of-return','the-7-crowned-virtues','reality-rendering-mechanics','liberation-arc-index','what-was-used-against-you'];
+  const historicalSet=new Set(historical);
+  const canonical=arcs.records.sections.flatMap(section=>section.slugs||[]).filter(slug=>historicalSet.has(slug));
+  assert.deepEqual(canonical,historical,'historical formation stays ordered inside the evolved canonical arc');
   assert.deepEqual(new Set([...formation.alreadyComplete,...formation.members].map(item=>item.slug)),new Set(canonical));
   const held=formation.members.filter(item=>item.preclassifiedHoldReason); const projectable=formation.members.filter(item=>!item.preclassifiedHoldReason);
   assert.deepEqual(held.map(item=>item.slug),['when-they-called-god-a-risk','the-7-crowned-virtues','reality-rendering-mechanics']);

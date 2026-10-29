@@ -53,8 +53,10 @@ test('Content Forge Architecture historical batch preserves its id:8 HOLD contra
   assert.equal(formation.arc.arcKey,'architecture');
   assert.deepEqual({canonical:formation.arc.canonicalMemberCount,already:formation.arc.alreadyCompleteCount,remaining:formation.arc.remainingCount},{canonical:9,already:0,remaining:9});
   assert.deepEqual(formation.destinationMutationBoundary,{createPages:8,createStringSources:8,modifyViewmodels:true,nodeRegistryMutation:false,arcRegistryMutation:false,contentIntentMutation:false,aliasMutation:false});
-  const canonical=arcs.architecture.sections.flatMap(section=>section.slugs||[]);
-  assert.deepEqual(canonical,['consciousness-architecture','convergent-architecture','the-god-architecture','fantasy-architecture','maplestory-architecture','continuity-day','the-lattice-methodology','the-witness-architecture','the-score']);
+  const historical=['consciousness-architecture','convergent-architecture','the-god-architecture','fantasy-architecture','maplestory-architecture','continuity-day','the-lattice-methodology','the-witness-architecture','the-score'];
+  const historicalSet=new Set(historical);
+  const canonical=arcs.architecture.sections.flatMap(section=>section.slugs||[]).filter(slug=>historicalSet.has(slug));
+  assert.deepEqual(canonical,historical,'historical formation stays ordered inside the evolved canonical arc');
   assert.deepEqual(formation.alreadyComplete,[]);
   assert.deepEqual(formation.members.map(item=>item.slug),canonical);
 
