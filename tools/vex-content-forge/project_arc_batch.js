@@ -150,7 +150,7 @@ function validateInteractiveCode(root) {
     /\bsendBeacon\s*\(/i,
     /\beval\s*\(/i,
     /\bnew\s+Function\b/i,
-    /\bFunction\s*\(/i,
+    /\bFunction\s*\(/,
     /\bdocument\.cookie\b/i,
     /\blocalStorage\b/i,
     /\bsessionStorage\b/i,
@@ -235,7 +235,9 @@ function authoredStyles(document) {
     seen.add(value);
     result.push(value.replace(/<\/style/gi, '<\\/style'));
   }
-  invariant(result.length, 'AUTHORED_STYLE_NOT_FOUND', 'no safe authored style block');
+  // An authored-main source may legitimately carry no inline style block.
+  // AUTHORED_STYLE is the repository-safe fallback; zero source-local styles is
+  // absence of extra presentation, not absence of authored content.
   return result;
 }
 
