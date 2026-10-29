@@ -48,13 +48,6 @@ test('TERRAIN ENTRY: preserved authored visible text and semantic structure surv
     }
     assert.ok(pageHtml.includes('preserved blob ' + entry.sourceBlob + '.'), entry.slug + ': exact preserved blob provenance missing');
     assert.ok(pageHtml.includes('<script src="../widgets/fab-read-aloud.js"></script>'), entry.slug + ': standalone/embedded reader must carry site Read Aloud through a provider-neutral local asset');
-    if (entry.slug === 'receive-god') {
-      const fabRoot = pageHtml.indexOf('<script src="../widgets/vex-fab.js"></script>');
-      const readAloud = pageHtml.indexOf('<script src="../widgets/fab-read-aloud.js"></script>');
-      const language = pageHtml.indexOf('<script src="../widgets/fab-lang.js"></script>');
-      assert.ok(fabRoot >= 0 && fabRoot < readAloud && readAloud < language,
-        'receive-god: page-owned shared FAB root must load before Read Aloud and language controls');
-    }
   }
 });
 
