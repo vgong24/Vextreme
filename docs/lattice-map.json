@@ -1212,10 +1212,14 @@
       ],
       "loadedBy": [
         "manual run: node lib/apply-content-intents.js",
-        "tests/18-apply-content-intents.test.js"
+        "tests/18-apply-content-intents.test.js",
+        "tests/128-content-forge-vxg-council-declaration-placement.test.js",
+        "tests/131-content-forge-interactive-recovery-placement.test.js"
       ],
       "testedBy": [
-        "tests/18-apply-content-intents.test.js"
+        "tests/18-apply-content-intents.test.js",
+        "tests/128-content-forge-vxg-council-declaration-placement.test.js",
+        "tests/131-content-forge-interactive-recovery-placement.test.js"
       ],
       "changeMap": {
         "content-intents.json schema changed (new field, field renamed)": [

@@ -397,6 +397,28 @@ function usesReadableGeneratedMarkup(page) {
     || /<body\n\s+data-content-forge-generator=/.test(String(page || ''));
 }
 
+function styleVariableDefaultsCss(member, styles) {
+  if (member.styleVariableDefaults === undefined) return '';
+  const defaults = member.styleVariableDefaults;
+  invariant(defaults && typeof defaults === 'object' && !Array.isArray(defaults), 'STYLE_VARIABLE_DEFAULTS_INVALID', member.slug);
+  const entries = Object.entries(defaults);
+  invariant(entries.length > 0, 'STYLE_VARIABLE_DEFAULTS_EMPTY', member.slug);
+  const authoredCss = styles.join('\n');
+  const declarations = [];
+  for (const [name, value] of entries) {
+    invariant(/^[a-z][a-z0-9_-]*$/i.test(name), 'STYLE_VARIABLE_DEFAULT_NAME_INVALID', `${member.slug}:${name}`);
+    invariant(typeof value === 'string' && /^#[0-9a-f]{6}$/i.test(value), 'STYLE_VARIABLE_DEFAULT_VALUE_INVALID', `${member.slug}:${name}`);
+    invariant(
+      authoredCss.includes(`var(--${name})`) || authoredCss.includes(`var(--${name},`),
+      'STYLE_VARIABLE_DEFAULT_UNUSED',
+      `${member.slug}:${name}`
+    );
+    invariant(!new RegExp(`--${name}\\s*:`).test(authoredCss), 'STYLE_VARIABLE_DEFAULT_ALREADY_DECLARED', `${member.slug}:${name}`);
+    declarations.push(`--${name}:${value};`);
+  }
+  return `:root{${declarations.join('')}}`;
+}
+
 function validatePage(page, strings, member) {
   for (const marker of ['window.__RESCUE_SOURCE','/__rescue/','data-sqsp-','data-vex-id=','vex-generated:','vexsite-provider-shell','common.nav.']) {
     invariant(!page.includes(marker), 'FORBIDDEN_SOURCE_IDENTITY', `${member.slug}: ${marker}`);
@@ -477,7 +499,10 @@ function projectMember(root, member, nodesBySlug, assetCatalog) {
   const strings = fs.existsSync(stringsPath)
     ? preserveLocalizationOverlays(projectedStrings, readJson(stringsPath))
     : projectedStrings;
-  const baseStyle = sqsBodyAdapter ? GENERIC_STYLE : `${AUTHORED_STYLE}\n${styles.join('\n')}`;
+  const styleDefaults = styleVariableDefaultsCss(member, styles);
+  const baseStyle = sqsBodyAdapter
+    ? GENERIC_STYLE
+    : `${AUTHORED_STYLE}\n${styles.join('\n')}${styleDefaults ? `\n${styleDefaults}` : ''}`;
   const style = longPageNav ? `${baseStyle}\n${LONG_PAGE_ESCAPE_STYLE}` : baseStyle;
   const compactPage = `${pageHead(node.title, scope, `${node.title} — repository-native preserved content.`, style)}<body data-content-forge-generator="${GENERATOR_REF}"><!-- Source-managed ${member.adapterClass} projection of ${member.sourcePath}. -->${body}<script src="../dist/vextreme-${member.slug}.js"></script></body></html>`;
   const pagePath = path.join(root, 'pages', `${member.slug}.html`);
@@ -514,6 +539,16 @@ function validateFormation(value) {
   for (const member of value.members) {
     if (member.adapterClass === 'EMBEDDED_CODE_CONTAINER') {
       invariant(typeof member.embeddedRootClass === 'string' && member.embeddedRootClass.length > 0, 'FORMATION_EMBEDDED_ROOT_CLASS', member.slug);
+    }
+    if (member.styleVariableDefaults !== undefined) {
+      invariant(member.adapterClass === 'AUTHORED_INTERACTIVE_MAIN', 'FORMATION_STYLE_VARIABLE_DEFAULTS_ADAPTER', member.slug);
+      invariant(member.styleVariableDefaults && typeof member.styleVariableDefaults === 'object' && !Array.isArray(member.styleVariableDefaults), 'FORMATION_STYLE_VARIABLE_DEFAULTS_OBJECT', member.slug);
+      const defaults = Object.entries(member.styleVariableDefaults);
+      invariant(defaults.length > 0, 'FORMATION_STYLE_VARIABLE_DEFAULTS_EMPTY', member.slug);
+      for (const [name, value] of defaults) {
+        invariant(/^[a-z][a-z0-9_-]*$/i.test(name), 'FORMATION_STYLE_VARIABLE_DEFAULT_NAME', `${member.slug}:${name}`);
+        invariant(typeof value === 'string' && /^#[0-9a-f]{6}$/i.test(value), 'FORMATION_STYLE_VARIABLE_DEFAULT_VALUE', `${member.slug}:${name}`);
+      }
     }
     if (member.longPageNavigation !== undefined) {
       const nav = member.longPageNavigation;
@@ -618,4 +653,4 @@ if (require.main === module) {
   try { process.exitCode = main(cliOptions()).accounting.complete ? 0 : 1; }
   catch (error) { process.stderr.write(`${error.stack || error.message}\n`); process.exitCode = 1; }
 }
-module.exports = { ASSET_CATALOG_REL, ASSET_FILENAME, DEFAULT_ROOT, FORMATION_REL, GENERATOR_REF, ROOT_RELATIVE_ASSET_REF, ProjectionInvariantError, attrs, beautifyHtmlMarkup, cliOptions, externalizeAssetReferences, findAll, findFirst, gitBlobSha, interactiveCodeText, loadAssetCatalog, main, preserveLocalizationOverlays, projectMember, rawText, resolveAssetReference, rewriteAssetText, selectAuthoredMain, selectEmbeddedCodeContainer, selectSqsBody, sha256, textLeaves, usesReadableGeneratedMarkup, validateFormation, validateInteractiveCode };
+module.exports = { ASSET_CATALOG_REL, ASSET_FILENAME, DEFAULT_ROOT, FORMATION_REL, GENERATOR_REF, ROOT_RELATIVE_ASSET_REF, ProjectionInvariantError, attrs, beautifyHtmlMarkup, cliOptions, externalizeAssetReferences, findAll, findFirst, gitBlobSha, interactiveCodeText, loadAssetCatalog, main, preserveLocalizationOverlays, projectMember, rawText, resolveAssetReference, rewriteAssetText, selectAuthoredMain, selectEmbeddedCodeContainer, selectSqsBody, sha256, styleVariableDefaultsCss, textLeaves, usesReadableGeneratedMarkup, validateFormation, validateInteractiveCode };

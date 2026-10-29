@@ -6,6 +6,7 @@ const path = require('path');
 const fs = require('fs');
 const parse5 = require('parse5');
 const projector = require('../tools/vex-content-forge/project_arc_batch.js');
+const { checkFile, extractRootTokens } = require('../lib/check-design-tokens.js');
 
 const ROOT = path.join(__dirname, '..');
 
@@ -50,6 +51,32 @@ test('projected interactive HTML is reviewable as multiline markup', () => {
 test('Content Forge formatting mode keeps accepted compact pages byte-stable while new/readable pages remain beautified', () => {
   assert.equal(projector.usesReadableGeneratedMarkup('<!DOCTYPE html>\n<html lang="en"><head></head><body data-content-forge-generator="x"></body></html>'), false);
   assert.equal(projector.usesReadableGeneratedMarkup('<!DOCTYPE html>\n<html\n  lang="en"><head></head><body\n  data-content-forge-generator="x"></body></html>'), true);
+});
+
+test('Content Forge current-draft resolves its preserved undefined CSS token through an explicit formation-bound local default', () => {
+  const formation = JSON.parse(fs.readFileSync(
+    path.join(ROOT, 'docs', 'ingestion', 'workmaps', 'content-forge-witness-chatroom-animation-project-formation.json'),
+    'utf8'
+  ));
+  const member = formation.members.find(item => item.slug === 'current-draft');
+  assert.ok(member);
+  assert.deepEqual(member.styleVariableDefaults, { fail: '#9a5a3a' });
+
+  const source = fs.readFileSync(path.join(ROOT, member.sourcePath), 'utf8');
+  assert.match(source, /var\(--fail\)/);
+  assert.doesNotMatch(source, /--fail\s*:/, 'preserved source custody remains unchanged');
+
+  const witness = projector.main({
+    root: ROOT,
+    silent: true,
+    formationRel: 'docs/ingestion/workmaps/content-forge-witness-chatroom-animation-project-formation.json',
+  });
+  assert.deepEqual(witness.changedPaths, [], 'checked-in canonical output matches the source-managed projector');
+
+  const page = fs.readFileSync(path.join(ROOT, 'pages', 'current-draft.html'), 'utf8');
+  assert.match(page, /:root\{--fail:#9a5a3a;\}/);
+  const globalTokens = extractRootTokens(fs.readFileSync(path.join(ROOT, 'styles', 'design-system.css'), 'utf8'));
+  assert.deepEqual(checkFile(page, globalTokens, false).undefined, []);
 });
 
 // [VXG RealForever]
