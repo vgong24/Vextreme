@@ -829,6 +829,7 @@
       "inherits": "live",
       "declaredDeltas": [
         "Content group overview reserves a viewport-owned inspection dock before hover, preserving collection order without changing collection-tile coordinates.",
+        "Content group overview adapts from one through four columns according to available Terrain width; four is a ceiling, not a requirement to shrink cards on narrower viewports.",
         "Content group selection renders immediate membership destinations instead of a large confirmation rectangle.",
         "Selected-group identity becomes compact persistent context with sibling groups in a condensed rail.",
         "Content pages render as preview cards using real screenshot evidence when present and a deliberate fallback cover when absent.",
@@ -2760,6 +2761,14 @@
     group.appendChild(label);
     return layout;
   }
+  function stageOverviewColumnCount(profile) {
+    var overview = profile.overview;
+    var vp = viewportSize();
+    var usableWidth = Math.max(overview.cardWidth, vp.w * profile.fit - overview.boundsPadding * 2);
+    var fittingColumns = Math.max(1, Math.floor((usableWidth + overview.gap) / (overview.cardWidth + overview.gap)));
+    return Math.min(overview.maxColumns, Math.max(1, STAGES.length), fittingColumns);
+  }
+
   function stageCompositionLayout(ctx) {
     var profile = LIVE_VIEW.levels.group;
     var overview = profile.overview;
@@ -2767,7 +2776,7 @@
     var focusedIdx = ctx && typeof ctx.stageIdx === 'number' && STAGES[ctx.stageIdx] ? ctx.stageIdx : -1;
     var items = [];
     if (focusedIdx < 0) {
-      var cols = Math.min(overview.maxColumns, Math.max(1, STAGES.length));
+      var cols = stageOverviewColumnCount(profile);
       STAGES.forEach(function (stage, index) {
         var row = Math.floor(index / cols), col = index % cols;
         items.push({
