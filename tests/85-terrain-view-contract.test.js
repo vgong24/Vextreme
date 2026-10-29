@@ -41,17 +41,15 @@ function canonicalAssortment() {
   return { nodes, arcs, rows };
 }
 
-test('TERRAIN-VIEW: Content collection grid caps expansion at four columns while preserving responsive reflow', () => {
+test('TERRAIN-VIEW: collection overview expands to at most four columns before semantic entry', () => {
   const source = pageSource();
-  assert.ok(
-    source.includes('.evo-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(max(220px,calc((100% - 42px)/4)),1fr)); gap:14px; margin-top:14px; }'),
-    'desktop Content collection grid must encode a hard four-column ceiling while retaining the 220px card floor'
-  );
-  assert.match(
-    source,
-    /@media \(max-width:720px\)\{[\s\S]*?\.evo-grid\{ grid-template-columns:repeat\(auto-fill,minmax\(180px,1fr\)\); gap:10px; \}/,
-    'narrow-screen Content grid must preserve the existing automatic reflow rule'
-  );
+  const value = contract();
+  assert.equal(value.profiles.live.levels.group.overview.maxColumns, 4);
+  assert.match(source, /var cols = Math\.min\(overview\.maxColumns, Math\.max\(1, STAGES\.length\)\)/);
+  assert.match(source, /row = Math\.floor\(index \/ cols\), col = index % cols/);
+  assert.match(source, /width:cols \* overview\.cardWidth \+ \(cols - 1\) \* overview\.gap \+ overview\.boundsPadding \* 2/);
+  assert.match(source, /\.evo-grid\{ display:grid; grid-template-columns:repeat\(auto-fill,minmax\(220px,1fr\)\);/,
+    'the four-column request belongs to the collection overview, not the post-entry page-card grid');
 });
 
 test('TERRAIN-VIEW: semantic entry depth gives users more readable pre-entry zoom and a persistent hover/focus preference', () => {
@@ -122,7 +120,7 @@ test('TERRAIN-VIEW: Content presentation is accepted while the legacy Live geome
 test('TERRAIN-VIEW: Live profile preserves the accepted geometry as named component tokens', () => {
   const live = contract().profiles.live;
   assert.deepEqual(live.levels.group.overview, {
-    maxColumns: 3,
+    maxColumns: 4,
     cardWidth: 240,
     cardHeight: 140,
     gap: 24,
