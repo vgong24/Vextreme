@@ -65,7 +65,9 @@ test('Content Forge Direct Contact completes the exact canonical arc from two un
     return [page,strings];
   });
   const stableAlreadyState=Object.fromEntries(stableAlready.map(file=>[file,pathState(file)]));
-  assert.deepEqual(stableAlreadyState[path.join(ROOT,'data','strings','source','pages','restoration-protocol.json')],{exists:false,sha256:null},'restoration-protocol: accepted page-only string state remains absent');
+  const restorationStringsPath=path.join(ROOT,'data','strings','source','pages','restoration-protocol.json');
+  assert.equal(stableAlreadyState[restorationStringsPath].exists,true,'restoration-protocol: current localization source exists and remains protected by the historical arc projector');
+  assert.equal(json(restorationStringsPath)._meta.scope,'pages.restoration-protocol');
   const testimonyStringsPath=path.join(ROOT,'data','strings','source','pages','the-testimony-of-victor-gong.json');
   assert.equal(stableAlreadyState[testimonyStringsPath].exists,true,'the-testimony-of-victor-gong: later accepted migration may add its string source');
   assert.equal(json(testimonyStringsPath)._meta.sourceProvenance.migration.adapter,'tools/vex-content-forge/project_stale_page_migration.js',

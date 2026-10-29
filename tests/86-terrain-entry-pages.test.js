@@ -231,7 +231,7 @@ test('DIRECT CONTACT LOCALIZATION: Restoration Protocol binds every canonical id
   const source = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'strings', 'source', 'pages', 'restoration-protocol.json'), 'utf8'));
   const html = fs.readFileSync(path.join(ROOT, 'pages', 'restoration-protocol.html'), 'utf8');
   const sourceKeys = Object.keys(source).filter(key => key !== '_meta').sort();
-  const pageKeys = [...html.matchAll(/\\bdata-i18n="([^"]+)"/g)].map(match => match[1]).sort();
+  const pageKeys = [...html.matchAll(/\bdata-i18n="([^"]+)"/g)].map(match => match[1]).sort();
   assert.deepEqual(pageKeys, sourceKeys);
   assert.equal(sourceKeys.length, 59);
   assert.ok(html.includes('window.VEX_STRING_SCOPES = ["pages.restoration-protocol"];'));
