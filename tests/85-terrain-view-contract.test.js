@@ -906,7 +906,8 @@ test('TERRAIN-VIEW: accepted Content curiosity previews support slower autoplay,
   assert.match(source, /if \(!contentTilePeekProfileEnabled\(\) \|\| levelIndex !== 1\) return/);
   assert.match(source, /var curiosityOverview = contentTilePeekProfileEnabled\(\)/);
   assert.match(source, /if \(levelCtx && typeof levelCtx\.stageIdx === 'number'\) return/);
-  assert.match(source, /var representative = stageMembers\(stage\)\.filter\(hasEvolutionPreview\)\[0\] \|\| null/);
+  assert.match(source, /function dailyStagePreviewMembers\(stage, dayIndex\) \{[\s\S]*stageMembers\(stage\)\.filter\(hasEvolutionPreview\)[\s\S]*dailyPreviewSelection\(candidates, stage && stage\.key, dayIndex, 3\)/,
+    'overview curiosity thumbnails must continue sourcing previewable members through the daily-strip owner');
   assert.match(source, /class:'stage-curiosity-thumb'/);
   assert.match(source, /members\.map\(contentTilePeekItemHtml\)\.join\(''\)/);
   assert.match(source, /item\.rect\.y <= activeItem\.rect\.y/);
