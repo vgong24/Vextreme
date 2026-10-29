@@ -1697,6 +1697,8 @@
   function setReaderReturnContext(kind, details) {
     details = details || {};
     var nextKind = kind || activeReaderReturnKind || 'collection';
+    var readerReturnKinds = ['collection', 'curiosity-overview', 'entry', 'group-home', 'reader'];
+    if (readerReturnKinds.indexOf(nextKind) === -1) nextKind = 'collection';
     activeReaderReturnKind = nextKind;
     activeReaderReturnEntrySlug = nextKind === 'entry' && entryDocument(details.entrySlug)
       ? details.entrySlug

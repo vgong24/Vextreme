@@ -693,6 +693,16 @@ test('TERRAIN-JOURNEY: reader return context has one bounded mutation owner', ()
   assert.deepEqual(context.read(), { kind:'reader', entrySlug:null, readerId:null },
     'invalid reader coordinates fail closed without inventing a return target');
 
+  context.set('curiosity-overview');
+  assert.deepEqual(context.read(), { kind:'curiosity-overview', entrySlug:null, readerId:null });
+
+  context.set('group-home');
+  assert.deepEqual(context.read(), { kind:'group-home', entrySlug:null, readerId:null });
+
+  context.set('stale-history-kind', { entrySlug:'receive-god', readerId:'record-a' });
+  assert.deepEqual(context.read(), { kind:'collection', entrySlug:null, readerId:null },
+    'unknown reader return vocabulary fails closed to the neutral collection return');
+
   context.clear();
   assert.deepEqual(context.read(), { kind:'collection', entrySlug:null, readerId:null });
 });
