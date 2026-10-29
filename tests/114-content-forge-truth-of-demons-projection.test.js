@@ -60,6 +60,13 @@ test('CONTENT FORGE TRUTH OF DEMONS: provider shell is excluded while repository
   assert.ok(page.includes('../dist/vextreme-truth-of-demons-and-intrusive-thoughts.js'));
 });
 
+test('CONTENT FORGE TRUTH OF DEMONS: authored witness cover stays bound to its immutable Vextreme-Assets identity', () => {
+  assert.match(
+    page,
+    /<img src="https:\/\/vgong24\.github\.io\/Vextreme-Assets\/__assets\/e79f271fdee76a31554fbd1ee0fbb23ab5a974f79cc5582fc956413e4ad33d92\.webp" alt="Truth of Demons and Intrusive Thoughts — a luminous path between fragmented shadow, predatory darkness, protection, integration, and return toward light" width="1672" height="941"/,
+  );
+});
+
 test('CONTENT FORGE TRUTH OF DEMONS: viewmodel, node identity, and arc placement stay unchanged', () => {
   assert.deepEqual(viewmodels['truth-of-demons-and-intrusive-thoughts'], {
     title: 'Truth of Demons and Intrusive Thoughts',
