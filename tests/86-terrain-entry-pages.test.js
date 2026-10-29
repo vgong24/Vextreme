@@ -71,8 +71,9 @@ test('TERRAIN ENTRY: Receive God owns the ordered continuation, archive handoff,
   assert.match(html, /href="take-a-walk\.html"/);
   assert.match(html, /data-terrain-action="archives"/);
   assert.match(html, /type:'vextreme\.terrain-entry\/v1'/);
-  assert.ok(html.includes('href="terrain-map.html?view=content&amp;profile=evolution-v1&amp;group=direct_contact&amp;page=direct-contact" target="_parent"'));
-  assert.ok(html.includes('href="terrain-map.html?view=content&amp;profile=evolution-v1&amp;group=ai_practitioner_tools&amp;page=ai-practitioner-tools" target="_parent"'));
+  assert.ok(html.includes('href="terrain-map.html?view=content&amp;profile=evolution-v1&amp;group=direct_contact&amp;page=direct-contact" target="_parent" data-terrain-action="group-home" data-terrain-group="direct_contact"'));
+  assert.ok(html.includes('href="terrain-map.html?view=content&amp;profile=evolution-v1&amp;group=ai_practitioner_tools&amp;page=ai-practitioner-tools" target="_parent" data-terrain-action="group-home" data-terrain-group="ai_practitioner_tools"'));
+  assert.ok(html.includes("group:link.getAttribute('data-terrain-group') || null"));
   assert.doesNotMatch(html, /held-not-ported/);
 });
 

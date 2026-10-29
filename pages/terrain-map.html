@@ -1135,6 +1135,7 @@
   var currentProfile = 'evolution-v1';
   var activeReaderId = null, hoveredEvolutionNodeId = null, activeEntrySlug = null, activeGroupHomeKey = null;
   var activeReaderReturnKind = 'collection';
+  var activeReaderReturnEntrySlug = null;
   var boundaryGesture = { key:null, direction:0, lastAt:0 };
   var outwardWheelGesture = { active:false, timer:null };
   var terrainOutwardTransition = { active:false, timer:null };
@@ -1429,6 +1430,14 @@
       return;
     }
 
+    if (kind === 'entry') {
+      var entrySlug = presentation && presentation.entrySlug;
+      if (!entryDocument(entrySlug)) return;
+      if (levelIndex !== 0) enterLevel(0, {});
+      openEntryReader(entrySlug, { writeUrl:false });
+      return;
+    }
+
     if (kind !== 'reader' && kind !== 'group-home') return;
     var route = readInitialRoute();
     if (!route.group || !route.page) return;
@@ -1437,7 +1446,11 @@
     if (!isEvolutionAGroup() || levelCtx.stageIdx !== stageIdx) enterLevel(1, { stageIdx:stageIdx });
     var stage = STAGES[stageIdx];
     if (kind === 'group-home' && stage.parent && stage.parent.live && stage.parent.pageSlug === route.page) {
-      openEvolutionGroupHome(stage, { writeUrl:false });
+      openEvolutionGroupHome(stage, {
+        writeUrl:false,
+        returnKind:presentation && presentation.returnKind ? presentation.returnKind : 'collection',
+        returnEntrySlug:presentation && presentation.returnEntrySlug ? presentation.returnEntrySlug : null
+      });
       return;
     }
     var node = ALL.find(function (candidate) { return candidate.slug === route.page || candidate.id === route.page; });
@@ -1561,12 +1574,15 @@
   }
 
   function updateReaderChrome(node) {
-    document.getElementById('readerBack').textContent = activeReaderReturnKind === 'curiosity-overview' ? '← Overview' : '← Collection';
     document.getElementById('readerPrev').hidden = false;
     document.getElementById('readerNext').hidden = false;
     var members = evolutionReaderMembers();
     var index = members.findIndex(function (candidate) { return candidate.id === node.id; });
     var stage = typeof levelCtx.stageIdx === 'number' ? STAGES[levelCtx.stageIdx] : null;
+    var backLabel = '← Collection';
+    if (activeReaderReturnKind === 'curiosity-overview') backLabel = '← Overview';
+    else if (activeReaderReturnKind === 'group-home' && stage && stage.parent) backLabel = '← ' + (stage.parent.title || stage.name || 'Collection');
+    document.getElementById('readerBack').textContent = backLabel;
     document.getElementById('readerTitle').textContent = node.title || node.slug;
     document.getElementById('readerMeta').textContent =
       (stage ? stage.name + ' · ' : '') + (index >= 0 ? ('page ' + (index + 1) + ' of ' + members.length) : 'page reader');
@@ -1601,14 +1617,15 @@
     evolutionReaderFrame.contentWindow.location.replace(target);
   }
 
-  function openEntryReader(slug) {
+  function openEntryReader(slug, options) {
+    options = options || {};
     var entry = entryDocument(slug);
     if (!entry || currentWorld !== 'content' || currentProfile !== 'evolution-v1' || levelIndex !== 0) return;
     activeReaderId = null;
     activeGroupHomeKey = null;
     activeReaderReturnKind = 'collection';
+    activeReaderReturnEntrySlug = null;
     hoveredEvolutionNodeId = null;
-    activeEntrySlug = null;
     activeEntrySlug = slug;
     resetBoundaryGesture();
     hideGestureHint();
@@ -1624,16 +1641,24 @@
     updateEntryReaderChrome(slug);
     evolutionReaderFrame.title = 'Reading ' + entry.label + ' inside Terrain';
     replaceEvolutionReaderDocument(entry.path);
+    if (options.writeUrl !== false) syncPresentationUrl(options.historyMode || 'push', 'entry', { entrySlug:slug });
   }
 
-  function closeEntryReader() {
+  function closeEntryReader(options) {
+    options = options || {};
+    if (options.history !== false && presentationHistoryKind(history.state) === 'entry') {
+      history.back();
+      return;
+    }
     activeEntrySlug = null;
+    activeReaderReturnEntrySlug = null;
     evolutionReader.hidden = true;
     replaceEvolutionReaderDocument('about:blank');
     mapWrap.classList.remove('evolution-reader-active');
     syncTerrainChrome();
     renderEvolutionAArrival();
     updateReadout();
+    if (options.writeUrl !== false) syncPresentationUrl('replace', null);
   }
 
   function syncEntryReaderFromDocument() {
@@ -1649,6 +1674,8 @@
   function enterArchivesFromArrival() {
     activeEntrySlug = null;
     activeReaderId = null;
+    activeReaderReturnKind = 'collection';
+    activeReaderReturnEntrySlug = null;
     evolutionReader.hidden = true;
     replaceEvolutionReaderDocument('about:blank');
     mapWrap.classList.remove('evolution-reader-active', 'evolution-arrival-active');
@@ -1666,11 +1693,42 @@
     window.location.assign(target.href);
   }
 
+  function openEntryGroupHome(groupKey, entrySlug) {
+    var sourceEntry = entryDocument(entrySlug);
+    if (!sourceEntry || currentWorld !== 'content' || currentProfile !== 'evolution-v1' || levelIndex !== 0) return;
+    var stageIdx = STAGES.findIndex(function (stage) { return String(stage.key) === String(groupKey); });
+    if (stageIdx < 0) return;
+    var stage = STAGES[stageIdx];
+    if (!stage.parent || !stage.parent.live || !stage.parent.url) return;
+
+    enterLevel(1, { stageIdx:stageIdx });
+    openEvolutionGroupHome(stage, {
+      writeUrl:false,
+      returnKind:'entry',
+      returnEntrySlug:entrySlug
+    });
+    commitSemanticState({
+      label:stage.parent.title || stage.name || 'Group home',
+      relationship:'entered from',
+      reason:sourceEntry.label + ' primary path'
+    });
+    syncPresentationUrl('replace', 'group-home', {
+      returnKind:'entry',
+      returnEntrySlug:entrySlug
+    });
+  }
+
   function handleTerrainEntryMessage(event) {
     if (event.origin !== window.location.origin || event.source !== evolutionReaderFrame.contentWindow) return;
     var data = event.data || {};
     if (data.type !== 'vextreme.terrain-entry/v1') return;
-    if (data.action === 'archives') enterArchivesFromArrival();
+    if (data.action === 'archives') {
+      enterArchivesFromArrival();
+      return;
+    }
+    if (data.action === 'group-home' && typeof data.group === 'string') {
+      openEntryGroupHome(data.group, activeEntrySlug);
+    }
   }
 
   function stageIndexForRouteNode(node) {
@@ -1687,10 +1745,15 @@
     if (!node) return false;
     var stageIdx = stageIndexForRouteNode(node);
     if (stageIdx < 0) return false;
+    var fromGroupHome = !!activeGroupHomeKey;
     levelIndex = 1;
     levelCtx = { stageIdx:stageIdx };
-    openEvolutionReader(node.id, { writeUrl:false });
-    syncPresentationUrl('replace', 'reader');
+    if (fromGroupHome) {
+      openEvolutionReader(node.id, { returnKind:'group-home' });
+    } else {
+      openEvolutionReader(node.id, { writeUrl:false });
+      syncPresentationUrl('replace', 'reader', { returnKind:activeReaderReturnKind });
+    }
     commitSemanticState({ label:node.title || node.slug, nodeId:node.id, relationship:'opened from preserved route', reason:'Terrain embedded repository route resolver' });
     return true;
   }
@@ -1733,7 +1796,8 @@
   function updateGroupHomeReaderChrome(stage) {
     var parent = stage && stage.parent;
     if (!parent) return;
-    document.getElementById('readerBack').textContent = '← Collection';
+    var returnEntry = activeReaderReturnKind === 'entry' && entryDocument(activeReaderReturnEntrySlug);
+    document.getElementById('readerBack').textContent = returnEntry ? '← ' + returnEntry.label : '← Collection';
     document.getElementById('readerTitle').textContent = parent.title || stage.name || 'Group home';
     document.getElementById('readerMeta').textContent = stage.name + ' · group home';
     document.getElementById('readerStandalone').href = languageAwareUrl(parent.url, activeLanguage);
@@ -1744,6 +1808,11 @@
   function openEvolutionGroupHome(stage, options) {
     options = options || {};
     if (!stage || !stage.parent || !stage.parent.live || !stage.parent.url || currentWorld !== 'content' || currentProfile !== 'evolution-v1') return;
+    if (options.returnKind) activeReaderReturnKind = options.returnKind;
+    else if (options.historyMode !== 'replace') activeReaderReturnKind = 'collection';
+    activeReaderReturnEntrySlug = activeReaderReturnKind === 'entry' && entryDocument(options.returnEntrySlug)
+      ? options.returnEntrySlug
+      : null;
     activeEntrySlug = null;
     activeReaderId = null;
     activeGroupHomeKey = stage.key;
@@ -1760,7 +1829,10 @@
     updateGroupHomeReaderChrome(stage);
     evolutionReaderFrame.title = 'Reading ' + (stage.parent.title || stage.name) + ' inside Terrain';
     replaceEvolutionReaderDocument(stage.parent.url);
-    if (options.writeUrl !== false) syncPresentationUrl(options.historyMode || 'push', 'group-home');
+    if (options.writeUrl !== false) syncPresentationUrl(options.historyMode || 'push', 'group-home', {
+      returnKind:activeReaderReturnKind,
+      returnEntrySlug:activeReaderReturnEntrySlug
+    });
   }
 
   function openEvolutionReader(nodeId, options) {
@@ -1802,6 +1874,7 @@
     activeReaderId = null;
     activeGroupHomeKey = null;
     activeReaderReturnKind = 'collection';
+    activeReaderReturnEntrySlug = null;
     resetBoundaryGesture();
     hideGestureHint();
     evolutionReader.hidden = true;
@@ -1930,6 +2003,8 @@
     evolutionLayer.innerHTML = '';
     activeReaderId = null;
     activeGroupHomeKey = null;
+    activeReaderReturnKind = 'collection';
+    activeReaderReturnEntrySlug = null;
     hoveredEvolutionNodeId = null;
     evolutionReader.hidden = true;
     replaceEvolutionReaderDocument('about:blank');
@@ -2836,6 +2911,8 @@
     activeReaderId = null;
     activeGroupHomeKey = null;
     activeEntrySlug = null;
+    activeReaderReturnKind = 'collection';
+    activeReaderReturnEntrySlug = null;
     hoveredEvolutionNodeId = null;
     evolutionReader.hidden = true;
     replaceEvolutionReaderDocument('about:blank');
@@ -4015,3 +4092,4 @@ window.VEXTREME_OVERRIDE = {
 <script src="../lib/shell.js?v=e11f8e3d51e4"></script>
 </body>
 </html>
+<!-- [VXG RealForever] -->
