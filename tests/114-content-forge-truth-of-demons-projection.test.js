@@ -13,7 +13,6 @@ const presentation = JSON.parse(read('data/strings/source/lineages/truth-of-demo
 const viewmodels = JSON.parse(read('data/viewmodels.json'));
 const nodes = JSON.parse(read('data/nodes.json'));
 const arcs = JSON.parse(read('data/arcs-v2.json'));
-const { authoredAssetPreviewFromHtml } = require('../lib/build-terrain-map');
 
 function sourceKeys(value) {
   return Object.keys(value).filter((key) => key !== '_meta');
@@ -61,14 +60,10 @@ test('CONTENT FORGE TRUTH OF DEMONS: provider shell is excluded while repository
   assert.ok(page.includes('../dist/vextreme-truth-of-demons-and-intrusive-thoughts.js'));
 });
 
-test('CONTENT FORGE TRUTH OF DEMONS: authored witness cover projects through the Terrain preview contract', () => {
-  assert.deepEqual(
-    authoredAssetPreviewFromHtml(page, 'Truth of Demons and Intrusive Thoughts'),
-    {
-      kind: 'cover',
-      src: 'https://vgong24.github.io/Vextreme-Assets/__assets/e79f271fdee76a31554fbd1ee0fbb23ab5a974f79cc5582fc956413e4ad33d92.webp',
-      alt: 'Truth of Demons and Intrusive Thoughts — a luminous path between fragmented shadow, predatory darkness, protection, integration, and return toward light',
-    },
+test('CONTENT FORGE TRUTH OF DEMONS: authored witness cover stays bound to its immutable Vextreme-Assets identity', () => {
+  assert.match(
+    page,
+    /<img src="https:\/\/vgong24\.github\.io\/Vextreme-Assets\/__assets\/e79f271fdee76a31554fbd1ee0fbb23ab5a974f79cc5582fc956413e4ad33d92\.webp" alt="Truth of Demons and Intrusive Thoughts — a luminous path between fragmented shadow, predatory darkness, protection, integration, and return toward light" width="1672" height="941"/,
   );
 });
 
