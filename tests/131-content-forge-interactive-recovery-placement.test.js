@@ -39,7 +39,11 @@ test('AUTHORED_INTERACTIVE_MAIN rejects external/network/eval/storage code and k
     '<main class="vex-authored-page-frame"><script>localStorage.setItem("x","y")</script></main>',
   ]){
     const doc=parse5.parse(html), main=projector.selectAuthoredMain(doc);
-    assert.throws(()=>projector.validateInteractiveCode(main),/INTERACTIVE_/);
+    assert.throws(
+      ()=>projector.validateInteractiveCode(main),
+      error=>Boolean(error && /^INTERACTIVE_/.test(error.code)),
+      'interactive rejection must carry an INTERACTIVE_* invariant code'
+    );
   }
 });
 
@@ -52,7 +56,13 @@ test('Final recovery placement preserves interactive tools and project semantics
     const intent=intents.intents.find(item=>item.id===placement.intentId);
     assert.ok(intent,member.slug+': intent');
     assert.equal(validateIntent(intent,departments,arcs).valid,true);
-    assert.equal(nodes.some(node=>node.slug===member.slug),false,member.slug+': intent must own later registration');
+    assert.equal(intent.status,'applied',member.slug+': generated-currentness must apply the accepted intent');
+    const registered=nodes.find(node=>node.slug===member.slug);
+    assert.ok(registered,member.slug+': intent-registered canonical node');
+    assert.equal(registered.id,null);
+    assert.deepEqual(registered.arcKeys,[]);
+    assert.equal(registered.department,'rd');
+    assert.equal(registered.workType,'default');
     const source=fs.readFileSync(path.join(ROOT,member.sourcePath));
     assert.equal(source.length,member.repositoryBytes);
     assert.equal(projector.gitBlobSha(source),member.sourceGitBlob);
@@ -63,8 +73,8 @@ test('Final recovery placement preserves interactive tools and project semantics
     const pagePath=path.join(ROOT,'pages',member.slug+'.html');
     const page=fs.readFileSync(pagePath,'utf8');
     assert.ok(inlineScriptCount(page)>=1,member.slug+': inline script preserved');
-    assert.match(page,/name="vex:department" content="rd"/);
-    assert.match(page,/name="vex:workType" content="default"/);
+    assert.match(page,/name="vex:department"\s+content="rd"/);
+    assert.match(page,/name="vex:workType"\s+content="default"/);
     assert.doesNotMatch(page,/\bfetch\s*\(|\bXMLHttpRequest\b|\bWebSocket\b|\beval\s*\(/i);
     const canonical=buildCanonicalNode(intent,page,arcs,departments);
     assert.equal(canonical.id,null);
