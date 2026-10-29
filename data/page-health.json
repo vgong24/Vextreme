@@ -3,14 +3,14 @@
   "summary": {
     "total": 195,
     "healthy": 4,
-    "attention": 183,
-    "critical": 8,
+    "attention": 184,
+    "critical": 7,
     "sorted": 152,
     "withFab": 182,
     "readAloudApplicable": 187,
     "withReadAloud": 187,
     "missingReadAloud": 0,
-    "withIdentity": 159,
+    "withIdentity": 161,
     "withScreenshots": 13,
     "withMetaDescription": 160
   },
@@ -2356,7 +2356,7 @@
       },
       "navigation": {
         "navigable": true,
-        "staticHubLinks": 1,
+        "staticHubLinks": 0,
         "shell": false,
         "fab": true
       },
@@ -2415,7 +2415,7 @@
       },
       "navigation": {
         "navigable": true,
-        "staticHubLinks": 1,
+        "staticHubLinks": 0,
         "shell": false,
         "fab": true
       },
@@ -3519,7 +3519,7 @@
       },
       "navigation": {
         "navigable": true,
-        "staticHubLinks": 1,
+        "staticHubLinks": 0,
         "shell": false,
         "fab": true
       },
@@ -5838,7 +5838,7 @@
       },
       "navigation": {
         "navigable": true,
-        "staticHubLinks": 1,
+        "staticHubLinks": 0,
         "shell": false,
         "fab": true
       },
@@ -6118,7 +6118,7 @@
       },
       "navigation": {
         "navigable": true,
-        "staticHubLinks": 1,
+        "staticHubLinks": 0,
         "shell": false,
         "fab": true
       },
@@ -7017,32 +7017,32 @@
         "arcKeys": []
       },
       "runtime": {
-        "shell": false,
+        "shell": true,
         "godScript": false
       },
       "navigation": {
         "navigable": true,
         "staticHubLinks": 1,
-        "shell": false,
+        "shell": true,
         "fab": false
       },
       "fab": {
-        "delivery": "page-owned"
+        "delivery": "shell"
       },
       "readAloud": {
         "applicable": true,
-        "delivery": "page-owned"
+        "delivery": "shell"
       },
       "theme": {
         "control": "none",
         "visibleStyles": false
       },
       "identity": {
-        "keyCount": 0,
+        "keyCount": 60,
         "languages": {
           "en": {
             "translated": 0,
-            "total": 0,
+            "total": 60,
             "state": "none"
           }
         }
@@ -7062,7 +7062,6 @@
         "blockers": [],
         "gaps": [
           "uncurated",
-          "identity",
           "screenshot"
         ]
       }
@@ -8328,32 +8327,32 @@
         "arcKeys": []
       },
       "runtime": {
-        "shell": false,
+        "shell": true,
         "godScript": false
       },
       "navigation": {
-        "navigable": false,
+        "navigable": true,
         "staticHubLinks": 0,
-        "shell": false,
+        "shell": true,
         "fab": false
       },
       "fab": {
-        "delivery": "page-owned"
+        "delivery": "shell"
       },
       "readAloud": {
         "applicable": true,
-        "delivery": "page-owned"
+        "delivery": "shell"
       },
       "theme": {
         "control": "none",
         "visibleStyles": false
       },
       "identity": {
-        "keyCount": 0,
+        "keyCount": 85,
         "languages": {
           "en": {
             "translated": 0,
-            "total": 0,
+            "total": 85,
             "state": "none"
           }
         }
@@ -8369,13 +8368,10 @@
         "metaDescription": "The preserved Vex Life Take a Walk experience, projected into a repository-hosted page for the ordered Terrain entry flow."
       },
       "health": {
-        "state": "critical",
-        "blockers": [
-          "isolated"
-        ],
+        "state": "attention",
+        "blockers": [],
         "gaps": [
           "uncurated",
-          "identity",
           "screenshot"
         ]
       }
@@ -9317,7 +9313,7 @@
       },
       "navigation": {
         "navigable": true,
-        "staticHubLinks": 1,
+        "staticHubLinks": 0,
         "shell": false,
         "fab": true
       },
@@ -9926,7 +9922,7 @@
       },
       "navigation": {
         "navigable": true,
-        "staticHubLinks": 1,
+        "staticHubLinks": 0,
         "shell": false,
         "fab": true
       },
@@ -10710,7 +10706,7 @@
       },
       "navigation": {
         "navigable": true,
-        "staticHubLinks": 1,
+        "staticHubLinks": 0,
         "shell": false,
         "fab": true
       },
@@ -11619,7 +11615,7 @@
       },
       "navigation": {
         "navigable": true,
-        "staticHubLinks": 1,
+        "staticHubLinks": 0,
         "shell": false,
         "fab": true
       },
@@ -11978,7 +11974,7 @@
         "screenshotLanguages": []
       },
       "discovery": {
-        "metaDescription": "Truth of Demons and Intrusive Thoughts — presentation and source transcript preserved as two switchable source lineages in one reading experience."
+        "metaDescription": "What if “demons” are not one thing—and what happens when intrusive thoughts, predation, free will, protection, and the possibility of transformation are held without denying darkness or turning it into a cosmic enemy?"
       },
       "health": {
         "state": "attention",
