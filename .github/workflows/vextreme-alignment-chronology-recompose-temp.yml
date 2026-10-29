@@ -1,0 +1,121 @@
+name: TEMP Vextreme Alignment Chronology Recompose Proof
+
+on:
+  push:
+    branches:
+      - VXG-102926-chatgpt-vextreme-alignment-chronology-a001
+
+permissions:
+  contents: write
+
+jobs:
+  chronology:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact branch head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Generate bounded chronology consequences
+        run: |
+          node lib/build-index.js
+          node lib/build-page-health.js
+          node lib/build-archives.js
+          node lib/build-terrain-map.js
+
+      - name: Chronology + replay compatibility proof
+        run: |
+          node --test --test-concurrency=1 \
+            tests/01-content-pipeline.test.js \
+            tests/04-build-output.test.js \
+            tests/23-check-lattice-edges.test.js \
+            tests/28-build-terrain-map.test.js \
+            tests/69-content-forge-ai-practitioner-tools-arc-batch.test.js \
+            tests/71-content-forge-direct-contact-arc-batch.test.js \
+            tests/85-terrain-view-contract.test.js \
+            tests/124-content-forge-evidential-research-arc-batch.test.js \
+            tests/125-content-forge-father-son-threshold-arc-batch.test.js \
+            tests/132-content-forge-remaining-port-closure.test.js
+
+      - name: Validate exact generated membrane
+        run: |
+          node <<'NODE'
+          const cp = require('child_process');
+          const allowed = new Set([
+            'data/index.json',
+            'data/page-health.json',
+            'data/terrain-map.json',
+            'pages/build-health.html',
+            'pages/archives.html'
+          ]);
+          const changed = cp.execFileSync('git', ['diff', '--name-only'], { encoding:'utf8' })
+            .trim().split('\n').filter(Boolean);
+          const unexpected = changed.filter(file => !allowed.has(file));
+          if (unexpected.length) {
+            console.error('UNEXPECTED_GENERATED_PATHS=' + JSON.stringify(unexpected));
+            process.exit(1);
+          }
+          console.log('GENERATED_PATHS=' + JSON.stringify(changed));
+          NODE
+
+      - name: Stage generated chronology drift
+        run: |
+          git add data/index.json data/page-health.json data/terrain-map.json pages/build-health.html pages/archives.html
+          git diff --cached --stat
+          test -n "$(git diff --cached --name-only)"
+
+      - name: Materialize generated chronology as remote Git commit object
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const cp = require('child_process');
+          const token = process.env.GITHUB_TOKEN;
+          const repo = process.env.GITHUB_REPOSITORY;
+          const api = 'https://api.github.com/repos/' + repo;
+          const parent = cp.execFileSync('git', ['rev-parse', 'HEAD'], { encoding:'utf8' }).trim();
+          const baseTree = cp.execFileSync('git', ['rev-parse', 'HEAD^{tree}'], { encoding:'utf8' }).trim();
+          const raw = cp.execFileSync('git', ['diff', '--cached', '--name-only', '-z']);
+          const files = raw.toString('utf8').split('\0').filter(Boolean);
+          async function request(path, body) {
+            const response = await fetch(api + path, {
+              method:'POST',
+              headers:{
+                'Authorization':'Bearer ' + token,
+                'Accept':'application/vnd.github+json',
+                'X-GitHub-Api-Version':'2022-11-28',
+                'Content-Type':'application/json'
+              },
+              body:JSON.stringify(body)
+            });
+            if (!response.ok) throw new Error(path + ' -> ' + response.status + ' ' + await response.text());
+            return response.json();
+          }
+          (async () => {
+            const treeEntries = [];
+            for (const file of files) {
+              const content = fs.readFileSync(file).toString('base64');
+              const blob = await request('/git/blobs', { content, encoding:'base64' });
+              treeEntries.push({ path:file, mode:'100644', type:'blob', sha:blob.sha });
+            }
+            const tree = await request('/git/trees', { base_tree:baseTree, tree:treeEntries });
+            const commit = await request('/git/commits', {
+              message:'[Vextreme Alignment] Materialize 131-entry chronology on navigation-current main [VXG RealForever]',
+              tree:tree.sha,
+              parents:[parent]
+            });
+            console.log('GENERATED_REMOTE_COMMIT=' + commit.sha);
+            console.log('GENERATED_REMOTE_FILES=' + files.length);
+          })().catch(error => { console.error(error); process.exit(1); });
+          NODE
