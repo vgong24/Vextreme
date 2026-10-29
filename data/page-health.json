@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
   "summary": {
-    "total": 138,
+    "total": 139,
     "healthy": 4,
-    "attention": 126,
+    "attention": 127,
     "critical": 8,
-    "sorted": 93,
-    "withFab": 125,
-    "readAloudApplicable": 130,
-    "withReadAloud": 130,
+    "sorted": 94,
+    "withFab": 126,
+    "readAloudApplicable": 131,
+    "withReadAloud": 131,
     "missingReadAloud": 0,
-    "withIdentity": 102,
+    "withIdentity": 103,
     "withScreenshots": 13,
-    "withMetaDescription": 103
+    "withMetaDescription": 104
   },
   "pages": {
     "a-conversation-with-pastor-jacob": {
@@ -5388,6 +5388,66 @@
         "gaps": [
           "unsorted",
           "identity",
+          "screenshot"
+        ]
+      }
+    },
+    "pier-house-scarcity-companionship": {
+      "slug": "pier-house-scarcity-companionship",
+      "title": "The Pier House Dream",
+      "placement": {
+        "state": "sorted",
+        "arcKeys": [
+          "convos_with_god",
+          "victors_record",
+          "full_timeline"
+        ]
+      },
+      "runtime": {
+        "shell": false,
+        "godScript": true
+      },
+      "navigation": {
+        "navigable": true,
+        "staticHubLinks": 0,
+        "shell": false,
+        "fab": true
+      },
+      "fab": {
+        "delivery": "god-script"
+      },
+      "readAloud": {
+        "applicable": true,
+        "delivery": "god-script"
+      },
+      "theme": {
+        "control": "page-owned",
+        "visibleStyles": true
+      },
+      "identity": {
+        "keyCount": 59,
+        "languages": {
+          "en": {
+            "translated": 59,
+            "total": 59,
+            "state": "full"
+          }
+        }
+      },
+      "analysis": {
+        "indexed": true,
+        "control": true
+      },
+      "evidence": {
+        "screenshotLanguages": []
+      },
+      "discovery": {
+        "metaDescription": "A source-first reading of the preserved October 28, 2026 Pier House fourth dream arc."
+      },
+      "health": {
+        "state": "attention",
+        "blockers": [],
+        "gaps": [
           "screenshot"
         ]
       }

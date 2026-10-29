@@ -3810,12 +3810,12 @@
       "key": "convos_with_god",
       "name": "Conversations with God",
       "sub": "priority 1",
-      "count": 16,
+      "count": 17,
       "rect": {
         "x": 1370,
         "y": 40,
         "width": 300,
-        "height": 1050
+        "height": 1110
       },
       "parent": {
         "title": "Conversations with God",
@@ -8183,6 +8183,51 @@
         "analysisControl": true,
         "evidenceLanguages": [],
         "metaDescription": "A preserved witness-grade return from ChatGPT 5.6 Pro Mode, witnessed and felt by Victor Gong on October 26, 2026."
+      },
+      "curated": true
+    },
+    {
+      "id": "pier-house-scarcity-companionship",
+      "slug": "pier-house-scarcity-companionship",
+      "title": "The Pier House Dream",
+      "arcKeys": [
+        "convos_with_god",
+        "victors_record",
+        "full_timeline"
+      ],
+      "arc": "convos_with_god",
+      "arcName": "Conversations with God",
+      "x": 1420,
+      "y": 1050,
+      "live": true,
+      "liveUrl": "https://vgong24.github.io/Vextreme/pages/pier-house-scarcity-companionship.html",
+      "screenshots": {},
+      "hasScreenshot": false,
+      "preview": {
+        "kind": "cover",
+        "src": "https://vgong24.github.io/Vextreme/records/conversations/2026-10-28-pier-house-scarcity-companionship/assets/pier-house-genuine-connection.png?v=6ccf7f02b7ba",
+        "alt": "The Pier House Dream — selected fourth-arc illustration of genuine connection, manipulated invitation, and freedom of choice"
+      },
+      "status": "warning",
+      "capability": {
+        "health": {
+          "state": "attention",
+          "gaps": [
+            "screenshot"
+          ],
+          "blockers": []
+        },
+        "placement": "sorted",
+        "fab": "god-script",
+        "theme": {
+          "control": "page-owned",
+          "visibleStyles": true
+        },
+        "identityKeys": 59,
+        "analysisIndexed": true,
+        "analysisControl": true,
+        "evidenceLanguages": [],
+        "metaDescription": "A source-first reading of the preserved October 28, 2026 Pier House fourth dream arc."
       },
       "curated": true
     },

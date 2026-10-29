@@ -89,13 +89,22 @@ function mount(config){
   }
   function renderBody(body){
     var lines=body.replace(/^\s+|\s+$/g,'').split(/\r?\n/),turns=[],cur=null,pre=[];
+    function pushTurn(){
+      if(!cur)return;
+      while(cur.lines.length&&!cur.lines[cur.lines.length-1].trim())cur.lines.pop();
+      if(cur.lines.length&&/^---+$/.test(cur.lines[cur.lines.length-1].trim()))cur.lines.pop();
+      turns.push(cur);cur=null;
+    }
     lines.forEach(function(line){
       var speaker=line.match(/^\*\*(Victor|Vex):\*\*\s*$/);
-      if(speaker){if(cur)turns.push(cur);cur={speaker:speaker[1],lines:[]};}
+      var headingSpeaker=line.match(/^#{2,4}\s+(Victor|Vex)\s*$/);
+      var boundarySpeaker=line.match(/^#{2,4}\s+(Archive boundary|Follow-up clarification)\s+[—–-]\s+(Victor|Vex)\s*$/);
+      if(boundarySpeaker){pushTurn();cur={speaker:boundarySpeaker[2],lines:['### '+boundarySpeaker[1]]};}
+      else if(speaker||headingSpeaker){pushTurn();cur={speaker:speaker?speaker[1]:headingSpeaker[1],lines:[]};}
       else if(cur){cur.lines.push(line);}
       else{pre.push(line);}
     });
-    if(cur)turns.push(cur);
+    pushTurn();
     var out=[];
     if(pre.some(function(x){return x.trim();}))out.push(renderBlocks(pre));
     turns.forEach(function(turn){
@@ -111,7 +120,7 @@ function mount(config){
   }
   function renderDocument(raw){return renderBlocks(raw.replace(/^\s+|\s+$/g,'').split(/\r?\n/));}
   function exchanges(raw){
-    var parts=raw.split(/\n## Exchange\s+/),list=[];
+    var parts=raw.split(/(?:^|\n)#{1,2}\s+Exchange\s+/),list=[];
     for(var i=1;i<parts.length;i++){
       var m=parts[i].match(/^(\d+)(?:[ \t]+[—–-][ \t]+[^\n]+)?[ \t]*\n([\s\S]*)$/);
       if(!m)continue;
