@@ -60,13 +60,18 @@ test('CONTENT FORGE TRUTH OF LOVE: provider shell is excluded while repository-n
   assert.ok(page.includes('../dist/vextreme-god-to-speak-of-the-truth-of-love.js'));
 });
 
-test('CONTENT FORGE TRUTH OF LOVE: viewmodel, node identity, and arc placement stay unchanged', () => {
+test('CONTENT FORGE TRUTH OF LOVE: viewmodel preserves production defaults and intentional Terrain cover', () => {
   assert.deepEqual(viewmodels['god-to-speak-of-the-truth-of-love'], {
     title: 'God to speak of the Truth of Love',
     category: 'production',
     template: 'page',
     scopes: ['pages.god-to-speak-of-the-truth-of-love'],
     features: ['lang', 'spiral-fab', 'theme', 'map', 'analysis', 'arc-nav'],
+    preview: {
+      kind: 'cover',
+      src: 'https://vgong24.github.io/Vextreme-Assets/__assets/3394ba90aafc4a89f1d1307c6f9267525d05bf68e757d5fa12e1031acbd147d3.jpg',
+      alt: 'God to speak of the Truth of Love — quiet ground-beneath-fracture cover art',
+    },
   });
   assert.deepEqual(nodes.find((item) => item.slug === 'god-to-speak-of-the-truth-of-love'), {
     id: 6,
