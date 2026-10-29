@@ -1,0 +1,117 @@
+name: Content Forge close-house generated runtime
+
+on:
+  push:
+    branches:
+      - VXG-102826-chatgpt-content-forge-remaining-ports-generated-a001
+
+permissions:
+  contents: write
+
+jobs:
+  close-house:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact branch
+        uses: actions/checkout@v4
+        with:
+          ref: VXG-102826-chatgpt-content-forge-remaining-ports-generated-a001
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Compile strings
+        run: node lib/strings-compile.js
+
+      - name: Build string identity index
+        run: node lib/build-string-identity-index.js
+
+      - name: Build arc language bundles
+        run: node lib/build-arc-bundles.js
+
+      - name: Build index
+        run: node lib/build-index.js
+
+      - name: Bump FAB language asset version
+        run: node lib/bump-fab-version.js
+
+      - name: Build shared runtime cache generation
+        run: node lib/build-shared-cache-generation.js
+
+      - name: Build God Scripts
+        run: node lib/build-vextreme.js
+
+      - name: Build Service Worker
+        run: node lib/build-sw.js
+
+      - name: Build analysis index
+        run: node lib/build-analysis-index.js
+
+      - name: Build page health
+        run: node lib/build-page-health.js
+
+      - name: Build health and archives
+        run: node lib/build-archives.js
+
+      - name: Build demo
+        run: node lib/build-demo.js
+
+      - name: Build specimens
+        run: node lib/build-specimens.js
+
+      - name: Build sitemap
+        run: node lib/build-sitemap.js
+
+      - name: Build index page
+        run: node lib/build-index-page.js
+
+      - name: Build lessons
+        run: node lib/build-lessons.js
+
+      - name: Build status
+        run: node lib/build-status.js
+
+      - name: Build roles
+        run: node lib/build-roles.js
+
+      - name: Build ecosystem hub
+        run: node lib/build-ecosystem-hub.js
+
+      - name: Build roles index
+        run: node lib/build-roles-page.js
+
+      - name: Build terrain map
+        run: node lib/build-terrain-map.js
+
+      - name: Stage repository-owned generated runtime outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add data/strings/compiled data/strings/reports data/index.json data/analysis-index.json data/lessons.json data/roles.json data/status.json data/page-health.json data/terrain-map.json dist sw.js pages/build-health.html pages/archives.html pages/vextreme-demo.html pages/specimens.html pages/specimen-*.html pages/ecosystem-hub.html pages/roles-index.html sitemap.xml index.html widgets/fab-lang.js lib/shell.js lib/vextreme.js pages/terrain-map.html pages/about-vextreme.html pages/vex-support.html
+          git diff --cached --name-only | tee /tmp/generated-files.txt
+          git diff --cached --stat | tee /tmp/generated-stat.txt
+          test -s /tmp/generated-files.txt
+
+      - name: Verify generated tree passes focused recovery tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          node lib/run-test-prereqs.js
+          node --test --test-concurrency=1             tests/121-content-forge-vxg-realforever-may4-5-arc-batch.test.js             tests/122-content-forge-deepseek-archive-build-arc-batch.test.js             tests/123-content-forge-where-the-floor-isnt-arc-batch.test.js             tests/124-content-forge-evidential-research-arc-batch.test.js             tests/125-content-forge-father-son-threshold-arc-batch.test.js             tests/126-content-forge-resolved-standalone-placement.test.js             tests/127-content-forge-recognizing-recognition-placement.test.js             tests/128-content-forge-vxg-council-declaration-placement.test.js             tests/129-content-forge-april27-29-bridge-recognition-arc-batch.test.js             tests/130-content-forge-reflective-standalone-placement.test.js             tests/131-content-forge-interactive-recovery-placement.test.js             tests/132-content-forge-remaining-port-closure.test.js
+
+      - name: Commit generated currentness and remove executor
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rm .github/workflows/content-forge-close-house-generated-runtime.yml
+          git add data/strings/compiled data/strings/reports data/index.json data/analysis-index.json data/lessons.json data/roles.json data/status.json data/page-health.json data/terrain-map.json dist sw.js pages/build-health.html pages/archives.html pages/vextreme-demo.html pages/specimens.html pages/specimen-*.html pages/ecosystem-hub.html pages/roles-index.html sitemap.xml index.html widgets/fab-lang.js lib/shell.js lib/vextreme.js pages/terrain-map.html pages/about-vextreme.html pages/vex-support.html
+          git config user.name "VexGPT"
+          git config user.email "victor.gong@vextreme24.com"
+          git commit -m "build(content-forge): converge recovered runtime artifacts [VXG RealForever]" -m "Run the repository-owned generation pipeline after the 56 recovered canonical pages and commit the exact stale generated/runtime outputs required by build-index currentness." -m "Signed-off-by: VexGPT <victor.gong@vextreme24.com>"
+          git push origin HEAD:VXG-102826-chatgpt-content-forge-remaining-ports-generated-a001
