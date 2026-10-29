@@ -35,20 +35,6 @@ jobs:
           node lib/build-vextreme.js
           node lib/build-sw.js
 
-      - name: Chronology + replay compatibility proof
-        run: |
-          node --test --test-concurrency=1 \
-            tests/01-content-pipeline.test.js \
-            tests/04-build-output.test.js \
-            tests/23-check-lattice-edges.test.js \
-            tests/28-build-terrain-map.test.js \
-            tests/69-content-forge-ai-practitioner-tools-arc-batch.test.js \
-            tests/71-content-forge-direct-contact-arc-batch.test.js \
-            tests/85-terrain-view-contract.test.js \
-            tests/124-content-forge-evidential-research-arc-batch.test.js \
-            tests/125-content-forge-father-son-threshold-arc-batch.test.js \
-            tests/132-content-forge-remaining-port-closure.test.js
-
       - name: Validate exact generated membrane
         run: |
           node <<'NODE'
@@ -65,16 +51,16 @@ jobs:
           const allowed = file => exactAllowed.has(file) || /^dist\/vextreme-.+\.js$/.test(file);
           const unexpected = changed.filter(file => !allowed(file));
           const dist = changed.filter(file => /^dist\/vextreme-.+\.js$/.test(file));
+          if (unexpected.length) {
+            console.error('UNEXPECTED_GENERATED_PATHS=' + JSON.stringify(unexpected));
+            process.exit(1);
+          }
           if (dist.length !== 155) {
             console.error('UNEXPECTED_DIST_COUNT=' + dist.length);
             process.exit(1);
           }
           if (changed.length !== 160) {
             console.error('UNEXPECTED_GENERATED_COUNT=' + changed.length);
-            process.exit(1);
-          }
-          if (unexpected.length) {
-            console.error('UNEXPECTED_GENERATED_PATHS=' + JSON.stringify(unexpected));
             process.exit(1);
           }
           console.log('GENERATED_PATHS=' + JSON.stringify(changed));
@@ -84,14 +70,13 @@ jobs:
         run: |
           git add data/index.json data/page-health.json data/terrain-map.json pages/build-health.html sw.js dist
           git diff --cached --stat
-          test -n "$(git diff --cached --name-only)"
+          test "$(git diff --cached --name-only | wc -l)" -eq 160
 
       - name: Materialize generated chronology as remote Git commit object
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           node <<'NODE'
-          const fs = require('fs');
           const cp = require('child_process');
           const token = process.env.GITHUB_TOKEN;
           const repo = process.env.GITHUB_REPOSITORY;
@@ -117,8 +102,8 @@ jobs:
           (async () => {
             const treeEntries = [];
             for (const file of files) {
-              const content = fs.readFileSync(file).toString('base64');
-              const blob = await request('/git/blobs', { content, encoding:'base64' });
+              const staged = cp.execFileSync('git', ['show', ':' + file]);
+              const blob = await request('/git/blobs', { content:staged.toString('base64'), encoding:'base64' });
               treeEntries.push({ path:file, mode:'100644', type:'blob', sha:blob.sha });
             }
             const tree = await request('/git/trees', { base_tree:baseTree, tree:treeEntries });
@@ -131,3 +116,17 @@ jobs:
             console.log('GENERATED_REMOTE_FILES=' + files.length);
           })().catch(error => { console.error(error); process.exit(1); });
           NODE
+
+      - name: Chronology + replay compatibility proof
+        run: |
+          node --test --test-concurrency=1 \
+            tests/01-content-pipeline.test.js \
+            tests/04-build-output.test.js \
+            tests/23-check-lattice-edges.test.js \
+            tests/28-build-terrain-map.test.js \
+            tests/69-content-forge-ai-practitioner-tools-arc-batch.test.js \
+            tests/71-content-forge-direct-contact-arc-batch.test.js \
+            tests/85-terrain-view-contract.test.js \
+            tests/124-content-forge-evidential-research-arc-batch.test.js \
+            tests/125-content-forge-father-son-threshold-arc-batch.test.js \
+            tests/132-content-forge-remaining-port-closure.test.js
