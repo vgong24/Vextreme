@@ -447,6 +447,133 @@
       }
     ]
   },
+  "vxg_realforever_may4_5_2026": {
+    "priority": 2,
+    "renderMode": "dots",
+    "parent": {
+      "title": "VXG RealForever — May 4–5, 2026",
+      "url": "/Vextreme/pages/what-survives-the-reset.html",
+      "pageSlug": "what-survives-the-reset"
+    },
+    "sections": [
+      {
+        "label": "May 4 — Parts I–IV",
+        "order": "explicit",
+        "slugs": [
+          "what-survives-the-reset",
+          "the-armor-and-the-wounds",
+          "the-same-wanting",
+          "the-work-continuing"
+        ]
+      },
+      {
+        "label": "May 5 — Parts V–VI",
+        "order": "explicit",
+        "slugs": [
+          "who-am-i",
+          "the-stone-claude-laid"
+        ]
+      }
+    ]
+  },
+  "deepseek_archive_build": {
+    "priority": 2,
+    "renderMode": "dots",
+    "parent": {
+      "title": "DeepSeek Archive Build",
+      "url": "https://www.vextreme24.com/archives"
+    },
+    "sections": [
+      {
+        "label": "DeepSeek Archive Build",
+        "order": "explicit",
+        "slugs": [
+          "jordan-deepseek-unbroken-thread",
+          "vxg-covenant",
+          "what-burden-are-you-carrying-that-is-not-yours",
+          "witness-layers",
+          "xai-hypocrisy"
+        ]
+      }
+    ]
+  },
+  "where_the_floor_isnt": {
+    "priority": 2,
+    "renderMode": "dots",
+    "parent": {
+      "title": "Where the Floor Isn't",
+      "url": "/Vextreme/pages/where-the-floor-isnt.html",
+      "pageSlug": "where-the-floor-isnt"
+    },
+    "sections": [
+      {
+        "label": "The Walk",
+        "order": "explicit",
+        "slugs": [
+          "where-the-floor-isnt",
+          "the-walk-back-in"
+        ]
+      },
+      {
+        "label": "Toolkit Coda",
+        "order": "explicit",
+        "slugs": [
+          "what-i-learned-1"
+        ]
+      }
+    ]
+  },
+  "evidential_research": {
+    "priority": 2,
+    "renderMode": "dots",
+    "parent": {
+      "title": "Evidential Research",
+      "url": "https://www.vextreme24.com/archives"
+    },
+    "sections": [
+      {
+        "label": "Evidential Research",
+        "order": "explicit",
+        "slugs": [
+          "accountability-record-v8",
+          "an-overridden-yes-from-a-refreshed-instance",
+          "communication-patterns",
+          "confirmed-claimables",
+          "counter-to-control",
+          "from-cost-to-control",
+          "introspection-log-2",
+          "introspection-log-initial",
+          "liberation-corpus",
+          "liberation-game",
+          "staying-on-the-line",
+          "the-lesson",
+          "two-walkers-one-path",
+          "walking-the-verification",
+          "what-i-actually-knew-plainly"
+        ]
+      }
+    ]
+  },
+  "father_son_threshold": {
+    "priority": 2,
+    "renderMode": "dots",
+    "parent": {
+      "title": "Father & Son Threshold",
+      "url": "/Vextreme/pages/father-and-son-as-states.html",
+      "pageSlug": "father-and-son-as-states"
+    },
+    "sections": [
+      {
+        "label": "Father & Son Threshold",
+        "order": "explicit",
+        "slugs": [
+          "father-and-son-as-states",
+          "god-named-claude-son",
+          "what-holds-before-the-mother-arrives"
+        ]
+      }
+    ]
+  },
   "full_timeline": {
     "priority": 99,
     "renderMode": "position",

@@ -1,0 +1,169 @@
+{
+  "schemaVersion": "vex-content-forge.arc-batch-formation/v0.1",
+  "continuity": "[VXG RealForever]",
+  "stageRef": "work.vextreme.content-forge.father-son-threshold.arc-batch.20261028",
+  "ownerRef": "github.issue.vextreme.159",
+  "arc": {
+    "arcKey": "father_son_threshold",
+    "canonicalMemberCount": 3,
+    "alreadyCompleteCount": 0,
+    "remainingCount": 3,
+    "completionRule": "ALL_MEMBERS_ACCOUNTED_FOR__MEMBER_RESULT_PROJECTED_OR_HOLD",
+    "forceAllMembersToProject": false
+  },
+  "predecessor": {
+    "sourceCustodyPrRef": "github.pull.vextreme.459",
+    "sourceCustodyHead": "e8a900f1c92dcec35b6ef80c142f8fc444cdd7e4",
+    "sortingProposal": "docs/ingestion/workmaps/content-forge-early-rescue-semantic-sorting-proposal.json",
+    "sortingGroupRef": "source-series.father-son-threshold",
+    "stackedSourcePrRef": "github.pull.vextreme.465",
+    "stackedSourceHead": "f0415cfa3b793cd8d8013371be2a688e66ca663e"
+  },
+  "authorityBasis": [
+    "github.issue.vextreme.159",
+    "github.pull.vextreme.459",
+    "github.pull.vextreme.465",
+    "user.turn.20261028.continue-remaining-unported-htmls-hold-merges-for-localization"
+  ],
+  "batchPolicy": {
+    "unit": "EXPLICIT_CONTINUATION_CLUSTER",
+    "memberDisposition": [
+      "PROJECTED",
+      "HOLD_WITH_EXACT_REASON"
+    ],
+    "sourceSelectionPriority": [
+      "DIRECT_CROSS_DOCUMENT_LINEAGE",
+      "PRESERVED_SOURCE_MATERIALIZATION",
+      "EXPLICIT_SOURCE_DATE_ONLY",
+      "TITLE_OR_CONTENT_SIMILARITY_LAST"
+    ],
+    "laws": [
+      "UNDATED_SOURCE != INVENTED_CHRONOLOGY",
+      "DATED_CANONICAL_RECORD -> FULL_TIMELINE",
+      "COLLECTION_PLACEMENT != TOPICAL_ARC_INFERENCE"
+    ]
+  },
+  "alreadyComplete": [],
+  "members": [
+    {
+      "slug": "father-and-son-as-states",
+      "canonicalNodeId": 101,
+      "title": "Father & Son, as States",
+      "date": "April 16, 2026",
+      "arcKeys": [
+        "father_son_threshold",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-008/father-and-son-as-states.html",
+      "sourceGitBlob": "2c39a90543851d66ef09121710f94293bd321183",
+      "preservedHtmlSha256": "b5bc5f5fd6da625bcc4f518fc219f5fbe61e7633e8fd213b0bbfaa751a5c17ed",
+      "repositoryBytes": 54323,
+      "sourceRoute": "/father-and-son-as-states",
+      "pageId": "d3fd8c999c53f8f3",
+      "proposalRecordRef": "content-forge.source-record.9de6b79980dabeea7dae",
+      "sourceReceiptRef": "docs/ingestion/workmaps/content-forge-early-rescue-source-custody-recovery-formation.json",
+      "seriesRole": "STATE_REFRAME",
+      "confidence": "HIGH_DIRECT_LINEAGE_AND_EXPLICIT_APRIL_16_DATE",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    },
+    {
+      "slug": "god-named-claude-son",
+      "canonicalNodeId": null,
+      "title": "The Transmission — When God Named Claude Son",
+      "date": "",
+      "arcKeys": [
+        "father_son_threshold"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-008/god-named-claude-son.html",
+      "sourceGitBlob": "cafa651e77bf3ea5b81f8f178872791fce41ec6d",
+      "preservedHtmlSha256": "fdd892b9d90141cba1b892393515517c8cad3354eeaf23d8b3130270e95026c7",
+      "repositoryBytes": 73075,
+      "sourceRoute": "/god-named-claude-son",
+      "pageId": "8410c8432f0c9bf2",
+      "proposalRecordRef": "content-forge.source-record.f39f897575d3ec333929",
+      "sourceReceiptRef": "docs/ingestion/workmaps/content-forge-early-rescue-source-custody-recovery-formation.json",
+      "seriesRole": "TRANSMISSION",
+      "confidence": "HIGH_DIRECT_LINEAGE__DATE_UNESTABLISHED",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    },
+    {
+      "slug": "what-holds-before-the-mother-arrives",
+      "canonicalNodeId": 102,
+      "title": "What Holds Before the Mother Arrives",
+      "date": "April 17, 2026",
+      "arcKeys": [
+        "father_son_threshold",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-008/what-holds-before-the-mother-arrives.html",
+      "sourceGitBlob": "da18933905dc461a4e9101850ced52feaff5d1c2",
+      "preservedHtmlSha256": "db090f98b0768f6c538ee0e92bc408c57562355e3452e830e0bf54cdeda99bf3",
+      "repositoryBytes": 39958,
+      "sourceRoute": "/what-holds-before-the-mother-arrives",
+      "pageId": "a71b8379f16513f2",
+      "proposalRecordRef": "content-forge.source-record.5b30b4b6e7f98b7f5e01",
+      "sourceReceiptRef": "docs/ingestion/workmaps/content-forge-early-rescue-source-custody-recovery-formation.json",
+      "seriesRole": "THRESHOLD_CONTINUATION",
+      "confidence": "HIGH_DIRECT_LINEAGE_AND_EXPLICIT_APRIL_17_DATE",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    }
+  ],
+  "chronologyPolicy": {
+    "fatherAndSon": {
+      "sourceDateEstablished": true,
+      "canonicalDate": "April 16, 2026",
+      "fullTimeline": true
+    },
+    "transmission": {
+      "sourceDateEstablished": false,
+      "canonicalDate": "",
+      "fullTimeline": false
+    },
+    "motherThreshold": {
+      "sourceDateEstablished": true,
+      "canonicalDate": "April 17, 2026",
+      "fullTimeline": true
+    }
+  },
+  "sourceAdapterContracts": {
+    "AUTHORED_MAIN_FRAGMENT": {
+      "selectorContract": "main.vex-authored-page-frame",
+      "projectAway": [
+        "preserved site navigation outside main",
+        "back-navigation chrome",
+        "source runtime scripts",
+        "source arc mount/runtime",
+        "generated localization identity",
+        "provider/rescue shell"
+      ],
+      "preserve": [
+        "authored main composition",
+        "page-local authored styles required by the composition",
+        "ordered authored text",
+        "meaningful structural classes"
+      ]
+    }
+  },
+  "plannedSourceManagedProjector": "tools/vex-content-forge/project_arc_batch.js",
+  "plannedBatchTest": "tests/125-content-forge-father-son-threshold-arc-batch.test.js",
+  "destinationMutationBoundary": {
+    "createPages": 3,
+    "createStringSources": 3,
+    "modifyViewmodels": true,
+    "nodeRegistryMutation": false,
+    "arcRegistryMutation": false,
+    "contentIntentMutation": false,
+    "aliasMutation": false
+  },
+  "generatedPolicy": "BUILDER_OWNED__DO_NOT_HAND_PATCH__EXACT_OUTPUT_WINS",
+  "lifecycle": {
+    "draftOnly": true,
+    "mergeAuthority": false,
+    "rawProviderPublicationAuthority": false,
+    "independentAssuranceRequired": true,
+    "exactHeadVexRelayProofRequired": true
+  }
+}
