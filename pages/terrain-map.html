@@ -1738,6 +1738,8 @@
     }
   }
 
+  // A lived group-home origin outranks primary Arc placement for a shared record.
+  // Arc membership stays topology truth; this preference preserves only the visitor's Journey context.
   function stageIndexForRouteNode(node, preferredStageKey) {
     if (!node || !Array.isArray(node.arcKeys)) return -1;
     if (preferredStageKey) {
