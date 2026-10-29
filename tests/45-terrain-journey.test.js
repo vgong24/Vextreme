@@ -108,7 +108,7 @@ test('TERRAIN-JOURNEY: automatic-entry preference stays presentation-local and o
     'preference must not be serialized as navigation identity');
 });
 
-test('TERRAIN-JOURNEY: Content owns responsive max-four overview and readable collection-entry preference without changing Live/Code geometry', () => {
+test('TERRAIN-JOURNEY: Content owns max-four overview and readable collection-entry preference without changing Live/Code geometry', () => {
   const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
   const match = source.match(/<script type="application\/json" id="terrain-view-contract">\s*([\s\S]*?)\s*<\/script>/);
   assert.ok(match, 'Terrain view contract must remain embedded in the page');
@@ -118,14 +118,15 @@ test('TERRAIN-JOURNEY: Content owns responsive max-four overview and readable co
     'Live/Code keeps its accepted three-column overview geometry');
   assert.equal(view.profiles['evolution-v1'].levels.group.overview.maxColumns, 4,
     'accepted Content may expand only its own collection overview to four columns');
-  assert.ok(view.profiles['evolution-v1'].declaredDeltas.some((delta) => /one through four columns/.test(delta)));
+  assert.ok(view.profiles['evolution-v1'].declaredDeltas.some((delta) => /up to four columns/.test(delta)));
   assert.ok(view.profiles['evolution-v1'].declaredDeltas.some((delta) => /local automatic-entry zoom preference/.test(delta)));
 
   assert.match(source, /function stageOverviewMaxColumns\(profile\)[\s\S]*currentWorld === 'content'[\s\S]*currentProfile === 'evolution-v1'/);
   assert.match(source, /return profile\.overview\.maxColumns/);
   assert.match(source, /function stageOverviewColumnCount\(profile\)/);
-  assert.match(source, /fittingColumns = Math\.max\(1, Math\.floor\(\(usableWidth \+ overview\.gap\) \/ \(overview\.cardWidth \+ overview\.gap\)\)\)/);
-  assert.match(source, /return Math\.min\(stageOverviewMaxColumns\(profile\), Math\.max\(1, STAGES\.length\), fittingColumns\)/);
+  assert.match(source, /return Math\.min\(stageOverviewMaxColumns\(profile\), Math\.max\(1, STAGES\.length\)\)/);
+  assert.match(source, /function fitRectToView\(rect, fillFactor\)[\s\S]*Math\.min\(vp\.w \* fillFactor \/ rect\.width, vp\.h \* fillFactor \/ rect\.height\)/,
+    'existing Terrain fit/framing remains the viewport-scale owner');
   assert.match(source, /var cols = stageOverviewColumnCount\(profile\)/);
   assert.match(source, /\.evo-grid\{ display:grid; grid-template-columns:repeat\(auto-fill,minmax\(220px,1fr\)\);/,
     'post-entry member-card grid stays outside this overview refinement');
