@@ -346,6 +346,10 @@ test('TERRAIN-VIEW: ordered entry same-origin page links are either entry-owned 
   const value = entryContract();
   const terrain = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'terrain-map.json'), 'utf8'));
   const liveTerrainSlugs = new Set((terrain.pages || []).filter(page => page && page.live).map(page => page.slug));
+  const liveGroupHomeSlugs = new Set((terrain.arcs || [])
+    .map(arc => arc && arc.parent && arc.parent.live ? arc.parent.pageSlug : null)
+    .filter(Boolean));
+  const entryGroupHomeRoutes = [];
 
   Object.entries(value.documents).forEach(([entrySlug, document]) => {
     const documentPath = path.join(ROOT, 'pages', document.path);
@@ -370,14 +374,22 @@ test('TERRAIN-VIEW: ordered entry same-origin page links are either entry-owned 
         liveTerrainSlugs.has(slug),
         entrySlug + ' -> ' + slug + ' must be Terrain-addressable before native iframe navigation is displaced'
       );
+      if (liveGroupHomeSlugs.has(slug)) entryGroupHomeRoutes.push(entrySlug + ' -> ' + slug);
     });
   });
+
+  assert.ok(entryGroupHomeRoutes.includes('take-a-walk -> the-living-blueprint'),
+    'Take a Walk has a real ordered-entry -> group-home route that must preserve entry return identity');
+  assert.ok(entryGroupHomeRoutes.includes('take-a-walk -> how-to-prep-ai-for-god'),
+    'AI Orientation is a second real ordered-entry -> group-home route covered by the same return contract');
 
   const source = pageSource();
   assert.match(source, /function handleEntryReaderRouteClick\(event\)/);
   assert.match(source, /if \(!anchor \|\| anchor\.hasAttribute\('data-terrain-action'\)\) return;/);
   assert.match(source, /if \(!slug \|\| entryDocument\(slug\)\) return;/);
   assert.match(source, /openRepositoryRouteInTerrain\(slug, \{[\s\S]*returnKind:'entry',[\s\S]*returnEntrySlug:originEntrySlug,[\s\S]*historyMode:'push'/);
+  assert.match(source, /function openGroupHomeRouteInTerrain\(slug, options\)[\s\S]*returnKind:options\.returnKind \|\| \(originReaderId \? 'reader' : 'collection'\)[\s\S]*returnEntrySlug:options\.returnEntrySlug/);
+  assert.match(source, /entryReturnPush = activeReaderReturnKind === 'entry' && options\.historyMode === 'push'[\s\S]*commitSemanticState\([\s\S]*syncPresentationUrl\('replace', 'reader'/);
 });
 
 

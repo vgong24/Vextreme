@@ -805,6 +805,21 @@ test('TERRAIN-JOURNEY: ordered entry repository routes preserve current entry id
     /var returnsToPage = activeReaderReturnKind === 'reader' \|\| activeReaderReturnKind === 'entry';[\s\S]*Page reached · returned to where you entered[\s\S]*activeReaderReturnKind === 'reader' \|\| activeReaderReturnKind === 'entry'[\s\S]*return to the page/,
     'reader outward messaging must follow the same entry-aware return relationship as Back'
   );
+  assert.match(
+    source,
+    /function openGroupHomeRouteInTerrain\(slug, options\) \{[\s\S]*options = options \|\| \{\};[\s\S]*returnKind:options\.returnKind \|\| \(originReaderId \? 'reader' : 'collection'\),[\s\S]*returnEntrySlug:options\.returnEntrySlug/,
+    'entry-origin group-home routes must preserve the exact ordered-entry return owner'
+  );
+  assert.match(
+    source,
+    /if \(openGroupHomeRouteInTerrain\(slug, options\)\) return true;/,
+    'repository route dispatch must carry the entry return relationship through the group-home owner'
+  );
+  assert.match(
+    source,
+    /entryReturnPush = activeReaderReturnKind === 'entry' && options\.historyMode === 'push';[\s\S]*if \(!entryReturnPush\)[\s\S]*commitSemanticState\([\s\S]*if \(entryReturnPush\) \{[\s\S]*syncPresentationUrl\('replace', 'reader'/,
+    'entry-origin ordinary pages must form one semantic history step and replace that new coordinate with the reader presentation'
+  );
 
   const handlerStart = source.indexOf('function handleEntryReaderRouteClick(event)');
   const handlerEnd = source.indexOf('function handleEvolutionReaderRouteClick(event)', handlerStart);
