@@ -81,6 +81,21 @@ h1 {
    Part-022 = canonical standalone presentation lineage.
    Part-028 = nested Conversations-with-God source transcript lineage. */
 main { width: min(920px, calc(100% - 32px)); }
+.record-cover {
+  margin: 0 0 clamp(24px, 4vw, 36px);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #0c0a09;
+  box-shadow: 0 18px 50px rgba(28, 25, 23, 0.10);
+}
+.record-cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1672 / 941;
+  object-fit: cover;
+}
 .lineage-experience-head { width: min(760px, 100%); margin: 0 auto 26px; }
 .lineage-experience-kicker { margin: 0 0 10px; color: var(--muted); font: 500 10px/1.4 var(--mono); letter-spacing: .14em; text-transform: uppercase; }
 .lineage-experience-note { margin: 12px 0 0; color: var(--muted); font: 13px/1.65 var(--sans); }
@@ -359,6 +374,9 @@ main { width: min(920px, calc(100% - 32px)); }
 <body>
 <main>
 
+<figure class="record-cover">
+  <img src="https://vgong24.github.io/Vextreme-Assets/__assets/93e8f45a1cf67b8a40a8f09e7143e21956987f9a0e3f14234c048fdc0e162e82.webp" alt="Clarity on Christianity — layered source, interpretation, and recognition cover art" loading="eager" decoding="async"/>
+</figure>
 <section class="lineage-experience-head" aria-label="Clarity source views">
   <p class="lineage-experience-kicker" data-i18n="pages.clarity-on-christianity.lineage.kicker">Two preserved source lineages · one reading experience</p>
   <div class="lineage-switch" role="tablist" aria-label="Choose Clarity view">
