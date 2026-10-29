@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - VXG-102926-chatgpt-institutional-support-global-core-close-house-a001
+  pull_request:
+    branches:
+      - main
 
 permissions:
   contents: read
