@@ -2391,6 +2391,14 @@
     return dailyPreviewSelection(candidates, stage && stage.key, dayIndex, 3);
   }
 
+  function dailyPreviewSlotX(rect, count, index, thumbWidth) {
+    var inset = 14;
+    var left = rect.x + inset;
+    var right = Math.max(left, rect.x + rect.width - inset - thumbWidth);
+    if (count <= 1) return left + (right - left) / 2;
+    return left + (right - left) * (index / (count - 1));
+  }
+
   function refreshLocalizedPreviewImages() {
     document.querySelectorAll('.evo-card[data-node-id]').forEach(function (card) {
       var node = byId[card.getAttribute('data-node-id')];
@@ -3397,15 +3405,16 @@
       if (dailyPreviewMembers.length) {
         var previewThumbWidth = dailyPreviewMembers.length === 1 ? 58 : 48;
         var previewThumbHeight = dailyPreviewMembers.length === 1 ? 34 : 30;
-        var previewThumbGap = 5;
-        var previewStripWidth = dailyPreviewMembers.length * previewThumbWidth
-          + Math.max(0, dailyPreviewMembers.length - 1) * previewThumbGap;
-        var previewStartX = r.x + r.width - 14 - previewStripWidth;
         var previewY = r.y + r.height - (dailyPreviewMembers.length === 1 ? 61 : 57);
         dailyPreviewMembers.forEach(function (member, previewIndex) {
           var visual = evolutionPreviewSource(member);
           if (!visual) return;
-          var previewX = previewStartX + previewIndex * (previewThumbWidth + previewThumbGap);
+          var previewX = dailyPreviewSlotX(
+            r,
+            dailyPreviewMembers.length,
+            previewIndex,
+            previewThumbWidth
+          );
           var thumb = el('image',{
             x:previewX,
             y:previewY,
