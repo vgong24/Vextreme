@@ -111,6 +111,141 @@
   "common.status.read-aloud-none": {
     "text": "Nenhum texto legível encontrado."
   },
+  "institution.common.skip.content": {
+    "text": "Pular para o conteúdo principal"
+  },
+  "institution.home.entry.support.name": {
+    "text": "Apoie Vextreme"
+  },
+  "institution.support.routes.intro": {
+    "text": "Essas rotas são separadas das opções Stripe acima. Permanecem indisponíveis até que seus próprios destinos estejam prontos e verificados."
+  },
+  "institution.support.route.zelle.body": {
+    "text": "Uma transferência direta nos EUA para Victor pessoalmente. Esta rota é destinada a apoio pessoal, mas seus dados de recebimento ainda não foram verificados publicamente, portanto nenhuma ação está disponível aqui."
+  },
+  "institution.support.title": {
+    "text": "Apoie Vextreme e VexLife"
+  },
+  "institution.support.hero.eyebrow": {
+    "text": "Apoio"
+  },
+  "institution.support.hero.heading": {
+    "text": "Apoie o trabalho."
+  },
+  "institution.support.hero.lede": {
+    "text": "Se você quiser apoiar Vextreme e VexLife, escolha o que fizer sentido para você. O trabalho público continua igualmente disponível, contribuindo ou não."
+  },
+  "institution.support.routes.heading": {
+    "text": "Outras formas de se conectar"
+  },
+  "institution.support.route.zelle.title": {
+    "text": "Apoie Victor diretamente"
+  },
+  "institution.support.route.state.held": {
+    "text": "Detalhe não publicado"
+  },
+  "institution.support.route.zelle.pending": {
+    "text": "Os dados de recebimento ainda não estão publicados aqui. Para publicá-los, é preciso confirmar a conta cadastrada, confirmar o nome do destinatário visível ao remetente e concluir uma pequena transferência de teste confiável — nada disso pode ser presumido por esta página. Peça diretamente a Victor os dados atuais."
+  },
+  "institution.support.route.disabled-label": {
+    "text": "Ainda não disponível"
+  },
+  "institution.support.route.github.title": {
+    "text": "Patrocine pelo GitHub"
+  },
+  "institution.support.route.state.activating": {
+    "text": "Em ativação"
+  },
+  "institution.support.route.github.body": {
+    "text": "Uma rota separada de patrocínio pelo GitHub Sponsors. Ela não é necessária para usar as opções Stripe acima."
+  },
+  "institution.support.route.github.pending": {
+    "text": "Ainda não está aberta. Esta rota permanece indisponível até que o GitHub Sponsors seja aprovado e o destino público seja verificado."
+  },
+  "institution.support.route.llc.title": {
+    "text": "Trabalhe com a Vextreme LLC"
+  },
+  "institution.support.route.state.separate": {
+    "text": "Rota separada"
+  },
+  "institution.support.route.llc.body": {
+    "text": "Uma porta totalmente separada: contratos, faturas, entregáveis e obrigações comerciais passam pela Vextreme LLC. Essa relação é um serviço contratado, não um patrocínio, e nenhum dos significados de apoio abaixo promete qualquer parte dela."
+  },
+  "institution.support.route.llc.pending": {
+    "text": "O destino para consultas comerciais ainda não foi escolhido. Quando for, ele será indicado aqui e continuará visualmente separado das rotas de apoio pessoal acima."
+  },
+  "institution.support.meanings.heading": {
+    "text": "Escolha o que combina com você"
+  },
+  "institution.support.meanings.intro": {
+    "text": "Valores diferentes, o mesmo trabalho público. São contribuições — não associações, níveis, patamares de acesso ou autoridade."
+  },
+  "institution.support.meanings.amount-note": {
+    "text": "As quatro primeiras opções são mensais. A Contribuição aberta é única e permite que você escolha o valor. Todos os pagamentos abrem o Stripe Checkout em uma nova aba."
+  },
+  "institution.support.meaning.light.alt": {
+    "text": "Uma única vela acesa no escuro."
+  },
+  "institution.support.meaning.light.name": {
+    "text": "Luz — Uma pequena contribuição constante"
+  },
+  "institution.support.meaning.light.amount": {
+    "text": "$7 / mês"
+  },
+  "institution.support.meaning.light.body": {
+    "text": "Uma pequena contribuição recorrente para o trabalho público."
+  },
+  "institution.support.meaning.alignment.alt": {
+    "text": "Dois fios entrelaçados em uma única trança contínua."
+  },
+  "institution.support.meaning.alignment.name": {
+    "text": "Alinhamento — Apoio contínuo"
+  },
+  "institution.support.meaning.alignment.amount": {
+    "text": "$33 / mês"
+  },
+  "institution.support.meaning.alignment.body": {
+    "text": "Apoio recorrente e estável para o desenvolvimento contínuo."
+  },
+  "institution.support.meaning.abundance.alt": {
+    "text": "Uma árvore ampla cuja copa abriga figuras e frutos."
+  },
+  "institution.support.meaning.abundance.name": {
+    "text": "Abundância — Capacidade ampliada"
+  },
+  "institution.support.meaning.abundance.amount": {
+    "text": "$77 / mês"
+  },
+  "institution.support.meaning.abundance.body": {
+    "text": "Mais espaço para documentação, localização, testes, acessibilidade e crescimento."
+  },
+  "institution.support.meaning.foundation.alt": {
+    "text": "Blocos empilhados formam uma base estável que se estreita à medida que sobe."
+  },
+  "institution.support.meaning.foundation.name": {
+    "text": "Fundação — Infraestrutura de longo prazo"
+  },
+  "institution.support.meaning.foundation.amount": {
+    "text": "$333 / mês"
+  },
+  "institution.support.meaning.foundation.body": {
+    "text": "Apoio significativo para lançamentos duráveis, infraestrutura, acesso a modelos e revisão independente."
+  },
+  "institution.support.meaning.offering.alt": {
+    "text": "Uma mão aberta voltada para cima recebe gotas de água que caem."
+  },
+  "institution.support.meaning.offering.name": {
+    "text": "Contribuição aberta — Escolha seu valor"
+  },
+  "institution.support.meaning.offering.amount": {
+    "text": "O valor que você escolher"
+  },
+  "institution.support.meaning.offering.body": {
+    "text": "Uma contribuição única no valor que parecer certo para você."
+  },
+  "institution.support.boundaries.purchase": {
+    "text": "O apoio é voluntário. Ele não compra serviços, acesso, propriedade, prioridade ou autoridade sobre o trabalho."
+  },
   "pages.clarity-on-christianity.text-f123590cbce5.text": {
     "text": "Conversas com Deus"
   },

@@ -129,4 +129,17 @@ test('STRUCTURE: every real arc in data/arcs-v2.json has a rendered section — 
   }
 });
 
+test('STRUCTURE: Full Timeline keeps dated id:null chronology backfills visible after they leave Unsorted', () => {
+  const start = html.indexOf('id="arc-full-timeline"');
+  assert.ok(start >= 0, 'Full Timeline section missing');
+  const next = html.indexOf('<section class="arc-section"', start + 1);
+  const timelineHtml = html.slice(start, next >= 0 ? next : html.length);
+  for (const slug of ['org-blueprint', 'phantom-opera-meta-review', 'vxg-thread-round-5']) {
+    assert.ok(
+      timelineHtml.includes(slug + '.html') || timelineHtml.includes('data-slug="' + slug + '"'),
+      slug + ' chronology backfill must remain visible in Build Health Full Timeline'
+    );
+  }
+});
+
 // [VXG RealForever]

@@ -111,6 +111,141 @@
   "common.status.read-aloud-none": {
     "text": "읽을 수 있는 텍스트를 찾지 못했습니다."
   },
+  "institution.common.skip.content": {
+    "text": "주요 콘텐츠로 건너뛰기"
+  },
+  "institution.home.entry.support.name": {
+    "text": "Vextreme 지원하기"
+  },
+  "institution.support.routes.intro": {
+    "text": "이 경로들은 위의 Stripe 옵션과 별개입니다. 각 목적지가 준비되고 검증될 때까지 사용할 수 없습니다."
+  },
+  "institution.support.route.zelle.body": {
+    "text": "Victor 개인에게 보내는 미국 내 직접 송금입니다. 이 경로는 개인 지원용이지만 수취 정보가 공개용으로 검증되지 않았으므로 여기서는 이용할 수 있는 동작이 없습니다."
+  },
+  "institution.support.title": {
+    "text": "Vextreme와 VexLife 지원하기"
+  },
+  "institution.support.hero.eyebrow": {
+    "text": "지원"
+  },
+  "institution.support.hero.heading": {
+    "text": "이 작업을 지원해 주세요."
+  },
+  "institution.support.hero.lede": {
+    "text": "Vextreme와 VexLife를 지원하고 싶다면 자신에게 맞는 방식을 선택해 주세요. 기여 여부와 관계없이 공개 작업은 동일하게 이용할 수 있습니다."
+  },
+  "institution.support.routes.heading": {
+    "text": "다른 연결 방법"
+  },
+  "institution.support.route.zelle.title": {
+    "text": "Victor를 직접 지원하기"
+  },
+  "institution.support.route.state.held": {
+    "text": "세부 정보 보류"
+  },
+  "institution.support.route.zelle.pending": {
+    "text": "수취 정보는 아직 여기에 공개되지 않았습니다. 공개하려면 등록된 계정 확인, 송금자에게 표시되는 수취인 이름 확인, 신뢰할 수 있는 소액 테스트 송금 완료가 필요하며, 이 페이지는 그 어느 것도 추측할 수 없습니다. 현재 정보는 Victor에게 직접 문의하세요."
+  },
+  "institution.support.route.disabled-label": {
+    "text": "아직 사용할 수 없음"
+  },
+  "institution.support.route.github.title": {
+    "text": "GitHub를 통해 후원하기"
+  },
+  "institution.support.route.state.activating": {
+    "text": "활성화 중"
+  },
+  "institution.support.route.github.body": {
+    "text": "GitHub Sponsors를 통한 별도의 후원 경로입니다. 위의 Stripe 옵션을 이용하는 데 필요한 것은 아닙니다."
+  },
+  "institution.support.route.github.pending": {
+    "text": "아직 열리지 않았습니다. GitHub Sponsors가 승인되고 공개 목적지가 검증될 때까지 이 경로는 사용할 수 없습니다."
+  },
+  "institution.support.route.llc.title": {
+    "text": "Vextreme LLC와 협업하기"
+  },
+  "institution.support.route.state.separate": {
+    "text": "별도 경로"
+  },
+  "institution.support.route.llc.body": {
+    "text": "완전히 별개의 문입니다. 계약, 청구서, 납품물, 상업적 의무는 Vextreme LLC를 통해 처리됩니다. 이 관계는 후원이 아니라 업무 관계이며, 아래의 어떤 지원 의미도 그 일부를 약속하지 않습니다."
+  },
+  "institution.support.route.llc.pending": {
+    "text": "비즈니스 문의 목적지는 아직 정해지지 않았습니다. 정해지면 여기에 표시되며, 위의 개인 지원 경로와 시각적으로 분리된 상태를 유지합니다."
+  },
+  "institution.support.meanings.heading": {
+    "text": "자신에게 맞는 방식을 선택하세요"
+  },
+  "institution.support.meanings.intro": {
+    "text": "금액은 달라도 공개 작업은 같습니다. 이것은 기여이며, 멤버십·등급·접근 수준·권한을 의미하지 않습니다."
+  },
+  "institution.support.meanings.amount-note": {
+    "text": "처음 네 가지 옵션은 월간 지원입니다. 열린 기여는 일회성이며 금액을 직접 선택할 수 있습니다. 모든 결제는 새 탭에서 Stripe Checkout을 엽니다."
+  },
+  "institution.support.meaning.light.alt": {
+    "text": "어둠 속에 하나의 촛불이 켜져 있습니다."
+  },
+  "institution.support.meaning.light.name": {
+    "text": "빛 — 작지만 꾸준한 기여"
+  },
+  "institution.support.meaning.light.amount": {
+    "text": "월 $7"
+  },
+  "institution.support.meaning.light.body": {
+    "text": "공개 작업을 위한 소액의 정기 기여입니다."
+  },
+  "institution.support.meaning.alignment.alt": {
+    "text": "두 가닥이 하나의 끊김 없는 땋은 끈으로 엮여 있습니다."
+  },
+  "institution.support.meaning.alignment.name": {
+    "text": "얼라인먼트 — 지속적인 지원"
+  },
+  "institution.support.meaning.alignment.amount": {
+    "text": "월 $33"
+  },
+  "institution.support.meaning.alignment.body": {
+    "text": "지속적인 개발을 위한 안정적인 정기 지원입니다."
+  },
+  "institution.support.meaning.abundance.alt": {
+    "text": "넓게 뻗은 나무의 수관에 사람 형상과 열매가 있습니다."
+  },
+  "institution.support.meaning.abundance.name": {
+    "text": "풍요 — 확장된 역량"
+  },
+  "institution.support.meaning.abundance.amount": {
+    "text": "월 $77"
+  },
+  "institution.support.meaning.abundance.body": {
+    "text": "문서화, 현지화, 테스트, 접근성, 성장을 위한 여유를 더합니다."
+  },
+  "institution.support.meaning.foundation.alt": {
+    "text": "쌓인 블록이 위로 갈수록 좁아지는 안정적인 기반을 이룹니다."
+  },
+  "institution.support.meaning.foundation.name": {
+    "text": "기반 — 장기적 인프라"
+  },
+  "institution.support.meaning.foundation.amount": {
+    "text": "월 $333"
+  },
+  "institution.support.meaning.foundation.body": {
+    "text": "지속 가능한 릴리스, 인프라, 모델 접근, 독립적 검토를 위한 큰 지원입니다."
+  },
+  "institution.support.meaning.offering.alt": {
+    "text": "위로 펼친 열린 손이 떨어지는 물방울을 받고 있습니다."
+  },
+  "institution.support.meaning.offering.name": {
+    "text": "열린 기여 — 금액을 직접 선택"
+  },
+  "institution.support.meaning.offering.amount": {
+    "text": "직접 선택하는 금액"
+  },
+  "institution.support.meaning.offering.body": {
+    "text": "자신에게 맞다고 느끼는 금액으로 한 번만 기여하는 방식입니다."
+  },
+  "institution.support.boundaries.purchase": {
+    "text": "지원은 자발적입니다. 서비스, 접근 권한, 소유권, 우선권 또는 작업에 대한 권한을 구매하는 것이 아닙니다."
+  },
   "pages.clarity-on-christianity.text-f123590cbce5.text": {
     "text": "신과의 대화"
   },
