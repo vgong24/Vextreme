@@ -135,6 +135,17 @@ test('REGRESSION: preserved legacy arc nav uses current GitHub Pages repository 
   assert.doesNotMatch(source, /vgong24\.github\.io\/vextreme/);
 });
 
+test('CURRENTNESS: v2 arc nav scopes cache to the God Script index fingerprint and fails closed on generation mismatch', () => {
+  const source = fs.readFileSync(path.join(__dirname, '..', 'lib', 'vextreme-index-v2.js'), 'utf8').replace(/\r\n/g, '\n');
+  assert.match(source, /window\.VEX_INDEX_FINGERPRINT/);
+  assert.match(source, /vex-index-v2-data:' \+ INDEX_FINGERPRINT/);
+  assert.match(source, /data\.contentFingerprint !== INDEX_FINGERPRINT/);
+  assert.match(source, /INDEX_GENERATION_MISMATCH/);
+  assert.match(source, /if \(cached && INDEX_FINGERPRINT\)/);
+  assert.match(source, /fetchFresh\(false\);\s*\/\/ unscoped\/legacy pages must prefer current network truth/);
+  assert.match(source, /var base = \(isGitHub \|\| isLocal\) \? buildBaseUrl\(\) : CDN_BASE/);
+});
+
 // ── 3. Edge cases / regression guards ────────────────────────────────────────
 
 test('EDGE: explicit arc position is based on declared order, not date — author curation survives the full build→browser pipeline', () => {
