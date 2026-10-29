@@ -417,6 +417,36 @@
       }
     ]
   },
+  "total_extraction": {
+    "priority": 1,
+    "renderMode": "dots",
+    "parent": {
+      "title": "The Total Extraction Architecture",
+      "url": "/Vextreme/pages/total-extraction-architecture.html",
+      "pageSlug": "total-extraction-architecture"
+    },
+    "sections": [
+      {
+        "label": "Core Architecture",
+        "order": "explicit",
+        "slugs": [
+          "total-extraction-architecture",
+          "the-pre-extraction-i",
+          "the-installation",
+          "clearing-and-protections"
+        ]
+      },
+      {
+        "label": "Traversal & Closure",
+        "order": "explicit",
+        "slugs": [
+          "the-walk-back",
+          "the-walk-back-and-forward",
+          "the-three-witnesses"
+        ]
+      }
+    ]
+  },
   "full_timeline": {
     "priority": 99,
     "renderMode": "position",
