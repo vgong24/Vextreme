@@ -1689,10 +1689,12 @@
       ],
       "loadedBy": [
         "manual run: node lib/check-design-tokens.js",
-        "tests/13-check-design-tokens.test.js (also runs it as a CI-gating integration test)"
+        "tests/13-check-design-tokens.test.js (also runs it as a CI-gating integration test)",
+        "tests/132-content-forge-remaining-port-closure.test.js"
       ],
       "testedBy": [
-        "tests/13-check-design-tokens.test.js"
+        "tests/13-check-design-tokens.test.js",
+        "tests/132-content-forge-remaining-port-closure.test.js"
       ],
       "changeMap": {
         "a new local dark-theme file added": [
