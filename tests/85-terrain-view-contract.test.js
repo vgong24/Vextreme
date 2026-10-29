@@ -336,10 +336,50 @@ test('TERRAIN-VIEW: embedded preserved routes resolve root and repository-relati
   assert.match(source, /function openRepositoryRouteInTerrain\(slug\)/);
   assert.match(source, /stageIndexForRouteNode\(node\)/);
   assert.match(source, /doc\.addEventListener\('click', handleEvolutionReaderRouteClick\)/);
-  assert.match(source, /if \(activeEntrySlug\) \{\s*syncEntryReaderFromDocument\(\);\s*return;\s*\}\s*doc\.addEventListener\('click', handleEvolutionReaderRouteClick\);/);
+  assert.match(source, /if \(activeEntrySlug\) \{\s*syncEntryReaderFromDocument\(\);\s*doc\.addEventListener\('click', handleEntryReaderRouteClick\);\s*return;\s*\}/);
   assert.match(source, /relationship:'opened from preserved route'/);
   assert.match(source, /preserved but not live in Vextreme yet/);
 });
+
+
+test('TERRAIN-VIEW: ordered entry same-origin page links are either entry-owned or Terrain-addressable', () => {
+  const value = entryContract();
+  const terrain = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'terrain-map.json'), 'utf8'));
+  const liveTerrainSlugs = new Set((terrain.pages || []).filter(page => page && page.live).map(page => page.slug));
+
+  Object.entries(value.documents).forEach(([entrySlug, document]) => {
+    const documentPath = path.join(ROOT, 'pages', document.path);
+    const html = fs.readFileSync(documentPath, 'utf8');
+    const anchors = [...html.matchAll(/<a\b[^>]*\bhref="([^"]+)"[^>]*>/gi)];
+
+    anchors.forEach((match) => {
+      const tag = match[0];
+      const href = match[1];
+      const target = /^([a-z0-9][a-z0-9-]*)\.html(?:[?#].*)?$/i.exec(href);
+      if (!target) return;
+      const slug = target[1];
+
+      if (value.documents[slug]) return;
+      if (slug === 'terrain-map') {
+        assert.match(tag, /\bdata-terrain-action=/,
+          entrySlug + ' Terrain links must remain owned by the entry postMessage contract');
+        return;
+      }
+
+      assert.ok(
+        liveTerrainSlugs.has(slug),
+        entrySlug + ' -> ' + slug + ' must be Terrain-addressable before native iframe navigation is displaced'
+      );
+    });
+  });
+
+  const source = pageSource();
+  assert.match(source, /function handleEntryReaderRouteClick\(event\)/);
+  assert.match(source, /if \(!anchor \|\| anchor\.hasAttribute\('data-terrain-action'\)\) return;/);
+  assert.match(source, /if \(!slug \|\| entryDocument\(slug\)\) return;/);
+  assert.match(source, /openRepositoryRouteInTerrain\(slug, \{[\s\S]*returnKind:'entry',[\s\S]*returnEntrySlug:originEntrySlug,[\s\S]*historyMode:'push'/);
+});
+
 
 test('TERRAIN-VIEW: ordered entry reader hidden side controls stay visually absent', () => {
   const source = pageSource();

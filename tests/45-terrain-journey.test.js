@@ -777,4 +777,94 @@ test('TERRAIN-JOURNEY: active embedded surface has one mutually-exclusive mutati
 });
 
 
+test('TERRAIN-JOURNEY: ordered entry repository routes preserve current entry identity as the return relationship', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
+
+  assert.match(
+    source,
+    /function syncEntryReaderFromDocument\(\)[\s\S]*var priorEntrySlug = activeEntrySlug;[\s\S]*setActiveEmbeddedSurface\('entry', slug\);[\s\S]*presentationHistoryKind\(history\.state\) === 'entry'[\s\S]*syncPresentationUrl\('replace', 'entry', \{ entrySlug:slug \}\)/,
+    'entry-to-entry iframe navigation must currentize the parent presentation-history coordinate'
+  );
+  assert.match(
+    source,
+    /syncPresentationUrl\(options\.historyMode === 'push' \? 'push' : 'replace', 'reader', \{[\s\S]*returnKind:activeReaderReturnKind,[\s\S]*returnEntrySlug:activeReaderReturnEntrySlug,[\s\S]*returnReaderId:activeReaderReturnReaderId/,
+    'repository-route reader history must serialize the whole already-formed return relationship'
+  );
+  assert.match(
+    source,
+    /syncPresentationUrl\(options\.historyMode \|\| 'push', 'reader', \{[\s\S]*returnKind:activeReaderReturnKind,[\s\S]*returnEntrySlug:activeReaderReturnEntrySlug,[\s\S]*returnReaderId:activeReaderReturnReaderId/,
+    'reader Previous\/Next replacement must not drop a coordinate-bearing return relationship'
+  );
+  assert.match(
+    source,
+    /var returnEntry = activeReaderReturnKind === 'entry' && entryDocument\(activeReaderReturnEntrySlug\);[\s\S]*var backLabel = returnEntry \? '← ' \+ returnEntry\.label : '← Collection'/,
+    'reader chrome must project the actual entry return owner rather than label it Collection'
+  );
+
+  const handlerStart = source.indexOf('function handleEntryReaderRouteClick(event)');
+  const handlerEnd = source.indexOf('function handleEvolutionReaderRouteClick(event)', handlerStart);
+  assert.ok(handlerStart > 0 && handlerEnd > handlerStart, 'entry route handler must remain extractable');
+  const handlerSource = source.slice(handlerStart, handlerEnd);
+
+  const routed = [];
+  const handler = new Function(
+    'repositorySlugFromHref',
+    'entryDocument',
+    'openRepositoryRouteInTerrain',
+    [
+      "var activeEntrySlug = 'receive-god';",
+      handlerSource,
+      'return handleEntryReaderRouteClick;'
+    ].join('\n')
+  )(
+    (href) => {
+      const match = /^([a-z0-9][a-z0-9-]*)\.html(?:[?#].*)?$/i.exec(href);
+      return match ? match[1] : null;
+    },
+    (slug) => slug === 'receive-god' || slug === 'take-a-walk' ? { slug } : null,
+    (slug, options) => {
+      routed.push({ slug, options });
+      return true;
+    }
+  );
+
+  function eventFor(href, terrainAction) {
+    let prevented = false;
+    const anchor = {
+      hasAttribute: (name) => name === 'data-terrain-action' && terrainAction === true,
+      getAttribute: (name) => name === 'href' ? href : null,
+    };
+    return {
+      event: {
+        target: { closest: () => anchor },
+        preventDefault: () => { prevented = true; },
+      },
+      prevented: () => prevented,
+    };
+  }
+
+  const nextEntry = eventFor('take-a-walk.html', false);
+  handler(nextEntry.event);
+  assert.equal(nextEntry.prevented(), false, 'registered entry-to-entry navigation remains native inside the ordered entry reader');
+  assert.equal(routed.length, 0);
+
+  const ownedEntryAction = eventFor('terrain-map.html?view=content', true);
+  handler(ownedEntryAction.event);
+  assert.equal(ownedEntryAction.prevented(), false, 'entry-owned Terrain actions remain with their existing postMessage owner');
+  assert.equal(routed.length, 0);
+
+  const repositoryPage = eventFor('restoration-protocol.html', false);
+  handler(repositoryPage.event);
+  assert.equal(repositoryPage.prevented(), true);
+  assert.deepEqual(routed, [{
+    slug:'restoration-protocol',
+    options:{
+      returnKind:'entry',
+      returnEntrySlug:'receive-god',
+      historyMode:'push'
+    }
+  }]);
+});
+
+
 // [VXG RealForever]
