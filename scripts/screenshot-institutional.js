@@ -99,10 +99,10 @@ function needsLocaleRuntime(surface) {
 }
 
 function selectorOptionsForSurface(surface) {
-  if (!needsLocaleRuntime(surface)) return [];
+  if (surface?.runtime?.mode !== 'standalone' || !needsLocaleRuntime(surface)) return [];
   return requiredLocales(surface).map(locale => {
     const autonym = LOCALE_AUTONYMS[locale];
-    if (!autonym) throw new Error(`no institutional autonym is declared for ${locale}`);
+    if (!autonym) throw new Error(`no standalone institutional autonym is declared for ${locale}`);
     return [locale, autonym];
   });
 }
@@ -226,20 +226,58 @@ async function settlePage(page) {
   await page.waitForTimeout(80);
 }
 
-async function selectLocale(page, locale) {
-  if (locale === 'en') {
-    await page.waitForFunction(() => document.documentElement.lang === 'en');
+async function triggerLocaleSelection(page, surface, locale) {
+  if (surface?.runtime?.mode === 'shell-context') {
+    const fabBtn = page.locator('#vex-lang-fab-btn');
+    if (await fabBtn.count() !== 1) {
+      throw new Error('language FAB button is absent or duplicated');
+    }
+
+    if (!await fabBtn.isVisible()) {
+      const spiralTrigger = page.locator('#vex-spiral-trigger');
+      if (await spiralTrigger.count() !== 1 || !await spiralTrigger.isVisible()) {
+        throw new Error('language FAB is hidden and the shared Spiral trigger is unavailable');
+      }
+      await spiralTrigger.click();
+      await page.waitForFunction(() => {
+        const trigger = document.getElementById('vex-spiral-trigger');
+        const group = document.getElementById('vex-spiral-group');
+        const langButton = document.getElementById('vex-lang-fab-btn');
+        if (!trigger || !group || !langButton) return false;
+        const visible = !!(langButton.offsetWidth || langButton.offsetHeight || langButton.getClientRects().length);
+        return trigger.getAttribute('aria-expanded') === 'true'
+          && group.classList.contains('open')
+          && visible;
+      });
+    }
+
+    await fabBtn.click();
+    await page.waitForTimeout(80);
+    const item = page.locator(`.vex-lang-item[data-lang="${locale}"]`);
+    if (await item.count() !== 1) {
+      throw new Error(`language FAB has no unique item for ${locale}`);
+    }
+    await item.click();
     return;
   }
+
   const selector = '[data-vex-lang-select]';
   if (await page.locator(selector).count() !== 1) {
     throw new Error(`cannot operate locale ${locale}: ${selector} is absent or duplicated`);
   }
   await page.locator(selector).focus();
   await page.selectOption(selector, locale);
+}
+
+async function selectLocale(page, surface, locale) {
+  if (await page.evaluate(expected => document.documentElement.lang === expected, locale)) return;
+  await triggerLocaleSelection(page, surface, locale);
   await page.waitForFunction(expected => document.documentElement.lang === expected, locale);
-  if (!await page.locator(selector).evaluate(element => document.activeElement === element)) {
-    throw new Error(`locale ${locale} selection did not retain focus on the native selector`);
+  if (surface?.runtime?.mode === 'standalone') {
+    const selector = '[data-vex-lang-select]';
+    if (!await page.locator(selector).evaluate(element => document.activeElement === element)) {
+      throw new Error(`locale ${locale} selection did not retain focus on the native selector`);
+    }
   }
 }
 
@@ -270,6 +308,8 @@ async function verifyContract(page, surface, locale, theme, viewport, bundle) {
 
     const selects = Array.from(document.querySelectorAll('[data-vex-lang-select]'));
     const select = selects[0] || null;
+    const fabButtons = Array.from(document.querySelectorAll('#vex-lang-fab-btn'));
+    const fabLangs = Array.from(document.querySelectorAll('.vex-lang-item[data-lang]'), item => item.getAttribute('data-lang'));
     const institutionalLinks = Array.from(document.querySelectorAll('a[href]'))
       .filter(anchor => /(^|\/)(?:about-vextreme|vex-support)\.html(?:[?#]|$)/.test(anchor.getAttribute('href') || ''))
       .map(anchor => anchor.getAttribute('href'));
@@ -322,6 +362,8 @@ async function verifyContract(page, surface, locale, theme, viewport, bundle) {
       selectorValue: select ? select.value : null,
       selectorOptions: select ? Array.from(select.options, option => [option.value, option.textContent]) : [],
       selectorLabelCount: select && select.labels ? select.labels.length : 0,
+      fabButtonCount: fabButtons.length,
+      fabLangs,
       urlLocale: new URLSearchParams(location.search).get('lang'),
       storedLocale,
       linkLocaleIssues,
@@ -356,16 +398,26 @@ async function verifyContract(page, surface, locale, theme, viewport, bundle) {
   if (result.h1Count !== 1) problems.push(`h1 count=${result.h1Count}`);
   if (result.hold) problems.push('pre-paint locale hold remained set');
   if (result.bindingIssues.length) problems.push(`mixed or missing localized bindings: ${result.bindingIssues.join(', ')}`);
-  const expectedSelectorOptions = selectorOptionsForSurface(surface);
-  if (expectedSelectorOptions.length === 0) {
-    if (result.selectorCount !== 0) problems.push(`single-locale surface exposed selector count=${result.selectorCount}`);
-  } else {
-    if (result.selectorCount !== 1 || result.selectorHidden) problems.push(`native selector count/hidden=${result.selectorCount}/${result.selectorHidden}`);
-    if (result.selectorValue !== locale) problems.push(`selector=${result.selectorValue || '(missing)'}`);
-    if (JSON.stringify(result.selectorOptions) !== JSON.stringify(expectedSelectorOptions)) {
-      problems.push(`selector autonyms=${JSON.stringify(result.selectorOptions)}`);
+  if (surface?.runtime?.mode === 'shell-context') {
+    if (result.selectorCount !== 0) problems.push(`shell-context surface exposed native selector count=${result.selectorCount}`);
+    if (result.fabButtonCount !== 1) problems.push(`language FAB count=${result.fabButtonCount}`);
+    const expectedFabLangs = [...new Set(requiredLocales(surface))].sort();
+    const observedFabLangs = [...new Set(result.fabLangs)].sort();
+    if (JSON.stringify(observedFabLangs) !== JSON.stringify(expectedFabLangs)) {
+      problems.push(`language FAB locales=${JSON.stringify(observedFabLangs)}`);
     }
-    if (result.selectorLabelCount !== 1) problems.push(`selector label count=${result.selectorLabelCount}`);
+  } else {
+    const expectedSelectorOptions = selectorOptionsForSurface(surface);
+    if (expectedSelectorOptions.length === 0) {
+      if (result.selectorCount !== 0) problems.push(`single-locale surface exposed selector count=${result.selectorCount}`);
+    } else {
+      if (result.selectorCount !== 1 || result.selectorHidden) problems.push(`native selector count/hidden=${result.selectorCount}/${result.selectorHidden}`);
+      if (result.selectorValue !== locale) problems.push(`selector=${result.selectorValue || '(missing)'}`);
+      if (JSON.stringify(result.selectorOptions) !== JSON.stringify(expectedSelectorOptions)) {
+        problems.push(`selector autonyms=${JSON.stringify(result.selectorOptions)}`);
+      }
+      if (result.selectorLabelCount !== 1) problems.push(`selector label count=${result.selectorLabelCount}`);
+    }
   }
   if (locale === 'en' ? result.urlLocale !== null : result.urlLocale !== locale) {
     problems.push(`URL lang=${result.urlLocale || '(absent)'}`);
@@ -515,8 +567,9 @@ async function verifyStaticEnglish(browser, baseUrl, surfaces) {
 
 async function verifyLocaleRuntimeAcceptance(browser, baseUrl, surface) {
   const locales = requiredLocales(surface);
-  if (JSON.stringify(locales) !== JSON.stringify(['en', 'ja', 'zh'])) {
-    throw new Error(`${surface.slug} locale runtime acceptance currently requires exact EN/JA/ZH activation, observed ${JSON.stringify(locales)}`);
+  const missingBaseline = ['en', 'ja', 'zh'].filter(locale => !locales.includes(locale));
+  if (missingBaseline.length) {
+    throw new Error(`${surface.slug} locale runtime acceptance requires the EN/JA/ZH transactional baseline, missing ${missingBaseline.join(', ')} from ${JSON.stringify(locales)}`);
   }
   const bundles = Object.fromEntries(locales.map(locale => [locale, readSurfaceBundle(surface, locale)]));
   const headingKey = primaryHeadingBindingKey(surface);
@@ -546,15 +599,15 @@ async function verifyLocaleRuntimeAcceptance(browser, baseUrl, surface) {
     body: '',
   }));
   await context.route('**/data/strings/compiled/scopes/system/institution.*.json', async route => {
-    const locale = /institution\.(en|ja|zh)\.json/.exec(route.request().url())?.[1];
-    if (!locale) return route.abort();
+    const locale = /institution\.([a-z0-9-]+)\.json/.exec(route.request().url())?.[1];
+    if (!locale || !bundles[locale]) return route.abort();
     if (mode === 'fetch') return route.abort();
     if (mode === 'timeout') {
       await new Promise(resolve => setTimeout(resolve, 2300));
       return route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(bundles[locale]) });
     }
     if (mode === 'rapid') {
-      const delay = { ja: 300, zh: 150, en: 0 }[locale];
+      const delay = { ja: 300, zh: 150, en: 0 }[locale] || 0;
       await new Promise(resolve => setTimeout(resolve, delay));
     }
     if (mode === 'parse') {
@@ -586,7 +639,7 @@ async function verifyLocaleRuntimeAcceptance(browser, baseUrl, surface) {
     ));
     if (wrongVisibleFrame) throw new Error(`wrong-locale first paint: ${JSON.stringify(wrongVisibleFrame)}`);
     let state = await browserLocaleState(page);
-    if (state.lang !== 'ja' || state.select !== 'ja' || state.stored !== 'ja' ||
+    if (state.lang !== 'ja' || (surface.runtime?.mode === 'standalone' && state.select !== 'ja') || state.stored !== 'ja' ||
         !state.search.includes('lang=ja') || !state.search.includes('keep=1') || state.hash !== '#main') {
       throw new Error(`URL-over-storage precedence failed: ${JSON.stringify(state)}`);
     }
@@ -599,7 +652,7 @@ async function verifyLocaleRuntimeAcceptance(browser, baseUrl, surface) {
       ['timeout', 1550],
     ]) {
       mode = failure[0];
-      await page.selectOption('[data-vex-lang-select]', 'zh');
+      await triggerLocaleSelection(page, surface, 'zh');
       await page.waitForTimeout(failure[1]);
       state = await browserLocaleState(page);
       if (JSON.stringify(state) !== stableJa) {
@@ -608,23 +661,32 @@ async function verifyLocaleRuntimeAcceptance(browser, baseUrl, surface) {
     }
 
     mode = 'success';
-    await page.selectOption('[data-vex-lang-select]', 'zh');
-    await page.waitForFunction(() => document.documentElement.lang === 'zh');
+    await selectLocale(page, surface, 'zh');
     state = await browserLocaleState(page);
-    if (state.select !== 'zh' || state.stored !== 'zh') throw new Error('later valid ZH selection did not recover');
+    if ((surface.runtime?.mode === 'standalone' && state.select !== 'zh') || state.stored !== 'zh') {
+      throw new Error('later valid ZH selection did not recover');
+    }
 
     mode = 'rapid';
-    await page.evaluate(() => {
+    await page.evaluate(runtimeMode => {
+      if (runtimeMode === 'shell-context') {
+        for (const locale of ['ja', 'zh', 'en']) {
+          const item = document.querySelector(`.vex-lang-item[data-lang="${locale}"]`);
+          if (!item) throw new Error(`missing FAB item for rapid locale ${locale}`);
+          item.click();
+        }
+        return;
+      }
       const select = document.querySelector('[data-vex-lang-select]');
       for (const locale of ['ja', 'zh', 'en']) {
         select.value = locale;
         select.dispatchEvent(new Event('change', { bubbles: true }));
       }
-    });
+    }, surface.runtime?.mode);
     await page.waitForFunction(() => document.documentElement.lang === 'en');
     await page.waitForTimeout(400);
     state = await browserLocaleState(page);
-    if (state.lang !== 'en' || state.select !== 'en' || state.stored !== 'en' ||
+    if (state.lang !== 'en' || (surface.runtime?.mode === 'standalone' && state.select !== 'en') || state.stored !== 'en' ||
         state.search.includes('lang=') || !state.search.includes('keep=1') || state.hash !== '#main') {
       throw new Error(`rapid latest-intent or URL preservation failed: ${JSON.stringify(state)}`);
     }
@@ -646,7 +708,8 @@ async function verifyLocaleRuntimeAcceptance(browser, baseUrl, surface) {
       await scenarioPage.waitForFunction(expected => document.documentElement.lang === expected, scenario.expected);
       await scenarioPage.waitForTimeout(50);
       const observed = await browserLocaleState(scenarioPage);
-      if (observed.lang !== scenario.expected || observed.select !== scenario.expected ||
+      if (observed.lang !== scenario.expected ||
+          (surface.runtime?.mode === 'standalone' && observed.select !== scenario.expected) ||
           (scenario.name === 'invalid-URL-English' && observed.stored !== 'zh')) {
         throw new Error(`${scenario.name} failed: ${JSON.stringify(observed)}`);
       }
@@ -708,7 +771,7 @@ async function renderCell(browser, baseUrl, surface, locale, theme, viewport, ve
 
   try {
     await page.goto(`${baseUrl}/pages/${surface.slug}.html`, { waitUntil: 'networkidle' });
-    await selectLocale(page, locale);
+    await selectLocale(page, surface, locale);
     await page.waitForFunction(expected => document.documentElement.dataset.theme === expected, theme);
     if (verifyToggle) {
       await verifyKeyboardEntry(page);
