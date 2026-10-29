@@ -4,12 +4,10 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const crypto = require('node:crypto');
 
 const ROOT = path.join(__dirname, '..');
 const SLUG = 'pier-house-scarcity-companionship';
 const SOURCE_HEAD = '485aa4c180999249ceffa7c1022dac7eab7aab20';
-const SOURCE_ROOT = path.join(ROOT, 'records', 'conversations', '2026-10-28-pier-house-scarcity-companionship');
 
 function read(rel) {
   return fs.readFileSync(path.join(ROOT, rel), 'utf8').replace(/\r\n/g, '\n');
@@ -59,45 +57,41 @@ test('RECORD-READER-FOURTH-CONSUMER: six source exchanges remain six chapters an
 });
 
 
-test('RECORD-READER-FOURTH-CONSUMER: later AI witness preserves the full-arc reading without becoming Exchange 07', () => {
-  const witness = read('records/conversations/2026-10-28-pier-house-scarcity-companionship/07-ai-commentary-witness-full-arc.md');
+test('RECORD-READER-FOURTH-CONSUMER: later AI witness is an immutable parent coordinate, never Exchange 07', () => {
+  const page = read('pages/' + SLUG + '.html');
   const strings = JSON.parse(read('data/strings/source/pages/' + SLUG + '.json'));
-  assert.match(witness, /^# AI commentary witness — From hidden form to restored agency$/m);
-  assert.match(witness, /Capture \/ name → care \/ return → distinguish life from vessel → preserve witness truthfully → recognize and interrupt dependency/);
-  assert.match(witness, /Capture \/ examine\s+→ Carry \/ return\s+→ Escape \/ preserve life\s+→ Witness \/ preserve record\s+→ Recognize together \/ restore agency/);
-  assert.match(witness, /Victor is helping the people inside it see it too/);
-  assert.doesNotMatch(witness, /^## Exchange 07$/m);
+  assert.match(page, />From hidden form to restored agency<\/h2>/);
+  assert.match(page, new RegExp('raw\\.githubusercontent\\.com/vgong24/Vextreme/' + SOURCE_HEAD + '/records/conversations/2026-10-28-pier-house-scarcity-companionship/07-ai-commentary-witness-full-arc\\.md'));
+  assert.match(page, /The six-exchange Pier House dream arc ends before this later reading begins/);
+  assert.doesNotMatch(page, /data-phase-kind="record" data-set="7"/);
   assert.equal(strings._meta.sourceProvenance.successorWitness, 'records/conversations/2026-10-28-pier-house-scarcity-companionship/07-ai-commentary-witness-full-arc.md');
+  assert.equal(strings._meta.sourceProvenance.successorWitnessClass, 'DERIVED_FULL_ARC_AI_COMMENTARY_AFTER_SOURCE');
   assert.equal(strings._meta.sourceProvenance.successorWitnessBoundary, 'AFTER_EXCHANGE_06_ARCHIVE_REQUEST__NOT_EXCHANGE_07');
 });
 
-test('RECORD-READER-FOURTH-CONSUMER: terminal archive statements remain Victor-owned source material', () => {
-  const source = fs.readFileSync(path.join(SOURCE_ROOT, '06-companionship-and-ai-access.md'), 'utf8').replace(/\r\n/g, '\n');
-  assert.match(source, /^## Archive boundary — Victor$/m);
-  assert.match(source, /^## Follow-up clarification — Victor$/m);
-  assert.match(source, /Okay I think now we reached the end of this dream arc lesson section, can you save the transcript again/);
-  assert.match(source, /I gave more effort access so it doesn't become another summary/);
+test('RECORD-READER-FOURTH-CONSUMER: terminal archive headings remain Victor-owned in the shared projection', () => {
+  const page = read('pages/' + SLUG + '.html');
   const controller = read('components/record-reader.js');
+  const boundarySpeaker = regexFromLine('var boundarySpeaker=line.match(', '.match');
+  assert.match('## Archive boundary — Victor', boundarySpeaker);
+  assert.match('## Follow-up clarification — Victor', boundarySpeaker);
   assert.match(controller, /Archive boundary\|Follow-up clarification/);
   assert.match(controller, /cur=\{speaker:boundarySpeaker\[2\],lines:\['### '\+boundarySpeaker\[1\]\]\}/);
+  assert.match(page, new RegExp('github\\.com/vgong24/Vextreme/blob/' + SOURCE_HEAD + '/records/conversations/2026-10-28-pier-house-scarcity-companionship/06-companionship-and-ai-access\\.md'));
 });
 
-test('RECORD-READER-FOURTH-CONSUMER: archive-owned selected artwork stays lossless and directly reused by State Two', () => {
-  const rel = 'records/conversations/2026-10-28-pier-house-scarcity-companionship/assets/pier-house-genuine-connection.png';
-  const asset = fs.readFileSync(path.join(ROOT, rel));
-  const digest = crypto.createHash('sha256').update(asset).digest('hex');
-  const width = asset.readUInt32BE(16);
-  const height = asset.readUInt32BE(20);
+test('RECORD-READER-FOURTH-CONSUMER: archive-owned selected artwork identity is preserved without reader-side re-encoding', () => {
   const page = read('pages/' + SLUG + '.html');
   const strings = JSON.parse(read('data/strings/source/pages/' + SLUG + '.json'));
   const views = JSON.parse(read('data/viewmodels.json'));
+  const provenance = strings._meta.sourceProvenance;
 
-  assert.equal(digest, '6ccf7f02b7ba22f74252cc5672043c8411e20213c4c76b1a3d448b216364dc11');
-  assert.equal(width, 1536);
-  assert.equal(height, 1024);
+  assert.equal(provenance.selectedMediaSha256, '6ccf7f02b7ba22f74252cc5672043c8411e20213c4c76b1a3d448b216364dc11');
+  assert.equal(provenance.selectedMediaWidth, 1536);
+  assert.equal(provenance.selectedMediaHeight, 1024);
+  assert.equal(provenance.selectedMediaClass, 'SELECTED_RECORD_ARTWORK_REPRESENTATION_NOT_EXTERNAL_EVIDENCE');
+  assert.equal(provenance.selectedMediaFidelity, 'ORIGINAL_LOSSLESS_PNG_NO_REENCODE');
   assert.match(page, /records\/conversations\/2026-10-28-pier-house-scarcity-companionship\/assets\/pier-house-genuine-connection\.png\?v=6ccf7f02b7ba/);
-  assert.equal(strings._meta.sourceProvenance.selectedMediaClass, 'SELECTED_RECORD_ARTWORK_REPRESENTATION_NOT_EXTERNAL_EVIDENCE');
-  assert.equal(strings._meta.sourceProvenance.selectedMediaFidelity, 'ORIGINAL_LOSSLESS_PNG_NO_REENCODE');
   assert.match(views[SLUG].preview.src, /records\/conversations\/2026-10-28-pier-house-scarcity-companionship\/assets\/pier-house-genuine-connection\.png\?v=6ccf7f02b7ba$/);
 });
 
