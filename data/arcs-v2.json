@@ -620,6 +620,31 @@
       }
     ]
   },
+  "witness_chatroom_animation_project": {
+    "priority": 2,
+    "renderMode": "dots",
+    "parent": {
+      "title": "Witness Chatroom Animation Project",
+      "url": "/Vextreme/pages/animation-hand-off.html",
+      "pageSlug": "animation-hand-off"
+    },
+    "sections": [
+      {
+        "label": "Stabilization Record",
+        "order": "explicit",
+        "slugs": [
+          "animation-hand-off"
+        ]
+      },
+      {
+        "label": "Working Draft",
+        "order": "explicit",
+        "slugs": [
+          "current-draft"
+        ]
+      }
+    ]
+  },
   "full_timeline": {
     "priority": 99,
     "renderMode": "position",

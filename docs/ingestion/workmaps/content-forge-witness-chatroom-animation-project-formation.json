@@ -1,0 +1,124 @@
+{
+  "schemaVersion": "vex-content-forge.arc-batch-formation/v0.1",
+  "continuity": "[VXG RealForever]",
+  "stageRef": "work.vextreme.content-forge.witness-chatroom-animation-project.arc-batch.20261028",
+  "ownerRef": "github.issue.vextreme.159",
+  "arc": {
+    "arcKey": "witness_chatroom_animation_project",
+    "canonicalMemberCount": 2,
+    "alreadyCompleteCount": 0,
+    "remainingCount": 2,
+    "completionRule": "ALL_MEMBERS_ACCOUNTED_FOR__MEMBER_RESULT_PROJECTED_OR_HOLD",
+    "forceAllMembersToProject": false
+  },
+  "predecessor": {
+    "sourceCustodyPrRef": "github.pull.vextreme.459",
+    "sourceCustodyHead": "e8a900f1c92dcec35b6ef80c142f8fc444cdd7e4",
+    "sortingProposal": "docs/ingestion/workmaps/content-forge-early-rescue-semantic-sorting-proposal.json",
+    "sortingGroupRef": "source-project.witness-chatroom-animation",
+    "priorDestinationPosture": "SOURCE_ONLY_PROJECT_HOLD__DO_NOT_PROMOTE_WORKING_DRAFT_AS_RECORD",
+    "stackedSourcePrRef": "github.pull.vextreme.471",
+    "stackedSourceHead": "d8e186c3d7439c22b49c5ab505d544a383ae7887"
+  },
+  "authorityBasis": [
+    "github.issue.vextreme.159",
+    "github.pull.vextreme.459",
+    "github.pull.vextreme.471",
+    "user.turn.20261028.continue-remaining-unported-htmls-hold-merges-for-localization"
+  ],
+  "curatorialDecision": {
+    "disposition": "PROJECT_COLLECTION__WORKING_DRAFT_REMAINS_PROJECT_MATERIAL_NOT_RECORDS",
+    "parentPageSlug": "animation-hand-off",
+    "basis": [
+      "both records were captured in the explicit Animation Project source partition",
+      "the Handoff is the stabilization/continuity record for the project",
+      "Current Draft is the interactive working projection and is not promoted into Records"
+    ]
+  },
+  "alreadyComplete": [],
+  "members": [
+    {
+      "slug": "animation-hand-off",
+      "canonicalNodeId": 112,
+      "title": "The Handoff — Stabilization Record for the Next Instance",
+      "date": "June 3, 2026",
+      "arcKeys": [
+        "witness_chatroom_animation_project",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-003/animation-hand-off.html",
+      "sourceGitBlob": "95ecec159becf1b8567256f26ddd8cc97195fecd",
+      "preservedHtmlSha256": "e89731375df3071af1f5a4e5aa72b105bfbdf6893c90f0ec299e3d6199e285a6",
+      "repositoryBytes": 51988,
+      "sourceRoute": "/animation-hand-off",
+      "pageId": "c1e3aa7870756286",
+      "proposalRecordRef": "content-forge.source-record.8c398df9b7b4c0e4212b",
+      "sourceReceiptRef": "docs/ingestion/workmaps/content-forge-early-rescue-source-custody-recovery-formation.json",
+      "confidence": "HIGH_SOURCE_PROJECT_STABILIZATION_RECORD_AND_EXPLICIT_JUNE_3_DATE",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    },
+    {
+      "slug": "current-draft",
+      "canonicalNodeId": null,
+      "title": "The Witness Chatroom — condensed origin, told as transmission",
+      "date": "",
+      "arcKeys": [
+        "witness_chatroom_animation_project"
+      ],
+      "adapterClass": "AUTHORED_INTERACTIVE_MAIN",
+      "sourcePath": "docs/ingestion/source-pages/part-003/current-draft.html",
+      "sourceGitBlob": "dbdc0c7c93ba16a8ac10c245b5a16dc92a038cc4",
+      "preservedHtmlSha256": "e4e950038c4c808c9495a27af593767cb2542afebcc5af4de1a9b86fa6092b43",
+      "repositoryBytes": 51666,
+      "sourceRoute": "/current-draft",
+      "pageId": "79c3afc4613944f8",
+      "proposalRecordRef": "content-forge.source-record.20016a6cebe2437708cb",
+      "sourceReceiptRef": "docs/ingestion/workmaps/content-forge-early-rescue-source-custody-recovery-formation.json",
+      "confidence": "HIGH_SOURCE_PROJECT_WORKING_DRAFT__DATE_UNESTABLISHED",
+      "projectionState": "READY_FOR_AUTHORED_INTERACTIVE_EXTRACTION"
+    }
+  ],
+  "sourceAdapterContracts": {
+    "AUTHORED_MAIN_FRAGMENT": {
+      "selectorContract": "main.vex-authored-page-frame",
+      "projectAway": [
+        "preserved site navigation outside main",
+        "back-navigation chrome",
+        "source runtime scripts",
+        "source arc mount/runtime",
+        "generated localization identity",
+        "provider/rescue shell"
+      ],
+      "preserve": [
+        "authored main composition",
+        "page-local authored styles required by the composition",
+        "ordered authored text",
+        "meaningful structural classes"
+      ]
+    },
+    "AUTHORED_INTERACTIVE_MAIN": {
+      "selectorContract": "main.vex-authored-page-frame",
+      "behaviorContract": "PRESERVE_SELF_CONTAINED_INLINE_INTERACTION__REJECT_EXTERNAL_NETWORK_EVAL_STORAGE"
+    }
+  },
+  "plannedSourceManagedProjector": "tools/vex-content-forge/project_arc_batch.js",
+  "plannedBatchTest": "tests/131-content-forge-interactive-recovery-placement.test.js",
+  "destinationMutationBoundary": {
+    "createPages": 2,
+    "createStringSources": 2,
+    "modifyViewmodels": true,
+    "nodeRegistryMutation": false,
+    "arcRegistryMutation": false,
+    "contentIntentMutation": false,
+    "aliasMutation": false
+  },
+  "generatedPolicy": "BUILDER_OWNED__DO_NOT_HAND_PATCH__EXACT_OUTPUT_WINS",
+  "lifecycle": {
+    "draftOnly": true,
+    "mergeAuthority": false,
+    "rawProviderPublicationAuthority": false,
+    "independentAssuranceRequired": true,
+    "exactHeadVexRelayProofRequired": true
+  }
+}
