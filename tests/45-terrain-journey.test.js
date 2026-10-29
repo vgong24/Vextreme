@@ -35,6 +35,7 @@ test('TERRAIN-JOURNEY: creates a serializable origin and appends relationship-aw
   assert.equal(origin.journey.entries.length, 1, 'append must not mutate the prior browser-history state');
   assert.equal(next.journey.cursor, 1);
   assert.equal(Journey.current(next).relationship, 'search');
+  assert.equal(Journey.current(next).reason, 'search result');
   assert.equal(next.semantic.pinnedId, 'lib/build-vextreme.js');
 });
 
@@ -582,6 +583,53 @@ test('TERRAIN-JOURNEY: embedded Arc parent routes converge with Back without col
   assert.equal(matchGroup('ai-practitioner-tools').length, 1);
   assert.equal(matchGroup('archives').length, 2,
     'shared archives route remains ambiguous instead of being silently assigned to one collection');
+});
+
+
+test('TERRAIN-JOURNEY: Inspect projects relationship and causal reason as separate accepted Journey facts', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
+
+  assert.match(source, /\.journey-relationship\{[^}]*color:var\(--accent\)/,
+    'relationship retains the existing emphasized Journey treatment under a truthful presentation name');
+  assert.match(source, /\.journey-reason\{[^}]*color:var\(--ink-faint\)/,
+    'causal reason has its own read-only inspection treatment');
+  assert.match(source, /var relationship = entry\.relationship[\s\S]*class="journey-relationship"[\s\S]*esc\(entry\.relationship\)/);
+  assert.match(source, /var reason = entry\.reason[\s\S]*class="journey-reason">why · ' \+ esc\(entry\.reason\)/);
+  assert.doesNotMatch(source, /class="journey-reason">[^']*' \+ esc\(entry\.relationship\)/,
+    'the misleading historical class-to-field mapping must not return');
+
+  const start = source.indexOf('function journeyHtml()');
+  const end = source.indexOf('function wireJourneyControls', start);
+  assert.ok(start > 0 && end > start, 'Journey inspection projection must remain extractable');
+  const projectionSource = source.slice(start, end);
+  assert.doesNotMatch(projectionSource, /commitSemanticState|history\.(?:pushState|replaceState|back|go)|openEvolution|closeEvolution|enterLevel/,
+    'Inspect remains a projection and cannot become a navigation or semantic-state owner');
+
+  const make = new Function('journeySnapshot', 'esc', [
+    projectionSource,
+    'return journeyHtml();'
+  ].join('\n'));
+  const html = make({
+    journey: {
+      cursor: 1,
+      entries: [
+        { label:'VEXTREME', relationship:null, reason:null, fromNodeId:null },
+        {
+          label:'Direct Contact',
+          relationship:'entered from',
+          reason:'Receive God primary path',
+          fromNodeId:'receive-god'
+        }
+      ]
+    }
+  }, (value) => String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;'));
+
+  assert.match(html, /class="journey-relationship">entered from from receive-god<\/span>/);
+  assert.match(html, /class="journey-reason">why · Receive God primary path<\/span>/);
 });
 
 // [VXG RealForever]

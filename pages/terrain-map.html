@@ -579,7 +579,8 @@
   .journey-step{ display:grid; grid-template-columns:18px minmax(0,1fr); gap:7px; font-family:var(--mono); font-size:10.5px; color:var(--ink-muted); }
   .journey-step[aria-current="step"]{ color:var(--ink); font-weight:700; }
   .journey-index{ color:var(--ink-faint); text-align:right; }
-  .journey-reason{ display:block; color:var(--accent); font-size:9px; font-weight:500; margin-top:2px; }
+  .journey-relationship{ display:block; color:var(--accent); font-size:9px; font-weight:500; margin-top:2px; }
+  .journey-reason{ display:block; color:var(--ink-faint); font-size:8.5px; font-weight:500; margin-top:1px; }
   .journey-actions{ display:flex; gap:7px; flex-wrap:wrap; }
   .journey-btn{ border:1px solid var(--line-strong); background:var(--panel-2); color:var(--ink-muted); border-radius:6px; padding:6px 9px; font-family:var(--mono); font-size:9.5px; cursor:pointer; }
   .journey-btn:hover:not(:disabled){ border-color:var(--accent); color:var(--accent); }
@@ -3717,11 +3718,14 @@
     var start = Math.max(0, journey.cursor - 5);
     var steps = journey.entries.slice(start, journey.cursor + 1).map(function (entry, offset) {
       var index = start + offset;
-      var reason = entry.relationship
-        ? '<span class="journey-reason">' + esc(entry.relationship) + (entry.fromNodeId ? ' from ' + esc(entry.fromNodeId) : '') + '</span>'
+      var relationship = entry.relationship
+        ? '<span class="journey-relationship">' + esc(entry.relationship) + (entry.fromNodeId ? ' from ' + esc(entry.fromNodeId) : '') + '</span>'
+        : '';
+      var reason = entry.reason
+        ? '<span class="journey-reason">why · ' + esc(entry.reason) + '</span>'
         : '';
       return '<li class="journey-step"' + (index === journey.cursor ? ' aria-current="step"' : '') + '>' +
-        '<span class="journey-index">' + (index + 1) + '.</span><span>' + esc(entry.label) + reason + '</span></li>';
+        '<span class="journey-index">' + (index + 1) + '.</span><span>' + esc(entry.label) + relationship + reason + '</span></li>';
     }).join('');
     return '<section class="journey-section" aria-label="Journey">' +
       '<div class="journey-summary"><div class="field-label" style="margin:0">Journey</div>' +
