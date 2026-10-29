@@ -683,15 +683,15 @@ test('TERRAIN-JOURNEY: reader return context has one bounded mutation owner', ()
   assert.deepEqual(context.read(), { kind:'entry', entrySlug:'receive-god', readerId:null });
 
   context.set('entry', { entrySlug:'missing' });
-  assert.deepEqual(context.read(), { kind:'entry', entrySlug:null, readerId:null },
-    'invalid entry coordinates fail closed without changing the requested return kind');
+  assert.deepEqual(context.read(), { kind:'collection', entrySlug:null, readerId:null },
+    'invalid entry coordinates fail the whole return context closed to collection');
 
   context.set('reader', { readerId:'record-a', entrySlug:'receive-god' });
   assert.deepEqual(context.read(), { kind:'reader', entrySlug:null, readerId:'record-a' });
 
   context.set('reader', { readerId:'missing' });
-  assert.deepEqual(context.read(), { kind:'reader', entrySlug:null, readerId:null },
-    'invalid reader coordinates fail closed without inventing a return target');
+  assert.deepEqual(context.read(), { kind:'collection', entrySlug:null, readerId:null },
+    'invalid reader coordinates fail the whole return context closed to collection');
 
   context.set('curiosity-overview');
   assert.deepEqual(context.read(), { kind:'curiosity-overview', entrySlug:null, readerId:null });
