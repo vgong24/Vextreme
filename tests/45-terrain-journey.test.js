@@ -409,12 +409,15 @@ test('TERRAIN-JOURNEY: reader history preserves the real return surface instead 
   assert.match(source, /Object\.assign\(\{ version:1, kind:kind \}, details \|\| \{\}\)/);
   assert.match(source, /function presentationHistoryValue\(state\)/);
   assert.match(source, /syncPresentationUrl\(options\.historyMode \|\| 'push', 'reader', \{[\s\S]*returnKind:activeReaderReturnKind/);
-  assert.match(source, /syncPresentationUrl\(options\.historyMode \|\| 'push', 'group-home'\)/);
+  assert.match(source, /syncPresentationUrl\(options\.historyMode \|\| 'push', 'group-home', \{[\s\S]*returnKind:activeReaderReturnKind,[\s\S]*returnEntrySlug:activeReaderReturnEntrySlug/,
+    'group-home history must preserve the actual surface it should return to');
   assert.match(source, /openEvolutionReader\(previous\.id, \{ historyMode:'replace' \}\)/);
   assert.match(source, /openEvolutionReader\(next\.id, \{ historyMode:'replace' \}\)/);
-  assert.match(source, /syncPresentationUrl\('replace', 'reader'\)/);
+  assert.match(source, /syncPresentationUrl\('replace', 'reader', \{ returnKind:activeReaderReturnKind \}\)/,
+    'direct embedded record routes must keep their real return contract when replacing the current presentation coordinate');
   assert.match(source, /presentationHistoryKind\(history\.state\) === 'reader'/);
   assert.match(source, /presentationHistoryKind\(history\.state\) === 'group-home'/);
+  assert.match(source, /presentationHistoryKind\(history\.state\) === 'entry'/);
   assert.match(source, /history\.back\(\)/);
   assert.match(source, /restoreEvolutionPresentationFromHistory\(event\.state\)/);
 
@@ -427,7 +430,9 @@ test('TERRAIN-JOURNEY: reader history preserves the real return surface instead 
   assert.match(source, /history\.replaceState\(returnState, '', window\.location\.href\)/,
     'direct overview entry rewrites only the current presentation coordinate before pushing the reader');
   assert.match(source, /returnKind:'curiosity-overview'/);
-  assert.match(source, /activeReaderReturnKind === 'curiosity-overview' \? '← Overview' : '← Collection'/);
+  assert.match(source, /if \(activeReaderReturnKind === 'curiosity-overview'\) backLabel = '← Overview'/);
+  assert.match(source, /activeReaderReturnKind === 'group-home'[\s\S]*backLabel = '← ' \+ \(stage\.parent\.title/,
+    'record-reader Back label must name the group home when that is the actual return surface');
   assert.match(source, /kind === 'curiosity-overview'/);
   assert.match(source, /kind === 'curiosity-overview'[\s\S]*restorePresentationCamera\(presentation\.camera\)[\s\S]*openContentTilePeek\(overviewStageIdx, \{/,
     'Back restores the presentation camera before reopening the curiosity shelf');
