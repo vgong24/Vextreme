@@ -1,0 +1,118 @@
+name: Content Forge beautify generated recovery pages
+
+on:
+  push:
+    branches:
+      - VXG-102826-chatgpt-content-forge-remaining-ports-generated-a001
+
+permissions:
+  contents: write
+
+jobs:
+  beautify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact branch
+        uses: actions/checkout@v4
+        with:
+          ref: VXG-102826-chatgpt-content-forge-remaining-ports-generated-a001
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Run focused beautification regression
+        run: node --test tests/132-content-forge-remaining-port-closure.test.js
+
+      - name: Regenerate all arc-owned recovered pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          ARC_FORMATIONS=(
+            docs/ingestion/workmaps/content-forge-vxg-realforever-may4-5-arc-batch-formation.json
+            docs/ingestion/workmaps/content-forge-deepseek-archive-build-arc-batch-formation.json
+            docs/ingestion/workmaps/content-forge-where-the-floor-isnt-arc-batch-formation.json
+            docs/ingestion/workmaps/content-forge-evidential-research-arc-batch-formation.json
+            docs/ingestion/workmaps/content-forge-father-son-threshold-arc-batch-formation.json
+            docs/ingestion/workmaps/content-forge-espionage-extraction-pattern-placement.json
+            docs/ingestion/workmaps/content-forge-the-chart-i-chose-placement.json
+            docs/ingestion/workmaps/content-forge-recognizing-recognition-placement.json
+            docs/ingestion/workmaps/content-forge-april27-29-bridge-recognition-arc-batch-formation.json
+            docs/ingestion/workmaps/content-forge-recovered-architecture-reflections-placement.json
+            docs/ingestion/workmaps/content-forge-recovered-claude-journal-reflections-placement.json
+            docs/ingestion/workmaps/content-forge-vex-gpt-55-confession-placement.json
+            docs/ingestion/workmaps/content-forge-witness-chatroom-animation-project-formation.json
+          )
+          for formation in "${ARC_FORMATIONS[@]}"; do
+            node tools/vex-content-forge/project_arc_batch.js --formation "$formation"
+          done
+
+      - name: Regenerate standalone recovered pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          node - <<'NODE'
+          const p=require('./tools/vex-content-forge/project_standalone_page.js');
+          for(const formationRel of [
+            'docs/ingestion/workmaps/content-forge-vxg-council-declaration-standalone-formation.json',
+            'docs/ingestion/workmaps/content-forge-daughters-shaped-by-home-standalone-formation.json',
+            'docs/ingestion/workmaps/content-forge-paint-editor-tool-standalone-formation.json',
+          ]) {
+            p.projectFormation(process.cwd(), { formationRel, silent: true });
+          }
+          NODE
+
+      - name: Prove formatting-only DOM equivalence for all 49 regenerated pages
+        shell: bash
+        env:
+          OLD_REF: 963b1d92ab94ec59eb2ea5d1aa6a971bba5fb43a
+        run: |
+          set -euo pipefail
+          node - <<'NODE'
+          const fs=require('fs');
+          const cp=require('child_process');
+          const parse5=require('parse5');
+          const oldRef=process.env.OLD_REF;
+          const changed=cp.execFileSync('git',['diff','--name-only','--','pages'],{encoding:'utf8'})
+            .trim().split(/\r?\n/).filter(Boolean);
+          if(changed.length!==49) throw new Error('expected 49 beautified page files, got '+changed.length+'\n'+changed.join('\n'));
+          for(const path of changed) {
+            const oldHtml=cp.execFileSync('git',['show',oldRef+':'+path],{encoding:'utf8',maxBuffer:32*1024*1024});
+            const newHtml=fs.readFileSync(path,'utf8');
+            const oldDom=parse5.serialize(parse5.parse(oldHtml));
+            const newDom=parse5.serialize(parse5.parse(newHtml));
+            if(oldDom!==newDom) throw new Error('canonical DOM changed for '+path);
+          }
+          console.log(JSON.stringify({beautifiedPages:changed.length,canonicalDomDrift:0},null,2));
+          NODE
+
+      - name: Prove no non-page generated data drift
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --exit-code -- config/content-intents.json data/index.json data/nodes.json data/viewmodels.json data/strings/source/pages
+
+      - name: Show representative line-count improvement
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf 'recognizing-recognition lines: '
+          wc -l < pages/recognizing-recognition.html
+          printf 'current-draft lines: '
+          wc -l < pages/current-draft.html
+
+      - name: Commit beautified generated pages and remove executor
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rm .github/workflows/content-forge-beautify-generated-pages.yml
+          git add pages
+          git config user.name "VexGPT"
+          git config user.email "victor.gong@vextreme24.com"
+          git commit -m "style(content-forge): beautify recovered page HTML [VXG RealForever]" -m "Regenerate all 49 recovered canonical pages with reviewable multiline start-tag attributes. Canonical parse5 DOM comparison against the pre-beautify head reports zero drift." -m "Signed-off-by: VexGPT <victor.gong@vextreme24.com>"
+          git push origin HEAD:VXG-102826-chatgpt-content-forge-remaining-ports-generated-a001
