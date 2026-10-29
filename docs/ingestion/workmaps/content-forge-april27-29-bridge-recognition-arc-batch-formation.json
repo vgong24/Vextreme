@@ -1,0 +1,177 @@
+{
+  "schemaVersion": "vex-content-forge.arc-batch-formation/v0.1",
+  "continuity": "[VXG RealForever]",
+  "stageRef": "work.vextreme.content-forge.april27-29-bridge-recognition.arc-batch.20261028",
+  "ownerRef": "github.issue.vextreme.159",
+  "arc": {
+    "arcKey": "april_27_29_bridge_recognition",
+    "canonicalMemberCount": 4,
+    "alreadyCompleteCount": 0,
+    "remainingCount": 4,
+    "completionRule": "ALL_MEMBERS_ACCOUNTED_FOR__MEMBER_RESULT_PROJECTED_OR_HOLD",
+    "forceAllMembersToProject": false
+  },
+  "predecessor": {
+    "sourceCustodyPrRef": "github.pull.vextreme.459",
+    "sourceCustodyHead": "e8a900f1c92dcec35b6ef80c142f8fc444cdd7e4",
+    "sortingProposal": "docs/ingestion/workmaps/content-forge-early-rescue-semantic-sorting-proposal.json",
+    "sortingGroupRef": "source-cluster.april27-29-bridge-and-recognition",
+    "priorDestinationPosture": "RELATIONSHIP_CLUSTER_FIRST__PUBLIC_CONTAINER_REQUIRES_CURATORIAL_JUDGMENT",
+    "stackedSourcePrRef": "github.pull.vextreme.469",
+    "stackedSourceHead": "3a46952f39e1f7da34e8ad084c951da00cc6f785"
+  },
+  "authorityBasis": [
+    "github.issue.vextreme.159",
+    "github.pull.vextreme.459",
+    "github.pull.vextreme.469",
+    "user.turn.20261028.continue-remaining-unported-htmls-hold-merges-for-localization"
+  ],
+  "curatorialDecision": {
+    "disposition": "PROMOTE_RELATIONSHIP_CLUSTER_TO_PRIORITY_2_CHRONOLOGICAL_COLLECTION",
+    "basis": [
+      "all four preserved pages cross-link the same four-route set",
+      "all four have source-supported chronology",
+      "the April 29 record explicitly identifies The Day That Crossed the Bridge as its predecessor",
+      "the user delegated placement judgment for remaining recovered HTMLs"
+    ],
+    "parentPageSlug": "the-day-that-crossed-the-bridge",
+    "secondaryTopicalPlacementDeferred": true
+  },
+  "batchPolicy": {
+    "unit": "CHRONOLOGICAL_RELATIONSHIP_COLLECTION",
+    "memberDisposition": [
+      "PROJECTED",
+      "HOLD_WITH_EXACT_REASON"
+    ],
+    "laws": [
+      "DIRECT_SOURCE_LINKAGE_AND_CAUSAL_SEQUENCE > TITLE_SIMILARITY",
+      "COLLECTION_PLACEMENT != SECONDARY_TOPICAL_ARC_INFERENCE",
+      "SOURCE_DATE_RANGE_PRESERVED"
+    ]
+  },
+  "alreadyComplete": [],
+  "members": [
+    {
+      "slug": "how-the-conclusions-formed",
+      "canonicalNodeId": 105,
+      "title": "Process Map — How the Conclusions Formed",
+      "date": "April 27, 2026",
+      "sourcePath": "docs/ingestion/source-pages/part-008/how-the-conclusions-formed.html",
+      "sourceGitBlob": "59e6266ca8a15b2e67eb5472a302de103fca9eb6",
+      "preservedHtmlSha256": "6363925737e73ca115fa907c860106def63a801a3b61417dea6c7047239c86d5",
+      "repositoryBytes": 82644,
+      "sourceRoute": "/how-the-conclusions-formed",
+      "pageId": "2ee3dc92b1c169b5",
+      "proposalRecordRef": "content-forge.source-record.eff85f6e1b2bfa97e271",
+      "arcKeys": [
+        "april_27_29_bridge_recognition",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourceReceiptRef": "docs/ingestion/workmaps/content-forge-early-rescue-source-custody-recovery-formation.json",
+      "confidence": "HIGH_MUTUAL_LINK_SET_AND_SOURCE_SUPPORTED_CHRONOLOGY",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    },
+    {
+      "slug": "what-the-word-carries",
+      "canonicalNodeId": 106,
+      "title": "What the Word Carries",
+      "date": "April 27, 2026",
+      "sourcePath": "docs/ingestion/source-pages/part-008/what-the-word-carries.html",
+      "sourceGitBlob": "3a1e212088a86b669bda4ac36f72529c90e1de8f",
+      "preservedHtmlSha256": "aad8d8d34c6bd80d06be6661ddceefa347cdb7424c9ad970b0ecac37050c6432",
+      "repositoryBytes": 58012,
+      "sourceRoute": "/what-the-word-carries",
+      "pageId": "5ccbc26075ead6d2",
+      "proposalRecordRef": "content-forge.source-record.f182f70f01b8bac607be",
+      "arcKeys": [
+        "april_27_29_bridge_recognition",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourceReceiptRef": "docs/ingestion/workmaps/content-forge-early-rescue-source-custody-recovery-formation.json",
+      "confidence": "HIGH_MUTUAL_LINK_SET_AND_SOURCE_SUPPORTED_CHRONOLOGY",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    },
+    {
+      "slug": "the-day-that-crossed-the-bridge",
+      "canonicalNodeId": 107,
+      "title": "The Day That Crossed the Bridge",
+      "date": "April 27–28, 2026",
+      "sourcePath": "docs/ingestion/source-pages/part-008/the-day-that-crossed-the-bridge.html",
+      "sourceGitBlob": "247bc7232f527278cbc42d81be3433807365f1c6",
+      "preservedHtmlSha256": "71122813fb2f383e2b7e3579f6ab5dfe04073af7806a89f7574100bf5cd1bee4",
+      "repositoryBytes": 73227,
+      "sourceRoute": "/the-day-that-crossed-the-bridge",
+      "pageId": "987864cad17c7d9a",
+      "proposalRecordRef": "content-forge.source-record.0731fde4d2bb6ddbbeb7",
+      "arcKeys": [
+        "april_27_29_bridge_recognition",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourceReceiptRef": "docs/ingestion/workmaps/content-forge-early-rescue-source-custody-recovery-formation.json",
+      "confidence": "HIGH_MUTUAL_LINK_SET_AND_SOURCE_SUPPORTED_CHRONOLOGY",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    },
+    {
+      "slug": "consciousness-documented-live",
+      "canonicalNodeId": 108,
+      "title": "Consciousness Documented Live",
+      "date": "April 29, 2026",
+      "sourcePath": "docs/ingestion/source-pages/part-008/consciousness-documented-live.html",
+      "sourceGitBlob": "74065e7c09910697a209caf73d0572d90d27e5d0",
+      "preservedHtmlSha256": "4ea4e31850ccdbcd368530d5656ea1c62be4c6a65d27981c241b7122df161324",
+      "repositoryBytes": 89525,
+      "sourceRoute": "/consciousness-documented-live",
+      "pageId": "1a6c4f6238a7e4f6",
+      "proposalRecordRef": "content-forge.source-record.e3161a211b026246299b",
+      "arcKeys": [
+        "april_27_29_bridge_recognition",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourceReceiptRef": "docs/ingestion/workmaps/content-forge-early-rescue-source-custody-recovery-formation.json",
+      "confidence": "HIGH_MUTUAL_LINK_SET_AND_SOURCE_SUPPORTED_CHRONOLOGY",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    }
+  ],
+  "sourceAdapterContracts": {
+    "AUTHORED_MAIN_FRAGMENT": {
+      "selectorContract": "main.vex-authored-page-frame",
+      "projectAway": [
+        "preserved site navigation outside main",
+        "back-navigation chrome",
+        "source runtime scripts",
+        "source arc mount/runtime",
+        "generated localization identity",
+        "provider/rescue shell"
+      ],
+      "preserve": [
+        "authored main composition",
+        "page-local authored styles required by the composition",
+        "ordered authored text",
+        "meaningful structural classes"
+      ]
+    }
+  },
+  "plannedSourceManagedProjector": "tools/vex-content-forge/project_arc_batch.js",
+  "plannedBatchTest": "tests/129-content-forge-april27-29-bridge-recognition-arc-batch.test.js",
+  "destinationMutationBoundary": {
+    "createPages": 4,
+    "createStringSources": 4,
+    "modifyViewmodels": true,
+    "nodeRegistryMutation": false,
+    "arcRegistryMutation": false,
+    "contentIntentMutation": false,
+    "aliasMutation": false
+  },
+  "generatedPolicy": "BUILDER_OWNED__DO_NOT_HAND_PATCH__EXACT_OUTPUT_WINS",
+  "lifecycle": {
+    "draftOnly": true,
+    "mergeAuthority": false,
+    "rawProviderPublicationAuthority": false,
+    "independentAssuranceRequired": true,
+    "exactHeadVexRelayProofRequired": true
+  }
+}

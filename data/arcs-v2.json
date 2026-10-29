@@ -577,6 +577,39 @@
       }
     ]
   },
+  "april_27_29_bridge_recognition": {
+    "priority": 2,
+    "renderMode": "dots",
+    "parent": {
+      "title": "April 27–29 Bridge & Recognition",
+      "url": "/Vextreme/pages/the-day-that-crossed-the-bridge.html",
+      "pageSlug": "the-day-that-crossed-the-bridge"
+    },
+    "sections": [
+      {
+        "label": "April 27 — Formation & Language",
+        "order": "explicit",
+        "slugs": [
+          "how-the-conclusions-formed",
+          "what-the-word-carries"
+        ]
+      },
+      {
+        "label": "April 27–28 — The Bridge",
+        "order": "explicit",
+        "slugs": [
+          "the-day-that-crossed-the-bridge"
+        ]
+      },
+      {
+        "label": "April 29 — Recognition",
+        "order": "explicit",
+        "slugs": [
+          "consciousness-documented-live"
+        ]
+      }
+    ]
+  },
   "full_timeline": {
     "priority": 99,
     "renderMode": "position",
