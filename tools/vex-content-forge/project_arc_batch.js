@@ -506,4 +506,4 @@ if (require.main === module) {
   try { process.exitCode = main(cliOptions()).accounting.complete ? 0 : 1; }
   catch (error) { process.stderr.write(`${error.stack || error.message}\n`); process.exitCode = 1; }
 }
-module.exports = { ASSET_CATALOG_REL, ASSET_FILENAME, DEFAULT_ROOT, FORMATION_REL, GENERATOR_REF, ROOT_RELATIVE_ASSET_REF, ProjectionInvariantError, attrs, cliOptions, externalizeAssetReferences, findAll, findFirst, gitBlobSha, loadAssetCatalog, main, preserveLocalizationOverlays, rawText, resolveAssetReference, rewriteAssetText, selectAuthoredMain, selectEmbeddedCodeContainer, selectSqsBody, sha256, textLeaves, validateFormation };
+module.exports = { ASSET_CATALOG_REL, ASSET_FILENAME, DEFAULT_ROOT, FORMATION_REL, GENERATOR_REF, ROOT_RELATIVE_ASSET_REF, ProjectionInvariantError, attrs, cliOptions, externalizeAssetReferences, findAll, findFirst, gitBlobSha, loadAssetCatalog, main, preserveLocalizationOverlays, projectMember, rawText, resolveAssetReference, rewriteAssetText, selectAuthoredMain, selectEmbeddedCodeContainer, selectSqsBody, sha256, textLeaves, validateFormation };
