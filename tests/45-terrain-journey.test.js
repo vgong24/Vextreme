@@ -800,6 +800,11 @@ test('TERRAIN-JOURNEY: ordered entry repository routes preserve current entry id
     /var returnEntry = activeReaderReturnKind === 'entry' && entryDocument\(activeReaderReturnEntrySlug\);[\s\S]*var backLabel = returnEntry \? '← ' \+ returnEntry\.label : '← Collection'/,
     'reader chrome must project the actual entry return owner rather than label it Collection'
   );
+  assert.match(
+    source,
+    /var returnsToPage = activeReaderReturnKind === 'reader' \|\| activeReaderReturnKind === 'entry';[\s\S]*Page reached · returned to where you entered[\s\S]*activeReaderReturnKind === 'reader' \|\| activeReaderReturnKind === 'entry'[\s\S]*return to the page/,
+    'reader outward messaging must follow the same entry-aware return relationship as Back'
+  );
 
   const handlerStart = source.indexOf('function handleEntryReaderRouteClick(event)');
   const handlerEnd = source.indexOf('function handleEvolutionReaderRouteClick(event)', handlerStart);

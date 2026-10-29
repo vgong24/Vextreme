@@ -2193,17 +2193,17 @@
     if (boundaryGestureReady('reader-outward:' + readerKey, direction)) {
       lockOutwardWheelGesture();
       var returnsToOverview = activeReaderReturnKind === 'curiosity-overview';
-      var returnsToReader = activeReaderReturnKind === 'reader';
+      var returnsToPage = activeReaderReturnKind === 'reader' || activeReaderReturnKind === 'entry';
       closeEvolutionReader();
       showGestureHint(returnsToOverview
         ? 'Overview reached · returned to where you entered'
-        : (returnsToReader
+        : (returnsToPage
           ? 'Page reached · returned to where you entered'
           : 'Collection reached · release, then scroll again to return to groups'));
     } else {
       showGestureHint(activeReaderReturnKind === 'curiosity-overview'
         ? 'End reached · pause, then scroll down again to return to the overview'
-        : (activeReaderReturnKind === 'reader'
+        : (activeReaderReturnKind === 'reader' || activeReaderReturnKind === 'entry'
           ? 'End reached · pause, then scroll down again to return to the page'
           : 'End reached · pause, then scroll down again to return to the collection'));
     }
