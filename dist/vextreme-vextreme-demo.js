@@ -16,6 +16,7 @@
   window.VEX_STRING_SCOPES    = ["demo"];
   window.VEX_STRING_CATEGORY  = "demo";
   window.VEX_SUPPORTED_LANGS  = ["en"];
+  window.VEX_INDEX_FINGERPRINT = "7ca19fe4444b";
 
 
 

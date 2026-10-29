@@ -2040,6 +2040,7 @@
       "role": "browser arc nav runtime — reads index.json at load time, renders prev/next/position into #arcNavMount",
       "reads": [
         "data/index.json via CDN (slugMap, arcMap, arcMeta)",
+        "window.VEX_INDEX_FINGERPRINT (God Script exact data/index.json generation identity)",
         "window.VEX_STRINGS_EN (God Script fast path — already inlined by build-vextreme.js)",
         "data/strings/compiled/strings.en.json via CDN (non-God-Script fallback)",
         "localStorage (ETag cache for index + strings)"
