@@ -538,7 +538,7 @@
      can center anywhere on screen instead of being permanently shrunk by
      340px whether or not anything is selected. */
   .panel{
-    position:absolute; top:0; right:0; bottom:0; width:340px; z-index:8;
+    position:absolute; top:0; right:0; bottom:0; width:340px; z-index:14;
     border-left:1px solid var(--line); background:var(--panel); padding:20px; overflow-y:auto;
     box-shadow:-12px 0 30px rgba(0,0,0,.28);
     transform:translateX(100%); transition:transform .22s ease;
@@ -1226,7 +1226,9 @@
   var journeySnapshot = null, historyReady = false, restoringHistory = false;
   var PRESENTATION_HISTORY_KEY = 'vextremeTerrainPresentation';
   var currentProfile = 'evolution-v1';
-  var activeReaderId = null, hoveredEvolutionNodeId = null, activeEntrySlug = null, activeGroupHomeKey = null;
+  var activeReaderId = null, hoveredEvolutionNodeId = null;
+  var activeEntrySlug = null;
+  var activeGroupHomeKey = null;
   var activeReaderReturnKind = 'collection';
   var activeReaderReturnEntrySlug = null;
   var activeReaderReturnReaderId = null;
@@ -1551,7 +1553,9 @@
     var node = ALL.find(function (candidate) { return candidate.slug === route.page || candidate.id === route.page; });
     if (node && node.live) openEvolutionReader(node.id, {
       writeUrl:false,
-      returnKind:presentation && presentation.returnKind ? presentation.returnKind : 'collection'
+      returnKind:presentation && presentation.returnKind ? presentation.returnKind : 'collection',
+      returnEntrySlug:presentation && presentation.returnEntrySlug ? presentation.returnEntrySlug : null,
+      returnReaderId:presentation && presentation.returnReaderId ? presentation.returnReaderId : null
     });
   }
 
@@ -1694,16 +1698,31 @@
     return TERRAIN_ENTRY_CONTRACT.choices.find(function (choice) { return choice.id === id; }) || null;
   }
 
+  function setActiveEmbeddedSurface(kind, value) {
+    var nextReaderId = kind === 'reader' && byId[value] ? value : null;
+    var nextEntrySlug = kind === 'entry' && entryDocument(value) ? value : null;
+    var nextGroupHomeStage = kind === 'group-home'
+      ? STAGES.find(function (stage) { return String(stage.key) === String(value); })
+      : null;
+    activeReaderId = nextReaderId;
+    activeEntrySlug = nextEntrySlug;
+    activeGroupHomeKey = nextGroupHomeStage ? nextGroupHomeStage.key : null;
+  }
+
+  function clearActiveEmbeddedSurface() {
+    setActiveEmbeddedSurface(null, null);
+  }
+
   function setReaderReturnContext(kind, details) {
     details = details || {};
     var nextKind = kind || activeReaderReturnKind || 'collection';
+    var readerReturnKinds = ['collection', 'curiosity-overview', 'entry', 'group-home', 'reader'];
+    if (readerReturnKinds.indexOf(nextKind) === -1) nextKind = 'collection';
+    if (nextKind === 'entry' && !entryDocument(details.entrySlug)) nextKind = 'collection';
+    if (nextKind === 'reader' && !byId[details.readerId]) nextKind = 'collection';
     activeReaderReturnKind = nextKind;
-    activeReaderReturnEntrySlug = nextKind === 'entry' && entryDocument(details.entrySlug)
-      ? details.entrySlug
-      : null;
-    activeReaderReturnReaderId = nextKind === 'reader' && byId[details.readerId]
-      ? details.readerId
-      : null;
+    activeReaderReturnEntrySlug = nextKind === 'entry' ? details.entrySlug : null;
+    activeReaderReturnReaderId = nextKind === 'reader' ? details.readerId : null;
   }
 
   function clearReaderReturnContext() {
@@ -1713,7 +1732,6 @@
   function updateEntryReaderChrome(slug) {
     var entry = entryDocument(slug);
     if (!entry) return;
-    activeEntrySlug = slug;
     document.getElementById('readerBack').textContent = '← Vex Life';
     document.getElementById('readerTitle').textContent = entry.label;
     document.getElementById('readerMeta').textContent = 'Vex Life · ordered entry';
@@ -1732,11 +1750,9 @@
     options = options || {};
     var entry = entryDocument(slug);
     if (!entry || currentWorld !== 'content' || currentProfile !== 'evolution-v1' || levelIndex !== 0) return;
-    activeReaderId = null;
-    activeGroupHomeKey = null;
+    setActiveEmbeddedSurface('entry', slug);
     clearReaderReturnContext();
     hoveredEvolutionNodeId = null;
-    activeEntrySlug = slug;
     resetBoundaryGesture();
     hideGestureHint();
     evolutionLayer.hidden = true;
@@ -1760,7 +1776,7 @@
       history.back();
       return;
     }
-    activeEntrySlug = null;
+    clearActiveEmbeddedSurface();
     clearReaderReturnContext();
     evolutionReader.hidden = true;
     replaceEvolutionReaderDocument('about:blank');
@@ -1777,13 +1793,13 @@
     if (!doc || !doc.documentElement) return;
     var slug = doc.documentElement.getAttribute('data-vex-entry-document');
     if (!entryDocument(slug)) return;
+    setActiveEmbeddedSurface('entry', slug);
     updateEntryReaderChrome(slug);
     evolutionReaderFrame.title = 'Reading ' + entryDocument(slug).label + ' inside Terrain';
   }
 
   function enterArchivesFromArrival() {
-    activeEntrySlug = null;
-    activeReaderId = null;
+    clearActiveEmbeddedSurface();
     clearReaderReturnContext();
     evolutionReader.hidden = true;
     replaceEvolutionReaderDocument('about:blank');
@@ -1986,9 +2002,7 @@
       entrySlug:options.returnEntrySlug,
       readerId:options.returnReaderId
     });
-    activeEntrySlug = null;
-    activeReaderId = null;
-    activeGroupHomeKey = stage.key;
+    setActiveEmbeddedSurface('group-home', stage.key);
     hoveredEvolutionNodeId = null;
     resetBoundaryGesture();
     hideGestureHint();
@@ -2017,11 +2031,12 @@
 
     var returnKind = options.returnKind
       || (options.historyMode !== 'replace' ? 'collection' : activeReaderReturnKind);
-    setReaderReturnContext(returnKind);
+    setReaderReturnContext(returnKind, {
+      entrySlug:options.returnEntrySlug || activeReaderReturnEntrySlug,
+      readerId:options.returnReaderId || activeReaderReturnReaderId
+    });
 
-    activeEntrySlug = null;
-    activeGroupHomeKey = null;
-    activeReaderId = node.id;
+    setActiveEmbeddedSurface('reader', node.id);
     hoveredEvolutionNodeId = node.id;
     resetBoundaryGesture();
     hideGestureHint();
@@ -2046,8 +2061,7 @@
       history.back();
       return;
     }
-    activeReaderId = null;
-    activeGroupHomeKey = null;
+    clearActiveEmbeddedSurface();
     clearReaderReturnContext();
     resetBoundaryGesture();
     hideGestureHint();
@@ -2180,8 +2194,7 @@
   function hideEvolutionLayer() {
     evolutionLayer.hidden = true;
     evolutionLayer.innerHTML = '';
-    activeReaderId = null;
-    activeGroupHomeKey = null;
+    clearActiveEmbeddedSurface();
     clearReaderReturnContext();
     hoveredEvolutionNodeId = null;
     evolutionReader.hidden = true;
@@ -2559,8 +2572,7 @@
     svg.style.visibility = 'hidden';
     mapWrap.classList.add('evolution-a-active');
     mapWrap.classList.remove('evolution-reader-active', 'evolution-arrival-active');
-    activeReaderId = null;
-    activeGroupHomeKey = null;
+    clearActiveEmbeddedSurface();
     clearReaderReturnContext();
     evolutionReader.hidden = true;
     replaceEvolutionReaderDocument('about:blank');
@@ -3099,9 +3111,7 @@
   function renderEvolutionAArrival() {
     clearWorld();
     svg.style.visibility = 'hidden';
-    activeReaderId = null;
-    activeGroupHomeKey = null;
-    activeEntrySlug = null;
+    clearActiveEmbeddedSurface();
     clearReaderReturnContext();
     hoveredEvolutionNodeId = null;
     evolutionReader.hidden = true;

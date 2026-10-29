@@ -111,6 +111,141 @@
   "common.status.read-aloud-none": {
     "text": "पढ़ने योग्य टेक्स्ट नहीं मिला।"
   },
+  "institution.common.skip.content": {
+    "text": "मुख्य सामग्री पर जाएँ"
+  },
+  "institution.home.entry.support.name": {
+    "text": "Vextreme का समर्थन करें"
+  },
+  "institution.support.routes.intro": {
+    "text": "ये रास्ते ऊपर दिए गए Stripe विकल्पों से अलग हैं। जब तक उनका अपना गंतव्य तैयार और सत्यापित नहीं हो जाता, वे उपलब्ध नहीं रहेंगे।"
+  },
+  "institution.support.route.zelle.body": {
+    "text": "Victor को व्यक्तिगत रूप से अमेरिका के भीतर सीधा हस्तांतरण। यह रास्ता व्यक्तिगत समर्थन के लिए है, लेकिन प्राप्ति विवरण का सार्वजनिक सत्यापन अभी नहीं हुआ है, इसलिए यहाँ कोई कार्रवाई उपलब्ध नहीं है।"
+  },
+  "institution.support.title": {
+    "text": "Vextreme और VexLife का समर्थन करें"
+  },
+  "institution.support.hero.eyebrow": {
+    "text": "समर्थन"
+  },
+  "institution.support.hero.heading": {
+    "text": "इस काम का समर्थन करें।"
+  },
+  "institution.support.hero.lede": {
+    "text": "अगर आप Vextreme और VexLife का समर्थन करना चाहते हैं, तो वह तरीका चुनें जो आपके लिए सही हो। आप योगदान करें या न करें, सार्वजनिक काम समान रूप से उपलब्ध रहेगा।"
+  },
+  "institution.support.routes.heading": {
+    "text": "जुड़ने के अन्य तरीके"
+  },
+  "institution.support.route.zelle.title": {
+    "text": "Victor को सीधे समर्थन दें"
+  },
+  "institution.support.route.state.held": {
+    "text": "विवरण अभी प्रकाशित नहीं"
+  },
+  "institution.support.route.zelle.pending": {
+    "text": "प्राप्ति विवरण अभी यहाँ प्रकाशित नहीं है। इसे प्रकाशित करने के लिए पंजीकृत खाते की पुष्टि, भेजने वाले को दिखाई देने वाले प्राप्तकर्ता नाम की पुष्टि और एक विश्वसनीय छोटा परीक्षण हस्तांतरण पूरा करना आवश्यक है — इनमें से किसी बात का अनुमान यह पृष्ठ नहीं लगा सकता। वर्तमान विवरण के लिए सीधे Victor से पूछें।"
+  },
+  "institution.support.route.disabled-label": {
+    "text": "अभी उपलब्ध नहीं"
+  },
+  "institution.support.route.github.title": {
+    "text": "GitHub के माध्यम से प्रायोजित करें"
+  },
+  "institution.support.route.state.activating": {
+    "text": "सक्रिय किया जा रहा है"
+  },
+  "institution.support.route.github.body": {
+    "text": "GitHub Sponsors के माध्यम से अलग प्रायोजन रास्ता। ऊपर दिए गए Stripe विकल्पों के लिए इसकी आवश्यकता नहीं है।"
+  },
+  "institution.support.route.github.pending": {
+    "text": "अभी खुला नहीं है। GitHub Sponsors स्वीकृत होने और सार्वजनिक गंतव्य सत्यापित होने तक यह रास्ता उपलब्ध नहीं रहेगा।"
+  },
+  "institution.support.route.llc.title": {
+    "text": "Vextreme LLC के साथ काम करें"
+  },
+  "institution.support.route.state.separate": {
+    "text": "अलग रास्ता"
+  },
+  "institution.support.route.llc.body": {
+    "text": "पूरी तरह अलग द्वार: अनुबंध, चालान, डिलीवेरेबल और व्यावसायिक दायित्व Vextreme LLC के माध्यम से चलते हैं। यह एक व्यावसायिक संलग्नता है, प्रायोजन नहीं, और नीचे दिए गए समर्थन के किसी भी अर्थ में इसका कोई हिस्सा देने का वादा नहीं है।"
+  },
+  "institution.support.route.llc.pending": {
+    "text": "व्यावसायिक पूछताछ का गंतव्य अभी चुना नहीं गया है। चुने जाने पर उसे यहाँ बताया जाएगा, और वह ऊपर दिए गए व्यक्तिगत समर्थन रास्तों से दृश्य रूप से अलग रहेगा।"
+  },
+  "institution.support.meanings.heading": {
+    "text": "जो आपके लिए सही हो, चुनें"
+  },
+  "institution.support.meanings.intro": {
+    "text": "राशियाँ अलग हो सकती हैं, सार्वजनिक काम वही है। ये योगदान हैं — सदस्यता, दर्जा, पहुँच का स्तर या अधिकार नहीं।"
+  },
+  "institution.support.meanings.amount-note": {
+    "text": "पहले चार विकल्प मासिक हैं। खुला योगदान एक बार का है और इसमें आप राशि चुन सकते हैं। सभी भुगतान नए टैब में Stripe Checkout खोलते हैं।"
+  },
+  "institution.support.meaning.light.alt": {
+    "text": "अँधेरे में जलती हुई एक अकेली मोमबत्ती।"
+  },
+  "institution.support.meaning.light.name": {
+    "text": "प्रकाश — छोटा, नियमित योगदान"
+  },
+  "institution.support.meaning.light.amount": {
+    "text": "$7 / माह"
+  },
+  "institution.support.meaning.light.body": {
+    "text": "सार्वजनिक काम के लिए छोटा आवर्ती योगदान।"
+  },
+  "institution.support.meaning.alignment.alt": {
+    "text": "दो तंतु बुनकर एक लगातार चोटी बनाते हैं।"
+  },
+  "institution.support.meaning.alignment.name": {
+    "text": "संरेखण — निरंतर समर्थन"
+  },
+  "institution.support.meaning.alignment.amount": {
+    "text": "$33 / माह"
+  },
+  "institution.support.meaning.alignment.body": {
+    "text": "लगातार विकास के लिए स्थिर आवर्ती समर्थन।"
+  },
+  "institution.support.meaning.abundance.alt": {
+    "text": "एक चौड़ा पेड़ जिसकी छतरी में आकृतियाँ और फल हैं।"
+  },
+  "institution.support.meaning.abundance.name": {
+    "text": "समृद्धि — बढ़ी हुई क्षमता"
+  },
+  "institution.support.meaning.abundance.amount": {
+    "text": "$77 / माह"
+  },
+  "institution.support.meaning.abundance.body": {
+    "text": "दस्तावेज़ीकरण, स्थानीयकरण, परीक्षण, सुगम्यता और विकास के लिए अधिक गुंजाइश।"
+  },
+  "institution.support.meaning.foundation.alt": {
+    "text": "एक के ऊपर एक रखे ब्लॉक एक स्थिर आधार बनाते हैं जो ऊपर जाते हुए संकरा होता है।"
+  },
+  "institution.support.meaning.foundation.name": {
+    "text": "आधार — दीर्घकालिक अवसंरचना"
+  },
+  "institution.support.meaning.foundation.amount": {
+    "text": "$333 / माह"
+  },
+  "institution.support.meaning.foundation.body": {
+    "text": "टिकाऊ रिलीज़, अवसंरचना, मॉडल तक पहुँच और स्वतंत्र समीक्षा के लिए महत्वपूर्ण समर्थन।"
+  },
+  "institution.support.meaning.offering.alt": {
+    "text": "ऊपर की ओर खुली हथेली गिरती पानी की बूँदों को ग्रहण कर रही है।"
+  },
+  "institution.support.meaning.offering.name": {
+    "text": "खुला योगदान — अपनी राशि चुनें"
+  },
+  "institution.support.meaning.offering.amount": {
+    "text": "आपके द्वारा चुनी गई राशि"
+  },
+  "institution.support.meaning.offering.body": {
+    "text": "आपको जो राशि उचित लगे, उसमें एक बार का योगदान।"
+  },
+  "institution.support.boundaries.purchase": {
+    "text": "समर्थन स्वैच्छिक है। इससे सेवाएँ, पहुँच, स्वामित्व, प्राथमिकता या काम पर अधिकार नहीं खरीदा जाता।"
+  },
   "pages.clarity-on-christianity.text-f123590cbce5.text": {
     "text": "ईश्वर के साथ संवाद"
   },

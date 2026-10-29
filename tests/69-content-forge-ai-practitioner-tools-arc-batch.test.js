@@ -74,14 +74,14 @@ test('Content Forge AI Practitioner Tools completes the exact canonical arc from
   const proposalByRef=new Map(proposal.records.map(record=>[record.recordRef,record]));
   const lineageById=new Map((proposal.lineages?.canonicalIdentity||[]).map(family=>[family.canonicalIdentity,family]));
   for(const member of formation.members){
-    const node=nodesBySlug.get(member.slug); assert.ok(node,member.slug+': canonical slot'); assert.equal(node.id,member.canonicalNodeId); assert.equal(node.title,member.title); assert.deepEqual(node.arcKeys,member.arcKeys);
+    const node=nodesBySlug.get(member.slug); assert.ok(node,member.slug+': canonical slot'); assert.equal(node.id,member.canonicalNodeId); assert.equal(node.title,member.title); assert.equal(projector.canonicalNodeCompatible(node,member),true,member.slug+': current node remains compatible with historical formation plus successor chronology');
     const record=proposalByRef.get(member.proposalRecordRef); assert.ok(record,member.slug+': proposal record'); assert.equal(record.destination.exactCanonicalNodeMatchOnCurrentMain,true); assert.equal(record.classification.requiresJudgment,false); assert.equal(record.source.route,member.sourceRoute); assert.equal(record.source.pageId,member.pageId);
     if(member.canonicalNodeId!==null){ const family=lineageById.get('id:'+member.canonicalNodeId); assert.ok(!family || family.reviewRequired!==true,member.slug+': no unresolved canonical lineage family'); }
     const source=fs.readFileSync(path.join(ROOT,member.sourcePath)); assert.equal(source.length,member.repositoryBytes,member.slug+': exact source bytes'); assert.equal(projector.gitBlobSha(source),member.sourceGitBlob,member.slug+': exact Git blob'); assert.equal(projector.sha256(source),member.preservedHtmlSha256,member.slug+': exact SHA-256');
     assert.ok(textLeaves(expectedAuthoredMain(parse5.parse(source.toString('utf8')))).length>0,member.slug+': authored text present');
   }
 
-  const first=projector.main({root:ROOT,silent:true,formationRel:FORMATION_REL});
+  const first=projector.main({root:ROOT,silent:true,dryRun:true,formationRel:FORMATION_REL});
   assert.deepEqual(first.accounting,{canonicalMembers:11,alreadyComplete:2,projected:9,held:0,complete:true});
   assert.deepEqual(first.members.map(item=>item.slug),canonical);
   assert.deepEqual(first.members.map(item=>item.disposition),canonical.map(slug=>formation.alreadyComplete.some(item=>item.slug===slug)?'ALREADY_COMPLETE':'PROJECTED'));
@@ -89,7 +89,7 @@ test('Content Forge AI Practitioner Tools completes the exact canonical arc from
 
   const generated=formation.members.flatMap(member=>[path.join(ROOT,'pages',member.slug+'.html'),path.join(ROOT,'data','strings','source','pages',member.slug+'.json')]);
   const firstHashes=Object.fromEntries([...generated,VIEWMODELS].map(file=>[file,hash(file)]));
-  const second=projector.main({root:ROOT,silent:true,formationRel:FORMATION_REL}); const secondHashes=Object.fromEntries([...generated,VIEWMODELS].map(file=>[file,hash(file)]));
+  const second=projector.main({root:ROOT,silent:true,dryRun:true,formationRel:FORMATION_REL}); const secondHashes=Object.fromEntries([...generated,VIEWMODELS].map(file=>[file,hash(file)]));
   assert.deepEqual(second.accounting,first.accounting); assert.deepEqual(second.members.map(item=>item.slug),canonical); assert.deepEqual(second.changedPaths,[]); assert.deepEqual(secondHashes,firstHashes); assert.deepEqual(Object.fromEntries(stableAlready.map(file=>[file,pathState(file)])),stableAlreadyState);
 
   const viewmodels=json(VIEWMODELS);

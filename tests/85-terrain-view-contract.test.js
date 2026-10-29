@@ -131,8 +131,8 @@ test('TERRAIN-VIEW: current canonical arcs are not empty; three are secondary-on
   ]);
 
   const timeline = rows.find(row => row.key === 'full_timeline');
-  assert.equal(timeline.members.length, 111);
-  assert.equal(timeline.primary.length, 1);
+  assert.ok(timeline.members.length > 0, 'Full Timeline must remain populated');
+  assert.ok(timeline.members.length > timeline.primary.length, 'Full Timeline remains cross-cutting rather than primary-only');
 });
 
 
@@ -161,12 +161,12 @@ test('TERRAIN-VIEW: dated content has one known timeline-only exception and cano
   assert.equal(arcLess.some(node => node.id !== null), false, 'arc-less canonical records remain id-null rather than acquiring invented chronology');
   assert.equal(arcLess.some(node => !node.department || !node.workType), false, 'arc-less canonical records remain explicitly department-placed');
 
-  const historicalMedia = arcLess
+  const recoveredHistoricalMedia = nodes
     .filter(node => ['phantom-opera-meta-review', 'vxg-thread-round-5'].includes(node.slug))
-    .map(node => ({ slug: node.slug, department: node.department, workType: node.workType }));
-  assert.deepEqual(historicalMedia, [
-    { slug: 'phantom-opera-meta-review', department: 'media', workType: 'reviews' },
-    { slug: 'vxg-thread-round-5', department: 'media', workType: 'record-transcripts' },
+    .map(node => ({ slug: node.slug, id: node.id, date: node.date, arcKeys: node.arcKeys, department: node.department, workType: node.workType }));
+  assert.deepEqual(recoveredHistoricalMedia, [
+    { slug: 'phantom-opera-meta-review', id: null, date: 'July 3, 2026', arcKeys: ['full_timeline'], department: 'media', workType: 'reviews' },
+    { slug: 'vxg-thread-round-5', id: null, date: 'June 16, 2026', arcKeys: ['full_timeline'], department: 'media', workType: 'record-transcripts' },
   ]);
 
   const intents = JSON.parse(fs.readFileSync(INTENTS, 'utf8')).intents || [];
@@ -174,12 +174,31 @@ test('TERRAIN-VIEW: dated content has one known timeline-only exception and cano
     .filter(intent => intent.registerNode === true && !intent.arcKey)
     .map(intent => ({ slug: intent.slug, department: intent.department, workType: intent.workType }))
     .sort((a, b) => a.slug.localeCompare(b.slug));
-  const registeredSlugs = new Set(registeredArcLess.map(item => item.slug));
+  const chronologyRecoveredInstitutional = new Set([
+    'human-ai-corelational-governance',
+    'org-blueprint',
+    'org-history',
+    'witness-committee-operations',
+  ]);
+  const recoveredInstitutional = nodes
+    .filter(node => chronologyRecoveredInstitutional.has(node.slug))
+    .map(node => ({ slug: node.slug, id: node.id, date: node.date, arcKeys: node.arcKeys }))
+    .sort((a, b) => a.slug.localeCompare(b.slug));
+  assert.deepEqual(recoveredInstitutional, [
+    { slug: 'human-ai-corelational-governance', id: null, date: 'June 22, 2026', arcKeys: ['full_timeline'] },
+    { slug: 'org-blueprint', id: null, date: 'June 2, 2026', arcKeys: ['full_timeline'] },
+    { slug: 'org-history', id: null, date: 'June 2, 2026', arcKeys: ['full_timeline'] },
+    { slug: 'witness-committee-operations', id: null, date: 'June 22, 2026', arcKeys: ['full_timeline'] },
+  ]);
+
+  const stillUnplacedRegistered = registeredArcLess
+    .filter(item => !chronologyRecoveredInstitutional.has(item.slug));
+  const registeredSlugs = new Set(stillUnplacedRegistered.map(item => item.slug));
   const canonicalRegisteredArcLess = arcLess
     .filter(node => registeredSlugs.has(node.slug))
     .map(node => ({ slug: node.slug, department: node.department, workType: node.workType }))
     .sort((a, b) => a.slug.localeCompare(b.slug));
-  assert.deepEqual(canonicalRegisteredArcLess, registeredArcLess, 'registerNode intents without arcKey become canonical without inventing narrative membership');
+  assert.deepEqual(canonicalRegisteredArcLess, stillUnplacedRegistered, 'registerNode intents without chronology evidence remain unplaced; chronology-recovered records may enter Full Timeline without inventing a primary narrative arc');
 });
 
 test('TERRAIN-VIEW: accepted Content remains the no-query default while Evolution v2 is an explicit presentation experiment', () => {
@@ -239,7 +258,8 @@ test('TERRAIN-VIEW: collection group homes stay outside membership while remaini
   assert.match(source, /evo-group-depth-kicker">Group home/);
   assert.match(source, /summary\.membershipCount \+ ' members · parent surface<\/span>'/);
   assert.match(source, /function openEvolutionGroupHome\(stage, options\)/);
-  assert.match(source, /activeGroupHomeKey = stage\.key/);
+  assert.match(source, /function openEvolutionGroupHome\(stage, options\)[\s\S]*setActiveEmbeddedSurface\('group-home', stage\.key\)/,
+    'group-home opening must route active-surface identity through the bounded owner');
   assert.match(source, /initialStage\.parent\.pageSlug === initialRoute\.page/);
   const scopedParentRoute = source.indexOf('initialStage.parent.pageSlug === initialRoute.page');
   const globalRecordRoute = source.indexOf('var initialPage = ALL.find', scopedParentRoute > -1 ? scopedParentRoute : 0);

@@ -533,6 +533,10 @@ test('TERRAIN-JOURNEY: reader history preserves the real return surface instead 
   assert.match(source, /openContentTilePeek\(overviewStageIdx, \{[\s\S]*step:Number\.isInteger\(presentation\.step\)[\s\S]*manual:presentation\.manual === true/);
   assert.match(source, /returnKind:presentation && presentation\.returnKind \? presentation\.returnKind : 'collection'/,
     'browser Forward restores the reader with its original return contract');
+  assert.match(source, /openEvolutionReader\(node\.id, \{[\s\S]*writeUrl:false,[\s\S]*returnKind:presentation && presentation\.returnKind \? presentation\.returnKind : 'collection',[\s\S]*returnEntrySlug:presentation && presentation\.returnEntrySlug \? presentation\.returnEntrySlug : null,[\s\S]*returnReaderId:presentation && presentation\.returnReaderId \? presentation\.returnReaderId : null/,
+    'browser Forward must restore the coordinate paired with an entry/reader return kind');
+  assert.match(source, /setReaderReturnContext\(returnKind, \{[\s\S]*entrySlug:options\.returnEntrySlug \|\| activeReaderReturnEntrySlug,[\s\S]*readerId:options\.returnReaderId \|\| activeReaderReturnReaderId[\s\S]*\}\)/,
+    'reader replacement traversal must carry the existing return coordinate into the bounded mutation owner');
 });
 
 
@@ -605,6 +609,12 @@ test('TERRAIN-JOURNEY: Inspect projects relationship and causal reason as separa
   assert.doesNotMatch(projectionSource, /commitSemanticState|history\.(?:pushState|replaceState|back|go)|openEvolution|closeEvolution|enterLevel/,
     'Inspect remains a projection and cannot become a navigation or semantic-state owner');
 
+  const panelLayer = source.match(/\.panel\{[^}]*z-index:(\d+);/);
+  const readerLayer = source.match(/\.evolution-reader\{[^}]*z-index:(\d+);/);
+  assert.ok(panelLayer && readerLayer, 'Journey Inspect and embedded reader layers must remain explicit');
+  assert.ok(Number(panelLayer[1]) > Number(readerLayer[1]),
+    'Journey Inspect must remain perceivable above an embedded reader');
+
   const make = new Function('journeySnapshot', 'esc', [
     projectionSource,
     'return journeyHtml();'
@@ -639,7 +649,6 @@ test('TERRAIN-JOURNEY: reader return context has one bounded mutation owner', ()
   assert.match(source, /function setReaderReturnContext\(kind, details\)/);
   assert.match(source, /function clearReaderReturnContext\(\) \{\s*setReaderReturnContext\('collection'\);\s*\}/);
   assert.match(source, /var returnKind = options\.returnKind[\s\S]*setReaderReturnContext\(returnKind, \{[\s\S]*entrySlug:options\.returnEntrySlug,[\s\S]*readerId:options\.returnReaderId/);
-  assert.match(source, /var returnKind = options\.returnKind[\s\S]*setReaderReturnContext\(returnKind\);/);
 
   const assignmentCount = (name) => {
     const expression = new RegExp('^\\s*(?:var\\s+)?' + name + '\\s*=(?!=)', 'gm');
@@ -677,18 +686,95 @@ test('TERRAIN-JOURNEY: reader return context has one bounded mutation owner', ()
   assert.deepEqual(context.read(), { kind:'entry', entrySlug:'receive-god', readerId:null });
 
   context.set('entry', { entrySlug:'missing' });
-  assert.deepEqual(context.read(), { kind:'entry', entrySlug:null, readerId:null },
-    'invalid entry coordinates fail closed without changing the requested return kind');
+  assert.deepEqual(context.read(), { kind:'collection', entrySlug:null, readerId:null },
+    'invalid entry coordinates fail the whole return context closed to collection');
 
   context.set('reader', { readerId:'record-a', entrySlug:'receive-god' });
   assert.deepEqual(context.read(), { kind:'reader', entrySlug:null, readerId:'record-a' });
 
   context.set('reader', { readerId:'missing' });
-  assert.deepEqual(context.read(), { kind:'reader', entrySlug:null, readerId:null },
-    'invalid reader coordinates fail closed without inventing a return target');
+  assert.deepEqual(context.read(), { kind:'collection', entrySlug:null, readerId:null },
+    'invalid reader coordinates fail the whole return context closed to collection');
+
+  context.set('curiosity-overview');
+  assert.deepEqual(context.read(), { kind:'curiosity-overview', entrySlug:null, readerId:null });
+
+  context.set('group-home');
+  assert.deepEqual(context.read(), { kind:'group-home', entrySlug:null, readerId:null });
+
+  context.set('stale-history-kind', { entrySlug:'receive-god', readerId:'record-a' });
+  assert.deepEqual(context.read(), { kind:'collection', entrySlug:null, readerId:null },
+    'unknown reader return vocabulary fails closed to the neutral collection return');
 
   context.clear();
   assert.deepEqual(context.read(), { kind:'collection', entrySlug:null, readerId:null });
 });
+
+
+test('TERRAIN-JOURNEY: active embedded surface has one mutually-exclusive mutation owner', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
+
+  assert.match(source, /function setActiveEmbeddedSurface\(kind, value\)/);
+  assert.match(source, /function clearActiveEmbeddedSurface\(\) \{\s*setActiveEmbeddedSurface\(null, null\);\s*\}/);
+
+  const assignmentCount = (name) => {
+    const expression = new RegExp('^\\s*(?:var\\s+)?' + name + '\\s*=(?!=)', 'gm');
+    return (source.match(expression) || []).length;
+  };
+  assert.equal(assignmentCount('activeReaderId'), 2,
+    'reader surface identity may be initialized once and mutated only inside setActiveEmbeddedSurface');
+  assert.equal(assignmentCount('activeEntrySlug'), 2,
+    'entry surface identity may be initialized once and mutated only inside setActiveEmbeddedSurface');
+  assert.equal(assignmentCount('activeGroupHomeKey'), 2,
+    'group-home surface identity may be initialized once and mutated only inside setActiveEmbeddedSurface');
+
+  const helperStart = source.indexOf('function setActiveEmbeddedSurface(kind, value)');
+  const helperEnd = source.indexOf('function setReaderReturnContext', helperStart);
+  assert.ok(helperStart > 0 && helperEnd > helperStart, 'active surface helper block must remain extractable');
+  const helperSource = source.slice(helperStart, helperEnd);
+  const build = new Function('entryDocument', 'byId', 'STAGES', [
+    'var activeReaderId = null;',
+    'var activeEntrySlug = null;',
+    'var activeGroupHomeKey = null;',
+    helperSource,
+    'return {',
+    '  set:setActiveEmbeddedSurface,',
+    '  clear:clearActiveEmbeddedSurface,',
+    '  read:function(){ return { readerId:activeReaderId, entrySlug:activeEntrySlug, groupHomeKey:activeGroupHomeKey }; }',
+    '};'
+  ].join('\n'));
+
+  const surface = build(
+    (slug) => slug === 'receive-god' ? { label:'Receive God' } : null,
+    { 'record-a':{ id:'record-a' } },
+    [{ key:'direct_contact' }]
+  );
+
+  surface.set('entry', 'receive-god');
+  assert.deepEqual(surface.read(), { readerId:null, entrySlug:'receive-god', groupHomeKey:null });
+
+  surface.set('reader', 'record-a');
+  assert.deepEqual(surface.read(), { readerId:'record-a', entrySlug:null, groupHomeKey:null });
+
+  surface.set('group-home', 'direct_contact');
+  assert.deepEqual(surface.read(), { readerId:null, entrySlug:null, groupHomeKey:'direct_contact' });
+
+  surface.set('entry', 'missing');
+  assert.deepEqual(surface.read(), { readerId:null, entrySlug:null, groupHomeKey:null },
+    'invalid active-surface identity fails closed to no embedded surface');
+
+  surface.clear();
+  assert.deepEqual(surface.read(), { readerId:null, entrySlug:null, groupHomeKey:null });
+
+  const hideStart = source.indexOf('function hideEvolutionLayer()');
+  const hideEnd = source.indexOf('function scheduleTerrainIdle', hideStart);
+  const hideSource = source.slice(hideStart, hideEnd);
+  assert.match(hideSource, /clearActiveEmbeddedSurface\(\)/,
+    'generic Evolution teardown must clear entry as well as reader/group-home state');
+
+  assert.match(source, /function syncEntryReaderFromDocument\(\)[\s\S]*setActiveEmbeddedSurface\('entry', slug\)/,
+    'embedded entry-document synchronization must update active identity through the bounded owner');
+});
+
 
 // [VXG RealForever]

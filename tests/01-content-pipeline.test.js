@@ -179,6 +179,25 @@ test('INVARIANT: arcKeys in slugMap are sorted by priority — the browser rende
   assert.deepEqual(index.slugMap['alpha'].arcKeys, ['arc_a', 'arc_b']);
 });
 
+test('INVARIANT: chronology-only id:null backfills still enter chronological arcs without becoming catalog-latest identities', () => {
+  const localNodes = [
+    { id: 10, slug: 'existing', title: 'Existing', date: 'June 1, 2026', arcKeys: ['full_timeline'] },
+    { id: null, slug: 'historical-backfill', title: 'Historical Backfill', date: 'June 2, 2026', arcKeys: ['full_timeline'] },
+  ];
+  const localArcs = {
+    full_timeline: {
+      priority: 99,
+      renderMode: 'position',
+      parent: { title: 'Full Timeline', url: '/archives' },
+      sections: [{ label: 'June 2026', order: 'chronological', dateRange: { from: '2026-06-01', to: '2026-06-30' } }],
+    },
+  };
+  const index = buildFixtureIndex(localNodes, localArcs);
+  assert.deepEqual(index.arcMap.full_timeline[0].slugs, ['existing', 'historical-backfill']);
+  assert.equal(index.slugMap['historical-backfill'].id, null, 'chronology admission must not invent a catalog identity');
+  assert.equal(index.slugMap['historical-backfill'].dateISO, '2026-06-02');
+});
+
 test('INVARIANT: chronological sections are date-ascending — wrong order inverts prev/next links for every page in the arc', () => {
   const index = buildFixtureIndex();
   assert.deepEqual(index.arcMap['arc_a'][0].slugs, ['alpha', 'beta', 'gamma']);
@@ -290,6 +309,22 @@ test('EDGE: dateRange filter restricts chronological sections to only nodes with
   const arcMap  = buildArcMap(localNodes, localArcs, slugMap);
   assert.deepEqual(arcMap['arc_ranged'][0].slugs, ['alpha', 'beta'], 'January window: only Jan nodes');
   assert.deepEqual(arcMap['arc_ranged'][1].slugs, ['gamma'],         'February window: only Feb nodes');
+});
+
+test('INVARIANT: Full Timeline chronological date ranges are contiguous with no silent calendar gaps', () => {
+  const fullTimeline = require('../data/arcs-v2.json').full_timeline;
+  const ranged = fullTimeline.sections.filter(section => section.order === 'chronological' && section.dateRange);
+  for (let index = 1; index < ranged.length; index += 1) {
+    const previous = ranged[index - 1].dateRange;
+    const current = ranged[index].dateRange;
+    const nextDay = new Date(previous.to + 'T00:00:00Z');
+    nextDay.setUTCDate(nextDay.getUTCDate() + 1);
+    assert.equal(
+      current.from,
+      nextDay.toISOString().slice(0, 10),
+      fullTimeline.sections[index].label + ': starts after a gap or overlaps the prior Full Timeline section'
+    );
+  }
 });
 
 test('EDGE: null-date nodes are excluded from dateRange sections — null cannot be compared to a date boundary without crashing or silently matching', () => {

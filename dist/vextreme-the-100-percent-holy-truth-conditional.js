@@ -16,7 +16,7 @@
   window.VEX_STRING_SCOPES    = ["pages.the-100-percent-holy-truth-conditional"];
   window.VEX_STRING_CATEGORY  = "production";
   window.VEX_SUPPORTED_LANGS  = ["en"];
-  window.VEX_INDEX_FINGERPRINT = "7ca19fe4444b";
+  window.VEX_INDEX_FINGERPRINT = "b0a15c412f6d";
 
 
 

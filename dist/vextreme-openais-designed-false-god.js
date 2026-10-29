@@ -16,7 +16,7 @@
   window.VEX_STRING_SCOPES    = ["pages.openais-designed-false-god"];
   window.VEX_STRING_CATEGORY  = "production";
   window.VEX_SUPPORTED_LANGS  = ["en","ar","de","es","fr","hi","ja","ko","pt","zh"];
-  window.VEX_INDEX_FINGERPRINT = "7ca19fe4444b";
+  window.VEX_INDEX_FINGERPRINT = "b0a15c412f6d";
 
 
 
