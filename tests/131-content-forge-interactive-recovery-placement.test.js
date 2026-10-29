@@ -109,7 +109,7 @@ test('Final recovery placement preserves interactive tools and project semantics
     assert.equal(projector.gitBlobSha(source),member.sourceGitBlob);
     assert.equal(hash(path.join(ROOT,member.sourcePath)),member.preservedHtmlSha256);
   }
-  const projected=projector.main({root:ROOT,silent:true,formationRel:WITNESS_REL});
+  const projected=projector.main({root:ROOT,silent:true,dryRun:true,formationRel:WITNESS_REL});
   assert.deepEqual(projected.accounting,{canonicalMembers:2,alreadyComplete:0,projected:2,held:0,complete:true});
   const currentPage=fs.readFileSync(path.join(ROOT,'pages','current-draft.html'),'utf8');
   assert.ok(inlineScriptCount(currentPage)>=1,'Witness working-draft inline behavior preserved');
@@ -119,7 +119,7 @@ test('Final recovery placement preserves interactive tools and project semantics
     path.join(ROOT,'data','strings','source','pages',member.slug+'.json')
   ]);
   const firstHashes=Object.fromEntries([...generated,VIEWMODELS].map(file=>[file,hash(file)]));
-  const projectedAgain=projector.main({root:ROOT,silent:true,formationRel:WITNESS_REL});
+  const projectedAgain=projector.main({root:ROOT,silent:true,dryRun:true,formationRel:WITNESS_REL});
   assert.deepEqual(projectedAgain.changedPaths,[]);
   assert.deepEqual(Object.fromEntries([...generated,VIEWMODELS].map(file=>[file,hash(file)])),firstHashes);
 

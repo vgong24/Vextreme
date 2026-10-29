@@ -128,7 +128,7 @@ test('Content Forge convos_with_god arc batch is exact, deterministic, and fully
     'historical formation membership/order remains intact inside the current growing arc',
   );
 
-  const first = projector.main({ root: ROOT, silent: true });
+  const first = projector.main({ root: ROOT, silent: true, dryRun: true });
   assert.deepEqual(first.accounting, {
     canonicalMembers: 12,
     alreadyComplete: 2,
@@ -147,7 +147,7 @@ test('Content Forge convos_with_god arc batch is exact, deterministic, and fully
     path.join(ROOT, 'data', 'strings', 'source', 'pages', `${member.slug}.json`),
   ]);
   const firstHashes = Object.fromEntries([...generated, VIEWMODELS].map(file => [file, hash(file)]));
-  const second = projector.main({ root: ROOT, silent: true });
+  const second = projector.main({ root: ROOT, silent: true, dryRun: true });
   const secondHashes = Object.fromEntries([...generated, VIEWMODELS].map(file => [file, hash(file)]));
   assert.deepEqual(second.accounting, first.accounting);
   assert.deepEqual(second.members, first.members);

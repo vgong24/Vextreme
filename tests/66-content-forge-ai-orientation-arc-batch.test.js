@@ -136,7 +136,7 @@ test('Content Forge AI Orientation arc completes from exact preserved sources wi
     assert.equal(findAll(selected, current => current.tagName === 'h1').length, 1, member.slug + ': exactly one authored H1');
   }
 
-  const first = projector.main({ root: ROOT, silent: true, formationRel: FORMATION_REL });
+  const first = projector.main({ root: ROOT, silent: true, dryRun: true, formationRel: FORMATION_REL });
   assert.deepEqual(first.accounting, { canonicalMembers: 8, alreadyComplete: 5, projected: 3, held: 0, complete: true });
   assert.deepEqual(first.members.map(item => item.slug), canonical);
   assert.deepEqual(first.members.map(item => item.disposition), [
@@ -156,7 +156,7 @@ test('Content Forge AI Orientation arc completes from exact preserved sources wi
     path.join(ROOT, 'data', 'strings', 'source', 'pages', member.slug + '.json'),
   ]);
   const firstHashes = Object.fromEntries([...generated, VIEWMODELS].map(file => [file, hash(file)]));
-  const second = projector.main({ root: ROOT, silent: true, formationRel: FORMATION_REL });
+  const second = projector.main({ root: ROOT, silent: true, dryRun: true, formationRel: FORMATION_REL });
   const secondHashes = Object.fromEntries([...generated, VIEWMODELS].map(file => [file, hash(file)]));
 
   assert.deepEqual(second.accounting, first.accounting);
