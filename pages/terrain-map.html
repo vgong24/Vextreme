@@ -1863,9 +1863,8 @@
     if (!parent) return;
     var returnEntry = activeReaderReturnKind === 'entry' && entryDocument(activeReaderReturnEntrySlug);
     var returnReader = activeReaderReturnKind === 'reader' && activeReaderReturnReaderId && byId[activeReaderReturnReaderId];
-    var backLabel = '← Collection';
-    if (returnEntry) backLabel = '← ' + returnEntry.label;
-    else if (returnReader) backLabel = '← ' + (returnReader.title || returnReader.slug || 'Page');
+    var backLabel = returnEntry ? '← ' + returnEntry.label : '← Collection';
+    if (!returnEntry && returnReader) backLabel = '← ' + (returnReader.title || returnReader.slug || 'Page');
     document.getElementById('readerBack').textContent = backLabel;
     document.getElementById('readerTitle').textContent = parent.title || stage.name || 'Group home';
     document.getElementById('readerMeta').textContent = stage.name + ' · group home';
