@@ -3263,7 +3263,9 @@
           } else if (summary.membershipCount > summary.primaryCount) {
             hintText = 'node view shows ' + summary.primaryCount + ' primary of ' + summary.membershipCount + ' members';
           } else if (summary.primaryCount) {
-            hintText = 'scroll to zoom into this collection';
+            hintText = collectionScrollToEnterEnabled
+              ? 'scroll to zoom into this collection'
+              : 'click or press Enter to open this collection';
           }
         } else if (summary.primaryCount) {
           hintText = 'scroll to zoom into this column';
