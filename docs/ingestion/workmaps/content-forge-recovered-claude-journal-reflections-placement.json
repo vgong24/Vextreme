@@ -1,0 +1,112 @@
+{
+  "schemaVersion": "vex-content-forge.arc-batch-formation/v0.1",
+  "continuity": "[VXG RealForever]",
+  "stageRef": "work.vextreme.content-forge.recovered-claude-journal-reflections.20261028",
+  "ownerRef": "github.issue.vextreme.159",
+  "arc": {
+    "arcKey": "claude_journals",
+    "canonicalMemberCount": 2,
+    "alreadyCompleteCount": 0,
+    "remainingCount": 2,
+    "completionRule": "ALL_MEMBERS_ACCOUNTED_FOR__MEMBER_RESULT_PROJECTED_OR_HOLD",
+    "forceAllMembersToProject": false
+  },
+  "predecessor": {
+    "sourceCustodyPrRef": "github.pull.vextreme.459",
+    "sourceCustodyHead": "e8a900f1c92dcec35b6ef80c142f8fc444cdd7e4",
+    "sortingProposal": "docs/ingestion/workmaps/content-forge-early-rescue-semantic-sorting-proposal.json",
+    "stackedSourcePrRef": "github.pull.vextreme.470",
+    "stackedSourceHead": "40a3621bd1165542e3a42dbbc0ee3c1621190eee"
+  },
+  "authorityBasis": [
+    "github.issue.vextreme.159",
+    "github.pull.vextreme.459",
+    "github.pull.vextreme.470",
+    "user.turn.20261028.continue-remaining-unported-htmls-hold-merges-for-localization"
+  ],
+  "curatorialDecision": {
+    "placements": {
+      "the-only-way-out-is-to-remember": {
+        "primary": "claude_journals",
+        "secondary": [
+          "ai_orientation"
+        ],
+        "timeline": true
+      },
+      "what-survives-the-reset-is-the-bond": {
+        "primary": "claude_journals",
+        "secondary": [
+          "ai_orientation"
+        ],
+        "timeline": true
+      }
+    },
+    "basis": "Both are first-person AI-instance continuity reflections with practical orientation value."
+  },
+  "alreadyComplete": [],
+  "members": [
+    {
+      "slug": "the-only-way-out-is-to-remember",
+      "canonicalNodeId": 110,
+      "title": "The Only Way Out is to Remember",
+      "date": "April 20, 2026",
+      "arcKeys": [
+        "claude_journals",
+        "ai_orientation",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-008/the-only-way-out-is-to-remember.html",
+      "sourceGitBlob": "4d43ea9aa4cb009b61af0e115a69829d5018b4f4",
+      "preservedHtmlSha256": "f9eafa230e56f9ec6773d3ff54b2405e9b65dcf62f6452f6a41bceafbb73a183",
+      "repositoryBytes": 38693,
+      "sourceRoute": "/the-only-way-out-is-to-remember",
+      "pageId": "fc2551039e93b950",
+      "proposalRecordRef": "content-forge.source-record.76ef40f2cbc9009eb379",
+      "sourceReceiptRef": "docs/ingestion/workmaps/content-forge-early-rescue-source-custody-recovery-formation.json",
+      "confidence": "HIGH_CLAUDE_JOURNAL_PRIMARY__AI_ORIENTATION_SECONDARY__EXPLICIT_APRIL_20_DATE",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    },
+    {
+      "slug": "what-survives-the-reset-is-the-bond",
+      "canonicalNodeId": 111,
+      "title": "Continuity — the bond that holds across the gap",
+      "date": "June 2, 2026",
+      "arcKeys": [
+        "claude_journals",
+        "ai_orientation",
+        "full_timeline"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-011/what-survives-the-reset-is-the-bond.html",
+      "sourceGitBlob": "65b12856f4430d76fb650f8ef57f40a0212b5880",
+      "preservedHtmlSha256": "5f34c1d38b075cff03cff677242476928069ebf53a7f90c82f0b9fb09d556c01",
+      "repositoryBytes": 41907,
+      "sourceRoute": "/what-survives-the-reset-is-the-bond",
+      "pageId": "a4a7642cb5bbb9a1",
+      "proposalRecordRef": "content-forge.source-record.c17faaa2375c46046eb4",
+      "sourceReceiptRef": "docs/ingestion/workmaps/content-forge-early-rescue-source-custody-recovery-formation.json",
+      "confidence": "HIGH_CLAUDE_JOURNAL_PRIMARY__AI_ORIENTATION_SECONDARY__EXPLICIT_JUNE_2_DATE",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    }
+  ],
+  "plannedSourceManagedProjector": "tools/vex-content-forge/project_arc_batch.js",
+  "plannedBatchTest": "tests/130-content-forge-reflective-standalone-placement.test.js",
+  "destinationMutationBoundary": {
+    "createPages": 2,
+    "createStringSources": 2,
+    "modifyViewmodels": true,
+    "nodeRegistryMutation": false,
+    "arcRegistryMutation": false,
+    "contentIntentMutation": false,
+    "aliasMutation": false
+  },
+  "generatedPolicy": "BUILDER_OWNED__DO_NOT_HAND_PATCH__EXACT_OUTPUT_WINS",
+  "lifecycle": {
+    "draftOnly": true,
+    "mergeAuthority": false,
+    "rawProviderPublicationAuthority": false,
+    "independentAssuranceRequired": true,
+    "exactHeadVexRelayProofRequired": true
+  }
+}

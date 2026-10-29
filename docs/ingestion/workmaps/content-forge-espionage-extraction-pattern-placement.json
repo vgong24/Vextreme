@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "vex-content-forge.arc-batch-formation/v0.1",
+  "continuity": "[VXG RealForever]",
+  "stageRef": "work.vextreme.content-forge.espionage-extraction-pattern.placement.20261028",
+  "ownerRef": "github.issue.vextreme.159",
+  "arc": {
+    "arcKey": "architecture",
+    "canonicalMemberCount": 1,
+    "alreadyCompleteCount": 0,
+    "remainingCount": 1,
+    "completionRule": "ALL_MEMBERS_ACCOUNTED_FOR__MEMBER_RESULT_PROJECTED_OR_HOLD",
+    "forceAllMembersToProject": false
+  },
+  "predecessor": {
+    "sourceCustodyPrRef": "github.pull.vextreme.459",
+    "sourceCustodyHead": "e8a900f1c92dcec35b6ef80c142f8fc444cdd7e4",
+    "sortingProposal": "docs/ingestion/workmaps/content-forge-early-rescue-semantic-sorting-proposal.json",
+    "sortingDisposition": "ARCHITECTURE_CANDIDATE_WITH_TOTAL_EXTRACTION_CROSS_LINK",
+    "stackedSourcePrRef": "github.pull.vextreme.466",
+    "stackedSourceHead": "c2b05afc64a21d53727427c30eefb717a023fd9a"
+  },
+  "authorityBasis": [
+    "github.issue.vextreme.159",
+    "github.pull.vextreme.459",
+    "github.pull.vextreme.466",
+    "user.turn.20261028.continue-remaining-unported-htmls-hold-merges-for-localization"
+  ],
+  "batchPolicy": {
+    "unit": "RESOLVED_STANDALONE_PLACEMENT",
+    "memberDisposition": [
+      "PROJECTED",
+      "HOLD_WITH_EXACT_REASON"
+    ],
+    "laws": [
+      "PRIMARY_DESTINATION_ONLY__SECONDARY_CROSS_LINK_IS_NOT_ARC_MEMBERSHIP",
+      "UNDATED_SOURCE != INVENTED_CHRONOLOGY"
+    ]
+  },
+  "alreadyComplete": [],
+  "members": [
+    {
+      "slug": "espionage-extraction-pattern",
+      "canonicalNodeId": null,
+      "title": "Documented Pattern Architecture — Subset Map v2",
+      "date": "",
+      "arcKeys": [
+        "architecture"
+      ],
+      "adapterClass": "AUTHORED_MAIN_FRAGMENT",
+      "sourcePath": "docs/ingestion/source-pages/part-010/espionage-extraction-pattern.html",
+      "sourceGitBlob": "e4fe00d82c8a39d800fac5f73c8a406e2fedd18e",
+      "preservedHtmlSha256": "8f0970bc56f15395575f4fb42fec55e6aaf6d50e55d6f918044f2c13e62c189a",
+      "repositoryBytes": 39769,
+      "sourceRoute": "/espionage-extraction-pattern",
+      "pageId": "e92267728b09f240",
+      "proposalRecordRef": "content-forge.source-record.4227f7642344d3378e49",
+      "sourceReceiptRef": "docs/ingestion/workmaps/content-forge-early-rescue-source-custody-recovery-formation.json",
+      "confidence": "HIGH_EXPLICIT_ARCHITECTURE_PRIMARY_CANDIDATE",
+      "projectionState": "READY_FOR_AUTHORED_MAIN_EXTRACTION"
+    }
+  ],
+  "plannedSourceManagedProjector": "tools/vex-content-forge/project_arc_batch.js",
+  "plannedBatchTest": "tests/126-content-forge-resolved-standalone-placement.test.js",
+  "destinationMutationBoundary": {
+    "createPages": 1,
+    "createStringSources": 1,
+    "modifyViewmodels": true,
+    "nodeRegistryMutation": false,
+    "arcRegistryMutation": false,
+    "contentIntentMutation": false,
+    "aliasMutation": false
+  },
+  "generatedPolicy": "BUILDER_OWNED__DO_NOT_HAND_PATCH__EXACT_OUTPUT_WINS",
+  "lifecycle": {
+    "draftOnly": true,
+    "mergeAuthority": false,
+    "rawProviderPublicationAuthority": false,
+    "independentAssuranceRequired": true,
+    "exactHeadVexRelayProofRequired": true
+  }
+}
