@@ -351,11 +351,11 @@
     "KNOWN_CHRONOLOGY != PAGE_IS_LIVE",
     "CHRONOLOGY_ADMISSION != SOURCE_LINEAGE_REPLACEMENT"
   ],
-  "nextEffect": "At execution time bind the then-current main, integrate it inside Relay, regenerate current consequences, prove exact chronology/replay/repository health, and publish without reverting accepted Terrain source.",
+  "nextEffect": "None. Chronology recovery is merged on main and post-merge verified. Any future chronology change requires new source evidence and a new work decision.",
   "formedAt": "2026-10-29T09:15:00.000Z",
-  "applicationState": "CURRENTIZED_ON_ACCEPTED_READER_RETURN_MAIN__RUNTIME_MAIN_BINDING_NEXT",
+  "applicationState": "MERGED_POST_MERGE_VERIFIED",
   "application": {
-    "exactCurrentBase": "86f8c708e6ecd8637378783ded9628beaf741e56",
+    "exactCurrentBase": "5010f6cc8de507cfd7f027c3b615ff2e8931200f",
     "chronologyAdmissionsApplied": 20,
     "holdsPreserved": 26,
     "canonicalNodeIdPolicy": "PRESERVE_NULL_FOR_CHRONOLOGY_ONLY_BACKFILL",
@@ -380,7 +380,7 @@
       "tests/125-content-forge-father-son-threshold-arc-batch.test.js",
       "docs/lattice-map.json"
     ],
-    "generatedEffect": "PENDING_RUNTIME_CURRENT_MAIN_REGENERATION",
+    "generatedEffect": "MERGED_POST_MERGE_VERIFIED",
     "timelineDefinitionRepair": {
       "observedGap": "2026-03-26..2026-03-31",
       "effect": "ADDED_NEUTRAL_CHRONOLOGICAL_SECTION",
@@ -449,11 +449,14 @@
         "docs/lattice-map.json"
       ],
       "replayCompatibilityHead": "e3a5c7b1fec5cb36f5165d8a567cd6a1f825d7d0",
-      "state": "RERUN_REQUESTED_VIA_CURRENTNESS_RECEIPT_COMMIT",
+      "state": "SUPERSEDED_BY_RUNTIME_CURRENT_PUBLICATION_AND_INDEPENDENT_ASSURANCE",
       "ambientKnownSeparately": [
         "Reality Rendering Mechanics generated/runtime currentness",
         "service-worker fingerprint drift caused by that parallel generated backlog"
-      ]
+      ],
+      "finalPublishedHead": "e5de428d6a18bc1b8e42b3b2aaa36b1fe5383673",
+      "finalAssuranceRef": "task.vextreme.alignment.chronology-recovery.independent-assurance.016",
+      "note": "Historical workflow/run fields above remain predecessor evidence. Terminal currentness is owned by the final hosted publication, A016 Independent Assurance PASS, and post-merge verification on main."
     },
     "composition": {
       "priorTimelineMerge": "github.pull.vextreme.480",
@@ -466,10 +469,35 @@
       },
       "acceptedTimelineProjectionOwnerMerge": "github.pull.vextreme.494",
       "acceptedTimelineProjectionOwnerMain": "951fe528b6e20b08711fa9e0b13dc7b47fd6f019",
-      "latestAcceptedMain": "86f8c708e6ecd8637378783ded9628beaf741e56",
+      "latestAcceptedMain": "5010f6cc8de507cfd7f027c3b615ff2e8931200f",
       "acceptedTerrainJourneyInspectionMerge": "github.pull.vextreme.501",
-      "acceptedTerrainReaderReturnVocabularyMerge": "github.pull.vextreme.502"
+      "acceptedTerrainReaderReturnVocabularyMerge": "github.pull.vextreme.502",
+      "chronologyRecoveryMerge": "github.pull.vextreme.488",
+      "chronologyRecoveryMergeCommit": "5010f6cc8de507cfd7f027c3b615ff2e8931200f"
+    },
+    "finalHostedPublication": {
+      "sourceHead": "e5de428d6a18bc1b8e42b3b2aaa36b1fe5383673",
+      "sourceTree": "f65da6c84fc7144437de1062cb856b406b6f57e9",
+      "acceptedBase": "87571924f769fe4a1dad1084e2f68775f18d37b1",
+      "independentAssurance": {
+        "taskRef": "task.vextreme.alignment.chronology-recovery.independent-assurance.016",
+        "disposition": "PASS",
+        "returnSha256": "762a668bdd0cd08ce0df05b7a8ed85ac699bb518504705432c8cd63ff9f7adbe",
+        "changedPathCount": 194
+      },
+      "merge": {
+        "pullRequest": "github.pull.vextreme.488",
+        "mergeCommit": "5010f6cc8de507cfd7f027c3b615ff2e8931200f",
+        "mergeTree": "f343d6865e37340d6918d89712468b102569ad28",
+        "mergedAt": "2026-10-29T14:53:55Z"
+      },
+      "postMergeVerification": {
+        "mainHead": "5010f6cc8de507cfd7f027c3b615ff2e8931200f",
+        "timelineMemberCount": 131,
+        "timelineSectionCount": 12,
+        "sourceOwnedTimelineProjectionLawPreserved": true
+      }
     }
   },
-  "updatedAt": "2026-10-29T13:58:00.000Z"
+  "updatedAt": "2026-10-29T14:53:55Z"
 }
