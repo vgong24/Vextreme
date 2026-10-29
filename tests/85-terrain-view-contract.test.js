@@ -68,7 +68,8 @@ test('TERRAIN-VIEW: Content presentation is accepted while the legacy Live geome
   assert.equal(value.profiles['evolution-v1'].label, 'Content');
   assert.equal(value.profiles['evolution-v1'].inherits, 'live');
   assert.ok(value.profiles['evolution-v1'].declaredDeltas.some(delta => /viewport-owned inspection dock/.test(delta)));
-  assert.ok(value.profiles['evolution-v1'].declaredDeltas.length >= 7);
+  assert.ok(value.profiles['evolution-v1'].declaredDeltas.some(delta => /up to three distinct preview images/.test(delta) && /local calendar day/.test(delta)));
+  assert.ok(value.profiles['evolution-v1'].declaredDeltas.length >= 8);
   assert.equal(value.profiles['evolution-v1'].levels.group.renderer, 'viewport-curiosity-dock');
   assert.equal(value.profiles['evolution-v1'].levels.node.renderer, 'preview-card');
   assert.equal(value.profiles['evolution-v1'].levels.node.readerRenderer, 'embedded-page');
@@ -597,6 +598,51 @@ test('TERRAIN-VIEW: Content groups no longer imply a linear sequence with Stage 
   assert.match(source, /class:'stage-arrow pop-in'/);
 });
 
+test('TERRAIN-VIEW: collection overview shows up to three deterministic daily previews and rotates larger pools by local day', () => {
+  const source = pageSource();
+
+  const scoreFn = source.match(/function terrainPreviewScore\(value\) \{[\s\S]*?\n  \}/);
+  const selectFn = source.match(/function dailyPreviewSelection\(candidates, stageKey, dayIndex, limit\) \{[\s\S]*?\n  \}/);
+  assert.ok(scoreFn && selectFn, 'daily preview selection helpers must remain extractable');
+
+  const select = new Function([
+    scoreFn[0],
+    selectFn[0],
+    'return dailyPreviewSelection;'
+  ].join('\n'))();
+
+  const candidates = ['a','b','c','d','e'].map(id => ({ id }));
+  const today = select(candidates, 'collection-a', 22000, 3).map(node => node.id);
+  const sameDay = select(candidates, 'collection-a', 22000, 3).map(node => node.id);
+  const tomorrow = select(candidates, 'collection-a', 22001, 3).map(node => node.id);
+  const otherCollection = select(candidates, 'collection-b', 22000, 3).map(node => node.id);
+
+  assert.deepEqual(sameDay, today, 'same collection/day must render the same three previews');
+  assert.equal(today.length, 3);
+  assert.equal(new Set(today).size, 3, 'preview strip must not duplicate a member');
+  assert.notDeepEqual(tomorrow, today, 'a pool larger than three must rotate on the next local day');
+  assert.notDeepEqual(otherCollection, today,
+    'collection identity must participate in deterministic preview ordering');
+  assert.deepEqual(
+    select(candidates.slice(0, 2), 'collection-a', 22000, 3).map(node => node.id),
+    ['a','b'],
+    'collections with fewer than three visuals show every available preview without churn'
+  );
+
+  assert.match(source, /function terrainPreviewDayIndex\(date\)/);
+  assert.match(source, /Date\.UTC\(date\.getFullYear\(\), date\.getMonth\(\), date\.getDate\(\)\)/,
+    'daily rotation follows the viewer local calendar date rather than UTC clock rollover');
+  assert.match(source, /function terrainPreviewDayKey\(date\)/);
+  assert.match(source, /return dailyPreviewSelection\(candidates, stage && stage\.key, dayIndex, 3\)/);
+  assert.match(source, /var previewStripEnabled = contentTilePeekProfileEnabled\(\)\s*&& item\.kind === 'overview'/,
+    'daily strip must reuse the existing Content profile owner');
+  assert.match(source, /function contentTilePeekProfileEnabled\(\) \{[\s\S]*currentWorld === 'content'[\s\S]*currentProfile === 'evolution-v1' \|\| currentProfile === 'evolution-v2'/,
+    'the live Content reference profile must remain excluded from the new daily strip');
+  assert.match(source, /data-preview-count/);
+  assert.match(source, /data-preview-day/);
+  assert.match(source, /class:'stage-curiosity-thumb stage-daily-preview-thumb'/);
+});
+
 test('TERRAIN-VIEW: overview thumbnail imagery hydrates progressively after interaction is ready', () => {
   const source = pageSource();
 
@@ -612,12 +658,12 @@ test('TERRAIN-VIEW: overview thumbnail imagery hydrates progressively after inte
   assert.match(source, /clearStageThumbnailHydration\(\);[\s\S]*while \(world\.firstChild\)/,
     'rerender must cancel stale thumbnail work before replacing the world');
 
-  const creationBlock = source.match(/representativeThumb = el\('image',\{[\s\S]*?\n          \}\);/);
-  assert.ok(creationBlock, 'overview thumbnail shell must remain extractable');
+  const creationBlock = source.match(/dailyPreviewMembers\.forEach\(function \(member, previewIndex\) \{[\s\S]*?dailyPreviewThumbs\.push\(\{ node:thumb, src:visual\.src \}\);[\s\S]*?\n        \}\);/);
+  assert.ok(creationBlock, 'daily overview thumbnail strip must remain extractable');
   assert.doesNotMatch(creationBlock[0], /href:/,
-    'initial interactive render must not eagerly attach the screenshot URL');
-  assert.match(source, /world\.appendChild\(g\);[\s\S]*queueStageThumbnailHydration\(representativeThumb, representativeVisual\.src\)/,
-    'thumbnail hydration is queued only after the interactive card is attached');
+    'initial interactive render must not eagerly attach preview URLs');
+  assert.match(source, /world\.appendChild\(g\);[\s\S]*dailyPreviewThumbs\.forEach\(function \(preview\) \{[\s\S]*queueStageThumbnailHydration\(preview\.node, preview\.src\)/,
+    'every daily thumbnail hydrates only after the interactive card is attached');
 
   const scheduleFn = source.match(/function scheduleTerrainIdle\(callback\) \{[\s\S]*?\n  \}/);
   const cancelFn = source.match(/function cancelTerrainIdle\(handle\) \{[\s\S]*?\n  \}/);
@@ -860,8 +906,10 @@ test('TERRAIN-VIEW: accepted Content curiosity previews support slower autoplay,
   assert.match(source, /if \(!contentTilePeekProfileEnabled\(\) \|\| levelIndex !== 1\) return/);
   assert.match(source, /var curiosityOverview = contentTilePeekProfileEnabled\(\)/);
   assert.match(source, /if \(levelCtx && typeof levelCtx\.stageIdx === 'number'\) return/);
-  assert.match(source, /var representative = stageMembers\(stage\)\.filter\(hasEvolutionPreview\)\[0\] \|\| null/);
-  assert.match(source, /class:'stage-curiosity-thumb'/);
+  assert.match(source, /function dailyStagePreviewMembers\(stage, dayIndex\) \{[\s\S]*stageMembers\(stage\)\.filter\(hasEvolutionPreview\)[\s\S]*dailyPreviewSelection\(candidates, stage && stage\.key, dayIndex, 3\)/,
+    'overview curiosity thumbnails must continue sourcing previewable members through the daily-strip owner');
+  assert.match(source, /class:'stage-curiosity-thumb stage-daily-preview-thumb'/,
+    'overview curiosity thumbnails must retain the shared curiosity-thumb styling while using the daily-preview marker');
   assert.match(source, /members\.map\(contentTilePeekItemHtml\)\.join\(''\)/);
   assert.match(source, /item\.rect\.y <= activeItem\.rect\.y/);
   assert.match(source, /candidate\.style\.transform = 'translateY\(' \+ shift \+ 'px\)'/);
