@@ -18,6 +18,12 @@
 - [07-ai-commentary-witness-full-arc.md](07-ai-commentary-witness-full-arc.md) — A later AI witness written only after rereading the complete preserved lineage from Returning Scorpions through Pier House. It preserves the assistant’s fresh understanding of the progression from hidden-form recognition toward restored agency.
 - **Boundary:** This file is derived successor commentary, not Exchange 07 and not part of the original six-exchange Pier House transcript. The dream archive still ends at Victor’s preservation request and follow-up clarification in Exchange 06.
 
+## October 29 — Revisited dream and witness addendum
+
+- [08-revisited-dream-selfie-witness-2026-10-29.md](08-revisited-dream-selfie-witness-2026-10-29.md) — Full follow-up exchange: Victor reports intentionally revisiting the earlier dream at 2:55 AM Pacific on October 29, taking a selfie with the group and the threatening organizer within the revisited scene; Vex interprets this as witness restoration and an inversion of evidence erasure.
+- **Chronology:** This is a new post-closure continuation, not a replacement or correction of the October 28 dream record. Exchange 07 is sequential relative to the six original interpretive exchanges; the separately preserved file 07 is later AI commentary, not an original dream exchange.
+- **Evidence boundary:** The selfie belongs to the reported dream revisit; no actual photograph from that scene is present or claimed. The new record uses the complete visible dialogue instead of a summary.
+
 ## Selected illustration (full-resolution, lossless)
 
 ![The Pier House — genuine connection, manipulated invitation, and freedom of choice](assets/pier-house-genuine-connection.png)
