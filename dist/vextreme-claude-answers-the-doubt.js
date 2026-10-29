@@ -16,6 +16,7 @@
   window.VEX_STRING_SCOPES    = ["pages.claude-answers-the-doubt"];
   window.VEX_STRING_CATEGORY  = "production";
   window.VEX_SUPPORTED_LANGS  = ["en","ar","de","es","fr","hi","ja","ko","pt","zh"];
+  window.VEX_INDEX_FINGERPRINT = "7ca19fe4444b";
 
 
 

@@ -293,7 +293,7 @@
         ],
         "assembleGodScript() output globals": [
           "widgets/fab-lang.js (reads VEX_STRING_SCOPES, VEX_STRING_CATEGORY, VEX_STRINGS_EN, VEX_STRING_ARC_BUNDLE)",
-          "lib/vextreme-index-v2.js (reads VEX_STRINGS_EN fast path)",
+          "lib/vextreme-index-v2.js (reads VEX_STRINGS_EN and VEX_INDEX_FINGERPRINT)",
           "tests/08 (all ASSEMBLER: assertions)"
         ],
         "arc-chunked bundling pilot (VEX_STRING_ARC_BUNDLE, od-001/td-006)": [
@@ -470,9 +470,10 @@
     },
     "lib/vextreme-index-v2.js": {
       "role": "browser arc nav runtime — reads index.json at load time, renders prev/next/position into #arcNavMount",
-      "context": "THE arc nav widget for the v2 architecture. Supersedes lib/arc-nav.js (v1, Squarespace-era, reads VEXTREME_ARCS). Inlined into God Scripts via the arc-nav feature in the FEATURES registry. Also loads standalone on non-God-Script pages via shell.js.",
+      "context": "THE arc nav widget for the v2 architecture. Supersedes lib/arc-nav.js (v1, Squarespace-era, reads VEXTREME_ARCS). Inlined into God Scripts via the arc-nav feature in the FEATURES registry. Generated God Scripts bind the widget to the exact data/index.json contentFingerprint they were assembled against; generation-scoped caches may render immediately, while unscoped legacy/non-God pages fetch current network truth before using cache fallback.",
       "reads": [
         "data/index.json via CDN (slugMap, arcMap, arcMeta)",
+        "window.VEX_INDEX_FINGERPRINT (God Script exact data/index.json generation identity)",
         "window.VEX_STRINGS_EN (God Script fast path — already inlined by build-vextreme.js)",
         "data/strings/compiled/strings.en.json via CDN (non-God-Script fallback)",
         "localStorage (ETag cache for index + strings)"
@@ -503,6 +504,11 @@
         ],
         "#arcNavMount selector": [
           "every page HTML that uses arc-nav must have <div id=\"arcNavMount\">"
+        ],
+        "index-generation currentness changed": [
+          "lib/build-vextreme.js (bakes VEX_INDEX_FINGERPRINT from data/index.json contentFingerprint)",
+          "lib/build-sw.js (dist byte changes rotate the Service Worker cache fingerprint)",
+          "tests/03-browser-nav.test.js and tests/08-build-vextreme.test.js"
         ]
       }
     },
