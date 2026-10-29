@@ -45,7 +45,11 @@ test('TERRAIN-VIEW: collection overview expands to at most four columns before s
   const source = pageSource();
   const value = contract();
   assert.equal(value.profiles.live.levels.group.overview.maxColumns, 4);
-  assert.match(source, /var cols = Math\.min\(overview\.maxColumns, Math\.max\(1, STAGES\.length\)\)/);
+  assert.match(source, /function stageOverviewColumnCount\(profile\)/);
+  assert.match(source, /usableWidth = Math\.max\(overview\.cardWidth, vp\.w \* profile\.fit - overview\.boundsPadding \* 2\)/);
+  assert.match(source, /fittingColumns = Math\.max\(1, Math\.floor\(\(usableWidth \+ overview\.gap\) \/ \(overview\.cardWidth \+ overview\.gap\)\)\)/);
+  assert.match(source, /return Math\.min\(overview\.maxColumns, Math\.max\(1, STAGES\.length\), fittingColumns\)/);
+  assert.match(source, /var cols = stageOverviewColumnCount\(profile\)/);
   assert.match(source, /row = Math\.floor\(index \/ cols\), col = index % cols/);
   assert.match(source, /width:cols \* overview\.cardWidth \+ \(cols - 1\) \* overview\.gap \+ overview\.boundsPadding \* 2/);
   assert.match(source, /\.evo-grid\{ display:grid; grid-template-columns:repeat\(auto-fill,minmax\(220px,1fr\)\);/,
@@ -113,6 +117,7 @@ test('TERRAIN-VIEW: Content presentation is accepted while the legacy Live geome
   assert.equal(value.profiles['evolution-v1'].levels.group.renderer, 'viewport-curiosity-dock');
   assert.equal(value.profiles['evolution-v1'].levels.node.renderer, 'preview-card');
   assert.equal(value.profiles['evolution-v1'].levels.node.readerRenderer, 'embedded-page');
+  assert.ok(value.profiles['evolution-v1'].declaredDeltas.some(delta => /one through four columns/.test(delta)));
   assert.ok(value.profiles['evolution-v1'].declaredDeltas.some(delta => /local automatic-entry zoom preference/.test(delta)));
   assert.ok(value.profiles['evolution-v1'].declaredDeltas.some(delta => /never Code-world zoom/.test(delta)));
   assert.equal(
