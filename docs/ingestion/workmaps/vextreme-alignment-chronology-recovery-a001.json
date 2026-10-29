@@ -351,11 +351,11 @@
     "KNOWN_CHRONOLOGY != PAGE_IS_LIVE",
     "CHRONOLOGY_ADMISSION != SOURCE_LINEAGE_REPLACEMENT"
   ],
-  "nextEffect": "Regenerate index/page-health/build-health/terrain and current runtime consequences on accepted main 941d34d4f01ffc80bf680f746e66d51a4182bd62, preserving #494's source-owned Timeline projection tests, then run exact-head chronology proof.",
+  "nextEffect": "Regenerate index/page-health/build-health/terrain and current runtime consequences on accepted main 5b996045538fedc3db194ce62377be8bf63bf04f, preserving #494 Timeline projection ownership and the read-only historical replay tests, then run exact-head chronology proof.",
   "formedAt": "2026-10-29T09:15:00.000Z",
   "applicationState": "CURRENTIZED_ON_LATEST_ACCEPTED_MAIN_GENERATION_PENDING",
   "application": {
-    "exactCurrentBase": "941d34d4f01ffc80bf680f746e66d51a4182bd62",
+    "exactCurrentBase": "5b996045538fedc3db194ce62377be8bf63bf04f",
     "chronologyAdmissionsApplied": 20,
     "holdsPreserved": 26,
     "canonicalNodeIdPolicy": "PRESERVE_NULL_FOR_CHRONOLOGY_ONLY_BACKFILL",
@@ -459,15 +459,16 @@
       "priorTimelineMerge": "github.pull.vextreme.480",
       "acceptedNavigationMerge": "github.pull.vextreme.483",
       "acceptedNavigationMain": "956ab0224589c0329bea7a8decdd98404fa9578c",
-      "rule": "PRESERVE_CHRONOLOGY_SOURCE_AND_TEST_DELTA__CONSUME_CANONICAL_TIMELINE_OWNER__COMPOSE_DISJOINT_TERRAIN_MAIN__REGENERATE_DERIVED_OUTPUTS_ON_LATEST_MAIN",
+      "rule": "PRESERVE_CHRONOLOGY_SOURCE_AND_TEST_DELTA__CONSUME_CANONICAL_TIMELINE_OWNER__COMPOSE_ACCEPTED_TERRAIN_MAIN__KEEP_REPLAY_TESTS_READ_ONLY__REGENERATE_DERIVED_OUTPUTS_ON_LATEST_MAIN",
       "priorGeneratedProofRetainedAsPredecessorEvidence": {
         "workflowRunId": 40858892164,
         "generatedCommit": "30c98412ca5cda0a12dd3926fe1589de402d5b20"
       },
       "acceptedTimelineProjectionOwnerMerge": "github.pull.vextreme.494",
       "acceptedTimelineProjectionOwnerMain": "951fe528b6e20b08711fa9e0b13dc7b47fd6f019",
-      "latestAcceptedMain": "941d34d4f01ffc80bf680f746e66d51a4182bd62"
+      "latestAcceptedMain": "5b996045538fedc3db194ce62377be8bf63bf04f",
+      "acceptedTerrainJourneyInspectionMerge": "github.pull.vextreme.501"
     }
   },
-  "updatedAt": "2026-10-29T13:18:00.000Z"
+  "updatedAt": "2026-10-29T13:53:00.000Z"
 }
