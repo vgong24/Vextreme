@@ -52,25 +52,29 @@ test('TERRAIN-VIEW: collection overview expands to at most four columns before s
     'the four-column request belongs to the collection overview, not the post-entry page-card grid');
 });
 
-test('TERRAIN-VIEW: semantic entry depth gives users more readable pre-entry zoom and a persistent hover/focus preference', () => {
+test('TERRAIN-VIEW: collection entry depth gives users more readable pre-entry zoom without changing Code-world zoom', () => {
   const source = pageSource();
 
-  assert.match(source, /ENTER_RATIO_DEFAULT = 4\.5, ENTER_RATIO_MIN = 3\.0, ENTER_RATIO_MAX = 6\.0, ENTER_RATIO_STEP = 0\.25/);
-  assert.match(source, /ENTER_RATIO_STORAGE_KEY = 'vex-terrain-enter-ratio'/);
-  assert.match(source, /var ENTER_RATIO = readTerrainEnterRatioPreference\(\), EXIT_RATIO = 0\.55, MAX_NODE_RATIO = 7/);
-  assert.match(source, /localStorage\.getItem\(ENTER_RATIO_STORAGE_KEY\)/);
-  assert.match(source, /localStorage\.setItem\(ENTER_RATIO_STORAGE_KEY, String\(ENTER_RATIO\)\)/);
+  assert.match(source, /var TERRAIN_ENTER_RATIO = 3\.0/);
+  assert.match(source, /COLLECTION_ENTER_RATIO_DEFAULT = 4\.5, COLLECTION_ENTER_RATIO_MIN = 3\.0, COLLECTION_ENTER_RATIO_MAX = 6\.0, COLLECTION_ENTER_RATIO_STEP = 0\.25/);
+  assert.match(source, /COLLECTION_ENTER_RATIO_STORAGE_KEY = 'vex-terrain-collection-enter-ratio'/);
+  assert.match(source, /var collectionEnterRatio = readCollectionEnterRatioPreference\(\), EXIT_RATIO = 0\.55, MAX_NODE_RATIO = 7/);
+  assert.match(source, /localStorage\.getItem\(COLLECTION_ENTER_RATIO_STORAGE_KEY\)/);
+  assert.match(source, /localStorage\.setItem\(COLLECTION_ENTER_RATIO_STORAGE_KEY, String\(collectionEnterRatio\)\)/);
+  assert.match(source, /function collectionEntryPreferenceApplies\(\)[\s\S]*currentWorld === 'content'[\s\S]*currentProfile === 'evolution-v1'[\s\S]*levelIndex === 1/);
+  assert.match(source, /function enterRatioForCurrentContext\(\)[\s\S]*collectionEntryPreferenceApplies\(\) \? collectionEnterRatio : TERRAIN_ENTER_RATIO/);
 
   assert.match(source, /\.depth-preference\{[\s\S]*?left:calc\(100% - 8px\); bottom:8px;[\s\S]*?grid-template-columns:minmax\(0,1fr\) auto;/);
   assert.match(source, /\.level-readout:hover \.depth-preference,[\s\S]*?\.level-readout:focus-within \.depth-preference\{/);
   assert.match(source, /id="terrainEnterRatio" data-enter-ratio type="range"/);
-  assert.match(source, /aria-label="Zoom depth before automatic entry"/);
-  assert.match(source, /setTerrainEnterRatioPreference\(control\.value, false\)/);
-  assert.match(source, /setTerrainEnterRatioPreference\(control\.value, true\)/);
+  assert.match(source, /aria-label="Zoom depth before automatic collection entry"/);
+  assert.match(source, /setCollectionEnterRatioPreference\(control\.value, false\)/);
+  assert.match(source, /setCollectionEnterRatioPreference\(control\.value, true\)/);
 
-  assert.match(source, /function thresholdRailPosition\(ratio\)[\s\S]*?ENTER_RATIO - 1/);
-  assert.match(source, /levelIndex === 1 && typeof levelCtx\.stageIdx !== 'number' && ratio > ENTER_RATIO/);
-  assert.match(source, /levelIndex < OVERVIEW_LEVELS\.length - 1 && ratio > ENTER_RATIO/);
+  assert.match(source, /function thresholdRailPosition\(ratio\)[\s\S]*?var enterRatio = enterRatioForCurrentContext\(\)[\s\S]*?enterRatio - 1/);
+  assert.match(source, /var enterRatio = enterRatioForCurrentContext\(\)/);
+  assert.match(source, /levelIndex === 1 && typeof levelCtx\.stageIdx !== 'number' && ratio > enterRatio/);
+  assert.match(source, /levelIndex < OVERVIEW_LEVELS\.length - 1 && ratio > enterRatio/);
   assert.match(source, /event\.target\.closest\('\.depth-preference'\)/,
     'range interaction must not fall through to the rail wheel/keyboard navigation gestures');
 });
