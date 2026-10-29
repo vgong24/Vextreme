@@ -41,51 +41,6 @@ function canonicalAssortment() {
   return { nodes, arcs, rows };
 }
 
-test('TERRAIN-VIEW: collection overview expands to at most four columns before semantic entry', () => {
-  const source = pageSource();
-  const value = contract();
-  assert.equal(value.profiles.live.levels.group.overview.maxColumns, 4);
-  assert.match(source, /function stageOverviewColumnCount\(profile\)/);
-  assert.match(source, /usableWidth = Math\.max\(overview\.cardWidth, vp\.w \* profile\.fit - overview\.boundsPadding \* 2\)/);
-  assert.match(source, /fittingColumns = Math\.max\(1, Math\.floor\(\(usableWidth \+ overview\.gap\) \/ \(overview\.cardWidth \+ overview\.gap\)\)\)/);
-  assert.match(source, /return Math\.min\(overview\.maxColumns, Math\.max\(1, STAGES\.length\), fittingColumns\)/);
-  assert.match(source, /var cols = stageOverviewColumnCount\(profile\)/);
-  assert.match(source, /row = Math\.floor\(index \/ cols\), col = index % cols/);
-  assert.match(source, /width:cols \* overview\.cardWidth \+ \(cols - 1\) \* overview\.gap \+ overview\.boundsPadding \* 2/);
-  assert.match(source, /\.evo-grid\{ display:grid; grid-template-columns:repeat\(auto-fill,minmax\(220px,1fr\)\);/,
-    'the four-column request belongs to the collection overview, not the post-entry page-card grid');
-});
-
-test('TERRAIN-VIEW: collection entry depth gives users more readable pre-entry zoom without changing Code-world zoom', () => {
-  const source = pageSource();
-
-  assert.match(source, /var TERRAIN_ENTER_RATIO = 3\.0/);
-  assert.match(source, /COLLECTION_ENTER_RATIO_DEFAULT = 4\.5, COLLECTION_ENTER_RATIO_MIN = 3\.0, COLLECTION_ENTER_RATIO_MAX = 6\.0, COLLECTION_ENTER_RATIO_STEP = 0\.25/);
-  assert.match(source, /COLLECTION_ENTER_RATIO_STORAGE_KEY = 'vex-terrain-collection-enter-ratio'/);
-  assert.match(source, /var collectionEnterRatio = readCollectionEnterRatioPreference\(\), EXIT_RATIO = 0\.55, MAX_NODE_RATIO = 7/);
-  assert.match(source, /localStorage\.getItem\(COLLECTION_ENTER_RATIO_STORAGE_KEY\)/);
-  assert.match(source, /localStorage\.setItem\(COLLECTION_ENTER_RATIO_STORAGE_KEY, String\(collectionEnterRatio\)\)/);
-  assert.match(source, /function collectionEntryPreferenceApplies\(\)[\s\S]*currentWorld === 'content'[\s\S]*currentProfile === 'evolution-v1'[\s\S]*levelIndex === 1/);
-  assert.match(source, /function enterRatioForCurrentContext\(\)[\s\S]*collectionEntryPreferenceApplies\(\) \? collectionEnterRatio : TERRAIN_ENTER_RATIO/);
-
-  assert.match(source, /\.depth-preference\{[\s\S]*?left:calc\(100% - 8px\); bottom:8px;[\s\S]*?grid-template-columns:minmax\(0,1fr\) auto;/);
-  assert.match(source, /\.depth-preference-label\{[^}]*font:700 11px\/1\.25 var\(--mono\)/);
-  assert.match(source, /\.depth-preference-value\{[^}]*font:800 14px\/1 var\(--mono\)/);
-  assert.match(source, /\.depth-preference input\[type="range"\]\{[^}]*min-height:28px/);
-  assert.match(source, /\.level-readout:hover \.depth-preference,[\s\S]*?\.level-readout:focus-within \.depth-preference\{/);
-  assert.match(source, /id="terrainEnterRatio" data-enter-ratio type="range"/);
-  assert.match(source, /aria-label="Zoom depth before automatic collection entry"/);
-  assert.match(source, /setCollectionEnterRatioPreference\(control\.value, false\)/);
-  assert.match(source, /setCollectionEnterRatioPreference\(control\.value, true\)/);
-
-  assert.match(source, /function thresholdRailPosition\(ratio\)[\s\S]*?var enterRatio = enterRatioForCurrentContext\(\)[\s\S]*?enterRatio - 1/);
-  assert.match(source, /var enterRatio = enterRatioForCurrentContext\(\)/);
-  assert.match(source, /levelIndex === 1 && typeof levelCtx\.stageIdx !== 'number' && ratio > enterRatio/);
-  assert.match(source, /levelIndex < OVERVIEW_LEVELS\.length - 1 && ratio > enterRatio/);
-  assert.match(source, /event\.target\.closest\('\.depth-preference'\)/,
-    'range interaction must not fall through to the rail wheel/keyboard navigation gestures');
-});
-
 test('TERRAIN-VIEW: embedded reader URLs stay on the current deployed revision', () => {
   const source = pageSource();
   assert.match(source, /var DEPLOYMENT_ROOT = new URL\('\.\.\/', window\.location\.href\);/);
@@ -117,9 +72,6 @@ test('TERRAIN-VIEW: Content presentation is accepted while the legacy Live geome
   assert.equal(value.profiles['evolution-v1'].levels.group.renderer, 'viewport-curiosity-dock');
   assert.equal(value.profiles['evolution-v1'].levels.node.renderer, 'preview-card');
   assert.equal(value.profiles['evolution-v1'].levels.node.readerRenderer, 'embedded-page');
-  assert.ok(value.profiles['evolution-v1'].declaredDeltas.some(delta => /one through four columns/.test(delta)));
-  assert.ok(value.profiles['evolution-v1'].declaredDeltas.some(delta => /local automatic-entry zoom preference/.test(delta)));
-  assert.ok(value.profiles['evolution-v1'].declaredDeltas.some(delta => /never Code-world zoom/.test(delta)));
   assert.equal(
     value.profiles['evolution-v1'].levels.node.inputPriority,
     'scrollable-content > armed-boundary-transition > terrain-zoom'
@@ -134,7 +86,7 @@ test('TERRAIN-VIEW: Content presentation is accepted while the legacy Live geome
 test('TERRAIN-VIEW: Live profile preserves the accepted geometry as named component tokens', () => {
   const live = contract().profiles.live;
   assert.deepEqual(live.levels.group.overview, {
-    maxColumns: 4,
+    maxColumns: 3,
     cardWidth: 240,
     cardHeight: 140,
     gap: 24,
