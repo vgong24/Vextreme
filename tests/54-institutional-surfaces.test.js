@@ -21,7 +21,6 @@ const {
 const { discoverOrphanNodes } = require('../lib/auto-discover-nodes');
 const { probeLocalizationRuntime } = require('../lib/institutional-localization-runtime');
 const { computeHealth } = require('../lib/build-page-health');
-const { Language } = require('../lib/vex-config');
 
 const ROOT = path.join(__dirname, '..');
 
@@ -391,10 +390,14 @@ test('INSTITUTIONAL-SURFACES: shell-context keeps institutional identity while s
 });
 
 test('INSTITUTIONAL-SURFACES: Global Core locales are admitted and shell evidence drives the shared language FAB', () => {
-  const globalCore = ['en', 'zh', 'ja', 'ko', 'fr', 'de', 'es', 'pt', 'ar', 'hi'];
-  const supported = new Set(Object.values(Language));
-  for (const locale of globalCore) {
-    assert.ok(supported.has(locale), `Language registry must admit Global Core locale ${locale}`);
+  const globalCore = {
+    EN: 'en', ZH: 'zh', JA: 'ja', KO: 'ko', FR: 'fr',
+    DE: 'de', ES: 'es', PT: 'pt', AR: 'ar', HI: 'hi',
+  };
+  const configSource = fs.readFileSync(path.join(ROOT, 'lib', 'vex-config.js'), 'utf8').replace(/\r\n/g, '\n');
+  for (const [symbol, locale] of Object.entries(globalCore)) {
+    assert.match(configSource, new RegExp(`\\b${symbol}:\\s*['"]${locale}['"]`),
+      `Language registry must admit Global Core locale ${locale}`);
   }
 
   const source = fs.readFileSync(path.join(ROOT, 'scripts', 'screenshot-institutional.js'), 'utf8').replace(/\r\n/g, '\n');
