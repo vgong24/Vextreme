@@ -1738,8 +1738,12 @@
     }
   }
 
-  function stageIndexForRouteNode(node) {
+  function stageIndexForRouteNode(node, preferredStageKey) {
     if (!node || !Array.isArray(node.arcKeys)) return -1;
+    if (preferredStageKey) {
+      var preferredStageIdx = STAGES.findIndex(function (stage) { return String(stage.key) === String(preferredStageKey); });
+      if (preferredStageIdx >= 0 && node.arcKeys.indexOf(STAGES[preferredStageIdx].key) !== -1) return preferredStageIdx;
+    }
     return STAGES.findIndex(function (stage) { return node.arcKeys.indexOf(stage.key) !== -1; });
   }
 
@@ -1804,9 +1808,9 @@
     }
     var node = ALL.find(function (candidate) { return candidate.slug === slug && candidate.live && candidate.liveUrl; });
     if (!node) return false;
-    var stageIdx = stageIndexForRouteNode(node);
-    if (stageIdx < 0) return false;
     var fromGroupHome = !!activeGroupHomeKey;
+    var stageIdx = stageIndexForRouteNode(node, fromGroupHome ? activeGroupHomeKey : null);
+    if (stageIdx < 0) return false;
     levelIndex = 1;
     levelCtx = { stageIdx:stageIdx };
     if (fromGroupHome) {

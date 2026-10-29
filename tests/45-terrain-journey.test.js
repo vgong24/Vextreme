@@ -467,6 +467,21 @@ test('TERRAIN-JOURNEY: embedded Arc parent routes converge with Back without col
     'alternate group-home Back names the actual record it returns to');
   assert.match(source, /returnReaderId:presentation && presentation\.returnReaderId \? presentation\.returnReaderId : null/,
     'Forward restoration preserves the alternate group-home return label/context');
+  assert.match(source, /function stageIndexForRouteNode\(node, preferredStageKey\)/);
+  assert.match(source, /stageIndexForRouteNode\(node, fromGroupHome \? activeGroupHomeKey : null\)/,
+    'a shared record opened from a group home keeps the actual journey group instead of falling back to primary placement');
+
+  const routeFn = source.match(/function stageIndexForRouteNode\(node, preferredStageKey\) \{[\s\S]*?\n  \}/);
+  assert.ok(routeFn, 'stageIndexForRouteNode must remain extractable for shared-membership proof');
+  const routeIndex = new Function('STAGES', routeFn[0] + '\nreturn stageIndexForRouteNode;')([
+    { key:'ai_practitioner_tools' },
+    { key:'direct_contact' },
+  ]);
+  const sharedRecord = { arcKeys:['ai_practitioner_tools', 'direct_contact'] };
+  assert.equal(routeIndex(sharedRecord, 'direct_contact'), 1,
+    'actual group-home origin outranks the shared record primary/first arc');
+  assert.equal(routeIndex(sharedRecord, null), 0,
+    'without a real route origin the existing primary/first membership fallback remains unchanged');
 
   const fn = source.match(/function groupHomeRouteMatches\(slug\) \{[\s\S]*?\n  \}/);
   assert.ok(fn, 'groupHomeRouteMatches must remain extractable for ambiguity proof');
