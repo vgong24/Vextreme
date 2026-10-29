@@ -89,17 +89,17 @@ test('TERRAIN-JOURNEY: automatic-entry preference stays presentation-local and o
 
   const capture = source.match(/function captureSemanticState\(\) \{([\s\S]*?)\n  \}/);
   assert.ok(capture, 'semantic snapshot owner must remain explicit');
-  assert.doesNotMatch(capture[1], /ENTER_RATIO|ENTER_RATIO_STORAGE_KEY|terrainEnterRatio|localStorage/,
+  assert.doesNotMatch(capture[1], /COLLECTION_ENTER_RATIO|COLLECTION_ENTER_RATIO_STORAGE_KEY|terrainEnterRatio|localStorage/,
     'automatic-entry preference must not become Journey semantic state');
 
-  const preference = source.match(/function setTerrainEnterRatioPreference\(value, persist\) \{([\s\S]*?)\n  \}/);
+  const preference = source.match(/function setCollectionEnterRatioPreference\(value, persist\) \{([\s\S]*?)\n  \}/);
   assert.ok(preference, 'entry-depth preference writer must remain explicit');
   assert.doesNotMatch(preference[1], /commitSemanticState|syncPresentationUrl|enterLevel/,
     'changing display preference must not become semantic movement or route identity');
 
   const reveal = source.match(/function revealDepthRail\(\) \{([\s\S]*?)\n  \}/);
   assert.ok(reveal, 'depth preference inspection path must remain explicit');
-  assert.doesNotMatch(reveal[1], /localStorage|setTerrainEnterRatioPreference|commitSemanticState/,
+  assert.doesNotMatch(reveal[1], /localStorage|setCollectionEnterRatioPreference|commitSemanticState/,
     'hover/focus inspection must remain effect-free');
 
   const syncUrl = source.match(/function syncPresentationUrl\([^)]*\) \{([\s\S]*?)\n  \}/);
@@ -117,16 +117,20 @@ test('TERRAIN-JOURNEY: threshold rail projects semantic depth with bounded outwa
 
   assert.match(railSource, /levelIndex/);
   assert.match(railSource, /levelBaseScale/);
-  assert.match(railSource, /ENTER_RATIO/);
+  assert.match(railSource, /enterRatioForCurrentContext/);
   assert.match(railSource, /EXIT_RATIO/);
   assert.match(railSource, /aria-current="step"/);
   assert.match(railSource, /role="progressbar"/);
   assert.doesNotMatch(railSource, /<button/, 'the rail does not become an arbitrary discrete navigation surface');
   assert.match(railSource, /data-enter-ratio type="range"/, 'the rail may expose exactly the bounded automatic-entry depth preference');
-  assert.match(railSource, /ENTER_RATIO_MIN/);
-  assert.match(railSource, /ENTER_RATIO_MAX/);
-  assert.match(railSource, /setTerrainEnterRatioPreference/);
+  assert.match(railSource, /COLLECTION_ENTER_RATIO_MIN/);
+  assert.match(railSource, /COLLECTION_ENTER_RATIO_MAX/);
+  assert.match(railSource, /setCollectionEnterRatioPreference/);
   assert.match(source, /id="levelReadout" tabindex="0" aria-label="Semantic depth\. Scroll downward while focused or hovered to move outward one layer\. Focus here to reveal the entry zoom preference\."/);
+  assert.match(source, /function collectionEntryPreferenceApplies\(\)[\s\S]*currentWorld === 'content'[\s\S]*currentProfile === 'evolution-v1'[\s\S]*levelIndex === 1/);
+  assert.match(source, /function enterRatioForCurrentContext\(\)[\s\S]*collectionEntryPreferenceApplies\(\) \? collectionEnterRatio : TERRAIN_ENTER_RATIO/);
+  assert.match(source, /var TERRAIN_ENTER_RATIO = 3\.0/);
+  assert.match(source, /COLLECTION_ENTER_RATIO_STORAGE_KEY = 'vex-terrain-collection-enter-ratio'/);
   assert.match(source, /\.level-readout\{[\s\S]*z-index:12;[\s\S]*pointer-events:auto;[\s\S]*opacity:\.18;/);
   assert.match(source, /\.level-readout\[data-can-zoom-out="true"\]\{ cursor:zoom-out; \}/);
   assert.match(source, /function canStepOutwardTerrainLayer\(\)/);
