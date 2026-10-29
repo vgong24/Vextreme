@@ -502,7 +502,7 @@ test('TERRAIN-JOURNEY: reader history preserves the real return surface instead 
   assert.match(source, /Object\.assign\(\{ version:1, kind:kind \}, details \|\| \{\}\)/);
   assert.match(source, /function presentationHistoryValue\(state\)/);
   assert.match(source, /syncPresentationUrl\(options\.historyMode \|\| 'push', 'reader', \{[\s\S]*returnKind:activeReaderReturnKind/);
-  assert.match(source, /syncPresentationUrl\(options\.historyMode \|\| 'push', 'group-home', \{[\s\S]*returnKind:activeReaderReturnKind,[\s\S]*returnEntrySlug:activeReaderReturnEntrySlug/,
+  assert.match(source, /syncPresentationUrl\(options\.historyMode \|\| 'push', 'group-home', \{[\s\S]*returnKind:activeReaderReturnKind,[\s\S]*returnEntrySlug:activeReaderReturnEntrySlug,[\s\S]*returnReaderId:activeReaderReturnReaderId/,
     'group-home history must preserve the actual surface it should return to');
   assert.match(source, /openEvolutionReader\(previous\.id, \{ historyMode:'replace' \}\)/);
   assert.match(source, /openEvolutionReader\(next\.id, \{ historyMode:'replace' \}\)/);
@@ -532,6 +532,56 @@ test('TERRAIN-JOURNEY: reader history preserves the real return surface instead 
   assert.match(source, /openContentTilePeek\(overviewStageIdx, \{[\s\S]*step:Number\.isInteger\(presentation\.step\)[\s\S]*manual:presentation\.manual === true/);
   assert.match(source, /returnKind:presentation && presentation\.returnKind \? presentation\.returnKind : 'collection'/,
     'browser Forward restores the reader with its original return contract');
+});
+
+
+test('TERRAIN-JOURNEY: embedded Arc parent routes converge with Back without collapsing alternate topology', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
+
+  assert.match(source, /function currentReaderReturnStage\(\)/);
+  assert.match(source, /activeReaderReturnKind !== 'group-home'/);
+  assert.match(source, /function groupHomeRouteMatches\(slug\)/);
+  assert.match(source, /candidate\.stage\.parent\.pageSlug === slug/);
+  assert.match(source, /if \(activeReaderId[\s\S]*currentReturnStage[\s\S]*currentReturnStage\.parent\.pageSlug === slug\) \{[\s\S]*closeEvolutionReader\(\);[\s\S]*return true;/,
+    'the current Arc parent uses the same history-owned return path as the top Back control');
+  assert.match(source, /var matches = groupHomeRouteMatches\(slug\);[\s\S]*if \(matches\.length !== 1\) return false;/,
+    'alternate group-home traversal must fail closed when one slug does not identify exactly one group');
+  assert.match(source, /openEvolutionGroupHome\(target\.stage, \{[\s\S]*writeUrl:false,[\s\S]*returnKind:originReaderId \? 'reader' : 'collection',[\s\S]*returnReaderId:originReaderId/,
+    'a unique alternate Arc parent preserves the originating record as presentation return context');
+  assert.match(source, /syncPresentationUrl\('replace', 'group-home', \{[\s\S]*returnReaderId:activeReaderReturnReaderId/,
+    'alternate topology uses the existing presentation history namespace rather than another navigation stack');
+  assert.match(source, /var backLabel = returnEntry \? '← ' \+ returnEntry\.label : '← Collection';[\s\S]*if \(!returnEntry && returnReader\) backLabel = '← ' \+ \(returnReader\.title \|\| returnReader\.slug \|\| 'Page'\)/,
+    'alternate group-home Back extends the existing entry/collection contract only when returning to a record');
+  assert.match(source, /returnReaderId:presentation && presentation\.returnReaderId \? presentation\.returnReaderId : null/,
+    'Forward restoration preserves the alternate group-home return context');
+  assert.match(source, /function stageIndexForRouteNode\(node, preferredStageKey\)/);
+  assert.match(source, /stageIndexForRouteNode\(node, fromGroupHome \? activeGroupHomeKey : null\)/,
+    'a shared record opened from a group home keeps the actual journey group instead of falling back to primary placement');
+
+  const routeFn = source.match(/function stageIndexForRouteNode\(node, preferredStageKey\) \{[\s\S]*?\n  \}/);
+  assert.ok(routeFn, 'stageIndexForRouteNode must remain extractable for shared-membership proof');
+  const routeIndex = new Function('STAGES', routeFn[0] + '\nreturn stageIndexForRouteNode;')([
+    { key:'ai_practitioner_tools' },
+    { key:'direct_contact' },
+  ]);
+  const sharedRecord = { arcKeys:['ai_practitioner_tools', 'direct_contact'] };
+  assert.equal(routeIndex(sharedRecord, 'direct_contact'), 1,
+    'actual group-home origin outranks the shared record primary/first arc');
+  assert.equal(routeIndex(sharedRecord, null), 0,
+    'without a real route origin the existing primary/first membership fallback remains unchanged');
+
+  const fn = source.match(/function groupHomeRouteMatches\(slug\) \{[\s\S]*?\n  \}/);
+  assert.ok(fn, 'groupHomeRouteMatches must remain extractable for ambiguity proof');
+  const matchGroup = new Function('STAGES', fn[0] + '\nreturn groupHomeRouteMatches;')([
+    { key:'direct_contact', parent:{ live:true, url:'/pages/direct-contact.html', pageSlug:'direct-contact' } },
+    { key:'ai_practitioner_tools', parent:{ live:true, url:'/pages/ai-practitioner-tools.html', pageSlug:'ai-practitioner-tools' } },
+    { key:'architecture', parent:{ live:true, url:'/pages/archives.html', pageSlug:'archives' } },
+    { key:'claude_journals', parent:{ live:true, url:'/pages/archives.html', pageSlug:'archives' } },
+  ]);
+  assert.equal(matchGroup('direct-contact').length, 1);
+  assert.equal(matchGroup('ai-practitioner-tools').length, 1);
+  assert.equal(matchGroup('archives').length, 2,
+    'shared archives route remains ambiguous instead of being silently assigned to one collection');
 });
 
 // [VXG RealForever]
