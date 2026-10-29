@@ -64,7 +64,7 @@ test('TERRAIN-VIEW: semantic entry depth gives users more readable pre-entry zoo
   assert.match(source, /\.depth-preference\{[\s\S]*?left:calc\(100% - 8px\); bottom:8px;[\s\S]*?grid-template-columns:minmax\(0,1fr\) auto;/);
   assert.match(source, /\.level-readout:hover \.depth-preference,[\s\S]*?\.level-readout:focus-within \.depth-preference\{/);
   assert.match(source, /id="terrainEnterRatio" data-enter-ratio type="range"/);
-  assert.match(source, /aria-label="Zoom depth before entering the next Terrain layer"/);
+  assert.match(source, /aria-label="Zoom depth before automatic entry"/);
   assert.match(source, /setTerrainEnterRatioPreference\(control\.value, false\)/);
   assert.match(source, /setTerrainEnterRatioPreference\(control\.value, true\)/);
 
