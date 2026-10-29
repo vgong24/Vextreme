@@ -1699,13 +1699,11 @@
     var nextKind = kind || activeReaderReturnKind || 'collection';
     var readerReturnKinds = ['collection', 'curiosity-overview', 'entry', 'group-home', 'reader'];
     if (readerReturnKinds.indexOf(nextKind) === -1) nextKind = 'collection';
+    if (nextKind === 'entry' && !entryDocument(details.entrySlug)) nextKind = 'collection';
+    if (nextKind === 'reader' && !byId[details.readerId]) nextKind = 'collection';
     activeReaderReturnKind = nextKind;
-    activeReaderReturnEntrySlug = nextKind === 'entry' && entryDocument(details.entrySlug)
-      ? details.entrySlug
-      : null;
-    activeReaderReturnReaderId = nextKind === 'reader' && byId[details.readerId]
-      ? details.readerId
-      : null;
+    activeReaderReturnEntrySlug = nextKind === 'entry' ? details.entrySlug : null;
+    activeReaderReturnReaderId = nextKind === 'reader' ? details.readerId : null;
   }
 
   function clearReaderReturnContext() {
