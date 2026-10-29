@@ -36,11 +36,11 @@ const RECORDS = [
     slug: 'what-about-buddhism',
     title: 'Now what about Buddhism?',
     src: 'https://vgong24.github.io/Vextreme-Assets/__assets/5e2a523e20a78ac80544f0658de4083ece50a11d55a2d0879f587910005fdabc.webp',
-    heroSrc: 'https://vgong24.github.io/Vextreme-Assets/__assets/0bcb688a88036c773a77987a89ac0c3683454770be597d7a0b2489d66d5ce6e7.webp',
+    heroSrc: 'https://vgong24.github.io/Vextreme-Assets/__assets/ef39931d000f87afa807eff65fbd72ac734acdc2162f4f46502dd3b38d5a82aa.png',
     fallbackWidth: 280,
-    heroWidth: 2048,
-    heroHeight: 1536,
-    heroTier: 'RESTORATION',
+    heroWidth: 1448,
+    heroHeight: 1086,
+    heroTier: 'RECOVERED_ORIGINAL',
     alt: 'Now what about Buddhism? — spiritual scaffolding dissolving into direct recognition cover art',
   },
   {
@@ -91,8 +91,8 @@ test('READER COVER PROJECTION: reader hero uses the best available high-resoluti
     assert.ok(page.includes('data-reader-cover-tier="' + record.heroTier + '"'), record.slug + ': missing explicit reader-cover provenance tier');
     assert.notEqual(record.heroSrc, record.src, record.slug + ': reader hero and Terrain fallback must remain distinct asset tiers');
   }
-  assert.equal(RECORDS.filter((record) => record.heroTier === 'RECOVERED_ORIGINAL').length, 4);
-  assert.deepEqual(RECORDS.filter((record) => record.heroTier === 'RESTORATION').map((record) => record.slug), ['what-about-buddhism']);
+  assert.equal(RECORDS.filter((record) => record.heroTier === 'RECOVERED_ORIGINAL').length, 5);
+  assert.deepEqual(RECORDS.filter((record) => record.heroTier === 'RESTORATION').map((record) => record.slug), []);
 });
 
 test('READER COVER PROJECTION: Terrain discovers the same immutable cover from each page', () => {
