@@ -44,6 +44,7 @@ test('Content Forge public asset references resolve through the build-time asset
   for (const file of publicTextFiles()) {
     const text = fs.readFileSync(file, 'utf8');
     assert.equal(projector.ROOT_RELATIVE_ASSET_REF.test(text), false, path.relative(ROOT, file) + ': unresolved logical asset reference');
+    assert.equal(projector.ROOT_RELATIVE_DOCUMENT_REF.test(text), false, path.relative(ROOT, file) + ': unresolved logical document reference');
     const resolved = [...text.matchAll(/https:\/\/vgong24\.github\.io\/Vextreme-Assets\/__assets\/([0-9a-f]{64})\.([A-Za-z0-9]+)/g)];
     if (!resolved.length) continue;
     referencingFiles += 1;
@@ -86,6 +87,28 @@ test('Content Forge asset mapper fails closed for malformed identities and unsaf
   assert.throws(() => projector.resolveAssetReference('not-an-asset.png', catalog), error => error && error.code === 'ASSET_REFERENCE_FORMAT');
   const id = 'b867417e358bc99a0c0c04f81ce68ef0ecbb0060810067ba918f6e654089a468';
   assert.throws(() => projector.resolveAssetReference(id + '.png', { ...catalog, overrides: { [id]: '../escape.png' } }), error => error && error.code === 'ASSET_RESOLVED_PATH');
+});
+
+test('Content Forge document externalization restores live Google downloads and readable previews without inventing local mirrors', () => {
+  const id = 'AbC_123-x';
+  const local = '/__documents/google/abc-123-x/index.html';
+  const document = parse5.parse('<!doctype html><html><body>'
+    + '<a class="vex-native-document-link" data-provider="google-docs" data-provider-id="' + id + '" data-vex-document-source="https://docs.google.com/document/d/' + id + '/export?format=docx" href="' + local + '">DOCX</a>'
+    + '<a class="vex-native-document-link" data-provider="google-docs" data-provider-id="' + id + '" data-vex-document-source="https://docs.google.com/document/d/' + id + '/export?format=pdf" href="' + local + '">PDF</a>'
+    + '<section class="vex-native-document" data-provider="google-docs"><iframe loading="lazy" sandbox="allow-same-origin" src="' + local + '" title="Preview"></iframe><a href="' + local + '">Open local document</a></section>'
+    + '</body></html>');
+  projector.externalizeDocumentReferences(document);
+  const once = parse5.serialize(document);
+  projector.externalizeDocumentReferences(document);
+  const twice = parse5.serialize(document);
+  assert.equal(once, twice);
+  assert.equal(projector.ROOT_RELATIVE_DOCUMENT_REF.test(once), false);
+  assert.ok(once.includes('https://docs.google.com/document/d/' + id + '/export?format=docx'));
+  assert.ok(once.includes('https://docs.google.com/document/d/' + id + '/export?format=pdf'));
+  assert.ok(once.includes('https://docs.google.com/document/d/' + id + '/preview'));
+  assert.ok(once.includes('https://docs.google.com/document/d/' + id + '/view'));
+  assert.ok(once.includes('doc-embed-iframe'));
+  assert.equal(once.includes('sandbox='), false);
 });
 
 // [VXG RealForever]
