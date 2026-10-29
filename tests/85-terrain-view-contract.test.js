@@ -41,6 +41,19 @@ function canonicalAssortment() {
   return { nodes, arcs, rows };
 }
 
+test('TERRAIN-VIEW: Content collection grid caps expansion at four columns while preserving responsive reflow', () => {
+  const source = pageSource();
+  assert.ok(
+    source.includes('.evo-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(max(220px,calc((100% - 42px)/4)),1fr)); gap:14px; margin-top:14px; }'),
+    'desktop Content collection grid must encode a hard four-column ceiling while retaining the 220px card floor'
+  );
+  assert.match(
+    source,
+    /@media \(max-width:720px\)\{[\s\S]*?\.evo-grid\{ grid-template-columns:repeat\(auto-fill,minmax\(180px,1fr\)\); gap:10px; \}/,
+    'narrow-screen Content grid must preserve the existing automatic reflow rule'
+  );
+});
+
 test('TERRAIN-VIEW: embedded reader URLs stay on the current deployed revision', () => {
   const source = pageSource();
   assert.match(source, /var DEPLOYMENT_ROOT = new URL\('\.\.\/', window\.location\.href\);/);
