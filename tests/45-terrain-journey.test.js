@@ -628,7 +628,7 @@ test('TERRAIN-JOURNEY: Inspect projects relationship and causal reason as separa
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;'));
 
-  assert.match(html, /class="journey-relationship">entered from from receive-god<\/span>/);
+  assert.match(html, /class="journey-relationship">entered from · receive-god<\/span>/);
   assert.match(html, /class="journey-reason">why · Receive God primary path<\/span>/);
 });
 
