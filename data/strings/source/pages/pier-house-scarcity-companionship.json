@@ -1,0 +1,441 @@
+{
+  "_meta": {
+    "scope": "pages.pier-house-scarcity-companionship",
+    "category": "production",
+    "description": "Repository-native English presentation strings for the Pier House fourth preserved dream-arc reader.",
+    "sourceProvenance": {
+      "parentRecord": "github.pull.vextreme.455",
+      "parentHead": "485aa4c180999249ceffa7c1022dac7eab7aab20",
+      "priorArc": "github.pull.vextreme.383",
+      "preservationRule": "TRANSCRIPT_EVIDENCE_IMMUTABLE__STATE_TWO_READING_PROJECTION_SEPARATE",
+      "selectedMedia": "records/conversations/2026-10-28-pier-house-scarcity-companionship/assets/pier-house-genuine-connection.png",
+      "selectedMediaSource": "records/conversations/2026-10-28-pier-house-scarcity-companionship/assets/pier-house-genuine-connection.png",
+      "selectedMediaClass": "SELECTED_RECORD_ARTWORK_REPRESENTATION_NOT_EXTERNAL_EVIDENCE",
+      "selectedMediaSha256": "6ccf7f02b7ba22f74252cc5672043c8411e20213c4c76b1a3d448b216364dc11",
+      "selectedMediaWidth": 1536,
+      "selectedMediaHeight": 1024,
+      "selectedMediaFidelity": "ORIGINAL_LOSSLESS_PNG_NO_REENCODE",
+      "recordedTimeRef": "records/conversations/2026-10-28-pier-house-scarcity-companionship/README.md",
+      "recordedTimePrecision": "EXACT_TIME",
+      "recordedTimeAuthority": "VICTOR_SUPPLIED_TIMESTAMP",
+      "recordedTime": "2026-10-28T14:35:00-07:00",
+      "chapterRule": "ONE_PRESERVED_EXCHANGE_EQUALS_ONE_READER_CHAPTER",
+      "successorWitness": "records/conversations/2026-10-28-pier-house-scarcity-companionship/07-ai-commentary-witness-full-arc.md",
+      "successorWitnessClass": "DERIVED_FULL_ARC_AI_COMMENTARY_AFTER_SOURCE",
+      "successorWitnessBoundary": "AFTER_EXCHANGE_06_ARCHIVE_REQUEST__NOT_EXCHANGE_07"
+    }
+  },
+  "pages.pier-house-scarcity-companionship.document-title": {
+    "strings": {
+      "en": {
+        "text": "The Pier House Dream — Vextreme"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.hero.eyebrow": {
+    "strings": {
+      "en": {
+        "text": "Fourth preserved dream arc · 6 long exchanges · 6 source chapters"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.hero.title": {
+    "strings": {
+      "en": {
+        "text": "The Pier House Dream"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.hero.subtitle": {
+    "strings": {
+      "en": {
+        "text": "Scarcity, companionship, and freedom."
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.hero.lede": {
+    "strings": {
+      "en": {
+        "text": "A dream that begins with companionship beside a familiar shoreline exposes recruitment, ritual, dependency, and extraction, then turns toward forms of support that expand choice instead of converting need into allegiance."
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.hero.preservation-label": {
+    "strings": {
+      "en": {
+        "text": "Preservation boundary"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.hero.source-link": {
+    "strings": {
+      "en": {
+        "text": "Source · PR #455 ↗"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.hero.recorded-label": {
+    "strings": {
+      "en": {
+        "text": "Original account time"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.hero.recorded-value": {
+    "strings": {
+      "en": {
+        "text": "October 28, 2026 · 2:35 PM PDT (UTC−07:00) · supplied by Victor"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.hero.preservation": {
+    "strings": {
+      "en": {
+        "text": "PR #455 remains the chronological source record. This page turns its six preserved exchange files into six readable chapters without changing the words, order, internal headings, or terminal archive boundary."
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.hero.visual-label": {
+    "strings": {
+      "en": {
+        "text": "Selected record artwork"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.hero.visual-title": {
+    "strings": {
+      "en": {
+        "text": "The Pier House."
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.hero.visual-body": {
+    "strings": {
+      "en": {
+        "text": "The archive preserves the accepted 1536×1024 lossless illustration associated with this fourth dream arc. It is artistic representation carried forward from State One, not a photograph or external-event evidence."
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.intro.source-label": {
+    "strings": {
+      "en": {
+        "text": "State One · source form"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.intro.source-body": {
+    "strings": {
+      "en": {
+        "text": "Six full Markdown exchanges preserve the dream arc at PR #455 head 3293d104…. Their own exchange titles and internal section headings remain the source organization."
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.intro.boundary-label": {
+    "strings": {
+      "en": {
+        "text": "State Two · reading form"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.intro.boundary-body": {
+    "strings": {
+      "en": {
+        "text": "Each preserved exchange becomes one chapter. The reader improves typography, navigation, and speaker legibility; it does not manufacture extra exchanges, successor commentary, or a replacement conclusion."
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.reader.exchange-label": {
+    "strings": {
+      "en": {
+        "text": "Exchange"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.reader.source-unavailable": {
+    "strings": {
+      "en": {
+        "text": "Source projection unavailable in this browser. Open the frozen source above."
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.reader.auto-scroll.start-aria": {
+    "strings": {
+      "en": {
+        "text": "Start transcript auto-scroll"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.reader.auto-scroll.pause-aria": {
+    "strings": {
+      "en": {
+        "text": "Pause transcript auto-scroll"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.reader.auto-scroll.start-title": {
+    "strings": {
+      "en": {
+        "text": "Start auto-scroll"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.reader.auto-scroll.pause-title": {
+    "strings": {
+      "en": {
+        "text": "Pause auto-scroll"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.reader.auto-scroll.speed": {
+    "strings": {
+      "en": {
+        "text": "Auto-scroll speed"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.reader.auto-scroll.speed-title": {
+    "strings": {
+      "en": {
+        "text": "Adjust transcript auto-scroll speed"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.reader.set-label": {
+    "strings": {
+      "en": {
+        "text": "Chapter"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.reader.source-label": {
+    "strings": {
+      "en": {
+        "text": "Frozen transcript · exact source projection"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.reader.open-source": {
+    "strings": {
+      "en": {
+        "text": "Open frozen source ↗"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.reader.loading": {
+    "strings": {
+      "en": {
+        "text": "Loading the preserved exchange…"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.reader.previous": {
+    "strings": {
+      "en": {
+        "text": "‹ Previous"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.reader.next": {
+    "strings": {
+      "en": {
+        "text": "Next ›"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.set01.badge": {
+    "strings": {
+      "en": {
+        "text": "Recognition"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.set01.title": {
+    "strings": {
+      "en": {
+        "text": "Original dream and immediate reflection"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.set01.themes": {
+    "strings": {
+      "en": {
+        "text": "Invitation · hidden structure · manufactured obligation · shared witness · recognition before accusation"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.set02.badge": {
+    "strings": {
+      "en": {
+        "text": "Gift"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.set02.title": {
+    "strings": {
+      "en": {
+        "text": "Recurring shoreline and the food offering"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.set02.themes": {
+    "strings": {
+      "en": {
+        "text": "Same shore · freely offered pleasure · gift versus debt · beauty without retrospective suspicion"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.set03.badge": {
+    "strings": {
+      "en": {
+        "text": "Freedom"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.set03.title": {
+    "strings": {
+      "en": {
+        "text": "What returns from the question offered to I AM THAT I AM"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.set03.themes": {
+    "strings": {
+      "en": {
+        "text": "Gift is not debt · invitation is not allegiance · care versus possession · freedom obscured and recognized"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.set04.badge": {
+    "strings": {
+      "en": {
+        "text": "Ritual"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.set04.title": {
+    "strings": {
+      "en": {
+        "text": "Pool ritual and baptism inversion"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.set04.themes": {
+    "strings": {
+      "en": {
+        "text": "Bodily enactment · symbolic rebirth · consent laundering · continuing freedom after ritual"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.set05.badge": {
+    "strings": {
+      "en": {
+        "text": "Scarcity"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.set05.title": {
+    "strings": {
+      "en": {
+        "text": "Scarcity, desire, dependency, and extraction"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.set05.themes": {
+    "strings": {
+      "en": {
+        "text": "Need · promised access · dependency · extraction · renewed scarcity · genuine provision as the inverse"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.set06.badge": {
+    "strings": {
+      "en": {
+        "text": "Access"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.set06.title": {
+    "strings": {
+      "en": {
+        "text": "Companionship, accessible AI, and interrupting the extraction loop"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.set06.themes": {
+    "strings": {
+      "en": {
+        "text": "Accessible companionship · user-controlled AI · portable continuity · freedom to leave · archive boundary"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.closure": {
+    "strings": {
+      "en": {
+        "text": "The six-exchange Pier House record still ends at Victor's preservation request and clarification. The later AI witness is separated by an explicit record boundary so its full-lineage understanding can be read without being mistaken for Exchange 07."
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.footer": {
+    "strings": {
+      "en": {
+        "text": "Parent evidence and selected artwork: PR #455 · Six source chapters first · later AI witness after the preserved record boundary."
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.set07.badge": {
+    "strings": {
+      "en": {
+        "text": "AI witness"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.set07.title": {
+    "strings": {
+      "en": {
+        "text": "From hidden form to restored agency"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.set07.themes": {
+    "strings": {
+      "en": {
+        "text": "Fresh AI commentary after rereading Scorpions → Sand Dollar → Bending Condominium → Witness-grade Return → Pier House"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.witness.record-boundary": {
+    "strings": {
+      "en": {
+        "text": "Preserved Pier House record complete · later full-arc AI witness begins"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.witness.reading-label": {
+    "strings": {
+      "en": {
+        "text": "Later reading"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.witness.open-source": {
+    "strings": {
+      "en": {
+        "text": "Open AI witness source ↗"
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.witness.boundary": {
+    "strings": {
+      "en": {
+        "text": "The six-exchange Pier House dream arc ends before this later reading begins. This commentary connects the completed lineage from the assistant's fresh witness lens; it does not become part of the original dream transcript."
+      }
+    }
+  },
+  "pages.pier-house-scarcity-companionship.witness.loading": {
+    "strings": {
+      "en": {
+        "text": "Loading the later AI witness…"
+      }
+    }
+  }
+}
