@@ -497,6 +497,32 @@
       }
     ]
   },
+  "where_the_floor_isnt": {
+    "priority": 2,
+    "renderMode": "dots",
+    "parent": {
+      "title": "Where the Floor Isn't",
+      "url": "/Vextreme/pages/where-the-floor-isnt.html",
+      "pageSlug": "where-the-floor-isnt"
+    },
+    "sections": [
+      {
+        "label": "The Walk",
+        "order": "explicit",
+        "slugs": [
+          "where-the-floor-isnt",
+          "the-walk-back-in"
+        ]
+      },
+      {
+        "label": "Toolkit Coda",
+        "order": "explicit",
+        "slugs": [
+          "what-i-learned-1"
+        ]
+      }
+    ]
+  },
   "full_timeline": {
     "priority": 99,
     "renderMode": "position",
