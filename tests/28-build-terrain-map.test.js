@@ -504,6 +504,28 @@ test('BUILD-TERRAIN-MAP: materially larger content fields keep deterministic arc
   assert.ok(tallest > 4000, 'fixture must materially exceed a small content column');
 });
 
+
+test('BUILD-TERRAIN-MAP: canonical arcMap order is projected separately from primary column geometry', () => {
+  const nodes = [
+    { id: 1, slug: 'alpha', title: 'Alpha', date: 'January 2, 2026', arcKeys: ['primary', 'full_timeline'] },
+    { id: 2, slug: 'beta', title: 'Beta', date: 'January 1, 2026', arcKeys: ['primary', 'full_timeline'] },
+  ];
+  const arcs = {
+    primary: { priority:1, parent:{ title:'Primary' }, sections:[{ label:'Primary', order:'explicit', slugs:['alpha','beta'] }] },
+    full_timeline: { priority:99, parent:{ title:'Full Timeline' }, sections:[{ label:'January 2026', order:'chronological', dateRange:{ from:'2026-01-01', to:'2026-01-31' } }] },
+  };
+  const canonicalArcMap = {
+    primary: [{ label:'Primary', slugs:['alpha','beta'] }],
+    full_timeline: [{ label:'January 2026', slugs:['beta','alpha'] }],
+  };
+  const result = buildContentPages(nodes, arcs, {}, ['alpha','beta'], { pages:{} }, {}, ['alpha','beta'], {}, {}, canonicalArcMap);
+  const timeline = result.arcs.find(arc => arc.key === 'full_timeline');
+  assert.deepEqual(timeline.sections, canonicalArcMap.full_timeline);
+  assert.deepEqual(timeline.memberSlugs, ['beta','alpha']);
+  assert.equal(result.pages.find(page => page.slug === 'alpha').date, 'January 2, 2026');
+  assert.equal(result.pages.find(page => page.slug === 'beta').date, 'January 1, 2026');
+});
+
 // ── 9. Integration ───────────────────────────────────────────────────────────
 
 test('BUILD-TERRAIN-MAP integration: the real generator produces byte-identical output on repeated runs', () => {
@@ -512,6 +534,24 @@ test('BUILD-TERRAIN-MAP integration: the real generator produces byte-identical 
   execFileSync('node', ['lib/build-terrain-map.js'], { cwd: ROOT });
   const second = fs.readFileSync(path.join(ROOT, 'data', 'terrain-map.json'), 'utf8');
   assert.equal(first, second, 'same inputs must produce a byte-identical file (generated-artifacts-must-be-content-deterministic)');
+});
+
+
+test('BUILD-TERRAIN-MAP integration: Terrain projects canonical Full Timeline sections and order from data/index.json', () => {
+  const data = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'terrain-map.json'), 'utf8'));
+  const index = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'index.json'), 'utf8'));
+  const nodes = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'nodes.json'), 'utf8'));
+  const timeline = data.arcs.find(arc => arc.key === 'full_timeline');
+  assert.ok(timeline, 'Full Timeline arc missing from Terrain');
+  assert.deepEqual(timeline.sections, index.arcMap.full_timeline);
+  assert.deepEqual(timeline.memberSlugs, index.arcMap.full_timeline.flatMap(section => section.slugs));
+  assert.equal(timeline.memberSlugs.length, 111);
+  assert.equal(timeline.memberSlugs.at(-1), 'pier-house-scarcity-companionship');
+
+  const nodeDates = Object.fromEntries(nodes.map(node => [node.slug, node.date || null]));
+  for (const page of data.pages) {
+    if (Object.hasOwn(nodeDates, page.slug)) assert.equal(page.date, nodeDates[page.slug], page.slug + ': Terrain date projection');
+  }
 });
 
 test('BUILD-TERRAIN-MAP integration: every edge in the real output references two real nodes', () => {

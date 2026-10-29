@@ -280,6 +280,10 @@
   }
   .evo-rail-btn[aria-current="true"]{ border-color:var(--accent); color:var(--accent); background:var(--accent-soft); }
   .evo-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px; margin-top:14px; }
+  .evo-timeline-section{ margin-top:22px; }
+  .evo-timeline-section-head{ padding:0 2px 8px; border-bottom:1px solid var(--line); color:var(--ink-muted); font:650 10px/1.35 var(--mono); letter-spacing:.08em; text-transform:uppercase; }
+  .evo-timeline-grid{ margin-top:10px; }
+  .evo-card-date{ margin:-2px 0 8px; color:var(--ink-faint); font:10px/1.35 var(--mono); }
   .evo-card{
     min-width:0; background:var(--panel); border:1px solid var(--line); border-radius:14px; overflow:hidden;
     box-shadow:0 8px 24px color-mix(in srgb, var(--ink) 4%, transparent);
@@ -1195,7 +1199,7 @@
   }
 
   function buildContentWorld(data) {
-    var stages = (data.arcs || []).map(function (a) { return { key: a.key, name: a.name, sub: a.sub, count: a.count, rect: a.rect, parent: a.parent || null }; });
+    var stages = (data.arcs || []).map(function (a) { return { key: a.key, name: a.name, sub: a.sub, count: a.count, rect: a.rect, parent: a.parent || null, sections: a.sections || [], memberSlugs: a.memberSlugs || [] }; });
     var colW = (stages.length > 1) ? (stages[1].rect.x - stages[0].rect.x) : 340;
     var all = (data.pages || []).map(function (p) {
       return Object.assign({ kind: 'page' }, p, { stage: p.arc, stageName: p.arcName });
@@ -2329,7 +2333,7 @@
       return '<button class="evo-rail-btn" type="button" data-evo-stage-index="' + index + '" aria-current="' + String(index === levelCtx.stageIdx) + '">' + esc(candidate.name) + '</button>';
     }).join('');
 
-    var memberCards = members.map(function (node) {
+    function memberCardHtml(node) {
       var capability = node.capability || {};
       var description = capability.metaDescription || 'Repository-native preserved page.';
       var languages = Array.isArray(capability.evidenceLanguages) ? capability.evidenceLanguages : [];
@@ -2350,13 +2354,34 @@
         + preview
         + '<div class="evo-card-body">'
         + '<h3 class="evo-card-title">' + esc(node.title || node.slug) + '</h3>'
+        + (node.date ? '<div class="evo-card-date">' + esc(node.date) + '</div>' : '')
         + '<p class="evo-card-desc">' + esc(description) + '</p>'
         + '<div class="evo-card-meta">' + chips + '</div>'
         + '<div class="evo-actions">' + open + '<button class="evo-detail" type="button" data-evo-detail="' + escAttr(node.id) + '">Details</button></div>'
         + '<div class="evo-url">' + esc(node.liveUrl || ('pages/' + node.slug + '.html')) + '</div>'
         + '</div></article>';
-    }).join('');
-    var cards = groupHomeCard + memberCards;
+
+    }
+    var memberCards;
+    if (summary.groupKind === 'timeline-view' && Array.isArray(stage.sections) && stage.sections.length) {
+      var membersBySlug = {};
+      members.forEach(function (node) { membersBySlug[node.slug] = node; });
+      memberCards = stage.sections.map(function (section) {
+        var sectionCards = (section.slugs || []).map(function (slug) { return membersBySlug[slug]; }).filter(Boolean).map(memberCardHtml).join('');
+        if (!sectionCards) return '';
+        return '<section class="evo-timeline-section" data-timeline-section="' + escAttr(section.label) + '">'
+          + '<div class="evo-timeline-section-head">' + esc(section.label) + '</div>'
+          + '<div class="evo-grid evo-timeline-grid">' + sectionCards + '</div>'
+          + '</section>';
+      }).join('');
+    } else {
+      memberCards = members.map(memberCardHtml).join('');
+    }
+    var groupHomeSurface = groupHomeCard ? '<section class="evo-grid" aria-label="' + escAttr(stage.name) + ' group home">' + groupHomeCard + '</section>' : '';
+    var memberSurface = summary.groupKind === 'timeline-view'
+      ? memberCards
+      : (memberCards ? '<section class="evo-grid" aria-label="' + escAttr(stage.name) + ' pages">' + memberCards + '</section>' : '');
+    var cards = groupHomeSurface + memberSurface;
 
     evolutionLayer.innerHTML = '<div class="evo-shell">'
       + '<section class="evo-context">'
@@ -2365,7 +2390,7 @@
       + '<div class="evo-context-meta">Live remains the accepted reference' + parentPending + '</div></div>'
       + '<div class="evo-rail" aria-label="Content groups">' + rail + '</div>'
       + '</section>'
-      + (cards ? '<section class="evo-grid" aria-label="' + escAttr(stage.name) + ' pages">' + cards + '</section>' : '<div class="evo-empty">No destinations are currently projected in this group.</div>')
+      + (cards ? cards : '<div class="evo-empty">No destinations are currently projected in this group.</div>')
       + '</div>';
 
     evolutionLayer.querySelectorAll('.evo-card').forEach(function (card) {
@@ -2468,6 +2493,9 @@
   function stageMembers(stage) {
     var kind = groupKind(stage);
     if (currentWorld !== 'content' || kind === 'curation-bucket') return stagePrimaryMembers(stage);
+    if (Array.isArray(stage.memberSlugs) && stage.memberSlugs.length) {
+      return stage.memberSlugs.map(function (slug) { return byId[slug]; }).filter(Boolean);
+    }
     return ALL.filter(function (n) {
       return Array.isArray(n.arcKeys) && n.arcKeys.indexOf(stage.key) !== -1;
     });

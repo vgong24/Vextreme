@@ -135,6 +135,20 @@ test('TERRAIN-VIEW: current canonical arcs are not empty; three are secondary-on
   assert.equal(timeline.primary.length, 1);
 });
 
+
+test('TERRAIN-VIEW: Full Timeline consumes canonical projected sections/order and preserves complete page readers', () => {
+  const source = pageSource();
+  assert.match(source, /sections: a\.sections \|\| \[\], memberSlugs: a\.memberSlugs \|\| \[\]/);
+  assert.match(source, /Array\.isArray\(stage\.memberSlugs\) && stage\.memberSlugs\.length/);
+  assert.match(source, /stage\.memberSlugs\.map\(function \(slug\) \{ return byId\[slug\]; \}\)\.filter\(Boolean\)/);
+  assert.match(source, /summary\.groupKind === 'timeline-view'/);
+  assert.match(source, /class="evo-timeline-section"/);
+  assert.match(source, /section\.slugs \|\| \[\]/);
+  assert.match(source, /memberCardHtml/);
+  assert.match(source, /data-evo-reader=/, 'Timeline cards must continue opening the existing complete embedded page reader');
+  assert.match(source, /node\.date \? '<div class="evo-card-date">/, 'Timeline/card projection should expose canonical record date when known');
+});
+
 test('TERRAIN-VIEW: dated content has one known timeline-only exception and canonical arc-less department records stay explicitly unplaced', () => {
   const { nodes } = canonicalAssortment();
   const datedTimelineOnly = nodes
