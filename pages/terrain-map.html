@@ -3794,13 +3794,13 @@
     var enterRatioLabel = formatTerrainEnterRatio(ENTER_RATIO);
     var depthPreference = canAdjustEntry
       ? '<div class="depth-preference" role="group" aria-label="Entry zoom preference">' +
-          '<span class="depth-preference-label">Enter next layer at</span>' +
+          '<span class="depth-preference-label">Automatic entry at</span>' +
           '<output class="depth-preference-value" for="terrainEnterRatio" data-enter-ratio-value>' + esc(enterRatioLabel) + '</output>' +
           '<input id="terrainEnterRatio" data-enter-ratio type="range"' +
             ' min="' + ENTER_RATIO_MIN + '" max="' + ENTER_RATIO_MAX + '" step="' + ENTER_RATIO_STEP + '"' +
             ' value="' + ENTER_RATIO.toFixed(2) + '"' +
-            ' aria-label="Zoom depth before entering the next Terrain layer"' +
-            ' aria-valuetext="' + escAttr('Enter next layer at ' + enterRatioLabel + ' zoom') + '">' +
+            ' aria-label="Zoom depth before automatic entry"' +
+            ' aria-valuetext="' + escAttr('Automatic entry at ' + enterRatioLabel + ' zoom') + '">' +
         '</div>'
       : '';
     var steps = OVERVIEW_LEVELS.map(function (level, index) {
@@ -3827,7 +3827,7 @@
     var output = readout.querySelector('[data-enter-ratio-value]');
     if (control) {
       control.value = ENTER_RATIO.toFixed(2);
-      control.setAttribute('aria-valuetext', 'Enter next layer at ' + label + ' zoom');
+      control.setAttribute('aria-valuetext', 'Automatic entry at ' + label + ' zoom');
     }
     if (output) output.textContent = label;
     var ratio = view.scale / levelBaseScale;
