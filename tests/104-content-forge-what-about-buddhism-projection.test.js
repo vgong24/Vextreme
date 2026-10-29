@@ -61,18 +61,13 @@ test('CONTENT FORGE BUDDHISM: provider shell is excluded while the repository-na
   assert.ok(page.includes('../dist/vextreme-what-about-buddhism.js'), 'page must load its generated God Script');
 });
 
-test('CONTENT FORGE BUDDHISM: viewmodel, node identity, and arc placement stay unchanged', () => {
+test('CONTENT FORGE BUDDHISM: viewmodel, node identity, and arc placement stay unchanged after cover ownership moves to the page', () => {
   assert.deepEqual(viewmodels['what-about-buddhism'], {
     title: 'Now what about Buddhism?',
     category: 'production',
     template: 'page',
     scopes: ['pages.what-about-buddhism'],
     features: ['lang', 'spiral-fab', 'theme', 'map', 'analysis', 'arc-nav'],
-    preview: {
-      kind: 'cover',
-      src: 'https://vgong24.github.io/Vextreme-Assets/__assets/5e2a523e20a78ac80544f0658de4083ece50a11d55a2d0879f587910005fdabc.webp',
-      alt: 'Now what about Buddhism? — spiritual scaffolding dissolving into direct recognition cover art',
-    },
   });
 
   assert.deepEqual(nodes.find((item) => item.slug === 'what-about-buddhism'), {
