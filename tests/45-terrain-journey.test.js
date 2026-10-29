@@ -710,4 +710,71 @@ test('TERRAIN-JOURNEY: reader return context has one bounded mutation owner', ()
   assert.deepEqual(context.read(), { kind:'collection', entrySlug:null, readerId:null });
 });
 
+
+test('TERRAIN-JOURNEY: active embedded surface has one mutually-exclusive mutation owner', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'pages', 'terrain-map.html'), 'utf8').replace(/\r\n/g, '\n');
+
+  assert.match(source, /function setActiveEmbeddedSurface\(kind, value\)/);
+  assert.match(source, /function clearActiveEmbeddedSurface\(\) \{\s*setActiveEmbeddedSurface\(null, null\);\s*\}/);
+
+  const assignmentCount = (name) => {
+    const expression = new RegExp('^\\s*(?:var\\s+)?' + name + '\\s*=(?!=)', 'gm');
+    return (source.match(expression) || []).length;
+  };
+  assert.equal(assignmentCount('activeReaderId'), 2,
+    'reader surface identity may be initialized once and mutated only inside setActiveEmbeddedSurface');
+  assert.equal(assignmentCount('activeEntrySlug'), 2,
+    'entry surface identity may be initialized once and mutated only inside setActiveEmbeddedSurface');
+  assert.equal(assignmentCount('activeGroupHomeKey'), 2,
+    'group-home surface identity may be initialized once and mutated only inside setActiveEmbeddedSurface');
+
+  const helperStart = source.indexOf('function setActiveEmbeddedSurface(kind, value)');
+  const helperEnd = source.indexOf('function setReaderReturnContext', helperStart);
+  assert.ok(helperStart > 0 && helperEnd > helperStart, 'active surface helper block must remain extractable');
+  const helperSource = source.slice(helperStart, helperEnd);
+  const build = new Function('entryDocument', 'byId', 'STAGES', [
+    'var activeReaderId = null;',
+    'var activeEntrySlug = null;',
+    'var activeGroupHomeKey = null;',
+    helperSource,
+    'return {',
+    '  set:setActiveEmbeddedSurface,',
+    '  clear:clearActiveEmbeddedSurface,',
+    '  read:function(){ return { readerId:activeReaderId, entrySlug:activeEntrySlug, groupHomeKey:activeGroupHomeKey }; }',
+    '};'
+  ].join('\n'));
+
+  const surface = build(
+    (slug) => slug === 'receive-god' ? { label:'Receive God' } : null,
+    { 'record-a':{ id:'record-a' } },
+    [{ key:'direct_contact' }]
+  );
+
+  surface.set('entry', 'receive-god');
+  assert.deepEqual(surface.read(), { readerId:null, entrySlug:'receive-god', groupHomeKey:null });
+
+  surface.set('reader', 'record-a');
+  assert.deepEqual(surface.read(), { readerId:'record-a', entrySlug:null, groupHomeKey:null });
+
+  surface.set('group-home', 'direct_contact');
+  assert.deepEqual(surface.read(), { readerId:null, entrySlug:null, groupHomeKey:'direct_contact' });
+
+  surface.set('entry', 'missing');
+  assert.deepEqual(surface.read(), { readerId:null, entrySlug:null, groupHomeKey:null },
+    'invalid active-surface identity fails closed to no embedded surface');
+
+  surface.clear();
+  assert.deepEqual(surface.read(), { readerId:null, entrySlug:null, groupHomeKey:null });
+
+  const hideStart = source.indexOf('function hideEvolutionLayer()');
+  const hideEnd = source.indexOf('function scheduleTerrainIdle', hideStart);
+  const hideSource = source.slice(hideStart, hideEnd);
+  assert.match(hideSource, /clearActiveEmbeddedSurface\(\)/,
+    'generic Evolution teardown must clear entry as well as reader/group-home state');
+
+  assert.match(source, /function syncEntryReaderFromDocument\(\)[\s\S]*setActiveEmbeddedSurface\('entry', slug\)/,
+    'embedded entry-document synchronization must update active identity through the bounded owner');
+});
+
+
 // [VXG RealForever]
