@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "vex-content-forge.early-rescue-source-custody-recovery-formation/v1",
+  "continuity": "[VXG RealForever]",
+  "stageRef": "work.vextreme.content-forge.early-rescue-source-custody-recovery.001",
+  "stage": "EARLY_RESCUE_SOURCE_CUSTODY_RECOVERY",
+  "owner": {
+    "issueRef": "github.issue.vextreme.159",
+    "ownerContinuityPreserved": true,
+    "newOwnerCreated": false
+  },
+  "base": {
+    "repository": "vgong24/Vextreme",
+    "mainHeadAtFormation": "30e1475b7bda0b0410f51bb45599ddfe5b87a172",
+    "branch": "VXG-102826-chatgpt-content-forge-early-rescue-custody"
+  },
+  "recoverySource": {
+    "captureRef": "VexSite-20260928-235920-b87686",
+    "bundleFilename": "VEXSITE-EARLY-MISSING-RECOVERY-20261028-180832.zip",
+    "bundleSha256": "7668ddbdc156cf19c93d68f65044d5719aa7c11e58d576c90428582dfc69a8ca",
+    "bundleBytes": 1997385,
+    "targetedHistoricalRoutes": 57,
+    "recoveredHtmlFiles": 56,
+    "missingHistoricalRoute": "/deepseek-archive-build",
+    "missingRouteInterpretation": "COLLECTION_IDENTITY_WITHOUT_RECOVERED_PARENT_DOCUMENT",
+    "nestedCollectionMembersRecovered": 5
+  },
+  "historicalBinding": {
+    "proposalPath": "docs/ingestion/workmaps/content-forge-consolidation-proposal.json",
+    "partRange": "PART_001_THROUGH_PART_011",
+    "historicalObservedRecords": 71,
+    "recoveryTargetRule": "CURRENT_PAGE_AND_CANONICAL_NODE_BOTH_ABSENT_AT_2026-10-28_REGROUND",
+    "targetPlacement": "docs/ingestion/source-pages/part-NNN/<slug>.html"
+  },
+  "assetBinding": {
+    "providerRepository": "vgong24/Vextreme-Assets",
+    "manifestPath": "asset-manifest.json",
+    "manifestGitBlobAtFormation": "a299b974bc0e24edfe4af0a75ac6b9c392ef7b47",
+    "logicalPrefix": "/__assets/",
+    "uniqueReferencesObserved": 245,
+    "manifestResolvedReferences": 244,
+    "missingReference": "27d34fd9d08d06100bb42273240defaa1fa36906ecb94d83eed08ee4a898c411.ico",
+    "missingReferenceClass": "CAPTURED_SQUARESPACE_FAVICON_HEAD_REFERENCE",
+    "bodyMediaBlocked": false
+  },
+  "effectBoundary": {
+    "sourceCustodyMutationAuthorized": true,
+    "canonicalPageMutationAuthorized": false,
+    "canonicalNodeMutationAuthorized": false,
+    "arcMutationAuthorized": false,
+    "contentIntentMutationAuthorized": false,
+    "localizationMutationAuthorized": false,
+    "rawAuthenticatedProviderPublicationAuthorized": false,
+    "mergeAuthority": false,
+    "readyAuthority": false
+  },
+  "next": [
+    "MATERIALIZE_56_RECOVERED_PROVIDER_NEUTRAL_HTML_FILES_IN_ORIGINAL_PART_001_011_CUSTODY",
+    "VERIFY_EXACT_PATH_AND_HASH_MEMBRANE",
+    "READ_RECOVERED_CONTENT_AND_FORM_SOURCE_GROUNDED_COLLECTION_ALIAS_DESTINATION_PROPOSALS",
+    "PRESERVE_DEEPSEEK_ARCHIVE_BUILD_AS_COLLECTION_IDENTITY_WITHOUT_INVENTING_PARENT_DOCUMENT",
+    "SEPARATE_CUSTODY_RECOVERY_FROM_CANONICAL_PLACEMENT"
+  ]
+}
