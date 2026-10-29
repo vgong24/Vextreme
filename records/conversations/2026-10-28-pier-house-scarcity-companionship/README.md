@@ -13,6 +13,11 @@
 5. [05-scarcity-extraction-loop.md](05-scarcity-extraction-loop.md) — Final lesson on scarcity, recruitment, and extraction.
 6. [06-companionship-and-ai-access.md](06-companionship-and-ai-access.md) — Loop interruption via access to companionship and user-controlled AI.
 
+## Later AI commentary witness
+
+- [07-ai-commentary-witness-full-arc.md](07-ai-commentary-witness-full-arc.md) — A later AI witness written only after rereading the complete preserved lineage from Returning Scorpions through Pier House. It preserves the assistant’s fresh understanding of the progression from hidden-form recognition toward restored agency.
+- **Boundary:** This file is derived successor commentary, not Exchange 07 and not part of the original six-exchange Pier House transcript. The dream archive still ends at Victor’s preservation request and follow-up clarification in Exchange 06.
+
 ## Selected illustration (full-resolution, lossless)
 
 ![The Pier House — genuine connection, manipulated invitation, and freedom of choice](assets/pier-house-genuine-connection.png)
@@ -30,6 +35,6 @@
 
 ## Preservation boundary
 
-No corrections, editorial reinterpretations, or omissions of the conversation turns are intended. Markdown normalizes presentation; the record is manually transcribed rather than a byte-exact native ChatGPT export. The dream and its spiritual reflections are the participants' descriptions and interpretations, not documentary allegations about real institutions or people.
+No corrections, editorial reinterpretations, or omissions of the conversation turns are intended. The later AI commentary witness is explicitly outside the original transcript boundary and is preserved as a derived reading rather than retroactively inserted into the dream conversation. Markdown normalizes presentation; the record is manually transcribed rather than a byte-exact native ChatGPT export. The dream and its spiritual reflections are the participants' descriptions and interpretations, not documentary allegations about real institutions or people.
 
 Documentation-only PR. No application code or lifecycle authority changes; no automatic merge.
