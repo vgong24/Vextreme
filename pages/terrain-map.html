@@ -3719,7 +3719,7 @@
     var steps = journey.entries.slice(start, journey.cursor + 1).map(function (entry, offset) {
       var index = start + offset;
       var relationship = entry.relationship
-        ? '<span class="journey-relationship">' + esc(entry.relationship) + (entry.fromNodeId ? ' from ' + esc(entry.fromNodeId) : '') + '</span>'
+        ? '<span class="journey-relationship">' + esc(entry.relationship) + (entry.fromNodeId ? ' · ' + esc(entry.fromNodeId) : '') + '</span>'
         : '';
       var reason = entry.reason
         ? '<span class="journey-reason">why · ' + esc(entry.reason) + '</span>'
