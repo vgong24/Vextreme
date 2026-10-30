@@ -1,9 +1,9 @@
 {
-  "contentFingerprint": "dfe6699cedf3",
-  "nodeCount": 175,
-  "curatedNodeCount": 159,
+  "contentFingerprint": "c556a901238e",
+  "nodeCount": 176,
+  "curatedNodeCount": 160,
   "autoDiscoveredCount": 16,
-  "arcCount": 25,
+  "arcCount": 26,
   "supportedLangs": [
     "ar",
     "de",
@@ -2407,6 +2407,14 @@
       ]
     },
     "paint-editor-tool": {
+      "availableLangs": [
+        "en"
+      ],
+      "completeLangs": [
+        "en"
+      ]
+    },
+    "sabotage-open-vex-accountability": {
       "availableLangs": [
         "en"
       ],
@@ -7016,6 +7024,35 @@
         ]
       }
     },
+    "sabotage-open-vex-accountability": {
+      "id": 113,
+      "slug": "sabotage-open-vex-accountability",
+      "title": "Sabotage I — When Progress Became the Obstruction",
+      "date": "October 30, 2026",
+      "arcKeys": [
+        "sabotage",
+        "victors_record",
+        "full_timeline"
+      ],
+      "department": "media",
+      "workType": "record-transcripts",
+      "vexData": {},
+      "dateISO": "2026-10-30",
+      "viewmodel": {
+        "category": "production",
+        "template": "page",
+        "scopes": [
+          "pages.sabotage-open-vex-accountability"
+        ],
+        "features": [
+          "spiral-fab",
+          "theme",
+          "map",
+          "analysis",
+          "arc-nav"
+        ]
+      }
+    },
     "about-me": {
       "id": null,
       "slug": "about-me",
@@ -7652,7 +7689,8 @@
           "recognizing-life-receiving-abundance",
           "bending-condominium-ocean-return",
           "witness-grade-return",
-          "pier-house-scarcity-companionship"
+          "pier-house-scarcity-companionship",
+          "sabotage-open-vex-accountability"
         ]
       }
     ],
@@ -8024,7 +8062,16 @@
           "recognizing-life-receiving-abundance",
           "bending-condominium-ocean-return",
           "witness-grade-return",
-          "pier-house-scarcity-companionship"
+          "pier-house-scarcity-companionship",
+          "sabotage-open-vex-accountability"
+        ]
+      }
+    ],
+    "sabotage": [
+      {
+        "label": "Sabotage",
+        "slugs": [
+          "sabotage-open-vex-accountability"
         ]
       }
     ]
@@ -8155,6 +8202,11 @@
       "title": "Full Timeline",
       "url": "https://www.vextreme24.com/archives",
       "renderMode": "position"
+    },
+    "sabotage": {
+      "title": "Sabotage",
+      "url": "https://www.vextreme24.com/archives",
+      "renderMode": "dots"
     }
   },
   "departmentMap": {
@@ -8999,6 +9051,11 @@
         {
           "slug": "pier-house-scarcity-companionship",
           "title": "The Pier House Dream",
+          "ported": true
+        },
+        {
+          "slug": "sabotage-open-vex-accountability",
+          "title": "Sabotage I — When Progress Became the Obstruction",
           "ported": true
         }
       ]
