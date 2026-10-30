@@ -164,6 +164,14 @@ The source supports a staged presentation such as:
 
 The exact preserved dialogue and successor text should remain source. Speaker styling, collapsible technical sections, causal callouts, and navigation should be projections over it.
 
+## Derived successor witness
+
+The later reading by the fresh preserving instance is intentionally separate from the conversation evidence:
+
+- `records/commentary/2026-10-30-sabotage-open-vex-accountability-successor-witness.md`
+
+The public HTML renders this **after** the eight direct exchanges and the resulting Open Vex successor. The witness names relationships visible across the assembled record—especially how process, architecture, accountability language, and even the handoff itself were recursively tested for obstruction—without rewriting Victor's words, inventing missing messages, or certifying malicious intent.
+
 ## Public reader and series placement
 
 This record is the first entry in the reader-facing **Sabotage** arc selected by Victor.
