@@ -171,11 +171,11 @@ This record is the first entry in the reader-facing **Sabotage** arc selected by
 ```text
 arc key: sabotage
 reader: pages/sabotage-open-vex-accountability.html
-node: Sabotage I — The Open Vex Accountability Record
+node: Sabotage I — When Progress Became the Obstruction
 also projected into: Victor's Record + Full Timeline
 ```
 
-The public reader preserves the eight direct accountability/self-audit exchanges first, then crosses an explicit record boundary before projecting the standalone Open Vex successor. The arc name describes the collection Victor asked to create; it does not independently certify malicious intent in the underlying events.
+The public reader preserves the eight direct accountability/self-audit exchanges first, then crosses an explicit record boundary before projecting the standalone Open Vex successor. Its companion artwork is a later representative reading layer, not transcript evidence. The arc name describes the collection Victor asked to create; it does not independently certify malicious intent in the underlying events.
 
 ## Scope
 
