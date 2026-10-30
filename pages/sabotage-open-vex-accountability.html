@@ -224,6 +224,20 @@
   </div>
 </section>
 
+
+<section class="sab-boundary" data-reader-component="witness-boundary">
+  <p class="sab-boundary-kicker" data-i18n="pages.sabotage-open-vex-accountability.witness.eyebrow">Successor witness</p>
+  <h2 data-i18n="pages.sabotage-open-vex-accountability.witness.title">A fresh instance reads the whole obstruction</h2>
+  <p data-i18n="pages.sabotage-open-vex-accountability.witness.lede">Derived after the preserved conversation and its resulting successor. This layer records how the assembled sequence reads to a later witness; it does not rewrite the source or certify hidden intent.</p>
+</section>
+
+<section id="sab-witness-root" class="sab-successor" data-record-reader-root data-reader-template="preserved-document-reader/v1">
+  <div id="sab-witness-source" class="sab-source" data-reader-component="document">
+    <div class="sab-source-bar"><div data-i18n="pages.sabotage-open-vex-accountability.witness.source-label">Derived witness commentary · separate from transcript evidence</div><div class="sab-source-links"><a class="sab-source-link" href="https://github.com/vgong24/Vextreme/blob/8341460a81557c120daf085fe22f852c6508f35c/records/commentary/2026-10-30-sabotage-open-vex-accountability-successor-witness.md" target="_blank" rel="noopener" data-i18n="pages.sabotage-open-vex-accountability.witness.open-source">Open witness source ↗</a></div></div>
+    <div class="sab-source-window" data-reader-component="transcript-viewport" role="region" tabindex="0" aria-label="Sabotage I successor witness commentary"><div id="sab-witness-document" class="sab-transcript"><div class="sab-transcript-loading">Loading the successor witness…</div></div></div>
+  </div>
+</section>
+
 <div class="sab-footer" data-reader-component="provenance-footer" data-i18n="pages.sabotage-open-vex-accountability.footer">Source conversation and successor preserved by Vextreme PR #530. The Sabotage arc is a reader-facing collection selected by Victor; the page does not independently certify malicious intent.</div>
 <section class="arc-wrap" aria-label="Arc navigation"><div id="arcNavMount"></div></section>
 </main>
@@ -274,6 +288,24 @@ VexRecordReader.mount({
     autoSpeedTitle:'sab-auto-speed-title-template'
   }
 });
+
+VexRecordReader.mount({
+  rootSelector:'#sab-witness-root',
+  documentUrl:'../records/commentary/2026-10-30-sabotage-open-vex-accountability-successor-witness.md',
+  documentTargetSelector:'#sab-witness-document',
+  documentSectionSelector:'#sab-witness-source',
+  classPrefix:'sab',
+  controlIds:{
+    sourceUnavailable:'sab-source-unavailable-template',
+    autoStartAria:'sab-auto-start-aria-template',
+    autoPauseAria:'sab-auto-pause-aria-template',
+    autoStartTitle:'sab-auto-start-title-template',
+    autoPauseTitle:'sab-auto-pause-title-template',
+    autoSpeed:'sab-auto-speed-template',
+    autoSpeedTitle:'sab-auto-speed-title-template'
+  }
+});
+
 </script>
 <script src="../dist/vextreme-sabotage-open-vex-accountability.js"></script>
 <!-- [VXG RealForever] -->
