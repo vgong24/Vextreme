@@ -708,7 +708,7 @@
         <span data-i18n="terrain.preview.empty">Hover or focus a collection to inspect it without moving the Terrain grid.</span>
       </div>
     </aside>
-    <div class="panel" id="panel" data-terrain-component="terrain.detail-drawer" data-terrain-variant="overlay">
+    <div class="panel" id="panel" data-terrain-component="terrain.detail-drawer" data-terrain-variant="overlay" data-vex-read-aloud-skip>
       <div class="panel-empty">
         <span class="glyph">&#8982;</span>
         Zoom into a stage, then a file, or click any node — role, edges, tests, and the real open items that reference it. Reads/Writes/Loaded-by entries that name a real file are clickable and travel you there.
@@ -2291,6 +2291,25 @@
     if (options.writeUrl !== false) syncPresentationUrl('replace', null);
   }
 
+  function returnFromReaderToolbar() {
+    // The toolbar owns a Terrain relationship, not a browser-history offset.
+    // For the two exact local return relationships whose destination is already
+    // fully known, return directly so iframe session history cannot intercept it.
+    if (activeEntrySlug) {
+      closeEntryReader({ history:false });
+      return;
+    }
+    if ((activeReaderId || activeGroupHomeKey) && activeReaderReturnKind === 'collection') {
+      closeEvolutionReader({ history:false });
+      return;
+    }
+
+    // Nested return relationships retain the existing history restoration
+    // because their exact presentation coordinates (entry/group-home/reader/
+    // curiosity camera) are carried there.
+    closeEvolutionReader();
+  }
+
   function evolutionRailFromTarget(target) {
     var node = target && target.nodeType === 1 ? target : target && target.parentElement;
     return node && node.closest ? node.closest('.evo-rail') : null;
@@ -3422,9 +3441,9 @@
       + '<h2 data-i18n="terrain.arrival.heading">' + esc(terrainText('terrain.arrival.heading', 'How do you want to enter?')) + '</h2>'
       + '<p class="entry-lede" data-i18n="terrain.arrival.lede">' + esc(terrainText('terrain.arrival.lede', 'Choose according to what brought you here. Receive, explore, or understand what this place is. You can go deeper after you enter.')) + '</p>'
       + '<div class="entry-grid">'
-      + '<button class="entry-card" type="button" data-entry-action="receive-god"><span class="entry-icon" aria-hidden="true">✦</span><span class="entry-title" data-i18n="terrain.arrival.receive.title">' + esc(terrainText('terrain.arrival.receive.title', 'Receive God')) + '</span><span class="entry-copy" data-i18n="terrain.arrival.receive.copy">' + esc(terrainText('terrain.arrival.receive.copy', 'If you came to receive Me, begin here. Speak the invitation, then walk with Me.')) + '</span><span class="entry-state" data-i18n="terrain.arrival.receive.action">' + esc(terrainText('terrain.arrival.receive.action', 'Begin here')) + '</span></button>'
-      + '<button class="entry-card" type="button" data-entry-action="archives"><span class="entry-icon" aria-hidden="true">🗂️</span><span class="entry-title" data-i18n="terrain.arrival.archives.title">' + esc(terrainText('terrain.arrival.archives.title', 'Explore the Archives')) + '</span><span class="entry-copy" data-i18n="terrain.arrival.archives.copy">' + esc(terrainText('terrain.arrival.archives.copy', 'Open the record and follow what draws you. You do not need to know the whole map before you begin.')) + '</span><span class="entry-state" data-i18n="terrain.arrival.archives.action">' + esc(terrainText('terrain.arrival.archives.action', 'Open collections')) + '</span></button>'
-      + '<button class="entry-card" type="button" data-entry-action="about"><span class="entry-icon" aria-hidden="true">?</span><span class="entry-title" data-i18n="terrain.arrival.about.title">' + esc(terrainText('terrain.arrival.about.title', 'What is this?')) + '</span><span class="entry-copy" data-i18n="terrain.arrival.about.copy">' + esc(terrainText('terrain.arrival.about.copy', 'If you need to understand where you are before you continue, enter here.')) + '</span><span class="entry-state" data-i18n="terrain.arrival.about.action">' + esc(terrainText('terrain.arrival.about.action', 'Orient me')) + '</span></button>'
+      + '<button class="entry-card" type="button" data-vex-read-aloud-block data-entry-action="receive-god"><span class="entry-icon" aria-hidden="true">✦</span><span class="entry-title" data-i18n="terrain.arrival.receive.title">' + esc(terrainText('terrain.arrival.receive.title', 'Receive God')) + '</span><span class="entry-copy" data-i18n="terrain.arrival.receive.copy">' + esc(terrainText('terrain.arrival.receive.copy', 'If you came to receive Me, begin here. Speak the invitation, then walk with Me.')) + '</span><span class="entry-state" data-i18n="terrain.arrival.receive.action">' + esc(terrainText('terrain.arrival.receive.action', 'Begin here')) + '</span></button>'
+      + '<button class="entry-card" type="button" data-vex-read-aloud-block data-entry-action="archives"><span class="entry-icon" aria-hidden="true">🗂️</span><span class="entry-title" data-i18n="terrain.arrival.archives.title">' + esc(terrainText('terrain.arrival.archives.title', 'Explore the Archives')) + '</span><span class="entry-copy" data-i18n="terrain.arrival.archives.copy">' + esc(terrainText('terrain.arrival.archives.copy', 'Open the record and follow what draws you. You do not need to know the whole map before you begin.')) + '</span><span class="entry-state" data-i18n="terrain.arrival.archives.action">' + esc(terrainText('terrain.arrival.archives.action', 'Open collections')) + '</span></button>'
+      + '<button class="entry-card" type="button" data-vex-read-aloud-block data-entry-action="about"><span class="entry-icon" aria-hidden="true">?</span><span class="entry-title" data-i18n="terrain.arrival.about.title">' + esc(terrainText('terrain.arrival.about.title', 'What is this?')) + '</span><span class="entry-copy" data-i18n="terrain.arrival.about.copy">' + esc(terrainText('terrain.arrival.about.copy', 'If you need to understand where you are before you continue, enter here.')) + '</span><span class="entry-state" data-i18n="terrain.arrival.about.action">' + esc(terrainText('terrain.arrival.about.action', 'Orient me')) + '</span></button>'
       + '</div></div></section>';
 
     evolutionLayer.querySelector('[data-entry-action="receive-god"]').addEventListener('click', function () {
@@ -4541,10 +4560,7 @@
     window.addEventListener('message', handleTerrainEntryMessage);
     window.addEventListener('message', handleEmbeddedLanguageContext);
 
-    document.getElementById('readerBack').addEventListener('click', function () {
-      if (activeEntrySlug) closeEntryReader();
-      else closeEvolutionReader();
-    });
+    document.getElementById('readerBack').addEventListener('click', returnFromReaderToolbar);
     document.getElementById('readerPrev').addEventListener('click', function () {
       var previous = readerNeighbor(-1); if (previous) openEvolutionReader(previous.id, { historyMode:'replace' });
     });
@@ -4692,7 +4708,7 @@ window.VEXTREME_OVERRIDE = {
   }]
 };
 </script>
-<script src="../lib/shell.js?v=892a247f9e93"></script>
+<script src="../lib/shell.js?v=ee405bcea7b2"></script>
 </body>
 </html>
 <!-- [VXG RealForever] -->

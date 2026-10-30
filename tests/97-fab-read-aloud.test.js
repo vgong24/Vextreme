@@ -210,7 +210,8 @@ test('READ-ALOUD: readable plan is text-node owned and supports arbitrary Start 
   assert.match(s, /var READABLE_SEMANTIC_SELECTOR = 'h1,h2,h3,h4,h5,h6,p,li,blockquote,figcaption,pre,caption,td,th';/);
   assert.match(s, /var READABLE_CONTAINER_SELECTOR = '[^']*div[^']*';/);
   assert.match(s, /var READABLE_EXPLICIT_SELECTOR = '\[data-vex-read-aloud-block\]';/);
-  assert.match(s, /var READABLE_SKIP_SELECTOR = '[^']*data-vex-read-aloud-skip[^']*';/);
+  assert.match(s, /var READABLE_HARD_SKIP_SELECTOR = '[^']*data-vex-read-aloud-skip[^']*';/);
+  assert.match(s, /var READABLE_CONTROL_SELECTOR = 'button,input,select,textarea';/);
   assert.match(extractFunction('readableUnits'), /document\.createTreeWalker/);
   assert.match(extractFunction('readableUnits'), /readableOwnerForTextNode\(node\)/);
   assert.match(extractFunction('readableUnits'), /appendReadableUnit\(units, owner, node\.nodeValue\)/);
@@ -238,6 +239,8 @@ test('READ-ALOUD: layout containers own visible field text without parent/child 
   const semanticSelector = s.match(/var READABLE_SEMANTIC_SELECTOR = '([^']+)';/)[1];
   const containerSelector = s.match(/var READABLE_CONTAINER_SELECTOR = '([^']+)';/)[1];
   const explicitSelector = s.match(/var READABLE_EXPLICIT_SELECTOR = '([^']+)';/)[1];
+  const hardSkipSelector = s.match(/var READABLE_HARD_SKIP_SELECTOR = '([^']+)';/)[1];
+  const controlSelector = s.match(/var READABLE_CONTROL_SELECTOR = '([^']+)';/)[1];
   const documentStub = { body: {}, documentElement: {} };
   const windowStub = {
     getComputedStyle(element) {
@@ -261,7 +264,8 @@ test('READ-ALOUD: layout containers own visible field text without parent/child 
       isConnected: true,
       display: options.display || 'inline',
       explicit: Boolean(options.explicit),
-      skip: Boolean(options.skip),
+      hardSkip: Boolean(options.hardSkip),
+      control: Boolean(options.control),
       matches(selector) {
         if (selector === semanticSelector) return kind === 'semantic';
         if (selector === containerSelector) return kind === 'container';
@@ -271,7 +275,8 @@ test('READ-ALOUD: layout containers own visible field text without parent/child 
         let current = this;
         while (current && current !== documentStub.body && current !== documentStub.documentElement) {
           if (selector === explicitSelector && current.explicit) return current;
-          if (selector !== explicitSelector && current.skip) return current;
+          if (selector === hardSkipSelector && current.hardSkip) return current;
+          if (selector === controlSelector && current.control) return current;
           current = current.parentElement;
         }
         return null;
@@ -279,11 +284,11 @@ test('READ-ALOUD: layout containers own visible field text without parent/child 
     };
   }
 
-  const isVisible = (element) => Boolean(element && !element.skip);
+  const isVisible = (element) => Boolean(element && !element.hardSkip);
   const readableOwnerForTextNode = new Function(
-    'document', 'READABLE_EXPLICIT_SELECTOR', 'isVisible', 'isReadableContainer',
+    'document', 'READABLE_EXPLICIT_SELECTOR', 'READABLE_HARD_SKIP_SELECTOR', 'READABLE_CONTROL_SELECTOR', 'isVisible', 'isReadableContainer',
     extractFunction('readableOwnerForTextNode') + '\nreturn readableOwnerForTextNode;'
-  )(documentStub, explicitSelector, isVisible, isReadableContainer);
+  )(documentStub, explicitSelector, hardSkipSelector, controlSelector, isVisible, isReadableContainer);
 
   const row = makeElement('container', documentStub.body);
   const rowSpan = makeElement('inline', row);
@@ -296,6 +301,21 @@ test('READ-ALOUD: layout containers own visible field text without parent/child 
   const compound = makeElement('container', documentStub.body, { explicit: true });
   const nestedParagraph = makeElement('semantic', compound);
   assert.equal(readableOwnerForTextNode({ parentElement: nestedParagraph, nodeValue: 'one authored compound block' }), compound);
+
+  const genericControl = makeElement('container', documentStub.body, { control: true });
+  const genericControlText = makeElement('inline', genericControl);
+  assert.equal(readableOwnerForTextNode({ parentElement: genericControlText, nodeValue: 'ordinary control' }), null,
+    'generic interactive controls remain outside narration');
+
+  const authoredControl = makeElement('container', documentStub.body, { control: true, explicit: true });
+  const authoredControlText = makeElement('inline', authoredControl);
+  assert.equal(readableOwnerForTextNode({ parentElement: authoredControlText, nodeValue: 'authored content control' }), authoredControl,
+    'a source-declared compound control may own its narration text');
+
+  const technicalSurface = makeElement('container', documentStub.body, { hardSkip: true, explicit: true });
+  const technicalSurfaceText = makeElement('inline', technicalSurface);
+  assert.equal(readableOwnerForTextNode({ parentElement: technicalSurfaceText, nodeValue: 'inspect metadata' }), null,
+    'a hard skip boundary outranks explicit narration ownership');
 
   const customFlex = makeElement('custom', documentStub.body, { display: 'flex' });
   const flexSpan = makeElement('inline', customFlex);

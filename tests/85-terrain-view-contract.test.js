@@ -1179,13 +1179,36 @@ test('TERRAIN-VIEW: ordered entry keeps human orientation primary while VexSyste
 
 
 
-test('TERRAIN-VIEW: embedded entry paths preserve Receive God -> group home -> record Back history without reloading Terrain', () => {
+test('TERRAIN-VIEW: arrival narration and reader toolbar Back stay on explicit Terrain owners', () => {
+  const source = pageSource();
+
+  assert.match(source, /id="panel"[^>]*data-vex-read-aloud-skip/,
+    'the technical detail drawer must stay outside the visitor narration plan');
+  assert.equal(
+    (source.match(/class="entry-card"[^>]*data-vex-read-aloud-block/g) || []).length,
+    3,
+    'all three authored arrival choices are compound readable controls'
+  );
+
+  const toolbarReturn = source.match(/function returnFromReaderToolbar\(\) \{[\s\S]*?\n  \}/);
+  assert.ok(toolbarReturn, 'reader toolbar return owner must remain extractable');
+  assert.match(toolbarReturn[0], /activeEntrySlug[\s\S]*closeEntryReader\(\{ history:false \}\)/,
+    'Receive God toolbar Back returns directly to the Terrain arrival instead of traversing iframe session history');
+  assert.match(toolbarReturn[0], /activeReaderReturnKind === 'collection'[\s\S]*closeEvolutionReader\(\{ history:false \}\)/,
+    'collection-owned reader/group-home Back returns directly to the collection surface');
+  assert.match(toolbarReturn[0], /closeEvolutionReader\(\);/,
+    'nested exact-history return relationships retain the existing restoration path');
+  assert.match(source, /readerBack'\)\.addEventListener\('click', returnFromReaderToolbar\)/,
+    'the visible toolbar control must consume the Terrain return owner');
+});
+
+test('TERRAIN-VIEW: embedded entry paths preserve Receive God -> group home -> record browser history without reloading Terrain', () => {
   const source = pageSource();
 
   assert.match(source, /syncPresentationUrl\(options\.historyMode \|\| 'push', 'entry', \{ entrySlug:slug \}\)/,
     'opening an ordered entry must create presentation history without changing semantic depth');
   assert.match(source, /presentationHistoryKind\(history\.state\) === 'entry'[\s\S]*history\.back\(\)/,
-    'entry Back must consume browser presentation history when it exists');
+    'history-aware entry close remains available for browser presentation traversal outside the direct toolbar return');
   assert.match(source, /if \(kind === 'entry'\)[\s\S]*openEntryReader\(entrySlug, \{ writeUrl:false \}\)/,
     'Back/Forward restoration must reopen the ordered entry reader in place');
 
