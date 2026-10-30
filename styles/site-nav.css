@@ -22,15 +22,8 @@
  * STRUCTURE:
  *   .vex-nav                — outer bar
  *   .vex-nav-inner          — max-width container
- *   .vex-nav-title          — site title / home link
- *   .vex-nav-links          — link list (desktop)
- *   .vex-nav-link           — individual link
- *   .vex-nav-toggle         — mobile hamburger button
+ *   .vex-nav-title          — Vextreme family/home coordinate
  *   .vex-nav-actions        — reserved global action rail (spiral FAB mount)
- *   .vex-nav-mobile         — mobile overlay panel
- *   .vex-nav-mobile-links   — mobile link list
- *   .vex-nav-mobile-link    — individual mobile link
- *   .vex-nav--open          — state class on .vex-nav when menu is open
  */
 
 :root {
@@ -172,75 +165,13 @@
   .vex-nav-product { font-size: 12px; }
   .vex-nav-brand-separator { font-size: 10px; }
 
-  .vex-nav-toggle { margin-left: auto; }
-}
-
-
-/* ── DESKTOP LINKS ───────────────────────────────────────── */
-
-.vex-nav-links {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-@media (max-width: 960px) {
-  .vex-nav-links { display: none; }
-}
-
-.vex-nav-link {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--muted, #78716c);
-  text-decoration: none;
-  padding: 6px 10px;
-  border-radius: 5px;
-  letter-spacing: 0.2px;
-  transition: color 0.15s, background 0.15s;
-  white-space: nowrap;
-}
-
-.vex-nav-link:hover {
-  color: var(--ember, #b45830);
-  background: var(--ember-bg, #fdf8f6);
-}
-
-.vex-nav-link.active {
-  color: var(--ember, #b45830);
-  font-weight: 600;
-}
-
-
-/* ── MOBILE TOGGLE ───────────────────────────────────────── */
-
-.vex-nav-toggle {
-  display: none;
-  background: none;
-  border: none;
-  padding: 8px;
-  cursor: pointer;
-  color: var(--muted, #78716c);
-  border-radius: 5px;
-  transition: color 0.15s, background 0.15s;
-  flex-shrink: 0;
-}
-
-.vex-nav-toggle:hover {
-  color: var(--ember, #b45830);
-  background: var(--ember-bg, #fdf8f6);
-}
-
-@media (max-width: 960px) {
-  .vex-nav-toggle { display: flex; align-items: center; justify-content: center; }
+  .vex-nav-actions { margin-left: auto; }
 }
 
 
 /* ── GLOBAL ACTION RAIL ─────────────────────────────────────────────────── */
 /* Runtime tools own this rail. They participate in nav layout instead of
-   independently claiming top/right coordinates over links or the hamburger. */
+   independently claiming top/right coordinates over shared chrome. */
 
 .vex-nav-actions {
   min-width: 44px;
@@ -258,89 +189,6 @@
   top: calc(var(--vex-site-nav-height) + 15px);
 }
 
-/* Hamburger icon — three bars drawn in CSS */
-.vex-nav-toggle-icon {
-  width: 20px;
-  height: 14px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.vex-nav-toggle-icon span {
-  display: block;
-  width: 100%;
-  height: 1.5px;
-  background: currentColor;
-  border-radius: 2px;
-  transition: transform 0.2s, opacity 0.2s;
-}
-
-/* Animate to X when open */
-.vex-nav--open .vex-nav-toggle-icon span:nth-child(1) {
-  transform: translateY(6.25px) rotate(45deg);
-}
-.vex-nav--open .vex-nav-toggle-icon span:nth-child(2) {
-  opacity: 0;
-}
-.vex-nav--open .vex-nav-toggle-icon span:nth-child(3) {
-  transform: translateY(-6.25px) rotate(-45deg);
-}
-
-
-/* ── MOBILE OVERLAY ──────────────────────────────────────── */
-
-.vex-nav-mobile {
-  display: none;
-  position: fixed;
-  top: var(--vex-site-nav-height);
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: var(--cream, #fafaf9);
-  z-index: 99;
-  overflow-y: auto;
-  padding: 12px 0 40px;
-  border-top: 1px solid var(--border, #e7e5e4);
-}
-
-.vex-nav--open .vex-nav-mobile {
-  display: block;
-}
-
-.vex-nav-mobile-links {
-  list-style: none;
-  margin: 0;
-  padding: 0 clamp(16px, 4vw, 40px);
-}
-
-.vex-nav-mobile-link {
-  display: block;
-  font-family: var(--sans, 'IBM Plex Sans', sans-serif);
-  font-size: 15px;
-  font-weight: 400;
-  color: var(--stone, #1c1917);
-  text-decoration: none;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--border, #e7e5e4);
-  letter-spacing: 0.3px;
-  transition: color 0.15s;
-}
-
-.vex-nav-mobile-link:last-child {
-  border-bottom: none;
-}
-
-.vex-nav-mobile-link:hover {
-  color: var(--ember, #b45830);
-}
-
-.vex-nav-mobile-link.active {
-  color: var(--ember, #b45830);
-  font-weight: 500;
-}
-
-
 /* ── PAGE BODY OFFSET ────────────────────────────────────── */
 /* Prevents content from hiding behind the sticky nav */
 
@@ -352,3 +200,5 @@
   padding-right: clamp(16px, 4vw, 40px);
   padding-bottom: clamp(60px, 8vw, 100px);
 }
+
+/* [VXG RealForever] */
