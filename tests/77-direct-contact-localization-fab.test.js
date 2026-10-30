@@ -74,3 +74,15 @@ test('DIRECT CONTACT LOCALIZATION: source-managed Direct Contact projector uses 
   assert.doesNotMatch(direct.page, /window\.VEX_SUPPORTED_LANGS\s*=/);
   assert.match(direct.page, /<script src="\.\.\/lib\/shell\.js"><\/script>/);
 });
+
+
+test('DIRECT CONTACT LOCALIZATION: Hindi source cells reject Han-script contamination', () => {
+  const source = readJson('data/strings/source/pages/direct-contact.json');
+  const han = /[\u3400-\u4DBF\u4E00-\u9FFF]/u;
+  for (const [key, entry] of Object.entries(source)) {
+    if (key === '_meta') continue;
+    const text = entry && entry.strings && entry.strings.hi && entry.strings.hi.text;
+    assert.equal(typeof text, 'string', key + ': Hindi cell missing');
+    assert.equal(han.test(text), false, key + ': Hindi cell contains Han-script contamination');
+  }
+});
