@@ -522,6 +522,28 @@ test('TERRAIN-VIEW: selected-language state remains live before the archive/map 
     'the initial arrival locale fetch must not overwrite a newer user selection');
 });
 
+test('TERRAIN-VIEW: deferred engine boot cannot restore an older locale after the user changes language', () => {
+  const source = pageSource();
+
+  const stableLoader = source.match(/function loadStableTerrainStrings\(\) \{([\s\S]*?)\n  \}/);
+  assert.ok(stableLoader, 'deferred engine boot must have one stable-current locale loader');
+  assert.match(stableLoader[0], /var requestedLanguage = activeLanguage/);
+  assert.match(stableLoader[0], /requestedLanguage !== activeLanguage[\s\S]*loadStableTerrainStrings\(\)/,
+    'a locale change during a locale fetch must retry against the newer selected language');
+
+  const engine = source.match(/function ensureTerrainEngine\(\) \{([\s\S]*?)\n  \}/);
+  assert.ok(engine, 'deferred engine boot must remain extractable');
+  assert.match(engine[0], /var engineLanguage = activeLanguage/);
+  assert.match(engine[0], /loadTerrainStrings\(engineLanguage\)/,
+    'normal engine boot may still load its initial locale in parallel with map data');
+  assert.match(engine[0], /engineLanguage === activeLanguage[\s\S]*loadStableTerrainStrings\(\)/,
+    'engine boot must re-resolve a stable current locale when selection changes in flight');
+  assert.ok(
+    engine[0].indexOf('loadStableTerrainStrings()') < engine[0].indexOf('terrainStrings = values[1]'),
+    'the stale-response check must happen before engine boot can publish Terrain strings'
+  );
+});
+
 test('TERRAIN-VIEW: default arrival is quiet, localized, and defers archive/map data until a map-dependent action', () => {
   const source = pageSource();
 

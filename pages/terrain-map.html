@@ -1358,6 +1358,14 @@
   // archive/map engine. Install this listener before optional engine boot.
   window.addEventListener(LANG_CHANGE_EVENT, handleTerrainLanguageChange);
 
+  function loadStableTerrainStrings() {
+    var requestedLanguage = activeLanguage;
+    return loadTerrainStrings(requestedLanguage).then(function (bundle) {
+      if (requestedLanguage !== activeLanguage) return loadStableTerrainStrings();
+      return bundle;
+    });
+  }
+
   function ensureTerrainEngine() {
     if (DATA) return Promise.resolve(DATA);
     if (terrainEnginePromise) return terrainEnginePromise;
@@ -1365,14 +1373,20 @@
     var loadState = document.getElementById('loadState');
     loadState.hidden = false;
     loadState.style.display = '';
+    var engineLanguage = activeLanguage;
 
     terrainEnginePromise = Promise.all([
       fetch(TERRAIN_URL, { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }),
-      loadTerrainStrings(activeLanguage),
+      loadTerrainStrings(engineLanguage),
       terrainBaseLanguages && terrainBaseLanguages.length
         ? Promise.resolve(terrainBaseLanguages)
         : loadTerrainBaseLanguages()
     ]).then(function (values) {
+      if (engineLanguage === activeLanguage) return values;
+      return loadStableTerrainStrings().then(function (bundle) {
+        return [values[0], bundle, values[2]];
+      });
+    }).then(function (values) {
       terrainStrings = values[1];
       terrainBaseLanguages = values[2];
       boot(values[0]);
