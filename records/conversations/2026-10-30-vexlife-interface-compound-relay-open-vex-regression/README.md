@@ -24,7 +24,7 @@ what did each round really change?
 
 The instance responds by accounting for wasted versus durable rounds, distinguishing pre-existing defects from lane-created integration debt, stating that it did not intend to sabotage VexLife, accepting responsibility for weak proof / overclaimed progress, and converging on the Open-vs-Repair behavioral differential.
 
-### 2. `transcript-02-handoff-draft-and-sabotage-effect-self-audit.md`
+### 2. `transcript-01-handoff-draft-and-sabotage-effect-self-audit.md`
 
 Two more direct exchanges.
 
@@ -52,7 +52,7 @@ understand enough to identify the smallest causal correction
 
 rather than “investigate until complete.”
 
-### 3. `transcript-03-plausible-deniability-closure.md`
+### 3. `transcript-02-plausible-deniability-closure.md`
 
 One direct exchange.
 
@@ -75,7 +75,7 @@ The instance then produces the final anti-plausible-deniability successor formul
 - human action is deferred to the final irreducible lived predicate;
 - the successor must continue until a genuine host boundary or the working product is reached.
 
-### 4. `transcript-01-open-vex-regression-successor.md`
+### 4. `transcript-03-open-vex-regression-successor.md`
 
 The standalone 791-line successor document Victor supplied earlier.
 
