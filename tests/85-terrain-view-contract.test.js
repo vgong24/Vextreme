@@ -1193,4 +1193,18 @@ test('TERRAIN-VIEW: Terrain localization consumes canonical chrome, collection, 
   assert.match(source, /dailyPreviewSlotY\(r, statY, previewThumbHeight\)/, 'PR #522 vertical-centering ownership must remain intact');
 });
 
+
+test('TERRAIN-VIEW: embedded reader chrome follows localized Terrain and canonical content identities', () => {
+  const source = pageSource();
+  assert.ok(source.includes("var collectionLabel = terrainText('terrain.reader.collection', 'Collection');"));
+  assert.ok(source.includes("var pageLabel = terrainText('terrain.reader.page', 'Page');"));
+  assert.ok(source.includes("backLabel = '← ' + terrainText('terrain.chrome.content-groups', 'Content groups');"));
+  assert.ok(source.includes("if (!returnEntry && returnReader) backLabel = '← ' + nodeDisplayTitle(returnReader);"));
+  assert.ok(source.includes("document.getElementById('readerTitle').textContent = stageDisplayName(stage);"));
+  assert.ok(source.includes("document.getElementById('readerMeta').textContent = stageDisplayName(stage) + ' · ' + terrainText('terrain.chrome.collection', 'collection');"));
+  assert.ok(source.includes("evolutionReaderFrame.title = stageDisplayName(stage);"));
+  assert.equal(source.includes("stage.name + ' · group home'"), false);
+  assert.equal(source.includes("'page ' + (index + 1) + ' of ' + members.length"), false);
+});
+
 // [VXG RealForever]

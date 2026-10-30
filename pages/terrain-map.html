@@ -1719,13 +1719,15 @@
     var index = members.findIndex(function (candidate) { return candidate.id === node.id; });
     var stage = typeof levelCtx.stageIdx === 'number' ? STAGES[levelCtx.stageIdx] : null;
     var returnEntry = activeReaderReturnKind === 'entry' && entryDocument(activeReaderReturnEntrySlug);
-    var backLabel = returnEntry ? '← ' + returnEntry.label : '← Collection';
-    if (!returnEntry && activeReaderReturnKind === 'curiosity-overview') backLabel = '← Overview';
+    var collectionLabel = terrainText('terrain.reader.collection', 'Collection');
+    var pageLabel = terrainText('terrain.reader.page', 'Page');
+    var backLabel = returnEntry ? '← ' + returnEntry.label : '← ' + collectionLabel;
+    if (!returnEntry && activeReaderReturnKind === 'curiosity-overview') backLabel = '← ' + terrainText('terrain.chrome.content-groups', 'Content groups');
     else if (!returnEntry && activeReaderReturnKind === 'group-home' && stage && stage.parent) backLabel = '← ' + stageDisplayName(stage);
     document.getElementById('readerBack').textContent = backLabel;
     document.getElementById('readerTitle').textContent = nodeDisplayTitle(node);
     document.getElementById('readerMeta').textContent =
-      (stage ? stageDisplayName(stage) + ' · ' : '') + (index >= 0 ? ('page ' + (index + 1) + ' of ' + members.length) : 'page reader');
+      (stage ? stageDisplayName(stage) + ' · ' : '') + (index >= 0 ? (pageLabel + ' ' + (index + 1) + ' / ' + members.length) : pageLabel);
     document.getElementById('readerStandalone').href = languageAwareUrl(node.liveUrl, activeLanguage);
     document.getElementById('readerPrev').disabled = !readerNeighbor(-1);
     document.getElementById('readerNext').disabled = !readerNeighbor(1);
@@ -2067,11 +2069,12 @@
     if (!parent) return;
     var returnEntry = activeReaderReturnKind === 'entry' && entryDocument(activeReaderReturnEntrySlug);
     var returnReader = activeReaderReturnKind === 'reader' && activeReaderReturnReaderId && byId[activeReaderReturnReaderId];
-    var backLabel = returnEntry ? '← ' + returnEntry.label : '← Collection';
-    if (!returnEntry && returnReader) backLabel = '← ' + (returnReader.title || returnReader.slug || 'Page');
+    var collectionLabel = terrainText('terrain.reader.collection', 'Collection');
+    var backLabel = returnEntry ? '← ' + returnEntry.label : '← ' + collectionLabel;
+    if (!returnEntry && returnReader) backLabel = '← ' + nodeDisplayTitle(returnReader);
     document.getElementById('readerBack').textContent = backLabel;
-    document.getElementById('readerTitle').textContent = parent.title || stage.name || 'Group home';
-    document.getElementById('readerMeta').textContent = stage.name + ' · group home';
+    document.getElementById('readerTitle').textContent = stageDisplayName(stage);
+    document.getElementById('readerMeta').textContent = stageDisplayName(stage) + ' · ' + terrainText('terrain.chrome.collection', 'collection');
     document.getElementById('readerStandalone').href = languageAwareUrl(parent.url, activeLanguage);
     document.getElementById('readerPrev').hidden = true;
     document.getElementById('readerNext').hidden = true;
@@ -2098,7 +2101,7 @@
     syncTerrainChrome();
     updateReadout();
     updateGroupHomeReaderChrome(stage);
-    evolutionReaderFrame.title = 'Reading ' + (stage.parent.title || stage.name) + ' inside Terrain';
+    evolutionReaderFrame.title = stageDisplayName(stage);
     replaceEvolutionReaderDocument(stage.parent.url);
     if (options.writeUrl !== false) syncPresentationUrl(options.historyMode || 'push', 'group-home', {
       returnKind:activeReaderReturnKind,
