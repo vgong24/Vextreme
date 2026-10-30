@@ -26,7 +26,7 @@ test('SABOTAGE-READER: new collection, node, and viewmodel are source-owned', ()
   const node = nodes.find(n => n.slug === SLUG);
   assert.ok(node);
   assert.equal(node.id, 113);
-  assert.equal(node.title, 'Sabotage I — The Open Vex Accountability Record');
+  assert.equal(node.title, 'Sabotage I — When Progress Became the Obstruction');
   assert.deepEqual(node.arcKeys, ['sabotage', 'victors_record', 'full_timeline']);
   assert.equal(node.department, 'media');
   assert.equal(node.workType, 'record-transcripts');
@@ -89,6 +89,12 @@ test('SABOTAGE-READER: source head and preservation boundary stay explicit', () 
   assert.match(page, new RegExp(SOURCE_HEAD));
   assert.match(page, /Preservation PR #530/);
   assert.match(page, /does not independently certify malicious intent/);
+  assert.match(page, /assets\/sabotage-open-vex-accountability\/cover\.webp\?v=125aa01db3e0/);
+  assert.match(page, /data-media-class="representative"/);
+  assert.match(page, /Representation ≠ transcript evidence/);
+  assert.equal(strings._meta.sourceProvenance.derivedMedia, 'assets/sabotage-open-vex-accountability/cover.webp');
+  assert.equal(strings._meta.sourceProvenance.derivedMediaClass, 'REPRESENTATIVE_NOT_EVIDENCE');
+  assert.equal(strings._meta.sourceProvenance.derivedMediaSha256, '125aa01db3e06d8884126860bc69d1de9a7a5981db30ba5e20ddf2813a4e037d');
   assert.match(page, new RegExp('dist/vextreme-' + SLUG + '\\.js'));
   assert.match(page, /id="arcNavMount"/);
 
