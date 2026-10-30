@@ -999,6 +999,7 @@
   var DEPLOYMENT_ROOT = new URL('../', window.location.href);
   var BASE = DEPLOYMENT_ROOT.pathname.replace(/\/$/, '');
   var TERRAIN_URL = new URL('data/terrain-map.json', DEPLOYMENT_ROOT).href;
+  var INDEX_URL = new URL('data/index.json', DEPLOYMENT_ROOT).href;
   var CANONICAL_SITE_ORIGIN = 'https://vgong24.github.io';
   var CANONICAL_SITE_BASE = '/Vextreme/';
 
@@ -1142,12 +1143,37 @@
     } catch (e) { /* CustomEvent unavailable */ }
   }
 
+  var terrainBaseLanguages = ['en'];
+
+  function loadTerrainBaseLanguages() {
+    return fetch(INDEX_URL, { cache: 'no-store' })
+      .then(function (response) {
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        return response.json();
+      })
+      .then(function (indexData) {
+        var pageCoverage = indexData && indexData.pageLanguageMap && indexData.pageLanguageMap['terrain-map'];
+        var completeLangs = pageCoverage && Array.isArray(pageCoverage.completeLangs)
+          ? pageCoverage.completeLangs
+          : [];
+        var unique = completeLangs.filter(function (lang, index, list) {
+          return typeof lang === 'string' && lang && list.indexOf(lang) === index;
+        });
+        return unique.length ? unique : ['en'];
+      })
+      .catch(function () { return ['en']; });
+  }
+
   function resetTerrainLanguageSurfaceContext() {
+    // Terrain consumes the same canonical pageLanguageMap capability as the
+    // shared FAB. A child may temporarily narrow the visible wheel to its own
+    // completeLangs; leaving that child restores Terrain's full capability at
+    // the durable active language without inventing a second language registry.
     publishLanguageSurfaceContext({
-      langs: ['en'],
-      lang: 'en',
+      langs: terrainBaseLanguages.slice(),
+      lang: activeLanguage,
       proxySurface: false,
-      applyFallback: true
+      applyFallback: false
     });
   }
 
@@ -1292,9 +1318,11 @@
   // ── fetch, then build the client-side view model on top of the real data ──
   Promise.all([
     fetch(TERRAIN_URL, { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }),
-    loadTerrainStrings(activeLanguage)
+    loadTerrainStrings(activeLanguage),
+    loadTerrainBaseLanguages()
   ]).then(function (values) {
     terrainStrings = values[1];
+    terrainBaseLanguages = values[2];
     boot(values[0]);
     applyTerrainStaticStrings();
   }).catch(function (err) {

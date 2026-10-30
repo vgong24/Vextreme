@@ -168,6 +168,22 @@ test('LANGUAGE SURFACE: child reports exact mounted locale capability for an exp
     'a proxied parent selection must change preference/event authority without pretending the parent DOM is translated');
 });
 
+test('LANGUAGE SURFACE: unsupported parent preference falls back per child without overwriting the durable preference', () => {
+  const widgetSrc = fs.readFileSync(FAB_IN, 'utf8');
+  const fallbackAt = widgetSrc.indexOf('if (langs.indexOf(savedLang) < 0) savedLang = langs[0];');
+  const contextAt = widgetSrc.indexOf('notifyParentLanguageContext(savedLang, langs);', fallbackAt);
+  assert.ok(fallbackAt >= 0 && contextAt > fallbackAt,
+    'child mount must resolve an unsupported persisted preference to one of its own selectable languages');
+
+  const automaticFallback = widgetSrc.slice(fallbackAt, contextAt);
+  assert.doesNotMatch(automaticFallback, /localStorage\.setItem\(LS_LANG|persistLanguage\(/,
+    'automatic screen-local fallback must not overwrite the broader persisted preference');
+  assert.match(widgetSrc, /notifyParentLanguageContext\(savedLang, langs\)/,
+    'the child must report its effective fallback plus its exact selectable language set to the parent');
+  assert.match(widgetSrc, /fabController\.selectLanguage\(savedLang, \{[\s\S]*?persist: false,/,
+    'mount-time fallback applies locally without turning the fallback into an explicit user preference');
+});
+
 test('LANGUAGE AUTHORITY: child selection explicitly notifies and converges the same-origin parent', () => {
   const widgetSrc = fs.readFileSync(FAB_IN, 'utf8');
 
