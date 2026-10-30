@@ -77,26 +77,26 @@ test('READ-ALOUD: system voice inventory is language-filtered and capped at eigh
   assert.match(fn, /\.slice\(0, MAX_SYSTEM_VOICES\)/);
 });
 
-test('READ-ALOUD: constrained mobile browsers keep Read Aloud but do not advertise the Kokoro neural runtime', () => {
+test('READ-ALOUD: known mobile device classes prefer system speech without turning touch hardware into a neural-capability claim', () => {
   const s = source();
-  const mobile = extractFunction('constrainedMobileNeuralRuntime');
+  const mobile = extractFunction('preferSystemSpeechOnMobile');
   assert.match(mobile, /userAgentData\.mobile === true/,
-    'modern mobile hints should disable the neural provider');
-  assert.match(mobile, /Android\|iPhone\|iPad\|iPod\|Mobile/,
-    'legacy phone/tablet user agents need a bounded fallback');
+    'modern mobile hints should select the mobile system-speech policy');
+  assert.match(mobile, /Android\|iPhone\|iPad\|iPod/,
+    'known phone/tablet user agents should select the mobile system-speech policy');
   assert.match(mobile, /Macintosh[\s\S]*maxTouchPoints/,
-    'iPadOS desktop-style identification must still be recognized as a touch tablet');
-  assert.match(mobile, /pointer: coarse/);
-  assert.match(mobile, /shortestSide <= 1024/);
+    'iPadOS desktop-style identification must still be recognized as a mobile-device routing case');
+  assert.doesNotMatch(mobile, /matchMedia|pointer:\s*coarse|screen\.width|screen\.height|shortestSide/,
+    'generic touch or screen-size heuristics must not disable Kokoro on desktop-class hardware');
 
   const provider = s.slice(s.indexOf('var NeuralNarration ='), s.indexOf('var SystemNarration ='));
   const capability = provider.match(/function capability\(\) \{([\s\S]*?)\n    \}/);
   assert.ok(capability, 'neural capability owner must remain extractable');
-  assert.match(capability[0], /constrainedMobileNeuralRuntime\(\)/);
+  assert.match(capability[0], /preferSystemSpeechOnMobile\(\)/);
   assert.match(capability[0], /available: false, execution: 'mobile-system-speech'/);
   assert.ok(
-    capability[0].indexOf('constrainedMobileNeuralRuntime()') < capability[0].indexOf('parentNeuralRuntime()'),
-    'a mobile child must not borrow a persistent parent Kokoro broker before the mobile guard runs'
+    capability[0].indexOf('preferSystemSpeechOnMobile()') < capability[0].indexOf('parentNeuralRuntime()'),
+    'a mobile child must select system speech before it can borrow a persistent parent Kokoro broker'
   );
 
   const voices = extractFunction('populateVoices');

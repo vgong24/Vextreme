@@ -1354,11 +1354,16 @@
     ensureTerrainEngine().then(action).catch(function () {});
   }
 
-  // Home is an entry surface, not a reason to pay for the full historical
-  // Terrain engine. Render it immediately; only lightweight language
-  // capability is read up front. Explicit/deep map routes retain eager boot.
+  // Plain Home does not need the archive/map data engine. Load only the
+  // lightweight Terrain locale bundle needed for a correctly localized
+  // arrival, plus the canonical page-language capability. Explicit/deep map
+  // routes still boot the existing Terrain engine immediately.
   if (!initialRoute.explicit) {
-    renderEvolutionAArrival();
+    loadTerrainStrings(activeLanguage).then(function (bundle) {
+      terrainStrings = bundle;
+      renderEvolutionAArrival();
+      applyTerrainStaticStrings();
+    });
     loadTerrainBaseLanguages().then(function (langs) {
       terrainBaseLanguages = langs;
       resetTerrainLanguageSurfaceContext();

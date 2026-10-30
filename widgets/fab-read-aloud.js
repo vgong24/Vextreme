@@ -364,26 +364,17 @@
     return voices[0] || null;
   }
 
-  function constrainedMobileNeuralRuntime() {
+  function preferSystemSpeechOnMobile() {
     var nav = window.navigator || {};
     if (nav.userAgentData && nav.userAgentData.mobile === true) return true;
 
     var ua = String(nav.userAgent || '');
-    if (/(Android|iPhone|iPad|iPod|Mobile)/i.test(ua)) return true;
+    if (/(Android|iPhone|iPad|iPod)/i.test(ua)) return true;
 
-    // iPadOS may identify itself as Macintosh while exposing a multi-touch
-    // surface. Treat that as the same constrained browser class rather than
-    // loading an 82M neural model through the WASM fallback.
-    if (/Macintosh/i.test(ua) && Number(nav.maxTouchPoints || 0) > 1) return true;
-
-    try {
-      var coarse = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
-      var screen = window.screen || {};
-      var shortestSide = Math.min(Number(screen.width) || Infinity, Number(screen.height) || Infinity);
-      if (coarse && shortestSide <= 1024) return true;
-    } catch (e) {}
-
-    return false;
+    // iPadOS can identify as Macintosh while exposing multi-touch. This is a
+    // mobile-device routing signal, not a claim that all touch hardware lacks
+    // neural inference capability.
+    return /Macintosh/i.test(ua) && Number(nav.maxTouchPoints || 0) > 1;
   }
 
   function kokoroWorkerMain() {
@@ -572,11 +563,12 @@
     }
 
     function capability() {
-      // Mobile Read Aloud remains fully available through the existing
-      // browser/OS speech provider. Do not instantiate or borrow the Kokoro
-      // Worker on constrained phone/tablet browsers: lived use shows that
-      // WASM-heavy inference can degrade responsiveness and audio quality.
-      if (constrainedMobileNeuralRuntime()) {
+      // Current mobile policy keeps Read Aloud available through the existing
+      // browser/OS speech provider while avoiding Kokoro startup or parent
+      // broker reuse on known phone/tablet device classes. This is a routing
+      // policy based on observed mobile reliability, not a universal claim
+      // about mobile neural-inference capability.
+      if (preferSystemSpeechOnMobile()) {
         return { available: false, execution: 'mobile-system-speech' };
       }
 

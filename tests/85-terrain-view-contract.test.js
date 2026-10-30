@@ -494,32 +494,34 @@ test('TERRAIN-VIEW: screenshot rendering accepts local repository paths and abso
     'Code\/screen evidence panel must resolve local or remote custody');
 });
 
-test('TERRAIN-VIEW: default arrival is first-paint quiet and defers the full Terrain engine until a map-dependent action', () => {
+test('TERRAIN-VIEW: default arrival is quiet, localized, and defers archive/map data until a map-dependent action', () => {
   const source = pageSource();
 
   assert.match(source, /<div class="app terrain-content-quiet terrain-arrival-quiet">/,
     'the authored first paint must already use arrival chrome rather than flash the technical Terrain header');
   assert.match(source, /id="loadState"[^>]*hidden/,
-    'the full-engine loading label must not flash on the lightweight Home path');
+    'the archive/map loading label must not flash on the lightweight Home path');
 
   const engine = source.match(/function ensureTerrainEngine\(\) \{([\s\S]*?)\n  \}/);
-  assert.ok(engine, 'full Terrain engine loading must have one lazy owner');
+  assert.ok(engine, 'archive/map data loading must have one lazy owner');
   assert.match(engine[0], /fetch\(TERRAIN_URL, \{ cache: 'no-store' \}\)/,
-    'mutable Terrain data must still use no-store when the engine is actually requested');
+    'mutable Terrain map data must still use no-store when a map-dependent route requests it');
 
   const bootstrap = source.match(/if \(!initialRoute\.explicit\) \{([\s\S]*?)\n  \} else \{/);
   assert.ok(bootstrap, 'default versus explicit route bootstrap must remain explicit');
-  assert.match(bootstrap[0], /renderEvolutionAArrival\(\)/,
-    'plain Home must render the accepted arrival without waiting for Terrain data');
+  assert.match(bootstrap[0], /loadTerrainStrings\(activeLanguage\)[\s\S]*renderEvolutionAArrival\(\)/,
+    'plain Home must load its small active-locale bundle before rendering the arrival');
+  assert.match(bootstrap[0], /loadTerrainBaseLanguages\(\)/,
+    'plain Home must still resolve the canonical page-language capability');
   assert.doesNotMatch(bootstrap[0], /fetch\(TERRAIN_URL|ensureTerrainEngine\(\)/,
-    'plain Home must not start the full Terrain engine in the background');
+    'plain Home must not start archive/map data loading in the background');
 
   assert.match(source, /data-entry-action="receive-god"[\s\S]*withTerrainEngine\(function \(\) \{ openEntryReader\('receive-god'\); \}\)/,
     'Receive God may boot the map engine only when that deeper Terrain reader is requested');
   assert.match(source, /data-entry-action="archives"[\s\S]*withTerrainEngine\(enterArchivesFromArrival\)/,
     'Explore Archives must boot the map engine on demand');
   assert.match(source, /data-entry-action="about"[\s\S]*addEventListener\('click', enterAboutFromArrival\)/,
-    'plain orientation must remain a direct lightweight navigation without map boot');
+    'plain orientation must remain direct lightweight navigation without map boot');
 });
 
 test('TERRAIN-VIEW: mutable Terrain data bypasses stale browser cache so current preview metadata is visible', () => {
