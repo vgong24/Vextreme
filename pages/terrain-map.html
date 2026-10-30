@@ -619,7 +619,7 @@
 </style>
 </head>
 <body>
-<div class="app">
+<div class="app terrain-content-quiet terrain-arrival-quiet">
   <div class="topbar">
     <div class="brand">
       <div class="eyebrow" data-i18n="terrain.chrome.eyebrow">Living map · self-updating</div>
@@ -700,7 +700,7 @@
         </div>
       </div>
       <div class="evo-gesture-hint" id="evolutionGestureHint" role="status" aria-live="polite" hidden></div>
-      <div id="loadState" class="load-state" data-i18n="terrain.loading.fetching">Fetching data/terrain-map.json…</div>
+      <div id="loadState" class="load-state" data-i18n="terrain.loading.fetching" hidden>Fetching data/terrain-map.json…</div>
     </div>
     <aside class="stage-curiosity-dock" id="contentCuriosityDock" aria-label="Collection preview dock" hidden>
       <div class="stage-curiosity-dock-empty">
@@ -1143,7 +1143,7 @@
     } catch (e) { /* CustomEvent unavailable */ }
   }
 
-  var terrainBaseLanguages = ['en'];
+  var terrainBaseLanguages = null;
 
   function loadTerrainBaseLanguages() {
     return fetch(INDEX_URL, { cache: 'no-store' })
@@ -1165,6 +1165,10 @@
   }
 
   function resetTerrainLanguageSurfaceContext() {
+    // Before the lightweight pageLanguageMap read resolves, leave the shared
+    // FAB's own page-aware capability untouched rather than temporarily
+    // collapsing Terrain back to an EN-only surface.
+    if (!terrainBaseLanguages || !terrainBaseLanguages.length) return;
     // Terrain consumes the same canonical pageLanguageMap capability as the
     // shared FAB. A child may temporarily narrow the visible wheel to its own
     // completeLangs; leaving that child restores Terrain's full capability at
@@ -1314,20 +1318,54 @@
   var stageThumbnailHydrationQueue = [];
   var stageThumbnailHydrationHandle = null;
   var initialRoute = readInitialRoute();
+  var terrainEnginePromise = null;
 
-  // ── fetch, then build the client-side view model on top of the real data ──
-  Promise.all([
-    fetch(TERRAIN_URL, { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }),
-    loadTerrainStrings(activeLanguage),
-    loadTerrainBaseLanguages()
-  ]).then(function (values) {
-    terrainStrings = values[1];
-    terrainBaseLanguages = values[2];
-    boot(values[0]);
-    applyTerrainStaticStrings();
-  }).catch(function (err) {
-    document.getElementById('loadState').textContent = 'Could not load data/terrain-map.json (' + err.message + ')';
-  });
+  function ensureTerrainEngine() {
+    if (DATA) return Promise.resolve(DATA);
+    if (terrainEnginePromise) return terrainEnginePromise;
+
+    var loadState = document.getElementById('loadState');
+    loadState.hidden = false;
+    loadState.style.display = '';
+
+    terrainEnginePromise = Promise.all([
+      fetch(TERRAIN_URL, { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }),
+      loadTerrainStrings(activeLanguage),
+      terrainBaseLanguages && terrainBaseLanguages.length
+        ? Promise.resolve(terrainBaseLanguages)
+        : loadTerrainBaseLanguages()
+    ]).then(function (values) {
+      terrainStrings = values[1];
+      terrainBaseLanguages = values[2];
+      boot(values[0]);
+      applyTerrainStaticStrings();
+      return values[0];
+    }).catch(function (err) {
+      terrainEnginePromise = null;
+      loadState.hidden = false;
+      loadState.style.display = '';
+      loadState.textContent = 'Could not load data/terrain-map.json (' + err.message + ')';
+      throw err;
+    });
+    return terrainEnginePromise;
+  }
+
+  function withTerrainEngine(action) {
+    ensureTerrainEngine().then(action).catch(function () {});
+  }
+
+  // Home is an entry surface, not a reason to pay for the full historical
+  // Terrain engine. Render it immediately; only lightweight language
+  // capability is read up front. Explicit/deep map routes retain eager boot.
+  if (!initialRoute.explicit) {
+    renderEvolutionAArrival();
+    loadTerrainBaseLanguages().then(function (langs) {
+      terrainBaseLanguages = langs;
+      resetTerrainLanguageSurfaceContext();
+    });
+  } else {
+    ensureTerrainEngine().catch(function () {});
+  }
 
   // WORLDS — two parallel datasets sharing one shape (STAGES-like columns +
   // ALL-like positioned nodes), so the same fractal engine (levels, panel,
@@ -3304,6 +3342,9 @@
   }
 
   function renderEvolutionAArrival() {
+    var loadState = document.getElementById('loadState');
+    loadState.hidden = true;
+    loadState.style.display = 'none';
     clearWorld();
     svg.style.visibility = 'hidden';
     clearActiveEmbeddedSurface();
@@ -3327,8 +3368,12 @@
       + '<button class="entry-card" type="button" data-entry-action="about"><span class="entry-icon" aria-hidden="true">?</span><span class="entry-title" data-i18n="terrain.arrival.about.title">' + esc(terrainText('terrain.arrival.about.title', 'What is this?')) + '</span><span class="entry-copy" data-i18n="terrain.arrival.about.copy">' + esc(terrainText('terrain.arrival.about.copy', 'If you need to understand where you are before you continue, enter here.')) + '</span><span class="entry-state" data-i18n="terrain.arrival.about.action">' + esc(terrainText('terrain.arrival.about.action', 'Orient me')) + '</span></button>'
       + '</div></div></section>';
 
-    evolutionLayer.querySelector('[data-entry-action="receive-god"]').addEventListener('click', function () { openEntryReader('receive-god'); });
-    evolutionLayer.querySelector('[data-entry-action="archives"]').addEventListener('click', enterArchivesFromArrival);
+    evolutionLayer.querySelector('[data-entry-action="receive-god"]').addEventListener('click', function () {
+      withTerrainEngine(function () { openEntryReader('receive-god'); });
+    });
+    evolutionLayer.querySelector('[data-entry-action="archives"]').addEventListener('click', function () {
+      withTerrainEngine(enterArchivesFromArrival);
+    });
     evolutionLayer.querySelector('[data-entry-action="about"]').addEventListener('click', enterAboutFromArrival);
   }
 

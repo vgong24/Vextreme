@@ -77,6 +77,33 @@ test('READ-ALOUD: system voice inventory is language-filtered and capped at eigh
   assert.match(fn, /\.slice\(0, MAX_SYSTEM_VOICES\)/);
 });
 
+test('READ-ALOUD: constrained mobile browsers keep Read Aloud but do not advertise the Kokoro neural runtime', () => {
+  const s = source();
+  const mobile = extractFunction('constrainedMobileNeuralRuntime');
+  assert.match(mobile, /userAgentData\.mobile === true/,
+    'modern mobile hints should disable the neural provider');
+  assert.match(mobile, /Android\|iPhone\|iPad\|iPod\|Mobile/,
+    'legacy phone/tablet user agents need a bounded fallback');
+  assert.match(mobile, /Macintosh[\s\S]*maxTouchPoints/,
+    'iPadOS desktop-style identification must still be recognized as a touch tablet');
+  assert.match(mobile, /pointer: coarse/);
+  assert.match(mobile, /shortestSide <= 1024/);
+
+  const provider = s.slice(s.indexOf('var NeuralNarration ='), s.indexOf('var SystemNarration ='));
+  const capability = provider.match(/function capability\(\) \{([\s\S]*?)\n    \}/);
+  assert.ok(capability, 'neural capability owner must remain extractable');
+  assert.match(capability[0], /constrainedMobileNeuralRuntime\(\)/);
+  assert.match(capability[0], /available: false, execution: 'mobile-system-speech'/);
+  assert.ok(
+    capability[0].indexOf('constrainedMobileNeuralRuntime()') < capability[0].indexOf('parentNeuralRuntime()'),
+    'a mobile child must not borrow a persistent parent Kokoro broker before the mobile guard runs'
+  );
+
+  const voices = extractFunction('populateVoices');
+  assert.match(voices, /primary === 'en' && NeuralNarration\.capability\(\)\.available/,
+    'Kokoro choices remain conditional on neural capability while system voices remain available');
+});
+
 test('READ-ALOUD: same-origin embedded readers reuse the parent neural runtime', () => {
   const s = source();
   assert.match(s, /var RUNTIME_BROKER_KEY = 'VEXTREME_READ_ALOUD_RUNTIME';/);
