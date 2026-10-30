@@ -1272,6 +1272,40 @@
       node.textContent = terrainText(key, fallback);
     });
   }
+
+  function handleTerrainLanguageChange(event) {
+    var lang = event && event.detail && event.detail.lang;
+    if (!lang) return;
+    activeLanguage = lang;
+    panelLang = lang;
+    loadTerrainStrings(lang).then(function (bundle) {
+      if (lang !== activeLanguage) return;
+      terrainStrings = bundle;
+
+      // Plain Home intentionally exists before the archive/map engine. Keep
+      // selected-language state live there without pulling map data forward.
+      if (!DATA) {
+        if (!initialRoute.explicit && !evolutionLayer.querySelector('[data-terrain-entry="arrival"]')) {
+          renderEvolutionAArrival();
+        }
+        if (!initialRoute.explicit) applyTerrainStaticStrings();
+        return;
+      }
+
+      if (!activeReaderId && !activeEntrySlug && !activeGroupHomeKey && OVERVIEW_LEVELS[levelIndex]) OVERVIEW_LEVELS[levelIndex].render(levelCtx);
+      applyTerrainStaticStrings();
+      refreshLocalizedPreviewImages();
+      if (panelNodeId && byId[panelNodeId]) renderPanel(byId[panelNodeId]);
+      if (activeReaderId && byId[activeReaderId]) updateReaderChrome(byId[activeReaderId]);
+      else if (activeGroupHomeKey) {
+        var groupStage = STAGES.find(function (stage) { return stage.key === activeGroupHomeKey; });
+        if (groupStage) updateGroupHomeReaderChrome(groupStage);
+      } else if (activeEntrySlug) {
+        updateEntryReaderChrome(activeEntrySlug);
+      }
+    });
+  }
+
   function stageDisplayName(stage) {
     if (!stage) return '';
     var byLang = stage.nameByLang || {};
@@ -1320,6 +1354,10 @@
   var initialRoute = readInitialRoute();
   var terrainEnginePromise = null;
 
+  // Selected-language state belongs to the Terrain surface, not to the heavy
+  // archive/map engine. Install this listener before optional engine boot.
+  window.addEventListener(LANG_CHANGE_EVENT, handleTerrainLanguageChange);
+
   function ensureTerrainEngine() {
     if (DATA) return Promise.resolve(DATA);
     if (terrainEnginePromise) return terrainEnginePromise;
@@ -1359,7 +1397,9 @@
   // arrival, plus the canonical page-language capability. Explicit/deep map
   // routes still boot the existing Terrain engine immediately.
   if (!initialRoute.explicit) {
-    loadTerrainStrings(activeLanguage).then(function (bundle) {
+    var initialArrivalLanguage = activeLanguage;
+    loadTerrainStrings(initialArrivalLanguage).then(function (bundle) {
+      if (initialArrivalLanguage !== activeLanguage) return;
       terrainStrings = bundle;
       renderEvolutionAArrival();
       applyTerrainStaticStrings();
@@ -4606,27 +4646,6 @@
     var searchRegion = document.querySelector('.search');
     document.addEventListener('pointerdown', function (ev) {
       if (searchPopoverOpen && searchRegion && !searchRegion.contains(ev.target)) dismissEvolutionSearchResults();
-    });
-
-    window.addEventListener(LANG_CHANGE_EVENT, function (event) {
-      var lang = event && event.detail && event.detail.lang;
-      if (!lang) return;
-      activeLanguage = lang;
-      panelLang = lang;
-      loadTerrainStrings(lang).then(function (bundle) {
-        terrainStrings = bundle;
-        if (!activeReaderId && !activeEntrySlug && !activeGroupHomeKey && OVERVIEW_LEVELS[levelIndex]) OVERVIEW_LEVELS[levelIndex].render(levelCtx);
-        applyTerrainStaticStrings();
-        refreshLocalizedPreviewImages();
-        if (panelNodeId && byId[panelNodeId]) renderPanel(byId[panelNodeId]);
-        if (activeReaderId && byId[activeReaderId]) updateReaderChrome(byId[activeReaderId]);
-        else if (activeGroupHomeKey) {
-          var groupStage = STAGES.find(function (stage) { return stage.key === activeGroupHomeKey; });
-          if (groupStage) updateGroupHomeReaderChrome(groupStage);
-        } else if (activeEntrySlug) {
-          updateEntryReaderChrome(activeEntrySlug);
-        }
-      });
     });
 
     window.addEventListener('resize', handleTerrainResize);
