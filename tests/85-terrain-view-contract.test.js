@@ -619,6 +619,29 @@ test('TERRAIN-VIEW: browser Back to a plain Terrain presentation retires the emb
     'iframe load wiring must not create an automatic extra parent history traversal');
 });
 
+test('TERRAIN-VIEW: reader Previous/Next create browser history while preserving the existing return owner', () => {
+  const source = pageSource();
+
+  const start = source.indexOf('function openReaderNeighbor(offset)');
+  const end = source.indexOf('function updateReaderChrome(node)', start);
+  assert.ok(start >= 0 && end > start, 'reader sibling-navigation owner must remain extractable');
+  const sibling = source.slice(start, end);
+  assert.match(sibling, /var target = readerNeighbor\(offset\);/);
+  assert.match(sibling, /historyMode:'push'/,
+    'a sibling page transition must append presentation history so browser Back can restore the prior page');
+  assert.match(sibling, /returnKind:activeReaderReturnKind/);
+  assert.match(sibling, /returnEntrySlug:activeReaderReturnEntrySlug/);
+  assert.match(sibling, /returnReaderId:activeReaderReturnReaderId/,
+    'sibling history must not collapse the reader relationship back to a generic collection return');
+
+  assert.match(source, /readerPrev'\)\.addEventListener\('click', function \(\) \{[\s\S]*?openReaderNeighbor\(-1\);/);
+  assert.match(source, /readerNext'\)\.addEventListener\('click', function \(\) \{[\s\S]*?openReaderNeighbor\(1\);/);
+  assert.equal(source.includes("openEvolutionReader(previous.id, { historyMode:'replace' })"), false,
+    'Previous must not erase the page the visitor just left');
+  assert.equal(source.includes("openEvolutionReader(next.id, { historyMode:'replace' })"), false,
+    'Next must not erase the page the visitor just left');
+});
+
 test('TERRAIN-VIEW: embedded same-origin Terrain links return to the parent collection instead of nesting Terrain', () => {
   const source = pageSource();
   assert.match(source, /target = new URL\(href, evolutionReaderFrame\.contentWindow \? evolutionReaderFrame\.contentWindow\.location\.href : window\.location\.href\);/);
