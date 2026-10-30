@@ -619,7 +619,7 @@
 </style>
 </head>
 <body>
-<div class="app">
+<div class="app terrain-content-quiet terrain-arrival-quiet">
   <div class="topbar">
     <div class="brand">
       <div class="eyebrow" data-i18n="terrain.chrome.eyebrow">Living map · self-updating</div>
@@ -700,7 +700,7 @@
         </div>
       </div>
       <div class="evo-gesture-hint" id="evolutionGestureHint" role="status" aria-live="polite" hidden></div>
-      <div id="loadState" class="load-state" data-i18n="terrain.loading.fetching">Fetching data/terrain-map.json…</div>
+      <div id="loadState" class="load-state" data-i18n="terrain.loading.fetching" hidden>Fetching data/terrain-map.json…</div>
     </div>
     <aside class="stage-curiosity-dock" id="contentCuriosityDock" aria-label="Collection preview dock" hidden>
       <div class="stage-curiosity-dock-empty">
@@ -1143,7 +1143,7 @@
     } catch (e) { /* CustomEvent unavailable */ }
   }
 
-  var terrainBaseLanguages = ['en'];
+  var terrainBaseLanguages = null;
 
   function loadTerrainBaseLanguages() {
     return fetch(INDEX_URL, { cache: 'no-store' })
@@ -1165,6 +1165,10 @@
   }
 
   function resetTerrainLanguageSurfaceContext() {
+    // Before the lightweight pageLanguageMap read resolves, leave the shared
+    // FAB's own page-aware capability untouched rather than temporarily
+    // collapsing Terrain back to an EN-only surface.
+    if (!terrainBaseLanguages || !terrainBaseLanguages.length) return;
     // Terrain consumes the same canonical pageLanguageMap capability as the
     // shared FAB. A child may temporarily narrow the visible wheel to its own
     // completeLangs; leaving that child restores Terrain's full capability at
@@ -1268,6 +1272,40 @@
       node.textContent = terrainText(key, fallback);
     });
   }
+
+  function handleTerrainLanguageChange(event) {
+    var lang = event && event.detail && event.detail.lang;
+    if (!lang) return;
+    activeLanguage = lang;
+    panelLang = lang;
+    loadTerrainStrings(lang).then(function (bundle) {
+      if (lang !== activeLanguage) return;
+      terrainStrings = bundle;
+
+      // Plain Home intentionally exists before the archive/map engine. Keep
+      // selected-language state live there without pulling map data forward.
+      if (!DATA) {
+        if (!initialRoute.explicit && !evolutionLayer.querySelector('[data-terrain-entry="arrival"]')) {
+          renderEvolutionAArrival();
+        }
+        if (!initialRoute.explicit) applyTerrainStaticStrings();
+        return;
+      }
+
+      if (!activeReaderId && !activeEntrySlug && !activeGroupHomeKey && OVERVIEW_LEVELS[levelIndex]) OVERVIEW_LEVELS[levelIndex].render(levelCtx);
+      applyTerrainStaticStrings();
+      refreshLocalizedPreviewImages();
+      if (panelNodeId && byId[panelNodeId]) renderPanel(byId[panelNodeId]);
+      if (activeReaderId && byId[activeReaderId]) updateReaderChrome(byId[activeReaderId]);
+      else if (activeGroupHomeKey) {
+        var groupStage = STAGES.find(function (stage) { return stage.key === activeGroupHomeKey; });
+        if (groupStage) updateGroupHomeReaderChrome(groupStage);
+      } else if (activeEntrySlug) {
+        updateEntryReaderChrome(activeEntrySlug);
+      }
+    });
+  }
+
   function stageDisplayName(stage) {
     if (!stage) return '';
     var byLang = stage.nameByLang || {};
@@ -1314,20 +1352,79 @@
   var stageThumbnailHydrationQueue = [];
   var stageThumbnailHydrationHandle = null;
   var initialRoute = readInitialRoute();
+  var terrainEnginePromise = null;
 
-  // ── fetch, then build the client-side view model on top of the real data ──
-  Promise.all([
-    fetch(TERRAIN_URL, { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }),
-    loadTerrainStrings(activeLanguage),
-    loadTerrainBaseLanguages()
-  ]).then(function (values) {
-    terrainStrings = values[1];
-    terrainBaseLanguages = values[2];
-    boot(values[0]);
-    applyTerrainStaticStrings();
-  }).catch(function (err) {
-    document.getElementById('loadState').textContent = 'Could not load data/terrain-map.json (' + err.message + ')';
-  });
+  // Selected-language state belongs to the Terrain surface, not to the heavy
+  // archive/map engine. Install this listener before optional engine boot.
+  window.addEventListener(LANG_CHANGE_EVENT, handleTerrainLanguageChange);
+
+  function loadStableTerrainStrings() {
+    var requestedLanguage = activeLanguage;
+    return loadTerrainStrings(requestedLanguage).then(function (bundle) {
+      if (requestedLanguage !== activeLanguage) return loadStableTerrainStrings();
+      return bundle;
+    });
+  }
+
+  function ensureTerrainEngine() {
+    if (DATA) return Promise.resolve(DATA);
+    if (terrainEnginePromise) return terrainEnginePromise;
+
+    var loadState = document.getElementById('loadState');
+    loadState.hidden = false;
+    loadState.style.display = '';
+    var engineLanguage = activeLanguage;
+
+    terrainEnginePromise = Promise.all([
+      fetch(TERRAIN_URL, { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }),
+      loadTerrainStrings(engineLanguage),
+      terrainBaseLanguages && terrainBaseLanguages.length
+        ? Promise.resolve(terrainBaseLanguages)
+        : loadTerrainBaseLanguages()
+    ]).then(function (values) {
+      if (engineLanguage === activeLanguage) return values;
+      return loadStableTerrainStrings().then(function (bundle) {
+        return [values[0], bundle, values[2]];
+      });
+    }).then(function (values) {
+      terrainStrings = values[1];
+      terrainBaseLanguages = values[2];
+      boot(values[0]);
+      applyTerrainStaticStrings();
+      return values[0];
+    }).catch(function (err) {
+      terrainEnginePromise = null;
+      loadState.hidden = false;
+      loadState.style.display = '';
+      loadState.textContent = 'Could not load data/terrain-map.json (' + err.message + ')';
+      throw err;
+    });
+    return terrainEnginePromise;
+  }
+
+  function withTerrainEngine(action) {
+    ensureTerrainEngine().then(action).catch(function () {});
+  }
+
+  // Plain Home does not need the archive/map data engine. Load only the
+  // lightweight Terrain locale bundle needed for a correctly localized
+  // arrival, plus the canonical page-language capability. Explicit/deep map
+  // routes still boot the existing Terrain engine immediately.
+  if (!initialRoute.explicit) {
+    var initialArrivalLanguage = activeLanguage;
+    loadTerrainStrings(initialArrivalLanguage).then(function (bundle) {
+      if (initialArrivalLanguage !== activeLanguage) return;
+      terrainStrings = bundle;
+      if (!evolutionLayer.querySelector('[data-terrain-entry="arrival"]')) renderEvolutionAArrival();
+      applyTerrainStaticStrings();
+    });
+    loadTerrainBaseLanguages().then(function (langs) {
+      terrainBaseLanguages = langs;
+      resetTerrainLanguageSurfaceContext();
+    });
+  } else {
+    ensureTerrainEngine().catch(function () {});
+  }
 
   // WORLDS — two parallel datasets sharing one shape (STAGES-like columns +
   // ALL-like positioned nodes), so the same fractal engine (levels, panel,
@@ -3304,6 +3401,9 @@
   }
 
   function renderEvolutionAArrival() {
+    var loadState = document.getElementById('loadState');
+    loadState.hidden = true;
+    loadState.style.display = 'none';
     clearWorld();
     svg.style.visibility = 'hidden';
     clearActiveEmbeddedSurface();
@@ -3327,8 +3427,12 @@
       + '<button class="entry-card" type="button" data-entry-action="about"><span class="entry-icon" aria-hidden="true">?</span><span class="entry-title" data-i18n="terrain.arrival.about.title">' + esc(terrainText('terrain.arrival.about.title', 'What is this?')) + '</span><span class="entry-copy" data-i18n="terrain.arrival.about.copy">' + esc(terrainText('terrain.arrival.about.copy', 'If you need to understand where you are before you continue, enter here.')) + '</span><span class="entry-state" data-i18n="terrain.arrival.about.action">' + esc(terrainText('terrain.arrival.about.action', 'Orient me')) + '</span></button>'
       + '</div></div></section>';
 
-    evolutionLayer.querySelector('[data-entry-action="receive-god"]').addEventListener('click', function () { openEntryReader('receive-god'); });
-    evolutionLayer.querySelector('[data-entry-action="archives"]').addEventListener('click', enterArchivesFromArrival);
+    evolutionLayer.querySelector('[data-entry-action="receive-god"]').addEventListener('click', function () {
+      withTerrainEngine(function () { openEntryReader('receive-god'); });
+    });
+    evolutionLayer.querySelector('[data-entry-action="archives"]').addEventListener('click', function () {
+      withTerrainEngine(enterArchivesFromArrival);
+    });
     evolutionLayer.querySelector('[data-entry-action="about"]').addEventListener('click', enterAboutFromArrival);
   }
 
@@ -4558,27 +4662,6 @@
       if (searchPopoverOpen && searchRegion && !searchRegion.contains(ev.target)) dismissEvolutionSearchResults();
     });
 
-    window.addEventListener(LANG_CHANGE_EVENT, function (event) {
-      var lang = event && event.detail && event.detail.lang;
-      if (!lang) return;
-      activeLanguage = lang;
-      panelLang = lang;
-      loadTerrainStrings(lang).then(function (bundle) {
-        terrainStrings = bundle;
-        if (!activeReaderId && !activeEntrySlug && !activeGroupHomeKey && OVERVIEW_LEVELS[levelIndex]) OVERVIEW_LEVELS[levelIndex].render(levelCtx);
-        applyTerrainStaticStrings();
-        refreshLocalizedPreviewImages();
-        if (panelNodeId && byId[panelNodeId]) renderPanel(byId[panelNodeId]);
-        if (activeReaderId && byId[activeReaderId]) updateReaderChrome(byId[activeReaderId]);
-        else if (activeGroupHomeKey) {
-          var groupStage = STAGES.find(function (stage) { return stage.key === activeGroupHomeKey; });
-          if (groupStage) updateGroupHomeReaderChrome(groupStage);
-        } else if (activeEntrySlug) {
-          updateEntryReaderChrome(activeEntrySlug);
-        }
-      });
-    });
-
     window.addEventListener('resize', handleTerrainResize);
     window.addEventListener('popstate', function (event) {
       var snapshot = Journey && Journey.unwrap(event.state);
@@ -4609,7 +4692,7 @@ window.VEXTREME_OVERRIDE = {
   }]
 };
 </script>
-<script src="../lib/shell.js?v=e11f8e3d51e4"></script>
+<script src="../lib/shell.js?v=892a247f9e93"></script>
 </body>
 </html>
 <!-- [VXG RealForever] -->

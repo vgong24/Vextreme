@@ -494,6 +494,86 @@ test('TERRAIN-VIEW: screenshot rendering accepts local repository paths and abso
     'Code\/screen evidence panel must resolve local or remote custody');
 });
 
+test('TERRAIN-VIEW: selected-language state remains live before the archive/map engine boots', () => {
+  const source = pageSource();
+
+  assert.match(source, /function handleTerrainLanguageChange\(event\)/,
+    'Terrain must own one language-change handler independent of map boot');
+
+  const handler = source.match(/function handleTerrainLanguageChange\(event\) \{([\s\S]*?)\n  \}/);
+  assert.ok(handler, 'language-change handler must remain extractable');
+  assert.match(handler[0], /activeLanguage = lang/);
+  assert.match(handler[0], /if \(!DATA\)/,
+    'the handler must explicitly support the lightweight pre-engine Home state');
+  assert.match(handler[0], /if \(lang !== activeLanguage\) return/,
+    'a stale locale response must not reclaim Terrain language state');
+
+  const listener = source.indexOf('window.addEventListener(LANG_CHANGE_EVENT, handleTerrainLanguageChange);');
+  const wire = source.indexOf('function wireControls()');
+  assert.ok(listener >= 0 && wire > listener,
+    'selected-language wiring must be installed before the deferred map-engine controls');
+  assert.equal(
+    source.slice(wire).includes("window.addEventListener(LANG_CHANGE_EVENT"),
+    false,
+    'map-engine boot must not install a second language-change listener'
+  );
+
+  assert.match(source, /var initialArrivalLanguage = activeLanguage;[\s\S]*initialArrivalLanguage !== activeLanguage/,
+    'the initial arrival locale fetch must not overwrite a newer user selection');
+});
+
+test('TERRAIN-VIEW: deferred engine boot cannot restore an older locale after the user changes language', () => {
+  const source = pageSource();
+
+  const stableLoader = source.match(/function loadStableTerrainStrings\(\) \{([\s\S]*?)\n  \}/);
+  assert.ok(stableLoader, 'deferred engine boot must have one stable-current locale loader');
+  assert.match(stableLoader[0], /var requestedLanguage = activeLanguage/);
+  assert.match(stableLoader[0], /requestedLanguage !== activeLanguage[\s\S]*loadStableTerrainStrings\(\)/,
+    'a locale change during a locale fetch must retry against the newer selected language');
+
+  const engine = source.match(/function ensureTerrainEngine\(\) \{([\s\S]*?)\n  \}/);
+  assert.ok(engine, 'deferred engine boot must remain extractable');
+  assert.match(engine[0], /var engineLanguage = activeLanguage/);
+  assert.match(engine[0], /loadTerrainStrings\(engineLanguage\)/,
+    'normal engine boot may still load its initial locale in parallel with map data');
+  assert.match(engine[0], /engineLanguage === activeLanguage[\s\S]*loadStableTerrainStrings\(\)/,
+    'engine boot must re-resolve a stable current locale when selection changes in flight');
+  assert.ok(
+    engine[0].indexOf('loadStableTerrainStrings()') < engine[0].indexOf('terrainStrings = values[1]'),
+    'the stale-response check must happen before engine boot can publish Terrain strings'
+  );
+});
+
+test('TERRAIN-VIEW: default arrival is quiet, localized, and defers archive/map data until a map-dependent action', () => {
+  const source = pageSource();
+
+  assert.match(source, /<div class="app terrain-content-quiet terrain-arrival-quiet">/,
+    'the authored first paint must already use arrival chrome rather than flash the technical Terrain header');
+  assert.match(source, /id="loadState"[^>]*hidden/,
+    'the archive/map loading label must not flash on the lightweight Home path');
+
+  const engine = source.match(/function ensureTerrainEngine\(\) \{([\s\S]*?)\n  \}/);
+  assert.ok(engine, 'archive/map data loading must have one lazy owner');
+  assert.match(engine[0], /fetch\(TERRAIN_URL, \{ cache: 'no-store' \}\)/,
+    'mutable Terrain map data must still use no-store when a map-dependent route requests it');
+
+  const bootstrap = source.match(/if \(!initialRoute\.explicit\) \{([\s\S]*?)\n  \} else \{/);
+  assert.ok(bootstrap, 'default versus explicit route bootstrap must remain explicit');
+  assert.match(bootstrap[0], /var initialArrivalLanguage = activeLanguage;[\s\S]*loadTerrainStrings\(initialArrivalLanguage\)[\s\S]*initialArrivalLanguage !== activeLanguage[\s\S]*renderEvolutionAArrival\(\)/,
+    'plain Home must snapshot the active locale, reject a stale response, then render the localized arrival');
+  assert.match(bootstrap[0], /loadTerrainBaseLanguages\(\)/,
+    'plain Home must still resolve the canonical page-language capability');
+  assert.doesNotMatch(bootstrap[0], /fetch\(TERRAIN_URL|ensureTerrainEngine\(\)/,
+    'plain Home must not start archive/map data loading in the background');
+
+  assert.match(source, /data-entry-action="receive-god"[\s\S]*withTerrainEngine\(function \(\) \{ openEntryReader\('receive-god'\); \}\)/,
+    'Receive God may boot the map engine only when that deeper Terrain reader is requested');
+  assert.match(source, /data-entry-action="archives"[\s\S]*withTerrainEngine\(enterArchivesFromArrival\)/,
+    'Explore Archives must boot the map engine on demand');
+  assert.match(source, /data-entry-action="about"[\s\S]*addEventListener\('click', enterAboutFromArrival\)/,
+    'plain orientation must remain direct lightweight navigation without map boot');
+});
+
 test('TERRAIN-VIEW: mutable Terrain data bypasses stale browser cache so current preview metadata is visible', () => {
   const source = pageSource();
   assert.match(source, /fetch\(TERRAIN_URL, \{ cache: 'no-store' \}\)/);
@@ -1016,8 +1096,15 @@ test('TERRAIN-VIEW: embedded readers and screenshot previews follow the shared e
     'embedded/standalone reader destinations must carry the effective locale explicitly');
   assert.match(source, /replaceEvolutionReaderDocument\(url\)[\s\S]*languageAwareUrl\(url, activeLanguage\)/,
     'embedded reader loads must use the language-aware URL');
-  assert.match(source, /window\.addEventListener\(LANG_CHANGE_EVENT[\s\S]*activeLanguage = lang[\s\S]*refreshLocalizedPreviewImages\(\)/,
-    'Terrain must react live when the parent FAB language changes');
+  assert.match(source, /window\.addEventListener\(LANG_CHANGE_EVENT, handleTerrainLanguageChange\)/,
+    'Terrain must register its selected-language listener independently of map-engine boot');
+  const languageHandler = source.match(/function handleTerrainLanguageChange\(event\) \{([\s\S]*?)\n  \}/);
+  assert.ok(languageHandler, 'Terrain language-change behavior must remain owned by the named handler');
+  assert.match(languageHandler[0], /activeLanguage = lang/);
+  assert.match(languageHandler[0], /if \(!DATA\)/,
+    'the language handler must support the lightweight Home state before map data exists');
+  assert.match(languageHandler[0], /refreshLocalizedPreviewImages\(\)/,
+    'once map data exists, live locale changes must refresh localized preview evidence');
   assert.match(source, /data-preview-node-id=/,
     'curiosity previews need stable node identity so an already-rendered shelf can swap locale evidence');
   assert.doesNotMatch(source, /languages\.indexOf\('en'\) !== -1 \? 'en' : languages\[0\]/,

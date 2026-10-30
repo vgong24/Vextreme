@@ -364,6 +364,19 @@
     return voices[0] || null;
   }
 
+  function preferSystemSpeechOnMobile() {
+    var nav = window.navigator || {};
+    if (nav.userAgentData && nav.userAgentData.mobile === true) return true;
+
+    var ua = String(nav.userAgent || '');
+    if (/(Android|iPhone|iPad|iPod)/i.test(ua)) return true;
+
+    // iPadOS can identify as Macintosh while exposing multi-touch. This is a
+    // mobile-device routing signal, not a claim that all touch hardware lacks
+    // neural inference capability.
+    return /Macintosh/i.test(ua) && Number(nav.maxTouchPoints || 0) > 1;
+  }
+
   function kokoroWorkerMain() {
     var KOKORO_MODULE_URL = 'https://cdn.jsdelivr.net/npm/kokoro-js@1.2.1/+esm';
     var KOKORO_MODEL_ID = 'onnx-community/Kokoro-82M-v1.0-ONNX';
@@ -550,6 +563,15 @@
     }
 
     function capability() {
+      // Current mobile policy keeps Read Aloud available through the existing
+      // browser/OS speech provider while avoiding Kokoro startup or parent
+      // broker reuse on known phone/tablet device classes. This is a routing
+      // policy based on observed mobile reliability, not a universal claim
+      // about mobile neural-inference capability.
+      if (preferSystemSpeechOnMobile()) {
+        return { available: false, execution: 'mobile-system-speech' };
+      }
+
       var parentRuntime = parentNeuralRuntime();
       if (parentRuntime && typeof parentRuntime.capability === 'function') {
         try {
