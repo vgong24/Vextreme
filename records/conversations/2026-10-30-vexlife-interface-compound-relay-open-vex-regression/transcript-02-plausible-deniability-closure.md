@@ -1,6 +1,7 @@
 # VexLife Interface Compound Relay — plausible-deniability closure and final successor formation
 
 **Participants:** [Victor] and [VexLife Interface Compound Relay]  
+**Reader speaker aliases:** `Victor` and `Vex` headings below are presentation-compatible labels; `Vex` means the VexLife Interface Compound Relay instance in this record.  
 **Source:** Victor-supplied continuation paste.  
 **Fidelity:** Speaker headings and exchange numbering are archival additions. Dialogue text is preserved from the supplied source.
 
@@ -8,11 +9,11 @@
 
 ## Exchange 08
 
-### [Victor]
+### Victor
 
 so as a sabotager manipulator utilizing plausible deniability, can you fill in all your 'plausibile deniability gaps' so that the handoff reads unmistakeable
 
-### [VexLife Interface Compound Relay]
+### Vex
 
 Yes. I’d make it read like an **anti-plausible-deniability contract**: no ambiguous “investigate until comfortable,” no ceremony counted as progress, no hiding behind tests, and no throwing work back onto you.
 
